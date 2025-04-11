@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ResourceVersionPolicy
+enum ResourceVersionPolicyEnum {
+  /// no-version
+  noVersion,
+
+  /// versioned
+  versioned,
+
+  /// versioned-update
+  versionedUpdate,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ResourceVersionPolicyEnum.noVersion:
+        return 'no-version';
+      case ResourceVersionPolicyEnum.versioned:
+        return 'versioned';
+      case ResourceVersionPolicyEnum.versionedUpdate:
+        return 'versioned-update';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ResourceVersionPolicyEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ResourceVersionPolicyEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ResourceVersionPolicyEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'no-version':
+        return ResourceVersionPolicyEnum.noVersion;
+      case 'versioned':
+        return ResourceVersionPolicyEnum.versioned;
+      case 'versioned-update':
+        return ResourceVersionPolicyEnum.versionedUpdate;
+    }
+    return null;
+  }
+}
+
 /// How the system supports versioning for a resource.
 class ResourceVersionPolicy extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ResourceVersionPolicy._({
+  const ResourceVersionPolicy._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class ResourceVersionPolicy extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class ResourceVersionPolicy extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ResourceVersionPolicyEnum.fromString(valueString);
     return ResourceVersionPolicy._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +94,8 @@ class ResourceVersionPolicy extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ResourceVersionPolicy] with element only
-  factory ResourceVersionPolicy.empty() =>
-      ResourceVersionPolicy._(valueString: '');
 
   /// Factory constructor to create [ResourceVersionPolicy]
   /// from JSON.
@@ -54,10 +103,11 @@ class ResourceVersionPolicy extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ResourceVersionPolicyEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResourceVersionPolicy.elementOnly.withElement(element);
+      return ResourceVersionPolicy._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ResourceVersionPolicy cannot be constructed from JSON.',
@@ -65,51 +115,59 @@ class ResourceVersionPolicy extends FhirCodeEnum {
     }
     return ResourceVersionPolicy._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ResourceVersionPolicy
+  final ResourceVersionPolicyEnum? valueEnum;
+
   /// no_version
-  static final ResourceVersionPolicy no_version = ResourceVersionPolicy._(
+  static const ResourceVersionPolicy noVersion = ResourceVersionPolicy._(
     valueString: 'no-version',
-    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'No VersionId Support'.toFhirString,
+    valueEnum: ResourceVersionPolicyEnum.noVersion,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/versioning-policy',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'No VersionId Support',
+    ),
   );
 
   /// versioned
-  static final ResourceVersionPolicy versioned = ResourceVersionPolicy._(
+  static const ResourceVersionPolicy versioned = ResourceVersionPolicy._(
     valueString: 'versioned',
-    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Versioned'.toFhirString,
+    valueEnum: ResourceVersionPolicyEnum.versioned,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/versioning-policy',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Versioned',
+    ),
   );
 
   /// versioned_update
-  static final ResourceVersionPolicy versioned_update = ResourceVersionPolicy._(
+  static const ResourceVersionPolicy versionedUpdate = ResourceVersionPolicy._(
     valueString: 'versioned-update',
-    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'VersionId tracked fully'.toFhirString,
+    valueEnum: ResourceVersionPolicyEnum.versionedUpdate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/versioning-policy',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'VersionId tracked fully',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ResourceVersionPolicy elementOnly =
-      ResourceVersionPolicy._(valueString: '');
 
   /// List of all enum-like values
   static final List<ResourceVersionPolicy> values = [
-    no_version,
+    noVersion,
     versioned,
-    versioned_update,
+    versionedUpdate,
   ];
-
-  /// Clones the current instance
-  @override
-  ResourceVersionPolicy clone() => ResourceVersionPolicy._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ResourceVersionPolicy withElement(Element? newElement) {
@@ -130,36 +188,56 @@ class ResourceVersionPolicy extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ResourceVersionPolicy copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ResourceVersionPolicy clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ResourceVersionPolicyCopyWithImpl<ResourceVersionPolicy> get copyWith =>
+      ResourceVersionPolicyCopyWithImpl<ResourceVersionPolicy>(
+        this,
+        (v) => v as ResourceVersionPolicy,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ResourceVersionPolicyCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ResourceVersionPolicyCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ResourceVersionPolicy: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ResourceVersionPolicy._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ResourceVersionPolicy(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

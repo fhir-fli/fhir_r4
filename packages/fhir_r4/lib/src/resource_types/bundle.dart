@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'bundle.g.dart';
+
 /// [Bundle]
 /// A container for a collection of resources.
 class Bundle extends Resource {
@@ -21,88 +23,65 @@ class Bundle extends Resource {
     this.entry,
     this.signature,
   }) : super(
-          objectPath: 'Bundle',
           resourceType: R4ResourceType.Bundle,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Bundle.empty() => Bundle(
-        type: BundleType.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Bundle.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle';
     return Bundle(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       type: JsonParser.parsePrimitive<BundleType>(
         json,
         'type',
         BundleType.fromJson,
-        '$objectPath.type',
       )!,
       timestamp: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'timestamp',
         FhirInstant.fromJson,
-        '$objectPath.timestamp',
       ),
       total: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'total',
         FhirUnsignedInt.fromJson,
-        '$objectPath.total',
       ),
       link: (json['link'] as List<dynamic>?)
           ?.map<BundleLink>(
             (v) => BundleLink.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.link',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       entry: (json['entry'] as List<dynamic>?)
           ?.map<BundleEntry>(
             (v) => BundleEntry.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.entry',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -110,7 +89,6 @@ class Bundle extends Resource {
         json,
         'signature',
         Signature.fromJson,
-        '$objectPath.signature',
       ),
     );
   }
@@ -386,345 +364,18 @@ class Bundle extends Resource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Bundle clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is BundleType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timestamp':
-        {
-          if (child is FhirInstant) {
-            return copyWith(timestamp: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'total':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(total: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'link':
-        {
-          if (child is List<BundleLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is BundleLink) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?link,
-              child,
-            ];
-            return copyWith(link: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'entry':
-        {
-          if (child is List<BundleEntry>) {
-            // Add all elements from passed list
-            final newList = [...?entry, ...child];
-            return copyWith(entry: newList);
-          } else if (child is BundleEntry) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?entry,
-              child,
-            ];
-            return copyWith(entry: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'signature':
-        {
-          if (child is Signature) {
-            return copyWith(signature: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Bundle]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'type':
-        return ['FhirCode'];
-      case 'timestamp':
-        return ['FhirInstant'];
-      case 'total':
-        return ['FhirUnsignedInt'];
-      case 'link':
-        return ['BundleLink'];
-      case 'entry':
-        return ['BundleEntry'];
-      case 'signature':
-        return ['Signature'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Bundle]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Bundle createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: BundleType.empty(),
-          );
-        }
-      case 'timestamp':
-        {
-          return copyWith(
-            timestamp: FhirInstant.empty(),
-          );
-        }
-      case 'total':
-        {
-          return copyWith(
-            total: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'link':
-        {
-          return copyWith(
-            link: <BundleLink>[],
-          );
-        }
-      case 'entry':
-        {
-          return copyWith(
-            entry: <BundleEntry>[],
-          );
-        }
-      case 'signature':
-        {
-          return copyWith(
-            signature: Signature.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Bundle clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool identifier = false,
-    bool timestamp = false,
-    bool total = false,
-    bool link = false,
-    bool entry = false,
-    bool signature = false,
-  }) {
-    return Bundle(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      identifier: identifier ? null : this.identifier,
-      type: type,
-      timestamp: timestamp ? null : this.timestamp,
-      total: total ? null : this.total,
-      link: link ? null : this.link,
-      entry: entry ? null : this.entry,
-      signature: signature ? null : this.signature,
-    );
-  }
-
-  @override
-  Bundle clone() => throw UnimplementedError();
-  @override
-  Bundle copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Identifier? identifier,
-    BundleType? type,
-    FhirInstant? timestamp,
-    FhirUnsignedInt? total,
-    List<BundleLink>? link,
-    List<BundleEntry>? entry,
-    Signature? signature,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Bundle(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      timestamp: timestamp?.copyWith(
-            objectPath: '$newObjectPath.timestamp',
-          ) ??
-          this.timestamp,
-      total: total?.copyWith(
-            objectPath: '$newObjectPath.total',
-          ) ??
-          this.total,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
-      entry: entry
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entry',
-                ),
-              )
-              .toList() ??
-          this.entry,
-      signature: signature?.copyWith(
-            objectPath: '$newObjectPath.signature',
-          ) ??
-          this.signature,
-    );
-  }
+  $BundleCopyWith<Bundle> get copyWith => _$BundleCopyWithImpl<Bundle>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -817,47 +468,29 @@ class BundleLink extends BackboneElement {
     required this.relation,
     required this.url,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Bundle.link',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BundleLink.empty() => BundleLink(
-        relation: FhirString.empty(),
-        url: FhirUri.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleLink.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle.link';
     return BundleLink(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -865,13 +498,11 @@ class BundleLink extends BackboneElement {
         json,
         'relation',
         FhirString.fromJson,
-        '$objectPath.relation',
       )!,
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       )!,
     );
   }
@@ -1065,207 +696,19 @@ class BundleLink extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BundleLink clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relation':
-        {
-          if (child is FhirString) {
-            return copyWith(relation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BundleLink]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'relation':
-        return ['FhirString'];
-      case 'url':
-        return ['FhirUri'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BundleLink]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BundleLink createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'relation':
-        {
-          return copyWith(
-            relation: FhirString.empty(),
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BundleLink clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return BundleLink(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      relation: relation,
-      url: url,
-    );
-  }
-
-  @override
-  BundleLink clone() => throw UnimplementedError();
-  @override
-  BundleLink copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? relation,
-    FhirUri? url,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BundleLink(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      relation: relation?.copyWith(
-            objectPath: '$newObjectPath.relation',
-          ) ??
-          this.relation,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-    );
-  }
+  $BundleLinkCopyWith<BundleLink> get copyWith =>
+      _$BundleLinkCopyWithImpl<BundleLink>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1327,54 +770,36 @@ class BundleEntry extends BackboneElement {
     this.request,
     this.response,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Bundle.entry',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BundleEntry.empty() => const BundleEntry();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleEntry.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle.entry';
     return BundleEntry(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       link: (json['link'] as List<dynamic>?)
           ?.map<BundleLink>(
             (v) => BundleLink.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.link',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1382,31 +807,26 @@ class BundleEntry extends BackboneElement {
         json,
         'fullUrl',
         FhirUri.fromJson,
-        '$objectPath.fullUrl',
       ),
       resource: JsonParser.parseObject<Resource>(
         json,
         'resource',
         Resource.fromJson,
-        '$objectPath.resource',
       ),
       search: JsonParser.parseObject<BundleSearch>(
         json,
         'search',
         BundleSearch.fromJson,
-        '$objectPath.search',
       ),
       request: JsonParser.parseObject<BundleRequest>(
         json,
         'request',
         BundleRequest.fromJson,
-        '$objectPath.request',
       ),
       response: JsonParser.parseObject<BundleResponse>(
         json,
         'response',
         BundleResponse.fromJson,
-        '$objectPath.response',
       ),
     );
   }
@@ -1669,311 +1089,19 @@ class BundleEntry extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BundleEntry clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'link':
-        {
-          if (child is List<BundleLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is BundleLink) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?link,
-              child,
-            ];
-            return copyWith(link: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fullUrl':
-        {
-          if (child is FhirUri) {
-            return copyWith(fullUrl: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is Resource) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'search':
-        {
-          if (child is BundleSearch) {
-            return copyWith(search: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'request':
-        {
-          if (child is BundleRequest) {
-            return copyWith(request: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'response':
-        {
-          if (child is BundleResponse) {
-            return copyWith(response: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BundleEntry]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'link':
-        return ['BundleLink'];
-      case 'fullUrl':
-        return ['FhirUri'];
-      case 'resource':
-        return ['Resource'];
-      case 'search':
-        return ['BundleSearch'];
-      case 'request':
-        return ['BundleRequest'];
-      case 'response':
-        return ['BundleResponse'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BundleEntry]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BundleEntry createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'link':
-        {
-          return copyWith(
-            link: <BundleLink>[],
-          );
-        }
-      case 'fullUrl':
-        {
-          return copyWith(
-            fullUrl: FhirUri.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: Resource.empty(),
-          );
-        }
-      case 'search':
-        {
-          return copyWith(
-            search: BundleSearch.empty(),
-          );
-        }
-      case 'request':
-        {
-          return copyWith(
-            request: BundleRequest.empty(),
-          );
-        }
-      case 'response':
-        {
-          return copyWith(
-            response: BundleResponse.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BundleEntry clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool link = false,
-    bool fullUrl = false,
-    bool resource = false,
-    bool search = false,
-    bool request = false,
-    bool response = false,
-  }) {
-    return BundleEntry(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      link: link ? null : this.link,
-      fullUrl: fullUrl ? null : this.fullUrl,
-      resource: resource ? null : this.resource,
-      search: search ? null : this.search,
-      request: request ? null : this.request,
-      response: response ? null : this.response,
-    );
-  }
-
-  @override
-  BundleEntry clone() => throw UnimplementedError();
-  @override
-  BundleEntry copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<BundleLink>? link,
-    FhirUri? fullUrl,
-    Resource? resource,
-    BundleSearch? search,
-    BundleRequest? request,
-    BundleResponse? response,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BundleEntry(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
-      fullUrl: fullUrl?.copyWith(
-            objectPath: '$newObjectPath.fullUrl',
-          ) ??
-          this.fullUrl,
-      resource: resource ?? this.resource,
-      search: search?.copyWith(
-            objectPath: '$newObjectPath.search',
-          ) ??
-          this.search,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      response: response?.copyWith(
-            objectPath: '$newObjectPath.response',
-          ) ??
-          this.response,
-    );
-  }
+  $BundleEntryCopyWith<BundleEntry> get copyWith =>
+      _$BundleEntryCopyWithImpl<BundleEntry>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2055,44 +1183,29 @@ class BundleSearch extends BackboneElement {
     this.mode,
     this.score,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Bundle.entry.search',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BundleSearch.empty() => const BundleSearch();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleSearch.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle.entry.search';
     return BundleSearch(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2100,13 +1213,11 @@ class BundleSearch extends BackboneElement {
         json,
         'mode',
         SearchEntryMode.fromJson,
-        '$objectPath.mode',
       ),
       score: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'score',
         FhirDecimal.fromJson,
-        '$objectPath.score',
       ),
     );
   }
@@ -2305,209 +1416,19 @@ class BundleSearch extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BundleSearch clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'mode':
-        {
-          if (child is SearchEntryMode) {
-            return copyWith(mode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'score':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(score: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BundleSearch]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'mode':
-        return ['FhirCode'];
-      case 'score':
-        return ['FhirDecimal'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BundleSearch]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BundleSearch createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'mode':
-        {
-          return copyWith(
-            mode: SearchEntryMode.empty(),
-          );
-        }
-      case 'score':
-        {
-          return copyWith(
-            score: FhirDecimal.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BundleSearch clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool score = false,
-  }) {
-    return BundleSearch(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      mode: mode ? null : this.mode,
-      score: score ? null : this.score,
-    );
-  }
-
-  @override
-  BundleSearch clone() => throw UnimplementedError();
-  @override
-  BundleSearch copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    SearchEntryMode? mode,
-    FhirDecimal? score,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BundleSearch(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      score: score?.copyWith(
-            objectPath: '$newObjectPath.score',
-          ) ??
-          this.score,
-    );
-  }
+  $BundleSearchCopyWith<BundleSearch> get copyWith =>
+      _$BundleSearchCopyWithImpl<BundleSearch>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2570,47 +1491,29 @@ class BundleRequest extends BackboneElement {
     this.ifMatch,
     this.ifNoneExist,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Bundle.entry.request',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BundleRequest.empty() => BundleRequest(
-        method: HTTPVerb.values.first,
-        url: FhirUri.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleRequest.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle.entry.request';
     return BundleRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2618,37 +1521,31 @@ class BundleRequest extends BackboneElement {
         json,
         'method',
         HTTPVerb.fromJson,
-        '$objectPath.method',
       )!,
       url: JsonParser.parsePrimitive<FhirUri>(
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       )!,
       ifNoneMatch: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifNoneMatch',
         FhirString.fromJson,
-        '$objectPath.ifNoneMatch',
       ),
       ifModifiedSince: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'ifModifiedSince',
         FhirInstant.fromJson,
-        '$objectPath.ifModifiedSince',
       ),
       ifMatch: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifMatch',
         FhirString.fromJson,
-        '$objectPath.ifMatch',
       ),
       ifNoneExist: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifNoneExist',
         FhirString.fromJson,
-        '$objectPath.ifNoneExist',
       ),
     );
   }
@@ -2903,299 +1800,19 @@ class BundleRequest extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BundleRequest clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'method':
-        {
-          if (child is HTTPVerb) {
-            return copyWith(method: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ifNoneMatch':
-        {
-          if (child is FhirString) {
-            return copyWith(ifNoneMatch: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ifModifiedSince':
-        {
-          if (child is FhirInstant) {
-            return copyWith(ifModifiedSince: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ifMatch':
-        {
-          if (child is FhirString) {
-            return copyWith(ifMatch: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ifNoneExist':
-        {
-          if (child is FhirString) {
-            return copyWith(ifNoneExist: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BundleRequest]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'method':
-        return ['FhirCode'];
-      case 'url':
-        return ['FhirUri'];
-      case 'ifNoneMatch':
-        return ['FhirString'];
-      case 'ifModifiedSince':
-        return ['FhirInstant'];
-      case 'ifMatch':
-        return ['FhirString'];
-      case 'ifNoneExist':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BundleRequest]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BundleRequest createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'method':
-        {
-          return copyWith(
-            method: HTTPVerb.empty(),
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'ifNoneMatch':
-        {
-          return copyWith(
-            ifNoneMatch: FhirString.empty(),
-          );
-        }
-      case 'ifModifiedSince':
-        {
-          return copyWith(
-            ifModifiedSince: FhirInstant.empty(),
-          );
-        }
-      case 'ifMatch':
-        {
-          return copyWith(
-            ifMatch: FhirString.empty(),
-          );
-        }
-      case 'ifNoneExist':
-        {
-          return copyWith(
-            ifNoneExist: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BundleRequest clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool ifNoneMatch = false,
-    bool ifModifiedSince = false,
-    bool ifMatch = false,
-    bool ifNoneExist = false,
-  }) {
-    return BundleRequest(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      method: method,
-      url: url,
-      ifNoneMatch: ifNoneMatch ? null : this.ifNoneMatch,
-      ifModifiedSince: ifModifiedSince ? null : this.ifModifiedSince,
-      ifMatch: ifMatch ? null : this.ifMatch,
-      ifNoneExist: ifNoneExist ? null : this.ifNoneExist,
-    );
-  }
-
-  @override
-  BundleRequest clone() => throw UnimplementedError();
-  @override
-  BundleRequest copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    HTTPVerb? method,
-    FhirUri? url,
-    FhirString? ifNoneMatch,
-    FhirInstant? ifModifiedSince,
-    FhirString? ifMatch,
-    FhirString? ifNoneExist,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BundleRequest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      ifNoneMatch: ifNoneMatch?.copyWith(
-            objectPath: '$newObjectPath.ifNoneMatch',
-          ) ??
-          this.ifNoneMatch,
-      ifModifiedSince: ifModifiedSince?.copyWith(
-            objectPath: '$newObjectPath.ifModifiedSince',
-          ) ??
-          this.ifModifiedSince,
-      ifMatch: ifMatch?.copyWith(
-            objectPath: '$newObjectPath.ifMatch',
-          ) ??
-          this.ifMatch,
-      ifNoneExist: ifNoneExist?.copyWith(
-            objectPath: '$newObjectPath.ifNoneExist',
-          ) ??
-          this.ifNoneExist,
-    );
-  }
+  $BundleRequestCopyWith<BundleRequest> get copyWith =>
+      _$BundleRequestCopyWithImpl<BundleRequest>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3281,46 +1898,29 @@ class BundleResponse extends BackboneElement {
     this.lastModified,
     this.outcome,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Bundle.entry.response',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BundleResponse.empty() => BundleResponse(
-        status: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BundleResponse.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Bundle.entry.response';
     return BundleResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3328,31 +1928,26 @@ class BundleResponse extends BackboneElement {
         json,
         'status',
         FhirString.fromJson,
-        '$objectPath.status',
       )!,
       location: JsonParser.parsePrimitive<FhirUri>(
         json,
         'location',
         FhirUri.fromJson,
-        '$objectPath.location',
       ),
       etag: JsonParser.parsePrimitive<FhirString>(
         json,
         'etag',
         FhirString.fromJson,
-        '$objectPath.etag',
       ),
       lastModified: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'lastModified',
         FhirInstant.fromJson,
-        '$objectPath.lastModified',
       ),
       outcome: JsonParser.parseObject<Resource>(
         json,
         'outcome',
         Resource.fromJson,
-        '$objectPath.outcome',
       ),
     );
   }
@@ -3593,274 +2188,19 @@ class BundleResponse extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BundleResponse clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is FhirString) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-        {
-          if (child is FhirUri) {
-            return copyWith(location: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'etag':
-        {
-          if (child is FhirString) {
-            return copyWith(etag: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'lastModified':
-        {
-          if (child is FhirInstant) {
-            return copyWith(lastModified: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is Resource) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BundleResponse]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'status':
-        return ['FhirString'];
-      case 'location':
-        return ['FhirUri'];
-      case 'etag':
-        return ['FhirString'];
-      case 'lastModified':
-        return ['FhirInstant'];
-      case 'outcome':
-        return ['Resource'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BundleResponse]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BundleResponse createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: FhirString.empty(),
-          );
-        }
-      case 'location':
-        {
-          return copyWith(
-            location: FhirUri.empty(),
-          );
-        }
-      case 'etag':
-        {
-          return copyWith(
-            etag: FhirString.empty(),
-          );
-        }
-      case 'lastModified':
-        {
-          return copyWith(
-            lastModified: FhirInstant.empty(),
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: Resource.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BundleResponse clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool location = false,
-    bool etag = false,
-    bool lastModified = false,
-    bool outcome = false,
-  }) {
-    return BundleResponse(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      status: status,
-      location: location ? null : this.location,
-      etag: etag ? null : this.etag,
-      lastModified: lastModified ? null : this.lastModified,
-      outcome: outcome ? null : this.outcome,
-    );
-  }
-
-  @override
-  BundleResponse clone() => throw UnimplementedError();
-  @override
-  BundleResponse copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? status,
-    FhirUri? location,
-    FhirString? etag,
-    FhirInstant? lastModified,
-    Resource? outcome,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BundleResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      etag: etag?.copyWith(
-            objectPath: '$newObjectPath.etag',
-          ) ??
-          this.etag,
-      lastModified: lastModified?.copyWith(
-            objectPath: '$newObjectPath.lastModified',
-          ) ??
-          this.lastModified,
-      outcome: outcome ?? this.outcome,
-    );
-  }
+  $BundleResponseCopyWith<BundleResponse> get copyWith =>
+      _$BundleResponseCopyWithImpl<BundleResponse>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

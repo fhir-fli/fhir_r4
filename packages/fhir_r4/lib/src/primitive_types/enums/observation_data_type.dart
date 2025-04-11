@@ -1,11 +1,121 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ObservationDataType
+enum ObservationDataTypeEnum {
+  /// Quantity
+  quantity,
+
+  /// CodeableConcept
+  codeableConcept,
+
+  /// string
+  string,
+
+  /// boolean
+  boolean,
+
+  /// integer
+  integer,
+
+  /// Range
+  range,
+
+  /// Ratio
+  ratio,
+
+  /// SampledData
+  sampledData,
+
+  /// time
+  time,
+
+  /// dateTime
+  dateTime,
+
+  /// Period
+  period,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ObservationDataTypeEnum.quantity:
+        return 'Quantity';
+      case ObservationDataTypeEnum.codeableConcept:
+        return 'CodeableConcept';
+      case ObservationDataTypeEnum.string:
+        return 'string';
+      case ObservationDataTypeEnum.boolean:
+        return 'boolean';
+      case ObservationDataTypeEnum.integer:
+        return 'integer';
+      case ObservationDataTypeEnum.range:
+        return 'Range';
+      case ObservationDataTypeEnum.ratio:
+        return 'Ratio';
+      case ObservationDataTypeEnum.sampledData:
+        return 'SampledData';
+      case ObservationDataTypeEnum.time:
+        return 'time';
+      case ObservationDataTypeEnum.dateTime:
+        return 'dateTime';
+      case ObservationDataTypeEnum.period:
+        return 'Period';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ObservationDataTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ObservationDataTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ObservationDataTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'Quantity':
+        return ObservationDataTypeEnum.quantity;
+      case 'CodeableConcept':
+        return ObservationDataTypeEnum.codeableConcept;
+      case 'string':
+        return ObservationDataTypeEnum.string;
+      case 'boolean':
+        return ObservationDataTypeEnum.boolean;
+      case 'integer':
+        return ObservationDataTypeEnum.integer;
+      case 'Range':
+        return ObservationDataTypeEnum.range;
+      case 'Ratio':
+        return ObservationDataTypeEnum.ratio;
+      case 'SampledData':
+        return ObservationDataTypeEnum.sampledData;
+      case 'time':
+        return ObservationDataTypeEnum.time;
+      case 'dateTime':
+        return ObservationDataTypeEnum.dateTime;
+      case 'Period':
+        return ObservationDataTypeEnum.period;
+    }
+    return null;
+  }
+}
+
 /// Permitted data type for observation value.
 class ObservationDataType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ObservationDataType._({
+  const ObservationDataType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +123,6 @@ class ObservationDataType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +136,13 @@ class ObservationDataType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ObservationDataTypeEnum.fromString(valueString);
     return ObservationDataType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +150,8 @@ class ObservationDataType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ObservationDataType] with element only
-  factory ObservationDataType.empty() => ObservationDataType._(valueString: '');
 
   /// Factory constructor to create [ObservationDataType]
   /// from JSON.
@@ -53,10 +159,11 @@ class ObservationDataType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ObservationDataTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationDataType.elementOnly.withElement(element);
+      return ObservationDataType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ObservationDataType cannot be constructed from JSON.',
@@ -64,123 +171,171 @@ class ObservationDataType extends FhirCodeEnum {
     }
     return ObservationDataType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ObservationDataType
+  final ObservationDataTypeEnum? valueEnum;
+
   /// Quantity
-  static final ObservationDataType Quantity = ObservationDataType._(
+  static const ObservationDataType quantity = ObservationDataType._(
     valueString: 'Quantity',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Quantity'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.quantity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Quantity',
+    ),
   );
 
   /// CodeableConcept
-  static final ObservationDataType CodeableConcept = ObservationDataType._(
+  static const ObservationDataType codeableConcept = ObservationDataType._(
     valueString: 'CodeableConcept',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CodeableConcept'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.codeableConcept,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CodeableConcept',
+    ),
   );
 
   /// string
-  static final ObservationDataType string = ObservationDataType._(
+  static const ObservationDataType string = ObservationDataType._(
     valueString: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'string'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.string,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'string',
+    ),
   );
 
   /// boolean
-  static final ObservationDataType boolean = ObservationDataType._(
+  static const ObservationDataType boolean = ObservationDataType._(
     valueString: 'boolean',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'boolean'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.boolean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'boolean',
+    ),
   );
 
   /// integer
-  static final ObservationDataType integer = ObservationDataType._(
+  static const ObservationDataType integer = ObservationDataType._(
     valueString: 'integer',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'integer'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.integer,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'integer',
+    ),
   );
 
   /// Range
-  static final ObservationDataType Range = ObservationDataType._(
+  static const ObservationDataType range = ObservationDataType._(
     valueString: 'Range',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Range'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.range,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Range',
+    ),
   );
 
   /// Ratio
-  static final ObservationDataType Ratio = ObservationDataType._(
+  static const ObservationDataType ratio = ObservationDataType._(
     valueString: 'Ratio',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ratio'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.ratio,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Ratio',
+    ),
   );
 
   /// SampledData
-  static final ObservationDataType SampledData = ObservationDataType._(
+  static const ObservationDataType sampledData = ObservationDataType._(
     valueString: 'SampledData',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SampledData'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.sampledData,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SampledData',
+    ),
   );
 
   /// time
-  static final ObservationDataType time = ObservationDataType._(
+  static const ObservationDataType time = ObservationDataType._(
     valueString: 'time',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'time'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.time,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'time',
+    ),
   );
 
   /// dateTime
-  static final ObservationDataType dateTime = ObservationDataType._(
+  static const ObservationDataType dateTime = ObservationDataType._(
     valueString: 'dateTime',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateTime'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.dateTime,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'dateTime',
+    ),
   );
 
   /// Period
-  static final ObservationDataType Period = ObservationDataType._(
+  static const ObservationDataType period = ObservationDataType._(
     valueString: 'Period',
-    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Period'.toFhirString,
+    valueEnum: ObservationDataTypeEnum.period,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Period',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ObservationDataType elementOnly =
-      ObservationDataType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ObservationDataType> values = [
-    Quantity,
-    CodeableConcept,
+    quantity,
+    codeableConcept,
     string,
     boolean,
     integer,
-    Range,
-    Ratio,
-    SampledData,
+    range,
+    ratio,
+    sampledData,
     time,
     dateTime,
-    Period,
+    period,
   ];
-
-  /// Clones the current instance
-  @override
-  ObservationDataType clone() => ObservationDataType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ObservationDataType withElement(Element? newElement) {
@@ -201,36 +356,56 @@ class ObservationDataType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ObservationDataType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ObservationDataType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ObservationDataTypeCopyWithImpl<ObservationDataType> get copyWith =>
+      ObservationDataTypeCopyWithImpl<ObservationDataType>(
+        this,
+        (v) => v as ObservationDataType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ObservationDataTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ObservationDataTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ObservationDataType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ObservationDataType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ObservationDataType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

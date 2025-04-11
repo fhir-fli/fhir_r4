@@ -1,12 +1,108 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CarePlanIntent
+enum CarePlanIntentEnum {
+  /// proposal
+  proposal,
+
+  /// plan
+  plan,
+
+  /// directive
+  directive,
+
+  /// order
+  order,
+
+  /// original-order
+  originalOrder,
+
+  /// reflex-order
+  reflexOrder,
+
+  /// filler-order
+  fillerOrder,
+
+  /// instance-order
+  instanceOrder,
+
+  /// option
+  option,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CarePlanIntentEnum.proposal:
+        return 'proposal';
+      case CarePlanIntentEnum.plan:
+        return 'plan';
+      case CarePlanIntentEnum.directive:
+        return 'directive';
+      case CarePlanIntentEnum.order:
+        return 'order';
+      case CarePlanIntentEnum.originalOrder:
+        return 'original-order';
+      case CarePlanIntentEnum.reflexOrder:
+        return 'reflex-order';
+      case CarePlanIntentEnum.fillerOrder:
+        return 'filler-order';
+      case CarePlanIntentEnum.instanceOrder:
+        return 'instance-order';
+      case CarePlanIntentEnum.option:
+        return 'option';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CarePlanIntentEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CarePlanIntentEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CarePlanIntentEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'proposal':
+        return CarePlanIntentEnum.proposal;
+      case 'plan':
+        return CarePlanIntentEnum.plan;
+      case 'directive':
+        return CarePlanIntentEnum.directive;
+      case 'order':
+        return CarePlanIntentEnum.order;
+      case 'original-order':
+        return CarePlanIntentEnum.originalOrder;
+      case 'reflex-order':
+        return CarePlanIntentEnum.reflexOrder;
+      case 'filler-order':
+        return CarePlanIntentEnum.fillerOrder;
+      case 'instance-order':
+        return CarePlanIntentEnum.instanceOrder;
+      case 'option':
+        return CarePlanIntentEnum.option;
+    }
+    return null;
+  }
+}
+
 /// Codes indicating the degree of authority/intentionality associated with
 /// a care plan.
 class CarePlanIntent extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CarePlanIntent._({
+  const CarePlanIntent._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +110,6 @@ class CarePlanIntent extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +123,13 @@ class CarePlanIntent extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CarePlanIntentEnum.fromString(valueString);
     return CarePlanIntent._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +137,8 @@ class CarePlanIntent extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CarePlanIntent] with element only
-  factory CarePlanIntent.empty() => CarePlanIntent._(valueString: '');
 
   /// Factory constructor to create [CarePlanIntent]
   /// from JSON.
@@ -54,10 +146,11 @@ class CarePlanIntent extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CarePlanIntentEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanIntent.elementOnly.withElement(element);
+      return CarePlanIntent._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CarePlanIntent cannot be constructed from JSON.',
@@ -65,84 +158,130 @@ class CarePlanIntent extends FhirCodeEnum {
     }
     return CarePlanIntent._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CarePlanIntent
+  final CarePlanIntentEnum? valueEnum;
+
   /// proposal
-  static final CarePlanIntent proposal = CarePlanIntent._(
+  static const CarePlanIntent proposal = CarePlanIntent._(
     valueString: 'proposal',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposal'.toFhirString,
+    valueEnum: CarePlanIntentEnum.proposal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Proposal',
+    ),
   );
 
   /// plan
-  static final CarePlanIntent plan = CarePlanIntent._(
+  static const CarePlanIntent plan = CarePlanIntent._(
     valueString: 'plan',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Plan'.toFhirString,
+    valueEnum: CarePlanIntentEnum.plan,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Plan',
+    ),
   );
 
   /// directive
-  static final CarePlanIntent directive = CarePlanIntent._(
+  static const CarePlanIntent directive = CarePlanIntent._(
     valueString: 'directive',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Directive'.toFhirString,
+    valueEnum: CarePlanIntentEnum.directive,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Directive',
+    ),
   );
 
   /// order
-  static final CarePlanIntent order = CarePlanIntent._(
+  static const CarePlanIntent order = CarePlanIntent._(
     valueString: 'order',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Order'.toFhirString,
+    valueEnum: CarePlanIntentEnum.order,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Order',
+    ),
   );
 
   /// original_order
-  static final CarePlanIntent original_order = CarePlanIntent._(
+  static const CarePlanIntent originalOrder = CarePlanIntent._(
     valueString: 'original-order',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Original Order'.toFhirString,
+    valueEnum: CarePlanIntentEnum.originalOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Original Order',
+    ),
   );
 
   /// reflex_order
-  static final CarePlanIntent reflex_order = CarePlanIntent._(
+  static const CarePlanIntent reflexOrder = CarePlanIntent._(
     valueString: 'reflex-order',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reflex Order'.toFhirString,
+    valueEnum: CarePlanIntentEnum.reflexOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Reflex Order',
+    ),
   );
 
   /// filler_order
-  static final CarePlanIntent filler_order = CarePlanIntent._(
+  static const CarePlanIntent fillerOrder = CarePlanIntent._(
     valueString: 'filler-order',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Filler Order'.toFhirString,
+    valueEnum: CarePlanIntentEnum.fillerOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Filler Order',
+    ),
   );
 
   /// instance_order
-  static final CarePlanIntent instance_order = CarePlanIntent._(
+  static const CarePlanIntent instanceOrder = CarePlanIntent._(
     valueString: 'instance-order',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Instance Order'.toFhirString,
+    valueEnum: CarePlanIntentEnum.instanceOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Instance Order',
+    ),
   );
 
   /// option
-  static final CarePlanIntent option = CarePlanIntent._(
+  static const CarePlanIntent option = CarePlanIntent._(
     valueString: 'option',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Option'.toFhirString,
+    valueEnum: CarePlanIntentEnum.option,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Option',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CarePlanIntent elementOnly = CarePlanIntent._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanIntent> values = [
@@ -150,19 +289,12 @@ class CarePlanIntent extends FhirCodeEnum {
     plan,
     directive,
     order,
-    original_order,
-    reflex_order,
-    filler_order,
-    instance_order,
+    originalOrder,
+    reflexOrder,
+    fillerOrder,
+    instanceOrder,
     option,
   ];
-
-  /// Clones the current instance
-  @override
-  CarePlanIntent clone() => CarePlanIntent._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CarePlanIntent withElement(Element? newElement) {
@@ -183,36 +315,56 @@ class CarePlanIntent extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CarePlanIntent copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CarePlanIntent clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CarePlanIntentCopyWithImpl<CarePlanIntent> get copyWith =>
+      CarePlanIntentCopyWithImpl<CarePlanIntent>(
+        this,
+        (v) => v as CarePlanIntent,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CarePlanIntentCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CarePlanIntentCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CarePlanIntent: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CarePlanIntent._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CarePlanIntent(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

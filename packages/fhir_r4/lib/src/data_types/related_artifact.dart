@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'related_artifact.g.dart';
+
 /// [RelatedArtifact]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
@@ -30,35 +32,22 @@ class RelatedArtifact extends DataType
     this.document,
     this.resource,
     super.disallowExtensions,
-    super.objectPath = 'RelatedArtifact',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RelatedArtifact.empty() => RelatedArtifact(
-        type: RelatedArtifactType.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RelatedArtifact.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'RelatedArtifact';
     return RelatedArtifact(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -66,43 +55,36 @@ class RelatedArtifact extends DataType
         json,
         'type',
         RelatedArtifactType.fromJson,
-        '$objectPath.type',
       )!,
       label: JsonParser.parsePrimitive<FhirString>(
         json,
         'label',
         FhirString.fromJson,
-        '$objectPath.label',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-        '$objectPath.display',
       ),
       citation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'citation',
         FhirMarkdown.fromJson,
-        '$objectPath.citation',
       ),
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
-        '$objectPath.url',
       ),
       document: JsonParser.parseObject<Attachment>(
         json,
         'document',
         Attachment.fromJson,
-        '$objectPath.document',
       ),
       resource: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'resource',
         FhirCanonical.fromJson,
-        '$objectPath.resource',
       ),
     );
   }
@@ -359,287 +341,19 @@ class RelatedArtifact extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  RelatedArtifact clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is RelatedArtifactType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'label':
-        {
-          if (child is FhirString) {
-            return copyWith(label: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'display':
-        {
-          if (child is FhirString) {
-            return copyWith(display: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'citation':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(citation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUrl) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'document':
-        {
-          if (child is Attachment) {
-            return copyWith(document: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [RelatedArtifact]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['FhirCode'];
-      case 'label':
-        return ['FhirString'];
-      case 'display':
-        return ['FhirString'];
-      case 'citation':
-        return ['FhirMarkdown'];
-      case 'url':
-        return ['FhirUrl'];
-      case 'document':
-        return ['Attachment'];
-      case 'resource':
-        return ['FhirCanonical'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [RelatedArtifact]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  RelatedArtifact createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: RelatedArtifactType.empty(),
-          );
-        }
-      case 'label':
-        {
-          return copyWith(
-            label: FhirString.empty(),
-          );
-        }
-      case 'display':
-        {
-          return copyWith(
-            display: FhirString.empty(),
-          );
-        }
-      case 'citation':
-        {
-          return copyWith(
-            citation: FhirMarkdown.empty(),
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUrl.empty(),
-          );
-        }
-      case 'document':
-        {
-          return copyWith(
-            document: Attachment.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: FhirCanonical.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  RelatedArtifact clear({
-    bool id = false,
-    bool extension_ = false,
-    bool label = false,
-    bool display = false,
-    bool citation = false,
-    bool url = false,
-    bool document = false,
-    bool resource = false,
-  }) {
-    return RelatedArtifact(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      label: label ? null : this.label,
-      display: display ? null : this.display,
-      citation: citation ? null : this.citation,
-      url: url ? null : this.url,
-      document: document ? null : this.document,
-      resource: resource ? null : this.resource,
-    );
-  }
-
-  @override
-  RelatedArtifact clone() => throw UnimplementedError();
-  @override
-  RelatedArtifact copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    RelatedArtifactType? type,
-    FhirString? label,
-    FhirString? display,
-    FhirMarkdown? citation,
-    FhirUrl? url,
-    Attachment? document,
-    FhirCanonical? resource,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return RelatedArtifact(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      label: label?.copyWith(
-            objectPath: '$newObjectPath.label',
-          ) ??
-          this.label,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      citation: citation?.copyWith(
-            objectPath: '$newObjectPath.citation',
-          ) ??
-          this.citation,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      document: document?.copyWith(
-            objectPath: '$newObjectPath.document',
-          ) ??
-          this.document,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-    );
-  }
+  $RelatedArtifactCopyWith<RelatedArtifact> get copyWith =>
+      _$RelatedArtifactCopyWithImpl<RelatedArtifact>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

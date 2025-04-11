@@ -27,13 +27,12 @@ class FhirCode extends FhirString
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor passing validated code to [super._].
-  FhirCode._({
+  const FhirCode._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -49,7 +48,6 @@ class FhirCode extends FhirString
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final validated =
         rawValue != null ? _validateCode(rawValue.toString()) : null;
@@ -59,12 +57,8 @@ class FhirCode extends FhirString
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirCode] object.
-  factory FhirCode.empty() => FhirCode(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -76,11 +70,9 @@ class FhirCode extends FhirString
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Code';
     return FhirCode(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -150,58 +142,47 @@ class FhirCode extends FhirString
   // --------------------------------------------------------------------------
 
   @override
-  FhirCode clone() => FhirCode(
-        valueString,
-        element: element?.clone() as Element?,
+  FhirCode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirCodeCopyWithImpl<FhirCode> get copyWith =>
+      $FhirCodeCopyWithImpl<FhirCode>(
+        this,
+        (value) => value as FhirCode,
       );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirCodeCopyWithImpl<T> extends $FhirStringCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirCodeCopyWithImpl(super._value, super._then);
 
   @override
-  FhirCode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirCode(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FhirCode(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
-
-  @override
-  FhirCode createProperty(String propertyName) => this;
-
-  @override
-  FhirCode clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirCode(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
     );
   }
 }

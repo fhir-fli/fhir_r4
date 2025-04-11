@@ -43,13 +43,12 @@ class FhirInteger extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that just sets [valueString] on [super].
-  FhirInteger._({
+  const FhirInteger._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Integer',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -67,7 +66,6 @@ class FhirInteger extends FhirNumber
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Integer',
   }) {
     String? parsedString;
 
@@ -102,20 +100,15 @@ class FhirInteger extends FhirNumber
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirInteger].
-  factory FhirInteger.empty() => FhirInteger(null, element: Element.empty());
 
   /// Creates a [FhirInteger] from JSON.
   factory FhirInteger.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'Integer';
-    return FhirInteger(value, element: parsedElement, objectPath: objectPath);
+    return FhirInteger(value, element: parsedElement);
   }
 
   /// Creates a [FhirInteger] from a YAML input ([String] or [YamlMap]).
@@ -151,7 +144,7 @@ class FhirInteger extends FhirNumber
 
   /// Returns the integer value, or `null` if [valueString] is null.
   @override
-  int? get valueNum => valueString == null ? null : int.parse(valueString!);
+  int? get valueNum => valueString == null ? null : int.tryParse(valueString!);
 
   /// Alias for [valueNum], returning an [int].
   int? get valueInt => valueNum;
@@ -200,58 +193,50 @@ class FhirInteger extends FhirNumber
   // --------------------------------------------------------------------------
 
   @override
-  FhirInteger clone() =>
-      FhirInteger(valueString, element: element?.clone() as Element?);
+  FhirInteger clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirInteger noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy of the instance.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirInteger copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  $FhirIntegerCopyWithImpl<FhirInteger> get copyWith =>
+      $FhirIntegerCopyWithImpl<FhirInteger>(this, (value) => value);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirIntegerCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirIntegerCopyWithImpl(this._value, this._then);
+
+  final FhirInteger _value;
+  final T Function(FhirInteger) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirInteger(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FhirInteger(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  /// No-op property creation.
-  @override
-  FhirInteger createProperty(String propertyName) => this;
-
-  /// Clears selected fields from this [FhirInteger].
-  @override
-  FhirInteger clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirInteger(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
     );
   }
 }

@@ -349,26 +349,4 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
   @override
   FhirDateBuilder createProperty(String propertyName) => this;
 
-  /// Clears specified fields in a [FhirDateBuilder].
-  @override
-  FhirDateBuilder clear({
-    bool value = false,
-    bool element = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirDateBuilder.fromBase(
-      valueString: value ? null : valueString,
-      year: value ? null : year,
-      month: value ? null : month,
-      day: value ? null : day,
-      timeZoneOffset: value ? null : timeZoneOffset,
-      isUtc: value ? value : isUtc,
-      element: element ? null : this.element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath!,
-    );
-  }
 }

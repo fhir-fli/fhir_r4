@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CompositionStatus
+enum CompositionStatusEnum {
+  /// preliminary
+  preliminary,
+
+  /// final
+  final_,
+
+  /// amended
+  amended,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CompositionStatusEnum.preliminary:
+        return 'preliminary';
+      case CompositionStatusEnum.final_:
+        return 'final';
+      case CompositionStatusEnum.amended:
+        return 'amended';
+      case CompositionStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CompositionStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CompositionStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CompositionStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'preliminary':
+        return CompositionStatusEnum.preliminary;
+      case 'final':
+        return CompositionStatusEnum.final_;
+      case 'amended':
+        return CompositionStatusEnum.amended;
+      case 'entered-in-error':
+        return CompositionStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The workflow/clinical status of the composition.
 class CompositionStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CompositionStatus._({
+  const CompositionStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class CompositionStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class CompositionStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CompositionStatusEnum.fromString(valueString);
     return CompositionStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class CompositionStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CompositionStatus] with element only
-  factory CompositionStatus.empty() => CompositionStatus._(valueString: '');
 
   /// Factory constructor to create [CompositionStatus]
   /// from JSON.
@@ -53,10 +110,11 @@ class CompositionStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CompositionStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositionStatus.elementOnly.withElement(element);
+      return CompositionStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CompositionStatus cannot be constructed from JSON.',
@@ -64,60 +122,73 @@ class CompositionStatus extends FhirCodeEnum {
     }
     return CompositionStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CompositionStatus
+  final CompositionStatusEnum? valueEnum;
+
   /// preliminary
-  static final CompositionStatus preliminary = CompositionStatus._(
+  static const CompositionStatus preliminary = CompositionStatus._(
     valueString: 'preliminary',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preliminary'.toFhirString,
+    valueEnum: CompositionStatusEnum.preliminary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Preliminary',
+    ),
   );
 
   /// final_
-  static final CompositionStatus final_ = CompositionStatus._(
+  static const CompositionStatus final_ = CompositionStatus._(
     valueString: 'final',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Final'.toFhirString,
+    valueEnum: CompositionStatusEnum.final_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Final',
+    ),
   );
 
   /// amended
-  static final CompositionStatus amended = CompositionStatus._(
+  static const CompositionStatus amended = CompositionStatus._(
     valueString: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    valueEnum: CompositionStatusEnum.amended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Amended',
+    ),
   );
 
   /// entered_in_error
-  static final CompositionStatus entered_in_error = CompositionStatus._(
+  static const CompositionStatus enteredInError = CompositionStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: CompositionStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CompositionStatus elementOnly =
-      CompositionStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<CompositionStatus> values = [
     preliminary,
     final_,
     amended,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  CompositionStatus clone() => CompositionStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CompositionStatus withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class CompositionStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CompositionStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CompositionStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CompositionStatusCopyWithImpl<CompositionStatus> get copyWith =>
+      CompositionStatusCopyWithImpl<CompositionStatus>(
+        this,
+        (v) => v as CompositionStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CompositionStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CompositionStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CompositionStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CompositionStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CompositionStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

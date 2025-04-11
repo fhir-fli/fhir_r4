@@ -654,32 +654,6 @@ class AttachmentBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool contentType = false,
-    bool language = false,
-    bool data = false,
-    bool url = false,
-    bool size = false,
-    bool hash = false,
-    bool title = false,
-    bool creation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (contentType) this.contentType = null;
-    if (language) this.language = null;
-    if (data) this.data = null;
-    if (url) this.url = null;
-    if (size) this.size = null;
-    if (hash) this.hash = null;
-    if (title) this.title = null;
-    if (creation) this.creation = null;
-  }
-
   @override
   AttachmentBuilder clone() => throw UnimplementedError();
   @override

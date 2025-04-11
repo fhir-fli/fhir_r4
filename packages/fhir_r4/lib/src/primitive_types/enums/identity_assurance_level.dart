@@ -1,12 +1,73 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for IdentityAssuranceLevel
+enum IdentityAssuranceLevelEnum {
+  /// level1
+  level1,
+
+  /// level2
+  level2,
+
+  /// level3
+  level3,
+
+  /// level4
+  level4,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case IdentityAssuranceLevelEnum.level1:
+        return 'level1';
+      case IdentityAssuranceLevelEnum.level2:
+        return 'level2';
+      case IdentityAssuranceLevelEnum.level3:
+        return 'level3';
+      case IdentityAssuranceLevelEnum.level4:
+        return 'level4';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static IdentityAssuranceLevelEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return IdentityAssuranceLevelEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static IdentityAssuranceLevelEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'level1':
+        return IdentityAssuranceLevelEnum.level1;
+      case 'level2':
+        return IdentityAssuranceLevelEnum.level2;
+      case 'level3':
+        return IdentityAssuranceLevelEnum.level3;
+      case 'level4':
+        return IdentityAssuranceLevelEnum.level4;
+    }
+    return null;
+  }
+}
+
 /// The level of confidence that this link represents the same actual
 /// person, based on NIST Authentication Levels.
 class IdentityAssuranceLevel extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  IdentityAssuranceLevel._({
+  const IdentityAssuranceLevel._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +75,6 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +88,13 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = IdentityAssuranceLevelEnum.fromString(valueString);
     return IdentityAssuranceLevel._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +102,8 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [IdentityAssuranceLevel] with element only
-  factory IdentityAssuranceLevel.empty() =>
-      IdentityAssuranceLevel._(valueString: '');
 
   /// Factory constructor to create [IdentityAssuranceLevel]
   /// from JSON.
@@ -55,10 +111,11 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = IdentityAssuranceLevelEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentityAssuranceLevel.elementOnly.withElement(element);
+      return IdentityAssuranceLevel._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'IdentityAssuranceLevel cannot be constructed from JSON.',
@@ -66,45 +123,65 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     }
     return IdentityAssuranceLevel._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for IdentityAssuranceLevel
+  final IdentityAssuranceLevelEnum? valueEnum;
+
   /// level1
-  static final IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
+  static const IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
     valueString: 'level1',
-    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Level 1'.toFhirString,
+    valueEnum: IdentityAssuranceLevelEnum.level1,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Level 1',
+    ),
   );
 
   /// level2
-  static final IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
+  static const IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
     valueString: 'level2',
-    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Level 2'.toFhirString,
+    valueEnum: IdentityAssuranceLevelEnum.level2,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Level 2',
+    ),
   );
 
   /// level3
-  static final IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
+  static const IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
     valueString: 'level3',
-    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Level 3'.toFhirString,
+    valueEnum: IdentityAssuranceLevelEnum.level3,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Level 3',
+    ),
   );
 
   /// level4
-  static final IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
+  static const IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
     valueString: 'level4',
-    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Level 4'.toFhirString,
+    valueEnum: IdentityAssuranceLevelEnum.level4,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Level 4',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final IdentityAssuranceLevel elementOnly =
-      IdentityAssuranceLevel._(valueString: '');
 
   /// List of all enum-like values
   static final List<IdentityAssuranceLevel> values = [
@@ -113,13 +190,6 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     level3,
     level4,
   ];
-
-  /// Clones the current instance
-  @override
-  IdentityAssuranceLevel clone() => IdentityAssuranceLevel._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   IdentityAssuranceLevel withElement(Element? newElement) {
@@ -140,36 +210,56 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  IdentityAssuranceLevel copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  IdentityAssuranceLevel clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  IdentityAssuranceLevelCopyWithImpl<IdentityAssuranceLevel> get copyWith =>
+      IdentityAssuranceLevelCopyWithImpl<IdentityAssuranceLevel>(
+        this,
+        (v) => v as IdentityAssuranceLevel,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class IdentityAssuranceLevelCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  IdentityAssuranceLevelCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for IdentityAssuranceLevel: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return IdentityAssuranceLevel._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      IdentityAssuranceLevel(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

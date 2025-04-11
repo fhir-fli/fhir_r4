@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show OrganizationAffiliation, R4ResourceType, yamlMapToJson, yamlToJson;
+    show
+        OrganizationAffiliation,
+        R4ResourceType,
+        
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -983,52 +988,6 @@ class OrganizationAffiliationBuilder extends DomainResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool period = false,
-    bool organization = false,
-    bool participatingOrganization = false,
-    bool network = false,
-    bool code = false,
-    bool specialty = false,
-    bool location = false,
-    bool healthcareService = false,
-    bool telecom = false,
-    bool endpoint = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (period) this.period = null;
-    if (organization) this.organization = null;
-    if (participatingOrganization) this.participatingOrganization = null;
-    if (network) this.network = null;
-    if (code) this.code = null;
-    if (specialty) this.specialty = null;
-    if (location) this.location = null;
-    if (healthcareService) this.healthcareService = null;
-    if (telecom) this.telecom = null;
-    if (endpoint) this.endpoint = null;
   }
 
   @override

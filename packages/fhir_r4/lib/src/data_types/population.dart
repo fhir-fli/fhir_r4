@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'population.g.dart';
+
 /// [Population]
 /// A populatioof people with some set of grouping criteria.
 class Population extends BackboneType {
@@ -17,43 +19,29 @@ class Population extends BackboneType {
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
-    super.objectPath = 'Population',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Population.empty() => const Population();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Population.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Population';
     return Population(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -63,25 +51,21 @@ class Population extends BackboneType {
           'ageRange': Range.fromJson,
           'ageCodeableConcept': CodeableConcept.fromJson,
         },
-        objectPath,
       ),
       gender: JsonParser.parseObject<CodeableConcept>(
         json,
         'gender',
         CodeableConcept.fromJson,
-        '$objectPath.gender',
       ),
       race: JsonParser.parseObject<CodeableConcept>(
         json,
         'race',
         CodeableConcept.fromJson,
-        '$objectPath.race',
       ),
       physiologicalCondition: JsonParser.parseObject<CodeableConcept>(
         json,
         'physiologicalCondition',
         CodeableConcept.fromJson,
-        '$objectPath.physiologicalCondition',
       ),
     );
   }
@@ -323,295 +307,19 @@ class Population extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Population clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'age':
-      case 'ageX':
-        {
-          if (child is AgeXPopulation) {
-            return copyWith(ageX: child);
-          } else {
-            if (child is Range) {
-              return copyWith(ageX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(ageX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'ageRange':
-        {
-          if (child is Range) {
-            return copyWith(ageX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ageCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(ageX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'gender':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(gender: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'race':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(race: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'physiologicalCondition':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(physiologicalCondition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Population]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'age':
-      case 'ageX':
-        return [
-          'Range',
-          'CodeableConcept',
-        ];
-      case 'ageRange':
-        return ['Range'];
-      case 'ageCodeableConcept':
-        return ['CodeableConcept'];
-      case 'gender':
-        return ['CodeableConcept'];
-      case 'race':
-        return ['CodeableConcept'];
-      case 'physiologicalCondition':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Population]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Population createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'age':
-      case 'ageX':
-      case 'ageRange':
-        {
-          return copyWith(
-            ageX: Range.empty(),
-          );
-        }
-      case 'ageCodeableConcept':
-        {
-          return copyWith(
-            ageX: CodeableConcept.empty(),
-          );
-        }
-      case 'gender':
-        {
-          return copyWith(
-            gender: CodeableConcept.empty(),
-          );
-        }
-      case 'race':
-        {
-          return copyWith(
-            race: CodeableConcept.empty(),
-          );
-        }
-      case 'physiologicalCondition':
-        {
-          return copyWith(
-            physiologicalCondition: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Population clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool age = false,
-    bool gender = false,
-    bool race = false,
-    bool physiologicalCondition = false,
-  }) {
-    return Population(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      ageX: age ? null : ageX,
-      gender: gender ? null : this.gender,
-      race: race ? null : this.race,
-      physiologicalCondition:
-          physiologicalCondition ? null : this.physiologicalCondition,
-    );
-  }
-
-  @override
-  Population clone() => throw UnimplementedError();
-  @override
-  Population copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    AgeXPopulation? ageX,
-    CodeableConcept? gender,
-    CodeableConcept? race,
-    CodeableConcept? physiologicalCondition,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Population(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      ageX: ageX?.copyWith(
-            objectPath: '$newObjectPath.ageX',
-          ) as AgeXPopulation? ??
-          this.ageX,
-      gender: gender?.copyWith(
-            objectPath: '$newObjectPath.gender',
-          ) ??
-          this.gender,
-      race: race?.copyWith(
-            objectPath: '$newObjectPath.race',
-          ) ??
-          this.race,
-      physiologicalCondition: physiologicalCondition?.copyWith(
-            objectPath: '$newObjectPath.physiologicalCondition',
-          ) ??
-          this.physiologicalCondition,
-    );
-  }
+  $PopulationCopyWith<Population> get copyWith =>
+      _$PopulationCopyWithImpl<Population>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

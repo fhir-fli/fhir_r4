@@ -1,11 +1,107 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SearchParamType
+enum SearchParamTypeEnum {
+  /// number
+  number,
+
+  /// date
+  date,
+
+  /// string
+  string,
+
+  /// token
+  token,
+
+  /// reference
+  reference,
+
+  /// composite
+  composite,
+
+  /// quantity
+  quantity,
+
+  /// uri
+  uri,
+
+  /// special
+  special,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SearchParamTypeEnum.number:
+        return 'number';
+      case SearchParamTypeEnum.date:
+        return 'date';
+      case SearchParamTypeEnum.string:
+        return 'string';
+      case SearchParamTypeEnum.token:
+        return 'token';
+      case SearchParamTypeEnum.reference:
+        return 'reference';
+      case SearchParamTypeEnum.composite:
+        return 'composite';
+      case SearchParamTypeEnum.quantity:
+        return 'quantity';
+      case SearchParamTypeEnum.uri:
+        return 'uri';
+      case SearchParamTypeEnum.special:
+        return 'special';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SearchParamTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SearchParamTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SearchParamTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'number':
+        return SearchParamTypeEnum.number;
+      case 'date':
+        return SearchParamTypeEnum.date;
+      case 'string':
+        return SearchParamTypeEnum.string;
+      case 'token':
+        return SearchParamTypeEnum.token;
+      case 'reference':
+        return SearchParamTypeEnum.reference;
+      case 'composite':
+        return SearchParamTypeEnum.composite;
+      case 'quantity':
+        return SearchParamTypeEnum.quantity;
+      case 'uri':
+        return SearchParamTypeEnum.uri;
+      case 'special':
+        return SearchParamTypeEnum.special;
+    }
+    return null;
+  }
+}
+
 /// Data types allowed to be used for search parameters.
 class SearchParamType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SearchParamType._({
+  const SearchParamType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +109,6 @@ class SearchParamType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +122,13 @@ class SearchParamType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SearchParamTypeEnum.fromString(valueString);
     return SearchParamType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +136,8 @@ class SearchParamType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SearchParamType] with element only
-  factory SearchParamType.empty() => SearchParamType._(valueString: '');
 
   /// Factory constructor to create [SearchParamType]
   /// from JSON.
@@ -53,10 +145,11 @@ class SearchParamType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SearchParamTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchParamType.elementOnly.withElement(element);
+      return SearchParamType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SearchParamType cannot be constructed from JSON.',
@@ -64,84 +157,130 @@ class SearchParamType extends FhirCodeEnum {
     }
     return SearchParamType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SearchParamType
+  final SearchParamTypeEnum? valueEnum;
+
   /// number
-  static final SearchParamType number = SearchParamType._(
+  static const SearchParamType number = SearchParamType._(
     valueString: 'number',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Number'.toFhirString,
+    valueEnum: SearchParamTypeEnum.number,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Number',
+    ),
   );
 
   /// date
-  static final SearchParamType date = SearchParamType._(
+  static const SearchParamType date = SearchParamType._(
     valueString: 'date',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Date/DateTime'.toFhirString,
+    valueEnum: SearchParamTypeEnum.date,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Date/DateTime',
+    ),
   );
 
   /// string
-  static final SearchParamType string = SearchParamType._(
+  static const SearchParamType string = SearchParamType._(
     valueString: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'String'.toFhirString,
+    valueEnum: SearchParamTypeEnum.string,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'String',
+    ),
   );
 
   /// token
-  static final SearchParamType token = SearchParamType._(
+  static const SearchParamType token = SearchParamType._(
     valueString: 'token',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Token'.toFhirString,
+    valueEnum: SearchParamTypeEnum.token,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Token',
+    ),
   );
 
   /// reference
-  static final SearchParamType reference = SearchParamType._(
+  static const SearchParamType reference = SearchParamType._(
     valueString: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reference'.toFhirString,
+    valueEnum: SearchParamTypeEnum.reference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Reference',
+    ),
   );
 
   /// composite
-  static final SearchParamType composite = SearchParamType._(
+  static const SearchParamType composite = SearchParamType._(
     valueString: 'composite',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Composite'.toFhirString,
+    valueEnum: SearchParamTypeEnum.composite,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Composite',
+    ),
   );
 
   /// quantity
-  static final SearchParamType quantity = SearchParamType._(
+  static const SearchParamType quantity = SearchParamType._(
     valueString: 'quantity',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Quantity'.toFhirString,
+    valueEnum: SearchParamTypeEnum.quantity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Quantity',
+    ),
   );
 
   /// uri
-  static final SearchParamType uri = SearchParamType._(
+  static const SearchParamType uri = SearchParamType._(
     valueString: 'uri',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'URI'.toFhirString,
+    valueEnum: SearchParamTypeEnum.uri,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'URI',
+    ),
   );
 
   /// special
-  static final SearchParamType special = SearchParamType._(
+  static const SearchParamType special = SearchParamType._(
     valueString: 'special',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Special'.toFhirString,
+    valueEnum: SearchParamTypeEnum.special,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Special',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SearchParamType elementOnly = SearchParamType._(valueString: '');
 
   /// List of all enum-like values
   static final List<SearchParamType> values = [
@@ -155,13 +294,6 @@ class SearchParamType extends FhirCodeEnum {
     uri,
     special,
   ];
-
-  /// Clones the current instance
-  @override
-  SearchParamType clone() => SearchParamType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SearchParamType withElement(Element? newElement) {
@@ -182,36 +314,56 @@ class SearchParamType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SearchParamType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SearchParamType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SearchParamTypeCopyWithImpl<SearchParamType> get copyWith =>
+      SearchParamTypeCopyWithImpl<SearchParamType>(
+        this,
+        (v) => v as SearchParamType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SearchParamTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SearchParamTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SearchParamType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SearchParamType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SearchParamType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

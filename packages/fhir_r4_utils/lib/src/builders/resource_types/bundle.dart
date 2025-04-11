@@ -8,6 +8,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         BundleResponse,
         BundleSearch,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -641,34 +642,6 @@ class BundleBuilder extends ResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool identifier = false,
-    bool type = false,
-    bool timestamp = false,
-    bool total = false,
-    bool link = false,
-    bool entry = false,
-    bool signature = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (timestamp) this.timestamp = null;
-    if (total) this.total = null;
-    if (link) this.link = null;
-    if (entry) this.entry = null;
-    if (signature) this.signature = null;
-  }
-
   @override
   BundleBuilder clone() => throw UnimplementedError();
   @override
@@ -1184,22 +1157,6 @@ class BundleLinkBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relation = false,
-    bool url = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relation) this.relation = null;
-    if (url) this.url = null;
   }
 
   @override
@@ -1811,30 +1768,6 @@ class BundleEntryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool link = false,
-    bool fullUrl = false,
-    bool resource = false,
-    bool search = false,
-    bool request = false,
-    bool response = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (link) this.link = null;
-    if (fullUrl) this.fullUrl = null;
-    if (resource) this.resource = null;
-    if (search) this.search = null;
-    if (request) this.request = null;
-    if (response) this.response = null;
-  }
-
   @override
   BundleEntryBuilder clone() => throw UnimplementedError();
   @override
@@ -2342,22 +2275,6 @@ class BundleSearchBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool score = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (score) this.score = null;
   }
 
   @override
@@ -3020,30 +2937,6 @@ class BundleRequestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool method = false,
-    bool url = false,
-    bool ifNoneMatch = false,
-    bool ifModifiedSince = false,
-    bool ifMatch = false,
-    bool ifNoneExist = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (method) this.method = null;
-    if (url) this.url = null;
-    if (ifNoneMatch) this.ifNoneMatch = null;
-    if (ifModifiedSince) this.ifModifiedSince = null;
-    if (ifMatch) this.ifMatch = null;
-    if (ifNoneExist) this.ifNoneExist = null;
-  }
-
   @override
   BundleRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -3671,28 +3564,6 @@ class BundleResponseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool status = false,
-    bool location = false,
-    bool etag = false,
-    bool lastModified = false,
-    bool outcome = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (status) this.status = null;
-    if (location) this.location = null;
-    if (etag) this.etag = null;
-    if (lastModified) this.lastModified = null;
-    if (outcome) this.outcome = null;
   }
 
   @override

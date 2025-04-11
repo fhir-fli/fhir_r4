@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         R4ResourceType,
         SearchParameter,
         SearchParameterComponent,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1785,80 +1786,6 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool derivedFrom = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool code = false,
-    bool base = false,
-    bool type = false,
-    bool expression = false,
-    bool xpath = false,
-    bool xpathUsage = false,
-    bool target = false,
-    bool multipleOr = false,
-    bool multipleAnd = false,
-    bool comparator = false,
-    bool modifier = false,
-    bool chain = false,
-    bool component = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (derivedFrom) this.derivedFrom = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (code) this.code = null;
-    if (base) this.base = null;
-    if (type) this.type = null;
-    if (expression) this.expression = null;
-    if (xpath) this.xpath = null;
-    if (xpathUsage) this.xpathUsage = null;
-    if (target) this.target = null;
-    if (multipleOr) this.multipleOr = null;
-    if (multipleAnd) this.multipleAnd = null;
-    if (comparator) this.comparator = null;
-    if (modifier) this.modifier = null;
-    if (chain) this.chain = null;
-    if (component) this.component = null;
-  }
-
   @override
   SearchParameterBuilder clone() => throw UnimplementedError();
   @override
@@ -2560,22 +2487,6 @@ class SearchParameterComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool definition = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (definition) this.definition = null;
-    if (expression) this.expression = null;
   }
 
   @override

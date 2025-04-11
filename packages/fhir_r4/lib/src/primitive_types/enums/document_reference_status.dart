@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DocumentReferenceStatus
+enum DocumentReferenceStatusEnum {
+  /// current
+  current,
+
+  /// superseded
+  superseded,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DocumentReferenceStatusEnum.current:
+        return 'current';
+      case DocumentReferenceStatusEnum.superseded:
+        return 'superseded';
+      case DocumentReferenceStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DocumentReferenceStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DocumentReferenceStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DocumentReferenceStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'current':
+        return DocumentReferenceStatusEnum.current;
+      case 'superseded':
+        return DocumentReferenceStatusEnum.superseded;
+      case 'entered-in-error':
+        return DocumentReferenceStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The status of the document reference.
 class DocumentReferenceStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DocumentReferenceStatus._({
+  const DocumentReferenceStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class DocumentReferenceStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class DocumentReferenceStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DocumentReferenceStatusEnum.fromString(valueString);
     return DocumentReferenceStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +94,8 @@ class DocumentReferenceStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DocumentReferenceStatus] with element only
-  factory DocumentReferenceStatus.empty() =>
-      DocumentReferenceStatus._(valueString: '');
 
   /// Factory constructor to create [DocumentReferenceStatus]
   /// from JSON.
@@ -54,10 +103,11 @@ class DocumentReferenceStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DocumentReferenceStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentReferenceStatus.elementOnly.withElement(element);
+      return DocumentReferenceStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DocumentReferenceStatus cannot be constructed from JSON.',
@@ -65,52 +115,60 @@ class DocumentReferenceStatus extends FhirCodeEnum {
     }
     return DocumentReferenceStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DocumentReferenceStatus
+  final DocumentReferenceStatusEnum? valueEnum;
+
   /// current
-  static final DocumentReferenceStatus current = DocumentReferenceStatus._(
+  static const DocumentReferenceStatus current = DocumentReferenceStatus._(
     valueString: 'current',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Current'.toFhirString,
+    valueEnum: DocumentReferenceStatusEnum.current,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Current',
+    ),
   );
 
   /// superseded
-  static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
+  static const DocumentReferenceStatus superseded = DocumentReferenceStatus._(
     valueString: 'superseded',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Superseded'.toFhirString,
+    valueEnum: DocumentReferenceStatusEnum.superseded,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Superseded',
+    ),
   );
 
   /// entered_in_error
-  static final DocumentReferenceStatus entered_in_error =
+  static const DocumentReferenceStatus enteredInError =
       DocumentReferenceStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: DocumentReferenceStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DocumentReferenceStatus elementOnly =
-      DocumentReferenceStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<DocumentReferenceStatus> values = [
     current,
     superseded,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  DocumentReferenceStatus clone() => DocumentReferenceStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DocumentReferenceStatus withElement(Element? newElement) {
@@ -131,36 +189,56 @@ class DocumentReferenceStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DocumentReferenceStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DocumentReferenceStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DocumentReferenceStatusCopyWithImpl<DocumentReferenceStatus> get copyWith =>
+      DocumentReferenceStatusCopyWithImpl<DocumentReferenceStatus>(
+        this,
+        (v) => v as DocumentReferenceStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DocumentReferenceStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DocumentReferenceStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DocumentReferenceStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DocumentReferenceStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DocumentReferenceStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

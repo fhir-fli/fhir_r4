@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionParticipantType
+enum ActionParticipantTypeEnum {
+  /// patient
+  patient,
+
+  /// practitioner
+  practitioner,
+
+  /// related-person
+  relatedPerson,
+
+  /// device
+  device,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionParticipantTypeEnum.patient:
+        return 'patient';
+      case ActionParticipantTypeEnum.practitioner:
+        return 'practitioner';
+      case ActionParticipantTypeEnum.relatedPerson:
+        return 'related-person';
+      case ActionParticipantTypeEnum.device:
+        return 'device';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionParticipantTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionParticipantTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionParticipantTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'patient':
+        return ActionParticipantTypeEnum.patient;
+      case 'practitioner':
+        return ActionParticipantTypeEnum.practitioner;
+      case 'related-person':
+        return ActionParticipantTypeEnum.relatedPerson;
+      case 'device':
+        return ActionParticipantTypeEnum.device;
+    }
+    return null;
+  }
+}
+
 /// The type of participant for the action.
 class ActionParticipantType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ActionParticipantType._({
+  const ActionParticipantType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class ActionParticipantType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class ActionParticipantType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ActionParticipantTypeEnum.fromString(valueString);
     return ActionParticipantType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class ActionParticipantType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ActionParticipantType] with element only
-  factory ActionParticipantType.empty() =>
-      ActionParticipantType._(valueString: '');
 
   /// Factory constructor to create [ActionParticipantType]
   /// from JSON.
@@ -54,10 +110,11 @@ class ActionParticipantType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ActionParticipantTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionParticipantType.elementOnly.withElement(element);
+      return ActionParticipantType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionParticipantType cannot be constructed from JSON.',
@@ -65,60 +122,73 @@ class ActionParticipantType extends FhirCodeEnum {
     }
     return ActionParticipantType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ActionParticipantType
+  final ActionParticipantTypeEnum? valueEnum;
+
   /// patient
-  static final ActionParticipantType patient = ActionParticipantType._(
+  static const ActionParticipantType patient = ActionParticipantType._(
     valueString: 'patient',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Patient'.toFhirString,
+    valueEnum: ActionParticipantTypeEnum.patient,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Patient',
+    ),
   );
 
   /// practitioner
-  static final ActionParticipantType practitioner = ActionParticipantType._(
+  static const ActionParticipantType practitioner = ActionParticipantType._(
     valueString: 'practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    valueEnum: ActionParticipantTypeEnum.practitioner,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// related_person
-  static final ActionParticipantType related_person = ActionParticipantType._(
+  static const ActionParticipantType relatedPerson = ActionParticipantType._(
     valueString: 'related-person',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Related Person'.toFhirString,
+    valueEnum: ActionParticipantTypeEnum.relatedPerson,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Related Person',
+    ),
   );
 
   /// device
-  static final ActionParticipantType device = ActionParticipantType._(
+  static const ActionParticipantType device = ActionParticipantType._(
     valueString: 'device',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    valueEnum: ActionParticipantTypeEnum.device,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Device',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ActionParticipantType elementOnly =
-      ActionParticipantType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionParticipantType> values = [
     patient,
     practitioner,
-    related_person,
+    relatedPerson,
     device,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionParticipantType clone() => ActionParticipantType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ActionParticipantType withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class ActionParticipantType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ActionParticipantType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ActionParticipantType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ActionParticipantTypeCopyWithImpl<ActionParticipantType> get copyWith =>
+      ActionParticipantTypeCopyWithImpl<ActionParticipantType>(
+        this,
+        (v) => v as ActionParticipantType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ActionParticipantTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ActionParticipantTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ActionParticipantType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ActionParticipantType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ActionParticipantType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

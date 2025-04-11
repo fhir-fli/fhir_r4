@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'clinical_impression.g.dart';
+
 /// [ClinicalImpression]
 /// A record of a clinical assessment performed to determine what
 /// problem(s) may affect the patient and before planning the treatments or
@@ -45,91 +47,64 @@ class ClinicalImpression extends DomainResource {
     this.supportingInfo,
     this.note,
   }) : super(
-          objectPath: 'ClinicalImpression',
           resourceType: R4ResourceType.ClinicalImpression,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClinicalImpression.empty() => ClinicalImpression(
-        status: ClinicalImpressionStatus.values.first,
-        subject: Reference.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpression.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClinicalImpression';
     return ClinicalImpression(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -137,37 +112,31 @@ class ClinicalImpression extends DomainResource {
         json,
         'status',
         ClinicalImpressionStatus.fromJson,
-        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
-        '$objectPath.statusReason',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       effectiveX: JsonParser.parsePolymorphic<EffectiveXClinicalImpression>(
         json,
@@ -175,43 +144,33 @@ class ClinicalImpression extends DomainResource {
           'effectiveDateTime': FhirDateTime.fromJson,
           'effectivePeriod': Period.fromJson,
         },
-        objectPath,
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       assessor: JsonParser.parseObject<Reference>(
         json,
         'assessor',
         Reference.fromJson,
-        '$objectPath.assessor',
       ),
       previous: JsonParser.parseObject<Reference>(
         json,
         'previous',
         Reference.fromJson,
-        '$objectPath.previous',
       ),
       problem: (json['problem'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.problem',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       investigation: (json['investigation'] as List<dynamic>?)
           ?.map<ClinicalImpressionInvestigation>(
             (v) => ClinicalImpressionInvestigation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.investigation',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -219,21 +178,16 @@ class ClinicalImpression extends DomainResource {
         json,
         'protocol',
         FhirUri.fromJson,
-        '$objectPath.protocol',
       ),
       summary: JsonParser.parsePrimitive<FhirString>(
         json,
         'summary',
         FhirString.fromJson,
-        '$objectPath.summary',
       ),
       finding: (json['finding'] as List<dynamic>?)
           ?.map<ClinicalImpressionFinding>(
             (v) => ClinicalImpressionFinding.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.finding',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -241,40 +195,28 @@ class ClinicalImpression extends DomainResource {
           (json['prognosisCodeableConcept'] as List<dynamic>?)
               ?.map<CodeableConcept>(
                 (v) => CodeableConcept.fromJson(
-                  {
-                    ...v as Map<String, dynamic>,
-                    'objectPath': '$objectPath.prognosisCodeableConcept',
-                  },
+                  {...v as Map<String, dynamic>},
                 ),
               )
               .toList(),
       prognosisReference: (json['prognosisReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.prognosisReference',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.supportingInfo',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -783,898 +725,19 @@ class ClinicalImpression extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ClinicalImpression clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is ClinicalImpressionStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'statusReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(statusReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effective':
-      case 'effectiveX':
-        {
-          if (child is EffectiveXClinicalImpression) {
-            return copyWith(effectiveX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(effectiveX: child);
-            }
-            if (child is Period) {
-              return copyWith(effectiveX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'effectiveFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectivePeriod':
-        {
-          if (child is Period) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'assessor':
-        {
-          if (child is Reference) {
-            return copyWith(assessor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'previous':
-        {
-          if (child is Reference) {
-            return copyWith(previous: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'problem':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?problem, ...child];
-            return copyWith(problem: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?problem,
-              child,
-            ];
-            return copyWith(problem: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'investigation':
-        {
-          if (child is List<ClinicalImpressionInvestigation>) {
-            // Add all elements from passed list
-            final newList = [...?investigation, ...child];
-            return copyWith(investigation: newList);
-          } else if (child is ClinicalImpressionInvestigation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?investigation,
-              child,
-            ];
-            return copyWith(investigation: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'protocol':
-        {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?protocol, ...child];
-            return copyWith(protocol: newList);
-          } else if (child is FhirUri) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?protocol,
-              child,
-            ];
-            return copyWith(protocol: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'summary':
-        {
-          if (child is FhirString) {
-            return copyWith(summary: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'finding':
-        {
-          if (child is List<ClinicalImpressionFinding>) {
-            // Add all elements from passed list
-            final newList = [...?finding, ...child];
-            return copyWith(finding: newList);
-          } else if (child is ClinicalImpressionFinding) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?finding,
-              child,
-            ];
-            return copyWith(finding: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'prognosisCodeableConcept':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?prognosisCodeableConcept, ...child];
-            return copyWith(prognosisCodeableConcept: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?prognosisCodeableConcept,
-              child,
-            ];
-            return copyWith(prognosisCodeableConcept: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'prognosisReference':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?prognosisReference, ...child];
-            return copyWith(prognosisReference: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?prognosisReference,
-              child,
-            ];
-            return copyWith(prognosisReference: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supportingInfo':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supportingInfo,
-              child,
-            ];
-            return copyWith(supportingInfo: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ClinicalImpression]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'statusReason':
-        return ['CodeableConcept'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'subject':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'effective':
-      case 'effectiveX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'effectiveDateTime':
-        return ['FhirDateTime'];
-      case 'effectivePeriod':
-        return ['Period'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'assessor':
-        return ['Reference'];
-      case 'previous':
-        return ['Reference'];
-      case 'problem':
-        return ['Reference'];
-      case 'investigation':
-        return ['ClinicalImpressionInvestigation'];
-      case 'protocol':
-        return ['FhirUri'];
-      case 'summary':
-        return ['FhirString'];
-      case 'finding':
-        return ['ClinicalImpressionFinding'];
-      case 'prognosisCodeableConcept':
-        return ['CodeableConcept'];
-      case 'prognosisReference':
-        return ['Reference'];
-      case 'supportingInfo':
-        return ['Reference'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClinicalImpression]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClinicalImpression createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: ClinicalImpressionStatus.empty(),
-          );
-        }
-      case 'statusReason':
-        {
-          return copyWith(
-            statusReason: CodeableConcept.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'effective':
-      case 'effectiveX':
-      case 'effectiveDateTime':
-        {
-          return copyWith(
-            effectiveX: FhirDateTime.empty(),
-          );
-        }
-      case 'effectivePeriod':
-        {
-          return copyWith(
-            effectiveX: Period.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'assessor':
-        {
-          return copyWith(
-            assessor: Reference.empty(),
-          );
-        }
-      case 'previous':
-        {
-          return copyWith(
-            previous: Reference.empty(),
-          );
-        }
-      case 'problem':
-        {
-          return copyWith(
-            problem: <Reference>[],
-          );
-        }
-      case 'investigation':
-        {
-          return copyWith(
-            investigation: <ClinicalImpressionInvestigation>[],
-          );
-        }
-      case 'protocol':
-        {
-          return copyWith(
-            protocol: <FhirUri>[],
-          );
-        }
-      case 'summary':
-        {
-          return copyWith(
-            summary: FhirString.empty(),
-          );
-        }
-      case 'finding':
-        {
-          return copyWith(
-            finding: <ClinicalImpressionFinding>[],
-          );
-        }
-      case 'prognosisCodeableConcept':
-        {
-          return copyWith(
-            prognosisCodeableConcept: <CodeableConcept>[],
-          );
-        }
-      case 'prognosisReference':
-        {
-          return copyWith(
-            prognosisReference: <Reference>[],
-          );
-        }
-      case 'supportingInfo':
-        {
-          return copyWith(
-            supportingInfo: <Reference>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClinicalImpression clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool statusReason = false,
-    bool code = false,
-    bool description = false,
-    bool encounter = false,
-    bool effective = false,
-    bool date = false,
-    bool assessor = false,
-    bool previous = false,
-    bool problem = false,
-    bool investigation = false,
-    bool protocol = false,
-    bool summary = false,
-    bool finding = false,
-    bool prognosisCodeableConcept = false,
-    bool prognosisReference = false,
-    bool supportingInfo = false,
-    bool note = false,
-  }) {
-    return ClinicalImpression(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      effectiveX: effective ? null : effectiveX,
-      date: date ? null : this.date,
-      assessor: assessor ? null : this.assessor,
-      previous: previous ? null : this.previous,
-      problem: problem ? null : this.problem,
-      investigation: investigation ? null : this.investigation,
-      protocol: protocol ? null : this.protocol,
-      summary: summary ? null : this.summary,
-      finding: finding ? null : this.finding,
-      prognosisCodeableConcept:
-          prognosisCodeableConcept ? null : this.prognosisCodeableConcept,
-      prognosisReference: prognosisReference ? null : this.prognosisReference,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  ClinicalImpression clone() => throw UnimplementedError();
-  @override
-  ClinicalImpression copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ClinicalImpressionStatus? status,
-    CodeableConcept? statusReason,
-    CodeableConcept? code,
-    FhirString? description,
-    Reference? subject,
-    Reference? encounter,
-    EffectiveXClinicalImpression? effectiveX,
-    FhirDateTime? date,
-    Reference? assessor,
-    Reference? previous,
-    List<Reference>? problem,
-    List<ClinicalImpressionInvestigation>? investigation,
-    List<FhirUri>? protocol,
-    FhirString? summary,
-    List<ClinicalImpressionFinding>? finding,
-    List<CodeableConcept>? prognosisCodeableConcept,
-    List<Reference>? prognosisReference,
-    List<Reference>? supportingInfo,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return ClinicalImpression(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      effectiveX: effectiveX?.copyWith(
-            objectPath: '$newObjectPath.effectiveX',
-          ) as EffectiveXClinicalImpression? ??
-          this.effectiveX,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      assessor: assessor?.copyWith(
-            objectPath: '$newObjectPath.assessor',
-          ) ??
-          this.assessor,
-      previous: previous?.copyWith(
-            objectPath: '$newObjectPath.previous',
-          ) ??
-          this.previous,
-      problem: problem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.problem',
-                ),
-              )
-              .toList() ??
-          this.problem,
-      investigation: investigation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.investigation',
-                ),
-              )
-              .toList() ??
-          this.investigation,
-      protocol: protocol
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.protocol',
-                ),
-              )
-              .toList() ??
-          this.protocol,
-      summary: summary?.copyWith(
-            objectPath: '$newObjectPath.summary',
-          ) ??
-          this.summary,
-      finding: finding
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.finding',
-                ),
-              )
-              .toList() ??
-          this.finding,
-      prognosisCodeableConcept: prognosisCodeableConcept
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prognosisCodeableConcept',
-                ),
-              )
-              .toList() ??
-          this.prognosisCodeableConcept,
-      prognosisReference: prognosisReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prognosisReference',
-                ),
-              )
-              .toList() ??
-          this.prognosisReference,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
+  $ClinicalImpressionCopyWith<ClinicalImpression> get copyWith =>
+      _$ClinicalImpressionCopyWithImpl<ClinicalImpression>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1873,47 +936,29 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     required this.code,
     this.item,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClinicalImpression.investigation',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClinicalImpressionInvestigation.empty() =>
-      ClinicalImpressionInvestigation(
-        code: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionInvestigation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClinicalImpression.investigation';
     return ClinicalImpressionInvestigation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1921,15 +966,11 @@ class ClinicalImpressionInvestigation extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       )!,
       item: (json['item'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.item',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2129,221 +1170,20 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ClinicalImpressionInvestigation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'item':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?item, ...child];
-            return copyWith(item: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?item,
-              child,
-            ];
-            return copyWith(item: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ClinicalImpressionInvestigation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'item':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClinicalImpressionInvestigation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClinicalImpressionInvestigation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ClinicalImpressionInvestigationCopyWith<ClinicalImpressionInvestigation>
+      get copyWith => _$ClinicalImpressionInvestigationCopyWithImpl<
+              ClinicalImpressionInvestigation>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'item':
-        {
-          return copyWith(
-            item: <Reference>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClinicalImpressionInvestigation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-  }) {
-    return ClinicalImpressionInvestigation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      item: item ? null : this.item,
-    );
-  }
-
-  @override
-  ClinicalImpressionInvestigation clone() => throw UnimplementedError();
-  @override
-  ClinicalImpressionInvestigation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    List<Reference>? item,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClinicalImpressionInvestigation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      item: item
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.item',
-                ),
-              )
-              .toList() ??
-          this.item,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2402,45 +1242,29 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.itemReference,
     this.basis,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClinicalImpression.finding',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClinicalImpressionFinding.empty() =>
-      const ClinicalImpressionFinding();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionFinding.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClinicalImpression.finding';
     return ClinicalImpressionFinding(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2448,19 +1272,16 @@ class ClinicalImpressionFinding extends BackboneElement {
         json,
         'itemCodeableConcept',
         CodeableConcept.fromJson,
-        '$objectPath.itemCodeableConcept',
       ),
       itemReference: JsonParser.parseObject<Reference>(
         json,
         'itemReference',
         Reference.fromJson,
-        '$objectPath.itemReference',
       ),
       basis: JsonParser.parsePrimitive<FhirString>(
         json,
         'basis',
         FhirString.fromJson,
-        '$objectPath.basis',
       ),
     );
   }
@@ -2672,233 +1493,19 @@ class ClinicalImpressionFinding extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ClinicalImpressionFinding clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(itemCodeableConcept: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemReference':
-        {
-          if (child is Reference) {
-            return copyWith(itemReference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basis':
-        {
-          if (child is FhirString) {
-            return copyWith(basis: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ClinicalImpressionFinding]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'itemCodeableConcept':
-        return ['CodeableConcept'];
-      case 'itemReference':
-        return ['Reference'];
-      case 'basis':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClinicalImpressionFinding]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClinicalImpressionFinding createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'itemCodeableConcept':
-        {
-          return copyWith(
-            itemCodeableConcept: CodeableConcept.empty(),
-          );
-        }
-      case 'itemReference':
-        {
-          return copyWith(
-            itemReference: Reference.empty(),
-          );
-        }
-      case 'basis':
-        {
-          return copyWith(
-            basis: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClinicalImpressionFinding clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemCodeableConcept = false,
-    bool itemReference = false,
-    bool basis = false,
-  }) {
-    return ClinicalImpressionFinding(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      itemCodeableConcept:
-          itemCodeableConcept ? null : this.itemCodeableConcept,
-      itemReference: itemReference ? null : this.itemReference,
-      basis: basis ? null : this.basis,
-    );
-  }
-
-  @override
-  ClinicalImpressionFinding clone() => throw UnimplementedError();
-  @override
-  ClinicalImpressionFinding copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? itemCodeableConcept,
-    Reference? itemReference,
-    FhirString? basis,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClinicalImpressionFinding(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      itemCodeableConcept: itemCodeableConcept?.copyWith(
-            objectPath: '$newObjectPath.itemCodeableConcept',
-          ) ??
-          this.itemCodeableConcept,
-      itemReference: itemReference?.copyWith(
-            objectPath: '$newObjectPath.itemReference',
-          ) ??
-          this.itemReference,
-      basis: basis?.copyWith(
-            objectPath: '$newObjectPath.basis',
-          ) ??
-          this.basis,
-    );
-  }
+  $ClinicalImpressionFindingCopyWith<ClinicalImpressionFinding> get copyWith =>
+      _$ClinicalImpressionFindingCopyWithImpl<ClinicalImpressionFinding>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

@@ -72,13 +72,12 @@ class FhirString extends PrimitiveType
 
   /// Private underscore constructor. Checks if both [valueString] and [element]
   /// are null (in the parent [PrimitiveType] constructor).
-  FhirString._({
+  const FhirString._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'String',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -94,7 +93,6 @@ class FhirString extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'String',
   }) {
     // We allow `null` if [element] is provided (element-only usage).
     // Otherwise, convert [rawValue] to string.
@@ -105,12 +103,8 @@ class FhirString extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirString] object with [Element.empty] metadata.
-  factory FhirString.empty() => FhirString(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -122,11 +116,9 @@ class FhirString extends PrimitiveType
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'String';
     return FhirString(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -176,7 +168,8 @@ class FhirString extends PrimitiveType
   /// JSON serialization with `'value'` and `'_value'` for the [Element].
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString != null) 'value': valueString,
+        if (valueString != null && valueString!.isNotEmpty)
+          'value': valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -210,43 +203,15 @@ class FhirString extends PrimitiveType
 
   /// Creates a deep clone of this [FhirString].
   @override
-  FhirString clone() => FhirString(
-        valueString,
-        element: element?.clone() as Element?,
-      );
+  FhirString clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirString noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirString copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirString(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
+  $FhirStringCopyWithImpl<FhirString> get copyWith =>
+      $FhirStringCopyWithImpl<FhirString>(this, (value) => value);
 
   // --------------------------------------------------------------------------
   // Additional String-Like Methods
@@ -390,27 +355,41 @@ class FhirString extends PrimitiveType
         'value': items.map((val) => val.valueString).toList(),
         '_value': items.map((val) => val.element?.toJson()).toList(),
       };
+}
 
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirStringCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirStringCopyWithImpl(this._value, this._then);
 
-  /// Creates an empty property in the object (no-op).
+  final FhirString _value;
+  final T Function(FhirString) _then;
+
   @override
-  FhirString createProperty(String propertyName) => this;
-
-  /// Clears specified fields from this [FhirString].
-  @override
-  FhirString clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirString(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
+    return _then(
+      FhirString(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
     );
   }
 }

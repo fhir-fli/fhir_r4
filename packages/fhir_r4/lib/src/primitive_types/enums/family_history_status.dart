@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FamilyHistoryStatus
+enum FamilyHistoryStatusEnum {
+  /// partial
+  partial,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// health-unknown
+  healthUnknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FamilyHistoryStatusEnum.partial:
+        return 'partial';
+      case FamilyHistoryStatusEnum.completed:
+        return 'completed';
+      case FamilyHistoryStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case FamilyHistoryStatusEnum.healthUnknown:
+        return 'health-unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FamilyHistoryStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FamilyHistoryStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FamilyHistoryStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'partial':
+        return FamilyHistoryStatusEnum.partial;
+      case 'completed':
+        return FamilyHistoryStatusEnum.completed;
+      case 'entered-in-error':
+        return FamilyHistoryStatusEnum.enteredInError;
+      case 'health-unknown':
+        return FamilyHistoryStatusEnum.healthUnknown;
+    }
+    return null;
+  }
+}
+
 /// A code that identifies the status of the family history record.
 class FamilyHistoryStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  FamilyHistoryStatus._({
+  const FamilyHistoryStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = FamilyHistoryStatusEnum.fromString(valueString);
     return FamilyHistoryStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class FamilyHistoryStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [FamilyHistoryStatus] with element only
-  factory FamilyHistoryStatus.empty() => FamilyHistoryStatus._(valueString: '');
 
   /// Factory constructor to create [FamilyHistoryStatus]
   /// from JSON.
@@ -53,10 +110,11 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = FamilyHistoryStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FamilyHistoryStatus.elementOnly.withElement(element);
+      return FamilyHistoryStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FamilyHistoryStatus cannot be constructed from JSON.',
@@ -64,60 +122,73 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     }
     return FamilyHistoryStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for FamilyHistoryStatus
+  final FamilyHistoryStatusEnum? valueEnum;
+
   /// partial
-  static final FamilyHistoryStatus partial = FamilyHistoryStatus._(
+  static const FamilyHistoryStatus partial = FamilyHistoryStatus._(
     valueString: 'partial',
-    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Partial'.toFhirString,
+    valueEnum: FamilyHistoryStatusEnum.partial,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Partial',
+    ),
   );
 
   /// completed
-  static final FamilyHistoryStatus completed = FamilyHistoryStatus._(
+  static const FamilyHistoryStatus completed = FamilyHistoryStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: FamilyHistoryStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final FamilyHistoryStatus entered_in_error = FamilyHistoryStatus._(
+  static const FamilyHistoryStatus enteredInError = FamilyHistoryStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: FamilyHistoryStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// health_unknown
-  static final FamilyHistoryStatus health_unknown = FamilyHistoryStatus._(
+  static const FamilyHistoryStatus healthUnknown = FamilyHistoryStatus._(
     valueString: 'health-unknown',
-    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Health Unknown'.toFhirString,
+    valueEnum: FamilyHistoryStatusEnum.healthUnknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Health Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final FamilyHistoryStatus elementOnly =
-      FamilyHistoryStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<FamilyHistoryStatus> values = [
     partial,
     completed,
-    entered_in_error,
-    health_unknown,
+    enteredInError,
+    healthUnknown,
   ];
-
-  /// Clones the current instance
-  @override
-  FamilyHistoryStatus clone() => FamilyHistoryStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   FamilyHistoryStatus withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class FamilyHistoryStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  FamilyHistoryStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  FamilyHistoryStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  FamilyHistoryStatusCopyWithImpl<FamilyHistoryStatus> get copyWith =>
+      FamilyHistoryStatusCopyWithImpl<FamilyHistoryStatus>(
+        this,
+        (v) => v as FamilyHistoryStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class FamilyHistoryStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  FamilyHistoryStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for FamilyHistoryStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return FamilyHistoryStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FamilyHistoryStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -37,13 +37,12 @@ class FhirUnsignedInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor, delegates to [super._].
-  FhirUnsignedInt._({
+  const FhirUnsignedInt._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'UnsignedInt',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -64,7 +63,6 @@ class FhirUnsignedInt extends FhirNumber
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'UnsignedInt',
   }) {
     String? parsedString;
 
@@ -109,13 +107,8 @@ class FhirUnsignedInt extends FhirNumber
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirUnsignedInt] (with [Element.empty] for metadata).
-  factory FhirUnsignedInt.empty() =>
-      FhirUnsignedInt(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -126,11 +119,9 @@ class FhirUnsignedInt extends FhirNumber
     final rawValue = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'UnsignedInt';
     return FhirUnsignedInt(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -217,56 +208,50 @@ class FhirUnsignedInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   @override
-  FhirUnsignedInt clone() =>
-      FhirUnsignedInt(valueString, element: element?.clone() as Element?);
+  FhirUnsignedInt clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirUnsignedInt noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirUnsignedInt copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  $FhirUnsignedIntCopyWithImpl<FhirUnsignedInt> get copyWith =>
+      $FhirUnsignedIntCopyWithImpl<FhirUnsignedInt>(this, (value) => value);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirUnsignedIntCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirUnsignedIntCopyWithImpl(this._value, this._then);
+
+  final FhirUnsignedInt _value;
+  final T Function(FhirUnsignedInt) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirUnsignedInt(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FhirUnsignedInt(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  @override
-  FhirUnsignedInt createProperty(String propertyName) => this;
-
-  @override
-  FhirUnsignedInt clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirUnsignedInt(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
     );
   }
 }

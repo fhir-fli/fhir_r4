@@ -1,11 +1,233 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FHIRVersion
+enum FHIRVersionEnum {
+  /// 0.01
+  value001,
+
+  /// 0.05
+  value005,
+
+  /// 0.06
+  value006,
+
+  /// 0.11
+  value011,
+
+  /// 0.0.80
+  value0080,
+
+  /// 0.0.81
+  value0081,
+
+  /// 0.0.82
+  value0082,
+
+  /// 0.4.0
+  value040,
+
+  /// 0.5.0
+  value050,
+
+  /// 1.0.0
+  value100,
+
+  /// 1.0.1
+  value101,
+
+  /// 1.0.2
+  value102,
+
+  /// 1.1.0
+  value110,
+
+  /// 1.4.0
+  value140,
+
+  /// 1.6.0
+  value160,
+
+  /// 1.8.0
+  value180,
+
+  /// 3.0.0
+  value300,
+
+  /// 3.0.1
+  value301,
+
+  /// 3.0.2
+  value302,
+
+  /// 3.3.0
+  value330,
+
+  /// 3.5.0
+  value350,
+
+  /// 4.0.0
+  value400,
+
+  /// 4.0.1
+  value401,
+
+  /// 4.1.0
+  value410,
+
+  /// 4.3.0-cibuild
+  value430Cibuild,
+
+  /// 4.3.0-snapshot1
+  value430Snapshot1,
+
+  /// 4.3.0
+  value430,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FHIRVersionEnum.value001:
+        return '0.01';
+      case FHIRVersionEnum.value005:
+        return '0.05';
+      case FHIRVersionEnum.value006:
+        return '0.06';
+      case FHIRVersionEnum.value011:
+        return '0.11';
+      case FHIRVersionEnum.value0080:
+        return '0.0.80';
+      case FHIRVersionEnum.value0081:
+        return '0.0.81';
+      case FHIRVersionEnum.value0082:
+        return '0.0.82';
+      case FHIRVersionEnum.value040:
+        return '0.4.0';
+      case FHIRVersionEnum.value050:
+        return '0.5.0';
+      case FHIRVersionEnum.value100:
+        return '1.0.0';
+      case FHIRVersionEnum.value101:
+        return '1.0.1';
+      case FHIRVersionEnum.value102:
+        return '1.0.2';
+      case FHIRVersionEnum.value110:
+        return '1.1.0';
+      case FHIRVersionEnum.value140:
+        return '1.4.0';
+      case FHIRVersionEnum.value160:
+        return '1.6.0';
+      case FHIRVersionEnum.value180:
+        return '1.8.0';
+      case FHIRVersionEnum.value300:
+        return '3.0.0';
+      case FHIRVersionEnum.value301:
+        return '3.0.1';
+      case FHIRVersionEnum.value302:
+        return '3.0.2';
+      case FHIRVersionEnum.value330:
+        return '3.3.0';
+      case FHIRVersionEnum.value350:
+        return '3.5.0';
+      case FHIRVersionEnum.value400:
+        return '4.0.0';
+      case FHIRVersionEnum.value401:
+        return '4.0.1';
+      case FHIRVersionEnum.value410:
+        return '4.1.0';
+      case FHIRVersionEnum.value430Cibuild:
+        return '4.3.0-cibuild';
+      case FHIRVersionEnum.value430Snapshot1:
+        return '4.3.0-snapshot1';
+      case FHIRVersionEnum.value430:
+        return '4.3.0';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FHIRVersionEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FHIRVersionEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FHIRVersionEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case '0.01':
+        return FHIRVersionEnum.value001;
+      case '0.05':
+        return FHIRVersionEnum.value005;
+      case '0.06':
+        return FHIRVersionEnum.value006;
+      case '0.11':
+        return FHIRVersionEnum.value011;
+      case '0.0.80':
+        return FHIRVersionEnum.value0080;
+      case '0.0.81':
+        return FHIRVersionEnum.value0081;
+      case '0.0.82':
+        return FHIRVersionEnum.value0082;
+      case '0.4.0':
+        return FHIRVersionEnum.value040;
+      case '0.5.0':
+        return FHIRVersionEnum.value050;
+      case '1.0.0':
+        return FHIRVersionEnum.value100;
+      case '1.0.1':
+        return FHIRVersionEnum.value101;
+      case '1.0.2':
+        return FHIRVersionEnum.value102;
+      case '1.1.0':
+        return FHIRVersionEnum.value110;
+      case '1.4.0':
+        return FHIRVersionEnum.value140;
+      case '1.6.0':
+        return FHIRVersionEnum.value160;
+      case '1.8.0':
+        return FHIRVersionEnum.value180;
+      case '3.0.0':
+        return FHIRVersionEnum.value300;
+      case '3.0.1':
+        return FHIRVersionEnum.value301;
+      case '3.0.2':
+        return FHIRVersionEnum.value302;
+      case '3.3.0':
+        return FHIRVersionEnum.value330;
+      case '3.5.0':
+        return FHIRVersionEnum.value350;
+      case '4.0.0':
+        return FHIRVersionEnum.value400;
+      case '4.0.1':
+        return FHIRVersionEnum.value401;
+      case '4.1.0':
+        return FHIRVersionEnum.value410;
+      case '4.3.0-cibuild':
+        return FHIRVersionEnum.value430Cibuild;
+      case '4.3.0-snapshot1':
+        return FHIRVersionEnum.value430Snapshot1;
+      case '4.3.0':
+        return FHIRVersionEnum.value430;
+    }
+    return null;
+  }
+}
+
 /// All published FHIR Versions.
 class FHIRVersion extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  FHIRVersion._({
+  const FHIRVersion._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +235,6 @@ class FHIRVersion extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +248,13 @@ class FHIRVersion extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = FHIRVersionEnum.fromString(valueString);
     return FHIRVersion._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +262,8 @@ class FHIRVersion extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [FHIRVersion] with element only
-  factory FHIRVersion.empty() => FHIRVersion._(valueString: '');
 
   /// Factory constructor to create [FHIRVersion]
   /// from JSON.
@@ -53,10 +271,11 @@ class FHIRVersion extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = FHIRVersionEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRVersion.elementOnly.withElement(element);
+      return FHIRVersion._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FHIRVersion cannot be constructed from JSON.',
@@ -64,266 +283,395 @@ class FHIRVersion extends FhirCodeEnum {
     }
     return FHIRVersion._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for FHIRVersion
+  final FHIRVersionEnum? valueEnum;
+
   /// value0_01
-  static final FHIRVersion value0_01 = FHIRVersion._(
+  static const FHIRVersion value001 = FHIRVersion._(
     valueString: '0.01',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.01'.toFhirString,
+    valueEnum: FHIRVersionEnum.value001,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.01',
+    ),
   );
 
   /// value0_05
-  static final FHIRVersion value0_05 = FHIRVersion._(
+  static const FHIRVersion value005 = FHIRVersion._(
     valueString: '0.05',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.05'.toFhirString,
+    valueEnum: FHIRVersionEnum.value005,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.05',
+    ),
   );
 
   /// value0_06
-  static final FHIRVersion value0_06 = FHIRVersion._(
+  static const FHIRVersion value006 = FHIRVersion._(
     valueString: '0.06',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.06'.toFhirString,
+    valueEnum: FHIRVersionEnum.value006,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.06',
+    ),
   );
 
   /// value0_11
-  static final FHIRVersion value0_11 = FHIRVersion._(
+  static const FHIRVersion value011 = FHIRVersion._(
     valueString: '0.11',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.11'.toFhirString,
+    valueEnum: FHIRVersionEnum.value011,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.11',
+    ),
   );
 
   /// value0_0_80
-  static final FHIRVersion value0_0_80 = FHIRVersion._(
+  static const FHIRVersion value0080 = FHIRVersion._(
     valueString: '0.0.80',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.0.80'.toFhirString,
+    valueEnum: FHIRVersionEnum.value0080,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.0.80',
+    ),
   );
 
   /// value0_0_81
-  static final FHIRVersion value0_0_81 = FHIRVersion._(
+  static const FHIRVersion value0081 = FHIRVersion._(
     valueString: '0.0.81',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.0.81'.toFhirString,
+    valueEnum: FHIRVersionEnum.value0081,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.0.81',
+    ),
   );
 
   /// value0_0_82
-  static final FHIRVersion value0_0_82 = FHIRVersion._(
+  static const FHIRVersion value0082 = FHIRVersion._(
     valueString: '0.0.82',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.0.82'.toFhirString,
+    valueEnum: FHIRVersionEnum.value0082,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.0.82',
+    ),
   );
 
   /// value0_4_0
-  static final FHIRVersion value0_4_0 = FHIRVersion._(
+  static const FHIRVersion value040 = FHIRVersion._(
     valueString: '0.4.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.4.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value040,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.4.0',
+    ),
   );
 
   /// value0_5_0
-  static final FHIRVersion value0_5_0 = FHIRVersion._(
+  static const FHIRVersion value050 = FHIRVersion._(
     valueString: '0.5.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '0.5.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value050,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '0.5.0',
+    ),
   );
 
   /// value1_0_0
-  static final FHIRVersion value1_0_0 = FHIRVersion._(
+  static const FHIRVersion value100 = FHIRVersion._(
     valueString: '1.0.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.0.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value100,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.0.0',
+    ),
   );
 
   /// value1_0_1
-  static final FHIRVersion value1_0_1 = FHIRVersion._(
+  static const FHIRVersion value101 = FHIRVersion._(
     valueString: '1.0.1',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.0.1'.toFhirString,
+    valueEnum: FHIRVersionEnum.value101,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.0.1',
+    ),
   );
 
   /// value1_0_2
-  static final FHIRVersion value1_0_2 = FHIRVersion._(
+  static const FHIRVersion value102 = FHIRVersion._(
     valueString: '1.0.2',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.0.2'.toFhirString,
+    valueEnum: FHIRVersionEnum.value102,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.0.2',
+    ),
   );
 
   /// value1_1_0
-  static final FHIRVersion value1_1_0 = FHIRVersion._(
+  static const FHIRVersion value110 = FHIRVersion._(
     valueString: '1.1.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.1.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value110,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.1.0',
+    ),
   );
 
   /// value1_4_0
-  static final FHIRVersion value1_4_0 = FHIRVersion._(
+  static const FHIRVersion value140 = FHIRVersion._(
     valueString: '1.4.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.4.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value140,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.4.0',
+    ),
   );
 
   /// value1_6_0
-  static final FHIRVersion value1_6_0 = FHIRVersion._(
+  static const FHIRVersion value160 = FHIRVersion._(
     valueString: '1.6.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.6.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value160,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.6.0',
+    ),
   );
 
   /// value1_8_0
-  static final FHIRVersion value1_8_0 = FHIRVersion._(
+  static const FHIRVersion value180 = FHIRVersion._(
     valueString: '1.8.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '1.8.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value180,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '1.8.0',
+    ),
   );
 
   /// value3_0_0
-  static final FHIRVersion value3_0_0 = FHIRVersion._(
+  static const FHIRVersion value300 = FHIRVersion._(
     valueString: '3.0.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '3.0.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value300,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '3.0.0',
+    ),
   );
 
   /// value3_0_1
-  static final FHIRVersion value3_0_1 = FHIRVersion._(
+  static const FHIRVersion value301 = FHIRVersion._(
     valueString: '3.0.1',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '3.0.1'.toFhirString,
+    valueEnum: FHIRVersionEnum.value301,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '3.0.1',
+    ),
   );
 
   /// value3_0_2
-  static final FHIRVersion value3_0_2 = FHIRVersion._(
+  static const FHIRVersion value302 = FHIRVersion._(
     valueString: '3.0.2',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '3.0.2'.toFhirString,
+    valueEnum: FHIRVersionEnum.value302,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '3.0.2',
+    ),
   );
 
   /// value3_3_0
-  static final FHIRVersion value3_3_0 = FHIRVersion._(
+  static const FHIRVersion value330 = FHIRVersion._(
     valueString: '3.3.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '3.3.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value330,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '3.3.0',
+    ),
   );
 
   /// value3_5_0
-  static final FHIRVersion value3_5_0 = FHIRVersion._(
+  static const FHIRVersion value350 = FHIRVersion._(
     valueString: '3.5.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '3.5.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value350,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '3.5.0',
+    ),
   );
 
   /// value4_0_0
-  static final FHIRVersion value4_0_0 = FHIRVersion._(
+  static const FHIRVersion value400 = FHIRVersion._(
     valueString: '4.0.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.0.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value400,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.0.0',
+    ),
   );
 
   /// value4_0_1
-  static final FHIRVersion value4_0_1 = FHIRVersion._(
+  static const FHIRVersion value401 = FHIRVersion._(
     valueString: '4.0.1',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.0.1'.toFhirString,
+    valueEnum: FHIRVersionEnum.value401,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.0.1',
+    ),
   );
 
   /// value4_1_0
-  static final FHIRVersion value4_1_0 = FHIRVersion._(
+  static const FHIRVersion value410 = FHIRVersion._(
     valueString: '4.1.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.1.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value410,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.1.0',
+    ),
   );
 
   /// value4_3_0_cibuild
-  static final FHIRVersion value4_3_0_cibuild = FHIRVersion._(
+  static const FHIRVersion value430Cibuild = FHIRVersion._(
     valueString: '4.3.0-cibuild',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.3.0-cibuild'.toFhirString,
+    valueEnum: FHIRVersionEnum.value430Cibuild,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.3.0-cibuild',
+    ),
   );
 
   /// value4_3_0_snapshot1
-  static final FHIRVersion value4_3_0_snapshot1 = FHIRVersion._(
+  static const FHIRVersion value430Snapshot1 = FHIRVersion._(
     valueString: '4.3.0-snapshot1',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.3.0-snapshot1'.toFhirString,
+    valueEnum: FHIRVersionEnum.value430Snapshot1,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.3.0-snapshot1',
+    ),
   );
 
   /// value4_3_0
-  static final FHIRVersion value4_3_0 = FHIRVersion._(
+  static const FHIRVersion value430 = FHIRVersion._(
     valueString: '4.3.0',
-    system: 'http://hl7.org/fhir/ValueSet/FHIR-version'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '4.3.0'.toFhirString,
+    valueEnum: FHIRVersionEnum.value430,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/FHIR-version',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: '4.3.0',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final FHIRVersion elementOnly = FHIRVersion._(valueString: '');
 
   /// List of all enum-like values
   static final List<FHIRVersion> values = [
-    value0_01,
-    value0_05,
-    value0_06,
-    value0_11,
-    value0_0_80,
-    value0_0_81,
-    value0_0_82,
-    value0_4_0,
-    value0_5_0,
-    value1_0_0,
-    value1_0_1,
-    value1_0_2,
-    value1_1_0,
-    value1_4_0,
-    value1_6_0,
-    value1_8_0,
-    value3_0_0,
-    value3_0_1,
-    value3_0_2,
-    value3_3_0,
-    value3_5_0,
-    value4_0_0,
-    value4_0_1,
-    value4_1_0,
-    value4_3_0_cibuild,
-    value4_3_0_snapshot1,
-    value4_3_0,
+    value001,
+    value005,
+    value006,
+    value011,
+    value0080,
+    value0081,
+    value0082,
+    value040,
+    value050,
+    value100,
+    value101,
+    value102,
+    value110,
+    value140,
+    value160,
+    value180,
+    value300,
+    value301,
+    value302,
+    value330,
+    value350,
+    value400,
+    value401,
+    value410,
+    value430Cibuild,
+    value430Snapshot1,
+    value430,
   ];
-
-  /// Clones the current instance
-  @override
-  FHIRVersion clone() => FHIRVersion._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   FHIRVersion withElement(Element? newElement) {
@@ -344,36 +692,56 @@ class FHIRVersion extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  FHIRVersion copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  FHIRVersion clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  FHIRVersionCopyWithImpl<FHIRVersion> get copyWith =>
+      FHIRVersionCopyWithImpl<FHIRVersion>(
+        this,
+        (v) => v as FHIRVersion,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class FHIRVersionCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  FHIRVersionCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for FHIRVersion: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return FHIRVersion._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FHIRVersion(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

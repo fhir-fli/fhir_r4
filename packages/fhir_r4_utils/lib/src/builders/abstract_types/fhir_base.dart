@@ -172,9 +172,6 @@ abstract class FhirBaseBuilder {
   /// Creates an empty property in the object
   void createProperty(String propertyName);
 
-  /// Clears specific fields in this object
-  void clear();
-
   /// Deep equality check.
   bool equalsDeep(FhirBaseBuilder? o) {
     return o != null;

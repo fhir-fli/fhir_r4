@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         Appointment,
         AppointmentParticipant,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1487,72 +1488,6 @@ class AppointmentBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool cancelationReason = false,
-    bool serviceCategory = false,
-    bool serviceType = false,
-    bool specialty = false,
-    bool appointmentType = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool priority = false,
-    bool description = false,
-    bool supportingInformation = false,
-    bool start = false,
-    bool end = false,
-    bool minutesDuration = false,
-    bool slot = false,
-    bool created = false,
-    bool comment = false,
-    bool patientInstruction = false,
-    bool basedOn = false,
-    bool participant = false,
-    bool requestedPeriod = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (cancelationReason) this.cancelationReason = null;
-    if (serviceCategory) this.serviceCategory = null;
-    if (serviceType) this.serviceType = null;
-    if (specialty) this.specialty = null;
-    if (appointmentType) this.appointmentType = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (priority) this.priority = null;
-    if (description) this.description = null;
-    if (supportingInformation) this.supportingInformation = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-    if (minutesDuration) this.minutesDuration = null;
-    if (slot) this.slot = null;
-    if (created) this.created = null;
-    if (comment) this.comment = null;
-    if (patientInstruction) this.patientInstruction = null;
-    if (basedOn) this.basedOn = null;
-    if (participant) this.participant = null;
-    if (requestedPeriod) this.requestedPeriod = null;
-  }
-
   @override
   AppointmentBuilder clone() => throw UnimplementedError();
   @override
@@ -2337,28 +2272,6 @@ class AppointmentParticipantBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool actor = false,
-    bool required_ = false,
-    bool status = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (actor) this.actor = null;
-    if (required_) this.required_ = null;
-    if (status) this.status = null;
-    if (period) this.period = null;
   }
 
   @override

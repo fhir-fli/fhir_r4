@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'payment_reconciliation.g.dart';
+
 /// [PaymentReconciliation]
 /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
@@ -34,93 +36,64 @@ class PaymentReconciliation extends DomainResource {
     this.formCode,
     this.processNote,
   }) : super(
-          objectPath: 'PaymentReconciliation',
           resourceType: R4ResourceType.PaymentReconciliation,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PaymentReconciliation.empty() => PaymentReconciliation(
-        status: FinancialResourceStatusCodes.values.first,
-        created: FhirDateTime.empty(),
-        paymentDate: FhirDate.empty(),
-        paymentAmount: Money.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PaymentReconciliation';
     return PaymentReconciliation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -128,75 +101,61 @@ class PaymentReconciliation extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
-        '$objectPath.status',
       )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
-        '$objectPath.period',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-        '$objectPath.created',
       )!,
       paymentIssuer: JsonParser.parseObject<Reference>(
         json,
         'paymentIssuer',
         Reference.fromJson,
-        '$objectPath.paymentIssuer',
       ),
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
-        '$objectPath.request',
       ),
       requestor: JsonParser.parseObject<Reference>(
         json,
         'requestor',
         Reference.fromJson,
-        '$objectPath.requestor',
       ),
       outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
         json,
         'outcome',
         RemittanceOutcome.fromJson,
-        '$objectPath.outcome',
       ),
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
-        '$objectPath.disposition',
       ),
       paymentDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'paymentDate',
         FhirDate.fromJson,
-        '$objectPath.paymentDate',
       )!,
       paymentAmount: JsonParser.parseObject<Money>(
         json,
         'paymentAmount',
         Money.fromJson,
-        '$objectPath.paymentAmount',
       )!,
       paymentIdentifier: JsonParser.parseObject<Identifier>(
         json,
         'paymentIdentifier',
         Identifier.fromJson,
-        '$objectPath.paymentIdentifier',
       ),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<PaymentReconciliationDetail>(
             (v) => PaymentReconciliationDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -204,15 +163,11 @@ class PaymentReconciliation extends DomainResource {
         json,
         'formCode',
         CodeableConcept.fromJson,
-        '$objectPath.formCode',
       ),
       processNote: (json['processNote'] as List<dynamic>?)
           ?.map<PaymentReconciliationProcessNote>(
             (v) => PaymentReconciliationProcessNote.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.processNote',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -623,663 +578,19 @@ class PaymentReconciliation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  PaymentReconciliation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is FinancialResourceStatusCodes) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'period':
-        {
-          if (child is Period) {
-            return copyWith(period: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'paymentIssuer':
-        {
-          if (child is Reference) {
-            return copyWith(paymentIssuer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'request':
-        {
-          if (child is Reference) {
-            return copyWith(request: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requestor':
-        {
-          if (child is Reference) {
-            return copyWith(requestor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is RemittanceOutcome) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'disposition':
-        {
-          if (child is FhirString) {
-            return copyWith(disposition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'paymentDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(paymentDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'paymentAmount':
-        {
-          if (child is Money) {
-            return copyWith(paymentAmount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'paymentIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(paymentIdentifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<PaymentReconciliationDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is PaymentReconciliationDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'formCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(formCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'processNote':
-        {
-          if (child is List<PaymentReconciliationProcessNote>) {
-            // Add all elements from passed list
-            final newList = [...?processNote, ...child];
-            return copyWith(processNote: newList);
-          } else if (child is PaymentReconciliationProcessNote) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?processNote,
-              child,
-            ];
-            return copyWith(processNote: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [PaymentReconciliation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'period':
-        return ['Period'];
-      case 'created':
-        return ['FhirDateTime'];
-      case 'paymentIssuer':
-        return ['Reference'];
-      case 'request':
-        return ['Reference'];
-      case 'requestor':
-        return ['Reference'];
-      case 'outcome':
-        return ['FhirCode'];
-      case 'disposition':
-        return ['FhirString'];
-      case 'paymentDate':
-        return ['FhirDate'];
-      case 'paymentAmount':
-        return ['Money'];
-      case 'paymentIdentifier':
-        return ['Identifier'];
-      case 'detail':
-        return ['PaymentReconciliationDetail'];
-      case 'formCode':
-        return ['CodeableConcept'];
-      case 'processNote':
-        return ['PaymentReconciliationProcessNote'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PaymentReconciliation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PaymentReconciliation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: FinancialResourceStatusCodes.empty(),
-          );
-        }
-      case 'period':
-        {
-          return copyWith(
-            period: Period.empty(),
-          );
-        }
-      case 'created':
-        {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
-        }
-      case 'paymentIssuer':
-        {
-          return copyWith(
-            paymentIssuer: Reference.empty(),
-          );
-        }
-      case 'request':
-        {
-          return copyWith(
-            request: Reference.empty(),
-          );
-        }
-      case 'requestor':
-        {
-          return copyWith(
-            requestor: Reference.empty(),
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: RemittanceOutcome.empty(),
-          );
-        }
-      case 'disposition':
-        {
-          return copyWith(
-            disposition: FhirString.empty(),
-          );
-        }
-      case 'paymentDate':
-        {
-          return copyWith(
-            paymentDate: FhirDate.empty(),
-          );
-        }
-      case 'paymentAmount':
-        {
-          return copyWith(
-            paymentAmount: Money.empty(),
-          );
-        }
-      case 'paymentIdentifier':
-        {
-          return copyWith(
-            paymentIdentifier: Identifier.empty(),
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <PaymentReconciliationDetail>[],
-          );
-        }
-      case 'formCode':
-        {
-          return copyWith(
-            formCode: CodeableConcept.empty(),
-          );
-        }
-      case 'processNote':
-        {
-          return copyWith(
-            processNote: <PaymentReconciliationProcessNote>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PaymentReconciliation clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool period = false,
-    bool paymentIssuer = false,
-    bool request = false,
-    bool requestor = false,
-    bool outcome = false,
-    bool disposition = false,
-    bool paymentIdentifier = false,
-    bool detail = false,
-    bool formCode = false,
-    bool processNote = false,
-  }) {
-    return PaymentReconciliation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      period: period ? null : this.period,
-      created: created,
-      paymentIssuer: paymentIssuer ? null : this.paymentIssuer,
-      request: request ? null : this.request,
-      requestor: requestor ? null : this.requestor,
-      outcome: outcome ? null : this.outcome,
-      disposition: disposition ? null : this.disposition,
-      paymentDate: paymentDate,
-      paymentAmount: paymentAmount,
-      paymentIdentifier: paymentIdentifier ? null : this.paymentIdentifier,
-      detail: detail ? null : this.detail,
-      formCode: formCode ? null : this.formCode,
-      processNote: processNote ? null : this.processNote,
-    );
-  }
-
-  @override
-  PaymentReconciliation clone() => throw UnimplementedError();
-  @override
-  PaymentReconciliation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FinancialResourceStatusCodes? status,
-    Period? period,
-    FhirDateTime? created,
-    Reference? paymentIssuer,
-    Reference? request,
-    Reference? requestor,
-    RemittanceOutcome? outcome,
-    FhirString? disposition,
-    FhirDate? paymentDate,
-    Money? paymentAmount,
-    Identifier? paymentIdentifier,
-    List<PaymentReconciliationDetail>? detail,
-    CodeableConcept? formCode,
-    List<PaymentReconciliationProcessNote>? processNote,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return PaymentReconciliation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      paymentIssuer: paymentIssuer?.copyWith(
-            objectPath: '$newObjectPath.paymentIssuer',
-          ) ??
-          this.paymentIssuer,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      requestor: requestor?.copyWith(
-            objectPath: '$newObjectPath.requestor',
-          ) ??
-          this.requestor,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      disposition: disposition?.copyWith(
-            objectPath: '$newObjectPath.disposition',
-          ) ??
-          this.disposition,
-      paymentDate: paymentDate?.copyWith(
-            objectPath: '$newObjectPath.paymentDate',
-          ) ??
-          this.paymentDate,
-      paymentAmount: paymentAmount?.copyWith(
-            objectPath: '$newObjectPath.paymentAmount',
-          ) ??
-          this.paymentAmount,
-      paymentIdentifier: paymentIdentifier?.copyWith(
-            objectPath: '$newObjectPath.paymentIdentifier',
-          ) ??
-          this.paymentIdentifier,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-      formCode: formCode?.copyWith(
-            objectPath: '$newObjectPath.formCode',
-          ) ??
-          this.formCode,
-      processNote: processNote
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.processNote',
-                ),
-              )
-              .toList() ??
-          this.processNote,
-    );
-  }
+  $PaymentReconciliationCopyWith<PaymentReconciliation> get copyWith =>
+      _$PaymentReconciliationCopyWithImpl<PaymentReconciliation>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1453,46 +764,29 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.payee,
     this.amount,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PaymentReconciliation.detail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PaymentReconciliationDetail.empty() => PaymentReconciliationDetail(
-        type: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationDetail.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PaymentReconciliation.detail';
     return PaymentReconciliationDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1500,61 +794,51 @@ class PaymentReconciliationDetail extends BackboneElement {
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       predecessor: JsonParser.parseObject<Identifier>(
         json,
         'predecessor',
         Identifier.fromJson,
-        '$objectPath.predecessor',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
-        '$objectPath.request',
       ),
       submitter: JsonParser.parseObject<Reference>(
         json,
         'submitter',
         Reference.fromJson,
-        '$objectPath.submitter',
       ),
       response: JsonParser.parseObject<Reference>(
         json,
         'response',
         Reference.fromJson,
-        '$objectPath.response',
       ),
       date: JsonParser.parsePrimitive<FhirDate>(
         json,
         'date',
         FhirDate.fromJson,
-        '$objectPath.date',
       ),
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
         Reference.fromJson,
-        '$objectPath.responsible',
       ),
       payee: JsonParser.parseObject<Reference>(
         json,
         'payee',
         Reference.fromJson,
-        '$objectPath.payee',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       ),
     );
   }
@@ -1858,392 +1142,20 @@ class PaymentReconciliationDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  PaymentReconciliationDetail clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'predecessor':
-        {
-          if (child is Identifier) {
-            return copyWith(predecessor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'request':
-        {
-          if (child is Reference) {
-            return copyWith(request: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'submitter':
-        {
-          if (child is Reference) {
-            return copyWith(submitter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'response':
-        {
-          if (child is Reference) {
-            return copyWith(response: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDate) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'responsible':
-        {
-          if (child is Reference) {
-            return copyWith(responsible: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payee':
-        {
-          if (child is Reference) {
-            return copyWith(payee: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [PaymentReconciliationDetail]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'predecessor':
-        return ['Identifier'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'request':
-        return ['Reference'];
-      case 'submitter':
-        return ['Reference'];
-      case 'response':
-        return ['Reference'];
-      case 'date':
-        return ['FhirDate'];
-      case 'responsible':
-        return ['Reference'];
-      case 'payee':
-        return ['Reference'];
-      case 'amount':
-        return ['Money'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PaymentReconciliationDetail]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PaymentReconciliationDetail createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PaymentReconciliationDetailCopyWith<PaymentReconciliationDetail>
+      get copyWith => _$PaymentReconciliationDetailCopyWithImpl<
+              PaymentReconciliationDetail>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'predecessor':
-        {
-          return copyWith(
-            predecessor: Identifier.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'request':
-        {
-          return copyWith(
-            request: Reference.empty(),
-          );
-        }
-      case 'submitter':
-        {
-          return copyWith(
-            submitter: Reference.empty(),
-          );
-        }
-      case 'response':
-        {
-          return copyWith(
-            response: Reference.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
-        }
-      case 'responsible':
-        {
-          return copyWith(
-            responsible: Reference.empty(),
-          );
-        }
-      case 'payee':
-        {
-          return copyWith(
-            payee: Reference.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PaymentReconciliationDetail clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool predecessor = false,
-    bool request = false,
-    bool submitter = false,
-    bool response = false,
-    bool date = false,
-    bool responsible = false,
-    bool payee = false,
-    bool amount = false,
-  }) {
-    return PaymentReconciliationDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      predecessor: predecessor ? null : this.predecessor,
-      type: type,
-      request: request ? null : this.request,
-      submitter: submitter ? null : this.submitter,
-      response: response ? null : this.response,
-      date: date ? null : this.date,
-      responsible: responsible ? null : this.responsible,
-      payee: payee ? null : this.payee,
-      amount: amount ? null : this.amount,
-    );
-  }
-
-  @override
-  PaymentReconciliationDetail clone() => throw UnimplementedError();
-  @override
-  PaymentReconciliationDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    Identifier? predecessor,
-    CodeableConcept? type,
-    Reference? request,
-    Reference? submitter,
-    Reference? response,
-    FhirDate? date,
-    Reference? responsible,
-    Reference? payee,
-    Money? amount,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PaymentReconciliationDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      predecessor: predecessor?.copyWith(
-            objectPath: '$newObjectPath.predecessor',
-          ) ??
-          this.predecessor,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      submitter: submitter?.copyWith(
-            objectPath: '$newObjectPath.submitter',
-          ) ??
-          this.submitter,
-      response: response?.copyWith(
-            objectPath: '$newObjectPath.response',
-          ) ??
-          this.response,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      responsible: responsible?.copyWith(
-            objectPath: '$newObjectPath.responsible',
-          ) ??
-          this.responsible,
-      payee: payee?.copyWith(
-            objectPath: '$newObjectPath.payee',
-          ) ??
-          this.payee,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2349,45 +1261,29 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     this.type,
     this.text,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PaymentReconciliation.processNote',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PaymentReconciliationProcessNote.empty() =>
-      const PaymentReconciliationProcessNote();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationProcessNote.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PaymentReconciliation.processNote';
     return PaymentReconciliationProcessNote(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2395,13 +1291,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
         json,
         'type',
         NoteType.fromJson,
-        '$objectPath.type',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-        '$objectPath.text',
       ),
     );
   }
@@ -2598,209 +1492,20 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  PaymentReconciliationProcessNote clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is NoteType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirString) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [PaymentReconciliationProcessNote]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['FhirCode'];
-      case 'text':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PaymentReconciliationProcessNote]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PaymentReconciliationProcessNote createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PaymentReconciliationProcessNoteCopyWith<PaymentReconciliationProcessNote>
+      get copyWith => _$PaymentReconciliationProcessNoteCopyWithImpl<
+              PaymentReconciliationProcessNote>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: NoteType.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PaymentReconciliationProcessNote clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool text = false,
-  }) {
-    return PaymentReconciliationProcessNote(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      text: text ? null : this.text,
-    );
-  }
-
-  @override
-  PaymentReconciliationProcessNote clone() => throw UnimplementedError();
-  @override
-  PaymentReconciliationProcessNote copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    NoteType? type,
-    FhirString? text,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PaymentReconciliationProcessNote(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

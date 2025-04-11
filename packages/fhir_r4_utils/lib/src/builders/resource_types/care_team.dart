@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         CareTeam,
         CareTeamParticipant,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1035,54 +1036,6 @@ class CareTeamBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool category = false,
-    bool name = false,
-    bool subject = false,
-    bool encounter = false,
-    bool period = false,
-    bool participant = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool managingOrganization = false,
-    bool telecom = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (name) this.name = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (period) this.period = null;
-    if (participant) this.participant = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (managingOrganization) this.managingOrganization = null;
-    if (telecom) this.telecom = null;
-    if (note) this.note = null;
-  }
-
   @override
   CareTeamBuilder clone() => throw UnimplementedError();
   @override
@@ -1731,26 +1684,6 @@ class CareTeamParticipantBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool member = false,
-    bool onBehalfOf = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (member) this.member = null;
-    if (onBehalfOf) this.onBehalfOf = null;
-    if (period) this.period = null;
   }
 
   @override

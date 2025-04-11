@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ExpressionLanguage
+enum ExpressionLanguageEnum {
+  /// text/cql
+  textCql,
+
+  /// text/fhirpath
+  textFhirpath,
+
+  /// application/x-fhir-query
+  applicationXFhirQuery,
+
+  /// text/cql-identifier
+  textCqlIdentifier,
+
+  /// text/cql-expression
+  textCqlExpression,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ExpressionLanguageEnum.textCql:
+        return 'text/cql';
+      case ExpressionLanguageEnum.textFhirpath:
+        return 'text/fhirpath';
+      case ExpressionLanguageEnum.applicationXFhirQuery:
+        return 'application/x-fhir-query';
+      case ExpressionLanguageEnum.textCqlIdentifier:
+        return 'text/cql-identifier';
+      case ExpressionLanguageEnum.textCqlExpression:
+        return 'text/cql-expression';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ExpressionLanguageEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ExpressionLanguageEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ExpressionLanguageEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'text/cql':
+        return ExpressionLanguageEnum.textCql;
+      case 'text/fhirpath':
+        return ExpressionLanguageEnum.textFhirpath;
+      case 'application/x-fhir-query':
+        return ExpressionLanguageEnum.applicationXFhirQuery;
+      case 'text/cql-identifier':
+        return ExpressionLanguageEnum.textCqlIdentifier;
+      case 'text/cql-expression':
+        return ExpressionLanguageEnum.textCqlExpression;
+    }
+    return null;
+  }
+}
+
 /// The media type of the expression language.
 class ExpressionLanguage extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ExpressionLanguage._({
+  const ExpressionLanguage._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class ExpressionLanguage extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class ExpressionLanguage extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ExpressionLanguageEnum.fromString(valueString);
     return ExpressionLanguage._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +108,8 @@ class ExpressionLanguage extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ExpressionLanguage] with element only
-  factory ExpressionLanguage.empty() => ExpressionLanguage._(valueString: '');
 
   /// Factory constructor to create [ExpressionLanguage]
   /// from JSON.
@@ -53,10 +117,11 @@ class ExpressionLanguage extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ExpressionLanguageEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExpressionLanguage.elementOnly.withElement(element);
+      return ExpressionLanguage._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ExpressionLanguage cannot be constructed from JSON.',
@@ -64,70 +129,87 @@ class ExpressionLanguage extends FhirCodeEnum {
     }
     return ExpressionLanguage._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ExpressionLanguage
+  final ExpressionLanguageEnum? valueEnum;
+
   /// text_cql
-  static final ExpressionLanguage text_cql = ExpressionLanguage._(
+  static const ExpressionLanguage textCql = ExpressionLanguage._(
     valueString: 'text/cql',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL'.toFhirString,
+    valueEnum: ExpressionLanguageEnum.textCql,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CQL',
+    ),
   );
 
   /// text_fhirpath
-  static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
+  static const ExpressionLanguage textFhirpath = ExpressionLanguage._(
     valueString: 'text/fhirpath',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FHIRPath'.toFhirString,
+    valueEnum: ExpressionLanguageEnum.textFhirpath,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'FHIRPath',
+    ),
   );
 
   /// application_x_fhir_query
-  static final ExpressionLanguage application_x_fhir_query =
-      ExpressionLanguage._(
+  static const ExpressionLanguage applicationXFhirQuery = ExpressionLanguage._(
     valueString: 'application/x-fhir-query',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FHIR Query'.toFhirString,
+    valueEnum: ExpressionLanguageEnum.applicationXFhirQuery,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'FHIR Query',
+    ),
   );
 
   /// text_cql_identifier
-  static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
+  static const ExpressionLanguage textCqlIdentifier = ExpressionLanguage._(
     valueString: 'text/cql-identifier',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL Identifier'.toFhirString,
+    valueEnum: ExpressionLanguageEnum.textCqlIdentifier,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CQL Identifier',
+    ),
   );
 
   /// text_cql_expression
-  static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
+  static const ExpressionLanguage textCqlExpression = ExpressionLanguage._(
     valueString: 'text/cql-expression',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL Expression'.toFhirString,
+    valueEnum: ExpressionLanguageEnum.textCqlExpression,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CQL Expression',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ExpressionLanguage elementOnly =
-      ExpressionLanguage._(valueString: '');
 
   /// List of all enum-like values
   static final List<ExpressionLanguage> values = [
-    text_cql,
-    text_fhirpath,
-    application_x_fhir_query,
-    text_cql_identifier,
-    text_cql_expression,
+    textCql,
+    textFhirpath,
+    applicationXFhirQuery,
+    textCqlIdentifier,
+    textCqlExpression,
   ];
-
-  /// Clones the current instance
-  @override
-  ExpressionLanguage clone() => ExpressionLanguage._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ExpressionLanguage withElement(Element? newElement) {
@@ -148,36 +230,56 @@ class ExpressionLanguage extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ExpressionLanguage copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ExpressionLanguage clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ExpressionLanguageCopyWithImpl<ExpressionLanguage> get copyWith =>
+      ExpressionLanguageCopyWithImpl<ExpressionLanguage>(
+        this,
+        (v) => v as ExpressionLanguage,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ExpressionLanguageCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ExpressionLanguageCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ExpressionLanguage: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ExpressionLanguage._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ExpressionLanguage(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

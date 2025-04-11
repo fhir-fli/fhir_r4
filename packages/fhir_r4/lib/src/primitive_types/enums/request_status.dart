@@ -1,11 +1,93 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RequestStatus
+enum RequestStatusEnum {
+  /// draft
+  draft,
+
+  /// active
+  active,
+
+  /// on-hold
+  onHold,
+
+  /// revoked
+  revoked,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RequestStatusEnum.draft:
+        return 'draft';
+      case RequestStatusEnum.active:
+        return 'active';
+      case RequestStatusEnum.onHold:
+        return 'on-hold';
+      case RequestStatusEnum.revoked:
+        return 'revoked';
+      case RequestStatusEnum.completed:
+        return 'completed';
+      case RequestStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case RequestStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RequestStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RequestStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RequestStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return RequestStatusEnum.draft;
+      case 'active':
+        return RequestStatusEnum.active;
+      case 'on-hold':
+        return RequestStatusEnum.onHold;
+      case 'revoked':
+        return RequestStatusEnum.revoked;
+      case 'completed':
+        return RequestStatusEnum.completed;
+      case 'entered-in-error':
+        return RequestStatusEnum.enteredInError;
+      case 'unknown':
+        return RequestStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of a request.
 class RequestStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  RequestStatus._({
+  const RequestStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +95,6 @@ class RequestStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +108,13 @@ class RequestStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = RequestStatusEnum.fromString(valueString);
     return RequestStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +122,8 @@ class RequestStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [RequestStatus] with element only
-  factory RequestStatus.empty() => RequestStatus._(valueString: '');
 
   /// Factory constructor to create [RequestStatus]
   /// from JSON.
@@ -53,10 +131,11 @@ class RequestStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = RequestStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestStatus.elementOnly.withElement(element);
+      return RequestStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RequestStatus cannot be constructed from JSON.',
@@ -64,86 +143,115 @@ class RequestStatus extends FhirCodeEnum {
     }
     return RequestStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for RequestStatus
+  final RequestStatusEnum? valueEnum;
+
   /// draft
-  static final RequestStatus draft = RequestStatus._(
+  static const RequestStatus draft = RequestStatus._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    valueEnum: RequestStatusEnum.draft,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Draft',
+    ),
   );
 
   /// active
-  static final RequestStatus active = RequestStatus._(
+  static const RequestStatus active = RequestStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: RequestStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// on_hold
-  static final RequestStatus on_hold = RequestStatus._(
+  static const RequestStatus onHold = RequestStatus._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: RequestStatusEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// revoked
-  static final RequestStatus revoked = RequestStatus._(
+  static const RequestStatus revoked = RequestStatus._(
     valueString: 'revoked',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Revoked'.toFhirString,
+    valueEnum: RequestStatusEnum.revoked,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Revoked',
+    ),
   );
 
   /// completed
-  static final RequestStatus completed = RequestStatus._(
+  static const RequestStatus completed = RequestStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: RequestStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final RequestStatus entered_in_error = RequestStatus._(
+  static const RequestStatus enteredInError = RequestStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: RequestStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final RequestStatus unknown = RequestStatus._(
+  static const RequestStatus unknown = RequestStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: RequestStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final RequestStatus elementOnly = RequestStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<RequestStatus> values = [
     draft,
     active,
-    on_hold,
+    onHold,
     revoked,
     completed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  RequestStatus clone() => RequestStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   RequestStatus withElement(Element? newElement) {
@@ -164,36 +272,56 @@ class RequestStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  RequestStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  RequestStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  RequestStatusCopyWithImpl<RequestStatus> get copyWith =>
+      RequestStatusCopyWithImpl<RequestStatus>(
+        this,
+        (v) => v as RequestStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class RequestStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  RequestStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for RequestStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return RequestStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      RequestStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

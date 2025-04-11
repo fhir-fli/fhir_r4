@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
+        
         StructureDefinition,
         StructureDefinitionContext,
         StructureDefinitionDifferential,
@@ -1692,82 +1693,6 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool keyword = false,
-    bool fhirVersion = false,
-    bool mapping = false,
-    bool kind = false,
-    bool abstract_ = false,
-    bool context = false,
-    bool contextInvariant = false,
-    bool type = false,
-    bool baseDefinition = false,
-    bool derivation = false,
-    bool snapshot = false,
-    bool differential = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (keyword) this.keyword = null;
-    if (fhirVersion) this.fhirVersion = null;
-    if (mapping) this.mapping = null;
-    if (kind) this.kind = null;
-    if (abstract_) this.abstract_ = null;
-    if (context) this.context = null;
-    if (contextInvariant) this.contextInvariant = null;
-    if (type) this.type = null;
-    if (baseDefinition) this.baseDefinition = null;
-    if (derivation) this.derivation = null;
-    if (snapshot) this.snapshot = null;
-    if (differential) this.differential = null;
-  }
-
   @override
   StructureDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2568,26 +2493,6 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identity = false,
-    bool uri = false,
-    bool name = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identity) this.identity = null;
-    if (uri) this.uri = null;
-    if (name) this.name = null;
-    if (comment) this.comment = null;
-  }
-
   @override
   StructureDefinitionMappingBuilder clone() => throw UnimplementedError();
   @override
@@ -3080,22 +2985,6 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (expression) this.expression = null;
-  }
-
   @override
   StructureDefinitionContextBuilder clone() => throw UnimplementedError();
   @override
@@ -3523,20 +3412,6 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool element = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (element) this.element = null;
-  }
-
   @override
   StructureDefinitionSnapshotBuilder clone() => throw UnimplementedError();
   @override
@@ -3954,20 +3829,6 @@ class StructureDefinitionDifferentialBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool element = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (element) this.element = null;
   }
 
   @override

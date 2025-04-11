@@ -603,26 +603,6 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool name = false,
-    bool timing = false,
-    bool data = false,
-    bool condition = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (timing) timingX = null;
-    if (data) this.data = null;
-    if (condition) this.condition = null;
-  }
-
   @override
   TriggerDefinitionBuilder clone() => throw UnimplementedError();
   @override

@@ -1132,54 +1132,6 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool patient = false,
-    bool date = false,
-    bool authority = false,
-    bool targetDisease = false,
-    bool immunizationEvent = false,
-    bool doseStatus = false,
-    bool doseStatusReason = false,
-    bool description = false,
-    bool series = false,
-    bool doseNumber = false,
-    bool seriesDoses = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (patient) this.patient = null;
-    if (date) this.date = null;
-    if (authority) this.authority = null;
-    if (targetDisease) this.targetDisease = null;
-    if (immunizationEvent) this.immunizationEvent = null;
-    if (doseStatus) this.doseStatus = null;
-    if (doseStatusReason) this.doseStatusReason = null;
-    if (description) this.description = null;
-    if (series) this.series = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
-  }
-
   @override
   ImmunizationEvaluationBuilder clone() => throw UnimplementedError();
   @override

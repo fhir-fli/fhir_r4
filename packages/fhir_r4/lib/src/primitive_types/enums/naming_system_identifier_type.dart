@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for NamingSystemIdentifierType
+enum NamingSystemIdentifierTypeEnum {
+  /// oid
+  oid,
+
+  /// uuid
+  uuid,
+
+  /// uri
+  uri,
+
+  /// other
+  other,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case NamingSystemIdentifierTypeEnum.oid:
+        return 'oid';
+      case NamingSystemIdentifierTypeEnum.uuid:
+        return 'uuid';
+      case NamingSystemIdentifierTypeEnum.uri:
+        return 'uri';
+      case NamingSystemIdentifierTypeEnum.other:
+        return 'other';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static NamingSystemIdentifierTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return NamingSystemIdentifierTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static NamingSystemIdentifierTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'oid':
+        return NamingSystemIdentifierTypeEnum.oid;
+      case 'uuid':
+        return NamingSystemIdentifierTypeEnum.uuid;
+      case 'uri':
+        return NamingSystemIdentifierTypeEnum.uri;
+      case 'other':
+        return NamingSystemIdentifierTypeEnum.other;
+    }
+    return null;
+  }
+}
+
 /// Identifies the style of unique identifier used to identify a namespace.
 class NamingSystemIdentifierType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  NamingSystemIdentifierType._({
+  const NamingSystemIdentifierType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = NamingSystemIdentifierTypeEnum.fromString(valueString);
     return NamingSystemIdentifierType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [NamingSystemIdentifierType] with element only
-  factory NamingSystemIdentifierType.empty() =>
-      NamingSystemIdentifierType._(valueString: '');
 
   /// Factory constructor to create [NamingSystemIdentifierType]
   /// from JSON.
@@ -54,10 +110,11 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = NamingSystemIdentifierTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NamingSystemIdentifierType.elementOnly.withElement(element);
+      return NamingSystemIdentifierType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'NamingSystemIdentifierType cannot be constructed from JSON.',
@@ -65,49 +122,65 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     }
     return NamingSystemIdentifierType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for NamingSystemIdentifierType
+  final NamingSystemIdentifierTypeEnum? valueEnum;
+
   /// oid
-  static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
+  static const NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
     valueString: 'oid',
-    system:
-        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OID'.toFhirString,
+    valueEnum: NamingSystemIdentifierTypeEnum.oid,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OID',
+    ),
   );
 
   /// uuid
-  static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
+  static const NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
     valueString: 'uuid',
-    system:
-        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'UUID'.toFhirString,
+    valueEnum: NamingSystemIdentifierTypeEnum.uuid,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'UUID',
+    ),
   );
 
   /// uri
-  static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
+  static const NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
     valueString: 'uri',
-    system:
-        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'URI'.toFhirString,
+    valueEnum: NamingSystemIdentifierTypeEnum.uri,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'URI',
+    ),
   );
 
   /// other
-  static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
+  static const NamingSystemIdentifierType other = NamingSystemIdentifierType._(
     valueString: 'other',
-    system:
-        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Other'.toFhirString,
+    valueEnum: NamingSystemIdentifierTypeEnum.other,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Other',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final NamingSystemIdentifierType elementOnly =
-      NamingSystemIdentifierType._(valueString: '');
 
   /// List of all enum-like values
   static final List<NamingSystemIdentifierType> values = [
@@ -116,13 +189,6 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     uri,
     other,
   ];
-
-  /// Clones the current instance
-  @override
-  NamingSystemIdentifierType clone() => NamingSystemIdentifierType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
@@ -143,36 +209,58 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  NamingSystemIdentifierType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  NamingSystemIdentifierType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  NamingSystemIdentifierTypeCopyWithImpl<NamingSystemIdentifierType>
+      get copyWith =>
+          NamingSystemIdentifierTypeCopyWithImpl<NamingSystemIdentifierType>(
+            this,
+            (v) => v as NamingSystemIdentifierType,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class NamingSystemIdentifierTypeCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  NamingSystemIdentifierTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for NamingSystemIdentifierType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return NamingSystemIdentifierType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      NamingSystemIdentifierType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -35,13 +35,12 @@ class FhirUrl extends FhirUri
 
   /// Private underscore constructor delegating to [FhirUri]'s
   /// internal constructor.
-  FhirUrl._({
+  const FhirUrl._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Url',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -61,7 +60,6 @@ class FhirUrl extends FhirUri
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Url',
   }) {
     String? parsedValue;
     if (rawValue == null && element == null) {
@@ -82,12 +80,8 @@ class FhirUrl extends FhirUri
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirUrl] object with an [Element.empty] for metadata.
-  factory FhirUrl.empty() => FhirUrl(null, element: Element.empty());
 
   /// Creates a [FhirUrl] from a [Uri] object.
   factory FhirUrl.fromUri(
@@ -110,12 +104,10 @@ class FhirUrl extends FhirUri
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Url';
 
     return FhirUrl(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -229,59 +221,12 @@ class FhirUrl extends FhirUri
 
   /// Clones this [FhirUrl].
   @override
-  FhirUrl clone() => FhirUrl(
-        valueString,
-        element: element?.clone() as Element?,
-      );
+  FhirUrl clone() => copyWith();
 
-  /// Creates a new [FhirUrl] with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirUrl copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirUrl(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  /// Creates a property. No-op for [FhirUrl].
-  @override
-  FhirUrl createProperty(String propertyName) => this;
-
-  /// Clears selected fields from this [FhirUrl].
-  @override
-  FhirUrl clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirUrl(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
+  $FhirUrlCopyWithImpl<FhirUrl> get copyWith =>
+      $FhirUrlCopyWithImpl<FhirUrl>(this, (value) => value as FhirUrl);
 
   // --------------------------------------------------------------------------
   // Additional Convenience (Unchanged from your code)
@@ -306,6 +251,40 @@ class FhirUrl extends FhirUri
       (key, value) => MapEntry<String, List<String>>(
         key,
         value.isEmpty ? <String>[] : <String>[value],
+      ),
+    );
+  }
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirUrlCopyWithImpl<T> extends $FhirUriCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirUrlCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+  }) {
+    return _then(
+      FhirUrl(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
     );
   }

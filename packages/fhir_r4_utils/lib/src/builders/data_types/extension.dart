@@ -1843,20 +1843,6 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool url = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (url) this.url = null;
-    if (value) valueX = null;
-  }
-
   @override
   FhirExtensionBuilder clone() => throw UnimplementedError();
   @override

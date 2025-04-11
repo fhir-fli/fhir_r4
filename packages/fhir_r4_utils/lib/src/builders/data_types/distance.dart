@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart' show Distance, yamlMapToJson, yamlToJson;
+import 'package:fhir_r4/fhir_r4.dart'
+    show Distance, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -474,26 +475,6 @@ class DistanceBuilder extends QuantityBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool value = false,
-    bool comparator = false,
-    bool unit = false,
-    bool system = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (value) this.value = null;
-    if (comparator) this.comparator = null;
-    if (unit) this.unit = null;
-    if (system) this.system = null;
-    if (code) this.code = null;
   }
 
   @override

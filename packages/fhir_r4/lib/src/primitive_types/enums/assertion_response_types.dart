@@ -1,11 +1,128 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AssertionResponseTypes
+enum AssertionResponseTypesEnum {
+  /// okay
+  okay,
+
+  /// created
+  created,
+
+  /// noContent
+  noContent,
+
+  /// notModified
+  notModified,
+
+  /// bad
+  bad,
+
+  /// forbidden
+  forbidden,
+
+  /// notFound
+  notFound,
+
+  /// methodNotAllowed
+  methodNotAllowed,
+
+  /// conflict
+  conflict,
+
+  /// gone
+  gone,
+
+  /// preconditionFailed
+  preconditionFailed,
+
+  /// unprocessable
+  unprocessable,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AssertionResponseTypesEnum.okay:
+        return 'okay';
+      case AssertionResponseTypesEnum.created:
+        return 'created';
+      case AssertionResponseTypesEnum.noContent:
+        return 'noContent';
+      case AssertionResponseTypesEnum.notModified:
+        return 'notModified';
+      case AssertionResponseTypesEnum.bad:
+        return 'bad';
+      case AssertionResponseTypesEnum.forbidden:
+        return 'forbidden';
+      case AssertionResponseTypesEnum.notFound:
+        return 'notFound';
+      case AssertionResponseTypesEnum.methodNotAllowed:
+        return 'methodNotAllowed';
+      case AssertionResponseTypesEnum.conflict:
+        return 'conflict';
+      case AssertionResponseTypesEnum.gone:
+        return 'gone';
+      case AssertionResponseTypesEnum.preconditionFailed:
+        return 'preconditionFailed';
+      case AssertionResponseTypesEnum.unprocessable:
+        return 'unprocessable';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AssertionResponseTypesEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AssertionResponseTypesEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AssertionResponseTypesEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'okay':
+        return AssertionResponseTypesEnum.okay;
+      case 'created':
+        return AssertionResponseTypesEnum.created;
+      case 'noContent':
+        return AssertionResponseTypesEnum.noContent;
+      case 'notModified':
+        return AssertionResponseTypesEnum.notModified;
+      case 'bad':
+        return AssertionResponseTypesEnum.bad;
+      case 'forbidden':
+        return AssertionResponseTypesEnum.forbidden;
+      case 'notFound':
+        return AssertionResponseTypesEnum.notFound;
+      case 'methodNotAllowed':
+        return AssertionResponseTypesEnum.methodNotAllowed;
+      case 'conflict':
+        return AssertionResponseTypesEnum.conflict;
+      case 'gone':
+        return AssertionResponseTypesEnum.gone;
+      case 'preconditionFailed':
+        return AssertionResponseTypesEnum.preconditionFailed;
+      case 'unprocessable':
+        return AssertionResponseTypesEnum.unprocessable;
+    }
+    return null;
+  }
+}
+
 /// The type of response code to use for assertion.
 class AssertionResponseTypes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  AssertionResponseTypes._({
+  const AssertionResponseTypes._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +130,6 @@ class AssertionResponseTypes extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +143,13 @@ class AssertionResponseTypes extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = AssertionResponseTypesEnum.fromString(valueString);
     return AssertionResponseTypes._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +157,8 @@ class AssertionResponseTypes extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [AssertionResponseTypes] with element only
-  factory AssertionResponseTypes.empty() =>
-      AssertionResponseTypes._(valueString: '');
 
   /// Factory constructor to create [AssertionResponseTypes]
   /// from JSON.
@@ -54,10 +166,11 @@ class AssertionResponseTypes extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = AssertionResponseTypesEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AssertionResponseTypes.elementOnly.withElement(element);
+      return AssertionResponseTypes._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AssertionResponseTypes cannot be constructed from JSON.',
@@ -65,111 +178,171 @@ class AssertionResponseTypes extends FhirCodeEnum {
     }
     return AssertionResponseTypes._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for AssertionResponseTypes
+  final AssertionResponseTypesEnum? valueEnum;
+
   /// okay
-  static final AssertionResponseTypes okay = AssertionResponseTypes._(
+  static const AssertionResponseTypes okay = AssertionResponseTypes._(
     valueString: 'okay',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'okay'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.okay,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'okay',
+    ),
   );
 
   /// created
-  static final AssertionResponseTypes created = AssertionResponseTypes._(
+  static const AssertionResponseTypes created = AssertionResponseTypes._(
     valueString: 'created',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'created'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.created,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'created',
+    ),
   );
 
   /// noContent
-  static final AssertionResponseTypes noContent = AssertionResponseTypes._(
+  static const AssertionResponseTypes noContent = AssertionResponseTypes._(
     valueString: 'noContent',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'noContent'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.noContent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'noContent',
+    ),
   );
 
   /// notModified
-  static final AssertionResponseTypes notModified = AssertionResponseTypes._(
+  static const AssertionResponseTypes notModified = AssertionResponseTypes._(
     valueString: 'notModified',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'notModified'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.notModified,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'notModified',
+    ),
   );
 
   /// bad
-  static final AssertionResponseTypes bad = AssertionResponseTypes._(
+  static const AssertionResponseTypes bad = AssertionResponseTypes._(
     valueString: 'bad',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'bad'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.bad,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'bad',
+    ),
   );
 
   /// forbidden
-  static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
+  static const AssertionResponseTypes forbidden = AssertionResponseTypes._(
     valueString: 'forbidden',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'forbidden'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.forbidden,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'forbidden',
+    ),
   );
 
   /// notFound
-  static final AssertionResponseTypes notFound = AssertionResponseTypes._(
+  static const AssertionResponseTypes notFound = AssertionResponseTypes._(
     valueString: 'notFound',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'notFound'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.notFound,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'notFound',
+    ),
   );
 
   /// methodNotAllowed
-  static final AssertionResponseTypes methodNotAllowed =
+  static const AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
     valueString: 'methodNotAllowed',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'methodNotAllowed'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.methodNotAllowed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'methodNotAllowed',
+    ),
   );
 
   /// conflict
-  static final AssertionResponseTypes conflict = AssertionResponseTypes._(
+  static const AssertionResponseTypes conflict = AssertionResponseTypes._(
     valueString: 'conflict',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'conflict'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.conflict,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'conflict',
+    ),
   );
 
   /// gone
-  static final AssertionResponseTypes gone = AssertionResponseTypes._(
+  static const AssertionResponseTypes gone = AssertionResponseTypes._(
     valueString: 'gone',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'gone'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.gone,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'gone',
+    ),
   );
 
   /// preconditionFailed
-  static final AssertionResponseTypes preconditionFailed =
+  static const AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
     valueString: 'preconditionFailed',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'preconditionFailed'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.preconditionFailed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'preconditionFailed',
+    ),
   );
 
   /// unprocessable
-  static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
+  static const AssertionResponseTypes unprocessable = AssertionResponseTypes._(
     valueString: 'unprocessable',
-    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'unprocessable'.toFhirString,
+    valueEnum: AssertionResponseTypesEnum.unprocessable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'unprocessable',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final AssertionResponseTypes elementOnly =
-      AssertionResponseTypes._(valueString: '');
 
   /// List of all enum-like values
   static final List<AssertionResponseTypes> values = [
@@ -186,13 +359,6 @@ class AssertionResponseTypes extends FhirCodeEnum {
     preconditionFailed,
     unprocessable,
   ];
-
-  /// Clones the current instance
-  @override
-  AssertionResponseTypes clone() => AssertionResponseTypes._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
@@ -213,36 +379,56 @@ class AssertionResponseTypes extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  AssertionResponseTypes copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  AssertionResponseTypes clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  AssertionResponseTypesCopyWithImpl<AssertionResponseTypes> get copyWith =>
+      AssertionResponseTypesCopyWithImpl<AssertionResponseTypes>(
+        this,
+        (v) => v as AssertionResponseTypes,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class AssertionResponseTypesCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  AssertionResponseTypesCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for AssertionResponseTypes: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return AssertionResponseTypes._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      AssertionResponseTypes(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -26,15 +26,7 @@ abstract class CanonicalResource extends DomainResource {
     this.description,
     this.useContext,
     this.jurisdiction,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'CanonicalResource',
   });
-
-  /// Creates an empty [CanonicalResource] object
-  factory CanonicalResource.empty() => throw UnimplementedError();
 
   /// Factory constructor for [CanonicalResource] that takes in a
   /// [Map<String, dynamic>] and returns a [CanonicalResource]
@@ -131,7 +123,18 @@ abstract class CanonicalResource extends DomainResource {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
-  CanonicalResource copyWith({
+  CanonicalResource clone();
+
+  /// CopyWith method for [CanonicalResource].
+  @override
+  $CanonicalResourceCopyWith<CanonicalResource> get copyWith;
+}
+
+/// The public interface for copyWith for [CanonicalResource].
+abstract class $CanonicalResourceCopyWith<T>
+    extends $DomainResourceCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -150,22 +153,5 @@ abstract class CanonicalResource extends DomainResource {
     FhirMarkdown? description,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
-
-  /// Creates an empty property in the object
-  @override
-  CanonicalResource createProperty(String propertyName);
-
-  @override
-  CanonicalResource clear();
 }

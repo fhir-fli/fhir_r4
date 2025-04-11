@@ -1196,62 +1196,6 @@ class CoverageBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool policyHolder = false,
-    bool subscriber = false,
-    bool subscriberId = false,
-    bool beneficiary = false,
-    bool dependent = false,
-    bool relationship = false,
-    bool period = false,
-    bool payor = false,
-    bool class_ = false,
-    bool order = false,
-    bool network = false,
-    bool costToBeneficiary = false,
-    bool subrogation = false,
-    bool contract = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (policyHolder) this.policyHolder = null;
-    if (subscriber) this.subscriber = null;
-    if (subscriberId) this.subscriberId = null;
-    if (beneficiary) this.beneficiary = null;
-    if (dependent) this.dependent = null;
-    if (relationship) this.relationship = null;
-    if (period) this.period = null;
-    if (payor) this.payor = null;
-    if (class_) this.class_ = null;
-    if (order) this.order = null;
-    if (network) this.network = null;
-    if (costToBeneficiary) this.costToBeneficiary = null;
-    if (subrogation) this.subrogation = null;
-    if (contract) this.contract = null;
-  }
-
   @override
   CoverageBuilder clone() => throw UnimplementedError();
   @override
@@ -1914,24 +1858,6 @@ class CoverageClassBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-    bool name = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) this.value = null;
-    if (name) this.name = null;
-  }
-
   @override
   CoverageClassBuilder clone() => throw UnimplementedError();
   @override
@@ -2501,24 +2427,6 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-    bool exception = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-    if (exception) this.exception = null;
-  }
-
   @override
   CoverageCostToBeneficiaryBuilder clone() => throw UnimplementedError();
   @override
@@ -2970,22 +2878,6 @@ class CoverageExceptionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (period) this.period = null;
   }
 
   @override

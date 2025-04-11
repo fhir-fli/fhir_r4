@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
+        
         TestScript,
         TestScriptAction,
         TestScriptAction1,
@@ -1554,76 +1555,6 @@ class TestScriptBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool origin = false,
-    bool destination = false,
-    bool metadata = false,
-    bool fixture = false,
-    bool profile = false,
-    bool variable = false,
-    bool setup = false,
-    bool test = false,
-    bool teardown = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (origin) this.origin = null;
-    if (destination) this.destination = null;
-    if (metadata) this.metadata = null;
-    if (fixture) this.fixture = null;
-    if (profile) this.profile = null;
-    if (variable) this.variable = null;
-    if (setup) this.setup = null;
-    if (test) this.test = null;
-    if (teardown) this.teardown = null;
-  }
-
   @override
   TestScriptBuilder clone() => throw UnimplementedError();
   @override
@@ -2303,22 +2234,6 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool index = false,
-    bool profile = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (index) this.index = null;
-    if (profile) this.profile = null;
-  }
-
   @override
   TestScriptOriginBuilder clone() => throw UnimplementedError();
   @override
@@ -2781,22 +2696,6 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool index = false,
-    bool profile = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (index) this.index = null;
-    if (profile) this.profile = null;
   }
 
   @override
@@ -3269,22 +3168,6 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool link = false,
-    bool capability = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (link) this.link = null;
-    if (capability) this.capability = null;
-  }
-
   @override
   TestScriptMetadataBuilder clone() => throw UnimplementedError();
   @override
@@ -3752,22 +3635,6 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (description) this.description = null;
   }
 
   @override
@@ -4540,32 +4407,6 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool required_ = false,
-    bool validated = false,
-    bool description = false,
-    bool origin = false,
-    bool destination = false,
-    bool link = false,
-    bool capabilities = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (required_) this.required_ = null;
-    if (validated) this.validated = null;
-    if (description) this.description = null;
-    if (origin) this.origin = null;
-    if (destination) this.destination = null;
-    if (link) this.link = null;
-    if (capabilities) this.capabilities = null;
-  }
-
   @override
   TestScriptCapabilityBuilder clone() => throw UnimplementedError();
   @override
@@ -5113,24 +4954,6 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool autocreate = false,
-    bool autodelete = false,
-    bool resource = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (autocreate) this.autocreate = null;
-    if (autodelete) this.autodelete = null;
-    if (resource) this.resource = null;
   }
 
   @override
@@ -5882,34 +5705,6 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool defaultValue = false,
-    bool description = false,
-    bool expression = false,
-    bool headerField = false,
-    bool hint = false,
-    bool path = false,
-    bool sourceId = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (defaultValue) this.defaultValue = null;
-    if (description) this.description = null;
-    if (expression) this.expression = null;
-    if (headerField) this.headerField = null;
-    if (hint) this.hint = null;
-    if (path) this.path = null;
-    if (sourceId) this.sourceId = null;
-  }
-
   @override
   TestScriptVariableBuilder clone() => throw UnimplementedError();
   @override
@@ -6382,20 +6177,6 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
-  }
-
   @override
   TestScriptSetupBuilder clone() => throw UnimplementedError();
   @override
@@ -6829,22 +6610,6 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-    bool assert_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
-    if (assert_) this.assert_ = null;
   }
 
   @override
@@ -7987,52 +7752,6 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool resource = false,
-    bool label = false,
-    bool description = false,
-    bool accept = false,
-    bool contentType = false,
-    bool destination = false,
-    bool encodeRequestUrl = false,
-    bool method = false,
-    bool origin = false,
-    bool params = false,
-    bool requestHeader = false,
-    bool requestId = false,
-    bool responseId = false,
-    bool sourceId = false,
-    bool targetId = false,
-    bool url = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (resource) this.resource = null;
-    if (label) this.label = null;
-    if (description) this.description = null;
-    if (accept) this.accept = null;
-    if (contentType) this.contentType = null;
-    if (destination) this.destination = null;
-    if (encodeRequestUrl) this.encodeRequestUrl = null;
-    if (method) this.method = null;
-    if (origin) this.origin = null;
-    if (params) this.params = null;
-    if (requestHeader) this.requestHeader = null;
-    if (requestId) this.requestId = null;
-    if (responseId) this.responseId = null;
-    if (sourceId) this.sourceId = null;
-    if (targetId) this.targetId = null;
-    if (url) this.url = null;
-  }
-
   @override
   TestScriptOperationBuilder clone() => throw UnimplementedError();
   @override
@@ -8621,22 +8340,6 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool field = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (field) this.field = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -10019,62 +9722,6 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool label = false,
-    bool description = false,
-    bool direction = false,
-    bool compareToSourceId = false,
-    bool compareToSourceExpression = false,
-    bool compareToSourcePath = false,
-    bool contentType = false,
-    bool expression = false,
-    bool headerField = false,
-    bool minimumId = false,
-    bool navigationLinks = false,
-    bool operator_ = false,
-    bool path = false,
-    bool requestMethod = false,
-    bool requestURL = false,
-    bool resource = false,
-    bool response = false,
-    bool responseCode = false,
-    bool sourceId = false,
-    bool validateProfileId = false,
-    bool value = false,
-    bool warningOnly = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (label) this.label = null;
-    if (description) this.description = null;
-    if (direction) this.direction = null;
-    if (compareToSourceId) this.compareToSourceId = null;
-    if (compareToSourceExpression) this.compareToSourceExpression = null;
-    if (compareToSourcePath) this.compareToSourcePath = null;
-    if (contentType) this.contentType = null;
-    if (expression) this.expression = null;
-    if (headerField) this.headerField = null;
-    if (minimumId) this.minimumId = null;
-    if (navigationLinks) this.navigationLinks = null;
-    if (operator_) this.operator_ = null;
-    if (path) this.path = null;
-    if (requestMethod) this.requestMethod = null;
-    if (requestURL) this.requestURL = null;
-    if (resource) this.resource = null;
-    if (response) this.response = null;
-    if (responseCode) this.responseCode = null;
-    if (sourceId) this.sourceId = null;
-    if (validateProfileId) this.validateProfileId = null;
-    if (value) this.value = null;
-    if (warningOnly) this.warningOnly = null;
-  }
-
   @override
   TestScriptAssertBuilder clone() => throw UnimplementedError();
   @override
@@ -10750,24 +10397,6 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool description = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-    if (action) this.action = null;
-  }
-
   @override
   TestScriptTestBuilder clone() => throw UnimplementedError();
   @override
@@ -11219,22 +10848,6 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-    bool assert_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
-    if (assert_) this.assert_ = null;
-  }
-
   @override
   TestScriptAction1Builder clone() => throw UnimplementedError();
   @override
@@ -11660,20 +11273,6 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
-  }
-
   @override
   TestScriptTeardownBuilder clone() => throw UnimplementedError();
   @override
@@ -12076,20 +11675,6 @@ class TestScriptAction2Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
   }
 
   @override

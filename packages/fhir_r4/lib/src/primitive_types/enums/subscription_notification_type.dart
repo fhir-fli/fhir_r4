@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SubscriptionNotificationType
+enum SubscriptionNotificationTypeEnum {
+  /// handshake
+  handshake,
+
+  /// heartbeat
+  heartbeat,
+
+  /// event-notification
+  eventNotification,
+
+  /// query-status
+  queryStatus,
+
+  /// query-event
+  queryEvent,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SubscriptionNotificationTypeEnum.handshake:
+        return 'handshake';
+      case SubscriptionNotificationTypeEnum.heartbeat:
+        return 'heartbeat';
+      case SubscriptionNotificationTypeEnum.eventNotification:
+        return 'event-notification';
+      case SubscriptionNotificationTypeEnum.queryStatus:
+        return 'query-status';
+      case SubscriptionNotificationTypeEnum.queryEvent:
+        return 'query-event';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SubscriptionNotificationTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SubscriptionNotificationTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SubscriptionNotificationTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'handshake':
+        return SubscriptionNotificationTypeEnum.handshake;
+      case 'heartbeat':
+        return SubscriptionNotificationTypeEnum.heartbeat;
+      case 'event-notification':
+        return SubscriptionNotificationTypeEnum.eventNotification;
+      case 'query-status':
+        return SubscriptionNotificationTypeEnum.queryStatus;
+      case 'query-event':
+        return SubscriptionNotificationTypeEnum.queryEvent;
+    }
+    return null;
+  }
+}
+
 /// The type of notification represented by the status message.
 class SubscriptionNotificationType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SubscriptionNotificationType._({
+  const SubscriptionNotificationType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SubscriptionNotificationTypeEnum.fromString(valueString);
     return SubscriptionNotificationType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +108,8 @@ class SubscriptionNotificationType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SubscriptionNotificationType] with element only
-  factory SubscriptionNotificationType.empty() =>
-      SubscriptionNotificationType._(valueString: '');
 
   /// Factory constructor to create [SubscriptionNotificationType]
   /// from JSON.
@@ -54,10 +117,14 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SubscriptionNotificationTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionNotificationType.elementOnly.withElement(element);
+      return SubscriptionNotificationType._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SubscriptionNotificationType cannot be constructed from JSON.',
@@ -65,79 +132,97 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     }
     return SubscriptionNotificationType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SubscriptionNotificationType
+  final SubscriptionNotificationTypeEnum? valueEnum;
+
   /// handshake
-  static final SubscriptionNotificationType handshake =
+  static const SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
     valueString: 'handshake',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Handshake'.toFhirString,
+    valueEnum: SubscriptionNotificationTypeEnum.handshake,
+    system: FhirUri._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Handshake',
+    ),
   );
 
   /// heartbeat
-  static final SubscriptionNotificationType heartbeat =
+  static const SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
     valueString: 'heartbeat',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Heartbeat'.toFhirString,
+    valueEnum: SubscriptionNotificationTypeEnum.heartbeat,
+    system: FhirUri._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Heartbeat',
+    ),
   );
 
   /// event_notification
-  static final SubscriptionNotificationType event_notification =
+  static const SubscriptionNotificationType eventNotification =
       SubscriptionNotificationType._(
     valueString: 'event-notification',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Event Notification'.toFhirString,
+    valueEnum: SubscriptionNotificationTypeEnum.eventNotification,
+    system: FhirUri._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Event Notification',
+    ),
   );
 
   /// query_status
-  static final SubscriptionNotificationType query_status =
+  static const SubscriptionNotificationType queryStatus =
       SubscriptionNotificationType._(
     valueString: 'query-status',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Query Status'.toFhirString,
+    valueEnum: SubscriptionNotificationTypeEnum.queryStatus,
+    system: FhirUri._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Query Status',
+    ),
   );
 
   /// query_event
-  static final SubscriptionNotificationType query_event =
+  static const SubscriptionNotificationType queryEvent =
       SubscriptionNotificationType._(
     valueString: 'query-event',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Query Event'.toFhirString,
+    valueEnum: SubscriptionNotificationTypeEnum.queryEvent,
+    system: FhirUri._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Query Event',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SubscriptionNotificationType elementOnly =
-      SubscriptionNotificationType._(valueString: '');
 
   /// List of all enum-like values
   static final List<SubscriptionNotificationType> values = [
     handshake,
     heartbeat,
-    event_notification,
-    query_status,
-    query_event,
+    eventNotification,
+    queryStatus,
+    queryEvent,
   ];
-
-  /// Clones the current instance
-  @override
-  SubscriptionNotificationType clone() => SubscriptionNotificationType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
@@ -158,36 +243,58 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SubscriptionNotificationType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SubscriptionNotificationType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SubscriptionNotificationTypeCopyWithImpl<SubscriptionNotificationType>
+      get copyWith => SubscriptionNotificationTypeCopyWithImpl<
+              SubscriptionNotificationType>(
+            this,
+            (v) => v as SubscriptionNotificationType,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SubscriptionNotificationTypeCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SubscriptionNotificationTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SubscriptionNotificationType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SubscriptionNotificationType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SubscriptionNotificationType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

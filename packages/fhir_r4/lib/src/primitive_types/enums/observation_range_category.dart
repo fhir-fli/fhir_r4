@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ObservationRangeCategory
+enum ObservationRangeCategoryEnum {
+  /// reference
+  reference,
+
+  /// critical
+  critical,
+
+  /// absolute
+  absolute,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ObservationRangeCategoryEnum.reference:
+        return 'reference';
+      case ObservationRangeCategoryEnum.critical:
+        return 'critical';
+      case ObservationRangeCategoryEnum.absolute:
+        return 'absolute';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ObservationRangeCategoryEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ObservationRangeCategoryEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ObservationRangeCategoryEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'reference':
+        return ObservationRangeCategoryEnum.reference;
+      case 'critical':
+        return ObservationRangeCategoryEnum.critical;
+      case 'absolute':
+        return ObservationRangeCategoryEnum.absolute;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the category of observation range.
 class ObservationRangeCategory extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ObservationRangeCategory._({
+  const ObservationRangeCategory._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class ObservationRangeCategory extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class ObservationRangeCategory extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ObservationRangeCategoryEnum.fromString(valueString);
     return ObservationRangeCategory._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +94,8 @@ class ObservationRangeCategory extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ObservationRangeCategory] with element only
-  factory ObservationRangeCategory.empty() =>
-      ObservationRangeCategory._(valueString: '');
 
   /// Factory constructor to create [ObservationRangeCategory]
   /// from JSON.
@@ -54,10 +103,11 @@ class ObservationRangeCategory extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ObservationRangeCategoryEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationRangeCategory.elementOnly.withElement(element);
+      return ObservationRangeCategory._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ObservationRangeCategory cannot be constructed from JSON.',
@@ -65,37 +115,52 @@ class ObservationRangeCategory extends FhirCodeEnum {
     }
     return ObservationRangeCategory._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ObservationRangeCategory
+  final ObservationRangeCategoryEnum? valueEnum;
+
   /// reference
-  static final ObservationRangeCategory reference = ObservationRangeCategory._(
+  static const ObservationRangeCategory reference = ObservationRangeCategory._(
     valueString: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'reference range'.toFhirString,
+    valueEnum: ObservationRangeCategoryEnum.reference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'reference range',
+    ),
   );
 
   /// critical
-  static final ObservationRangeCategory critical = ObservationRangeCategory._(
+  static const ObservationRangeCategory critical = ObservationRangeCategory._(
     valueString: 'critical',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'critical range'.toFhirString,
+    valueEnum: ObservationRangeCategoryEnum.critical,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'critical range',
+    ),
   );
 
   /// absolute
-  static final ObservationRangeCategory absolute = ObservationRangeCategory._(
+  static const ObservationRangeCategory absolute = ObservationRangeCategory._(
     valueString: 'absolute',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'absolute range'.toFhirString,
+    valueEnum: ObservationRangeCategoryEnum.absolute,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'absolute range',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ObservationRangeCategory elementOnly =
-      ObservationRangeCategory._(valueString: '');
 
   /// List of all enum-like values
   static final List<ObservationRangeCategory> values = [
@@ -103,13 +168,6 @@ class ObservationRangeCategory extends FhirCodeEnum {
     critical,
     absolute,
   ];
-
-  /// Clones the current instance
-  @override
-  ObservationRangeCategory clone() => ObservationRangeCategory._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ObservationRangeCategory withElement(Element? newElement) {
@@ -130,36 +188,56 @@ class ObservationRangeCategory extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ObservationRangeCategory copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ObservationRangeCategory clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ObservationRangeCategoryCopyWithImpl<ObservationRangeCategory> get copyWith =>
+      ObservationRangeCategoryCopyWithImpl<ObservationRangeCategory>(
+        this,
+        (v) => v as ObservationRangeCategory,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ObservationRangeCategoryCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ObservationRangeCategoryCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ObservationRangeCategory: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ObservationRangeCategory._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ObservationRangeCategory(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

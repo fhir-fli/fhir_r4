@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show PaymentNotice, R4ResourceType, yamlMapToJson, yamlToJson;
+    show
+        PaymentNotice,
+        R4ResourceType,
+        
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -923,52 +928,6 @@ class PaymentNoticeBuilder extends DomainResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool request = false,
-    bool response = false,
-    bool created = false,
-    bool provider = false,
-    bool payment = false,
-    bool paymentDate = false,
-    bool payee = false,
-    bool recipient = false,
-    bool amount = false,
-    bool paymentStatus = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (request) this.request = null;
-    if (response) this.response = null;
-    if (created) this.created = null;
-    if (provider) this.provider = null;
-    if (payment) this.payment = null;
-    if (paymentDate) this.paymentDate = null;
-    if (payee) this.payee = null;
-    if (recipient) this.recipient = null;
-    if (amount) this.amount = null;
-    if (paymentStatus) this.paymentStatus = null;
   }
 
   @override

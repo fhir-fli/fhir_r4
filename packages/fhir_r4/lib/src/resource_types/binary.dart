@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'binary.g.dart';
+
 /// [Binary]
 /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain
@@ -19,64 +21,48 @@ class Binary extends Resource {
     this.securityContext,
     this.data,
   }) : super(
-          objectPath: 'Binary',
           resourceType: R4ResourceType.Binary,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Binary.empty() => Binary(
-        contentType: FhirCode.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Binary.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Binary';
     return Binary(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
         FhirCode.fromJson,
-        '$objectPath.contentType',
       )!,
       securityContext: JsonParser.parseObject<Reference>(
         json,
         'securityContext',
         Reference.fromJson,
-        '$objectPath.securityContext',
       ),
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
-        '$objectPath.data',
       ),
     );
   }
@@ -305,227 +291,18 @@ class Binary extends Resource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Binary clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contentType':
-        {
-          if (child is FhirCode) {
-            return copyWith(contentType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'securityContext':
-        {
-          if (child is Reference) {
-            return copyWith(securityContext: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'data':
-        {
-          if (child is FhirBase64Binary) {
-            return copyWith(data: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Binary]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'contentType':
-        return ['FhirCode'];
-      case 'securityContext':
-        return ['Reference'];
-      case 'data':
-        return ['FhirBase64Binary'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Binary]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Binary createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'contentType':
-        {
-          return copyWith(
-            contentType: FhirCode.empty(),
-          );
-        }
-      case 'securityContext':
-        {
-          return copyWith(
-            securityContext: Reference.empty(),
-          );
-        }
-      case 'data':
-        {
-          return copyWith(
-            data: FhirBase64Binary.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Binary clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool securityContext = false,
-    bool data = false,
-  }) {
-    return Binary(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      contentType: contentType,
-      securityContext: securityContext ? null : this.securityContext,
-      data: data ? null : this.data,
-    );
-  }
-
-  @override
-  Binary clone() => throw UnimplementedError();
-  @override
-  Binary copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    FhirCode? contentType,
-    Reference? securityContext,
-    FhirBase64Binary? data,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Binary(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      contentType: contentType?.copyWith(
-            objectPath: '$newObjectPath.contentType',
-          ) ??
-          this.contentType,
-      securityContext: securityContext?.copyWith(
-            objectPath: '$newObjectPath.securityContext',
-          ) ??
-          this.securityContext,
-      data: data?.copyWith(
-            objectPath: '$newObjectPath.data',
-          ) ??
-          this.data,
-    );
-  }
+  $BinaryCopyWith<Binary> get copyWith => _$BinaryCopyWithImpl<Binary>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

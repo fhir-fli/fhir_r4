@@ -9,6 +9,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         MeasureReportStratifier,
         MeasureReportStratum,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -952,50 +953,6 @@ class MeasureReportBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool measure = false,
-    bool subject = false,
-    bool date = false,
-    bool reporter = false,
-    bool period = false,
-    bool improvementNotation = false,
-    bool group = false,
-    bool evaluatedResource = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (measure) this.measure = null;
-    if (subject) this.subject = null;
-    if (date) this.date = null;
-    if (reporter) this.reporter = null;
-    if (period) this.period = null;
-    if (improvementNotation) this.improvementNotation = null;
-    if (group) this.group = null;
-    if (evaluatedResource) this.evaluatedResource = null;
-  }
-
   @override
   MeasureReportBuilder clone() => throw UnimplementedError();
   @override
@@ -1643,26 +1600,6 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool population = false,
-    bool measureScore = false,
-    bool stratifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (population) this.population = null;
-    if (measureScore) this.measureScore = null;
-    if (stratifier) this.stratifier = null;
-  }
-
   @override
   MeasureReportGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -2173,24 +2110,6 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool count = false,
-    bool subjectResults = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (count) this.count = null;
-    if (subjectResults) this.subjectResults = null;
-  }
-
   @override
   MeasureReportPopulationBuilder clone() => throw UnimplementedError();
   @override
@@ -2667,22 +2586,6 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool stratum = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (stratum) this.stratum = null;
   }
 
   @override
@@ -3222,26 +3125,6 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool component = false,
-    bool population = false,
-    bool measureScore = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) this.value = null;
-    if (component) this.component = null;
-    if (population) this.population = null;
-    if (measureScore) this.measureScore = null;
-  }
-
   @override
   MeasureReportStratumBuilder clone() => throw UnimplementedError();
   @override
@@ -3702,22 +3585,6 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -4213,24 +4080,6 @@ class MeasureReportPopulation1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool count = false,
-    bool subjectResults = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (count) this.count = null;
-    if (subjectResults) this.subjectResults = null;
   }
 
   @override

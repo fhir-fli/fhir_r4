@@ -12,7 +12,6 @@ class TRight9 extends Element {
     this.j,
     this.k,
     super.disallowExtensions,
-    super.objectPath = 'TRight9',
   });
 
   /// factory constructor for an empty object
@@ -62,26 +61,6 @@ class TRight9 extends Element {
   final FhirString? k;
 
   @override
-  TRight9 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? j,
-    FhirString? k,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight9(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      j: j ?? this.j,
-      k: k ?? this.k,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -91,37 +70,6 @@ class TRight9 extends Element {
     if (j != null) json['j'] = j!.valueString;
     if (k != null) json['k'] = k!.valueString;
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'j', 'k'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'j':
-        if (j != null) fields.add(j!);
-      case 'k':
-        if (k != null) fields.add(k!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -374,18 +322,6 @@ class TRight9Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool j = false,
-    bool k = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (j) this.j = null;
-    if (k) this.k = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MeasureReportStatus
+enum MeasureReportStatusEnum {
+  /// complete
+  complete,
+
+  /// pending
+  pending,
+
+  /// error
+  error,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MeasureReportStatusEnum.complete:
+        return 'complete';
+      case MeasureReportStatusEnum.pending:
+        return 'pending';
+      case MeasureReportStatusEnum.error:
+        return 'error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MeasureReportStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MeasureReportStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MeasureReportStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'complete':
+        return MeasureReportStatusEnum.complete;
+      case 'pending':
+        return MeasureReportStatusEnum.pending;
+      case 'error':
+        return MeasureReportStatusEnum.error;
+    }
+    return null;
+  }
+}
+
 /// The status of the measure report.
 class MeasureReportStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  MeasureReportStatus._({
+  const MeasureReportStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class MeasureReportStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class MeasureReportStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = MeasureReportStatusEnum.fromString(valueString);
     return MeasureReportStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +94,8 @@ class MeasureReportStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [MeasureReportStatus] with element only
-  factory MeasureReportStatus.empty() => MeasureReportStatus._(valueString: '');
 
   /// Factory constructor to create [MeasureReportStatus]
   /// from JSON.
@@ -53,10 +103,11 @@ class MeasureReportStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = MeasureReportStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportStatus.elementOnly.withElement(element);
+      return MeasureReportStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MeasureReportStatus cannot be constructed from JSON.',
@@ -64,37 +115,52 @@ class MeasureReportStatus extends FhirCodeEnum {
     }
     return MeasureReportStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for MeasureReportStatus
+  final MeasureReportStatusEnum? valueEnum;
+
   /// complete
-  static final MeasureReportStatus complete = MeasureReportStatus._(
+  static const MeasureReportStatus complete = MeasureReportStatus._(
     valueString: 'complete',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Complete'.toFhirString,
+    valueEnum: MeasureReportStatusEnum.complete,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Complete',
+    ),
   );
 
   /// pending
-  static final MeasureReportStatus pending = MeasureReportStatus._(
+  static const MeasureReportStatus pending = MeasureReportStatus._(
     valueString: 'pending',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pending'.toFhirString,
+    valueEnum: MeasureReportStatusEnum.pending,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Pending',
+    ),
   );
 
   /// error
-  static final MeasureReportStatus error = MeasureReportStatus._(
+  static const MeasureReportStatus error = MeasureReportStatus._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    valueEnum: MeasureReportStatusEnum.error,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final MeasureReportStatus elementOnly =
-      MeasureReportStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<MeasureReportStatus> values = [
@@ -102,13 +168,6 @@ class MeasureReportStatus extends FhirCodeEnum {
     pending,
     error,
   ];
-
-  /// Clones the current instance
-  @override
-  MeasureReportStatus clone() => MeasureReportStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   MeasureReportStatus withElement(Element? newElement) {
@@ -129,36 +188,56 @@ class MeasureReportStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  MeasureReportStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  MeasureReportStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  MeasureReportStatusCopyWithImpl<MeasureReportStatus> get copyWith =>
+      MeasureReportStatusCopyWithImpl<MeasureReportStatus>(
+        this,
+        (v) => v as MeasureReportStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class MeasureReportStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  MeasureReportStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for MeasureReportStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return MeasureReportStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      MeasureReportStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

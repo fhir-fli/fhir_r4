@@ -1027,56 +1027,6 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool subject = false,
-    bool type = false,
-    bool description = false,
-    bool region = false,
-    bool status = false,
-    bool statusDate = false,
-    bool validityPeriod = false,
-    bool indication = false,
-    bool intendedUse = false,
-    bool basis = false,
-    bool holder = false,
-    bool regulator = false,
-    bool case_ = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (subject) this.subject = null;
-    if (type) this.type = null;
-    if (description) this.description = null;
-    if (region) this.region = null;
-    if (status) this.status = null;
-    if (statusDate) this.statusDate = null;
-    if (validityPeriod) this.validityPeriod = null;
-    if (indication) this.indication = null;
-    if (intendedUse) this.intendedUse = null;
-    if (basis) this.basis = null;
-    if (holder) this.holder = null;
-    if (regulator) this.regulator = null;
-    if (case_) this.case_ = null;
-  }
-
   @override
   RegulatedAuthorizationBuilder clone() => throw UnimplementedError();
   @override
@@ -1840,28 +1790,6 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool status = false,
-    bool date = false,
-    bool application = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (status) this.status = null;
-    if (date) dateX = null;
-    if (application) this.application = null;
   }
 
   @override

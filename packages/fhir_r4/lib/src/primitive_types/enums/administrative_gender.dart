@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AdministrativeGender
+enum AdministrativeGenderEnum {
+  /// male
+  male,
+
+  /// female
+  female,
+
+  /// other
+  other,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AdministrativeGenderEnum.male:
+        return 'male';
+      case AdministrativeGenderEnum.female:
+        return 'female';
+      case AdministrativeGenderEnum.other:
+        return 'other';
+      case AdministrativeGenderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AdministrativeGenderEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AdministrativeGenderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AdministrativeGenderEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'male':
+        return AdministrativeGenderEnum.male;
+      case 'female':
+        return AdministrativeGenderEnum.female;
+      case 'other':
+        return AdministrativeGenderEnum.other;
+      case 'unknown':
+        return AdministrativeGenderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The gender of a person used for administrative purposes.
 class AdministrativeGender extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  AdministrativeGender._({
+  const AdministrativeGender._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class AdministrativeGender extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class AdministrativeGender extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = AdministrativeGenderEnum.fromString(valueString);
     return AdministrativeGender._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class AdministrativeGender extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [AdministrativeGender] with element only
-  factory AdministrativeGender.empty() =>
-      AdministrativeGender._(valueString: '');
 
   /// Factory constructor to create [AdministrativeGender]
   /// from JSON.
@@ -54,10 +110,11 @@ class AdministrativeGender extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = AdministrativeGenderEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdministrativeGender.elementOnly.withElement(element);
+      return AdministrativeGender._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AdministrativeGender cannot be constructed from JSON.',
@@ -65,45 +122,65 @@ class AdministrativeGender extends FhirCodeEnum {
     }
     return AdministrativeGender._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for AdministrativeGender
+  final AdministrativeGenderEnum? valueEnum;
+
   /// male
-  static final AdministrativeGender male = AdministrativeGender._(
+  static const AdministrativeGender male = AdministrativeGender._(
     valueString: 'male',
-    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Male'.toFhirString,
+    valueEnum: AdministrativeGenderEnum.male,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Male',
+    ),
   );
 
   /// female
-  static final AdministrativeGender female = AdministrativeGender._(
+  static const AdministrativeGender female = AdministrativeGender._(
     valueString: 'female',
-    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Female'.toFhirString,
+    valueEnum: AdministrativeGenderEnum.female,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Female',
+    ),
   );
 
   /// other
-  static final AdministrativeGender other = AdministrativeGender._(
+  static const AdministrativeGender other = AdministrativeGender._(
     valueString: 'other',
-    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Other'.toFhirString,
+    valueEnum: AdministrativeGenderEnum.other,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Other',
+    ),
   );
 
   /// unknown
-  static final AdministrativeGender unknown = AdministrativeGender._(
+  static const AdministrativeGender unknown = AdministrativeGender._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: AdministrativeGenderEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final AdministrativeGender elementOnly =
-      AdministrativeGender._(valueString: '');
 
   /// List of all enum-like values
   static final List<AdministrativeGender> values = [
@@ -112,13 +189,6 @@ class AdministrativeGender extends FhirCodeEnum {
     other,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  AdministrativeGender clone() => AdministrativeGender._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   AdministrativeGender withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class AdministrativeGender extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  AdministrativeGender copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  AdministrativeGender clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  AdministrativeGenderCopyWithImpl<AdministrativeGender> get copyWith =>
+      AdministrativeGenderCopyWithImpl<AdministrativeGender>(
+        this,
+        (v) => v as AdministrativeGender,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class AdministrativeGenderCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  AdministrativeGenderCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for AdministrativeGender: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return AdministrativeGender._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      AdministrativeGender(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

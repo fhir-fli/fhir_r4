@@ -1242,64 +1242,6 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool immutable = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool compose = false,
-    bool expansion = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (immutable) this.immutable = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (compose) this.compose = null;
-    if (expansion) this.expansion = null;
-  }
-
   @override
   ValueSetBuilder clone() => throw UnimplementedError();
   @override
@@ -2035,26 +1977,6 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool lockedDate = false,
-    bool inactive = false,
-    bool include = false,
-    bool exclude = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (lockedDate) this.lockedDate = null;
-    if (inactive) this.inactive = null;
-    if (include) this.include = null;
-    if (exclude) this.exclude = null;
-  }
-
   @override
   ValueSetComposeBuilder clone() => throw UnimplementedError();
   @override
@@ -2706,28 +2628,6 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool system = false,
-    bool version = false,
-    bool concept = false,
-    bool filter = false,
-    bool valueSet = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (system) this.system = null;
-    if (version) this.version = null;
-    if (concept) this.concept = null;
-    if (filter) this.filter = null;
-    if (valueSet) this.valueSet = null;
-  }
-
   @override
   ValueSetIncludeBuilder clone() => throw UnimplementedError();
   @override
@@ -3268,24 +3168,6 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool display = false,
-    bool designation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (designation) this.designation = null;
-  }
-
   @override
   ValueSetConceptBuilder clone() => throw UnimplementedError();
   @override
@@ -3797,24 +3679,6 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool language = false,
-    bool use = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (language) this.language = null;
-    if (use) this.use = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -4349,24 +4213,6 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool property = false,
-    bool op = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (property) this.property = null;
-    if (op) this.op = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -5042,30 +4888,6 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool timestamp = false,
-    bool total = false,
-    bool offset = false,
-    bool parameter = false,
-    bool contains = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (timestamp) this.timestamp = null;
-    if (total) this.total = null;
-    if (offset) this.offset = null;
-    if (parameter) this.parameter = null;
-    if (contains) this.contains = null;
   }
 
   @override
@@ -5770,22 +5592,6 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (value) valueX = null;
   }
 
   @override
@@ -6532,34 +6338,6 @@ class ValueSetContainsBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool system = false,
-    bool abstract_ = false,
-    bool inactive = false,
-    bool version = false,
-    bool code = false,
-    bool display = false,
-    bool designation = false,
-    bool contains = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (system) this.system = null;
-    if (abstract_) this.abstract_ = null;
-    if (inactive) this.inactive = null;
-    if (version) this.version = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (designation) this.designation = null;
-    if (contains) this.contains = null;
   }
 
   @override

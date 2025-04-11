@@ -2,7 +2,7 @@
 // ignore_for_file: avoid_escaping_inner_quotes
 
 import 'package:collection/collection.dart' show DeepCollectionEquality;
-import 'package:fhir_r4/fhir_r4.dart' show Bundle, QuestionnaireResponse;
+import 'package:fhir_r4/fhir_r4.dart' show QuestionnaireResponse;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
@@ -657,7 +657,7 @@ Future<void> main() async {
         QuestionnaireResponse.fromJson(source14).toBuilder,
         structureMapStep14,
         resourceCache,
-        Bundle.empty().toBuilder,
+        BundleBuilder.empty(),
       );
 
       expect(

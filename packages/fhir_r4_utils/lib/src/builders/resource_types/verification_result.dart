@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
+        
         VerificationResult,
         VerificationResultAttestation,
         VerificationResultPrimarySource,
@@ -1083,56 +1084,6 @@ class VerificationResultBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool target = false,
-    bool targetLocation = false,
-    bool need = false,
-    bool status = false,
-    bool statusDate = false,
-    bool validationType = false,
-    bool validationProcess = false,
-    bool frequency = false,
-    bool lastPerformed = false,
-    bool nextScheduled = false,
-    bool failureAction = false,
-    bool primarySource = false,
-    bool attestation = false,
-    bool validator = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (target) this.target = null;
-    if (targetLocation) this.targetLocation = null;
-    if (need) this.need = null;
-    if (status) this.status = null;
-    if (statusDate) this.statusDate = null;
-    if (validationType) this.validationType = null;
-    if (validationProcess) this.validationProcess = null;
-    if (frequency) this.frequency = null;
-    if (lastPerformed) this.lastPerformed = null;
-    if (nextScheduled) this.nextScheduled = null;
-    if (failureAction) this.failureAction = null;
-    if (primarySource) this.primarySource = null;
-    if (attestation) this.attestation = null;
-    if (validator) this.validator = null;
-  }
-
   @override
   VerificationResultBuilder clone() => throw UnimplementedError();
   @override
@@ -1925,32 +1876,6 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool who = false,
-    bool type = false,
-    bool communicationMethod = false,
-    bool validationStatus = false,
-    bool validationDate = false,
-    bool canPushUpdates = false,
-    bool pushTypeAvailable = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (who) this.who = null;
-    if (type) this.type = null;
-    if (communicationMethod) this.communicationMethod = null;
-    if (validationStatus) this.validationStatus = null;
-    if (validationDate) this.validationDate = null;
-    if (canPushUpdates) this.canPushUpdates = null;
-    if (pushTypeAvailable) this.pushTypeAvailable = null;
-  }
-
   @override
   VerificationResultPrimarySourceBuilder clone() => throw UnimplementedError();
   @override
@@ -2669,34 +2594,6 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool who = false,
-    bool onBehalfOf = false,
-    bool communicationMethod = false,
-    bool date = false,
-    bool sourceIdentityCertificate = false,
-    bool proxyIdentityCertificate = false,
-    bool proxySignature = false,
-    bool sourceSignature = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (who) this.who = null;
-    if (onBehalfOf) this.onBehalfOf = null;
-    if (communicationMethod) this.communicationMethod = null;
-    if (date) this.date = null;
-    if (sourceIdentityCertificate) this.sourceIdentityCertificate = null;
-    if (proxyIdentityCertificate) this.proxyIdentityCertificate = null;
-    if (proxySignature) this.proxySignature = null;
-    if (sourceSignature) this.sourceSignature = null;
-  }
-
   @override
   VerificationResultAttestationBuilder clone() => throw UnimplementedError();
   @override
@@ -3236,24 +3133,6 @@ class VerificationResultValidatorBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool organization = false,
-    bool identityCertificate = false,
-    bool attestationSignature = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (organization) this.organization = null;
-    if (identityCertificate) this.identityCertificate = null;
-    if (attestationSignature) this.attestationSignature = null;
   }
 
   @override

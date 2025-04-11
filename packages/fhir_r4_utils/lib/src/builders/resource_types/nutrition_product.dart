@@ -916,48 +916,6 @@ class NutritionProductBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool status = false,
-    bool category = false,
-    bool code = false,
-    bool manufacturer = false,
-    bool nutrient = false,
-    bool ingredient = false,
-    bool knownAllergen = false,
-    bool productCharacteristic = false,
-    bool instance = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (manufacturer) this.manufacturer = null;
-    if (nutrient) this.nutrient = null;
-    if (ingredient) this.ingredient = null;
-    if (knownAllergen) this.knownAllergen = null;
-    if (productCharacteristic) this.productCharacteristic = null;
-    if (instance) this.instance = null;
-    if (note) this.note = null;
-  }
-
   @override
   NutritionProductBuilder clone() => throw UnimplementedError();
   @override
@@ -1519,22 +1477,6 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (item) this.item = null;
-    if (amount) this.amount = null;
-  }
-
   @override
   NutritionProductNutrientBuilder clone() => throw UnimplementedError();
   @override
@@ -1991,22 +1933,6 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (item) this.item = null;
-    if (amount) this.amount = null;
   }
 
   @override
@@ -2644,22 +2570,6 @@ class NutritionProductProductCharacteristicBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-  }
-
   @override
   NutritionProductProductCharacteristicBuilder clone() =>
       throw UnimplementedError();
@@ -3251,28 +3161,6 @@ class NutritionProductInstanceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool quantity = false,
-    bool identifier = false,
-    bool lotNumber = false,
-    bool expiry = false,
-    bool useBy = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (quantity) this.quantity = null;
-    if (identifier) this.identifier = null;
-    if (lotNumber) this.lotNumber = null;
-    if (expiry) this.expiry = null;
-    if (useBy) this.useBy = null;
   }
 
   @override

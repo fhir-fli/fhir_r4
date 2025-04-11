@@ -20,21 +20,17 @@ abstract class PrimitiveType extends DataType {
   /// - Merges [extension_] with [element?.extension_] so that all extensions
   ///   live in [DataType.extension_].
   /// - Throws if both [valueString] and [element] are `null`.
-  PrimitiveType._({
+  const PrimitiveType._({
     required this.valueString,
     this.element,
     super.id,
-    List<FhirExtension>? extension_,
+    super.extension_,
     super.disallowExtensions,
-    String objectPath = 'PrimitiveType',
-  }) : super(
-          extension_: _mergeExtensions(extension_, element),
-          objectPath: objectPath,
-        ) {
-    if (valueString == null && element == null) {
-      throw ArgumentError('A value or element is required for $objectPath');
-    }
-  }
+  })  : assert(
+          valueString != null || element != null,
+          'Either valueString or element must be provided for a PrimitiveType.',
+        ),
+        super();
 
   // --------------------------------------------------------------------------
   // Fields
@@ -109,8 +105,7 @@ abstract class PrimitiveType extends DataType {
   bool equalsDeep(FhirBase? other) {
     return other is PrimitiveType &&
         valueString == other.valueString &&
-        element == other.element &&
-        userData == other.userData;
+        element == other.element;
   }
 
   /// By default, shallow equality checks only [valueString].
@@ -154,43 +149,33 @@ abstract class PrimitiveType extends DataType {
 
   /// Returns a copy of `this` with specific fields replaced.
   @override
-  PrimitiveType copyWith({
+  $PrimitiveTypeCopyWith<PrimitiveType> get copyWith;
+
+  /// Returns a list of all extensions, including those in [element].
+  List<FhirExtension>? get allExtensions {
+    final elementExtensions = element?.extension_;
+    if (extension_ == null && elementExtensions == null) {
+      return null;
+    }
+    if (extension_ == null) {
+      return elementExtensions;
+    }
+    if (elementExtensions == null) {
+      return extension_;
+    }
+    return [...extension_!, ...elementExtensions];
+  }
+}
+
+/// The public interface for copyWith for Element.
+/// Notice that each parameter is declared with its proper type.
+abstract class $PrimitiveTypeCopyWith<T> extends $DataTypeCopyWith<T> {
+  @override
+  T call({
     dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
+    bool? disallowExtensions,
   });
-
-  /// Subclasses must implement [createProperty]; if they have no specialized
-  /// logic, they can just return `this`.
-  @override
-  PrimitiveType createProperty(String propertyName);
-
-  // --------------------------------------------------------------------------
-  // Internal Utilities
-  // --------------------------------------------------------------------------
-
-  /// Merges the child constructor's [extension_] with [element?.extension_].
-  /// If both are non-null, concatenates them.
-  static List<FhirExtension>? _mergeExtensions(
-    List<FhirExtension>? baseExtensions,
-    Element? element,
-  ) {
-    final elementExtensions = element?.extension_;
-    if (baseExtensions == null && elementExtensions == null) {
-      return null;
-    }
-    if (baseExtensions == null) {
-      return elementExtensions;
-    }
-    if (elementExtensions == null) {
-      return baseExtensions;
-    }
-    return [...baseExtensions, ...elementExtensions];
-  }
 }

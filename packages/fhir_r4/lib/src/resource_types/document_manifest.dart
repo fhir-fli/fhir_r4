@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'document_manifest.g.dart';
+
 /// [DocumentManifest]
 /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
@@ -31,81 +33,57 @@ class DocumentManifest extends DomainResource {
     required this.content,
     this.related,
   }) : super(
-          objectPath: 'DocumentManifest',
           resourceType: R4ResourceType.DocumentManifest,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentManifest.empty() => DocumentManifest(
-        status: DocumentReferenceStatus.values.first,
-        content: <Reference>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifest.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'DocumentManifest';
     return DocumentManifest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -113,15 +91,11 @@ class DocumentManifest extends DomainResource {
         json,
         'masterIdentifier',
         Identifier.fromJson,
-        '$objectPath.masterIdentifier',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -129,43 +103,33 @@ class DocumentManifest extends DomainResource {
         json,
         'status',
         DocumentReferenceStatus.fromJson,
-        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-        '$objectPath.created',
       ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.author',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.recipient',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -173,31 +137,23 @@ class DocumentManifest extends DomainResource {
         json,
         'source',
         FhirUri.fromJson,
-        '$objectPath.source',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       content: (json['content'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.content',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       related: (json['related'] as List<dynamic>?)
           ?.map<DocumentManifestRelated>(
             (v) => DocumentManifestRelated.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.related',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -582,622 +538,19 @@ class DocumentManifest extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DocumentManifest clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'masterIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(masterIdentifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is DocumentReferenceStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'author':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?author,
-              child,
-            ];
-            return copyWith(author: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'recipient':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?recipient, ...child];
-            return copyWith(recipient: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?recipient,
-              child,
-            ];
-            return copyWith(recipient: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is FhirUri) {
-            return copyWith(source: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'content':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...content, ...child];
-            return copyWith(content: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...content,
-              child,
-            ];
-            return copyWith(content: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'related':
-        {
-          if (child is List<DocumentManifestRelated>) {
-            // Add all elements from passed list
-            final newList = [...?related, ...child];
-            return copyWith(related: newList);
-          } else if (child is DocumentManifestRelated) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?related,
-              child,
-            ];
-            return copyWith(related: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DocumentManifest]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'masterIdentifier':
-        return ['Identifier'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'subject':
-        return ['Reference'];
-      case 'created':
-        return ['FhirDateTime'];
-      case 'author':
-        return ['Reference'];
-      case 'recipient':
-        return ['Reference'];
-      case 'source':
-        return ['FhirUri'];
-      case 'description':
-        return ['FhirString'];
-      case 'content':
-        return ['Reference'];
-      case 'related':
-        return ['DocumentManifestRelated'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DocumentManifest]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DocumentManifest createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'masterIdentifier':
-        {
-          return copyWith(
-            masterIdentifier: Identifier.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: DocumentReferenceStatus.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'created':
-        {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
-        }
-      case 'author':
-        {
-          return copyWith(
-            author: <Reference>[],
-          );
-        }
-      case 'recipient':
-        {
-          return copyWith(
-            recipient: <Reference>[],
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: FhirUri.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'content':
-        {
-          return copyWith(
-            content: <Reference>[],
-          );
-        }
-      case 'related':
-        {
-          return copyWith(
-            related: <DocumentManifestRelated>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DocumentManifest clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool masterIdentifier = false,
-    bool identifier = false,
-    bool type = false,
-    bool subject = false,
-    bool created = false,
-    bool author = false,
-    bool recipient = false,
-    bool source = false,
-    bool description = false,
-    bool related = false,
-  }) {
-    return DocumentManifest(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      masterIdentifier: masterIdentifier ? null : this.masterIdentifier,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      type: type ? null : this.type,
-      subject: subject ? null : this.subject,
-      created: created ? null : this.created,
-      author: author ? null : this.author,
-      recipient: recipient ? null : this.recipient,
-      source: source ? null : this.source,
-      description: description ? null : this.description,
-      content: content,
-      related: related ? null : this.related,
-    );
-  }
-
-  @override
-  DocumentManifest clone() => throw UnimplementedError();
-  @override
-  DocumentManifest copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? masterIdentifier,
-    List<Identifier>? identifier,
-    DocumentReferenceStatus? status,
-    CodeableConcept? type,
-    Reference? subject,
-    FhirDateTime? created,
-    List<Reference>? author,
-    List<Reference>? recipient,
-    FhirUri? source,
-    FhirString? description,
-    List<Reference>? content,
-    List<DocumentManifestRelated>? related,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return DocumentManifest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      masterIdentifier: masterIdentifier?.copyWith(
-            objectPath: '$newObjectPath.masterIdentifier',
-          ) ??
-          this.masterIdentifier,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      recipient: recipient
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.recipient',
-                ),
-              )
-              .toList() ??
-          this.recipient,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      content: content
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.content',
-                ),
-              )
-              .toList() ??
-          this.content,
-      related: related
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.related',
-                ),
-              )
-              .toList() ??
-          this.related,
-    );
-  }
+  $DocumentManifestCopyWith<DocumentManifest> get copyWith =>
+      _$DocumentManifestCopyWithImpl<DocumentManifest>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1344,44 +697,29 @@ class DocumentManifestRelated extends BackboneElement {
     this.identifier,
     this.ref,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'DocumentManifest.related',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentManifestRelated.empty() => const DocumentManifestRelated();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifestRelated.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'DocumentManifest.related';
     return DocumentManifestRelated(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1389,13 +727,11 @@ class DocumentManifestRelated extends BackboneElement {
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       ref: JsonParser.parseObject<Reference>(
         json,
         'ref',
         Reference.fromJson,
-        '$objectPath.ref',
       ),
     );
   }
@@ -1594,209 +930,19 @@ class DocumentManifestRelated extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DocumentManifestRelated clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ref':
-        {
-          if (child is Reference) {
-            return copyWith(ref: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DocumentManifestRelated]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'ref':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DocumentManifestRelated]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DocumentManifestRelated createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'ref':
-        {
-          return copyWith(
-            ref: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DocumentManifestRelated clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool ref = false,
-  }) {
-    return DocumentManifestRelated(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      ref: ref ? null : this.ref,
-    );
-  }
-
-  @override
-  DocumentManifestRelated clone() => throw UnimplementedError();
-  @override
-  DocumentManifestRelated copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    Reference? ref,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return DocumentManifestRelated(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      ref: ref?.copyWith(
-            objectPath: '$newObjectPath.ref',
-          ) ??
-          this.ref,
-    );
-  }
+  $DocumentManifestRelatedCopyWith<DocumentManifestRelated> get copyWith =>
+      _$DocumentManifestRelatedCopyWithImpl<DocumentManifestRelated>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

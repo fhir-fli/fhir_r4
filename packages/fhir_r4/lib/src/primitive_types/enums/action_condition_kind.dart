@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionConditionKind
+enum ActionConditionKindEnum {
+  /// applicability
+  applicability,
+
+  /// start
+  start,
+
+  /// stop
+  stop,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionConditionKindEnum.applicability:
+        return 'applicability';
+      case ActionConditionKindEnum.start:
+        return 'start';
+      case ActionConditionKindEnum.stop:
+        return 'stop';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionConditionKindEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionConditionKindEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionConditionKindEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'applicability':
+        return ActionConditionKindEnum.applicability;
+      case 'start':
+        return ActionConditionKindEnum.start;
+      case 'stop':
+        return ActionConditionKindEnum.stop;
+    }
+    return null;
+  }
+}
+
 /// Defines the kinds of conditions that can appear on actions.
 class ActionConditionKind extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ActionConditionKind._({
+  const ActionConditionKind._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class ActionConditionKind extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class ActionConditionKind extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ActionConditionKindEnum.fromString(valueString);
     return ActionConditionKind._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +94,8 @@ class ActionConditionKind extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ActionConditionKind] with element only
-  factory ActionConditionKind.empty() => ActionConditionKind._(valueString: '');
 
   /// Factory constructor to create [ActionConditionKind]
   /// from JSON.
@@ -53,10 +103,11 @@ class ActionConditionKind extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ActionConditionKindEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionConditionKind.elementOnly.withElement(element);
+      return ActionConditionKind._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionConditionKind cannot be constructed from JSON.',
@@ -64,37 +115,52 @@ class ActionConditionKind extends FhirCodeEnum {
     }
     return ActionConditionKind._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ActionConditionKind
+  final ActionConditionKindEnum? valueEnum;
+
   /// applicability
-  static final ActionConditionKind applicability = ActionConditionKind._(
+  static const ActionConditionKind applicability = ActionConditionKind._(
     valueString: 'applicability',
-    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Applicability'.toFhirString,
+    valueEnum: ActionConditionKindEnum.applicability,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Applicability',
+    ),
   );
 
   /// start
-  static final ActionConditionKind start = ActionConditionKind._(
+  static const ActionConditionKind start = ActionConditionKind._(
     valueString: 'start',
-    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Start'.toFhirString,
+    valueEnum: ActionConditionKindEnum.start,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Start',
+    ),
   );
 
   /// stop
-  static final ActionConditionKind stop = ActionConditionKind._(
+  static const ActionConditionKind stop = ActionConditionKind._(
     valueString: 'stop',
-    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stop'.toFhirString,
+    valueEnum: ActionConditionKindEnum.stop,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stop',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ActionConditionKind elementOnly =
-      ActionConditionKind._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionConditionKind> values = [
@@ -102,13 +168,6 @@ class ActionConditionKind extends FhirCodeEnum {
     start,
     stop,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionConditionKind clone() => ActionConditionKind._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ActionConditionKind withElement(Element? newElement) {
@@ -129,36 +188,56 @@ class ActionConditionKind extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ActionConditionKind copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ActionConditionKind clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ActionConditionKindCopyWithImpl<ActionConditionKind> get copyWith =>
+      ActionConditionKindCopyWithImpl<ActionConditionKind>(
+        this,
+        (v) => v as ActionConditionKind,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ActionConditionKindCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ActionConditionKindCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ActionConditionKind: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ActionConditionKind._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ActionConditionKind(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

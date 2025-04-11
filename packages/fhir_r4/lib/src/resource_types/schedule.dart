@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'schedule.g.dart';
+
 /// [Schedule]
 /// A container for slots of time that may be available for booking
 /// appointments.
@@ -27,90 +29,64 @@ class Schedule extends DomainResource {
     this.planningHorizon,
     this.comment,
   }) : super(
-          objectPath: 'Schedule',
           resourceType: R4ResourceType.Schedule,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Schedule.empty() => const Schedule(
-        actor: <Reference>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Schedule.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Schedule';
     return Schedule(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -118,45 +94,32 @@ class Schedule extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-        '$objectPath.active',
       ),
       serviceCategory: (json['serviceCategory'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.serviceCategory',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       serviceType: (json['serviceType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.serviceType',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.specialty',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       actor: (json['actor'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.actor',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -164,13 +127,11 @@ class Schedule extends DomainResource {
         json,
         'planningHorizon',
         Period.fromJson,
-        '$objectPath.planningHorizon',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-        '$objectPath.comment',
       ),
     );
   }
@@ -498,531 +459,18 @@ class Schedule extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Schedule clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'active':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviceCategory':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?serviceCategory, ...child];
-            return copyWith(serviceCategory: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?serviceCategory,
-              child,
-            ];
-            return copyWith(serviceCategory: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviceType':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?serviceType, ...child];
-            return copyWith(serviceType: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?serviceType,
-              child,
-            ];
-            return copyWith(serviceType: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'specialty':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialty, ...child];
-            return copyWith(specialty: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?specialty,
-              child,
-            ];
-            return copyWith(specialty: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'actor':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...actor, ...child];
-            return copyWith(actor: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...actor,
-              child,
-            ];
-            return copyWith(actor: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'planningHorizon':
-        {
-          if (child is Period) {
-            return copyWith(planningHorizon: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'comment':
-        {
-          if (child is FhirString) {
-            return copyWith(comment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Schedule]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'active':
-        return ['FhirBoolean'];
-      case 'serviceCategory':
-        return ['CodeableConcept'];
-      case 'serviceType':
-        return ['CodeableConcept'];
-      case 'specialty':
-        return ['CodeableConcept'];
-      case 'actor':
-        return ['Reference'];
-      case 'planningHorizon':
-        return ['Period'];
-      case 'comment':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Schedule]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Schedule createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'active':
-        {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
-        }
-      case 'serviceCategory':
-        {
-          return copyWith(
-            serviceCategory: <CodeableConcept>[],
-          );
-        }
-      case 'serviceType':
-        {
-          return copyWith(
-            serviceType: <CodeableConcept>[],
-          );
-        }
-      case 'specialty':
-        {
-          return copyWith(
-            specialty: <CodeableConcept>[],
-          );
-        }
-      case 'actor':
-        {
-          return copyWith(
-            actor: <Reference>[],
-          );
-        }
-      case 'planningHorizon':
-        {
-          return copyWith(
-            planningHorizon: Period.empty(),
-          );
-        }
-      case 'comment':
-        {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Schedule clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool serviceCategory = false,
-    bool serviceType = false,
-    bool specialty = false,
-    bool planningHorizon = false,
-    bool comment = false,
-  }) {
-    return Schedule(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      serviceCategory: serviceCategory ? null : this.serviceCategory,
-      serviceType: serviceType ? null : this.serviceType,
-      specialty: specialty ? null : this.specialty,
-      actor: actor,
-      planningHorizon: planningHorizon ? null : this.planningHorizon,
-      comment: comment ? null : this.comment,
-    );
-  }
-
-  @override
-  Schedule clone() => throw UnimplementedError();
-  @override
-  Schedule copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    List<CodeableConcept>? serviceCategory,
-    List<CodeableConcept>? serviceType,
-    List<CodeableConcept>? specialty,
-    List<Reference>? actor,
-    Period? planningHorizon,
-    FhirString? comment,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Schedule(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      serviceCategory: serviceCategory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.serviceCategory',
-                ),
-              )
-              .toList() ??
-          this.serviceCategory,
-      serviceType: serviceType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.serviceType',
-                ),
-              )
-              .toList() ??
-          this.serviceType,
-      specialty: specialty
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialty',
-                ),
-              )
-              .toList() ??
-          this.specialty,
-      actor: actor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.actor',
-                ),
-              )
-              .toList() ??
-          this.actor,
-      planningHorizon: planningHorizon?.copyWith(
-            objectPath: '$newObjectPath.planningHorizon',
-          ) ??
-          this.planningHorizon,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-    );
-  }
+  $ScheduleCopyWith<Schedule> get copyWith => _$ScheduleCopyWithImpl<Schedule>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

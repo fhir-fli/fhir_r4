@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'subscription_topic.g.dart';
+
 /// [SubscriptionTopic]
 /// Describes a stream of resource state changes or events and annotated
 /// with labels useful to filter projections from this topic.
@@ -41,81 +43,57 @@ class SubscriptionTopic extends CanonicalResource {
     this.canFilterBy,
     this.notificationShape,
   }) : super(
-          objectPath: 'SubscriptionTopic',
           resourceType: R4ResourceType.SubscriptionTopic,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopic.empty() => SubscriptionTopic(
-        url: FhirUri.empty(),
-        status: PublicationStatus.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopic.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic';
     return SubscriptionTopic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -123,15 +101,11 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -139,51 +113,41 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       derivedFrom: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
-        '$objectPath.derivedFrom',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -191,25 +155,18 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -217,69 +174,52 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
-        '$objectPath.effectivePeriod',
       ),
       resourceTrigger: (json['resourceTrigger'] as List<dynamic>?)
           ?.map<SubscriptionTopicResourceTrigger>(
             (v) => SubscriptionTopicResourceTrigger.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.resourceTrigger',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       eventTrigger: (json['eventTrigger'] as List<dynamic>?)
           ?.map<SubscriptionTopicEventTrigger>(
             (v) => SubscriptionTopicEventTrigger.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.eventTrigger',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       canFilterBy: (json['canFilterBy'] as List<dynamic>?)
           ?.map<SubscriptionTopicCanFilterBy>(
             (v) => SubscriptionTopicCanFilterBy.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.canFilterBy',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       notificationShape: (json['notificationShape'] as List<dynamic>?)
           ?.map<SubscriptionTopicNotificationShape>(
             (v) => SubscriptionTopicNotificationShape.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.notificationShape',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -764,904 +704,19 @@ class SubscriptionTopic extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopic clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'derivedFrom':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?derivedFrom, ...child];
-            return copyWith(derivedFrom: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?derivedFrom,
-              child,
-            ];
-            return copyWith(derivedFrom: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copyright':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'approvalDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(approvalDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'lastReviewDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(lastReviewDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectivePeriod':
-        {
-          if (child is Period) {
-            return copyWith(effectivePeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resourceTrigger':
-        {
-          if (child is List<SubscriptionTopicResourceTrigger>) {
-            // Add all elements from passed list
-            final newList = [...?resourceTrigger, ...child];
-            return copyWith(resourceTrigger: newList);
-          } else if (child is SubscriptionTopicResourceTrigger) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?resourceTrigger,
-              child,
-            ];
-            return copyWith(resourceTrigger: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'eventTrigger':
-        {
-          if (child is List<SubscriptionTopicEventTrigger>) {
-            // Add all elements from passed list
-            final newList = [...?eventTrigger, ...child];
-            return copyWith(eventTrigger: newList);
-          } else if (child is SubscriptionTopicEventTrigger) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?eventTrigger,
-              child,
-            ];
-            return copyWith(eventTrigger: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'canFilterBy':
-        {
-          if (child is List<SubscriptionTopicCanFilterBy>) {
-            // Add all elements from passed list
-            final newList = [...?canFilterBy, ...child];
-            return copyWith(canFilterBy: newList);
-          } else if (child is SubscriptionTopicCanFilterBy) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?canFilterBy,
-              child,
-            ];
-            return copyWith(canFilterBy: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'notificationShape':
-        {
-          if (child is List<SubscriptionTopicNotificationShape>) {
-            // Add all elements from passed list
-            final newList = [...?notificationShape, ...child];
-            return copyWith(notificationShape: newList);
-          } else if (child is SubscriptionTopicNotificationShape) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?notificationShape,
-              child,
-            ];
-            return copyWith(notificationShape: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopic]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'version':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'derivedFrom':
-        return ['FhirCanonical'];
-      case 'status':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirMarkdown'];
-      case 'copyright':
-        return ['FhirMarkdown'];
-      case 'approvalDate':
-        return ['FhirDate'];
-      case 'lastReviewDate':
-        return ['FhirDate'];
-      case 'effectivePeriod':
-        return ['Period'];
-      case 'resourceTrigger':
-        return ['SubscriptionTopicResourceTrigger'];
-      case 'eventTrigger':
-        return ['SubscriptionTopicEventTrigger'];
-      case 'canFilterBy':
-        return ['SubscriptionTopicCanFilterBy'];
-      case 'notificationShape':
-        return ['SubscriptionTopicNotificationShape'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopic]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopic createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'derivedFrom':
-        {
-          return copyWith(
-            derivedFrom: <FhirCanonical>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
-        }
-      case 'copyright':
-        {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
-        }
-      case 'approvalDate':
-        {
-          return copyWith(
-            approvalDate: FhirDate.empty(),
-          );
-        }
-      case 'lastReviewDate':
-        {
-          return copyWith(
-            lastReviewDate: FhirDate.empty(),
-          );
-        }
-      case 'effectivePeriod':
-        {
-          return copyWith(
-            effectivePeriod: Period.empty(),
-          );
-        }
-      case 'resourceTrigger':
-        {
-          return copyWith(
-            resourceTrigger: <SubscriptionTopicResourceTrigger>[],
-          );
-        }
-      case 'eventTrigger':
-        {
-          return copyWith(
-            eventTrigger: <SubscriptionTopicEventTrigger>[],
-          );
-        }
-      case 'canFilterBy':
-        {
-          return copyWith(
-            canFilterBy: <SubscriptionTopicCanFilterBy>[],
-          );
-        }
-      case 'notificationShape':
-        {
-          return copyWith(
-            notificationShape: <SubscriptionTopicNotificationShape>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopic clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool version = false,
-    bool title = false,
-    bool derivedFrom = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool resourceTrigger = false,
-    bool eventTrigger = false,
-    bool canFilterBy = false,
-    bool notificationShape = false,
-  }) {
-    return SubscriptionTopic(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      title: title ? null : this.title,
-      derivedFrom: derivedFrom ? null : this.derivedFrom,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      approvalDate: approvalDate ? null : this.approvalDate,
-      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
-      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
-      resourceTrigger: resourceTrigger ? null : this.resourceTrigger,
-      eventTrigger: eventTrigger ? null : this.eventTrigger,
-      canFilterBy: canFilterBy ? null : this.canFilterBy,
-      notificationShape: notificationShape ? null : this.notificationShape,
-    );
-  }
-
-  @override
-  SubscriptionTopic clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopic copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? title,
-    List<FhirCanonical>? derivedFrom,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    FhirDate? approvalDate,
-    FhirDate? lastReviewDate,
-    Period? effectivePeriod,
-    List<SubscriptionTopicResourceTrigger>? resourceTrigger,
-    List<SubscriptionTopicEventTrigger>? eventTrigger,
-    List<SubscriptionTopicCanFilterBy>? canFilterBy,
-    List<SubscriptionTopicNotificationShape>? notificationShape,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return SubscriptionTopic(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      derivedFrom: derivedFrom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.derivedFrom',
-                ),
-              )
-              .toList() ??
-          this.derivedFrom,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      approvalDate: approvalDate?.copyWith(
-            objectPath: '$newObjectPath.approvalDate',
-          ) ??
-          this.approvalDate,
-      lastReviewDate: lastReviewDate?.copyWith(
-            objectPath: '$newObjectPath.lastReviewDate',
-          ) ??
-          this.lastReviewDate,
-      effectivePeriod: effectivePeriod?.copyWith(
-            objectPath: '$newObjectPath.effectivePeriod',
-          ) ??
-          this.effectivePeriod,
-      resourceTrigger: resourceTrigger
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resourceTrigger',
-                ),
-              )
-              .toList() ??
-          this.resourceTrigger,
-      eventTrigger: eventTrigger
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.eventTrigger',
-                ),
-              )
-              .toList() ??
-          this.eventTrigger,
-      canFilterBy: canFilterBy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.canFilterBy',
-                ),
-              )
-              .toList() ??
-          this.canFilterBy,
-      notificationShape: notificationShape
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.notificationShape',
-                ),
-              )
-              .toList() ??
-          this.notificationShape,
-    );
-  }
+  $SubscriptionTopicCopyWith<SubscriptionTopic> get copyWith =>
+      _$SubscriptionTopicCopyWithImpl<SubscriptionTopic>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1876,47 +931,29 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     this.queryCriteria,
     this.fhirPathCriteria,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SubscriptionTopic.resourceTrigger',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopicResourceTrigger.empty() =>
-      SubscriptionTopicResourceTrigger(
-        resource: FhirUri.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicResourceTrigger.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic.resourceTrigger';
     return SubscriptionTopicResourceTrigger(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1924,31 +961,26 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
-        '$objectPath.resource',
       )!,
       supportedInteraction: JsonParser.parsePrimitiveList<InteractionTrigger>(
         json,
         'supportedInteraction',
         InteractionTrigger.fromJson,
-        '$objectPath.supportedInteraction',
       ),
       queryCriteria: JsonParser.parseObject<SubscriptionTopicQueryCriteria>(
         json,
         'queryCriteria',
         SubscriptionTopicQueryCriteria.fromJson,
-        '$objectPath.queryCriteria',
       ),
       fhirPathCriteria: JsonParser.parsePrimitive<FhirString>(
         json,
         'fhirPathCriteria',
         FhirString.fromJson,
-        '$objectPath.fhirPathCriteria',
       ),
     );
   }
@@ -2194,291 +1226,20 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopicResourceTrigger clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is FhirUri) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supportedInteraction':
-        {
-          if (child is List<InteractionTrigger>) {
-            // Add all elements from passed list
-            final newList = [...?supportedInteraction, ...child];
-            return copyWith(supportedInteraction: newList);
-          } else if (child is InteractionTrigger) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supportedInteraction,
-              child,
-            ];
-            return copyWith(supportedInteraction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'queryCriteria':
-        {
-          if (child is SubscriptionTopicQueryCriteria) {
-            return copyWith(queryCriteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fhirPathCriteria':
-        {
-          if (child is FhirString) {
-            return copyWith(fhirPathCriteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopicResourceTrigger]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'resource':
-        return ['FhirUri'];
-      case 'supportedInteraction':
-        return ['FhirCode'];
-      case 'queryCriteria':
-        return ['SubscriptionTopicQueryCriteria'];
-      case 'fhirPathCriteria':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopicResourceTrigger]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopicResourceTrigger createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SubscriptionTopicResourceTriggerCopyWith<SubscriptionTopicResourceTrigger>
+      get copyWith => _$SubscriptionTopicResourceTriggerCopyWithImpl<
+              SubscriptionTopicResourceTrigger>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: FhirUri.empty(),
-          );
-        }
-      case 'supportedInteraction':
-        {
-          return copyWith(
-            supportedInteraction: <InteractionTrigger>[],
-          );
-        }
-      case 'queryCriteria':
-        {
-          return copyWith(
-            queryCriteria: SubscriptionTopicQueryCriteria.empty(),
-          );
-        }
-      case 'fhirPathCriteria':
-        {
-          return copyWith(
-            fhirPathCriteria: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopicResourceTrigger clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool supportedInteraction = false,
-    bool queryCriteria = false,
-    bool fhirPathCriteria = false,
-  }) {
-    return SubscriptionTopicResourceTrigger(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      resource: resource,
-      supportedInteraction:
-          supportedInteraction ? null : this.supportedInteraction,
-      queryCriteria: queryCriteria ? null : this.queryCriteria,
-      fhirPathCriteria: fhirPathCriteria ? null : this.fhirPathCriteria,
-    );
-  }
-
-  @override
-  SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopicResourceTrigger copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirMarkdown? description,
-    FhirUri? resource,
-    List<InteractionTrigger>? supportedInteraction,
-    SubscriptionTopicQueryCriteria? queryCriteria,
-    FhirString? fhirPathCriteria,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SubscriptionTopicResourceTrigger(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-      supportedInteraction: supportedInteraction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportedInteraction',
-                ),
-              )
-              .toList() ??
-          this.supportedInteraction,
-      queryCriteria: queryCriteria?.copyWith(
-            objectPath: '$newObjectPath.queryCriteria',
-          ) ??
-          this.queryCriteria,
-      fhirPathCriteria: fhirPathCriteria?.copyWith(
-            objectPath: '$newObjectPath.fhirPathCriteria',
-          ) ??
-          this.fhirPathCriteria,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2557,45 +1318,29 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     this.resultForDelete,
     this.requireBoth,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SubscriptionTopic.resourceTrigger.queryCriteria',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopicQueryCriteria.empty() =>
-      const SubscriptionTopicQueryCriteria();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicQueryCriteria.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic.resourceTrigger.queryCriteria';
     return SubscriptionTopicQueryCriteria(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2603,31 +1348,26 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
         json,
         'previous',
         FhirString.fromJson,
-        '$objectPath.previous',
       ),
       resultForCreate: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForCreate',
         CriteriaNotExistsBehavior.fromJson,
-        '$objectPath.resultForCreate',
       ),
       current: JsonParser.parsePrimitive<FhirString>(
         json,
         'current',
         FhirString.fromJson,
-        '$objectPath.current',
       ),
       resultForDelete: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForDelete',
         CriteriaNotExistsBehavior.fromJson,
-        '$objectPath.resultForDelete',
       ),
       requireBoth: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'requireBoth',
         FhirBoolean.fromJson,
-        '$objectPath.requireBoth',
       ),
     );
   }
@@ -2869,278 +1609,20 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopicQueryCriteria clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'previous':
-        {
-          if (child is FhirString) {
-            return copyWith(previous: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resultForCreate':
-        {
-          if (child is CriteriaNotExistsBehavior) {
-            return copyWith(resultForCreate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'current':
-        {
-          if (child is FhirString) {
-            return copyWith(current: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resultForDelete':
-        {
-          if (child is CriteriaNotExistsBehavior) {
-            return copyWith(resultForDelete: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requireBoth':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(requireBoth: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopicQueryCriteria]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'previous':
-        return ['FhirString'];
-      case 'resultForCreate':
-        return ['FhirCode'];
-      case 'current':
-        return ['FhirString'];
-      case 'resultForDelete':
-        return ['FhirCode'];
-      case 'requireBoth':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopicQueryCriteria]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopicQueryCriteria createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SubscriptionTopicQueryCriteriaCopyWith<SubscriptionTopicQueryCriteria>
+      get copyWith => _$SubscriptionTopicQueryCriteriaCopyWithImpl<
+              SubscriptionTopicQueryCriteria>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'previous':
-        {
-          return copyWith(
-            previous: FhirString.empty(),
-          );
-        }
-      case 'resultForCreate':
-        {
-          return copyWith(
-            resultForCreate: CriteriaNotExistsBehavior.empty(),
-          );
-        }
-      case 'current':
-        {
-          return copyWith(
-            current: FhirString.empty(),
-          );
-        }
-      case 'resultForDelete':
-        {
-          return copyWith(
-            resultForDelete: CriteriaNotExistsBehavior.empty(),
-          );
-        }
-      case 'requireBoth':
-        {
-          return copyWith(
-            requireBoth: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopicQueryCriteria clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool previous = false,
-    bool resultForCreate = false,
-    bool current = false,
-    bool resultForDelete = false,
-    bool requireBoth = false,
-  }) {
-    return SubscriptionTopicQueryCriteria(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      previous: previous ? null : this.previous,
-      resultForCreate: resultForCreate ? null : this.resultForCreate,
-      current: current ? null : this.current,
-      resultForDelete: resultForDelete ? null : this.resultForDelete,
-      requireBoth: requireBoth ? null : this.requireBoth,
-    );
-  }
-
-  @override
-  SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopicQueryCriteria copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? previous,
-    CriteriaNotExistsBehavior? resultForCreate,
-    FhirString? current,
-    CriteriaNotExistsBehavior? resultForDelete,
-    FhirBoolean? requireBoth,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SubscriptionTopicQueryCriteria(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      previous: previous?.copyWith(
-            objectPath: '$newObjectPath.previous',
-          ) ??
-          this.previous,
-      resultForCreate: resultForCreate?.copyWith(
-            objectPath: '$newObjectPath.resultForCreate',
-          ) ??
-          this.resultForCreate,
-      current: current?.copyWith(
-            objectPath: '$newObjectPath.current',
-          ) ??
-          this.current,
-      resultForDelete: resultForDelete?.copyWith(
-            objectPath: '$newObjectPath.resultForDelete',
-          ) ??
-          this.resultForDelete,
-      requireBoth: requireBoth?.copyWith(
-            objectPath: '$newObjectPath.requireBoth',
-          ) ??
-          this.requireBoth,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3216,48 +1698,29 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     required this.event,
     required this.resource,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SubscriptionTopic.eventTrigger',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopicEventTrigger.empty() =>
-      SubscriptionTopicEventTrigger(
-        event: CodeableConcept.empty(),
-        resource: FhirUri.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicEventTrigger.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic.eventTrigger';
     return SubscriptionTopicEventTrigger(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3265,19 +1728,16 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       event: JsonParser.parseObject<CodeableConcept>(
         json,
         'event',
         CodeableConcept.fromJson,
-        '$objectPath.event',
       )!,
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
-        '$objectPath.resource',
       )!,
     );
   }
@@ -3493,230 +1953,20 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopicEventTrigger clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'event':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(event: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is FhirUri) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopicEventTrigger]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'event':
-        return ['CodeableConcept'];
-      case 'resource':
-        return ['FhirUri'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopicEventTrigger]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopicEventTrigger createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SubscriptionTopicEventTriggerCopyWith<SubscriptionTopicEventTrigger>
+      get copyWith => _$SubscriptionTopicEventTriggerCopyWithImpl<
+              SubscriptionTopicEventTrigger>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'event':
-        {
-          return copyWith(
-            event: CodeableConcept.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: FhirUri.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopicEventTrigger clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-  }) {
-    return SubscriptionTopicEventTrigger(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      event: event,
-      resource: resource,
-    );
-  }
-
-  @override
-  SubscriptionTopicEventTrigger clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopicEventTrigger copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirMarkdown? description,
-    CodeableConcept? event,
-    FhirUri? resource,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SubscriptionTopicEventTrigger(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      event: event?.copyWith(
-            objectPath: '$newObjectPath.event',
-          ) ??
-          this.event,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3785,46 +2035,29 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     this.filterDefinition,
     this.modifier,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SubscriptionTopic.canFilterBy',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopicCanFilterBy.empty() => SubscriptionTopicCanFilterBy(
-        filterParameter: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicCanFilterBy.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic.canFilterBy';
     return SubscriptionTopicCanFilterBy(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3832,31 +2065,26 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
-        '$objectPath.resource',
       ),
       filterParameter: JsonParser.parsePrimitive<FhirString>(
         json,
         'filterParameter',
         FhirString.fromJson,
-        '$objectPath.filterParameter',
       )!,
       filterDefinition: JsonParser.parsePrimitive<FhirUri>(
         json,
         'filterDefinition',
         FhirUri.fromJson,
-        '$objectPath.filterDefinition',
       ),
       modifier: JsonParser.parsePrimitiveList<SubscriptionSearchModifier>(
         json,
         'modifier',
         SubscriptionSearchModifier.fromJson,
-        '$objectPath.modifier',
       ),
     );
   }
@@ -4103,290 +2331,20 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopicCanFilterBy clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is FhirUri) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'filterParameter':
-        {
-          if (child is FhirString) {
-            return copyWith(filterParameter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'filterDefinition':
-        {
-          if (child is FhirUri) {
-            return copyWith(filterDefinition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<SubscriptionSearchModifier>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is SubscriptionSearchModifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopicCanFilterBy]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'resource':
-        return ['FhirUri'];
-      case 'filterParameter':
-        return ['FhirString'];
-      case 'filterDefinition':
-        return ['FhirUri'];
-      case 'modifier':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopicCanFilterBy]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopicCanFilterBy createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SubscriptionTopicCanFilterByCopyWith<SubscriptionTopicCanFilterBy>
+      get copyWith => _$SubscriptionTopicCanFilterByCopyWithImpl<
+              SubscriptionTopicCanFilterBy>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: FhirUri.empty(),
-          );
-        }
-      case 'filterParameter':
-        {
-          return copyWith(
-            filterParameter: FhirString.empty(),
-          );
-        }
-      case 'filterDefinition':
-        {
-          return copyWith(
-            filterDefinition: FhirUri.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <SubscriptionSearchModifier>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopicCanFilterBy clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool resource = false,
-    bool filterDefinition = false,
-    bool modifier = false,
-  }) {
-    return SubscriptionTopicCanFilterBy(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      resource: resource ? null : this.resource,
-      filterParameter: filterParameter,
-      filterDefinition: filterDefinition ? null : this.filterDefinition,
-      modifier: modifier ? null : this.modifier,
-    );
-  }
-
-  @override
-  SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopicCanFilterBy copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirMarkdown? description,
-    FhirUri? resource,
-    FhirString? filterParameter,
-    FhirUri? filterDefinition,
-    List<SubscriptionSearchModifier>? modifier,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SubscriptionTopicCanFilterBy(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-      filterParameter: filterParameter?.copyWith(
-            objectPath: '$newObjectPath.filterParameter',
-          ) ??
-          this.filterParameter,
-      filterDefinition: filterDefinition?.copyWith(
-            objectPath: '$newObjectPath.filterDefinition',
-          ) ??
-          this.filterDefinition,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4463,47 +2421,29 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     this.include,
     this.revInclude,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SubscriptionTopic.notificationShape',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionTopicNotificationShape.empty() =>
-      SubscriptionTopicNotificationShape(
-        resource: FhirUri.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicNotificationShape.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SubscriptionTopic.notificationShape';
     return SubscriptionTopicNotificationShape(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4511,19 +2451,16 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         json,
         'resource',
         FhirUri.fromJson,
-        '$objectPath.resource',
       )!,
       include: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'include',
         FhirString.fromJson,
-        '$objectPath.include',
       ),
       revInclude: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'revInclude',
         FhirString.fromJson,
-        '$objectPath.revInclude',
       ),
     );
   }
@@ -4744,257 +2681,21 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SubscriptionTopicNotificationShape clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is FhirUri) {
-            return copyWith(resource: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'include':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?include, ...child];
-            return copyWith(include: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?include,
-              child,
-            ];
-            return copyWith(include: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'revInclude':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?revInclude, ...child];
-            return copyWith(revInclude: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?revInclude,
-              child,
-            ];
-            return copyWith(revInclude: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SubscriptionTopicNotificationShape]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'resource':
-        return ['FhirUri'];
-      case 'include':
-        return ['FhirString'];
-      case 'revInclude':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SubscriptionTopicNotificationShape]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SubscriptionTopicNotificationShape createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SubscriptionTopicNotificationShapeCopyWith<
+          SubscriptionTopicNotificationShape>
+      get copyWith => _$SubscriptionTopicNotificationShapeCopyWithImpl<
+              SubscriptionTopicNotificationShape>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: FhirUri.empty(),
-          );
-        }
-      case 'include':
-        {
-          return copyWith(
-            include: <FhirString>[],
-          );
-        }
-      case 'revInclude':
-        {
-          return copyWith(
-            revInclude: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SubscriptionTopicNotificationShape clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool include = false,
-    bool revInclude = false,
-  }) {
-    return SubscriptionTopicNotificationShape(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      resource: resource,
-      include: include ? null : this.include,
-      revInclude: revInclude ? null : this.revInclude,
-    );
-  }
-
-  @override
-  SubscriptionTopicNotificationShape clone() => throw UnimplementedError();
-  @override
-  SubscriptionTopicNotificationShape copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? resource,
-    List<FhirString>? include,
-    List<FhirString>? revInclude,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SubscriptionTopicNotificationShape(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-      include: include
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.include',
-                ),
-              )
-              .toList() ??
-          this.include,
-      revInclude: revInclude
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.revInclude',
-                ),
-              )
-              .toList() ??
-          this.revInclude,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

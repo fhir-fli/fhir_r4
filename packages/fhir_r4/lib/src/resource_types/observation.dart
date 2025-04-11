@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'observation.g.dart';
+
 /// [Observation]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
@@ -43,111 +45,78 @@ class Observation extends DomainResource {
     this.derivedFrom,
     this.component,
   }) : super(
-          objectPath: 'Observation',
           resourceType: R4ResourceType.Observation,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Observation.empty() => Observation(
-        status: ObservationStatus.values.first,
-        code: CodeableConcept.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Observation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Observation';
     return Observation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.basedOn',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.partOf',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -155,15 +124,11 @@ class Observation extends DomainResource {
         json,
         'status',
         ObservationStatus.fromJson,
-        '$objectPath.status',
       )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.category',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -171,21 +136,16 @@ class Observation extends DomainResource {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.focus',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -193,7 +153,6 @@ class Observation extends DomainResource {
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       effectiveX: JsonParser.parsePolymorphic<EffectiveXObservation>(
         json,
@@ -203,21 +162,16 @@ class Observation extends DomainResource {
           'effectiveTiming': Timing.fromJson,
           'effectiveInstant': FhirInstant.fromJson,
         },
-        objectPath,
       ),
       issued: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'issued',
         FhirInstant.fromJson,
-        '$objectPath.issued',
       ),
       performer: (json['performer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.performer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -236,31 +190,23 @@ class Observation extends DomainResource {
           'valueDateTime': FhirDateTime.fromJson,
           'valuePeriod': Period.fromJson,
         },
-        objectPath,
       ),
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
-        '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.interpretation',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -268,63 +214,47 @@ class Observation extends DomainResource {
         json,
         'bodySite',
         CodeableConcept.fromJson,
-        '$objectPath.bodySite',
       ),
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
-        '$objectPath.method',
       ),
       specimen: JsonParser.parseObject<Reference>(
         json,
         'specimen',
         Reference.fromJson,
-        '$objectPath.specimen',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
-        '$objectPath.device',
       ),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.referenceRange',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       hasMember: (json['hasMember'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.hasMember',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       derivedFrom: (json['derivedFrom'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.derivedFrom',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       component: (json['component'] as List<dynamic>?)
           ?.map<ObservationComponent>(
             (v) => ObservationComponent.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.component',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1002,1287 +932,19 @@ class Observation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Observation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basedOn':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?basedOn,
-              child,
-            ];
-            return copyWith(basedOn: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'partOf':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?partOf,
-              child,
-            ];
-            return copyWith(partOf: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is ObservationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?category,
-              child,
-            ];
-            return copyWith(category: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focus':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?focus, ...child];
-            return copyWith(focus: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?focus,
-              child,
-            ];
-            return copyWith(focus: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effective':
-      case 'effectiveX':
-        {
-          if (child is EffectiveXObservation) {
-            return copyWith(effectiveX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(effectiveX: child);
-            }
-            if (child is Period) {
-              return copyWith(effectiveX: child);
-            }
-            if (child is Timing) {
-              return copyWith(effectiveX: child);
-            }
-            if (child is FhirInstant) {
-              return copyWith(effectiveX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'effectiveFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectivePeriod':
-        {
-          if (child is Period) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectiveTiming':
-        {
-          if (child is Timing) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectiveFhirInstant':
-        {
-          if (child is FhirInstant) {
-            return copyWith(effectiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'issued':
-        {
-          if (child is FhirInstant) {
-            return copyWith(issued: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'performer':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?performer,
-              child,
-            ];
-            return copyWith(performer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXObservation) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
-            }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is Period) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSampledData':
-        {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirTime':
-        {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dataAbsentReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'interpretation':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?interpretation, ...child];
-            return copyWith(interpretation: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?interpretation,
-              child,
-            ];
-            return copyWith(interpretation: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bodySite':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'method':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'specimen':
-        {
-          if (child is Reference) {
-            return copyWith(specimen: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'device':
-        {
-          if (child is Reference) {
-            return copyWith(device: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'referenceRange':
-        {
-          if (child is List<ObservationReferenceRange>) {
-            // Add all elements from passed list
-            final newList = [...?referenceRange, ...child];
-            return copyWith(referenceRange: newList);
-          } else if (child is ObservationReferenceRange) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?referenceRange,
-              child,
-            ];
-            return copyWith(referenceRange: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'hasMember':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?hasMember, ...child];
-            return copyWith(hasMember: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?hasMember,
-              child,
-            ];
-            return copyWith(hasMember: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'derivedFrom':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?derivedFrom, ...child];
-            return copyWith(derivedFrom: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?derivedFrom,
-              child,
-            ];
-            return copyWith(derivedFrom: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'component':
-        {
-          if (child is List<ObservationComponent>) {
-            // Add all elements from passed list
-            final newList = [...?component, ...child];
-            return copyWith(component: newList);
-          } else if (child is ObservationComponent) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?component,
-              child,
-            ];
-            return copyWith(component: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Observation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'basedOn':
-        return ['Reference'];
-      case 'partOf':
-        return ['Reference'];
-      case 'status':
-        return ['FhirCode'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'subject':
-        return ['Reference'];
-      case 'focus':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'effective':
-      case 'effectiveX':
-        return [
-          'FhirDateTime',
-          'Period',
-          'Timing',
-          'FhirInstant',
-        ];
-      case 'effectiveDateTime':
-        return ['FhirDateTime'];
-      case 'effectivePeriod':
-        return ['Period'];
-      case 'effectiveTiming':
-        return ['Timing'];
-      case 'effectiveInstant':
-        return ['FhirInstant'];
-      case 'issued':
-        return ['FhirInstant'];
-      case 'performer':
-        return ['Reference'];
-      case 'value':
-      case 'valueX':
-        return [
-          'Quantity',
-          'CodeableConcept',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'Range',
-          'Ratio',
-          'SampledData',
-          'FhirTime',
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueInteger':
-        return ['FhirInteger'];
-      case 'valueRange':
-        return ['Range'];
-      case 'valueRatio':
-        return ['Ratio'];
-      case 'valueSampledData':
-        return ['SampledData'];
-      case 'valueTime':
-        return ['FhirTime'];
-      case 'valueDateTime':
-        return ['FhirDateTime'];
-      case 'valuePeriod':
-        return ['Period'];
-      case 'dataAbsentReason':
-        return ['CodeableConcept'];
-      case 'interpretation':
-        return ['CodeableConcept'];
-      case 'note':
-        return ['Annotation'];
-      case 'bodySite':
-        return ['CodeableConcept'];
-      case 'method':
-        return ['CodeableConcept'];
-      case 'specimen':
-        return ['Reference'];
-      case 'device':
-        return ['Reference'];
-      case 'referenceRange':
-        return ['ObservationReferenceRange'];
-      case 'hasMember':
-        return ['Reference'];
-      case 'derivedFrom':
-        return ['Reference'];
-      case 'component':
-        return ['ObservationComponent'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Observation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Observation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'basedOn':
-        {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
-        }
-      case 'partOf':
-        {
-          return copyWith(
-            partOf: <Reference>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: ObservationStatus.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'focus':
-        {
-          return copyWith(
-            focus: <Reference>[],
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'effective':
-      case 'effectiveX':
-      case 'effectiveDateTime':
-        {
-          return copyWith(
-            effectiveX: FhirDateTime.empty(),
-          );
-        }
-      case 'effectivePeriod':
-        {
-          return copyWith(
-            effectiveX: Period.empty(),
-          );
-        }
-      case 'effectiveTiming':
-        {
-          return copyWith(
-            effectiveX: Timing.empty(),
-          );
-        }
-      case 'effectiveInstant':
-        {
-          return copyWith(
-            effectiveX: FhirInstant.empty(),
-          );
-        }
-      case 'issued':
-        {
-          return copyWith(
-            issued: FhirInstant.empty(),
-          );
-        }
-      case 'performer':
-        {
-          return copyWith(
-            performer: <Reference>[],
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueInteger':
-        {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      case 'valueRatio':
-        {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
-        }
-      case 'valueSampledData':
-        {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
-        }
-      case 'valueTime':
-        {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
-        }
-      case 'valueDateTime':
-        {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
-        }
-      case 'valuePeriod':
-        {
-          return copyWith(
-            valueX: Period.empty(),
-          );
-        }
-      case 'dataAbsentReason':
-        {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
-        }
-      case 'interpretation':
-        {
-          return copyWith(
-            interpretation: <CodeableConcept>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      case 'bodySite':
-        {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
-        }
-      case 'method':
-        {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
-        }
-      case 'specimen':
-        {
-          return copyWith(
-            specimen: Reference.empty(),
-          );
-        }
-      case 'device':
-        {
-          return copyWith(
-            device: Reference.empty(),
-          );
-        }
-      case 'referenceRange':
-        {
-          return copyWith(
-            referenceRange: <ObservationReferenceRange>[],
-          );
-        }
-      case 'hasMember':
-        {
-          return copyWith(
-            hasMember: <Reference>[],
-          );
-        }
-      case 'derivedFrom':
-        {
-          return copyWith(
-            derivedFrom: <Reference>[],
-          );
-        }
-      case 'component':
-        {
-          return copyWith(
-            component: <ObservationComponent>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Observation clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool category = false,
-    bool subject = false,
-    bool focus = false,
-    bool encounter = false,
-    bool effective = false,
-    bool issued = false,
-    bool performer = false,
-    bool value = false,
-    bool dataAbsentReason = false,
-    bool interpretation = false,
-    bool note = false,
-    bool bodySite = false,
-    bool method = false,
-    bool specimen = false,
-    bool device = false,
-    bool referenceRange = false,
-    bool hasMember = false,
-    bool derivedFrom = false,
-    bool component = false,
-  }) {
-    return Observation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      category: category ? null : this.category,
-      code: code,
-      subject: subject ? null : this.subject,
-      focus: focus ? null : this.focus,
-      encounter: encounter ? null : this.encounter,
-      effectiveX: effective ? null : effectiveX,
-      issued: issued ? null : this.issued,
-      performer: performer ? null : this.performer,
-      valueX: value ? null : valueX,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      interpretation: interpretation ? null : this.interpretation,
-      note: note ? null : this.note,
-      bodySite: bodySite ? null : this.bodySite,
-      method: method ? null : this.method,
-      specimen: specimen ? null : this.specimen,
-      device: device ? null : this.device,
-      referenceRange: referenceRange ? null : this.referenceRange,
-      hasMember: hasMember ? null : this.hasMember,
-      derivedFrom: derivedFrom ? null : this.derivedFrom,
-      component: component ? null : this.component,
-    );
-  }
-
-  @override
-  Observation clone() => throw UnimplementedError();
-  @override
-  Observation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    ObservationStatus? status,
-    List<CodeableConcept>? category,
-    CodeableConcept? code,
-    Reference? subject,
-    List<Reference>? focus,
-    Reference? encounter,
-    EffectiveXObservation? effectiveX,
-    FhirInstant? issued,
-    List<Reference>? performer,
-    ValueXObservation? valueX,
-    CodeableConcept? dataAbsentReason,
-    List<CodeableConcept>? interpretation,
-    List<Annotation>? note,
-    CodeableConcept? bodySite,
-    CodeableConcept? method,
-    Reference? specimen,
-    Reference? device,
-    List<ObservationReferenceRange>? referenceRange,
-    List<Reference>? hasMember,
-    List<Reference>? derivedFrom,
-    List<ObservationComponent>? component,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Observation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      focus: focus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.focus',
-                ),
-              )
-              .toList() ??
-          this.focus,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      effectiveX: effectiveX?.copyWith(
-            objectPath: '$newObjectPath.effectiveX',
-          ) as EffectiveXObservation? ??
-          this.effectiveX,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXObservation? ??
-          this.valueX,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      interpretation: interpretation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.interpretation',
-                ),
-              )
-              .toList() ??
-          this.interpretation,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      specimen: specimen?.copyWith(
-            objectPath: '$newObjectPath.specimen',
-          ) ??
-          this.specimen,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      referenceRange: referenceRange
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceRange',
-                ),
-              )
-              .toList() ??
-          this.referenceRange,
-      hasMember: hasMember
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.hasMember',
-                ),
-              )
-              .toList() ??
-          this.hasMember,
-      derivedFrom: derivedFrom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.derivedFrom',
-                ),
-              )
-              .toList() ??
-          this.derivedFrom,
-      component: component
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.component',
-                ),
-              )
-              .toList() ??
-          this.component,
-    );
-  }
+  $ObservationCopyWith<Observation> get copyWith =>
+      _$ObservationCopyWithImpl<Observation>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2508,45 +1170,29 @@ class ObservationReferenceRange extends BackboneElement {
     this.age,
     this.text,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Observation.referenceRange',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ObservationReferenceRange.empty() =>
-      const ObservationReferenceRange();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Observation.referenceRange';
     return ObservationReferenceRange(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2554,27 +1200,21 @@ class ObservationReferenceRange extends BackboneElement {
         json,
         'low',
         Quantity.fromJson,
-        '$objectPath.low',
       ),
       high: JsonParser.parseObject<Quantity>(
         json,
         'high',
         Quantity.fromJson,
-        '$objectPath.high',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       appliesTo: (json['appliesTo'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.appliesTo',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2582,13 +1222,11 @@ class ObservationReferenceRange extends BackboneElement {
         json,
         'age',
         Range.fromJson,
-        '$objectPath.age',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-        '$objectPath.text',
       ),
     );
   }
@@ -2853,314 +1491,19 @@ class ObservationReferenceRange extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ObservationReferenceRange clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'low':
-        {
-          if (child is Quantity) {
-            return copyWith(low: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'high':
-        {
-          if (child is Quantity) {
-            return copyWith(high: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'appliesTo':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?appliesTo, ...child];
-            return copyWith(appliesTo: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?appliesTo,
-              child,
-            ];
-            return copyWith(appliesTo: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'age':
-        {
-          if (child is Range) {
-            return copyWith(age: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirString) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ObservationReferenceRange]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'low':
-        return ['Quantity'];
-      case 'high':
-        return ['Quantity'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'appliesTo':
-        return ['CodeableConcept'];
-      case 'age':
-        return ['Range'];
-      case 'text':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ObservationReferenceRange]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ObservationReferenceRange createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'low':
-        {
-          return copyWith(
-            low: Quantity.empty(),
-          );
-        }
-      case 'high':
-        {
-          return copyWith(
-            high: Quantity.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'appliesTo':
-        {
-          return copyWith(
-            appliesTo: <CodeableConcept>[],
-          );
-        }
-      case 'age':
-        {
-          return copyWith(
-            age: Range.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ObservationReferenceRange clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool low = false,
-    bool high = false,
-    bool type = false,
-    bool appliesTo = false,
-    bool age = false,
-    bool text = false,
-  }) {
-    return ObservationReferenceRange(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      low: low ? null : this.low,
-      high: high ? null : this.high,
-      type: type ? null : this.type,
-      appliesTo: appliesTo ? null : this.appliesTo,
-      age: age ? null : this.age,
-      text: text ? null : this.text,
-    );
-  }
-
-  @override
-  ObservationReferenceRange clone() => throw UnimplementedError();
-  @override
-  ObservationReferenceRange copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Quantity? low,
-    Quantity? high,
-    CodeableConcept? type,
-    List<CodeableConcept>? appliesTo,
-    Range? age,
-    FhirString? text,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ObservationReferenceRange(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      low: low?.copyWith(
-            objectPath: '$newObjectPath.low',
-          ) ??
-          this.low,
-      high: high?.copyWith(
-            objectPath: '$newObjectPath.high',
-          ) ??
-          this.high,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      appliesTo: appliesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.appliesTo',
-                ),
-              )
-              .toList() ??
-          this.appliesTo,
-      age: age?.copyWith(
-            objectPath: '$newObjectPath.age',
-          ) ??
-          this.age,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-    );
-  }
+  $ObservationReferenceRangeCopyWith<ObservationReferenceRange> get copyWith =>
+      _$ObservationReferenceRangeCopyWithImpl<ObservationReferenceRange>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3248,46 +1591,29 @@ class ObservationComponent extends BackboneElement {
     this.interpretation,
     this.referenceRange,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Observation.component',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ObservationComponent.empty() => ObservationComponent(
-        code: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationComponent.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Observation.component';
     return ObservationComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3295,7 +1621,6 @@ class ObservationComponent extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       )!,
       valueX: JsonParser.parsePolymorphic<ValueXObservationComponent>(
         json,
@@ -3312,31 +1637,23 @@ class ObservationComponent extends BackboneElement {
           'valueDateTime': FhirDateTime.fromJson,
           'valuePeriod': Period.fromJson,
         },
-        objectPath,
       ),
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
-        '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.interpretation',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
           ?.map<ObservationReferenceRange>(
             (v) => ObservationReferenceRange.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.referenceRange',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3658,522 +1975,19 @@ class ObservationComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ObservationComponent clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXObservationComponent) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
-            }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is Period) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSampledData':
-        {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirTime':
-        {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dataAbsentReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'interpretation':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?interpretation, ...child];
-            return copyWith(interpretation: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?interpretation,
-              child,
-            ];
-            return copyWith(interpretation: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'referenceRange':
-        {
-          if (child is List<ObservationReferenceRange>) {
-            // Add all elements from passed list
-            final newList = [...?referenceRange, ...child];
-            return copyWith(referenceRange: newList);
-          } else if (child is ObservationReferenceRange) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?referenceRange,
-              child,
-            ];
-            return copyWith(referenceRange: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ObservationComponent]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'value':
-      case 'valueX':
-        return [
-          'Quantity',
-          'CodeableConcept',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'Range',
-          'Ratio',
-          'SampledData',
-          'FhirTime',
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueInteger':
-        return ['FhirInteger'];
-      case 'valueRange':
-        return ['Range'];
-      case 'valueRatio':
-        return ['Ratio'];
-      case 'valueSampledData':
-        return ['SampledData'];
-      case 'valueTime':
-        return ['FhirTime'];
-      case 'valueDateTime':
-        return ['FhirDateTime'];
-      case 'valuePeriod':
-        return ['Period'];
-      case 'dataAbsentReason':
-        return ['CodeableConcept'];
-      case 'interpretation':
-        return ['CodeableConcept'];
-      case 'referenceRange':
-        return ['ObservationReferenceRange'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ObservationComponent]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ObservationComponent createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueInteger':
-        {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      case 'valueRatio':
-        {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
-        }
-      case 'valueSampledData':
-        {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
-        }
-      case 'valueTime':
-        {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
-        }
-      case 'valueDateTime':
-        {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
-        }
-      case 'valuePeriod':
-        {
-          return copyWith(
-            valueX: Period.empty(),
-          );
-        }
-      case 'dataAbsentReason':
-        {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
-        }
-      case 'interpretation':
-        {
-          return copyWith(
-            interpretation: <CodeableConcept>[],
-          );
-        }
-      case 'referenceRange':
-        {
-          return copyWith(
-            referenceRange: <ObservationReferenceRange>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ObservationComponent clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool dataAbsentReason = false,
-    bool interpretation = false,
-    bool referenceRange = false,
-  }) {
-    return ObservationComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      valueX: value ? null : valueX,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      interpretation: interpretation ? null : this.interpretation,
-      referenceRange: referenceRange ? null : this.referenceRange,
-    );
-  }
-
-  @override
-  ObservationComponent clone() => throw UnimplementedError();
-  @override
-  ObservationComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    ValueXObservationComponent? valueX,
-    CodeableConcept? dataAbsentReason,
-    List<CodeableConcept>? interpretation,
-    List<ObservationReferenceRange>? referenceRange,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ObservationComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXObservationComponent? ??
-          this.valueX,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      interpretation: interpretation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.interpretation',
-                ),
-              )
-              .toList() ??
-          this.interpretation,
-      referenceRange: referenceRange
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceRange',
-                ),
-              )
-              .toList() ??
-          this.referenceRange,
-    );
-  }
+  $ObservationComponentCopyWith<ObservationComponent> get copyWith =>
+      _$ObservationComponentCopyWithImpl<ObservationComponent>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

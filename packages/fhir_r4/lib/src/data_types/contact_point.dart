@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'contact_point.g.dart';
+
 /// [ContactPoint]
 /// Details for all kinds of technology mediated contact points for a
 /// person or organization, including telephone, email, etc.
@@ -28,33 +30,22 @@ class ContactPoint extends DataType
     this.rank,
     this.period,
     super.disallowExtensions,
-    super.objectPath = 'ContactPoint',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContactPoint.empty() => const ContactPoint();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContactPoint.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'ContactPoint';
     return ContactPoint(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -62,31 +53,26 @@ class ContactPoint extends DataType
         json,
         'system',
         ContactPointSystem.fromJson,
-        '$objectPath.system',
       ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
-        '$objectPath.value',
       ),
       use: JsonParser.parsePrimitive<ContactPointUse>(
         json,
         'use',
         ContactPointUse.fromJson,
-        '$objectPath.use',
       ),
       rank: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'rank',
         FhirPositiveInt.fromJson,
-        '$objectPath.rank',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
-        '$objectPath.period',
       ),
     );
   }
@@ -317,242 +303,19 @@ class ContactPoint extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ContactPoint clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'system':
-        {
-          if (child is ContactPointSystem) {
-            return copyWith(system: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-        {
-          if (child is FhirString) {
-            return copyWith(value: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'use':
-        {
-          if (child is ContactPointUse) {
-            return copyWith(use: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rank':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(rank: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'period':
-        {
-          if (child is Period) {
-            return copyWith(period: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ContactPoint]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'system':
-        return ['FhirCode'];
-      case 'value':
-        return ['FhirString'];
-      case 'use':
-        return ['FhirCode'];
-      case 'rank':
-        return ['FhirPositiveInt'];
-      case 'period':
-        return ['Period'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ContactPoint]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ContactPoint createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'system':
-        {
-          return copyWith(
-            system: ContactPointSystem.empty(),
-          );
-        }
-      case 'value':
-        {
-          return copyWith(
-            value: FhirString.empty(),
-          );
-        }
-      case 'use':
-        {
-          return copyWith(
-            use: ContactPointUse.empty(),
-          );
-        }
-      case 'rank':
-        {
-          return copyWith(
-            rank: FhirPositiveInt.empty(),
-          );
-        }
-      case 'period':
-        {
-          return copyWith(
-            period: Period.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ContactPoint clear({
-    bool id = false,
-    bool extension_ = false,
-    bool system = false,
-    bool value = false,
-    bool use = false,
-    bool rank = false,
-    bool period = false,
-  }) {
-    return ContactPoint(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      system: system ? null : this.system,
-      value: value ? null : this.value,
-      use: use ? null : this.use,
-      rank: rank ? null : this.rank,
-      period: period ? null : this.period,
-    );
-  }
-
-  @override
-  ContactPoint clone() => throw UnimplementedError();
-  @override
-  ContactPoint copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    ContactPointSystem? system,
-    FhirString? value,
-    ContactPointUse? use,
-    FhirPositiveInt? rank,
-    Period? period,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return ContactPoint(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      rank: rank?.copyWith(
-            objectPath: '$newObjectPath.rank',
-          ) ??
-          this.rank,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-    );
-  }
+  $ContactPointCopyWith<ContactPoint> get copyWith =>
+      _$ContactPointCopyWithImpl<ContactPoint>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

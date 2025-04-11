@@ -1635,80 +1635,6 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool caseSensitive = false,
-    bool valueSet = false,
-    bool hierarchyMeaning = false,
-    bool compositional = false,
-    bool versionNeeded = false,
-    bool content = false,
-    bool supplements = false,
-    bool count = false,
-    bool filter = false,
-    bool property = false,
-    bool concept = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (caseSensitive) this.caseSensitive = null;
-    if (valueSet) this.valueSet = null;
-    if (hierarchyMeaning) this.hierarchyMeaning = null;
-    if (compositional) this.compositional = null;
-    if (versionNeeded) this.versionNeeded = null;
-    if (content) this.content = null;
-    if (supplements) this.supplements = null;
-    if (count) this.count = null;
-    if (filter) this.filter = null;
-    if (property) this.property = null;
-    if (concept) this.concept = null;
-  }
-
   @override
   CodeSystemBuilder clone() => throw UnimplementedError();
   @override
@@ -2535,26 +2461,6 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool operator_ = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (operator_) this.operator_ = null;
-    if (value) this.value = null;
-  }
-
   @override
   CodeSystemFilterBuilder clone() => throw UnimplementedError();
   @override
@@ -3137,26 +3043,6 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool uri = false,
-    bool description = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (uri) this.uri = null;
-    if (description) this.description = null;
-    if (type) this.type = null;
   }
 
   @override
@@ -3829,30 +3715,6 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool display = false,
-    bool definition = false,
-    bool designation = false,
-    bool property = false,
-    bool concept = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (definition) this.definition = null;
-    if (designation) this.designation = null;
-    if (property) this.property = null;
-    if (concept) this.concept = null;
-  }
-
   @override
   CodeSystemConceptBuilder clone() => throw UnimplementedError();
   @override
@@ -4387,24 +4249,6 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool language = false,
-    bool use = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (language) this.language = null;
-    if (use) this.use = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -5082,22 +4926,6 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
   }
 
   @override

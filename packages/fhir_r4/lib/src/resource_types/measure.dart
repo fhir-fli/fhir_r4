@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'measure.g.dart';
+
 /// [Measure]
 /// The Measure resource provides the definition of a quality measure.
 class Measure extends CanonicalResource {
@@ -59,80 +61,57 @@ class Measure extends CanonicalResource {
     this.group,
     this.supplementalData,
   }) : super(
-          objectPath: 'Measure',
           resourceType: R4ResourceType.Measure,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Measure.empty() => Measure(
-        status: PublicationStatus.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Measure.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure';
     return Measure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -140,15 +119,11 @@ class Measure extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -156,37 +131,31 @@ class Measure extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-        '$objectPath.subtitle',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       subjectX: JsonParser.parsePolymorphic<SubjectXMeasure>(
         json,
@@ -194,27 +163,21 @@ class Measure extends CanonicalResource {
           'subjectCodeableConcept': CodeableConcept.fromJson,
           'subjectReference': Reference.fromJson,
         },
-        objectPath,
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -222,25 +185,18 @@ class Measure extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -248,95 +204,71 @@ class Measure extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-        '$objectPath.purpose',
       ),
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
-        '$objectPath.usage',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-        '$objectPath.copyright',
       ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-        '$objectPath.approvalDate',
       ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-        '$objectPath.lastReviewDate',
       ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
         Period.fromJson,
-        '$objectPath.effectivePeriod',
       ),
       topic: (json['topic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.topic',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.author',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.editor',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reviewer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.endorser',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.relatedArtifact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -344,33 +276,26 @@ class Measure extends CanonicalResource {
         json,
         'library',
         FhirCanonical.fromJson,
-        '$objectPath.library',
       ),
       disclaimer: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'disclaimer',
         FhirMarkdown.fromJson,
-        '$objectPath.disclaimer',
       ),
       scoring: JsonParser.parseObject<CodeableConcept>(
         json,
         'scoring',
         CodeableConcept.fromJson,
-        '$objectPath.scoring',
       ),
       compositeScoring: JsonParser.parseObject<CodeableConcept>(
         json,
         'compositeScoring',
         CodeableConcept.fromJson,
-        '$objectPath.compositeScoring',
       ),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.type',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -378,61 +303,48 @@ class Measure extends CanonicalResource {
         json,
         'riskAdjustment',
         FhirString.fromJson,
-        '$objectPath.riskAdjustment',
       ),
       rateAggregation: JsonParser.parsePrimitive<FhirString>(
         json,
         'rateAggregation',
         FhirString.fromJson,
-        '$objectPath.rateAggregation',
       ),
       rationale: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'rationale',
         FhirMarkdown.fromJson,
-        '$objectPath.rationale',
       ),
       clinicalRecommendationStatement: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'clinicalRecommendationStatement',
         FhirMarkdown.fromJson,
-        '$objectPath.clinicalRecommendationStatement',
       ),
       improvementNotation: JsonParser.parseObject<CodeableConcept>(
         json,
         'improvementNotation',
         CodeableConcept.fromJson,
-        '$objectPath.improvementNotation',
       ),
       definition: JsonParser.parsePrimitiveList<FhirMarkdown>(
         json,
         'definition',
         FhirMarkdown.fromJson,
-        '$objectPath.definition',
       ),
       guidance: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'guidance',
         FhirMarkdown.fromJson,
-        '$objectPath.guidance',
       ),
       group: (json['group'] as List<dynamic>?)
           ?.map<MeasureGroup>(
             (v) => MeasureGroup.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.group',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       supplementalData: (json['supplementalData'] as List<dynamic>?)
           ?.map<MeasureSupplementalData>(
             (v) => MeasureSupplementalData.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.supplementalData',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1205,1463 +1117,18 @@ class Measure extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Measure clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subtitle':
-        {
-          if (child is FhirString) {
-            return copyWith(subtitle: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-      case 'subjectX':
-        {
-          if (child is SubjectXMeasure) {
-            return copyWith(subjectX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(subjectX: child);
-            }
-            if (child is Reference) {
-              return copyWith(subjectX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'subjectCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(subjectX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subjectReference':
-        {
-          if (child is Reference) {
-            return copyWith(subjectX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'usage':
-        {
-          if (child is FhirString) {
-            return copyWith(usage: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copyright':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'approvalDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(approvalDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'lastReviewDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(lastReviewDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'effectivePeriod':
-        {
-          if (child is Period) {
-            return copyWith(effectivePeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'topic':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?topic, ...child];
-            return copyWith(topic: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?topic,
-              child,
-            ];
-            return copyWith(topic: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'author':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?author,
-              child,
-            ];
-            return copyWith(author: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'editor':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?editor, ...child];
-            return copyWith(editor: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?editor,
-              child,
-            ];
-            return copyWith(editor: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reviewer':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?reviewer, ...child];
-            return copyWith(reviewer: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reviewer,
-              child,
-            ];
-            return copyWith(reviewer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'endorser':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?endorser, ...child];
-            return copyWith(endorser: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?endorser,
-              child,
-            ];
-            return copyWith(endorser: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relatedArtifact':
-        {
-          if (child is List<RelatedArtifact>) {
-            // Add all elements from passed list
-            final newList = [...?relatedArtifact, ...child];
-            return copyWith(relatedArtifact: newList);
-          } else if (child is RelatedArtifact) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?relatedArtifact,
-              child,
-            ];
-            return copyWith(relatedArtifact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'library':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?library_, ...child];
-            return copyWith(library_: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?library_,
-              child,
-            ];
-            return copyWith(library_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'disclaimer':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(disclaimer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'scoring':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(scoring: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'compositeScoring':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(compositeScoring: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?type,
-              child,
-            ];
-            return copyWith(type: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'riskAdjustment':
-        {
-          if (child is FhirString) {
-            return copyWith(riskAdjustment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rateAggregation':
-        {
-          if (child is FhirString) {
-            return copyWith(rateAggregation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rationale':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(rationale: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'clinicalRecommendationStatement':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(clinicalRecommendationStatement: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'improvementNotation':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(improvementNotation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definition':
-        {
-          if (child is List<FhirMarkdown>) {
-            // Add all elements from passed list
-            final newList = [...?definition, ...child];
-            return copyWith(definition: newList);
-          } else if (child is FhirMarkdown) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?definition,
-              child,
-            ];
-            return copyWith(definition: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'guidance':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(guidance: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'group':
-        {
-          if (child is List<MeasureGroup>) {
-            // Add all elements from passed list
-            final newList = [...?group, ...child];
-            return copyWith(group: newList);
-          } else if (child is MeasureGroup) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?group,
-              child,
-            ];
-            return copyWith(group: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supplementalData':
-        {
-          if (child is List<MeasureSupplementalData>) {
-            // Add all elements from passed list
-            final newList = [...?supplementalData, ...child];
-            return copyWith(supplementalData: newList);
-          } else if (child is MeasureSupplementalData) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supplementalData,
-              child,
-            ];
-            return copyWith(supplementalData: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Measure]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'subtitle':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'subject':
-      case 'subjectX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'subjectCodeableConcept':
-        return ['CodeableConcept'];
-      case 'subjectReference':
-        return ['Reference'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirMarkdown'];
-      case 'usage':
-        return ['FhirString'];
-      case 'copyright':
-        return ['FhirMarkdown'];
-      case 'approvalDate':
-        return ['FhirDate'];
-      case 'lastReviewDate':
-        return ['FhirDate'];
-      case 'effectivePeriod':
-        return ['Period'];
-      case 'topic':
-        return ['CodeableConcept'];
-      case 'author':
-        return ['ContactDetail'];
-      case 'editor':
-        return ['ContactDetail'];
-      case 'reviewer':
-        return ['ContactDetail'];
-      case 'endorser':
-        return ['ContactDetail'];
-      case 'relatedArtifact':
-        return ['RelatedArtifact'];
-      case 'library':
-        return ['FhirCanonical'];
-      case 'disclaimer':
-        return ['FhirMarkdown'];
-      case 'scoring':
-        return ['CodeableConcept'];
-      case 'compositeScoring':
-        return ['CodeableConcept'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'riskAdjustment':
-        return ['FhirString'];
-      case 'rateAggregation':
-        return ['FhirString'];
-      case 'rationale':
-        return ['FhirMarkdown'];
-      case 'clinicalRecommendationStatement':
-        return ['FhirMarkdown'];
-      case 'improvementNotation':
-        return ['CodeableConcept'];
-      case 'definition':
-        return ['FhirMarkdown'];
-      case 'guidance':
-        return ['FhirMarkdown'];
-      case 'group':
-        return ['MeasureGroup'];
-      case 'supplementalData':
-        return ['MeasureSupplementalData'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Measure]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Measure createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'subtitle':
-        {
-          return copyWith(
-            subtitle: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'subject':
-      case 'subjectX':
-      case 'subjectCodeableConcept':
-        {
-          return copyWith(
-            subjectX: CodeableConcept.empty(),
-          );
-        }
-      case 'subjectReference':
-        {
-          return copyWith(
-            subjectX: Reference.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
-        }
-      case 'usage':
-        {
-          return copyWith(
-            usage: FhirString.empty(),
-          );
-        }
-      case 'copyright':
-        {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
-        }
-      case 'approvalDate':
-        {
-          return copyWith(
-            approvalDate: FhirDate.empty(),
-          );
-        }
-      case 'lastReviewDate':
-        {
-          return copyWith(
-            lastReviewDate: FhirDate.empty(),
-          );
-        }
-      case 'effectivePeriod':
-        {
-          return copyWith(
-            effectivePeriod: Period.empty(),
-          );
-        }
-      case 'topic':
-        {
-          return copyWith(
-            topic: <CodeableConcept>[],
-          );
-        }
-      case 'author':
-        {
-          return copyWith(
-            author: <ContactDetail>[],
-          );
-        }
-      case 'editor':
-        {
-          return copyWith(
-            editor: <ContactDetail>[],
-          );
-        }
-      case 'reviewer':
-        {
-          return copyWith(
-            reviewer: <ContactDetail>[],
-          );
-        }
-      case 'endorser':
-        {
-          return copyWith(
-            endorser: <ContactDetail>[],
-          );
-        }
-      case 'relatedArtifact':
-        {
-          return copyWith(
-            relatedArtifact: <RelatedArtifact>[],
-          );
-        }
-      case 'library':
-        {
-          return copyWith(
-            library_: <FhirCanonical>[],
-          );
-        }
-      case 'disclaimer':
-        {
-          return copyWith(
-            disclaimer: FhirMarkdown.empty(),
-          );
-        }
-      case 'scoring':
-        {
-          return copyWith(
-            scoring: CodeableConcept.empty(),
-          );
-        }
-      case 'compositeScoring':
-        {
-          return copyWith(
-            compositeScoring: CodeableConcept.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
-        }
-      case 'riskAdjustment':
-        {
-          return copyWith(
-            riskAdjustment: FhirString.empty(),
-          );
-        }
-      case 'rateAggregation':
-        {
-          return copyWith(
-            rateAggregation: FhirString.empty(),
-          );
-        }
-      case 'rationale':
-        {
-          return copyWith(
-            rationale: FhirMarkdown.empty(),
-          );
-        }
-      case 'clinicalRecommendationStatement':
-        {
-          return copyWith(
-            clinicalRecommendationStatement: FhirMarkdown.empty(),
-          );
-        }
-      case 'improvementNotation':
-        {
-          return copyWith(
-            improvementNotation: CodeableConcept.empty(),
-          );
-        }
-      case 'definition':
-        {
-          return copyWith(
-            definition: <FhirMarkdown>[],
-          );
-        }
-      case 'guidance':
-        {
-          return copyWith(
-            guidance: FhirMarkdown.empty(),
-          );
-        }
-      case 'group':
-        {
-          return copyWith(
-            group: <MeasureGroup>[],
-          );
-        }
-      case 'supplementalData':
-        {
-          return copyWith(
-            supplementalData: <MeasureSupplementalData>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Measure clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool subtitle = false,
-    bool experimental = false,
-    bool subject = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool usage = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool topic = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool library_ = false,
-    bool disclaimer = false,
-    bool scoring = false,
-    bool compositeScoring = false,
-    bool type = false,
-    bool riskAdjustment = false,
-    bool rateAggregation = false,
-    bool rationale = false,
-    bool clinicalRecommendationStatement = false,
-    bool improvementNotation = false,
-    bool definition = false,
-    bool guidance = false,
-    bool group = false,
-    bool supplementalData = false,
-  }) {
-    return Measure(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      subtitle: subtitle ? null : this.subtitle,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      subjectX: subject ? null : subjectX,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      usage: usage ? null : this.usage,
-      copyright: copyright ? null : this.copyright,
-      approvalDate: approvalDate ? null : this.approvalDate,
-      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
-      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
-      topic: topic ? null : this.topic,
-      author: author ? null : this.author,
-      editor: editor ? null : this.editor,
-      reviewer: reviewer ? null : this.reviewer,
-      endorser: endorser ? null : this.endorser,
-      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
-      library_: library_ ? null : this.library_,
-      disclaimer: disclaimer ? null : this.disclaimer,
-      scoring: scoring ? null : this.scoring,
-      compositeScoring: compositeScoring ? null : this.compositeScoring,
-      type: type ? null : this.type,
-      riskAdjustment: riskAdjustment ? null : this.riskAdjustment,
-      rateAggregation: rateAggregation ? null : this.rateAggregation,
-      rationale: rationale ? null : this.rationale,
-      clinicalRecommendationStatement: clinicalRecommendationStatement
-          ? null
-          : this.clinicalRecommendationStatement,
-      improvementNotation:
-          improvementNotation ? null : this.improvementNotation,
-      definition: definition ? null : this.definition,
-      guidance: guidance ? null : this.guidance,
-      group: group ? null : this.group,
-      supplementalData: supplementalData ? null : this.supplementalData,
-    );
-  }
-
-  @override
-  Measure clone() => throw UnimplementedError();
-  @override
-  Measure copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    FhirString? subtitle,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    SubjectXMeasure? subjectX,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirString? usage,
-    FhirMarkdown? copyright,
-    FhirDate? approvalDate,
-    FhirDate? lastReviewDate,
-    Period? effectivePeriod,
-    List<CodeableConcept>? topic,
-    List<ContactDetail>? author,
-    List<ContactDetail>? editor,
-    List<ContactDetail>? reviewer,
-    List<ContactDetail>? endorser,
-    List<RelatedArtifact>? relatedArtifact,
-    List<FhirCanonical>? library_,
-    FhirMarkdown? disclaimer,
-    CodeableConcept? scoring,
-    CodeableConcept? compositeScoring,
-    List<CodeableConcept>? type,
-    FhirString? riskAdjustment,
-    FhirString? rateAggregation,
-    FhirMarkdown? rationale,
-    FhirMarkdown? clinicalRecommendationStatement,
-    CodeableConcept? improvementNotation,
-    List<FhirMarkdown>? definition,
-    FhirMarkdown? guidance,
-    List<MeasureGroup>? group,
-    List<MeasureSupplementalData>? supplementalData,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Measure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      subtitle: subtitle?.copyWith(
-            objectPath: '$newObjectPath.subtitle',
-          ) ??
-          this.subtitle,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      subjectX: subjectX?.copyWith(
-            objectPath: '$newObjectPath.subjectX',
-          ) as SubjectXMeasure? ??
-          this.subjectX,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      usage: usage?.copyWith(
-            objectPath: '$newObjectPath.usage',
-          ) ??
-          this.usage,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      approvalDate: approvalDate?.copyWith(
-            objectPath: '$newObjectPath.approvalDate',
-          ) ??
-          this.approvalDate,
-      lastReviewDate: lastReviewDate?.copyWith(
-            objectPath: '$newObjectPath.lastReviewDate',
-          ) ??
-          this.lastReviewDate,
-      effectivePeriod: effectivePeriod?.copyWith(
-            objectPath: '$newObjectPath.effectivePeriod',
-          ) ??
-          this.effectivePeriod,
-      topic: topic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.topic',
-                ),
-              )
-              .toList() ??
-          this.topic,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      editor: editor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.editor',
-                ),
-              )
-              .toList() ??
-          this.editor,
-      reviewer: reviewer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reviewer',
-                ),
-              )
-              .toList() ??
-          this.reviewer,
-      endorser: endorser
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endorser',
-                ),
-              )
-              .toList() ??
-          this.endorser,
-      relatedArtifact: relatedArtifact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedArtifact',
-                ),
-              )
-              .toList() ??
-          this.relatedArtifact,
-      library_: library_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.library',
-                ),
-              )
-              .toList() ??
-          this.library_,
-      disclaimer: disclaimer?.copyWith(
-            objectPath: '$newObjectPath.disclaimer',
-          ) ??
-          this.disclaimer,
-      scoring: scoring?.copyWith(
-            objectPath: '$newObjectPath.scoring',
-          ) ??
-          this.scoring,
-      compositeScoring: compositeScoring?.copyWith(
-            objectPath: '$newObjectPath.compositeScoring',
-          ) ??
-          this.compositeScoring,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      riskAdjustment: riskAdjustment?.copyWith(
-            objectPath: '$newObjectPath.riskAdjustment',
-          ) ??
-          this.riskAdjustment,
-      rateAggregation: rateAggregation?.copyWith(
-            objectPath: '$newObjectPath.rateAggregation',
-          ) ??
-          this.rateAggregation,
-      rationale: rationale?.copyWith(
-            objectPath: '$newObjectPath.rationale',
-          ) ??
-          this.rationale,
-      clinicalRecommendationStatement:
-          clinicalRecommendationStatement?.copyWith(
-                objectPath: '$newObjectPath.clinicalRecommendationStatement',
-              ) ??
-              this.clinicalRecommendationStatement,
-      improvementNotation: improvementNotation?.copyWith(
-            objectPath: '$newObjectPath.improvementNotation',
-          ) ??
-          this.improvementNotation,
-      definition: definition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.definition',
-                ),
-              )
-              .toList() ??
-          this.definition,
-      guidance: guidance?.copyWith(
-            objectPath: '$newObjectPath.guidance',
-          ) ??
-          this.guidance,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
-      supplementalData: supplementalData
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supplementalData',
-                ),
-              )
-              .toList() ??
-          this.supplementalData,
-    );
-  }
+  $MeasureCopyWith<Measure> get copyWith => _$MeasureCopyWithImpl<Measure>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2984,44 +1451,29 @@ class MeasureGroup extends BackboneElement {
     this.population,
     this.stratifier,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Measure.group',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureGroup.empty() => const MeasureGroup();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureGroup.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure.group';
     return MeasureGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3029,31 +1481,23 @@ class MeasureGroup extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       population: (json['population'] as List<dynamic>?)
           ?.map<MeasurePopulation>(
             (v) => MeasurePopulation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.population',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       stratifier: (json['stratifier'] as List<dynamic>?)
           ?.map<MeasureStratifier>(
             (v) => MeasureStratifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.stratifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3282,281 +1726,19 @@ class MeasureGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MeasureGroup clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'population':
-        {
-          if (child is List<MeasurePopulation>) {
-            // Add all elements from passed list
-            final newList = [...?population, ...child];
-            return copyWith(population: newList);
-          } else if (child is MeasurePopulation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?population,
-              child,
-            ];
-            return copyWith(population: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'stratifier':
-        {
-          if (child is List<MeasureStratifier>) {
-            // Add all elements from passed list
-            final newList = [...?stratifier, ...child];
-            return copyWith(stratifier: newList);
-          } else if (child is MeasureStratifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?stratifier,
-              child,
-            ];
-            return copyWith(stratifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MeasureGroup]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'population':
-        return ['MeasurePopulation'];
-      case 'stratifier':
-        return ['MeasureStratifier'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MeasureGroup]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MeasureGroup createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'population':
-        {
-          return copyWith(
-            population: <MeasurePopulation>[],
-          );
-        }
-      case 'stratifier':
-        {
-          return copyWith(
-            stratifier: <MeasureStratifier>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MeasureGroup clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool population = false,
-    bool stratifier = false,
-  }) {
-    return MeasureGroup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      population: population ? null : this.population,
-      stratifier: stratifier ? null : this.stratifier,
-    );
-  }
-
-  @override
-  MeasureGroup clone() => throw UnimplementedError();
-  @override
-  MeasureGroup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirString? description,
-    List<MeasurePopulation>? population,
-    List<MeasureStratifier>? stratifier,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MeasureGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      population: population
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.population',
-                ),
-              )
-              .toList() ??
-          this.population,
-      stratifier: stratifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.stratifier',
-                ),
-              )
-              .toList() ??
-          this.stratifier,
-    );
-  }
+  $MeasureGroupCopyWith<MeasureGroup> get copyWith =>
+      _$MeasureGroupCopyWithImpl<MeasureGroup>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3626,46 +1808,29 @@ class MeasurePopulation extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Measure.group.population',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasurePopulation.empty() => MeasurePopulation(
-        criteria: FhirExpression.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasurePopulation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure.group.population';
     return MeasurePopulation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3673,19 +1838,16 @@ class MeasurePopulation extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
         FhirExpression.fromJson,
-        '$objectPath.criteria',
       )!,
     );
   }
@@ -3894,231 +2056,19 @@ class MeasurePopulation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MeasurePopulation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'criteria':
-        {
-          if (child is FhirExpression) {
-            return copyWith(criteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MeasurePopulation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'criteria':
-        return ['FhirExpression'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MeasurePopulation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MeasurePopulation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'criteria':
-        {
-          return copyWith(
-            criteria: FhirExpression.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MeasurePopulation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-  }) {
-    return MeasurePopulation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      criteria: criteria,
-    );
-  }
-
-  @override
-  MeasurePopulation clone() => throw UnimplementedError();
-  @override
-  MeasurePopulation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirString? description,
-    FhirExpression? criteria,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MeasurePopulation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      criteria: criteria?.copyWith(
-            objectPath: '$newObjectPath.criteria',
-          ) ??
-          this.criteria,
-    );
-  }
+  $MeasurePopulationCopyWith<MeasurePopulation> get copyWith =>
+      _$MeasurePopulationCopyWithImpl<MeasurePopulation>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4185,44 +2135,29 @@ class MeasureStratifier extends BackboneElement {
     this.criteria,
     this.component,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Measure.group.stratifier',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureStratifier.empty() => const MeasureStratifier();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureStratifier.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure.group.stratifier';
     return MeasureStratifier(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4230,27 +2165,21 @@ class MeasureStratifier extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
         FhirExpression.fromJson,
-        '$objectPath.criteria',
       ),
       component: (json['component'] as List<dynamic>?)
           ?.map<MeasureComponent>(
             (v) => MeasureComponent.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.component',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4482,268 +2411,19 @@ class MeasureStratifier extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MeasureStratifier clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'criteria':
-        {
-          if (child is FhirExpression) {
-            return copyWith(criteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'component':
-        {
-          if (child is List<MeasureComponent>) {
-            // Add all elements from passed list
-            final newList = [...?component, ...child];
-            return copyWith(component: newList);
-          } else if (child is MeasureComponent) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?component,
-              child,
-            ];
-            return copyWith(component: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MeasureStratifier]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'criteria':
-        return ['FhirExpression'];
-      case 'component':
-        return ['MeasureComponent'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MeasureStratifier]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MeasureStratifier createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'criteria':
-        {
-          return copyWith(
-            criteria: FhirExpression.empty(),
-          );
-        }
-      case 'component':
-        {
-          return copyWith(
-            component: <MeasureComponent>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MeasureStratifier clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool criteria = false,
-    bool component = false,
-  }) {
-    return MeasureStratifier(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      criteria: criteria ? null : this.criteria,
-      component: component ? null : this.component,
-    );
-  }
-
-  @override
-  MeasureStratifier clone() => throw UnimplementedError();
-  @override
-  MeasureStratifier copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirString? description,
-    FhirExpression? criteria,
-    List<MeasureComponent>? component,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MeasureStratifier(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      criteria: criteria?.copyWith(
-            objectPath: '$newObjectPath.criteria',
-          ) ??
-          this.criteria,
-      component: component
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.component',
-                ),
-              )
-              .toList() ??
-          this.component,
-    );
-  }
+  $MeasureStratifierCopyWith<MeasureStratifier> get copyWith =>
+      _$MeasureStratifierCopyWithImpl<MeasureStratifier>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4815,46 +2495,29 @@ class MeasureComponent extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Measure.group.stratifier.component',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureComponent.empty() => MeasureComponent(
-        criteria: FhirExpression.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureComponent.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure.group.stratifier.component';
     return MeasureComponent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4862,19 +2525,16 @@ class MeasureComponent extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
         FhirExpression.fromJson,
-        '$objectPath.criteria',
       )!,
     );
   }
@@ -5088,231 +2748,19 @@ class MeasureComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MeasureComponent clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'criteria':
-        {
-          if (child is FhirExpression) {
-            return copyWith(criteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MeasureComponent]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'criteria':
-        return ['FhirExpression'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MeasureComponent]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MeasureComponent createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'criteria':
-        {
-          return copyWith(
-            criteria: FhirExpression.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MeasureComponent clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-  }) {
-    return MeasureComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      criteria: criteria,
-    );
-  }
-
-  @override
-  MeasureComponent clone() => throw UnimplementedError();
-  @override
-  MeasureComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirString? description,
-    FhirExpression? criteria,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MeasureComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      criteria: criteria?.copyWith(
-            objectPath: '$newObjectPath.criteria',
-          ) ??
-          this.criteria,
-    );
-  }
+  $MeasureComponentCopyWith<MeasureComponent> get copyWith =>
+      _$MeasureComponentCopyWithImpl<MeasureComponent>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5379,46 +2827,29 @@ class MeasureSupplementalData extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Measure.supplementalData',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureSupplementalData.empty() => MeasureSupplementalData(
-        criteria: FhirExpression.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureSupplementalData.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Measure.supplementalData';
     return MeasureSupplementalData(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5426,15 +2857,11 @@ class MeasureSupplementalData extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       usage: (json['usage'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.usage',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5442,13 +2869,11 @@ class MeasureSupplementalData extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
         FhirExpression.fromJson,
-        '$objectPath.criteria',
       )!,
     );
   }
@@ -5680,267 +3105,19 @@ class MeasureSupplementalData extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MeasureSupplementalData clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'usage':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?usage, ...child];
-            return copyWith(usage: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?usage,
-              child,
-            ];
-            return copyWith(usage: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'criteria':
-        {
-          if (child is FhirExpression) {
-            return copyWith(criteria: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MeasureSupplementalData]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'usage':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'criteria':
-        return ['FhirExpression'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MeasureSupplementalData]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MeasureSupplementalData createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'usage':
-        {
-          return copyWith(
-            usage: <CodeableConcept>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'criteria':
-        {
-          return copyWith(
-            criteria: FhirExpression.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MeasureSupplementalData clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool usage = false,
-    bool description = false,
-  }) {
-    return MeasureSupplementalData(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      usage: usage ? null : this.usage,
-      description: description ? null : this.description,
-      criteria: criteria,
-    );
-  }
-
-  @override
-  MeasureSupplementalData clone() => throw UnimplementedError();
-  @override
-  MeasureSupplementalData copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    List<CodeableConcept>? usage,
-    FhirString? description,
-    FhirExpression? criteria,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MeasureSupplementalData(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      usage: usage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.usage',
-                ),
-              )
-              .toList() ??
-          this.usage,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      criteria: criteria?.copyWith(
-            objectPath: '$newObjectPath.criteria',
-          ) ??
-          this.criteria,
-    );
-  }
+  $MeasureSupplementalDataCopyWith<MeasureSupplementalData> get copyWith =>
+      _$MeasureSupplementalDataCopyWithImpl<MeasureSupplementalData>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

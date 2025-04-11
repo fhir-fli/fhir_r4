@@ -332,20 +332,6 @@ class CodeableReferenceBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool concept = false,
-    bool reference = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (concept) this.concept = null;
-    if (reference) this.reference = null;
-  }
-
   @override
   CodeableReferenceBuilder clone() => throw UnimplementedError();
   @override

@@ -11,15 +11,7 @@ abstract class BackboneElement extends DataType {
     super.extension_,
     this.modifierExtension,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'BackboneElement',
   });
-
-  /// Creates an empty [BackboneElement] object
-  factory BackboneElement.empty() => throw UnimplementedError();
 
   /// FromJson Factory Constructor for [BackboneElement]
   factory BackboneElement.fromJson(Map<String, dynamic> json) {
@@ -122,27 +114,20 @@ abstract class BackboneElement extends DataType {
   }
 
   @override
-  BackboneElement copyWith({
+  BackboneElement clone();
+
+  /// CopyWith method for [BackboneElement].
+  @override
+  $BackboneElementCopyWith<BackboneElement> get copyWith;
+}
+
+/// Abstract class for copyWith functionality for [BackboneElement]
+abstract class $BackboneElementCopyWith<T> extends $DataTypeCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
+    bool? disallowExtensions,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
-
-  /// Creates an empty property in the object
-  @override
-  BackboneElement createProperty(String propertyName);
-
-  @override
-  BackboneElement clear({bool extension_ = false, bool id = false});
 }

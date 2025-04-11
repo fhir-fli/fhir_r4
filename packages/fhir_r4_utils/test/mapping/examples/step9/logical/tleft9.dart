@@ -12,7 +12,6 @@ class TLeft9 extends Element {
     this.i,
     this.m,
     super.disallowExtensions,
-    super.objectPath = 'TLeft9',
   });
 
   /// FromJson Factory Constructor
@@ -59,26 +58,6 @@ class TLeft9 extends Element {
   final FhirInteger? m;
 
   @override
-  TLeft9 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? i,
-    FhirInteger? m,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft9(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      i: i ?? this.i,
-      m: m ?? this.m,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
     if (id != null) json['id'] = id!.valueString;
@@ -88,37 +67,6 @@ class TLeft9 extends Element {
     if (i != null) json['i'] = i!.valueString;
     if (m != null) json['m'] = m!.valueInt;
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'i', 'm'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'i':
-        if (i != null) fields.add(i!);
-      case 'm':
-        if (m != null) fields.add(m!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -371,18 +319,6 @@ class TLeft9Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool i = false,
-    bool m = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (i) this.i = null;
-    if (m) this.m = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

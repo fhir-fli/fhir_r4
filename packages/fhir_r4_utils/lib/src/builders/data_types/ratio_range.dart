@@ -365,22 +365,6 @@ class RatioRangeBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool lowNumerator = false,
-    bool highNumerator = false,
-    bool denominator = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (lowNumerator) this.lowNumerator = null;
-    if (highNumerator) this.highNumerator = null;
-    if (denominator) this.denominator = null;
-  }
-
   @override
   RatioRangeBuilder clone() => throw UnimplementedError();
   @override

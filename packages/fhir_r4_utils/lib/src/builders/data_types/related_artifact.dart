@@ -577,30 +577,6 @@ class RelatedArtifactBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool label = false,
-    bool display = false,
-    bool citation = false,
-    bool url = false,
-    bool document = false,
-    bool resource = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (label) this.label = null;
-    if (display) this.display = null;
-    if (citation) this.citation = null;
-    if (url) this.url = null;
-    if (document) this.document = null;
-    if (resource) this.resource = null;
-  }
-
   @override
   RelatedArtifactBuilder clone() => throw UnimplementedError();
   @override

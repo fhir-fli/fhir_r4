@@ -607,30 +607,6 @@ class SampledDataBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool origin = false,
-    bool period = false,
-    bool factor = false,
-    bool lowerLimit = false,
-    bool upperLimit = false,
-    bool dimensions = false,
-    bool data = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (origin) this.origin = null;
-    if (period) this.period = null;
-    if (factor) this.factor = null;
-    if (lowerLimit) this.lowerLimit = null;
-    if (upperLimit) this.upperLimit = null;
-    if (dimensions) this.dimensions = null;
-    if (data) this.data = null;
-  }
-
   @override
   SampledDataBuilder clone() => throw UnimplementedError();
   @override

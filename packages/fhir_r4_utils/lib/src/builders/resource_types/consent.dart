@@ -1094,54 +1094,6 @@ class ConsentBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool scope = false,
-    bool category = false,
-    bool patient = false,
-    bool dateTime = false,
-    bool performer = false,
-    bool organization = false,
-    bool source = false,
-    bool policy = false,
-    bool policyRule = false,
-    bool verification = false,
-    bool provision = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (scope) this.scope = null;
-    if (category) this.category = null;
-    if (patient) this.patient = null;
-    if (dateTime) this.dateTime = null;
-    if (performer) this.performer = null;
-    if (organization) this.organization = null;
-    if (source) sourceX = null;
-    if (policy) this.policy = null;
-    if (policyRule) this.policyRule = null;
-    if (verification) this.verification = null;
-    if (provision) this.provision = null;
-  }
-
   @override
   ConsentBuilder clone() => throw UnimplementedError();
   @override
@@ -1740,22 +1692,6 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool authority = false,
-    bool uri = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (authority) this.authority = null;
-    if (uri) this.uri = null;
-  }
-
   @override
   ConsentPolicyBuilder clone() => throw UnimplementedError();
   @override
@@ -2257,24 +2193,6 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool verified = false,
-    bool verifiedWith = false,
-    bool verificationDate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (verified) this.verified = null;
-    if (verifiedWith) this.verifiedWith = null;
-    if (verificationDate) this.verificationDate = null;
   }
 
   @override
@@ -3135,40 +3053,6 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool period = false,
-    bool actor = false,
-    bool action = false,
-    bool securityLabel = false,
-    bool purpose = false,
-    bool class_ = false,
-    bool code = false,
-    bool dataPeriod = false,
-    bool data = false,
-    bool provision = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (period) this.period = null;
-    if (actor) this.actor = null;
-    if (action) this.action = null;
-    if (securityLabel) this.securityLabel = null;
-    if (purpose) this.purpose = null;
-    if (class_) this.class_ = null;
-    if (code) this.code = null;
-    if (dataPeriod) this.dataPeriod = null;
-    if (data) this.data = null;
-    if (provision) this.provision = null;
-  }
-
   @override
   ConsentProvisionBuilder clone() => throw UnimplementedError();
   @override
@@ -3690,22 +3574,6 @@ class ConsentActorBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool reference = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (reference) this.reference = null;
-  }
-
   @override
   ConsentActorBuilder clone() => throw UnimplementedError();
   @override
@@ -4167,22 +4035,6 @@ class ConsentDataBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool meaning = false,
-    bool reference = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (meaning) this.meaning = null;
-    if (reference) this.reference = null;
   }
 
   @override

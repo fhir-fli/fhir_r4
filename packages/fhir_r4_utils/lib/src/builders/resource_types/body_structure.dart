@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show BodyStructure, R4ResourceType, yamlMapToJson, yamlToJson;
+    show
+        BodyStructure,
+        R4ResourceType,
+        
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -802,44 +807,6 @@ class BodyStructureBuilder extends DomainResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool morphology = false,
-    bool location = false,
-    bool locationQualifier = false,
-    bool description = false,
-    bool image = false,
-    bool patient = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (morphology) this.morphology = null;
-    if (location) this.location = null;
-    if (locationQualifier) this.locationQualifier = null;
-    if (description) this.description = null;
-    if (image) this.image = null;
-    if (patient) this.patient = null;
   }
 
   @override

@@ -288,18 +288,4 @@ class FhirOidBuilder extends FhirUriBuilder
   @override
   FhirOidBuilder createProperty(String propertyName) => this;
 
-  /// Clears selected fields in this [FhirOidBuilder].
-  @override
-  FhirOidBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirOidBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

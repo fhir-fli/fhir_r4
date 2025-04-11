@@ -493,26 +493,6 @@ class ContactPointBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool system = false,
-    bool value = false,
-    bool use = false,
-    bool rank = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (system) this.system = null;
-    if (value) this.value = null;
-    if (use) this.use = null;
-    if (rank) this.rank = null;
-    if (period) this.period = null;
-  }
-
   @override
   ContactPointBuilder clone() => throw UnimplementedError();
   @override

@@ -1705,76 +1705,6 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool priorRequest = false,
-    bool groupIdentifier = false,
-    bool status = false,
-    bool intent = false,
-    bool priority = false,
-    bool code = false,
-    bool parameter = false,
-    bool subject = false,
-    bool encounter = false,
-    bool occurrence = false,
-    bool authoredOn = false,
-    bool requester = false,
-    bool performerType = false,
-    bool performer = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool insurance = false,
-    bool supportingInfo = false,
-    bool note = false,
-    bool relevantHistory = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (priorRequest) this.priorRequest = null;
-    if (groupIdentifier) this.groupIdentifier = null;
-    if (status) this.status = null;
-    if (intent) this.intent = null;
-    if (priority) this.priority = null;
-    if (code) codeX = null;
-    if (parameter) this.parameter = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
-    if (authoredOn) this.authoredOn = null;
-    if (requester) this.requester = null;
-    if (performerType) this.performerType = null;
-    if (performer) this.performer = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (insurance) this.insurance = null;
-    if (supportingInfo) this.supportingInfo = null;
-    if (note) this.note = null;
-    if (relevantHistory) this.relevantHistory = null;
-  }
-
   @override
   DeviceRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -2559,22 +2489,6 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
   }
 
   @override

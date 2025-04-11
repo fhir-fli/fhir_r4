@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'task.g.dart';
+
 /// [Task]
 /// A task to be performed.
 class Task extends DomainResource {
@@ -49,91 +51,64 @@ class Task extends DomainResource {
     this.input,
     this.output,
   }) : super(
-          objectPath: 'Task',
           resourceType: R4ResourceType.Task,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Task.empty() => Task(
-        status: TaskStatus.values.first,
-        intent: TaskIntent.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Task.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Task';
     return Task(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -141,21 +116,16 @@ class Task extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.basedOn',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -163,15 +133,11 @@ class Task extends DomainResource {
         json,
         'groupIdentifier',
         Identifier.fromJson,
-        '$objectPath.groupIdentifier',
       ),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.partOf',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -179,93 +145,76 @@ class Task extends DomainResource {
         json,
         'status',
         TaskStatus.fromJson,
-        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
-        '$objectPath.statusReason',
       ),
       businessStatus: JsonParser.parseObject<CodeableConcept>(
         json,
         'businessStatus',
         CodeableConcept.fromJson,
-        '$objectPath.businessStatus',
       ),
       intent: JsonParser.parsePrimitive<TaskIntent>(
         json,
         'intent',
         TaskIntent.fromJson,
-        '$objectPath.intent',
       )!,
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
-        '$objectPath.priority',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       focus: JsonParser.parseObject<Reference>(
         json,
         'focus',
         Reference.fromJson,
-        '$objectPath.focus',
       ),
       for_: JsonParser.parseObject<Reference>(
         json,
         'for',
         Reference.fromJson,
-        '$objectPath.for',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       executionPeriod: JsonParser.parseObject<Period>(
         json,
         'executionPeriod',
         Period.fromJson,
-        '$objectPath.executionPeriod',
       ),
       authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-        '$objectPath.authoredOn',
       ),
       lastModified: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastModified',
         FhirDateTime.fromJson,
-        '$objectPath.lastModified',
       ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
         Reference.fromJson,
-        '$objectPath.requester',
       ),
       performerType: (json['performerType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.performerType',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -273,53 +222,40 @@ class Task extends DomainResource {
         json,
         'owner',
         Reference.fromJson,
-        '$objectPath.owner',
       ),
       location: JsonParser.parseObject<Reference>(
         json,
         'location',
         Reference.fromJson,
-        '$objectPath.location',
       ),
       reasonCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'reasonCode',
         CodeableConcept.fromJson,
-        '$objectPath.reasonCode',
       ),
       reasonReference: JsonParser.parseObject<Reference>(
         json,
         'reasonReference',
         Reference.fromJson,
-        '$objectPath.reasonReference',
       ),
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.insurance',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       relevantHistory: (json['relevantHistory'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.relevantHistory',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -327,25 +263,18 @@ class Task extends DomainResource {
         json,
         'restriction',
         TaskRestriction.fromJson,
-        '$objectPath.restriction',
       ),
       input: (json['input'] as List<dynamic>?)
           ?.map<TaskInput>(
             (v) => TaskInput.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.input',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       output: (json['output'] as List<dynamic>?)
           ?.map<TaskOutput>(
             (v) => TaskOutput.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.output',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -987,1112 +916,18 @@ class Task extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Task clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(instantiatesCanonical: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(instantiatesUri: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basedOn':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?basedOn,
-              child,
-            ];
-            return copyWith(basedOn: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'groupIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(groupIdentifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'partOf':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?partOf,
-              child,
-            ];
-            return copyWith(partOf: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is TaskStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'statusReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(statusReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'businessStatus':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(businessStatus: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'intent':
-        {
-          if (child is TaskIntent) {
-            return copyWith(intent: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'priority':
-        {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focus':
-        {
-          if (child is Reference) {
-            return copyWith(focus: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'for':
-        {
-          if (child is Reference) {
-            return copyWith(for_: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'executionPeriod':
-        {
-          if (child is Period) {
-            return copyWith(executionPeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'authoredOn':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(authoredOn: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'lastModified':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(lastModified: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requester':
-        {
-          if (child is Reference) {
-            return copyWith(requester: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'performerType':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?performerType, ...child];
-            return copyWith(performerType: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?performerType,
-              child,
-            ];
-            return copyWith(performerType: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'owner':
-        {
-          if (child is Reference) {
-            return copyWith(owner: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-        {
-          if (child is Reference) {
-            return copyWith(location: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(reasonCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonReference':
-        {
-          if (child is Reference) {
-            return copyWith(reasonReference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurance':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?insurance, ...child];
-            return copyWith(insurance: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?insurance,
-              child,
-            ];
-            return copyWith(insurance: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relevantHistory':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?relevantHistory, ...child];
-            return copyWith(relevantHistory: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?relevantHistory,
-              child,
-            ];
-            return copyWith(relevantHistory: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'restriction':
-        {
-          if (child is TaskRestriction) {
-            return copyWith(restriction: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'input':
-        {
-          if (child is List<TaskInput>) {
-            // Add all elements from passed list
-            final newList = [...?input, ...child];
-            return copyWith(input: newList);
-          } else if (child is TaskInput) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?input,
-              child,
-            ];
-            return copyWith(input: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'output':
-        {
-          if (child is List<TaskOutput>) {
-            // Add all elements from passed list
-            final newList = [...?output, ...child];
-            return copyWith(output: newList);
-          } else if (child is TaskOutput) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?output,
-              child,
-            ];
-            return copyWith(output: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Task]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'instantiatesCanonical':
-        return ['FhirCanonical'];
-      case 'instantiatesUri':
-        return ['FhirUri'];
-      case 'basedOn':
-        return ['Reference'];
-      case 'groupIdentifier':
-        return ['Identifier'];
-      case 'partOf':
-        return ['Reference'];
-      case 'status':
-        return ['FhirCode'];
-      case 'statusReason':
-        return ['CodeableConcept'];
-      case 'businessStatus':
-        return ['CodeableConcept'];
-      case 'intent':
-        return ['FhirCode'];
-      case 'priority':
-        return ['FhirCode'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'focus':
-        return ['Reference'];
-      case 'for':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'executionPeriod':
-        return ['Period'];
-      case 'authoredOn':
-        return ['FhirDateTime'];
-      case 'lastModified':
-        return ['FhirDateTime'];
-      case 'requester':
-        return ['Reference'];
-      case 'performerType':
-        return ['CodeableConcept'];
-      case 'owner':
-        return ['Reference'];
-      case 'location':
-        return ['Reference'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'reasonReference':
-        return ['Reference'];
-      case 'insurance':
-        return ['Reference'];
-      case 'note':
-        return ['Annotation'];
-      case 'relevantHistory':
-        return ['Reference'];
-      case 'restriction':
-        return ['TaskRestriction'];
-      case 'input':
-        return ['TaskInput'];
-      case 'output':
-        return ['TaskOutput'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Task]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Task createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'instantiatesCanonical':
-        {
-          return copyWith(
-            instantiatesCanonical: FhirCanonical.empty(),
-          );
-        }
-      case 'instantiatesUri':
-        {
-          return copyWith(
-            instantiatesUri: FhirUri.empty(),
-          );
-        }
-      case 'basedOn':
-        {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
-        }
-      case 'groupIdentifier':
-        {
-          return copyWith(
-            groupIdentifier: Identifier.empty(),
-          );
-        }
-      case 'partOf':
-        {
-          return copyWith(
-            partOf: <Reference>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: TaskStatus.empty(),
-          );
-        }
-      case 'statusReason':
-        {
-          return copyWith(
-            statusReason: CodeableConcept.empty(),
-          );
-        }
-      case 'businessStatus':
-        {
-          return copyWith(
-            businessStatus: CodeableConcept.empty(),
-          );
-        }
-      case 'intent':
-        {
-          return copyWith(
-            intent: TaskIntent.empty(),
-          );
-        }
-      case 'priority':
-        {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'focus':
-        {
-          return copyWith(
-            focus: Reference.empty(),
-          );
-        }
-      case 'for':
-        {
-          return copyWith(
-            for_: Reference.empty(),
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'executionPeriod':
-        {
-          return copyWith(
-            executionPeriod: Period.empty(),
-          );
-        }
-      case 'authoredOn':
-        {
-          return copyWith(
-            authoredOn: FhirDateTime.empty(),
-          );
-        }
-      case 'lastModified':
-        {
-          return copyWith(
-            lastModified: FhirDateTime.empty(),
-          );
-        }
-      case 'requester':
-        {
-          return copyWith(
-            requester: Reference.empty(),
-          );
-        }
-      case 'performerType':
-        {
-          return copyWith(
-            performerType: <CodeableConcept>[],
-          );
-        }
-      case 'owner':
-        {
-          return copyWith(
-            owner: Reference.empty(),
-          );
-        }
-      case 'location':
-        {
-          return copyWith(
-            location: Reference.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: CodeableConcept.empty(),
-          );
-        }
-      case 'reasonReference':
-        {
-          return copyWith(
-            reasonReference: Reference.empty(),
-          );
-        }
-      case 'insurance':
-        {
-          return copyWith(
-            insurance: <Reference>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      case 'relevantHistory':
-        {
-          return copyWith(
-            relevantHistory: <Reference>[],
-          );
-        }
-      case 'restriction':
-        {
-          return copyWith(
-            restriction: TaskRestriction.empty(),
-          );
-        }
-      case 'input':
-        {
-          return copyWith(
-            input: <TaskInput>[],
-          );
-        }
-      case 'output':
-        {
-          return copyWith(
-            output: <TaskOutput>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Task clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool groupIdentifier = false,
-    bool partOf = false,
-    bool statusReason = false,
-    bool businessStatus = false,
-    bool priority = false,
-    bool code = false,
-    bool description = false,
-    bool focus = false,
-    bool for_ = false,
-    bool encounter = false,
-    bool executionPeriod = false,
-    bool authoredOn = false,
-    bool lastModified = false,
-    bool requester = false,
-    bool performerType = false,
-    bool owner = false,
-    bool location = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool insurance = false,
-    bool note = false,
-    bool relevantHistory = false,
-    bool restriction = false,
-    bool input = false,
-    bool output = false,
-  }) {
-    return Task(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      businessStatus: businessStatus ? null : this.businessStatus,
-      intent: intent,
-      priority: priority ? null : this.priority,
-      code: code ? null : this.code,
-      description: description ? null : this.description,
-      focus: focus ? null : this.focus,
-      for_: for_ ? null : this.for_,
-      encounter: encounter ? null : this.encounter,
-      executionPeriod: executionPeriod ? null : this.executionPeriod,
-      authoredOn: authoredOn ? null : this.authoredOn,
-      lastModified: lastModified ? null : this.lastModified,
-      requester: requester ? null : this.requester,
-      performerType: performerType ? null : this.performerType,
-      owner: owner ? null : this.owner,
-      location: location ? null : this.location,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      insurance: insurance ? null : this.insurance,
-      note: note ? null : this.note,
-      relevantHistory: relevantHistory ? null : this.relevantHistory,
-      restriction: restriction ? null : this.restriction,
-      input: input ? null : this.input,
-      output: output ? null : this.output,
-    );
-  }
-
-  @override
-  Task clone() => throw UnimplementedError();
-  @override
-  Task copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirCanonical? instantiatesCanonical,
-    FhirUri? instantiatesUri,
-    List<Reference>? basedOn,
-    Identifier? groupIdentifier,
-    List<Reference>? partOf,
-    TaskStatus? status,
-    CodeableConcept? statusReason,
-    CodeableConcept? businessStatus,
-    TaskIntent? intent,
-    RequestPriority? priority,
-    CodeableConcept? code,
-    FhirString? description,
-    Reference? focus,
-    Reference? for_,
-    Reference? encounter,
-    Period? executionPeriod,
-    FhirDateTime? authoredOn,
-    FhirDateTime? lastModified,
-    Reference? requester,
-    List<CodeableConcept>? performerType,
-    Reference? owner,
-    Reference? location,
-    CodeableConcept? reasonCode,
-    Reference? reasonReference,
-    List<Reference>? insurance,
-    List<Annotation>? note,
-    List<Reference>? relevantHistory,
-    TaskRestriction? restriction,
-    List<TaskInput>? input,
-    List<TaskOutput>? output,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Task(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical?.copyWith(
-            objectPath: '$newObjectPath.instantiatesCanonical',
-          ) ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri?.copyWith(
-            objectPath: '$newObjectPath.instantiatesUri',
-          ) ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      groupIdentifier: groupIdentifier?.copyWith(
-            objectPath: '$newObjectPath.groupIdentifier',
-          ) ??
-          this.groupIdentifier,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      businessStatus: businessStatus?.copyWith(
-            objectPath: '$newObjectPath.businessStatus',
-          ) ??
-          this.businessStatus,
-      intent: intent?.copyWith(
-            objectPath: '$newObjectPath.intent',
-          ) ??
-          this.intent,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      focus: focus?.copyWith(
-            objectPath: '$newObjectPath.focus',
-          ) ??
-          this.focus,
-      for_: for_?.copyWith(
-            objectPath: '$newObjectPath.for',
-          ) ??
-          this.for_,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      executionPeriod: executionPeriod?.copyWith(
-            objectPath: '$newObjectPath.executionPeriod',
-          ) ??
-          this.executionPeriod,
-      authoredOn: authoredOn?.copyWith(
-            objectPath: '$newObjectPath.authoredOn',
-          ) ??
-          this.authoredOn,
-      lastModified: lastModified?.copyWith(
-            objectPath: '$newObjectPath.lastModified',
-          ) ??
-          this.lastModified,
-      requester: requester?.copyWith(
-            objectPath: '$newObjectPath.requester',
-          ) ??
-          this.requester,
-      performerType: performerType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performerType',
-                ),
-              )
-              .toList() ??
-          this.performerType,
-      owner: owner?.copyWith(
-            objectPath: '$newObjectPath.owner',
-          ) ??
-          this.owner,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      reasonCode: reasonCode?.copyWith(
-            objectPath: '$newObjectPath.reasonCode',
-          ) ??
-          this.reasonCode,
-      reasonReference: reasonReference?.copyWith(
-            objectPath: '$newObjectPath.reasonReference',
-          ) ??
-          this.reasonReference,
-      insurance: insurance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.insurance',
-                ),
-              )
-              .toList() ??
-          this.insurance,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      relevantHistory: relevantHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relevantHistory',
-                ),
-              )
-              .toList() ??
-          this.relevantHistory,
-      restriction: restriction?.copyWith(
-            objectPath: '$newObjectPath.restriction',
-          ) ??
-          this.restriction,
-      input: input
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.input',
-                ),
-              )
-              .toList() ??
-          this.input,
-      output: output
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.output',
-                ),
-              )
-              .toList() ??
-          this.output,
-    );
-  }
+  $TaskCopyWith<Task> get copyWith => _$TaskCopyWithImpl<Task>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2357,44 +1192,29 @@ class TaskRestriction extends BackboneElement {
     this.period,
     this.recipient,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Task.restriction',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TaskRestriction.empty() => const TaskRestriction();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskRestriction.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Task.restriction';
     return TaskRestriction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2402,21 +1222,16 @@ class TaskRestriction extends BackboneElement {
         json,
         'repetitions',
         FhirPositiveInt.fromJson,
-        '$objectPath.repetitions',
       ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
         Period.fromJson,
-        '$objectPath.period',
       ),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.recipient',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2629,245 +1444,19 @@ class TaskRestriction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TaskRestriction clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'repetitions':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(repetitions: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'period':
-        {
-          if (child is Period) {
-            return copyWith(period: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'recipient':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?recipient, ...child];
-            return copyWith(recipient: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?recipient,
-              child,
-            ];
-            return copyWith(recipient: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TaskRestriction]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'repetitions':
-        return ['FhirPositiveInt'];
-      case 'period':
-        return ['Period'];
-      case 'recipient':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TaskRestriction]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TaskRestriction createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'repetitions':
-        {
-          return copyWith(
-            repetitions: FhirPositiveInt.empty(),
-          );
-        }
-      case 'period':
-        {
-          return copyWith(
-            period: Period.empty(),
-          );
-        }
-      case 'recipient':
-        {
-          return copyWith(
-            recipient: <Reference>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TaskRestriction clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool repetitions = false,
-    bool period = false,
-    bool recipient = false,
-  }) {
-    return TaskRestriction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      repetitions: repetitions ? null : this.repetitions,
-      period: period ? null : this.period,
-      recipient: recipient ? null : this.recipient,
-    );
-  }
-
-  @override
-  TaskRestriction clone() => throw UnimplementedError();
-  @override
-  TaskRestriction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? repetitions,
-    Period? period,
-    List<Reference>? recipient,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TaskRestriction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      repetitions: repetitions?.copyWith(
-            objectPath: '$newObjectPath.repetitions',
-          ) ??
-          this.repetitions,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      recipient: recipient
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.recipient',
-                ),
-              )
-              .toList() ??
-          this.recipient,
-    );
-  }
+  $TaskRestrictionCopyWith<TaskRestriction> get copyWith =>
+      _$TaskRestrictionCopyWithImpl<TaskRestriction>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2930,47 +1519,29 @@ class TaskInput extends BackboneElement {
     required this.type,
     required this.valueX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Task.input',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TaskInput.empty() => TaskInput(
-        type: CodeableConcept.empty(),
-        valueX: FhirBase64Binary.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskInput.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Task.input';
     return TaskInput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2978,7 +1549,6 @@ class TaskInput extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       valueX: JsonParser.parsePolymorphic<ValueXTaskInput>(
         json,
@@ -3034,7 +1604,6 @@ class TaskInput extends BackboneElement {
           'valueDosage': Dosage.fromJson,
           'valueMeta': FhirMeta.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -3584,1206 +2153,19 @@ class TaskInput extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TaskInput clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXTaskInput) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirCode) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirId) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInstant) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirMarkdown) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirOid) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirPositiveInt) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUnsignedInt) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUri) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUrl) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUuid) {
-              return copyWith(valueX: child);
-            }
-            if (child is Address) {
-              return copyWith(valueX: child);
-            }
-            if (child is Age) {
-              return copyWith(valueX: child);
-            }
-            if (child is Annotation) {
-              return copyWith(valueX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is Coding) {
-              return copyWith(valueX: child);
-            }
-            if (child is ContactPoint) {
-              return copyWith(valueX: child);
-            }
-            if (child is Count) {
-              return copyWith(valueX: child);
-            }
-            if (child is Distance) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDuration) {
-              return copyWith(valueX: child);
-            }
-            if (child is HumanName) {
-              return copyWith(valueX: child);
-            }
-            if (child is Identifier) {
-              return copyWith(valueX: child);
-            }
-            if (child is Money) {
-              return copyWith(valueX: child);
-            }
-            if (child is Period) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
-            }
-            if (child is Reference) {
-              return copyWith(valueX: child);
-            }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
-            }
-            if (child is Signature) {
-              return copyWith(valueX: child);
-            }
-            if (child is Timing) {
-              return copyWith(valueX: child);
-            }
-            if (child is ContactDetail) {
-              return copyWith(valueX: child);
-            }
-            if (child is Contributor) {
-              return copyWith(valueX: child);
-            }
-            if (child is DataRequirement) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirExpression) {
-              return copyWith(valueX: child);
-            }
-            if (child is ParameterDefinition) {
-              return copyWith(valueX: child);
-            }
-            if (child is RelatedArtifact) {
-              return copyWith(valueX: child);
-            }
-            if (child is TriggerDefinition) {
-              return copyWith(valueX: child);
-            }
-            if (child is UsageContext) {
-              return copyWith(valueX: child);
-            }
-            if (child is Dosage) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirMeta) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueFhirBase64Binary':
-        {
-          if (child is FhirBase64Binary) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirCode':
-        {
-          if (child is FhirCode) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDecimal':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirId':
-        {
-          if (child is FhirId) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInstant':
-        {
-          if (child is FhirInstant) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirMarkdown':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirOid':
-        {
-          if (child is FhirOid) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirPositiveInt':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirTime':
-        {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUnsignedInt':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUrl':
-        {
-          if (child is FhirUrl) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUuid':
-        {
-          if (child is FhirUuid) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAddress':
-        {
-          if (child is Address) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAge':
-        {
-          if (child is Age) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAnnotation':
-        {
-          if (child is Annotation) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCoding':
-        {
-          if (child is Coding) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContactPoint':
-        {
-          if (child is ContactPoint) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCount':
-        {
-          if (child is Count) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDistance':
-        {
-          if (child is Distance) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueHumanName':
-        {
-          if (child is HumanName) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueMoney':
-        {
-          if (child is Money) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueReference':
-        {
-          if (child is Reference) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSampledData':
-        {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSignature':
-        {
-          if (child is Signature) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueTiming':
-        {
-          if (child is Timing) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContactDetail':
-        {
-          if (child is ContactDetail) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContributor':
-        {
-          if (child is Contributor) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDataRequirement':
-        {
-          if (child is DataRequirement) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirExpression':
-        {
-          if (child is FhirExpression) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueParameterDefinition':
-        {
-          if (child is ParameterDefinition) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRelatedArtifact':
-        {
-          if (child is RelatedArtifact) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueTriggerDefinition':
-        {
-          if (child is TriggerDefinition) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueUsageContext':
-        {
-          if (child is UsageContext) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDosage':
-        {
-          if (child is Dosage) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirMeta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TaskInput]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'value':
-      case 'valueX':
-        return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
-          'FhirMeta',
-        ];
-      case 'valueBase64Binary':
-        return ['FhirBase64Binary'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueCanonical':
-        return ['FhirCanonical'];
-      case 'valueCode':
-        return ['FhirCode'];
-      case 'valueDate':
-        return ['FhirDate'];
-      case 'valueDateTime':
-        return ['FhirDateTime'];
-      case 'valueDecimal':
-        return ['FhirDecimal'];
-      case 'valueId':
-        return ['FhirId'];
-      case 'valueInstant':
-        return ['FhirInstant'];
-      case 'valueInteger':
-        return ['FhirInteger'];
-      case 'valueMarkdown':
-        return ['FhirMarkdown'];
-      case 'valueOid':
-        return ['FhirOid'];
-      case 'valuePositiveInt':
-        return ['FhirPositiveInt'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueTime':
-        return ['FhirTime'];
-      case 'valueUnsignedInt':
-        return ['FhirUnsignedInt'];
-      case 'valueUri':
-        return ['FhirUri'];
-      case 'valueUrl':
-        return ['FhirUrl'];
-      case 'valueUuid':
-        return ['FhirUuid'];
-      case 'valueAddress':
-        return ['Address'];
-      case 'valueAge':
-        return ['Age'];
-      case 'valueAnnotation':
-        return ['Annotation'];
-      case 'valueAttachment':
-        return ['Attachment'];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueCoding':
-        return ['Coding'];
-      case 'valueContactPoint':
-        return ['ContactPoint'];
-      case 'valueCount':
-        return ['Count'];
-      case 'valueDistance':
-        return ['Distance'];
-      case 'valueDuration':
-        return ['FhirDuration'];
-      case 'valueHumanName':
-        return ['HumanName'];
-      case 'valueIdentifier':
-        return ['Identifier'];
-      case 'valueMoney':
-        return ['Money'];
-      case 'valuePeriod':
-        return ['Period'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueRange':
-        return ['Range'];
-      case 'valueRatio':
-        return ['Ratio'];
-      case 'valueReference':
-        return ['Reference'];
-      case 'valueSampledData':
-        return ['SampledData'];
-      case 'valueSignature':
-        return ['Signature'];
-      case 'valueTiming':
-        return ['Timing'];
-      case 'valueContactDetail':
-        return ['ContactDetail'];
-      case 'valueContributor':
-        return ['Contributor'];
-      case 'valueDataRequirement':
-        return ['DataRequirement'];
-      case 'valueExpression':
-        return ['FhirExpression'];
-      case 'valueParameterDefinition':
-        return ['ParameterDefinition'];
-      case 'valueRelatedArtifact':
-        return ['RelatedArtifact'];
-      case 'valueTriggerDefinition':
-        return ['TriggerDefinition'];
-      case 'valueUsageContext':
-        return ['UsageContext'];
-      case 'valueDosage':
-        return ['Dosage'];
-      case 'valueMeta':
-        return ['FhirMeta'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TaskInput]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TaskInput createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueBase64Binary':
-        {
-          return copyWith(
-            valueX: FhirBase64Binary.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueCanonical':
-        {
-          return copyWith(
-            valueX: FhirCanonical.empty(),
-          );
-        }
-      case 'valueCode':
-        {
-          return copyWith(
-            valueX: FhirCode.empty(),
-          );
-        }
-      case 'valueDate':
-        {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
-        }
-      case 'valueDateTime':
-        {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
-        }
-      case 'valueDecimal':
-        {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
-        }
-      case 'valueId':
-        {
-          return copyWith(
-            valueX: FhirId.empty(),
-          );
-        }
-      case 'valueInstant':
-        {
-          return copyWith(
-            valueX: FhirInstant.empty(),
-          );
-        }
-      case 'valueInteger':
-        {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
-        }
-      case 'valueMarkdown':
-        {
-          return copyWith(
-            valueX: FhirMarkdown.empty(),
-          );
-        }
-      case 'valueOid':
-        {
-          return copyWith(
-            valueX: FhirOid.empty(),
-          );
-        }
-      case 'valuePositiveInt':
-        {
-          return copyWith(
-            valueX: FhirPositiveInt.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueTime':
-        {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
-        }
-      case 'valueUnsignedInt':
-        {
-          return copyWith(
-            valueX: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'valueUri':
-        {
-          return copyWith(
-            valueX: FhirUri.empty(),
-          );
-        }
-      case 'valueUrl':
-        {
-          return copyWith(
-            valueX: FhirUrl.empty(),
-          );
-        }
-      case 'valueUuid':
-        {
-          return copyWith(
-            valueX: FhirUuid.empty(),
-          );
-        }
-      case 'valueAddress':
-        {
-          return copyWith(
-            valueX: Address.empty(),
-          );
-        }
-      case 'valueAge':
-        {
-          return copyWith(
-            valueX: Age.empty(),
-          );
-        }
-      case 'valueAnnotation':
-        {
-          return copyWith(
-            valueX: Annotation.empty(),
-          );
-        }
-      case 'valueAttachment':
-        {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
-        }
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueCoding':
-        {
-          return copyWith(
-            valueX: Coding.empty(),
-          );
-        }
-      case 'valueContactPoint':
-        {
-          return copyWith(
-            valueX: ContactPoint.empty(),
-          );
-        }
-      case 'valueCount':
-        {
-          return copyWith(
-            valueX: Count.empty(),
-          );
-        }
-      case 'valueDistance':
-        {
-          return copyWith(
-            valueX: Distance.empty(),
-          );
-        }
-      case 'valueDuration':
-        {
-          return copyWith(
-            valueX: FhirDuration.empty(),
-          );
-        }
-      case 'valueHumanName':
-        {
-          return copyWith(
-            valueX: HumanName.empty(),
-          );
-        }
-      case 'valueIdentifier':
-        {
-          return copyWith(
-            valueX: Identifier.empty(),
-          );
-        }
-      case 'valueMoney':
-        {
-          return copyWith(
-            valueX: Money.empty(),
-          );
-        }
-      case 'valuePeriod':
-        {
-          return copyWith(
-            valueX: Period.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      case 'valueRatio':
-        {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
-        }
-      case 'valueReference':
-        {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
-        }
-      case 'valueSampledData':
-        {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
-        }
-      case 'valueSignature':
-        {
-          return copyWith(
-            valueX: Signature.empty(),
-          );
-        }
-      case 'valueTiming':
-        {
-          return copyWith(
-            valueX: Timing.empty(),
-          );
-        }
-      case 'valueContactDetail':
-        {
-          return copyWith(
-            valueX: ContactDetail.empty(),
-          );
-        }
-      case 'valueContributor':
-        {
-          return copyWith(
-            valueX: Contributor.empty(),
-          );
-        }
-      case 'valueDataRequirement':
-        {
-          return copyWith(
-            valueX: DataRequirement.empty(),
-          );
-        }
-      case 'valueExpression':
-        {
-          return copyWith(
-            valueX: FhirExpression.empty(),
-          );
-        }
-      case 'valueParameterDefinition':
-        {
-          return copyWith(
-            valueX: ParameterDefinition.empty(),
-          );
-        }
-      case 'valueRelatedArtifact':
-        {
-          return copyWith(
-            valueX: RelatedArtifact.empty(),
-          );
-        }
-      case 'valueTriggerDefinition':
-        {
-          return copyWith(
-            valueX: TriggerDefinition.empty(),
-          );
-        }
-      case 'valueUsageContext':
-        {
-          return copyWith(
-            valueX: UsageContext.empty(),
-          );
-        }
-      case 'valueDosage':
-        {
-          return copyWith(
-            valueX: Dosage.empty(),
-          );
-        }
-      case 'valueMeta':
-        {
-          return copyWith(
-            valueX: FhirMeta.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TaskInput clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return TaskInput(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: valueX,
-    );
-  }
-
-  @override
-  TaskInput clone() => throw UnimplementedError();
-  @override
-  TaskInput copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    ValueXTaskInput? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TaskInput(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXTaskInput? ??
-          this.valueX,
-    );
-  }
+  $TaskInputCopyWith<TaskInput> get copyWith =>
+      _$TaskInputCopyWithImpl<TaskInput>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4840,47 +2222,29 @@ class TaskOutput extends BackboneElement {
     required this.type,
     required this.valueX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Task.output',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TaskOutput.empty() => TaskOutput(
-        type: CodeableConcept.empty(),
-        valueX: FhirBase64Binary.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskOutput.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Task.output';
     return TaskOutput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4888,7 +2252,6 @@ class TaskOutput extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       valueX: JsonParser.parsePolymorphic<ValueXTaskOutput>(
         json,
@@ -4944,7 +2307,6 @@ class TaskOutput extends BackboneElement {
           'valueDosage': Dosage.fromJson,
           'valueMeta': FhirMeta.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -5493,1206 +2855,19 @@ class TaskOutput extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TaskOutput clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXTaskOutput) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirCode) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirId) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInstant) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirMarkdown) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirOid) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirPositiveInt) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUnsignedInt) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUri) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUrl) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirUuid) {
-              return copyWith(valueX: child);
-            }
-            if (child is Address) {
-              return copyWith(valueX: child);
-            }
-            if (child is Age) {
-              return copyWith(valueX: child);
-            }
-            if (child is Annotation) {
-              return copyWith(valueX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is Coding) {
-              return copyWith(valueX: child);
-            }
-            if (child is ContactPoint) {
-              return copyWith(valueX: child);
-            }
-            if (child is Count) {
-              return copyWith(valueX: child);
-            }
-            if (child is Distance) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDuration) {
-              return copyWith(valueX: child);
-            }
-            if (child is HumanName) {
-              return copyWith(valueX: child);
-            }
-            if (child is Identifier) {
-              return copyWith(valueX: child);
-            }
-            if (child is Money) {
-              return copyWith(valueX: child);
-            }
-            if (child is Period) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
-            }
-            if (child is Reference) {
-              return copyWith(valueX: child);
-            }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
-            }
-            if (child is Signature) {
-              return copyWith(valueX: child);
-            }
-            if (child is Timing) {
-              return copyWith(valueX: child);
-            }
-            if (child is ContactDetail) {
-              return copyWith(valueX: child);
-            }
-            if (child is Contributor) {
-              return copyWith(valueX: child);
-            }
-            if (child is DataRequirement) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirExpression) {
-              return copyWith(valueX: child);
-            }
-            if (child is ParameterDefinition) {
-              return copyWith(valueX: child);
-            }
-            if (child is RelatedArtifact) {
-              return copyWith(valueX: child);
-            }
-            if (child is TriggerDefinition) {
-              return copyWith(valueX: child);
-            }
-            if (child is UsageContext) {
-              return copyWith(valueX: child);
-            }
-            if (child is Dosage) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirMeta) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueFhirBase64Binary':
-        {
-          if (child is FhirBase64Binary) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirCode':
-        {
-          if (child is FhirCode) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDecimal':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirId':
-        {
-          if (child is FhirId) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInstant':
-        {
-          if (child is FhirInstant) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirMarkdown':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirOid':
-        {
-          if (child is FhirOid) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirPositiveInt':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirTime':
-        {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUnsignedInt':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUrl':
-        {
-          if (child is FhirUrl) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirUuid':
-        {
-          if (child is FhirUuid) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAddress':
-        {
-          if (child is Address) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAge':
-        {
-          if (child is Age) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAnnotation':
-        {
-          if (child is Annotation) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCoding':
-        {
-          if (child is Coding) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContactPoint':
-        {
-          if (child is ContactPoint) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueCount':
-        {
-          if (child is Count) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDistance':
-        {
-          if (child is Distance) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueHumanName':
-        {
-          if (child is HumanName) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueMoney':
-        {
-          if (child is Money) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueReference':
-        {
-          if (child is Reference) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSampledData':
-        {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSignature':
-        {
-          if (child is Signature) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueTiming':
-        {
-          if (child is Timing) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContactDetail':
-        {
-          if (child is ContactDetail) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueContributor':
-        {
-          if (child is Contributor) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDataRequirement':
-        {
-          if (child is DataRequirement) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirExpression':
-        {
-          if (child is FhirExpression) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueParameterDefinition':
-        {
-          if (child is ParameterDefinition) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRelatedArtifact':
-        {
-          if (child is RelatedArtifact) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueTriggerDefinition':
-        {
-          if (child is TriggerDefinition) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueUsageContext':
-        {
-          if (child is UsageContext) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueDosage':
-        {
-          if (child is Dosage) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirMeta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TaskOutput]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'value':
-      case 'valueX':
-        return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
-          'FhirMeta',
-        ];
-      case 'valueBase64Binary':
-        return ['FhirBase64Binary'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueCanonical':
-        return ['FhirCanonical'];
-      case 'valueCode':
-        return ['FhirCode'];
-      case 'valueDate':
-        return ['FhirDate'];
-      case 'valueDateTime':
-        return ['FhirDateTime'];
-      case 'valueDecimal':
-        return ['FhirDecimal'];
-      case 'valueId':
-        return ['FhirId'];
-      case 'valueInstant':
-        return ['FhirInstant'];
-      case 'valueInteger':
-        return ['FhirInteger'];
-      case 'valueMarkdown':
-        return ['FhirMarkdown'];
-      case 'valueOid':
-        return ['FhirOid'];
-      case 'valuePositiveInt':
-        return ['FhirPositiveInt'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueTime':
-        return ['FhirTime'];
-      case 'valueUnsignedInt':
-        return ['FhirUnsignedInt'];
-      case 'valueUri':
-        return ['FhirUri'];
-      case 'valueUrl':
-        return ['FhirUrl'];
-      case 'valueUuid':
-        return ['FhirUuid'];
-      case 'valueAddress':
-        return ['Address'];
-      case 'valueAge':
-        return ['Age'];
-      case 'valueAnnotation':
-        return ['Annotation'];
-      case 'valueAttachment':
-        return ['Attachment'];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueCoding':
-        return ['Coding'];
-      case 'valueContactPoint':
-        return ['ContactPoint'];
-      case 'valueCount':
-        return ['Count'];
-      case 'valueDistance':
-        return ['Distance'];
-      case 'valueDuration':
-        return ['FhirDuration'];
-      case 'valueHumanName':
-        return ['HumanName'];
-      case 'valueIdentifier':
-        return ['Identifier'];
-      case 'valueMoney':
-        return ['Money'];
-      case 'valuePeriod':
-        return ['Period'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueRange':
-        return ['Range'];
-      case 'valueRatio':
-        return ['Ratio'];
-      case 'valueReference':
-        return ['Reference'];
-      case 'valueSampledData':
-        return ['SampledData'];
-      case 'valueSignature':
-        return ['Signature'];
-      case 'valueTiming':
-        return ['Timing'];
-      case 'valueContactDetail':
-        return ['ContactDetail'];
-      case 'valueContributor':
-        return ['Contributor'];
-      case 'valueDataRequirement':
-        return ['DataRequirement'];
-      case 'valueExpression':
-        return ['FhirExpression'];
-      case 'valueParameterDefinition':
-        return ['ParameterDefinition'];
-      case 'valueRelatedArtifact':
-        return ['RelatedArtifact'];
-      case 'valueTriggerDefinition':
-        return ['TriggerDefinition'];
-      case 'valueUsageContext':
-        return ['UsageContext'];
-      case 'valueDosage':
-        return ['Dosage'];
-      case 'valueMeta':
-        return ['FhirMeta'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TaskOutput]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TaskOutput createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueBase64Binary':
-        {
-          return copyWith(
-            valueX: FhirBase64Binary.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueCanonical':
-        {
-          return copyWith(
-            valueX: FhirCanonical.empty(),
-          );
-        }
-      case 'valueCode':
-        {
-          return copyWith(
-            valueX: FhirCode.empty(),
-          );
-        }
-      case 'valueDate':
-        {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
-        }
-      case 'valueDateTime':
-        {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
-        }
-      case 'valueDecimal':
-        {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
-        }
-      case 'valueId':
-        {
-          return copyWith(
-            valueX: FhirId.empty(),
-          );
-        }
-      case 'valueInstant':
-        {
-          return copyWith(
-            valueX: FhirInstant.empty(),
-          );
-        }
-      case 'valueInteger':
-        {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
-        }
-      case 'valueMarkdown':
-        {
-          return copyWith(
-            valueX: FhirMarkdown.empty(),
-          );
-        }
-      case 'valueOid':
-        {
-          return copyWith(
-            valueX: FhirOid.empty(),
-          );
-        }
-      case 'valuePositiveInt':
-        {
-          return copyWith(
-            valueX: FhirPositiveInt.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueTime':
-        {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
-        }
-      case 'valueUnsignedInt':
-        {
-          return copyWith(
-            valueX: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'valueUri':
-        {
-          return copyWith(
-            valueX: FhirUri.empty(),
-          );
-        }
-      case 'valueUrl':
-        {
-          return copyWith(
-            valueX: FhirUrl.empty(),
-          );
-        }
-      case 'valueUuid':
-        {
-          return copyWith(
-            valueX: FhirUuid.empty(),
-          );
-        }
-      case 'valueAddress':
-        {
-          return copyWith(
-            valueX: Address.empty(),
-          );
-        }
-      case 'valueAge':
-        {
-          return copyWith(
-            valueX: Age.empty(),
-          );
-        }
-      case 'valueAnnotation':
-        {
-          return copyWith(
-            valueX: Annotation.empty(),
-          );
-        }
-      case 'valueAttachment':
-        {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
-        }
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueCoding':
-        {
-          return copyWith(
-            valueX: Coding.empty(),
-          );
-        }
-      case 'valueContactPoint':
-        {
-          return copyWith(
-            valueX: ContactPoint.empty(),
-          );
-        }
-      case 'valueCount':
-        {
-          return copyWith(
-            valueX: Count.empty(),
-          );
-        }
-      case 'valueDistance':
-        {
-          return copyWith(
-            valueX: Distance.empty(),
-          );
-        }
-      case 'valueDuration':
-        {
-          return copyWith(
-            valueX: FhirDuration.empty(),
-          );
-        }
-      case 'valueHumanName':
-        {
-          return copyWith(
-            valueX: HumanName.empty(),
-          );
-        }
-      case 'valueIdentifier':
-        {
-          return copyWith(
-            valueX: Identifier.empty(),
-          );
-        }
-      case 'valueMoney':
-        {
-          return copyWith(
-            valueX: Money.empty(),
-          );
-        }
-      case 'valuePeriod':
-        {
-          return copyWith(
-            valueX: Period.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      case 'valueRatio':
-        {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
-        }
-      case 'valueReference':
-        {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
-        }
-      case 'valueSampledData':
-        {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
-        }
-      case 'valueSignature':
-        {
-          return copyWith(
-            valueX: Signature.empty(),
-          );
-        }
-      case 'valueTiming':
-        {
-          return copyWith(
-            valueX: Timing.empty(),
-          );
-        }
-      case 'valueContactDetail':
-        {
-          return copyWith(
-            valueX: ContactDetail.empty(),
-          );
-        }
-      case 'valueContributor':
-        {
-          return copyWith(
-            valueX: Contributor.empty(),
-          );
-        }
-      case 'valueDataRequirement':
-        {
-          return copyWith(
-            valueX: DataRequirement.empty(),
-          );
-        }
-      case 'valueExpression':
-        {
-          return copyWith(
-            valueX: FhirExpression.empty(),
-          );
-        }
-      case 'valueParameterDefinition':
-        {
-          return copyWith(
-            valueX: ParameterDefinition.empty(),
-          );
-        }
-      case 'valueRelatedArtifact':
-        {
-          return copyWith(
-            valueX: RelatedArtifact.empty(),
-          );
-        }
-      case 'valueTriggerDefinition':
-        {
-          return copyWith(
-            valueX: TriggerDefinition.empty(),
-          );
-        }
-      case 'valueUsageContext':
-        {
-          return copyWith(
-            valueX: UsageContext.empty(),
-          );
-        }
-      case 'valueDosage':
-        {
-          return copyWith(
-            valueX: Dosage.empty(),
-          );
-        }
-      case 'valueMeta':
-        {
-          return copyWith(
-            valueX: FhirMeta.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TaskOutput clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return TaskOutput(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: valueX,
-    );
-  }
-
-  @override
-  TaskOutput clone() => throw UnimplementedError();
-  @override
-  TaskOutput copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    ValueXTaskOutput? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TaskOutput(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXTaskOutput? ??
-          this.valueX,
-    );
-  }
+  $TaskOutputCopyWith<TaskOutput> get copyWith =>
+      _$TaskOutputCopyWithImpl<TaskOutput>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

@@ -5,6 +5,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         AccountCoverage,
         AccountGuarantor,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -937,50 +938,6 @@ class AccountBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool name = false,
-    bool subject = false,
-    bool servicePeriod = false,
-    bool coverage = false,
-    bool owner = false,
-    bool description = false,
-    bool guarantor = false,
-    bool partOf = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (subject) this.subject = null;
-    if (servicePeriod) this.servicePeriod = null;
-    if (coverage) this.coverage = null;
-    if (owner) this.owner = null;
-    if (description) this.description = null;
-    if (guarantor) this.guarantor = null;
-    if (partOf) this.partOf = null;
-  }
-
   @override
   AccountBuilder clone() => throw UnimplementedError();
   @override
@@ -1559,22 +1516,6 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool coverage = false,
-    bool priority = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (coverage) this.coverage = null;
-    if (priority) this.priority = null;
-  }
-
   @override
   AccountCoverageBuilder clone() => throw UnimplementedError();
   @override
@@ -2064,24 +2005,6 @@ class AccountGuarantorBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool party = false,
-    bool onHold = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (party) this.party = null;
-    if (onHold) this.onHold = null;
-    if (period) this.period = null;
   }
 
   @override

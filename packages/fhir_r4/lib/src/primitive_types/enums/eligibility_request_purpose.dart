@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EligibilityRequestPurpose
+enum EligibilityRequestPurposeEnum {
+  /// auth-requirements
+  authRequirements,
+
+  /// benefits
+  benefits,
+
+  /// discovery
+  discovery,
+
+  /// validation
+  validation,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EligibilityRequestPurposeEnum.authRequirements:
+        return 'auth-requirements';
+      case EligibilityRequestPurposeEnum.benefits:
+        return 'benefits';
+      case EligibilityRequestPurposeEnum.discovery:
+        return 'discovery';
+      case EligibilityRequestPurposeEnum.validation:
+        return 'validation';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EligibilityRequestPurposeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EligibilityRequestPurposeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EligibilityRequestPurposeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'auth-requirements':
+        return EligibilityRequestPurposeEnum.authRequirements;
+      case 'benefits':
+        return EligibilityRequestPurposeEnum.benefits;
+      case 'discovery':
+        return EligibilityRequestPurposeEnum.discovery;
+      case 'validation':
+        return EligibilityRequestPurposeEnum.validation;
+    }
+    return null;
+  }
+}
+
 /// A code specifying the types of information being requested.
 class EligibilityRequestPurpose extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  EligibilityRequestPurpose._({
+  const EligibilityRequestPurpose._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = EligibilityRequestPurposeEnum.fromString(valueString);
     return EligibilityRequestPurpose._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [EligibilityRequestPurpose] with element only
-  factory EligibilityRequestPurpose.empty() =>
-      EligibilityRequestPurpose._(valueString: '');
 
   /// Factory constructor to create [EligibilityRequestPurpose]
   /// from JSON.
@@ -54,10 +110,11 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = EligibilityRequestPurposeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EligibilityRequestPurpose.elementOnly.withElement(element);
+      return EligibilityRequestPurpose._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EligibilityRequestPurpose cannot be constructed from JSON.',
@@ -65,63 +122,76 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     }
     return EligibilityRequestPurpose._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for EligibilityRequestPurpose
+  final EligibilityRequestPurposeEnum? valueEnum;
+
   /// auth_requirements
-  static final EligibilityRequestPurpose auth_requirements =
+  static const EligibilityRequestPurpose authRequirements =
       EligibilityRequestPurpose._(
     valueString: 'auth-requirements',
-    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage auth-requirements'.toFhirString,
+    valueEnum: EligibilityRequestPurposeEnum.authRequirements,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage auth-requirements',
+    ),
   );
 
   /// benefits
-  static final EligibilityRequestPurpose benefits = EligibilityRequestPurpose._(
+  static const EligibilityRequestPurpose benefits = EligibilityRequestPurpose._(
     valueString: 'benefits',
-    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage benefits'.toFhirString,
+    valueEnum: EligibilityRequestPurposeEnum.benefits,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage benefits',
+    ),
   );
 
   /// discovery
-  static final EligibilityRequestPurpose discovery =
+  static const EligibilityRequestPurpose discovery =
       EligibilityRequestPurpose._(
     valueString: 'discovery',
-    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage Discovery'.toFhirString,
+    valueEnum: EligibilityRequestPurposeEnum.discovery,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage Discovery',
+    ),
   );
 
   /// validation
-  static final EligibilityRequestPurpose validation =
+  static const EligibilityRequestPurpose validation =
       EligibilityRequestPurpose._(
     valueString: 'validation',
-    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage Validation'.toFhirString,
+    valueEnum: EligibilityRequestPurposeEnum.validation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage Validation',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final EligibilityRequestPurpose elementOnly =
-      EligibilityRequestPurpose._(valueString: '');
 
   /// List of all enum-like values
   static final List<EligibilityRequestPurpose> values = [
-    auth_requirements,
+    authRequirements,
     benefits,
     discovery,
     validation,
   ];
-
-  /// Clones the current instance
-  @override
-  EligibilityRequestPurpose clone() => EligibilityRequestPurpose._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   EligibilityRequestPurpose withElement(Element? newElement) {
@@ -142,36 +212,58 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  EligibilityRequestPurpose copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  EligibilityRequestPurpose clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  EligibilityRequestPurposeCopyWithImpl<EligibilityRequestPurpose>
+      get copyWith =>
+          EligibilityRequestPurposeCopyWithImpl<EligibilityRequestPurpose>(
+            this,
+            (v) => v as EligibilityRequestPurpose,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class EligibilityRequestPurposeCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  EligibilityRequestPurposeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for EligibilityRequestPurpose: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return EligibilityRequestPurpose._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      EligibilityRequestPurpose(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

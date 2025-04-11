@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'implementation_guide.g.dart';
+
 /// [ImplementationGuide]
 /// A set of rules of how a particular interoperability or standards
 /// problem is solved - typically through the use of FHIR resources. This
@@ -42,84 +44,57 @@ class ImplementationGuide extends CanonicalResource {
     this.definition,
     this.manifest,
   }) : super(
-          objectPath: 'ImplementationGuide',
           resourceType: R4ResourceType.ImplementationGuide,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuide.empty() => ImplementationGuide(
-        url: FhirUri.empty(),
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        packageId: FhirId.empty(),
-        fhirVersion: <FHIRVersion>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuide.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide';
     return ImplementationGuide(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -127,57 +102,46 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -185,25 +149,18 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -211,43 +168,33 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-        '$objectPath.copyright',
       ),
       packageId: JsonParser.parsePrimitive<FhirId>(
         json,
         'packageId',
         FhirId.fromJson,
-        '$objectPath.packageId',
       )!,
       license: JsonParser.parsePrimitive<SPDXLicense>(
         json,
         'license',
         SPDXLicense.fromJson,
-        '$objectPath.license',
       ),
       fhirVersion: JsonParser.parsePrimitiveList<FHIRVersion>(
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
-        '$objectPath.fhirVersion',
       )!,
       dependsOn: (json['dependsOn'] as List<dynamic>?)
           ?.map<ImplementationGuideDependsOn>(
             (v) => ImplementationGuideDependsOn.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.dependsOn',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       global: (json['global'] as List<dynamic>?)
           ?.map<ImplementationGuideGlobal>(
             (v) => ImplementationGuideGlobal.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.global',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -255,13 +202,11 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'definition',
         ImplementationGuideDefinition.fromJson,
-        '$objectPath.definition',
       ),
       manifest: JsonParser.parseObject<ImplementationGuideManifest>(
         json,
         'manifest',
         ImplementationGuideManifest.fromJson,
-        '$objectPath.manifest',
       ),
     );
   }
@@ -708,816 +653,19 @@ class ImplementationGuide extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuide clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copyright':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'packageId':
-        {
-          if (child is FhirId) {
-            return copyWith(packageId: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'license':
-        {
-          if (child is SPDXLicense) {
-            return copyWith(license: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fhirVersion':
-        {
-          if (child is List<FHIRVersion>) {
-            // Add all elements from passed list
-            final newList = [...fhirVersion, ...child];
-            return copyWith(fhirVersion: newList);
-          } else if (child is FHIRVersion) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...fhirVersion,
-              child,
-            ];
-            return copyWith(fhirVersion: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dependsOn':
-        {
-          if (child is List<ImplementationGuideDependsOn>) {
-            // Add all elements from passed list
-            final newList = [...?dependsOn, ...child];
-            return copyWith(dependsOn: newList);
-          } else if (child is ImplementationGuideDependsOn) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?dependsOn,
-              child,
-            ];
-            return copyWith(dependsOn: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'global':
-        {
-          if (child is List<ImplementationGuideGlobal>) {
-            // Add all elements from passed list
-            final newList = [...?global, ...child];
-            return copyWith(global: newList);
-          } else if (child is ImplementationGuideGlobal) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?global,
-              child,
-            ];
-            return copyWith(global: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definition':
-        {
-          if (child is ImplementationGuideDefinition) {
-            return copyWith(definition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manifest':
-        {
-          if (child is ImplementationGuideManifest) {
-            return copyWith(manifest: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuide]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'copyright':
-        return ['FhirMarkdown'];
-      case 'packageId':
-        return ['FhirId'];
-      case 'license':
-        return ['FhirCode'];
-      case 'fhirVersion':
-        return ['FhirCode'];
-      case 'dependsOn':
-        return ['ImplementationGuideDependsOn'];
-      case 'global':
-        return ['ImplementationGuideGlobal'];
-      case 'definition':
-        return ['ImplementationGuideDefinition'];
-      case 'manifest':
-        return ['ImplementationGuideManifest'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuide]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuide createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'copyright':
-        {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
-        }
-      case 'packageId':
-        {
-          return copyWith(
-            packageId: FhirId.empty(),
-          );
-        }
-      case 'license':
-        {
-          return copyWith(
-            license: SPDXLicense.empty(),
-          );
-        }
-      case 'fhirVersion':
-        {
-          return copyWith(
-            fhirVersion: <FHIRVersion>[],
-          );
-        }
-      case 'dependsOn':
-        {
-          return copyWith(
-            dependsOn: <ImplementationGuideDependsOn>[],
-          );
-        }
-      case 'global':
-        {
-          return copyWith(
-            global: <ImplementationGuideGlobal>[],
-          );
-        }
-      case 'definition':
-        {
-          return copyWith(
-            definition: ImplementationGuideDefinition.empty(),
-          );
-        }
-      case 'manifest':
-        {
-          return copyWith(
-            manifest: ImplementationGuideManifest.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuide clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool version = false,
-    bool title = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool copyright = false,
-    bool license = false,
-    bool dependsOn = false,
-    bool global = false,
-    bool definition = false,
-    bool manifest = false,
-  }) {
-    return ImplementationGuide(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      version: version ? null : this.version,
-      name: name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      copyright: copyright ? null : this.copyright,
-      packageId: packageId,
-      license: license ? null : this.license,
-      fhirVersion: fhirVersion,
-      dependsOn: dependsOn ? null : this.dependsOn,
-      global: global ? null : this.global,
-      definition: definition ? null : this.definition,
-      manifest: manifest ? null : this.manifest,
-    );
-  }
-
-  @override
-  ImplementationGuide clone() => throw UnimplementedError();
-  @override
-  ImplementationGuide copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? copyright,
-    FhirId? packageId,
-    SPDXLicense? license,
-    List<FHIRVersion>? fhirVersion,
-    List<ImplementationGuideDependsOn>? dependsOn,
-    List<ImplementationGuideGlobal>? global,
-    ImplementationGuideDefinition? definition,
-    ImplementationGuideManifest? manifest,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return ImplementationGuide(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      packageId: packageId?.copyWith(
-            objectPath: '$newObjectPath.packageId',
-          ) ??
-          this.packageId,
-      license: license?.copyWith(
-            objectPath: '$newObjectPath.license',
-          ) ??
-          this.license,
-      fhirVersion: fhirVersion
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.fhirVersion',
-                ),
-              )
-              .toList() ??
-          this.fhirVersion,
-      dependsOn: dependsOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dependsOn',
-                ),
-              )
-              .toList() ??
-          this.dependsOn,
-      global: global
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.global',
-                ),
-              )
-              .toList() ??
-          this.global,
-      definition: definition?.copyWith(
-            objectPath: '$newObjectPath.definition',
-          ) ??
-          this.definition,
-      manifest: manifest?.copyWith(
-            objectPath: '$newObjectPath.manifest',
-          ) ??
-          this.manifest,
-    );
-  }
+  $ImplementationGuideCopyWith<ImplementationGuide> get copyWith =>
+      _$ImplementationGuideCopyWithImpl<ImplementationGuide>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1715,46 +863,29 @@ class ImplementationGuideDependsOn extends BackboneElement {
     this.packageId,
     this.version,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.dependsOn',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideDependsOn.empty() => ImplementationGuideDependsOn(
-        uri: FhirCanonical.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDependsOn.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.dependsOn';
     return ImplementationGuideDependsOn(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1762,19 +893,16 @@ class ImplementationGuideDependsOn extends BackboneElement {
         json,
         'uri',
         FhirCanonical.fromJson,
-        '$objectPath.uri',
       )!,
       packageId: JsonParser.parsePrimitive<FhirId>(
         json,
         'packageId',
         FhirId.fromJson,
-        '$objectPath.packageId',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
     );
   }
@@ -1984,231 +1112,20 @@ class ImplementationGuideDependsOn extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideDependsOn clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'uri':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(uri: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'packageId':
-        {
-          if (child is FhirId) {
-            return copyWith(packageId: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideDependsOn]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'uri':
-        return ['FhirCanonical'];
-      case 'packageId':
-        return ['FhirId'];
-      case 'version':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideDependsOn]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideDependsOn createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideDependsOnCopyWith<ImplementationGuideDependsOn>
+      get copyWith => _$ImplementationGuideDependsOnCopyWithImpl<
+              ImplementationGuideDependsOn>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'uri':
-        {
-          return copyWith(
-            uri: FhirCanonical.empty(),
-          );
-        }
-      case 'packageId':
-        {
-          return copyWith(
-            packageId: FhirId.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideDependsOn clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool packageId = false,
-    bool version = false,
-  }) {
-    return ImplementationGuideDependsOn(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      uri: uri,
-      packageId: packageId ? null : this.packageId,
-      version: version ? null : this.version,
-    );
-  }
-
-  @override
-  ImplementationGuideDependsOn clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideDependsOn copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCanonical? uri,
-    FhirId? packageId,
-    FhirString? version,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideDependsOn(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      uri: uri?.copyWith(
-            objectPath: '$newObjectPath.uri',
-          ) ??
-          this.uri,
-      packageId: packageId?.copyWith(
-            objectPath: '$newObjectPath.packageId',
-          ) ??
-          this.packageId,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2272,47 +1189,29 @@ class ImplementationGuideGlobal extends BackboneElement {
     required this.type,
     required this.profile,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.global',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideGlobal.empty() => ImplementationGuideGlobal(
-        type: FhirCode.empty(),
-        profile: FhirCanonical.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGlobal.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.global';
     return ImplementationGuideGlobal(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2320,13 +1219,11 @@ class ImplementationGuideGlobal extends BackboneElement {
         json,
         'type',
         FhirCode.fromJson,
-        '$objectPath.type',
       )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
-        '$objectPath.profile',
       )!,
     );
   }
@@ -2519,207 +1416,19 @@ class ImplementationGuideGlobal extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideGlobal clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FhirCode) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'profile':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(profile: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideGlobal]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['FhirCode'];
-      case 'profile':
-        return ['FhirCanonical'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideGlobal]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideGlobal createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FhirCode.empty(),
-          );
-        }
-      case 'profile':
-        {
-          return copyWith(
-            profile: FhirCanonical.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideGlobal clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return ImplementationGuideGlobal(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      profile: profile,
-    );
-  }
-
-  @override
-  ImplementationGuideGlobal clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideGlobal copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? type,
-    FhirCanonical? profile,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideGlobal(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      profile: profile?.copyWith(
-            objectPath: '$newObjectPath.profile',
-          ) ??
-          this.profile,
-    );
-  }
+  $ImplementationGuideGlobalCopyWith<ImplementationGuideGlobal> get copyWith =>
+      _$ImplementationGuideGlobalCopyWithImpl<ImplementationGuideGlobal>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2780,67 +1489,43 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.parameter,
     this.template,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideDefinition.empty() =>
-      const ImplementationGuideDefinition(
-        resource: <ImplementationGuideResource>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition';
     return ImplementationGuideDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       grouping: (json['grouping'] as List<dynamic>?)
           ?.map<ImplementationGuideGrouping>(
             (v) => ImplementationGuideGrouping.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.grouping',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       resource: (json['resource'] as List<dynamic>)
           .map<ImplementationGuideResource>(
             (v) => ImplementationGuideResource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.resource',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2848,25 +1533,18 @@ class ImplementationGuideDefinition extends BackboneElement {
         json,
         'page',
         ImplementationGuidePage.fromJson,
-        '$objectPath.page',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<ImplementationGuideParameter>(
             (v) => ImplementationGuideParameter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.parameter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       template: (json['template'] as List<dynamic>?)
           ?.map<ImplementationGuideTemplate>(
             (v) => ImplementationGuideTemplate.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.template',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3107,329 +1785,20 @@ class ImplementationGuideDefinition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideDefinition clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'grouping':
-        {
-          if (child is List<ImplementationGuideGrouping>) {
-            // Add all elements from passed list
-            final newList = [...?grouping, ...child];
-            return copyWith(grouping: newList);
-          } else if (child is ImplementationGuideGrouping) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?grouping,
-              child,
-            ];
-            return copyWith(grouping: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is List<ImplementationGuideResource>) {
-            // Add all elements from passed list
-            final newList = [...resource, ...child];
-            return copyWith(resource: newList);
-          } else if (child is ImplementationGuideResource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...resource,
-              child,
-            ];
-            return copyWith(resource: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'page':
-        {
-          if (child is ImplementationGuidePage) {
-            return copyWith(page: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parameter':
-        {
-          if (child is List<ImplementationGuideParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is ImplementationGuideParameter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parameter,
-              child,
-            ];
-            return copyWith(parameter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'template':
-        {
-          if (child is List<ImplementationGuideTemplate>) {
-            // Add all elements from passed list
-            final newList = [...?template, ...child];
-            return copyWith(template: newList);
-          } else if (child is ImplementationGuideTemplate) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?template,
-              child,
-            ];
-            return copyWith(template: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideDefinition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'grouping':
-        return ['ImplementationGuideGrouping'];
-      case 'resource':
-        return ['ImplementationGuideResource'];
-      case 'page':
-        return ['ImplementationGuidePage'];
-      case 'parameter':
-        return ['ImplementationGuideParameter'];
-      case 'template':
-        return ['ImplementationGuideTemplate'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideDefinition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideDefinition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideDefinitionCopyWith<ImplementationGuideDefinition>
+      get copyWith => _$ImplementationGuideDefinitionCopyWithImpl<
+              ImplementationGuideDefinition>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'grouping':
-        {
-          return copyWith(
-            grouping: <ImplementationGuideGrouping>[],
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: <ImplementationGuideResource>[],
-          );
-        }
-      case 'page':
-        {
-          return copyWith(
-            page: ImplementationGuidePage.empty(),
-          );
-        }
-      case 'parameter':
-        {
-          return copyWith(
-            parameter: <ImplementationGuideParameter>[],
-          );
-        }
-      case 'template':
-        {
-          return copyWith(
-            template: <ImplementationGuideTemplate>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideDefinition clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool grouping = false,
-    bool page = false,
-    bool parameter = false,
-    bool template = false,
-  }) {
-    return ImplementationGuideDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      grouping: grouping ? null : this.grouping,
-      resource: resource,
-      page: page ? null : this.page,
-      parameter: parameter ? null : this.parameter,
-      template: template ? null : this.template,
-    );
-  }
-
-  @override
-  ImplementationGuideDefinition clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<ImplementationGuideGrouping>? grouping,
-    List<ImplementationGuideResource>? resource,
-    ImplementationGuidePage? page,
-    List<ImplementationGuideParameter>? parameter,
-    List<ImplementationGuideTemplate>? template,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      grouping: grouping
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.grouping',
-                ),
-              )
-              .toList() ??
-          this.grouping,
-      resource: resource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resource',
-                ),
-              )
-              .toList() ??
-          this.resource,
-      page: page?.copyWith(
-            objectPath: '$newObjectPath.page',
-          ) ??
-          this.page,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-      template: template
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.template',
-                ),
-              )
-              .toList() ??
-          this.template,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3505,46 +1874,29 @@ class ImplementationGuideGrouping extends BackboneElement {
     required this.name,
     this.description,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition.grouping',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideGrouping.empty() => ImplementationGuideGrouping(
-        name: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGrouping.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition.grouping';
     return ImplementationGuideGrouping(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3552,13 +1904,11 @@ class ImplementationGuideGrouping extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
     );
   }
@@ -3754,208 +2104,20 @@ class ImplementationGuideGrouping extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideGrouping clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideGrouping]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'description':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideGrouping]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideGrouping createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideGroupingCopyWith<ImplementationGuideGrouping>
+      get copyWith => _$ImplementationGuideGroupingCopyWithImpl<
+              ImplementationGuideGrouping>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideGrouping clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-  }) {
-    return ImplementationGuideGrouping(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      description: description ? null : this.description,
-    );
-  }
-
-  @override
-  ImplementationGuideGrouping clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideGrouping copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    FhirString? description,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideGrouping(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4019,46 +2181,29 @@ class ImplementationGuideResource extends BackboneElement {
     this.exampleX,
     this.groupingId,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition.resource',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideResource.empty() => ImplementationGuideResource(
-        reference: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition.resource';
     return ImplementationGuideResource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4066,25 +2211,21 @@ class ImplementationGuideResource extends BackboneElement {
         json,
         'reference',
         Reference.fromJson,
-        '$objectPath.reference',
       )!,
       fhirVersion: JsonParser.parsePrimitiveList<FHIRVersion>(
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
-        '$objectPath.fhirVersion',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       exampleX:
           JsonParser.parsePolymorphic<ExampleXImplementationGuideResource>(
@@ -4093,13 +2234,11 @@ class ImplementationGuideResource extends BackboneElement {
           'exampleBoolean': FhirBoolean.fromJson,
           'exampleCanonical': FhirCanonical.fromJson,
         },
-        objectPath,
       ),
       groupingId: JsonParser.parsePrimitive<FhirId>(
         json,
         'groupingId',
         FhirId.fromJson,
-        '$objectPath.groupingId',
       ),
     );
   }
@@ -4371,352 +2510,20 @@ class ImplementationGuideResource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideResource clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reference':
-        {
-          if (child is Reference) {
-            return copyWith(reference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fhirVersion':
-        {
-          if (child is List<FHIRVersion>) {
-            // Add all elements from passed list
-            final newList = [...?fhirVersion, ...child];
-            return copyWith(fhirVersion: newList);
-          } else if (child is FHIRVersion) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?fhirVersion,
-              child,
-            ];
-            return copyWith(fhirVersion: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'example':
-      case 'exampleX':
-        {
-          if (child is ExampleXImplementationGuideResource) {
-            return copyWith(exampleX: child);
-          } else {
-            if (child is FhirBoolean) {
-              return copyWith(exampleX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(exampleX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'exampleFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(exampleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'exampleFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(exampleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'groupingId':
-        {
-          if (child is FhirId) {
-            return copyWith(groupingId: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideResource]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'reference':
-        return ['Reference'];
-      case 'fhirVersion':
-        return ['FhirCode'];
-      case 'name':
-        return ['FhirString'];
-      case 'description':
-        return ['FhirString'];
-      case 'example':
-      case 'exampleX':
-        return [
-          'FhirBoolean',
-          'FhirCanonical',
-        ];
-      case 'exampleBoolean':
-        return ['FhirBoolean'];
-      case 'exampleCanonical':
-        return ['FhirCanonical'];
-      case 'groupingId':
-        return ['FhirId'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideResource]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideResource createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideResourceCopyWith<ImplementationGuideResource>
+      get copyWith => _$ImplementationGuideResourceCopyWithImpl<
+              ImplementationGuideResource>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'reference':
-        {
-          return copyWith(
-            reference: Reference.empty(),
-          );
-        }
-      case 'fhirVersion':
-        {
-          return copyWith(
-            fhirVersion: <FHIRVersion>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'example':
-      case 'exampleX':
-      case 'exampleBoolean':
-        {
-          return copyWith(
-            exampleX: FhirBoolean.empty(),
-          );
-        }
-      case 'exampleCanonical':
-        {
-          return copyWith(
-            exampleX: FhirCanonical.empty(),
-          );
-        }
-      case 'groupingId':
-        {
-          return copyWith(
-            groupingId: FhirId.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideResource clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool fhirVersion = false,
-    bool name = false,
-    bool description = false,
-    bool example = false,
-    bool groupingId = false,
-  }) {
-    return ImplementationGuideResource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      reference: reference,
-      fhirVersion: fhirVersion ? null : this.fhirVersion,
-      name: name ? null : this.name,
-      description: description ? null : this.description,
-      exampleX: example ? null : exampleX,
-      groupingId: groupingId ? null : this.groupingId,
-    );
-  }
-
-  @override
-  ImplementationGuideResource clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideResource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? reference,
-    List<FHIRVersion>? fhirVersion,
-    FhirString? name,
-    FhirString? description,
-    ExampleXImplementationGuideResource? exampleX,
-    FhirId? groupingId,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideResource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      fhirVersion: fhirVersion
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.fhirVersion',
-                ),
-              )
-              .toList() ??
-          this.fhirVersion,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      exampleX: exampleX?.copyWith(
-            objectPath: '$newObjectPath.exampleX',
-          ) as ExampleXImplementationGuideResource? ??
-          this.exampleX,
-      groupingId: groupingId?.copyWith(
-            objectPath: '$newObjectPath.groupingId',
-          ) ??
-          this.groupingId,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4800,48 +2607,29 @@ class ImplementationGuidePage extends BackboneElement {
     required this.generation,
     this.page,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition.page',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuidePage.empty() => ImplementationGuidePage(
-        nameX: FhirUrl.empty(),
-        title: FhirString.empty(),
-        generation: GuidePageGeneration.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition.page';
     return ImplementationGuidePage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4851,27 +2639,21 @@ class ImplementationGuidePage extends BackboneElement {
           'nameUrl': FhirUrl.fromJson,
           'nameReference': Reference.fromJson,
         },
-        objectPath,
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       )!,
       generation: JsonParser.parsePrimitive<GuidePageGeneration>(
         json,
         'generation',
         GuidePageGeneration.fromJson,
-        '$objectPath.generation',
       )!,
       page: (json['page'] as List<dynamic>?)
           ?.map<ImplementationGuidePage>(
             (v) => ImplementationGuidePage.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.page',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5109,304 +2891,19 @@ class ImplementationGuidePage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuidePage clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-      case 'nameX':
-        {
-          if (child is NameXImplementationGuidePage) {
-            return copyWith(nameX: child);
-          } else {
-            if (child is FhirUrl) {
-              return copyWith(nameX: child);
-            }
-            if (child is Reference) {
-              return copyWith(nameX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'nameFhirUrl':
-        {
-          if (child is FhirUrl) {
-            return copyWith(nameX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'nameReference':
-        {
-          if (child is Reference) {
-            return copyWith(nameX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'generation':
-        {
-          if (child is GuidePageGeneration) {
-            return copyWith(generation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'page':
-        {
-          if (child is List<ImplementationGuidePage>) {
-            // Add all elements from passed list
-            final newList = [...?page, ...child];
-            return copyWith(page: newList);
-          } else if (child is ImplementationGuidePage) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?page,
-              child,
-            ];
-            return copyWith(page: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuidePage]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-      case 'nameX':
-        return [
-          'FhirUrl',
-          'Reference',
-        ];
-      case 'nameUrl':
-        return ['FhirUrl'];
-      case 'nameReference':
-        return ['Reference'];
-      case 'title':
-        return ['FhirString'];
-      case 'generation':
-        return ['FhirCode'];
-      case 'page':
-        return ['ImplementationGuidePage'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuidePage]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuidePage createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-      case 'nameX':
-      case 'nameUrl':
-        {
-          return copyWith(
-            nameX: FhirUrl.empty(),
-          );
-        }
-      case 'nameReference':
-        {
-          return copyWith(
-            nameX: Reference.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'generation':
-        {
-          return copyWith(
-            generation: GuidePageGeneration.empty(),
-          );
-        }
-      case 'page':
-        {
-          return copyWith(
-            page: <ImplementationGuidePage>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuidePage clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool page = false,
-  }) {
-    return ImplementationGuidePage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      nameX: nameX,
-      title: title,
-      generation: generation,
-      page: page ? null : this.page,
-    );
-  }
-
-  @override
-  ImplementationGuidePage clone() => throw UnimplementedError();
-  @override
-  ImplementationGuidePage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    NameXImplementationGuidePage? nameX,
-    FhirString? title,
-    GuidePageGeneration? generation,
-    List<ImplementationGuidePage>? page,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuidePage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      nameX: nameX?.copyWith(
-            objectPath: '$newObjectPath.nameX',
-          ) as NameXImplementationGuidePage? ??
-          this.nameX,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      generation: generation?.copyWith(
-            objectPath: '$newObjectPath.generation',
-          ) ??
-          this.generation,
-      page: page
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.page',
-                ),
-              )
-              .toList() ??
-          this.page,
-    );
-  }
+  $ImplementationGuidePageCopyWith<ImplementationGuidePage> get copyWith =>
+      _$ImplementationGuidePageCopyWithImpl<ImplementationGuidePage>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5475,47 +2972,29 @@ class ImplementationGuideParameter extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition.parameter',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideParameter.empty() => ImplementationGuideParameter(
-        code: GuideParameterCode.values.first,
-        value: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideParameter.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition.parameter';
     return ImplementationGuideParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5523,13 +3002,11 @@ class ImplementationGuideParameter extends BackboneElement {
         json,
         'code',
         GuideParameterCode.fromJson,
-        '$objectPath.code',
       )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
-        '$objectPath.value',
       )!,
     );
   }
@@ -5724,207 +3201,20 @@ class ImplementationGuideParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideParameter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is GuideParameterCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-        {
-          if (child is FhirString) {
-            return copyWith(value: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideParameter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['FhirCode'];
-      case 'value':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideParameter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideParameter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideParameterCopyWith<ImplementationGuideParameter>
+      get copyWith => _$ImplementationGuideParameterCopyWithImpl<
+              ImplementationGuideParameter>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: GuideParameterCode.empty(),
-          );
-        }
-      case 'value':
-        {
-          return copyWith(
-            value: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideParameter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return ImplementationGuideParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      value: value,
-    );
-  }
-
-  @override
-  ImplementationGuideParameter clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    GuideParameterCode? code,
-    FhirString? value,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5982,47 +3272,29 @@ class ImplementationGuideTemplate extends BackboneElement {
     required this.source,
     this.scope,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.definition.template',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideTemplate.empty() => ImplementationGuideTemplate(
-        code: FhirCode.empty(),
-        source: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideTemplate.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.definition.template';
     return ImplementationGuideTemplate(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6030,19 +3302,16 @@ class ImplementationGuideTemplate extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
-        '$objectPath.code',
       )!,
       source: JsonParser.parsePrimitive<FhirString>(
         json,
         'source',
         FhirString.fromJson,
-        '$objectPath.source',
       )!,
       scope: JsonParser.parsePrimitive<FhirString>(
         json,
         'scope',
         FhirString.fromJson,
-        '$objectPath.scope',
       ),
     );
   }
@@ -6248,230 +3517,20 @@ class ImplementationGuideTemplate extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideTemplate clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is FhirString) {
-            return copyWith(source: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'scope':
-        {
-          if (child is FhirString) {
-            return copyWith(scope: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideTemplate]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['FhirCode'];
-      case 'source':
-        return ['FhirString'];
-      case 'scope':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideTemplate]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideTemplate createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideTemplateCopyWith<ImplementationGuideTemplate>
+      get copyWith => _$ImplementationGuideTemplateCopyWithImpl<
+              ImplementationGuideTemplate>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: FhirString.empty(),
-          );
-        }
-      case 'scope':
-        {
-          return copyWith(
-            scope: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideTemplate clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool scope = false,
-  }) {
-    return ImplementationGuideTemplate(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      source: source,
-      scope: scope ? null : this.scope,
-    );
-  }
-
-  @override
-  ImplementationGuideTemplate clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideTemplate copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? code,
-    FhirString? source,
-    FhirString? scope,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideTemplate(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      scope: scope?.copyWith(
-            objectPath: '$newObjectPath.scope',
-          ) ??
-          this.scope,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6538,47 +3597,29 @@ class ImplementationGuideManifest extends BackboneElement {
     this.image,
     this.other,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.manifest',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() =>
-      const ImplementationGuideManifest(
-        resource: <ImplementationGuideResource1>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideManifest.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.manifest';
     return ImplementationGuideManifest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6586,25 +3627,18 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'rendering',
         FhirUrl.fromJson,
-        '$objectPath.rendering',
       ),
       resource: (json['resource'] as List<dynamic>)
           .map<ImplementationGuideResource1>(
             (v) => ImplementationGuideResource1.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.resource',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       page: (json['page'] as List<dynamic>?)
           ?.map<ImplementationGuidePage1>(
             (v) => ImplementationGuidePage1.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.page',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6612,13 +3646,11 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'image',
         FhirString.fromJson,
-        '$objectPath.image',
       ),
       other: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'other',
         FhirString.fromJson,
-        '$objectPath.other',
       ),
     );
   }
@@ -6858,329 +3890,20 @@ class ImplementationGuideManifest extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideManifest clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rendering':
-        {
-          if (child is FhirUrl) {
-            return copyWith(rendering: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is List<ImplementationGuideResource1>) {
-            // Add all elements from passed list
-            final newList = [...resource, ...child];
-            return copyWith(resource: newList);
-          } else if (child is ImplementationGuideResource1) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...resource,
-              child,
-            ];
-            return copyWith(resource: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'page':
-        {
-          if (child is List<ImplementationGuidePage1>) {
-            // Add all elements from passed list
-            final newList = [...?page, ...child];
-            return copyWith(page: newList);
-          } else if (child is ImplementationGuidePage1) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?page,
-              child,
-            ];
-            return copyWith(page: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'image':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?image, ...child];
-            return copyWith(image: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?image,
-              child,
-            ];
-            return copyWith(image: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'other':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?other, ...child];
-            return copyWith(other: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?other,
-              child,
-            ];
-            return copyWith(other: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideManifest]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'rendering':
-        return ['FhirUrl'];
-      case 'resource':
-        return ['ImplementationGuideResource'];
-      case 'page':
-        return ['ImplementationGuidePage'];
-      case 'image':
-        return ['FhirString'];
-      case 'other':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideManifest]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideManifest createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideManifestCopyWith<ImplementationGuideManifest>
+      get copyWith => _$ImplementationGuideManifestCopyWithImpl<
+              ImplementationGuideManifest>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'rendering':
-        {
-          return copyWith(
-            rendering: FhirUrl.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: <ImplementationGuideResource1>[],
-          );
-        }
-      case 'page':
-        {
-          return copyWith(
-            page: <ImplementationGuidePage1>[],
-          );
-        }
-      case 'image':
-        {
-          return copyWith(
-            image: <FhirString>[],
-          );
-        }
-      case 'other':
-        {
-          return copyWith(
-            other: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideManifest clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool rendering = false,
-    bool page = false,
-    bool image = false,
-    bool other = false,
-  }) {
-    return ImplementationGuideManifest(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      rendering: rendering ? null : this.rendering,
-      resource: resource,
-      page: page ? null : this.page,
-      image: image ? null : this.image,
-      other: other ? null : this.other,
-    );
-  }
-
-  @override
-  ImplementationGuideManifest clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideManifest copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUrl? rendering,
-    List<ImplementationGuideResource1>? resource,
-    List<ImplementationGuidePage1>? page,
-    List<FhirString>? image,
-    List<FhirString>? other,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideManifest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      rendering: rendering?.copyWith(
-            objectPath: '$newObjectPath.rendering',
-          ) ??
-          this.rendering,
-      resource: resource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resource',
-                ),
-              )
-              .toList() ??
-          this.resource,
-      page: page
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.page',
-                ),
-              )
-              .toList() ??
-          this.page,
-      image: image
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.image',
-                ),
-              )
-              .toList() ??
-          this.image,
-      other: other
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.other',
-                ),
-              )
-              .toList() ??
-          this.other,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7259,46 +3982,29 @@ class ImplementationGuideResource1 extends BackboneElement {
     this.exampleX,
     this.relativePath,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.manifest.resource',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideResource1.empty() => ImplementationGuideResource1(
-        reference: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.manifest.resource';
     return ImplementationGuideResource1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7306,7 +4012,6 @@ class ImplementationGuideResource1 extends BackboneElement {
         json,
         'reference',
         Reference.fromJson,
-        '$objectPath.reference',
       )!,
       exampleX:
           JsonParser.parsePolymorphic<ExampleXImplementationGuideResource1>(
@@ -7315,13 +4020,11 @@ class ImplementationGuideResource1 extends BackboneElement {
           'exampleBoolean': FhirBoolean.fromJson,
           'exampleCanonical': FhirCanonical.fromJson,
         },
-        objectPath,
       ),
       relativePath: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'relativePath',
         FhirUrl.fromJson,
-        '$objectPath.relativePath',
       ),
     );
   }
@@ -7549,270 +4252,20 @@ class ImplementationGuideResource1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuideResource1 clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reference':
-        {
-          if (child is Reference) {
-            return copyWith(reference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'example':
-      case 'exampleX':
-        {
-          if (child is ExampleXImplementationGuideResource1) {
-            return copyWith(exampleX: child);
-          } else {
-            if (child is FhirBoolean) {
-              return copyWith(exampleX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(exampleX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'exampleFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(exampleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'exampleFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(exampleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relativePath':
-        {
-          if (child is FhirUrl) {
-            return copyWith(relativePath: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuideResource1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'reference':
-        return ['Reference'];
-      case 'example':
-      case 'exampleX':
-        return [
-          'FhirBoolean',
-          'FhirCanonical',
-        ];
-      case 'exampleBoolean':
-        return ['FhirBoolean'];
-      case 'exampleCanonical':
-        return ['FhirCanonical'];
-      case 'relativePath':
-        return ['FhirUrl'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuideResource1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuideResource1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ImplementationGuideResource1CopyWith<ImplementationGuideResource1>
+      get copyWith => _$ImplementationGuideResource1CopyWithImpl<
+              ImplementationGuideResource1>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'reference':
-        {
-          return copyWith(
-            reference: Reference.empty(),
-          );
-        }
-      case 'example':
-      case 'exampleX':
-      case 'exampleBoolean':
-        {
-          return copyWith(
-            exampleX: FhirBoolean.empty(),
-          );
-        }
-      case 'exampleCanonical':
-        {
-          return copyWith(
-            exampleX: FhirCanonical.empty(),
-          );
-        }
-      case 'relativePath':
-        {
-          return copyWith(
-            relativePath: FhirUrl.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuideResource1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool example = false,
-    bool relativePath = false,
-  }) {
-    return ImplementationGuideResource1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      reference: reference,
-      exampleX: example ? null : exampleX,
-      relativePath: relativePath ? null : this.relativePath,
-    );
-  }
-
-  @override
-  ImplementationGuideResource1 clone() => throw UnimplementedError();
-  @override
-  ImplementationGuideResource1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? reference,
-    ExampleXImplementationGuideResource1? exampleX,
-    FhirUrl? relativePath,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuideResource1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      exampleX: exampleX?.copyWith(
-            objectPath: '$newObjectPath.exampleX',
-          ) as ExampleXImplementationGuideResource1? ??
-          this.exampleX,
-      relativePath: relativePath?.copyWith(
-            objectPath: '$newObjectPath.relativePath',
-          ) ??
-          this.relativePath,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7876,46 +4329,29 @@ class ImplementationGuidePage1 extends BackboneElement {
     this.title,
     this.anchor,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ImplementationGuide.manifest.page',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuidePage1.empty() => ImplementationGuidePage1(
-        name: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ImplementationGuide.manifest.page';
     return ImplementationGuidePage1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7923,19 +4359,16 @@ class ImplementationGuidePage1 extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       anchor: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'anchor',
         FhirString.fromJson,
-        '$objectPath.anchor',
       ),
     );
   }
@@ -8143,244 +4576,19 @@ class ImplementationGuidePage1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ImplementationGuidePage1 clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'anchor':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?anchor, ...child];
-            return copyWith(anchor: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?anchor,
-              child,
-            ];
-            return copyWith(anchor: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ImplementationGuidePage1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'anchor':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ImplementationGuidePage1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ImplementationGuidePage1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'anchor':
-        {
-          return copyWith(
-            anchor: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ImplementationGuidePage1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool title = false,
-    bool anchor = false,
-  }) {
-    return ImplementationGuidePage1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      title: title ? null : this.title,
-      anchor: anchor ? null : this.anchor,
-    );
-  }
-
-  @override
-  ImplementationGuidePage1 clone() => throw UnimplementedError();
-  @override
-  ImplementationGuidePage1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    FhirString? title,
-    List<FhirString>? anchor,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ImplementationGuidePage1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      anchor: anchor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.anchor',
-                ),
-              )
-              .toList() ??
-          this.anchor,
-    );
-  }
+  $ImplementationGuidePage1CopyWith<ImplementationGuidePage1> get copyWith =>
+      _$ImplementationGuidePage1CopyWithImpl<ImplementationGuidePage1>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

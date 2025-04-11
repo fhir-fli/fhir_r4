@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DeviceMetricOperationalStatus
+enum DeviceMetricOperationalStatusEnum {
+  /// on
+  on_,
+
+  /// off
+  off,
+
+  /// standby
+  standby,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DeviceMetricOperationalStatusEnum.on_:
+        return 'on';
+      case DeviceMetricOperationalStatusEnum.off:
+        return 'off';
+      case DeviceMetricOperationalStatusEnum.standby:
+        return 'standby';
+      case DeviceMetricOperationalStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DeviceMetricOperationalStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DeviceMetricOperationalStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DeviceMetricOperationalStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'on':
+        return DeviceMetricOperationalStatusEnum.on_;
+      case 'off':
+        return DeviceMetricOperationalStatusEnum.off;
+      case 'standby':
+        return DeviceMetricOperationalStatusEnum.standby;
+      case 'entered-in-error':
+        return DeviceMetricOperationalStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Describes the operational status of the DeviceMetric.
 class DeviceMetricOperationalStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DeviceMetricOperationalStatus._({
+  const DeviceMetricOperationalStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DeviceMetricOperationalStatusEnum.fromString(valueString);
     return DeviceMetricOperationalStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DeviceMetricOperationalStatus] with element only
-  factory DeviceMetricOperationalStatus.empty() =>
-      DeviceMetricOperationalStatus._(valueString: '');
 
   /// Factory constructor to create [DeviceMetricOperationalStatus]
   /// from JSON.
@@ -54,10 +110,14 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DeviceMetricOperationalStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricOperationalStatus.elementOnly.withElement(element);
+      return DeviceMetricOperationalStatus._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DeviceMetricOperationalStatus cannot be constructed from JSON.',
@@ -65,64 +125,77 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
     }
     return DeviceMetricOperationalStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DeviceMetricOperationalStatus
+  final DeviceMetricOperationalStatusEnum? valueEnum;
+
   /// on_
-  static final DeviceMetricOperationalStatus on_ =
+  static const DeviceMetricOperationalStatus on_ =
       DeviceMetricOperationalStatus._(
     valueString: 'on',
-    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On'.toFhirString,
+    valueEnum: DeviceMetricOperationalStatusEnum.on_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-operational-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On',
+    ),
   );
 
   /// off
-  static final DeviceMetricOperationalStatus off =
+  static const DeviceMetricOperationalStatus off =
       DeviceMetricOperationalStatus._(
     valueString: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Off'.toFhirString,
+    valueEnum: DeviceMetricOperationalStatusEnum.off,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-operational-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Off',
+    ),
   );
 
   /// standby
-  static final DeviceMetricOperationalStatus standby =
+  static const DeviceMetricOperationalStatus standby =
       DeviceMetricOperationalStatus._(
     valueString: 'standby',
-    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Standby'.toFhirString,
+    valueEnum: DeviceMetricOperationalStatusEnum.standby,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-operational-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Standby',
+    ),
   );
 
   /// entered_in_error
-  static final DeviceMetricOperationalStatus entered_in_error =
+  static const DeviceMetricOperationalStatus enteredInError =
       DeviceMetricOperationalStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered In Error'.toFhirString,
+    valueEnum: DeviceMetricOperationalStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-operational-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered In Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DeviceMetricOperationalStatus elementOnly =
-      DeviceMetricOperationalStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricOperationalStatus> values = [
     on_,
     off,
     standby,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  DeviceMetricOperationalStatus clone() => DeviceMetricOperationalStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatus withElement(Element? newElement) {
@@ -143,36 +216,58 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DeviceMetricOperationalStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DeviceMetricOperationalStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DeviceMetricOperationalStatusCopyWithImpl<DeviceMetricOperationalStatus>
+      get copyWith => DeviceMetricOperationalStatusCopyWithImpl<
+              DeviceMetricOperationalStatus>(
+            this,
+            (v) => v as DeviceMetricOperationalStatus,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DeviceMetricOperationalStatusCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DeviceMetricOperationalStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DeviceMetricOperationalStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DeviceMetricOperationalStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DeviceMetricOperationalStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

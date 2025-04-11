@@ -428,20 +428,6 @@ class CodeableConceptBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool coding = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (coding) this.coding = null;
-    if (text) this.text = null;
-  }
-
   @override
   CodeableConceptBuilder clone() => throw UnimplementedError();
   @override

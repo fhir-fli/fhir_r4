@@ -2052,94 +2052,6 @@ class ContractBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool url = false,
-    bool version = false,
-    bool status = false,
-    bool legalState = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool contentDerivative = false,
-    bool issued = false,
-    bool applies = false,
-    bool expirationType = false,
-    bool subject = false,
-    bool authority = false,
-    bool domain = false,
-    bool site = false,
-    bool name = false,
-    bool title = false,
-    bool subtitle = false,
-    bool alias = false,
-    bool author = false,
-    bool scope = false,
-    bool topic = false,
-    bool type = false,
-    bool subType = false,
-    bool contentDefinition = false,
-    bool term = false,
-    bool supportingInfo = false,
-    bool relevantHistory = false,
-    bool signer = false,
-    bool friendly = false,
-    bool legal = false,
-    bool rule = false,
-    bool legallyBinding = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (status) this.status = null;
-    if (legalState) this.legalState = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (contentDerivative) this.contentDerivative = null;
-    if (issued) this.issued = null;
-    if (applies) this.applies = null;
-    if (expirationType) this.expirationType = null;
-    if (subject) this.subject = null;
-    if (authority) this.authority = null;
-    if (domain) this.domain = null;
-    if (site) this.site = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (subtitle) this.subtitle = null;
-    if (alias) this.alias = null;
-    if (author) this.author = null;
-    if (scope) this.scope = null;
-    if (topic) topicX = null;
-    if (type) this.type = null;
-    if (subType) this.subType = null;
-    if (contentDefinition) this.contentDefinition = null;
-    if (term) this.term = null;
-    if (supportingInfo) this.supportingInfo = null;
-    if (relevantHistory) this.relevantHistory = null;
-    if (signer) this.signer = null;
-    if (friendly) this.friendly = null;
-    if (legal) this.legal = null;
-    if (rule) this.rule = null;
-    if (legallyBinding) legallyBindingX = null;
-  }
-
   @override
   ContractBuilder clone() => throw UnimplementedError();
   @override
@@ -3056,30 +2968,6 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool subType = false,
-    bool publisher = false,
-    bool publicationDate = false,
-    bool publicationStatus = false,
-    bool copyright = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (subType) this.subType = null;
-    if (publisher) this.publisher = null;
-    if (publicationDate) this.publicationDate = null;
-    if (publicationStatus) this.publicationStatus = null;
-    if (copyright) this.copyright = null;
   }
 
   @override
@@ -4026,42 +3914,6 @@ class ContractTermBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool issued = false,
-    bool applies = false,
-    bool topic = false,
-    bool type = false,
-    bool subType = false,
-    bool text = false,
-    bool securityLabel = false,
-    bool offer = false,
-    bool asset = false,
-    bool action = false,
-    bool group = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (issued) this.issued = null;
-    if (applies) this.applies = null;
-    if (topic) topicX = null;
-    if (type) this.type = null;
-    if (subType) this.subType = null;
-    if (text) this.text = null;
-    if (securityLabel) this.securityLabel = null;
-    if (offer) this.offer = null;
-    if (asset) this.asset = null;
-    if (action) this.action = null;
-    if (group) this.group = null;
-  }
-
   @override
   ContractTermBuilder clone() => throw UnimplementedError();
   @override
@@ -4728,26 +4580,6 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool number = false,
-    bool classification = false,
-    bool category = false,
-    bool control = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (number) this.number = null;
-    if (classification) this.classification = null;
-    if (category) this.category = null;
-    if (control) this.control = null;
   }
 
   @override
@@ -5622,38 +5454,6 @@ class ContractOfferBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool party = false,
-    bool topic = false,
-    bool type = false,
-    bool decision = false,
-    bool decisionMode = false,
-    bool answer = false,
-    bool text = false,
-    bool linkId = false,
-    bool securityLabelNumber = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (party) this.party = null;
-    if (topic) this.topic = null;
-    if (type) this.type = null;
-    if (decision) this.decision = null;
-    if (decisionMode) this.decisionMode = null;
-    if (answer) this.answer = null;
-    if (text) this.text = null;
-    if (linkId) this.linkId = null;
-    if (securityLabelNumber) this.securityLabelNumber = null;
-  }
-
   @override
   ContractOfferBuilder clone() => throw UnimplementedError();
   @override
@@ -6173,22 +5973,6 @@ class ContractPartyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reference = false,
-    bool role = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (reference) this.reference = null;
-    if (role) this.role = null;
   }
 
   @override
@@ -6961,20 +6745,6 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
   }
 
   @override
@@ -8058,48 +7828,6 @@ class ContractAssetBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool scope = false,
-    bool type = false,
-    bool typeReference = false,
-    bool subtype = false,
-    bool relationship = false,
-    bool context = false,
-    bool condition = false,
-    bool periodType = false,
-    bool period = false,
-    bool usePeriod = false,
-    bool text = false,
-    bool linkId = false,
-    bool answer = false,
-    bool securityLabelNumber = false,
-    bool valuedItem = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (scope) this.scope = null;
-    if (type) this.type = null;
-    if (typeReference) this.typeReference = null;
-    if (subtype) this.subtype = null;
-    if (relationship) this.relationship = null;
-    if (context) this.context = null;
-    if (condition) this.condition = null;
-    if (periodType) this.periodType = null;
-    if (period) this.period = null;
-    if (usePeriod) this.usePeriod = null;
-    if (text) this.text = null;
-    if (linkId) this.linkId = null;
-    if (answer) this.answer = null;
-    if (securityLabelNumber) this.securityLabelNumber = null;
-    if (valuedItem) this.valuedItem = null;
-  }
-
   @override
   ContractAssetBuilder clone() => throw UnimplementedError();
   @override
@@ -8703,24 +8431,6 @@ class ContractContextBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reference = false,
-    bool code = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (reference) this.reference = null;
-    if (code) this.code = null;
-    if (text) this.text = null;
   }
 
   @override
@@ -9801,46 +9511,6 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool entity = false,
-    bool identifier = false,
-    bool effectiveTime = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool points = false,
-    bool net = false,
-    bool payment = false,
-    bool paymentDate = false,
-    bool responsible = false,
-    bool recipient = false,
-    bool linkId = false,
-    bool securityLabelNumber = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (entity) entityX = null;
-    if (identifier) this.identifier = null;
-    if (effectiveTime) this.effectiveTime = null;
-    if (quantity) this.quantity = null;
-    if (unitPrice) this.unitPrice = null;
-    if (factor) this.factor = null;
-    if (points) this.points = null;
-    if (net) this.net = null;
-    if (payment) this.payment = null;
-    if (paymentDate) this.paymentDate = null;
-    if (responsible) this.responsible = null;
-    if (recipient) this.recipient = null;
-    if (linkId) this.linkId = null;
-    if (securityLabelNumber) this.securityLabelNumber = null;
   }
 
   @override
@@ -11493,60 +11163,6 @@ class ContractActionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool doNotPerform = false,
-    bool type = false,
-    bool subject = false,
-    bool intent = false,
-    bool linkId = false,
-    bool status = false,
-    bool context = false,
-    bool contextLinkId = false,
-    bool occurrence = false,
-    bool requester = false,
-    bool requesterLinkId = false,
-    bool performerType = false,
-    bool performerRole = false,
-    bool performer = false,
-    bool performerLinkId = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool reason = false,
-    bool reasonLinkId = false,
-    bool note = false,
-    bool securityLabelNumber = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (doNotPerform) this.doNotPerform = null;
-    if (type) this.type = null;
-    if (subject) this.subject = null;
-    if (intent) this.intent = null;
-    if (linkId) this.linkId = null;
-    if (status) this.status = null;
-    if (context) this.context = null;
-    if (contextLinkId) this.contextLinkId = null;
-    if (occurrence) occurrenceX = null;
-    if (requester) this.requester = null;
-    if (requesterLinkId) this.requesterLinkId = null;
-    if (performerType) this.performerType = null;
-    if (performerRole) this.performerRole = null;
-    if (performer) this.performer = null;
-    if (performerLinkId) this.performerLinkId = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (reason) this.reason = null;
-    if (reasonLinkId) this.reasonLinkId = null;
-    if (note) this.note = null;
-    if (securityLabelNumber) this.securityLabelNumber = null;
-  }
-
   @override
   ContractActionBuilder clone() => throw UnimplementedError();
   @override
@@ -12155,22 +11771,6 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reference = false,
-    bool role = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (reference) this.reference = null;
-    if (role) this.role = null;
-  }
-
   @override
   ContractSubjectBuilder clone() => throw UnimplementedError();
   @override
@@ -12662,24 +12262,6 @@ class ContractSignerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool party = false,
-    bool signature = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (party) this.party = null;
-    if (signature) this.signature = null;
   }
 
   @override
@@ -13178,20 +12760,6 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool content = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
-  }
-
   @override
   ContractFriendlyBuilder clone() => throw UnimplementedError();
   @override
@@ -13662,20 +13230,6 @@ class ContractLegalBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool content = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
   }
 
   @override
@@ -14150,20 +13704,6 @@ class ContractRuleBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool content = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart' show HumanName, yamlMapToJson, yamlToJson;
+import 'package:fhir_r4/fhir_r4.dart'
+    show HumanName, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -660,30 +661,6 @@ class HumanNameBuilder extends DataTypeBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool use = false,
-    bool text = false,
-    bool family = false,
-    bool given = false,
-    bool prefix = false,
-    bool suffix = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (use) this.use = null;
-    if (text) this.text = null;
-    if (family) this.family = null;
-    if (given) this.given = null;
-    if (prefix) this.prefix = null;
-    if (suffix) this.suffix = null;
-    if (period) this.period = null;
   }
 
   @override

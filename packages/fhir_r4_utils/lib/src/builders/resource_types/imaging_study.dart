@@ -6,6 +6,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         ImagingStudyPerformer,
         ImagingStudySeries,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1348,68 +1349,6 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool modality = false,
-    bool subject = false,
-    bool encounter = false,
-    bool started = false,
-    bool basedOn = false,
-    bool referrer = false,
-    bool interpreter = false,
-    bool endpoint = false,
-    bool numberOfSeries = false,
-    bool numberOfInstances = false,
-    bool procedureReference = false,
-    bool procedureCode = false,
-    bool location = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-    bool description = false,
-    bool series = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (modality) this.modality = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (started) this.started = null;
-    if (basedOn) this.basedOn = null;
-    if (referrer) this.referrer = null;
-    if (interpreter) this.interpreter = null;
-    if (endpoint) this.endpoint = null;
-    if (numberOfSeries) this.numberOfSeries = null;
-    if (numberOfInstances) this.numberOfInstances = null;
-    if (procedureReference) this.procedureReference = null;
-    if (procedureCode) this.procedureCode = null;
-    if (location) this.location = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (note) this.note = null;
-    if (description) this.description = null;
-    if (series) this.series = null;
-  }
-
   @override
   ImagingStudyBuilder clone() => throw UnimplementedError();
   @override
@@ -2490,42 +2429,6 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool uid = false,
-    bool number = false,
-    bool modality = false,
-    bool description = false,
-    bool numberOfInstances = false,
-    bool endpoint = false,
-    bool bodySite = false,
-    bool laterality = false,
-    bool specimen = false,
-    bool started = false,
-    bool performer = false,
-    bool instance = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (uid) this.uid = null;
-    if (number) this.number = null;
-    if (modality) this.modality = null;
-    if (description) this.description = null;
-    if (numberOfInstances) this.numberOfInstances = null;
-    if (endpoint) this.endpoint = null;
-    if (bodySite) this.bodySite = null;
-    if (laterality) this.laterality = null;
-    if (specimen) this.specimen = null;
-    if (started) this.started = null;
-    if (performer) this.performer = null;
-    if (instance) this.instance = null;
-  }
-
   @override
   ImagingStudySeriesBuilder clone() => throw UnimplementedError();
   @override
@@ -3048,22 +2951,6 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
   }
 
   @override
@@ -3615,26 +3502,6 @@ class ImagingStudyInstanceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool uid = false,
-    bool sopClass = false,
-    bool number = false,
-    bool title = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (uid) this.uid = null;
-    if (sopClass) this.sopClass = null;
-    if (number) this.number = null;
-    if (title) this.title = null;
   }
 
   @override

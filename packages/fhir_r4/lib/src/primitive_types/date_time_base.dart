@@ -6,7 +6,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
   /// Private underscore constructor with the same parameters and logic,
   /// but no longer public. We pass [validatedValue] into `super._(value: ...)`
   /// and then run `_validateDateTimeComponents()`.
-  FhirDateTimeBase._({
+  const FhirDateTimeBase._({
     /// The string representation of the date-time once it's validated.
     required super.valueString,
     required this.year,
@@ -23,10 +23,87 @@ abstract class FhirDateTimeBase extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'DateTimeBase',
-  }) : super._() {
-    _validateDateTimeComponents();
-  }
+  })  : assert(
+          (year != null && year >= 1 && year <= 9999) || element != null,
+          'Invalid year: $year. Must be between 1 and 9999.',
+        ),
+        assert(
+          month == null || (month >= 1 && month <= 12),
+          'Invalid month: $month. Must be between 1 and 12.',
+        ),
+        assert(
+          day == null || month != null,
+          'Day cannot be provided without a month.',
+        ),
+        assert(
+          day == null ||
+              (day >= 1 &&
+                  day <=
+                      (month == 2 &&
+                              year != null &&
+                              (year % 4 == 0 &&
+                                  (year % 100 != 0 || year % 400 == 0))
+                          ? 29
+                          : month == 0
+                              ? 0
+                              : month == 2
+                                  ? 28
+                                  : month == 4 ||
+                                          month == 6 ||
+                                          month == 9 ||
+                                          month == 11
+                                      ? 30
+                                      : 31)),
+          'Invalid day: $day for year $year and month $month.',
+        ),
+        assert(
+          hour == null || day != null,
+          'Hour cannot be provided without a day.',
+        ),
+        assert(
+          hour == null || (hour >= 0 && hour <= 23),
+          'Invalid hour: $hour. Must be between 0 and 23.',
+        ),
+        assert(
+          minute == null || hour != null,
+          'Minute cannot be provided without an hour.',
+        ),
+        assert(
+          minute == null || (minute >= 0 && minute <= 59),
+          'Invalid minute: $minute. Must be between 0 and 59.',
+        ),
+        assert(
+          second == null || minute != null,
+          'Second cannot be provided without a minute.',
+        ),
+        assert(
+          second == null || (second >= 0 && second <= 59),
+          'Invalid second: $second. Must be between 0 and 59.',
+        ),
+        assert(
+          millisecond == null || second != null,
+          'Millisecond cannot be provided without a second.',
+        ),
+        assert(
+          millisecond == null || (millisecond >= 0 && millisecond <= 999),
+          'Invalid millisecond: $millisecond. Must be between 0 and 999.',
+        ),
+        assert(
+          microsecond == null || millisecond != null,
+          'Microsecond cannot be provided without a millisecond.',
+        ),
+        assert(
+          microsecond == null || microsecond.length <= 6,
+          'Invalid microsecond: $microsecond. Must be a valid integer string '
+          'with at most 6 digits.',
+        ),
+        assert(
+          timeZoneOffset == null ||
+              (timeZoneOffset <= 14 && timeZoneOffset >= -14),
+          'Invalid time zone offset: $timeZoneOffset. '
+          'Must be between -14 and 14.',
+        ),
+        super._();
 
   /// Year
   final int? year;
@@ -408,12 +485,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
     bool? disallowExtensions,
-    String? objectPath,
   }) {
     // If input is null, return an instance with only the element
     if (input == null) {
@@ -442,12 +514,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
       element,
       id,
       extension_,
-      userData,
-      formatCommentsPre,
-      formatCommentsPost,
-      annotations,
       disallowExtensions,
-      objectPath,
     );
   }
 
@@ -458,12 +525,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
     bool? disallowExtensions,
-    String? objectPath,
   ]) {
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
@@ -482,7 +544,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath ?? 'DateTime',
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
@@ -501,7 +562,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath ?? 'DateTime',
       );
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
@@ -513,7 +573,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath ?? 'Date',
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDate');
@@ -527,7 +586,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath ?? 'Date',
       );
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
@@ -545,7 +603,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath ?? 'Instant',
         );
       } else if (dateTimeMap['year'] == null ||
           dateTimeMap['month'] == null ||
@@ -572,7 +629,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath ?? 'Instant',
       );
       return instant;
     } else {
@@ -754,99 +810,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
             'Argument 1: $valueString ($runtimeType)\n'
             'Argument 2: $o (${o.runtimeType})',
       );
-
-  /// Validates the components of a date-time.
-  void _validateDateTimeComponents() {
-    // Validate year
-    if ((year == null || year! < 1 || year! > 9999) && element == null) {
-      throw ArgumentError('Invalid year: $year. Must be between 1 and 9999.');
-    }
-
-    // Validate month
-    if (month != null && (month! < 1 || month! > 12)) {
-      throw ArgumentError('Invalid month: $month. Must be between 1 and 12.');
-    }
-
-    // Validate day
-    if (day != null) {
-      if (month == null) {
-        throw ArgumentError('Day cannot be provided without a month.');
-      }
-      final daysInMonth = _daysInMonth(year!, month!);
-      if (day! < 1 || day! > daysInMonth) {
-        throw ArgumentError(
-          'Invalid day: $day. Must be between 1 and $daysInMonth for '
-          'year $year and month $month.',
-        );
-      }
-    }
-
-    // Validate hour
-    if (hour != null && (hour! < 0 || hour! > 23)) {
-      throw ArgumentError('Invalid hour: $hour. Must be between 0 and 23.');
-    }
-
-    // Validate minute
-    if (minute != null && (minute! < 0 || minute! > 59)) {
-      throw ArgumentError('Invalid minute: $minute. Must be between 0 and 59.');
-    }
-
-    // Validate second
-    if (second != null && (second! < 0 || second! > 59)) {
-      throw ArgumentError('Invalid second: $second. Must be between 0 and 59.');
-    }
-
-    // Validate millisecond
-    if (millisecond != null && (millisecond! < 0 || millisecond! > 999)) {
-      throw ArgumentError(
-        'Invalid millisecond: $millisecond. Must be between 0 and 999.',
-      );
-    }
-
-    // Validate microsecond
-    if (microsecond != null &&
-        (microsecond!.length > 6 || int.tryParse(microsecond!) == null)) {
-      throw ArgumentError(
-        'Invalid microsecond: $microsecond. Must be a valid integer string '
-        'with at most 6 digits.',
-      );
-    }
-
-    // Validate time zone offset
-    if (timeZoneOffset != null && (timeZoneOffset!.abs() > 14)) {
-      throw ArgumentError(
-        'Invalid time zone offset: $timeZoneOffset. '
-        'Must be between -14 and 14.',
-      );
-    }
-  }
-
-  /// Returns the number of days in a given month for a specific year.
-  int _daysInMonth(int year, int month) {
-    const daysPerMonth = <int>[
-      31,
-      28,
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31,
-    ];
-    if (month != 2) return daysPerMonth[month - 1];
-    return _isLeapYear(year) ? 29 : 28;
-  }
-
-  /// Determines if a year is a leap year.
-  bool _isLeapYear(int year) {
-    if (year % 4 != 0) return false;
-    if (year % 100 == 0 && year % 400 != 0) return false;
-    return true;
-  }
 
   /// Returns the difference between this and another FhirDateTimeBase.
   Duration difference(dynamic other) {

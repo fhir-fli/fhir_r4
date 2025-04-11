@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'communication.g.dart';
+
 /// [Communication]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
@@ -43,90 +45,64 @@ class Communication extends DomainResource {
     this.payload,
     this.note,
   }) : super(
-          objectPath: 'Communication',
           resourceType: R4ResourceType.Communication,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Communication.empty() => Communication(
-        status: EventStatus.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Communication.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Communication';
     return Communication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -134,41 +110,30 @@ class Communication extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-        '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.basedOn',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.partOf',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       inResponseTo: (json['inResponseTo'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.inResponseTo',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -176,21 +141,16 @@ class Communication extends DomainResource {
         json,
         'status',
         EventStatus.fromJson,
-        '$objectPath.status',
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'statusReason',
         CodeableConcept.fromJson,
-        '$objectPath.statusReason',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.category',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -198,15 +158,11 @@ class Communication extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-        '$objectPath.priority',
       ),
       medium: (json['medium'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.medium',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -214,21 +170,16 @@ class Communication extends DomainResource {
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       ),
       topic: JsonParser.parseObject<CodeableConcept>(
         json,
         'topic',
         CodeableConcept.fromJson,
-        '$objectPath.topic',
       ),
       about: (json['about'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.about',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -236,27 +187,21 @@ class Communication extends DomainResource {
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       sent: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'sent',
         FhirDateTime.fromJson,
-        '$objectPath.sent',
       ),
       received: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'received',
         FhirDateTime.fromJson,
-        '$objectPath.received',
       ),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.recipient',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -264,45 +209,32 @@ class Communication extends DomainResource {
         json,
         'sender',
         Reference.fromJson,
-        '$objectPath.sender',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonReference',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       payload: (json['payload'] as List<dynamic>?)
           ?.map<CommunicationPayload>(
             (v) => CommunicationPayload.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.payload',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -840,994 +772,19 @@ class Communication extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Communication clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesCanonical':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?instantiatesCanonical,
-              child,
-            ];
-            return copyWith(instantiatesCanonical: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesUri':
-        {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?instantiatesUri,
-              child,
-            ];
-            return copyWith(instantiatesUri: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basedOn':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?basedOn,
-              child,
-            ];
-            return copyWith(basedOn: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'partOf':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?partOf,
-              child,
-            ];
-            return copyWith(partOf: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'inResponseTo':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?inResponseTo, ...child];
-            return copyWith(inResponseTo: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?inResponseTo,
-              child,
-            ];
-            return copyWith(inResponseTo: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is EventStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'statusReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(statusReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?category,
-              child,
-            ];
-            return copyWith(category: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'priority':
-        {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'medium':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?medium, ...child];
-            return copyWith(medium: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?medium,
-              child,
-            ];
-            return copyWith(medium: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'topic':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(topic: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'about':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?about, ...child];
-            return copyWith(about: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?about,
-              child,
-            ];
-            return copyWith(about: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sent':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(sent: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'received':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(received: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'recipient':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?recipient, ...child];
-            return copyWith(recipient: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?recipient,
-              child,
-            ];
-            return copyWith(recipient: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sender':
-        {
-          if (child is Reference) {
-            return copyWith(sender: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonCode,
-              child,
-            ];
-            return copyWith(reasonCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonReference':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonReference,
-              child,
-            ];
-            return copyWith(reasonReference: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payload':
-        {
-          if (child is List<CommunicationPayload>) {
-            // Add all elements from passed list
-            final newList = [...?payload, ...child];
-            return copyWith(payload: newList);
-          } else if (child is CommunicationPayload) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?payload,
-              child,
-            ];
-            return copyWith(payload: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Communication]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'instantiatesCanonical':
-        return ['FhirCanonical'];
-      case 'instantiatesUri':
-        return ['FhirUri'];
-      case 'basedOn':
-        return ['Reference'];
-      case 'partOf':
-        return ['Reference'];
-      case 'inResponseTo':
-        return ['Reference'];
-      case 'status':
-        return ['FhirCode'];
-      case 'statusReason':
-        return ['CodeableConcept'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'priority':
-        return ['FhirCode'];
-      case 'medium':
-        return ['CodeableConcept'];
-      case 'subject':
-        return ['Reference'];
-      case 'topic':
-        return ['CodeableConcept'];
-      case 'about':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'sent':
-        return ['FhirDateTime'];
-      case 'received':
-        return ['FhirDateTime'];
-      case 'recipient':
-        return ['Reference'];
-      case 'sender':
-        return ['Reference'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'reasonReference':
-        return ['Reference'];
-      case 'payload':
-        return ['CommunicationPayload'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Communication]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Communication createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'instantiatesCanonical':
-        {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
-        }
-      case 'instantiatesUri':
-        {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
-        }
-      case 'basedOn':
-        {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
-        }
-      case 'partOf':
-        {
-          return copyWith(
-            partOf: <Reference>[],
-          );
-        }
-      case 'inResponseTo':
-        {
-          return copyWith(
-            inResponseTo: <Reference>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: EventStatus.empty(),
-          );
-        }
-      case 'statusReason':
-        {
-          return copyWith(
-            statusReason: CodeableConcept.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
-        }
-      case 'priority':
-        {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
-        }
-      case 'medium':
-        {
-          return copyWith(
-            medium: <CodeableConcept>[],
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'topic':
-        {
-          return copyWith(
-            topic: CodeableConcept.empty(),
-          );
-        }
-      case 'about':
-        {
-          return copyWith(
-            about: <Reference>[],
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'sent':
-        {
-          return copyWith(
-            sent: FhirDateTime.empty(),
-          );
-        }
-      case 'received':
-        {
-          return copyWith(
-            received: FhirDateTime.empty(),
-          );
-        }
-      case 'recipient':
-        {
-          return copyWith(
-            recipient: <Reference>[],
-          );
-        }
-      case 'sender':
-        {
-          return copyWith(
-            sender: Reference.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
-        }
-      case 'reasonReference':
-        {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
-        }
-      case 'payload':
-        {
-          return copyWith(
-            payload: <CommunicationPayload>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Communication clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool inResponseTo = false,
-    bool statusReason = false,
-    bool category = false,
-    bool priority = false,
-    bool medium = false,
-    bool subject = false,
-    bool topic = false,
-    bool about = false,
-    bool encounter = false,
-    bool sent = false,
-    bool received = false,
-    bool recipient = false,
-    bool sender = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool payload = false,
-    bool note = false,
-  }) {
-    return Communication(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      inResponseTo: inResponseTo ? null : this.inResponseTo,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      category: category ? null : this.category,
-      priority: priority ? null : this.priority,
-      medium: medium ? null : this.medium,
-      subject: subject ? null : this.subject,
-      topic: topic ? null : this.topic,
-      about: about ? null : this.about,
-      encounter: encounter ? null : this.encounter,
-      sent: sent ? null : this.sent,
-      received: received ? null : this.received,
-      recipient: recipient ? null : this.recipient,
-      sender: sender ? null : this.sender,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      payload: payload ? null : this.payload,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  Communication clone() => throw UnimplementedError();
-  @override
-  Communication copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    List<Reference>? inResponseTo,
-    EventStatus? status,
-    CodeableConcept? statusReason,
-    List<CodeableConcept>? category,
-    RequestPriority? priority,
-    List<CodeableConcept>? medium,
-    Reference? subject,
-    CodeableConcept? topic,
-    List<Reference>? about,
-    Reference? encounter,
-    FhirDateTime? sent,
-    FhirDateTime? received,
-    List<Reference>? recipient,
-    Reference? sender,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<CommunicationPayload>? payload,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Communication(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      inResponseTo: inResponseTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.inResponseTo',
-                ),
-              )
-              .toList() ??
-          this.inResponseTo,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      medium: medium
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.medium',
-                ),
-              )
-              .toList() ??
-          this.medium,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      topic: topic?.copyWith(
-            objectPath: '$newObjectPath.topic',
-          ) ??
-          this.topic,
-      about: about
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.about',
-                ),
-              )
-              .toList() ??
-          this.about,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      sent: sent?.copyWith(
-            objectPath: '$newObjectPath.sent',
-          ) ??
-          this.sent,
-      received: received?.copyWith(
-            objectPath: '$newObjectPath.received',
-          ) ??
-          this.received,
-      recipient: recipient
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.recipient',
-                ),
-              )
-              .toList() ??
-          this.recipient,
-      sender: sender?.copyWith(
-            objectPath: '$newObjectPath.sender',
-          ) ??
-          this.sender,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      payload: payload
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.payload',
-                ),
-              )
-              .toList() ??
-          this.payload,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
+  $CommunicationCopyWith<Communication> get copyWith =>
+      _$CommunicationCopyWithImpl<Communication>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2040,46 +997,29 @@ class CommunicationPayload extends BackboneElement {
     super.modifierExtension,
     required this.contentX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Communication.payload',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CommunicationPayload.empty() => CommunicationPayload(
-        contentX: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CommunicationPayload.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Communication.payload';
     return CommunicationPayload(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2090,7 +1030,6 @@ class CommunicationPayload extends BackboneElement {
           'contentAttachment': Attachment.fromJson,
           'contentReference': Reference.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -2298,244 +1237,19 @@ class CommunicationPayload extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CommunicationPayload clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'content':
-      case 'contentX':
-        {
-          if (child is ContentXCommunicationPayload) {
-            return copyWith(contentX: child);
-          } else {
-            if (child is FhirString) {
-              return copyWith(contentX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(contentX: child);
-            }
-            if (child is Reference) {
-              return copyWith(contentX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'contentFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(contentX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contentAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(contentX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contentReference':
-        {
-          if (child is Reference) {
-            return copyWith(contentX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CommunicationPayload]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'content':
-      case 'contentX':
-        return [
-          'FhirString',
-          'Attachment',
-          'Reference',
-        ];
-      case 'contentString':
-        return ['FhirString'];
-      case 'contentAttachment':
-        return ['Attachment'];
-      case 'contentReference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CommunicationPayload]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CommunicationPayload createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'content':
-      case 'contentX':
-      case 'contentString':
-        {
-          return copyWith(
-            contentX: FhirString.empty(),
-          );
-        }
-      case 'contentAttachment':
-        {
-          return copyWith(
-            contentX: Attachment.empty(),
-          );
-        }
-      case 'contentReference':
-        {
-          return copyWith(
-            contentX: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CommunicationPayload clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return CommunicationPayload(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      contentX: contentX,
-    );
-  }
-
-  @override
-  CommunicationPayload clone() => throw UnimplementedError();
-  @override
-  CommunicationPayload copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ContentXCommunicationPayload? contentX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return CommunicationPayload(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      contentX: contentX?.copyWith(
-            objectPath: '$newObjectPath.contentX',
-          ) as ContentXCommunicationPayload? ??
-          this.contentX,
-    );
-  }
+  $CommunicationPayloadCopyWith<CommunicationPayload> get copyWith =>
+      _$CommunicationPayloadCopyWithImpl<CommunicationPayload>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

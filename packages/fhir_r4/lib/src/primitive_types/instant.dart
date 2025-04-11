@@ -32,7 +32,7 @@ class FhirInstant extends FhirDateTimeBase
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor delegating to [FhirDateTimeBase].
-  FhirInstant._({
+  const FhirInstant._({
     required super.valueString,
     required super.year,
     required super.month,
@@ -48,7 +48,6 @@ class FhirInstant extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Instant',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -72,7 +71,6 @@ class FhirInstant extends FhirDateTimeBase
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'DateTime',
   }) {
     return FhirInstant._(
       valueString: valueString,
@@ -90,7 +88,6 @@ class FhirInstant extends FhirDateTimeBase
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -128,22 +125,12 @@ class FhirInstant extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
         input: valueString,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        objectPath: objectPath,
       ) as FhirInstant;
 
   /// Constructs a [FhirInstant] from a Dart [DateTime].
@@ -152,37 +139,13 @@ class FhirInstant extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
         input: input,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
       ) as FhirInstant;
-
-  /// Creates an empty [FhirInstant].
-  factory FhirInstant.empty() => FhirInstant.fromBase(
-        valueString: null,
-        year: null,
-        month: null,
-        day: null,
-        hour: null,
-        minute: null,
-        second: null,
-        millisecond: null,
-        microsecond: null,
-        timeZoneOffset: null,
-        isUtc: false,
-        element: Element.empty(),
-      );
 
   /// Creates a [FhirInstant] from JSON.
   factory FhirInstant.fromJson(Map<String, dynamic> json) {
@@ -296,7 +259,7 @@ class FhirInstant extends FhirDateTimeBase
 
   /// Clone
   @override
-  FhirInstant clone() => FhirInstant.fromJson(toJson());
+  FhirInstant clone() => copyWith();
 
   /// JSON
   @override
@@ -309,72 +272,49 @@ class FhirInstant extends FhirDateTimeBase
   // copyWith
   // --------------------------------------------------------------------------
 
-  /// Creates a new [FhirInstant] instance with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirInstant copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirDateTimeBase.constructor<FhirInstant>(
-      input: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
-    ) as FhirInstant;
-  }
+  $FhirInstantCopyWithImpl<FhirInstant> get copyWith =>
+      $FhirInstantCopyWithImpl<FhirInstant>(this, (value) => value);
 
   /// Shorthand to set `disallowExtensions = true`.
   FhirInstant noExtensions() => copyWith(disallowExtensions: true);
+}
 
-  /// Creates an empty property in the object
-  @override
-  FhirInstant createProperty(String propertyName) => this;
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirInstantCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirInstantCopyWithImpl(this._value, this._then);
 
-  /// Clears specified fields in a [FhirInstant].
+  final FhirInstant _value;
+  final T Function(FhirInstant) _then;
+
   @override
-  FhirInstant clear({
-    bool value = false,
-    bool element = false,
-    bool extension_ = false,
-    bool id = false,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirInstant.fromBase(
-      valueString: value ? null : valueString,
-      year: value ? null : year,
-      month: value ? null : month,
-      day: value ? null : day,
-      hour: value ? null : hour,
-      minute: value ? null : minute,
-      second: value ? null : second,
-      millisecond: value ? null : millisecond,
-      microsecond: value ? null : microsecond,
-      timeZoneOffset: value ? null : timeZoneOffset,
-      isUtc: value ? value : isUtc,
-      element: element ? null : this.element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath!,
+    return _then(
+      FhirDateTimeBase.constructor<FhirInstant>(
+        input:
+            identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ) as FhirInstant,
     );
   }
 }

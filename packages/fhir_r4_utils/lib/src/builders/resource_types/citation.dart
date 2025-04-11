@@ -1804,86 +1804,6 @@ class CitationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool summary = false,
-    bool classification = false,
-    bool note = false,
-    bool currentState = false,
-    bool statusDate = false,
-    bool relatesTo = false,
-    bool citedArtifact = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (summary) this.summary = null;
-    if (classification) this.classification = null;
-    if (note) this.note = null;
-    if (currentState) this.currentState = null;
-    if (statusDate) this.statusDate = null;
-    if (relatesTo) this.relatesTo = null;
-    if (citedArtifact) this.citedArtifact = null;
-  }
-
   @override
   CitationBuilder clone() => throw UnimplementedError();
   @override
@@ -2595,22 +2515,6 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool style = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (style) this.style = null;
-    if (text) this.text = null;
-  }
-
   @override
   CitationSummaryBuilder clone() => throw UnimplementedError();
   @override
@@ -3064,22 +2968,6 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool classifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (classifier) this.classifier = null;
   }
 
   @override
@@ -3569,24 +3457,6 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool activity = false,
-    bool actual = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (activity) this.activity = null;
-    if (actual) this.actual = null;
-    if (period) this.period = null;
   }
 
   @override
@@ -4209,24 +4079,6 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relationshipType = false,
-    bool targetClassifier = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relationshipType) this.relationshipType = null;
-    if (targetClassifier) this.targetClassifier = null;
-    if (target) targetX = null;
   }
 
   @override
@@ -5245,48 +5097,6 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool relatedIdentifier = false,
-    bool dateAccessed = false,
-    bool version = false,
-    bool currentState = false,
-    bool statusDate = false,
-    bool title = false,
-    bool abstract_ = false,
-    bool part_ = false,
-    bool relatesTo = false,
-    bool publicationForm = false,
-    bool webLocation = false,
-    bool classification = false,
-    bool contributorship = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (relatedIdentifier) this.relatedIdentifier = null;
-    if (dateAccessed) this.dateAccessed = null;
-    if (version) this.version = null;
-    if (currentState) this.currentState = null;
-    if (statusDate) this.statusDate = null;
-    if (title) this.title = null;
-    if (abstract_) this.abstract_ = null;
-    if (part_) this.part_ = null;
-    if (relatesTo) this.relatesTo = null;
-    if (publicationForm) this.publicationForm = null;
-    if (webLocation) this.webLocation = null;
-    if (classification) this.classification = null;
-    if (contributorship) this.contributorship = null;
-    if (note) this.note = null;
-  }
-
   @override
   CitationCitedArtifactBuilder clone() => throw UnimplementedError();
   @override
@@ -5847,22 +5657,6 @@ class CitationVersionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool baseCitation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) this.value = null;
-    if (baseCitation) this.baseCitation = null;
-  }
-
   @override
   CitationVersionBuilder clone() => throw UnimplementedError();
   @override
@@ -6350,24 +6144,6 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool activity = false,
-    bool actual = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (activity) this.activity = null;
-    if (actual) this.actual = null;
-    if (period) this.period = null;
   }
 
   @override
@@ -6876,24 +6652,6 @@ class CitationTitleBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool language = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
   }
 
   @override
@@ -7436,26 +7194,6 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool language = false,
-    bool text = false,
-    bool copyright = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (copyright) this.copyright = null;
-  }
-
   @override
   CitationAbstractBuilder clone() => throw UnimplementedError();
   @override
@@ -7956,24 +7694,6 @@ class CitationPartBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-    bool baseCitation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) this.value = null;
-    if (baseCitation) this.baseCitation = null;
   }
 
   @override
@@ -8596,24 +8316,6 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relationshipType = false,
-    bool targetClassifier = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relationshipType) this.relationshipType = null;
-    if (targetClassifier) this.targetClassifier = null;
-    if (target) targetX = null;
   }
 
   @override
@@ -9466,40 +9168,6 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool publishedIn = false,
-    bool periodicRelease = false,
-    bool articleDate = false,
-    bool lastRevisionDate = false,
-    bool language = false,
-    bool accessionNumber = false,
-    bool pageString = false,
-    bool firstPage = false,
-    bool lastPage = false,
-    bool pageCount = false,
-    bool copyright = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (publishedIn) this.publishedIn = null;
-    if (periodicRelease) this.periodicRelease = null;
-    if (articleDate) this.articleDate = null;
-    if (lastRevisionDate) this.lastRevisionDate = null;
-    if (language) this.language = null;
-    if (accessionNumber) this.accessionNumber = null;
-    if (pageString) this.pageString = null;
-    if (firstPage) this.firstPage = null;
-    if (lastPage) this.lastPage = null;
-    if (pageCount) this.pageCount = null;
-    if (copyright) this.copyright = null;
-  }
-
   @override
   CitationPublicationFormBuilder clone() => throw UnimplementedError();
   @override
@@ -10147,28 +9815,6 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool identifier = false,
-    bool title = false,
-    bool publisher = false,
-    bool publisherLocation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (identifier) this.identifier = null;
-    if (title) this.title = null;
-    if (publisher) this.publisher = null;
-    if (publisherLocation) this.publisherLocation = null;
-  }
-
   @override
   CitationPublishedInBuilder clone() => throw UnimplementedError();
   @override
@@ -10724,26 +10370,6 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool citedMedium = false,
-    bool volume = false,
-    bool issue = false,
-    bool dateOfPublication = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (citedMedium) this.citedMedium = null;
-    if (volume) this.volume = null;
-    if (issue) this.issue = null;
-    if (dateOfPublication) this.dateOfPublication = null;
   }
 
   @override
@@ -11409,30 +11035,6 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool date = false,
-    bool year = false,
-    bool month = false,
-    bool day = false,
-    bool season = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (date) this.date = null;
-    if (year) this.year = null;
-    if (month) this.month = null;
-    if (day) this.day = null;
-    if (season) this.season = null;
-    if (text) this.text = null;
-  }
-
   @override
   CitationDateOfPublicationBuilder clone() => throw UnimplementedError();
   @override
@@ -11917,22 +11519,6 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool url = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (url) this.url = null;
   }
 
   @override
@@ -12420,24 +12006,6 @@ class CitationClassification1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool classifier = false,
-    bool whoClassified = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (classifier) this.classifier = null;
-    if (whoClassified) this.whoClassified = null;
   }
 
   @override
@@ -13012,28 +12580,6 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool person = false,
-    bool organization = false,
-    bool publisher = false,
-    bool classifierCopyright = false,
-    bool freeToShare = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (person) this.person = null;
-    if (organization) this.organization = null;
-    if (publisher) this.publisher = null;
-    if (classifierCopyright) this.classifierCopyright = null;
-    if (freeToShare) this.freeToShare = null;
-  }
-
   @override
   CitationWhoClassifiedBuilder clone() => throw UnimplementedError();
   @override
@@ -13569,24 +13115,6 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool complete = false,
-    bool entry = false,
-    bool summary = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (complete) this.complete = null;
-    if (entry) this.entry = null;
-    if (summary) this.summary = null;
   }
 
   @override
@@ -14486,42 +14014,6 @@ class CitationEntryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool initials = false,
-    bool collectiveName = false,
-    bool identifier = false,
-    bool affiliationInfo = false,
-    bool address = false,
-    bool telecom = false,
-    bool contributionType = false,
-    bool role = false,
-    bool contributionInstance = false,
-    bool correspondingContact = false,
-    bool listOrder = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (initials) this.initials = null;
-    if (collectiveName) this.collectiveName = null;
-    if (identifier) this.identifier = null;
-    if (affiliationInfo) this.affiliationInfo = null;
-    if (address) this.address = null;
-    if (telecom) this.telecom = null;
-    if (contributionType) this.contributionType = null;
-    if (role) this.role = null;
-    if (contributionInstance) this.contributionInstance = null;
-    if (correspondingContact) this.correspondingContact = null;
-    if (listOrder) this.listOrder = null;
-  }
-
   @override
   CitationEntryBuilder clone() => throw UnimplementedError();
   @override
@@ -15115,24 +14607,6 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool affiliation = false,
-    bool role = false,
-    bool identifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (affiliation) this.affiliation = null;
-    if (role) this.role = null;
-    if (identifier) this.identifier = null;
-  }
-
   @override
   CitationAffiliationInfoBuilder clone() => throw UnimplementedError();
   @override
@@ -15599,22 +15073,6 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool time = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (time) this.time = null;
   }
 
   @override
@@ -16138,26 +15596,6 @@ class CitationSummary1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool style = false,
-    bool source = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (style) this.style = null;
-    if (source) this.source = null;
-    if (value) this.value = null;
   }
 
   @override

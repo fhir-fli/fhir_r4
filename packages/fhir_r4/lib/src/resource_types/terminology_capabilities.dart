@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'terminology_capabilities.g.dart';
+
 /// [TerminologyCapabilities]
 /// A TerminologyCapabilities resource documents a set of capabilities
 /// (behaviors) of a FHIR Terminology Server that may be used as a
@@ -45,82 +47,57 @@ class TerminologyCapabilities extends CanonicalResource {
     this.translation,
     this.closure,
   }) : super(
-          objectPath: 'TerminologyCapabilities',
           resourceType: R4ResourceType.TerminologyCapabilities,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilities.empty() => TerminologyCapabilities(
-        status: PublicationStatus.values.first,
-        date: FhirDateTime.empty(),
-        kind: CapabilityStatementKind.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilities.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities';
     return TerminologyCapabilities(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -128,57 +105,46 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -186,25 +152,18 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -212,46 +171,37 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-        '$objectPath.copyright',
       ),
       kind: JsonParser.parsePrimitive<CapabilityStatementKind>(
         json,
         'kind',
         CapabilityStatementKind.fromJson,
-        '$objectPath.kind',
       )!,
       software: JsonParser.parseObject<TerminologyCapabilitiesSoftware>(
         json,
         'software',
         TerminologyCapabilitiesSoftware.fromJson,
-        '$objectPath.software',
       ),
       implementation:
           JsonParser.parseObject<TerminologyCapabilitiesImplementation>(
         json,
         'implementation',
         TerminologyCapabilitiesImplementation.fromJson,
-        '$objectPath.implementation',
       ),
       lockedDate: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'lockedDate',
         FhirBoolean.fromJson,
-        '$objectPath.lockedDate',
       ),
       codeSystem: (json['codeSystem'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesCodeSystem>(
             (v) => TerminologyCapabilitiesCodeSystem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.codeSystem',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -259,31 +209,26 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'expansion',
         TerminologyCapabilitiesExpansion.fromJson,
-        '$objectPath.expansion',
       ),
       codeSearch: JsonParser.parsePrimitive<CodeSearchSupport>(
         json,
         'codeSearch',
         CodeSearchSupport.fromJson,
-        '$objectPath.codeSearch',
       ),
       validateCode: JsonParser.parseObject<TerminologyCapabilitiesValidateCode>(
         json,
         'validateCode',
         TerminologyCapabilitiesValidateCode.fromJson,
-        '$objectPath.validateCode',
       ),
       translation: JsonParser.parseObject<TerminologyCapabilitiesTranslation>(
         json,
         'translation',
         TerminologyCapabilitiesTranslation.fromJson,
-        '$objectPath.translation',
       ),
       closure: JsonParser.parseObject<TerminologyCapabilitiesClosure>(
         json,
         'closure',
         TerminologyCapabilitiesClosure.fromJson,
-        '$objectPath.closure',
       ),
     );
   }
@@ -790,884 +735,19 @@ class TerminologyCapabilities extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilities clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copyright':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'kind':
-        {
-          if (child is CapabilityStatementKind) {
-            return copyWith(kind: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'software':
-        {
-          if (child is TerminologyCapabilitiesSoftware) {
-            return copyWith(software: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implementation':
-        {
-          if (child is TerminologyCapabilitiesImplementation) {
-            return copyWith(implementation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'lockedDate':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(lockedDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'codeSystem':
-        {
-          if (child is List<TerminologyCapabilitiesCodeSystem>) {
-            // Add all elements from passed list
-            final newList = [...?codeSystem, ...child];
-            return copyWith(codeSystem: newList);
-          } else if (child is TerminologyCapabilitiesCodeSystem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?codeSystem,
-              child,
-            ];
-            return copyWith(codeSystem: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'expansion':
-        {
-          if (child is TerminologyCapabilitiesExpansion) {
-            return copyWith(expansion: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'codeSearch':
-        {
-          if (child is CodeSearchSupport) {
-            return copyWith(codeSearch: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'validateCode':
-        {
-          if (child is TerminologyCapabilitiesValidateCode) {
-            return copyWith(validateCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'translation':
-        {
-          if (child is TerminologyCapabilitiesTranslation) {
-            return copyWith(translation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'closure':
-        {
-          if (child is TerminologyCapabilitiesClosure) {
-            return copyWith(closure: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilities]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirMarkdown'];
-      case 'copyright':
-        return ['FhirMarkdown'];
-      case 'kind':
-        return ['FhirCode'];
-      case 'software':
-        return ['TerminologyCapabilitiesSoftware'];
-      case 'implementation':
-        return ['TerminologyCapabilitiesImplementation'];
-      case 'lockedDate':
-        return ['FhirBoolean'];
-      case 'codeSystem':
-        return ['TerminologyCapabilitiesCodeSystem'];
-      case 'expansion':
-        return ['TerminologyCapabilitiesExpansion'];
-      case 'codeSearch':
-        return ['FhirCode'];
-      case 'validateCode':
-        return ['TerminologyCapabilitiesValidateCode'];
-      case 'translation':
-        return ['TerminologyCapabilitiesTranslation'];
-      case 'closure':
-        return ['TerminologyCapabilitiesClosure'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilities]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilities createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
-        }
-      case 'copyright':
-        {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
-        }
-      case 'kind':
-        {
-          return copyWith(
-            kind: CapabilityStatementKind.empty(),
-          );
-        }
-      case 'software':
-        {
-          return copyWith(
-            software: TerminologyCapabilitiesSoftware.empty(),
-          );
-        }
-      case 'implementation':
-        {
-          return copyWith(
-            implementation: TerminologyCapabilitiesImplementation.empty(),
-          );
-        }
-      case 'lockedDate':
-        {
-          return copyWith(
-            lockedDate: FhirBoolean.empty(),
-          );
-        }
-      case 'codeSystem':
-        {
-          return copyWith(
-            codeSystem: <TerminologyCapabilitiesCodeSystem>[],
-          );
-        }
-      case 'expansion':
-        {
-          return copyWith(
-            expansion: TerminologyCapabilitiesExpansion.empty(),
-          );
-        }
-      case 'codeSearch':
-        {
-          return copyWith(
-            codeSearch: CodeSearchSupport.empty(),
-          );
-        }
-      case 'validateCode':
-        {
-          return copyWith(
-            validateCode: TerminologyCapabilitiesValidateCode.empty(),
-          );
-        }
-      case 'translation':
-        {
-          return copyWith(
-            translation: TerminologyCapabilitiesTranslation.empty(),
-          );
-        }
-      case 'closure':
-        {
-          return copyWith(
-            closure: TerminologyCapabilitiesClosure.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilities clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool experimental = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool software = false,
-    bool implementation = false,
-    bool lockedDate = false,
-    bool codeSystem = false,
-    bool expansion = false,
-    bool codeSearch = false,
-    bool validateCode = false,
-    bool translation = false,
-    bool closure = false,
-  }) {
-    return TerminologyCapabilities(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      kind: kind,
-      software: software ? null : this.software,
-      implementation: implementation ? null : this.implementation,
-      lockedDate: lockedDate ? null : this.lockedDate,
-      codeSystem: codeSystem ? null : this.codeSystem,
-      expansion: expansion ? null : this.expansion,
-      codeSearch: codeSearch ? null : this.codeSearch,
-      validateCode: validateCode ? null : this.validateCode,
-      translation: translation ? null : this.translation,
-      closure: closure ? null : this.closure,
-    );
-  }
-
-  @override
-  TerminologyCapabilities clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilities copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    CapabilityStatementKind? kind,
-    TerminologyCapabilitiesSoftware? software,
-    TerminologyCapabilitiesImplementation? implementation,
-    FhirBoolean? lockedDate,
-    List<TerminologyCapabilitiesCodeSystem>? codeSystem,
-    TerminologyCapabilitiesExpansion? expansion,
-    CodeSearchSupport? codeSearch,
-    TerminologyCapabilitiesValidateCode? validateCode,
-    TerminologyCapabilitiesTranslation? translation,
-    TerminologyCapabilitiesClosure? closure,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return TerminologyCapabilities(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      kind: kind?.copyWith(
-            objectPath: '$newObjectPath.kind',
-          ) ??
-          this.kind,
-      software: software?.copyWith(
-            objectPath: '$newObjectPath.software',
-          ) ??
-          this.software,
-      implementation: implementation?.copyWith(
-            objectPath: '$newObjectPath.implementation',
-          ) ??
-          this.implementation,
-      lockedDate: lockedDate?.copyWith(
-            objectPath: '$newObjectPath.lockedDate',
-          ) ??
-          this.lockedDate,
-      codeSystem: codeSystem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.codeSystem',
-                ),
-              )
-              .toList() ??
-          this.codeSystem,
-      expansion: expansion?.copyWith(
-            objectPath: '$newObjectPath.expansion',
-          ) ??
-          this.expansion,
-      codeSearch: codeSearch?.copyWith(
-            objectPath: '$newObjectPath.codeSearch',
-          ) ??
-          this.codeSearch,
-      validateCode: validateCode?.copyWith(
-            objectPath: '$newObjectPath.validateCode',
-          ) ??
-          this.validateCode,
-      translation: translation?.copyWith(
-            objectPath: '$newObjectPath.translation',
-          ) ??
-          this.translation,
-      closure: closure?.copyWith(
-            objectPath: '$newObjectPath.closure',
-          ) ??
-          this.closure,
-    );
-  }
+  $TerminologyCapabilitiesCopyWith<TerminologyCapabilities> get copyWith =>
+      _$TerminologyCapabilitiesCopyWithImpl<TerminologyCapabilities>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1888,47 +968,29 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     required this.name,
     this.version,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.software',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesSoftware.empty() =>
-      TerminologyCapabilitiesSoftware(
-        name: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesSoftware.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.software';
     return TerminologyCapabilitiesSoftware(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1936,13 +998,11 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
     );
   }
@@ -2137,208 +1197,20 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesSoftware clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesSoftware]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'version':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesSoftware]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesSoftware createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesSoftwareCopyWith<TerminologyCapabilitiesSoftware>
+      get copyWith => _$TerminologyCapabilitiesSoftwareCopyWithImpl<
+              TerminologyCapabilitiesSoftware>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesSoftware clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool version = false,
-  }) {
-    return TerminologyCapabilitiesSoftware(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      version: version ? null : this.version,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesSoftware copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    FhirString? version,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesSoftware(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2397,47 +1269,29 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     required this.description,
     this.url,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.implementation',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesImplementation.empty() =>
-      TerminologyCapabilitiesImplementation(
-        description: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesImplementation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.implementation';
     return TerminologyCapabilitiesImplementation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2445,13 +1299,11 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       )!,
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
-        '$objectPath.url',
       ),
     );
   }
@@ -2647,208 +1499,21 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesImplementation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUrl) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesImplementation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'url':
-        return ['FhirUrl'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesImplementation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesImplementation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesImplementationCopyWith<
+          TerminologyCapabilitiesImplementation>
+      get copyWith => _$TerminologyCapabilitiesImplementationCopyWithImpl<
+              TerminologyCapabilitiesImplementation>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUrl.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesImplementation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-  }) {
-    return TerminologyCapabilitiesImplementation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description,
-      url: url ? null : this.url,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesImplementation clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesImplementation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    FhirUrl? url,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesImplementation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2908,45 +1573,29 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     this.version,
     this.subsumption,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.codeSystem',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesCodeSystem.empty() =>
-      const TerminologyCapabilitiesCodeSystem();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesCodeSystem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.codeSystem';
     return TerminologyCapabilitiesCodeSystem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2954,15 +1603,11 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'uri',
         FhirCanonical.fromJson,
-        '$objectPath.uri',
       ),
       version: (json['version'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesVersion>(
             (v) => TerminologyCapabilitiesVersion.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.version',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2970,7 +1615,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'subsumption',
         FhirBoolean.fromJson,
-        '$objectPath.subsumption',
       ),
     );
   }
@@ -3181,245 +1825,20 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesCodeSystem clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'uri':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(uri: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is List<TerminologyCapabilitiesVersion>) {
-            // Add all elements from passed list
-            final newList = [...?version, ...child];
-            return copyWith(version: newList);
-          } else if (child is TerminologyCapabilitiesVersion) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?version,
-              child,
-            ];
-            return copyWith(version: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subsumption':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(subsumption: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesCodeSystem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'uri':
-        return ['FhirCanonical'];
-      case 'version':
-        return ['TerminologyCapabilitiesVersion'];
-      case 'subsumption':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesCodeSystem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesCodeSystem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesCodeSystemCopyWith<TerminologyCapabilitiesCodeSystem>
+      get copyWith => _$TerminologyCapabilitiesCodeSystemCopyWithImpl<
+              TerminologyCapabilitiesCodeSystem>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'uri':
-        {
-          return copyWith(
-            uri: FhirCanonical.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: <TerminologyCapabilitiesVersion>[],
-          );
-        }
-      case 'subsumption':
-        {
-          return copyWith(
-            subsumption: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesCodeSystem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool uri = false,
-    bool version = false,
-    bool subsumption = false,
-  }) {
-    return TerminologyCapabilitiesCodeSystem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      uri: uri ? null : this.uri,
-      version: version ? null : this.version,
-      subsumption: subsumption ? null : this.subsumption,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesCodeSystem clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesCodeSystem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCanonical? uri,
-    List<TerminologyCapabilitiesVersion>? version,
-    FhirBoolean? subsumption,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesCodeSystem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      uri: uri?.copyWith(
-            objectPath: '$newObjectPath.uri',
-          ) ??
-          this.uri,
-      version: version
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.version',
-                ),
-              )
-              .toList() ??
-          this.version,
-      subsumption: subsumption?.copyWith(
-            objectPath: '$newObjectPath.subsumption',
-          ) ??
-          this.subsumption,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3487,45 +1906,29 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     this.filter,
     this.property,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.codeSystem.version',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesVersion.empty() =>
-      const TerminologyCapabilitiesVersion();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesVersion.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.codeSystem.version';
     return TerminologyCapabilitiesVersion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3533,33 +1936,26 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'code',
         FhirString.fromJson,
-        '$objectPath.code',
       ),
       isDefault: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'isDefault',
         FhirBoolean.fromJson,
-        '$objectPath.isDefault',
       ),
       compositional: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'compositional',
         FhirBoolean.fromJson,
-        '$objectPath.compositional',
       ),
       language: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'language',
         FhirCode.fromJson,
-        '$objectPath.language',
       ),
       filter: (json['filter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesFilter>(
             (v) => TerminologyCapabilitiesFilter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.filter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3567,7 +1963,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'property',
         FhirCode.fromJson,
-        '$objectPath.property',
       ),
     );
   }
@@ -3817,340 +2212,20 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesVersion clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirString) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'isDefault':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(isDefault: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'compositional':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(compositional: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...?language, ...child];
-            return copyWith(language: newList);
-          } else if (child is FhirCode) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?language,
-              child,
-            ];
-            return copyWith(language: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'filter':
-        {
-          if (child is List<TerminologyCapabilitiesFilter>) {
-            // Add all elements from passed list
-            final newList = [...?filter, ...child];
-            return copyWith(filter: newList);
-          } else if (child is TerminologyCapabilitiesFilter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?filter,
-              child,
-            ];
-            return copyWith(filter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'property':
-        {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...?property, ...child];
-            return copyWith(property: newList);
-          } else if (child is FhirCode) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?property,
-              child,
-            ];
-            return copyWith(property: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesVersion]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['FhirString'];
-      case 'isDefault':
-        return ['FhirBoolean'];
-      case 'compositional':
-        return ['FhirBoolean'];
-      case 'language':
-        return ['FhirCode'];
-      case 'filter':
-        return ['TerminologyCapabilitiesFilter'];
-      case 'property':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesVersion]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesVersion createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesVersionCopyWith<TerminologyCapabilitiesVersion>
+      get copyWith => _$TerminologyCapabilitiesVersionCopyWithImpl<
+              TerminologyCapabilitiesVersion>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirString.empty(),
-          );
-        }
-      case 'isDefault':
-        {
-          return copyWith(
-            isDefault: FhirBoolean.empty(),
-          );
-        }
-      case 'compositional':
-        {
-          return copyWith(
-            compositional: FhirBoolean.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: <FhirCode>[],
-          );
-        }
-      case 'filter':
-        {
-          return copyWith(
-            filter: <TerminologyCapabilitiesFilter>[],
-          );
-        }
-      case 'property':
-        {
-          return copyWith(
-            property: <FhirCode>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesVersion clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool isDefault = false,
-    bool compositional = false,
-    bool language = false,
-    bool filter = false,
-    bool property = false,
-  }) {
-    return TerminologyCapabilitiesVersion(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      isDefault: isDefault ? null : this.isDefault,
-      compositional: compositional ? null : this.compositional,
-      language: language ? null : this.language,
-      filter: filter ? null : this.filter,
-      property: property ? null : this.property,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesVersion copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? code,
-    FhirBoolean? isDefault,
-    FhirBoolean? compositional,
-    List<FhirCode>? language,
-    List<TerminologyCapabilitiesFilter>? filter,
-    List<FhirCode>? property,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesVersion(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      isDefault: isDefault?.copyWith(
-            objectPath: '$newObjectPath.isDefault',
-          ) ??
-          this.isDefault,
-      compositional: compositional?.copyWith(
-            objectPath: '$newObjectPath.compositional',
-          ) ??
-          this.compositional,
-      language: language
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.language',
-                ),
-              )
-              .toList() ??
-          this.language,
-      filter: filter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.filter',
-                ),
-              )
-              .toList() ??
-          this.filter,
-      property: property
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.property',
-                ),
-              )
-              .toList() ??
-          this.property,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4231,48 +2306,29 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     required this.code,
     required this.op,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.codeSystem.version.filter',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesFilter.empty() =>
-      TerminologyCapabilitiesFilter(
-        code: FhirCode.empty(),
-        op: <FhirCode>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesFilter.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.codeSystem.version.filter';
     return TerminologyCapabilitiesFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4280,13 +2336,11 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
-        '$objectPath.code',
       )!,
       op: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'op',
         FhirCode.fromJson,
-        '$objectPath.op',
       )!,
     );
   }
@@ -4479,220 +2533,20 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesFilter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'op':
-        {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...op, ...child];
-            return copyWith(op: newList);
-          } else if (child is FhirCode) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...op,
-              child,
-            ];
-            return copyWith(op: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesFilter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['FhirCode'];
-      case 'op':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesFilter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesFilter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesFilterCopyWith<TerminologyCapabilitiesFilter>
+      get copyWith => _$TerminologyCapabilitiesFilterCopyWithImpl<
+              TerminologyCapabilitiesFilter>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
-        }
-      case 'op':
-        {
-          return copyWith(
-            op: <FhirCode>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesFilter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return TerminologyCapabilitiesFilter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      op: op,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesFilter clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesFilter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? code,
-    List<FhirCode>? op,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesFilter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      op: op
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.op',
-                ),
-              )
-              .toList() ??
-          this.op,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4753,45 +2607,29 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     this.parameter,
     this.textFilter,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.expansion',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesExpansion.empty() =>
-      const TerminologyCapabilitiesExpansion();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesExpansion.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.expansion';
     return TerminologyCapabilitiesExpansion(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4799,27 +2637,21 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'hierarchical',
         FhirBoolean.fromJson,
-        '$objectPath.hierarchical',
       ),
       paging: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'paging',
         FhirBoolean.fromJson,
-        '$objectPath.paging',
       ),
       incomplete: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'incomplete',
         FhirBoolean.fromJson,
-        '$objectPath.incomplete',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesParameter>(
             (v) => TerminologyCapabilitiesParameter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.parameter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4827,7 +2659,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'textFilter',
         FhirMarkdown.fromJson,
-        '$objectPath.textFilter',
       ),
     );
   }
@@ -5063,291 +2894,20 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesExpansion clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'hierarchical':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(hierarchical: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'paging':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(paging: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'incomplete':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(incomplete: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parameter':
-        {
-          if (child is List<TerminologyCapabilitiesParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is TerminologyCapabilitiesParameter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parameter,
-              child,
-            ];
-            return copyWith(parameter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'textFilter':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(textFilter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesExpansion]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'hierarchical':
-        return ['FhirBoolean'];
-      case 'paging':
-        return ['FhirBoolean'];
-      case 'incomplete':
-        return ['FhirBoolean'];
-      case 'parameter':
-        return ['TerminologyCapabilitiesParameter'];
-      case 'textFilter':
-        return ['FhirMarkdown'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesExpansion]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesExpansion createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesExpansionCopyWith<TerminologyCapabilitiesExpansion>
+      get copyWith => _$TerminologyCapabilitiesExpansionCopyWithImpl<
+              TerminologyCapabilitiesExpansion>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'hierarchical':
-        {
-          return copyWith(
-            hierarchical: FhirBoolean.empty(),
-          );
-        }
-      case 'paging':
-        {
-          return copyWith(
-            paging: FhirBoolean.empty(),
-          );
-        }
-      case 'incomplete':
-        {
-          return copyWith(
-            incomplete: FhirBoolean.empty(),
-          );
-        }
-      case 'parameter':
-        {
-          return copyWith(
-            parameter: <TerminologyCapabilitiesParameter>[],
-          );
-        }
-      case 'textFilter':
-        {
-          return copyWith(
-            textFilter: FhirMarkdown.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesExpansion clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool hierarchical = false,
-    bool paging = false,
-    bool incomplete = false,
-    bool parameter = false,
-    bool textFilter = false,
-  }) {
-    return TerminologyCapabilitiesExpansion(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      hierarchical: hierarchical ? null : this.hierarchical,
-      paging: paging ? null : this.paging,
-      incomplete: incomplete ? null : this.incomplete,
-      parameter: parameter ? null : this.parameter,
-      textFilter: textFilter ? null : this.textFilter,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesExpansion copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? hierarchical,
-    FhirBoolean? paging,
-    FhirBoolean? incomplete,
-    List<TerminologyCapabilitiesParameter>? parameter,
-    FhirMarkdown? textFilter,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesExpansion(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      hierarchical: hierarchical?.copyWith(
-            objectPath: '$newObjectPath.hierarchical',
-          ) ??
-          this.hierarchical,
-      paging: paging?.copyWith(
-            objectPath: '$newObjectPath.paging',
-          ) ??
-          this.paging,
-      incomplete: incomplete?.copyWith(
-            objectPath: '$newObjectPath.incomplete',
-          ) ??
-          this.incomplete,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-      textFilter: textFilter?.copyWith(
-            objectPath: '$newObjectPath.textFilter',
-          ) ??
-          this.textFilter,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5422,47 +2982,29 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     required this.name,
     this.documentation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.expansion.parameter',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesParameter.empty() =>
-      TerminologyCapabilitiesParameter(
-        name: FhirCode.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesParameter.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.expansion.parameter';
     return TerminologyCapabilitiesParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5470,13 +3012,11 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         json,
         'name',
         FhirCode.fromJson,
-        '$objectPath.name',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
     );
   }
@@ -5671,208 +3211,20 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesParameter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirCode) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesParameter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirCode'];
-      case 'documentation':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesParameter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesParameter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesParameterCopyWith<TerminologyCapabilitiesParameter>
+      get copyWith => _$TerminologyCapabilitiesParameterCopyWithImpl<
+              TerminologyCapabilitiesParameter>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirCode.empty(),
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesParameter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool documentation = false,
-  }) {
-    return TerminologyCapabilitiesParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      documentation: documentation ? null : this.documentation,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? name,
-    FhirString? documentation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5930,47 +3282,29 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.modifierExtension,
     required this.translations,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.validateCode',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesValidateCode.empty() =>
-      TerminologyCapabilitiesValidateCode(
-        translations: FhirBoolean.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesValidateCode.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.validateCode';
     return TerminologyCapabilitiesValidateCode(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5978,7 +3312,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
         json,
         'translations',
         FhirBoolean.fromJson,
-        '$objectPath.translations',
       )!,
     );
   }
@@ -6160,185 +3493,21 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesValidateCode clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'translations':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(translations: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesValidateCode]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'translations':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesValidateCode]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesValidateCode createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesValidateCodeCopyWith<
+          TerminologyCapabilitiesValidateCode>
+      get copyWith => _$TerminologyCapabilitiesValidateCodeCopyWithImpl<
+              TerminologyCapabilitiesValidateCode>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'translations':
-        {
-          return copyWith(
-            translations: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesValidateCode clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return TerminologyCapabilitiesValidateCode(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      translations: translations,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesValidateCode copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? translations,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesValidateCode(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      translations: translations?.copyWith(
-            objectPath: '$newObjectPath.translations',
-          ) ??
-          this.translations,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6389,47 +3558,29 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.modifierExtension,
     required this.needsMap,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.translation',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesTranslation.empty() =>
-      TerminologyCapabilitiesTranslation(
-        needsMap: FhirBoolean.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesTranslation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.translation';
     return TerminologyCapabilitiesTranslation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6437,7 +3588,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
         json,
         'needsMap',
         FhirBoolean.fromJson,
-        '$objectPath.needsMap',
       )!,
     );
   }
@@ -6619,185 +3769,21 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesTranslation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'needsMap':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(needsMap: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesTranslation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'needsMap':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesTranslation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesTranslation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesTranslationCopyWith<
+          TerminologyCapabilitiesTranslation>
+      get copyWith => _$TerminologyCapabilitiesTranslationCopyWithImpl<
+              TerminologyCapabilitiesTranslation>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'needsMap':
-        {
-          return copyWith(
-            needsMap: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesTranslation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return TerminologyCapabilitiesTranslation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      needsMap: needsMap,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesTranslation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? needsMap,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesTranslation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      needsMap: needsMap?.copyWith(
-            objectPath: '$newObjectPath.needsMap',
-          ) ??
-          this.needsMap,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6847,45 +3833,29 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.modifierExtension,
     this.translation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'TerminologyCapabilities.closure',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TerminologyCapabilitiesClosure.empty() =>
-      const TerminologyCapabilitiesClosure();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesClosure.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'TerminologyCapabilities.closure';
     return TerminologyCapabilitiesClosure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6893,7 +3863,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         json,
         'translation',
         FhirBoolean.fromJson,
-        '$objectPath.translation',
       ),
     );
   }
@@ -7077,186 +4046,20 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  TerminologyCapabilitiesClosure clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'translation':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(translation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [TerminologyCapabilitiesClosure]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'translation':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TerminologyCapabilitiesClosure]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TerminologyCapabilitiesClosure createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $TerminologyCapabilitiesClosureCopyWith<TerminologyCapabilitiesClosure>
+      get copyWith => _$TerminologyCapabilitiesClosureCopyWithImpl<
+              TerminologyCapabilitiesClosure>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'translation':
-        {
-          return copyWith(
-            translation: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TerminologyCapabilitiesClosure clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool translation = false,
-  }) {
-    return TerminologyCapabilitiesClosure(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      translation: translation ? null : this.translation,
-    );
-  }
-
-  @override
-  TerminologyCapabilitiesClosure clone() => throw UnimplementedError();
-  @override
-  TerminologyCapabilitiesClosure copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? translation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return TerminologyCapabilitiesClosure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      translation: translation?.copyWith(
-            objectPath: '$newObjectPath.translation',
-          ) ??
-          this.translation,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

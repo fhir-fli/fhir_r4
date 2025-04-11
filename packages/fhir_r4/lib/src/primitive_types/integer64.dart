@@ -30,13 +30,12 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor. Calls [super._] with [valueString].
-  FhirInteger64._({
+  const FhirInteger64._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Integer64',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -56,7 +55,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Integer64',
   }) {
     String? validated;
 
@@ -74,7 +72,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -99,7 +96,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
   factory FhirInteger64.fromString(
     String input, {
     Element? element,
-    String? objectPath,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
@@ -110,7 +106,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath ?? 'Integer64',
     );
   }
 
@@ -121,7 +116,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Integer64',
   }) {
     return FhirInteger64(
       input,
@@ -129,13 +123,8 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirInteger64] (with [Element.empty] metadata).
-  factory FhirInteger64.empty() =>
-      FhirInteger64(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -146,11 +135,9 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     final rawValue = json['value'] as String?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'Integer64';
     return FhirInteger64.fromString(
       rawValue ?? '',
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -266,44 +253,12 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
 
   /// Creates a deep clone of this [FhirInteger64].
   @override
-  FhirInteger64 clone() => FhirInteger64(
-        valueString,
-        element: element?.clone() as Element?,
-        id: id,
-        extension_: extension_?.map((e) => e.clone()).toList(),
-        disallowExtensions: disallowExtensions,
-        objectPath: objectPath!,
-      );
+  FhirInteger64 clone() => copyWith();
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirInteger64 copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirInteger64(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
+  $FhirInteger64CopyWithImpl<FhirInteger64> get copyWith =>
+      $FhirInteger64CopyWithImpl<FhirInteger64>(this, (value) => value);
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirInteger64 noExtensions() => copyWith(disallowExtensions: true);
@@ -446,25 +401,41 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     if (other is int) return BigInt.from(other);
     return BigInt.tryParse(other.toString());
   }
+}
 
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirInteger64CopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirInteger64CopyWithImpl(this._value, this._then);
+
+  final FhirInteger64 _value;
+  final T Function(FhirInteger64) _then;
 
   @override
-  FhirInteger64 createProperty(String propertyName) => this;
-
-  @override
-  FhirInteger64 clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirInteger64(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
+    return _then(
+      FhirInteger64(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
     );
   }
 }

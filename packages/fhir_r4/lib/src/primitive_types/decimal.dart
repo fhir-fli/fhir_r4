@@ -36,14 +36,13 @@ class FhirDecimal extends FhirNumber
 
   /// Private underscore constructor that simply assigns [valueString] and
   /// [isInt].
-  FhirDecimal._({
+  const FhirDecimal._({
     required super.valueString,
     required this.isInt,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Decimal',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -61,7 +60,6 @@ class FhirDecimal extends FhirNumber
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Decimal',
   }) {
     String? valueString;
     var isInt = false;
@@ -102,7 +100,6 @@ class FhirDecimal extends FhirNumber
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -121,19 +118,14 @@ class FhirDecimal extends FhirNumber
     );
   }
 
-  /// Creates an empty [FhirDecimal].
-  factory FhirDecimal.empty() => FhirDecimal(null, element: Element.empty());
-
   /// Creates a [FhirDecimal] from JSON.
   factory FhirDecimal.fromJson(Map<String, dynamic> json) {
     final rawValue = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'Decimal';
     return FhirDecimal(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -227,58 +219,50 @@ class FhirDecimal extends FhirNumber
   // --------------------------------------------------------------------------
 
   @override
-  FhirDecimal clone() =>
-      FhirDecimal(valueString, element: element?.clone() as Element?);
+  FhirDecimal clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirDecimal noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy of the instance.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirDecimal copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  $FhirDecimalCopyWithImpl<FhirDecimal> get copyWith =>
+      $FhirDecimalCopyWithImpl<FhirDecimal>(this, (value) => value);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirDecimalCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirDecimalCopyWithImpl(this._value, this._then);
+
+  final FhirDecimal _value;
+  final T Function(FhirDecimal) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirDecimal(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FhirDecimal(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  /// No-op property creator.
-  @override
-  FhirDecimal createProperty(String propertyName) => this;
-
-  /// Clears specified fields in this [FhirDecimal].
-  @override
-  FhirDecimal clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirDecimal(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
     );
   }
 }

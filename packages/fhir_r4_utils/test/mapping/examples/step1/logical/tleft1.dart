@@ -1,5 +1,4 @@
-import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirBase, FhirExtension, FhirString;
+import 'package:fhir_r4/fhir_r4.dart' show Element, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft1]
@@ -10,7 +9,6 @@ class TLeft1 extends Element {
     super.extension_,
     this.a,
     super.disallowExtensions,
-    super.objectPath = 'TLeft1',
   });
 
   /// FromJson Factory Constructor
@@ -48,38 +46,6 @@ class TLeft1 extends Element {
 
   @override
   String get fhirType => 'TLeft1';
-
-  @override
-  TLeft1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? a,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a: a ?? this.a,
-    );
-  }
-
-  @override
-  List<FhirBase> getChildrenByName(String name, [bool ordered = true]) {
-    switch (name) {
-      case 'id':
-        return [id!];
-      case 'extension':
-        return extension_!;
-      case 'a':
-        return a == null ? [] : [a!];
-      default:
-        return [];
-    }
-  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -296,17 +262,6 @@ class TLeft1Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a) this.a = null;
   }
 
   @override

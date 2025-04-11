@@ -57,13 +57,12 @@ class FhirBoolean extends PrimitiveType
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that calls [super._].
-  FhirBoolean._({
+  const FhirBoolean._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Boolean',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -83,7 +82,6 @@ class FhirBoolean extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Boolean',
   }) {
     String? stringValue;
     if (rawValue == null && element == null) {
@@ -110,12 +108,8 @@ class FhirBoolean extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirBoolean] with an [Element.empty] for metadata.
-  factory FhirBoolean.empty() => FhirBoolean(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -127,12 +121,10 @@ class FhirBoolean extends PrimitiveType
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Boolean';
 
     return FhirBoolean(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -195,7 +187,8 @@ class FhirBoolean extends PrimitiveType
   /// The `'value'` key is a Dart `bool` if present.
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString != null) 'value': valueBoolean,
+        if (valueString != null && valueString!.isNotEmpty)
+          'value': valueBoolean,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -279,58 +272,50 @@ class FhirBoolean extends PrimitiveType
 
   /// Clones this [FhirBoolean].
   @override
-  FhirBoolean clone() =>
-      FhirBoolean(valueString, element: element?.clone() as Element?);
+  FhirBoolean clone() => copyWith();
 
-  /// Creates a new [FhirBoolean] with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirBoolean copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirBoolean(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
+  $FhirBooleanCopyWithImpl<FhirBoolean> get copyWith =>
+      $FhirBooleanCopyWithImpl<FhirBoolean>(this, (value) => value);
 
   /// Returns a copy that disallows further extensions.
   FhirBoolean noExtensions() => copyWith(disallowExtensions: true);
+}
 
-  /// Creates a new property. No-op here; returns `this`.
-  @override
-  FhirBoolean createProperty(String propertyName) => this;
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirBooleanCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirBooleanCopyWithImpl(this._value, this._then);
 
-  /// Clears selected fields in this [FhirBoolean].
+  final FhirBoolean _value;
+  final T Function(FhirBoolean) _then;
+
   @override
-  FhirBoolean clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirBoolean(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
+    return _then(
+      FhirBoolean(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
     );
   }
 }

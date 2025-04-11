@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'specimen_definition.g.dart';
+
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
 class SpecimenDefinition extends DomainResource {
@@ -24,78 +26,57 @@ class SpecimenDefinition extends DomainResource {
     this.collection,
     this.typeTested,
   }) : super(
-          objectPath: 'SpecimenDefinition',
           resourceType: R4ResourceType.SpecimenDefinition,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinition.empty() => const SpecimenDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SpecimenDefinition';
     return SpecimenDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -103,21 +84,16 @@ class SpecimenDefinition extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       typeCollected: JsonParser.parseObject<CodeableConcept>(
         json,
         'typeCollected',
         CodeableConcept.fromJson,
-        '$objectPath.typeCollected',
       ),
       patientPreparation: (json['patientPreparation'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.patientPreparation',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -125,25 +101,18 @@ class SpecimenDefinition extends DomainResource {
         json,
         'timeAspect',
         FhirString.fromJson,
-        '$objectPath.timeAspect',
       ),
       collection: (json['collection'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.collection',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       typeTested: (json['typeTested'] as List<dynamic>?)
           ?.map<SpecimenDefinitionTypeTested>(
             (v) => SpecimenDefinitionTypeTested.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.typeTested',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -441,460 +410,19 @@ class SpecimenDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SpecimenDefinition clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'typeCollected':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(typeCollected: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'patientPreparation':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?patientPreparation, ...child];
-            return copyWith(patientPreparation: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?patientPreparation,
-              child,
-            ];
-            return copyWith(patientPreparation: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timeAspect':
-        {
-          if (child is FhirString) {
-            return copyWith(timeAspect: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'collection':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?collection, ...child];
-            return copyWith(collection: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?collection,
-              child,
-            ];
-            return copyWith(collection: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'typeTested':
-        {
-          if (child is List<SpecimenDefinitionTypeTested>) {
-            // Add all elements from passed list
-            final newList = [...?typeTested, ...child];
-            return copyWith(typeTested: newList);
-          } else if (child is SpecimenDefinitionTypeTested) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?typeTested,
-              child,
-            ];
-            return copyWith(typeTested: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SpecimenDefinition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'typeCollected':
-        return ['CodeableConcept'];
-      case 'patientPreparation':
-        return ['CodeableConcept'];
-      case 'timeAspect':
-        return ['FhirString'];
-      case 'collection':
-        return ['CodeableConcept'];
-      case 'typeTested':
-        return ['SpecimenDefinitionTypeTested'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SpecimenDefinition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SpecimenDefinition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'typeCollected':
-        {
-          return copyWith(
-            typeCollected: CodeableConcept.empty(),
-          );
-        }
-      case 'patientPreparation':
-        {
-          return copyWith(
-            patientPreparation: <CodeableConcept>[],
-          );
-        }
-      case 'timeAspect':
-        {
-          return copyWith(
-            timeAspect: FhirString.empty(),
-          );
-        }
-      case 'collection':
-        {
-          return copyWith(
-            collection: <CodeableConcept>[],
-          );
-        }
-      case 'typeTested':
-        {
-          return copyWith(
-            typeTested: <SpecimenDefinitionTypeTested>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SpecimenDefinition clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool typeCollected = false,
-    bool patientPreparation = false,
-    bool timeAspect = false,
-    bool collection = false,
-    bool typeTested = false,
-  }) {
-    return SpecimenDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      typeCollected: typeCollected ? null : this.typeCollected,
-      patientPreparation: patientPreparation ? null : this.patientPreparation,
-      timeAspect: timeAspect ? null : this.timeAspect,
-      collection: collection ? null : this.collection,
-      typeTested: typeTested ? null : this.typeTested,
-    );
-  }
-
-  @override
-  SpecimenDefinition clone() => throw UnimplementedError();
-  @override
-  SpecimenDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    CodeableConcept? typeCollected,
-    List<CodeableConcept>? patientPreparation,
-    FhirString? timeAspect,
-    List<CodeableConcept>? collection,
-    List<SpecimenDefinitionTypeTested>? typeTested,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return SpecimenDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      typeCollected: typeCollected?.copyWith(
-            objectPath: '$newObjectPath.typeCollected',
-          ) ??
-          this.typeCollected,
-      patientPreparation: patientPreparation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.patientPreparation',
-                ),
-              )
-              .toList() ??
-          this.patientPreparation,
-      timeAspect: timeAspect?.copyWith(
-            objectPath: '$newObjectPath.timeAspect',
-          ) ??
-          this.timeAspect,
-      collection: collection
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.collection',
-                ),
-              )
-              .toList() ??
-          this.collection,
-      typeTested: typeTested
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.typeTested',
-                ),
-              )
-              .toList() ??
-          this.typeTested,
-    );
-  }
+  $SpecimenDefinitionCopyWith<SpecimenDefinition> get copyWith =>
+      _$SpecimenDefinitionCopyWithImpl<SpecimenDefinition>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1012,46 +540,29 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     this.rejectionCriterion,
     this.handling,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SpecimenDefinition.typeTested',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionTypeTested.empty() => SpecimenDefinitionTypeTested(
-        preference: SpecimenContainedPreference.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionTypeTested.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SpecimenDefinition.typeTested';
     return SpecimenDefinitionTypeTested(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1059,55 +570,43 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'isDerived',
         FhirBoolean.fromJson,
-        '$objectPath.isDerived',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       preference: JsonParser.parsePrimitive<SpecimenContainedPreference>(
         json,
         'preference',
         SpecimenContainedPreference.fromJson,
-        '$objectPath.preference',
       )!,
       container: JsonParser.parseObject<SpecimenDefinitionContainer>(
         json,
         'container',
         SpecimenDefinitionContainer.fromJson,
-        '$objectPath.container',
       ),
       requirement: JsonParser.parsePrimitive<FhirString>(
         json,
         'requirement',
         FhirString.fromJson,
-        '$objectPath.requirement',
       ),
       retentionTime: JsonParser.parseObject<FhirDuration>(
         json,
         'retentionTime',
         FhirDuration.fromJson,
-        '$objectPath.retentionTime',
       ),
       rejectionCriterion: (json['rejectionCriterion'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.rejectionCriterion',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       handling: (json['handling'] as List<dynamic>?)
           ?.map<SpecimenDefinitionHandling>(
             (v) => SpecimenDefinitionHandling.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.handling',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1386,372 +885,20 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SpecimenDefinitionTypeTested clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'isDerived':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(isDerived: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preference':
-        {
-          if (child is SpecimenContainedPreference) {
-            return copyWith(preference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'container':
-        {
-          if (child is SpecimenDefinitionContainer) {
-            return copyWith(container: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requirement':
-        {
-          if (child is FhirString) {
-            return copyWith(requirement: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'retentionTime':
-        {
-          if (child is FhirDuration) {
-            return copyWith(retentionTime: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rejectionCriterion':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?rejectionCriterion, ...child];
-            return copyWith(rejectionCriterion: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?rejectionCriterion,
-              child,
-            ];
-            return copyWith(rejectionCriterion: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'handling':
-        {
-          if (child is List<SpecimenDefinitionHandling>) {
-            // Add all elements from passed list
-            final newList = [...?handling, ...child];
-            return copyWith(handling: newList);
-          } else if (child is SpecimenDefinitionHandling) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?handling,
-              child,
-            ];
-            return copyWith(handling: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SpecimenDefinitionTypeTested]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'isDerived':
-        return ['FhirBoolean'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'preference':
-        return ['FhirCode'];
-      case 'container':
-        return ['SpecimenDefinitionContainer'];
-      case 'requirement':
-        return ['FhirString'];
-      case 'retentionTime':
-        return ['FhirDuration'];
-      case 'rejectionCriterion':
-        return ['CodeableConcept'];
-      case 'handling':
-        return ['SpecimenDefinitionHandling'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SpecimenDefinitionTypeTested]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SpecimenDefinitionTypeTested createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SpecimenDefinitionTypeTestedCopyWith<SpecimenDefinitionTypeTested>
+      get copyWith => _$SpecimenDefinitionTypeTestedCopyWithImpl<
+              SpecimenDefinitionTypeTested>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'isDerived':
-        {
-          return copyWith(
-            isDerived: FhirBoolean.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'preference':
-        {
-          return copyWith(
-            preference: SpecimenContainedPreference.empty(),
-          );
-        }
-      case 'container':
-        {
-          return copyWith(
-            container: SpecimenDefinitionContainer.empty(),
-          );
-        }
-      case 'requirement':
-        {
-          return copyWith(
-            requirement: FhirString.empty(),
-          );
-        }
-      case 'retentionTime':
-        {
-          return copyWith(
-            retentionTime: FhirDuration.empty(),
-          );
-        }
-      case 'rejectionCriterion':
-        {
-          return copyWith(
-            rejectionCriterion: <CodeableConcept>[],
-          );
-        }
-      case 'handling':
-        {
-          return copyWith(
-            handling: <SpecimenDefinitionHandling>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SpecimenDefinitionTypeTested clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool isDerived = false,
-    bool type = false,
-    bool container = false,
-    bool requirement = false,
-    bool retentionTime = false,
-    bool rejectionCriterion = false,
-    bool handling = false,
-  }) {
-    return SpecimenDefinitionTypeTested(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      isDerived: isDerived ? null : this.isDerived,
-      type: type ? null : this.type,
-      preference: preference,
-      container: container ? null : this.container,
-      requirement: requirement ? null : this.requirement,
-      retentionTime: retentionTime ? null : this.retentionTime,
-      rejectionCriterion: rejectionCriterion ? null : this.rejectionCriterion,
-      handling: handling ? null : this.handling,
-    );
-  }
-
-  @override
-  SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
-  @override
-  SpecimenDefinitionTypeTested copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? isDerived,
-    CodeableConcept? type,
-    SpecimenContainedPreference? preference,
-    SpecimenDefinitionContainer? container,
-    FhirString? requirement,
-    FhirDuration? retentionTime,
-    List<CodeableConcept>? rejectionCriterion,
-    List<SpecimenDefinitionHandling>? handling,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SpecimenDefinitionTypeTested(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      isDerived: isDerived?.copyWith(
-            objectPath: '$newObjectPath.isDerived',
-          ) ??
-          this.isDerived,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      preference: preference?.copyWith(
-            objectPath: '$newObjectPath.preference',
-          ) ??
-          this.preference,
-      container: container?.copyWith(
-            objectPath: '$newObjectPath.container',
-          ) ??
-          this.container,
-      requirement: requirement?.copyWith(
-            objectPath: '$newObjectPath.requirement',
-          ) ??
-          this.requirement,
-      retentionTime: retentionTime?.copyWith(
-            objectPath: '$newObjectPath.retentionTime',
-          ) ??
-          this.retentionTime,
-      rejectionCriterion: rejectionCriterion
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rejectionCriterion',
-                ),
-              )
-              .toList() ??
-          this.rejectionCriterion,
-      handling: handling
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.handling',
-                ),
-              )
-              .toList() ??
-          this.handling,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1850,45 +997,29 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.additive,
     this.preparation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SpecimenDefinition.typeTested.container',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionContainer.empty() =>
-      const SpecimenDefinitionContainer();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SpecimenDefinition.typeTested.container';
     return SpecimenDefinitionContainer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1896,31 +1027,26 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'material',
         CodeableConcept.fromJson,
-        '$objectPath.material',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       cap: JsonParser.parseObject<CodeableConcept>(
         json,
         'cap',
         CodeableConcept.fromJson,
-        '$objectPath.cap',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       capacity: JsonParser.parseObject<Quantity>(
         json,
         'capacity',
         Quantity.fromJson,
-        '$objectPath.capacity',
       ),
       minimumVolumeX: JsonParser.parsePolymorphic<
           MinimumVolumeXSpecimenDefinitionContainer>(
@@ -1929,15 +1055,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
           'minimumVolumeQuantity': Quantity.fromJson,
           'minimumVolumeString': FhirString.fromJson,
         },
-        objectPath,
       ),
       additive: (json['additive'] as List<dynamic>?)
           ?.map<SpecimenDefinitionAdditive>(
             (v) => SpecimenDefinitionAdditive.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.additive',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1945,7 +1067,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'preparation',
         FhirString.fromJson,
-        '$objectPath.preparation',
       ),
     );
   }
@@ -2240,399 +1361,20 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SpecimenDefinitionContainer clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'material':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(material: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'cap':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(cap: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'capacity':
-        {
-          if (child is Quantity) {
-            return copyWith(capacity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'minimumVolume':
-      case 'minimumVolumeX':
-        {
-          if (child is MinimumVolumeXSpecimenDefinitionContainer) {
-            return copyWith(minimumVolumeX: child);
-          } else {
-            if (child is Quantity) {
-              return copyWith(minimumVolumeX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(minimumVolumeX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'minimumVolumeQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(minimumVolumeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'minimumVolumeFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(minimumVolumeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'additive':
-        {
-          if (child is List<SpecimenDefinitionAdditive>) {
-            // Add all elements from passed list
-            final newList = [...?additive, ...child];
-            return copyWith(additive: newList);
-          } else if (child is SpecimenDefinitionAdditive) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?additive,
-              child,
-            ];
-            return copyWith(additive: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preparation':
-        {
-          if (child is FhirString) {
-            return copyWith(preparation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SpecimenDefinitionContainer]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'material':
-        return ['CodeableConcept'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'cap':
-        return ['CodeableConcept'];
-      case 'description':
-        return ['FhirString'];
-      case 'capacity':
-        return ['Quantity'];
-      case 'minimumVolume':
-      case 'minimumVolumeX':
-        return [
-          'Quantity',
-          'FhirString',
-        ];
-      case 'minimumVolumeQuantity':
-        return ['Quantity'];
-      case 'minimumVolumeString':
-        return ['FhirString'];
-      case 'additive':
-        return ['SpecimenDefinitionAdditive'];
-      case 'preparation':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SpecimenDefinitionContainer]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SpecimenDefinitionContainer createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SpecimenDefinitionContainerCopyWith<SpecimenDefinitionContainer>
+      get copyWith => _$SpecimenDefinitionContainerCopyWithImpl<
+              SpecimenDefinitionContainer>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'material':
-        {
-          return copyWith(
-            material: CodeableConcept.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'cap':
-        {
-          return copyWith(
-            cap: CodeableConcept.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'capacity':
-        {
-          return copyWith(
-            capacity: Quantity.empty(),
-          );
-        }
-      case 'minimumVolume':
-      case 'minimumVolumeX':
-      case 'minimumVolumeQuantity':
-        {
-          return copyWith(
-            minimumVolumeX: Quantity.empty(),
-          );
-        }
-      case 'minimumVolumeString':
-        {
-          return copyWith(
-            minimumVolumeX: FhirString.empty(),
-          );
-        }
-      case 'additive':
-        {
-          return copyWith(
-            additive: <SpecimenDefinitionAdditive>[],
-          );
-        }
-      case 'preparation':
-        {
-          return copyWith(
-            preparation: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SpecimenDefinitionContainer clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool material = false,
-    bool type = false,
-    bool cap = false,
-    bool description = false,
-    bool capacity = false,
-    bool minimumVolume = false,
-    bool additive = false,
-    bool preparation = false,
-  }) {
-    return SpecimenDefinitionContainer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      material: material ? null : this.material,
-      type: type ? null : this.type,
-      cap: cap ? null : this.cap,
-      description: description ? null : this.description,
-      capacity: capacity ? null : this.capacity,
-      minimumVolumeX: minimumVolume ? null : minimumVolumeX,
-      additive: additive ? null : this.additive,
-      preparation: preparation ? null : this.preparation,
-    );
-  }
-
-  @override
-  SpecimenDefinitionContainer clone() => throw UnimplementedError();
-  @override
-  SpecimenDefinitionContainer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? material,
-    CodeableConcept? type,
-    CodeableConcept? cap,
-    FhirString? description,
-    Quantity? capacity,
-    MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX,
-    List<SpecimenDefinitionAdditive>? additive,
-    FhirString? preparation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SpecimenDefinitionContainer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      material: material?.copyWith(
-            objectPath: '$newObjectPath.material',
-          ) ??
-          this.material,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      cap: cap?.copyWith(
-            objectPath: '$newObjectPath.cap',
-          ) ??
-          this.cap,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      capacity: capacity?.copyWith(
-            objectPath: '$newObjectPath.capacity',
-          ) ??
-          this.capacity,
-      minimumVolumeX: minimumVolumeX?.copyWith(
-            objectPath: '$newObjectPath.minimumVolumeX',
-          ) as MinimumVolumeXSpecimenDefinitionContainer? ??
-          this.minimumVolumeX,
-      additive: additive
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additive',
-                ),
-              )
-              .toList() ??
-          this.additive,
-      preparation: preparation?.copyWith(
-            objectPath: '$newObjectPath.preparation',
-          ) ??
-          this.preparation,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2725,46 +1467,29 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.modifierExtension,
     required this.additiveX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SpecimenDefinition.typeTested.container.additive',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionAdditive.empty() => SpecimenDefinitionAdditive(
-        additiveX: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionAdditive.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SpecimenDefinition.typeTested.container.additive';
     return SpecimenDefinitionAdditive(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2775,7 +1500,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           'additiveCodeableConcept': CodeableConcept.fromJson,
           'additiveReference': Reference.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -2977,224 +1701,20 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SpecimenDefinitionAdditive clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'additive':
-      case 'additiveX':
-        {
-          if (child is AdditiveXSpecimenDefinitionAdditive) {
-            return copyWith(additiveX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(additiveX: child);
-            }
-            if (child is Reference) {
-              return copyWith(additiveX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'additiveCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(additiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'additiveReference':
-        {
-          if (child is Reference) {
-            return copyWith(additiveX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SpecimenDefinitionAdditive]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'additive':
-      case 'additiveX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'additiveCodeableConcept':
-        return ['CodeableConcept'];
-      case 'additiveReference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SpecimenDefinitionAdditive]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SpecimenDefinitionAdditive createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SpecimenDefinitionAdditiveCopyWith<SpecimenDefinitionAdditive>
+      get copyWith =>
+          _$SpecimenDefinitionAdditiveCopyWithImpl<SpecimenDefinitionAdditive>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'additive':
-      case 'additiveX':
-      case 'additiveCodeableConcept':
-        {
-          return copyWith(
-            additiveX: CodeableConcept.empty(),
-          );
-        }
-      case 'additiveReference':
-        {
-          return copyWith(
-            additiveX: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SpecimenDefinitionAdditive clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return SpecimenDefinitionAdditive(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      additiveX: additiveX,
-    );
-  }
-
-  @override
-  SpecimenDefinitionAdditive clone() => throw UnimplementedError();
-  @override
-  SpecimenDefinitionAdditive copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    AdditiveXSpecimenDefinitionAdditive? additiveX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SpecimenDefinitionAdditive(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      additiveX: additiveX?.copyWith(
-            objectPath: '$newObjectPath.additiveX',
-          ) as AdditiveXSpecimenDefinitionAdditive? ??
-          this.additiveX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3248,45 +1768,29 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.maxDuration,
     this.instruction,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'SpecimenDefinition.typeTested.handling',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionHandling.empty() =>
-      const SpecimenDefinitionHandling();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'SpecimenDefinition.typeTested.handling';
     return SpecimenDefinitionHandling(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3294,25 +1798,21 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'temperatureQualifier',
         CodeableConcept.fromJson,
-        '$objectPath.temperatureQualifier',
       ),
       temperatureRange: JsonParser.parseObject<Range>(
         json,
         'temperatureRange',
         Range.fromJson,
-        '$objectPath.temperatureRange',
       ),
       maxDuration: JsonParser.parseObject<FhirDuration>(
         json,
         'maxDuration',
         FhirDuration.fromJson,
-        '$objectPath.maxDuration',
       ),
       instruction: JsonParser.parsePrimitive<FhirString>(
         json,
         'instruction',
         FhirString.fromJson,
-        '$objectPath.instruction',
       ),
     );
   }
@@ -3539,256 +2039,20 @@ class SpecimenDefinitionHandling extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  SpecimenDefinitionHandling clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'temperatureQualifier':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(temperatureQualifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'temperatureRange':
-        {
-          if (child is Range) {
-            return copyWith(temperatureRange: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'maxDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(maxDuration: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instruction':
-        {
-          if (child is FhirString) {
-            return copyWith(instruction: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [SpecimenDefinitionHandling]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'temperatureQualifier':
-        return ['CodeableConcept'];
-      case 'temperatureRange':
-        return ['Range'];
-      case 'maxDuration':
-        return ['FhirDuration'];
-      case 'instruction':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [SpecimenDefinitionHandling]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  SpecimenDefinitionHandling createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $SpecimenDefinitionHandlingCopyWith<SpecimenDefinitionHandling>
+      get copyWith =>
+          _$SpecimenDefinitionHandlingCopyWithImpl<SpecimenDefinitionHandling>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'temperatureQualifier':
-        {
-          return copyWith(
-            temperatureQualifier: CodeableConcept.empty(),
-          );
-        }
-      case 'temperatureRange':
-        {
-          return copyWith(
-            temperatureRange: Range.empty(),
-          );
-        }
-      case 'maxDuration':
-        {
-          return copyWith(
-            maxDuration: FhirDuration.empty(),
-          );
-        }
-      case 'instruction':
-        {
-          return copyWith(
-            instruction: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  SpecimenDefinitionHandling clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool temperatureQualifier = false,
-    bool temperatureRange = false,
-    bool maxDuration = false,
-    bool instruction = false,
-  }) {
-    return SpecimenDefinitionHandling(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      temperatureQualifier:
-          temperatureQualifier ? null : this.temperatureQualifier,
-      temperatureRange: temperatureRange ? null : this.temperatureRange,
-      maxDuration: maxDuration ? null : this.maxDuration,
-      instruction: instruction ? null : this.instruction,
-    );
-  }
-
-  @override
-  SpecimenDefinitionHandling clone() => throw UnimplementedError();
-  @override
-  SpecimenDefinitionHandling copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? temperatureQualifier,
-    Range? temperatureRange,
-    FhirDuration? maxDuration,
-    FhirString? instruction,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return SpecimenDefinitionHandling(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      temperatureQualifier: temperatureQualifier?.copyWith(
-            objectPath: '$newObjectPath.temperatureQualifier',
-          ) ??
-          this.temperatureQualifier,
-      temperatureRange: temperatureRange?.copyWith(
-            objectPath: '$newObjectPath.temperatureRange',
-          ) ??
-          this.temperatureRange,
-      maxDuration: maxDuration?.copyWith(
-            objectPath: '$newObjectPath.maxDuration',
-          ) ??
-          this.maxDuration,
-      instruction: instruction?.copyWith(
-            objectPath: '$newObjectPath.instruction',
-          ) ??
-          this.instruction,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

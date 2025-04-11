@@ -1480,72 +1480,6 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool status = false,
-    bool manufacturer = false,
-    bool doseForm = false,
-    bool amount = false,
-    bool synonym = false,
-    bool relatedMedicationKnowledge = false,
-    bool associatedMedication = false,
-    bool productType = false,
-    bool monograph = false,
-    bool ingredient = false,
-    bool preparationInstruction = false,
-    bool intendedRoute = false,
-    bool cost = false,
-    bool monitoringProgram = false,
-    bool administrationGuidelines = false,
-    bool medicineClassification = false,
-    bool packaging = false,
-    bool drugCharacteristic = false,
-    bool contraindication = false,
-    bool regulatory = false,
-    bool kinetics = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (status) this.status = null;
-    if (manufacturer) this.manufacturer = null;
-    if (doseForm) this.doseForm = null;
-    if (amount) this.amount = null;
-    if (synonym) this.synonym = null;
-    if (relatedMedicationKnowledge) this.relatedMedicationKnowledge = null;
-    if (associatedMedication) this.associatedMedication = null;
-    if (productType) this.productType = null;
-    if (monograph) this.monograph = null;
-    if (ingredient) this.ingredient = null;
-    if (preparationInstruction) this.preparationInstruction = null;
-    if (intendedRoute) this.intendedRoute = null;
-    if (cost) this.cost = null;
-    if (monitoringProgram) this.monitoringProgram = null;
-    if (administrationGuidelines) this.administrationGuidelines = null;
-    if (medicineClassification) this.medicineClassification = null;
-    if (packaging) this.packaging = null;
-    if (drugCharacteristic) this.drugCharacteristic = null;
-    if (contraindication) this.contraindication = null;
-    if (regulatory) this.regulatory = null;
-    if (kinetics) this.kinetics = null;
-  }
-
   @override
   MedicationKnowledgeBuilder clone() => throw UnimplementedError();
   @override
@@ -1944,8 +1878,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-        json,
-      );
+          json,);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2212,22 +2145,6 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool reference = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (reference) this.reference = null;
   }
 
   @override
@@ -2674,22 +2591,6 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool source = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (source) this.source = null;
   }
 
   @override
@@ -3255,24 +3156,6 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-    bool isActive = false,
-    bool strength = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
-    if (isActive) this.isActive = null;
-    if (strength) this.strength = null;
-  }
-
   @override
   MedicationKnowledgeIngredientBuilder clone() => throw UnimplementedError();
   @override
@@ -3772,24 +3655,6 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool source = false,
-    bool cost = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (source) this.source = null;
-    if (cost) this.cost = null;
-  }
-
   @override
   MedicationKnowledgeCostBuilder clone() => throw UnimplementedError();
   @override
@@ -4253,22 +4118,6 @@ class MedicationKnowledgeMonitoringProgramBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool name = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
   }
 
   @override
@@ -4849,24 +4698,6 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool dosage = false,
-    bool indication = false,
-    bool patientCharacteristics = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (dosage) this.dosage = null;
-    if (indication) indicationX = null;
-    if (patientCharacteristics) this.patientCharacteristics = null;
-  }
-
   @override
   MedicationKnowledgeAdministrationGuidelinesBuilder clone() =>
       throw UnimplementedError();
@@ -5336,22 +5167,6 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool dosage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (dosage) this.dosage = null;
   }
 
   @override
@@ -5918,22 +5733,6 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool characteristic = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (characteristic) characteristicX = null;
-    if (value) this.value = null;
-  }
-
   @override
   MedicationKnowledgePatientCharacteristicsBuilder clone() =>
       throw UnimplementedError();
@@ -6398,22 +6197,6 @@ class MedicationKnowledgeMedicineClassificationBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool classification = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (classification) this.classification = null;
-  }
-
   @override
   MedicationKnowledgeMedicineClassificationBuilder clone() =>
       throw UnimplementedError();
@@ -6858,22 +6641,6 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool quantity = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (quantity) this.quantity = null;
   }
 
   @override
@@ -7451,22 +7218,6 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-  }
-
   @override
   MedicationKnowledgeDrugCharacteristicBuilder clone() =>
       throw UnimplementedError();
@@ -8005,26 +7756,6 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool regulatoryAuthority = false,
-    bool substitution = false,
-    bool schedule = false,
-    bool maxDispense = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (regulatoryAuthority) this.regulatoryAuthority = null;
-    if (substitution) this.substitution = null;
-    if (schedule) this.schedule = null;
-    if (maxDispense) this.maxDispense = null;
-  }
-
   @override
   MedicationKnowledgeRegulatoryBuilder clone() => throw UnimplementedError();
   @override
@@ -8502,22 +8233,6 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool allowed = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (allowed) this.allowed = null;
-  }
-
   @override
   MedicationKnowledgeSubstitutionBuilder clone() => throw UnimplementedError();
   @override
@@ -8930,20 +8645,6 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool schedule = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (schedule) this.schedule = null;
   }
 
   @override
@@ -9383,22 +9084,6 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool quantity = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (quantity) this.quantity = null;
-    if (period) this.period = null;
   }
 
   @override
@@ -9901,24 +9586,6 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool areaUnderCurve = false,
-    bool lethalDose50 = false,
-    bool halfLifePeriod = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (areaUnderCurve) this.areaUnderCurve = null;
-    if (lethalDose50) this.lethalDose50 = null;
-    if (halfLifePeriod) this.halfLifePeriod = null;
   }
 
   @override

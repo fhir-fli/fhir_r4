@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CompositionAttestationMode
+enum CompositionAttestationModeEnum {
+  /// personal
+  personal,
+
+  /// professional
+  professional,
+
+  /// legal
+  legal,
+
+  /// official
+  official,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CompositionAttestationModeEnum.personal:
+        return 'personal';
+      case CompositionAttestationModeEnum.professional:
+        return 'professional';
+      case CompositionAttestationModeEnum.legal:
+        return 'legal';
+      case CompositionAttestationModeEnum.official:
+        return 'official';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CompositionAttestationModeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CompositionAttestationModeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CompositionAttestationModeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'personal':
+        return CompositionAttestationModeEnum.personal;
+      case 'professional':
+        return CompositionAttestationModeEnum.professional;
+      case 'legal':
+        return CompositionAttestationModeEnum.legal;
+      case 'official':
+        return CompositionAttestationModeEnum.official;
+    }
+    return null;
+  }
+}
+
 /// The way in which a person authenticated a composition.
 class CompositionAttestationMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CompositionAttestationMode._({
+  const CompositionAttestationMode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class CompositionAttestationMode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class CompositionAttestationMode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CompositionAttestationModeEnum.fromString(valueString);
     return CompositionAttestationMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class CompositionAttestationMode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CompositionAttestationMode] with element only
-  factory CompositionAttestationMode.empty() =>
-      CompositionAttestationMode._(valueString: '');
 
   /// Factory constructor to create [CompositionAttestationMode]
   /// from JSON.
@@ -54,10 +110,11 @@ class CompositionAttestationMode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CompositionAttestationModeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositionAttestationMode.elementOnly.withElement(element);
+      return CompositionAttestationMode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CompositionAttestationMode cannot be constructed from JSON.',
@@ -65,52 +122,68 @@ class CompositionAttestationMode extends FhirCodeEnum {
     }
     return CompositionAttestationMode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CompositionAttestationMode
+  final CompositionAttestationModeEnum? valueEnum;
+
   /// personal
-  static final CompositionAttestationMode personal =
+  static const CompositionAttestationMode personal =
       CompositionAttestationMode._(
     valueString: 'personal',
-    system:
-        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Personal'.toFhirString,
+    valueEnum: CompositionAttestationModeEnum.personal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Personal',
+    ),
   );
 
   /// professional
-  static final CompositionAttestationMode professional =
+  static const CompositionAttestationMode professional =
       CompositionAttestationMode._(
     valueString: 'professional',
-    system:
-        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Professional'.toFhirString,
+    valueEnum: CompositionAttestationModeEnum.professional,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Professional',
+    ),
   );
 
   /// legal
-  static final CompositionAttestationMode legal = CompositionAttestationMode._(
+  static const CompositionAttestationMode legal = CompositionAttestationMode._(
     valueString: 'legal',
-    system:
-        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Legal'.toFhirString,
+    valueEnum: CompositionAttestationModeEnum.legal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Legal',
+    ),
   );
 
   /// official
-  static final CompositionAttestationMode official =
+  static const CompositionAttestationMode official =
       CompositionAttestationMode._(
     valueString: 'official',
-    system:
-        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Official'.toFhirString,
+    valueEnum: CompositionAttestationModeEnum.official,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Official',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CompositionAttestationMode elementOnly =
-      CompositionAttestationMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<CompositionAttestationMode> values = [
@@ -119,13 +192,6 @@ class CompositionAttestationMode extends FhirCodeEnum {
     legal,
     official,
   ];
-
-  /// Clones the current instance
-  @override
-  CompositionAttestationMode clone() => CompositionAttestationMode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CompositionAttestationMode withElement(Element? newElement) {
@@ -146,36 +212,58 @@ class CompositionAttestationMode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CompositionAttestationMode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CompositionAttestationMode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CompositionAttestationModeCopyWithImpl<CompositionAttestationMode>
+      get copyWith =>
+          CompositionAttestationModeCopyWithImpl<CompositionAttestationMode>(
+            this,
+            (v) => v as CompositionAttestationMode,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CompositionAttestationModeCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CompositionAttestationModeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CompositionAttestationMode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CompositionAttestationMode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CompositionAttestationMode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

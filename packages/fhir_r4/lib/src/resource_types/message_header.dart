@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'message_header.g.dart';
+
 /// [MessageHeader]
 /// The header for a message exchange that is either requesting or
 /// responding to an action. The reference(s) that are the subject of the
@@ -33,81 +35,57 @@ class MessageHeader extends DomainResource {
     this.focus,
     this.definition,
   }) : super(
-          objectPath: 'MessageHeader',
           resourceType: R4ResourceType.MessageHeader,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MessageHeader.empty() => MessageHeader(
-        eventX: Coding.empty(),
-        source: MessageHeaderSource.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeader.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'MessageHeader';
     return MessageHeader(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -117,15 +95,11 @@ class MessageHeader extends DomainResource {
           'eventCoding': Coding.fromJson,
           'eventUri': FhirUri.fromJson,
         },
-        objectPath,
       )!,
       destination: (json['destination'] as List<dynamic>?)
           ?.map<MessageHeaderDestination>(
             (v) => MessageHeaderDestination.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.destination',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -133,51 +107,41 @@ class MessageHeader extends DomainResource {
         json,
         'sender',
         Reference.fromJson,
-        '$objectPath.sender',
       ),
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
-        '$objectPath.enterer',
       ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
         Reference.fromJson,
-        '$objectPath.author',
       ),
       source: JsonParser.parseObject<MessageHeaderSource>(
         json,
         'source',
         MessageHeaderSource.fromJson,
-        '$objectPath.source',
       )!,
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
         Reference.fromJson,
-        '$objectPath.responsible',
       ),
       reason: JsonParser.parseObject<CodeableConcept>(
         json,
         'reason',
         CodeableConcept.fromJson,
-        '$objectPath.reason',
       ),
       response: JsonParser.parseObject<MessageHeaderResponse>(
         json,
         'response',
         MessageHeaderResponse.fromJson,
-        '$objectPath.response',
       ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.focus',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -185,7 +149,6 @@ class MessageHeader extends DomainResource {
         json,
         'definition',
         FhirCanonical.fromJson,
-        '$objectPath.definition',
       ),
     );
   }
@@ -573,599 +536,19 @@ class MessageHeader extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MessageHeader clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'event':
-      case 'eventX':
-        {
-          if (child is EventXMessageHeader) {
-            return copyWith(eventX: child);
-          } else {
-            if (child is Coding) {
-              return copyWith(eventX: child);
-            }
-            if (child is FhirUri) {
-              return copyWith(eventX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'eventCoding':
-        {
-          if (child is Coding) {
-            return copyWith(eventX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'eventFhirUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(eventX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'destination':
-        {
-          if (child is List<MessageHeaderDestination>) {
-            // Add all elements from passed list
-            final newList = [...?destination, ...child];
-            return copyWith(destination: newList);
-          } else if (child is MessageHeaderDestination) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?destination,
-              child,
-            ];
-            return copyWith(destination: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sender':
-        {
-          if (child is Reference) {
-            return copyWith(sender: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'enterer':
-        {
-          if (child is Reference) {
-            return copyWith(enterer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'author':
-        {
-          if (child is Reference) {
-            return copyWith(author: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is MessageHeaderSource) {
-            return copyWith(source: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'responsible':
-        {
-          if (child is Reference) {
-            return copyWith(responsible: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(reason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'response':
-        {
-          if (child is MessageHeaderResponse) {
-            return copyWith(response: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focus':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?focus, ...child];
-            return copyWith(focus: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?focus,
-              child,
-            ];
-            return copyWith(focus: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definition':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(definition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MessageHeader]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'event':
-      case 'eventX':
-        return [
-          'Coding',
-          'FhirUri',
-        ];
-      case 'eventCoding':
-        return ['Coding'];
-      case 'eventUri':
-        return ['FhirUri'];
-      case 'destination':
-        return ['MessageHeaderDestination'];
-      case 'sender':
-        return ['Reference'];
-      case 'enterer':
-        return ['Reference'];
-      case 'author':
-        return ['Reference'];
-      case 'source':
-        return ['MessageHeaderSource'];
-      case 'responsible':
-        return ['Reference'];
-      case 'reason':
-        return ['CodeableConcept'];
-      case 'response':
-        return ['MessageHeaderResponse'];
-      case 'focus':
-        return ['Reference'];
-      case 'definition':
-        return ['FhirCanonical'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MessageHeader]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MessageHeader createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'event':
-      case 'eventX':
-      case 'eventCoding':
-        {
-          return copyWith(
-            eventX: Coding.empty(),
-          );
-        }
-      case 'eventUri':
-        {
-          return copyWith(
-            eventX: FhirUri.empty(),
-          );
-        }
-      case 'destination':
-        {
-          return copyWith(
-            destination: <MessageHeaderDestination>[],
-          );
-        }
-      case 'sender':
-        {
-          return copyWith(
-            sender: Reference.empty(),
-          );
-        }
-      case 'enterer':
-        {
-          return copyWith(
-            enterer: Reference.empty(),
-          );
-        }
-      case 'author':
-        {
-          return copyWith(
-            author: Reference.empty(),
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: MessageHeaderSource.empty(),
-          );
-        }
-      case 'responsible':
-        {
-          return copyWith(
-            responsible: Reference.empty(),
-          );
-        }
-      case 'reason':
-        {
-          return copyWith(
-            reason: CodeableConcept.empty(),
-          );
-        }
-      case 'response':
-        {
-          return copyWith(
-            response: MessageHeaderResponse.empty(),
-          );
-        }
-      case 'focus':
-        {
-          return copyWith(
-            focus: <Reference>[],
-          );
-        }
-      case 'definition':
-        {
-          return copyWith(
-            definition: FhirCanonical.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MessageHeader clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool destination = false,
-    bool sender = false,
-    bool enterer = false,
-    bool author = false,
-    bool responsible = false,
-    bool reason = false,
-    bool response = false,
-    bool focus = false,
-    bool definition = false,
-  }) {
-    return MessageHeader(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      eventX: eventX,
-      destination: destination ? null : this.destination,
-      sender: sender ? null : this.sender,
-      enterer: enterer ? null : this.enterer,
-      author: author ? null : this.author,
-      source: source,
-      responsible: responsible ? null : this.responsible,
-      reason: reason ? null : this.reason,
-      response: response ? null : this.response,
-      focus: focus ? null : this.focus,
-      definition: definition ? null : this.definition,
-    );
-  }
-
-  @override
-  MessageHeader clone() => throw UnimplementedError();
-  @override
-  MessageHeader copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    EventXMessageHeader? eventX,
-    List<MessageHeaderDestination>? destination,
-    Reference? sender,
-    Reference? enterer,
-    Reference? author,
-    MessageHeaderSource? source,
-    Reference? responsible,
-    CodeableConcept? reason,
-    MessageHeaderResponse? response,
-    List<Reference>? focus,
-    FhirCanonical? definition,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return MessageHeader(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      eventX: eventX?.copyWith(
-            objectPath: '$newObjectPath.eventX',
-          ) as EventXMessageHeader? ??
-          this.eventX,
-      destination: destination
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.destination',
-                ),
-              )
-              .toList() ??
-          this.destination,
-      sender: sender?.copyWith(
-            objectPath: '$newObjectPath.sender',
-          ) ??
-          this.sender,
-      enterer: enterer?.copyWith(
-            objectPath: '$newObjectPath.enterer',
-          ) ??
-          this.enterer,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      responsible: responsible?.copyWith(
-            objectPath: '$newObjectPath.responsible',
-          ) ??
-          this.responsible,
-      reason: reason?.copyWith(
-            objectPath: '$newObjectPath.reason',
-          ) ??
-          this.reason,
-      response: response?.copyWith(
-            objectPath: '$newObjectPath.response',
-          ) ??
-          this.response,
-      focus: focus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.focus',
-                ),
-              )
-              .toList() ??
-          this.focus,
-      definition: definition?.copyWith(
-            objectPath: '$newObjectPath.definition',
-          ) ??
-          this.definition,
-    );
-  }
+  $MessageHeaderCopyWith<MessageHeader> get copyWith =>
+      _$MessageHeaderCopyWithImpl<MessageHeader>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1308,46 +691,29 @@ class MessageHeaderDestination extends BackboneElement {
     required this.endpoint,
     this.receiver,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'MessageHeader.destination',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MessageHeaderDestination.empty() => MessageHeaderDestination(
-        endpoint: FhirUrl.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderDestination.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'MessageHeader.destination';
     return MessageHeaderDestination(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1355,25 +721,21 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       target: JsonParser.parseObject<Reference>(
         json,
         'target',
         Reference.fromJson,
-        '$objectPath.target',
       ),
       endpoint: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'endpoint',
         FhirUrl.fromJson,
-        '$objectPath.endpoint',
       )!,
       receiver: JsonParser.parseObject<Reference>(
         json,
         'receiver',
         Reference.fromJson,
-        '$objectPath.receiver',
       ),
     );
   }
@@ -1597,254 +959,19 @@ class MessageHeaderDestination extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MessageHeaderDestination clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'target':
-        {
-          if (child is Reference) {
-            return copyWith(target: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'endpoint':
-        {
-          if (child is FhirUrl) {
-            return copyWith(endpoint: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'receiver':
-        {
-          if (child is Reference) {
-            return copyWith(receiver: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MessageHeaderDestination]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'target':
-        return ['Reference'];
-      case 'endpoint':
-        return ['FhirUrl'];
-      case 'receiver':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MessageHeaderDestination]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MessageHeaderDestination createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'target':
-        {
-          return copyWith(
-            target: Reference.empty(),
-          );
-        }
-      case 'endpoint':
-        {
-          return copyWith(
-            endpoint: FhirUrl.empty(),
-          );
-        }
-      case 'receiver':
-        {
-          return copyWith(
-            receiver: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MessageHeaderDestination clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool target = false,
-    bool receiver = false,
-  }) {
-    return MessageHeaderDestination(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      target: target ? null : this.target,
-      endpoint: endpoint,
-      receiver: receiver ? null : this.receiver,
-    );
-  }
-
-  @override
-  MessageHeaderDestination clone() => throw UnimplementedError();
-  @override
-  MessageHeaderDestination copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    Reference? target,
-    FhirUrl? endpoint,
-    Reference? receiver,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MessageHeaderDestination(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      target: target?.copyWith(
-            objectPath: '$newObjectPath.target',
-          ) ??
-          this.target,
-      endpoint: endpoint?.copyWith(
-            objectPath: '$newObjectPath.endpoint',
-          ) ??
-          this.endpoint,
-      receiver: receiver?.copyWith(
-            objectPath: '$newObjectPath.receiver',
-          ) ??
-          this.receiver,
-    );
-  }
+  $MessageHeaderDestinationCopyWith<MessageHeaderDestination> get copyWith =>
+      _$MessageHeaderDestinationCopyWithImpl<MessageHeaderDestination>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1916,46 +1043,29 @@ class MessageHeaderSource extends BackboneElement {
     this.contact,
     required this.endpoint,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'MessageHeader.source',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MessageHeaderSource.empty() => MessageHeaderSource(
-        endpoint: FhirUrl.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderSource.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'MessageHeader.source';
     return MessageHeaderSource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1963,31 +1073,26 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       software: JsonParser.parsePrimitive<FhirString>(
         json,
         'software',
         FhirString.fromJson,
-        '$objectPath.software',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       contact: JsonParser.parseObject<ContactPoint>(
         json,
         'contact',
         ContactPoint.fromJson,
-        '$objectPath.contact',
       ),
       endpoint: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'endpoint',
         FhirUrl.fromJson,
-        '$objectPath.endpoint',
       )!,
     );
   }
@@ -2223,277 +1328,19 @@ class MessageHeaderSource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MessageHeaderSource clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'software':
-        {
-          if (child is FhirString) {
-            return copyWith(software: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is ContactPoint) {
-            return copyWith(contact: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'endpoint':
-        {
-          if (child is FhirUrl) {
-            return copyWith(endpoint: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MessageHeaderSource]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'software':
-        return ['FhirString'];
-      case 'version':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactPoint'];
-      case 'endpoint':
-        return ['FhirUrl'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MessageHeaderSource]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MessageHeaderSource createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'software':
-        {
-          return copyWith(
-            software: FhirString.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: ContactPoint.empty(),
-          );
-        }
-      case 'endpoint':
-        {
-          return copyWith(
-            endpoint: FhirUrl.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MessageHeaderSource clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool software = false,
-    bool version = false,
-    bool contact = false,
-  }) {
-    return MessageHeaderSource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      software: software ? null : this.software,
-      version: version ? null : this.version,
-      contact: contact ? null : this.contact,
-      endpoint: endpoint,
-    );
-  }
-
-  @override
-  MessageHeaderSource clone() => throw UnimplementedError();
-  @override
-  MessageHeaderSource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    FhirString? software,
-    FhirString? version,
-    ContactPoint? contact,
-    FhirUrl? endpoint,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MessageHeaderSource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      software: software?.copyWith(
-            objectPath: '$newObjectPath.software',
-          ) ??
-          this.software,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      contact: contact?.copyWith(
-            objectPath: '$newObjectPath.contact',
-          ) ??
-          this.contact,
-      endpoint: endpoint?.copyWith(
-            objectPath: '$newObjectPath.endpoint',
-          ) ??
-          this.endpoint,
-    );
-  }
+  $MessageHeaderSourceCopyWith<MessageHeaderSource> get copyWith =>
+      _$MessageHeaderSourceCopyWithImpl<MessageHeaderSource>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2570,47 +1417,29 @@ class MessageHeaderResponse extends BackboneElement {
     required this.code,
     this.details,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'MessageHeader.response',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MessageHeaderResponse.empty() => MessageHeaderResponse(
-        identifier: FhirId.empty(),
-        code: ResponseType.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderResponse.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'MessageHeader.response';
     return MessageHeaderResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2618,19 +1447,16 @@ class MessageHeaderResponse extends BackboneElement {
         json,
         'identifier',
         FhirId.fromJson,
-        '$objectPath.identifier',
       )!,
       code: JsonParser.parsePrimitive<ResponseType>(
         json,
         'code',
         ResponseType.fromJson,
-        '$objectPath.code',
       )!,
       details: JsonParser.parseObject<Reference>(
         json,
         'details',
         Reference.fromJson,
-        '$objectPath.details',
       ),
     );
   }
@@ -2838,230 +1664,19 @@ class MessageHeaderResponse extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  MessageHeaderResponse clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is FhirId) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is ResponseType) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'details':
-        {
-          if (child is Reference) {
-            return copyWith(details: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [MessageHeaderResponse]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['FhirId'];
-      case 'code':
-        return ['FhirCode'];
-      case 'details':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MessageHeaderResponse]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MessageHeaderResponse createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: FhirId.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: ResponseType.empty(),
-          );
-        }
-      case 'details':
-        {
-          return copyWith(
-            details: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MessageHeaderResponse clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool details = false,
-  }) {
-    return MessageHeaderResponse(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier,
-      code: code,
-      details: details ? null : this.details,
-    );
-  }
-
-  @override
-  MessageHeaderResponse clone() => throw UnimplementedError();
-  @override
-  MessageHeaderResponse copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? identifier,
-    ResponseType? code,
-    Reference? details,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return MessageHeaderResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      details: details?.copyWith(
-            objectPath: '$newObjectPath.details',
-          ) ??
-          this.details,
-    );
-  }
+  $MessageHeaderResponseCopyWith<MessageHeaderResponse> get copyWith =>
+      _$MessageHeaderResponseCopyWithImpl<MessageHeaderResponse>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

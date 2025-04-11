@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'ratio.g.dart';
+
 /// [Ratio]
 /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
@@ -36,33 +38,22 @@ class Ratio extends DataType
     this.numerator,
     this.denominator,
     super.disallowExtensions,
-    super.objectPath = 'Ratio',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Ratio.empty() => const Ratio();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ratio.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Ratio';
     return Ratio(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -70,13 +61,11 @@ class Ratio extends DataType
         json,
         'numerator',
         Quantity.fromJson,
-        '$objectPath.numerator',
       ),
       denominator: JsonParser.parseObject<Quantity>(
         json,
         'denominator',
         Quantity.fromJson,
-        '$objectPath.denominator',
       ),
     );
   }
@@ -264,173 +253,18 @@ class Ratio extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Ratio clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'numerator':
-        {
-          if (child is Quantity) {
-            return copyWith(numerator: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'denominator':
-        {
-          if (child is Quantity) {
-            return copyWith(denominator: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Ratio]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'numerator':
-        return ['Quantity'];
-      case 'denominator':
-        return ['Quantity'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Ratio]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Ratio createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'numerator':
-        {
-          return copyWith(
-            numerator: Quantity.empty(),
-          );
-        }
-      case 'denominator':
-        {
-          return copyWith(
-            denominator: Quantity.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Ratio clear({
-    bool id = false,
-    bool extension_ = false,
-    bool numerator = false,
-    bool denominator = false,
-  }) {
-    return Ratio(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      numerator: numerator ? null : this.numerator,
-      denominator: denominator ? null : this.denominator,
-    );
-  }
-
-  @override
-  Ratio clone() => throw UnimplementedError();
-  @override
-  Ratio copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Quantity? numerator,
-    Quantity? denominator,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Ratio(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      numerator: numerator?.copyWith(
-            objectPath: '$newObjectPath.numerator',
-          ) ??
-          this.numerator,
-      denominator: denominator?.copyWith(
-            objectPath: '$newObjectPath.denominator',
-          ) ??
-          this.denominator,
-    );
-  }
+  $RatioCopyWith<Ratio> get copyWith => _$RatioCopyWithImpl<Ratio>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

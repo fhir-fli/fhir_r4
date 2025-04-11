@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         OperationOutcome,
         OperationOutcomeIssue,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -531,30 +532,6 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool issue = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (issue) this.issue = null;
   }
 
   @override
@@ -1299,30 +1276,6 @@ class OperationOutcomeIssueBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool severity = false,
-    bool code = false,
-    bool details = false,
-    bool diagnostics = false,
-    bool location = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (severity) this.severity = null;
-    if (code) this.code = null;
-    if (details) this.details = null;
-    if (diagnostics) this.diagnostics = null;
-    if (location) this.location = null;
-    if (expression) this.expression = null;
   }
 
   @override

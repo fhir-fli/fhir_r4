@@ -9,6 +9,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         EncounterParticipant,
         EncounterStatusHistory,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1432,74 +1433,6 @@ class EncounterBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool statusHistory = false,
-    bool class_ = false,
-    bool classHistory = false,
-    bool type = false,
-    bool serviceType = false,
-    bool priority = false,
-    bool subject = false,
-    bool episodeOfCare = false,
-    bool basedOn = false,
-    bool participant = false,
-    bool appointment = false,
-    bool period = false,
-    bool length = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool diagnosis = false,
-    bool account = false,
-    bool hospitalization = false,
-    bool location = false,
-    bool serviceProvider = false,
-    bool partOf = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (statusHistory) this.statusHistory = null;
-    if (class_) this.class_ = null;
-    if (classHistory) this.classHistory = null;
-    if (type) this.type = null;
-    if (serviceType) this.serviceType = null;
-    if (priority) this.priority = null;
-    if (subject) this.subject = null;
-    if (episodeOfCare) this.episodeOfCare = null;
-    if (basedOn) this.basedOn = null;
-    if (participant) this.participant = null;
-    if (appointment) this.appointment = null;
-    if (period) this.period = null;
-    if (length) this.length = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (diagnosis) this.diagnosis = null;
-    if (account) this.account = null;
-    if (hospitalization) this.hospitalization = null;
-    if (location) this.location = null;
-    if (serviceProvider) this.serviceProvider = null;
-    if (partOf) this.partOf = null;
-  }
-
   @override
   EncounterBuilder clone() => throw UnimplementedError();
   @override
@@ -2171,22 +2104,6 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool status = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (status) this.status = null;
-    if (period) this.period = null;
-  }
-
   @override
   EncounterStatusHistoryBuilder clone() => throw UnimplementedError();
   @override
@@ -2636,22 +2553,6 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool class_ = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (class_) this.class_ = null;
-    if (period) this.period = null;
   }
 
   @override
@@ -3140,24 +3041,6 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool period = false,
-    bool individual = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (period) this.period = null;
-    if (individual) this.individual = null;
   }
 
   @override
@@ -3663,24 +3546,6 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool condition = false,
-    bool use = false,
-    bool rank = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (condition) this.condition = null;
-    if (use) this.use = null;
-    if (rank) this.rank = null;
   }
 
   @override
@@ -4396,36 +4261,6 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool preAdmissionIdentifier = false,
-    bool origin = false,
-    bool admitSource = false,
-    bool reAdmission = false,
-    bool dietPreference = false,
-    bool specialCourtesy = false,
-    bool specialArrangement = false,
-    bool destination = false,
-    bool dischargeDisposition = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (preAdmissionIdentifier) this.preAdmissionIdentifier = null;
-    if (origin) this.origin = null;
-    if (admitSource) this.admitSource = null;
-    if (reAdmission) this.reAdmission = null;
-    if (dietPreference) this.dietPreference = null;
-    if (specialCourtesy) this.specialCourtesy = null;
-    if (specialArrangement) this.specialArrangement = null;
-    if (destination) this.destination = null;
-    if (dischargeDisposition) this.dischargeDisposition = null;
-  }
-
   @override
   EncounterHospitalizationBuilder clone() => throw UnimplementedError();
   @override
@@ -5007,26 +4842,6 @@ class EncounterLocationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool location = false,
-    bool status = false,
-    bool physicalType = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (location) this.location = null;
-    if (status) this.status = null;
-    if (physicalType) this.physicalType = null;
-    if (period) this.period = null;
   }
 
   @override

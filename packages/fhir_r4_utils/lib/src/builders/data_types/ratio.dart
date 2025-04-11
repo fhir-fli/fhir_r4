@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart' show Ratio, yamlMapToJson, yamlToJson;
+import 'package:fhir_r4/fhir_r4.dart'
+    show Ratio, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -342,20 +343,6 @@ class RatioBuilder extends DataTypeBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool numerator = false,
-    bool denominator = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (numerator) this.numerator = null;
-    if (denominator) this.denominator = null;
   }
 
   @override

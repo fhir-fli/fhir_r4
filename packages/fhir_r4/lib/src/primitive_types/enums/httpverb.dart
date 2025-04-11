@@ -1,12 +1,87 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for HTTPVerb
+enum HTTPVerbEnum {
+  /// GET
+  gET,
+
+  /// HEAD
+  hEAD,
+
+  /// POST
+  pOST,
+
+  /// PUT
+  pUT,
+
+  /// DELETE
+  dELETE,
+
+  /// PATCH
+  pATCH,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case HTTPVerbEnum.gET:
+        return 'GET';
+      case HTTPVerbEnum.hEAD:
+        return 'HEAD';
+      case HTTPVerbEnum.pOST:
+        return 'POST';
+      case HTTPVerbEnum.pUT:
+        return 'PUT';
+      case HTTPVerbEnum.dELETE:
+        return 'DELETE';
+      case HTTPVerbEnum.pATCH:
+        return 'PATCH';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static HTTPVerbEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return HTTPVerbEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static HTTPVerbEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'GET':
+        return HTTPVerbEnum.gET;
+      case 'HEAD':
+        return HTTPVerbEnum.hEAD;
+      case 'POST':
+        return HTTPVerbEnum.pOST;
+      case 'PUT':
+        return HTTPVerbEnum.pUT;
+      case 'DELETE':
+        return HTTPVerbEnum.dELETE;
+      case 'PATCH':
+        return HTTPVerbEnum.pATCH;
+    }
+    return null;
+  }
+}
+
 /// HTTP verbs (in the HTTP command line). See [HTTP
 /// rfc](https://tools.ietf.org/html/rfc7231) for details.
 class HTTPVerb extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  HTTPVerb._({
+  const HTTPVerb._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +89,6 @@ class HTTPVerb extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +102,13 @@ class HTTPVerb extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = HTTPVerbEnum.fromString(valueString);
     return HTTPVerb._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +116,8 @@ class HTTPVerb extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [HTTPVerb] with element only
-  factory HTTPVerb.empty() => HTTPVerb._(valueString: '');
 
   /// Factory constructor to create [HTTPVerb]
   /// from JSON.
@@ -54,10 +125,11 @@ class HTTPVerb extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = HTTPVerbEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return HTTPVerb.elementOnly.withElement(element);
+      return HTTPVerb._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'HTTPVerb cannot be constructed from JSON.',
@@ -65,77 +137,101 @@ class HTTPVerb extends FhirCodeEnum {
     }
     return HTTPVerb._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for HTTPVerb
+  final HTTPVerbEnum? valueEnum;
+
   /// GET
-  static final HTTPVerb GET = HTTPVerb._(
+  static const HTTPVerb gET = HTTPVerb._(
     valueString: 'GET',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'GET'.toFhirString,
+    valueEnum: HTTPVerbEnum.gET,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'GET',
+    ),
   );
 
   /// HEAD
-  static final HTTPVerb HEAD = HTTPVerb._(
+  static const HTTPVerb hEAD = HTTPVerb._(
     valueString: 'HEAD',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HEAD'.toFhirString,
+    valueEnum: HTTPVerbEnum.hEAD,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'HEAD',
+    ),
   );
 
   /// POST
-  static final HTTPVerb POST = HTTPVerb._(
+  static const HTTPVerb pOST = HTTPVerb._(
     valueString: 'POST',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'POST'.toFhirString,
+    valueEnum: HTTPVerbEnum.pOST,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'POST',
+    ),
   );
 
   /// PUT
-  static final HTTPVerb PUT = HTTPVerb._(
+  static const HTTPVerb pUT = HTTPVerb._(
     valueString: 'PUT',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PUT'.toFhirString,
+    valueEnum: HTTPVerbEnum.pUT,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PUT',
+    ),
   );
 
   /// DELETE
-  static final HTTPVerb DELETE = HTTPVerb._(
+  static const HTTPVerb dELETE = HTTPVerb._(
     valueString: 'DELETE',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DELETE'.toFhirString,
+    valueEnum: HTTPVerbEnum.dELETE,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DELETE',
+    ),
   );
 
   /// PATCH
-  static final HTTPVerb PATCH = HTTPVerb._(
+  static const HTTPVerb pATCH = HTTPVerb._(
     valueString: 'PATCH',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PATCH'.toFhirString,
+    valueEnum: HTTPVerbEnum.pATCH,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PATCH',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final HTTPVerb elementOnly = HTTPVerb._(valueString: '');
 
   /// List of all enum-like values
   static final List<HTTPVerb> values = [
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE,
-    PATCH,
+    gET,
+    hEAD,
+    pOST,
+    pUT,
+    dELETE,
+    pATCH,
   ];
-
-  /// Clones the current instance
-  @override
-  HTTPVerb clone() => HTTPVerb._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   HTTPVerb withElement(Element? newElement) {
@@ -156,36 +252,55 @@ class HTTPVerb extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  HTTPVerb copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  HTTPVerb clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  HTTPVerbCopyWithImpl<HTTPVerb> get copyWith => HTTPVerbCopyWithImpl<HTTPVerb>(
+        this,
+        (v) => v as HTTPVerb,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class HTTPVerbCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  HTTPVerbCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for HTTPVerb: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return HTTPVerb._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      HTTPVerb(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

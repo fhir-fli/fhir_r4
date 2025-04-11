@@ -400,27 +400,6 @@ class ClassTypeInfo extends FhirBase {
   }
 
   @override
-  FhirBase copyWith({
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    return ClassTypeInfo(instance);
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    if (name == 'name') {
-      return FhirString(getName());
-    } else if (name == 'namespace') {
-      return FhirString(getNamespace());
-    } else {
-      return null;
-    }
-  }
-
-  @override
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
     if (name == 'name') {
       return [FhirString(getName())];
@@ -439,19 +418,5 @@ class ClassTypeInfo extends FhirBase {
   }
 
   @override
-  ClassTypeInfo createProperty(String propertyName) {
-    switch (propertyName) {
-      case 'instance':
-        {
-          return copyWith() as ClassTypeInfo;
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  @override
-  ClassTypeInfo clear() {
-    return ClassTypeInfo(instance);
-  }
+  $FhirBaseCopyWith<FhirBase> get copyWith => throw UnimplementedError();
 }

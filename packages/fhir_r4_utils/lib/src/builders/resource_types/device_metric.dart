@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         DeviceMetric,
         DeviceMetricCalibration,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -906,48 +907,6 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool unit = false,
-    bool source = false,
-    bool parent = false,
-    bool operationalStatus = false,
-    bool color = false,
-    bool category = false,
-    bool measurementPeriod = false,
-    bool calibration = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (unit) this.unit = null;
-    if (source) this.source = null;
-    if (parent) this.parent = null;
-    if (operationalStatus) this.operationalStatus = null;
-    if (color) this.color = null;
-    if (category) this.category = null;
-    if (measurementPeriod) this.measurementPeriod = null;
-    if (calibration) this.calibration = null;
-  }
-
   @override
   DeviceMetricBuilder clone() => throw UnimplementedError();
   @override
@@ -1569,24 +1528,6 @@ class DeviceMetricCalibrationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool state = false,
-    bool time = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (state) this.state = null;
-    if (time) this.time = null;
   }
 
   @override

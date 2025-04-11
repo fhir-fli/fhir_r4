@@ -13,7 +13,6 @@ class TLeft15 extends Element {
     this.b,
     this.test,
     super.disallowExtensions,
-    super.objectPath = 'TLeft15',
   });
 
   factory TLeft15.fromJson(Map<String, dynamic> json) {
@@ -67,28 +66,6 @@ class TLeft15 extends Element {
   /// [test]
   /// A single string element
   final FhirString? test;
-
-  @override
-  TLeft15 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirString>? a,
-    List<FhirString>? b,
-    FhirString? test,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft15(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a: a ?? this.a,
-      b: b ?? this.b,
-      test: test ?? this.test,
-    );
-  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -430,20 +407,6 @@ class TLeft15Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a = false,
-    bool b = false,
-    bool test = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a) this.a = null;
-    if (b) this.b = null;
-    if (test) this.test = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

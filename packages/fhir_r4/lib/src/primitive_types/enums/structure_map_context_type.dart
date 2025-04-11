@@ -1,11 +1,58 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapContextType
+enum StructureMapContextTypeEnum {
+  /// type
+  type,
+
+  /// variable
+  variable,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapContextTypeEnum.type:
+        return 'type';
+      case StructureMapContextTypeEnum.variable:
+        return 'variable';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapContextTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapContextTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapContextTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'type':
+        return StructureMapContextTypeEnum.type;
+      case 'variable':
+        return StructureMapContextTypeEnum.variable;
+    }
+    return null;
+  }
+}
+
 /// How to interpret the context.
 class StructureMapContextType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  StructureMapContextType._({
+  const StructureMapContextType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +60,6 @@ class StructureMapContextType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +73,13 @@ class StructureMapContextType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = StructureMapContextTypeEnum.fromString(valueString);
     return StructureMapContextType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +87,8 @@ class StructureMapContextType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [StructureMapContextType] with element only
-  factory StructureMapContextType.empty() =>
-      StructureMapContextType._(valueString: '');
 
   /// Factory constructor to create [StructureMapContextType]
   /// from JSON.
@@ -54,10 +96,11 @@ class StructureMapContextType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = StructureMapContextTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapContextType.elementOnly.withElement(element);
+      return StructureMapContextType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapContextType cannot be constructed from JSON.',
@@ -65,42 +108,45 @@ class StructureMapContextType extends FhirCodeEnum {
     }
     return StructureMapContextType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for StructureMapContextType
+  final StructureMapContextTypeEnum? valueEnum;
+
   /// type
-  static final StructureMapContextType type = StructureMapContextType._(
+  static const StructureMapContextType type = StructureMapContextType._(
     valueString: 'type',
-    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Type'.toFhirString,
+    valueEnum: StructureMapContextTypeEnum.type,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-context-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Type',
+    ),
   );
 
   /// variable
-  static final StructureMapContextType variable = StructureMapContextType._(
+  static const StructureMapContextType variable = StructureMapContextType._(
     valueString: 'variable',
-    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Variable'.toFhirString,
+    valueEnum: StructureMapContextTypeEnum.variable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-context-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Variable',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final StructureMapContextType elementOnly =
-      StructureMapContextType._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureMapContextType> values = [
     type,
     variable,
   ];
-
-  /// Clones the current instance
-  @override
-  StructureMapContextType clone() => StructureMapContextType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
@@ -121,36 +167,56 @@ class StructureMapContextType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  StructureMapContextType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  StructureMapContextType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  StructureMapContextTypeCopyWithImpl<StructureMapContextType> get copyWith =>
+      StructureMapContextTypeCopyWithImpl<StructureMapContextType>(
+        this,
+        (v) => v as StructureMapContextType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class StructureMapContextTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  StructureMapContextTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for StructureMapContextType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return StructureMapContextType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      StructureMapContextType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

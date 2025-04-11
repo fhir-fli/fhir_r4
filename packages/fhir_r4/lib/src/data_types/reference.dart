@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'reference.g.dart';
+
 /// [Reference]
 /// A reference from one resource to another.
 class Reference extends DataType
@@ -98,33 +100,22 @@ class Reference extends DataType
     this.identifier,
     this.display,
     super.disallowExtensions,
-    super.objectPath = 'Reference',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Reference.empty() => const Reference();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Reference.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Reference';
     return Reference(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -132,25 +123,21 @@ class Reference extends DataType
         json,
         'reference',
         FhirString.fromJson,
-        '$objectPath.reference',
       ),
       type: JsonParser.parsePrimitive<FhirUri>(
         json,
         'type',
         FhirUri.fromJson,
-        '$objectPath.type',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-        '$objectPath.display',
       ),
     );
   }
@@ -388,219 +375,19 @@ class Reference extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Reference clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reference':
-        {
-          if (child is FhirString) {
-            return copyWith(reference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FhirUri) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'display':
-        {
-          if (child is FhirString) {
-            return copyWith(display: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Reference]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'reference':
-        return ['FhirString'];
-      case 'type':
-        return ['FhirUri'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'display':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Reference]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Reference createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'reference':
-        {
-          return copyWith(
-            reference: FhirString.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FhirUri.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'display':
-        {
-          return copyWith(
-            display: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Reference clear({
-    bool id = false,
-    bool extension_ = false,
-    bool reference = false,
-    bool type = false,
-    bool identifier = false,
-    bool display = false,
-  }) {
-    return Reference(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      reference: reference ? null : this.reference,
-      type: type ? null : this.type,
-      identifier: identifier ? null : this.identifier,
-      display: display ? null : this.display,
-    );
-  }
-
-  @override
-  Reference clone() => throw UnimplementedError();
-  @override
-  Reference copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? reference,
-    FhirUri? type,
-    Identifier? identifier,
-    FhirString? display,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Reference(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-    );
-  }
+  $ReferenceCopyWith<Reference> get copyWith =>
+      _$ReferenceCopyWithImpl<Reference>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

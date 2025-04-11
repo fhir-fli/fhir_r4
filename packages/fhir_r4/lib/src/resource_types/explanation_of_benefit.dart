@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'explanation_of_benefit.g.dart';
+
 /// [ExplanationOfBenefit]
 /// This resource provides: the claim details; adjudication details from
 /// the processing of a Claim; and optionally account balance information,
@@ -63,98 +65,64 @@ class ExplanationOfBenefit extends DomainResource {
     this.benefitPeriod,
     this.benefitBalance,
   }) : super(
-          objectPath: 'ExplanationOfBenefit',
           resourceType: R4ResourceType.ExplanationOfBenefit,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefit.empty() => ExplanationOfBenefit(
-        status: ExplanationOfBenefitStatus.values.first,
-        type: CodeableConcept.empty(),
-        use: Use.values.first,
-        patient: Reference.empty(),
-        created: FhirDateTime.empty(),
-        insurer: Reference.empty(),
-        provider: Reference.empty(),
-        outcome: RemittanceOutcome.values.first,
-        insurance: <ExplanationOfBenefitInsurance>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefit.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit';
     return ExplanationOfBenefit(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -162,87 +130,71 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'status',
         ExplanationOfBenefitStatus.fromJson,
-        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       subType: JsonParser.parseObject<CodeableConcept>(
         json,
         'subType',
         CodeableConcept.fromJson,
-        '$objectPath.subType',
       ),
       use: JsonParser.parsePrimitive<Use>(
         json,
         'use',
         Use.fromJson,
-        '$objectPath.use',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
-        '$objectPath.patient',
       )!,
       billablePeriod: JsonParser.parseObject<Period>(
         json,
         'billablePeriod',
         Period.fromJson,
-        '$objectPath.billablePeriod',
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-        '$objectPath.created',
       )!,
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
-        '$objectPath.enterer',
       ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
-        '$objectPath.insurer',
       )!,
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
-        '$objectPath.provider',
       )!,
       priority: JsonParser.parseObject<CodeableConcept>(
         json,
         'priority',
         CodeableConcept.fromJson,
-        '$objectPath.priority',
       ),
       fundsReserveRequested: JsonParser.parseObject<CodeableConcept>(
         json,
         'fundsReserveRequested',
         CodeableConcept.fromJson,
-        '$objectPath.fundsReserveRequested',
       ),
       fundsReserve: JsonParser.parseObject<CodeableConcept>(
         json,
         'fundsReserve',
         CodeableConcept.fromJson,
-        '$objectPath.fundsReserve',
       ),
       related: (json['related'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitRelated>(
             (v) => ExplanationOfBenefitRelated.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.related',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -250,109 +202,84 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'prescription',
         Reference.fromJson,
-        '$objectPath.prescription',
       ),
       originalPrescription: JsonParser.parseObject<Reference>(
         json,
         'originalPrescription',
         Reference.fromJson,
-        '$objectPath.originalPrescription',
       ),
       payee: JsonParser.parseObject<ExplanationOfBenefitPayee>(
         json,
         'payee',
         ExplanationOfBenefitPayee.fromJson,
-        '$objectPath.payee',
       ),
       referral: JsonParser.parseObject<Reference>(
         json,
         'referral',
         Reference.fromJson,
-        '$objectPath.referral',
       ),
       facility: JsonParser.parseObject<Reference>(
         json,
         'facility',
         Reference.fromJson,
-        '$objectPath.facility',
       ),
       claim: JsonParser.parseObject<Reference>(
         json,
         'claim',
         Reference.fromJson,
-        '$objectPath.claim',
       ),
       claimResponse: JsonParser.parseObject<Reference>(
         json,
         'claimResponse',
         Reference.fromJson,
-        '$objectPath.claimResponse',
       ),
       outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
         json,
         'outcome',
         RemittanceOutcome.fromJson,
-        '$objectPath.outcome',
       )!,
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
-        '$objectPath.disposition',
       ),
       preAuthRef: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'preAuthRef',
         FhirString.fromJson,
-        '$objectPath.preAuthRef',
       ),
       preAuthRefPeriod: (json['preAuthRefPeriod'] as List<dynamic>?)
           ?.map<Period>(
             (v) => Period.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.preAuthRefPeriod',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       careTeam: (json['careTeam'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitCareTeam>(
             (v) => ExplanationOfBenefitCareTeam.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.careTeam',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitSupportingInfo>(
             (v) => ExplanationOfBenefitSupportingInfo.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.supportingInfo',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       diagnosis: (json['diagnosis'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitDiagnosis>(
             (v) => ExplanationOfBenefitDiagnosis.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.diagnosis',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       procedure: (json['procedure'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitProcedure>(
             (v) => ExplanationOfBenefitProcedure.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.procedure',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -360,15 +287,11 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'precedence',
         FhirPositiveInt.fromJson,
-        '$objectPath.precedence',
       ),
       insurance: (json['insurance'] as List<dynamic>)
           .map<ExplanationOfBenefitInsurance>(
             (v) => ExplanationOfBenefitInsurance.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.insurance',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -376,45 +299,32 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'accident',
         ExplanationOfBenefitAccident.fromJson,
-        '$objectPath.accident',
       ),
       item: (json['item'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitItem>(
             (v) => ExplanationOfBenefitItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.item',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       addItem: (json['addItem'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAddItem>(
             (v) => ExplanationOfBenefitAddItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.addItem',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       total: (json['total'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitTotal>(
             (v) => ExplanationOfBenefitTotal.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.total',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -422,27 +332,21 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'payment',
         ExplanationOfBenefitPayment.fromJson,
-        '$objectPath.payment',
       ),
       formCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'formCode',
         CodeableConcept.fromJson,
-        '$objectPath.formCode',
       ),
       form: JsonParser.parseObject<Attachment>(
         json,
         'form',
         Attachment.fromJson,
-        '$objectPath.form',
       ),
       processNote: (json['processNote'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitProcessNote>(
             (v) => ExplanationOfBenefitProcessNote.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.processNote',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -450,15 +354,11 @@ class ExplanationOfBenefit extends DomainResource {
         json,
         'benefitPeriod',
         Period.fromJson,
-        '$objectPath.benefitPeriod',
       ),
       benefitBalance: (json['benefitBalance'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitBenefitBalance>(
             (v) => ExplanationOfBenefitBenefitBalance.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.benefitBalance',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1250,1460 +1150,19 @@ class ExplanationOfBenefit extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefit clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is ExplanationOfBenefitStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subType':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(subType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'use':
-        {
-          if (child is Use) {
-            return copyWith(use: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'patient':
-        {
-          if (child is Reference) {
-            return copyWith(patient: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'billablePeriod':
-        {
-          if (child is Period) {
-            return copyWith(billablePeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'enterer':
-        {
-          if (child is Reference) {
-            return copyWith(enterer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurer':
-        {
-          if (child is Reference) {
-            return copyWith(insurer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is Reference) {
-            return copyWith(provider: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'priority':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(priority: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fundsReserveRequested':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(fundsReserveRequested: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fundsReserve':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(fundsReserve: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'related':
-        {
-          if (child is List<ExplanationOfBenefitRelated>) {
-            // Add all elements from passed list
-            final newList = [...?related, ...child];
-            return copyWith(related: newList);
-          } else if (child is ExplanationOfBenefitRelated) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?related,
-              child,
-            ];
-            return copyWith(related: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'prescription':
-        {
-          if (child is Reference) {
-            return copyWith(prescription: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'originalPrescription':
-        {
-          if (child is Reference) {
-            return copyWith(originalPrescription: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payee':
-        {
-          if (child is ExplanationOfBenefitPayee) {
-            return copyWith(payee: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'referral':
-        {
-          if (child is Reference) {
-            return copyWith(referral: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'facility':
-        {
-          if (child is Reference) {
-            return copyWith(facility: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'claim':
-        {
-          if (child is Reference) {
-            return copyWith(claim: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'claimResponse':
-        {
-          if (child is Reference) {
-            return copyWith(claimResponse: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is RemittanceOutcome) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'disposition':
-        {
-          if (child is FhirString) {
-            return copyWith(disposition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preAuthRef':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?preAuthRef, ...child];
-            return copyWith(preAuthRef: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?preAuthRef,
-              child,
-            ];
-            return copyWith(preAuthRef: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preAuthRefPeriod':
-        {
-          if (child is List<Period>) {
-            // Add all elements from passed list
-            final newList = [...?preAuthRefPeriod, ...child];
-            return copyWith(preAuthRefPeriod: newList);
-          } else if (child is Period) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?preAuthRefPeriod,
-              child,
-            ];
-            return copyWith(preAuthRefPeriod: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'careTeam':
-        {
-          if (child is List<ExplanationOfBenefitCareTeam>) {
-            // Add all elements from passed list
-            final newList = [...?careTeam, ...child];
-            return copyWith(careTeam: newList);
-          } else if (child is ExplanationOfBenefitCareTeam) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?careTeam,
-              child,
-            ];
-            return copyWith(careTeam: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supportingInfo':
-        {
-          if (child is List<ExplanationOfBenefitSupportingInfo>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is ExplanationOfBenefitSupportingInfo) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supportingInfo,
-              child,
-            ];
-            return copyWith(supportingInfo: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosis':
-        {
-          if (child is List<ExplanationOfBenefitDiagnosis>) {
-            // Add all elements from passed list
-            final newList = [...?diagnosis, ...child];
-            return copyWith(diagnosis: newList);
-          } else if (child is ExplanationOfBenefitDiagnosis) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?diagnosis,
-              child,
-            ];
-            return copyWith(diagnosis: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'procedure':
-        {
-          if (child is List<ExplanationOfBenefitProcedure>) {
-            // Add all elements from passed list
-            final newList = [...?procedure, ...child];
-            return copyWith(procedure: newList);
-          } else if (child is ExplanationOfBenefitProcedure) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?procedure,
-              child,
-            ];
-            return copyWith(procedure: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'precedence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(precedence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurance':
-        {
-          if (child is List<ExplanationOfBenefitInsurance>) {
-            // Add all elements from passed list
-            final newList = [...insurance, ...child];
-            return copyWith(insurance: newList);
-          } else if (child is ExplanationOfBenefitInsurance) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...insurance,
-              child,
-            ];
-            return copyWith(insurance: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'accident':
-        {
-          if (child is ExplanationOfBenefitAccident) {
-            return copyWith(accident: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'item':
-        {
-          if (child is List<ExplanationOfBenefitItem>) {
-            // Add all elements from passed list
-            final newList = [...?item, ...child];
-            return copyWith(item: newList);
-          } else if (child is ExplanationOfBenefitItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?item,
-              child,
-            ];
-            return copyWith(item: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'addItem':
-        {
-          if (child is List<ExplanationOfBenefitAddItem>) {
-            // Add all elements from passed list
-            final newList = [...?addItem, ...child];
-            return copyWith(addItem: newList);
-          } else if (child is ExplanationOfBenefitAddItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?addItem,
-              child,
-            ];
-            return copyWith(addItem: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'total':
-        {
-          if (child is List<ExplanationOfBenefitTotal>) {
-            // Add all elements from passed list
-            final newList = [...?total, ...child];
-            return copyWith(total: newList);
-          } else if (child is ExplanationOfBenefitTotal) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?total,
-              child,
-            ];
-            return copyWith(total: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payment':
-        {
-          if (child is ExplanationOfBenefitPayment) {
-            return copyWith(payment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'formCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(formCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'form':
-        {
-          if (child is Attachment) {
-            return copyWith(form: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'processNote':
-        {
-          if (child is List<ExplanationOfBenefitProcessNote>) {
-            // Add all elements from passed list
-            final newList = [...?processNote, ...child];
-            return copyWith(processNote: newList);
-          } else if (child is ExplanationOfBenefitProcessNote) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?processNote,
-              child,
-            ];
-            return copyWith(processNote: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'benefitPeriod':
-        {
-          if (child is Period) {
-            return copyWith(benefitPeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'benefitBalance':
-        {
-          if (child is List<ExplanationOfBenefitBenefitBalance>) {
-            // Add all elements from passed list
-            final newList = [...?benefitBalance, ...child];
-            return copyWith(benefitBalance: newList);
-          } else if (child is ExplanationOfBenefitBenefitBalance) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?benefitBalance,
-              child,
-            ];
-            return copyWith(benefitBalance: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefit]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'subType':
-        return ['CodeableConcept'];
-      case 'use':
-        return ['FhirCode'];
-      case 'patient':
-        return ['Reference'];
-      case 'billablePeriod':
-        return ['Period'];
-      case 'created':
-        return ['FhirDateTime'];
-      case 'enterer':
-        return ['Reference'];
-      case 'insurer':
-        return ['Reference'];
-      case 'provider':
-        return ['Reference'];
-      case 'priority':
-        return ['CodeableConcept'];
-      case 'fundsReserveRequested':
-        return ['CodeableConcept'];
-      case 'fundsReserve':
-        return ['CodeableConcept'];
-      case 'related':
-        return ['ExplanationOfBenefitRelated'];
-      case 'prescription':
-        return ['Reference'];
-      case 'originalPrescription':
-        return ['Reference'];
-      case 'payee':
-        return ['ExplanationOfBenefitPayee'];
-      case 'referral':
-        return ['Reference'];
-      case 'facility':
-        return ['Reference'];
-      case 'claim':
-        return ['Reference'];
-      case 'claimResponse':
-        return ['Reference'];
-      case 'outcome':
-        return ['FhirCode'];
-      case 'disposition':
-        return ['FhirString'];
-      case 'preAuthRef':
-        return ['FhirString'];
-      case 'preAuthRefPeriod':
-        return ['Period'];
-      case 'careTeam':
-        return ['ExplanationOfBenefitCareTeam'];
-      case 'supportingInfo':
-        return ['ExplanationOfBenefitSupportingInfo'];
-      case 'diagnosis':
-        return ['ExplanationOfBenefitDiagnosis'];
-      case 'procedure':
-        return ['ExplanationOfBenefitProcedure'];
-      case 'precedence':
-        return ['FhirPositiveInt'];
-      case 'insurance':
-        return ['ExplanationOfBenefitInsurance'];
-      case 'accident':
-        return ['ExplanationOfBenefitAccident'];
-      case 'item':
-        return ['ExplanationOfBenefitItem'];
-      case 'addItem':
-        return ['ExplanationOfBenefitAddItem'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      case 'total':
-        return ['ExplanationOfBenefitTotal'];
-      case 'payment':
-        return ['ExplanationOfBenefitPayment'];
-      case 'formCode':
-        return ['CodeableConcept'];
-      case 'form':
-        return ['Attachment'];
-      case 'processNote':
-        return ['ExplanationOfBenefitProcessNote'];
-      case 'benefitPeriod':
-        return ['Period'];
-      case 'benefitBalance':
-        return ['ExplanationOfBenefitBenefitBalance'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefit]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefit createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: ExplanationOfBenefitStatus.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'subType':
-        {
-          return copyWith(
-            subType: CodeableConcept.empty(),
-          );
-        }
-      case 'use':
-        {
-          return copyWith(
-            use: Use.empty(),
-          );
-        }
-      case 'patient':
-        {
-          return copyWith(
-            patient: Reference.empty(),
-          );
-        }
-      case 'billablePeriod':
-        {
-          return copyWith(
-            billablePeriod: Period.empty(),
-          );
-        }
-      case 'created':
-        {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
-        }
-      case 'enterer':
-        {
-          return copyWith(
-            enterer: Reference.empty(),
-          );
-        }
-      case 'insurer':
-        {
-          return copyWith(
-            insurer: Reference.empty(),
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: Reference.empty(),
-          );
-        }
-      case 'priority':
-        {
-          return copyWith(
-            priority: CodeableConcept.empty(),
-          );
-        }
-      case 'fundsReserveRequested':
-        {
-          return copyWith(
-            fundsReserveRequested: CodeableConcept.empty(),
-          );
-        }
-      case 'fundsReserve':
-        {
-          return copyWith(
-            fundsReserve: CodeableConcept.empty(),
-          );
-        }
-      case 'related':
-        {
-          return copyWith(
-            related: <ExplanationOfBenefitRelated>[],
-          );
-        }
-      case 'prescription':
-        {
-          return copyWith(
-            prescription: Reference.empty(),
-          );
-        }
-      case 'originalPrescription':
-        {
-          return copyWith(
-            originalPrescription: Reference.empty(),
-          );
-        }
-      case 'payee':
-        {
-          return copyWith(
-            payee: ExplanationOfBenefitPayee.empty(),
-          );
-        }
-      case 'referral':
-        {
-          return copyWith(
-            referral: Reference.empty(),
-          );
-        }
-      case 'facility':
-        {
-          return copyWith(
-            facility: Reference.empty(),
-          );
-        }
-      case 'claim':
-        {
-          return copyWith(
-            claim: Reference.empty(),
-          );
-        }
-      case 'claimResponse':
-        {
-          return copyWith(
-            claimResponse: Reference.empty(),
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: RemittanceOutcome.empty(),
-          );
-        }
-      case 'disposition':
-        {
-          return copyWith(
-            disposition: FhirString.empty(),
-          );
-        }
-      case 'preAuthRef':
-        {
-          return copyWith(
-            preAuthRef: <FhirString>[],
-          );
-        }
-      case 'preAuthRefPeriod':
-        {
-          return copyWith(
-            preAuthRefPeriod: <Period>[],
-          );
-        }
-      case 'careTeam':
-        {
-          return copyWith(
-            careTeam: <ExplanationOfBenefitCareTeam>[],
-          );
-        }
-      case 'supportingInfo':
-        {
-          return copyWith(
-            supportingInfo: <ExplanationOfBenefitSupportingInfo>[],
-          );
-        }
-      case 'diagnosis':
-        {
-          return copyWith(
-            diagnosis: <ExplanationOfBenefitDiagnosis>[],
-          );
-        }
-      case 'procedure':
-        {
-          return copyWith(
-            procedure: <ExplanationOfBenefitProcedure>[],
-          );
-        }
-      case 'precedence':
-        {
-          return copyWith(
-            precedence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'insurance':
-        {
-          return copyWith(
-            insurance: <ExplanationOfBenefitInsurance>[],
-          );
-        }
-      case 'accident':
-        {
-          return copyWith(
-            accident: ExplanationOfBenefitAccident.empty(),
-          );
-        }
-      case 'item':
-        {
-          return copyWith(
-            item: <ExplanationOfBenefitItem>[],
-          );
-        }
-      case 'addItem':
-        {
-          return copyWith(
-            addItem: <ExplanationOfBenefitAddItem>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      case 'total':
-        {
-          return copyWith(
-            total: <ExplanationOfBenefitTotal>[],
-          );
-        }
-      case 'payment':
-        {
-          return copyWith(
-            payment: ExplanationOfBenefitPayment.empty(),
-          );
-        }
-      case 'formCode':
-        {
-          return copyWith(
-            formCode: CodeableConcept.empty(),
-          );
-        }
-      case 'form':
-        {
-          return copyWith(
-            form: Attachment.empty(),
-          );
-        }
-      case 'processNote':
-        {
-          return copyWith(
-            processNote: <ExplanationOfBenefitProcessNote>[],
-          );
-        }
-      case 'benefitPeriod':
-        {
-          return copyWith(
-            benefitPeriod: Period.empty(),
-          );
-        }
-      case 'benefitBalance':
-        {
-          return copyWith(
-            benefitBalance: <ExplanationOfBenefitBenefitBalance>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefit clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool subType = false,
-    bool billablePeriod = false,
-    bool enterer = false,
-    bool priority = false,
-    bool fundsReserveRequested = false,
-    bool fundsReserve = false,
-    bool related = false,
-    bool prescription = false,
-    bool originalPrescription = false,
-    bool payee = false,
-    bool referral = false,
-    bool facility = false,
-    bool claim = false,
-    bool claimResponse = false,
-    bool disposition = false,
-    bool preAuthRef = false,
-    bool preAuthRefPeriod = false,
-    bool careTeam = false,
-    bool supportingInfo = false,
-    bool diagnosis = false,
-    bool procedure = false,
-    bool precedence = false,
-    bool accident = false,
-    bool item = false,
-    bool addItem = false,
-    bool adjudication = false,
-    bool total = false,
-    bool payment = false,
-    bool formCode = false,
-    bool form = false,
-    bool processNote = false,
-    bool benefitPeriod = false,
-    bool benefitBalance = false,
-  }) {
-    return ExplanationOfBenefit(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      type: type,
-      subType: subType ? null : this.subType,
-      use: use,
-      patient: patient,
-      billablePeriod: billablePeriod ? null : this.billablePeriod,
-      created: created,
-      enterer: enterer ? null : this.enterer,
-      insurer: insurer,
-      provider: provider,
-      priority: priority ? null : this.priority,
-      fundsReserveRequested:
-          fundsReserveRequested ? null : this.fundsReserveRequested,
-      fundsReserve: fundsReserve ? null : this.fundsReserve,
-      related: related ? null : this.related,
-      prescription: prescription ? null : this.prescription,
-      originalPrescription:
-          originalPrescription ? null : this.originalPrescription,
-      payee: payee ? null : this.payee,
-      referral: referral ? null : this.referral,
-      facility: facility ? null : this.facility,
-      claim: claim ? null : this.claim,
-      claimResponse: claimResponse ? null : this.claimResponse,
-      outcome: outcome,
-      disposition: disposition ? null : this.disposition,
-      preAuthRef: preAuthRef ? null : this.preAuthRef,
-      preAuthRefPeriod: preAuthRefPeriod ? null : this.preAuthRefPeriod,
-      careTeam: careTeam ? null : this.careTeam,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      diagnosis: diagnosis ? null : this.diagnosis,
-      procedure: procedure ? null : this.procedure,
-      precedence: precedence ? null : this.precedence,
-      insurance: insurance,
-      accident: accident ? null : this.accident,
-      item: item ? null : this.item,
-      addItem: addItem ? null : this.addItem,
-      adjudication: adjudication ? null : this.adjudication,
-      total: total ? null : this.total,
-      payment: payment ? null : this.payment,
-      formCode: formCode ? null : this.formCode,
-      form: form ? null : this.form,
-      processNote: processNote ? null : this.processNote,
-      benefitPeriod: benefitPeriod ? null : this.benefitPeriod,
-      benefitBalance: benefitBalance ? null : this.benefitBalance,
-    );
-  }
-
-  @override
-  ExplanationOfBenefit clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefit copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ExplanationOfBenefitStatus? status,
-    CodeableConcept? type,
-    CodeableConcept? subType,
-    Use? use,
-    Reference? patient,
-    Period? billablePeriod,
-    FhirDateTime? created,
-    Reference? enterer,
-    Reference? insurer,
-    Reference? provider,
-    CodeableConcept? priority,
-    CodeableConcept? fundsReserveRequested,
-    CodeableConcept? fundsReserve,
-    List<ExplanationOfBenefitRelated>? related,
-    Reference? prescription,
-    Reference? originalPrescription,
-    ExplanationOfBenefitPayee? payee,
-    Reference? referral,
-    Reference? facility,
-    Reference? claim,
-    Reference? claimResponse,
-    RemittanceOutcome? outcome,
-    FhirString? disposition,
-    List<FhirString>? preAuthRef,
-    List<Period>? preAuthRefPeriod,
-    List<ExplanationOfBenefitCareTeam>? careTeam,
-    List<ExplanationOfBenefitSupportingInfo>? supportingInfo,
-    List<ExplanationOfBenefitDiagnosis>? diagnosis,
-    List<ExplanationOfBenefitProcedure>? procedure,
-    FhirPositiveInt? precedence,
-    List<ExplanationOfBenefitInsurance>? insurance,
-    ExplanationOfBenefitAccident? accident,
-    List<ExplanationOfBenefitItem>? item,
-    List<ExplanationOfBenefitAddItem>? addItem,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    List<ExplanationOfBenefitTotal>? total,
-    ExplanationOfBenefitPayment? payment,
-    CodeableConcept? formCode,
-    Attachment? form,
-    List<ExplanationOfBenefitProcessNote>? processNote,
-    Period? benefitPeriod,
-    List<ExplanationOfBenefitBenefitBalance>? benefitBalance,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return ExplanationOfBenefit(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subType: subType?.copyWith(
-            objectPath: '$newObjectPath.subType',
-          ) ??
-          this.subType,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      billablePeriod: billablePeriod?.copyWith(
-            objectPath: '$newObjectPath.billablePeriod',
-          ) ??
-          this.billablePeriod,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      enterer: enterer?.copyWith(
-            objectPath: '$newObjectPath.enterer',
-          ) ??
-          this.enterer,
-      insurer: insurer?.copyWith(
-            objectPath: '$newObjectPath.insurer',
-          ) ??
-          this.insurer,
-      provider: provider?.copyWith(
-            objectPath: '$newObjectPath.provider',
-          ) ??
-          this.provider,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      fundsReserveRequested: fundsReserveRequested?.copyWith(
-            objectPath: '$newObjectPath.fundsReserveRequested',
-          ) ??
-          this.fundsReserveRequested,
-      fundsReserve: fundsReserve?.copyWith(
-            objectPath: '$newObjectPath.fundsReserve',
-          ) ??
-          this.fundsReserve,
-      related: related
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.related',
-                ),
-              )
-              .toList() ??
-          this.related,
-      prescription: prescription?.copyWith(
-            objectPath: '$newObjectPath.prescription',
-          ) ??
-          this.prescription,
-      originalPrescription: originalPrescription?.copyWith(
-            objectPath: '$newObjectPath.originalPrescription',
-          ) ??
-          this.originalPrescription,
-      payee: payee?.copyWith(
-            objectPath: '$newObjectPath.payee',
-          ) ??
-          this.payee,
-      referral: referral?.copyWith(
-            objectPath: '$newObjectPath.referral',
-          ) ??
-          this.referral,
-      facility: facility?.copyWith(
-            objectPath: '$newObjectPath.facility',
-          ) ??
-          this.facility,
-      claim: claim?.copyWith(
-            objectPath: '$newObjectPath.claim',
-          ) ??
-          this.claim,
-      claimResponse: claimResponse?.copyWith(
-            objectPath: '$newObjectPath.claimResponse',
-          ) ??
-          this.claimResponse,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      disposition: disposition?.copyWith(
-            objectPath: '$newObjectPath.disposition',
-          ) ??
-          this.disposition,
-      preAuthRef: preAuthRef
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.preAuthRef',
-                ),
-              )
-              .toList() ??
-          this.preAuthRef,
-      preAuthRefPeriod: preAuthRefPeriod
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.preAuthRefPeriod',
-                ),
-              )
-              .toList() ??
-          this.preAuthRefPeriod,
-      careTeam: careTeam
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.careTeam',
-                ),
-              )
-              .toList() ??
-          this.careTeam,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      diagnosis: diagnosis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.diagnosis',
-                ),
-              )
-              .toList() ??
-          this.diagnosis,
-      procedure: procedure
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.procedure',
-                ),
-              )
-              .toList() ??
-          this.procedure,
-      precedence: precedence?.copyWith(
-            objectPath: '$newObjectPath.precedence',
-          ) ??
-          this.precedence,
-      insurance: insurance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.insurance',
-                ),
-              )
-              .toList() ??
-          this.insurance,
-      accident: accident?.copyWith(
-            objectPath: '$newObjectPath.accident',
-          ) ??
-          this.accident,
-      item: item
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.item',
-                ),
-              )
-              .toList() ??
-          this.item,
-      addItem: addItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.addItem',
-                ),
-              )
-              .toList() ??
-          this.addItem,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      total: total
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.total',
-                ),
-              )
-              .toList() ??
-          this.total,
-      payment: payment?.copyWith(
-            objectPath: '$newObjectPath.payment',
-          ) ??
-          this.payment,
-      formCode: formCode?.copyWith(
-            objectPath: '$newObjectPath.formCode',
-          ) ??
-          this.formCode,
-      form: form?.copyWith(
-            objectPath: '$newObjectPath.form',
-          ) ??
-          this.form,
-      processNote: processNote
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.processNote',
-                ),
-              )
-              .toList() ??
-          this.processNote,
-      benefitPeriod: benefitPeriod?.copyWith(
-            objectPath: '$newObjectPath.benefitPeriod',
-          ) ??
-          this.benefitPeriod,
-      benefitBalance: benefitBalance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.benefitBalance',
-                ),
-              )
-              .toList() ??
-          this.benefitBalance,
-    );
-  }
+  $ExplanationOfBenefitCopyWith<ExplanationOfBenefit> get copyWith =>
+      _$ExplanationOfBenefitCopyWithImpl<ExplanationOfBenefit>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3038,45 +1497,29 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     this.relationship,
     this.reference,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.related',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitRelated.empty() =>
-      const ExplanationOfBenefitRelated();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitRelated.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.related';
     return ExplanationOfBenefitRelated(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3084,19 +1527,16 @@ class ExplanationOfBenefitRelated extends BackboneElement {
         json,
         'claim',
         Reference.fromJson,
-        '$objectPath.claim',
       ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
         CodeableConcept.fromJson,
-        '$objectPath.relationship',
       ),
       reference: JsonParser.parseObject<Identifier>(
         json,
         'reference',
         Identifier.fromJson,
-        '$objectPath.reference',
       ),
     );
   }
@@ -3307,232 +1747,20 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitRelated clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'claim':
-        {
-          if (child is Reference) {
-            return copyWith(claim: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relationship':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(relationship: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reference':
-        {
-          if (child is Identifier) {
-            return copyWith(reference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitRelated]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'claim':
-        return ['Reference'];
-      case 'relationship':
-        return ['CodeableConcept'];
-      case 'reference':
-        return ['Identifier'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitRelated]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitRelated createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitRelatedCopyWith<ExplanationOfBenefitRelated>
+      get copyWith => _$ExplanationOfBenefitRelatedCopyWithImpl<
+              ExplanationOfBenefitRelated>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'claim':
-        {
-          return copyWith(
-            claim: Reference.empty(),
-          );
-        }
-      case 'relationship':
-        {
-          return copyWith(
-            relationship: CodeableConcept.empty(),
-          );
-        }
-      case 'reference':
-        {
-          return copyWith(
-            reference: Identifier.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitRelated clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool claim = false,
-    bool relationship = false,
-    bool reference = false,
-  }) {
-    return ExplanationOfBenefitRelated(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      claim: claim ? null : this.claim,
-      relationship: relationship ? null : this.relationship,
-      reference: reference ? null : this.reference,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitRelated clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitRelated copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? claim,
-    CodeableConcept? relationship,
-    Identifier? reference,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitRelated(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      claim: claim?.copyWith(
-            objectPath: '$newObjectPath.claim',
-          ) ??
-          this.claim,
-      relationship: relationship?.copyWith(
-            objectPath: '$newObjectPath.relationship',
-          ) ??
-          this.relationship,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3596,45 +1824,29 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     this.type,
     this.party,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.payee',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayee.empty() =>
-      const ExplanationOfBenefitPayee();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayee.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.payee';
     return ExplanationOfBenefitPayee(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3642,13 +1854,11 @@ class ExplanationOfBenefitPayee extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       party: JsonParser.parseObject<Reference>(
         json,
         'party',
         Reference.fromJson,
-        '$objectPath.party',
       ),
     );
   }
@@ -3846,209 +2056,19 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitPayee clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'party':
-        {
-          if (child is Reference) {
-            return copyWith(party: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitPayee]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'party':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitPayee]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitPayee createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'party':
-        {
-          return copyWith(
-            party: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitPayee clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool party = false,
-  }) {
-    return ExplanationOfBenefitPayee(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      party: party ? null : this.party,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitPayee clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitPayee copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    Reference? party,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitPayee(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      party: party?.copyWith(
-            objectPath: '$newObjectPath.party',
-          ) ??
-          this.party,
-    );
-  }
+  $ExplanationOfBenefitPayeeCopyWith<ExplanationOfBenefitPayee> get copyWith =>
+      _$ExplanationOfBenefitPayeeCopyWithImpl<ExplanationOfBenefitPayee>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4108,47 +2128,29 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     this.role,
     this.qualification,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.careTeam',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitCareTeam.empty() => ExplanationOfBenefitCareTeam(
-        sequence: FhirPositiveInt.empty(),
-        provider: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitCareTeam.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.careTeam';
     return ExplanationOfBenefitCareTeam(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4156,31 +2158,26 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
-        '$objectPath.provider',
       )!,
       responsible: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'responsible',
         FhirBoolean.fromJson,
-        '$objectPath.responsible',
       ),
       role: JsonParser.parseObject<CodeableConcept>(
         json,
         'role',
         CodeableConcept.fromJson,
-        '$objectPath.role',
       ),
       qualification: JsonParser.parseObject<CodeableConcept>(
         json,
         'qualification',
         CodeableConcept.fromJson,
-        '$objectPath.qualification',
       ),
     );
   }
@@ -4415,276 +2412,20 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitCareTeam clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is Reference) {
-            return copyWith(provider: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'responsible':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(responsible: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'role':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'qualification':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(qualification: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitCareTeam]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'provider':
-        return ['Reference'];
-      case 'responsible':
-        return ['FhirBoolean'];
-      case 'role':
-        return ['CodeableConcept'];
-      case 'qualification':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitCareTeam]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitCareTeam createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitCareTeamCopyWith<ExplanationOfBenefitCareTeam>
+      get copyWith => _$ExplanationOfBenefitCareTeamCopyWithImpl<
+              ExplanationOfBenefitCareTeam>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: Reference.empty(),
-          );
-        }
-      case 'responsible':
-        {
-          return copyWith(
-            responsible: FhirBoolean.empty(),
-          );
-        }
-      case 'role':
-        {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
-        }
-      case 'qualification':
-        {
-          return copyWith(
-            qualification: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitCareTeam clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool responsible = false,
-    bool role = false,
-    bool qualification = false,
-  }) {
-    return ExplanationOfBenefitCareTeam(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      provider: provider,
-      responsible: responsible ? null : this.responsible,
-      role: role ? null : this.role,
-      qualification: qualification ? null : this.qualification,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitCareTeam clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitCareTeam copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    Reference? provider,
-    FhirBoolean? responsible,
-    CodeableConcept? role,
-    CodeableConcept? qualification,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitCareTeam(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      provider: provider?.copyWith(
-            objectPath: '$newObjectPath.provider',
-          ) ??
-          this.provider,
-      responsible: responsible?.copyWith(
-            objectPath: '$newObjectPath.responsible',
-          ) ??
-          this.responsible,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      qualification: qualification?.copyWith(
-            objectPath: '$newObjectPath.qualification',
-          ) ??
-          this.qualification,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4764,48 +2505,29 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     this.valueX,
     this.reason,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.supportingInfo',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitSupportingInfo.empty() =>
-      ExplanationOfBenefitSupportingInfo(
-        sequence: FhirPositiveInt.empty(),
-        category: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSupportingInfo.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.supportingInfo';
     return ExplanationOfBenefitSupportingInfo(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4813,19 +2535,16 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       timingX: JsonParser.parsePolymorphic<
           TimingXExplanationOfBenefitSupportingInfo>(
@@ -4834,7 +2553,6 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
           'timingDate': FhirDate.fromJson,
           'timingPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       valueX:
           JsonParser.parsePolymorphic<ValueXExplanationOfBenefitSupportingInfo>(
@@ -4846,13 +2564,11 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
           'valueAttachment': Attachment.fromJson,
           'valueReference': Reference.fromJson,
         },
-        objectPath,
       ),
       reason: JsonParser.parseObject<Coding>(
         json,
         'reason',
         Coding.fromJson,
-        '$objectPath.reason',
       ),
     );
   }
@@ -5160,437 +2876,21 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitSupportingInfo clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timing':
-      case 'timingX':
-        {
-          if (child is TimingXExplanationOfBenefitSupportingInfo) {
-            return copyWith(timingX: child);
-          } else {
-            if (child is FhirDate) {
-              return copyWith(timingX: child);
-            }
-            if (child is Period) {
-              return copyWith(timingX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'timingFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timingPeriod':
-        {
-          if (child is Period) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXExplanationOfBenefitSupportingInfo) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
-            }
-            if (child is Reference) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueReference':
-        {
-          if (child is Reference) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reason':
-        {
-          if (child is Coding) {
-            return copyWith(reason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitSupportingInfo]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'timing':
-      case 'timingX':
-        return [
-          'FhirDate',
-          'Period',
-        ];
-      case 'timingDate':
-        return ['FhirDate'];
-      case 'timingPeriod':
-        return ['Period'];
-      case 'value':
-      case 'valueX':
-        return [
-          'FhirBoolean',
-          'FhirString',
-          'Quantity',
-          'Attachment',
-          'Reference',
-        ];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueAttachment':
-        return ['Attachment'];
-      case 'valueReference':
-        return ['Reference'];
-      case 'reason':
-        return ['Coding'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitSupportingInfo]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitSupportingInfo createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitSupportingInfoCopyWith<
+          ExplanationOfBenefitSupportingInfo>
+      get copyWith => _$ExplanationOfBenefitSupportingInfoCopyWithImpl<
+              ExplanationOfBenefitSupportingInfo>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'timing':
-      case 'timingX':
-      case 'timingDate':
-        {
-          return copyWith(
-            timingX: FhirDate.empty(),
-          );
-        }
-      case 'timingPeriod':
-        {
-          return copyWith(
-            timingX: Period.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueAttachment':
-        {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
-        }
-      case 'valueReference':
-        {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
-        }
-      case 'reason':
-        {
-          return copyWith(
-            reason: Coding.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitSupportingInfo clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool timing = false,
-    bool value = false,
-    bool reason = false,
-  }) {
-    return ExplanationOfBenefitSupportingInfo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      category: category,
-      code: code ? null : this.code,
-      timingX: timing ? null : timingX,
-      valueX: value ? null : valueX,
-      reason: reason ? null : this.reason,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitSupportingInfo clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitSupportingInfo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    CodeableConcept? category,
-    CodeableConcept? code,
-    TimingXExplanationOfBenefitSupportingInfo? timingX,
-    ValueXExplanationOfBenefitSupportingInfo? valueX,
-    Coding? reason,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitSupportingInfo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      timingX: timingX?.copyWith(
-            objectPath: '$newObjectPath.timingX',
-          ) as TimingXExplanationOfBenefitSupportingInfo? ??
-          this.timingX,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXExplanationOfBenefitSupportingInfo? ??
-          this.valueX,
-      reason: reason?.copyWith(
-            objectPath: '$newObjectPath.reason',
-          ) ??
-          this.reason,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -5674,48 +2974,29 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     this.onAdmission,
     this.packageCode,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.diagnosis',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitDiagnosis.empty() =>
-      ExplanationOfBenefitDiagnosis(
-        sequence: FhirPositiveInt.empty(),
-        diagnosisX: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDiagnosis.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.diagnosis';
     return ExplanationOfBenefitDiagnosis(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5723,7 +3004,6 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       diagnosisX:
           JsonParser.parsePolymorphic<DiagnosisXExplanationOfBenefitDiagnosis>(
@@ -5732,15 +3012,11 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
           'diagnosisCodeableConcept': CodeableConcept.fromJson,
           'diagnosisReference': Reference.fromJson,
         },
-        objectPath,
       )!,
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.type',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5748,13 +3024,11 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         json,
         'onAdmission',
         CodeableConcept.fromJson,
-        '$objectPath.onAdmission',
       ),
       packageCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'packageCode',
         CodeableConcept.fromJson,
-        '$objectPath.packageCode',
       ),
     );
   }
@@ -6009,328 +3283,20 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitDiagnosis clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosis':
-      case 'diagnosisX':
-        {
-          if (child is DiagnosisXExplanationOfBenefitDiagnosis) {
-            return copyWith(diagnosisX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(diagnosisX: child);
-            }
-            if (child is Reference) {
-              return copyWith(diagnosisX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'diagnosisCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(diagnosisX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosisReference':
-        {
-          if (child is Reference) {
-            return copyWith(diagnosisX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?type,
-              child,
-            ];
-            return copyWith(type: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onAdmission':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(onAdmission: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'packageCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(packageCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitDiagnosis]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'diagnosis':
-      case 'diagnosisX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'diagnosisCodeableConcept':
-        return ['CodeableConcept'];
-      case 'diagnosisReference':
-        return ['Reference'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'onAdmission':
-        return ['CodeableConcept'];
-      case 'packageCode':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitDiagnosis]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitDiagnosis createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitDiagnosisCopyWith<ExplanationOfBenefitDiagnosis>
+      get copyWith => _$ExplanationOfBenefitDiagnosisCopyWithImpl<
+              ExplanationOfBenefitDiagnosis>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'diagnosis':
-      case 'diagnosisX':
-      case 'diagnosisCodeableConcept':
-        {
-          return copyWith(
-            diagnosisX: CodeableConcept.empty(),
-          );
-        }
-      case 'diagnosisReference':
-        {
-          return copyWith(
-            diagnosisX: Reference.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
-        }
-      case 'onAdmission':
-        {
-          return copyWith(
-            onAdmission: CodeableConcept.empty(),
-          );
-        }
-      case 'packageCode':
-        {
-          return copyWith(
-            packageCode: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitDiagnosis clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool onAdmission = false,
-    bool packageCode = false,
-  }) {
-    return ExplanationOfBenefitDiagnosis(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      diagnosisX: diagnosisX,
-      type: type ? null : this.type,
-      onAdmission: onAdmission ? null : this.onAdmission,
-      packageCode: packageCode ? null : this.packageCode,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitDiagnosis clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitDiagnosis copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    DiagnosisXExplanationOfBenefitDiagnosis? diagnosisX,
-    List<CodeableConcept>? type,
-    CodeableConcept? onAdmission,
-    CodeableConcept? packageCode,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitDiagnosis(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      diagnosisX: diagnosisX?.copyWith(
-            objectPath: '$newObjectPath.diagnosisX',
-          ) as DiagnosisXExplanationOfBenefitDiagnosis? ??
-          this.diagnosisX,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      onAdmission: onAdmission?.copyWith(
-            objectPath: '$newObjectPath.onAdmission',
-          ) ??
-          this.onAdmission,
-      packageCode: packageCode?.copyWith(
-            objectPath: '$newObjectPath.packageCode',
-          ) ??
-          this.packageCode,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6409,48 +3375,29 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     required this.procedureX,
     this.udi,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.procedure',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitProcedure.empty() =>
-      ExplanationOfBenefitProcedure(
-        sequence: FhirPositiveInt.empty(),
-        procedureX: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitProcedure.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.procedure';
     return ExplanationOfBenefitProcedure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6458,15 +3405,11 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.type',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6474,7 +3417,6 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       procedureX:
           JsonParser.parsePolymorphic<ProcedureXExplanationOfBenefitProcedure>(
@@ -6483,15 +3425,11 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
           'procedureCodeableConcept': CodeableConcept.fromJson,
           'procedureReference': Reference.fromJson,
         },
-        objectPath,
       )!,
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.udi',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6745,341 +3683,20 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitProcedure clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?type,
-              child,
-            ];
-            return copyWith(type: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'procedure':
-      case 'procedureX':
-        {
-          if (child is ProcedureXExplanationOfBenefitProcedure) {
-            return copyWith(procedureX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(procedureX: child);
-            }
-            if (child is Reference) {
-              return copyWith(procedureX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'procedureCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(procedureX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'procedureReference':
-        {
-          if (child is Reference) {
-            return copyWith(procedureX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'udi':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?udi, ...child];
-            return copyWith(udi: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?udi,
-              child,
-            ];
-            return copyWith(udi: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitProcedure]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'procedure':
-      case 'procedureX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'procedureCodeableConcept':
-        return ['CodeableConcept'];
-      case 'procedureReference':
-        return ['Reference'];
-      case 'udi':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitProcedure]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitProcedure createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitProcedureCopyWith<ExplanationOfBenefitProcedure>
+      get copyWith => _$ExplanationOfBenefitProcedureCopyWithImpl<
+              ExplanationOfBenefitProcedure>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'procedure':
-      case 'procedureX':
-      case 'procedureCodeableConcept':
-        {
-          return copyWith(
-            procedureX: CodeableConcept.empty(),
-          );
-        }
-      case 'procedureReference':
-        {
-          return copyWith(
-            procedureX: Reference.empty(),
-          );
-        }
-      case 'udi':
-        {
-          return copyWith(
-            udi: <Reference>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitProcedure clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool date = false,
-    bool udi = false,
-  }) {
-    return ExplanationOfBenefitProcedure(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      type: type ? null : this.type,
-      date: date ? null : this.date,
-      procedureX: procedureX,
-      udi: udi ? null : this.udi,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitProcedure clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitProcedure copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    List<CodeableConcept>? type,
-    FhirDateTime? date,
-    ProcedureXExplanationOfBenefitProcedure? procedureX,
-    List<Reference>? udi,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitProcedure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      procedureX: procedureX?.copyWith(
-            objectPath: '$newObjectPath.procedureX',
-          ) as ProcedureXExplanationOfBenefitProcedure? ??
-          this.procedureX,
-      udi: udi
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.udi',
-                ),
-              )
-              .toList() ??
-          this.udi,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7156,48 +3773,29 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     required this.coverage,
     this.preAuthRef,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.insurance',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitInsurance.empty() =>
-      ExplanationOfBenefitInsurance(
-        focal: FhirBoolean.empty(),
-        coverage: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.insurance';
     return ExplanationOfBenefitInsurance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7205,19 +3803,16 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
         json,
         'focal',
         FhirBoolean.fromJson,
-        '$objectPath.focal',
       )!,
       coverage: JsonParser.parseObject<Reference>(
         json,
         'coverage',
         Reference.fromJson,
-        '$objectPath.coverage',
       )!,
       preAuthRef: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'preAuthRef',
         FhirString.fromJson,
-        '$objectPath.preAuthRef',
       ),
     );
   }
@@ -7429,243 +4024,20 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitInsurance clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focal':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(focal: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'coverage':
-        {
-          if (child is Reference) {
-            return copyWith(coverage: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preAuthRef':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?preAuthRef, ...child];
-            return copyWith(preAuthRef: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?preAuthRef,
-              child,
-            ];
-            return copyWith(preAuthRef: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitInsurance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'focal':
-        return ['FhirBoolean'];
-      case 'coverage':
-        return ['Reference'];
-      case 'preAuthRef':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitInsurance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitInsurance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitInsuranceCopyWith<ExplanationOfBenefitInsurance>
+      get copyWith => _$ExplanationOfBenefitInsuranceCopyWithImpl<
+              ExplanationOfBenefitInsurance>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'focal':
-        {
-          return copyWith(
-            focal: FhirBoolean.empty(),
-          );
-        }
-      case 'coverage':
-        {
-          return copyWith(
-            coverage: Reference.empty(),
-          );
-        }
-      case 'preAuthRef':
-        {
-          return copyWith(
-            preAuthRef: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitInsurance clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool preAuthRef = false,
-  }) {
-    return ExplanationOfBenefitInsurance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      focal: focal,
-      coverage: coverage,
-      preAuthRef: preAuthRef ? null : this.preAuthRef,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitInsurance clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitInsurance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? focal,
-    Reference? coverage,
-    List<FhirString>? preAuthRef,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitInsurance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      focal: focal?.copyWith(
-            objectPath: '$newObjectPath.focal',
-          ) ??
-          this.focal,
-      coverage: coverage?.copyWith(
-            objectPath: '$newObjectPath.coverage',
-          ) ??
-          this.coverage,
-      preAuthRef: preAuthRef
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.preAuthRef',
-                ),
-              )
-              .toList() ??
-          this.preAuthRef,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7730,45 +4102,29 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     this.type,
     this.locationX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.accident',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitAccident.empty() =>
-      const ExplanationOfBenefitAccident();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAccident.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.accident';
     return ExplanationOfBenefitAccident(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7776,13 +4132,11 @@ class ExplanationOfBenefitAccident extends BackboneElement {
         json,
         'date',
         FhirDate.fromJson,
-        '$objectPath.date',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       locationX:
           JsonParser.parsePolymorphic<LocationXExplanationOfBenefitAccident>(
@@ -7791,7 +4145,6 @@ class ExplanationOfBenefitAccident extends BackboneElement {
           'locationAddress': Address.fromJson,
           'locationReference': Reference.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -8022,271 +4375,20 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitAccident clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDate) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-      case 'locationX':
-        {
-          if (child is LocationXExplanationOfBenefitAccident) {
-            return copyWith(locationX: child);
-          } else {
-            if (child is Address) {
-              return copyWith(locationX: child);
-            }
-            if (child is Reference) {
-              return copyWith(locationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'locationAddress':
-        {
-          if (child is Address) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationReference':
-        {
-          if (child is Reference) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitAccident]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'date':
-        return ['FhirDate'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'location':
-      case 'locationX':
-        return [
-          'Address',
-          'Reference',
-        ];
-      case 'locationAddress':
-        return ['Address'];
-      case 'locationReference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitAccident]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitAccident createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitAccidentCopyWith<ExplanationOfBenefitAccident>
+      get copyWith => _$ExplanationOfBenefitAccidentCopyWithImpl<
+              ExplanationOfBenefitAccident>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'location':
-      case 'locationX':
-      case 'locationAddress':
-        {
-          return copyWith(
-            locationX: Address.empty(),
-          );
-        }
-      case 'locationReference':
-        {
-          return copyWith(
-            locationX: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitAccident clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool date = false,
-    bool type = false,
-    bool location = false,
-  }) {
-    return ExplanationOfBenefitAccident(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      date: date ? null : this.date,
-      type: type ? null : this.type,
-      locationX: location ? null : locationX,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitAccident clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitAccident copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirDate? date,
-    CodeableConcept? type,
-    LocationXExplanationOfBenefitAccident? locationX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitAccident(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      locationX: locationX?.copyWith(
-            objectPath: '$newObjectPath.locationX',
-          ) as LocationXExplanationOfBenefitAccident? ??
-          this.locationX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -8371,47 +4473,29 @@ class ExplanationOfBenefitItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.item',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitItem.empty() => ExplanationOfBenefitItem(
-        sequence: FhirPositiveInt.empty(),
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.item';
     return ExplanationOfBenefitItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8419,67 +4503,53 @@ class ExplanationOfBenefitItem extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       careTeamSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'careTeamSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.careTeamSequence',
       ),
       diagnosisSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'diagnosisSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.diagnosisSequence',
       ),
       procedureSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'procedureSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.procedureSequence',
       ),
       informationSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'informationSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.informationSequence',
       ),
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
-        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.programCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8489,7 +4559,6 @@ class ExplanationOfBenefitItem extends BackboneElement {
           'servicedDate': FhirDate.fromJson,
           'servicedPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       locationX: JsonParser.parsePolymorphic<LocationXExplanationOfBenefitItem>(
         json,
@@ -8498,39 +4567,31 @@ class ExplanationOfBenefitItem extends BackboneElement {
           'locationAddress': Address.fromJson,
           'locationReference': Reference.fromJson,
         },
-        objectPath,
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.udi',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8538,25 +4599,18 @@ class ExplanationOfBenefitItem extends BackboneElement {
         json,
         'bodySite',
         CodeableConcept.fromJson,
-        '$objectPath.bodySite',
       ),
       subSite: (json['subSite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subSite',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       encounter: (json['encounter'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.encounter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8564,25 +4618,18 @@ class ExplanationOfBenefitItem extends BackboneElement {
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitDetail>(
             (v) => ExplanationOfBenefitDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -9112,945 +5159,19 @@ class ExplanationOfBenefitItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitItem clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'careTeamSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?careTeamSequence, ...child];
-            return copyWith(careTeamSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?careTeamSequence,
-              child,
-            ];
-            return copyWith(careTeamSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosisSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?diagnosisSequence, ...child];
-            return copyWith(diagnosisSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?diagnosisSequence,
-              child,
-            ];
-            return copyWith(diagnosisSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'procedureSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?procedureSequence, ...child];
-            return copyWith(procedureSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?procedureSequence,
-              child,
-            ];
-            return copyWith(procedureSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'informationSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?informationSequence, ...child];
-            return copyWith(informationSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?informationSequence,
-              child,
-            ];
-            return copyWith(informationSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'revenue':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(revenue: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'programCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?programCode, ...child];
-            return copyWith(programCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?programCode,
-              child,
-            ];
-            return copyWith(programCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviced':
-      case 'servicedX':
-        {
-          if (child is ServicedXExplanationOfBenefitItem) {
-            return copyWith(servicedX: child);
-          } else {
-            if (child is FhirDate) {
-              return copyWith(servicedX: child);
-            }
-            if (child is Period) {
-              return copyWith(servicedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'servicedFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'servicedPeriod':
-        {
-          if (child is Period) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-      case 'locationX':
-        {
-          if (child is LocationXExplanationOfBenefitItem) {
-            return copyWith(locationX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(locationX: child);
-            }
-            if (child is Address) {
-              return copyWith(locationX: child);
-            }
-            if (child is Reference) {
-              return copyWith(locationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'locationCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationAddress':
-        {
-          if (child is Address) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationReference':
-        {
-          if (child is Reference) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'udi':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?udi, ...child];
-            return copyWith(udi: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?udi,
-              child,
-            ];
-            return copyWith(udi: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bodySite':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subSite':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?subSite, ...child];
-            return copyWith(subSite: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subSite,
-              child,
-            ];
-            return copyWith(subSite: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?encounter, ...child];
-            return copyWith(encounter: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?encounter,
-              child,
-            ];
-            return copyWith(encounter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<ExplanationOfBenefitDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is ExplanationOfBenefitDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'careTeamSequence':
-        return ['FhirPositiveInt'];
-      case 'diagnosisSequence':
-        return ['FhirPositiveInt'];
-      case 'procedureSequence':
-        return ['FhirPositiveInt'];
-      case 'informationSequence':
-        return ['FhirPositiveInt'];
-      case 'revenue':
-        return ['CodeableConcept'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'programCode':
-        return ['CodeableConcept'];
-      case 'serviced':
-      case 'servicedX':
-        return [
-          'FhirDate',
-          'Period',
-        ];
-      case 'servicedDate':
-        return ['FhirDate'];
-      case 'servicedPeriod':
-        return ['Period'];
-      case 'location':
-      case 'locationX':
-        return [
-          'CodeableConcept',
-          'Address',
-          'Reference',
-        ];
-      case 'locationCodeableConcept':
-        return ['CodeableConcept'];
-      case 'locationAddress':
-        return ['Address'];
-      case 'locationReference':
-        return ['Reference'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'udi':
-        return ['Reference'];
-      case 'bodySite':
-        return ['CodeableConcept'];
-      case 'subSite':
-        return ['CodeableConcept'];
-      case 'encounter':
-        return ['Reference'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      case 'detail':
-        return ['ExplanationOfBenefitDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'careTeamSequence':
-        {
-          return copyWith(
-            careTeamSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'diagnosisSequence':
-        {
-          return copyWith(
-            diagnosisSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'procedureSequence':
-        {
-          return copyWith(
-            procedureSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'informationSequence':
-        {
-          return copyWith(
-            informationSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'revenue':
-        {
-          return copyWith(
-            revenue: CodeableConcept.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'programCode':
-        {
-          return copyWith(
-            programCode: <CodeableConcept>[],
-          );
-        }
-      case 'serviced':
-      case 'servicedX':
-      case 'servicedDate':
-        {
-          return copyWith(
-            servicedX: FhirDate.empty(),
-          );
-        }
-      case 'servicedPeriod':
-        {
-          return copyWith(
-            servicedX: Period.empty(),
-          );
-        }
-      case 'location':
-      case 'locationX':
-      case 'locationCodeableConcept':
-        {
-          return copyWith(
-            locationX: CodeableConcept.empty(),
-          );
-        }
-      case 'locationAddress':
-        {
-          return copyWith(
-            locationX: Address.empty(),
-          );
-        }
-      case 'locationReference':
-        {
-          return copyWith(
-            locationX: Reference.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'udi':
-        {
-          return copyWith(
-            udi: <Reference>[],
-          );
-        }
-      case 'bodySite':
-        {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
-        }
-      case 'subSite':
-        {
-          return copyWith(
-            subSite: <CodeableConcept>[],
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: <Reference>[],
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <ExplanationOfBenefitDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool careTeamSequence = false,
-    bool diagnosisSequence = false,
-    bool procedureSequence = false,
-    bool informationSequence = false,
-    bool revenue = false,
-    bool category = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool serviced = false,
-    bool location = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool udi = false,
-    bool bodySite = false,
-    bool subSite = false,
-    bool encounter = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool detail = false,
-  }) {
-    return ExplanationOfBenefitItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      careTeamSequence: careTeamSequence ? null : this.careTeamSequence,
-      diagnosisSequence: diagnosisSequence ? null : this.diagnosisSequence,
-      procedureSequence: procedureSequence ? null : this.procedureSequence,
-      informationSequence:
-          informationSequence ? null : this.informationSequence,
-      revenue: revenue ? null : this.revenue,
-      category: category ? null : this.category,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      programCode: programCode ? null : this.programCode,
-      servicedX: serviced ? null : servicedX,
-      locationX: location ? null : locationX,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      udi: udi ? null : this.udi,
-      bodySite: bodySite ? null : this.bodySite,
-      subSite: subSite ? null : this.subSite,
-      encounter: encounter ? null : this.encounter,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-      detail: detail ? null : this.detail,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitItem clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    List<FhirPositiveInt>? careTeamSequence,
-    List<FhirPositiveInt>? diagnosisSequence,
-    List<FhirPositiveInt>? procedureSequence,
-    List<FhirPositiveInt>? informationSequence,
-    CodeableConcept? revenue,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    List<CodeableConcept>? programCode,
-    ServicedXExplanationOfBenefitItem? servicedX,
-    LocationXExplanationOfBenefitItem? locationX,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<Reference>? udi,
-    CodeableConcept? bodySite,
-    List<CodeableConcept>? subSite,
-    List<Reference>? encounter,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    List<ExplanationOfBenefitDetail>? detail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      careTeamSequence: careTeamSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.careTeamSequence',
-                ),
-              )
-              .toList() ??
-          this.careTeamSequence,
-      diagnosisSequence: diagnosisSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.diagnosisSequence',
-                ),
-              )
-              .toList() ??
-          this.diagnosisSequence,
-      procedureSequence: procedureSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.procedureSequence',
-                ),
-              )
-              .toList() ??
-          this.procedureSequence,
-      informationSequence: informationSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.informationSequence',
-                ),
-              )
-              .toList() ??
-          this.informationSequence,
-      revenue: revenue?.copyWith(
-            objectPath: '$newObjectPath.revenue',
-          ) ??
-          this.revenue,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      programCode: programCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.programCode',
-                ),
-              )
-              .toList() ??
-          this.programCode,
-      servicedX: servicedX?.copyWith(
-            objectPath: '$newObjectPath.servicedX',
-          ) as ServicedXExplanationOfBenefitItem? ??
-          this.servicedX,
-      locationX: locationX?.copyWith(
-            objectPath: '$newObjectPath.locationX',
-          ) as LocationXExplanationOfBenefitItem? ??
-          this.locationX,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      udi: udi
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.udi',
-                ),
-              )
-              .toList() ??
-          this.udi,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      subSite: subSite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subSite',
-                ),
-              )
-              .toList() ??
-          this.subSite,
-      encounter: encounter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.encounter',
-                ),
-              )
-              .toList() ??
-          this.encounter,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-    );
-  }
+  $ExplanationOfBenefitItemCopyWith<ExplanationOfBenefitItem> get copyWith =>
+      _$ExplanationOfBenefitItemCopyWithImpl<ExplanationOfBenefitItem>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -10237,47 +5358,29 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     this.amount,
     this.value,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.item.adjudication',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitAdjudication.empty() =>
-      ExplanationOfBenefitAdjudication(
-        category: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAdjudication.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.item.adjudication';
     return ExplanationOfBenefitAdjudication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -10285,25 +5388,21 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       reason: JsonParser.parseObject<CodeableConcept>(
         json,
         'reason',
         CodeableConcept.fromJson,
-        '$objectPath.reason',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       ),
       value: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'value',
         FhirDecimal.fromJson,
-        '$objectPath.value',
       ),
     );
   }
@@ -10530,254 +5629,20 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitAdjudication clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(reason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(value: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitAdjudication]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'reason':
-        return ['CodeableConcept'];
-      case 'amount':
-        return ['Money'];
-      case 'value':
-        return ['FhirDecimal'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitAdjudication]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitAdjudication createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitAdjudicationCopyWith<ExplanationOfBenefitAdjudication>
+      get copyWith => _$ExplanationOfBenefitAdjudicationCopyWithImpl<
+              ExplanationOfBenefitAdjudication>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'reason':
-        {
-          return copyWith(
-            reason: CodeableConcept.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      case 'value':
-        {
-          return copyWith(
-            value: FhirDecimal.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitAdjudication clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reason = false,
-    bool amount = false,
-    bool value = false,
-  }) {
-    return ExplanationOfBenefitAdjudication(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      category: category,
-      reason: reason ? null : this.reason,
-      amount: amount ? null : this.amount,
-      value: value ? null : this.value,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitAdjudication clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitAdjudication copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    CodeableConcept? reason,
-    Money? amount,
-    FhirDecimal? value,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitAdjudication(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      reason: reason?.copyWith(
-            objectPath: '$newObjectPath.reason',
-          ) ??
-          this.reason,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -10858,47 +5723,29 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.item.detail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitDetail.empty() => ExplanationOfBenefitDetail(
-        sequence: FhirPositiveInt.empty(),
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDetail.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.item.detail';
     return ExplanationOfBenefitDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -10906,43 +5753,33 @@ class ExplanationOfBenefitDetail extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
-        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.programCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -10950,33 +5787,26 @@ class ExplanationOfBenefitDetail extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.udi',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -10984,25 +5814,18 @@ class ExplanationOfBenefitDetail extends BackboneElement {
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       subDetail: (json['subDetail'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitSubDetail>(
             (v) => ExplanationOfBenefitSubDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subDetail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -11366,561 +6189,20 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitDetail clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'revenue':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(revenue: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'programCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?programCode, ...child];
-            return copyWith(programCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?programCode,
-              child,
-            ];
-            return copyWith(programCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'udi':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?udi, ...child];
-            return copyWith(udi: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?udi,
-              child,
-            ];
-            return copyWith(udi: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetail':
-        {
-          if (child is List<ExplanationOfBenefitSubDetail>) {
-            // Add all elements from passed list
-            final newList = [...?subDetail, ...child];
-            return copyWith(subDetail: newList);
-          } else if (child is ExplanationOfBenefitSubDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subDetail,
-              child,
-            ];
-            return copyWith(subDetail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitDetail]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'revenue':
-        return ['CodeableConcept'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'programCode':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'udi':
-        return ['Reference'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      case 'subDetail':
-        return ['ExplanationOfBenefitSubDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitDetail]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitDetail createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitDetailCopyWith<ExplanationOfBenefitDetail>
+      get copyWith =>
+          _$ExplanationOfBenefitDetailCopyWithImpl<ExplanationOfBenefitDetail>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'revenue':
-        {
-          return copyWith(
-            revenue: CodeableConcept.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'programCode':
-        {
-          return copyWith(
-            programCode: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'udi':
-        {
-          return copyWith(
-            udi: <Reference>[],
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      case 'subDetail':
-        {
-          return copyWith(
-            subDetail: <ExplanationOfBenefitSubDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitDetail clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool revenue = false,
-    bool category = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool udi = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool subDetail = false,
-  }) {
-    return ExplanationOfBenefitDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      revenue: revenue ? null : this.revenue,
-      category: category ? null : this.category,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      programCode: programCode ? null : this.programCode,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      udi: udi ? null : this.udi,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-      subDetail: subDetail ? null : this.subDetail,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitDetail clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    CodeableConcept? revenue,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    List<CodeableConcept>? programCode,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<Reference>? udi,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    List<ExplanationOfBenefitSubDetail>? subDetail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      revenue: revenue?.copyWith(
-            objectPath: '$newObjectPath.revenue',
-          ) ??
-          this.revenue,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      programCode: programCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.programCode',
-                ),
-              )
-              .toList() ??
-          this.programCode,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      udi: udi
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.udi',
-                ),
-              )
-              .toList() ??
-          this.udi,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      subDetail: subDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subDetail',
-                ),
-              )
-              .toList() ??
-          this.subDetail,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -12060,48 +6342,29 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.item.detail.subDetail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitSubDetail.empty() =>
-      ExplanationOfBenefitSubDetail(
-        sequence: FhirPositiveInt.empty(),
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSubDetail.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.item.detail.subDetail';
     return ExplanationOfBenefitSubDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -12109,43 +6372,33 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
         CodeableConcept.fromJson,
-        '$objectPath.revenue',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.programCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -12153,33 +6406,26 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       udi: (json['udi'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.udi',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -12187,15 +6433,11 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -12546,525 +6788,20 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitSubDetail clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'revenue':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(revenue: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'programCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?programCode, ...child];
-            return copyWith(programCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?programCode,
-              child,
-            ];
-            return copyWith(programCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'udi':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?udi, ...child];
-            return copyWith(udi: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?udi,
-              child,
-            ];
-            return copyWith(udi: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitSubDetail]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'revenue':
-        return ['CodeableConcept'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'programCode':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'udi':
-        return ['Reference'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitSubDetail]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitSubDetail createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitSubDetailCopyWith<ExplanationOfBenefitSubDetail>
+      get copyWith => _$ExplanationOfBenefitSubDetailCopyWithImpl<
+              ExplanationOfBenefitSubDetail>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'revenue':
-        {
-          return copyWith(
-            revenue: CodeableConcept.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'programCode':
-        {
-          return copyWith(
-            programCode: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'udi':
-        {
-          return copyWith(
-            udi: <Reference>[],
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitSubDetail clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool revenue = false,
-    bool category = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool udi = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-  }) {
-    return ExplanationOfBenefitSubDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      revenue: revenue ? null : this.revenue,
-      category: category ? null : this.category,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      programCode: programCode ? null : this.programCode,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      udi: udi ? null : this.udi,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitSubDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    CodeableConcept? revenue,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    List<CodeableConcept>? programCode,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<Reference>? udi,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitSubDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      revenue: revenue?.copyWith(
-            objectPath: '$newObjectPath.revenue',
-          ) ??
-          this.revenue,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      programCode: programCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.programCode',
-                ),
-              )
-              .toList() ??
-          this.programCode,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      udi: udi
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.udi',
-                ),
-              )
-              .toList() ??
-          this.udi,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -13204,46 +6941,29 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.addItem',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitAddItem.empty() => ExplanationOfBenefitAddItem(
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAddItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.addItem';
     return ExplanationOfBenefitAddItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -13251,27 +6971,21 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         json,
         'itemSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.itemSequence',
       ),
       detailSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'detailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.detailSequence',
       ),
       subDetailSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'subDetailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.subDetailSequence',
       ),
       provider: (json['provider'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.provider',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -13279,25 +6993,18 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.programCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -13308,7 +7015,6 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
           'servicedDate': FhirDate.fromJson,
           'servicedPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       locationX:
           JsonParser.parsePolymorphic<LocationXExplanationOfBenefitAddItem>(
@@ -13318,45 +7024,36 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
           'locationAddress': Address.fromJson,
           'locationReference': Reference.fromJson,
         },
-        objectPath,
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       bodySite: JsonParser.parseObject<CodeableConcept>(
         json,
         'bodySite',
         CodeableConcept.fromJson,
-        '$objectPath.bodySite',
       ),
       subSite: (json['subSite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subSite',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -13364,25 +7061,18 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitDetail>(
             (v) => ExplanationOfBenefitDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -13846,804 +7536,20 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitAddItem clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?itemSequence, ...child];
-            return copyWith(itemSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?itemSequence,
-              child,
-            ];
-            return copyWith(itemSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detailSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?detailSequence, ...child];
-            return copyWith(detailSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detailSequence,
-              child,
-            ];
-            return copyWith(detailSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetailSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?subDetailSequence, ...child];
-            return copyWith(subDetailSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subDetailSequence,
-              child,
-            ];
-            return copyWith(subDetailSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?provider, ...child];
-            return copyWith(provider: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?provider,
-              child,
-            ];
-            return copyWith(provider: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'programCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?programCode, ...child];
-            return copyWith(programCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?programCode,
-              child,
-            ];
-            return copyWith(programCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviced':
-      case 'servicedX':
-        {
-          if (child is ServicedXExplanationOfBenefitAddItem) {
-            return copyWith(servicedX: child);
-          } else {
-            if (child is FhirDate) {
-              return copyWith(servicedX: child);
-            }
-            if (child is Period) {
-              return copyWith(servicedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'servicedFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'servicedPeriod':
-        {
-          if (child is Period) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-      case 'locationX':
-        {
-          if (child is LocationXExplanationOfBenefitAddItem) {
-            return copyWith(locationX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(locationX: child);
-            }
-            if (child is Address) {
-              return copyWith(locationX: child);
-            }
-            if (child is Reference) {
-              return copyWith(locationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'locationCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationAddress':
-        {
-          if (child is Address) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationReference':
-        {
-          if (child is Reference) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bodySite':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subSite':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?subSite, ...child];
-            return copyWith(subSite: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subSite,
-              child,
-            ];
-            return copyWith(subSite: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<ExplanationOfBenefitDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is ExplanationOfBenefitDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitAddItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'itemSequence':
-        return ['FhirPositiveInt'];
-      case 'detailSequence':
-        return ['FhirPositiveInt'];
-      case 'subDetailSequence':
-        return ['FhirPositiveInt'];
-      case 'provider':
-        return ['Reference'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'programCode':
-        return ['CodeableConcept'];
-      case 'serviced':
-      case 'servicedX':
-        return [
-          'FhirDate',
-          'Period',
-        ];
-      case 'servicedDate':
-        return ['FhirDate'];
-      case 'servicedPeriod':
-        return ['Period'];
-      case 'location':
-      case 'locationX':
-        return [
-          'CodeableConcept',
-          'Address',
-          'Reference',
-        ];
-      case 'locationCodeableConcept':
-        return ['CodeableConcept'];
-      case 'locationAddress':
-        return ['Address'];
-      case 'locationReference':
-        return ['Reference'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'bodySite':
-        return ['CodeableConcept'];
-      case 'subSite':
-        return ['CodeableConcept'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      case 'detail':
-        return ['ExplanationOfBenefitDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitAddItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitAddItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitAddItemCopyWith<ExplanationOfBenefitAddItem>
+      get copyWith => _$ExplanationOfBenefitAddItemCopyWithImpl<
+              ExplanationOfBenefitAddItem>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'itemSequence':
-        {
-          return copyWith(
-            itemSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'detailSequence':
-        {
-          return copyWith(
-            detailSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'subDetailSequence':
-        {
-          return copyWith(
-            subDetailSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: <Reference>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'programCode':
-        {
-          return copyWith(
-            programCode: <CodeableConcept>[],
-          );
-        }
-      case 'serviced':
-      case 'servicedX':
-      case 'servicedDate':
-        {
-          return copyWith(
-            servicedX: FhirDate.empty(),
-          );
-        }
-      case 'servicedPeriod':
-        {
-          return copyWith(
-            servicedX: Period.empty(),
-          );
-        }
-      case 'location':
-      case 'locationX':
-      case 'locationCodeableConcept':
-        {
-          return copyWith(
-            locationX: CodeableConcept.empty(),
-          );
-        }
-      case 'locationAddress':
-        {
-          return copyWith(
-            locationX: Address.empty(),
-          );
-        }
-      case 'locationReference':
-        {
-          return copyWith(
-            locationX: Reference.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'bodySite':
-        {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
-        }
-      case 'subSite':
-        {
-          return copyWith(
-            subSite: <CodeableConcept>[],
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <ExplanationOfBenefitDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitAddItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool detailSequence = false,
-    bool subDetailSequence = false,
-    bool provider = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool serviced = false,
-    bool location = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool bodySite = false,
-    bool subSite = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool detail = false,
-  }) {
-    return ExplanationOfBenefitAddItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      itemSequence: itemSequence ? null : this.itemSequence,
-      detailSequence: detailSequence ? null : this.detailSequence,
-      subDetailSequence: subDetailSequence ? null : this.subDetailSequence,
-      provider: provider ? null : this.provider,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      programCode: programCode ? null : this.programCode,
-      servicedX: serviced ? null : servicedX,
-      locationX: location ? null : locationX,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      bodySite: bodySite ? null : this.bodySite,
-      subSite: subSite ? null : this.subSite,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-      detail: detail ? null : this.detail,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitAddItem clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitAddItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirPositiveInt>? itemSequence,
-    List<FhirPositiveInt>? detailSequence,
-    List<FhirPositiveInt>? subDetailSequence,
-    List<Reference>? provider,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    List<CodeableConcept>? programCode,
-    ServicedXExplanationOfBenefitAddItem? servicedX,
-    LocationXExplanationOfBenefitAddItem? locationX,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    CodeableConcept? bodySite,
-    List<CodeableConcept>? subSite,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    List<ExplanationOfBenefitDetail>? detail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitAddItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      itemSequence: itemSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.itemSequence',
-                ),
-              )
-              .toList() ??
-          this.itemSequence,
-      detailSequence: detailSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detailSequence',
-                ),
-              )
-              .toList() ??
-          this.detailSequence,
-      subDetailSequence: subDetailSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subDetailSequence',
-                ),
-              )
-              .toList() ??
-          this.subDetailSequence,
-      provider: provider
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.provider',
-                ),
-              )
-              .toList() ??
-          this.provider,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      programCode: programCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.programCode',
-                ),
-              )
-              .toList() ??
-          this.programCode,
-      servicedX: servicedX?.copyWith(
-            objectPath: '$newObjectPath.servicedX',
-          ) as ServicedXExplanationOfBenefitAddItem? ??
-          this.servicedX,
-      locationX: locationX?.copyWith(
-            objectPath: '$newObjectPath.locationX',
-          ) as LocationXExplanationOfBenefitAddItem? ??
-          this.locationX,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      subSite: subSite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subSite',
-                ),
-              )
-              .toList() ??
-          this.subSite,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -14803,46 +7709,29 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.addItem.detail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitDetail1.empty() => ExplanationOfBenefitDetail1(
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.addItem.detail';
     return ExplanationOfBenefitDetail1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -14850,15 +7739,11 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -14866,49 +7751,38 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       subDetail: (json['subDetail'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitSubDetail>(
             (v) => ExplanationOfBenefitSubDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subDetail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -15206,421 +8080,20 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitDetail1 clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetail':
-        {
-          if (child is List<ExplanationOfBenefitSubDetail>) {
-            // Add all elements from passed list
-            final newList = [...?subDetail, ...child];
-            return copyWith(subDetail: newList);
-          } else if (child is ExplanationOfBenefitSubDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subDetail,
-              child,
-            ];
-            return copyWith(subDetail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitDetail1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      case 'subDetail':
-        return ['ExplanationOfBenefitSubDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitDetail1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitDetail1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitDetail1CopyWith<ExplanationOfBenefitDetail1>
+      get copyWith => _$ExplanationOfBenefitDetail1CopyWithImpl<
+              ExplanationOfBenefitDetail1>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      case 'subDetail':
-        {
-          return copyWith(
-            subDetail: <ExplanationOfBenefitSubDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitDetail1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool subDetail = false,
-  }) {
-    return ExplanationOfBenefitDetail1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-      subDetail: subDetail ? null : this.subDetail,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitDetail1 clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitDetail1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    List<ExplanationOfBenefitSubDetail>? subDetail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitDetail1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      subDetail: subDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subDetail',
-                ),
-              )
-              .toList() ??
-          this.subDetail,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -15725,47 +8198,29 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.addItem.detail.subDetail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitSubDetail1.empty() =>
-      ExplanationOfBenefitSubDetail1(
-        productOrService: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSubDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.addItem.detail.subDetail';
     return ExplanationOfBenefitSubDetail1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -15773,15 +8228,11 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -15789,39 +8240,31 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitAdjudication>(
             (v) => ExplanationOfBenefitAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -16106,385 +8549,20 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitSubDetail1 clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ExplanationOfBenefitAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ExplanationOfBenefitAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitSubDetail1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ExplanationOfBenefitAdjudication'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitSubDetail1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitSubDetail1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitSubDetail1CopyWith<ExplanationOfBenefitSubDetail1>
+      get copyWith => _$ExplanationOfBenefitSubDetail1CopyWithImpl<
+              ExplanationOfBenefitSubDetail1>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ExplanationOfBenefitAdjudication>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitSubDetail1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-  }) {
-    return ExplanationOfBenefitSubDetail1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitSubDetail1 clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitSubDetail1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<FhirPositiveInt>? noteNumber,
-    List<ExplanationOfBenefitAdjudication>? adjudication,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitSubDetail1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -16577,47 +8655,29 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     required this.category,
     required this.amount,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.total',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitTotal.empty() => ExplanationOfBenefitTotal(
-        category: CodeableConcept.empty(),
-        amount: Money.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitTotal.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.total';
     return ExplanationOfBenefitTotal(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -16625,13 +8685,11 @@ class ExplanationOfBenefitTotal extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       )!,
     );
   }
@@ -16828,207 +8886,19 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitTotal clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitTotal]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'amount':
-        return ['Money'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitTotal]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitTotal createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitTotal clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return ExplanationOfBenefitTotal(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      category: category,
-      amount: amount,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitTotal clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitTotal copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    Money? amount,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitTotal(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-    );
-  }
+  $ExplanationOfBenefitTotalCopyWith<ExplanationOfBenefitTotal> get copyWith =>
+      _$ExplanationOfBenefitTotalCopyWithImpl<ExplanationOfBenefitTotal>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -17089,45 +8959,29 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     this.amount,
     this.identifier,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.payment',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayment.empty() =>
-      const ExplanationOfBenefitPayment();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayment.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.payment';
     return ExplanationOfBenefitPayment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -17135,37 +8989,31 @@ class ExplanationOfBenefitPayment extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       adjustment: JsonParser.parseObject<Money>(
         json,
         'adjustment',
         Money.fromJson,
-        '$objectPath.adjustment',
       ),
       adjustmentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'adjustmentReason',
         CodeableConcept.fromJson,
-        '$objectPath.adjustmentReason',
       ),
       date: JsonParser.parsePrimitive<FhirDate>(
         json,
         'date',
         FhirDate.fromJson,
-        '$objectPath.date',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
     );
   }
@@ -17417,301 +9265,20 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitPayment clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjustment':
-        {
-          if (child is Money) {
-            return copyWith(adjustment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjustmentReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(adjustmentReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDate) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitPayment]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'adjustment':
-        return ['Money'];
-      case 'adjustmentReason':
-        return ['CodeableConcept'];
-      case 'date':
-        return ['FhirDate'];
-      case 'amount':
-        return ['Money'];
-      case 'identifier':
-        return ['Identifier'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitPayment]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitPayment createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitPaymentCopyWith<ExplanationOfBenefitPayment>
+      get copyWith => _$ExplanationOfBenefitPaymentCopyWithImpl<
+              ExplanationOfBenefitPayment>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'adjustment':
-        {
-          return copyWith(
-            adjustment: Money.empty(),
-          );
-        }
-      case 'adjustmentReason':
-        {
-          return copyWith(
-            adjustmentReason: CodeableConcept.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitPayment clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool adjustment = false,
-    bool adjustmentReason = false,
-    bool date = false,
-    bool amount = false,
-    bool identifier = false,
-  }) {
-    return ExplanationOfBenefitPayment(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      adjustment: adjustment ? null : this.adjustment,
-      adjustmentReason: adjustmentReason ? null : this.adjustmentReason,
-      date: date ? null : this.date,
-      amount: amount ? null : this.amount,
-      identifier: identifier ? null : this.identifier,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitPayment clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitPayment copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    Money? adjustment,
-    CodeableConcept? adjustmentReason,
-    FhirDate? date,
-    Money? amount,
-    Identifier? identifier,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitPayment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      adjustment: adjustment?.copyWith(
-            objectPath: '$newObjectPath.adjustment',
-          ) ??
-          this.adjustment,
-      adjustmentReason: adjustmentReason?.copyWith(
-            objectPath: '$newObjectPath.adjustmentReason',
-          ) ??
-          this.adjustmentReason,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -17795,45 +9362,29 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     this.text,
     this.language,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.processNote',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitProcessNote.empty() =>
-      const ExplanationOfBenefitProcessNote();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitProcessNote.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.processNote';
     return ExplanationOfBenefitProcessNote(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -17841,25 +9392,21 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
         json,
         'number',
         FhirPositiveInt.fromJson,
-        '$objectPath.number',
       ),
       type: JsonParser.parsePrimitive<NoteType>(
         json,
         'type',
         NoteType.fromJson,
-        '$objectPath.type',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-        '$objectPath.text',
       ),
       language: JsonParser.parseObject<CodeableConcept>(
         json,
         'language',
         CodeableConcept.fromJson,
-        '$objectPath.language',
       ),
     );
   }
@@ -18082,255 +9629,20 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitProcessNote clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'number':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(number: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is NoteType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirString) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitProcessNote]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'number':
-        return ['FhirPositiveInt'];
-      case 'type':
-        return ['FhirCode'];
-      case 'text':
-        return ['FhirString'];
-      case 'language':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitProcessNote]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitProcessNote createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitProcessNoteCopyWith<ExplanationOfBenefitProcessNote>
+      get copyWith => _$ExplanationOfBenefitProcessNoteCopyWithImpl<
+              ExplanationOfBenefitProcessNote>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'number':
-        {
-          return copyWith(
-            number: FhirPositiveInt.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: NoteType.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirString.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitProcessNote clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool number = false,
-    bool type = false,
-    bool text = false,
-    bool language = false,
-  }) {
-    return ExplanationOfBenefitProcessNote(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      number: number ? null : this.number,
-      type: type ? null : this.type,
-      text: text ? null : this.text,
-      language: language ? null : this.language,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitProcessNote clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitProcessNote copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? number,
-    NoteType? type,
-    FhirString? text,
-    CodeableConcept? language,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitProcessNote(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      number: number?.copyWith(
-            objectPath: '$newObjectPath.number',
-          ) ??
-          this.number,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -18405,47 +9717,29 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     this.term,
     this.financial,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.benefitBalance',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitBenefitBalance.empty() =>
-      ExplanationOfBenefitBenefitBalance(
-        category: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitBenefitBalance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.benefitBalance';
     return ExplanationOfBenefitBenefitBalance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -18453,51 +9747,41 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       excluded: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'excluded',
         FhirBoolean.fromJson,
-        '$objectPath.excluded',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       network: JsonParser.parseObject<CodeableConcept>(
         json,
         'network',
         CodeableConcept.fromJson,
-        '$objectPath.network',
       ),
       unit: JsonParser.parseObject<CodeableConcept>(
         json,
         'unit',
         CodeableConcept.fromJson,
-        '$objectPath.unit',
       ),
       term: JsonParser.parseObject<CodeableConcept>(
         json,
         'term',
         CodeableConcept.fromJson,
-        '$objectPath.term',
       ),
       financial: (json['financial'] as List<dynamic>?)
           ?.map<ExplanationOfBenefitFinancial>(
             (v) => ExplanationOfBenefitFinancial.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.financial',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -18777,359 +10061,21 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitBenefitBalance clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'excluded':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(excluded: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'network':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(network: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unit':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(unit: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'term':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(term: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'financial':
-        {
-          if (child is List<ExplanationOfBenefitFinancial>) {
-            // Add all elements from passed list
-            final newList = [...?financial, ...child];
-            return copyWith(financial: newList);
-          } else if (child is ExplanationOfBenefitFinancial) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?financial,
-              child,
-            ];
-            return copyWith(financial: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitBenefitBalance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'excluded':
-        return ['FhirBoolean'];
-      case 'name':
-        return ['FhirString'];
-      case 'description':
-        return ['FhirString'];
-      case 'network':
-        return ['CodeableConcept'];
-      case 'unit':
-        return ['CodeableConcept'];
-      case 'term':
-        return ['CodeableConcept'];
-      case 'financial':
-        return ['ExplanationOfBenefitFinancial'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitBenefitBalance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitBenefitBalance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitBenefitBalanceCopyWith<
+          ExplanationOfBenefitBenefitBalance>
+      get copyWith => _$ExplanationOfBenefitBenefitBalanceCopyWithImpl<
+              ExplanationOfBenefitBenefitBalance>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'excluded':
-        {
-          return copyWith(
-            excluded: FhirBoolean.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'network':
-        {
-          return copyWith(
-            network: CodeableConcept.empty(),
-          );
-        }
-      case 'unit':
-        {
-          return copyWith(
-            unit: CodeableConcept.empty(),
-          );
-        }
-      case 'term':
-        {
-          return copyWith(
-            term: CodeableConcept.empty(),
-          );
-        }
-      case 'financial':
-        {
-          return copyWith(
-            financial: <ExplanationOfBenefitFinancial>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitBenefitBalance clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool excluded = false,
-    bool name = false,
-    bool description = false,
-    bool network = false,
-    bool unit = false,
-    bool term = false,
-    bool financial = false,
-  }) {
-    return ExplanationOfBenefitBenefitBalance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      category: category,
-      excluded: excluded ? null : this.excluded,
-      name: name ? null : this.name,
-      description: description ? null : this.description,
-      network: network ? null : this.network,
-      unit: unit ? null : this.unit,
-      term: term ? null : this.term,
-      financial: financial ? null : this.financial,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitBenefitBalance clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitBenefitBalance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    FhirBoolean? excluded,
-    FhirString? name,
-    FhirString? description,
-    CodeableConcept? network,
-    CodeableConcept? unit,
-    CodeableConcept? term,
-    List<ExplanationOfBenefitFinancial>? financial,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitBenefitBalance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      excluded: excluded?.copyWith(
-            objectPath: '$newObjectPath.excluded',
-          ) ??
-          this.excluded,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      network: network?.copyWith(
-            objectPath: '$newObjectPath.network',
-          ) ??
-          this.network,
-      unit: unit?.copyWith(
-            objectPath: '$newObjectPath.unit',
-          ) ??
-          this.unit,
-      term: term?.copyWith(
-            objectPath: '$newObjectPath.term',
-          ) ??
-          this.term,
-      financial: financial
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.financial',
-                ),
-              )
-              .toList() ??
-          this.financial,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -19223,47 +10169,29 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     this.allowedX,
     this.usedX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ExplanationOfBenefit.benefitBalance.financial',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitFinancial.empty() =>
-      ExplanationOfBenefitFinancial(
-        type: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitFinancial.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ExplanationOfBenefit.benefitBalance.financial';
     return ExplanationOfBenefitFinancial(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -19271,7 +10199,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       allowedX:
           JsonParser.parsePolymorphic<AllowedXExplanationOfBenefitFinancial>(
@@ -19281,7 +10208,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
           'allowedString': FhirString.fromJson,
           'allowedMoney': Money.fromJson,
         },
-        objectPath,
       ),
       usedX: JsonParser.parsePolymorphic<UsedXExplanationOfBenefitFinancial>(
         json,
@@ -19289,7 +10215,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
           'usedUnsignedInt': FhirUnsignedInt.fromJson,
           'usedMoney': Money.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -19540,329 +10465,20 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  ExplanationOfBenefitFinancial clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'allowed':
-      case 'allowedX':
-        {
-          if (child is AllowedXExplanationOfBenefitFinancial) {
-            return copyWith(allowedX: child);
-          } else {
-            if (child is FhirUnsignedInt) {
-              return copyWith(allowedX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(allowedX: child);
-            }
-            if (child is Money) {
-              return copyWith(allowedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'allowedFhirUnsignedInt':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(allowedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'allowedFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(allowedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'allowedMoney':
-        {
-          if (child is Money) {
-            return copyWith(allowedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'used':
-      case 'usedX':
-        {
-          if (child is UsedXExplanationOfBenefitFinancial) {
-            return copyWith(usedX: child);
-          } else {
-            if (child is FhirUnsignedInt) {
-              return copyWith(usedX: child);
-            }
-            if (child is Money) {
-              return copyWith(usedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'usedFhirUnsignedInt':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(usedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'usedMoney':
-        {
-          if (child is Money) {
-            return copyWith(usedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [ExplanationOfBenefitFinancial]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'allowed':
-      case 'allowedX':
-        return [
-          'FhirUnsignedInt',
-          'FhirString',
-          'Money',
-        ];
-      case 'allowedUnsignedInt':
-        return ['FhirUnsignedInt'];
-      case 'allowedString':
-        return ['FhirString'];
-      case 'allowedMoney':
-        return ['Money'];
-      case 'used':
-      case 'usedX':
-        return [
-          'FhirUnsignedInt',
-          'Money',
-        ];
-      case 'usedUnsignedInt':
-        return ['FhirUnsignedInt'];
-      case 'usedMoney':
-        return ['Money'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ExplanationOfBenefitFinancial]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ExplanationOfBenefitFinancial createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $ExplanationOfBenefitFinancialCopyWith<ExplanationOfBenefitFinancial>
+      get copyWith => _$ExplanationOfBenefitFinancialCopyWithImpl<
+              ExplanationOfBenefitFinancial>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'allowed':
-      case 'allowedX':
-      case 'allowedUnsignedInt':
-        {
-          return copyWith(
-            allowedX: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'allowedString':
-        {
-          return copyWith(
-            allowedX: FhirString.empty(),
-          );
-        }
-      case 'allowedMoney':
-        {
-          return copyWith(
-            allowedX: Money.empty(),
-          );
-        }
-      case 'used':
-      case 'usedX':
-      case 'usedUnsignedInt':
-        {
-          return copyWith(
-            usedX: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'usedMoney':
-        {
-          return copyWith(
-            usedX: Money.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ExplanationOfBenefitFinancial clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool allowed = false,
-    bool used = false,
-  }) {
-    return ExplanationOfBenefitFinancial(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      allowedX: allowed ? null : allowedX,
-      usedX: used ? null : usedX,
-    );
-  }
-
-  @override
-  ExplanationOfBenefitFinancial clone() => throw UnimplementedError();
-  @override
-  ExplanationOfBenefitFinancial copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    AllowedXExplanationOfBenefitFinancial? allowedX,
-    UsedXExplanationOfBenefitFinancial? usedX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ExplanationOfBenefitFinancial(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      allowedX: allowedX?.copyWith(
-            objectPath: '$newObjectPath.allowedX',
-          ) as AllowedXExplanationOfBenefitFinancial? ??
-          this.allowedX,
-      usedX: usedX?.copyWith(
-            objectPath: '$newObjectPath.usedX',
-          ) as UsedXExplanationOfBenefitFinancial? ??
-          this.usedX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

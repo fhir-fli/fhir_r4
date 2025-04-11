@@ -32,7 +32,7 @@ class FHIRPathEngine {
         allTypes[sd.name.valueString!] = sd;
       }
       if (sd.derivation == TypeDerivationRule.specialization &&
-          sd.kind == StructureDefinitionKind.primitive_type &&
+          sd.kind == StructureDefinitionKind.primitiveType &&
           sd.name.valueString != null) {
         primitiveTypes.add(sd.name.valueString!);
       }
@@ -1127,6 +1127,7 @@ class FHIRPathEngine {
         // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
+        print('Constants: $constants');
 
         work.addAll(constants);
 
@@ -4692,7 +4693,7 @@ class FHIRPathEngine {
               result.add(b);
               break;
             }
-            sd = sd.kind == StructureDefinitionKind.primitive_type
+            sd = sd.kind == StructureDefinitionKind.primitiveType
                 ? null
                 : (await worker.fetchResource<StructureDefinition>(
                     uri: sd.baseDefinition?.primitiveValue,
@@ -6984,13 +6985,11 @@ class FHIRPathEngine {
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
-      final copied = base.copyWith() as Quantity
-        ..setProperty(
-          'value',
-          FhirDecimal(
-            double.parse((value ?? '').lowBoundaryForDecimal(precision ?? 8)),
-          ),
-        );
+      final copied = (base as Quantity).copyWith(
+        value: FhirDecimal(
+          double.parse((value ?? '').lowBoundaryForDecimal(precision ?? 8)),
+        ),
+      );
       result.add(copied);
     } else {
       throw makeException(
@@ -7074,13 +7073,11 @@ class FHIRPathEngine {
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
-      final copied = base.copyWith() as Quantity
-        ..setProperty(
-          'value',
-          FhirDecimal(
-            double.parse((value ?? '').highBoundaryForDecimal(precision ?? 8)),
-          ),
-        );
+      final copied = (base as Quantity).copyWith(
+        value: FhirDecimal(
+          double.parse((value ?? '').highBoundaryForDecimal(precision ?? 8)),
+        ),
+      );
       result.add(copied);
     } else {
       throw makeException(
@@ -7358,13 +7355,14 @@ class FHIRPathEngine {
       if (context.hasDefinedVariable(varName)) {
         return context.getDefinedVariable(varName);
       }
-      return resolveConstantWithString(
+      final resolved = resolveConstantWithString(
         context,
         c.value,
         beforeContext,
         expr,
         explicitConstant,
       );
+      return resolved;
     } else if (c.value.startsWith('@')) {
       return [
         processDateConstant(context.appInfo, c.value.substring(1), expr),

@@ -1,12 +1,66 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AllergyIntoleranceSeverity
+enum AllergyIntoleranceSeverityEnum {
+  /// mild
+  mild,
+
+  /// moderate
+  moderate,
+
+  /// severe
+  severe,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AllergyIntoleranceSeverityEnum.mild:
+        return 'mild';
+      case AllergyIntoleranceSeverityEnum.moderate:
+        return 'moderate';
+      case AllergyIntoleranceSeverityEnum.severe:
+        return 'severe';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AllergyIntoleranceSeverityEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AllergyIntoleranceSeverityEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AllergyIntoleranceSeverityEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'mild':
+        return AllergyIntoleranceSeverityEnum.mild;
+      case 'moderate':
+        return AllergyIntoleranceSeverityEnum.moderate;
+      case 'severe':
+        return AllergyIntoleranceSeverityEnum.severe;
+    }
+    return null;
+  }
+}
+
 /// Clinical assessment of the severity of a reaction event as a whole,
 /// potentially considering multiple different manifestations.
 class AllergyIntoleranceSeverity extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  AllergyIntoleranceSeverity._({
+  const AllergyIntoleranceSeverity._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +68,6 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +81,13 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = AllergyIntoleranceSeverityEnum.fromString(valueString);
     return AllergyIntoleranceSeverity._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +95,8 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [AllergyIntoleranceSeverity] with element only
-  factory AllergyIntoleranceSeverity.empty() =>
-      AllergyIntoleranceSeverity._(valueString: '');
 
   /// Factory constructor to create [AllergyIntoleranceSeverity]
   /// from JSON.
@@ -55,10 +104,11 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = AllergyIntoleranceSeverityEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceSeverity.elementOnly.withElement(element);
+      return AllergyIntoleranceSeverity._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AllergyIntoleranceSeverity cannot be constructed from JSON.',
@@ -66,38 +116,53 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
     }
     return AllergyIntoleranceSeverity._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for AllergyIntoleranceSeverity
+  final AllergyIntoleranceSeverityEnum? valueEnum;
+
   /// mild
-  static final AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
+  static const AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
     valueString: 'mild',
-    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mild'.toFhirString,
+    valueEnum: AllergyIntoleranceSeverityEnum.mild,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Mild',
+    ),
   );
 
   /// moderate
-  static final AllergyIntoleranceSeverity moderate =
+  static const AllergyIntoleranceSeverity moderate =
       AllergyIntoleranceSeverity._(
     valueString: 'moderate',
-    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Moderate'.toFhirString,
+    valueEnum: AllergyIntoleranceSeverityEnum.moderate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Moderate',
+    ),
   );
 
   /// severe
-  static final AllergyIntoleranceSeverity severe = AllergyIntoleranceSeverity._(
+  static const AllergyIntoleranceSeverity severe = AllergyIntoleranceSeverity._(
     valueString: 'severe',
-    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Severe'.toFhirString,
+    valueEnum: AllergyIntoleranceSeverityEnum.severe,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Severe',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final AllergyIntoleranceSeverity elementOnly =
-      AllergyIntoleranceSeverity._(valueString: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceSeverity> values = [
@@ -105,13 +170,6 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
     moderate,
     severe,
   ];
-
-  /// Clones the current instance
-  @override
-  AllergyIntoleranceSeverity clone() => AllergyIntoleranceSeverity._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceSeverity withElement(Element? newElement) {
@@ -132,36 +190,58 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  AllergyIntoleranceSeverity copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  AllergyIntoleranceSeverity clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  AllergyIntoleranceSeverityCopyWithImpl<AllergyIntoleranceSeverity>
+      get copyWith =>
+          AllergyIntoleranceSeverityCopyWithImpl<AllergyIntoleranceSeverity>(
+            this,
+            (v) => v as AllergyIntoleranceSeverity,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class AllergyIntoleranceSeverityCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  AllergyIntoleranceSeverityCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for AllergyIntoleranceSeverity: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return AllergyIntoleranceSeverity._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      AllergyIntoleranceSeverity(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

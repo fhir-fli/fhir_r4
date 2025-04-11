@@ -17,13 +17,12 @@ class FhirXhtml extends PrimitiveType {
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor calling `super._`.
-  FhirXhtml._({
+  const FhirXhtml._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Xhtml',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -42,7 +41,6 @@ class FhirXhtml extends PrimitiveType {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Xhtml',
   }) {
     if (rawValue != null && rawValue is! String) {
       throw ArgumentError(
@@ -58,7 +56,6 @@ class FhirXhtml extends PrimitiveType {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -70,7 +67,6 @@ class FhirXhtml extends PrimitiveType {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Xhtml',
   }) {
     return FhirXhtml._(
       valueString: xhtml,
@@ -78,12 +74,8 @@ class FhirXhtml extends PrimitiveType {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirXhtml] object.
-  factory FhirXhtml.empty() => FhirXhtml(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -95,8 +87,7 @@ class FhirXhtml extends PrimitiveType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Xhtml';
-    return FhirXhtml(rawValue, element: parsedElement, objectPath: objectPath);
+    return FhirXhtml(rawValue, element: parsedElement);
   }
 
   /// Constructs a [FhirXhtml] from a YAML [String] or [YamlMap].
@@ -282,43 +273,12 @@ class FhirXhtml extends PrimitiveType {
   // --------------------------------------------------------------------------
 
   @override
-  FhirXhtml clone() => FhirXhtml.fromValidatedXhtml(
-        valueString,
-        element: element?.clone() as Element?,
-        id: id,
-        extension_: extension_?.map((e) => e.clone()).toList(),
-        disallowExtensions: disallowExtensions,
-        objectPath: objectPath!,
-      );
+  FhirXhtml clone() => copyWith();
 
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirXhtml copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirXhtml(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
+  $FhirXhtmlCopyWithImpl<FhirXhtml> get copyWith =>
+      $FhirXhtmlCopyWithImpl<FhirXhtml>(this, (value) => value);
 
   // --------------------------------------------------------------------------
   // Equality
@@ -343,25 +303,41 @@ class FhirXhtml extends PrimitiveType {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+}
 
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirXhtmlCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirXhtmlCopyWithImpl(this._value, this._then);
+
+  final FhirXhtml _value;
+  final T Function(FhirXhtml) _then;
 
   @override
-  FhirXhtml createProperty(String propertyName) => this;
-
-  @override
-  FhirXhtml clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirXhtml(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
+    return _then(
+      FhirXhtml(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
     );
   }
 }

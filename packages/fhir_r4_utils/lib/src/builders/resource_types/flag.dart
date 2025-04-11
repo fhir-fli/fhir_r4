@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Flag, R4ResourceType, yamlMapToJson, yamlToJson;
+    show
+        Flag,
+        R4ResourceType,
+        
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -786,44 +791,6 @@ class FlagBuilder extends DomainResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool category = false,
-    bool code = false,
-    bool subject = false,
-    bool period = false,
-    bool encounter = false,
-    bool author = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (period) this.period = null;
-    if (encounter) this.encounter = null;
-    if (author) this.author = null;
   }
 
   @override

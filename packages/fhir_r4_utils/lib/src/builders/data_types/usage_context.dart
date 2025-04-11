@@ -467,20 +467,6 @@ class UsageContextBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
-  }
-
   @override
   UsageContextBuilder clone() => throw UnimplementedError();
   @override

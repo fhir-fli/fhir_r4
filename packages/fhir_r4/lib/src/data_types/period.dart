@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'period.g.dart';
+
 /// [Period]
 /// A time period defined by a start and end date and optionally time.
 class Period extends DataType
@@ -72,33 +74,22 @@ class Period extends DataType
     this.start,
     this.end,
     super.disallowExtensions,
-    super.objectPath = 'Period',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Period.empty() => const Period();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Period.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Period';
     return Period(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -106,13 +97,11 @@ class Period extends DataType
         json,
         'start',
         FhirDateTime.fromJson,
-        '$objectPath.start',
       ),
       end: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'end',
         FhirDateTime.fromJson,
-        '$objectPath.end',
       ),
     );
   }
@@ -303,173 +292,18 @@ class Period extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Period clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'start':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(start: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'end':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(end: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Period]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'start':
-        return ['FhirDateTime'];
-      case 'end':
-        return ['FhirDateTime'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Period]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Period createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'start':
-        {
-          return copyWith(
-            start: FhirDateTime.empty(),
-          );
-        }
-      case 'end':
-        {
-          return copyWith(
-            end: FhirDateTime.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Period clear({
-    bool id = false,
-    bool extension_ = false,
-    bool start = false,
-    bool end = false,
-  }) {
-    return Period(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      start: start ? null : this.start,
-      end: end ? null : this.end,
-    );
-  }
-
-  @override
-  Period clone() => throw UnimplementedError();
-  @override
-  Period copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirDateTime? start,
-    FhirDateTime? end,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Period(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      start: start?.copyWith(
-            objectPath: '$newObjectPath.start',
-          ) ??
-          this.start,
-      end: end?.copyWith(
-            objectPath: '$newObjectPath.end',
-          ) ??
-          this.end,
-    );
-  }
+  $PeriodCopyWith<Period> get copyWith => _$PeriodCopyWithImpl<Period>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

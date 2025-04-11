@@ -18,13 +18,12 @@ abstract class FhirNumber extends PrimitiveType
 
   /// Internal constructor for child classes. Does no validation—just calls
   /// [super._].
-  FhirNumber._({
+  const FhirNumber._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Number',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -40,7 +39,6 @@ abstract class FhirNumber extends PrimitiveType
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    String? objectPath,
   }) {
     return value is int
         ? FhirInteger(
@@ -48,14 +46,12 @@ abstract class FhirNumber extends PrimitiveType
             element: element,
             id: id,
             extension_: extension_,
-            objectPath: objectPath ?? 'Integer',
           )
         : FhirDecimal(
             value.toString(),
             element: element,
             id: id,
             extension_: extension_,
-            objectPath: objectPath ?? 'Decimal',
           );
   }
 
@@ -342,17 +338,4 @@ abstract class FhirNumber extends PrimitiveType
 
   @override
   FhirNumber clone();
-
-  @override
-  FhirNumber copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  });
 }

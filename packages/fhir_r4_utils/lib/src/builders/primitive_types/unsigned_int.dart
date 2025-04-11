@@ -270,17 +270,4 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
   @override
   FhirUnsignedIntBuilder createProperty(String propertyName) => this;
 
-  @override
-  FhirUnsignedIntBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirUnsignedIntBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

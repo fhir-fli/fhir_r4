@@ -1,6 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show BackboneElement, Element, FhirBase, FhirExtension, FhirString;
+    show
+        $BackboneElementCopyWith,
+        BackboneElement,
+        Element,
+        FhirBase,
+        FhirExtension,
+        FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft7]
@@ -11,7 +17,6 @@ class TLeft7 extends Element {
     super.extension_,
     this.aa,
     super.disallowExtensions,
-    super.objectPath = 'TLeft7',
   });
   factory TLeft7.fromJson(Map<String, dynamic> json) {
     return TLeft7(
@@ -34,24 +39,6 @@ class TLeft7 extends Element {
   final List<TLeft7Aa>? aa;
 
   @override
-  TLeft7 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<TLeft7Aa>? aa,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft7(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      aa: aa ?? this.aa,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
     if (id != null) json['id'] = id!.valueString;
@@ -62,35 +49,6 @@ class TLeft7 extends Element {
       json['aa'] = aa!.map((e) => e.toJson()).toList();
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'aa'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'aa':
-        if (aa != null) fields.addAll(aa!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -109,7 +67,6 @@ class TLeft7Aa extends BackboneElement {
     super.id,
     super.extension_,
     this.ab,
-    super.objectPath = 'TLeft7Aa',
   });
   factory TLeft7Aa.fromJson(Map<String, dynamic> json) {
     return TLeft7Aa(
@@ -128,21 +85,12 @@ class TLeft7Aa extends BackboneElement {
   final FhirString? ab;
 
   @override
-  TLeft7Aa copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-    FhirString? ab,
-  }) {
-    return TLeft7Aa(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      ab: ab ?? this.ab,
+  TLeft7Aa clone() => copyWith();
+
+  @override
+  $BackboneElementCopyWith<TLeft7Aa> get copyWith {
+    throw UnimplementedError(
+      'TLeft12az1.copyWith() is not implemented yet',
     );
   }
 
@@ -158,56 +106,12 @@ class TLeft7Aa extends BackboneElement {
   }
 
   @override
-  List<String> listChildrenNames() => ['id', 'extension', 'ab'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'ab':
-        if (ab != null) fields.add(ab!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
   bool equalsDeep(FhirBase? other) {
     if (other is! TLeft7Aa) return false;
     if (identical(this, other)) return true;
     return id == other.id &&
         const DeepCollectionEquality().equals(extension_, other.extension_) &&
         ab == other.ab;
-  }
-
-  @override
-  BackboneElement createProperty(String name) {
-    switch (name) {
-      case 'ab':
-        return TLeft7Aa(ab: FhirString(''));
-      default:
-        return this;
-    }
-  }
-
-  @override
-  TLeft7Aa clear({bool extension_ = false, bool id = false}) {
-    throw UnimplementedError();
   }
 }
 
@@ -418,16 +322,6 @@ class TLeft7Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool aa = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (aa) this.aa = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -676,18 +570,6 @@ class TLeft7AaBuilder extends BackboneElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool ab = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (ab) this.ab = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

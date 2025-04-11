@@ -955,50 +955,6 @@ class AuditEventBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool subtype = false,
-    bool action = false,
-    bool period = false,
-    bool recorded = false,
-    bool outcome = false,
-    bool outcomeDesc = false,
-    bool purposeOfEvent = false,
-    bool agent = false,
-    bool source = false,
-    bool entity = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (subtype) this.subtype = null;
-    if (action) this.action = null;
-    if (period) this.period = null;
-    if (recorded) this.recorded = null;
-    if (outcome) this.outcome = null;
-    if (outcomeDesc) this.outcomeDesc = null;
-    if (purposeOfEvent) this.purposeOfEvent = null;
-    if (agent) this.agent = null;
-    if (source) this.source = null;
-    if (entity) this.entity = null;
-  }
-
   @override
   AuditEventBuilder clone() => throw UnimplementedError();
   @override
@@ -1956,40 +1912,6 @@ class AuditEventAgentBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool role = false,
-    bool who = false,
-    bool altId = false,
-    bool name = false,
-    bool requestor = false,
-    bool location = false,
-    bool policy = false,
-    bool media = false,
-    bool network = false,
-    bool purposeOfUse = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (role) this.role = null;
-    if (who) this.who = null;
-    if (altId) this.altId = null;
-    if (name) this.name = null;
-    if (requestor) this.requestor = null;
-    if (location) this.location = null;
-    if (policy) this.policy = null;
-    if (media) this.media = null;
-    if (network) this.network = null;
-    if (purposeOfUse) this.purposeOfUse = null;
-  }
-
   @override
   AuditEventAgentBuilder clone() => throw UnimplementedError();
   @override
@@ -2535,22 +2457,6 @@ class AuditEventNetworkBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool address = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (address) this.address = null;
-    if (type) this.type = null;
-  }
-
   @override
   AuditEventNetworkBuilder clone() => throw UnimplementedError();
   @override
@@ -3051,24 +2957,6 @@ class AuditEventSourceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool site = false,
-    bool observer = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (site) this.site = null;
-    if (observer) this.observer = null;
-    if (type) this.type = null;
   }
 
   @override
@@ -3808,36 +3696,6 @@ class AuditEventEntityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool what = false,
-    bool type = false,
-    bool role = false,
-    bool lifecycle = false,
-    bool securityLabel = false,
-    bool name = false,
-    bool description = false,
-    bool query = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (what) this.what = null;
-    if (type) this.type = null;
-    if (role) this.role = null;
-    if (lifecycle) this.lifecycle = null;
-    if (securityLabel) this.securityLabel = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-    if (query) this.query = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   AuditEventEntityBuilder clone() => throw UnimplementedError();
   @override
@@ -4418,22 +4276,6 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
   }
 
   @override

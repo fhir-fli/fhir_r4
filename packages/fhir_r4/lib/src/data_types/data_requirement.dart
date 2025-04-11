@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'data_requirement.g.dart';
+
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
@@ -32,35 +34,22 @@ class DataRequirement extends DataType
     this.limit,
     this.sort,
     super.disallowExtensions,
-    super.objectPath = 'DataRequirement',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DataRequirement.empty() => DataRequirement(
-        type: FHIRAllTypes.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirement.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'DataRequirement';
     return DataRequirement(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -68,13 +57,11 @@ class DataRequirement extends DataType
         json,
         'type',
         FHIRAllTypes.fromJson,
-        '$objectPath.type',
       )!,
       profile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
-        '$objectPath.profile',
       ),
       subjectX: JsonParser.parsePolymorphic<SubjectXDataRequirement>(
         json,
@@ -82,31 +69,23 @@ class DataRequirement extends DataType
           'subjectCodeableConcept': CodeableConcept.fromJson,
           'subjectReference': Reference.fromJson,
         },
-        objectPath,
       ),
       mustSupport: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'mustSupport',
         FhirString.fromJson,
-        '$objectPath.mustSupport',
       ),
       codeFilter: (json['codeFilter'] as List<dynamic>?)
           ?.map<DataRequirementCodeFilter>(
             (v) => DataRequirementCodeFilter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.codeFilter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       dateFilter: (json['dateFilter'] as List<dynamic>?)
           ?.map<DataRequirementDateFilter>(
             (v) => DataRequirementDateFilter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.dateFilter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -114,15 +93,11 @@ class DataRequirement extends DataType
         json,
         'limit',
         FhirPositiveInt.fromJson,
-        '$objectPath.limit',
       ),
       sort: (json['sort'] as List<dynamic>?)
           ?.map<DataRequirementSort>(
             (v) => DataRequirementSort.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.sort',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -428,414 +403,19 @@ class DataRequirement extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DataRequirement clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FHIRAllTypes) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'profile':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?profile, ...child];
-            return copyWith(profile: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?profile,
-              child,
-            ];
-            return copyWith(profile: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-      case 'subjectX':
-        {
-          if (child is SubjectXDataRequirement) {
-            return copyWith(subjectX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(subjectX: child);
-            }
-            if (child is Reference) {
-              return copyWith(subjectX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'subjectCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(subjectX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subjectReference':
-        {
-          if (child is Reference) {
-            return copyWith(subjectX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'mustSupport':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?mustSupport, ...child];
-            return copyWith(mustSupport: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?mustSupport,
-              child,
-            ];
-            return copyWith(mustSupport: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'codeFilter':
-        {
-          if (child is List<DataRequirementCodeFilter>) {
-            // Add all elements from passed list
-            final newList = [...?codeFilter, ...child];
-            return copyWith(codeFilter: newList);
-          } else if (child is DataRequirementCodeFilter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?codeFilter,
-              child,
-            ];
-            return copyWith(codeFilter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dateFilter':
-        {
-          if (child is List<DataRequirementDateFilter>) {
-            // Add all elements from passed list
-            final newList = [...?dateFilter, ...child];
-            return copyWith(dateFilter: newList);
-          } else if (child is DataRequirementDateFilter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?dateFilter,
-              child,
-            ];
-            return copyWith(dateFilter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'limit':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(limit: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sort':
-        {
-          if (child is List<DataRequirementSort>) {
-            // Add all elements from passed list
-            final newList = [...?sort, ...child];
-            return copyWith(sort: newList);
-          } else if (child is DataRequirementSort) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?sort,
-              child,
-            ];
-            return copyWith(sort: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DataRequirement]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['FhirCode'];
-      case 'profile':
-        return ['FhirCanonical'];
-      case 'subject':
-      case 'subjectX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'subjectCodeableConcept':
-        return ['CodeableConcept'];
-      case 'subjectReference':
-        return ['Reference'];
-      case 'mustSupport':
-        return ['FhirString'];
-      case 'codeFilter':
-        return ['DataRequirementCodeFilter'];
-      case 'dateFilter':
-        return ['DataRequirementDateFilter'];
-      case 'limit':
-        return ['FhirPositiveInt'];
-      case 'sort':
-        return ['DataRequirementSort'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DataRequirement]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DataRequirement createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FHIRAllTypes.empty(),
-          );
-        }
-      case 'profile':
-        {
-          return copyWith(
-            profile: <FhirCanonical>[],
-          );
-        }
-      case 'subject':
-      case 'subjectX':
-      case 'subjectCodeableConcept':
-        {
-          return copyWith(
-            subjectX: CodeableConcept.empty(),
-          );
-        }
-      case 'subjectReference':
-        {
-          return copyWith(
-            subjectX: Reference.empty(),
-          );
-        }
-      case 'mustSupport':
-        {
-          return copyWith(
-            mustSupport: <FhirString>[],
-          );
-        }
-      case 'codeFilter':
-        {
-          return copyWith(
-            codeFilter: <DataRequirementCodeFilter>[],
-          );
-        }
-      case 'dateFilter':
-        {
-          return copyWith(
-            dateFilter: <DataRequirementDateFilter>[],
-          );
-        }
-      case 'limit':
-        {
-          return copyWith(
-            limit: FhirPositiveInt.empty(),
-          );
-        }
-      case 'sort':
-        {
-          return copyWith(
-            sort: <DataRequirementSort>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DataRequirement clear({
-    bool id = false,
-    bool extension_ = false,
-    bool profile = false,
-    bool subject = false,
-    bool mustSupport = false,
-    bool codeFilter = false,
-    bool dateFilter = false,
-    bool limit = false,
-    bool sort = false,
-  }) {
-    return DataRequirement(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      profile: profile ? null : this.profile,
-      subjectX: subject ? null : subjectX,
-      mustSupport: mustSupport ? null : this.mustSupport,
-      codeFilter: codeFilter ? null : this.codeFilter,
-      dateFilter: dateFilter ? null : this.dateFilter,
-      limit: limit ? null : this.limit,
-      sort: sort ? null : this.sort,
-    );
-  }
-
-  @override
-  DataRequirement clone() => throw UnimplementedError();
-  @override
-  DataRequirement copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FHIRAllTypes? type,
-    List<FhirCanonical>? profile,
-    SubjectXDataRequirement? subjectX,
-    List<FhirString>? mustSupport,
-    List<DataRequirementCodeFilter>? codeFilter,
-    List<DataRequirementDateFilter>? dateFilter,
-    FhirPositiveInt? limit,
-    List<DataRequirementSort>? sort,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return DataRequirement(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      profile: profile
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.profile',
-                ),
-              )
-              .toList() ??
-          this.profile,
-      subjectX: subjectX?.copyWith(
-            objectPath: '$newObjectPath.subjectX',
-          ) as SubjectXDataRequirement? ??
-          this.subjectX,
-      mustSupport: mustSupport
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.mustSupport',
-                ),
-              )
-              .toList() ??
-          this.mustSupport,
-      codeFilter: codeFilter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.codeFilter',
-                ),
-              )
-              .toList() ??
-          this.codeFilter,
-      dateFilter: dateFilter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dateFilter',
-                ),
-              )
-              .toList() ??
-          this.dateFilter,
-      limit: limit?.copyWith(
-            objectPath: '$newObjectPath.limit',
-          ) ??
-          this.limit,
-      sort: sort
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.sort',
-                ),
-              )
-              .toList() ??
-          this.sort,
-    );
-  }
+  $DataRequirementCopyWith<DataRequirement> get copyWith =>
+      _$DataRequirementCopyWithImpl<DataRequirement>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -926,35 +506,22 @@ class DataRequirementCodeFilter extends Element {
     this.valueSet,
     this.code,
     super.disallowExtensions,
-    super.objectPath = 'DataRequirementCodeFilter',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() =>
-      const DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath =
-        json['resourceType'] as String? ?? 'DataRequirementCodeFilter';
     return DataRequirementCodeFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -962,27 +529,21 @@ class DataRequirementCodeFilter extends Element {
         json,
         'path',
         FhirString.fromJson,
-        '$objectPath.path',
       ),
       searchParam: JsonParser.parsePrimitive<FhirString>(
         json,
         'searchParam',
         FhirString.fromJson,
-        '$objectPath.searchParam',
       ),
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
-        '$objectPath.valueSet',
       ),
       code: (json['code'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.code',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1214,232 +775,19 @@ class DataRequirementCodeFilter extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DataRequirementCodeFilter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'path':
-        {
-          if (child is FhirString) {
-            return copyWith(path: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'searchParam':
-        {
-          if (child is FhirString) {
-            return copyWith(searchParam: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSet':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(valueSet: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is Coding) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?code,
-              child,
-            ];
-            return copyWith(code: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DataRequirementCodeFilter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'path':
-        return ['FhirString'];
-      case 'searchParam':
-        return ['FhirString'];
-      case 'valueSet':
-        return ['FhirCanonical'];
-      case 'code':
-        return ['Coding'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DataRequirementCodeFilter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DataRequirementCodeFilter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'path':
-        {
-          return copyWith(
-            path: FhirString.empty(),
-          );
-        }
-      case 'searchParam':
-        {
-          return copyWith(
-            searchParam: FhirString.empty(),
-          );
-        }
-      case 'valueSet':
-        {
-          return copyWith(
-            valueSet: FhirCanonical.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: <Coding>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DataRequirementCodeFilter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool searchParam = false,
-    bool valueSet = false,
-    bool code = false,
-  }) {
-    return DataRequirementCodeFilter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      path: path ? null : this.path,
-      searchParam: searchParam ? null : this.searchParam,
-      valueSet: valueSet ? null : this.valueSet,
-      code: code ? null : this.code,
-    );
-  }
-
-  @override
-  DataRequirementCodeFilter clone() => throw UnimplementedError();
-  @override
-  DataRequirementCodeFilter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? path,
-    FhirString? searchParam,
-    FhirCanonical? valueSet,
-    List<Coding>? code,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return DataRequirementCodeFilter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      searchParam: searchParam?.copyWith(
-            objectPath: '$newObjectPath.searchParam',
-          ) ??
-          this.searchParam,
-      valueSet: valueSet?.copyWith(
-            objectPath: '$newObjectPath.valueSet',
-          ) ??
-          this.valueSet,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-    );
-  }
+  $DataRequirementCodeFilterCopyWith<DataRequirementCodeFilter> get copyWith =>
+      _$DataRequirementCodeFilterCopyWithImpl<DataRequirementCodeFilter>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1505,35 +853,22 @@ class DataRequirementDateFilter extends Element {
     this.searchParam,
     this.valueX,
     super.disallowExtensions,
-    super.objectPath = 'DataRequirementDateFilter',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() =>
-      const DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath =
-        json['resourceType'] as String? ?? 'DataRequirementDateFilter';
     return DataRequirementDateFilter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1541,13 +876,11 @@ class DataRequirementDateFilter extends Element {
         json,
         'path',
         FhirString.fromJson,
-        '$objectPath.path',
       ),
       searchParam: JsonParser.parsePrimitive<FhirString>(
         json,
         'searchParam',
         FhirString.fromJson,
-        '$objectPath.searchParam',
       ),
       valueX: JsonParser.parsePolymorphic<ValueXDataRequirementDateFilter>(
         json,
@@ -1556,7 +889,6 @@ class DataRequirementDateFilter extends Element {
           'valuePeriod': Period.fromJson,
           'valueDuration': FhirDuration.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -1797,255 +1129,19 @@ class DataRequirementDateFilter extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DataRequirementDateFilter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'path':
-        {
-          if (child is FhirString) {
-            return copyWith(path: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'searchParam':
-        {
-          if (child is FhirString) {
-            return copyWith(searchParam: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXDataRequirementDateFilter) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
-            }
-            if (child is Period) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDuration) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DataRequirementDateFilter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'path':
-        return ['FhirString'];
-      case 'searchParam':
-        return ['FhirString'];
-      case 'value':
-      case 'valueX':
-        return [
-          'FhirDateTime',
-          'Period',
-          'FhirDuration',
-        ];
-      case 'valueDateTime':
-        return ['FhirDateTime'];
-      case 'valuePeriod':
-        return ['Period'];
-      case 'valueDuration':
-        return ['FhirDuration'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DataRequirementDateFilter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DataRequirementDateFilter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'path':
-        {
-          return copyWith(
-            path: FhirString.empty(),
-          );
-        }
-      case 'searchParam':
-        {
-          return copyWith(
-            searchParam: FhirString.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueDateTime':
-        {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
-        }
-      case 'valuePeriod':
-        {
-          return copyWith(
-            valueX: Period.empty(),
-          );
-        }
-      case 'valueDuration':
-        {
-          return copyWith(
-            valueX: FhirDuration.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DataRequirementDateFilter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool searchParam = false,
-    bool value = false,
-  }) {
-    return DataRequirementDateFilter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      path: path ? null : this.path,
-      searchParam: searchParam ? null : this.searchParam,
-      valueX: value ? null : valueX,
-    );
-  }
-
-  @override
-  DataRequirementDateFilter clone() => throw UnimplementedError();
-  @override
-  DataRequirementDateFilter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? path,
-    FhirString? searchParam,
-    ValueXDataRequirementDateFilter? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return DataRequirementDateFilter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      searchParam: searchParam?.copyWith(
-            objectPath: '$newObjectPath.searchParam',
-          ) ??
-          this.searchParam,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXDataRequirementDateFilter? ??
-          this.valueX,
-    );
-  }
+  $DataRequirementDateFilterCopyWith<DataRequirementDateFilter> get copyWith =>
+      _$DataRequirementDateFilterCopyWithImpl<DataRequirementDateFilter>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2101,36 +1197,22 @@ class DataRequirementSort extends Element {
     required this.path,
     required this.direction,
     super.disallowExtensions,
-    super.objectPath = 'DataRequirementSort',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DataRequirementSort.empty() => DataRequirementSort(
-        path: FhirString.empty(),
-        direction: SortDirection.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementSort.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'DataRequirementSort';
     return DataRequirementSort(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2138,13 +1220,11 @@ class DataRequirementSort extends Element {
         json,
         'path',
         FhirString.fromJson,
-        '$objectPath.path',
       )!,
       direction: JsonParser.parsePrimitive<SortDirection>(
         json,
         'direction',
         SortDirection.fromJson,
-        '$objectPath.direction',
       )!,
     );
   }
@@ -2332,171 +1412,19 @@ class DataRequirementSort extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  DataRequirementSort clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'path':
-        {
-          if (child is FhirString) {
-            return copyWith(path: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'direction':
-        {
-          if (child is SortDirection) {
-            return copyWith(direction: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [DataRequirementSort]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'path':
-        return ['FhirString'];
-      case 'direction':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [DataRequirementSort]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  DataRequirementSort createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'path':
-        {
-          return copyWith(
-            path: FhirString.empty(),
-          );
-        }
-      case 'direction':
-        {
-          return copyWith(
-            direction: SortDirection.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  DataRequirementSort clear({
-    bool id = false,
-    bool extension_ = false,
-  }) {
-    return DataRequirementSort(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      path: path,
-      direction: direction,
-    );
-  }
-
-  @override
-  DataRequirementSort clone() => throw UnimplementedError();
-  @override
-  DataRequirementSort copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? path,
-    SortDirection? direction,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return DataRequirementSort(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      direction: direction?.copyWith(
-            objectPath: '$newObjectPath.direction',
-          ) ??
-          this.direction,
-    );
-  }
+  $DataRequirementSortCopyWith<DataRequirementSort> get copyWith =>
+      _$DataRequirementSortCopyWithImpl<DataRequirementSort>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

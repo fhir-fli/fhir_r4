@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'usage_context.g.dart';
+
 /// [UsageContext]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be
@@ -27,36 +29,22 @@ class UsageContext extends DataType
     required this.code,
     required this.valueX,
     super.disallowExtensions,
-    super.objectPath = 'UsageContext',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory UsageContext.empty() => UsageContext(
-        code: Coding.empty(),
-        valueX: CodeableConcept.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory UsageContext.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'UsageContext';
     return UsageContext(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -64,7 +52,6 @@ class UsageContext extends DataType
         json,
         'code',
         Coding.fromJson,
-        '$objectPath.code',
       )!,
       valueX: JsonParser.parsePolymorphic<ValueXUsageContext>(
         json,
@@ -74,7 +61,6 @@ class UsageContext extends DataType
           'valueRange': Range.fromJson,
           'valueReference': Reference.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -292,250 +278,19 @@ class UsageContext extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  UsageContext clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is Coding) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXUsageContext) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-            if (child is Reference) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueReference':
-        {
-          if (child is Reference) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [UsageContext]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['Coding'];
-      case 'value':
-      case 'valueX':
-        return [
-          'CodeableConcept',
-          'Quantity',
-          'Range',
-          'Reference',
-        ];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueRange':
-        return ['Range'];
-      case 'valueReference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [UsageContext]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  UsageContext createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: Coding.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      case 'valueReference':
-        {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  UsageContext clear({
-    bool id = false,
-    bool extension_ = false,
-  }) {
-    return UsageContext(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      code: code,
-      valueX: valueX,
-    );
-  }
-
-  @override
-  UsageContext clone() => throw UnimplementedError();
-  @override
-  UsageContext copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Coding? code,
-    ValueXUsageContext? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return UsageContext(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXUsageContext? ??
-          this.valueX,
-    );
-  }
+  $UsageContextCopyWith<UsageContext> get copyWith =>
+      _$UsageContextCopyWithImpl<UsageContext>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

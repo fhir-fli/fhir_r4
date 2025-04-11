@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'media.g.dart';
+
 /// [Media]
 /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.
@@ -41,111 +43,78 @@ class Media extends DomainResource {
     required this.content,
     this.note,
   }) : super(
-          objectPath: 'Media',
           resourceType: R4ResourceType.Media,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Media.empty() => Media(
-        status: EventStatus.values.first,
-        content: Attachment.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Media.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Media';
     return Media(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.basedOn',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.partOf',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -153,37 +122,31 @@ class Media extends DomainResource {
         json,
         'status',
         EventStatus.fromJson,
-        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       modality: JsonParser.parseObject<CodeableConcept>(
         json,
         'modality',
         CodeableConcept.fromJson,
-        '$objectPath.modality',
       ),
       view: JsonParser.parseObject<CodeableConcept>(
         json,
         'view',
         CodeableConcept.fromJson,
-        '$objectPath.view',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       createdX: JsonParser.parsePolymorphic<CreatedXMedia>(
         json,
@@ -191,27 +154,21 @@ class Media extends DomainResource {
           'createdDateTime': FhirDateTime.fromJson,
           'createdPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       issued: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'issued',
         FhirInstant.fromJson,
-        '$objectPath.issued',
       ),
       operator_: JsonParser.parseObject<Reference>(
         json,
         'operator',
         Reference.fromJson,
-        '$objectPath.operator',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -219,57 +176,46 @@ class Media extends DomainResource {
         json,
         'bodySite',
         CodeableConcept.fromJson,
-        '$objectPath.bodySite',
       ),
       deviceName: JsonParser.parsePrimitive<FhirString>(
         json,
         'deviceName',
         FhirString.fromJson,
-        '$objectPath.deviceName',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
-        '$objectPath.device',
       ),
       height: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'height',
         FhirPositiveInt.fromJson,
-        '$objectPath.height',
       ),
       width: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'width',
         FhirPositiveInt.fromJson,
-        '$objectPath.width',
       ),
       frames: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'frames',
         FhirPositiveInt.fromJson,
-        '$objectPath.frames',
       ),
       duration: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'duration',
         FhirDecimal.fromJson,
-        '$objectPath.duration',
       ),
       content: JsonParser.parseObject<Attachment>(
         json,
         'content',
         Attachment.fromJson,
-        '$objectPath.content',
       )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -804,891 +750,18 @@ class Media extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Media clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basedOn':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?basedOn,
-              child,
-            ];
-            return copyWith(basedOn: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'partOf':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?partOf,
-              child,
-            ];
-            return copyWith(partOf: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is EventStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modality':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(modality: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'view':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(view: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-      case 'createdX':
-        {
-          if (child is CreatedXMedia) {
-            return copyWith(createdX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(createdX: child);
-            }
-            if (child is Period) {
-              return copyWith(createdX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'createdFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(createdX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'createdPeriod':
-        {
-          if (child is Period) {
-            return copyWith(createdX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'issued':
-        {
-          if (child is FhirInstant) {
-            return copyWith(issued: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'operator':
-        {
-          if (child is Reference) {
-            return copyWith(operator_: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonCode,
-              child,
-            ];
-            return copyWith(reasonCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bodySite':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deviceName':
-        {
-          if (child is FhirString) {
-            return copyWith(deviceName: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'device':
-        {
-          if (child is Reference) {
-            return copyWith(device: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'height':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(height: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'width':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(width: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'frames':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(frames: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'duration':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(duration: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'content':
-        {
-          if (child is Attachment) {
-            return copyWith(content: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Media]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'basedOn':
-        return ['Reference'];
-      case 'partOf':
-        return ['Reference'];
-      case 'status':
-        return ['FhirCode'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'modality':
-        return ['CodeableConcept'];
-      case 'view':
-        return ['CodeableConcept'];
-      case 'subject':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'created':
-      case 'createdX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'createdDateTime':
-        return ['FhirDateTime'];
-      case 'createdPeriod':
-        return ['Period'];
-      case 'issued':
-        return ['FhirInstant'];
-      case 'operator':
-        return ['Reference'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'bodySite':
-        return ['CodeableConcept'];
-      case 'deviceName':
-        return ['FhirString'];
-      case 'device':
-        return ['Reference'];
-      case 'height':
-        return ['FhirPositiveInt'];
-      case 'width':
-        return ['FhirPositiveInt'];
-      case 'frames':
-        return ['FhirPositiveInt'];
-      case 'duration':
-        return ['FhirDecimal'];
-      case 'content':
-        return ['Attachment'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Media]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Media createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'basedOn':
-        {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
-        }
-      case 'partOf':
-        {
-          return copyWith(
-            partOf: <Reference>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: EventStatus.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'modality':
-        {
-          return copyWith(
-            modality: CodeableConcept.empty(),
-          );
-        }
-      case 'view':
-        {
-          return copyWith(
-            view: CodeableConcept.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'created':
-      case 'createdX':
-      case 'createdDateTime':
-        {
-          return copyWith(
-            createdX: FhirDateTime.empty(),
-          );
-        }
-      case 'createdPeriod':
-        {
-          return copyWith(
-            createdX: Period.empty(),
-          );
-        }
-      case 'issued':
-        {
-          return copyWith(
-            issued: FhirInstant.empty(),
-          );
-        }
-      case 'operator':
-        {
-          return copyWith(
-            operator_: Reference.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
-        }
-      case 'bodySite':
-        {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
-        }
-      case 'deviceName':
-        {
-          return copyWith(
-            deviceName: FhirString.empty(),
-          );
-        }
-      case 'device':
-        {
-          return copyWith(
-            device: Reference.empty(),
-          );
-        }
-      case 'height':
-        {
-          return copyWith(
-            height: FhirPositiveInt.empty(),
-          );
-        }
-      case 'width':
-        {
-          return copyWith(
-            width: FhirPositiveInt.empty(),
-          );
-        }
-      case 'frames':
-        {
-          return copyWith(
-            frames: FhirPositiveInt.empty(),
-          );
-        }
-      case 'duration':
-        {
-          return copyWith(
-            duration: FhirDecimal.empty(),
-          );
-        }
-      case 'content':
-        {
-          return copyWith(
-            content: Attachment.empty(),
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Media clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool type = false,
-    bool modality = false,
-    bool view = false,
-    bool subject = false,
-    bool encounter = false,
-    bool created = false,
-    bool issued = false,
-    bool operator_ = false,
-    bool reasonCode = false,
-    bool bodySite = false,
-    bool deviceName = false,
-    bool device = false,
-    bool height = false,
-    bool width = false,
-    bool frames = false,
-    bool duration = false,
-    bool note = false,
-  }) {
-    return Media(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      type: type ? null : this.type,
-      modality: modality ? null : this.modality,
-      view: view ? null : this.view,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      createdX: created ? null : createdX,
-      issued: issued ? null : this.issued,
-      operator_: operator_ ? null : this.operator_,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      bodySite: bodySite ? null : this.bodySite,
-      deviceName: deviceName ? null : this.deviceName,
-      device: device ? null : this.device,
-      height: height ? null : this.height,
-      width: width ? null : this.width,
-      frames: frames ? null : this.frames,
-      duration: duration ? null : this.duration,
-      content: content,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  Media clone() => throw UnimplementedError();
-  @override
-  Media copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    EventStatus? status,
-    CodeableConcept? type,
-    CodeableConcept? modality,
-    CodeableConcept? view,
-    Reference? subject,
-    Reference? encounter,
-    CreatedXMedia? createdX,
-    FhirInstant? issued,
-    Reference? operator_,
-    List<CodeableConcept>? reasonCode,
-    CodeableConcept? bodySite,
-    FhirString? deviceName,
-    Reference? device,
-    FhirPositiveInt? height,
-    FhirPositiveInt? width,
-    FhirPositiveInt? frames,
-    FhirDecimal? duration,
-    Attachment? content,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Media(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      modality: modality?.copyWith(
-            objectPath: '$newObjectPath.modality',
-          ) ??
-          this.modality,
-      view: view?.copyWith(
-            objectPath: '$newObjectPath.view',
-          ) ??
-          this.view,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      createdX: createdX?.copyWith(
-            objectPath: '$newObjectPath.createdX',
-          ) as CreatedXMedia? ??
-          this.createdX,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      operator_: operator_?.copyWith(
-            objectPath: '$newObjectPath.operator',
-          ) ??
-          this.operator_,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      deviceName: deviceName?.copyWith(
-            objectPath: '$newObjectPath.deviceName',
-          ) ??
-          this.deviceName,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      height: height?.copyWith(
-            objectPath: '$newObjectPath.height',
-          ) ??
-          this.height,
-      width: width?.copyWith(
-            objectPath: '$newObjectPath.width',
-          ) ??
-          this.width,
-      frames: frames?.copyWith(
-            objectPath: '$newObjectPath.frames',
-          ) ??
-          this.frames,
-      duration: duration?.copyWith(
-            objectPath: '$newObjectPath.duration',
-          ) ??
-          this.duration,
-      content: content?.copyWith(
-            objectPath: '$newObjectPath.content',
-          ) ??
-          this.content,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
+  $MediaCopyWith<Media> get copyWith => _$MediaCopyWithImpl<Media>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

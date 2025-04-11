@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapSourceListMode
+enum StructureMapSourceListModeEnum {
+  /// first
+  first,
+
+  /// not_first
+  notFirst,
+
+  /// last
+  last,
+
+  /// not_last
+  notLast,
+
+  /// only_one
+  onlyOne,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapSourceListModeEnum.first:
+        return 'first';
+      case StructureMapSourceListModeEnum.notFirst:
+        return 'not_first';
+      case StructureMapSourceListModeEnum.last:
+        return 'last';
+      case StructureMapSourceListModeEnum.notLast:
+        return 'not_last';
+      case StructureMapSourceListModeEnum.onlyOne:
+        return 'only_one';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapSourceListModeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapSourceListModeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapSourceListModeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'first':
+        return StructureMapSourceListModeEnum.first;
+      case 'not_first':
+        return StructureMapSourceListModeEnum.notFirst;
+      case 'last':
+        return StructureMapSourceListModeEnum.last;
+      case 'not_last':
+        return StructureMapSourceListModeEnum.notLast;
+      case 'only_one':
+        return StructureMapSourceListModeEnum.onlyOne;
+    }
+    return null;
+  }
+}
+
 /// If field is a list, how to manage the source.
 class StructureMapSourceListMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  StructureMapSourceListMode._({
+  const StructureMapSourceListMode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = StructureMapSourceListModeEnum.fromString(valueString);
     return StructureMapSourceListMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +108,8 @@ class StructureMapSourceListMode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [StructureMapSourceListMode] with element only
-  factory StructureMapSourceListMode.empty() =>
-      StructureMapSourceListMode._(valueString: '');
 
   /// Factory constructor to create [StructureMapSourceListMode]
   /// from JSON.
@@ -54,10 +117,11 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = StructureMapSourceListModeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapSourceListMode.elementOnly.withElement(element);
+      return StructureMapSourceListMode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapSourceListMode cannot be constructed from JSON.',
@@ -65,72 +129,90 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     }
     return StructureMapSourceListMode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for StructureMapSourceListMode
+  final StructureMapSourceListModeEnum? valueEnum;
+
   /// first
-  static final StructureMapSourceListMode first = StructureMapSourceListMode._(
+  static const StructureMapSourceListMode first = StructureMapSourceListMode._(
     valueString: 'first',
-    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'First'.toFhirString,
+    valueEnum: StructureMapSourceListModeEnum.first,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'First',
+    ),
   );
 
   /// not_first
-  static final StructureMapSourceListMode not_first =
+  static const StructureMapSourceListMode notFirst =
       StructureMapSourceListMode._(
     valueString: 'not_first',
-    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All but the first'.toFhirString,
+    valueEnum: StructureMapSourceListModeEnum.notFirst,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'All but the first',
+    ),
   );
 
   /// last
-  static final StructureMapSourceListMode last = StructureMapSourceListMode._(
+  static const StructureMapSourceListMode last = StructureMapSourceListMode._(
     valueString: 'last',
-    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Last'.toFhirString,
+    valueEnum: StructureMapSourceListModeEnum.last,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Last',
+    ),
   );
 
   /// not_last
-  static final StructureMapSourceListMode not_last =
+  static const StructureMapSourceListMode notLast =
       StructureMapSourceListMode._(
     valueString: 'not_last',
-    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All but the last'.toFhirString,
+    valueEnum: StructureMapSourceListModeEnum.notLast,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'All but the last',
+    ),
   );
 
   /// only_one
-  static final StructureMapSourceListMode only_one =
+  static const StructureMapSourceListMode onlyOne =
       StructureMapSourceListMode._(
     valueString: 'only_one',
-    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Enforce only one'.toFhirString,
+    valueEnum: StructureMapSourceListModeEnum.onlyOne,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Enforce only one',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final StructureMapSourceListMode elementOnly =
-      StructureMapSourceListMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureMapSourceListMode> values = [
     first,
-    not_first,
+    notFirst,
     last,
-    not_last,
-    only_one,
+    notLast,
+    onlyOne,
   ];
-
-  /// Clones the current instance
-  @override
-  StructureMapSourceListMode clone() => StructureMapSourceListMode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   StructureMapSourceListMode withElement(Element? newElement) {
@@ -151,36 +233,58 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  StructureMapSourceListMode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  StructureMapSourceListMode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  StructureMapSourceListModeCopyWithImpl<StructureMapSourceListMode>
+      get copyWith =>
+          StructureMapSourceListModeCopyWithImpl<StructureMapSourceListMode>(
+            this,
+            (v) => v as StructureMapSourceListMode,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class StructureMapSourceListModeCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  StructureMapSourceListModeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for StructureMapSourceListMode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return StructureMapSourceListMode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      StructureMapSourceListMode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

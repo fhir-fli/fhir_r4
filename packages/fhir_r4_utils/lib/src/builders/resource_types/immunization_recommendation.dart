@@ -691,38 +691,6 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool patient = false,
-    bool date = false,
-    bool authority = false,
-    bool recommendation = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (patient) this.patient = null;
-    if (date) this.date = null;
-    if (authority) this.authority = null;
-    if (recommendation) this.recommendation = null;
-  }
-
   @override
   ImmunizationRecommendationBuilder clone() => throw UnimplementedError();
   @override
@@ -1801,42 +1769,6 @@ class ImmunizationRecommendationRecommendationBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool vaccineCode = false,
-    bool targetDisease = false,
-    bool contraindicatedVaccineCode = false,
-    bool forecastStatus = false,
-    bool forecastReason = false,
-    bool dateCriterion = false,
-    bool description = false,
-    bool series = false,
-    bool doseNumber = false,
-    bool seriesDoses = false,
-    bool supportingImmunization = false,
-    bool supportingPatientInformation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (vaccineCode) this.vaccineCode = null;
-    if (targetDisease) this.targetDisease = null;
-    if (contraindicatedVaccineCode) this.contraindicatedVaccineCode = null;
-    if (forecastStatus) this.forecastStatus = null;
-    if (forecastReason) this.forecastReason = null;
-    if (dateCriterion) this.dateCriterion = null;
-    if (description) this.description = null;
-    if (series) this.series = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
-    if (supportingImmunization) this.supportingImmunization = null;
-    if (supportingPatientInformation) this.supportingPatientInformation = null;
-  }
-
   @override
   ImmunizationRecommendationRecommendationBuilder clone() =>
       throw UnimplementedError();
@@ -2382,22 +2314,6 @@ class ImmunizationRecommendationDateCriterionBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) this.value = null;
   }
 
   @override

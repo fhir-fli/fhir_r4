@@ -1360,64 +1360,6 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool source = false,
-    bool target = false,
-    bool group = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (source) sourceX = null;
-    if (target) targetX = null;
-    if (group) this.group = null;
-  }
-
   @override
   ConceptMapBuilder clone() => throw UnimplementedError();
   @override
@@ -2224,30 +2166,6 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool source = false,
-    bool sourceVersion = false,
-    bool target = false,
-    bool targetVersion = false,
-    bool element = false,
-    bool unmapped = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (source) this.source = null;
-    if (sourceVersion) this.sourceVersion = null;
-    if (target) this.target = null;
-    if (targetVersion) this.targetVersion = null;
-    if (element) this.element = null;
-    if (unmapped) this.unmapped = null;
-  }
-
   @override
   ConceptMapGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -2790,24 +2708,6 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool display = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (target) this.target = null;
   }
 
   @override
@@ -3475,30 +3375,6 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool display = false,
-    bool equivalence = false,
-    bool comment = false,
-    bool dependsOn = false,
-    bool product = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (equivalence) this.equivalence = null;
-    if (comment) this.comment = null;
-    if (dependsOn) this.dependsOn = null;
-    if (product) this.product = null;
-  }
-
   @override
   ConceptMapTargetBuilder clone() => throw UnimplementedError();
   @override
@@ -4096,26 +3972,6 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool property = false,
-    bool system = false,
-    bool value = false,
-    bool display = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (property) this.property = null;
-    if (system) this.system = null;
-    if (value) this.value = null;
-    if (display) this.display = null;
-  }
-
   @override
   ConceptMapDependsOnBuilder clone() => throw UnimplementedError();
   @override
@@ -4701,26 +4557,6 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool code = false,
-    bool display = false,
-    bool url = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (url) this.url = null;
   }
 
   @override

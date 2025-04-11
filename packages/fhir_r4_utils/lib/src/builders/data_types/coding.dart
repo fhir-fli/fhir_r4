@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart' show Coding, yamlMapToJson, yamlToJson;
+import 'package:fhir_r4/fhir_r4.dart'
+    show Coding, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -503,26 +504,6 @@ class CodingBuilder extends DataTypeBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool system = false,
-    bool version = false,
-    bool code = false,
-    bool display = false,
-    bool userSelected = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (system) this.system = null;
-    if (version) this.version = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (userSelected) this.userSelected = null;
   }
 
   @override

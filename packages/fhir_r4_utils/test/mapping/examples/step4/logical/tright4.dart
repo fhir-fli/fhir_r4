@@ -11,7 +11,6 @@ class TRight4 extends Element {
     super.extension_,
     this.a21,
     super.disallowExtensions,
-    super.objectPath = 'TRight4',
   });
 
   factory TRight4.empty() => const TRight4();
@@ -50,24 +49,6 @@ class TRight4 extends Element {
   final FhirInteger? a21;
 
   @override
-  TRight4 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirInteger? a21,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight4(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a21: a21 ?? this.a21,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -81,58 +62,11 @@ class TRight4 extends Element {
   }
 
   @override
-  List<String> listChildrenNames() {
-    return ['id', 'extension', 'a21'];
-  }
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'a21':
-        if (a21 != null) fields.add(a21!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Multiple values found for $name');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
   bool equalsDeep(FhirBase? o) {
     if (o is! TRight4) return false;
     return id == o.id &&
         const DeepCollectionEquality().equals(extension_, o.extension_) &&
         a21 == o.a21;
-  }
-
-  @override
-  TRight4 setChildByName(String name, dynamic value) {
-    switch (name) {
-      case 'id':
-        return copyWith(id: value as FhirString);
-      case 'extension':
-        return copyWith(extension_: value as List<FhirExtension>);
-      case 'a21':
-        return copyWith(a21: value as FhirInteger);
-      default:
-        throw ArgumentError('Invalid child name: $name');
-    }
   }
 }
 
@@ -367,17 +301,6 @@ class TRight4Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a21 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a21) this.a21 = null;
   }
 
   @override

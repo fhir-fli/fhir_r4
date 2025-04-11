@@ -1579,82 +1579,6 @@ class ClaimResponseBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool subType = false,
-    bool use = false,
-    bool patient = false,
-    bool created = false,
-    bool insurer = false,
-    bool requestor = false,
-    bool request = false,
-    bool outcome = false,
-    bool disposition = false,
-    bool preAuthRef = false,
-    bool preAuthPeriod = false,
-    bool payeeType = false,
-    bool item = false,
-    bool addItem = false,
-    bool adjudication = false,
-    bool total = false,
-    bool payment = false,
-    bool fundsReserve = false,
-    bool formCode = false,
-    bool form = false,
-    bool processNote = false,
-    bool communicationRequest = false,
-    bool insurance = false,
-    bool error = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (subType) this.subType = null;
-    if (use) this.use = null;
-    if (patient) this.patient = null;
-    if (created) this.created = null;
-    if (insurer) this.insurer = null;
-    if (requestor) this.requestor = null;
-    if (request) this.request = null;
-    if (outcome) this.outcome = null;
-    if (disposition) this.disposition = null;
-    if (preAuthRef) this.preAuthRef = null;
-    if (preAuthPeriod) this.preAuthPeriod = null;
-    if (payeeType) this.payeeType = null;
-    if (item) this.item = null;
-    if (addItem) this.addItem = null;
-    if (adjudication) this.adjudication = null;
-    if (total) this.total = null;
-    if (payment) this.payment = null;
-    if (fundsReserve) this.fundsReserve = null;
-    if (formCode) this.formCode = null;
-    if (form) this.form = null;
-    if (processNote) this.processNote = null;
-    if (communicationRequest) this.communicationRequest = null;
-    if (insurance) this.insurance = null;
-    if (error) this.error = null;
-  }
-
   @override
   ClaimResponseBuilder clone() => throw UnimplementedError();
   @override
@@ -2500,26 +2424,6 @@ class ClaimResponseItemBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (itemSequence) this.itemSequence = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   ClaimResponseItemBuilder clone() => throw UnimplementedError();
   @override
@@ -3070,26 +2974,6 @@ class ClaimResponseAdjudicationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool reason = false,
-    bool amount = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (reason) this.reason = null;
-    if (amount) this.amount = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -3711,26 +3595,6 @@ class ClaimResponseDetailBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool detailSequence = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool subDetail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (detailSequence) this.detailSequence = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
-    if (subDetail) this.subDetail = null;
-  }
-
   @override
   ClaimResponseDetailBuilder clone() => throw UnimplementedError();
   @override
@@ -4303,24 +4167,6 @@ class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool subDetailSequence = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (subDetailSequence) this.subDetailSequence = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
   }
 
   @override
@@ -5764,54 +5610,6 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool detailSequence = false,
-    bool subdetailSequence = false,
-    bool provider = false,
-    bool productOrService = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool serviced = false,
-    bool location = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool bodySite = false,
-    bool subSite = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (itemSequence) this.itemSequence = null;
-    if (detailSequence) this.detailSequence = null;
-    if (subdetailSequence) this.subdetailSequence = null;
-    if (provider) this.provider = null;
-    if (productOrService) this.productOrService = null;
-    if (modifier) this.modifier = null;
-    if (programCode) this.programCode = null;
-    if (serviced) servicedX = null;
-    if (location) locationX = null;
-    if (quantity) this.quantity = null;
-    if (unitPrice) this.unitPrice = null;
-    if (factor) this.factor = null;
-    if (net) this.net = null;
-    if (bodySite) this.bodySite = null;
-    if (subSite) this.subSite = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   ClaimResponseAddItemBuilder clone() => throw UnimplementedError();
   @override
@@ -6723,36 +6521,6 @@ class ClaimResponseDetail1Builder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool productOrService = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-    bool subDetail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (productOrService) this.productOrService = null;
-    if (modifier) this.modifier = null;
-    if (quantity) this.quantity = null;
-    if (unitPrice) this.unitPrice = null;
-    if (factor) this.factor = null;
-    if (net) this.net = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
-    if (subDetail) this.subDetail = null;
-  }
-
   @override
   ClaimResponseDetail1Builder clone() => throw UnimplementedError();
   @override
@@ -7549,34 +7317,6 @@ class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool productOrService = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (productOrService) this.productOrService = null;
-    if (modifier) this.modifier = null;
-    if (quantity) this.quantity = null;
-    if (unitPrice) this.unitPrice = null;
-    if (factor) this.factor = null;
-    if (net) this.net = null;
-    if (noteNumber) this.noteNumber = null;
-    if (adjudication) this.adjudication = null;
-  }
-
   @override
   ClaimResponseSubDetail1Builder clone() => throw UnimplementedError();
   @override
@@ -8072,22 +7812,6 @@ class ClaimResponseTotalBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (amount) this.amount = null;
   }
 
   @override
@@ -8678,30 +8402,6 @@ class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool adjustment = false,
-    bool adjustmentReason = false,
-    bool date = false,
-    bool amount = false,
-    bool identifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (adjustment) this.adjustment = null;
-    if (adjustmentReason) this.adjustmentReason = null;
-    if (date) this.date = null;
-    if (amount) this.amount = null;
-    if (identifier) this.identifier = null;
-  }
-
   @override
   ClaimResponsePaymentBuilder clone() => throw UnimplementedError();
   @override
@@ -9287,26 +8987,6 @@ class ClaimResponseProcessNoteBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool number = false,
-    bool type = false,
-    bool text = false,
-    bool language = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (number) this.number = null;
-    if (type) this.type = null;
-    if (text) this.text = null;
-    if (language) this.language = null;
   }
 
   @override
@@ -9917,28 +9597,6 @@ class ClaimResponseInsuranceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool sequence = false,
-    bool focal = false,
-    bool coverage = false,
-    bool businessArrangement = false,
-    bool claimResponse = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (sequence) this.sequence = null;
-    if (focal) this.focal = null;
-    if (coverage) this.coverage = null;
-    if (businessArrangement) this.businessArrangement = null;
-    if (claimResponse) this.claimResponse = null;
-  }
-
   @override
   ClaimResponseInsuranceBuilder clone() => throw UnimplementedError();
   @override
@@ -10527,26 +10185,6 @@ class ClaimResponseErrorBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool detailSequence = false,
-    bool subDetailSequence = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (itemSequence) this.itemSequence = null;
-    if (detailSequence) this.detailSequence = null;
-    if (subDetailSequence) this.subDetailSequence = null;
-    if (code) this.code = null;
   }
 
   @override

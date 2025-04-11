@@ -16,15 +16,7 @@ abstract class DomainResource extends Resource {
     this.contained,
     this.extension_,
     this.modifierExtension,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'DomainResource',
   });
-
-  /// Creates an empty [DomainResource] object
-  factory DomainResource.empty() => throw UnimplementedError();
 
   /// Factory constructor for [DomainResource] that takes in a
   /// [Map<String, dynamic>] and returns a [DomainResource]
@@ -131,7 +123,17 @@ abstract class DomainResource extends Resource {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
-  DomainResource copyWith({
+  DomainResource clone();
+
+  /// CopyWith method for [DomainResource].
+  @override
+  $DomainResourceCopyWith<DomainResource> get copyWith;
+}
+
+/// The public interface for copyWith for [DomainResource].
+abstract class $DomainResourceCopyWith<T> extends $ResourceCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -140,22 +142,5 @@ abstract class DomainResource extends Resource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
-
-  /// Creates an empty property in the object
-  @override
-  DomainResource createProperty(String propertyName);
-
-  @override
-  DomainResource clear();
 }

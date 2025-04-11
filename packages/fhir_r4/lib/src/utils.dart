@@ -1,5 +1,4 @@
 export 'utils/compare.dart';
-export 'utils/empty_from_type.dart';
 export 'utils/fhir_field_map.dart';
 export 'utils/from_path.dart';
 export 'utils/from_type.dart';

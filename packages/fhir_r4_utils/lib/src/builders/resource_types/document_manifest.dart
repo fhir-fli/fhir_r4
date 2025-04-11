@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         DocumentManifest,
         DocumentManifestRelated,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -998,52 +999,6 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool masterIdentifier = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool subject = false,
-    bool created = false,
-    bool author = false,
-    bool recipient = false,
-    bool source = false,
-    bool description = false,
-    bool content = false,
-    bool related = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (masterIdentifier) this.masterIdentifier = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (subject) this.subject = null;
-    if (created) this.created = null;
-    if (author) this.author = null;
-    if (recipient) this.recipient = null;
-    if (source) this.source = null;
-    if (description) this.description = null;
-    if (content) this.content = null;
-    if (related) this.related = null;
-  }
-
   @override
   DocumentManifestBuilder clone() => throw UnimplementedError();
   @override
@@ -1606,22 +1561,6 @@ class DocumentManifestRelatedBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool ref = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (ref) this.ref = null;
   }
 
   @override

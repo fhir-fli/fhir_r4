@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AddressUse
+enum AddressUseEnum {
+  /// home
+  home,
+
+  /// work
+  work,
+
+  /// temp
+  temp,
+
+  /// old
+  old,
+
+  /// billing
+  billing,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AddressUseEnum.home:
+        return 'home';
+      case AddressUseEnum.work:
+        return 'work';
+      case AddressUseEnum.temp:
+        return 'temp';
+      case AddressUseEnum.old:
+        return 'old';
+      case AddressUseEnum.billing:
+        return 'billing';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AddressUseEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AddressUseEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AddressUseEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'home':
+        return AddressUseEnum.home;
+      case 'work':
+        return AddressUseEnum.work;
+      case 'temp':
+        return AddressUseEnum.temp;
+      case 'old':
+        return AddressUseEnum.old;
+      case 'billing':
+        return AddressUseEnum.billing;
+    }
+    return null;
+  }
+}
+
 /// The use of an address.
 class AddressUse extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  AddressUse._({
+  const AddressUse._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class AddressUse extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class AddressUse extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = AddressUseEnum.fromString(valueString);
     return AddressUse._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +108,8 @@ class AddressUse extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [AddressUse] with element only
-  factory AddressUse.empty() => AddressUse._(valueString: '');
 
   /// Factory constructor to create [AddressUse]
   /// from JSON.
@@ -53,10 +117,11 @@ class AddressUse extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = AddressUseEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AddressUse.elementOnly.withElement(element);
+      return AddressUse._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AddressUse cannot be constructed from JSON.',
@@ -64,52 +129,78 @@ class AddressUse extends FhirCodeEnum {
     }
     return AddressUse._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for AddressUse
+  final AddressUseEnum? valueEnum;
+
   /// home
-  static final AddressUse home = AddressUse._(
+  static const AddressUse home = AddressUse._(
     valueString: 'home',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Home'.toFhirString,
+    valueEnum: AddressUseEnum.home,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Home',
+    ),
   );
 
   /// work
-  static final AddressUse work = AddressUse._(
+  static const AddressUse work = AddressUse._(
     valueString: 'work',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Work'.toFhirString,
+    valueEnum: AddressUseEnum.work,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Work',
+    ),
   );
 
   /// temp
-  static final AddressUse temp = AddressUse._(
+  static const AddressUse temp = AddressUse._(
     valueString: 'temp',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Temporary'.toFhirString,
+    valueEnum: AddressUseEnum.temp,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Temporary',
+    ),
   );
 
   /// old
-  static final AddressUse old = AddressUse._(
+  static const AddressUse old = AddressUse._(
     valueString: 'old',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Old / Incorrect'.toFhirString,
+    valueEnum: AddressUseEnum.old,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Old / Incorrect',
+    ),
   );
 
   /// billing
-  static final AddressUse billing = AddressUse._(
+  static const AddressUse billing = AddressUse._(
     valueString: 'billing',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Billing'.toFhirString,
+    valueEnum: AddressUseEnum.billing,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Billing',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final AddressUse elementOnly = AddressUse._(valueString: '');
 
   /// List of all enum-like values
   static final List<AddressUse> values = [
@@ -119,13 +210,6 @@ class AddressUse extends FhirCodeEnum {
     old,
     billing,
   ];
-
-  /// Clones the current instance
-  @override
-  AddressUse clone() => AddressUse._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   AddressUse withElement(Element? newElement) {
@@ -146,36 +230,56 @@ class AddressUse extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  AddressUse copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  AddressUse clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  AddressUseCopyWithImpl<AddressUse> get copyWith =>
+      AddressUseCopyWithImpl<AddressUse>(
+        this,
+        (v) => v as AddressUse,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class AddressUseCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  AddressUseCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for AddressUse: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return AddressUse._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      AddressUse(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

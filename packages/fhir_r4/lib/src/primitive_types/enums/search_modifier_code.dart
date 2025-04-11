@@ -1,11 +1,128 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SearchModifierCode
+enum SearchModifierCodeEnum {
+  /// missing
+  missing,
+
+  /// exact
+  exact,
+
+  /// contains
+  contains_,
+
+  /// not
+  not,
+
+  /// text
+  text,
+
+  /// in
+  in_,
+
+  /// not-in
+  notIn,
+
+  /// below
+  below,
+
+  /// above
+  above,
+
+  /// type
+  type,
+
+  /// identifier
+  identifier,
+
+  /// ofType
+  ofType,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SearchModifierCodeEnum.missing:
+        return 'missing';
+      case SearchModifierCodeEnum.exact:
+        return 'exact';
+      case SearchModifierCodeEnum.contains_:
+        return 'contains';
+      case SearchModifierCodeEnum.not:
+        return 'not';
+      case SearchModifierCodeEnum.text:
+        return 'text';
+      case SearchModifierCodeEnum.in_:
+        return 'in';
+      case SearchModifierCodeEnum.notIn:
+        return 'not-in';
+      case SearchModifierCodeEnum.below:
+        return 'below';
+      case SearchModifierCodeEnum.above:
+        return 'above';
+      case SearchModifierCodeEnum.type:
+        return 'type';
+      case SearchModifierCodeEnum.identifier:
+        return 'identifier';
+      case SearchModifierCodeEnum.ofType:
+        return 'ofType';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SearchModifierCodeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SearchModifierCodeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SearchModifierCodeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'missing':
+        return SearchModifierCodeEnum.missing;
+      case 'exact':
+        return SearchModifierCodeEnum.exact;
+      case 'contains':
+        return SearchModifierCodeEnum.contains_;
+      case 'not':
+        return SearchModifierCodeEnum.not;
+      case 'text':
+        return SearchModifierCodeEnum.text;
+      case 'in':
+        return SearchModifierCodeEnum.in_;
+      case 'not-in':
+        return SearchModifierCodeEnum.notIn;
+      case 'below':
+        return SearchModifierCodeEnum.below;
+      case 'above':
+        return SearchModifierCodeEnum.above;
+      case 'type':
+        return SearchModifierCodeEnum.type;
+      case 'identifier':
+        return SearchModifierCodeEnum.identifier;
+      case 'ofType':
+        return SearchModifierCodeEnum.ofType;
+    }
+    return null;
+  }
+}
+
 /// A supported modifier for a search parameter.
 class SearchModifierCode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SearchModifierCode._({
+  const SearchModifierCode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +130,6 @@ class SearchModifierCode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +143,13 @@ class SearchModifierCode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SearchModifierCodeEnum.fromString(valueString);
     return SearchModifierCode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +157,8 @@ class SearchModifierCode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SearchModifierCode] with element only
-  factory SearchModifierCode.empty() => SearchModifierCode._(valueString: '');
 
   /// Factory constructor to create [SearchModifierCode]
   /// from JSON.
@@ -53,10 +166,11 @@ class SearchModifierCode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SearchModifierCodeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchModifierCode.elementOnly.withElement(element);
+      return SearchModifierCode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SearchModifierCode cannot be constructed from JSON.',
@@ -64,109 +178,169 @@ class SearchModifierCode extends FhirCodeEnum {
     }
     return SearchModifierCode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SearchModifierCode
+  final SearchModifierCodeEnum? valueEnum;
+
   /// missing
-  static final SearchModifierCode missing = SearchModifierCode._(
+  static const SearchModifierCode missing = SearchModifierCode._(
     valueString: 'missing',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Missing'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.missing,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Missing',
+    ),
   );
 
   /// exact
-  static final SearchModifierCode exact = SearchModifierCode._(
+  static const SearchModifierCode exact = SearchModifierCode._(
     valueString: 'exact',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exact'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.exact,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Exact',
+    ),
   );
 
   /// contains_
-  static final SearchModifierCode contains_ = SearchModifierCode._(
+  static const SearchModifierCode contains_ = SearchModifierCode._(
     valueString: 'contains',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Contains'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.contains_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Contains',
+    ),
   );
 
   /// not
-  static final SearchModifierCode not = SearchModifierCode._(
+  static const SearchModifierCode not = SearchModifierCode._(
     valueString: 'not',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.not,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not',
+    ),
   );
 
   /// text
-  static final SearchModifierCode text = SearchModifierCode._(
+  static const SearchModifierCode text = SearchModifierCode._(
     valueString: 'text',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Text'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.text,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Text',
+    ),
   );
 
   /// in_
-  static final SearchModifierCode in_ = SearchModifierCode._(
+  static const SearchModifierCode in_ = SearchModifierCode._(
     valueString: 'in',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.in_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In',
+    ),
   );
 
   /// not_in
-  static final SearchModifierCode not_in = SearchModifierCode._(
+  static const SearchModifierCode notIn = SearchModifierCode._(
     valueString: 'not-in',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not In'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.notIn,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not In',
+    ),
   );
 
   /// below
-  static final SearchModifierCode below = SearchModifierCode._(
+  static const SearchModifierCode below = SearchModifierCode._(
     valueString: 'below',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Below'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.below,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Below',
+    ),
   );
 
   /// above
-  static final SearchModifierCode above = SearchModifierCode._(
+  static const SearchModifierCode above = SearchModifierCode._(
     valueString: 'above',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Above'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.above,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Above',
+    ),
   );
 
   /// type
-  static final SearchModifierCode type = SearchModifierCode._(
+  static const SearchModifierCode type = SearchModifierCode._(
     valueString: 'type',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Type'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.type,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Type',
+    ),
   );
 
   /// identifier
-  static final SearchModifierCode identifier = SearchModifierCode._(
+  static const SearchModifierCode identifier = SearchModifierCode._(
     valueString: 'identifier',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Identifier'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.identifier,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Identifier',
+    ),
   );
 
   /// ofType
-  static final SearchModifierCode ofType = SearchModifierCode._(
+  static const SearchModifierCode ofType = SearchModifierCode._(
     valueString: 'ofType',
-    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Of Type'.toFhirString,
+    valueEnum: SearchModifierCodeEnum.ofType,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-modifier-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Of Type',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SearchModifierCode elementOnly =
-      SearchModifierCode._(valueString: '');
 
   /// List of all enum-like values
   static final List<SearchModifierCode> values = [
@@ -176,20 +350,13 @@ class SearchModifierCode extends FhirCodeEnum {
     not,
     text,
     in_,
-    not_in,
+    notIn,
     below,
     above,
     type,
     identifier,
     ofType,
   ];
-
-  /// Clones the current instance
-  @override
-  SearchModifierCode clone() => SearchModifierCode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SearchModifierCode withElement(Element? newElement) {
@@ -210,36 +377,56 @@ class SearchModifierCode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SearchModifierCode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SearchModifierCode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SearchModifierCodeCopyWithImpl<SearchModifierCode> get copyWith =>
+      SearchModifierCodeCopyWithImpl<SearchModifierCode>(
+        this,
+        (v) => v as SearchModifierCode,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SearchModifierCodeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SearchModifierCodeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SearchModifierCode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SearchModifierCode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SearchModifierCode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

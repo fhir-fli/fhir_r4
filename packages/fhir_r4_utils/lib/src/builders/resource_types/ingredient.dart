@@ -826,44 +826,6 @@ class IngredientBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool for_ = false,
-    bool role = false,
-    bool function_ = false,
-    bool allergenicIndicator = false,
-    bool manufacturer = false,
-    bool substance = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (for_) this.for_ = null;
-    if (role) this.role = null;
-    if (function_) this.function_ = null;
-    if (allergenicIndicator) this.allergenicIndicator = null;
-    if (manufacturer) this.manufacturer = null;
-    if (substance) this.substance = null;
-  }
-
   @override
   IngredientBuilder clone() => throw UnimplementedError();
   @override
@@ -1420,22 +1382,6 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool manufacturer = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (manufacturer) this.manufacturer = null;
-  }
-
   @override
   IngredientManufacturerBuilder clone() => throw UnimplementedError();
   @override
@@ -1894,22 +1840,6 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool strength = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (strength) this.strength = null;
   }
 
   @override
@@ -2734,32 +2664,6 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool presentation = false,
-    bool textPresentation = false,
-    bool concentration = false,
-    bool textConcentration = false,
-    bool measurementPoint = false,
-    bool country = false,
-    bool referenceStrength = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (presentation) presentationX = null;
-    if (textPresentation) this.textPresentation = null;
-    if (concentration) concentrationX = null;
-    if (textConcentration) this.textConcentration = null;
-    if (measurementPoint) this.measurementPoint = null;
-    if (country) this.country = null;
-    if (referenceStrength) this.referenceStrength = null;
-  }
-
   @override
   IngredientStrengthBuilder clone() => throw UnimplementedError();
   @override
@@ -3407,26 +3311,6 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool substance = false,
-    bool strength = false,
-    bool measurementPoint = false,
-    bool country = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (substance) this.substance = null;
-    if (strength) strengthX = null;
-    if (measurementPoint) this.measurementPoint = null;
-    if (country) this.country = null;
   }
 
   @override

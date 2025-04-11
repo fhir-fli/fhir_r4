@@ -1244,58 +1244,6 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool category = false,
-    bool priority = false,
-    bool item = false,
-    bool quantity = false,
-    bool parameter = false,
-    bool occurrence = false,
-    bool authoredOn = false,
-    bool requester = false,
-    bool supplier = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool deliverFrom = false,
-    bool deliverTo = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (priority) this.priority = null;
-    if (item) itemX = null;
-    if (quantity) this.quantity = null;
-    if (parameter) this.parameter = null;
-    if (occurrence) occurrenceX = null;
-    if (authoredOn) this.authoredOn = null;
-    if (requester) this.requester = null;
-    if (supplier) this.supplier = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (deliverFrom) this.deliverFrom = null;
-    if (deliverTo) this.deliverTo = null;
-  }
-
   @override
   SupplyRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -2007,22 +1955,6 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
   }
 
   @override

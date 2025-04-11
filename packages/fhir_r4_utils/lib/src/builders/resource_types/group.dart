@@ -924,48 +924,6 @@ class FhirGroupBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool type = false,
-    bool actual = false,
-    bool code = false,
-    bool name = false,
-    bool quantity = false,
-    bool managingEntity = false,
-    bool characteristic = false,
-    bool member = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (type) this.type = null;
-    if (actual) this.actual = null;
-    if (code) this.code = null;
-    if (name) this.name = null;
-    if (quantity) this.quantity = null;
-    if (managingEntity) this.managingEntity = null;
-    if (characteristic) this.characteristic = null;
-    if (member) this.member = null;
-  }
-
   @override
   FhirGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -1750,26 +1708,6 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-    bool exclude = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
-    if (exclude) this.exclude = null;
-    if (period) this.period = null;
-  }
-
   @override
   GroupCharacteristicBuilder clone() => throw UnimplementedError();
   @override
@@ -2275,24 +2213,6 @@ class GroupMemberBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool entity = false,
-    bool period = false,
-    bool inactive = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (entity) this.entity = null;
-    if (period) this.period = null;
-    if (inactive) this.inactive = null;
   }
 
   @override

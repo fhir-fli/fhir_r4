@@ -1666,78 +1666,6 @@ class EvidenceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool title = false,
-    bool citeAs = false,
-    bool status = false,
-    bool date = false,
-    bool useContext = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool publisher = false,
-    bool contact = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool description = false,
-    bool assertion = false,
-    bool note = false,
-    bool variableDefinition = false,
-    bool synthesisType = false,
-    bool studyType = false,
-    bool statistic = false,
-    bool certainty = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (title) this.title = null;
-    if (citeAs) citeAsX = null;
-    if (status) this.status = null;
-    if (date) this.date = null;
-    if (useContext) this.useContext = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (description) this.description = null;
-    if (assertion) this.assertion = null;
-    if (note) this.note = null;
-    if (variableDefinition) this.variableDefinition = null;
-    if (synthesisType) this.synthesisType = null;
-    if (studyType) this.studyType = null;
-    if (statistic) this.statistic = null;
-    if (certainty) this.certainty = null;
-  }
-
   @override
   EvidenceBuilder clone() => throw UnimplementedError();
   @override
@@ -2561,30 +2489,6 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool note = false,
-    bool variableRole = false,
-    bool observed = false,
-    bool intended = false,
-    bool directnessMatch = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (note) this.note = null;
-    if (variableRole) this.variableRole = null;
-    if (observed) this.observed = null;
-    if (intended) this.intended = null;
-    if (directnessMatch) this.directnessMatch = null;
-  }
-
   @override
   EvidenceVariableDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -3402,38 +3306,6 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool note = false,
-    bool statisticType = false,
-    bool category = false,
-    bool quantity = false,
-    bool numberOfEvents = false,
-    bool numberAffected = false,
-    bool sampleSize = false,
-    bool attributeEstimate = false,
-    bool modelCharacteristic = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (note) this.note = null;
-    if (statisticType) this.statisticType = null;
-    if (category) this.category = null;
-    if (quantity) this.quantity = null;
-    if (numberOfEvents) this.numberOfEvents = null;
-    if (numberAffected) this.numberAffected = null;
-    if (sampleSize) this.sampleSize = null;
-    if (attributeEstimate) this.attributeEstimate = null;
-    if (modelCharacteristic) this.modelCharacteristic = null;
-  }
-
   @override
   EvidenceStatisticBuilder clone() => throw UnimplementedError();
   @override
@@ -4110,28 +3982,6 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool note = false,
-    bool numberOfStudies = false,
-    bool numberOfParticipants = false,
-    bool knownDataCount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (note) this.note = null;
-    if (numberOfStudies) this.numberOfStudies = null;
-    if (numberOfParticipants) this.numberOfParticipants = null;
-    if (knownDataCount) this.knownDataCount = null;
   }
 
   @override
@@ -4819,32 +4669,6 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool note = false,
-    bool type = false,
-    bool quantity = false,
-    bool level = false,
-    bool range = false,
-    bool attributeEstimate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (note) this.note = null;
-    if (type) this.type = null;
-    if (quantity) this.quantity = null;
-    if (level) this.level = null;
-    if (range) this.range = null;
-    if (attributeEstimate) this.attributeEstimate = null;
-  }
-
   @override
   EvidenceAttributeEstimateBuilder clone() => throw UnimplementedError();
   @override
@@ -5418,26 +5242,6 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-    bool variable = false,
-    bool attributeEstimate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) this.value = null;
-    if (variable) this.variable = null;
-    if (attributeEstimate) this.attributeEstimate = null;
   }
 
   @override
@@ -6048,28 +5852,6 @@ class EvidenceModelCharacteristicVariableBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool variableDefinition = false,
-    bool handling = false,
-    bool valueCategory = false,
-    bool valueQuantity = false,
-    bool valueRange = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (variableDefinition) this.variableDefinition = null;
-    if (handling) this.handling = null;
-    if (valueCategory) this.valueCategory = null;
-    if (valueQuantity) this.valueQuantity = null;
-    if (valueRange) this.valueRange = null;
   }
 
   @override
@@ -6714,30 +6496,6 @@ class EvidenceCertaintyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool note = false,
-    bool type = false,
-    bool rating = false,
-    bool rater = false,
-    bool subcomponent = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (note) this.note = null;
-    if (type) this.type = null;
-    if (rating) this.rating = null;
-    if (rater) this.rater = null;
-    if (subcomponent) this.subcomponent = null;
   }
 
   @override

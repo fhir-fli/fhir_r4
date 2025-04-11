@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ParticipationStatus
+enum ParticipationStatusEnum {
+  /// accepted
+  accepted,
+
+  /// declined
+  declined,
+
+  /// tentative
+  tentative,
+
+  /// needs-action
+  needsAction,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ParticipationStatusEnum.accepted:
+        return 'accepted';
+      case ParticipationStatusEnum.declined:
+        return 'declined';
+      case ParticipationStatusEnum.tentative:
+        return 'tentative';
+      case ParticipationStatusEnum.needsAction:
+        return 'needs-action';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ParticipationStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ParticipationStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ParticipationStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'accepted':
+        return ParticipationStatusEnum.accepted;
+      case 'declined':
+        return ParticipationStatusEnum.declined;
+      case 'tentative':
+        return ParticipationStatusEnum.tentative;
+      case 'needs-action':
+        return ParticipationStatusEnum.needsAction;
+    }
+    return null;
+  }
+}
+
 /// The Participation status of an appointment.
 class ParticipationStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ParticipationStatus._({
+  const ParticipationStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class ParticipationStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class ParticipationStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ParticipationStatusEnum.fromString(valueString);
     return ParticipationStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class ParticipationStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ParticipationStatus] with element only
-  factory ParticipationStatus.empty() => ParticipationStatus._(valueString: '');
 
   /// Factory constructor to create [ParticipationStatus]
   /// from JSON.
@@ -53,10 +110,11 @@ class ParticipationStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ParticipationStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipationStatus.elementOnly.withElement(element);
+      return ParticipationStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ParticipationStatus cannot be constructed from JSON.',
@@ -64,60 +122,73 @@ class ParticipationStatus extends FhirCodeEnum {
     }
     return ParticipationStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ParticipationStatus
+  final ParticipationStatusEnum? valueEnum;
+
   /// accepted
-  static final ParticipationStatus accepted = ParticipationStatus._(
+  static const ParticipationStatus accepted = ParticipationStatus._(
     valueString: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Accepted'.toFhirString,
+    valueEnum: ParticipationStatusEnum.accepted,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Accepted',
+    ),
   );
 
   /// declined
-  static final ParticipationStatus declined = ParticipationStatus._(
+  static const ParticipationStatus declined = ParticipationStatus._(
     valueString: 'declined',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Declined'.toFhirString,
+    valueEnum: ParticipationStatusEnum.declined,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Declined',
+    ),
   );
 
   /// tentative
-  static final ParticipationStatus tentative = ParticipationStatus._(
+  static const ParticipationStatus tentative = ParticipationStatus._(
     valueString: 'tentative',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Tentative'.toFhirString,
+    valueEnum: ParticipationStatusEnum.tentative,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Tentative',
+    ),
   );
 
   /// needs_action
-  static final ParticipationStatus needs_action = ParticipationStatus._(
+  static const ParticipationStatus needsAction = ParticipationStatus._(
     valueString: 'needs-action',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Needs Action'.toFhirString,
+    valueEnum: ParticipationStatusEnum.needsAction,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Needs Action',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ParticipationStatus elementOnly =
-      ParticipationStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ParticipationStatus> values = [
     accepted,
     declined,
     tentative,
-    needs_action,
+    needsAction,
   ];
-
-  /// Clones the current instance
-  @override
-  ParticipationStatus clone() => ParticipationStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ParticipationStatus withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class ParticipationStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ParticipationStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ParticipationStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ParticipationStatusCopyWithImpl<ParticipationStatus> get copyWith =>
+      ParticipationStatusCopyWithImpl<ParticipationStatus>(
+        this,
+        (v) => v as ParticipationStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ParticipationStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ParticipationStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ParticipationStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ParticipationStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ParticipationStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

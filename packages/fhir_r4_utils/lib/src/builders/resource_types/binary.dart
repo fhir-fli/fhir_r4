@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Binary, R4ResourceType, yamlMapToJson, yamlToJson;
+    show
+        Binary,
+        R4ResourceType,
+        
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -465,26 +470,6 @@ class BinaryBuilder extends ResourceBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool contentType = false,
-    bool securityContext = false,
-    bool data = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (contentType) this.contentType = null;
-    if (securityContext) this.securityContext = null;
-    if (data) this.data = null;
   }
 
   @override

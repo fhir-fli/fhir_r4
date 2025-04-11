@@ -329,18 +329,4 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder
   @override
   FhirBooleanBuilder createProperty(String propertyName) => this;
 
-  /// Clears selected fields in this [FhirBooleanBuilder].
-  @override
-  FhirBooleanBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirBooleanBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

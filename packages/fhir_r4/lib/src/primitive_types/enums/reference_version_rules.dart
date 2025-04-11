@@ -1,12 +1,66 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ReferenceVersionRules
+enum ReferenceVersionRulesEnum {
+  /// either
+  either,
+
+  /// independent
+  independent,
+
+  /// specific
+  specific,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ReferenceVersionRulesEnum.either:
+        return 'either';
+      case ReferenceVersionRulesEnum.independent:
+        return 'independent';
+      case ReferenceVersionRulesEnum.specific:
+        return 'specific';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ReferenceVersionRulesEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ReferenceVersionRulesEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ReferenceVersionRulesEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'either':
+        return ReferenceVersionRulesEnum.either;
+      case 'independent':
+        return ReferenceVersionRulesEnum.independent;
+      case 'specific':
+        return ReferenceVersionRulesEnum.specific;
+    }
+    return null;
+  }
+}
+
 /// Whether a reference needs to be version specific or version
 /// independent, or whether either can be used.
 class ReferenceVersionRules extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ReferenceVersionRules._({
+  const ReferenceVersionRules._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +68,6 @@ class ReferenceVersionRules extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +81,13 @@ class ReferenceVersionRules extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ReferenceVersionRulesEnum.fromString(valueString);
     return ReferenceVersionRules._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +95,8 @@ class ReferenceVersionRules extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ReferenceVersionRules] with element only
-  factory ReferenceVersionRules.empty() =>
-      ReferenceVersionRules._(valueString: '');
 
   /// Factory constructor to create [ReferenceVersionRules]
   /// from JSON.
@@ -55,10 +104,11 @@ class ReferenceVersionRules extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ReferenceVersionRulesEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceVersionRules.elementOnly.withElement(element);
+      return ReferenceVersionRules._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ReferenceVersionRules cannot be constructed from JSON.',
@@ -66,37 +116,52 @@ class ReferenceVersionRules extends FhirCodeEnum {
     }
     return ReferenceVersionRules._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ReferenceVersionRules
+  final ReferenceVersionRulesEnum? valueEnum;
+
   /// either
-  static final ReferenceVersionRules either = ReferenceVersionRules._(
+  static const ReferenceVersionRules either = ReferenceVersionRules._(
     valueString: 'either',
-    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Either Specific or independent'.toFhirString,
+    valueEnum: ReferenceVersionRulesEnum.either,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Either Specific or independent',
+    ),
   );
 
   /// independent
-  static final ReferenceVersionRules independent = ReferenceVersionRules._(
+  static const ReferenceVersionRules independent = ReferenceVersionRules._(
     valueString: 'independent',
-    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Version independent'.toFhirString,
+    valueEnum: ReferenceVersionRulesEnum.independent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Version independent',
+    ),
   );
 
   /// specific
-  static final ReferenceVersionRules specific = ReferenceVersionRules._(
+  static const ReferenceVersionRules specific = ReferenceVersionRules._(
     valueString: 'specific',
-    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Version Specific'.toFhirString,
+    valueEnum: ReferenceVersionRulesEnum.specific,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Version Specific',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ReferenceVersionRules elementOnly =
-      ReferenceVersionRules._(valueString: '');
 
   /// List of all enum-like values
   static final List<ReferenceVersionRules> values = [
@@ -104,13 +169,6 @@ class ReferenceVersionRules extends FhirCodeEnum {
     independent,
     specific,
   ];
-
-  /// Clones the current instance
-  @override
-  ReferenceVersionRules clone() => ReferenceVersionRules._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ReferenceVersionRules withElement(Element? newElement) {
@@ -131,36 +189,56 @@ class ReferenceVersionRules extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ReferenceVersionRules copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ReferenceVersionRules clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ReferenceVersionRulesCopyWithImpl<ReferenceVersionRules> get copyWith =>
+      ReferenceVersionRulesCopyWithImpl<ReferenceVersionRules>(
+        this,
+        (v) => v as ReferenceVersionRules,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ReferenceVersionRulesCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ReferenceVersionRulesCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ReferenceVersionRules: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ReferenceVersionRules._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ReferenceVersionRules(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -1345,64 +1345,6 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool status = false,
-    bool useContext = false,
-    bool identifier = false,
-    bool relatedIdentifier = false,
-    bool citeAs = false,
-    bool type = false,
-    bool note = false,
-    bool relatedArtifact = false,
-    bool subject = false,
-    bool publisher = false,
-    bool contact = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatesTo = false,
-    bool section = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (status) this.status = null;
-    if (useContext) this.useContext = null;
-    if (identifier) this.identifier = null;
-    if (relatedIdentifier) this.relatedIdentifier = null;
-    if (citeAs) citeAsX = null;
-    if (type) this.type = null;
-    if (note) this.note = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (subject) this.subject = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (relatesTo) this.relatesTo = null;
-    if (section) this.section = null;
-  }
-
   @override
   EvidenceReportBuilder clone() => throw UnimplementedError();
   @override
@@ -2036,22 +1978,6 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool characteristic = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (characteristic) this.characteristic = null;
-    if (note) this.note = null;
   }
 
   @override
@@ -2733,26 +2659,6 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-    bool exclude = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
-    if (exclude) this.exclude = null;
-    if (period) this.period = null;
-  }
-
   @override
   EvidenceReportCharacteristicBuilder clone() => throw UnimplementedError();
   @override
@@ -3298,22 +3204,6 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (target) targetX = null;
   }
 
   @override
@@ -4178,42 +4068,6 @@ class EvidenceReportSectionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool title = false,
-    bool focus = false,
-    bool focusReference = false,
-    bool author = false,
-    bool text = false,
-    bool mode = false,
-    bool orderedBy = false,
-    bool entryClassifier = false,
-    bool entryReference = false,
-    bool entryQuantity = false,
-    bool emptyReason = false,
-    bool section = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (title) this.title = null;
-    if (focus) this.focus = null;
-    if (focusReference) this.focusReference = null;
-    if (author) this.author = null;
-    if (text) this.text = null;
-    if (mode) this.mode = null;
-    if (orderedBy) this.orderedBy = null;
-    if (entryClassifier) this.entryClassifier = null;
-    if (entryReference) this.entryReference = null;
-    if (entryQuantity) this.entryQuantity = null;
-    if (emptyReason) this.emptyReason = null;
-    if (section) this.section = null;
   }
 
   @override

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'structure_map.g.dart';
+
 /// [StructureMap]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
@@ -37,83 +39,57 @@ class StructureMap extends CanonicalResource {
     this.import_,
     required this.group,
   }) : super(
-          objectPath: 'StructureMap',
           resourceType: R4ResourceType.StructureMap,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMap.empty() => StructureMap(
-        url: FhirUri.empty(),
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        group: <StructureMapGroup>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMap.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap';
     return StructureMap(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -121,15 +97,11 @@ class StructureMap extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -137,51 +109,41 @@ class StructureMap extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -189,25 +151,18 @@ class StructureMap extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -215,21 +170,16 @@ class StructureMap extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-        '$objectPath.purpose',
       ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-        '$objectPath.copyright',
       ),
       structure: (json['structure'] as List<dynamic>?)
           ?.map<StructureMapStructure>(
             (v) => StructureMapStructure.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.structure',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -237,15 +187,11 @@ class StructureMap extends CanonicalResource {
         json,
         'import',
         FhirCanonical.fromJson,
-        '$objectPath.import',
       ),
       group: (json['group'] as List<dynamic>)
           .map<StructureMapGroup>(
             (v) => StructureMapGroup.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.group',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -664,784 +610,19 @@ class StructureMap extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMap clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copyright':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'structure':
-        {
-          if (child is List<StructureMapStructure>) {
-            // Add all elements from passed list
-            final newList = [...?structure, ...child];
-            return copyWith(structure: newList);
-          } else if (child is StructureMapStructure) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?structure,
-              child,
-            ];
-            return copyWith(structure: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'import':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?import_, ...child];
-            return copyWith(import_: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?import_,
-              child,
-            ];
-            return copyWith(import_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'group':
-        {
-          if (child is List<StructureMapGroup>) {
-            // Add all elements from passed list
-            final newList = [...group, ...child];
-            return copyWith(group: newList);
-          } else if (child is StructureMapGroup) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...group,
-              child,
-            ];
-            return copyWith(group: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMap]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirMarkdown'];
-      case 'copyright':
-        return ['FhirMarkdown'];
-      case 'structure':
-        return ['StructureMapStructure'];
-      case 'import':
-        return ['FhirCanonical'];
-      case 'group':
-        return ['StructureMapGroup'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMap]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMap createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
-        }
-      case 'copyright':
-        {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
-        }
-      case 'structure':
-        {
-          return copyWith(
-            structure: <StructureMapStructure>[],
-          );
-        }
-      case 'import':
-        {
-          return copyWith(
-            import_: <FhirCanonical>[],
-          );
-        }
-      case 'group':
-        {
-          return copyWith(
-            group: <StructureMapGroup>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMap clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool version = false,
-    bool title = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool structure = false,
-    bool import_ = false,
-  }) {
-    return StructureMap(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      structure: structure ? null : this.structure,
-      import_: import_ ? null : this.import_,
-      group: group,
-    );
-  }
-
-  @override
-  StructureMap clone() => throw UnimplementedError();
-  @override
-  StructureMap copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    List<StructureMapStructure>? structure,
-    List<FhirCanonical>? import_,
-    List<StructureMapGroup>? group,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return StructureMap(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      structure: structure
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.structure',
-                ),
-              )
-              .toList() ??
-          this.structure,
-      import_: import_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.import',
-                ),
-              )
-              .toList() ??
-          this.import_,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
-    );
-  }
+  $StructureMapCopyWith<StructureMap> get copyWith =>
+      _$StructureMapCopyWithImpl<StructureMap>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1628,47 +809,29 @@ class StructureMapStructure extends BackboneElement {
     this.alias,
     this.documentation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.structure',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapStructure.empty() => StructureMapStructure(
-        url: FhirCanonical.empty(),
-        mode: StructureMapModelMode.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapStructure.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.structure';
     return StructureMapStructure(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1676,25 +839,21 @@ class StructureMapStructure extends BackboneElement {
         json,
         'url',
         FhirCanonical.fromJson,
-        '$objectPath.url',
       )!,
       mode: JsonParser.parsePrimitive<StructureMapModelMode>(
         json,
         'mode',
         StructureMapModelMode.fromJson,
-        '$objectPath.mode',
       )!,
       alias: JsonParser.parsePrimitive<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
-        '$objectPath.alias',
       ),
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
     );
   }
@@ -1913,253 +1072,19 @@ class StructureMapStructure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapStructure clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'mode':
-        {
-          if (child is StructureMapModelMode) {
-            return copyWith(mode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'alias':
-        {
-          if (child is FhirString) {
-            return copyWith(alias: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapStructure]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirCanonical'];
-      case 'mode':
-        return ['FhirCode'];
-      case 'alias':
-        return ['FhirString'];
-      case 'documentation':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapStructure]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapStructure createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirCanonical.empty(),
-          );
-        }
-      case 'mode':
-        {
-          return copyWith(
-            mode: StructureMapModelMode.empty(),
-          );
-        }
-      case 'alias':
-        {
-          return copyWith(
-            alias: FhirString.empty(),
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapStructure clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool alias = false,
-    bool documentation = false,
-  }) {
-    return StructureMapStructure(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      mode: mode,
-      alias: alias ? null : this.alias,
-      documentation: documentation ? null : this.documentation,
-    );
-  }
-
-  @override
-  StructureMapStructure clone() => throw UnimplementedError();
-  @override
-  StructureMapStructure copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCanonical? url,
-    StructureMapModelMode? mode,
-    FhirString? alias,
-    FhirString? documentation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapStructure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      alias: alias?.copyWith(
-            objectPath: '$newObjectPath.alias',
-          ) ??
-          this.alias,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-    );
-  }
+  $StructureMapStructureCopyWith<StructureMapStructure> get copyWith =>
+      _$StructureMapStructureCopyWithImpl<StructureMapStructure>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2233,49 +1158,29 @@ class StructureMapGroup extends BackboneElement {
     required this.input,
     required this.rule,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapGroup.empty() => StructureMapGroup(
-        name: FhirId.empty(),
-        typeMode: StructureMapGroupTypeMode.values.first,
-        input: <StructureMapInput>[],
-        rule: <StructureMapRule>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapGroup.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group';
     return StructureMapGroup(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2283,43 +1188,33 @@ class StructureMapGroup extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
-        '$objectPath.name',
       )!,
       extends_: JsonParser.parsePrimitive<FhirId>(
         json,
         'extends',
         FhirId.fromJson,
-        '$objectPath.extends',
       ),
       typeMode: JsonParser.parsePrimitive<StructureMapGroupTypeMode>(
         json,
         'typeMode',
         StructureMapGroupTypeMode.fromJson,
-        '$objectPath.typeMode',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
       input: (json['input'] as List<dynamic>)
           .map<StructureMapInput>(
             (v) => StructureMapInput.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.input',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>)
           .map<StructureMapRule>(
             (v) => StructureMapRule.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.rule',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2565,323 +1460,19 @@ class StructureMapGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapGroup clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirId) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extends':
-        {
-          if (child is FhirId) {
-            return copyWith(extends_: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'typeMode':
-        {
-          if (child is StructureMapGroupTypeMode) {
-            return copyWith(typeMode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'input':
-        {
-          if (child is List<StructureMapInput>) {
-            // Add all elements from passed list
-            final newList = [...input, ...child];
-            return copyWith(input: newList);
-          } else if (child is StructureMapInput) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...input,
-              child,
-            ];
-            return copyWith(input: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rule':
-        {
-          if (child is List<StructureMapRule>) {
-            // Add all elements from passed list
-            final newList = [...rule, ...child];
-            return copyWith(rule: newList);
-          } else if (child is StructureMapRule) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...rule,
-              child,
-            ];
-            return copyWith(rule: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapGroup]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirId'];
-      case 'extends':
-        return ['FhirId'];
-      case 'typeMode':
-        return ['FhirCode'];
-      case 'documentation':
-        return ['FhirString'];
-      case 'input':
-        return ['StructureMapInput'];
-      case 'rule':
-        return ['StructureMapRule'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapGroup]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapGroup createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirId.empty(),
-          );
-        }
-      case 'extends':
-        {
-          return copyWith(
-            extends_: FhirId.empty(),
-          );
-        }
-      case 'typeMode':
-        {
-          return copyWith(
-            typeMode: StructureMapGroupTypeMode.empty(),
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      case 'input':
-        {
-          return copyWith(
-            input: <StructureMapInput>[],
-          );
-        }
-      case 'rule':
-        {
-          return copyWith(
-            rule: <StructureMapRule>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapGroup clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool extends_ = false,
-    bool documentation = false,
-  }) {
-    return StructureMapGroup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      extends_: extends_ ? null : this.extends_,
-      typeMode: typeMode,
-      documentation: documentation ? null : this.documentation,
-      input: input,
-      rule: rule,
-    );
-  }
-
-  @override
-  StructureMapGroup clone() => throw UnimplementedError();
-  @override
-  StructureMapGroup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    FhirId? extends_,
-    StructureMapGroupTypeMode? typeMode,
-    FhirString? documentation,
-    List<StructureMapInput>? input,
-    List<StructureMapRule>? rule,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      extends_: extends_?.copyWith(
-            objectPath: '$newObjectPath.extends',
-          ) ??
-          this.extends_,
-      typeMode: typeMode?.copyWith(
-            objectPath: '$newObjectPath.typeMode',
-          ) ??
-          this.typeMode,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-      input: input
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.input',
-                ),
-              )
-              .toList() ??
-          this.input,
-      rule: rule
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rule',
-                ),
-              )
-              .toList() ??
-          this.rule,
-    );
-  }
+  $StructureMapGroupCopyWith<StructureMapGroup> get copyWith =>
+      _$StructureMapGroupCopyWithImpl<StructureMapGroup>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2965,47 +1556,29 @@ class StructureMapInput extends BackboneElement {
     required this.mode,
     this.documentation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.input',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapInput.empty() => StructureMapInput(
-        name: FhirId.empty(),
-        mode: StructureMapInputMode.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapInput.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.input';
     return StructureMapInput(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3013,25 +1586,21 @@ class StructureMapInput extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
-        '$objectPath.name',
       )!,
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
-        '$objectPath.type',
       ),
       mode: JsonParser.parsePrimitive<StructureMapInputMode>(
         json,
         'mode',
         StructureMapInputMode.fromJson,
-        '$objectPath.mode',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
     );
   }
@@ -3250,253 +1819,19 @@ class StructureMapInput extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapInput clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirId) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FhirString) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'mode':
-        {
-          if (child is StructureMapInputMode) {
-            return copyWith(mode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapInput]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirId'];
-      case 'type':
-        return ['FhirString'];
-      case 'mode':
-        return ['FhirCode'];
-      case 'documentation':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapInput]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapInput createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirId.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FhirString.empty(),
-          );
-        }
-      case 'mode':
-        {
-          return copyWith(
-            mode: StructureMapInputMode.empty(),
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapInput clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool documentation = false,
-  }) {
-    return StructureMapInput(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      type: type ? null : this.type,
-      mode: mode,
-      documentation: documentation ? null : this.documentation,
-    );
-  }
-
-  @override
-  StructureMapInput clone() => throw UnimplementedError();
-  @override
-  StructureMapInput copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    FhirString? type,
-    StructureMapInputMode? mode,
-    FhirString? documentation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapInput(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-    );
-  }
+  $StructureMapInputCopyWith<StructureMapInput> get copyWith =>
+      _$StructureMapInputCopyWithImpl<StructureMapInput>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3569,47 +1904,29 @@ class StructureMapRule extends BackboneElement {
     this.dependent,
     this.documentation,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.rule',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapRule.empty() => StructureMapRule(
-        name: FhirId.empty(),
-        source: <StructureMapSource>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapRule.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.rule';
     return StructureMapRule(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3617,45 +1934,32 @@ class StructureMapRule extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
-        '$objectPath.name',
       )!,
       source: (json['source'] as List<dynamic>)
           .map<StructureMapSource>(
             (v) => StructureMapSource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.source',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
           ?.map<StructureMapTarget>(
             (v) => StructureMapTarget.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.target',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>?)
           ?.map<StructureMapRule>(
             (v) => StructureMapRule.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.rule',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       dependent: (json['dependent'] as List<dynamic>?)
           ?.map<StructureMapDependent>(
             (v) => StructureMapDependent.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.dependent',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3663,7 +1967,6 @@ class StructureMapRule extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
     );
   }
@@ -3908,351 +2211,19 @@ class StructureMapRule extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapRule clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirId) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is List<StructureMapSource>) {
-            // Add all elements from passed list
-            final newList = [...source, ...child];
-            return copyWith(source: newList);
-          } else if (child is StructureMapSource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...source,
-              child,
-            ];
-            return copyWith(source: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'target':
-        {
-          if (child is List<StructureMapTarget>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is StructureMapTarget) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?target,
-              child,
-            ];
-            return copyWith(target: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rule':
-        {
-          if (child is List<StructureMapRule>) {
-            // Add all elements from passed list
-            final newList = [...?rule, ...child];
-            return copyWith(rule: newList);
-          } else if (child is StructureMapRule) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?rule,
-              child,
-            ];
-            return copyWith(rule: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dependent':
-        {
-          if (child is List<StructureMapDependent>) {
-            // Add all elements from passed list
-            final newList = [...?dependent, ...child];
-            return copyWith(dependent: newList);
-          } else if (child is StructureMapDependent) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?dependent,
-              child,
-            ];
-            return copyWith(dependent: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapRule]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirId'];
-      case 'source':
-        return ['StructureMapSource'];
-      case 'target':
-        return ['StructureMapTarget'];
-      case 'rule':
-        return ['StructureMapRule'];
-      case 'dependent':
-        return ['StructureMapDependent'];
-      case 'documentation':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapRule]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapRule createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirId.empty(),
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: <StructureMapSource>[],
-          );
-        }
-      case 'target':
-        {
-          return copyWith(
-            target: <StructureMapTarget>[],
-          );
-        }
-      case 'rule':
-        {
-          return copyWith(
-            rule: <StructureMapRule>[],
-          );
-        }
-      case 'dependent':
-        {
-          return copyWith(
-            dependent: <StructureMapDependent>[],
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapRule clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool target = false,
-    bool rule = false,
-    bool dependent = false,
-    bool documentation = false,
-  }) {
-    return StructureMapRule(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      source: source,
-      target: target ? null : this.target,
-      rule: rule ? null : this.rule,
-      dependent: dependent ? null : this.dependent,
-      documentation: documentation ? null : this.documentation,
-    );
-  }
-
-  @override
-  StructureMapRule clone() => throw UnimplementedError();
-  @override
-  StructureMapRule copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    List<StructureMapSource>? source,
-    List<StructureMapTarget>? target,
-    List<StructureMapRule>? rule,
-    List<StructureMapDependent>? dependent,
-    FhirString? documentation,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapRule(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      source: source
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.source',
-                ),
-              )
-              .toList() ??
-          this.source,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      rule: rule
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rule',
-                ),
-              )
-              .toList() ??
-          this.rule,
-      dependent: dependent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dependent',
-                ),
-              )
-              .toList() ??
-          this.dependent,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-    );
-  }
+  $StructureMapRuleCopyWith<StructureMapRule> get copyWith =>
+      _$StructureMapRuleCopyWithImpl<StructureMapRule>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4342,46 +2313,29 @@ class StructureMapSource extends BackboneElement {
     this.check,
     this.logMessage,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.rule.source',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapSource.empty() => StructureMapSource(
-        context: FhirId.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapSource.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.rule.source';
     return StructureMapSource(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4389,25 +2343,21 @@ class StructureMapSource extends BackboneElement {
         json,
         'context',
         FhirId.fromJson,
-        '$objectPath.context',
       )!,
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
-        '$objectPath.min',
       ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
-        '$objectPath.max',
       ),
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
-        '$objectPath.type',
       ),
       defaultValueX:
           JsonParser.parsePolymorphic<DefaultValueXStructureMapSource>(
@@ -4464,43 +2414,36 @@ class StructureMapSource extends BackboneElement {
           'defaultValueDosage': Dosage.fromJson,
           'defaultValueMeta': FhirMeta.fromJson,
         },
-        objectPath,
       ),
       element: JsonParser.parsePrimitive<FhirString>(
         json,
         'element',
         FhirString.fromJson,
-        '$objectPath.element',
       ),
       listMode: JsonParser.parsePrimitive<StructureMapSourceListMode>(
         json,
         'listMode',
         StructureMapSourceListMode.fromJson,
-        '$objectPath.listMode',
       ),
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
-        '$objectPath.variable',
       ),
       condition: JsonParser.parsePrimitive<FhirString>(
         json,
         'condition',
         FhirString.fromJson,
-        '$objectPath.condition',
       ),
       check: JsonParser.parsePrimitive<FhirString>(
         json,
         'check',
         FhirString.fromJson,
-        '$objectPath.check',
       ),
       logMessage: JsonParser.parsePrimitive<FhirString>(
         json,
         'logMessage',
         FhirString.fromJson,
-        '$objectPath.logMessage',
       ),
     );
   }
@@ -5187,1414 +3130,19 @@ class StructureMapSource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapSource clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'context':
-        {
-          if (child is FhirId) {
-            return copyWith(context: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'min':
-        {
-          if (child is FhirInteger) {
-            return copyWith(min: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'max':
-        {
-          if (child is FhirString) {
-            return copyWith(max: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FhirString) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValue':
-      case 'defaultValueX':
-        {
-          if (child is DefaultValueXStructureMapSource) {
-            return copyWith(defaultValueX: child);
-          } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirCode) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirDecimal) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirId) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirInstant) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirMarkdown) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirOid) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirPositiveInt) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirTime) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirUnsignedInt) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirUri) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirUrl) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirUuid) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Address) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Age) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Annotation) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Coding) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is ContactPoint) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Count) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Distance) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirDuration) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is HumanName) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Identifier) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Money) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Period) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Range) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Ratio) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Reference) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is SampledData) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Signature) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Timing) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is ContactDetail) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Contributor) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is DataRequirement) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirExpression) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is ParameterDefinition) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is RelatedArtifact) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is TriggerDefinition) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is UsageContext) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is Dosage) {
-              return copyWith(defaultValueX: child);
-            }
-            if (child is FhirMeta) {
-              return copyWith(defaultValueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'defaultValueFhirBase64Binary':
-        {
-          if (child is FhirBase64Binary) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirCode':
-        {
-          if (child is FhirCode) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirDecimal':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirId':
-        {
-          if (child is FhirId) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirInstant':
-        {
-          if (child is FhirInstant) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirMarkdown':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirOid':
-        {
-          if (child is FhirOid) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirPositiveInt':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirTime':
-        {
-          if (child is FhirTime) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirUnsignedInt':
-        {
-          if (child is FhirUnsignedInt) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirUrl':
-        {
-          if (child is FhirUrl) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirUuid':
-        {
-          if (child is FhirUuid) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueAddress':
-        {
-          if (child is Address) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueAge':
-        {
-          if (child is Age) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueAnnotation':
-        {
-          if (child is Annotation) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueCoding':
-        {
-          if (child is Coding) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueContactPoint':
-        {
-          if (child is ContactPoint) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueCount':
-        {
-          if (child is Count) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueDistance':
-        {
-          if (child is Distance) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueHumanName':
-        {
-          if (child is HumanName) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueMoney':
-        {
-          if (child is Money) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValuePeriod':
-        {
-          if (child is Period) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueRange':
-        {
-          if (child is Range) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueReference':
-        {
-          if (child is Reference) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueSampledData':
-        {
-          if (child is SampledData) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueSignature':
-        {
-          if (child is Signature) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueTiming':
-        {
-          if (child is Timing) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueContactDetail':
-        {
-          if (child is ContactDetail) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueContributor':
-        {
-          if (child is Contributor) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueDataRequirement':
-        {
-          if (child is DataRequirement) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirExpression':
-        {
-          if (child is FhirExpression) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueParameterDefinition':
-        {
-          if (child is ParameterDefinition) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueRelatedArtifact':
-        {
-          if (child is RelatedArtifact) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueTriggerDefinition':
-        {
-          if (child is TriggerDefinition) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueUsageContext':
-        {
-          if (child is UsageContext) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueDosage':
-        {
-          if (child is Dosage) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'defaultValueFhirMeta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(defaultValueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'element':
-        {
-          if (child is FhirString) {
-            return copyWith(element: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'listMode':
-        {
-          if (child is StructureMapSourceListMode) {
-            return copyWith(listMode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'variable':
-        {
-          if (child is FhirId) {
-            return copyWith(variable: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'condition':
-        {
-          if (child is FhirString) {
-            return copyWith(condition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'check':
-        {
-          if (child is FhirString) {
-            return copyWith(check: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'logMessage':
-        {
-          if (child is FhirString) {
-            return copyWith(logMessage: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapSource]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'context':
-        return ['FhirId'];
-      case 'min':
-        return ['FhirInteger'];
-      case 'max':
-        return ['FhirString'];
-      case 'type':
-        return ['FhirString'];
-      case 'defaultValue':
-      case 'defaultValueX':
-        return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
-          'FhirMeta',
-        ];
-      case 'defaultValueBase64Binary':
-        return ['FhirBase64Binary'];
-      case 'defaultValueBoolean':
-        return ['FhirBoolean'];
-      case 'defaultValueCanonical':
-        return ['FhirCanonical'];
-      case 'defaultValueCode':
-        return ['FhirCode'];
-      case 'defaultValueDate':
-        return ['FhirDate'];
-      case 'defaultValueDateTime':
-        return ['FhirDateTime'];
-      case 'defaultValueDecimal':
-        return ['FhirDecimal'];
-      case 'defaultValueId':
-        return ['FhirId'];
-      case 'defaultValueInstant':
-        return ['FhirInstant'];
-      case 'defaultValueInteger':
-        return ['FhirInteger'];
-      case 'defaultValueMarkdown':
-        return ['FhirMarkdown'];
-      case 'defaultValueOid':
-        return ['FhirOid'];
-      case 'defaultValuePositiveInt':
-        return ['FhirPositiveInt'];
-      case 'defaultValueString':
-        return ['FhirString'];
-      case 'defaultValueTime':
-        return ['FhirTime'];
-      case 'defaultValueUnsignedInt':
-        return ['FhirUnsignedInt'];
-      case 'defaultValueUri':
-        return ['FhirUri'];
-      case 'defaultValueUrl':
-        return ['FhirUrl'];
-      case 'defaultValueUuid':
-        return ['FhirUuid'];
-      case 'defaultValueAddress':
-        return ['Address'];
-      case 'defaultValueAge':
-        return ['Age'];
-      case 'defaultValueAnnotation':
-        return ['Annotation'];
-      case 'defaultValueAttachment':
-        return ['Attachment'];
-      case 'defaultValueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'defaultValueCoding':
-        return ['Coding'];
-      case 'defaultValueContactPoint':
-        return ['ContactPoint'];
-      case 'defaultValueCount':
-        return ['Count'];
-      case 'defaultValueDistance':
-        return ['Distance'];
-      case 'defaultValueDuration':
-        return ['FhirDuration'];
-      case 'defaultValueHumanName':
-        return ['HumanName'];
-      case 'defaultValueIdentifier':
-        return ['Identifier'];
-      case 'defaultValueMoney':
-        return ['Money'];
-      case 'defaultValuePeriod':
-        return ['Period'];
-      case 'defaultValueQuantity':
-        return ['Quantity'];
-      case 'defaultValueRange':
-        return ['Range'];
-      case 'defaultValueRatio':
-        return ['Ratio'];
-      case 'defaultValueReference':
-        return ['Reference'];
-      case 'defaultValueSampledData':
-        return ['SampledData'];
-      case 'defaultValueSignature':
-        return ['Signature'];
-      case 'defaultValueTiming':
-        return ['Timing'];
-      case 'defaultValueContactDetail':
-        return ['ContactDetail'];
-      case 'defaultValueContributor':
-        return ['Contributor'];
-      case 'defaultValueDataRequirement':
-        return ['DataRequirement'];
-      case 'defaultValueExpression':
-        return ['FhirExpression'];
-      case 'defaultValueParameterDefinition':
-        return ['ParameterDefinition'];
-      case 'defaultValueRelatedArtifact':
-        return ['RelatedArtifact'];
-      case 'defaultValueTriggerDefinition':
-        return ['TriggerDefinition'];
-      case 'defaultValueUsageContext':
-        return ['UsageContext'];
-      case 'defaultValueDosage':
-        return ['Dosage'];
-      case 'defaultValueMeta':
-        return ['FhirMeta'];
-      case 'element':
-        return ['FhirString'];
-      case 'listMode':
-        return ['FhirCode'];
-      case 'variable':
-        return ['FhirId'];
-      case 'condition':
-        return ['FhirString'];
-      case 'check':
-        return ['FhirString'];
-      case 'logMessage':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapSource]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapSource createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'context':
-        {
-          return copyWith(
-            context: FhirId.empty(),
-          );
-        }
-      case 'min':
-        {
-          return copyWith(
-            min: FhirInteger.empty(),
-          );
-        }
-      case 'max':
-        {
-          return copyWith(
-            max: FhirString.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FhirString.empty(),
-          );
-        }
-      case 'defaultValue':
-      case 'defaultValueX':
-      case 'defaultValueBase64Binary':
-        {
-          return copyWith(
-            defaultValueX: FhirBase64Binary.empty(),
-          );
-        }
-      case 'defaultValueBoolean':
-        {
-          return copyWith(
-            defaultValueX: FhirBoolean.empty(),
-          );
-        }
-      case 'defaultValueCanonical':
-        {
-          return copyWith(
-            defaultValueX: FhirCanonical.empty(),
-          );
-        }
-      case 'defaultValueCode':
-        {
-          return copyWith(
-            defaultValueX: FhirCode.empty(),
-          );
-        }
-      case 'defaultValueDate':
-        {
-          return copyWith(
-            defaultValueX: FhirDate.empty(),
-          );
-        }
-      case 'defaultValueDateTime':
-        {
-          return copyWith(
-            defaultValueX: FhirDateTime.empty(),
-          );
-        }
-      case 'defaultValueDecimal':
-        {
-          return copyWith(
-            defaultValueX: FhirDecimal.empty(),
-          );
-        }
-      case 'defaultValueId':
-        {
-          return copyWith(
-            defaultValueX: FhirId.empty(),
-          );
-        }
-      case 'defaultValueInstant':
-        {
-          return copyWith(
-            defaultValueX: FhirInstant.empty(),
-          );
-        }
-      case 'defaultValueInteger':
-        {
-          return copyWith(
-            defaultValueX: FhirInteger.empty(),
-          );
-        }
-      case 'defaultValueMarkdown':
-        {
-          return copyWith(
-            defaultValueX: FhirMarkdown.empty(),
-          );
-        }
-      case 'defaultValueOid':
-        {
-          return copyWith(
-            defaultValueX: FhirOid.empty(),
-          );
-        }
-      case 'defaultValuePositiveInt':
-        {
-          return copyWith(
-            defaultValueX: FhirPositiveInt.empty(),
-          );
-        }
-      case 'defaultValueString':
-        {
-          return copyWith(
-            defaultValueX: FhirString.empty(),
-          );
-        }
-      case 'defaultValueTime':
-        {
-          return copyWith(
-            defaultValueX: FhirTime.empty(),
-          );
-        }
-      case 'defaultValueUnsignedInt':
-        {
-          return copyWith(
-            defaultValueX: FhirUnsignedInt.empty(),
-          );
-        }
-      case 'defaultValueUri':
-        {
-          return copyWith(
-            defaultValueX: FhirUri.empty(),
-          );
-        }
-      case 'defaultValueUrl':
-        {
-          return copyWith(
-            defaultValueX: FhirUrl.empty(),
-          );
-        }
-      case 'defaultValueUuid':
-        {
-          return copyWith(
-            defaultValueX: FhirUuid.empty(),
-          );
-        }
-      case 'defaultValueAddress':
-        {
-          return copyWith(
-            defaultValueX: Address.empty(),
-          );
-        }
-      case 'defaultValueAge':
-        {
-          return copyWith(
-            defaultValueX: Age.empty(),
-          );
-        }
-      case 'defaultValueAnnotation':
-        {
-          return copyWith(
-            defaultValueX: Annotation.empty(),
-          );
-        }
-      case 'defaultValueAttachment':
-        {
-          return copyWith(
-            defaultValueX: Attachment.empty(),
-          );
-        }
-      case 'defaultValueCodeableConcept':
-        {
-          return copyWith(
-            defaultValueX: CodeableConcept.empty(),
-          );
-        }
-      case 'defaultValueCoding':
-        {
-          return copyWith(
-            defaultValueX: Coding.empty(),
-          );
-        }
-      case 'defaultValueContactPoint':
-        {
-          return copyWith(
-            defaultValueX: ContactPoint.empty(),
-          );
-        }
-      case 'defaultValueCount':
-        {
-          return copyWith(
-            defaultValueX: Count.empty(),
-          );
-        }
-      case 'defaultValueDistance':
-        {
-          return copyWith(
-            defaultValueX: Distance.empty(),
-          );
-        }
-      case 'defaultValueDuration':
-        {
-          return copyWith(
-            defaultValueX: FhirDuration.empty(),
-          );
-        }
-      case 'defaultValueHumanName':
-        {
-          return copyWith(
-            defaultValueX: HumanName.empty(),
-          );
-        }
-      case 'defaultValueIdentifier':
-        {
-          return copyWith(
-            defaultValueX: Identifier.empty(),
-          );
-        }
-      case 'defaultValueMoney':
-        {
-          return copyWith(
-            defaultValueX: Money.empty(),
-          );
-        }
-      case 'defaultValuePeriod':
-        {
-          return copyWith(
-            defaultValueX: Period.empty(),
-          );
-        }
-      case 'defaultValueQuantity':
-        {
-          return copyWith(
-            defaultValueX: Quantity.empty(),
-          );
-        }
-      case 'defaultValueRange':
-        {
-          return copyWith(
-            defaultValueX: Range.empty(),
-          );
-        }
-      case 'defaultValueRatio':
-        {
-          return copyWith(
-            defaultValueX: Ratio.empty(),
-          );
-        }
-      case 'defaultValueReference':
-        {
-          return copyWith(
-            defaultValueX: Reference.empty(),
-          );
-        }
-      case 'defaultValueSampledData':
-        {
-          return copyWith(
-            defaultValueX: SampledData.empty(),
-          );
-        }
-      case 'defaultValueSignature':
-        {
-          return copyWith(
-            defaultValueX: Signature.empty(),
-          );
-        }
-      case 'defaultValueTiming':
-        {
-          return copyWith(
-            defaultValueX: Timing.empty(),
-          );
-        }
-      case 'defaultValueContactDetail':
-        {
-          return copyWith(
-            defaultValueX: ContactDetail.empty(),
-          );
-        }
-      case 'defaultValueContributor':
-        {
-          return copyWith(
-            defaultValueX: Contributor.empty(),
-          );
-        }
-      case 'defaultValueDataRequirement':
-        {
-          return copyWith(
-            defaultValueX: DataRequirement.empty(),
-          );
-        }
-      case 'defaultValueExpression':
-        {
-          return copyWith(
-            defaultValueX: FhirExpression.empty(),
-          );
-        }
-      case 'defaultValueParameterDefinition':
-        {
-          return copyWith(
-            defaultValueX: ParameterDefinition.empty(),
-          );
-        }
-      case 'defaultValueRelatedArtifact':
-        {
-          return copyWith(
-            defaultValueX: RelatedArtifact.empty(),
-          );
-        }
-      case 'defaultValueTriggerDefinition':
-        {
-          return copyWith(
-            defaultValueX: TriggerDefinition.empty(),
-          );
-        }
-      case 'defaultValueUsageContext':
-        {
-          return copyWith(
-            defaultValueX: UsageContext.empty(),
-          );
-        }
-      case 'defaultValueDosage':
-        {
-          return copyWith(
-            defaultValueX: Dosage.empty(),
-          );
-        }
-      case 'defaultValueMeta':
-        {
-          return copyWith(
-            defaultValueX: FhirMeta.empty(),
-          );
-        }
-      case 'element':
-        {
-          return copyWith(
-            element: FhirString.empty(),
-          );
-        }
-      case 'listMode':
-        {
-          return copyWith(
-            listMode: StructureMapSourceListMode.empty(),
-          );
-        }
-      case 'variable':
-        {
-          return copyWith(
-            variable: FhirId.empty(),
-          );
-        }
-      case 'condition':
-        {
-          return copyWith(
-            condition: FhirString.empty(),
-          );
-        }
-      case 'check':
-        {
-          return copyWith(
-            check: FhirString.empty(),
-          );
-        }
-      case 'logMessage':
-        {
-          return copyWith(
-            logMessage: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapSource clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool min = false,
-    bool max = false,
-    bool type = false,
-    bool defaultValue = false,
-    bool element = false,
-    bool listMode = false,
-    bool variable = false,
-    bool condition = false,
-    bool check = false,
-    bool logMessage = false,
-  }) {
-    return StructureMapSource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      context: context,
-      min: min ? null : this.min,
-      max: max ? null : this.max,
-      type: type ? null : this.type,
-      defaultValueX: defaultValue ? null : defaultValueX,
-      element: element ? null : this.element,
-      listMode: listMode ? null : this.listMode,
-      variable: variable ? null : this.variable,
-      condition: condition ? null : this.condition,
-      check: check ? null : this.check,
-      logMessage: logMessage ? null : this.logMessage,
-    );
-  }
-
-  @override
-  StructureMapSource clone() => throw UnimplementedError();
-  @override
-  StructureMapSource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? context,
-    FhirInteger? min,
-    FhirString? max,
-    FhirString? type,
-    DefaultValueXStructureMapSource? defaultValueX,
-    FhirString? element,
-    StructureMapSourceListMode? listMode,
-    FhirId? variable,
-    FhirString? condition,
-    FhirString? check,
-    FhirString? logMessage,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapSource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      defaultValueX: defaultValueX?.copyWith(
-            objectPath: '$newObjectPath.defaultValueX',
-          ) as DefaultValueXStructureMapSource? ??
-          this.defaultValueX,
-      element: element?.copyWith(
-            objectPath: '$newObjectPath.element',
-          ) ??
-          this.element,
-      listMode: listMode?.copyWith(
-            objectPath: '$newObjectPath.listMode',
-          ) ??
-          this.listMode,
-      variable: variable?.copyWith(
-            objectPath: '$newObjectPath.variable',
-          ) ??
-          this.variable,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      check: check?.copyWith(
-            objectPath: '$newObjectPath.check',
-          ) ??
-          this.check,
-      logMessage: logMessage?.copyWith(
-            objectPath: '$newObjectPath.logMessage',
-          ) ??
-          this.logMessage,
-    );
-  }
+  $StructureMapSourceCopyWith<StructureMapSource> get copyWith =>
+      _$StructureMapSourceCopyWithImpl<StructureMapSource>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6711,44 +3259,29 @@ class StructureMapTarget extends BackboneElement {
     this.transform,
     this.parameter,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.rule.target',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapTarget.empty() => const StructureMapTarget();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapTarget.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.rule.target';
     return StructureMapTarget(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6756,51 +3289,41 @@ class StructureMapTarget extends BackboneElement {
         json,
         'context',
         FhirId.fromJson,
-        '$objectPath.context',
       ),
       contextType: JsonParser.parsePrimitive<StructureMapContextType>(
         json,
         'contextType',
         StructureMapContextType.fromJson,
-        '$objectPath.contextType',
       ),
       element: JsonParser.parsePrimitive<FhirString>(
         json,
         'element',
         FhirString.fromJson,
-        '$objectPath.element',
       ),
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
-        '$objectPath.variable',
       ),
       listMode: JsonParser.parsePrimitiveList<StructureMapTargetListMode>(
         json,
         'listMode',
         StructureMapTargetListMode.fromJson,
-        '$objectPath.listMode',
       ),
       listRuleId: JsonParser.parsePrimitive<FhirId>(
         json,
         'listRuleId',
         FhirId.fromJson,
-        '$objectPath.listRuleId',
       ),
       transform: JsonParser.parsePrimitive<StructureMapTransform>(
         json,
         'transform',
         StructureMapTransform.fromJson,
-        '$objectPath.transform',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<StructureMapParameter>(
             (v) => StructureMapParameter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.parameter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7077,373 +3600,19 @@ class StructureMapTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapTarget clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'context':
-        {
-          if (child is FhirId) {
-            return copyWith(context: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contextType':
-        {
-          if (child is StructureMapContextType) {
-            return copyWith(contextType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'element':
-        {
-          if (child is FhirString) {
-            return copyWith(element: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'variable':
-        {
-          if (child is FhirId) {
-            return copyWith(variable: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'listMode':
-        {
-          if (child is List<StructureMapTargetListMode>) {
-            // Add all elements from passed list
-            final newList = [...?listMode, ...child];
-            return copyWith(listMode: newList);
-          } else if (child is StructureMapTargetListMode) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?listMode,
-              child,
-            ];
-            return copyWith(listMode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'listRuleId':
-        {
-          if (child is FhirId) {
-            return copyWith(listRuleId: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'transform':
-        {
-          if (child is StructureMapTransform) {
-            return copyWith(transform: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parameter':
-        {
-          if (child is List<StructureMapParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is StructureMapParameter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parameter,
-              child,
-            ];
-            return copyWith(parameter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapTarget]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'context':
-        return ['FhirId'];
-      case 'contextType':
-        return ['FhirCode'];
-      case 'element':
-        return ['FhirString'];
-      case 'variable':
-        return ['FhirId'];
-      case 'listMode':
-        return ['FhirCode'];
-      case 'listRuleId':
-        return ['FhirId'];
-      case 'transform':
-        return ['FhirCode'];
-      case 'parameter':
-        return ['StructureMapParameter'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapTarget]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapTarget createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'context':
-        {
-          return copyWith(
-            context: FhirId.empty(),
-          );
-        }
-      case 'contextType':
-        {
-          return copyWith(
-            contextType: StructureMapContextType.empty(),
-          );
-        }
-      case 'element':
-        {
-          return copyWith(
-            element: FhirString.empty(),
-          );
-        }
-      case 'variable':
-        {
-          return copyWith(
-            variable: FhirId.empty(),
-          );
-        }
-      case 'listMode':
-        {
-          return copyWith(
-            listMode: <StructureMapTargetListMode>[],
-          );
-        }
-      case 'listRuleId':
-        {
-          return copyWith(
-            listRuleId: FhirId.empty(),
-          );
-        }
-      case 'transform':
-        {
-          return copyWith(
-            transform: StructureMapTransform.empty(),
-          );
-        }
-      case 'parameter':
-        {
-          return copyWith(
-            parameter: <StructureMapParameter>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapTarget clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool context = false,
-    bool contextType = false,
-    bool element = false,
-    bool variable = false,
-    bool listMode = false,
-    bool listRuleId = false,
-    bool transform = false,
-    bool parameter = false,
-  }) {
-    return StructureMapTarget(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      context: context ? null : this.context,
-      contextType: contextType ? null : this.contextType,
-      element: element ? null : this.element,
-      variable: variable ? null : this.variable,
-      listMode: listMode ? null : this.listMode,
-      listRuleId: listRuleId ? null : this.listRuleId,
-      transform: transform ? null : this.transform,
-      parameter: parameter ? null : this.parameter,
-    );
-  }
-
-  @override
-  StructureMapTarget clone() => throw UnimplementedError();
-  @override
-  StructureMapTarget copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? context,
-    StructureMapContextType? contextType,
-    FhirString? element,
-    FhirId? variable,
-    List<StructureMapTargetListMode>? listMode,
-    FhirId? listRuleId,
-    StructureMapTransform? transform,
-    List<StructureMapParameter>? parameter,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapTarget(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      contextType: contextType?.copyWith(
-            objectPath: '$newObjectPath.contextType',
-          ) ??
-          this.contextType,
-      element: element?.copyWith(
-            objectPath: '$newObjectPath.element',
-          ) ??
-          this.element,
-      variable: variable?.copyWith(
-            objectPath: '$newObjectPath.variable',
-          ) ??
-          this.variable,
-      listMode: listMode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.listMode',
-                ),
-              )
-              .toList() ??
-          this.listMode,
-      listRuleId: listRuleId?.copyWith(
-            objectPath: '$newObjectPath.listRuleId',
-          ) ??
-          this.listRuleId,
-      transform: transform?.copyWith(
-            objectPath: '$newObjectPath.transform',
-          ) ??
-          this.transform,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-    );
-  }
+  $StructureMapTargetCopyWith<StructureMapTarget> get copyWith =>
+      _$StructureMapTargetCopyWithImpl<StructureMapTarget>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7535,46 +3704,29 @@ class StructureMapParameter extends BackboneElement {
     super.modifierExtension,
     required this.valueX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.rule.target.parameter',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapParameter.empty() => StructureMapParameter(
-        valueX: FhirId.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapParameter.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.rule.target.parameter';
     return StructureMapParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7587,7 +3739,6 @@ class StructureMapParameter extends BackboneElement {
           'valueInteger': FhirInteger.fromJson,
           'valueDecimal': FhirDecimal.fromJson,
         },
-        objectPath,
       )!,
     );
   }
@@ -7808,284 +3959,19 @@ class StructureMapParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapParameter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXStructureMapParameter) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is FhirId) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueFhirId':
-        {
-          if (child is FhirId) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirInteger':
-        {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDecimal':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapParameter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'value':
-      case 'valueX':
-        return [
-          'FhirId',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'FhirDecimal',
-        ];
-      case 'valueId':
-        return ['FhirId'];
-      case 'valueString':
-        return ['FhirString'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueInteger':
-        return ['FhirInteger'];
-      case 'valueDecimal':
-        return ['FhirDecimal'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapParameter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapParameter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueId':
-        {
-          return copyWith(
-            valueX: FhirId.empty(),
-          );
-        }
-      case 'valueString':
-        {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueInteger':
-        {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
-        }
-      case 'valueDecimal':
-        {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapParameter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return StructureMapParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      valueX: valueX,
-    );
-  }
-
-  @override
-  StructureMapParameter clone() => throw UnimplementedError();
-  @override
-  StructureMapParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ValueXStructureMapParameter? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXStructureMapParameter? ??
-          this.valueX,
-    );
-  }
+  $StructureMapParameterCopyWith<StructureMapParameter> get copyWith =>
+      _$StructureMapParameterCopyWithImpl<StructureMapParameter>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -8136,47 +4022,29 @@ class StructureMapDependent extends BackboneElement {
     required this.name,
     required this.variable,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'StructureMap.group.rule.dependent',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapDependent.empty() => StructureMapDependent(
-        name: FhirId.empty(),
-        variable: <FhirString>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapDependent.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'StructureMap.group.rule.dependent';
     return StructureMapDependent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8184,13 +4052,11 @@ class StructureMapDependent extends BackboneElement {
         json,
         'name',
         FhirId.fromJson,
-        '$objectPath.name',
       )!,
       variable: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'variable',
         FhirString.fromJson,
-        '$objectPath.variable',
       )!,
     );
   }
@@ -8383,220 +4249,19 @@ class StructureMapDependent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  StructureMapDependent clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirId) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'variable':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...variable, ...child];
-            return copyWith(variable: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...variable,
-              child,
-            ];
-            return copyWith(variable: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [StructureMapDependent]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirId'];
-      case 'variable':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [StructureMapDependent]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  StructureMapDependent createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirId.empty(),
-          );
-        }
-      case 'variable':
-        {
-          return copyWith(
-            variable: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  StructureMapDependent clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return StructureMapDependent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      variable: variable,
-    );
-  }
-
-  @override
-  StructureMapDependent clone() => throw UnimplementedError();
-  @override
-  StructureMapDependent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    List<FhirString>? variable,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return StructureMapDependent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      variable: variable
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.variable',
-                ),
-              )
-              .toList() ??
-          this.variable,
-    );
-  }
+  $StructureMapDependentCopyWith<StructureMapDependent> get copyWith =>
+      _$StructureMapDependentCopyWithImpl<StructureMapDependent>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

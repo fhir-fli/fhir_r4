@@ -1706,88 +1706,6 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool domain = false,
-    bool version = false,
-    bool status = false,
-    bool statusDate = false,
-    bool description = false,
-    bool combinedPharmaceuticalDoseForm = false,
-    bool route = false,
-    bool indication = false,
-    bool legalStatusOfSupply = false,
-    bool additionalMonitoringIndicator = false,
-    bool specialMeasures = false,
-    bool pediatricUseIndicator = false,
-    bool classification = false,
-    bool marketingStatus = false,
-    bool packagedMedicinalProduct = false,
-    bool ingredient = false,
-    bool impurity = false,
-    bool attachedDocument = false,
-    bool masterFile = false,
-    bool contact = false,
-    bool clinicalTrial = false,
-    bool code = false,
-    bool name = false,
-    bool crossReference = false,
-    bool operation = false,
-    bool characteristic = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (domain) this.domain = null;
-    if (version) this.version = null;
-    if (status) this.status = null;
-    if (statusDate) this.statusDate = null;
-    if (description) this.description = null;
-    if (combinedPharmaceuticalDoseForm) {
-      this.combinedPharmaceuticalDoseForm = null;
-    }
-    if (route) this.route = null;
-    if (indication) this.indication = null;
-    if (legalStatusOfSupply) this.legalStatusOfSupply = null;
-    if (additionalMonitoringIndicator) {
-      this.additionalMonitoringIndicator = null;
-    }
-    if (specialMeasures) this.specialMeasures = null;
-    if (pediatricUseIndicator) this.pediatricUseIndicator = null;
-    if (classification) this.classification = null;
-    if (marketingStatus) this.marketingStatus = null;
-    if (packagedMedicinalProduct) this.packagedMedicinalProduct = null;
-    if (ingredient) this.ingredient = null;
-    if (impurity) this.impurity = null;
-    if (attachedDocument) this.attachedDocument = null;
-    if (masterFile) this.masterFile = null;
-    if (contact) this.contact = null;
-    if (clinicalTrial) this.clinicalTrial = null;
-    if (code) this.code = null;
-    if (name) this.name = null;
-    if (crossReference) this.crossReference = null;
-    if (operation) this.operation = null;
-    if (characteristic) this.characteristic = null;
-  }
-
   @override
   MedicinalProductDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2486,22 +2404,6 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool contact = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (contact) this.contact = null;
-  }
-
   @override
   MedicinalProductDefinitionContactBuilder clone() =>
       throw UnimplementedError();
@@ -3052,26 +2954,6 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool productName = false,
-    bool type = false,
-    bool namePart = false,
-    bool countryLanguage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (productName) this.productName = null;
-    if (type) this.type = null;
-    if (namePart) this.namePart = null;
-    if (countryLanguage) this.countryLanguage = null;
-  }
-
   @override
   MedicinalProductDefinitionNameBuilder clone() => throw UnimplementedError();
   @override
@@ -3545,22 +3427,6 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool part_ = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (part_) this.part_ = null;
-    if (type) this.type = null;
   }
 
   @override
@@ -4046,24 +3912,6 @@ class MedicinalProductDefinitionCountryLanguageBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool country = false,
-    bool jurisdiction = false,
-    bool language = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (country) this.country = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (language) this.language = null;
-  }
-
   @override
   MedicinalProductDefinitionCountryLanguageBuilder clone() =>
       throw UnimplementedError();
@@ -4522,22 +4370,6 @@ class MedicinalProductDefinitionCrossReferenceBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool product = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (product) this.product = null;
-    if (type) this.type = null;
   }
 
   @override
@@ -5066,26 +4898,6 @@ class MedicinalProductDefinitionOperationBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool effectiveDate = false,
-    bool organization = false,
-    bool confidentialityIndicator = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (effectiveDate) this.effectiveDate = null;
-    if (organization) this.organization = null;
-    if (confidentialityIndicator) this.confidentialityIndicator = null;
   }
 
   @override
@@ -5708,22 +5520,6 @@ class MedicinalProductDefinitionCharacteristicBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
   }
 
   @override

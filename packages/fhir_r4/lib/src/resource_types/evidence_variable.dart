@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'evidence_variable.g.dart';
+
 /// [EvidenceVariable]
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
@@ -43,80 +45,57 @@ class EvidenceVariable extends DomainResource {
     this.handling,
     this.category,
   }) : super(
-          objectPath: 'EvidenceVariable',
           resourceType: R4ResourceType.EvidenceVariable,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EvidenceVariable.empty() => EvidenceVariable(
-        status: PublicationStatus.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariable.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'EvidenceVariable';
     return EvidenceVariable(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -124,15 +103,11 @@ class EvidenceVariable extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -140,67 +115,53 @@ class EvidenceVariable extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       shortTitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'shortTitle',
         FhirString.fromJson,
-        '$objectPath.shortTitle',
       ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-        '$objectPath.subtitle',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -208,65 +169,46 @@ class EvidenceVariable extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.author',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.editor',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reviewer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.endorser',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
           ?.map<RelatedArtifact>(
             (v) => RelatedArtifact.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.relatedArtifact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -274,22 +216,17 @@ class EvidenceVariable extends DomainResource {
         json,
         'actual',
         FhirBoolean.fromJson,
-        '$objectPath.actual',
       ),
       characteristicCombination:
           JsonParser.parsePrimitive<CharacteristicCombination>(
         json,
         'characteristicCombination',
         CharacteristicCombination.fromJson,
-        '$objectPath.characteristicCombination',
       ),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<EvidenceVariableCharacteristic>(
             (v) => EvidenceVariableCharacteristic.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.characteristic',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -297,15 +234,11 @@ class EvidenceVariable extends DomainResource {
         json,
         'handling',
         EvidenceVariableHandling.fromJson,
-        '$objectPath.handling',
       ),
       category: (json['category'] as List<dynamic>?)
           ?.map<EvidenceVariableCategory>(
             (v) => EvidenceVariableCategory.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.category',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -877,978 +810,19 @@ class EvidenceVariable extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  EvidenceVariable clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'shortTitle':
-        {
-          if (child is FhirString) {
-            return copyWith(shortTitle: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subtitle':
-        {
-          if (child is FhirString) {
-            return copyWith(subtitle: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'author':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?author,
-              child,
-            ];
-            return copyWith(author: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'editor':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?editor, ...child];
-            return copyWith(editor: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?editor,
-              child,
-            ];
-            return copyWith(editor: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reviewer':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?reviewer, ...child];
-            return copyWith(reviewer: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reviewer,
-              child,
-            ];
-            return copyWith(reviewer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'endorser':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?endorser, ...child];
-            return copyWith(endorser: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?endorser,
-              child,
-            ];
-            return copyWith(endorser: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relatedArtifact':
-        {
-          if (child is List<RelatedArtifact>) {
-            // Add all elements from passed list
-            final newList = [...?relatedArtifact, ...child];
-            return copyWith(relatedArtifact: newList);
-          } else if (child is RelatedArtifact) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?relatedArtifact,
-              child,
-            ];
-            return copyWith(relatedArtifact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'actual':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(actual: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'characteristicCombination':
-        {
-          if (child is CharacteristicCombination) {
-            return copyWith(characteristicCombination: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'characteristic':
-        {
-          if (child is List<EvidenceVariableCharacteristic>) {
-            // Add all elements from passed list
-            final newList = [...?characteristic, ...child];
-            return copyWith(characteristic: newList);
-          } else if (child is EvidenceVariableCharacteristic) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?characteristic,
-              child,
-            ];
-            return copyWith(characteristic: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'handling':
-        {
-          if (child is EvidenceVariableHandling) {
-            return copyWith(handling: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is List<EvidenceVariableCategory>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is EvidenceVariableCategory) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?category,
-              child,
-            ];
-            return copyWith(category: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [EvidenceVariable]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'shortTitle':
-        return ['FhirString'];
-      case 'subtitle':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'note':
-        return ['Annotation'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'author':
-        return ['ContactDetail'];
-      case 'editor':
-        return ['ContactDetail'];
-      case 'reviewer':
-        return ['ContactDetail'];
-      case 'endorser':
-        return ['ContactDetail'];
-      case 'relatedArtifact':
-        return ['RelatedArtifact'];
-      case 'actual':
-        return ['FhirBoolean'];
-      case 'characteristicCombination':
-        return ['FhirCode'];
-      case 'characteristic':
-        return ['EvidenceVariableCharacteristic'];
-      case 'handling':
-        return ['FhirCode'];
-      case 'category':
-        return ['EvidenceVariableCategory'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [EvidenceVariable]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  EvidenceVariable createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'shortTitle':
-        {
-          return copyWith(
-            shortTitle: FhirString.empty(),
-          );
-        }
-      case 'subtitle':
-        {
-          return copyWith(
-            subtitle: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'author':
-        {
-          return copyWith(
-            author: <ContactDetail>[],
-          );
-        }
-      case 'editor':
-        {
-          return copyWith(
-            editor: <ContactDetail>[],
-          );
-        }
-      case 'reviewer':
-        {
-          return copyWith(
-            reviewer: <ContactDetail>[],
-          );
-        }
-      case 'endorser':
-        {
-          return copyWith(
-            endorser: <ContactDetail>[],
-          );
-        }
-      case 'relatedArtifact':
-        {
-          return copyWith(
-            relatedArtifact: <RelatedArtifact>[],
-          );
-        }
-      case 'actual':
-        {
-          return copyWith(
-            actual: FhirBoolean.empty(),
-          );
-        }
-      case 'characteristicCombination':
-        {
-          return copyWith(
-            characteristicCombination: CharacteristicCombination.empty(),
-          );
-        }
-      case 'characteristic':
-        {
-          return copyWith(
-            characteristic: <EvidenceVariableCharacteristic>[],
-          );
-        }
-      case 'handling':
-        {
-          return copyWith(
-            handling: EvidenceVariableHandling.empty(),
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: <EvidenceVariableCategory>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  EvidenceVariable clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool shortTitle = false,
-    bool subtitle = false,
-    bool date = false,
-    bool description = false,
-    bool note = false,
-    bool useContext = false,
-    bool publisher = false,
-    bool contact = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool actual = false,
-    bool characteristicCombination = false,
-    bool characteristic = false,
-    bool handling = false,
-    bool category = false,
-  }) {
-    return EvidenceVariable(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      shortTitle: shortTitle ? null : this.shortTitle,
-      subtitle: subtitle ? null : this.subtitle,
-      status: status,
-      date: date ? null : this.date,
-      description: description ? null : this.description,
-      note: note ? null : this.note,
-      useContext: useContext ? null : this.useContext,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      author: author ? null : this.author,
-      editor: editor ? null : this.editor,
-      reviewer: reviewer ? null : this.reviewer,
-      endorser: endorser ? null : this.endorser,
-      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
-      actual: actual ? null : this.actual,
-      characteristicCombination:
-          characteristicCombination ? null : this.characteristicCombination,
-      characteristic: characteristic ? null : this.characteristic,
-      handling: handling ? null : this.handling,
-      category: category ? null : this.category,
-    );
-  }
-
-  @override
-  EvidenceVariable clone() => throw UnimplementedError();
-  @override
-  EvidenceVariable copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    FhirString? shortTitle,
-    FhirString? subtitle,
-    PublicationStatus? status,
-    FhirDateTime? date,
-    FhirMarkdown? description,
-    List<Annotation>? note,
-    List<UsageContext>? useContext,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    List<ContactDetail>? author,
-    List<ContactDetail>? editor,
-    List<ContactDetail>? reviewer,
-    List<ContactDetail>? endorser,
-    List<RelatedArtifact>? relatedArtifact,
-    FhirBoolean? actual,
-    CharacteristicCombination? characteristicCombination,
-    List<EvidenceVariableCharacteristic>? characteristic,
-    EvidenceVariableHandling? handling,
-    List<EvidenceVariableCategory>? category,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return EvidenceVariable(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      shortTitle: shortTitle?.copyWith(
-            objectPath: '$newObjectPath.shortTitle',
-          ) ??
-          this.shortTitle,
-      subtitle: subtitle?.copyWith(
-            objectPath: '$newObjectPath.subtitle',
-          ) ??
-          this.subtitle,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      editor: editor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.editor',
-                ),
-              )
-              .toList() ??
-          this.editor,
-      reviewer: reviewer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reviewer',
-                ),
-              )
-              .toList() ??
-          this.reviewer,
-      endorser: endorser
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endorser',
-                ),
-              )
-              .toList() ??
-          this.endorser,
-      relatedArtifact: relatedArtifact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedArtifact',
-                ),
-              )
-              .toList() ??
-          this.relatedArtifact,
-      actual: actual?.copyWith(
-            objectPath: '$newObjectPath.actual',
-          ) ??
-          this.actual,
-      characteristicCombination: characteristicCombination?.copyWith(
-            objectPath: '$newObjectPath.characteristicCombination',
-          ) ??
-          this.characteristicCombination,
-      characteristic: characteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.characteristic',
-                ),
-              )
-              .toList() ??
-          this.characteristic,
-      handling: handling?.copyWith(
-            objectPath: '$newObjectPath.handling',
-          ) ??
-          this.handling,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-    );
-  }
+  $EvidenceVariableCopyWith<EvidenceVariable> get copyWith =>
+      _$EvidenceVariableCopyWithImpl<EvidenceVariable>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2073,47 +1047,29 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     this.timeFromStart,
     this.groupMeasure,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'EvidenceVariable.characteristic',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EvidenceVariableCharacteristic.empty() =>
-      EvidenceVariableCharacteristic(
-        definitionX: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'EvidenceVariable.characteristic';
     return EvidenceVariableCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2121,7 +1077,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       definitionX: JsonParser.parsePolymorphic<
           DefinitionXEvidenceVariableCharacteristic>(
@@ -2132,37 +1087,31 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           'definitionCodeableConcept': CodeableConcept.fromJson,
           'definitionExpression': FhirExpression.fromJson,
         },
-        objectPath,
       )!,
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
-        '$objectPath.method',
       ),
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
         Reference.fromJson,
-        '$objectPath.device',
       ),
       exclude: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'exclude',
         FhirBoolean.fromJson,
-        '$objectPath.exclude',
       ),
       timeFromStart: JsonParser.parseObject<EvidenceVariableTimeFromStart>(
         json,
         'timeFromStart',
         EvidenceVariableTimeFromStart.fromJson,
-        '$objectPath.timeFromStart',
       ),
       groupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
         json,
         'groupMeasure',
         GroupMeasure.fromJson,
-        '$objectPath.groupMeasure',
       ),
     );
   }
@@ -2463,402 +1412,20 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  EvidenceVariableCharacteristic clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definition':
-      case 'definitionX':
-        {
-          if (child is DefinitionXEvidenceVariableCharacteristic) {
-            return copyWith(definitionX: child);
-          } else {
-            if (child is Reference) {
-              return copyWith(definitionX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(definitionX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(definitionX: child);
-            }
-            if (child is FhirExpression) {
-              return copyWith(definitionX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'definitionReference':
-        {
-          if (child is Reference) {
-            return copyWith(definitionX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definitionFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(definitionX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definitionCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(definitionX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'definitionFhirExpression':
-        {
-          if (child is FhirExpression) {
-            return copyWith(definitionX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'method':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'device':
-        {
-          if (child is Reference) {
-            return copyWith(device: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'exclude':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(exclude: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timeFromStart':
-        {
-          if (child is EvidenceVariableTimeFromStart) {
-            return copyWith(timeFromStart: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'groupMeasure':
-        {
-          if (child is GroupMeasure) {
-            return copyWith(groupMeasure: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [EvidenceVariableCharacteristic]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'definition':
-      case 'definitionX':
-        return [
-          'Reference',
-          'FhirCanonical',
-          'CodeableConcept',
-          'FhirExpression',
-        ];
-      case 'definitionReference':
-        return ['Reference'];
-      case 'definitionCanonical':
-        return ['FhirCanonical'];
-      case 'definitionCodeableConcept':
-        return ['CodeableConcept'];
-      case 'definitionExpression':
-        return ['FhirExpression'];
-      case 'method':
-        return ['CodeableConcept'];
-      case 'device':
-        return ['Reference'];
-      case 'exclude':
-        return ['FhirBoolean'];
-      case 'timeFromStart':
-        return ['EvidenceVariableTimeFromStart'];
-      case 'groupMeasure':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [EvidenceVariableCharacteristic]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  EvidenceVariableCharacteristic createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $EvidenceVariableCharacteristicCopyWith<EvidenceVariableCharacteristic>
+      get copyWith => _$EvidenceVariableCharacteristicCopyWithImpl<
+              EvidenceVariableCharacteristic>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'definition':
-      case 'definitionX':
-      case 'definitionReference':
-        {
-          return copyWith(
-            definitionX: Reference.empty(),
-          );
-        }
-      case 'definitionCanonical':
-        {
-          return copyWith(
-            definitionX: FhirCanonical.empty(),
-          );
-        }
-      case 'definitionCodeableConcept':
-        {
-          return copyWith(
-            definitionX: CodeableConcept.empty(),
-          );
-        }
-      case 'definitionExpression':
-        {
-          return copyWith(
-            definitionX: FhirExpression.empty(),
-          );
-        }
-      case 'method':
-        {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
-        }
-      case 'device':
-        {
-          return copyWith(
-            device: Reference.empty(),
-          );
-        }
-      case 'exclude':
-        {
-          return copyWith(
-            exclude: FhirBoolean.empty(),
-          );
-        }
-      case 'timeFromStart':
-        {
-          return copyWith(
-            timeFromStart: EvidenceVariableTimeFromStart.empty(),
-          );
-        }
-      case 'groupMeasure':
-        {
-          return copyWith(
-            groupMeasure: GroupMeasure.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  EvidenceVariableCharacteristic clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool method = false,
-    bool device = false,
-    bool exclude = false,
-    bool timeFromStart = false,
-    bool groupMeasure = false,
-  }) {
-    return EvidenceVariableCharacteristic(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      definitionX: definitionX,
-      method: method ? null : this.method,
-      device: device ? null : this.device,
-      exclude: exclude ? null : this.exclude,
-      timeFromStart: timeFromStart ? null : this.timeFromStart,
-      groupMeasure: groupMeasure ? null : this.groupMeasure,
-    );
-  }
-
-  @override
-  EvidenceVariableCharacteristic clone() => throw UnimplementedError();
-  @override
-  EvidenceVariableCharacteristic copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    DefinitionXEvidenceVariableCharacteristic? definitionX,
-    CodeableConcept? method,
-    Reference? device,
-    FhirBoolean? exclude,
-    EvidenceVariableTimeFromStart? timeFromStart,
-    GroupMeasure? groupMeasure,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return EvidenceVariableCharacteristic(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      definitionX: definitionX?.copyWith(
-            objectPath: '$newObjectPath.definitionX',
-          ) as DefinitionXEvidenceVariableCharacteristic? ??
-          this.definitionX,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      exclude: exclude?.copyWith(
-            objectPath: '$newObjectPath.exclude',
-          ) ??
-          this.exclude,
-      timeFromStart: timeFromStart?.copyWith(
-            objectPath: '$newObjectPath.timeFromStart',
-          ) ??
-          this.timeFromStart,
-      groupMeasure: groupMeasure?.copyWith(
-            objectPath: '$newObjectPath.groupMeasure',
-          ) ??
-          this.groupMeasure,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2948,45 +1515,29 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     this.range,
     this.note,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'EvidenceVariable.characteristic.timeFromStart',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EvidenceVariableTimeFromStart.empty() =>
-      const EvidenceVariableTimeFromStart();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableTimeFromStart.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'EvidenceVariable.characteristic.timeFromStart';
     return EvidenceVariableTimeFromStart(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2994,27 +1545,21 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       range: JsonParser.parseObject<Range>(
         json,
         'range',
         Range.fromJson,
-        '$objectPath.range',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3241,268 +1786,20 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  EvidenceVariableTimeFromStart clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'range':
-        {
-          if (child is Range) {
-            return copyWith(range: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [EvidenceVariableTimeFromStart]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'range':
-        return ['Range'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [EvidenceVariableTimeFromStart]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  EvidenceVariableTimeFromStart createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $EvidenceVariableTimeFromStartCopyWith<EvidenceVariableTimeFromStart>
+      get copyWith => _$EvidenceVariableTimeFromStartCopyWithImpl<
+              EvidenceVariableTimeFromStart>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'range':
-        {
-          return copyWith(
-            range: Range.empty(),
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  EvidenceVariableTimeFromStart clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool quantity = false,
-    bool range = false,
-    bool note = false,
-  }) {
-    return EvidenceVariableTimeFromStart(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      quantity: quantity ? null : this.quantity,
-      range: range ? null : this.range,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
-  @override
-  EvidenceVariableTimeFromStart copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    Quantity? quantity,
-    Range? range,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return EvidenceVariableTimeFromStart(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      range: range?.copyWith(
-            objectPath: '$newObjectPath.range',
-          ) ??
-          this.range,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3572,44 +1869,29 @@ class EvidenceVariableCategory extends BackboneElement {
     this.name,
     this.valueX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'EvidenceVariable.category',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EvidenceVariableCategory.empty() => const EvidenceVariableCategory();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'EvidenceVariable.category';
     return EvidenceVariableCategory(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3617,7 +1899,6 @@ class EvidenceVariableCategory extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       valueX: JsonParser.parsePolymorphic<ValueXEvidenceVariableCategory>(
         json,
@@ -3626,7 +1907,6 @@ class EvidenceVariableCategory extends BackboneElement {
           'valueQuantity': Quantity.fromJson,
           'valueRange': Range.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -3848,268 +2128,19 @@ class EvidenceVariableCategory extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  EvidenceVariableCategory clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXEvidenceVariableCategory) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is Range) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueRange':
-        {
-          if (child is Range) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [EvidenceVariableCategory]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirString'];
-      case 'value':
-      case 'valueX':
-        return [
-          'CodeableConcept',
-          'Quantity',
-          'Range',
-        ];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueRange':
-        return ['Range'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [EvidenceVariableCategory]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  EvidenceVariableCategory createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueRange':
-        {
-          return copyWith(
-            valueX: Range.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  EvidenceVariableCategory clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool value = false,
-  }) {
-    return EvidenceVariableCategory(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      valueX: value ? null : valueX,
-    );
-  }
-
-  @override
-  EvidenceVariableCategory clone() => throw UnimplementedError();
-  @override
-  EvidenceVariableCategory copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    ValueXEvidenceVariableCategory? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return EvidenceVariableCategory(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXEvidenceVariableCategory? ??
-          this.valueX,
-    );
-  }
+  $EvidenceVariableCategoryCopyWith<EvidenceVariableCategory> get copyWith =>
+      _$EvidenceVariableCategoryCopyWithImpl<EvidenceVariableCategory>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

@@ -10,11 +10,6 @@ abstract class DataType extends Element {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'DataType',
   });
 
   /// Creates an empty [DataType] object
@@ -56,26 +51,18 @@ abstract class DataType extends Element {
               ' it is neither a yaml string nor a yaml map.');
 
   @override
-  DataType copyWith({
+  DataType clone();
+
+  @override
+  $DataTypeCopyWith<DataType> get copyWith;
+}
+
+/// Abstract class for copyWith functionality for [DataType]
+abstract class $DataTypeCopyWith<T> extends $ElementCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
+    bool? disallowExtensions,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
-
-  /// Creates an empty property in the object
-  @override
-  DataType createProperty(String propertyName);
-
-  @override
-  DataType clear({bool extension_ = false, bool id = false});
 }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'annotation.g.dart';
+
 /// [Annotation]
 /// A text note which also contains information about who made the
 /// statement and when.
@@ -26,35 +28,22 @@ class Annotation extends DataType
     this.time,
     required this.text,
     super.disallowExtensions,
-    super.objectPath = 'Annotation',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Annotation.empty() => Annotation(
-        text: FhirMarkdown.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Annotation.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Annotation';
     return Annotation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -64,19 +53,16 @@ class Annotation extends DataType
           'authorReference': Reference.fromJson,
           'authorString': FhirString.fromJson,
         },
-        objectPath,
       ),
       time: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'time',
         FhirDateTime.fromJson,
-        '$objectPath.time',
       ),
       text: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'text',
         FhirMarkdown.fromJson,
-        '$objectPath.text',
       )!,
     );
   }
@@ -293,234 +279,19 @@ class Annotation extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Annotation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'author':
-      case 'authorX':
-        {
-          if (child is AuthorXAnnotation) {
-            return copyWith(authorX: child);
-          } else {
-            if (child is Reference) {
-              return copyWith(authorX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(authorX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'authorReference':
-        {
-          if (child is Reference) {
-            return copyWith(authorX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'authorFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(authorX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'time':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(time: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Annotation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'author':
-      case 'authorX':
-        return [
-          'Reference',
-          'FhirString',
-        ];
-      case 'authorReference':
-        return ['Reference'];
-      case 'authorString':
-        return ['FhirString'];
-      case 'time':
-        return ['FhirDateTime'];
-      case 'text':
-        return ['FhirMarkdown'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Annotation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Annotation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'author':
-      case 'authorX':
-      case 'authorReference':
-        {
-          return copyWith(
-            authorX: Reference.empty(),
-          );
-        }
-      case 'authorString':
-        {
-          return copyWith(
-            authorX: FhirString.empty(),
-          );
-        }
-      case 'time':
-        {
-          return copyWith(
-            time: FhirDateTime.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirMarkdown.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Annotation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool author = false,
-    bool time = false,
-  }) {
-    return Annotation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      authorX: author ? null : authorX,
-      time: time ? null : this.time,
-      text: text,
-    );
-  }
-
-  @override
-  Annotation clone() => throw UnimplementedError();
-  @override
-  Annotation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    AuthorXAnnotation? authorX,
-    FhirDateTime? time,
-    FhirMarkdown? text,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Annotation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      authorX: authorX?.copyWith(
-            objectPath: '$newObjectPath.authorX',
-          ) as AuthorXAnnotation? ??
-          this.authorX,
-      time: time?.copyWith(
-            objectPath: '$newObjectPath.time',
-          ) ??
-          this.time,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-    );
-  }
+  $AnnotationCopyWith<Annotation> get copyWith =>
+      _$AnnotationCopyWithImpl<Annotation>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

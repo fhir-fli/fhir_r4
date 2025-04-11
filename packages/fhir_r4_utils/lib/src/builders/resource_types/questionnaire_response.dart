@@ -932,50 +932,6 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool questionnaire = false,
-    bool status = false,
-    bool subject = false,
-    bool encounter = false,
-    bool authored = false,
-    bool author = false,
-    bool source = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (questionnaire) this.questionnaire = null;
-    if (status) this.status = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (authored) this.authored = null;
-    if (author) this.author = null;
-    if (source) this.source = null;
-    if (item) this.item = null;
-  }
-
   @override
   QuestionnaireResponseBuilder clone() => throw UnimplementedError();
   @override
@@ -1691,28 +1647,6 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool linkId = false,
-    bool definition = false,
-    bool text = false,
-    bool answer = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (linkId) this.linkId = null;
-    if (definition) this.definition = null;
-    if (text) this.text = null;
-    if (answer) this.answer = null;
-    if (item) this.item = null;
   }
 
   @override
@@ -2552,22 +2486,6 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
-    if (item) this.item = null;
   }
 
   @override

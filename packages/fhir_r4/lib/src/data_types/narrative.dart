@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'narrative.g.dart';
+
 /// [Narrative]
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
@@ -15,36 +17,22 @@ class Narrative extends DataType {
     required this.status,
     required this.div,
     super.disallowExtensions,
-    super.objectPath = 'Narrative',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Narrative.empty() => Narrative(
-        status: NarrativeStatus.values.first,
-        div: FhirXhtml.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Narrative.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Narrative';
     return Narrative(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -52,13 +40,11 @@ class Narrative extends DataType {
         json,
         'status',
         NarrativeStatus.fromJson,
-        '$objectPath.status',
       )!,
       div: JsonParser.parsePrimitive<FhirXhtml>(
         json,
         'div',
         FhirXhtml.fromJson,
-        '$objectPath.div',
       )!,
     );
   }
@@ -244,171 +230,19 @@ class Narrative extends DataType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  Narrative clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is NarrativeStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'div':
-        {
-          if (child is FhirXhtml) {
-            return copyWith(div: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [Narrative]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'status':
-        return ['FhirCode'];
-      case 'div':
-        return ['FhirXhtml'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Narrative]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Narrative createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: NarrativeStatus.empty(),
-          );
-        }
-      case 'div':
-        {
-          return copyWith(
-            div: FhirXhtml.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Narrative clear({
-    bool id = false,
-    bool extension_ = false,
-  }) {
-    return Narrative(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      status: status,
-      div: div,
-    );
-  }
-
-  @override
-  Narrative clone() => throw UnimplementedError();
-  @override
-  Narrative copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    NarrativeStatus? status,
-    FhirXhtml? div,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Narrative(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      div: div?.copyWith(
-            objectPath: '$newObjectPath.div',
-          ) ??
-          this.div,
-    );
-  }
+  $NarrativeCopyWith<Narrative> get copyWith =>
+      _$NarrativeCopyWithImpl<Narrative>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

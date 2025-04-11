@@ -1,11 +1,100 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ReportRelationshipType
+enum ReportRelationshipTypeEnum {
+  /// replaces
+  replaces,
+
+  /// amends
+  amends,
+
+  /// appends
+  appends,
+
+  /// transforms
+  transforms,
+
+  /// replacedWith
+  replacedWith,
+
+  /// amendedWith
+  amendedWith,
+
+  /// appendedWith
+  appendedWith,
+
+  /// transformedWith
+  transformedWith,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ReportRelationshipTypeEnum.replaces:
+        return 'replaces';
+      case ReportRelationshipTypeEnum.amends:
+        return 'amends';
+      case ReportRelationshipTypeEnum.appends:
+        return 'appends';
+      case ReportRelationshipTypeEnum.transforms:
+        return 'transforms';
+      case ReportRelationshipTypeEnum.replacedWith:
+        return 'replacedWith';
+      case ReportRelationshipTypeEnum.amendedWith:
+        return 'amendedWith';
+      case ReportRelationshipTypeEnum.appendedWith:
+        return 'appendedWith';
+      case ReportRelationshipTypeEnum.transformedWith:
+        return 'transformedWith';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ReportRelationshipTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ReportRelationshipTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ReportRelationshipTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'replaces':
+        return ReportRelationshipTypeEnum.replaces;
+      case 'amends':
+        return ReportRelationshipTypeEnum.amends;
+      case 'appends':
+        return ReportRelationshipTypeEnum.appends;
+      case 'transforms':
+        return ReportRelationshipTypeEnum.transforms;
+      case 'replacedWith':
+        return ReportRelationshipTypeEnum.replacedWith;
+      case 'amendedWith':
+        return ReportRelationshipTypeEnum.amendedWith;
+      case 'appendedWith':
+        return ReportRelationshipTypeEnum.appendedWith;
+      case 'transformedWith':
+        return ReportRelationshipTypeEnum.transformedWith;
+    }
+    return null;
+  }
+}
+
 /// The type of relationship between reports.
 class ReportRelationshipType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ReportRelationshipType._({
+  const ReportRelationshipType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +102,6 @@ class ReportRelationshipType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +115,13 @@ class ReportRelationshipType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ReportRelationshipTypeEnum.fromString(valueString);
     return ReportRelationshipType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +129,8 @@ class ReportRelationshipType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ReportRelationshipType] with element only
-  factory ReportRelationshipType.empty() =>
-      ReportRelationshipType._(valueString: '');
 
   /// Factory constructor to create [ReportRelationshipType]
   /// from JSON.
@@ -54,10 +138,11 @@ class ReportRelationshipType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ReportRelationshipTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportRelationshipType.elementOnly.withElement(element);
+      return ReportRelationshipType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ReportRelationshipType cannot be constructed from JSON.',
@@ -65,78 +150,118 @@ class ReportRelationshipType extends FhirCodeEnum {
     }
     return ReportRelationshipType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ReportRelationshipType
+  final ReportRelationshipTypeEnum? valueEnum;
+
   /// replaces
-  static final ReportRelationshipType replaces = ReportRelationshipType._(
+  static const ReportRelationshipType replaces = ReportRelationshipType._(
     valueString: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.replaces,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaces',
+    ),
   );
 
   /// amends
-  static final ReportRelationshipType amends = ReportRelationshipType._(
+  static const ReportRelationshipType amends = ReportRelationshipType._(
     valueString: 'amends',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amends'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.amends,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Amends',
+    ),
   );
 
   /// appends
-  static final ReportRelationshipType appends = ReportRelationshipType._(
+  static const ReportRelationshipType appends = ReportRelationshipType._(
     valueString: 'appends',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appends'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.appends,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appends',
+    ),
   );
 
   /// transforms
-  static final ReportRelationshipType transforms = ReportRelationshipType._(
+  static const ReportRelationshipType transforms = ReportRelationshipType._(
     valueString: 'transforms',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transforms'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.transforms,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transforms',
+    ),
   );
 
   /// replacedWith
-  static final ReportRelationshipType replacedWith = ReportRelationshipType._(
+  static const ReportRelationshipType replacedWith = ReportRelationshipType._(
     valueString: 'replacedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced With'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.replacedWith,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaced With',
+    ),
   );
 
   /// amendedWith
-  static final ReportRelationshipType amendedWith = ReportRelationshipType._(
+  static const ReportRelationshipType amendedWith = ReportRelationshipType._(
     valueString: 'amendedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended With'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.amendedWith,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Amended With',
+    ),
   );
 
   /// appendedWith
-  static final ReportRelationshipType appendedWith = ReportRelationshipType._(
+  static const ReportRelationshipType appendedWith = ReportRelationshipType._(
     valueString: 'appendedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appended With'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.appendedWith,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appended With',
+    ),
   );
 
   /// transformedWith
-  static final ReportRelationshipType transformedWith =
+  static const ReportRelationshipType transformedWith =
       ReportRelationshipType._(
     valueString: 'transformedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transformed With'.toFhirString,
+    valueEnum: ReportRelationshipTypeEnum.transformedWith,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transformed With',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ReportRelationshipType elementOnly =
-      ReportRelationshipType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ReportRelationshipType> values = [
@@ -149,13 +274,6 @@ class ReportRelationshipType extends FhirCodeEnum {
     appendedWith,
     transformedWith,
   ];
-
-  /// Clones the current instance
-  @override
-  ReportRelationshipType clone() => ReportRelationshipType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ReportRelationshipType withElement(Element? newElement) {
@@ -176,36 +294,56 @@ class ReportRelationshipType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ReportRelationshipType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ReportRelationshipType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ReportRelationshipTypeCopyWithImpl<ReportRelationshipType> get copyWith =>
+      ReportRelationshipTypeCopyWithImpl<ReportRelationshipType>(
+        this,
+        (v) => v as ReportRelationshipType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ReportRelationshipTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ReportRelationshipTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ReportRelationshipType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ReportRelationshipType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ReportRelationshipType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

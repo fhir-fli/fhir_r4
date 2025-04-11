@@ -1,11 +1,86 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EndpointStatus
+enum EndpointStatusEnum {
+  /// active
+  active,
+
+  /// suspended
+  suspended,
+
+  /// error
+  error,
+
+  /// off
+  off,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// test
+  test,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EndpointStatusEnum.active:
+        return 'active';
+      case EndpointStatusEnum.suspended:
+        return 'suspended';
+      case EndpointStatusEnum.error:
+        return 'error';
+      case EndpointStatusEnum.off:
+        return 'off';
+      case EndpointStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case EndpointStatusEnum.test:
+        return 'test';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EndpointStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EndpointStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EndpointStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return EndpointStatusEnum.active;
+      case 'suspended':
+        return EndpointStatusEnum.suspended;
+      case 'error':
+        return EndpointStatusEnum.error;
+      case 'off':
+        return EndpointStatusEnum.off;
+      case 'entered-in-error':
+        return EndpointStatusEnum.enteredInError;
+      case 'test':
+        return EndpointStatusEnum.test;
+    }
+    return null;
+  }
+}
+
 /// The status of the endpoint.
 class EndpointStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  EndpointStatus._({
+  const EndpointStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +88,6 @@ class EndpointStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +101,13 @@ class EndpointStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = EndpointStatusEnum.fromString(valueString);
     return EndpointStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +115,8 @@ class EndpointStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [EndpointStatus] with element only
-  factory EndpointStatus.empty() => EndpointStatus._(valueString: '');
 
   /// Factory constructor to create [EndpointStatus]
   /// from JSON.
@@ -53,10 +124,11 @@ class EndpointStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = EndpointStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointStatus.elementOnly.withElement(element);
+      return EndpointStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EndpointStatus cannot be constructed from JSON.',
@@ -64,60 +136,91 @@ class EndpointStatus extends FhirCodeEnum {
     }
     return EndpointStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for EndpointStatus
+  final EndpointStatusEnum? valueEnum;
+
   /// active
-  static final EndpointStatus active = EndpointStatus._(
+  static const EndpointStatus active = EndpointStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: EndpointStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// suspended
-  static final EndpointStatus suspended = EndpointStatus._(
+  static const EndpointStatus suspended = EndpointStatus._(
     valueString: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Suspended'.toFhirString,
+    valueEnum: EndpointStatusEnum.suspended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Suspended',
+    ),
   );
 
   /// error
-  static final EndpointStatus error = EndpointStatus._(
+  static const EndpointStatus error = EndpointStatus._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    valueEnum: EndpointStatusEnum.error,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Error',
+    ),
   );
 
   /// off
-  static final EndpointStatus off = EndpointStatus._(
+  static const EndpointStatus off = EndpointStatus._(
     valueString: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Off'.toFhirString,
+    valueEnum: EndpointStatusEnum.off,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Off',
+    ),
   );
 
   /// entered_in_error
-  static final EndpointStatus entered_in_error = EndpointStatus._(
+  static const EndpointStatus enteredInError = EndpointStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in error'.toFhirString,
+    valueEnum: EndpointStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in error',
+    ),
   );
 
   /// test
-  static final EndpointStatus test = EndpointStatus._(
+  static const EndpointStatus test = EndpointStatus._(
     valueString: 'test',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Test'.toFhirString,
+    valueEnum: EndpointStatusEnum.test,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Test',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final EndpointStatus elementOnly = EndpointStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<EndpointStatus> values = [
@@ -125,16 +228,9 @@ class EndpointStatus extends FhirCodeEnum {
     suspended,
     error,
     off,
-    entered_in_error,
+    enteredInError,
     test,
   ];
-
-  /// Clones the current instance
-  @override
-  EndpointStatus clone() => EndpointStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   EndpointStatus withElement(Element? newElement) {
@@ -155,36 +251,56 @@ class EndpointStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  EndpointStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  EndpointStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  EndpointStatusCopyWithImpl<EndpointStatus> get copyWith =>
+      EndpointStatusCopyWithImpl<EndpointStatus>(
+        this,
+        (v) => v as EndpointStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class EndpointStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  EndpointStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for EndpointStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return EndpointStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      EndpointStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -1,12 +1,73 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for LinkType
+enum LinkTypeEnum {
+  /// replaced-by
+  replacedBy,
+
+  /// replaces
+  replaces,
+
+  /// refer
+  refer,
+
+  /// seealso
+  seealso,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case LinkTypeEnum.replacedBy:
+        return 'replaced-by';
+      case LinkTypeEnum.replaces:
+        return 'replaces';
+      case LinkTypeEnum.refer:
+        return 'refer';
+      case LinkTypeEnum.seealso:
+        return 'seealso';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static LinkTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return LinkTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static LinkTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'replaced-by':
+        return LinkTypeEnum.replacedBy;
+      case 'replaces':
+        return LinkTypeEnum.replaces;
+      case 'refer':
+        return LinkTypeEnum.refer;
+      case 'seealso':
+        return LinkTypeEnum.seealso;
+    }
+    return null;
+  }
+}
+
 /// The type of link between this patient resource and another patient
 /// resource.
 class LinkType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  LinkType._({
+  const LinkType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +75,6 @@ class LinkType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +88,13 @@ class LinkType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = LinkTypeEnum.fromString(valueString);
     return LinkType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +102,8 @@ class LinkType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [LinkType] with element only
-  factory LinkType.empty() => LinkType._(valueString: '');
 
   /// Factory constructor to create [LinkType]
   /// from JSON.
@@ -54,10 +111,11 @@ class LinkType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = LinkTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkType.elementOnly.withElement(element);
+      return LinkType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'LinkType cannot be constructed from JSON.',
@@ -65,59 +123,73 @@ class LinkType extends FhirCodeEnum {
     }
     return LinkType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for LinkType
+  final LinkTypeEnum? valueEnum;
+
   /// replaced_by
-  static final LinkType replaced_by = LinkType._(
+  static const LinkType replacedBy = LinkType._(
     valueString: 'replaced-by',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced-by'.toFhirString,
+    valueEnum: LinkTypeEnum.replacedBy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaced-by',
+    ),
   );
 
   /// replaces
-  static final LinkType replaces = LinkType._(
+  static const LinkType replaces = LinkType._(
     valueString: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    valueEnum: LinkTypeEnum.replaces,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaces',
+    ),
   );
 
   /// refer
-  static final LinkType refer = LinkType._(
+  static const LinkType refer = LinkType._(
     valueString: 'refer',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Refer'.toFhirString,
+    valueEnum: LinkTypeEnum.refer,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Refer',
+    ),
   );
 
   /// seealso
-  static final LinkType seealso = LinkType._(
+  static const LinkType seealso = LinkType._(
     valueString: 'seealso',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'See also'.toFhirString,
+    valueEnum: LinkTypeEnum.seealso,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'See also',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final LinkType elementOnly = LinkType._(valueString: '');
 
   /// List of all enum-like values
   static final List<LinkType> values = [
-    replaced_by,
+    replacedBy,
     replaces,
     refer,
     seealso,
   ];
-
-  /// Clones the current instance
-  @override
-  LinkType clone() => LinkType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   LinkType withElement(Element? newElement) {
@@ -138,36 +210,55 @@ class LinkType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  LinkType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  LinkType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  LinkTypeCopyWithImpl<LinkType> get copyWith => LinkTypeCopyWithImpl<LinkType>(
+        this,
+        (v) => v as LinkType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class LinkTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  LinkTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for LinkType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return LinkType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      LinkType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

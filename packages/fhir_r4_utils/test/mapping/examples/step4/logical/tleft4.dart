@@ -11,7 +11,6 @@ class TLeft4 extends Element {
     super.extension_,
     this.a21,
     super.disallowExtensions,
-    super.objectPath = 'TLeft4',
   });
 
   /// Factory constructor to create an instance of [TLeft4] from JSON
@@ -48,24 +47,6 @@ class TLeft4 extends Element {
   final FhirString? a21;
 
   @override
-  TLeft4 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? a21,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft4(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a21: a21 ?? this.a21,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
     if (id != null) json['id'] = id!.valueString;
@@ -76,39 +57,6 @@ class TLeft4 extends Element {
       json['a21'] = a21!.valueString;
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() {
-    return ['id', 'extension', 'a21'];
-  }
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'a21':
-        if (a21 != null) fields.add(a21!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Multiple values found for $name');
-    }
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -328,16 +276,6 @@ class TLeft4Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a21 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a21) this.a21 = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

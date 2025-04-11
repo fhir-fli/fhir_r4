@@ -45,13 +45,12 @@ class FhirUri extends PrimitiveType
 
   /// Private underscore constructor that sets [valueString] and calls
   /// [super._].
-  FhirUri._({
+  const FhirUri._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Uri',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -71,7 +70,6 @@ class FhirUri extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Uri',
   }) {
     String? parsedValue;
     if (rawValue == null && element == null) {
@@ -92,12 +90,8 @@ class FhirUri extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirUri] with [Element.empty] metadata.
-  factory FhirUri.empty() => FhirUri(null, element: Element.empty());
 
   /// Creates a [FhirUri] from a [Uri] instance.
   factory FhirUri.fromUri(
@@ -120,12 +114,10 @@ class FhirUri extends PrimitiveType
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Uri';
 
     return FhirUri(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -199,7 +191,8 @@ class FhirUri extends PrimitiveType
   /// Converts this [FhirUri] into a JSON [Map].
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString != null) 'value': valueString,
+        if (valueString != null && valueString!.isNotEmpty)
+          'value': valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -281,62 +274,15 @@ class FhirUri extends PrimitiveType
 
   /// Clones this [FhirUri].
   @override
-  FhirUri clone() => FhirUri(
-        valueString,
-        element: element?.clone() as Element?,
-      );
+  FhirUri clone() => copyWith();
 
-  /// Creates a new [FhirUri] with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirUri copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirUri(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
+  $FhirUriCopyWithImpl<FhirUri> get copyWith =>
+      $FhirUriCopyWithImpl<FhirUri>(this, (value) => value);
 
   /// Returns a copy that disallows further extensions.
   FhirUri noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Creates a property. No-op for [FhirUri].
-  @override
-  FhirUri createProperty(String propertyName) => this;
-
-  /// Clears selected fields in this [FhirUri].
-  @override
-  FhirUri clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirUri(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 
   // --------------------------------------------------------------------------
   // Additional Convenience Getters
@@ -385,5 +331,42 @@ class FhirUri extends PrimitiveType
   /// Decodes a query component [text] from its percent-encoded form.
   static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.decodeQueryComponent(text, encoding: encoding);
+  }
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirUriCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirUriCopyWithImpl(this._value, this._then);
+
+  final FhirUri _value;
+  final T Function(FhirUri) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+  }) {
+    return _then(
+      FhirUri(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
+    );
   }
 }

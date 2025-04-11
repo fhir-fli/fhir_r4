@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
+        
         SubscriptionTopic,
         SubscriptionTopicCanFilterBy,
         SubscriptionTopicEventTrigger,
@@ -1461,72 +1462,6 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool title = false,
-    bool derivedFrom = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool resourceTrigger = false,
-    bool eventTrigger = false,
-    bool canFilterBy = false,
-    bool notificationShape = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (title) this.title = null;
-    if (derivedFrom) this.derivedFrom = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (resourceTrigger) this.resourceTrigger = null;
-    if (eventTrigger) this.eventTrigger = null;
-    if (canFilterBy) this.canFilterBy = null;
-    if (notificationShape) this.notificationShape = null;
-  }
-
   @override
   SubscriptionTopicBuilder clone() => throw UnimplementedError();
   @override
@@ -2370,28 +2305,6 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool resource = false,
-    bool supportedInteraction = false,
-    bool queryCriteria = false,
-    bool fhirPathCriteria = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (resource) this.resource = null;
-    if (supportedInteraction) this.supportedInteraction = null;
-    if (queryCriteria) this.queryCriteria = null;
-    if (fhirPathCriteria) this.fhirPathCriteria = null;
-  }
-
   @override
   SubscriptionTopicResourceTriggerBuilder clone() => throw UnimplementedError();
   @override
@@ -3031,28 +2944,6 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool previous = false,
-    bool resultForCreate = false,
-    bool current = false,
-    bool resultForDelete = false,
-    bool requireBoth = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (previous) this.previous = null;
-    if (resultForCreate) this.resultForCreate = null;
-    if (current) this.current = null;
-    if (resultForDelete) this.resultForDelete = null;
-    if (requireBoth) this.requireBoth = null;
-  }
-
   @override
   SubscriptionTopicQueryCriteriaBuilder clone() => throw UnimplementedError();
   @override
@@ -3588,24 +3479,6 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool event = false,
-    bool resource = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (event) this.event = null;
-    if (resource) this.resource = null;
   }
 
   @override
@@ -4272,28 +4145,6 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool resource = false,
-    bool filterParameter = false,
-    bool filterDefinition = false,
-    bool modifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (resource) this.resource = null;
-    if (filterParameter) this.filterParameter = null;
-    if (filterDefinition) this.filterDefinition = null;
-    if (modifier) this.modifier = null;
-  }
-
   @override
   SubscriptionTopicCanFilterByBuilder clone() => throw UnimplementedError();
   @override
@@ -4902,24 +4753,6 @@ class SubscriptionTopicNotificationShapeBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool resource = false,
-    bool include = false,
-    bool revInclude = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (resource) this.resource = null;
-    if (include) this.include = null;
-    if (revInclude) this.revInclude = null;
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         Practitioner,
         PractitionerQualification,
         R4ResourceType,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -936,48 +937,6 @@ class PractitionerBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool name = false,
-    bool telecom = false,
-    bool address = false,
-    bool gender = false,
-    bool birthDate = false,
-    bool photo = false,
-    bool qualification = false,
-    bool communication = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-    if (address) this.address = null;
-    if (gender) this.gender = null;
-    if (birthDate) this.birthDate = null;
-    if (photo) this.photo = null;
-    if (qualification) this.qualification = null;
-    if (communication) this.communication = null;
-  }
-
   @override
   PractitionerBuilder clone() => throw UnimplementedError();
   @override
@@ -1604,26 +1563,6 @@ class PractitionerQualificationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool code = false,
-    bool period = false,
-    bool issuer = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (code) this.code = null;
-    if (period) this.period = null;
-    if (issuer) this.issuer = null;
   }
 
   @override

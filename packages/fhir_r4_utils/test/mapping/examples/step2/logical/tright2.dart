@@ -9,7 +9,6 @@ class TRight2 extends Element {
     super.extension_,
     this.a2,
     super.disallowExtensions,
-    super.objectPath = 'TRight2',
   });
 
   factory TRight2.empty() => const TRight2();
@@ -48,24 +47,6 @@ class TRight2 extends Element {
   final FhirString? a2;
 
   @override
-  TRight2 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? a2,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight2(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a2: a2 ?? this.a2,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -76,36 +57,6 @@ class TRight2 extends Element {
       json['a2'] = a2!.valueString;
     }
     return json;
-  }
-
-  @override
-  TRight2 setChildByName(String name, dynamic value) {
-    switch (name) {
-      case 'id':
-        return copyWith(id: value as FhirString);
-      case 'extension':
-        return copyWith(extension_: value as List<FhirExtension>);
-      case 'a2':
-        return copyWith(a2: value as FhirString);
-      default:
-        return this;
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['List<FhirExtension>'];
-      case 'a2':
-        return ['FhirString'];
-      default:
-        return [];
-    }
   }
 }
 
@@ -310,17 +261,6 @@ class TRight2Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a2 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a2) this.a2 = null;
   }
 
   @override

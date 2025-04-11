@@ -1,11 +1,58 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ExampleScenarioActorType
+enum ExampleScenarioActorTypeEnum {
+  /// person
+  person,
+
+  /// entity
+  entity,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ExampleScenarioActorTypeEnum.person:
+        return 'person';
+      case ExampleScenarioActorTypeEnum.entity:
+        return 'entity';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ExampleScenarioActorTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ExampleScenarioActorTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ExampleScenarioActorTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'person':
+        return ExampleScenarioActorTypeEnum.person;
+      case 'entity':
+        return ExampleScenarioActorTypeEnum.entity;
+    }
+    return null;
+  }
+}
+
 /// The type of actor - system or human.
 class ExampleScenarioActorType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ExampleScenarioActorType._({
+  const ExampleScenarioActorType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +60,6 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +73,13 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ExampleScenarioActorTypeEnum.fromString(valueString);
     return ExampleScenarioActorType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +87,8 @@ class ExampleScenarioActorType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ExampleScenarioActorType] with element only
-  factory ExampleScenarioActorType.empty() =>
-      ExampleScenarioActorType._(valueString: '');
 
   /// Factory constructor to create [ExampleScenarioActorType]
   /// from JSON.
@@ -54,10 +96,11 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ExampleScenarioActorTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(element);
+      return ExampleScenarioActorType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ExampleScenarioActorType cannot be constructed from JSON.',
@@ -65,42 +108,45 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     }
     return ExampleScenarioActorType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ExampleScenarioActorType
+  final ExampleScenarioActorTypeEnum? valueEnum;
+
   /// person
-  static final ExampleScenarioActorType person = ExampleScenarioActorType._(
+  static const ExampleScenarioActorType person = ExampleScenarioActorType._(
     valueString: 'person',
-    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    valueEnum: ExampleScenarioActorTypeEnum.person,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Person',
+    ),
   );
 
   /// entity
-  static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
+  static const ExampleScenarioActorType entity = ExampleScenarioActorType._(
     valueString: 'entity',
-    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'System'.toFhirString,
+    valueEnum: ExampleScenarioActorTypeEnum.entity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'System',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ExampleScenarioActorType elementOnly =
-      ExampleScenarioActorType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ExampleScenarioActorType> values = [
     person,
     entity,
   ];
-
-  /// Clones the current instance
-  @override
-  ExampleScenarioActorType clone() => ExampleScenarioActorType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ExampleScenarioActorType withElement(Element? newElement) {
@@ -121,36 +167,56 @@ class ExampleScenarioActorType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ExampleScenarioActorType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ExampleScenarioActorType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ExampleScenarioActorTypeCopyWithImpl<ExampleScenarioActorType> get copyWith =>
+      ExampleScenarioActorTypeCopyWithImpl<ExampleScenarioActorType>(
+        this,
+        (v) => v as ExampleScenarioActorType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ExampleScenarioActorTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ExampleScenarioActorTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ExampleScenarioActorType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ExampleScenarioActorType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ExampleScenarioActorType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

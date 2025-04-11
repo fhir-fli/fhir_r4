@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'biologically_derived_product.g.dart';
+
 /// [BiologicallyDerivedProduct]
 /// A material substance originating from a biological entity intended to
 /// be transplanted or infused
@@ -31,89 +33,64 @@ class BiologicallyDerivedProduct extends DomainResource {
     this.manipulation,
     this.storage,
   }) : super(
-          objectPath: 'BiologicallyDerivedProduct',
           resourceType: R4ResourceType.BiologicallyDerivedProduct,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() =>
-      const BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'BiologicallyDerivedProduct';
     return BiologicallyDerivedProduct(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -122,27 +99,21 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'productCategory',
         BiologicallyDerivedProductCategory.fromJson,
-        '$objectPath.productCategory',
       ),
       productCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'productCode',
         CodeableConcept.fromJson,
-        '$objectPath.productCode',
       ),
       status: JsonParser.parsePrimitive<BiologicallyDerivedProductStatus>(
         json,
         'status',
         BiologicallyDerivedProductStatus.fromJson,
-        '$objectPath.status',
       ),
       request: (json['request'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.request',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -150,15 +121,11 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'quantity',
         FhirInteger.fromJson,
-        '$objectPath.quantity',
       ),
       parent: (json['parent'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.parent',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -166,15 +133,11 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'collection',
         BiologicallyDerivedProductCollection.fromJson,
-        '$objectPath.collection',
       ),
       processing: (json['processing'] as List<dynamic>?)
           ?.map<BiologicallyDerivedProductProcessing>(
             (v) => BiologicallyDerivedProductProcessing.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.processing',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -183,15 +146,11 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'manipulation',
         BiologicallyDerivedProductManipulation.fromJson,
-        '$objectPath.manipulation',
       ),
       storage: (json['storage'] as List<dynamic>?)
           ?.map<BiologicallyDerivedProductStorage>(
             (v) => BiologicallyDerivedProductStorage.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.storage',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -562,601 +521,20 @@ class BiologicallyDerivedProduct extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BiologicallyDerivedProduct clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productCategory':
-        {
-          if (child is BiologicallyDerivedProductCategory) {
-            return copyWith(productCategory: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is BiologicallyDerivedProductStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'request':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?request, ...child];
-            return copyWith(request: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?request,
-              child,
-            ];
-            return copyWith(request: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is FhirInteger) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parent':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?parent, ...child];
-            return copyWith(parent: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parent,
-              child,
-            ];
-            return copyWith(parent: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'collection':
-        {
-          if (child is BiologicallyDerivedProductCollection) {
-            return copyWith(collection: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'processing':
-        {
-          if (child is List<BiologicallyDerivedProductProcessing>) {
-            // Add all elements from passed list
-            final newList = [...?processing, ...child];
-            return copyWith(processing: newList);
-          } else if (child is BiologicallyDerivedProductProcessing) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?processing,
-              child,
-            ];
-            return copyWith(processing: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manipulation':
-        {
-          if (child is BiologicallyDerivedProductManipulation) {
-            return copyWith(manipulation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'storage':
-        {
-          if (child is List<BiologicallyDerivedProductStorage>) {
-            // Add all elements from passed list
-            final newList = [...?storage, ...child];
-            return copyWith(storage: newList);
-          } else if (child is BiologicallyDerivedProductStorage) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?storage,
-              child,
-            ];
-            return copyWith(storage: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BiologicallyDerivedProduct]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'productCategory':
-        return ['FhirCode'];
-      case 'productCode':
-        return ['CodeableConcept'];
-      case 'status':
-        return ['FhirCode'];
-      case 'request':
-        return ['Reference'];
-      case 'quantity':
-        return ['FhirInteger'];
-      case 'parent':
-        return ['Reference'];
-      case 'collection':
-        return ['BiologicallyDerivedProductCollection'];
-      case 'processing':
-        return ['BiologicallyDerivedProductProcessing'];
-      case 'manipulation':
-        return ['BiologicallyDerivedProductManipulation'];
-      case 'storage':
-        return ['BiologicallyDerivedProductStorage'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BiologicallyDerivedProduct]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BiologicallyDerivedProduct createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $BiologicallyDerivedProductCopyWith<BiologicallyDerivedProduct>
+      get copyWith =>
+          _$BiologicallyDerivedProductCopyWithImpl<BiologicallyDerivedProduct>(
+            this,
+            (value) => value,
           );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'productCategory':
-        {
-          return copyWith(
-            productCategory: BiologicallyDerivedProductCategory.empty(),
-          );
-        }
-      case 'productCode':
-        {
-          return copyWith(
-            productCode: CodeableConcept.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: BiologicallyDerivedProductStatus.empty(),
-          );
-        }
-      case 'request':
-        {
-          return copyWith(
-            request: <Reference>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: FhirInteger.empty(),
-          );
-        }
-      case 'parent':
-        {
-          return copyWith(
-            parent: <Reference>[],
-          );
-        }
-      case 'collection':
-        {
-          return copyWith(
-            collection: BiologicallyDerivedProductCollection.empty(),
-          );
-        }
-      case 'processing':
-        {
-          return copyWith(
-            processing: <BiologicallyDerivedProductProcessing>[],
-          );
-        }
-      case 'manipulation':
-        {
-          return copyWith(
-            manipulation: BiologicallyDerivedProductManipulation.empty(),
-          );
-        }
-      case 'storage':
-        {
-          return copyWith(
-            storage: <BiologicallyDerivedProductStorage>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BiologicallyDerivedProduct clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool productCategory = false,
-    bool productCode = false,
-    bool status = false,
-    bool request = false,
-    bool quantity = false,
-    bool parent = false,
-    bool collection = false,
-    bool processing = false,
-    bool manipulation = false,
-    bool storage = false,
-  }) {
-    return BiologicallyDerivedProduct(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      productCategory: productCategory ? null : this.productCategory,
-      productCode: productCode ? null : this.productCode,
-      status: status ? null : this.status,
-      request: request ? null : this.request,
-      quantity: quantity ? null : this.quantity,
-      parent: parent ? null : this.parent,
-      collection: collection ? null : this.collection,
-      processing: processing ? null : this.processing,
-      manipulation: manipulation ? null : this.manipulation,
-      storage: storage ? null : this.storage,
-    );
-  }
-
-  @override
-  BiologicallyDerivedProduct clone() => throw UnimplementedError();
-  @override
-  BiologicallyDerivedProduct copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    BiologicallyDerivedProductCategory? productCategory,
-    CodeableConcept? productCode,
-    BiologicallyDerivedProductStatus? status,
-    List<Reference>? request,
-    FhirInteger? quantity,
-    List<Reference>? parent,
-    BiologicallyDerivedProductCollection? collection,
-    List<BiologicallyDerivedProductProcessing>? processing,
-    BiologicallyDerivedProductManipulation? manipulation,
-    List<BiologicallyDerivedProductStorage>? storage,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return BiologicallyDerivedProduct(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      productCategory: productCategory?.copyWith(
-            objectPath: '$newObjectPath.productCategory',
-          ) ??
-          this.productCategory,
-      productCode: productCode?.copyWith(
-            objectPath: '$newObjectPath.productCode',
-          ) ??
-          this.productCode,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      request: request
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.request',
-                ),
-              )
-              .toList() ??
-          this.request,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      parent: parent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parent',
-                ),
-              )
-              .toList() ??
-          this.parent,
-      collection: collection?.copyWith(
-            objectPath: '$newObjectPath.collection',
-          ) ??
-          this.collection,
-      processing: processing
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.processing',
-                ),
-              )
-              .toList() ??
-          this.processing,
-      manipulation: manipulation?.copyWith(
-            objectPath: '$newObjectPath.manipulation',
-          ) ??
-          this.manipulation,
-      storage: storage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.storage',
-                ),
-              )
-              .toList() ??
-          this.storage,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1298,45 +676,29 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.source,
     this.collectedX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'BiologicallyDerivedProduct.collection',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProductCollection.empty() =>
-      const BiologicallyDerivedProductCollection();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'BiologicallyDerivedProduct.collection';
     return BiologicallyDerivedProductCollection(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1344,13 +706,11 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         json,
         'collector',
         Reference.fromJson,
-        '$objectPath.collector',
       ),
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
         Reference.fromJson,
-        '$objectPath.source',
       ),
       collectedX: JsonParser.parsePolymorphic<
           CollectedXBiologicallyDerivedProductCollection>(
@@ -1359,7 +719,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
           'collectedDateTime': FhirDateTime.fromJson,
           'collectedPeriod': Period.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -1588,271 +947,21 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BiologicallyDerivedProductCollection clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'collector':
-        {
-          if (child is Reference) {
-            return copyWith(collector: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is Reference) {
-            return copyWith(source: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'collected':
-      case 'collectedX':
-        {
-          if (child is CollectedXBiologicallyDerivedProductCollection) {
-            return copyWith(collectedX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(collectedX: child);
-            }
-            if (child is Period) {
-              return copyWith(collectedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'collectedFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(collectedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'collectedPeriod':
-        {
-          if (child is Period) {
-            return copyWith(collectedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BiologicallyDerivedProductCollection]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'collector':
-        return ['Reference'];
-      case 'source':
-        return ['Reference'];
-      case 'collected':
-      case 'collectedX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'collectedDateTime':
-        return ['FhirDateTime'];
-      case 'collectedPeriod':
-        return ['Period'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BiologicallyDerivedProductCollection]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BiologicallyDerivedProductCollection createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $BiologicallyDerivedProductCollectionCopyWith<
+          BiologicallyDerivedProductCollection>
+      get copyWith => _$BiologicallyDerivedProductCollectionCopyWithImpl<
+              BiologicallyDerivedProductCollection>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'collector':
-        {
-          return copyWith(
-            collector: Reference.empty(),
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: Reference.empty(),
-          );
-        }
-      case 'collected':
-      case 'collectedX':
-      case 'collectedDateTime':
-        {
-          return copyWith(
-            collectedX: FhirDateTime.empty(),
-          );
-        }
-      case 'collectedPeriod':
-        {
-          return copyWith(
-            collectedX: Period.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BiologicallyDerivedProductCollection clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool collector = false,
-    bool source = false,
-    bool collected = false,
-  }) {
-    return BiologicallyDerivedProductCollection(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      collector: collector ? null : this.collector,
-      source: source ? null : this.source,
-      collectedX: collected ? null : collectedX,
-    );
-  }
-
-  @override
-  BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
-  @override
-  BiologicallyDerivedProductCollection copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? collector,
-    Reference? source,
-    CollectedXBiologicallyDerivedProductCollection? collectedX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BiologicallyDerivedProductCollection(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      collector: collector?.copyWith(
-            objectPath: '$newObjectPath.collector',
-          ) ??
-          this.collector,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      collectedX: collectedX?.copyWith(
-            objectPath: '$newObjectPath.collectedX',
-          ) as CollectedXBiologicallyDerivedProductCollection? ??
-          this.collectedX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1919,45 +1028,29 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.additive,
     this.timeX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'BiologicallyDerivedProduct.processing',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProductProcessing.empty() =>
-      const BiologicallyDerivedProductProcessing();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'BiologicallyDerivedProduct.processing';
     return BiologicallyDerivedProductProcessing(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1965,19 +1058,16 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       procedure: JsonParser.parseObject<CodeableConcept>(
         json,
         'procedure',
         CodeableConcept.fromJson,
-        '$objectPath.procedure',
       ),
       additive: JsonParser.parseObject<Reference>(
         json,
         'additive',
         Reference.fromJson,
-        '$objectPath.additive',
       ),
       timeX: JsonParser.parsePolymorphic<
           TimeXBiologicallyDerivedProductProcessing>(
@@ -1986,7 +1076,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           'timeDateTime': FhirDateTime.fromJson,
           'timePeriod': Period.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -2227,294 +1316,21 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BiologicallyDerivedProductProcessing clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'procedure':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(procedure: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'additive':
-        {
-          if (child is Reference) {
-            return copyWith(additive: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'time':
-      case 'timeX':
-        {
-          if (child is TimeXBiologicallyDerivedProductProcessing) {
-            return copyWith(timeX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(timeX: child);
-            }
-            if (child is Period) {
-              return copyWith(timeX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'timeFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(timeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timePeriod':
-        {
-          if (child is Period) {
-            return copyWith(timeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BiologicallyDerivedProductProcessing]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'procedure':
-        return ['CodeableConcept'];
-      case 'additive':
-        return ['Reference'];
-      case 'time':
-      case 'timeX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'timeDateTime':
-        return ['FhirDateTime'];
-      case 'timePeriod':
-        return ['Period'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BiologicallyDerivedProductProcessing]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BiologicallyDerivedProductProcessing createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $BiologicallyDerivedProductProcessingCopyWith<
+          BiologicallyDerivedProductProcessing>
+      get copyWith => _$BiologicallyDerivedProductProcessingCopyWithImpl<
+              BiologicallyDerivedProductProcessing>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'procedure':
-        {
-          return copyWith(
-            procedure: CodeableConcept.empty(),
-          );
-        }
-      case 'additive':
-        {
-          return copyWith(
-            additive: Reference.empty(),
-          );
-        }
-      case 'time':
-      case 'timeX':
-      case 'timeDateTime':
-        {
-          return copyWith(
-            timeX: FhirDateTime.empty(),
-          );
-        }
-      case 'timePeriod':
-        {
-          return copyWith(
-            timeX: Period.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BiologicallyDerivedProductProcessing clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool procedure = false,
-    bool additive = false,
-    bool time = false,
-  }) {
-    return BiologicallyDerivedProductProcessing(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      procedure: procedure ? null : this.procedure,
-      additive: additive ? null : this.additive,
-      timeX: time ? null : timeX,
-    );
-  }
-
-  @override
-  BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
-  @override
-  BiologicallyDerivedProductProcessing copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    CodeableConcept? procedure,
-    Reference? additive,
-    TimeXBiologicallyDerivedProductProcessing? timeX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BiologicallyDerivedProductProcessing(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      procedure: procedure?.copyWith(
-            objectPath: '$newObjectPath.procedure',
-          ) ??
-          this.procedure,
-      additive: additive?.copyWith(
-            objectPath: '$newObjectPath.additive',
-          ) ??
-          this.additive,
-      timeX: timeX?.copyWith(
-            objectPath: '$newObjectPath.timeX',
-          ) as TimeXBiologicallyDerivedProductProcessing? ??
-          this.timeX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2585,45 +1401,29 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     this.description,
     this.timeX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'BiologicallyDerivedProduct.manipulation',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProductManipulation.empty() =>
-      const BiologicallyDerivedProductManipulation();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'BiologicallyDerivedProduct.manipulation';
     return BiologicallyDerivedProductManipulation(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2631,7 +1431,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       timeX: JsonParser.parsePolymorphic<
           TimeXBiologicallyDerivedProductManipulation>(
@@ -2640,7 +1439,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
           'timeDateTime': FhirDateTime.fromJson,
           'timePeriod': Period.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -2855,248 +1653,21 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BiologicallyDerivedProductManipulation clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'time':
-      case 'timeX':
-        {
-          if (child is TimeXBiologicallyDerivedProductManipulation) {
-            return copyWith(timeX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(timeX: child);
-            }
-            if (child is Period) {
-              return copyWith(timeX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'timeFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(timeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timePeriod':
-        {
-          if (child is Period) {
-            return copyWith(timeX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BiologicallyDerivedProductManipulation]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'time':
-      case 'timeX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'timeDateTime':
-        return ['FhirDateTime'];
-      case 'timePeriod':
-        return ['Period'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BiologicallyDerivedProductManipulation]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BiologicallyDerivedProductManipulation createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $BiologicallyDerivedProductManipulationCopyWith<
+          BiologicallyDerivedProductManipulation>
+      get copyWith => _$BiologicallyDerivedProductManipulationCopyWithImpl<
+              BiologicallyDerivedProductManipulation>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'time':
-      case 'timeX':
-      case 'timeDateTime':
-        {
-          return copyWith(
-            timeX: FhirDateTime.empty(),
-          );
-        }
-      case 'timePeriod':
-        {
-          return copyWith(
-            timeX: Period.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BiologicallyDerivedProductManipulation clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool time = false,
-  }) {
-    return BiologicallyDerivedProductManipulation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      timeX: time ? null : timeX,
-    );
-  }
-
-  @override
-  BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
-  @override
-  BiologicallyDerivedProductManipulation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    TimeXBiologicallyDerivedProductManipulation? timeX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BiologicallyDerivedProductManipulation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      timeX: timeX?.copyWith(
-            objectPath: '$newObjectPath.timeX',
-          ) as TimeXBiologicallyDerivedProductManipulation? ??
-          this.timeX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3155,45 +1726,29 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     this.scale,
     this.duration,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'BiologicallyDerivedProduct.storage',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProductStorage.empty() =>
-      const BiologicallyDerivedProductStorage();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductStorage.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'BiologicallyDerivedProduct.storage';
     return BiologicallyDerivedProductStorage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3201,25 +1756,21 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-        '$objectPath.description',
       ),
       temperature: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'temperature',
         FhirDecimal.fromJson,
-        '$objectPath.temperature',
       ),
       scale: JsonParser.parsePrimitive<BiologicallyDerivedProductStorageScale>(
         json,
         'scale',
         BiologicallyDerivedProductStorageScale.fromJson,
-        '$objectPath.scale',
       ),
       duration: JsonParser.parseObject<Period>(
         json,
         'duration',
         Period.fromJson,
-        '$objectPath.duration',
       ),
     );
   }
@@ -3442,255 +1993,20 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  BiologicallyDerivedProductStorage clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirString) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'temperature':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(temperature: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'scale':
-        {
-          if (child is BiologicallyDerivedProductStorageScale) {
-            return copyWith(scale: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'duration':
-        {
-          if (child is Period) {
-            return copyWith(duration: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [BiologicallyDerivedProductStorage]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'description':
-        return ['FhirString'];
-      case 'temperature':
-        return ['FhirDecimal'];
-      case 'scale':
-        return ['FhirCode'];
-      case 'duration':
-        return ['Period'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [BiologicallyDerivedProductStorage]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  BiologicallyDerivedProductStorage createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $BiologicallyDerivedProductStorageCopyWith<BiologicallyDerivedProductStorage>
+      get copyWith => _$BiologicallyDerivedProductStorageCopyWithImpl<
+              BiologicallyDerivedProductStorage>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirString.empty(),
-          );
-        }
-      case 'temperature':
-        {
-          return copyWith(
-            temperature: FhirDecimal.empty(),
-          );
-        }
-      case 'scale':
-        {
-          return copyWith(
-            scale: BiologicallyDerivedProductStorageScale.empty(),
-          );
-        }
-      case 'duration':
-        {
-          return copyWith(
-            duration: Period.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  BiologicallyDerivedProductStorage clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool temperature = false,
-    bool scale = false,
-    bool duration = false,
-  }) {
-    return BiologicallyDerivedProductStorage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description ? null : this.description,
-      temperature: temperature ? null : this.temperature,
-      scale: scale ? null : this.scale,
-      duration: duration ? null : this.duration,
-    );
-  }
-
-  @override
-  BiologicallyDerivedProductStorage clone() => throw UnimplementedError();
-  @override
-  BiologicallyDerivedProductStorage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    FhirDecimal? temperature,
-    BiologicallyDerivedProductStorageScale? scale,
-    Period? duration,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return BiologicallyDerivedProductStorage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      temperature: temperature?.copyWith(
-            objectPath: '$newObjectPath.temperature',
-          ) ??
-          this.temperature,
-      scale: scale?.copyWith(
-            objectPath: '$newObjectPath.scale',
-          ) ??
-          this.scale,
-      duration: duration?.copyWith(
-            objectPath: '$newObjectPath.duration',
-          ) ??
-          this.duration,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SequenceType
+enum SequenceTypeEnum {
+  /// aa
+  aa,
+
+  /// dna
+  dna,
+
+  /// rna
+  rna,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SequenceTypeEnum.aa:
+        return 'aa';
+      case SequenceTypeEnum.dna:
+        return 'dna';
+      case SequenceTypeEnum.rna:
+        return 'rna';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SequenceTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SequenceTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SequenceTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'aa':
+        return SequenceTypeEnum.aa;
+      case 'dna':
+        return SequenceTypeEnum.dna;
+      case 'rna':
+        return SequenceTypeEnum.rna;
+    }
+    return null;
+  }
+}
+
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 class SequenceType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SequenceType._({
+  const SequenceType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class SequenceType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class SequenceType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SequenceTypeEnum.fromString(valueString);
     return SequenceType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +94,8 @@ class SequenceType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SequenceType] with element only
-  factory SequenceType.empty() => SequenceType._(valueString: '');
 
   /// Factory constructor to create [SequenceType]
   /// from JSON.
@@ -53,10 +103,11 @@ class SequenceType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SequenceTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SequenceType.elementOnly.withElement(element);
+      return SequenceType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SequenceType cannot be constructed from JSON.',
@@ -64,36 +115,52 @@ class SequenceType extends FhirCodeEnum {
     }
     return SequenceType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SequenceType
+  final SequenceTypeEnum? valueEnum;
+
   /// aa
-  static final SequenceType aa = SequenceType._(
+  static const SequenceType aa = SequenceType._(
     valueString: 'aa',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AA Sequence'.toFhirString,
+    valueEnum: SequenceTypeEnum.aa,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AA Sequence',
+    ),
   );
 
   /// dna
-  static final SequenceType dna = SequenceType._(
+  static const SequenceType dna = SequenceType._(
     valueString: 'dna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DNA Sequence'.toFhirString,
+    valueEnum: SequenceTypeEnum.dna,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DNA Sequence',
+    ),
   );
 
   /// rna
-  static final SequenceType rna = SequenceType._(
+  static const SequenceType rna = SequenceType._(
     valueString: 'rna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RNA Sequence'.toFhirString,
+    valueEnum: SequenceTypeEnum.rna,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RNA Sequence',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SequenceType elementOnly = SequenceType._(valueString: '');
 
   /// List of all enum-like values
   static final List<SequenceType> values = [
@@ -101,13 +168,6 @@ class SequenceType extends FhirCodeEnum {
     dna,
     rna,
   ];
-
-  /// Clones the current instance
-  @override
-  SequenceType clone() => SequenceType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
@@ -128,36 +188,56 @@ class SequenceType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SequenceType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SequenceType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SequenceTypeCopyWithImpl<SequenceType> get copyWith =>
+      SequenceTypeCopyWithImpl<SequenceType>(
+        this,
+        (v) => v as SequenceType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SequenceTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SequenceTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SequenceType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SequenceType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SequenceType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

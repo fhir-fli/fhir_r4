@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'operation_definition.g.dart';
+
 /// [OperationDefinition]
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
@@ -45,86 +47,57 @@ class OperationDefinition extends CanonicalResource {
     this.parameter,
     this.overload,
   }) : super(
-          objectPath: 'OperationDefinition',
           resourceType: R4ResourceType.OperationDefinition,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationDefinition.empty() => OperationDefinition(
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        kind: OperationKind.values.first,
-        code: FhirCode.empty(),
-        system: FhirBoolean.empty(),
-        type: FhirBoolean.empty(),
-        instance: FhirBoolean.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationDefinition';
     return OperationDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -132,63 +105,51 @@ class OperationDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-        '$objectPath.url',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-        '$objectPath.title',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       ),
       kind: JsonParser.parsePrimitive<OperationKind>(
         json,
         'kind',
         OperationKind.fromJson,
-        '$objectPath.kind',
       )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-        '$objectPath.experimental',
       ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-        '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contact',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -196,25 +157,18 @@ class OperationDefinition extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.useContext',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.jurisdiction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -222,85 +176,68 @@ class OperationDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-        '$objectPath.purpose',
       ),
       affectsState: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'affectsState',
         FhirBoolean.fromJson,
-        '$objectPath.affectsState',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-        '$objectPath.code',
       )!,
       comment: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'comment',
         FhirMarkdown.fromJson,
-        '$objectPath.comment',
       ),
       base: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'base',
         FhirCanonical.fromJson,
-        '$objectPath.base',
       ),
       resource: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'resource',
         FhirCode.fromJson,
-        '$objectPath.resource',
       ),
       system: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'system',
         FhirBoolean.fromJson,
-        '$objectPath.system',
       )!,
       type: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'type',
         FhirBoolean.fromJson,
-        '$objectPath.type',
       )!,
       instance: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'instance',
         FhirBoolean.fromJson,
-        '$objectPath.instance',
       )!,
       inputProfile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'inputProfile',
         FhirCanonical.fromJson,
-        '$objectPath.inputProfile',
       ),
       outputProfile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'outputProfile',
         FhirCanonical.fromJson,
-        '$objectPath.outputProfile',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<OperationDefinitionParameter>(
             (v) => OperationDefinitionParameter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.parameter',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       overload: (json['overload'] as List<dynamic>?)
           ?.map<OperationDefinitionOverload>(
             (v) => OperationDefinitionOverload.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.overload',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -821,952 +758,19 @@ class OperationDefinition extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationDefinition clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'url':
-        {
-          if (child is FhirUri) {
-            return copyWith(url: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'title':
-        {
-          if (child is FhirString) {
-            return copyWith(title: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'kind':
-        {
-          if (child is OperationKind) {
-            return copyWith(kind: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'experimental':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'publisher':
-        {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contact':
-        {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contact,
-              child,
-            ];
-            return copyWith(contact: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'useContext':
-        {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?useContext,
-              child,
-            ];
-            return copyWith(useContext: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?jurisdiction,
-              child,
-            ];
-            return copyWith(jurisdiction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'affectsState':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(affectsState: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'comment':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(comment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'base':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(base: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'resource':
-        {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...?resource, ...child];
-            return copyWith(resource: newList);
-          } else if (child is FhirCode) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?resource,
-              child,
-            ];
-            return copyWith(resource: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'system':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(system: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instance':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(instance: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'inputProfile':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(inputProfile: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outputProfile':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(outputProfile: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parameter':
-        {
-          if (child is List<OperationDefinitionParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is OperationDefinitionParameter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parameter,
-              child,
-            ];
-            return copyWith(parameter: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'overload':
-        {
-          if (child is List<OperationDefinitionOverload>) {
-            // Add all elements from passed list
-            final newList = [...?overload, ...child];
-            return copyWith(overload: newList);
-          } else if (child is OperationDefinitionOverload) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?overload,
-              child,
-            ];
-            return copyWith(overload: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationDefinition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'url':
-        return ['FhirUri'];
-      case 'version':
-        return ['FhirString'];
-      case 'name':
-        return ['FhirString'];
-      case 'title':
-        return ['FhirString'];
-      case 'status':
-        return ['FhirCode'];
-      case 'kind':
-        return ['FhirCode'];
-      case 'experimental':
-        return ['FhirBoolean'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'publisher':
-        return ['FhirString'];
-      case 'contact':
-        return ['ContactDetail'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'useContext':
-        return ['UsageContext'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirMarkdown'];
-      case 'affectsState':
-        return ['FhirBoolean'];
-      case 'code':
-        return ['FhirCode'];
-      case 'comment':
-        return ['FhirMarkdown'];
-      case 'base':
-        return ['FhirCanonical'];
-      case 'resource':
-        return ['FhirCode'];
-      case 'system':
-        return ['FhirBoolean'];
-      case 'type':
-        return ['FhirBoolean'];
-      case 'instance':
-        return ['FhirBoolean'];
-      case 'inputProfile':
-        return ['FhirCanonical'];
-      case 'outputProfile':
-        return ['FhirCanonical'];
-      case 'parameter':
-        return ['OperationDefinitionParameter'];
-      case 'overload':
-        return ['OperationDefinitionOverload'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationDefinition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationDefinition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'url':
-        {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'title':
-        {
-          return copyWith(
-            title: FhirString.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'kind':
-        {
-          return copyWith(
-            kind: OperationKind.empty(),
-          );
-        }
-      case 'experimental':
-        {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'publisher':
-        {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
-        }
-      case 'contact':
-        {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'useContext':
-        {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
-        }
-      case 'affectsState':
-        {
-          return copyWith(
-            affectsState: FhirBoolean.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
-        }
-      case 'comment':
-        {
-          return copyWith(
-            comment: FhirMarkdown.empty(),
-          );
-        }
-      case 'base':
-        {
-          return copyWith(
-            base: FhirCanonical.empty(),
-          );
-        }
-      case 'resource':
-        {
-          return copyWith(
-            resource: <FhirCode>[],
-          );
-        }
-      case 'system':
-        {
-          return copyWith(
-            system: FhirBoolean.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FhirBoolean.empty(),
-          );
-        }
-      case 'instance':
-        {
-          return copyWith(
-            instance: FhirBoolean.empty(),
-          );
-        }
-      case 'inputProfile':
-        {
-          return copyWith(
-            inputProfile: FhirCanonical.empty(),
-          );
-        }
-      case 'outputProfile':
-        {
-          return copyWith(
-            outputProfile: FhirCanonical.empty(),
-          );
-        }
-      case 'parameter':
-        {
-          return copyWith(
-            parameter: <OperationDefinitionParameter>[],
-          );
-        }
-      case 'overload':
-        {
-          return copyWith(
-            overload: <OperationDefinitionOverload>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationDefinition clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool title = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool affectsState = false,
-    bool comment = false,
-    bool base = false,
-    bool resource = false,
-    bool inputProfile = false,
-    bool outputProfile = false,
-    bool parameter = false,
-    bool overload = false,
-  }) {
-    return OperationDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      version: version ? null : this.version,
-      name: name,
-      title: title ? null : this.title,
-      status: status,
-      kind: kind,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      affectsState: affectsState ? null : this.affectsState,
-      code: code,
-      comment: comment ? null : this.comment,
-      base: base ? null : this.base,
-      resource: resource ? null : this.resource,
-      system: system,
-      type: type,
-      instance: instance,
-      inputProfile: inputProfile ? null : this.inputProfile,
-      outputProfile: outputProfile ? null : this.outputProfile,
-      parameter: parameter ? null : this.parameter,
-      overload: overload ? null : this.overload,
-    );
-  }
-
-  @override
-  OperationDefinition clone() => throw UnimplementedError();
-  @override
-  OperationDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    OperationKind? kind,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirBoolean? affectsState,
-    FhirCode? code,
-    FhirMarkdown? comment,
-    FhirCanonical? base,
-    List<FhirCode>? resource,
-    FhirBoolean? system,
-    FhirBoolean? type,
-    FhirBoolean? instance,
-    FhirCanonical? inputProfile,
-    FhirCanonical? outputProfile,
-    List<OperationDefinitionParameter>? parameter,
-    List<OperationDefinitionOverload>? overload,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return OperationDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      kind: kind?.copyWith(
-            objectPath: '$newObjectPath.kind',
-          ) ??
-          this.kind,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      affectsState: affectsState?.copyWith(
-            objectPath: '$newObjectPath.affectsState',
-          ) ??
-          this.affectsState,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-      base: base?.copyWith(
-            objectPath: '$newObjectPath.base',
-          ) ??
-          this.base,
-      resource: resource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resource',
-                ),
-              )
-              .toList() ??
-          this.resource,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      instance: instance?.copyWith(
-            objectPath: '$newObjectPath.instance',
-          ) ??
-          this.instance,
-      inputProfile: inputProfile?.copyWith(
-            objectPath: '$newObjectPath.inputProfile',
-          ) ??
-          this.inputProfile,
-      outputProfile: outputProfile?.copyWith(
-            objectPath: '$newObjectPath.outputProfile',
-          ) ??
-          this.outputProfile,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-      overload: overload
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.overload',
-                ),
-              )
-              .toList() ??
-          this.overload,
-    );
-  }
+  $OperationDefinitionCopyWith<OperationDefinition> get copyWith =>
+      _$OperationDefinitionCopyWithImpl<OperationDefinition>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2006,49 +1010,29 @@ class OperationDefinitionParameter extends BackboneElement {
     this.referencedFrom,
     this.part_,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'OperationDefinition.parameter',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionParameter.empty() => OperationDefinitionParameter(
-        name: FhirCode.empty(),
-        use: OperationParameterUse.values.first,
-        min: FhirInteger.empty(),
-        max: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionParameter.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationDefinition.parameter';
     return OperationDefinitionParameter(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2056,73 +1040,58 @@ class OperationDefinitionParameter extends BackboneElement {
         json,
         'name',
         FhirCode.fromJson,
-        '$objectPath.name',
       )!,
       use: JsonParser.parsePrimitive<OperationParameterUse>(
         json,
         'use',
         OperationParameterUse.fromJson,
-        '$objectPath.use',
       )!,
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
-        '$objectPath.min',
       )!,
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
-        '$objectPath.max',
       )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-        '$objectPath.documentation',
       ),
       type: JsonParser.parsePrimitive<FHIRAllTypes>(
         json,
         'type',
         FHIRAllTypes.fromJson,
-        '$objectPath.type',
       ),
       targetProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'targetProfile',
         FhirCanonical.fromJson,
-        '$objectPath.targetProfile',
       ),
       searchType: JsonParser.parsePrimitive<SearchParamType>(
         json,
         'searchType',
         SearchParamType.fromJson,
-        '$objectPath.searchType',
       ),
       binding: JsonParser.parseObject<OperationDefinitionBinding>(
         json,
         'binding',
         OperationDefinitionBinding.fromJson,
-        '$objectPath.binding',
       ),
       referencedFrom: (json['referencedFrom'] as List<dynamic>?)
           ?.map<OperationDefinitionReferencedFrom>(
             (v) => OperationDefinitionReferencedFrom.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.referencedFrom',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       part_: (json['part'] as List<dynamic>?)
           ?.map<OperationDefinitionParameter>(
             (v) => OperationDefinitionParameter.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.part',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2442,451 +1411,20 @@ class OperationDefinitionParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationDefinitionParameter clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirCode) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'use':
-        {
-          if (child is OperationParameterUse) {
-            return copyWith(use: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'min':
-        {
-          if (child is FhirInteger) {
-            return copyWith(min: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'max':
-        {
-          if (child is FhirString) {
-            return copyWith(max: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'documentation':
-        {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is FHIRAllTypes) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'targetProfile':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?targetProfile, ...child];
-            return copyWith(targetProfile: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?targetProfile,
-              child,
-            ];
-            return copyWith(targetProfile: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'searchType':
-        {
-          if (child is SearchParamType) {
-            return copyWith(searchType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'binding':
-        {
-          if (child is OperationDefinitionBinding) {
-            return copyWith(binding: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'referencedFrom':
-        {
-          if (child is List<OperationDefinitionReferencedFrom>) {
-            // Add all elements from passed list
-            final newList = [...?referencedFrom, ...child];
-            return copyWith(referencedFrom: newList);
-          } else if (child is OperationDefinitionReferencedFrom) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?referencedFrom,
-              child,
-            ];
-            return copyWith(referencedFrom: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'part':
-        {
-          if (child is List<OperationDefinitionParameter>) {
-            // Add all elements from passed list
-            final newList = [...?part_, ...child];
-            return copyWith(part_: newList);
-          } else if (child is OperationDefinitionParameter) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?part_,
-              child,
-            ];
-            return copyWith(part_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationDefinitionParameter]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'name':
-        return ['FhirCode'];
-      case 'use':
-        return ['FhirCode'];
-      case 'min':
-        return ['FhirInteger'];
-      case 'max':
-        return ['FhirString'];
-      case 'documentation':
-        return ['FhirString'];
-      case 'type':
-        return ['FhirCode'];
-      case 'targetProfile':
-        return ['FhirCanonical'];
-      case 'searchType':
-        return ['FhirCode'];
-      case 'binding':
-        return ['OperationDefinitionBinding'];
-      case 'referencedFrom':
-        return ['OperationDefinitionReferencedFrom'];
-      case 'part':
-        return ['OperationDefinitionParameter'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationDefinitionParameter]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationDefinitionParameter createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $OperationDefinitionParameterCopyWith<OperationDefinitionParameter>
+      get copyWith => _$OperationDefinitionParameterCopyWithImpl<
+              OperationDefinitionParameter>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirCode.empty(),
-          );
-        }
-      case 'use':
-        {
-          return copyWith(
-            use: OperationParameterUse.empty(),
-          );
-        }
-      case 'min':
-        {
-          return copyWith(
-            min: FhirInteger.empty(),
-          );
-        }
-      case 'max':
-        {
-          return copyWith(
-            max: FhirString.empty(),
-          );
-        }
-      case 'documentation':
-        {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: FHIRAllTypes.empty(),
-          );
-        }
-      case 'targetProfile':
-        {
-          return copyWith(
-            targetProfile: <FhirCanonical>[],
-          );
-        }
-      case 'searchType':
-        {
-          return copyWith(
-            searchType: SearchParamType.empty(),
-          );
-        }
-      case 'binding':
-        {
-          return copyWith(
-            binding: OperationDefinitionBinding.empty(),
-          );
-        }
-      case 'referencedFrom':
-        {
-          return copyWith(
-            referencedFrom: <OperationDefinitionReferencedFrom>[],
-          );
-        }
-      case 'part':
-        {
-          return copyWith(
-            part_: <OperationDefinitionParameter>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationDefinitionParameter clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool documentation = false,
-    bool type = false,
-    bool targetProfile = false,
-    bool searchType = false,
-    bool binding = false,
-    bool referencedFrom = false,
-    bool part_ = false,
-  }) {
-    return OperationDefinitionParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      use: use,
-      min: min,
-      max: max,
-      documentation: documentation ? null : this.documentation,
-      type: type ? null : this.type,
-      targetProfile: targetProfile ? null : this.targetProfile,
-      searchType: searchType ? null : this.searchType,
-      binding: binding ? null : this.binding,
-      referencedFrom: referencedFrom ? null : this.referencedFrom,
-      part_: part_ ? null : this.part_,
-    );
-  }
-
-  @override
-  OperationDefinitionParameter clone() => throw UnimplementedError();
-  @override
-  OperationDefinitionParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? name,
-    OperationParameterUse? use,
-    FhirInteger? min,
-    FhirString? max,
-    FhirString? documentation,
-    FHIRAllTypes? type,
-    List<FhirCanonical>? targetProfile,
-    SearchParamType? searchType,
-    OperationDefinitionBinding? binding,
-    List<OperationDefinitionReferencedFrom>? referencedFrom,
-    List<OperationDefinitionParameter>? part_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return OperationDefinitionParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      targetProfile: targetProfile
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.targetProfile',
-                ),
-              )
-              .toList() ??
-          this.targetProfile,
-      searchType: searchType?.copyWith(
-            objectPath: '$newObjectPath.searchType',
-          ) ??
-          this.searchType,
-      binding: binding?.copyWith(
-            objectPath: '$newObjectPath.binding',
-          ) ??
-          this.binding,
-      referencedFrom: referencedFrom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referencedFrom',
-                ),
-              )
-              .toList() ??
-          this.referencedFrom,
-      part_: part_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.part',
-                ),
-              )
-              .toList() ??
-          this.part_,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2998,47 +1536,29 @@ class OperationDefinitionBinding extends BackboneElement {
     required this.strength,
     required this.valueSet,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'OperationDefinition.parameter.binding',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionBinding.empty() => OperationDefinitionBinding(
-        strength: BindingStrength.values.first,
-        valueSet: FhirCanonical.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionBinding.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationDefinition.parameter.binding';
     return OperationDefinitionBinding(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3046,13 +1566,11 @@ class OperationDefinitionBinding extends BackboneElement {
         json,
         'strength',
         BindingStrength.fromJson,
-        '$objectPath.strength',
       )!,
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
-        '$objectPath.valueSet',
       )!,
     );
   }
@@ -3248,207 +1766,20 @@ class OperationDefinitionBinding extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationDefinitionBinding clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'strength':
-        {
-          if (child is BindingStrength) {
-            return copyWith(strength: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueSet':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(valueSet: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationDefinitionBinding]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'strength':
-        return ['FhirCode'];
-      case 'valueSet':
-        return ['FhirCanonical'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationDefinitionBinding]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationDefinitionBinding createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $OperationDefinitionBindingCopyWith<OperationDefinitionBinding>
+      get copyWith =>
+          _$OperationDefinitionBindingCopyWithImpl<OperationDefinitionBinding>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'strength':
-        {
-          return copyWith(
-            strength: BindingStrength.empty(),
-          );
-        }
-      case 'valueSet':
-        {
-          return copyWith(
-            valueSet: FhirCanonical.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationDefinitionBinding clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return OperationDefinitionBinding(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      strength: strength,
-      valueSet: valueSet,
-    );
-  }
-
-  @override
-  OperationDefinitionBinding clone() => throw UnimplementedError();
-  @override
-  OperationDefinitionBinding copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    BindingStrength? strength,
-    FhirCanonical? valueSet,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return OperationDefinitionBinding(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      strength: strength?.copyWith(
-            objectPath: '$newObjectPath.strength',
-          ) ??
-          this.strength,
-      valueSet: valueSet?.copyWith(
-            objectPath: '$newObjectPath.valueSet',
-          ) ??
-          this.valueSet,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3506,47 +1837,29 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     required this.source,
     this.sourceId,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'OperationDefinition.parameter.referencedFrom',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionReferencedFrom.empty() =>
-      OperationDefinitionReferencedFrom(
-        source: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionReferencedFrom.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationDefinition.parameter.referencedFrom';
     return OperationDefinitionReferencedFrom(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3554,13 +1867,11 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
         json,
         'source',
         FhirString.fromJson,
-        '$objectPath.source',
       )!,
       sourceId: JsonParser.parsePrimitive<FhirString>(
         json,
         'sourceId',
         FhirString.fromJson,
-        '$objectPath.sourceId',
       ),
     );
   }
@@ -3758,208 +2069,20 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationDefinitionReferencedFrom clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'source':
-        {
-          if (child is FhirString) {
-            return copyWith(source: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sourceId':
-        {
-          if (child is FhirString) {
-            return copyWith(sourceId: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationDefinitionReferencedFrom]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'source':
-        return ['FhirString'];
-      case 'sourceId':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationDefinitionReferencedFrom]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationDefinitionReferencedFrom createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $OperationDefinitionReferencedFromCopyWith<OperationDefinitionReferencedFrom>
+      get copyWith => _$OperationDefinitionReferencedFromCopyWithImpl<
+              OperationDefinitionReferencedFrom>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'source':
-        {
-          return copyWith(
-            source: FhirString.empty(),
-          );
-        }
-      case 'sourceId':
-        {
-          return copyWith(
-            sourceId: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationDefinitionReferencedFrom clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool sourceId = false,
-  }) {
-    return OperationDefinitionReferencedFrom(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      source: source,
-      sourceId: sourceId ? null : this.sourceId,
-    );
-  }
-
-  @override
-  OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
-  @override
-  OperationDefinitionReferencedFrom copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? source,
-    FhirString? sourceId,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return OperationDefinitionReferencedFrom(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      sourceId: sourceId?.copyWith(
-            objectPath: '$newObjectPath.sourceId',
-          ) ??
-          this.sourceId,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4018,45 +2141,29 @@ class OperationDefinitionOverload extends BackboneElement {
     this.parameterName,
     this.comment,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'OperationDefinition.overload',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionOverload.empty() =>
-      const OperationDefinitionOverload();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationDefinition.overload';
     return OperationDefinitionOverload(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4064,13 +2171,11 @@ class OperationDefinitionOverload extends BackboneElement {
         json,
         'parameterName',
         FhirString.fromJson,
-        '$objectPath.parameterName',
       ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-        '$objectPath.comment',
       ),
     );
   }
@@ -4267,222 +2372,20 @@ class OperationDefinitionOverload extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationDefinitionOverload clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parameterName':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?parameterName, ...child];
-            return copyWith(parameterName: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?parameterName,
-              child,
-            ];
-            return copyWith(parameterName: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'comment':
-        {
-          if (child is FhirString) {
-            return copyWith(comment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationDefinitionOverload]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'parameterName':
-        return ['FhirString'];
-      case 'comment':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationDefinitionOverload]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationDefinitionOverload createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $OperationDefinitionOverloadCopyWith<OperationDefinitionOverload>
+      get copyWith => _$OperationDefinitionOverloadCopyWithImpl<
+              OperationDefinitionOverload>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'parameterName':
-        {
-          return copyWith(
-            parameterName: <FhirString>[],
-          );
-        }
-      case 'comment':
-        {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationDefinitionOverload clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool parameterName = false,
-    bool comment = false,
-  }) {
-    return OperationDefinitionOverload(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      parameterName: parameterName ? null : this.parameterName,
-      comment: comment ? null : this.comment,
-    );
-  }
-
-  @override
-  OperationDefinitionOverload clone() => throw UnimplementedError();
-  @override
-  OperationDefinitionOverload copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirString>? parameterName,
-    FhirString? comment,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return OperationDefinitionOverload(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      parameterName: parameterName
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameterName',
-                ),
-              )
-              .toList() ??
-          this.parameterName,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

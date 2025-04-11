@@ -5,6 +5,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         ResearchStudy,
         ResearchStudyArm,
         ResearchStudyObjective,
+        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1508,76 +1509,6 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool title = false,
-    bool protocol = false,
-    bool partOf = false,
-    bool status = false,
-    bool primaryPurposeType = false,
-    bool phase = false,
-    bool category = false,
-    bool focus = false,
-    bool condition = false,
-    bool contact = false,
-    bool relatedArtifact = false,
-    bool keyword = false,
-    bool location = false,
-    bool description = false,
-    bool enrollment = false,
-    bool period = false,
-    bool sponsor = false,
-    bool principalInvestigator = false,
-    bool site = false,
-    bool reasonStopped = false,
-    bool note = false,
-    bool arm = false,
-    bool objective = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (title) this.title = null;
-    if (protocol) this.protocol = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (primaryPurposeType) this.primaryPurposeType = null;
-    if (phase) this.phase = null;
-    if (category) this.category = null;
-    if (focus) this.focus = null;
-    if (condition) this.condition = null;
-    if (contact) this.contact = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (keyword) this.keyword = null;
-    if (location) this.location = null;
-    if (description) this.description = null;
-    if (enrollment) this.enrollment = null;
-    if (period) this.period = null;
-    if (sponsor) this.sponsor = null;
-    if (principalInvestigator) this.principalInvestigator = null;
-    if (site) this.site = null;
-    if (reasonStopped) this.reasonStopped = null;
-    if (note) this.note = null;
-    if (arm) this.arm = null;
-    if (objective) this.objective = null;
-  }
-
   @override
   ResearchStudyBuilder clone() => throw UnimplementedError();
   @override
@@ -2298,24 +2229,6 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool type = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
-    if (description) this.description = null;
-  }
-
   @override
   ResearchStudyArmBuilder clone() => throw UnimplementedError();
   @override
@@ -2779,22 +2692,6 @@ class ResearchStudyObjectiveBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
   }
 
   @override

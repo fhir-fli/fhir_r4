@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'operation_outcome.g.dart';
+
 /// [OperationOutcome]
 /// A collection of error, warning, or information messages that result
 /// from a system action.
@@ -20,90 +22,64 @@ class OperationOutcome extends DomainResource {
     super.modifierExtension,
     required this.issue,
   }) : super(
-          objectPath: 'OperationOutcome',
           resourceType: R4ResourceType.OperationOutcome,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationOutcome.empty() => const OperationOutcome(
-        issue: <OperationOutcomeIssue>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcome.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationOutcome';
     return OperationOutcome(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       issue: (json['issue'] as List<dynamic>)
           .map<OperationOutcomeIssue>(
             (v) => OperationOutcomeIssue.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.issue',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -334,318 +310,19 @@ class OperationOutcome extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationOutcome clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'issue':
-        {
-          if (child is List<OperationOutcomeIssue>) {
-            // Add all elements from passed list
-            final newList = [...issue, ...child];
-            return copyWith(issue: newList);
-          } else if (child is OperationOutcomeIssue) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...issue,
-              child,
-            ];
-            return copyWith(issue: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationOutcome]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'issue':
-        return ['OperationOutcomeIssue'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationOutcome]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationOutcome createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'issue':
-        {
-          return copyWith(
-            issue: <OperationOutcomeIssue>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationOutcome clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return OperationOutcome(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      issue: issue,
-    );
-  }
-
-  @override
-  OperationOutcome clone() => throw UnimplementedError();
-  @override
-  OperationOutcome copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<OperationOutcomeIssue>? issue,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return OperationOutcome(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      issue: issue
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.issue',
-                ),
-              )
-              .toList() ??
-          this.issue,
-    );
-  }
+  $OperationOutcomeCopyWith<OperationOutcome> get copyWith =>
+      _$OperationOutcomeCopyWithImpl<OperationOutcome>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -731,47 +408,29 @@ class OperationOutcomeIssue extends BackboneElement {
     this.location,
     this.expression,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'OperationOutcome.issue',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationOutcomeIssue.empty() => OperationOutcomeIssue(
-        severity: IssueSeverity.values.first,
-        code: IssueType.values.first,
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcomeIssue.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'OperationOutcome.issue';
     return OperationOutcomeIssue(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -779,37 +438,31 @@ class OperationOutcomeIssue extends BackboneElement {
         json,
         'severity',
         IssueSeverity.fromJson,
-        '$objectPath.severity',
       )!,
       code: JsonParser.parsePrimitive<IssueType>(
         json,
         'code',
         IssueType.fromJson,
-        '$objectPath.code',
       )!,
       details: JsonParser.parseObject<CodeableConcept>(
         json,
         'details',
         CodeableConcept.fromJson,
-        '$objectPath.details',
       ),
       diagnostics: JsonParser.parsePrimitive<FhirString>(
         json,
         'diagnostics',
         FhirString.fromJson,
-        '$objectPath.diagnostics',
       ),
       location: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'location',
         FhirString.fromJson,
-        '$objectPath.location',
       ),
       expression: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
-        '$objectPath.expression',
       ),
     );
   }
@@ -1069,325 +722,19 @@ class OperationOutcomeIssue extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  OperationOutcomeIssue clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'severity':
-        {
-          if (child is IssueSeverity) {
-            return copyWith(severity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is IssueType) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'details':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(details: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnostics':
-        {
-          if (child is FhirString) {
-            return copyWith(diagnostics: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?location,
-              child,
-            ];
-            return copyWith(location: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'expression':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?expression, ...child];
-            return copyWith(expression: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?expression,
-              child,
-            ];
-            return copyWith(expression: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [OperationOutcomeIssue]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'severity':
-        return ['FhirCode'];
-      case 'code':
-        return ['FhirCode'];
-      case 'details':
-        return ['CodeableConcept'];
-      case 'diagnostics':
-        return ['FhirString'];
-      case 'location':
-        return ['FhirString'];
-      case 'expression':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [OperationOutcomeIssue]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  OperationOutcomeIssue createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'severity':
-        {
-          return copyWith(
-            severity: IssueSeverity.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: IssueType.empty(),
-          );
-        }
-      case 'details':
-        {
-          return copyWith(
-            details: CodeableConcept.empty(),
-          );
-        }
-      case 'diagnostics':
-        {
-          return copyWith(
-            diagnostics: FhirString.empty(),
-          );
-        }
-      case 'location':
-        {
-          return copyWith(
-            location: <FhirString>[],
-          );
-        }
-      case 'expression':
-        {
-          return copyWith(
-            expression: <FhirString>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  OperationOutcomeIssue clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool details = false,
-    bool diagnostics = false,
-    bool location = false,
-    bool expression = false,
-  }) {
-    return OperationOutcomeIssue(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      severity: severity,
-      code: code,
-      details: details ? null : this.details,
-      diagnostics: diagnostics ? null : this.diagnostics,
-      location: location ? null : this.location,
-      expression: expression ? null : this.expression,
-    );
-  }
-
-  @override
-  OperationOutcomeIssue clone() => throw UnimplementedError();
-  @override
-  OperationOutcomeIssue copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    IssueSeverity? severity,
-    IssueType? code,
-    CodeableConcept? details,
-    FhirString? diagnostics,
-    List<FhirString>? location,
-    List<FhirString>? expression,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return OperationOutcomeIssue(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      details: details?.copyWith(
-            objectPath: '$newObjectPath.details',
-          ) ??
-          this.details,
-      diagnostics: diagnostics?.copyWith(
-            objectPath: '$newObjectPath.diagnostics',
-          ) ??
-          this.diagnostics,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      expression: expression
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.expression',
-                ),
-              )
-              .toList() ??
-          this.expression,
-    );
-  }
+  $OperationOutcomeIssueCopyWith<OperationOutcomeIssue> get copyWith =>
+      _$OperationOutcomeIssueCopyWithImpl<OperationOutcomeIssue>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

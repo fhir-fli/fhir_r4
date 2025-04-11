@@ -1,11 +1,107 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for BundleType
+enum BundleTypeEnum {
+  /// document
+  document,
+
+  /// message
+  message,
+
+  /// transaction
+  transaction,
+
+  /// transaction-response
+  transactionResponse,
+
+  /// batch
+  batch,
+
+  /// batch-response
+  batchResponse,
+
+  /// history
+  history,
+
+  /// searchset
+  searchset,
+
+  /// collection
+  collection,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case BundleTypeEnum.document:
+        return 'document';
+      case BundleTypeEnum.message:
+        return 'message';
+      case BundleTypeEnum.transaction:
+        return 'transaction';
+      case BundleTypeEnum.transactionResponse:
+        return 'transaction-response';
+      case BundleTypeEnum.batch:
+        return 'batch';
+      case BundleTypeEnum.batchResponse:
+        return 'batch-response';
+      case BundleTypeEnum.history:
+        return 'history';
+      case BundleTypeEnum.searchset:
+        return 'searchset';
+      case BundleTypeEnum.collection:
+        return 'collection';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static BundleTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return BundleTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static BundleTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'document':
+        return BundleTypeEnum.document;
+      case 'message':
+        return BundleTypeEnum.message;
+      case 'transaction':
+        return BundleTypeEnum.transaction;
+      case 'transaction-response':
+        return BundleTypeEnum.transactionResponse;
+      case 'batch':
+        return BundleTypeEnum.batch;
+      case 'batch-response':
+        return BundleTypeEnum.batchResponse;
+      case 'history':
+        return BundleTypeEnum.history;
+      case 'searchset':
+        return BundleTypeEnum.searchset;
+      case 'collection':
+        return BundleTypeEnum.collection;
+    }
+    return null;
+  }
+}
+
 /// Indicates the purpose of a bundle - how it is intended to be used.
 class BundleType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  BundleType._({
+  const BundleType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +109,6 @@ class BundleType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +122,13 @@ class BundleType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = BundleTypeEnum.fromString(valueString);
     return BundleType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +136,8 @@ class BundleType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [BundleType] with element only
-  factory BundleType.empty() => BundleType._(valueString: '');
 
   /// Factory constructor to create [BundleType]
   /// from JSON.
@@ -53,10 +145,11 @@ class BundleType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = BundleTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BundleType.elementOnly.withElement(element);
+      return BundleType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'BundleType cannot be constructed from JSON.',
@@ -64,104 +157,143 @@ class BundleType extends FhirCodeEnum {
     }
     return BundleType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for BundleType
+  final BundleTypeEnum? valueEnum;
+
   /// document
-  static final BundleType document = BundleType._(
+  static const BundleType document = BundleType._(
     valueString: 'document',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Document'.toFhirString,
+    valueEnum: BundleTypeEnum.document,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Document',
+    ),
   );
 
   /// message
-  static final BundleType message = BundleType._(
+  static const BundleType message = BundleType._(
     valueString: 'message',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Message'.toFhirString,
+    valueEnum: BundleTypeEnum.message,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Message',
+    ),
   );
 
   /// transaction
-  static final BundleType transaction = BundleType._(
+  static const BundleType transaction = BundleType._(
     valueString: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transaction'.toFhirString,
+    valueEnum: BundleTypeEnum.transaction,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transaction',
+    ),
   );
 
   /// transaction_response
-  static final BundleType transaction_response = BundleType._(
+  static const BundleType transactionResponse = BundleType._(
     valueString: 'transaction-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transaction Response'.toFhirString,
+    valueEnum: BundleTypeEnum.transactionResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transaction Response',
+    ),
   );
 
   /// batch
-  static final BundleType batch = BundleType._(
+  static const BundleType batch = BundleType._(
     valueString: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Batch'.toFhirString,
+    valueEnum: BundleTypeEnum.batch,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Batch',
+    ),
   );
 
   /// batch_response
-  static final BundleType batch_response = BundleType._(
+  static const BundleType batchResponse = BundleType._(
     valueString: 'batch-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Batch Response'.toFhirString,
+    valueEnum: BundleTypeEnum.batchResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Batch Response',
+    ),
   );
 
   /// history
-  static final BundleType history = BundleType._(
+  static const BundleType history = BundleType._(
     valueString: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'History List'.toFhirString,
+    valueEnum: BundleTypeEnum.history,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'History List',
+    ),
   );
 
   /// searchset
-  static final BundleType searchset = BundleType._(
+  static const BundleType searchset = BundleType._(
     valueString: 'searchset',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Search Results'.toFhirString,
+    valueEnum: BundleTypeEnum.searchset,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Search Results',
+    ),
   );
 
   /// collection
-  static final BundleType collection = BundleType._(
+  static const BundleType collection = BundleType._(
     valueString: 'collection',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Collection'.toFhirString,
+    valueEnum: BundleTypeEnum.collection,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Collection',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final BundleType elementOnly = BundleType._(valueString: '');
 
   /// List of all enum-like values
   static final List<BundleType> values = [
     document,
     message,
     transaction,
-    transaction_response,
+    transactionResponse,
     batch,
-    batch_response,
+    batchResponse,
     history,
     searchset,
     collection,
   ];
-
-  /// Clones the current instance
-  @override
-  BundleType clone() => BundleType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
@@ -182,36 +314,56 @@ class BundleType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  BundleType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  BundleType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  BundleTypeCopyWithImpl<BundleType> get copyWith =>
+      BundleTypeCopyWithImpl<BundleType>(
+        this,
+        (v) => v as BundleType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class BundleTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  BundleTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for BundleType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return BundleType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      BundleType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

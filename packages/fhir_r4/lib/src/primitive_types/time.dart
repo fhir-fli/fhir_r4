@@ -36,13 +36,12 @@ class FhirTime extends PrimitiveType
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that calls [super._] with [valueString].
-  FhirTime._({
+  const FhirTime._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Time',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -58,7 +57,6 @@ class FhirTime extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Time',
   }) {
     final validatedString = _validateTime(rawValue);
     return FhirTime._(
@@ -67,7 +65,6 @@ class FhirTime extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -101,16 +98,12 @@ class FhirTime extends PrimitiveType
     return FhirTime(output);
   }
 
-  /// Creates an empty [FhirTime].
-  factory FhirTime.empty() => FhirTime(null, element: Element.empty());
-
   /// Constructs a [FhirTime] from a JSON [Map].
   factory FhirTime.fromJson(Map<String, dynamic> json) {
     final rawValue = json['value'] as String?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'Time';
-    return FhirTime(rawValue, element: parsedElement, objectPath: objectPath);
+    return FhirTime(rawValue, element: parsedElement);
   }
 
   /// Constructs a [FhirTime] from YAML ([String] or [YamlMap]).
@@ -459,62 +452,15 @@ class FhirTime extends PrimitiveType
   // --------------------------------------------------------------------------
 
   @override
-  FhirTime clone() =>
-      FhirTime(valueString, element: element?.clone() as Element?);
+  FhirTime clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirTime noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy of this [FhirTime].
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirTime copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    return FhirTime(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
-
-  @override
-  FhirTime createProperty(String propertyName) => this;
-
-  @override
-  FhirTime clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirTime(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
+  $FhirTimeCopyWithImpl<FhirTime> get copyWith =>
+      $FhirTimeCopyWithImpl<FhirTime>(this, (value) => value);
 }
 
 /// An extension on [TemporalPrecisionEnum] to check if it is valid for `time`.
@@ -525,4 +471,41 @@ extension TimePrecisionCheck on TemporalPrecisionEnum {
       this == TemporalPrecisionEnum.minute ||
       this == TemporalPrecisionEnum.second ||
       this == TemporalPrecisionEnum.millisecond;
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirTimeCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirTimeCopyWithImpl(this._value, this._then);
+
+  final FhirTime _value;
+  final T Function(FhirTime) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+  }) {
+    return _then(
+      FhirTime(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
+    );
+  }
 }

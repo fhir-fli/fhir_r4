@@ -483,17 +483,4 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder
   @override
   FhirInteger64Builder createProperty(String propertyName) => this;
 
-  @override
-  FhirInteger64Builder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirInteger64Builder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

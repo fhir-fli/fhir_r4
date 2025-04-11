@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'coverage_eligibility_request.g.dart';
+
 /// [CoverageEligibilityRequest]
 /// The CoverageEligibilityRequest provides patient and insurance coverage
 /// information to an insurer for them to respond, in the form of an
@@ -36,94 +38,64 @@ class CoverageEligibilityRequest extends DomainResource {
     this.insurance,
     this.item,
   }) : super(
-          objectPath: 'CoverageEligibilityRequest',
           resourceType: R4ResourceType.CoverageEligibilityRequest,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CoverageEligibilityRequest.empty() => CoverageEligibilityRequest(
-        status: FinancialResourceStatusCodes.values.first,
-        purpose: <EligibilityRequestPurpose>[],
-        patient: Reference.empty(),
-        created: FhirDateTime.empty(),
-        insurer: Reference.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequest.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'CoverageEligibilityRequest';
     return CoverageEligibilityRequest(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -131,25 +103,21 @@ class CoverageEligibilityRequest extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
-        '$objectPath.status',
       )!,
       priority: JsonParser.parseObject<CodeableConcept>(
         json,
         'priority',
         CodeableConcept.fromJson,
-        '$objectPath.priority',
       ),
       purpose: JsonParser.parsePrimitiveList<EligibilityRequestPurpose>(
         json,
         'purpose',
         EligibilityRequestPurpose.fromJson,
-        '$objectPath.purpose',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
-        '$objectPath.patient',
       )!,
       servicedX:
           JsonParser.parsePolymorphic<ServicedXCoverageEligibilityRequest>(
@@ -158,65 +126,50 @@ class CoverageEligibilityRequest extends DomainResource {
           'servicedDate': FhirDate.fromJson,
           'servicedPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-        '$objectPath.created',
       )!,
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
         Reference.fromJson,
-        '$objectPath.enterer',
       ),
       provider: JsonParser.parseObject<Reference>(
         json,
         'provider',
         Reference.fromJson,
-        '$objectPath.provider',
       ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
-        '$objectPath.insurer',
       )!,
       facility: JsonParser.parseObject<Reference>(
         json,
         'facility',
         Reference.fromJson,
-        '$objectPath.facility',
       ),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
           ?.map<CoverageEligibilityRequestSupportingInfo>(
             (v) => CoverageEligibilityRequestSupportingInfo.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.supportingInfo',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<CoverageEligibilityRequestInsurance>(
             (v) => CoverageEligibilityRequestInsurance.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.insurance',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       item: (json['item'] as List<dynamic>?)
           ?.map<CoverageEligibilityRequestItem>(
             (v) => CoverageEligibilityRequestItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.item',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -636,704 +589,20 @@ class CoverageEligibilityRequest extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CoverageEligibilityRequest clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is FinancialResourceStatusCodes) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'priority':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(priority: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'purpose':
-        {
-          if (child is List<EligibilityRequestPurpose>) {
-            // Add all elements from passed list
-            final newList = [...purpose, ...child];
-            return copyWith(purpose: newList);
-          } else if (child is EligibilityRequestPurpose) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...purpose,
-              child,
-            ];
-            return copyWith(purpose: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'patient':
-        {
-          if (child is Reference) {
-            return copyWith(patient: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviced':
-      case 'servicedX':
-        {
-          if (child is ServicedXCoverageEligibilityRequest) {
-            return copyWith(servicedX: child);
-          } else {
-            if (child is FhirDate) {
-              return copyWith(servicedX: child);
-            }
-            if (child is Period) {
-              return copyWith(servicedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'servicedFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'servicedPeriod':
-        {
-          if (child is Period) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'enterer':
-        {
-          if (child is Reference) {
-            return copyWith(enterer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is Reference) {
-            return copyWith(provider: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurer':
-        {
-          if (child is Reference) {
-            return copyWith(insurer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'facility':
-        {
-          if (child is Reference) {
-            return copyWith(facility: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supportingInfo':
-        {
-          if (child is List<CoverageEligibilityRequestSupportingInfo>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is CoverageEligibilityRequestSupportingInfo) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supportingInfo,
-              child,
-            ];
-            return copyWith(supportingInfo: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurance':
-        {
-          if (child is List<CoverageEligibilityRequestInsurance>) {
-            // Add all elements from passed list
-            final newList = [...?insurance, ...child];
-            return copyWith(insurance: newList);
-          } else if (child is CoverageEligibilityRequestInsurance) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?insurance,
-              child,
-            ];
-            return copyWith(insurance: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'item':
-        {
-          if (child is List<CoverageEligibilityRequestItem>) {
-            // Add all elements from passed list
-            final newList = [...?item, ...child];
-            return copyWith(item: newList);
-          } else if (child is CoverageEligibilityRequestItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?item,
-              child,
-            ];
-            return copyWith(item: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CoverageEligibilityRequest]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'priority':
-        return ['CodeableConcept'];
-      case 'purpose':
-        return ['FhirCode'];
-      case 'patient':
-        return ['Reference'];
-      case 'serviced':
-      case 'servicedX':
-        return [
-          'FhirDate',
-          'Period',
-        ];
-      case 'servicedDate':
-        return ['FhirDate'];
-      case 'servicedPeriod':
-        return ['Period'];
-      case 'created':
-        return ['FhirDateTime'];
-      case 'enterer':
-        return ['Reference'];
-      case 'provider':
-        return ['Reference'];
-      case 'insurer':
-        return ['Reference'];
-      case 'facility':
-        return ['Reference'];
-      case 'supportingInfo':
-        return ['CoverageEligibilityRequestSupportingInfo'];
-      case 'insurance':
-        return ['CoverageEligibilityRequestInsurance'];
-      case 'item':
-        return ['CoverageEligibilityRequestItem'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CoverageEligibilityRequest]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CoverageEligibilityRequest createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $CoverageEligibilityRequestCopyWith<CoverageEligibilityRequest>
+      get copyWith =>
+          _$CoverageEligibilityRequestCopyWithImpl<CoverageEligibilityRequest>(
+            this,
+            (value) => value,
           );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: FinancialResourceStatusCodes.empty(),
-          );
-        }
-      case 'priority':
-        {
-          return copyWith(
-            priority: CodeableConcept.empty(),
-          );
-        }
-      case 'purpose':
-        {
-          return copyWith(
-            purpose: <EligibilityRequestPurpose>[],
-          );
-        }
-      case 'patient':
-        {
-          return copyWith(
-            patient: Reference.empty(),
-          );
-        }
-      case 'serviced':
-      case 'servicedX':
-      case 'servicedDate':
-        {
-          return copyWith(
-            servicedX: FhirDate.empty(),
-          );
-        }
-      case 'servicedPeriod':
-        {
-          return copyWith(
-            servicedX: Period.empty(),
-          );
-        }
-      case 'created':
-        {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
-        }
-      case 'enterer':
-        {
-          return copyWith(
-            enterer: Reference.empty(),
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: Reference.empty(),
-          );
-        }
-      case 'insurer':
-        {
-          return copyWith(
-            insurer: Reference.empty(),
-          );
-        }
-      case 'facility':
-        {
-          return copyWith(
-            facility: Reference.empty(),
-          );
-        }
-      case 'supportingInfo':
-        {
-          return copyWith(
-            supportingInfo: <CoverageEligibilityRequestSupportingInfo>[],
-          );
-        }
-      case 'insurance':
-        {
-          return copyWith(
-            insurance: <CoverageEligibilityRequestInsurance>[],
-          );
-        }
-      case 'item':
-        {
-          return copyWith(
-            item: <CoverageEligibilityRequestItem>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CoverageEligibilityRequest clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool priority = false,
-    bool serviced = false,
-    bool enterer = false,
-    bool provider = false,
-    bool facility = false,
-    bool supportingInfo = false,
-    bool insurance = false,
-    bool item = false,
-  }) {
-    return CoverageEligibilityRequest(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      priority: priority ? null : this.priority,
-      purpose: purpose,
-      patient: patient,
-      servicedX: serviced ? null : servicedX,
-      created: created,
-      enterer: enterer ? null : this.enterer,
-      provider: provider ? null : this.provider,
-      insurer: insurer,
-      facility: facility ? null : this.facility,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      insurance: insurance ? null : this.insurance,
-      item: item ? null : this.item,
-    );
-  }
-
-  @override
-  CoverageEligibilityRequest clone() => throw UnimplementedError();
-  @override
-  CoverageEligibilityRequest copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FinancialResourceStatusCodes? status,
-    CodeableConcept? priority,
-    List<EligibilityRequestPurpose>? purpose,
-    Reference? patient,
-    ServicedXCoverageEligibilityRequest? servicedX,
-    FhirDateTime? created,
-    Reference? enterer,
-    Reference? provider,
-    Reference? insurer,
-    Reference? facility,
-    List<CoverageEligibilityRequestSupportingInfo>? supportingInfo,
-    List<CoverageEligibilityRequestInsurance>? insurance,
-    List<CoverageEligibilityRequestItem>? item,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return CoverageEligibilityRequest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      purpose: purpose
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.purpose',
-                ),
-              )
-              .toList() ??
-          this.purpose,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      servicedX: servicedX?.copyWith(
-            objectPath: '$newObjectPath.servicedX',
-          ) as ServicedXCoverageEligibilityRequest? ??
-          this.servicedX,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      enterer: enterer?.copyWith(
-            objectPath: '$newObjectPath.enterer',
-          ) ??
-          this.enterer,
-      provider: provider?.copyWith(
-            objectPath: '$newObjectPath.provider',
-          ) ??
-          this.provider,
-      insurer: insurer?.copyWith(
-            objectPath: '$newObjectPath.insurer',
-          ) ??
-          this.insurer,
-      facility: facility?.copyWith(
-            objectPath: '$newObjectPath.facility',
-          ) ??
-          this.facility,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      insurance: insurance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.insurance',
-                ),
-              )
-              .toList() ??
-          this.insurance,
-      item: item
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.item',
-                ),
-              )
-              .toList() ??
-          this.item,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1494,48 +763,29 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     required this.information,
     this.appliesToAll,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'CoverageEligibilityRequest.supportingInfo',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CoverageEligibilityRequestSupportingInfo.empty() =>
-      CoverageEligibilityRequestSupportingInfo(
-        sequence: FhirPositiveInt.empty(),
-        information: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestSupportingInfo.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'CoverageEligibilityRequest.supportingInfo';
     return CoverageEligibilityRequestSupportingInfo(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1543,19 +793,16 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       information: JsonParser.parseObject<Reference>(
         json,
         'information',
         Reference.fromJson,
-        '$objectPath.information',
       )!,
       appliesToAll: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'appliesToAll',
         FhirBoolean.fromJson,
-        '$objectPath.appliesToAll',
       ),
     );
   }
@@ -1764,231 +1011,21 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CoverageEligibilityRequestSupportingInfo clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'information':
-        {
-          if (child is Reference) {
-            return copyWith(information: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'appliesToAll':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(appliesToAll: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CoverageEligibilityRequestSupportingInfo]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'information':
-        return ['Reference'];
-      case 'appliesToAll':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CoverageEligibilityRequestSupportingInfo]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CoverageEligibilityRequestSupportingInfo createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $CoverageEligibilityRequestSupportingInfoCopyWith<
+          CoverageEligibilityRequestSupportingInfo>
+      get copyWith => _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<
+              CoverageEligibilityRequestSupportingInfo>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'information':
-        {
-          return copyWith(
-            information: Reference.empty(),
-          );
-        }
-      case 'appliesToAll':
-        {
-          return copyWith(
-            appliesToAll: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CoverageEligibilityRequestSupportingInfo clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool appliesToAll = false,
-  }) {
-    return CoverageEligibilityRequestSupportingInfo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      information: information,
-      appliesToAll: appliesToAll ? null : this.appliesToAll,
-    );
-  }
-
-  @override
-  CoverageEligibilityRequestSupportingInfo clone() =>
-      throw UnimplementedError();
-  @override
-  CoverageEligibilityRequestSupportingInfo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    Reference? information,
-    FhirBoolean? appliesToAll,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return CoverageEligibilityRequestSupportingInfo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      information: information?.copyWith(
-            objectPath: '$newObjectPath.information',
-          ) ??
-          this.information,
-      appliesToAll: appliesToAll?.copyWith(
-            objectPath: '$newObjectPath.appliesToAll',
-          ) ??
-          this.appliesToAll,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2053,47 +1090,29 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     required this.coverage,
     this.businessArrangement,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'CoverageEligibilityRequest.insurance',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CoverageEligibilityRequestInsurance.empty() =>
-      CoverageEligibilityRequestInsurance(
-        coverage: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'CoverageEligibilityRequest.insurance';
     return CoverageEligibilityRequestInsurance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2101,19 +1120,16 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
         json,
         'focal',
         FhirBoolean.fromJson,
-        '$objectPath.focal',
       ),
       coverage: JsonParser.parseObject<Reference>(
         json,
         'coverage',
         Reference.fromJson,
-        '$objectPath.coverage',
       )!,
       businessArrangement: JsonParser.parsePrimitive<FhirString>(
         json,
         'businessArrangement',
         FhirString.fromJson,
-        '$objectPath.businessArrangement',
       ),
     );
   }
@@ -2326,232 +1342,21 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CoverageEligibilityRequestInsurance clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focal':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(focal: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'coverage':
-        {
-          if (child is Reference) {
-            return copyWith(coverage: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'businessArrangement':
-        {
-          if (child is FhirString) {
-            return copyWith(businessArrangement: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CoverageEligibilityRequestInsurance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'focal':
-        return ['FhirBoolean'];
-      case 'coverage':
-        return ['Reference'];
-      case 'businessArrangement':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CoverageEligibilityRequestInsurance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CoverageEligibilityRequestInsurance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $CoverageEligibilityRequestInsuranceCopyWith<
+          CoverageEligibilityRequestInsurance>
+      get copyWith => _$CoverageEligibilityRequestInsuranceCopyWithImpl<
+              CoverageEligibilityRequestInsurance>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'focal':
-        {
-          return copyWith(
-            focal: FhirBoolean.empty(),
-          );
-        }
-      case 'coverage':
-        {
-          return copyWith(
-            coverage: Reference.empty(),
-          );
-        }
-      case 'businessArrangement':
-        {
-          return copyWith(
-            businessArrangement: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CoverageEligibilityRequestInsurance clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool focal = false,
-    bool businessArrangement = false,
-  }) {
-    return CoverageEligibilityRequestInsurance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      focal: focal ? null : this.focal,
-      coverage: coverage,
-      businessArrangement:
-          businessArrangement ? null : this.businessArrangement,
-    );
-  }
-
-  @override
-  CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
-  @override
-  CoverageEligibilityRequestInsurance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? focal,
-    Reference? coverage,
-    FhirString? businessArrangement,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return CoverageEligibilityRequestInsurance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      focal: focal?.copyWith(
-            objectPath: '$newObjectPath.focal',
-          ) ??
-          this.focal,
-      coverage: coverage?.copyWith(
-            objectPath: '$newObjectPath.coverage',
-          ) ??
-          this.coverage,
-      businessArrangement: businessArrangement?.copyWith(
-            objectPath: '$newObjectPath.businessArrangement',
-          ) ??
-          this.businessArrangement,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2624,45 +1429,29 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     this.diagnosis,
     this.detail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'CoverageEligibilityRequest.item',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CoverageEligibilityRequestItem.empty() =>
-      const CoverageEligibilityRequestItem();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'CoverageEligibilityRequest.item';
     return CoverageEligibilityRequestItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2670,27 +1459,21 @@ class CoverageEligibilityRequestItem extends BackboneElement {
         json,
         'supportingInfoSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.supportingInfoSequence',
       ),
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       ),
       productOrService: JsonParser.parseObject<CodeableConcept>(
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       ),
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2698,43 +1481,33 @@ class CoverageEligibilityRequestItem extends BackboneElement {
         json,
         'provider',
         Reference.fromJson,
-        '$objectPath.provider',
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       facility: JsonParser.parseObject<Reference>(
         json,
         'facility',
         Reference.fromJson,
-        '$objectPath.facility',
       ),
       diagnosis: (json['diagnosis'] as List<dynamic>?)
           ?.map<CoverageEligibilityRequestDiagnosis>(
             (v) => CoverageEligibilityRequestDiagnosis.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.diagnosis',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3042,446 +1815,20 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CoverageEligibilityRequestItem clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'supportingInfoSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfoSequence, ...child];
-            return copyWith(supportingInfoSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?supportingInfoSequence,
-              child,
-            ];
-            return copyWith(supportingInfoSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is Reference) {
-            return copyWith(provider: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'facility':
-        {
-          if (child is Reference) {
-            return copyWith(facility: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosis':
-        {
-          if (child is List<CoverageEligibilityRequestDiagnosis>) {
-            // Add all elements from passed list
-            final newList = [...?diagnosis, ...child];
-            return copyWith(diagnosis: newList);
-          } else if (child is CoverageEligibilityRequestDiagnosis) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?diagnosis,
-              child,
-            ];
-            return copyWith(diagnosis: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CoverageEligibilityRequestItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'supportingInfoSequence':
-        return ['FhirPositiveInt'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'provider':
-        return ['Reference'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'facility':
-        return ['Reference'];
-      case 'diagnosis':
-        return ['CoverageEligibilityRequestDiagnosis'];
-      case 'detail':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CoverageEligibilityRequestItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CoverageEligibilityRequestItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $CoverageEligibilityRequestItemCopyWith<CoverageEligibilityRequestItem>
+      get copyWith => _$CoverageEligibilityRequestItemCopyWithImpl<
+              CoverageEligibilityRequestItem>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'supportingInfoSequence':
-        {
-          return copyWith(
-            supportingInfoSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: Reference.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'facility':
-        {
-          return copyWith(
-            facility: Reference.empty(),
-          );
-        }
-      case 'diagnosis':
-        {
-          return copyWith(
-            diagnosis: <CoverageEligibilityRequestDiagnosis>[],
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <Reference>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CoverageEligibilityRequestItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool supportingInfoSequence = false,
-    bool category = false,
-    bool productOrService = false,
-    bool modifier = false,
-    bool provider = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool facility = false,
-    bool diagnosis = false,
-    bool detail = false,
-  }) {
-    return CoverageEligibilityRequestItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      supportingInfoSequence:
-          supportingInfoSequence ? null : this.supportingInfoSequence,
-      category: category ? null : this.category,
-      productOrService: productOrService ? null : this.productOrService,
-      modifier: modifier ? null : this.modifier,
-      provider: provider ? null : this.provider,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      facility: facility ? null : this.facility,
-      diagnosis: diagnosis ? null : this.diagnosis,
-      detail: detail ? null : this.detail,
-    );
-  }
-
-  @override
-  CoverageEligibilityRequestItem clone() => throw UnimplementedError();
-  @override
-  CoverageEligibilityRequestItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirPositiveInt>? supportingInfoSequence,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    Reference? provider,
-    Quantity? quantity,
-    Money? unitPrice,
-    Reference? facility,
-    List<CoverageEligibilityRequestDiagnosis>? diagnosis,
-    List<Reference>? detail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return CoverageEligibilityRequestItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      supportingInfoSequence: supportingInfoSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfoSequence',
-                ),
-              )
-              .toList() ??
-          this.supportingInfoSequence,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      provider: provider?.copyWith(
-            objectPath: '$newObjectPath.provider',
-          ) ??
-          this.provider,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      facility: facility?.copyWith(
-            objectPath: '$newObjectPath.facility',
-          ) ??
-          this.facility,
-      diagnosis: diagnosis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.diagnosis',
-                ),
-              )
-              .toList() ??
-          this.diagnosis,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3585,45 +1932,29 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.modifierExtension,
     this.diagnosisX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'CoverageEligibilityRequest.item.diagnosis',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CoverageEligibilityRequestDiagnosis.empty() =>
-      const CoverageEligibilityRequestDiagnosis();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestDiagnosis.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'CoverageEligibilityRequest.item.diagnosis';
     return CoverageEligibilityRequestDiagnosis(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3634,7 +1965,6 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
           'diagnosisCodeableConcept': CodeableConcept.fromJson,
           'diagnosisReference': Reference.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -3838,225 +2168,21 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CoverageEligibilityRequestDiagnosis clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosis':
-      case 'diagnosisX':
-        {
-          if (child is DiagnosisXCoverageEligibilityRequestDiagnosis) {
-            return copyWith(diagnosisX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(diagnosisX: child);
-            }
-            if (child is Reference) {
-              return copyWith(diagnosisX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'diagnosisCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(diagnosisX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'diagnosisReference':
-        {
-          if (child is Reference) {
-            return copyWith(diagnosisX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CoverageEligibilityRequestDiagnosis]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'diagnosis':
-      case 'diagnosisX':
-        return [
-          'CodeableConcept',
-          'Reference',
-        ];
-      case 'diagnosisCodeableConcept':
-        return ['CodeableConcept'];
-      case 'diagnosisReference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CoverageEligibilityRequestDiagnosis]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CoverageEligibilityRequestDiagnosis createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $CoverageEligibilityRequestDiagnosisCopyWith<
+          CoverageEligibilityRequestDiagnosis>
+      get copyWith => _$CoverageEligibilityRequestDiagnosisCopyWithImpl<
+              CoverageEligibilityRequestDiagnosis>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'diagnosis':
-      case 'diagnosisX':
-      case 'diagnosisCodeableConcept':
-        {
-          return copyWith(
-            diagnosisX: CodeableConcept.empty(),
-          );
-        }
-      case 'diagnosisReference':
-        {
-          return copyWith(
-            diagnosisX: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CoverageEligibilityRequestDiagnosis clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool diagnosis = false,
-  }) {
-    return CoverageEligibilityRequestDiagnosis(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      diagnosisX: diagnosis ? null : diagnosisX,
-    );
-  }
-
-  @override
-  CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
-  @override
-  CoverageEligibilityRequestDiagnosis copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return CoverageEligibilityRequestDiagnosis(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      diagnosisX: diagnosisX?.copyWith(
-            objectPath: '$newObjectPath.diagnosisX',
-          ) as DiagnosisXCoverageEligibilityRequestDiagnosis? ??
-          this.diagnosisX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

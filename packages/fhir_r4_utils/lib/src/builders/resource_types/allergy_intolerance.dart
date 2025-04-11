@@ -1325,60 +1325,6 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool clinicalStatus = false,
-    bool verificationStatus = false,
-    bool type = false,
-    bool category = false,
-    bool criticality = false,
-    bool code = false,
-    bool patient = false,
-    bool encounter = false,
-    bool onset = false,
-    bool recordedDate = false,
-    bool recorder = false,
-    bool asserter = false,
-    bool lastOccurrence = false,
-    bool note = false,
-    bool reaction = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (clinicalStatus) this.clinicalStatus = null;
-    if (verificationStatus) this.verificationStatus = null;
-    if (type) this.type = null;
-    if (category) this.category = null;
-    if (criticality) this.criticality = null;
-    if (code) this.code = null;
-    if (patient) this.patient = null;
-    if (encounter) this.encounter = null;
-    if (onset) onsetX = null;
-    if (recordedDate) this.recordedDate = null;
-    if (recorder) this.recorder = null;
-    if (asserter) this.asserter = null;
-    if (lastOccurrence) this.lastOccurrence = null;
-    if (note) this.note = null;
-    if (reaction) this.reaction = null;
-  }
-
   @override
   AllergyIntoleranceBuilder clone() => throw UnimplementedError();
   @override
@@ -2214,32 +2160,6 @@ class AllergyIntoleranceReactionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool substance = false,
-    bool manifestation = false,
-    bool description = false,
-    bool onset = false,
-    bool severity = false,
-    bool exposureRoute = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (substance) this.substance = null;
-    if (manifestation) this.manifestation = null;
-    if (description) this.description = null;
-    if (onset) this.onset = null;
-    if (severity) this.severity = null;
-    if (exposureRoute) this.exposureRoute = null;
-    if (note) this.note = null;
   }
 
   @override

@@ -1467,72 +1467,6 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool replaces = false,
-    bool groupIdentifier = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool priority = false,
-    bool doNotPerform = false,
-    bool medium = false,
-    bool subject = false,
-    bool about = false,
-    bool encounter = false,
-    bool payload = false,
-    bool occurrence = false,
-    bool authoredOn = false,
-    bool requester = false,
-    bool recipient = false,
-    bool sender = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (replaces) this.replaces = null;
-    if (groupIdentifier) this.groupIdentifier = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (category) this.category = null;
-    if (priority) this.priority = null;
-    if (doNotPerform) this.doNotPerform = null;
-    if (medium) this.medium = null;
-    if (subject) this.subject = null;
-    if (about) this.about = null;
-    if (encounter) this.encounter = null;
-    if (payload) this.payload = null;
-    if (occurrence) occurrenceX = null;
-    if (authoredOn) this.authoredOn = null;
-    if (requester) this.requester = null;
-    if (recipient) this.recipient = null;
-    if (sender) this.sender = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (note) this.note = null;
-  }
-
   @override
   CommunicationRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -2244,20 +2178,6 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool content = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
   }
 
   @override

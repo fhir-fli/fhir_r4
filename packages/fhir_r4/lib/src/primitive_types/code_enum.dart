@@ -3,7 +3,7 @@ part of 'primitive_types.dart';
 /// Extension of FhirCode for Specific FhirCode
 abstract class FhirCodeEnum extends FhirCode {
   // ignore: public_member_api_docs
-  FhirCodeEnum({
+  const FhirCodeEnum({
     required super.valueString,
     this.system,
     this.version,
@@ -12,14 +12,13 @@ abstract class FhirCodeEnum extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
   }) : super._();
 
   /// Private underscore constructor that just calls `super._(...)`,
   /// passing the validated code. We can also store system, version, display.
   /// This means we do no further logic: any validation is done in a
   /// public factory.
-  FhirCodeEnum._({
+  const FhirCodeEnum._({
     required super.valueString,
     this.system,
     this.version,
@@ -28,7 +27,6 @@ abstract class FhirCodeEnum extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
   }) : super._();
 
   /// [system]

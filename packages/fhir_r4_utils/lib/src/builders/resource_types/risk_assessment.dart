@@ -1207,62 +1207,6 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool parent = false,
-    bool status = false,
-    bool method = false,
-    bool code = false,
-    bool subject = false,
-    bool encounter = false,
-    bool occurrence = false,
-    bool condition = false,
-    bool performer = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool basis = false,
-    bool prediction = false,
-    bool mitigation = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (parent) this.parent = null;
-    if (status) this.status = null;
-    if (method) this.method = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
-    if (condition) this.condition = null;
-    if (performer) this.performer = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (basis) this.basis = null;
-    if (prediction) this.prediction = null;
-    if (mitigation) this.mitigation = null;
-    if (note) this.note = null;
-  }
-
   @override
   RiskAssessmentBuilder clone() => throw UnimplementedError();
   @override
@@ -2163,30 +2107,6 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool outcome = false,
-    bool probability = false,
-    bool qualitativeRisk = false,
-    bool relativeRisk = false,
-    bool when = false,
-    bool rationale = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (outcome) this.outcome = null;
-    if (probability) probabilityX = null;
-    if (qualitativeRisk) this.qualitativeRisk = null;
-    if (relativeRisk) this.relativeRisk = null;
-    if (when) whenX = null;
-    if (rationale) this.rationale = null;
   }
 
   @override

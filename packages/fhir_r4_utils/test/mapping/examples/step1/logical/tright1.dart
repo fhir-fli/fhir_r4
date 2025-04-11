@@ -9,7 +9,6 @@ class TRight1 extends Element {
     super.extension_,
     this.a,
     super.disallowExtensions,
-    super.objectPath = 'TRight1',
   });
 
   factory TRight1.empty() => const TRight1();
@@ -51,24 +50,6 @@ class TRight1 extends Element {
   String get fhirType => 'TRight1';
 
   @override
-  TRight1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? a,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a: a ?? this.a,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) json['id'] = id!.valueString;
@@ -79,36 +60,6 @@ class TRight1 extends Element {
       json['a'] = a!.valueString;
     }
     return json;
-  }
-
-  @override
-  TRight1 setChildByName(String name, dynamic value) {
-    switch (name) {
-      case 'id':
-        return copyWith(id: value as FhirString);
-      case 'extension':
-        return copyWith(extension_: value as List<FhirExtension>);
-      case 'a':
-        return copyWith(a: value as FhirString);
-      default:
-        throw StateError('Unknown name in TRight1: $name');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['List<FhirExtension>'];
-      case 'a':
-        return ['FhirString'];
-      default:
-        return [];
-    }
   }
 }
 
@@ -315,16 +266,6 @@ class TRight1Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a) this.a = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

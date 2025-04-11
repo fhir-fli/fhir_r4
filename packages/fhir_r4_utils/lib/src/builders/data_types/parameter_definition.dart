@@ -599,30 +599,6 @@ class ParameterDefinitionBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool name = false,
-    bool use = false,
-    bool min = false,
-    bool max = false,
-    bool documentation = false,
-    bool type = false,
-    bool profile = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (name) this.name = null;
-    if (use) this.use = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-    if (documentation) this.documentation = null;
-    if (type) this.type = null;
-    if (profile) this.profile = null;
-  }
-
   @override
   ParameterDefinitionBuilder clone() => throw UnimplementedError();
   @override

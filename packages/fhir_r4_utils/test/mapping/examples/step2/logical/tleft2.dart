@@ -1,5 +1,4 @@
-import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirBase, FhirExtension, FhirString;
+import 'package:fhir_r4/fhir_r4.dart' show Element, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft2]
@@ -10,7 +9,6 @@ class TLeft2 extends Element {
     super.extension_,
     this.a1,
     super.disallowExtensions,
-    super.objectPath = 'TLeft2',
   });
 
   /// FromJson Factory Constructor
@@ -47,24 +45,6 @@ class TLeft2 extends Element {
   final FhirString? a1;
 
   @override
-  TLeft2 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? a1,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft2(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a1: a1 ?? this.a1,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) json['id'] = id!.valueString;
@@ -75,20 +55,6 @@ class TLeft2 extends Element {
       json['a1'] = a1!.valueString;
     }
     return json;
-  }
-
-  @override
-  List<FhirBase> getChildrenByName(String name, [bool ordered = true]) {
-    switch (name) {
-      case 'id':
-        return [id!];
-      case 'extension':
-        return extension_!;
-      case 'a1':
-        return a1 == null ? [] : [a1!];
-      default:
-        return [];
-    }
   }
 }
 
@@ -295,16 +261,6 @@ class TLeft2Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a1 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a1) this.a1 = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

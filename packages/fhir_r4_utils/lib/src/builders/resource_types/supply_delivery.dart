@@ -1006,50 +1006,6 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool status = false,
-    bool patient = false,
-    bool type = false,
-    bool suppliedItem = false,
-    bool occurrence = false,
-    bool supplier = false,
-    bool destination = false,
-    bool receiver = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (patient) this.patient = null;
-    if (type) this.type = null;
-    if (suppliedItem) this.suppliedItem = null;
-    if (occurrence) occurrenceX = null;
-    if (supplier) this.supplier = null;
-    if (destination) this.destination = null;
-    if (receiver) this.receiver = null;
-  }
-
   @override
   SupplyDeliveryBuilder clone() => throw UnimplementedError();
   @override
@@ -1674,22 +1630,6 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool quantity = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (quantity) this.quantity = null;
-    if (item) itemX = null;
   }
 
   @override

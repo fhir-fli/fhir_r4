@@ -1024,54 +1024,6 @@ class SpecimenBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool accessionIdentifier = false,
-    bool status = false,
-    bool type = false,
-    bool subject = false,
-    bool receivedTime = false,
-    bool parent = false,
-    bool request = false,
-    bool collection = false,
-    bool processing = false,
-    bool container = false,
-    bool condition = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (accessionIdentifier) this.accessionIdentifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (subject) this.subject = null;
-    if (receivedTime) this.receivedTime = null;
-    if (parent) this.parent = null;
-    if (request) this.request = null;
-    if (collection) this.collection = null;
-    if (processing) this.processing = null;
-    if (container) this.container = null;
-    if (condition) this.condition = null;
-    if (note) this.note = null;
-  }
-
   @override
   SpecimenBuilder clone() => throw UnimplementedError();
   @override
@@ -1946,32 +1898,6 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool collector = false,
-    bool collected = false,
-    bool duration = false,
-    bool quantity = false,
-    bool method = false,
-    bool bodySite = false,
-    bool fastingStatus = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (collector) this.collector = null;
-    if (collected) collectedX = null;
-    if (duration) this.duration = null;
-    if (quantity) this.quantity = null;
-    if (method) this.method = null;
-    if (bodySite) this.bodySite = null;
-    if (fastingStatus) fastingStatusX = null;
-  }
-
   @override
   SpecimenCollectionBuilder clone() => throw UnimplementedError();
   @override
@@ -2609,26 +2535,6 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool procedure = false,
-    bool additive = false,
-    bool time = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (procedure) this.procedure = null;
-    if (additive) this.additive = null;
-    if (time) timeX = null;
   }
 
   @override
@@ -3314,30 +3220,6 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool description = false,
-    bool type = false,
-    bool capacity = false,
-    bool specimenQuantity = false,
-    bool additive = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (description) this.description = null;
-    if (type) this.type = null;
-    if (capacity) this.capacity = null;
-    if (specimenQuantity) this.specimenQuantity = null;
-    if (additive) additiveX = null;
   }
 
   @override

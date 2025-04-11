@@ -1307,64 +1307,6 @@ class RequestGroupBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool replaces = false,
-    bool groupIdentifier = false,
-    bool status = false,
-    bool intent = false,
-    bool priority = false,
-    bool code = false,
-    bool subject = false,
-    bool encounter = false,
-    bool authoredOn = false,
-    bool author = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (replaces) this.replaces = null;
-    if (groupIdentifier) this.groupIdentifier = null;
-    if (status) this.status = null;
-    if (intent) this.intent = null;
-    if (priority) this.priority = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (authoredOn) this.authoredOn = null;
-    if (author) this.author = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (note) this.note = null;
-    if (action) this.action = null;
-  }
-
   @override
   RequestGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -2931,56 +2873,6 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool prefix = false,
-    bool title = false,
-    bool description = false,
-    bool textEquivalent = false,
-    bool priority = false,
-    bool code = false,
-    bool documentation = false,
-    bool condition = false,
-    bool relatedAction = false,
-    bool timing = false,
-    bool participant = false,
-    bool type = false,
-    bool groupingBehavior = false,
-    bool selectionBehavior = false,
-    bool requiredBehavior = false,
-    bool precheckBehavior = false,
-    bool cardinalityBehavior = false,
-    bool resource = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (prefix) this.prefix = null;
-    if (title) this.title = null;
-    if (description) this.description = null;
-    if (textEquivalent) this.textEquivalent = null;
-    if (priority) this.priority = null;
-    if (code) this.code = null;
-    if (documentation) this.documentation = null;
-    if (condition) this.condition = null;
-    if (relatedAction) this.relatedAction = null;
-    if (timing) timingX = null;
-    if (participant) this.participant = null;
-    if (type) this.type = null;
-    if (groupingBehavior) this.groupingBehavior = null;
-    if (selectionBehavior) this.selectionBehavior = null;
-    if (requiredBehavior) this.requiredBehavior = null;
-    if (precheckBehavior) this.precheckBehavior = null;
-    if (cardinalityBehavior) this.cardinalityBehavior = null;
-    if (resource) this.resource = null;
-    if (action) this.action = null;
-  }
-
   @override
   RequestGroupActionBuilder clone() => throw UnimplementedError();
   @override
@@ -3578,22 +3470,6 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool kind = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (kind) this.kind = null;
-    if (expression) this.expression = null;
-  }
-
   @override
   RequestGroupConditionBuilder clone() => throw UnimplementedError();
   @override
@@ -4169,24 +4045,6 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool actionId = false,
-    bool relationship = false,
-    bool offset = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (actionId) this.actionId = null;
-    if (relationship) this.relationship = null;
-    if (offset) offsetX = null;
   }
 
   @override

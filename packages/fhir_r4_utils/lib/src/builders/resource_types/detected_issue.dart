@@ -1057,52 +1057,6 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool code = false,
-    bool severity = false,
-    bool patient = false,
-    bool identified = false,
-    bool author = false,
-    bool implicated = false,
-    bool evidence = false,
-    bool detail = false,
-    bool reference = false,
-    bool mitigation = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (code) this.code = null;
-    if (severity) this.severity = null;
-    if (patient) this.patient = null;
-    if (identified) identifiedX = null;
-    if (author) this.author = null;
-    if (implicated) this.implicated = null;
-    if (evidence) this.evidence = null;
-    if (detail) this.detail = null;
-    if (reference) this.reference = null;
-    if (mitigation) this.mitigation = null;
-  }
-
   @override
   DetectedIssueBuilder clone() => throw UnimplementedError();
   @override
@@ -1692,22 +1646,6 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   DetectedIssueEvidenceBuilder clone() => throw UnimplementedError();
   @override
@@ -2200,24 +2138,6 @@ class DetectedIssueMitigationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-    bool date = false,
-    bool author = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
-    if (date) this.date = null;
-    if (author) this.author = null;
   }
 
   @override

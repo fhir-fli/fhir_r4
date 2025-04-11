@@ -1996,92 +1996,6 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool statusReason = false,
-    bool intent = false,
-    bool category = false,
-    bool priority = false,
-    bool doNotPerform = false,
-    bool reported = false,
-    bool medication = false,
-    bool subject = false,
-    bool encounter = false,
-    bool supportingInformation = false,
-    bool authoredOn = false,
-    bool requester = false,
-    bool performer = false,
-    bool performerType = false,
-    bool recorder = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool groupIdentifier = false,
-    bool courseOfTherapyType = false,
-    bool insurance = false,
-    bool note = false,
-    bool dosageInstruction = false,
-    bool dispenseRequest = false,
-    bool substitution = false,
-    bool priorPrescription = false,
-    bool detectedIssue = false,
-    bool eventHistory = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (intent) this.intent = null;
-    if (category) this.category = null;
-    if (priority) this.priority = null;
-    if (doNotPerform) this.doNotPerform = null;
-    if (reported) reportedX = null;
-    if (medication) medicationX = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (supportingInformation) this.supportingInformation = null;
-    if (authoredOn) this.authoredOn = null;
-    if (requester) this.requester = null;
-    if (performer) this.performer = null;
-    if (performerType) this.performerType = null;
-    if (recorder) this.recorder = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (groupIdentifier) this.groupIdentifier = null;
-    if (courseOfTherapyType) this.courseOfTherapyType = null;
-    if (insurance) this.insurance = null;
-    if (note) this.note = null;
-    if (dosageInstruction) this.dosageInstruction = null;
-    if (dispenseRequest) this.dispenseRequest = null;
-    if (substitution) this.substitution = null;
-    if (priorPrescription) this.priorPrescription = null;
-    if (detectedIssue) this.detectedIssue = null;
-    if (eventHistory) this.eventHistory = null;
-  }
-
   @override
   MedicationRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -3001,32 +2915,6 @@ class MedicationRequestDispenseRequestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool initialFill = false,
-    bool dispenseInterval = false,
-    bool validityPeriod = false,
-    bool numberOfRepeatsAllowed = false,
-    bool quantity = false,
-    bool expectedSupplyDuration = false,
-    bool performer = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (initialFill) this.initialFill = null;
-    if (dispenseInterval) this.dispenseInterval = null;
-    if (validityPeriod) this.validityPeriod = null;
-    if (numberOfRepeatsAllowed) this.numberOfRepeatsAllowed = null;
-    if (quantity) this.quantity = null;
-    if (expectedSupplyDuration) this.expectedSupplyDuration = null;
-    if (performer) this.performer = null;
-  }
-
   @override
   MedicationRequestDispenseRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -3512,22 +3400,6 @@ class MedicationRequestInitialFillBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool quantity = false,
-    bool duration = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (quantity) this.quantity = null;
-    if (duration) this.duration = null;
   }
 
   @override
@@ -4049,22 +3921,6 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool allowed = false,
-    bool reason = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (allowed) allowedX = null;
-    if (reason) this.reason = null;
   }
 
   @override

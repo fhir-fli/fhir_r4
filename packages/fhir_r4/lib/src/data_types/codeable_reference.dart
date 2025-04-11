@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'codeable_reference.g.dart';
+
 /// [CodeableReference]
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
@@ -21,33 +23,22 @@ class CodeableReference extends DataType
     this.concept,
     this.reference,
     super.disallowExtensions,
-    super.objectPath = 'CodeableReference',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CodeableReference.empty() => const CodeableReference();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeableReference.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'CodeableReference';
     return CodeableReference(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -55,13 +46,11 @@ class CodeableReference extends DataType
         json,
         'concept',
         CodeableConcept.fromJson,
-        '$objectPath.concept',
       ),
       reference: JsonParser.parseObject<Reference>(
         json,
         'reference',
         Reference.fromJson,
-        '$objectPath.reference',
       ),
     );
   }
@@ -251,173 +240,19 @@ class CodeableReference extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
+  CodeableReference clone() => copyWith();
 
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'concept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(concept: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reference':
-        {
-          if (child is Reference) {
-            return copyWith(reference: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
+  /// Copy function for [CodeableReference]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'concept':
-        return ['CodeableConcept'];
-      case 'reference':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CodeableReference]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CodeableReference createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'concept':
-        {
-          return copyWith(
-            concept: CodeableConcept.empty(),
-          );
-        }
-      case 'reference':
-        {
-          return copyWith(
-            reference: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CodeableReference clear({
-    bool id = false,
-    bool extension_ = false,
-    bool concept = false,
-    bool reference = false,
-  }) {
-    return CodeableReference(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      concept: concept ? null : this.concept,
-      reference: reference ? null : this.reference,
-    );
-  }
-
-  @override
-  CodeableReference clone() => throw UnimplementedError();
-  @override
-  CodeableReference copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    CodeableConcept? concept,
-    Reference? reference,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return CodeableReference(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      concept: concept?.copyWith(
-            objectPath: '$newObjectPath.concept',
-          ) ??
-          this.concept,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-    );
-  }
+  $CodeableReferenceCopyWith<CodeableReference> get copyWith =>
+      _$CodeableReferenceCopyWithImpl<CodeableReference>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

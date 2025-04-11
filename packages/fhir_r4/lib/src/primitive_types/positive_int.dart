@@ -39,13 +39,12 @@ class FhirPositiveInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor, calls [super._].
-  FhirPositiveInt._({
+  const FhirPositiveInt._({
     required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'PositiveInt',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -61,7 +60,6 @@ class FhirPositiveInt extends FhirNumber
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'PositiveInt',
   }) {
     String? parsedString;
 
@@ -103,13 +101,8 @@ class FhirPositiveInt extends FhirNumber
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirPositiveInt] (with [Element.empty] for metadata).
-  factory FhirPositiveInt.empty() =>
-      FhirPositiveInt(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -120,12 +113,10 @@ class FhirPositiveInt extends FhirNumber
     final rawValue = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
 
     return FhirPositiveInt(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -212,56 +203,50 @@ class FhirPositiveInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   @override
-  FhirPositiveInt clone() =>
-      FhirPositiveInt(valueString, element: element?.clone() as Element?);
+  FhirPositiveInt clone() => copyWith();
 
   /// Returns a copy with [disallowExtensions] set to `true`.
   FhirPositiveInt noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a new instance with the specified fields replaced.
   @override
-  FhirPositiveInt copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  $FhirPositiveIntCopyWithImpl<FhirPositiveInt> get copyWith =>
+      $FhirPositiveIntCopyWithImpl<FhirPositiveInt>(this, (value) => value);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirPositiveIntCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirPositiveIntCopyWithImpl(this._value, this._then);
+
+  final FhirPositiveInt _value;
+  final T Function(FhirPositiveInt) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return FhirPositiveInt(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FhirPositiveInt(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
-
-  @override
-  FhirPositiveInt createProperty(String propertyName) => this;
-
-  @override
-  FhirPositiveInt clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirPositiveInt(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
     );
   }
 }

@@ -871,44 +871,6 @@ class DosageBuilder extends BackboneTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool sequence = false,
-    bool text = false,
-    bool additionalInstruction = false,
-    bool patientInstruction = false,
-    bool timing = false,
-    bool asNeeded = false,
-    bool site = false,
-    bool route = false,
-    bool method = false,
-    bool doseAndRate = false,
-    bool maxDosePerPeriod = false,
-    bool maxDosePerAdministration = false,
-    bool maxDosePerLifetime = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (sequence) this.sequence = null;
-    if (text) this.text = null;
-    if (additionalInstruction) this.additionalInstruction = null;
-    if (patientInstruction) this.patientInstruction = null;
-    if (timing) this.timing = null;
-    if (asNeeded) asNeededX = null;
-    if (site) this.site = null;
-    if (route) this.route = null;
-    if (method) this.method = null;
-    if (doseAndRate) this.doseAndRate = null;
-    if (maxDosePerPeriod) this.maxDosePerPeriod = null;
-    if (maxDosePerAdministration) this.maxDosePerAdministration = null;
-    if (maxDosePerLifetime) this.maxDosePerLifetime = null;
-  }
-
   @override
   DosageBuilder clone() => throw UnimplementedError();
   @override
@@ -1593,22 +1555,6 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool dose = false,
-    bool rate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (dose) doseX = null;
-    if (rate) rateX = null;
   }
 
   @override

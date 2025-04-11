@@ -1852,84 +1852,6 @@ class ProcedureBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool code = false,
-    bool subject = false,
-    bool encounter = false,
-    bool performed = false,
-    bool recorder = false,
-    bool asserter = false,
-    bool performer = false,
-    bool location = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool bodySite = false,
-    bool outcome = false,
-    bool report = false,
-    bool complication = false,
-    bool complicationDetail = false,
-    bool followUp = false,
-    bool note = false,
-    bool focalDevice = false,
-    bool usedReference = false,
-    bool usedCode = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (performed) performedX = null;
-    if (recorder) this.recorder = null;
-    if (asserter) this.asserter = null;
-    if (performer) this.performer = null;
-    if (location) this.location = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (bodySite) this.bodySite = null;
-    if (outcome) this.outcome = null;
-    if (report) this.report = null;
-    if (complication) this.complication = null;
-    if (complicationDetail) this.complicationDetail = null;
-    if (followUp) this.followUp = null;
-    if (note) this.note = null;
-    if (focalDevice) this.focalDevice = null;
-    if (usedReference) this.usedReference = null;
-    if (usedCode) this.usedCode = null;
-  }
-
   @override
   ProcedureBuilder clone() => throw UnimplementedError();
   @override
@@ -2655,24 +2577,6 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-    bool onBehalfOf = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
-    if (onBehalfOf) this.onBehalfOf = null;
-  }
-
   @override
   ProcedurePerformerBuilder clone() => throw UnimplementedError();
   @override
@@ -3125,22 +3029,6 @@ class ProcedureFocalDeviceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-    bool manipulated = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
-    if (manipulated) this.manipulated = null;
   }
 
   @override
