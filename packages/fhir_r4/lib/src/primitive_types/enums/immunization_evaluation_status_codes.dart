@@ -140,9 +140,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationEvaluationStatusCodes._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',

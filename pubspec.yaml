@@ -10,6 +10,8 @@ dependency_overrides:
     path: packages/fhir_r4
   fhir_r4_at_rest:
     path: packages/fhir_r4_at_rest
+  fhir_r4_path:
+    path: packages/fhir_r4_path
 
 dev_dependencies:
   melos: ^6.3.2

@@ -113,7 +113,7 @@ class FHIRPathEngine {
         location: lexer.currentLocation,
       );
     }
-    return _parseLexer(lexer);
+    return parseLexer(lexer);
   }
 
   ExpressionNodeWithOffset parsePartial(String path, int i) {
@@ -129,12 +129,11 @@ class FHIRPathEngine {
     return ExpressionNodeWithOffset(lexer.currentStart, result);
   }
 
-  ExpressionNode _parseLexer(FHIRLexer lexer) {
-    final result = _parseExpression(lexer, true);
-    if (!lexer.done()) {
-      throw lexer.error('Unexpected token "${lexer.current}"');
-    }
-    result.check();
+  ExpressionNode parseLexer(FHIRLexer lexer) {
+    final result = _parseExpression(lexer, true)..check();
+    // if (!lexer.done()) {
+    //   throw lexer.error('Unexpected token "${lexer.current}"');
+    // }
     return result;
   }
 
@@ -1054,7 +1053,6 @@ class FHIRPathEngine {
     // This will hold the evaluated results for the current node
     var work = <FhirBase>[];
 
-    
     // Main switch to evaluate this node based on its kind
     switch (exp.kind) {
       case ExpressionNodeKind.unary:
@@ -1203,7 +1201,6 @@ class FHIRPathEngine {
     ExpressionNode exp, {
     required bool atEntry,
   }) async {
-    
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
@@ -6566,8 +6563,6 @@ class FHIRPathEngine {
 
     final base = focus[0];
     final result = <FhirBase>[];
-
-    
 
     if (base is FhirNumber && base.valueNum != null) {
       if (base is FhirDecimal) {

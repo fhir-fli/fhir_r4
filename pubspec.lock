@@ -95,14 +95,21 @@ packages:
       path: "packages/fhir_r4"
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.4.1"
   fhir_r4_at_rest:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_at_rest"
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.4.0"
+  fhir_r4_path:
+    dependency: "direct overridden"
+    description:
+      path: "packages/fhir_r4_path"
+      relative: true
+    source: path
+    version: "0.4.0"
   file:
     dependency: transitive
     description:
@@ -319,6 +326,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  ucum:
+    dependency: transitive
+    description:
+      name: ucum
+      sha256: e92bcd575e1ac33f0eb68d9f371625365f362083d0d20873b7a6850ee81cfb8b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0"
+  universal_io:
+    dependency: transitive
+    description:
+      name: universal_io
+      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
   uuid:
     dependency: transitive
     description:
