@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ChargeItemDefinitionPriceComponent,
         ChargeItemDefinitionPropertyGroup,
         R4ResourceType,
-        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';

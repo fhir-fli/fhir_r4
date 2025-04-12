@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show StringExtensionForFHIR, UsageContext, yamlMapToJson, yamlToJson;
+    show UsageContext, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -186,7 +186,7 @@ class UsageContextBuilder extends DataTypeBuilder
     addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

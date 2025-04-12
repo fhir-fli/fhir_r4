@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ImmunizationProtocolApplied,
         ImmunizationReaction,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -582,7 +581,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('recorded', recorded);
@@ -3754,12 +3753,12 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     addField('targetDisease', targetDisease);
     if (doseNumberX != null) {
       final fhirType = doseNumberX!.fhirType;
-      addField('doseNumber${fhirType.capitalize()}', doseNumberX);
+      addField('doseNumber${fhirType.capitalizeFirstLetter()}', doseNumberX);
     }
 
     if (seriesDosesX != null) {
       final fhirType = seriesDosesX!.fhirType;
-      addField('seriesDoses${fhirType.capitalize()}', seriesDosesX);
+      addField('seriesDoses${fhirType.capitalizeFirstLetter()}', seriesDosesX);
     }
 
     return json;

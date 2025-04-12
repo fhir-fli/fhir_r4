@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         Task,
         TaskInput,
         TaskOutput,
@@ -2968,7 +2967,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;
@@ -4887,7 +4886,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

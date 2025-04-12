@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        MedicationStatement,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show MedicationStatement, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -491,14 +486,14 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     addField('category', category);
     if (medicationX != null) {
       final fhirType = medicationX!.fhirType;
-      addField('medication${fhirType.capitalize()}', medicationX);
+      addField('medication${fhirType.capitalizeFirstLetter()}', medicationX);
     }
 
     addField('subject', subject);
     addField('context', context);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField('effective${fhirType.capitalize()}', effectiveX);
+      addField('effective${fhirType.capitalizeFirstLetter()}', effectiveX);
     }
 
     addField('dateAsserted', dateAsserted);

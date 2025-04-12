@@ -407,5 +407,4 @@ class FhirStringBuilder extends PrimitiveTypeBuilder
   /// Creates an empty property in the object (no-op).
   @override
   FhirStringBuilder createProperty(String propertyName) => this;
-
 }

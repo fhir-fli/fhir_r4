@@ -269,5 +269,4 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
 
   @override
   FhirUnsignedIntBuilder createProperty(String propertyName) => this;
-
 }

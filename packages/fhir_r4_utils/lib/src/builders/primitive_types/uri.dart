@@ -329,7 +329,6 @@ class FhirUriBuilder extends PrimitiveTypeBuilder
   @override
   FhirUriBuilder createProperty(String propertyName) => this;
 
-
   // --------------------------------------------------------------------------
   // Additional Convenience Getters
   // --------------------------------------------------------------------------

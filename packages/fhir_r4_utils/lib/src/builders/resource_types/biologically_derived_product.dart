@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         BiologicallyDerivedProductProcessing,
         BiologicallyDerivedProductStorage,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1346,7 +1345,7 @@ class BiologicallyDerivedProductCollectionBuilder
     addField('source', source);
     if (collectedX != null) {
       final fhirType = collectedX!.fhirType;
-      addField('collected${fhirType.capitalize()}', collectedX);
+      addField('collected${fhirType.capitalizeFirstLetter()}', collectedX);
     }
 
     return json;
@@ -1914,7 +1913,7 @@ class BiologicallyDerivedProductProcessingBuilder
     addField('additive', additive);
     if (timeX != null) {
       final fhirType = timeX!.fhirType;
-      addField('time${fhirType.capitalize()}', timeX);
+      addField('time${fhirType.capitalizeFirstLetter()}', timeX);
     }
 
     return json;
@@ -2498,7 +2497,7 @@ class BiologicallyDerivedProductManipulationBuilder
     addField('description', description);
     if (timeX != null) {
       final fhirType = timeX!.fhirType;
-      addField('time${fhirType.capitalize()}', timeX);
+      addField('time${fhirType.capitalizeFirstLetter()}', timeX);
     }
 
     return json;

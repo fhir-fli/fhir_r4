@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CarePlanActivity,
         CarePlanDetail,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2850,14 +2849,14 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     addField('doNotPerform', doNotPerform);
     if (scheduledX != null) {
       final fhirType = scheduledX!.fhirType;
-      addField('scheduled${fhirType.capitalize()}', scheduledX);
+      addField('scheduled${fhirType.capitalizeFirstLetter()}', scheduledX);
     }
 
     addField('location', location);
     addField('performer', performer);
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField('product${fhirType.capitalizeFirstLetter()}', productX);
     }
 
     addField('dailyAmount', dailyAmount);

@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CoverageEligibilityRequestItem,
         CoverageEligibilityRequestSupportingInfo,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -402,7 +401,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     addField('patient', patient);
     if (servicedX != null) {
       final fhirType = servicedX!.fhirType;
-      addField('serviced${fhirType.capitalize()}', servicedX);
+      addField('serviced${fhirType.capitalizeFirstLetter()}', servicedX);
     }
 
     addField('created', created);
@@ -3432,7 +3431,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
     addField('modifierExtension', modifierExtension);
     if (diagnosisX != null) {
       final fhirType = diagnosisX!.fhirType;
-      addField('diagnosis${fhirType.capitalize()}', diagnosisX);
+      addField('diagnosis${fhirType.capitalizeFirstLetter()}', diagnosisX);
     }
 
     return json;

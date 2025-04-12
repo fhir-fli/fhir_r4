@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         IngredientStrength,
         IngredientSubstance,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2188,13 +2187,15 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (presentationX != null) {
       final fhirType = presentationX!.fhirType;
-      addField('presentation${fhirType.capitalize()}', presentationX);
+      addField(
+          'presentation${fhirType.capitalizeFirstLetter()}', presentationX);
     }
 
     addField('textPresentation', textPresentation);
     if (concentrationX != null) {
       final fhirType = concentrationX!.fhirType;
-      addField('concentration${fhirType.capitalize()}', concentrationX);
+      addField(
+          'concentration${fhirType.capitalizeFirstLetter()}', concentrationX);
     }
 
     addField('textConcentration', textConcentration);
@@ -2992,7 +2993,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     addField('substance', substance);
     if (strengthX != null) {
       final fhirType = strengthX!.fhirType;
-      addField('strength${fhirType.capitalize()}', strengthX);
+      addField('strength${fhirType.capitalizeFirstLetter()}', strengthX);
     }
 
     addField('measurementPoint', measurementPoint);

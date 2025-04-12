@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MedicationDispensePerformer,
         MedicationDispenseSubstitution,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -558,13 +557,14 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     addField('status', status);
     if (statusReasonX != null) {
       final fhirType = statusReasonX!.fhirType;
-      addField('statusReason${fhirType.capitalize()}', statusReasonX);
+      addField(
+          'statusReason${fhirType.capitalizeFirstLetter()}', statusReasonX);
     }
 
     addField('category', category);
     if (medicationX != null) {
       final fhirType = medicationX!.fhirType;
-      addField('medication${fhirType.capitalize()}', medicationX);
+      addField('medication${fhirType.capitalizeFirstLetter()}', medicationX);
     }
 
     addField('subject', subject);

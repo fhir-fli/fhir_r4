@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Population, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
+    show Population, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -194,7 +194,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
     addField('modifierExtension', modifierExtension);
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField('age${fhirType.capitalize()}', ageX);
+      addField('age${fhirType.capitalizeFirstLetter()}', ageX);
     }
 
     addField('gender', gender);

@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        FhirEndpoint,
-        R4ResourceType,
-        
-        yamlMapToJson,
-        yamlToJson;
+    show FhirEndpoint, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CompositionRelatesTo,
         CompositionSection,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2034,7 +2033,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField('target${fhirType.capitalize()}', targetX);
+      addField('target${fhirType.capitalizeFirstLetter()}', targetX);
     }
 
     return json;

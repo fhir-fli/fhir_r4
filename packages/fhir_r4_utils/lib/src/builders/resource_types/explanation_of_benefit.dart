@@ -23,7 +23,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ExplanationOfBenefitSupportingInfo,
         ExplanationOfBenefitTotal,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -4450,12 +4449,12 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField('timing${fhirType.capitalizeFirstLetter()}', timingX);
     }
 
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('reason', reason);
@@ -5274,7 +5273,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
     addField('sequence', sequence);
     if (diagnosisX != null) {
       final fhirType = diagnosisX!.fhirType;
-      addField('diagnosis${fhirType.capitalize()}', diagnosisX);
+      addField('diagnosis${fhirType.capitalizeFirstLetter()}', diagnosisX);
     }
 
     addField('type', type);
@@ -5948,7 +5947,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
     addField('date', date);
     if (procedureX != null) {
       final fhirType = procedureX!.fhirType;
-      addField('procedure${fhirType.capitalize()}', procedureX);
+      addField('procedure${fhirType.capitalizeFirstLetter()}', procedureX);
     }
 
     addField('udi', udi);
@@ -7154,7 +7153,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (locationX != null) {
       final fhirType = locationX!.fhirType;
-      addField('location${fhirType.capitalize()}', locationX);
+      addField('location${fhirType.capitalizeFirstLetter()}', locationX);
     }
 
     return json;
@@ -8012,12 +8011,12 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
     addField('programCode', programCode);
     if (servicedX != null) {
       final fhirType = servicedX!.fhirType;
-      addField('serviced${fhirType.capitalize()}', servicedX);
+      addField('serviced${fhirType.capitalizeFirstLetter()}', servicedX);
     }
 
     if (locationX != null) {
       final fhirType = locationX!.fhirType;
-      addField('location${fhirType.capitalize()}', locationX);
+      addField('location${fhirType.capitalizeFirstLetter()}', locationX);
     }
 
     addField('quantity', quantity);
@@ -12461,12 +12460,12 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
     addField('programCode', programCode);
     if (servicedX != null) {
       final fhirType = servicedX!.fhirType;
-      addField('serviced${fhirType.capitalize()}', servicedX);
+      addField('serviced${fhirType.capitalizeFirstLetter()}', servicedX);
     }
 
     if (locationX != null) {
       final fhirType = locationX!.fhirType;
-      addField('location${fhirType.capitalize()}', locationX);
+      addField('location${fhirType.capitalizeFirstLetter()}', locationX);
     }
 
     addField('quantity', quantity);
@@ -17819,12 +17818,12 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (allowedX != null) {
       final fhirType = allowedX!.fhirType;
-      addField('allowed${fhirType.capitalize()}', allowedX);
+      addField('allowed${fhirType.capitalizeFirstLetter()}', allowedX);
     }
 
     if (usedX != null) {
       final fhirType = usedX!.fhirType;
-      addField('used${fhirType.capitalize()}', usedX);
+      addField('used${fhirType.capitalizeFirstLetter()}', usedX);
     }
 
     return json;

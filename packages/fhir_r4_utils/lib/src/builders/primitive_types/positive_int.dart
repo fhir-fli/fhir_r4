@@ -261,5 +261,4 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
 
   @override
   FhirPositiveIntBuilder createProperty(String propertyName) => this;
-
 }

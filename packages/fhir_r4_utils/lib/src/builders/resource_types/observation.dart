@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ObservationComponent,
         ObservationReferenceRange,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -620,14 +619,14 @@ class ObservationBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField('effective${fhirType.capitalize()}', effectiveX);
+      addField('effective${fhirType.capitalizeFirstLetter()}', effectiveX);
     }
 
     addField('issued', issued);
     addField('performer', performer);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('dataAbsentReason', dataAbsentReason);
@@ -3127,7 +3126,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('dataAbsentReason', dataAbsentReason);

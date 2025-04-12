@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         SupplyRequest,
         SupplyRequestParameter,
         yamlMapToJson,
@@ -414,14 +413,14 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     addField('priority', priority);
     if (itemX != null) {
       final fhirType = itemX!.fhirType;
-      addField('item${fhirType.capitalize()}', itemX);
+      addField('item${fhirType.capitalizeFirstLetter()}', itemX);
     }
 
     addField('quantity', quantity);
     addField('parameter', parameter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('authoredOn', authoredOn);
@@ -1648,7 +1647,7 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

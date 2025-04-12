@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DataRequirementCodeFilter,
         DataRequirementDateFilter,
         DataRequirementSort,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -281,7 +280,7 @@ class DataRequirementBuilder extends DataTypeBuilder
     addField('profile', profile);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('mustSupport', mustSupport);
@@ -1633,7 +1632,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     addField('searchParam', searchParam);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

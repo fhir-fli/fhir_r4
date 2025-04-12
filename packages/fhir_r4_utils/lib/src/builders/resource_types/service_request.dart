@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        R4ResourceType,
-        ServiceRequest,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show R4ResourceType, ServiceRequest, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -717,19 +712,19 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     addField('orderDetail', orderDetail);
     if (quantityX != null) {
       final fhirType = quantityX!.fhirType;
-      addField('quantity${fhirType.capitalize()}', quantityX);
+      addField('quantity${fhirType.capitalizeFirstLetter()}', quantityX);
     }
 
     addField('subject', subject);
     addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     if (asNeededX != null) {
       final fhirType = asNeededX!.fhirType;
-      addField('asNeeded${fhirType.capitalize()}', asNeededX);
+      addField('asNeeded${fhirType.capitalizeFirstLetter()}', asNeededX);
     }
 
     addField('authoredOn', authoredOn);

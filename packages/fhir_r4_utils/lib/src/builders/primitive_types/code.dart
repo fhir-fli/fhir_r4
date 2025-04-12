@@ -196,5 +196,4 @@ class FhirCodeBuilder extends FhirStringBuilder
 
   @override
   FhirCodeBuilder createProperty(String propertyName) => this;
-
 }

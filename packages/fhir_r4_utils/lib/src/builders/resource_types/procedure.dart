@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ProcedureFocalDevice,
         ProcedurePerformer,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -630,7 +629,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (performedX != null) {
       final fhirType = performedX!.fhirType;
-      addField('performed${fhirType.capitalize()}', performedX);
+      addField('performed${fhirType.capitalizeFirstLetter()}', performedX);
     }
 
     addField('recorder', recorder);

@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ProvenanceAgent,
         ProvenanceEntity,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -355,7 +354,7 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     addField('target', target);
     if (occurredX != null) {
       final fhirType = occurredX!.fhirType;
-      addField('occurred${fhirType.capitalize()}', occurredX);
+      addField('occurred${fhirType.capitalizeFirstLetter()}', occurredX);
     }
 
     addField('recorded', recorded);

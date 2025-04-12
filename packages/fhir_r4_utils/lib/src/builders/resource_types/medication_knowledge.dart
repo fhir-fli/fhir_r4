@@ -19,7 +19,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MedicationKnowledgeSchedule,
         MedicationKnowledgeSubstitution,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1878,7 +1877,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json,);
+          json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2863,7 +2862,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (itemX != null) {
       final fhirType = itemX!.fhirType;
-      addField('item${fhirType.capitalize()}', itemX);
+      addField('item${fhirType.capitalizeFirstLetter()}', itemX);
     }
 
     addField('isActive', isActive);
@@ -4399,7 +4398,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     addField('dosage', dosage);
     if (indicationX != null) {
       final fhirType = indicationX!.fhirType;
-      addField('indication${fhirType.capitalize()}', indicationX);
+      addField('indication${fhirType.capitalizeFirstLetter()}', indicationX);
     }
 
     addField('patientCharacteristics', patientCharacteristics);
@@ -5431,7 +5430,8 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     addField('modifierExtension', modifierExtension);
     if (characteristicX != null) {
       final fhirType = characteristicX!.fhirType;
-      addField('characteristic${fhirType.capitalize()}', characteristicX);
+      addField(
+          'characteristic${fhirType.capitalizeFirstLetter()}', characteristicX);
     }
 
     addField('value', value);
@@ -6909,7 +6909,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

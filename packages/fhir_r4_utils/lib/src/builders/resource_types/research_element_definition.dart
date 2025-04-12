@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         R4ResourceType,
         ResearchElementDefinition,
         ResearchElementDefinitionCharacteristic,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -688,7 +687,7 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);
@@ -2844,7 +2843,7 @@ class ResearchElementDefinitionCharacteristicBuilder
     addField('modifierExtension', modifierExtension);
     if (definitionX != null) {
       final fhirType = definitionX!.fhirType;
-      addField('definition${fhirType.capitalize()}', definitionX);
+      addField('definition${fhirType.capitalizeFirstLetter()}', definitionX);
     }
 
     addField('usageContext', usageContext);
@@ -2853,23 +2852,24 @@ class ResearchElementDefinitionCharacteristicBuilder
     addField('studyEffectiveDescription', studyEffectiveDescription);
     if (studyEffectiveX != null) {
       final fhirType = studyEffectiveX!.fhirType;
-      addField('studyEffective${fhirType.capitalize()}', studyEffectiveX);
+      addField(
+          'studyEffective${fhirType.capitalizeFirstLetter()}', studyEffectiveX);
     }
 
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription,);
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX,);
+      addField('participantEffective${fhirType.capitalizeFirstLetter()}',
+          participantEffectiveX);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 

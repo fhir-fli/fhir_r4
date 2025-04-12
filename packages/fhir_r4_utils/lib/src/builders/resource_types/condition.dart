@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ConditionEvidence,
         ConditionStage,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -475,12 +474,12 @@ class ConditionBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField('onset${fhirType.capitalize()}', onsetX);
+      addField('onset${fhirType.capitalizeFirstLetter()}', onsetX);
     }
 
     if (abatementX != null) {
       final fhirType = abatementX!.fhirType;
-      addField('abatement${fhirType.capitalize()}', abatementX);
+      addField('abatement${fhirType.capitalizeFirstLetter()}', abatementX);
     }
 
     addField('recordedDate', recordedDate);

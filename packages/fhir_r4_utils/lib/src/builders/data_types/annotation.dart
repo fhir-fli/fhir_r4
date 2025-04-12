@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Annotation, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
+    show Annotation, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -182,7 +182,7 @@ class AnnotationBuilder extends DataTypeBuilder
     addField('extension', extension_);
     if (authorX != null) {
       final fhirType = authorX!.fhirType;
-      addField('author${fhirType.capitalize()}', authorX);
+      addField('author${fhirType.capitalizeFirstLetter()}', authorX);
     }
 
     addField('time', time);

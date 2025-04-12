@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         FamilyMemberHistory,
         FamilyMemberHistoryCondition,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -491,18 +490,18 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     addField('sex', sex);
     if (bornX != null) {
       final fhirType = bornX!.fhirType;
-      addField('born${fhirType.capitalize()}', bornX);
+      addField('born${fhirType.capitalizeFirstLetter()}', bornX);
     }
 
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField('age${fhirType.capitalize()}', ageX);
+      addField('age${fhirType.capitalizeFirstLetter()}', ageX);
     }
 
     addField('estimatedAge', estimatedAge);
     if (deceasedX != null) {
       final fhirType = deceasedX!.fhirType;
-      addField('deceased${fhirType.capitalize()}', deceasedX);
+      addField('deceased${fhirType.capitalizeFirstLetter()}', deceasedX);
     }
 
     addField('reasonCode', reasonCode);
@@ -2109,7 +2108,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     addField('contributedToDeath', contributedToDeath);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField('onset${fhirType.capitalize()}', onsetX);
+      addField('onset${fhirType.capitalizeFirstLetter()}', onsetX);
     }
 
     addField('note', note);

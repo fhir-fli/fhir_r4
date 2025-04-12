@@ -122,7 +122,8 @@ class StructureMapParser {
       }
     }
     if (result.id == null && result.name != null) {
-      result.id = FhirStringBuilder(result.name!.valueString);
+      result.id =
+          FhirStringBuilder(result.name!.valueString!.replaceAll(' ', ''));
     }
     result.status = result.status ?? PublicationStatusBuilder.draft;
     if (result.description == null && result.title != null) {
@@ -184,6 +185,7 @@ class StructureMapParser {
     final targets = <StructureMapTargetBuilder>[];
     final dependents = <StructureMapDependentBuilder>[];
     final rules = <StructureMapRuleBuilder>[];
+
 
     // Determine rule name and format
     if (!newFmt) {
@@ -268,9 +270,10 @@ class StructureMapParser {
       } else {
         if (sources.isNotEmpty && sources.first.element?.valueString != null) {
           name = sources.first.element!.valueString;
-          if (sources.first.type != null) {
+          if (sources.first.type?.valueString != null) {
             // Only concatenate if type is not null and valid
-            name = '$name${sources.first.type}';
+            name =
+                '$name${sources.first.type!.valueString!.capitalizeFirstLetter()}';
           }
         } else {
           throw lexer.error('Complex rules must have an explicit name');
@@ -351,6 +354,7 @@ class StructureMapParser {
   StructureMapGroupBuilder _parseGroup(FHIRLexer lexer) {
     // Capture initial comments and token
     final comment = lexer.getAllComments();
+    print('Group comment: $comment');
 
     lexer.token('group'); // Should consume 'group' token
 
@@ -526,9 +530,9 @@ class StructureMapParser {
     if (context == 'search' && lexer.hasToken('(')) {
       context = '@search';
       lexer.take();
-      final expression = _extractExpressionFromLexer(lexer);
-      if (fpe?.isValid(expression) ?? false) {
-        element = expression;
+      final expressionNode = fpe?.parseLexer(lexer);
+      if (expressionNode != null) {
+        element = expressionNode.toString();
       }
       lexer.token(')');
     } else if (lexer.hasToken('.')) {
@@ -574,22 +578,17 @@ class StructureMapParser {
     // Capture condition and check expressions
     if (lexer.hasToken('where')) {
       lexer.take();
-      condition = _extractConditionOrCheckExpression(lexer);
+      condition = fpe?.parseLexer(lexer).toString();
     }
     if (lexer.hasToken('check')) {
       lexer.take();
-      check = _extractConditionOrCheckExpression(lexer);
+      check = fpe?.parseLexer(lexer).toString();
     }
 
     if (lexer.hasToken('log')) {
       lexer.take();
-      logMessage = _extractExpressionFromLexer(lexer);
+      logMessage = fpe?.parseLexer(lexer).toString();
     }
-
-    // Debugging output for validation
-    // print('Parsed source - context: $context, element: $element, type: $type, '
-    //     'min: $min, max: $max, listMode: $listMode, variable: $variable, '
-    //     'defaultValue: $defaultValue, condition: $condition, check: $check, logMessage: $logMessage');
 
     return StructureMapSourceBuilder(
       context: context.toFhirIdBuilder,
@@ -606,37 +605,22 @@ class StructureMapParser {
     );
   }
 
-  String _extractConditionOrCheckExpression(FHIRLexer lexer) {
-    final buffer = StringBuffer();
-    while (!lexer.done()) {
-      final token = lexer.current;
-      if (token == '->' || token == 'make') break; // Stop at start of target
-      buffer.write(token);
-      lexer.next();
-    }
-    return buffer.toString().trim();
-  }
-
   StructureMapTargetBuilder _parseTarget(FHIRLexer lexer) {
-    String? context;
-    String? element;
-    StructureMapTransformBuilder? transform;
-    final parameters = <StructureMapParameterBuilder>[];
-    FhirIdBuilder? variable;
-    final listModes = <StructureMapTargetListModeBuilder>[];
-    String? listRuleId;
-
+    final target = StructureMapTargetBuilder();
     String? start = lexer.take();
+
     if (lexer.hasToken('.')) {
-      context = start;
+      target
+        ..context = start.toFhirIdBuilder
+        ..contextType = StructureMapContextTypeBuilder.variable;
       start = null;
       lexer.token('.');
-      element = lexer.take();
+      target.element = lexer.take().toFhirStringBuilder;
     }
     String? name;
     var isConstant = false;
     if (lexer.hasToken('=')) {
-      if (start != null) context = start;
+      if (start != null) target.context = start.toFhirIdBuilder;
       lexer.token('=');
       isConstant = lexer.isConstant();
       name = lexer.take();
@@ -644,45 +628,39 @@ class StructureMapParser {
       name = start;
     }
 
+    target.parameter ??= <StructureMapParameterBuilder>[];
+
     if (name == '(') {
-      transform = StructureMapTransformBuilder.evaluate;
-      final expression = _extractExpressionFromLexer(lexer);
-      if (fpe?.isValid(expression) ?? false) {
-        parameters.add(
+      target.transform = StructureMapTransformBuilder.evaluate;
+      final node = fpe?.parseLexer(lexer);
+      target.setUserData(MAP_EXPRESSION, node);
+      if (node != null) {
+        target.parameter!.add(
           StructureMapParameterBuilder(
-            valueX: expression.toFhirStringBuilder,
+            valueX: node.toString().toFhirStringBuilder,
           ),
         );
       }
       lexer.token(')');
     } else if (lexer.hasToken('(')) {
-      transform = StructureMapTransformBuilder.fromJson({'value': name});
+      target.transform = StructureMapTransformBuilder.fromJson({'value': name});
       lexer.token('(');
-      if (transform == StructureMapTransformBuilder.evaluate) {
-        parameters.add(
-          StructureMapParameterBuilder(
-            valueX: lexer.readConstant('expression').toFhirStringBuilder,
-          ),
-        );
+      if (target.transform == StructureMapTransformBuilder.evaluate) {
+        final params = _parseParameter(lexer);
         lexer.token(',');
-        final expression = _extractExpressionFromLexer(lexer);
-        if (fpe?.isValid(expression) ?? false) {
-          parameters.add(
-            StructureMapParameterBuilder(
-              valueX: expression.toFhirStringBuilder,
-            ),
-          );
-        }
+        final node = fpe?.parseLexer(lexer);
+        target.setUserData(MAP_EXPRESSION, node);
+        target.parameter!.addAll(params);
       } else {
         while (!lexer.hasToken(')')) {
           final params = _parseParameter(lexer);
-          parameters.addAll(params);
+          target.parameter!.addAll(params);
           if (!lexer.hasToken(')')) lexer.token(',');
         }
       }
       lexer.token(')');
     } else if (name != null) {
-      transform = StructureMapTransformBuilder.copy_;
+      target.transform = StructureMapTransformBuilder.copy_;
       if (!isConstant) {
         final buffer = StringBuffer(name);
         while (lexer.hasToken('.')) {
@@ -690,11 +668,13 @@ class StructureMapParser {
             ..write(lexer.take())
             ..write(lexer.take());
         }
-        final id = buffer.toString();
-        parameters
-            .add(StructureMapParameterBuilder(valueX: id.toFhirIdBuilder));
+        target.parameter!.add(
+          StructureMapParameterBuilder(
+            valueX: buffer.toString().toFhirIdBuilder,
+          ),
+        );
       } else if (int.tryParse(name) != null) {
-        parameters.add(
+        target.parameter!.add(
           StructureMapParameterBuilder(
             valueX: FhirIntegerBuilder(
               int.parse(name),
@@ -702,7 +682,7 @@ class StructureMapParser {
           ),
         );
       } else {
-        parameters.add(
+        target.parameter!.add(
           StructureMapParameterBuilder(
             valueX: lexer.processConstant(name).toFhirStringBuilder,
           ),
@@ -712,17 +692,19 @@ class StructureMapParser {
 
     if (lexer.hasToken('as')) {
       lexer.take();
-      variable = lexer.take().toFhirIdBuilder;
+      target
+        ..variable = lexer.take().toFhirIdBuilder
+        ..contextType = StructureMapContextTypeBuilder.variable;
     }
 
-    final targetListModes = ['first', 'last', 'share', 'collate'];
-    while (targetListModes.contains(lexer.current)) {
+    while (['first', 'last', 'share', 'collate'].contains(lexer.current)) {
+      target.listMode ??= <StructureMapTargetListModeBuilder>[];
       if (lexer.current == 'share') {
-        listModes.add(StructureMapTargetListModeBuilder.share);
+        target.listMode!.add(StructureMapTargetListModeBuilder.share);
         lexer.next();
-        listRuleId = lexer.take();
+        target.listRuleId = lexer.take().toFhirIdBuilder;
       } else {
-        listModes.add(
+        target.listMode!.add(
           lexer.current == 'first'
               ? StructureMapTargetListModeBuilder.first
               : StructureMapTargetListModeBuilder.last,
@@ -731,45 +713,7 @@ class StructureMapParser {
       }
     }
 
-    return StructureMapTargetBuilder(
-      context: context?.toFhirIdBuilder,
-      contextType:
-          context != null ? StructureMapContextTypeBuilder.variable : null,
-      element: element?.toFhirStringBuilder,
-      transform: transform,
-      parameter: parameters,
-      variable: variable,
-      listMode: listModes.isNotEmpty ? listModes : null,
-      listRuleId: listRuleId?.toFhirIdBuilder,
-    );
-  }
-
-  String _extractExpressionFromLexer(FHIRLexer lexer) {
-    final expressionBuffer = StringBuffer();
-    var parenthesisCount = 0;
-
-    while (!lexer.done()) {
-      final token = lexer.current!;
-
-      if (token == '(') {
-        parenthesisCount++;
-      } else if (token == ')') {
-        if (parenthesisCount == 0) {
-          break;
-        }
-        parenthesisCount--;
-      }
-
-      expressionBuffer.write(token);
-      lexer.next();
-
-      if (parenthesisCount == 0 && (token == ',' || token == ';')) {
-        // End of the expression
-        break;
-      }
-    }
-
-    return expressionBuffer.toString().trim();
+    return target;
   }
 
   StructureMapDependentBuilder _parseRuleReference(FHIRLexer lexer) {

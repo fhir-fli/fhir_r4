@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         PatientContact,
         PatientLink,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -445,14 +444,15 @@ class PatientBuilder extends DomainResourceBuilder {
     addField('birthDate', birthDate);
     if (deceasedX != null) {
       final fhirType = deceasedX!.fhirType;
-      addField('deceased${fhirType.capitalize()}', deceasedX);
+      addField('deceased${fhirType.capitalizeFirstLetter()}', deceasedX);
     }
 
     addField('address', address);
     addField('maritalStatus', maritalStatus);
     if (multipleBirthX != null) {
       final fhirType = multipleBirthX!.fhirType;
-      addField('multipleBirth${fhirType.capitalize()}', multipleBirthX);
+      addField(
+          'multipleBirth${fhirType.capitalizeFirstLetter()}', multipleBirthX);
     }
 
     addField('photo', photo);

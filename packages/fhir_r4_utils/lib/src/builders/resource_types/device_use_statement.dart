@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        DeviceUseStatement,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show DeviceUseStatement, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -391,7 +386,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     addField('derivedFrom', derivedFrom);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField('timing${fhirType.capitalizeFirstLetter()}', timingX);
     }
 
     addField('recordedOn', recordedOn);

@@ -287,5 +287,4 @@ class FhirOidBuilder extends FhirUriBuilder
   /// Creates a property. No-op for [FhirOidBuilder].
   @override
   FhirOidBuilder createProperty(String propertyName) => this;
-
 }

@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ChargeItem,
         ChargeItemPerformer,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -564,7 +563,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     addField('context', context);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('performer', performer);
@@ -582,7 +581,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     addField('service', service);
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField('product${fhirType.capitalizeFirstLetter()}', productX);
     }
 
     addField('account', account);

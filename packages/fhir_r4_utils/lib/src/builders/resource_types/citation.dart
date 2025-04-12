@@ -26,7 +26,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CitationWebLocation,
         CitationWhoClassified,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -3744,7 +3743,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     addField('targetClassifier', targetClassifier);
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField('target${fhirType.capitalize()}', targetX);
+      addField('target${fhirType.capitalizeFirstLetter()}', targetX);
     }
 
     return json;
@@ -7981,7 +7980,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     addField('targetClassifier', targetClassifier);
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField('target${fhirType.capitalize()}', targetX);
+      addField('target${fhirType.capitalizeFirstLetter()}', targetX);
     }
 
     return json;

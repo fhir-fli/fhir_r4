@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CoverageCostToBeneficiary,
         CoverageException,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2139,7 +2138,7 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('exception', exception);

@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         SpecimenDefinitionContainer,
         SpecimenDefinitionHandling,
         SpecimenDefinitionTypeTested,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1887,7 +1886,8 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     addField('capacity', capacity);
     if (minimumVolumeX != null) {
       final fhirType = minimumVolumeX!.fhirType;
-      addField('minimumVolume${fhirType.capitalize()}', minimumVolumeX);
+      addField(
+          'minimumVolume${fhirType.capitalizeFirstLetter()}', minimumVolumeX);
     }
 
     addField('additive', additive);
@@ -2595,7 +2595,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (additiveX != null) {
       final fhirType = additiveX!.fhirType;
-      addField('additive${fhirType.capitalize()}', additiveX);
+      addField('additive${fhirType.capitalizeFirstLetter()}', additiveX);
     }
 
     return json;

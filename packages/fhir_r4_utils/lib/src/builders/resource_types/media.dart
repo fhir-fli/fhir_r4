@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        Media,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show Media, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -491,7 +486,7 @@ class MediaBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (createdX != null) {
       final fhirType = createdX!.fhirType;
-      addField('created${fhirType.capitalize()}', createdX);
+      addField('created${fhirType.capitalizeFirstLetter()}', createdX);
     }
 
     addField('issued', issued);

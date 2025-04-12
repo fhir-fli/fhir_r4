@@ -8,7 +8,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ConsentProvision,
         ConsentVerification,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -401,7 +400,7 @@ class ConsentBuilder extends DomainResourceBuilder {
     addField('organization', organization);
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField('source${fhirType.capitalize()}', sourceX);
+      addField('source${fhirType.capitalizeFirstLetter()}', sourceX);
     }
 
     addField('policy', policy);

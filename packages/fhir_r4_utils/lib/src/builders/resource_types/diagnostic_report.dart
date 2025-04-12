@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DiagnosticReport,
         DiagnosticReportMedia,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -480,7 +479,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField('effective${fhirType.capitalize()}', effectiveX);
+      addField('effective${fhirType.capitalizeFirstLetter()}', effectiveX);
     }
 
     addField('issued', issued);

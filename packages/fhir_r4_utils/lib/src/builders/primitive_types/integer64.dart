@@ -482,5 +482,4 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder
 
   @override
   FhirInteger64Builder createProperty(String propertyName) => this;
-
 }

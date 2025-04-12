@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DetectedIssueEvidence,
         DetectedIssueMitigation,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -371,7 +370,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     addField('patient', patient);
     if (identifiedX != null) {
       final fhirType = identifiedX!.fhirType;
-      addField('identified${fhirType.capitalize()}', identifiedX);
+      addField('identified${fhirType.capitalizeFirstLetter()}', identifiedX);
     }
 
     addField('author', author);

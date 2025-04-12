@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        Library,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show Library, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -597,7 +592,7 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     addField('type', type);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);

@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        GuidanceResponse,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show GuidanceResponse, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -431,7 +426,7 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     addField('identifier', identifier);
     if (moduleX != null) {
       final fhirType = moduleX!.fhirType;
-      addField('module${fhirType.capitalize()}', moduleX);
+      addField('module${fhirType.capitalizeFirstLetter()}', moduleX);
     }
 
     addField('status', status);

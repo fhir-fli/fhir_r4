@@ -360,5 +360,4 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder {
 
   @override
   FhirXhtmlBuilder createProperty(String propertyName) => this;
-
 }

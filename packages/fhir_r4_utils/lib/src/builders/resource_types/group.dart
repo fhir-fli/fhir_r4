@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         GroupCharacteristic,
         GroupMember,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1320,7 +1319,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('exclude', exclude);

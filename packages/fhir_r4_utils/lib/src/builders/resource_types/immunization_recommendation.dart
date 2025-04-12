@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ImmunizationRecommendationDateCriterion,
         ImmunizationRecommendationRecommendation,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1174,12 +1173,12 @@ class ImmunizationRecommendationRecommendationBuilder
     addField('series', series);
     if (doseNumberX != null) {
       final fhirType = doseNumberX!.fhirType;
-      addField('doseNumber${fhirType.capitalize()}', doseNumberX);
+      addField('doseNumber${fhirType.capitalizeFirstLetter()}', doseNumberX);
     }
 
     if (seriesDosesX != null) {
       final fhirType = seriesDosesX!.fhirType;
-      addField('seriesDoses${fhirType.capitalize()}', seriesDosesX);
+      addField('seriesDoses${fhirType.capitalizeFirstLetter()}', seriesDosesX);
     }
 
     addField('supportingImmunization', supportingImmunization);

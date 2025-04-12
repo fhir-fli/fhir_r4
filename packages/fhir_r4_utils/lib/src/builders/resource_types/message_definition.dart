@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MessageDefinitionAllowedResponse,
         MessageDefinitionFocus,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -491,7 +490,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     addField('parent', parent);
     if (eventX != null) {
       final fhirType = eventX!.fhirType;
-      addField('event${fhirType.capitalize()}', eventX);
+      addField('event${fhirType.capitalizeFirstLetter()}', eventX);
     }
 
     addField('category', category);

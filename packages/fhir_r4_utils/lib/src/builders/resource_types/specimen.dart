@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         SpecimenCollection,
         SpecimenContainer,
         SpecimenProcessing,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1475,7 +1474,7 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     addField('collector', collector);
     if (collectedX != null) {
       final fhirType = collectedX!.fhirType;
-      addField('collected${fhirType.capitalize()}', collectedX);
+      addField('collected${fhirType.capitalizeFirstLetter()}', collectedX);
     }
 
     addField('duration', duration);
@@ -1484,7 +1483,8 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     addField('bodySite', bodySite);
     if (fastingStatusX != null) {
       final fhirType = fastingStatusX!.fhirType;
-      addField('fastingStatus${fhirType.capitalize()}', fastingStatusX);
+      addField(
+          'fastingStatus${fhirType.capitalizeFirstLetter()}', fastingStatusX);
     }
 
     return json;
@@ -2218,7 +2218,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     addField('additive', additive);
     if (timeX != null) {
       final fhirType = timeX!.fhirType;
-      addField('time${fhirType.capitalize()}', timeX);
+      addField('time${fhirType.capitalizeFirstLetter()}', timeX);
     }
 
     return json;
@@ -2863,7 +2863,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     addField('specimenQuantity', specimenQuantity);
     if (additiveX != null) {
       final fhirType = additiveX!.fhirType;
-      addField('additive${fhirType.capitalize()}', additiveX);
+      addField('additive${fhirType.capitalizeFirstLetter()}', additiveX);
     }
 
     return json;

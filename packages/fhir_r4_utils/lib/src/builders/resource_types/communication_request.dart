@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CommunicationRequest,
         CommunicationRequestPayload,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -524,7 +523,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     addField('payload', payload);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('authoredOn', authoredOn);
@@ -1916,7 +1915,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (contentX != null) {
       final fhirType = contentX!.fhirType;
-      addField('content${fhirType.capitalize()}', contentX);
+      addField('content${fhirType.capitalizeFirstLetter()}', contentX);
     }
 
     return json;

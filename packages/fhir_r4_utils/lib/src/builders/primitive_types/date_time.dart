@@ -409,5 +409,4 @@ class FhirDateTimeBuilder extends FhirDateTimeBaseBuilder
   /// Creates an empty property in the object.
   @override
   FhirDateTimeBuilder createProperty(String propertyName) => this;
-
 }

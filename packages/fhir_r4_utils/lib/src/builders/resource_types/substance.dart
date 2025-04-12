@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         Substance,
         SubstanceIngredient,
         SubstanceInstance,
@@ -1622,7 +1621,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     addField('quantity', quantity);
     if (substanceX != null) {
       final fhirType = substanceX!.fhirType;
-      addField('substance${fhirType.capitalize()}', substanceX);
+      addField('substance${fhirType.capitalizeFirstLetter()}', substanceX);
     }
 
     return json;

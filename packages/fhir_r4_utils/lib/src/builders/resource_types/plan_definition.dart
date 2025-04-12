@@ -10,7 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         PlanDefinitionRelatedAction,
         PlanDefinitionTarget,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -613,7 +612,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);
@@ -3189,7 +3188,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     addField('measure', measure);
     if (detailX != null) {
       final fhirType = detailX!.fhirType;
-      addField('detail${fhirType.capitalize()}', detailX);
+      addField('detail${fhirType.capitalizeFirstLetter()}', detailX);
     }
 
     addField('due', due);
@@ -4166,7 +4165,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     addField('goalId', goalId);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('trigger', trigger);
@@ -4176,7 +4175,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     addField('relatedAction', relatedAction);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField('timing${fhirType.capitalizeFirstLetter()}', timingX);
     }
 
     addField('participant', participant);
@@ -4188,7 +4187,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     addField('cardinalityBehavior', cardinalityBehavior);
     if (definitionX != null) {
       final fhirType = definitionX!.fhirType;
-      addField('definition${fhirType.capitalize()}', definitionX);
+      addField('definition${fhirType.capitalizeFirstLetter()}', definitionX);
     }
 
     addField('transform', transform);
@@ -6397,7 +6396,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     addField('relationship', relationship);
     if (offsetX != null) {
       final fhirType = offsetX!.fhirType;
-      addField('offset${fhirType.capitalize()}', offsetX);
+      addField('offset${fhirType.capitalizeFirstLetter()}', offsetX);
     }
 
     return json;

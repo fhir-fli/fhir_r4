@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MedicationBatch,
         MedicationIngredient,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1149,7 +1148,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (itemX != null) {
       final fhirType = itemX!.fhirType;
-      addField('item${fhirType.capitalize()}', itemX);
+      addField('item${fhirType.capitalizeFirstLetter()}', itemX);
     }
 
     addField('isActive', isActive);

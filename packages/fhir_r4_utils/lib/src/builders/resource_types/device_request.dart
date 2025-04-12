@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DeviceRequest,
         DeviceRequestParameter,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -554,7 +553,7 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     addField('priority', priority);
     if (codeX != null) {
       final fhirType = codeX!.fhirType;
-      addField('code${fhirType.capitalize()}', codeX);
+      addField('code${fhirType.capitalizeFirstLetter()}', codeX);
     }
 
     addField('parameter', parameter);
@@ -562,7 +561,7 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('authoredOn', authoredOn);
@@ -2182,7 +2181,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
     addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

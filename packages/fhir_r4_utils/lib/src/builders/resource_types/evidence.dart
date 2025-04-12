@@ -10,7 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         EvidenceStatistic,
         EvidenceVariableDefinition,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -573,7 +572,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
     addField('title', title);
     if (citeAsX != null) {
       final fhirType = citeAsX!.fhirType;
-      addField('citeAs${fhirType.capitalize()}', citeAsX);
+      addField('citeAs${fhirType.capitalizeFirstLetter()}', citeAsX);
     }
 
     addField('status', status);

@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         AllergyIntolerance,
         AllergyIntoleranceReaction,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -442,7 +441,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField('onset${fhirType.capitalize()}', onsetX);
+      addField('onset${fhirType.capitalizeFirstLetter()}', onsetX);
     }
 
     addField('recordedDate', recordedDate);

@@ -18,7 +18,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ContractTerm,
         ContractValuedItem,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -723,7 +722,7 @@ class ContractBuilder extends DomainResourceBuilder {
     addField('scope', scope);
     if (topicX != null) {
       final fhirType = topicX!.fhirType;
-      addField('topic${fhirType.capitalize()}', topicX);
+      addField('topic${fhirType.capitalizeFirstLetter()}', topicX);
     }
 
     addField('type', type);
@@ -738,7 +737,8 @@ class ContractBuilder extends DomainResourceBuilder {
     addField('rule', rule);
     if (legallyBindingX != null) {
       final fhirType = legallyBindingX!.fhirType;
-      addField('legallyBinding${fhirType.capitalize()}', legallyBindingX);
+      addField(
+          'legallyBinding${fhirType.capitalizeFirstLetter()}', legallyBindingX);
     }
 
     return json;
@@ -3391,7 +3391,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
     addField('applies', applies);
     if (topicX != null) {
       final fhirType = topicX!.fhirType;
-      addField('topic${fhirType.capitalize()}', topicX);
+      addField('topic${fhirType.capitalizeFirstLetter()}', topicX);
     }
 
     addField('type', type);
@@ -6258,7 +6258,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;
@@ -8839,7 +8839,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (entityX != null) {
       final fhirType = entityX!.fhirType;
-      addField('entity${fhirType.capitalize()}', entityX);
+      addField('entity${fhirType.capitalizeFirstLetter()}', entityX);
     }
 
     addField('identifier', identifier);
@@ -10130,7 +10130,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
     addField('contextLinkId', contextLinkId);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('requester', requester);
@@ -12521,7 +12521,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (contentX != null) {
       final fhirType = contentX!.fhirType;
-      addField('content${fhirType.capitalize()}', contentX);
+      addField('content${fhirType.capitalizeFirstLetter()}', contentX);
     }
 
     return json;
@@ -12993,7 +12993,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (contentX != null) {
       final fhirType = contentX!.fhirType;
-      addField('content${fhirType.capitalize()}', contentX);
+      addField('content${fhirType.capitalizeFirstLetter()}', contentX);
     }
 
     return json;
@@ -13467,7 +13467,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (contentX != null) {
       final fhirType = contentX!.fhirType;
-      addField('content${fhirType.capitalize()}', contentX);
+      addField('content${fhirType.capitalizeFirstLetter()}', contentX);
     }
 
     return json;

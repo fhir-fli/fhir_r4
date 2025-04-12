@@ -44,13 +44,11 @@ class MappingVariable {
 
   /// SummaryFunction
   String summary() => '${base.fhirType}: ${prettyPrintJson(base.toJson())}';
-  
 }
 
 /// Class representing a collection of variables in a FHIR mapping
 class MappingVariables {
   final List<MappingVariable> _variables = [];
-
 
   /// Prints off the actual names of the variables
   String variableNames() {

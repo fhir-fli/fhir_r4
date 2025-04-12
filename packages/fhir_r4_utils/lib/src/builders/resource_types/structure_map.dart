@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         StructureMap,
         StructureMapDependent,
         StructureMapGroup,
@@ -4569,7 +4568,8 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
-      addField('defaultValue${fhirType.capitalize()}', defaultValueX);
+      addField(
+          'defaultValue${fhirType.capitalizeFirstLetter()}', defaultValueX);
     }
 
     addField('element', element);
@@ -7489,7 +7489,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

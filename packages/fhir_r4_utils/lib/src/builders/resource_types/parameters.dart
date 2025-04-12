@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         Parameters,
         ParametersParameter,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -868,7 +867,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
     addField('name', name);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('resource', resource);

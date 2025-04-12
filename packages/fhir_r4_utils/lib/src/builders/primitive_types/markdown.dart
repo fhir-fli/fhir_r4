@@ -193,5 +193,4 @@ class FhirMarkdownBuilder extends FhirStringBuilder
 
   @override
   FhirMarkdownBuilder createProperty(String propertyName) => this;
-
 }

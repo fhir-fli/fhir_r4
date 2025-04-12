@@ -10,7 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ElementDefinitionMapping,
         ElementDefinitionSlicing,
         ElementDefinitionType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1438,30 +1437,31 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     addField('type', type);
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
-      addField('defaultValue${fhirType.capitalize()}', defaultValueX);
+      addField(
+          'defaultValue${fhirType.capitalizeFirstLetter()}', defaultValueX);
     }
 
     addField('meaningWhenMissing', meaningWhenMissing);
     addField('orderMeaning', orderMeaning);
     if (fixedX != null) {
       final fhirType = fixedX!.fhirType;
-      addField('fixed${fhirType.capitalize()}', fixedX);
+      addField('fixed${fhirType.capitalizeFirstLetter()}', fixedX);
     }
 
     if (patternX != null) {
       final fhirType = patternX!.fhirType;
-      addField('pattern${fhirType.capitalize()}', patternX);
+      addField('pattern${fhirType.capitalizeFirstLetter()}', patternX);
     }
 
     addField('example', example);
     if (minValueX != null) {
       final fhirType = minValueX!.fhirType;
-      addField('minValue${fhirType.capitalize()}', minValueX);
+      addField('minValue${fhirType.capitalizeFirstLetter()}', minValueX);
     }
 
     if (maxValueX != null) {
       final fhirType = maxValueX!.fhirType;
-      addField('maxValue${fhirType.capitalize()}', maxValueX);
+      addField('maxValue${fhirType.capitalizeFirstLetter()}', maxValueX);
     }
 
     addField('maxLength', maxLength);
@@ -9883,7 +9883,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
     addField('label', label);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

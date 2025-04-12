@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        R4ResourceType,
-        ResearchDefinition,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show R4ResourceType, ResearchDefinition, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -689,7 +684,7 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);

@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         QuestionnaireInitial,
         QuestionnaireItem,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -3233,7 +3232,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     addField('operator', operator_);
     if (answerX != null) {
       final fhirType = answerX!.fhirType;
-      addField('answer${fhirType.capitalize()}', answerX);
+      addField('answer${fhirType.capitalizeFirstLetter()}', answerX);
     }
 
     return json;
@@ -4018,7 +4017,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('initialSelected', initialSelected);
@@ -4671,7 +4670,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

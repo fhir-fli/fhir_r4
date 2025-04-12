@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         R4ResourceType,
         RiskAssessment,
         RiskAssessmentPrediction,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -430,7 +429,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField('occurrence${fhirType.capitalizeFirstLetter()}', occurrenceX);
     }
 
     addField('condition', condition);
@@ -1678,14 +1677,14 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     addField('outcome', outcome);
     if (probabilityX != null) {
       final fhirType = probabilityX!.fhirType;
-      addField('probability${fhirType.capitalize()}', probabilityX);
+      addField('probability${fhirType.capitalizeFirstLetter()}', probabilityX);
     }
 
     addField('qualitativeRisk', qualitativeRisk);
     addField('relativeRisk', relativeRisk);
     if (whenX != null) {
       final fhirType = whenX!.fhirType;
-      addField('when${fhirType.capitalize()}', whenX);
+      addField('when${fhirType.capitalizeFirstLetter()}', whenX);
     }
 
     addField('rationale', rationale);

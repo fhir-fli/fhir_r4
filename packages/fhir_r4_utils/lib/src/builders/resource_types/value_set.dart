@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         ValueSet,
         ValueSetCompose,
         ValueSetConcept,
@@ -5198,7 +5197,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     addField('name', name);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

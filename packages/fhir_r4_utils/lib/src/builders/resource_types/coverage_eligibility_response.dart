@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         CoverageEligibilityResponseInsurance,
         CoverageEligibilityResponseItem,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -405,7 +404,7 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     addField('patient', patient);
     if (servicedX != null) {
       final fhirType = servicedX!.fhirType;
-      addField('serviced${fhirType.capitalize()}', servicedX);
+      addField('serviced${fhirType.capitalizeFirstLetter()}', servicedX);
     }
 
     addField('created', created);
@@ -3231,12 +3230,12 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (allowedX != null) {
       final fhirType = allowedX!.fhirType;
-      addField('allowed${fhirType.capitalize()}', allowedX);
+      addField('allowed${fhirType.capitalizeFirstLetter()}', allowedX);
     }
 
     if (usedX != null) {
       final fhirType = usedX!.fhirType;
-      addField('used${fhirType.capitalize()}', usedX);
+      addField('used${fhirType.capitalizeFirstLetter()}', usedX);
     }
 
     return json;

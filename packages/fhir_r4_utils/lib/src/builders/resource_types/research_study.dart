@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ResearchStudy,
         ResearchStudyArm,
         ResearchStudyObjective,
-        
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';

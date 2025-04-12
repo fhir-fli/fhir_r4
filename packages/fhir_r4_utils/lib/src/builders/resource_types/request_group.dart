@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         RequestGroupAction,
         RequestGroupCondition,
         RequestGroupRelatedAction,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1979,7 +1978,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     addField('relatedAction', relatedAction);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField('timing${fhirType.capitalizeFirstLetter()}', timingX);
     }
 
     addField('participant', participant);
@@ -3741,7 +3740,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     addField('relationship', relationship);
     if (offsetX != null) {
       final fhirType = offsetX!.fhirType;
-      addField('offset${fhirType.capitalize()}', offsetX);
+      addField('offset${fhirType.capitalizeFirstLetter()}', offsetX);
     }
 
     return json;

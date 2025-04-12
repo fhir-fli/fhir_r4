@@ -15,7 +15,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ClaimResponseSubDetail1,
         ClaimResponseTotal,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -4668,12 +4667,12 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     addField('programCode', programCode);
     if (servicedX != null) {
       final fhirType = servicedX!.fhirType;
-      addField('serviced${fhirType.capitalize()}', servicedX);
+      addField('serviced${fhirType.capitalizeFirstLetter()}', servicedX);
     }
 
     if (locationX != null) {
       final fhirType = locationX!.fhirType;
-      addField('location${fhirType.capitalize()}', locationX);
+      addField('location${fhirType.capitalizeFirstLetter()}', locationX);
     }
 
     addField('quantity', quantity);

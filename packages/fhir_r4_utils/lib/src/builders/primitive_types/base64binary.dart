@@ -340,7 +340,6 @@ class FhirBase64BinaryBuilder extends PrimitiveTypeBuilder
   /// Creates a new property in this object. No-op here; returns `this`.
   @override
   FhirBase64BinaryBuilder createProperty(String propertyName) => this;
-
 }
 
 /// Enum to indicate a detected file type from the decoded bytes.

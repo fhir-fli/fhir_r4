@@ -9,7 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DeviceDefinitionSpecialization,
         DeviceDefinitionUdiDeviceIdentifier,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -515,7 +514,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     addField('udiDeviceIdentifier', udiDeviceIdentifier);
     if (manufacturerX != null) {
       final fhirType = manufacturerX!.fhirType;
-      addField('manufacturer${fhirType.capitalize()}', manufacturerX);
+      addField(
+          'manufacturer${fhirType.capitalizeFirstLetter()}', manufacturerX);
     }
 
     addField('deviceName', deviceName);

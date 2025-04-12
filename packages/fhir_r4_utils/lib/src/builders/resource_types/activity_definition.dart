@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ActivityDefinitionDynamicValue,
         ActivityDefinitionParticipant,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -843,7 +842,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);
@@ -873,14 +872,14 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     addField('doNotPerform', doNotPerform);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField('timing${fhirType.capitalizeFirstLetter()}', timingX);
     }
 
     addField('location', location);
     addField('participant', participant);
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField('product${fhirType.capitalizeFirstLetter()}', productX);
     }
 
     addField('quantity', quantity);

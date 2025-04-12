@@ -8,7 +8,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ConceptMapTarget,
         ConceptMapUnmapped,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -418,12 +417,12 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     addField('copyright', copyright);
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField('source${fhirType.capitalize()}', sourceX);
+      addField('source${fhirType.capitalizeFirstLetter()}', sourceX);
     }
 
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField('target${fhirType.capitalize()}', targetX);
+      addField('target${fhirType.capitalizeFirstLetter()}', targetX);
     }
 
     addField('group', group);

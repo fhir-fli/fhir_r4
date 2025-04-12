@@ -5,7 +5,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MedicationAdministrationDosage,
         MedicationAdministrationPerformer,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -506,7 +505,7 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     addField('category', category);
     if (medicationX != null) {
       final fhirType = medicationX!.fhirType;
-      addField('medication${fhirType.capitalize()}', medicationX);
+      addField('medication${fhirType.capitalizeFirstLetter()}', medicationX);
     }
 
     addField('subject', subject);
@@ -514,7 +513,7 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     addField('supportingInformation', supportingInformation);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField('effective${fhirType.capitalize()}', effectiveX);
+      addField('effective${fhirType.capitalizeFirstLetter()}', effectiveX);
     }
 
     addField('performer', performer);
@@ -2390,7 +2389,7 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
     addField('dose', dose);
     if (rateX != null) {
       final fhirType = rateX!.fhirType;
-      addField('rate${fhirType.capitalize()}', rateX);
+      addField('rate${fhirType.capitalizeFirstLetter()}', rateX);
     }
 
     return json;

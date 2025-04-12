@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MedicationRequestInitialFill,
         MedicationRequestSubstitution,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -680,12 +679,12 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     addField('doNotPerform', doNotPerform);
     if (reportedX != null) {
       final fhirType = reportedX!.fhirType;
-      addField('reported${fhirType.capitalize()}', reportedX);
+      addField('reported${fhirType.capitalizeFirstLetter()}', reportedX);
     }
 
     if (medicationX != null) {
       final fhirType = medicationX!.fhirType;
-      addField('medication${fhirType.capitalize()}', medicationX);
+      addField('medication${fhirType.capitalizeFirstLetter()}', medicationX);
     }
 
     addField('subject', subject);
@@ -3663,7 +3662,7 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (allowedX != null) {
       final fhirType = allowedX!.fhirType;
-      addField('allowed${fhirType.capitalize()}', allowedX);
+      addField('allowed${fhirType.capitalizeFirstLetter()}', allowedX);
     }
 
     addField('reason', reason);

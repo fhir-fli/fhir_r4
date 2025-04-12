@@ -7,7 +7,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         AdministrableProductDefinitionTargetSpecies,
         AdministrableProductDefinitionWithdrawalPeriod,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1327,7 +1326,7 @@ class AdministrableProductDefinitionPropertyBuilder
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     addField('status', status);
@@ -3032,7 +3031,7 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
-          json,);
+          json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');

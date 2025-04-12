@@ -14,7 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ImplementationGuideResource1,
         ImplementationGuideTemplate,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -3966,7 +3965,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     addField('description', description);
     if (exampleX != null) {
       final fhirType = exampleX!.fhirType;
-      addField('example${fhirType.capitalize()}', exampleX);
+      addField('example${fhirType.capitalizeFirstLetter()}', exampleX);
     }
 
     addField('groupingId', groupingId);
@@ -4703,7 +4702,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (nameX != null) {
       final fhirType = nameX!.fhirType;
-      addField('name${fhirType.capitalize()}', nameX);
+      addField('name${fhirType.capitalizeFirstLetter()}', nameX);
     }
 
     addField('title', title);
@@ -7019,7 +7018,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     addField('reference', reference);
     if (exampleX != null) {
       final fhirType = exampleX!.fhirType;
-      addField('example${fhirType.capitalize()}', exampleX);
+      addField('example${fhirType.capitalizeFirstLetter()}', exampleX);
     }
 
     addField('relativePath', relativePath);

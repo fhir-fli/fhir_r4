@@ -8,7 +8,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MeasureStratifier,
         MeasureSupplementalData,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -721,7 +720,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField('subject${fhirType.capitalizeFirstLetter()}', subjectX);
     }
 
     addField('date', date);
@@ -751,7 +750,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement,);
+        'clinicalRecommendationStatement', clinicalRecommendationStatement);
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);

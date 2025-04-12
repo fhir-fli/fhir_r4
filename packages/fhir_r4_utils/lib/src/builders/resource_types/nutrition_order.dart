@@ -9,7 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         NutritionOrderSupplement,
         NutritionOrderTexture,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -4710,7 +4709,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     addField('quantity', quantity);
     if (rateX != null) {
       final fhirType = rateX!.fhirType;
-      addField('rate${fhirType.capitalize()}', rateX);
+      addField('rate${fhirType.capitalizeFirstLetter()}', rateX);
     }
 
     return json;

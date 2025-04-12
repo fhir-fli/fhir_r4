@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         R4ResourceType,
         RegulatedAuthorization,
         RegulatedAuthorizationCase,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -1464,7 +1463,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
     addField('status', status);
     if (dateX != null) {
       final fhirType = dateX!.fhirType;
-      addField('date${fhirType.capitalize()}', dateX);
+      addField('date${fhirType.capitalizeFirstLetter()}', dateX);
     }
 
     addField('application', application);

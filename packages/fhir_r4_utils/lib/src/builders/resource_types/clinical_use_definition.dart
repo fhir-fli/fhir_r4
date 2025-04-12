@@ -10,7 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         ClinicalUseDefinitionUndesirableEffect,
         ClinicalUseDefinitionWarning,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2422,7 +2421,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     addField('intendedEffect', intendedEffect);
     if (durationX != null) {
       final fhirType = durationX!.fhirType;
-      addField('duration${fhirType.capitalize()}', durationX);
+      addField('duration${fhirType.capitalizeFirstLetter()}', durationX);
     }
 
     addField('undesirableEffect', undesirableEffect);
@@ -3684,7 +3683,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (itemX != null) {
       final fhirType = itemX!.fhirType;
-      addField('item${fhirType.capitalize()}', itemX);
+      addField('item${fhirType.capitalizeFirstLetter()}', itemX);
     }
 
     return json;

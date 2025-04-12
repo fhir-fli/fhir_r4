@@ -1,12 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show
-        Goal,
-        GoalTarget,
-        R4ResourceType,
-        StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+    show Goal, GoalTarget, R4ResourceType, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -429,7 +423,7 @@ class GoalBuilder extends DomainResourceBuilder {
     addField('subject', subject);
     if (startX != null) {
       final fhirType = startX!.fhirType;
-      addField('start${fhirType.capitalize()}', startX);
+      addField('start${fhirType.capitalizeFirstLetter()}', startX);
     }
 
     addField('target', target);
@@ -1654,12 +1648,12 @@ class GoalTargetBuilder extends BackboneElementBuilder {
     addField('measure', measure);
     if (detailX != null) {
       final fhirType = detailX!.fhirType;
-      addField('detail${fhirType.capitalize()}', detailX);
+      addField('detail${fhirType.capitalizeFirstLetter()}', detailX);
     }
 
     if (dueX != null) {
       final fhirType = dueX!.fhirType;
-      addField('due${fhirType.capitalize()}', dueX);
+      addField('due${fhirType.capitalizeFirstLetter()}', dueX);
     }
 
     return json;

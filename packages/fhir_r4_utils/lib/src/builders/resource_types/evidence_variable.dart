@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         EvidenceVariableCharacteristic,
         EvidenceVariableTimeFromStart,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -2147,7 +2146,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     addField('description', description);
     if (definitionX != null) {
       final fhirType = definitionX!.fhirType;
-      addField('definition${fhirType.capitalize()}', definitionX);
+      addField('definition${fhirType.capitalizeFirstLetter()}', definitionX);
     }
 
     addField('method', method);
@@ -3450,7 +3449,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     addField('name', name);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;

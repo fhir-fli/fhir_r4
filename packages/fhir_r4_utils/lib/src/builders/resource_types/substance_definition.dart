@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
-        StringExtensionForFHIR,
         SubstanceDefinition,
         SubstanceDefinitionCode,
         SubstanceDefinitionMoiety,
@@ -1797,7 +1796,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     addField('molecularFormula', molecularFormula);
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField('amount${fhirType.capitalize()}', amountX);
+      addField('amount${fhirType.capitalizeFirstLetter()}', amountX);
     }
 
     addField('measurementType', measurementType);
@@ -2517,7 +2516,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField('value${fhirType.capitalizeFirstLetter()}', valueX);
     }
 
     return json;
@@ -6984,15 +6983,15 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     addField('modifierExtension', modifierExtension);
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
-      addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+      addField('substanceDefinition${fhirType.capitalizeFirstLetter()}',
+          substanceDefinitionX);
     }
 
     addField('type', type);
     addField('isDefining', isDefining);
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField('amount${fhirType.capitalize()}', amountX);
+      addField('amount${fhirType.capitalizeFirstLetter()}', amountX);
     }
 
     addField('ratioHighLimitAmount', ratioHighLimitAmount);

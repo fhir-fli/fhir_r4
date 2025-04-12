@@ -328,5 +328,4 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder
   /// Creates a new property. No-op here; returns `this`.
   @override
   FhirBooleanBuilder createProperty(String propertyName) => this;
-
 }

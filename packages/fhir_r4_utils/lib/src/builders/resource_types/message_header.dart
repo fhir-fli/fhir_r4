@@ -6,7 +6,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         MessageHeaderResponse,
         MessageHeaderSource,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
@@ -352,7 +351,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     addField('modifierExtension', modifierExtension);
     if (eventX != null) {
       final fhirType = eventX!.fhirType;
-      addField('event${fhirType.capitalize()}', eventX);
+      addField('event${fhirType.capitalizeFirstLetter()}', eventX);
     }
 
     addField('destination', destination);
