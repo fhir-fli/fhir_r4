@@ -266,7 +266,6 @@ class TRight1Builder extends ElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

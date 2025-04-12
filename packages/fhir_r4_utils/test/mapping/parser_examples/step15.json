@@ -51,7 +51,7 @@
                           "transform": "evaluate",
                           "parameter": [
                               {
-                                  "valueString": "%source.a[0]+%source.b[0]"
+                                  "valueString": "%source.a[0] + %source.b[0]"
                               }
                           ]
                       }

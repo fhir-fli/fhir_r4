@@ -101,7 +101,7 @@
                             "context": "src",
                             "element": "item",
                             "variable": "answerItem3",
-                            "condition": "linkId='/88124-3'"
+                            "condition": "linkId = '/88124-3'"
                         }
                     ],
                     "target": [
@@ -144,7 +144,7 @@
                             "context": "src",
                             "element": "item",
                             "variable": "answerItem4",
-                            "condition": "linkId='/88124-3'andanswer.value.code='LA19952-3'"
+                            "condition": "linkId = '/88124-3' and answer.value.code='LA19952-3'"
                         }
                     ],
                     "target": [
@@ -1285,7 +1285,7 @@
                                     "context": "entries",
                                     "element": "resource",
                                     "variable": "obs3",
-                                    "condition": "code.coding.code='88124-3'"
+                                    "condition": "code.coding.code = '88124-3'"
                                 }
                             ],
                             "target": [

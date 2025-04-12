@@ -1,6 +1,6 @@
 {
     "resourceType": "StructureMap",
-    "id": "R3toR4conversionforCareConnectAllergyIntoleranceencounter-associatedEncounterextension",
+    "id": "R3toR4conversionforCareConnectAllergyIntolerance_encounter-associatedEncounterextension",
     "url": "http://fhir.nhs.uk/StructureMap/AllergyIntoleranceEncounter-associatedEncounter-Extension-3to4",
     "name": "R3 to R4 conversion for CareConnect AllergyIntolerance_encounter-associatedEncounter extension",
     "status": "draft",
@@ -40,7 +40,7 @@
                             "context": "src",
                             "element": "extension",
                             "variable": "ext",
-                            "condition": "$this.url='http://hl7.org/fhir/StructureDefinition/encounter-associatedEncounter'"
+                            "condition": "$this.url = 'http://hl7.org/fhir/StructureDefinition/encounter-associatedEncounter'"
                         }
                     ],
                     "target": [

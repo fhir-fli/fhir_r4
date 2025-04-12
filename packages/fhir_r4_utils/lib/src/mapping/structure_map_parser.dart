@@ -186,7 +186,6 @@ class StructureMapParser {
     final dependents = <StructureMapDependentBuilder>[];
     final rules = <StructureMapRuleBuilder>[];
 
-
     // Determine rule name and format
     if (!newFmt) {
       name = lexer.takeDottedToken();
@@ -354,7 +353,6 @@ class StructureMapParser {
   StructureMapGroupBuilder _parseGroup(FHIRLexer lexer) {
     // Capture initial comments and token
     final comment = lexer.getAllComments();
-    print('Group comment: $comment');
 
     lexer.token('group'); // Should consume 'group' token
 
@@ -607,8 +605,11 @@ class StructureMapParser {
 
   StructureMapTargetBuilder _parseTarget(FHIRLexer lexer) {
     final target = StructureMapTargetBuilder();
+
+    // 1) Grab the first token (e.g., "someContext" or "variableName")
     String? start = lexer.take();
 
+    // 2) If there's a '.' after 'start', that means "start.element"
     if (lexer.hasToken('.')) {
       target
         ..context = start.toFhirIdBuilder
@@ -617,10 +618,16 @@ class StructureMapParser {
       lexer.token('.');
       target.element = lexer.take().toFhirStringBuilder;
     }
+
+    // 3) Figure out if we have '='. If so, read the next token as "name"
     String? name;
     var isConstant = false;
     if (lexer.hasToken('=')) {
-      if (start != null) target.context = start.toFhirIdBuilder;
+      if (start != null) {
+        target
+          ..context = start.toFhirIdBuilder
+          ..contextType = StructureMapContextTypeBuilder.variable;
+      }
       lexer.token('=');
       isConstant = lexer.isConstant();
       name = lexer.take();
@@ -630,10 +637,19 @@ class StructureMapParser {
 
     target.parameter ??= <StructureMapParameterBuilder>[];
 
+    // 4) Now handle three major cases:
+    //
+    //    (a) name == '(' -> "inline fluentpath expression"
+    //    (b) we see '(' next -> transform(...) call
+    //    (c) otherwise it's just name != null -> transform = copy
+
+    // 4a) Inline fluentpath: name == "("
     if (name == '(') {
       target.transform = StructureMapTransformBuilder.evaluate;
-      final node = fpe?.parseLexer(lexer);
+      final node = fpe?.parseLexer(lexer); // parse the expression
       target.setUserData(MAP_EXPRESSION, node);
+
+      // Add that expression as a parameter
       if (node != null) {
         target.parameter!.add(
           StructureMapParameterBuilder(
@@ -641,27 +657,48 @@ class StructureMapParser {
           ),
         );
       }
-      lexer.token(')');
+      lexer.token(')'); // consume the closing parenthesis
+
+      // 4b) If there's a '(' token after 'name',
+      //     then it's transform(name)(...) syntax
     } else if (lexer.hasToken('(')) {
       target.transform = StructureMapTransformBuilder.fromJson({'value': name});
       lexer.token('(');
       if (target.transform == StructureMapTransformBuilder.evaluate) {
+        // The first argument is a parameter, then we expect a comma,
+        // then an expression
         final params = _parseParameter(lexer);
         lexer.token(',');
         final node = fpe?.parseLexer(lexer);
         target.setUserData(MAP_EXPRESSION, node);
+
         target.parameter!.addAll(params);
+        if (node != null) {
+          target.parameter!.add(
+            StructureMapParameterBuilder(
+              valueX: node.toString().toFhirStringBuilder,
+            ),
+          );
+        }
       } else {
+        // Keep collecting parameters until we see ')'
         while (!lexer.hasToken(')')) {
           final params = _parseParameter(lexer);
           target.parameter!.addAll(params);
-          if (!lexer.hasToken(')')) lexer.token(',');
+          if (!lexer.hasToken(')')) {
+            lexer.token(',');
+          }
         }
       }
-      lexer.token(')');
+      lexer.token(')'); // close the transform call
+
+      // 4c) Otherwise, if name != null, it's a plain "copy" transform
     } else if (name != null) {
-      target.transform = StructureMapTransformBuilder.copy_;
+      target
+        ..transform = StructureMapTransformBuilder.copy_
+        ..contextType ??= StructureMapContextTypeBuilder.variable;
       if (!isConstant) {
+        // Possibly "someName.more.dots"
         final buffer = StringBuffer(name);
         while (lexer.hasToken('.')) {
           buffer
@@ -673,46 +710,62 @@ class StructureMapParser {
             valueX: buffer.toString().toFhirIdBuilder,
           ),
         );
-      } else if (int.tryParse(name) != null) {
-        target.parameter!.add(
-          StructureMapParameterBuilder(
-            valueX: FhirIntegerBuilder(
-              int.parse(name),
-            ),
-          ),
-        );
       } else {
-        target.parameter!.add(
-          StructureMapParameterBuilder(
-            valueX: lexer.processConstant(name).toFhirStringBuilder,
-          ),
-        );
+        // If it's a numeric constant
+        final intVal = int.tryParse(name);
+        if (intVal != null) {
+          target.parameter!.add(
+            StructureMapParameterBuilder(
+              valueX: FhirIntegerBuilder(intVal),
+            ),
+          );
+        } else {
+          final boolVal = bool.tryParse(name);
+          if (boolVal != null) {
+            target.parameter!.add(
+              StructureMapParameterBuilder(
+                valueX: FhirBooleanBuilder(boolVal),
+              ),
+            );
+          } else {
+            // Otherwise treat it as a FHIR constant/string
+            target.parameter!.add(
+              StructureMapParameterBuilder(
+                valueX: lexer.processConstant(name).toFhirStringBuilder,
+              ),
+            );
+          }
+        }
       }
     }
 
+    // 5) If there's an "as someVar" syntax
     if (lexer.hasToken('as')) {
-      lexer.take();
+      lexer.take(); // consume the "as"
       target
         ..variable = lexer.take().toFhirIdBuilder
         ..contextType = StructureMapContextTypeBuilder.variable;
     }
 
+    // 6) Check for "first", "last", "share", "collate"
     while (['first', 'last', 'share', 'collate'].contains(lexer.current)) {
       target.listMode ??= <StructureMapTargetListModeBuilder>[];
       if (lexer.current == 'share') {
         target.listMode!.add(StructureMapTargetListModeBuilder.share);
-        lexer.next();
-        target.listRuleId = lexer.take().toFhirIdBuilder;
+        lexer.next(); // consume 'share'
+        target.listRuleId =
+            lexer.take().toFhirIdBuilder; // the next token is the rule ID
       } else {
-        target.listMode!.add(
-          lexer.current == 'first'
-              ? StructureMapTargetListModeBuilder.first
-              : StructureMapTargetListModeBuilder.last,
-        );
-        lexer.next();
+        if (lexer.current == 'first') {
+          target.listMode!.add(StructureMapTargetListModeBuilder.first);
+        } else {
+          target.listMode!.add(StructureMapTargetListModeBuilder.last);
+        }
+        lexer.next(); // consume 'first' or 'last'
       }
     }
 
+    // Return the completed target
     return target;
   }
 
@@ -750,7 +803,7 @@ class StructureMapParser {
     } else if (lexer.isStringConstant()) {
       params.add(
         StructureMapParameterBuilder(
-          valueX: lexer.readConstant('string').toFhirStringBuilder,
+          valueX: lexer.readConstant('??').toFhirStringBuilder,
         ),
       );
     } else {

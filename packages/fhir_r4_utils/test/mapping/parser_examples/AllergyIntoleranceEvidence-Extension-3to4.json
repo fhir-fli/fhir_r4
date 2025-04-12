@@ -40,7 +40,7 @@
                             "context": "src",
                             "element": "extension",
                             "variable": "ext",
-                            "condition": "$this.url='https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-Evidence-1'"
+                            "condition": "$this.url = 'https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-Evidence-1'"
                         }
                     ],
                     "target": [

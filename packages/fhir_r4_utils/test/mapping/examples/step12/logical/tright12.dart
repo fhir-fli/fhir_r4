@@ -748,7 +748,6 @@ class TRight12az1Builder extends BackboneElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

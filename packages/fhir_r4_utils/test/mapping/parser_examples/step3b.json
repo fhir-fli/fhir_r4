@@ -42,7 +42,7 @@
               "context": "src",
               "element": "a2",
               "variable": "a",
-              "condition": "a2.length<=20"
+              "condition": "a2.length <= 20"
             }
           ],
           "target": [

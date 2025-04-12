@@ -277,7 +277,6 @@ class TLeft13Builder extends ElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};

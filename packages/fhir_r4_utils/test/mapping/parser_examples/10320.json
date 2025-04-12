@@ -229,7 +229,7 @@
                                                     "transform": "evaluate",
                                                     "parameter": [
                                                         {
-                                                            "valueString": "%vornamename.substring(0,%vornamename.indexOf(' '))"
+                                                            "valueString": "%vornamename.substring(0, %vornamename.indexOf(' '))"
                                                         }
                                                     ]
                                                 }
@@ -252,7 +252,7 @@
                                                     "transform": "evaluate",
                                                     "parameter": [
                                                         {
-                                                            "valueString": "%vornamename.substring(%vornamename.indexOf(' ')+1)"
+                                                            "valueString": "%vornamename.substring(%vornamename.indexOf(' ') + 1)"
                                                         }
                                                     ]
                                                 }

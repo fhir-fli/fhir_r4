@@ -4,7 +4,7 @@
     "url": "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCda",
     "name": "BundleToCda",
     "status": "draft",
-    "description": "CDA document\r\n2020-01-16 Oliver Egger, copyright ahdis ag, Apache License\r\nCDA:  http://build.fhir.org/ig/ahdis/cda-core-2.0/branches/master/index.html\r\nFHIR: http://hl7.org/fhir/r4/",
+    "description": "CDA document, 2020-01-16 Oliver Egger, copyright ahdis ag, Apache License, CDA:  http://build.fhir.org/ig/ahdis/cda-core-2.0/branches/master/index.html, FHIR: http://hl7.org/fhir/r4/",
     "structure": [
         {
             "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
@@ -308,7 +308,7 @@
         {
             "name": "SectionCdaSection",
             "typeMode": "none",
-            "documentation": "_________________________ Section Level Templates _________________________",
+            "documentation": "_________________________ Section Level Templates _________________________\n",
             "input": [
                 {
                     "name": "bundle",
@@ -523,7 +523,7 @@
         {
             "name": "CompositionClinicalDocument",
             "typeMode": "none",
-            "documentation": "_________________________ Entry Level Templates   ________________________\r\n_________________________ Header Level Templates _________________________",
+            "documentation": "_________________________ Entry Level Templates   ________________________\n_________________________ Header Level Templates _________________________\n",
             "input": [
                 {
                     "name": "bundle",
@@ -988,7 +988,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "source.date -> tgt.effectiveTime \"effectiveTime\";"
                 },
                 {
                     "name": "section",
@@ -1068,7 +1069,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "srcEvent.period -> event.effectiveTime;"
                 }
             ]
         },
@@ -1500,7 +1502,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "src.patient as patient then {"
                 }
             ]
         },
@@ -1983,7 +1986,8 @@
                                 "ad"
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "target telecom is 0..1"
                 },
                 {
                     "name": "telecom",
@@ -2233,7 +2237,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "src -> tgt.signatureCode = 'S' \"S\";"
                 },
                 {
                     "name": "signature",
@@ -2260,7 +2265,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "src = 'S' as srcCode -> tgt.signatureCode as signature then CodeCS(srcCode, signature) \"signature\";"
                 },
                 {
                     "name": "assignedEntity",

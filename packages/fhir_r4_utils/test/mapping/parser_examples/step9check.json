@@ -40,7 +40,7 @@
               "context": "src",
               "element": "i",
               "variable": "i",
-              "check": "src.m<2"
+              "check": "src.m < 2"
             }
           ],
           "target": [

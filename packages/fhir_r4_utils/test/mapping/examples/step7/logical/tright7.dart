@@ -575,7 +575,6 @@ class TRight7AaBuilder extends BackboneElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -322,7 +322,6 @@ class TRight9Builder extends ElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};

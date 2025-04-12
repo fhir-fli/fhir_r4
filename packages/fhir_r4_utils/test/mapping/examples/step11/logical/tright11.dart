@@ -757,6 +757,7 @@ class TRight11Builder extends ElementBuilder {
         throw ArgumentError('No matching property: $propertyName');
     }
   }
+
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};

@@ -322,7 +322,6 @@ class TLeft7Builder extends ElementBuilder {
     }
   }
 
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
@@ -569,7 +568,6 @@ class TLeft7AaBuilder extends BackboneElementBuilder {
         throw ArgumentError('No matching property: $propertyName');
     }
   }
-
 
   @override
   Map<String, dynamic> toJson() {
