@@ -452,7 +452,7 @@ class PatientBuilder extends DomainResourceBuilder {
     if (multipleBirthX != null) {
       final fhirType = multipleBirthX!.fhirType;
       addField(
-          'multipleBirth${fhirType.capitalizeFirstLetter()}', multipleBirthX);
+          'multipleBirth${fhirType.capitalizeFirstLetter()}', multipleBirthX,);
     }
 
     addField('photo', photo);

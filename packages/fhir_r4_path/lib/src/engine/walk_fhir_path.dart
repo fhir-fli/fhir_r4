@@ -64,9 +64,6 @@ Future<List<FhirBase>> walkFhirPath({
   Map<String, dynamic>? environment,
 }) async {
   final ast = await parseFhirPath(pathExpression);
-  // print('*************************************');
-  // ast.printExpressionTree();
-  // print('*************************************');
   return executeFhirPath(
     context: context,
     parsedFhirPath: ast,

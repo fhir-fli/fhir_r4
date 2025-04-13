@@ -2853,23 +2853,23 @@ class ResearchElementDefinitionCharacteristicBuilder
     if (studyEffectiveX != null) {
       final fhirType = studyEffectiveX!.fhirType;
       addField(
-          'studyEffective${fhirType.capitalizeFirstLetter()}', studyEffectiveX);
+          'studyEffective${fhirType.capitalizeFirstLetter()}', studyEffectiveX,);
     }
 
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
+        'participantEffectiveDescription', participantEffectiveDescription,);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalizeFirstLetter()}',
-          participantEffectiveX);
+          participantEffectiveX,);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
     return json;
   }
 

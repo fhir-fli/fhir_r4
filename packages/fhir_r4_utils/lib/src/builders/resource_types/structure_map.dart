@@ -4569,7 +4569,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
       addField(
-          'defaultValue${fhirType.capitalizeFirstLetter()}', defaultValueX);
+          'defaultValue${fhirType.capitalizeFirstLetter()}', defaultValueX,);
     }
 
     addField('element', element);

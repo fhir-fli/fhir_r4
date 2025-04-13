@@ -6984,7 +6984,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField('substanceDefinition${fhirType.capitalizeFirstLetter()}',
-          substanceDefinitionX);
+          substanceDefinitionX,);
     }
 
     addField('type', type);

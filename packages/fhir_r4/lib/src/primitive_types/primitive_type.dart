@@ -168,7 +168,6 @@ abstract class PrimitiveType extends DataType {
 
   @override
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
-    print('getChildrenByName: $name');
     if (name == 'id') {
       return [id!];
     } else if (name == 'extension') {

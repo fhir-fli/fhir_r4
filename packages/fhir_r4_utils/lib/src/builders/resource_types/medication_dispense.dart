@@ -558,7 +558,7 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     if (statusReasonX != null) {
       final fhirType = statusReasonX!.fhirType;
       addField(
-          'statusReason${fhirType.capitalizeFirstLetter()}', statusReasonX);
+          'statusReason${fhirType.capitalizeFirstLetter()}', statusReasonX,);
     }
 
     addField('category', category);

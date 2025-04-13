@@ -109,7 +109,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AllergyIntoleranceCriticality._(
-          valueString: null, element: element);
+          valueString: null, element: element,);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AllergyIntoleranceCriticality cannot be constructed from JSON.',
