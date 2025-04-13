@@ -66,115 +66,125 @@ class StructureMapParser {
   /// Main entry point for parsing a StructureMap from Map file
   StructureMap parse(String text, String srcName) {
     final lexer = FHIRLexer(source: text, name: srcName);
-    if (lexer.done()) throw lexer.error('Map Input cannot be empty');
 
-    // Immediately expect and consume the "map" token
-    lexer.token('map');
+    try {
+      if (lexer.done()) throw lexer.error('Map Input cannot be empty');
 
-    // Create a new StructureMap (similar to new StructureMap() in Java/.NET)
-    final result = StructureMapBuilder()
+      // Immediately expect and consume the "map" token
+      lexer.token('map');
 
-      // Read the URL and name from constants
-      ..url = FhirUriBuilder(lexer.readConstant('url'));
-    lexer.token('=');
-    result.name = FhirStringBuilder(lexer.readConstant('name'));
+      // Create a new StructureMap (similar to new StructureMap() in Java/.NET)
+      final result = StructureMapBuilder()
 
-    // Get all comments for additional metadata (this will later be used for description, status, etc.)
-    final comments = lexer.getAllComments();
-    if (comments.isNotEmpty) {
-      // Here we mimic the Java/.NET approach:
-      // We iterate over comment lines and process known metadata keys.
-      final lines = comments.split(RegExp(r'\r\n?|\n'));
-      final buffer = <String>[];
-      for (final line in lines) {
-        final index = line.indexOf('=');
-        if (line.startsWith('/ ') && index > 2) {
-          final prop = line.substring(2, index).trim().toLowerCase();
-          final value = line
-              .substring(index + 1)
-              .trim()
-              .replaceAll("'", '')
-              .replaceAll('"', '');
-          switch (prop) {
-            case 'status':
-              result.status =
-                  PublicationStatusBuilder.fromJson({'value': value});
-            case 'title':
-              result.title = FhirStringBuilder(value);
-            case 'name':
-            case 'url':
-              continue;
-            case 'description':
-              result.description =
-                  FhirMarkdownBuilder(value.replaceAll('"', ''));
-            default:
-              final lineText = line.substring(2).trim();
-              if (lineText.isNotEmpty) {
-                buffer.add(lineText);
-              }
+        // Read the URL and name from constants
+        ..url = FhirUriBuilder(lexer.readConstant('url'));
+      lexer.token('=');
+      result.name = FhirStringBuilder(lexer.readConstant('name'));
+
+      // Get all comments for additional metadata (this will later be used for description, status, etc.)
+      final comments = lexer.getAllComments();
+      if (comments.isNotEmpty) {
+        // Here we mimic the Java/.NET approach:
+        // We iterate over comment lines and process known metadata keys.
+        final lines = comments.split(RegExp(r'\r\n?|\n'));
+        final buffer = <String>[];
+        for (final line in lines) {
+          final index = line.indexOf('=');
+          if (line.startsWith('/ ') && index > 2) {
+            final prop = line.substring(2, index).trim().toLowerCase();
+            final value = line
+                .substring(index + 1)
+                .trim()
+                .replaceAll("'", '')
+                .replaceAll('"', '');
+            switch (prop) {
+              case 'status':
+                result.status =
+                    PublicationStatusBuilder.fromJson({'value': value});
+              case 'title':
+                result.title = FhirStringBuilder(value);
+              case 'name':
+              case 'url':
+                continue;
+              case 'description':
+                result.description =
+                    FhirMarkdownBuilder(value.replaceAll('"', ''));
+              default:
+                final lineText = line.substring(2).trim();
+                if (lineText.isNotEmpty) {
+                  buffer.add(lineText);
+                }
+            }
+          } else {
+            if (line.trim().isNotEmpty) buffer.add(line.trim());
           }
-        } else {
-          if (line.trim().isNotEmpty) buffer.add(line.trim());
+        }
+        if (buffer.isNotEmpty && result.description == null) {
+          result.description = FhirMarkdownBuilder(buffer.join(', '));
         }
       }
-      if (buffer.isNotEmpty && result.description == null) {
-        result.description = FhirMarkdownBuilder(buffer.join(', '));
+      if (result.id == null && result.name != null) {
+        result.id =
+            FhirStringBuilder(result.name!.valueString!.replaceAll(' ', ''));
       }
-    }
-    if (result.id == null && result.name != null) {
-      result.id =
-          FhirStringBuilder(result.name!.valueString!.replaceAll(' ', ''));
-    }
-    result.status = result.status ?? PublicationStatusBuilder.draft;
-    if (result.description == null && result.title != null) {
-      result.description = FhirMarkdownBuilder(result.title!.valueString);
-    }
-
-    // Parse concept maps and add them to contained resources
-    while (lexer.hasToken('conceptmap')) {
-      result.contained ??= <ResourceBuilder>[];
-      result.contained!.add(_parseConceptMap(lexer));
-    }
-
-    // Parse 'uses' statements and add them to structures
-    while (lexer.hasToken('uses')) {
-      result.structure ??= <StructureMapStructureBuilder>[];
-      result.structure!.add(_parseUses(lexer));
-    }
-
-    // Parse 'imports' statements and add them to imports
-    while (lexer.hasToken('imports')) {
-      result.import_ ??= <FhirCanonicalBuilder>[];
-      result.import_!.add(_parseImports(lexer));
-    }
-
-    // Parse groups and add them to the groups list
-    while (!lexer.done()) {
-      result.group ??= <StructureMapGroupBuilder>[];
-      result.group!.add(_parseGroup(lexer));
-    }
-
-    if (text.isNotEmpty) {
-      try {
-        result.text = NarrativeBuilder(
-          status: NarrativeStatusBuilder.additional,
-          div: (text.startsWith('<div>')
-                  ? text
-                  : '<div xmlns="http://www.w3.org/1999/xhtml">${text.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</div>')
-              .toFhirXhtmlBuilder,
-        );
-      } catch (e) {
-        result.text = NarrativeBuilder(
-          status: NarrativeStatusBuilder.additional,
-          div:
-              '<div xmlns="http://www.w3.org/1999/xhtml">Invalid XHTML content</div>'
-                  .toFhirXhtmlBuilder,
-        );
+      result.status = result.status ?? PublicationStatusBuilder.draft;
+      if (result.description == null && result.title != null) {
+        result.description = FhirMarkdownBuilder(result.title!.valueString);
       }
-    }
 
-    // Construct the StructureMap with parsed metadata and details
-    return result.build();
+      // Parse concept maps and add them to contained resources
+      while (lexer.hasToken('conceptmap')) {
+        result.contained ??= <ResourceBuilder>[];
+        result.contained!.add(_parseConceptMap(lexer));
+      }
+
+      // Parse 'uses' statements and add them to structures
+      while (lexer.hasToken('uses')) {
+        result.structure ??= <StructureMapStructureBuilder>[];
+        result.structure!.add(_parseUses(lexer));
+      }
+
+      // Parse 'imports' statements and add them to imports
+      while (lexer.hasToken('imports')) {
+        result.import_ ??= <FhirCanonicalBuilder>[];
+        result.import_!.add(_parseImports(lexer));
+      }
+
+      // Parse groups and add them to the groups list
+      while (!lexer.done()) {
+        result.group ??= <StructureMapGroupBuilder>[];
+        result.group!.add(_parseGroup(lexer));
+      }
+
+      if (text.isNotEmpty) {
+        try {
+          result.text = NarrativeBuilder(
+            status: NarrativeStatusBuilder.additional,
+            div: (text.startsWith('<div>')
+                    ? text
+                    : '<div xmlns="http://www.w3.org/1999/xhtml">${text.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</div>')
+                .toFhirXhtmlBuilder,
+          );
+        } catch (e) {
+          result.text = NarrativeBuilder(
+            status: NarrativeStatusBuilder.additional,
+            div:
+                '<div xmlns="http://www.w3.org/1999/xhtml">Invalid XHTML content</div>'
+                    .toFhirXhtmlBuilder,
+          );
+        }
+      }
+
+      // Construct the StructureMap with parsed metadata and details
+      return result.build();
+    } catch (e) {
+      throw FhirParserException(
+        message:
+            'Position ${lexer.currentLocation.line}, ${lexer.currentLocation.column}',
+        cause: e,
+        stackTrace: StackTrace.current,
+      );
+    }
   }
 
   StructureMapRuleBuilder _parseRule(FHIRLexer lexer, bool newFmt) {
