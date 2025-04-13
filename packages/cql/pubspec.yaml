@@ -1,0 +1,47 @@
+name: cql
+description: Attempt to Support the CQL Library in Dart.
+version: 0.0.0-dev1
+homepage: https://www.fhirfli.dev/
+repository: https://github.com/fhir-fli/cql
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  antlr4: ^4.13.2
+  collection: ^1.19.0
+  fhir_r4:
+    path: ../fhir_r4
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^2.4.1
+  http: ^1.2.1
+  json_annotation: ^4.9.0
+  path: ^1.9.0
+  petitparser: ^6.0.2
+  ucum: ^0.5.0
+  uuid: ^4.4.0
+  xml: ^6.5.0
+  xml2json: ^6.2.3
+  xml_serializable: ^2.5.0
+
+dev_dependencies:
+  build_runner: ^2.4.9
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+  freezed: ^2.5.2
+  # flutter pub run import_sorter:main
+  import_sorter: ^4.6.0
+  json_serializable: ^6.8.0
+  lints: ^3.0.0
+  # test: ^1.25.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - cql/
+    - json/
+
+dependency_overrides:
+  meta: ^1.12.0

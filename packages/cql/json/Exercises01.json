@@ -1,0 +1,224 @@
+{
+    "library": {
+        "identifier": {
+            "id": "Exercises01Key"
+        },
+        "schemaIdentifier": {
+            "id": "urn:hl7-org:elm",
+            "version": "r1"
+        },
+        "usings": {
+            "def": [
+                {
+                    "localIdentifier": "System",
+                    "uri": "urn:hl7-org:elm-types:r1"
+                }
+            ]
+        },
+        "statements": {
+            "def": [
+                {
+                    "name": "This is a quoted identifier",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Add",
+                        "operand": [
+                            {
+                                "type": "Date",
+                                "year": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "2021",
+                                    "type": "Literal"
+                                },
+                                "month": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "3",
+                                    "type": "Literal"
+                                },
+                                "day": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "29",
+                                    "type": "Literal"
+                                }
+                            },
+                            {
+                                "value": 3,
+                                "unit": "days",
+                                "type": "Quantity"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "_1MoreIdentifier",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "value": 0.0,
+                        "unit": "g",
+                        "type": "Quantity"
+                    }
+                },
+                {
+                    "name": "Inequality Expression",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Not",
+                        "operand": {
+                            "type": "Equal",
+                            "operand": [
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "4",
+                                    "type": "Literal"
+                                },
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "5",
+                                    "type": "Literal"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Relative Comparison Expression",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "LessOrEqual",
+                        "operand": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                "value": "4",
+                                "type": "Literal"
+                            },
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                "value": "5",
+                                "type": "Literal"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Quantity Expression",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "value": 5,
+                        "unit": "g/dL",
+                        "type": "Quantity"
+                    }
+                },
+                {
+                    "name": "Reference Expression",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "name": "Quantity Expression",
+                        "type": "ExpressionRef"
+                    }
+                },
+                {
+                    "name": "String Concatenation",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Concatenate",
+                        "operand": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "1",
+                                "type": "Literal"
+                            },
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "John",
+                                "type": "Literal"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Warning Message",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Message",
+                        "source": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                            "value": "1",
+                            "type": "Literal"
+                        },
+                        "condition": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "value": "true",
+                            "type": "Literal"
+                        },
+                        "code": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "123",
+                            "type": "Literal"
+                        },
+                        "severity": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Warning",
+                            "type": "Literal"
+                        },
+                        "message": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "This is a warning message",
+                            "type": "Literal"
+                        }
+                    }
+                },
+                {
+                    "name": "Nested Warning Message",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Add",
+                        "operand": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                "value": "1",
+                                "type": "Literal"
+                            },
+                            {
+                                "type": "Message",
+                                "source": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value": "2",
+                                    "type": "Literal"
+                                },
+                                "condition": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "value": "true",
+                                    "type": "Literal"
+                                },
+                                "code": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "123",
+                                    "type": "Literal"
+                                },
+                                "severity": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Warning",
+                                    "type": "Literal"
+                                },
+                                "message": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "The value is 2",
+                                    "type": "Literal"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

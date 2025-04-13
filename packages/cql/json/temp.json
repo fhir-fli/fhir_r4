@@ -1,0 +1,204 @@
+{
+    "library": {
+        "identifier": {
+            "id": "Exercises06Key"
+        },
+        "schemaIdentifier": {
+            "id": "urn:hl7-org:elm",
+            "version": "r1"
+        },
+        "usings": {
+            "def": [
+                {
+                    "localIdentifier": "System",
+                    "uri": "urn:hl7-org:elm-types:r1"
+                },
+                {
+                    "localIdentifier": "FHIR",
+                    "uri": "http://hl7.org/fhir",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "includes": {
+            "def": [
+                {
+                    "localIdentifier": "FHIRHelpers",
+                    "path": "FHIRHelpers",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "codeSystems": {
+            "def": [
+                {
+                    "name": "ActCode",
+                    "id": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "MedicationRequestCategory",
+                    "id": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "ObservationCategory",
+                    "id": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "valueSets": {
+            "def": [
+                {
+                    "name": "Community Medication",
+                    "id": "http://example.org/fhir/ValueSet/community-medication",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Vital Sign",
+                    "id": "http://example.org/fhir/ValueSet/vital-sign",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Laboratory",
+                    "id": "http://example.org/fhir/ValueSet/laboratory",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "codes": {
+            "def": [
+                {
+                    "name": "Inpatient Encounter",
+                    "id": "IMP",
+                    "display": "Inpatient Encounter",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "ActCode"
+                    }
+                }
+            ]
+        },
+        "contexts": {
+            "def": [
+                {
+                    "name": "Patient"
+                }
+            ]
+        },
+        "statements": {
+            "def": [
+                {
+                    "name": "Patient",
+                    "context": "Patient",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "dataType": "{http://hl7.org/fhir}Patient",
+                            "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
+                            "type": "Retrieve"
+                        }
+                    }
+                },
+                {
+                    "name": "Encounters",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}Encounter",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
+                        "type": "Retrieve"
+                    }
+                },
+                {
+                    "name": "Inpatient Encounters",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}Encounter",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
+                        "codeProperty": "class",
+                        "codeComparator": "~",
+                        "type": "Retrieve",
+                        "codes": {
+                            "name": "Inpatient Encounter",
+                            "type": "CodeRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Medication Requests",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}MedicationRequest",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+                        "type": "Retrieve"
+                    }
+                },
+                {
+                    "name": "Community Medication Requests",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}MedicationRequest",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+                        "codeProperty": "category",
+                        "codeComparator": "in",
+                        "type": "Retrieve",
+                        "codes": {
+                            "name": "Community Medication",
+                            "preserve": true,
+                            "type": "ValueSetRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Observations",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}Observation",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                        "type": "Retrieve"
+                    }
+                },
+                {
+                    "name": "Vital Signs",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}Observation",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                        "codeProperty": "category",
+                        "codeComparator": "in",
+                        "type": "Retrieve",
+                        "codes": {
+                            "name": "Vital Sign",
+                            "preserve": true,
+                            "type": "ValueSetRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Laboratory Results",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "dataType": "{http://hl7.org/fhir}Observation",
+                        "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                        "codeProperty": "category",
+                        "codeComparator": "in",
+                        "type": "Retrieve",
+                        "codes": {
+                            "name": "Laboratory",
+                            "preserve": true,
+                            "type": "ValueSetRef"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

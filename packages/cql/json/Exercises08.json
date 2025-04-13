@@ -1,0 +1,700 @@
+{
+    "library": {
+        "annotation": [
+            {
+                "translatorVersion": "3.3.2",
+                "translatorOptions": "",
+                "signatureLevel": "None",
+                "type": "CqlToElmInfo"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            }
+        ],
+        "identifier": {
+            "id": "Exercises08Key"
+        },
+        "schemaIdentifier": {
+            "id": "urn:hl7-org:elm",
+            "version": "r1"
+        },
+        "usings": {
+            "def": [
+                {
+                    "localIdentifier": "System",
+                    "uri": "urn:hl7-org:elm-types:r1"
+                },
+                {
+                    "localIdentifier": "FHIR",
+                    "uri": "http://hl7.org/fhir",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "includes": {
+            "def": [
+                {
+                    "localIdentifier": "FHIRHelpers",
+                    "path": "FHIRHelpers",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "codeSystems": {
+            "def": [
+                {
+                    "name": "LOINC",
+                    "id": "http://loinc.org",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "ActCode",
+                    "id": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "MedicationRequestCategory",
+                    "id": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "ObservationCategory",
+                    "id": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "valueSets": {
+            "def": [
+                {
+                    "name": "Community Medication",
+                    "id": "http://example.org/fhir/ValueSet/community-medication",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Vital Sign",
+                    "id": "http://example.org/fhir/ValueSet/vital-sign",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Laboratory",
+                    "id": "http://example.org/fhir/ValueSet/laboratory",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "codes": {
+            "def": [
+                {
+                    "name": "Blood Glucose",
+                    "id": "2339-0",
+                    "display": "Glucose Bld-mCnc",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "LOINC"
+                    }
+                },
+                {
+                    "name": "Inpatient Encounter",
+                    "id": "IMP",
+                    "display": "Inpatient Encounter",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "ActCode"
+                    }
+                }
+            ]
+        },
+        "statements": {
+            "def": [
+                {
+                    "name": "Blood Glucose Observations",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "O",
+                                "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Observation",
+                                    "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                                    "codeProperty": "category",
+                                    "codeComparator": "in",
+                                    "type": "Retrieve",
+                                    "codes": {
+                                        "name": "Laboratory",
+                                        "preserve": true,
+                                        "type": "ValueSetRef"
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "And",
+                            "operand": [
+                                {
+                                    "type": "And",
+                                    "operand": [
+                                        {
+                                            "type": "In",
+                                            "operand": [
+                                                {
+                                                    "name": "ToString",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "path": "status",
+                                                            "scope": "O",
+                                                            "type": "Property"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "List",
+                                                    "element": [
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                            "value": "final",
+                                                            "type": "Literal"
+                                                        },
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                            "value": "amended",
+                                                            "type": "Literal"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Is",
+                                            "operand": {
+                                                "path": "value",
+                                                "scope": "O",
+                                                "type": "Property"
+                                            },
+                                            "isTypeSpecifier": {
+                                                "name": "{http://hl7.org/fhir}Quantity",
+                                                "type": "NamedTypeSpecifier"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Equivalent",
+                                    "operand": [
+                                        {
+                                            "name": "ToConcept",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "path": "code",
+                                                    "scope": "O",
+                                                    "type": "Property"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "ToConcept",
+                                            "operand": {
+                                                "name": "Blood Glucose",
+                                                "type": "CodeRef"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Difference in Blood Glucose Observations",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "O1",
+                                "expression": {
+                                    "name": "Blood Glucose Observations",
+                                    "type": "ExpressionRef"
+                                }
+                            },
+                            {
+                                "alias": "O2",
+                                "expression": {
+                                    "name": "Blood Glucose Observations",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "return": {
+                            "expression": {
+                                "type": "Abs",
+                                "operand": {
+                                    "type": "Subtract",
+                                    "operand": [
+                                        {
+                                            "name": "ToQuantity",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "strict": false,
+                                                    "type": "As",
+                                                    "operand": {
+                                                        "path": "value",
+                                                        "scope": "O2",
+                                                        "type": "Property"
+                                                    },
+                                                    "asTypeSpecifier": {
+                                                        "name": "{http://hl7.org/fhir}Quantity",
+                                                        "type": "NamedTypeSpecifier"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "ToQuantity",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "strict": false,
+                                                    "type": "As",
+                                                    "operand": {
+                                                        "path": "value",
+                                                        "scope": "O1",
+                                                        "type": "Property"
+                                                    },
+                                                    "asTypeSpecifier": {
+                                                        "name": "{http://hl7.org/fhir}Quantity",
+                                                        "type": "NamedTypeSpecifier"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Greatest Absolute Difference in Blood Glucose Observations",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Max",
+                        "source": {
+                            "name": "Difference in Blood Glucose Observations",
+                            "type": "ExpressionRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Quantitative Laboratory Results",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "O",
+                                "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Observation",
+                                    "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                                    "codeProperty": "category",
+                                    "codeComparator": "in",
+                                    "type": "Retrieve",
+                                    "codes": {
+                                        "name": "Laboratory",
+                                        "preserve": true,
+                                        "type": "ValueSetRef"
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "And",
+                            "operand": [
+                                {
+                                    "type": "In",
+                                    "operand": [
+                                        {
+                                            "name": "ToString",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "path": "status",
+                                                    "scope": "O",
+                                                    "type": "Property"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "List",
+                                            "element": [
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "final",
+                                                    "type": "Literal"
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "amended",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Is",
+                                    "operand": {
+                                        "path": "value",
+                                        "scope": "O",
+                                        "type": "Property"
+                                    },
+                                    "isTypeSpecifier": {
+                                        "name": "{http://hl7.org/fhir}Quantity",
+                                        "type": "NamedTypeSpecifier"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Difference in Quantitative Tests",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "O1",
+                                "expression": {
+                                    "name": "Quantitative Laboratory Results",
+                                    "type": "ExpressionRef"
+                                }
+                            },
+                            {
+                                "alias": "O2",
+                                "expression": {
+                                    "name": "Quantitative Laboratory Results",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "Equivalent",
+                            "operand": [
+                                {
+                                    "path": "code",
+                                    "scope": "O1",
+                                    "type": "Property"
+                                },
+                                {
+                                    "path": "code",
+                                    "scope": "O2",
+                                    "type": "Property"
+                                }
+                            ]
+                        },
+                        "return": {
+                            "expression": {
+                                "type": "Tuple",
+                                "element": [
+                                    {
+                                        "name": "code",
+                                        "value": {
+                                            "path": "code",
+                                            "scope": "O1",
+                                            "type": "Property"
+                                        }
+                                    },
+                                    {
+                                        "name": "difference",
+                                        "value": {
+                                            "type": "Abs",
+                                            "operand": {
+                                                "type": "Subtract",
+                                                "operand": [
+                                                    {
+                                                        "name": "ToQuantity",
+                                                        "libraryName": "FHIRHelpers",
+                                                        "type": "FunctionRef",
+                                                        "operand": [
+                                                            {
+                                                                "strict": false,
+                                                                "type": "As",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "O2",
+                                                                    "type": "Property"
+                                                                },
+                                                                "asTypeSpecifier": {
+                                                                    "name": "{http://hl7.org/fhir}Quantity",
+                                                                    "type": "NamedTypeSpecifier"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "name": "ToQuantity",
+                                                        "libraryName": "FHIRHelpers",
+                                                        "type": "FunctionRef",
+                                                        "operand": [
+                                                            {
+                                                                "strict": false,
+                                                                "type": "As",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "O1",
+                                                                    "type": "Property"
+                                                                },
+                                                                "asTypeSpecifier": {
+                                                                    "name": "{http://hl7.org/fhir}Quantity",
+                                                                    "type": "NamedTypeSpecifier"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Greatest Difference Per Test",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "TestCode",
+                                "expression": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "D",
+                                            "expression": {
+                                                "name": "Difference in Quantitative Tests",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "return": {
+                                        "expression": {
+                                            "path": "code",
+                                            "scope": "D",
+                                            "type": "Property"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "return": {
+                            "expression": {
+                                "type": "Tuple",
+                                "element": [
+                                    {
+                                        "name": "code",
+                                        "value": {
+                                            "name": "TestCode",
+                                            "type": "AliasRef"
+                                        }
+                                    },
+                                    {
+                                        "name": "maxDifference",
+                                        "value": {
+                                            "type": "Max",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "D",
+                                                        "expression": {
+                                                            "name": "Difference in Quantitative Tests",
+                                                            "type": "ExpressionRef"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "Equivalent",
+                                                    "operand": [
+                                                        {
+                                                            "path": "code",
+                                                            "scope": "D",
+                                                            "type": "Property"
+                                                        },
+                                                        {
+                                                            "name": "TestCode",
+                                                            "type": "AliasRef"
+                                                        }
+                                                    ]
+                                                },
+                                                "return": {
+                                                    "expression": {
+                                                        "path": "difference",
+                                                        "scope": "D",
+                                                        "type": "Property"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Average Quantitative Result Per Test",
+                    "context": "Unfiltered",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "TestCode",
+                                "expression": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "T",
+                                            "expression": {
+                                                "name": "Quantitative Laboratory Results",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "return": {
+                                        "expression": {
+                                            "path": "code",
+                                            "scope": "T",
+                                            "type": "Property"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "return": {
+                            "expression": {
+                                "type": "Tuple",
+                                "element": [
+                                    {
+                                        "name": "code",
+                                        "value": {
+                                            "name": "TestCode",
+                                            "type": "AliasRef"
+                                        }
+                                    },
+                                    {
+                                        "name": "avg",
+                                        "value": {
+                                            "type": "Avg",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "X",
+                                                        "expression": {
+                                                            "type": "Query",
+                                                            "source": [
+                                                                {
+                                                                    "alias": "T",
+                                                                    "expression": {
+                                                                        "name": "Quantitative Laboratory Results",
+                                                                        "type": "ExpressionRef"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            "relationship": [],
+                                                            "where": {
+                                                                "type": "Equivalent",
+                                                                "operand": [
+                                                                    {
+                                                                        "path": "code",
+                                                                        "scope": "T",
+                                                                        "type": "Property"
+                                                                    },
+                                                                    {
+                                                                        "name": "TestCode",
+                                                                        "type": "AliasRef"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "return": {
+                                                                "expression": {
+                                                                    "strict": false,
+                                                                    "type": "As",
+                                                                    "operand": {
+                                                                        "path": "value",
+                                                                        "scope": "T",
+                                                                        "type": "Property"
+                                                                    },
+                                                                    "asTypeSpecifier": {
+                                                                        "name": "{http://hl7.org/fhir}Quantity",
+                                                                        "type": "NamedTypeSpecifier"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ],
+                                                "return": {
+                                                    "distinct": false,
+                                                    "expression": {
+                                                        "name": "ToQuantity",
+                                                        "libraryName": "FHIRHelpers",
+                                                        "type": "FunctionRef",
+                                                        "operand": [
+                                                            {
+                                                                "name": "X",
+                                                                "type": "AliasRef"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

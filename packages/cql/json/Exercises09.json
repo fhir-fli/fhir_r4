@@ -1,0 +1,1339 @@
+{
+    "library": {
+        "annotation": [
+            {
+                "translatorVersion": "3.3.2",
+                "translatorOptions": "",
+                "signatureLevel": "None",
+                "type": "CqlToElmInfo"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToDateTime has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            }
+        ],
+        "identifier": {
+            "id": "Exercises09Key"
+        },
+        "schemaIdentifier": {
+            "id": "urn:hl7-org:elm",
+            "version": "r1"
+        },
+        "usings": {
+            "def": [
+                {
+                    "localIdentifier": "System",
+                    "uri": "urn:hl7-org:elm-types:r1"
+                },
+                {
+                    "localIdentifier": "FHIR",
+                    "uri": "http://hl7.org/fhir",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "includes": {
+            "def": [
+                {
+                    "localIdentifier": "FHIRHelpers",
+                    "path": "FHIRHelpers",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "codeSystems": {
+            "def": [
+                {
+                    "name": "LOINC",
+                    "id": "http://loinc.org",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Marital Status Codes",
+                    "id": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "CDC Race and Ethnicity Codes",
+                    "id": "urn:oid:2.16.840.1.113883.6.238",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "valueSets": {
+            "def": [
+                {
+                    "name": "Marital Status",
+                    "id": "http://hl7.org/fhir/ValueSet/marital-status",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "codes": {
+            "def": [
+                {
+                    "name": "Marital Status - Married",
+                    "id": "M",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "Marital Status Codes"
+                    }
+                },
+                {
+                    "name": "American Indian or Alaska Native",
+                    "id": "1002-5",
+                    "display": "American Indian or Alaska Native",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "CDC Race and Ethnicity Codes"
+                    }
+                },
+                {
+                    "name": "Alaska Native",
+                    "id": "1735-0",
+                    "display": "Alaska Native",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "CDC Race and Ethnicity Codes"
+                    }
+                },
+                {
+                    "name": "Blood pressure",
+                    "id": "85354-9",
+                    "display": "blood pressure",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "LOINC"
+                    }
+                },
+                {
+                    "name": "Diastolic blood pressure",
+                    "id": "8462-4",
+                    "display": "Diastolic blood pressure",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "LOINC"
+                    }
+                },
+                {
+                    "name": "Systolic blood pressure",
+                    "id": "8480-6",
+                    "display": "Systolic blood pressure",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "LOINC"
+                    }
+                }
+            ]
+        },
+        "contexts": {
+            "def": [
+                {
+                    "name": "Patient"
+                }
+            ]
+        },
+        "statements": {
+            "def": [
+                {
+                    "name": "Patient",
+                    "context": "Patient",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "dataType": "{http://hl7.org/fhir}Patient",
+                            "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
+                            "type": "Retrieve"
+                        }
+                    }
+                },
+                {
+                    "name": "TestPrimitives",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "P",
+                                "expression": {
+                                    "name": "Patient",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "And",
+                            "operand": [
+                                {
+                                    "type": "And",
+                                    "operand": [
+                                        {
+                                            "type": "And",
+                                            "operand": [
+                                                {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "Equal",
+                                                            "operand": [
+                                                                {
+                                                                    "name": "ToString",
+                                                                    "libraryName": "FHIRHelpers",
+                                                                    "type": "FunctionRef",
+                                                                    "operand": [
+                                                                        {
+                                                                            "path": "gender",
+                                                                            "scope": "P",
+                                                                            "type": "Property"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                                    "value": "male",
+                                                                    "type": "Literal"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "IsTrue",
+                                                            "operand": {
+                                                                "name": "ToBoolean",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "path": "active",
+                                                                        "scope": "P",
+                                                                        "type": "Property"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Before",
+                                                    "operand": [
+                                                        {
+                                                            "name": "ToDate",
+                                                            "libraryName": "FHIRHelpers",
+                                                            "type": "FunctionRef",
+                                                            "operand": [
+                                                                {
+                                                                    "path": "birthDate",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Today"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "InValueSet",
+                                            "code": {
+                                                "name": "ToConcept",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "path": "maritalStatus",
+                                                        "scope": "P",
+                                                        "type": "Property"
+                                                    }
+                                                ]
+                                            },
+                                            "valueset": {
+                                                "name": "Marital Status",
+                                                "preserve": true
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Equivalent",
+                                    "operand": [
+                                        {
+                                            "name": "ToConcept",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "path": "maritalStatus",
+                                                    "scope": "P",
+                                                    "type": "Property"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "ToConcept",
+                                            "operand": {
+                                                "name": "Marital Status - Married",
+                                                "type": "CodeRef"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "TestChoice",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "P",
+                                "expression": {
+                                    "name": "Patient",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "Or",
+                            "operand": [
+                                {
+                                    "type": "IsFalse",
+                                    "operand": {
+                                        "name": "ToBoolean",
+                                        "libraryName": "FHIRHelpers",
+                                        "type": "FunctionRef",
+                                        "operand": [
+                                            {
+                                                "asType": "{http://hl7.org/fhir}boolean",
+                                                "type": "As",
+                                                "operand": {
+                                                    "path": "deceased",
+                                                    "scope": "P",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "Before",
+                                    "operand": [
+                                        {
+                                            "name": "ToDateTime",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "asType": "{http://hl7.org/fhir}dateTime",
+                                                    "type": "As",
+                                                    "operand": {
+                                                        "path": "deceased",
+                                                        "scope": "P",
+                                                        "type": "Property"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "ToDateTime",
+                                            "operand": {
+                                                "type": "Today"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "TestSlices",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "BP",
+                                "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Observation",
+                                    "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
+                                    "codeProperty": "code",
+                                    "codeComparator": "~",
+                                    "type": "Retrieve",
+                                    "codes": {
+                                        "type": "ToList",
+                                        "operand": {
+                                            "name": "Blood pressure",
+                                            "type": "CodeRef"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "let": [
+                            {
+                                "identifier": "SystolicBP",
+                                "expression": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "C",
+                                                "expression": {
+                                                    "path": "component",
+                                                    "scope": "BP",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equivalent",
+                                            "operand": [
+                                                {
+                                                    "name": "ToConcept",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "path": "code",
+                                                            "scope": "C",
+                                                            "type": "Property"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "ToConcept",
+                                                    "operand": {
+                                                        "name": "Systolic blood pressure",
+                                                        "type": "CodeRef"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "identifier": "DiastolicBP",
+                                "expression": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "C",
+                                                "expression": {
+                                                    "path": "component",
+                                                    "scope": "BP",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equivalent",
+                                            "operand": [
+                                                {
+                                                    "name": "ToConcept",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "path": "code",
+                                                            "scope": "C",
+                                                            "type": "Property"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "ToConcept",
+                                                    "operand": {
+                                                        "name": "Diastolic blood pressure",
+                                                        "type": "CodeRef"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "And",
+                            "operand": [
+                                {
+                                    "type": "Less",
+                                    "operand": [
+                                        {
+                                            "name": "ToQuantity",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "asType": "{http://hl7.org/fhir}Quantity",
+                                                    "type": "As",
+                                                    "operand": {
+                                                        "path": "value",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "SystolicBP",
+                                                            "type": "QueryLetRef"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "value": 140,
+                                            "unit": "mm[Hg]",
+                                            "type": "Quantity"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Less",
+                                    "operand": [
+                                        {
+                                            "name": "ToQuantity",
+                                            "libraryName": "FHIRHelpers",
+                                            "type": "FunctionRef",
+                                            "operand": [
+                                                {
+                                                    "asType": "{http://hl7.org/fhir}Quantity",
+                                                    "type": "As",
+                                                    "operand": {
+                                                        "path": "value",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "DiastolicBP",
+                                                            "type": "QueryLetRef"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "value": 90,
+                                            "unit": "mm[Hg]",
+                                            "type": "Quantity"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "TestSimpleExtensions",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "P",
+                                "expression": {
+                                    "name": "Patient",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "let": [
+                            {
+                                "identifier": "birthsex",
+                                "expression": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "E",
+                                                "expression": {
+                                                    "path": "extension",
+                                                    "scope": "P",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equal",
+                                            "operand": [
+                                                {
+                                                    "name": "ToString",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "path": "url",
+                                                            "scope": "E",
+                                                            "type": "Property"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "Equal",
+                            "operand": [
+                                {
+                                    "type": "Case",
+                                    "caseItem": [
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}base64Binary",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}base64Binary",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}uri",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}uri",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}string",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}string",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}string",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}string",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}string",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}string",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}uri",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}uri",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}string",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}string",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}uri",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}uri",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}uri",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}uri",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "when": {
+                                                "isType": "{http://hl7.org/fhir}uri",
+                                                "type": "Is",
+                                                "operand": {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "birthsex",
+                                                        "type": "QueryLetRef"
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "asType": "{http://hl7.org/fhir}uri",
+                                                        "type": "As",
+                                                        "operand": {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "birthsex",
+                                                                "type": "QueryLetRef"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "else": {
+                                        "resultTypeName": "{urn:hl7-org:elm-types:r1}String",
+                                        "type": "Null"
+                                    }
+                                },
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "M",
+                                    "type": "Literal"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "TestComplexExtensions",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "P",
+                                "expression": {
+                                    "name": "Patient",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        ],
+                        "let": [
+                            {
+                                "identifier": "race",
+                                "expression": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "E",
+                                                "expression": {
+                                                    "path": "extension",
+                                                    "scope": "P",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equal",
+                                            "operand": [
+                                                {
+                                                    "name": "ToString",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "path": "url",
+                                                            "scope": "E",
+                                                            "type": "Property"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "identifier": "ombCategory",
+                                "expression": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "E",
+                                            "expression": {
+                                                "path": "extension",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "race",
+                                                    "type": "QueryLetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "path": "url",
+                                                        "scope": "E",
+                                                        "type": "Property"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "ombCategory",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "identifier": "detailed",
+                                "expression": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "E",
+                                            "expression": {
+                                                "path": "extension",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "race",
+                                                    "type": "QueryLetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "name": "ToString",
+                                                "libraryName": "FHIRHelpers",
+                                                "type": "FunctionRef",
+                                                "operand": [
+                                                    {
+                                                        "path": "url",
+                                                        "scope": "E",
+                                                        "type": "Property"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "detailed",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "And",
+                            "operand": [
+                                {
+                                    "type": "Contains",
+                                    "operand": [
+                                        {
+                                            "type": "Query",
+                                            "source": [
+                                                {
+                                                    "alias": "X",
+                                                    "expression": {
+                                                        "type": "Query",
+                                                        "source": [
+                                                            {
+                                                                "alias": "$this",
+                                                                "expression": {
+                                                                    "name": "ombCategory",
+                                                                    "type": "QueryLetRef"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "where": {
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "type": "Property",
+                                                                    "source": {
+                                                                        "name": "$this",
+                                                                        "type": "AliasRef"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "return": {
+                                                            "distinct": false,
+                                                            "expression": {
+                                                                "path": "value",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "name": "$this",
+                                                                    "type": "AliasRef"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "return": {
+                                                "distinct": false,
+                                                "expression": {
+                                                    "name": "ToCode",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "asType": "{http://hl7.org/fhir}Coding",
+                                                            "type": "As",
+                                                            "operand": {
+                                                                "name": "X",
+                                                                "type": "AliasRef"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "name": "American Indian or Alaska Native",
+                                            "type": "CodeRef"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Contains",
+                                    "operand": [
+                                        {
+                                            "type": "Query",
+                                            "source": [
+                                                {
+                                                    "alias": "X",
+                                                    "expression": {
+                                                        "type": "Query",
+                                                        "source": [
+                                                            {
+                                                                "alias": "$this",
+                                                                "expression": {
+                                                                    "name": "detailed",
+                                                                    "type": "QueryLetRef"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "where": {
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "type": "Property",
+                                                                    "source": {
+                                                                        "name": "$this",
+                                                                        "type": "AliasRef"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "return": {
+                                                            "distinct": false,
+                                                            "expression": {
+                                                                "path": "value",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "name": "$this",
+                                                                    "type": "AliasRef"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "return": {
+                                                "distinct": false,
+                                                "expression": {
+                                                    "name": "ToCode",
+                                                    "libraryName": "FHIRHelpers",
+                                                    "type": "FunctionRef",
+                                                    "operand": [
+                                                        {
+                                                            "asType": "{http://hl7.org/fhir}Coding",
+                                                            "type": "As",
+                                                            "operand": {
+                                                                "name": "X",
+                                                                "type": "AliasRef"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "name": "Alaska Native",
+                                            "type": "CodeRef"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
