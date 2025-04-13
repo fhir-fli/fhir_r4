@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for NamingSystemType
+enum NamingSystemTypeBuilderEnum {
+  /// codesystem
+  codesystem,
+
+  /// identifier
+  identifier,
+
+  /// root
+  root,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case NamingSystemTypeBuilderEnum.codesystem:
+        return 'codesystem';
+      case NamingSystemTypeBuilderEnum.identifier:
+        return 'identifier';
+      case NamingSystemTypeBuilderEnum.root:
+        return 'root';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static NamingSystemTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return NamingSystemTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static NamingSystemTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'codesystem':
+        return NamingSystemTypeBuilderEnum.codesystem;
+      case 'identifier':
+        return NamingSystemTypeBuilderEnum.identifier;
+      case 'root':
+        return NamingSystemTypeBuilderEnum.root;
+    }
+    return null;
+  }
+}
+
 /// Identifies the purpose of the naming system.
 class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NamingSystemTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = NamingSystemTypeBuilderEnum.fromString(
+      valueString,
+    );
     return NamingSystemTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [NamingSystemTypeBuilder] with element only
+  /// Create empty [NamingSystemTypeBuilder]
+  /// with element only
   factory NamingSystemTypeBuilder.empty() =>
-      NamingSystemTypeBuilder._(valueString: '');
+      NamingSystemTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [NamingSystemTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [NamingSystemTypeBuilder] from JSON.
   factory NamingSystemTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NamingSystemTypeBuilder.elementOnly.withElement(element);
+      return NamingSystemTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'NamingSystemTypeBuilder cannot be constructed from JSON.',
@@ -70,33 +136,53 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for NamingSystemTypeBuilder
+  final NamingSystemTypeBuilderEnum? valueEnum;
+
   /// codesystem
   static NamingSystemTypeBuilder codesystem = NamingSystemTypeBuilder._(
     valueString: 'codesystem',
-    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Code System'.toFhirStringBuilder,
+    valueEnum: NamingSystemTypeBuilderEnum.codesystem,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Code System',
+    ),
   );
 
   /// identifier
   static NamingSystemTypeBuilder identifier = NamingSystemTypeBuilder._(
     valueString: 'identifier',
-    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Identifier'.toFhirStringBuilder,
+    valueEnum: NamingSystemTypeBuilderEnum.identifier,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Identifier',
+    ),
   );
 
   /// root
   static NamingSystemTypeBuilder root = NamingSystemTypeBuilder._(
     valueString: 'root',
-    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Root'.toFhirStringBuilder,
+    valueEnum: NamingSystemTypeBuilderEnum.root,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Root',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static NamingSystemTypeBuilder elementOnly =
-      NamingSystemTypeBuilder._(valueString: '');
+  static NamingSystemTypeBuilder elementOnly = NamingSystemTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<NamingSystemTypeBuilder> values = [
@@ -104,13 +190,6 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     identifier,
     root,
   ];
-
-  /// Clones the current instance
-  @override
-  NamingSystemTypeBuilder clone() => NamingSystemTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   NamingSystemTypeBuilder withElement(
@@ -132,37 +211,4 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  NamingSystemTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for NamingSystemType: $newValue',
-      );
-    }
-    return NamingSystemTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

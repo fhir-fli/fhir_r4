@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ReferenceHandlingPolicy
+enum ReferenceHandlingPolicyBuilderEnum {
+  /// literal
+  literal,
+
+  /// logical
+  logical,
+
+  /// resolves
+  resolves,
+
+  /// enforced
+  enforced,
+
+  /// local
+  local,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ReferenceHandlingPolicyBuilderEnum.literal:
+        return 'literal';
+      case ReferenceHandlingPolicyBuilderEnum.logical:
+        return 'logical';
+      case ReferenceHandlingPolicyBuilderEnum.resolves:
+        return 'resolves';
+      case ReferenceHandlingPolicyBuilderEnum.enforced:
+        return 'enforced';
+      case ReferenceHandlingPolicyBuilderEnum.local:
+        return 'local';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ReferenceHandlingPolicyBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ReferenceHandlingPolicyBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ReferenceHandlingPolicyBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'literal':
+        return ReferenceHandlingPolicyBuilderEnum.literal;
+      case 'logical':
+        return ReferenceHandlingPolicyBuilderEnum.logical;
+      case 'resolves':
+        return ReferenceHandlingPolicyBuilderEnum.resolves;
+      case 'enforced':
+        return ReferenceHandlingPolicyBuilderEnum.enforced;
+      case 'local':
+        return ReferenceHandlingPolicyBuilderEnum.local;
+    }
+    return null;
+  }
+}
+
 /// A set of flags that defines how references are supported.
 class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ReferenceHandlingPolicyBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ReferenceHandlingPolicyBuilderEnum.fromString(
+      valueString,
+    );
     return ReferenceHandlingPolicyBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ReferenceHandlingPolicyBuilder] with element only
+  /// Create empty [ReferenceHandlingPolicyBuilder]
+  /// with element only
   factory ReferenceHandlingPolicyBuilder.empty() =>
-      ReferenceHandlingPolicyBuilder._(valueString: '');
+      ReferenceHandlingPolicyBuilder._(valueString: null);
 
-  /// Factory constructor to create [ReferenceHandlingPolicyBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ReferenceHandlingPolicyBuilder] from JSON.
   factory ReferenceHandlingPolicyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceHandlingPolicyBuilder.elementOnly.withElement(element);
+      return ReferenceHandlingPolicyBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ReferenceHandlingPolicyBuilder cannot be constructed from JSON.',
@@ -70,59 +150,85 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ReferenceHandlingPolicyBuilder
+  final ReferenceHandlingPolicyBuilderEnum? valueEnum;
+
   /// literal
   static ReferenceHandlingPolicyBuilder literal =
       ReferenceHandlingPolicyBuilder._(
     valueString: 'literal',
-    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Literal References'.toFhirStringBuilder,
+    valueEnum: ReferenceHandlingPolicyBuilderEnum.literal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Literal References',
+    ),
   );
 
   /// logical
   static ReferenceHandlingPolicyBuilder logical =
       ReferenceHandlingPolicyBuilder._(
     valueString: 'logical',
-    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Logical References'.toFhirStringBuilder,
+    valueEnum: ReferenceHandlingPolicyBuilderEnum.logical,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Logical References',
+    ),
   );
 
   /// resolves
   static ReferenceHandlingPolicyBuilder resolves =
       ReferenceHandlingPolicyBuilder._(
     valueString: 'resolves',
-    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Resolves References'.toFhirStringBuilder,
+    valueEnum: ReferenceHandlingPolicyBuilderEnum.resolves,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Resolves References',
+    ),
   );
 
   /// enforced
   static ReferenceHandlingPolicyBuilder enforced =
       ReferenceHandlingPolicyBuilder._(
     valueString: 'enforced',
-    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Reference Integrity Enforced'.toFhirStringBuilder,
+    valueEnum: ReferenceHandlingPolicyBuilderEnum.enforced,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Reference Integrity Enforced',
+    ),
   );
 
   /// local
   static ReferenceHandlingPolicyBuilder local =
       ReferenceHandlingPolicyBuilder._(
     valueString: 'local',
-    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Local References Only'.toFhirStringBuilder,
+    valueEnum: ReferenceHandlingPolicyBuilderEnum.local,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Local References Only',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ReferenceHandlingPolicyBuilder elementOnly =
-      ReferenceHandlingPolicyBuilder._(valueString: '');
+      ReferenceHandlingPolicyBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ReferenceHandlingPolicyBuilder> values = [
@@ -132,13 +238,6 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
     enforced,
     local,
   ];
-
-  /// Clones the current instance
-  @override
-  ReferenceHandlingPolicyBuilder clone() => ReferenceHandlingPolicyBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicyBuilder withElement(
@@ -160,37 +259,4 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ReferenceHandlingPolicyBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ReferenceHandlingPolicy: $newValue',
-      );
-    }
-    return ReferenceHandlingPolicyBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

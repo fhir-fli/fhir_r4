@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GraphCompartmentUse
+enum GraphCompartmentUseBuilderEnum {
+  /// condition
+  condition,
+
+  /// requirement
+  requirement,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GraphCompartmentUseBuilderEnum.condition:
+        return 'condition';
+      case GraphCompartmentUseBuilderEnum.requirement:
+        return 'requirement';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GraphCompartmentUseBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GraphCompartmentUseBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GraphCompartmentUseBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'condition':
+        return GraphCompartmentUseBuilderEnum.condition;
+      case 'requirement':
+        return GraphCompartmentUseBuilderEnum.requirement;
+    }
+    return null;
+  }
+}
+
 /// Defines how a compartment rule is used.
 class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GraphCompartmentUseBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GraphCompartmentUseBuilderEnum.fromString(
+      valueString,
+    );
     return GraphCompartmentUseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GraphCompartmentUseBuilder] with element only
+  /// Create empty [GraphCompartmentUseBuilder]
+  /// with element only
   factory GraphCompartmentUseBuilder.empty() =>
-      GraphCompartmentUseBuilder._(valueString: '');
+      GraphCompartmentUseBuilder._(valueString: null);
 
-  /// Factory constructor to create [GraphCompartmentUseBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GraphCompartmentUseBuilder] from JSON.
   factory GraphCompartmentUseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GraphCompartmentUseBuilder.elementOnly.withElement(element);
+      return GraphCompartmentUseBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GraphCompartmentUseBuilder cannot be constructed from JSON.',
@@ -70,40 +129,46 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GraphCompartmentUseBuilder
+  final GraphCompartmentUseBuilderEnum? valueEnum;
+
   /// condition
   static GraphCompartmentUseBuilder condition = GraphCompartmentUseBuilder._(
     valueString: 'condition',
-    system:
-        'http://hl7.org/fhir/ValueSet/graph-compartment-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Condition'.toFhirStringBuilder,
+    valueEnum: GraphCompartmentUseBuilderEnum.condition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Condition',
+    ),
   );
 
   /// requirement
   static GraphCompartmentUseBuilder requirement = GraphCompartmentUseBuilder._(
     valueString: 'requirement',
-    system:
-        'http://hl7.org/fhir/ValueSet/graph-compartment-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Requirement'.toFhirStringBuilder,
+    valueEnum: GraphCompartmentUseBuilderEnum.requirement,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Requirement',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static GraphCompartmentUseBuilder elementOnly =
-      GraphCompartmentUseBuilder._(valueString: '');
+  static GraphCompartmentUseBuilder elementOnly = GraphCompartmentUseBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GraphCompartmentUseBuilder> values = [
     condition,
     requirement,
   ];
-
-  /// Clones the current instance
-  @override
-  GraphCompartmentUseBuilder clone() => GraphCompartmentUseBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GraphCompartmentUseBuilder withElement(
@@ -125,37 +190,4 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GraphCompartmentUseBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GraphCompartmentUse: $newValue',
-      );
-    }
-    return GraphCompartmentUseBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CompartmentType
+enum CompartmentTypeBuilderEnum {
+  /// Patient
+  patient,
+
+  /// Encounter
+  encounter,
+
+  /// RelatedPerson
+  relatedPerson,
+
+  /// Practitioner
+  practitioner,
+
+  /// Device
+  device,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CompartmentTypeBuilderEnum.patient:
+        return 'Patient';
+      case CompartmentTypeBuilderEnum.encounter:
+        return 'Encounter';
+      case CompartmentTypeBuilderEnum.relatedPerson:
+        return 'RelatedPerson';
+      case CompartmentTypeBuilderEnum.practitioner:
+        return 'Practitioner';
+      case CompartmentTypeBuilderEnum.device:
+        return 'Device';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CompartmentTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CompartmentTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CompartmentTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'Patient':
+        return CompartmentTypeBuilderEnum.patient;
+      case 'Encounter':
+        return CompartmentTypeBuilderEnum.encounter;
+      case 'RelatedPerson':
+        return CompartmentTypeBuilderEnum.relatedPerson;
+      case 'Practitioner':
+        return CompartmentTypeBuilderEnum.practitioner;
+      case 'Device':
+        return CompartmentTypeBuilderEnum.device;
+    }
+    return null;
+  }
+}
+
 /// Which type a compartment definition describes.
 class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CompartmentTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CompartmentTypeBuilderEnum.fromString(
+      valueString,
+    );
     return CompartmentTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CompartmentTypeBuilder] with element only
+  /// Create empty [CompartmentTypeBuilder]
+  /// with element only
   factory CompartmentTypeBuilder.empty() =>
-      CompartmentTypeBuilder._(valueString: '');
+      CompartmentTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [CompartmentTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CompartmentTypeBuilder] from JSON.
   factory CompartmentTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompartmentTypeBuilder.elementOnly.withElement(element);
+      return CompartmentTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CompartmentTypeBuilder cannot be constructed from JSON.',
@@ -70,65 +150,88 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CompartmentTypeBuilder
+  final CompartmentTypeBuilderEnum? valueEnum;
+
   /// Patient
-  static CompartmentTypeBuilder Patient = CompartmentTypeBuilder._(
+  static CompartmentTypeBuilder patient = CompartmentTypeBuilder._(
     valueString: 'Patient',
-    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Patient'.toFhirStringBuilder,
+    valueEnum: CompartmentTypeBuilderEnum.patient,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Patient',
+    ),
   );
 
   /// Encounter
-  static CompartmentTypeBuilder Encounter = CompartmentTypeBuilder._(
+  static CompartmentTypeBuilder encounter = CompartmentTypeBuilder._(
     valueString: 'Encounter',
-    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Encounter'.toFhirStringBuilder,
+    valueEnum: CompartmentTypeBuilderEnum.encounter,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Encounter',
+    ),
   );
 
   /// RelatedPerson
-  static CompartmentTypeBuilder RelatedPerson = CompartmentTypeBuilder._(
+  static CompartmentTypeBuilder relatedPerson = CompartmentTypeBuilder._(
     valueString: 'RelatedPerson',
-    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RelatedPerson'.toFhirStringBuilder,
+    valueEnum: CompartmentTypeBuilderEnum.relatedPerson,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RelatedPerson',
+    ),
   );
 
   /// Practitioner
-  static CompartmentTypeBuilder Practitioner = CompartmentTypeBuilder._(
+  static CompartmentTypeBuilder practitioner = CompartmentTypeBuilder._(
     valueString: 'Practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Practitioner'.toFhirStringBuilder,
+    valueEnum: CompartmentTypeBuilderEnum.practitioner,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// Device
-  static CompartmentTypeBuilder Device = CompartmentTypeBuilder._(
+  static CompartmentTypeBuilder device = CompartmentTypeBuilder._(
     valueString: 'Device',
-    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Device'.toFhirStringBuilder,
+    valueEnum: CompartmentTypeBuilderEnum.device,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Device',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static CompartmentTypeBuilder elementOnly =
-      CompartmentTypeBuilder._(valueString: '');
+  static CompartmentTypeBuilder elementOnly = CompartmentTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CompartmentTypeBuilder> values = [
-    Patient,
-    Encounter,
-    RelatedPerson,
-    Practitioner,
-    Device,
+    patient,
+    encounter,
+    relatedPerson,
+    practitioner,
+    device,
   ];
-
-  /// Clones the current instance
-  @override
-  CompartmentTypeBuilder clone() => CompartmentTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CompartmentTypeBuilder withElement(
@@ -150,37 +253,4 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CompartmentTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CompartmentType: $newValue',
-      );
-    }
-    return CompartmentTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

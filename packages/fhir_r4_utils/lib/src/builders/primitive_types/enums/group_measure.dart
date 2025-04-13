@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GroupMeasure
+enum GroupMeasureBuilderEnum {
+  /// mean
+  mean,
+
+  /// median
+  median,
+
+  /// mean-of-mean
+  meanOfMean,
+
+  /// mean-of-median
+  meanOfMedian,
+
+  /// median-of-mean
+  medianOfMean,
+
+  /// median-of-median
+  medianOfMedian,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GroupMeasureBuilderEnum.mean:
+        return 'mean';
+      case GroupMeasureBuilderEnum.median:
+        return 'median';
+      case GroupMeasureBuilderEnum.meanOfMean:
+        return 'mean-of-mean';
+      case GroupMeasureBuilderEnum.meanOfMedian:
+        return 'mean-of-median';
+      case GroupMeasureBuilderEnum.medianOfMean:
+        return 'median-of-mean';
+      case GroupMeasureBuilderEnum.medianOfMedian:
+        return 'median-of-median';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GroupMeasureBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GroupMeasureBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GroupMeasureBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'mean':
+        return GroupMeasureBuilderEnum.mean;
+      case 'median':
+        return GroupMeasureBuilderEnum.median;
+      case 'mean-of-mean':
+        return GroupMeasureBuilderEnum.meanOfMean;
+      case 'mean-of-median':
+        return GroupMeasureBuilderEnum.meanOfMedian;
+      case 'median-of-mean':
+        return GroupMeasureBuilderEnum.medianOfMean;
+      case 'median-of-median':
+        return GroupMeasureBuilderEnum.medianOfMedian;
+    }
+    return null;
+  }
+}
+
 /// Possible group measure aggregates (E.g. Mean, Median).
 class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GroupMeasureBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GroupMeasureBuilderEnum.fromString(
+      valueString,
+    );
     return GroupMeasureBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +127,13 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GroupMeasureBuilder] with element only
-  factory GroupMeasureBuilder.empty() => GroupMeasureBuilder._(valueString: '');
+  /// Create empty [GroupMeasureBuilder]
+  /// with element only
+  factory GroupMeasureBuilder.empty() =>
+      GroupMeasureBuilder._(valueString: null);
 
-  /// Factory constructor to create [GroupMeasureBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GroupMeasureBuilder] from JSON.
   factory GroupMeasureBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +142,10 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupMeasureBuilder.elementOnly.withElement(element);
+      return GroupMeasureBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GroupMeasureBuilder cannot be constructed from JSON.',
@@ -69,74 +157,102 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GroupMeasureBuilder
+  final GroupMeasureBuilderEnum? valueEnum;
+
   /// mean
   static GroupMeasureBuilder mean = GroupMeasureBuilder._(
     valueString: 'mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Mean'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.mean,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Mean',
+    ),
   );
 
   /// median
   static GroupMeasureBuilder median = GroupMeasureBuilder._(
     valueString: 'median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Median'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.median,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Median',
+    ),
   );
 
   /// mean_of_mean
-  static GroupMeasureBuilder mean_of_mean = GroupMeasureBuilder._(
+  static GroupMeasureBuilder meanOfMean = GroupMeasureBuilder._(
     valueString: 'mean-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Mean of Study Means'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.meanOfMean,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Mean of Study Means',
+    ),
   );
 
   /// mean_of_median
-  static GroupMeasureBuilder mean_of_median = GroupMeasureBuilder._(
+  static GroupMeasureBuilder meanOfMedian = GroupMeasureBuilder._(
     valueString: 'mean-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Mean of Study Medins'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.meanOfMedian,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Mean of Study Medins',
+    ),
   );
 
   /// median_of_mean
-  static GroupMeasureBuilder median_of_mean = GroupMeasureBuilder._(
+  static GroupMeasureBuilder medianOfMean = GroupMeasureBuilder._(
     valueString: 'median-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Median of Study Means'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.medianOfMean,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Median of Study Means',
+    ),
   );
 
   /// median_of_median
-  static GroupMeasureBuilder median_of_median = GroupMeasureBuilder._(
+  static GroupMeasureBuilder medianOfMedian = GroupMeasureBuilder._(
     valueString: 'median-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Median of Study Medians'.toFhirStringBuilder,
+    valueEnum: GroupMeasureBuilderEnum.medianOfMedian,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Median of Study Medians',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static GroupMeasureBuilder elementOnly =
-      GroupMeasureBuilder._(valueString: '');
+  static GroupMeasureBuilder elementOnly = GroupMeasureBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GroupMeasureBuilder> values = [
     mean,
     median,
-    mean_of_mean,
-    mean_of_median,
-    median_of_mean,
-    median_of_median,
+    meanOfMean,
+    meanOfMedian,
+    medianOfMean,
+    medianOfMedian,
   ];
-
-  /// Clones the current instance
-  @override
-  GroupMeasureBuilder clone() => GroupMeasureBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GroupMeasureBuilder withElement(
@@ -158,37 +274,4 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GroupMeasureBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GroupMeasure: $newValue',
-      );
-    }
-    return GroupMeasureBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

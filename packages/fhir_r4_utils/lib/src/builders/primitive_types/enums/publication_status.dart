@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for PublicationStatus
+enum PublicationStatusBuilderEnum {
+  /// draft
+  draft,
+
+  /// active
+  active,
+
+  /// retired
+  retired,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case PublicationStatusBuilderEnum.draft:
+        return 'draft';
+      case PublicationStatusBuilderEnum.active:
+        return 'active';
+      case PublicationStatusBuilderEnum.retired:
+        return 'retired';
+      case PublicationStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static PublicationStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return PublicationStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static PublicationStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return PublicationStatusBuilderEnum.draft;
+      case 'active':
+        return PublicationStatusBuilderEnum.active;
+      case 'retired':
+        return PublicationStatusBuilderEnum.retired;
+      case 'unknown':
+        return PublicationStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The lifecycle status of an artifact.
 class PublicationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   PublicationStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = PublicationStatusBuilderEnum.fromString(
+      valueString,
+    );
     return PublicationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [PublicationStatusBuilder] with element only
+  /// Create empty [PublicationStatusBuilder]
+  /// with element only
   factory PublicationStatusBuilder.empty() =>
-      PublicationStatusBuilder._(valueString: '');
+      PublicationStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [PublicationStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [PublicationStatusBuilder] from JSON.
   factory PublicationStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PublicationStatusBuilder.elementOnly.withElement(element);
+      return PublicationStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'PublicationStatusBuilder cannot be constructed from JSON.',
@@ -70,41 +143,66 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for PublicationStatusBuilder
+  final PublicationStatusBuilderEnum? valueEnum;
+
   /// draft
   static PublicationStatusBuilder draft = PublicationStatusBuilder._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Draft'.toFhirStringBuilder,
+    valueEnum: PublicationStatusBuilderEnum.draft,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Draft',
+    ),
   );
 
   /// active
   static PublicationStatusBuilder active = PublicationStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: PublicationStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// retired
   static PublicationStatusBuilder retired = PublicationStatusBuilder._(
     valueString: 'retired',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Retired'.toFhirStringBuilder,
+    valueEnum: PublicationStatusBuilderEnum.retired,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Retired',
+    ),
   );
 
   /// unknown
   static PublicationStatusBuilder unknown = PublicationStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: PublicationStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static PublicationStatusBuilder elementOnly =
-      PublicationStatusBuilder._(valueString: '');
+  static PublicationStatusBuilder elementOnly = PublicationStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<PublicationStatusBuilder> values = [
@@ -113,13 +211,6 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     retired,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  PublicationStatusBuilder clone() => PublicationStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   PublicationStatusBuilder withElement(
@@ -141,37 +232,4 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  PublicationStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for PublicationStatus: $newValue',
-      );
-    }
-    return PublicationStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RemittanceOutcome
+enum RemittanceOutcomeBuilderEnum {
+  /// queued
+  queued,
+
+  /// complete
+  complete,
+
+  /// error
+  error,
+
+  /// partial
+  partial,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RemittanceOutcomeBuilderEnum.queued:
+        return 'queued';
+      case RemittanceOutcomeBuilderEnum.complete:
+        return 'complete';
+      case RemittanceOutcomeBuilderEnum.error:
+        return 'error';
+      case RemittanceOutcomeBuilderEnum.partial:
+        return 'partial';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RemittanceOutcomeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RemittanceOutcomeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RemittanceOutcomeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'queued':
+        return RemittanceOutcomeBuilderEnum.queued;
+      case 'complete':
+        return RemittanceOutcomeBuilderEnum.complete;
+      case 'error':
+        return RemittanceOutcomeBuilderEnum.error;
+      case 'partial':
+        return RemittanceOutcomeBuilderEnum.partial;
+    }
+    return null;
+  }
+}
+
 /// The outcome of the processing.
 class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RemittanceOutcomeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = RemittanceOutcomeBuilderEnum.fromString(
+      valueString,
+    );
     return RemittanceOutcomeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [RemittanceOutcomeBuilder] with element only
+  /// Create empty [RemittanceOutcomeBuilder]
+  /// with element only
   factory RemittanceOutcomeBuilder.empty() =>
-      RemittanceOutcomeBuilder._(valueString: '');
+      RemittanceOutcomeBuilder._(valueString: null);
 
-  /// Factory constructor to create [RemittanceOutcomeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [RemittanceOutcomeBuilder] from JSON.
   factory RemittanceOutcomeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RemittanceOutcomeBuilder.elementOnly.withElement(element);
+      return RemittanceOutcomeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RemittanceOutcomeBuilder cannot be constructed from JSON.',
@@ -70,41 +143,66 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for RemittanceOutcomeBuilder
+  final RemittanceOutcomeBuilderEnum? valueEnum;
+
   /// queued
   static RemittanceOutcomeBuilder queued = RemittanceOutcomeBuilder._(
     valueString: 'queued',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Queued'.toFhirStringBuilder,
+    valueEnum: RemittanceOutcomeBuilderEnum.queued,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Queued',
+    ),
   );
 
   /// complete
   static RemittanceOutcomeBuilder complete = RemittanceOutcomeBuilder._(
     valueString: 'complete',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Complete'.toFhirStringBuilder,
+    valueEnum: RemittanceOutcomeBuilderEnum.complete,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Complete',
+    ),
   );
 
   /// error
   static RemittanceOutcomeBuilder error = RemittanceOutcomeBuilder._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error'.toFhirStringBuilder,
+    valueEnum: RemittanceOutcomeBuilderEnum.error,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error',
+    ),
   );
 
   /// partial
   static RemittanceOutcomeBuilder partial = RemittanceOutcomeBuilder._(
     valueString: 'partial',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Partial'.toFhirStringBuilder,
+    valueEnum: RemittanceOutcomeBuilderEnum.partial,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Partial',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static RemittanceOutcomeBuilder elementOnly =
-      RemittanceOutcomeBuilder._(valueString: '');
+  static RemittanceOutcomeBuilder elementOnly = RemittanceOutcomeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<RemittanceOutcomeBuilder> values = [
@@ -113,13 +211,6 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     error,
     partial,
   ];
-
-  /// Clones the current instance
-  @override
-  RemittanceOutcomeBuilder clone() => RemittanceOutcomeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   RemittanceOutcomeBuilder withElement(
@@ -141,37 +232,4 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  RemittanceOutcomeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for RemittanceOutcome: $newValue',
-      );
-    }
-    return RemittanceOutcomeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

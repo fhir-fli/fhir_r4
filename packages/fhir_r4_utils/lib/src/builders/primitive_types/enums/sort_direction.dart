@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SortDirection
+enum SortDirectionBuilderEnum {
+  /// ascending
+  ascending,
+
+  /// descending
+  descending,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SortDirectionBuilderEnum.ascending:
+        return 'ascending';
+      case SortDirectionBuilderEnum.descending:
+        return 'descending';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SortDirectionBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SortDirectionBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SortDirectionBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'ascending':
+        return SortDirectionBuilderEnum.ascending;
+      case 'descending':
+        return SortDirectionBuilderEnum.descending;
+    }
+    return null;
+  }
+}
+
 /// The possible sort directions, ascending or descending.
 class SortDirectionBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SortDirectionBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SortDirectionBuilderEnum.fromString(
+      valueString,
+    );
     return SortDirectionBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SortDirectionBuilder] with element only
+  /// Create empty [SortDirectionBuilder]
+  /// with element only
   factory SortDirectionBuilder.empty() =>
-      SortDirectionBuilder._(valueString: '');
+      SortDirectionBuilder._(valueString: null);
 
-  /// Factory constructor to create [SortDirectionBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SortDirectionBuilder] from JSON.
   factory SortDirectionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SortDirectionBuilder.elementOnly.withElement(element);
+      return SortDirectionBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SortDirectionBuilder cannot be constructed from JSON.',
@@ -70,38 +129,46 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SortDirectionBuilder
+  final SortDirectionBuilderEnum? valueEnum;
+
   /// ascending
   static SortDirectionBuilder ascending = SortDirectionBuilder._(
     valueString: 'ascending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Ascending'.toFhirStringBuilder,
+    valueEnum: SortDirectionBuilderEnum.ascending,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Ascending',
+    ),
   );
 
   /// descending
   static SortDirectionBuilder descending = SortDirectionBuilder._(
     valueString: 'descending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Descending'.toFhirStringBuilder,
+    valueEnum: SortDirectionBuilderEnum.descending,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Descending',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static SortDirectionBuilder elementOnly =
-      SortDirectionBuilder._(valueString: '');
+  static SortDirectionBuilder elementOnly = SortDirectionBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SortDirectionBuilder> values = [
     ascending,
     descending,
   ];
-
-  /// Clones the current instance
-  @override
-  SortDirectionBuilder clone() => SortDirectionBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SortDirectionBuilder withElement(
@@ -123,37 +190,4 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SortDirectionBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SortDirection: $newValue',
-      );
-    }
-    return SortDirectionBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

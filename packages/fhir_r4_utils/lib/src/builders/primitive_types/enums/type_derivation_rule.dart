@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TypeDerivationRule
+enum TypeDerivationRuleBuilderEnum {
+  /// specialization
+  specialization,
+
+  /// constraint
+  constraint,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TypeDerivationRuleBuilderEnum.specialization:
+        return 'specialization';
+      case TypeDerivationRuleBuilderEnum.constraint:
+        return 'constraint';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TypeDerivationRuleBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TypeDerivationRuleBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TypeDerivationRuleBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'specialization':
+        return TypeDerivationRuleBuilderEnum.specialization;
+      case 'constraint':
+        return TypeDerivationRuleBuilderEnum.constraint;
+    }
+    return null;
+  }
+}
+
 /// How a type relates to its baseDefinition.
 class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TypeDerivationRuleBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = TypeDerivationRuleBuilderEnum.fromString(
+      valueString,
+    );
     return TypeDerivationRuleBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [TypeDerivationRuleBuilder] with element only
+  /// Create empty [TypeDerivationRuleBuilder]
+  /// with element only
   factory TypeDerivationRuleBuilder.empty() =>
-      TypeDerivationRuleBuilder._(valueString: '');
+      TypeDerivationRuleBuilder._(valueString: null);
 
-  /// Factory constructor to create [TypeDerivationRuleBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [TypeDerivationRuleBuilder] from JSON.
   factory TypeDerivationRuleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TypeDerivationRuleBuilder.elementOnly.withElement(element);
+      return TypeDerivationRuleBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TypeDerivationRuleBuilder cannot be constructed from JSON.',
@@ -70,40 +129,46 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for TypeDerivationRuleBuilder
+  final TypeDerivationRuleBuilderEnum? valueEnum;
+
   /// specialization
   static TypeDerivationRuleBuilder specialization = TypeDerivationRuleBuilder._(
     valueString: 'specialization',
-    system:
-        'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Specialization'.toFhirStringBuilder,
+    valueEnum: TypeDerivationRuleBuilderEnum.specialization,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-derivation-rule',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Specialization',
+    ),
   );
 
   /// constraint
   static TypeDerivationRuleBuilder constraint = TypeDerivationRuleBuilder._(
     valueString: 'constraint',
-    system:
-        'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Constraint'.toFhirStringBuilder,
+    valueEnum: TypeDerivationRuleBuilderEnum.constraint,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-derivation-rule',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Constraint',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static TypeDerivationRuleBuilder elementOnly =
-      TypeDerivationRuleBuilder._(valueString: '');
+  static TypeDerivationRuleBuilder elementOnly = TypeDerivationRuleBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<TypeDerivationRuleBuilder> values = [
     specialization,
     constraint,
   ];
-
-  /// Clones the current instance
-  @override
-  TypeDerivationRuleBuilder clone() => TypeDerivationRuleBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   TypeDerivationRuleBuilder withElement(
@@ -125,37 +190,4 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  TypeDerivationRuleBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for TypeDerivationRule: $newValue',
-      );
-    }
-    return TypeDerivationRuleBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EventCapabilityMode
+enum EventCapabilityModeBuilderEnum {
+  /// sender
+  sender,
+
+  /// receiver
+  receiver,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EventCapabilityModeBuilderEnum.sender:
+        return 'sender';
+      case EventCapabilityModeBuilderEnum.receiver:
+        return 'receiver';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EventCapabilityModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EventCapabilityModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EventCapabilityModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'sender':
+        return EventCapabilityModeBuilderEnum.sender;
+      case 'receiver':
+        return EventCapabilityModeBuilderEnum.receiver;
+    }
+    return null;
+  }
+}
+
 /// The mode of a message capability statement.
 class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EventCapabilityModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = EventCapabilityModeBuilderEnum.fromString(
+      valueString,
+    );
     return EventCapabilityModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [EventCapabilityModeBuilder] with element only
+  /// Create empty [EventCapabilityModeBuilder]
+  /// with element only
   factory EventCapabilityModeBuilder.empty() =>
-      EventCapabilityModeBuilder._(valueString: '');
+      EventCapabilityModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [EventCapabilityModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [EventCapabilityModeBuilder] from JSON.
   factory EventCapabilityModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventCapabilityModeBuilder.elementOnly.withElement(element);
+      return EventCapabilityModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EventCapabilityModeBuilder cannot be constructed from JSON.',
@@ -70,40 +129,46 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for EventCapabilityModeBuilder
+  final EventCapabilityModeBuilderEnum? valueEnum;
+
   /// sender
   static EventCapabilityModeBuilder sender = EventCapabilityModeBuilder._(
     valueString: 'sender',
-    system:
-        'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Sender'.toFhirStringBuilder,
+    valueEnum: EventCapabilityModeBuilderEnum.sender,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/event-capability-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Sender',
+    ),
   );
 
   /// receiver
   static EventCapabilityModeBuilder receiver = EventCapabilityModeBuilder._(
     valueString: 'receiver',
-    system:
-        'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Receiver'.toFhirStringBuilder,
+    valueEnum: EventCapabilityModeBuilderEnum.receiver,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/event-capability-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Receiver',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static EventCapabilityModeBuilder elementOnly =
-      EventCapabilityModeBuilder._(valueString: '');
+  static EventCapabilityModeBuilder elementOnly = EventCapabilityModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<EventCapabilityModeBuilder> values = [
     sender,
     receiver,
   ];
-
-  /// Clones the current instance
-  @override
-  EventCapabilityModeBuilder clone() => EventCapabilityModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   EventCapabilityModeBuilder withElement(
@@ -125,37 +190,4 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  EventCapabilityModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for EventCapabilityMode: $newValue',
-      );
-    }
-    return EventCapabilityModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

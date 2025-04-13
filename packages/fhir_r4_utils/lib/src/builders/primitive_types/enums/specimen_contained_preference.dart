@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SpecimenContainedPreference
+enum SpecimenContainedPreferenceBuilderEnum {
+  /// preferred
+  preferred,
+
+  /// alternate
+  alternate,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SpecimenContainedPreferenceBuilderEnum.preferred:
+        return 'preferred';
+      case SpecimenContainedPreferenceBuilderEnum.alternate:
+        return 'alternate';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SpecimenContainedPreferenceBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SpecimenContainedPreferenceBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SpecimenContainedPreferenceBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'preferred':
+        return SpecimenContainedPreferenceBuilderEnum.preferred;
+      case 'alternate':
+        return SpecimenContainedPreferenceBuilderEnum.alternate;
+    }
+    return null;
+  }
+}
+
 /// Degree of preference of a type of conditioned specimen.
 class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SpecimenContainedPreferenceBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SpecimenContainedPreferenceBuilderEnum.fromString(
+      valueString,
+    );
     return SpecimenContainedPreferenceBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SpecimenContainedPreferenceBuilder] with element only
+  /// Create empty [SpecimenContainedPreferenceBuilder]
+  /// with element only
   factory SpecimenContainedPreferenceBuilder.empty() =>
-      SpecimenContainedPreferenceBuilder._(valueString: '');
+      SpecimenContainedPreferenceBuilder._(valueString: null);
 
-  /// Factory constructor to create [SpecimenContainedPreferenceBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SpecimenContainedPreferenceBuilder] from JSON.
   factory SpecimenContainedPreferenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +114,10 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenContainedPreferenceBuilder.elementOnly
-          .withElement(element);
+      return SpecimenContainedPreferenceBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SpecimenContainedPreferenceBuilder cannot be constructed from JSON.',
@@ -71,43 +129,49 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SpecimenContainedPreferenceBuilder
+  final SpecimenContainedPreferenceBuilderEnum? valueEnum;
+
   /// preferred
   static SpecimenContainedPreferenceBuilder preferred =
       SpecimenContainedPreferenceBuilder._(
     valueString: 'preferred',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-contained-preference'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Preferred'.toFhirStringBuilder,
+    valueEnum: SpecimenContainedPreferenceBuilderEnum.preferred,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-contained-preference',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Preferred',
+    ),
   );
 
   /// alternate
   static SpecimenContainedPreferenceBuilder alternate =
       SpecimenContainedPreferenceBuilder._(
     valueString: 'alternate',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-contained-preference'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Alternate'.toFhirStringBuilder,
+    valueEnum: SpecimenContainedPreferenceBuilderEnum.alternate,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-contained-preference',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Alternate',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static SpecimenContainedPreferenceBuilder elementOnly =
-      SpecimenContainedPreferenceBuilder._(valueString: '');
+      SpecimenContainedPreferenceBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SpecimenContainedPreferenceBuilder> values = [
     preferred,
     alternate,
   ];
-
-  /// Clones the current instance
-  @override
-  SpecimenContainedPreferenceBuilder clone() =>
-      SpecimenContainedPreferenceBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SpecimenContainedPreferenceBuilder withElement(
@@ -129,37 +193,4 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SpecimenContainedPreferenceBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SpecimenContainedPreference: $newValue',
-      );
-    }
-    return SpecimenContainedPreferenceBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

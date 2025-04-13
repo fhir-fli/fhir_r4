@@ -1,12 +1,84 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CodeSystemContentMode
+enum CodeSystemContentModeBuilderEnum {
+  /// not-present
+  notPresent,
+
+  /// example
+  example,
+
+  /// fragment
+  fragment,
+
+  /// complete
+  complete,
+
+  /// supplement
+  supplement,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CodeSystemContentModeBuilderEnum.notPresent:
+        return 'not-present';
+      case CodeSystemContentModeBuilderEnum.example:
+        return 'example';
+      case CodeSystemContentModeBuilderEnum.fragment:
+        return 'fragment';
+      case CodeSystemContentModeBuilderEnum.complete:
+        return 'complete';
+      case CodeSystemContentModeBuilderEnum.supplement:
+        return 'supplement';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CodeSystemContentModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CodeSystemContentModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CodeSystemContentModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'not-present':
+        return CodeSystemContentModeBuilderEnum.notPresent;
+      case 'example':
+        return CodeSystemContentModeBuilderEnum.example;
+      case 'fragment':
+        return CodeSystemContentModeBuilderEnum.fragment;
+      case 'complete':
+        return CodeSystemContentModeBuilderEnum.complete;
+      case 'supplement':
+        return CodeSystemContentModeBuilderEnum.supplement;
+    }
+    return null;
+  }
+}
+
 /// The extent of the content of the code system (the concepts and codes it
 /// defines) are represented in a code system resource.
 class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CodeSystemContentModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +104,12 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CodeSystemContentModeBuilderEnum.fromString(
+      valueString,
+    );
     return CodeSystemContentModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +121,13 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CodeSystemContentModeBuilder] with element only
+  /// Create empty [CodeSystemContentModeBuilder]
+  /// with element only
   factory CodeSystemContentModeBuilder.empty() =>
-      CodeSystemContentModeBuilder._(valueString: '');
+      CodeSystemContentModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [CodeSystemContentModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CodeSystemContentModeBuilder] from JSON.
   factory CodeSystemContentModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +136,10 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSystemContentModeBuilder.elementOnly.withElement(element);
+      return CodeSystemContentModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CodeSystemContentModeBuilder cannot be constructed from JSON.',
@@ -71,72 +151,91 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CodeSystemContentModeBuilder
+  final CodeSystemContentModeBuilderEnum? valueEnum;
+
   /// not_present
-  static CodeSystemContentModeBuilder not_present =
+  static CodeSystemContentModeBuilder notPresent =
       CodeSystemContentModeBuilder._(
     valueString: 'not-present',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not Present'.toFhirStringBuilder,
+    valueEnum: CodeSystemContentModeBuilderEnum.notPresent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not Present',
+    ),
   );
 
   /// example
   static CodeSystemContentModeBuilder example = CodeSystemContentModeBuilder._(
     valueString: 'example',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Example'.toFhirStringBuilder,
+    valueEnum: CodeSystemContentModeBuilderEnum.example,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Example',
+    ),
   );
 
   /// fragment
   static CodeSystemContentModeBuilder fragment = CodeSystemContentModeBuilder._(
     valueString: 'fragment',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Fragment'.toFhirStringBuilder,
+    valueEnum: CodeSystemContentModeBuilderEnum.fragment,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Fragment',
+    ),
   );
 
   /// complete
   static CodeSystemContentModeBuilder complete = CodeSystemContentModeBuilder._(
     valueString: 'complete',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Complete'.toFhirStringBuilder,
+    valueEnum: CodeSystemContentModeBuilderEnum.complete,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Complete',
+    ),
   );
 
   /// supplement
   static CodeSystemContentModeBuilder supplement =
       CodeSystemContentModeBuilder._(
     valueString: 'supplement',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Supplement'.toFhirStringBuilder,
+    valueEnum: CodeSystemContentModeBuilderEnum.supplement,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Supplement',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CodeSystemContentModeBuilder elementOnly =
-      CodeSystemContentModeBuilder._(valueString: '');
+      CodeSystemContentModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CodeSystemContentModeBuilder> values = [
-    not_present,
+    notPresent,
     example,
     fragment,
     complete,
     supplement,
   ];
-
-  /// Clones the current instance
-  @override
-  CodeSystemContentModeBuilder clone() => CodeSystemContentModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CodeSystemContentModeBuilder withElement(
@@ -158,37 +257,4 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CodeSystemContentModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CodeSystemContentMode: $newValue',
-      );
-    }
-    return CodeSystemContentModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

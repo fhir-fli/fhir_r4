@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DeviceMetricCalibrationState
+enum DeviceMetricCalibrationStateBuilderEnum {
+  /// not-calibrated
+  notCalibrated,
+
+  /// calibration-required
+  calibrationRequired,
+
+  /// calibrated
+  calibrated,
+
+  /// unspecified
+  unspecified,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DeviceMetricCalibrationStateBuilderEnum.notCalibrated:
+        return 'not-calibrated';
+      case DeviceMetricCalibrationStateBuilderEnum.calibrationRequired:
+        return 'calibration-required';
+      case DeviceMetricCalibrationStateBuilderEnum.calibrated:
+        return 'calibrated';
+      case DeviceMetricCalibrationStateBuilderEnum.unspecified:
+        return 'unspecified';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DeviceMetricCalibrationStateBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DeviceMetricCalibrationStateBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DeviceMetricCalibrationStateBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'not-calibrated':
+        return DeviceMetricCalibrationStateBuilderEnum.notCalibrated;
+      case 'calibration-required':
+        return DeviceMetricCalibrationStateBuilderEnum.calibrationRequired;
+      case 'calibrated':
+        return DeviceMetricCalibrationStateBuilderEnum.calibrated;
+      case 'unspecified':
+        return DeviceMetricCalibrationStateBuilderEnum.unspecified;
+    }
+    return null;
+  }
+}
+
 /// Describes the state of a metric calibration.
 class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DeviceMetricCalibrationStateBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = DeviceMetricCalibrationStateBuilderEnum.fromString(
+      valueString,
+    );
     return DeviceMetricCalibrationStateBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [DeviceMetricCalibrationStateBuilder] with element only
+  /// Create empty [DeviceMetricCalibrationStateBuilder]
+  /// with element only
   factory DeviceMetricCalibrationStateBuilder.empty() =>
-      DeviceMetricCalibrationStateBuilder._(valueString: '');
+      DeviceMetricCalibrationStateBuilder._(valueString: null);
 
-  /// Factory constructor to create [DeviceMetricCalibrationStateBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [DeviceMetricCalibrationStateBuilder] from JSON.
   factory DeviceMetricCalibrationStateBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +128,10 @@ class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationStateBuilder.elementOnly
-          .withElement(element);
+      return DeviceMetricCalibrationStateBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DeviceMetricCalibrationStateBuilder cannot be constructed from JSON.',
@@ -71,65 +143,79 @@ class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for DeviceMetricCalibrationStateBuilder
+  final DeviceMetricCalibrationStateBuilderEnum? valueEnum;
+
   /// not_calibrated
-  static DeviceMetricCalibrationStateBuilder not_calibrated =
+  static DeviceMetricCalibrationStateBuilder notCalibrated =
       DeviceMetricCalibrationStateBuilder._(
     valueString: 'not-calibrated',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not Calibrated'.toFhirStringBuilder,
+    valueEnum: DeviceMetricCalibrationStateBuilderEnum.notCalibrated,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not Calibrated',
+    ),
   );
 
   /// calibration_required
-  static DeviceMetricCalibrationStateBuilder calibration_required =
+  static DeviceMetricCalibrationStateBuilder calibrationRequired =
       DeviceMetricCalibrationStateBuilder._(
     valueString: 'calibration-required',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Calibration Required'.toFhirStringBuilder,
+    valueEnum: DeviceMetricCalibrationStateBuilderEnum.calibrationRequired,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Calibration Required',
+    ),
   );
 
   /// calibrated
   static DeviceMetricCalibrationStateBuilder calibrated =
       DeviceMetricCalibrationStateBuilder._(
     valueString: 'calibrated',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Calibrated'.toFhirStringBuilder,
+    valueEnum: DeviceMetricCalibrationStateBuilderEnum.calibrated,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Calibrated',
+    ),
   );
 
   /// unspecified
   static DeviceMetricCalibrationStateBuilder unspecified =
       DeviceMetricCalibrationStateBuilder._(
     valueString: 'unspecified',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unspecified'.toFhirStringBuilder,
+    valueEnum: DeviceMetricCalibrationStateBuilderEnum.unspecified,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unspecified',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static DeviceMetricCalibrationStateBuilder elementOnly =
-      DeviceMetricCalibrationStateBuilder._(valueString: '');
+      DeviceMetricCalibrationStateBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<DeviceMetricCalibrationStateBuilder> values = [
-    not_calibrated,
-    calibration_required,
+    notCalibrated,
+    calibrationRequired,
     calibrated,
     unspecified,
   ];
-
-  /// Clones the current instance
-  @override
-  DeviceMetricCalibrationStateBuilder clone() =>
-      DeviceMetricCalibrationStateBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   DeviceMetricCalibrationStateBuilder withElement(
@@ -151,37 +237,4 @@ class DeviceMetricCalibrationStateBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  DeviceMetricCalibrationStateBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for DeviceMetricCalibrationState: $newValue',
-      );
-    }
-    return DeviceMetricCalibrationStateBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

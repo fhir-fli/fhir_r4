@@ -1,12 +1,77 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MessageheaderResponseRequest
+enum MessageheaderResponseRequestBuilderEnum {
+  /// always
+  always,
+
+  /// on-error
+  onError,
+
+  /// never
+  never,
+
+  /// on-success
+  onSuccess,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MessageheaderResponseRequestBuilderEnum.always:
+        return 'always';
+      case MessageheaderResponseRequestBuilderEnum.onError:
+        return 'on-error';
+      case MessageheaderResponseRequestBuilderEnum.never:
+        return 'never';
+      case MessageheaderResponseRequestBuilderEnum.onSuccess:
+        return 'on-success';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MessageheaderResponseRequestBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MessageheaderResponseRequestBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MessageheaderResponseRequestBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'always':
+        return MessageheaderResponseRequestBuilderEnum.always;
+      case 'on-error':
+        return MessageheaderResponseRequestBuilderEnum.onError;
+      case 'never':
+        return MessageheaderResponseRequestBuilderEnum.never;
+      case 'on-success':
+        return MessageheaderResponseRequestBuilderEnum.onSuccess;
+    }
+    return null;
+  }
+}
+
 /// HL7-defined table of codes which identify conditions under which
 /// acknowledgments are required to be returned in response to a message.
 class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   MessageheaderResponseRequestBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +97,12 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = MessageheaderResponseRequestBuilderEnum.fromString(
+      valueString,
+    );
     return MessageheaderResponseRequestBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +114,13 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [MessageheaderResponseRequestBuilder] with element only
+  /// Create empty [MessageheaderResponseRequestBuilder]
+  /// with element only
   factory MessageheaderResponseRequestBuilder.empty() =>
-      MessageheaderResponseRequestBuilder._(valueString: '');
+      MessageheaderResponseRequestBuilder._(valueString: null);
 
-  /// Factory constructor to create [MessageheaderResponseRequestBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [MessageheaderResponseRequestBuilder] from JSON.
   factory MessageheaderResponseRequestBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,8 +129,10 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageheaderResponseRequestBuilder.elementOnly
-          .withElement(element);
+      return MessageheaderResponseRequestBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MessageheaderResponseRequestBuilder cannot be constructed from JSON.',
@@ -72,65 +144,83 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for MessageheaderResponseRequestBuilder
+  final MessageheaderResponseRequestBuilderEnum? valueEnum;
+
   /// always
   static MessageheaderResponseRequestBuilder always =
       MessageheaderResponseRequestBuilder._(
     valueString: 'always',
-    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Always'.toFhirStringBuilder,
+    valueEnum: MessageheaderResponseRequestBuilderEnum.always,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Always',
+    ),
   );
 
   /// on_error
-  static MessageheaderResponseRequestBuilder on_error =
+  static MessageheaderResponseRequestBuilder onError =
       MessageheaderResponseRequestBuilder._(
     valueString: 'on-error',
-    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error/reject conditions only'.toFhirStringBuilder,
+    valueEnum: MessageheaderResponseRequestBuilderEnum.onError,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error/reject conditions only',
+    ),
   );
 
   /// never
   static MessageheaderResponseRequestBuilder never =
       MessageheaderResponseRequestBuilder._(
     valueString: 'never',
-    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Never'.toFhirStringBuilder,
+    valueEnum: MessageheaderResponseRequestBuilderEnum.never,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Never',
+    ),
   );
 
   /// on_success
-  static MessageheaderResponseRequestBuilder on_success =
+  static MessageheaderResponseRequestBuilder onSuccess =
       MessageheaderResponseRequestBuilder._(
     valueString: 'on-success',
-    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Successful completion only'.toFhirStringBuilder,
+    valueEnum: MessageheaderResponseRequestBuilderEnum.onSuccess,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Successful completion only',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static MessageheaderResponseRequestBuilder elementOnly =
-      MessageheaderResponseRequestBuilder._(valueString: '');
+      MessageheaderResponseRequestBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<MessageheaderResponseRequestBuilder> values = [
     always,
-    on_error,
+    onError,
     never,
-    on_success,
+    onSuccess,
   ];
-
-  /// Clones the current instance
-  @override
-  MessageheaderResponseRequestBuilder clone() =>
-      MessageheaderResponseRequestBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   MessageheaderResponseRequestBuilder withElement(
@@ -152,37 +242,4 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  MessageheaderResponseRequestBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for MessageheaderResponseRequest: $newValue',
-      );
-    }
-    return MessageheaderResponseRequestBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,12 +1,70 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ReferenceVersionRules
+enum ReferenceVersionRulesBuilderEnum {
+  /// either
+  either,
+
+  /// independent
+  independent,
+
+  /// specific
+  specific,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ReferenceVersionRulesBuilderEnum.either:
+        return 'either';
+      case ReferenceVersionRulesBuilderEnum.independent:
+        return 'independent';
+      case ReferenceVersionRulesBuilderEnum.specific:
+        return 'specific';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ReferenceVersionRulesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ReferenceVersionRulesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ReferenceVersionRulesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'either':
+        return ReferenceVersionRulesBuilderEnum.either;
+      case 'independent':
+        return ReferenceVersionRulesBuilderEnum.independent;
+      case 'specific':
+        return ReferenceVersionRulesBuilderEnum.specific;
+    }
+    return null;
+  }
+}
+
 /// Whether a reference needs to be version specific or version
 /// independent, or whether either can be used.
 class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ReferenceVersionRulesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +90,12 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ReferenceVersionRulesBuilderEnum.fromString(
+      valueString,
+    );
     return ReferenceVersionRulesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +107,13 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ReferenceVersionRulesBuilder] with element only
+  /// Create empty [ReferenceVersionRulesBuilder]
+  /// with element only
   factory ReferenceVersionRulesBuilder.empty() =>
-      ReferenceVersionRulesBuilder._(valueString: '');
+      ReferenceVersionRulesBuilder._(valueString: null);
 
-  /// Factory constructor to create [ReferenceVersionRulesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ReferenceVersionRulesBuilder] from JSON.
   factory ReferenceVersionRulesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +122,10 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceVersionRulesBuilder.elementOnly.withElement(element);
+      return ReferenceVersionRulesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ReferenceVersionRulesBuilder cannot be constructed from JSON.',
@@ -71,37 +137,55 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ReferenceVersionRulesBuilder
+  final ReferenceVersionRulesBuilderEnum? valueEnum;
+
   /// either
   static ReferenceVersionRulesBuilder either = ReferenceVersionRulesBuilder._(
     valueString: 'either',
-    system:
-        'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Either Specific or independent'.toFhirStringBuilder,
+    valueEnum: ReferenceVersionRulesBuilderEnum.either,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Either Specific or independent',
+    ),
   );
 
   /// independent
   static ReferenceVersionRulesBuilder independent =
       ReferenceVersionRulesBuilder._(
     valueString: 'independent',
-    system:
-        'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Version independent'.toFhirStringBuilder,
+    valueEnum: ReferenceVersionRulesBuilderEnum.independent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Version independent',
+    ),
   );
 
   /// specific
   static ReferenceVersionRulesBuilder specific = ReferenceVersionRulesBuilder._(
     valueString: 'specific',
-    system:
-        'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Version Specific'.toFhirStringBuilder,
+    valueEnum: ReferenceVersionRulesBuilderEnum.specific,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Version Specific',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ReferenceVersionRulesBuilder elementOnly =
-      ReferenceVersionRulesBuilder._(valueString: '');
+      ReferenceVersionRulesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ReferenceVersionRulesBuilder> values = [
@@ -109,13 +193,6 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     independent,
     specific,
   ];
-
-  /// Clones the current instance
-  @override
-  ReferenceVersionRulesBuilder clone() => ReferenceVersionRulesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ReferenceVersionRulesBuilder withElement(
@@ -137,37 +214,4 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ReferenceVersionRulesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ReferenceVersionRules: $newValue',
-      );
-    }
-    return ReferenceVersionRulesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

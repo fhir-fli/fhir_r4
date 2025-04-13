@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for InvoicePriceComponentType
+enum InvoicePriceComponentTypeBuilderEnum {
+  /// base
+  base,
+
+  /// surcharge
+  surcharge,
+
+  /// deduction
+  deduction,
+
+  /// discount
+  discount,
+
+  /// tax
+  tax,
+
+  /// informational
+  informational,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case InvoicePriceComponentTypeBuilderEnum.base:
+        return 'base';
+      case InvoicePriceComponentTypeBuilderEnum.surcharge:
+        return 'surcharge';
+      case InvoicePriceComponentTypeBuilderEnum.deduction:
+        return 'deduction';
+      case InvoicePriceComponentTypeBuilderEnum.discount:
+        return 'discount';
+      case InvoicePriceComponentTypeBuilderEnum.tax:
+        return 'tax';
+      case InvoicePriceComponentTypeBuilderEnum.informational:
+        return 'informational';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static InvoicePriceComponentTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return InvoicePriceComponentTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static InvoicePriceComponentTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'base':
+        return InvoicePriceComponentTypeBuilderEnum.base;
+      case 'surcharge':
+        return InvoicePriceComponentTypeBuilderEnum.surcharge;
+      case 'deduction':
+        return InvoicePriceComponentTypeBuilderEnum.deduction;
+      case 'discount':
+        return InvoicePriceComponentTypeBuilderEnum.discount;
+      case 'tax':
+        return InvoicePriceComponentTypeBuilderEnum.tax;
+      case 'informational':
+        return InvoicePriceComponentTypeBuilderEnum.informational;
+    }
+    return null;
+  }
+}
+
 /// Codes indicating the kind of the price component.
 class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   InvoicePriceComponentTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = InvoicePriceComponentTypeBuilderEnum.fromString(
+      valueString,
+    );
     return InvoicePriceComponentTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +127,13 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [InvoicePriceComponentTypeBuilder] with element only
+  /// Create empty [InvoicePriceComponentTypeBuilder]
+  /// with element only
   factory InvoicePriceComponentTypeBuilder.empty() =>
-      InvoicePriceComponentTypeBuilder._(valueString: '');
+      InvoicePriceComponentTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [InvoicePriceComponentTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [InvoicePriceComponentTypeBuilder] from JSON.
   factory InvoicePriceComponentTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +142,10 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoicePriceComponentTypeBuilder.elementOnly.withElement(element);
+      return InvoicePriceComponentTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'InvoicePriceComponentTypeBuilder cannot be constructed from JSON.',
@@ -70,69 +157,99 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for InvoicePriceComponentTypeBuilder
+  final InvoicePriceComponentTypeBuilderEnum? valueEnum;
+
   /// base
   static InvoicePriceComponentTypeBuilder base =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'base',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'base price'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.base,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'base price',
+    ),
   );
 
   /// surcharge
   static InvoicePriceComponentTypeBuilder surcharge =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'surcharge',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'surcharge'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.surcharge,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'surcharge',
+    ),
   );
 
   /// deduction
   static InvoicePriceComponentTypeBuilder deduction =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'deduction',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'deduction'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.deduction,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'deduction',
+    ),
   );
 
   /// discount
   static InvoicePriceComponentTypeBuilder discount =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'discount',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'discount'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.discount,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'discount',
+    ),
   );
 
   /// tax
   static InvoicePriceComponentTypeBuilder tax =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'tax',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'tax'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.tax,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'tax',
+    ),
   );
 
   /// informational
   static InvoicePriceComponentTypeBuilder informational =
       InvoicePriceComponentTypeBuilder._(
     valueString: 'informational',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'informational'.toFhirStringBuilder,
+    valueEnum: InvoicePriceComponentTypeBuilderEnum.informational,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'informational',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static InvoicePriceComponentTypeBuilder elementOnly =
-      InvoicePriceComponentTypeBuilder._(valueString: '');
+      InvoicePriceComponentTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<InvoicePriceComponentTypeBuilder> values = [
@@ -143,14 +260,6 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     tax,
     informational,
   ];
-
-  /// Clones the current instance
-  @override
-  InvoicePriceComponentTypeBuilder clone() =>
-      InvoicePriceComponentTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   InvoicePriceComponentTypeBuilder withElement(
@@ -172,37 +281,4 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  InvoicePriceComponentTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for InvoicePriceComponentType: $newValue',
-      );
-    }
-    return InvoicePriceComponentTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

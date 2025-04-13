@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ExpressionLanguage
+enum ExpressionLanguageBuilderEnum {
+  /// text/cql
+  textCql,
+
+  /// text/fhirpath
+  textFhirpath,
+
+  /// application/x-fhir-query
+  applicationXFhirQuery,
+
+  /// text/cql-identifier
+  textCqlIdentifier,
+
+  /// text/cql-expression
+  textCqlExpression,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ExpressionLanguageBuilderEnum.textCql:
+        return 'text/cql';
+      case ExpressionLanguageBuilderEnum.textFhirpath:
+        return 'text/fhirpath';
+      case ExpressionLanguageBuilderEnum.applicationXFhirQuery:
+        return 'application/x-fhir-query';
+      case ExpressionLanguageBuilderEnum.textCqlIdentifier:
+        return 'text/cql-identifier';
+      case ExpressionLanguageBuilderEnum.textCqlExpression:
+        return 'text/cql-expression';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ExpressionLanguageBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ExpressionLanguageBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ExpressionLanguageBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'text/cql':
+        return ExpressionLanguageBuilderEnum.textCql;
+      case 'text/fhirpath':
+        return ExpressionLanguageBuilderEnum.textFhirpath;
+      case 'application/x-fhir-query':
+        return ExpressionLanguageBuilderEnum.applicationXFhirQuery;
+      case 'text/cql-identifier':
+        return ExpressionLanguageBuilderEnum.textCqlIdentifier;
+      case 'text/cql-expression':
+        return ExpressionLanguageBuilderEnum.textCqlExpression;
+    }
+    return null;
+  }
+}
+
 /// The media type of the expression language.
 class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ExpressionLanguageBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ExpressionLanguageBuilderEnum.fromString(
+      valueString,
+    );
     return ExpressionLanguageBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ExpressionLanguageBuilder] with element only
+  /// Create empty [ExpressionLanguageBuilder]
+  /// with element only
   factory ExpressionLanguageBuilder.empty() =>
-      ExpressionLanguageBuilder._(valueString: '');
+      ExpressionLanguageBuilder._(valueString: null);
 
-  /// Factory constructor to create [ExpressionLanguageBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ExpressionLanguageBuilder] from JSON.
   factory ExpressionLanguageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExpressionLanguageBuilder.elementOnly.withElement(element);
+      return ExpressionLanguageBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ExpressionLanguageBuilder cannot be constructed from JSON.',
@@ -70,68 +150,91 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ExpressionLanguageBuilder
+  final ExpressionLanguageBuilderEnum? valueEnum;
+
   /// text_cql
-  static ExpressionLanguageBuilder text_cql = ExpressionLanguageBuilder._(
+  static ExpressionLanguageBuilder textCql = ExpressionLanguageBuilder._(
     valueString: 'text/cql',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CQL'.toFhirStringBuilder,
+    valueEnum: ExpressionLanguageBuilderEnum.textCql,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CQL',
+    ),
   );
 
   /// text_fhirpath
-  static ExpressionLanguageBuilder text_fhirpath = ExpressionLanguageBuilder._(
+  static ExpressionLanguageBuilder textFhirpath = ExpressionLanguageBuilder._(
     valueString: 'text/fhirpath',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'FHIRPath'.toFhirStringBuilder,
+    valueEnum: ExpressionLanguageBuilderEnum.textFhirpath,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'FHIRPath',
+    ),
   );
 
   /// application_x_fhir_query
-  static ExpressionLanguageBuilder application_x_fhir_query =
+  static ExpressionLanguageBuilder applicationXFhirQuery =
       ExpressionLanguageBuilder._(
     valueString: 'application/x-fhir-query',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'FHIR Query'.toFhirStringBuilder,
+    valueEnum: ExpressionLanguageBuilderEnum.applicationXFhirQuery,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'FHIR Query',
+    ),
   );
 
   /// text_cql_identifier
-  static ExpressionLanguageBuilder text_cql_identifier =
+  static ExpressionLanguageBuilder textCqlIdentifier =
       ExpressionLanguageBuilder._(
     valueString: 'text/cql-identifier',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CQL Identifier'.toFhirStringBuilder,
+    valueEnum: ExpressionLanguageBuilderEnum.textCqlIdentifier,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CQL Identifier',
+    ),
   );
 
   /// text_cql_expression
-  static ExpressionLanguageBuilder text_cql_expression =
+  static ExpressionLanguageBuilder textCqlExpression =
       ExpressionLanguageBuilder._(
     valueString: 'text/cql-expression',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CQL Expression'.toFhirStringBuilder,
+    valueEnum: ExpressionLanguageBuilderEnum.textCqlExpression,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CQL Expression',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ExpressionLanguageBuilder elementOnly =
-      ExpressionLanguageBuilder._(valueString: '');
+  static ExpressionLanguageBuilder elementOnly = ExpressionLanguageBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ExpressionLanguageBuilder> values = [
-    text_cql,
-    text_fhirpath,
-    application_x_fhir_query,
-    text_cql_identifier,
-    text_cql_expression,
+    textCql,
+    textFhirpath,
+    applicationXFhirQuery,
+    textCqlIdentifier,
+    textCqlExpression,
   ];
-
-  /// Clones the current instance
-  @override
-  ExpressionLanguageBuilder clone() => ExpressionLanguageBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ExpressionLanguageBuilder withElement(
@@ -153,37 +256,4 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ExpressionLanguageBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ExpressionLanguage: $newValue',
-      );
-    }
-    return ExpressionLanguageBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

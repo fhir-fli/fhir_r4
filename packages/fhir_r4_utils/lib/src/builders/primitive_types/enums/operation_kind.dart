@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for OperationKind
+enum OperationKindBuilderEnum {
+  /// operation
+  operation,
+
+  /// query
+  query,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case OperationKindBuilderEnum.operation:
+        return 'operation';
+      case OperationKindBuilderEnum.query:
+        return 'query';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static OperationKindBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return OperationKindBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static OperationKindBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'operation':
+        return OperationKindBuilderEnum.operation;
+      case 'query':
+        return OperationKindBuilderEnum.query;
+    }
+    return null;
+  }
+}
+
 /// Whether an operation is a normal operation or a query.
 class OperationKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   OperationKindBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = OperationKindBuilderEnum.fromString(
+      valueString,
+    );
     return OperationKindBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [OperationKindBuilder] with element only
+  /// Create empty [OperationKindBuilder]
+  /// with element only
   factory OperationKindBuilder.empty() =>
-      OperationKindBuilder._(valueString: '');
+      OperationKindBuilder._(valueString: null);
 
-  /// Factory constructor to create [OperationKindBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [OperationKindBuilder] from JSON.
   factory OperationKindBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OperationKindBuilder.elementOnly.withElement(element);
+      return OperationKindBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'OperationKindBuilder cannot be constructed from JSON.',
@@ -70,38 +129,46 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for OperationKindBuilder
+  final OperationKindBuilderEnum? valueEnum;
+
   /// operation
   static OperationKindBuilder operation = OperationKindBuilder._(
     valueString: 'operation',
-    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Operation'.toFhirStringBuilder,
+    valueEnum: OperationKindBuilderEnum.operation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/operation-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Operation',
+    ),
   );
 
   /// query
   static OperationKindBuilder query = OperationKindBuilder._(
     valueString: 'query',
-    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Query'.toFhirStringBuilder,
+    valueEnum: OperationKindBuilderEnum.query,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/operation-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Query',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static OperationKindBuilder elementOnly =
-      OperationKindBuilder._(valueString: '');
+  static OperationKindBuilder elementOnly = OperationKindBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<OperationKindBuilder> values = [
     operation,
     query,
   ];
-
-  /// Clones the current instance
-  @override
-  OperationKindBuilder clone() => OperationKindBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   OperationKindBuilder withElement(
@@ -123,37 +190,4 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  OperationKindBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for OperationKind: $newValue',
-      );
-    }
-    return OperationKindBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

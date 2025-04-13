@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for QuantityComparator
+enum QuantityComparatorBuilderEnum {
+  /// <
+  lt,
+
+  /// <=
+  le,
+
+  /// >=
+  ge,
+
+  /// >
+  gt,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case QuantityComparatorBuilderEnum.lt:
+        return '<';
+      case QuantityComparatorBuilderEnum.le:
+        return '<=';
+      case QuantityComparatorBuilderEnum.ge:
+        return '>=';
+      case QuantityComparatorBuilderEnum.gt:
+        return '>';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static QuantityComparatorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return QuantityComparatorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static QuantityComparatorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case '<':
+        return QuantityComparatorBuilderEnum.lt;
+      case '<=':
+        return QuantityComparatorBuilderEnum.le;
+      case '>=':
+        return QuantityComparatorBuilderEnum.ge;
+      case '>':
+        return QuantityComparatorBuilderEnum.gt;
+    }
+    return null;
+  }
+}
+
 /// How the Quantity should be understood and represented.
 class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QuantityComparatorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = QuantityComparatorBuilderEnum.fromString(
+      valueString,
+    );
     return QuantityComparatorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [QuantityComparatorBuilder] with element only
+  /// Create empty [QuantityComparatorBuilder]
+  /// with element only
   factory QuantityComparatorBuilder.empty() =>
-      QuantityComparatorBuilder._(valueString: '');
+      QuantityComparatorBuilder._(valueString: null);
 
-  /// Factory constructor to create [QuantityComparatorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [QuantityComparatorBuilder] from JSON.
   factory QuantityComparatorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuantityComparatorBuilder.elementOnly.withElement(element);
+      return QuantityComparatorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'QuantityComparatorBuilder cannot be constructed from JSON.',
@@ -70,41 +143,66 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for QuantityComparatorBuilder
+  final QuantityComparatorBuilderEnum? valueEnum;
+
   /// lt
   static QuantityComparatorBuilder lt = QuantityComparatorBuilder._(
     valueString: '<',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Less than'.toFhirStringBuilder,
+    valueEnum: QuantityComparatorBuilderEnum.lt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quantity-comparator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Less than',
+    ),
   );
 
   /// le
   static QuantityComparatorBuilder le = QuantityComparatorBuilder._(
     valueString: '<=',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Less or Equal to'.toFhirStringBuilder,
+    valueEnum: QuantityComparatorBuilderEnum.le,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quantity-comparator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Less or Equal to',
+    ),
   );
 
   /// ge
   static QuantityComparatorBuilder ge = QuantityComparatorBuilder._(
     valueString: '>=',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Greater or Equal to'.toFhirStringBuilder,
+    valueEnum: QuantityComparatorBuilderEnum.ge,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quantity-comparator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Greater or Equal to',
+    ),
   );
 
   /// gt
   static QuantityComparatorBuilder gt = QuantityComparatorBuilder._(
     valueString: '>',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Greater than'.toFhirStringBuilder,
+    valueEnum: QuantityComparatorBuilderEnum.gt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quantity-comparator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Greater than',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static QuantityComparatorBuilder elementOnly =
-      QuantityComparatorBuilder._(valueString: '');
+  static QuantityComparatorBuilder elementOnly = QuantityComparatorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<QuantityComparatorBuilder> values = [
@@ -113,13 +211,6 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
     ge,
     gt,
   ];
-
-  /// Clones the current instance
-  @override
-  QuantityComparatorBuilder clone() => QuantityComparatorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   QuantityComparatorBuilder withElement(
@@ -141,37 +232,4 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  QuantityComparatorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for QuantityComparator: $newValue',
-      );
-    }
-    return QuantityComparatorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

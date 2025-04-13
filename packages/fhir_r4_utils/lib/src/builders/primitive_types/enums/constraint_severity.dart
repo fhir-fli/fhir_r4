@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ConstraintSeverity
+enum ConstraintSeverityBuilderEnum {
+  /// error
+  error,
+
+  /// warning
+  warning,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ConstraintSeverityBuilderEnum.error:
+        return 'error';
+      case ConstraintSeverityBuilderEnum.warning:
+        return 'warning';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ConstraintSeverityBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ConstraintSeverityBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ConstraintSeverityBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'error':
+        return ConstraintSeverityBuilderEnum.error;
+      case 'warning':
+        return ConstraintSeverityBuilderEnum.warning;
+    }
+    return null;
+  }
+}
+
 /// SHALL applications comply with this constraint?
 class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConstraintSeverityBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ConstraintSeverityBuilderEnum.fromString(
+      valueString,
+    );
     return ConstraintSeverityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ConstraintSeverityBuilder] with element only
+  /// Create empty [ConstraintSeverityBuilder]
+  /// with element only
   factory ConstraintSeverityBuilder.empty() =>
-      ConstraintSeverityBuilder._(valueString: '');
+      ConstraintSeverityBuilder._(valueString: null);
 
-  /// Factory constructor to create [ConstraintSeverityBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ConstraintSeverityBuilder] from JSON.
   factory ConstraintSeverityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConstraintSeverityBuilder.elementOnly.withElement(element);
+      return ConstraintSeverityBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ConstraintSeverityBuilder cannot be constructed from JSON.',
@@ -70,38 +129,46 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ConstraintSeverityBuilder
+  final ConstraintSeverityBuilderEnum? valueEnum;
+
   /// error
   static ConstraintSeverityBuilder error = ConstraintSeverityBuilder._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error'.toFhirStringBuilder,
+    valueEnum: ConstraintSeverityBuilderEnum.error,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/constraint-severity',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error',
+    ),
   );
 
   /// warning
   static ConstraintSeverityBuilder warning = ConstraintSeverityBuilder._(
     valueString: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Warning'.toFhirStringBuilder,
+    valueEnum: ConstraintSeverityBuilderEnum.warning,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/constraint-severity',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Warning',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ConstraintSeverityBuilder elementOnly =
-      ConstraintSeverityBuilder._(valueString: '');
+  static ConstraintSeverityBuilder elementOnly = ConstraintSeverityBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ConstraintSeverityBuilder> values = [
     error,
     warning,
   ];
-
-  /// Clones the current instance
-  @override
-  ConstraintSeverityBuilder clone() => ConstraintSeverityBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ConstraintSeverityBuilder withElement(
@@ -123,37 +190,4 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ConstraintSeverityBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ConstraintSeverity: $newValue',
-      );
-    }
-    return ConstraintSeverityBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

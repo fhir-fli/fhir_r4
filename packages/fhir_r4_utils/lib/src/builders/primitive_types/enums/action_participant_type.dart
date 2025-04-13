@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionParticipantType
+enum ActionParticipantTypeBuilderEnum {
+  /// patient
+  patient,
+
+  /// practitioner
+  practitioner,
+
+  /// related-person
+  relatedPerson,
+
+  /// device
+  device,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionParticipantTypeBuilderEnum.patient:
+        return 'patient';
+      case ActionParticipantTypeBuilderEnum.practitioner:
+        return 'practitioner';
+      case ActionParticipantTypeBuilderEnum.relatedPerson:
+        return 'related-person';
+      case ActionParticipantTypeBuilderEnum.device:
+        return 'device';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionParticipantTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionParticipantTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionParticipantTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'patient':
+        return ActionParticipantTypeBuilderEnum.patient;
+      case 'practitioner':
+        return ActionParticipantTypeBuilderEnum.practitioner;
+      case 'related-person':
+        return ActionParticipantTypeBuilderEnum.relatedPerson;
+      case 'device':
+        return ActionParticipantTypeBuilderEnum.device;
+    }
+    return null;
+  }
+}
+
 /// The type of participant for the action.
 class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionParticipantTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ActionParticipantTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ActionParticipantTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ActionParticipantTypeBuilder] with element only
+  /// Create empty [ActionParticipantTypeBuilder]
+  /// with element only
   factory ActionParticipantTypeBuilder.empty() =>
-      ActionParticipantTypeBuilder._(valueString: '');
+      ActionParticipantTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ActionParticipantTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ActionParticipantTypeBuilder] from JSON.
   factory ActionParticipantTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionParticipantTypeBuilder.elementOnly.withElement(element);
+      return ActionParticipantTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionParticipantTypeBuilder cannot be constructed from JSON.',
@@ -70,62 +143,77 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ActionParticipantTypeBuilder
+  final ActionParticipantTypeBuilderEnum? valueEnum;
+
   /// patient
   static ActionParticipantTypeBuilder patient = ActionParticipantTypeBuilder._(
     valueString: 'patient',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Patient'.toFhirStringBuilder,
+    valueEnum: ActionParticipantTypeBuilderEnum.patient,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Patient',
+    ),
   );
 
   /// practitioner
   static ActionParticipantTypeBuilder practitioner =
       ActionParticipantTypeBuilder._(
     valueString: 'practitioner',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Practitioner'.toFhirStringBuilder,
+    valueEnum: ActionParticipantTypeBuilderEnum.practitioner,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// related_person
-  static ActionParticipantTypeBuilder related_person =
+  static ActionParticipantTypeBuilder relatedPerson =
       ActionParticipantTypeBuilder._(
     valueString: 'related-person',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Related Person'.toFhirStringBuilder,
+    valueEnum: ActionParticipantTypeBuilderEnum.relatedPerson,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Related Person',
+    ),
   );
 
   /// device
   static ActionParticipantTypeBuilder device = ActionParticipantTypeBuilder._(
     valueString: 'device',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Device'.toFhirStringBuilder,
+    valueEnum: ActionParticipantTypeBuilderEnum.device,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Device',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ActionParticipantTypeBuilder elementOnly =
-      ActionParticipantTypeBuilder._(valueString: '');
+      ActionParticipantTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ActionParticipantTypeBuilder> values = [
     patient,
     practitioner,
-    related_person,
+    relatedPerson,
     device,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionParticipantTypeBuilder clone() => ActionParticipantTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ActionParticipantTypeBuilder withElement(
@@ -147,37 +235,4 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ActionParticipantTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ActionParticipantType: $newValue',
-      );
-    }
-    return ActionParticipantTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,12 +1,63 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CriteriaNotExistsBehavior
+enum CriteriaNotExistsBehaviorBuilderEnum {
+  /// test-passes
+  testPasses,
+
+  /// test-fails
+  testFails,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CriteriaNotExistsBehaviorBuilderEnum.testPasses:
+        return 'test-passes';
+      case CriteriaNotExistsBehaviorBuilderEnum.testFails:
+        return 'test-fails';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CriteriaNotExistsBehaviorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CriteriaNotExistsBehaviorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CriteriaNotExistsBehaviorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'test-passes':
+        return CriteriaNotExistsBehaviorBuilderEnum.testPasses;
+      case 'test-fails':
+        return CriteriaNotExistsBehaviorBuilderEnum.testFails;
+    }
+    return null;
+  }
+}
+
 /// Behavior a server can exhibit when a criteria state does not exist
 /// (e.g., state prior to a create or after a delete).
 class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CriteriaNotExistsBehaviorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +83,12 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CriteriaNotExistsBehaviorBuilderEnum.fromString(
+      valueString,
+    );
     return CriteriaNotExistsBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +100,13 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CriteriaNotExistsBehaviorBuilder] with element only
+  /// Create empty [CriteriaNotExistsBehaviorBuilder]
+  /// with element only
   factory CriteriaNotExistsBehaviorBuilder.empty() =>
-      CriteriaNotExistsBehaviorBuilder._(valueString: '');
+      CriteriaNotExistsBehaviorBuilder._(valueString: null);
 
-  /// Factory constructor to create [CriteriaNotExistsBehaviorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CriteriaNotExistsBehaviorBuilder] from JSON.
   factory CriteriaNotExistsBehaviorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +115,10 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CriteriaNotExistsBehaviorBuilder.elementOnly.withElement(element);
+      return CriteriaNotExistsBehaviorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CriteriaNotExistsBehaviorBuilder cannot be constructed from JSON.',
@@ -71,43 +130,49 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CriteriaNotExistsBehaviorBuilder
+  final CriteriaNotExistsBehaviorBuilderEnum? valueEnum;
+
   /// test_passes
-  static CriteriaNotExistsBehaviorBuilder test_passes =
+  static CriteriaNotExistsBehaviorBuilder testPasses =
       CriteriaNotExistsBehaviorBuilder._(
     valueString: 'test-passes',
-    system: 'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'test passes'.toFhirStringBuilder,
+    valueEnum: CriteriaNotExistsBehaviorBuilderEnum.testPasses,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'test passes',
+    ),
   );
 
   /// test_fails
-  static CriteriaNotExistsBehaviorBuilder test_fails =
+  static CriteriaNotExistsBehaviorBuilder testFails =
       CriteriaNotExistsBehaviorBuilder._(
     valueString: 'test-fails',
-    system: 'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'test fails'.toFhirStringBuilder,
+    valueEnum: CriteriaNotExistsBehaviorBuilderEnum.testFails,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'test fails',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CriteriaNotExistsBehaviorBuilder elementOnly =
-      CriteriaNotExistsBehaviorBuilder._(valueString: '');
+      CriteriaNotExistsBehaviorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CriteriaNotExistsBehaviorBuilder> values = [
-    test_passes,
-    test_fails,
+    testPasses,
+    testFails,
   ];
-
-  /// Clones the current instance
-  @override
-  CriteriaNotExistsBehaviorBuilder clone() =>
-      CriteriaNotExistsBehaviorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehaviorBuilder withElement(
@@ -129,37 +194,4 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CriteriaNotExistsBehaviorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CriteriaNotExistsBehavior: $newValue',
-      );
-    }
-    return CriteriaNotExistsBehaviorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

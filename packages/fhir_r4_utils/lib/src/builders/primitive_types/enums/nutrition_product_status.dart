@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for NutritionProductStatus
+enum NutritionProductStatusBuilderEnum {
+  /// active
+  active,
+
+  /// inactive
+  inactive,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case NutritionProductStatusBuilderEnum.active:
+        return 'active';
+      case NutritionProductStatusBuilderEnum.inactive:
+        return 'inactive';
+      case NutritionProductStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static NutritionProductStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return NutritionProductStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static NutritionProductStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return NutritionProductStatusBuilderEnum.active;
+      case 'inactive':
+        return NutritionProductStatusBuilderEnum.inactive;
+      case 'entered-in-error':
+        return NutritionProductStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of a product.
 class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NutritionProductStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = NutritionProductStatusBuilderEnum.fromString(
+      valueString,
+    );
     return NutritionProductStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [NutritionProductStatusBuilder] with element only
+  /// Create empty [NutritionProductStatusBuilder]
+  /// with element only
   factory NutritionProductStatusBuilder.empty() =>
-      NutritionProductStatusBuilder._(valueString: '');
+      NutritionProductStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [NutritionProductStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [NutritionProductStatusBuilder] from JSON.
   factory NutritionProductStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NutritionProductStatusBuilder.elementOnly.withElement(element);
+      return NutritionProductStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'NutritionProductStatusBuilder cannot be constructed from JSON.',
@@ -70,52 +136,63 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for NutritionProductStatusBuilder
+  final NutritionProductStatusBuilderEnum? valueEnum;
+
   /// active
   static NutritionProductStatusBuilder active = NutritionProductStatusBuilder._(
     valueString: 'active',
-    system:
-        'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: NutritionProductStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// inactive
   static NutritionProductStatusBuilder inactive =
       NutritionProductStatusBuilder._(
     valueString: 'inactive',
-    system:
-        'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: NutritionProductStatusBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// entered_in_error
-  static NutritionProductStatusBuilder entered_in_error =
+  static NutritionProductStatusBuilder enteredInError =
       NutritionProductStatusBuilder._(
     valueString: 'entered-in-error',
-    system:
-        'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: NutritionProductStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static NutritionProductStatusBuilder elementOnly =
-      NutritionProductStatusBuilder._(valueString: '');
+      NutritionProductStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<NutritionProductStatusBuilder> values = [
     active,
     inactive,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  NutritionProductStatusBuilder clone() => NutritionProductStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   NutritionProductStatusBuilder withElement(
@@ -137,37 +214,4 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  NutritionProductStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for NutritionProductStatus: $newValue',
-      );
-    }
-    return NutritionProductStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FHIRSubstanceStatus
+enum FHIRSubstanceStatusBuilderEnum {
+  /// active
+  active,
+
+  /// inactive
+  inactive,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FHIRSubstanceStatusBuilderEnum.active:
+        return 'active';
+      case FHIRSubstanceStatusBuilderEnum.inactive:
+        return 'inactive';
+      case FHIRSubstanceStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FHIRSubstanceStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FHIRSubstanceStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FHIRSubstanceStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return FHIRSubstanceStatusBuilderEnum.active;
+      case 'inactive':
+        return FHIRSubstanceStatusBuilderEnum.inactive;
+      case 'entered-in-error':
+        return FHIRSubstanceStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// A code to indicate if the substance is actively used.
 class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   FHIRSubstanceStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = FHIRSubstanceStatusBuilderEnum.fromString(
+      valueString,
+    );
     return FHIRSubstanceStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [FHIRSubstanceStatusBuilder] with element only
+  /// Create empty [FHIRSubstanceStatusBuilder]
+  /// with element only
   factory FHIRSubstanceStatusBuilder.empty() =>
-      FHIRSubstanceStatusBuilder._(valueString: '');
+      FHIRSubstanceStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [FHIRSubstanceStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [FHIRSubstanceStatusBuilder] from JSON.
   factory FHIRSubstanceStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRSubstanceStatusBuilder.elementOnly.withElement(element);
+      return FHIRSubstanceStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FHIRSubstanceStatusBuilder cannot be constructed from JSON.',
@@ -70,48 +136,61 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for FHIRSubstanceStatusBuilder
+  final FHIRSubstanceStatusBuilderEnum? valueEnum;
+
   /// active
   static FHIRSubstanceStatusBuilder active = FHIRSubstanceStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: FHIRSubstanceStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/substance-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// inactive
   static FHIRSubstanceStatusBuilder inactive = FHIRSubstanceStatusBuilder._(
     valueString: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: FHIRSubstanceStatusBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/substance-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// entered_in_error
-  static FHIRSubstanceStatusBuilder entered_in_error =
+  static FHIRSubstanceStatusBuilder enteredInError =
       FHIRSubstanceStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: FHIRSubstanceStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/substance-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static FHIRSubstanceStatusBuilder elementOnly =
-      FHIRSubstanceStatusBuilder._(valueString: '');
+  static FHIRSubstanceStatusBuilder elementOnly = FHIRSubstanceStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<FHIRSubstanceStatusBuilder> values = [
     active,
     inactive,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  FHIRSubstanceStatusBuilder clone() => FHIRSubstanceStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   FHIRSubstanceStatusBuilder withElement(
@@ -133,37 +212,4 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  FHIRSubstanceStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for FHIRSubstanceStatus: $newValue',
-      );
-    }
-    return FHIRSubstanceStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

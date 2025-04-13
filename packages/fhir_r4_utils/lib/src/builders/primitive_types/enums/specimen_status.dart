@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SpecimenStatus
+enum SpecimenStatusBuilderEnum {
+  /// available
+  available,
+
+  /// unavailable
+  unavailable,
+
+  /// unsatisfactory
+  unsatisfactory,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SpecimenStatusBuilderEnum.available:
+        return 'available';
+      case SpecimenStatusBuilderEnum.unavailable:
+        return 'unavailable';
+      case SpecimenStatusBuilderEnum.unsatisfactory:
+        return 'unsatisfactory';
+      case SpecimenStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SpecimenStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SpecimenStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SpecimenStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'available':
+        return SpecimenStatusBuilderEnum.available;
+      case 'unavailable':
+        return SpecimenStatusBuilderEnum.unavailable;
+      case 'unsatisfactory':
+        return SpecimenStatusBuilderEnum.unsatisfactory;
+      case 'entered-in-error':
+        return SpecimenStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Codes providing the status/availability of a specimen.
 class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SpecimenStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SpecimenStatusBuilderEnum.fromString(
+      valueString,
+    );
     return SpecimenStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SpecimenStatusBuilder] with element only
+  /// Create empty [SpecimenStatusBuilder]
+  /// with element only
   factory SpecimenStatusBuilder.empty() =>
-      SpecimenStatusBuilder._(valueString: '');
+      SpecimenStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [SpecimenStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SpecimenStatusBuilder] from JSON.
   factory SpecimenStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenStatusBuilder.elementOnly.withElement(element);
+      return SpecimenStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SpecimenStatusBuilder cannot be constructed from JSON.',
@@ -70,56 +143,74 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SpecimenStatusBuilder
+  final SpecimenStatusBuilderEnum? valueEnum;
+
   /// available
   static SpecimenStatusBuilder available = SpecimenStatusBuilder._(
     valueString: 'available',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Available'.toFhirStringBuilder,
+    valueEnum: SpecimenStatusBuilderEnum.available,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Available',
+    ),
   );
 
   /// unavailable
   static SpecimenStatusBuilder unavailable = SpecimenStatusBuilder._(
     valueString: 'unavailable',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unavailable'.toFhirStringBuilder,
+    valueEnum: SpecimenStatusBuilderEnum.unavailable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unavailable',
+    ),
   );
 
   /// unsatisfactory
   static SpecimenStatusBuilder unsatisfactory = SpecimenStatusBuilder._(
     valueString: 'unsatisfactory',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unsatisfactory'.toFhirStringBuilder,
+    valueEnum: SpecimenStatusBuilderEnum.unsatisfactory,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unsatisfactory',
+    ),
   );
 
   /// entered_in_error
-  static SpecimenStatusBuilder entered_in_error = SpecimenStatusBuilder._(
+  static SpecimenStatusBuilder enteredInError = SpecimenStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: SpecimenStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static SpecimenStatusBuilder elementOnly =
-      SpecimenStatusBuilder._(valueString: '');
+  static SpecimenStatusBuilder elementOnly = SpecimenStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SpecimenStatusBuilder> values = [
     available,
     unavailable,
     unsatisfactory,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  SpecimenStatusBuilder clone() => SpecimenStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SpecimenStatusBuilder withElement(
@@ -141,37 +232,4 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SpecimenStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SpecimenStatus: $newValue',
-      );
-    }
-    return SpecimenStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

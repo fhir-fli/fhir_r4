@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for NoteType
+enum NoteTypeBuilderEnum {
+  /// display
+  display_,
+
+  /// print
+  print,
+
+  /// printoper
+  printoper,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case NoteTypeBuilderEnum.display_:
+        return 'display';
+      case NoteTypeBuilderEnum.print:
+        return 'print';
+      case NoteTypeBuilderEnum.printoper:
+        return 'printoper';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static NoteTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return NoteTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static NoteTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'display':
+        return NoteTypeBuilderEnum.display_;
+      case 'print':
+        return NoteTypeBuilderEnum.print;
+      case 'printoper':
+        return NoteTypeBuilderEnum.printoper;
+    }
+    return null;
+  }
+}
+
 /// The presentation types of notes.
 class NoteTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NoteTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = NoteTypeBuilderEnum.fromString(
+      valueString,
+    );
     return NoteTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,12 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [NoteTypeBuilder] with element only
-  factory NoteTypeBuilder.empty() => NoteTypeBuilder._(valueString: '');
+  /// Create empty [NoteTypeBuilder]
+  /// with element only
+  factory NoteTypeBuilder.empty() => NoteTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [NoteTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [NoteTypeBuilder] from JSON.
   factory NoteTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +120,10 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NoteTypeBuilder.elementOnly.withElement(element);
+      return NoteTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'NoteTypeBuilder cannot be constructed from JSON.',
@@ -69,32 +135,53 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for NoteTypeBuilder
+  final NoteTypeBuilderEnum? valueEnum;
+
   /// display_
   static NoteTypeBuilder display_ = NoteTypeBuilder._(
     valueString: 'display',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Display'.toFhirStringBuilder,
+    valueEnum: NoteTypeBuilderEnum.display_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/note-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Display',
+    ),
   );
 
   /// print
   static NoteTypeBuilder print = NoteTypeBuilder._(
     valueString: 'print',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Print (Form)'.toFhirStringBuilder,
+    valueEnum: NoteTypeBuilderEnum.print,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/note-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Print (Form)',
+    ),
   );
 
   /// printoper
   static NoteTypeBuilder printoper = NoteTypeBuilder._(
     valueString: 'printoper',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Print (Operator)'.toFhirStringBuilder,
+    valueEnum: NoteTypeBuilderEnum.printoper,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/note-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Print (Operator)',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static NoteTypeBuilder elementOnly = NoteTypeBuilder._(valueString: '');
+  static NoteTypeBuilder elementOnly = NoteTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<NoteTypeBuilder> values = [
@@ -102,13 +189,6 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     print,
     printoper,
   ];
-
-  /// Clones the current instance
-  @override
-  NoteTypeBuilder clone() => NoteTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   NoteTypeBuilder withElement(
@@ -130,37 +210,4 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  NoteTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for NoteType: $newValue',
-      );
-    }
-    return NoteTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

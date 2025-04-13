@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionPrecheckBehavior
+enum ActionPrecheckBehaviorBuilderEnum {
+  /// yes
+  yes,
+
+  /// no
+  no,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionPrecheckBehaviorBuilderEnum.yes:
+        return 'yes';
+      case ActionPrecheckBehaviorBuilderEnum.no:
+        return 'no';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionPrecheckBehaviorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionPrecheckBehaviorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionPrecheckBehaviorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'yes':
+        return ActionPrecheckBehaviorBuilderEnum.yes;
+      case 'no':
+        return ActionPrecheckBehaviorBuilderEnum.no;
+    }
+    return null;
+  }
+}
+
 /// Defines selection frequency behavior for an action or group.
 class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionPrecheckBehaviorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ActionPrecheckBehaviorBuilderEnum.fromString(
+      valueString,
+    );
     return ActionPrecheckBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ActionPrecheckBehaviorBuilder] with element only
+  /// Create empty [ActionPrecheckBehaviorBuilder]
+  /// with element only
   factory ActionPrecheckBehaviorBuilder.empty() =>
-      ActionPrecheckBehaviorBuilder._(valueString: '');
+      ActionPrecheckBehaviorBuilder._(valueString: null);
 
-  /// Factory constructor to create [ActionPrecheckBehaviorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ActionPrecheckBehaviorBuilder] from JSON.
   factory ActionPrecheckBehaviorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionPrecheckBehaviorBuilder.elementOnly.withElement(element);
+      return ActionPrecheckBehaviorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionPrecheckBehaviorBuilder cannot be constructed from JSON.',
@@ -70,40 +129,47 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ActionPrecheckBehaviorBuilder
+  final ActionPrecheckBehaviorBuilderEnum? valueEnum;
+
   /// yes
   static ActionPrecheckBehaviorBuilder yes = ActionPrecheckBehaviorBuilder._(
     valueString: 'yes',
-    system: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Yes'.toFhirStringBuilder,
+    valueEnum: ActionPrecheckBehaviorBuilderEnum.yes,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Yes',
+    ),
   );
 
   /// no
   static ActionPrecheckBehaviorBuilder no = ActionPrecheckBehaviorBuilder._(
     valueString: 'no',
-    system: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'No'.toFhirStringBuilder,
+    valueEnum: ActionPrecheckBehaviorBuilderEnum.no,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'No',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ActionPrecheckBehaviorBuilder elementOnly =
-      ActionPrecheckBehaviorBuilder._(valueString: '');
+      ActionPrecheckBehaviorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ActionPrecheckBehaviorBuilder> values = [
     yes,
     no,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionPrecheckBehaviorBuilder clone() => ActionPrecheckBehaviorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ActionPrecheckBehaviorBuilder withElement(
@@ -125,37 +191,4 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ActionPrecheckBehaviorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ActionPrecheckBehavior: $newValue',
-      );
-    }
-    return ActionPrecheckBehaviorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

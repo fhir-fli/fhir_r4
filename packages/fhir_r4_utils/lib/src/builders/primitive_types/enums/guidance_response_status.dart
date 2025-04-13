@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GuidanceResponseStatus
+enum GuidanceResponseStatusBuilderEnum {
+  /// success
+  success,
+
+  /// data-requested
+  dataRequested,
+
+  /// data-required
+  dataRequired,
+
+  /// in-progress
+  inProgress,
+
+  /// failure
+  failure,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GuidanceResponseStatusBuilderEnum.success:
+        return 'success';
+      case GuidanceResponseStatusBuilderEnum.dataRequested:
+        return 'data-requested';
+      case GuidanceResponseStatusBuilderEnum.dataRequired:
+        return 'data-required';
+      case GuidanceResponseStatusBuilderEnum.inProgress:
+        return 'in-progress';
+      case GuidanceResponseStatusBuilderEnum.failure:
+        return 'failure';
+      case GuidanceResponseStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GuidanceResponseStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GuidanceResponseStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GuidanceResponseStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'success':
+        return GuidanceResponseStatusBuilderEnum.success;
+      case 'data-requested':
+        return GuidanceResponseStatusBuilderEnum.dataRequested;
+      case 'data-required':
+        return GuidanceResponseStatusBuilderEnum.dataRequired;
+      case 'in-progress':
+        return GuidanceResponseStatusBuilderEnum.inProgress;
+      case 'failure':
+        return GuidanceResponseStatusBuilderEnum.failure;
+      case 'entered-in-error':
+        return GuidanceResponseStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The status of a guidance response.
 class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GuidanceResponseStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GuidanceResponseStatusBuilderEnum.fromString(
+      valueString,
+    );
     return GuidanceResponseStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +127,13 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GuidanceResponseStatusBuilder] with element only
+  /// Create empty [GuidanceResponseStatusBuilder]
+  /// with element only
   factory GuidanceResponseStatusBuilder.empty() =>
-      GuidanceResponseStatusBuilder._(valueString: '');
+      GuidanceResponseStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [GuidanceResponseStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GuidanceResponseStatusBuilder] from JSON.
   factory GuidanceResponseStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +142,10 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidanceResponseStatusBuilder.elementOnly.withElement(element);
+      return GuidanceResponseStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GuidanceResponseStatusBuilder cannot be constructed from JSON.',
@@ -70,86 +157,109 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GuidanceResponseStatusBuilder
+  final GuidanceResponseStatusBuilderEnum? valueEnum;
+
   /// success
   static GuidanceResponseStatusBuilder success =
       GuidanceResponseStatusBuilder._(
     valueString: 'success',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Success'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.success,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Success',
+    ),
   );
 
   /// data_requested
-  static GuidanceResponseStatusBuilder data_requested =
+  static GuidanceResponseStatusBuilder dataRequested =
       GuidanceResponseStatusBuilder._(
     valueString: 'data-requested',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Data Requested'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.dataRequested,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Data Requested',
+    ),
   );
 
   /// data_required
-  static GuidanceResponseStatusBuilder data_required =
+  static GuidanceResponseStatusBuilder dataRequired =
       GuidanceResponseStatusBuilder._(
     valueString: 'data-required',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Data Required'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.dataRequired,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Data Required',
+    ),
   );
 
   /// in_progress
-  static GuidanceResponseStatusBuilder in_progress =
+  static GuidanceResponseStatusBuilder inProgress =
       GuidanceResponseStatusBuilder._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'In Progress'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.inProgress,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// failure
   static GuidanceResponseStatusBuilder failure =
       GuidanceResponseStatusBuilder._(
     valueString: 'failure',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Failure'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.failure,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Failure',
+    ),
   );
 
   /// entered_in_error
-  static GuidanceResponseStatusBuilder entered_in_error =
+  static GuidanceResponseStatusBuilder enteredInError =
       GuidanceResponseStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered In Error'.toFhirStringBuilder,
+    valueEnum: GuidanceResponseStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered In Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static GuidanceResponseStatusBuilder elementOnly =
-      GuidanceResponseStatusBuilder._(valueString: '');
+      GuidanceResponseStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GuidanceResponseStatusBuilder> values = [
     success,
-    data_requested,
-    data_required,
-    in_progress,
+    dataRequested,
+    dataRequired,
+    inProgress,
     failure,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  GuidanceResponseStatusBuilder clone() => GuidanceResponseStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GuidanceResponseStatusBuilder withElement(
@@ -171,37 +281,4 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GuidanceResponseStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GuidanceResponseStatus: $newValue',
-      );
-    }
-    return GuidanceResponseStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

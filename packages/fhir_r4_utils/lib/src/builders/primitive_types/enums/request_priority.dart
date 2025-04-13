@@ -1,12 +1,77 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RequestPriority
+enum RequestPriorityBuilderEnum {
+  /// routine
+  routine,
+
+  /// urgent
+  urgent,
+
+  /// asap
+  asap,
+
+  /// stat
+  stat,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RequestPriorityBuilderEnum.routine:
+        return 'routine';
+      case RequestPriorityBuilderEnum.urgent:
+        return 'urgent';
+      case RequestPriorityBuilderEnum.asap:
+        return 'asap';
+      case RequestPriorityBuilderEnum.stat:
+        return 'stat';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RequestPriorityBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RequestPriorityBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RequestPriorityBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'routine':
+        return RequestPriorityBuilderEnum.routine;
+      case 'urgent':
+        return RequestPriorityBuilderEnum.urgent;
+      case 'asap':
+        return RequestPriorityBuilderEnum.asap;
+      case 'stat':
+        return RequestPriorityBuilderEnum.stat;
+    }
+    return null;
+  }
+}
+
 /// Identifies the level of importance to be assigned to actioning the
 /// request.
 class RequestPriorityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RequestPriorityBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +97,12 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = RequestPriorityBuilderEnum.fromString(
+      valueString,
+    );
     return RequestPriorityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +114,13 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [RequestPriorityBuilder] with element only
+  /// Create empty [RequestPriorityBuilder]
+  /// with element only
   factory RequestPriorityBuilder.empty() =>
-      RequestPriorityBuilder._(valueString: '');
+      RequestPriorityBuilder._(valueString: null);
 
-  /// Factory constructor to create [RequestPriorityBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [RequestPriorityBuilder] from JSON.
   factory RequestPriorityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +129,10 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestPriorityBuilder.elementOnly.withElement(element);
+      return RequestPriorityBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RequestPriorityBuilder cannot be constructed from JSON.',
@@ -71,41 +144,66 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for RequestPriorityBuilder
+  final RequestPriorityBuilderEnum? valueEnum;
+
   /// routine
   static RequestPriorityBuilder routine = RequestPriorityBuilder._(
     valueString: 'routine',
-    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Routine'.toFhirStringBuilder,
+    valueEnum: RequestPriorityBuilderEnum.routine,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-priority',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Routine',
+    ),
   );
 
   /// urgent
   static RequestPriorityBuilder urgent = RequestPriorityBuilder._(
     valueString: 'urgent',
-    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Urgent'.toFhirStringBuilder,
+    valueEnum: RequestPriorityBuilderEnum.urgent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-priority',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Urgent',
+    ),
   );
 
   /// asap
   static RequestPriorityBuilder asap = RequestPriorityBuilder._(
     valueString: 'asap',
-    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ASAP'.toFhirStringBuilder,
+    valueEnum: RequestPriorityBuilderEnum.asap,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-priority',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ASAP',
+    ),
   );
 
   /// stat
   static RequestPriorityBuilder stat = RequestPriorityBuilder._(
     valueString: 'stat',
-    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'STAT'.toFhirStringBuilder,
+    valueEnum: RequestPriorityBuilderEnum.stat,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-priority',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'STAT',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static RequestPriorityBuilder elementOnly =
-      RequestPriorityBuilder._(valueString: '');
+  static RequestPriorityBuilder elementOnly = RequestPriorityBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<RequestPriorityBuilder> values = [
@@ -114,13 +212,6 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
     asap,
     stat,
   ];
-
-  /// Clones the current instance
-  @override
-  RequestPriorityBuilder clone() => RequestPriorityBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   RequestPriorityBuilder withElement(
@@ -142,37 +233,4 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  RequestPriorityBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for RequestPriority: $newValue',
-      );
-    }
-    return RequestPriorityBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

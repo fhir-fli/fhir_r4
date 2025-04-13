@@ -1,11 +1,125 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AssertionOperatorType
+enum AssertionOperatorTypeBuilderEnum {
+  /// equals
+  equals_,
+
+  /// notEquals
+  notEquals,
+
+  /// in
+  in_,
+
+  /// notIn
+  notIn,
+
+  /// greaterThan
+  greaterThan,
+
+  /// lessThan
+  lessThan,
+
+  /// empty
+  empty_,
+
+  /// notEmpty
+  notEmpty,
+
+  /// contains
+  contains_,
+
+  /// notContains
+  notContains,
+
+  /// eval
+  eval,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AssertionOperatorTypeBuilderEnum.equals_:
+        return 'equals';
+      case AssertionOperatorTypeBuilderEnum.notEquals:
+        return 'notEquals';
+      case AssertionOperatorTypeBuilderEnum.in_:
+        return 'in';
+      case AssertionOperatorTypeBuilderEnum.notIn:
+        return 'notIn';
+      case AssertionOperatorTypeBuilderEnum.greaterThan:
+        return 'greaterThan';
+      case AssertionOperatorTypeBuilderEnum.lessThan:
+        return 'lessThan';
+      case AssertionOperatorTypeBuilderEnum.empty_:
+        return 'empty';
+      case AssertionOperatorTypeBuilderEnum.notEmpty:
+        return 'notEmpty';
+      case AssertionOperatorTypeBuilderEnum.contains_:
+        return 'contains';
+      case AssertionOperatorTypeBuilderEnum.notContains:
+        return 'notContains';
+      case AssertionOperatorTypeBuilderEnum.eval:
+        return 'eval';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AssertionOperatorTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AssertionOperatorTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AssertionOperatorTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'equals':
+        return AssertionOperatorTypeBuilderEnum.equals_;
+      case 'notEquals':
+        return AssertionOperatorTypeBuilderEnum.notEquals;
+      case 'in':
+        return AssertionOperatorTypeBuilderEnum.in_;
+      case 'notIn':
+        return AssertionOperatorTypeBuilderEnum.notIn;
+      case 'greaterThan':
+        return AssertionOperatorTypeBuilderEnum.greaterThan;
+      case 'lessThan':
+        return AssertionOperatorTypeBuilderEnum.lessThan;
+      case 'empty':
+        return AssertionOperatorTypeBuilderEnum.empty_;
+      case 'notEmpty':
+        return AssertionOperatorTypeBuilderEnum.notEmpty;
+      case 'contains':
+        return AssertionOperatorTypeBuilderEnum.contains_;
+      case 'notContains':
+        return AssertionOperatorTypeBuilderEnum.notContains;
+      case 'eval':
+        return AssertionOperatorTypeBuilderEnum.eval;
+    }
+    return null;
+  }
+}
+
 /// The type of operator to use for assertion.
 class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AssertionOperatorTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +145,12 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AssertionOperatorTypeBuilderEnum.fromString(
+      valueString,
+    );
     return AssertionOperatorTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +162,13 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AssertionOperatorTypeBuilder] with element only
+  /// Create empty [AssertionOperatorTypeBuilder]
+  /// with element only
   factory AssertionOperatorTypeBuilder.empty() =>
-      AssertionOperatorTypeBuilder._(valueString: '');
+      AssertionOperatorTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [AssertionOperatorTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AssertionOperatorTypeBuilder] from JSON.
   factory AssertionOperatorTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +177,10 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AssertionOperatorTypeBuilder.elementOnly.withElement(element);
+      return AssertionOperatorTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AssertionOperatorTypeBuilder cannot be constructed from JSON.',
@@ -70,112 +192,162 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AssertionOperatorTypeBuilder
+  final AssertionOperatorTypeBuilderEnum? valueEnum;
+
   /// equals
   static AssertionOperatorTypeBuilder equals_ = AssertionOperatorTypeBuilder._(
     valueString: 'equals',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'equals'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.equals_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'equals',
+    ),
   );
 
   /// notEquals
   static AssertionOperatorTypeBuilder notEquals =
       AssertionOperatorTypeBuilder._(
     valueString: 'notEquals',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'notEquals'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.notEquals,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'notEquals',
+    ),
   );
 
   /// in_
   static AssertionOperatorTypeBuilder in_ = AssertionOperatorTypeBuilder._(
     valueString: 'in',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'in'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.in_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'in',
+    ),
   );
 
   /// notIn
   static AssertionOperatorTypeBuilder notIn = AssertionOperatorTypeBuilder._(
     valueString: 'notIn',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'notIn'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.notIn,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'notIn',
+    ),
   );
 
   /// greaterThan
   static AssertionOperatorTypeBuilder greaterThan =
       AssertionOperatorTypeBuilder._(
     valueString: 'greaterThan',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'greaterThan'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.greaterThan,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'greaterThan',
+    ),
   );
 
   /// lessThan
   static AssertionOperatorTypeBuilder lessThan = AssertionOperatorTypeBuilder._(
     valueString: 'lessThan',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'lessThan'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.lessThan,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'lessThan',
+    ),
   );
 
   /// empty_
   static AssertionOperatorTypeBuilder empty_ = AssertionOperatorTypeBuilder._(
     valueString: 'empty',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'empty'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.empty_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'empty',
+    ),
   );
 
   /// notEmpty
   static AssertionOperatorTypeBuilder notEmpty = AssertionOperatorTypeBuilder._(
     valueString: 'notEmpty',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'notEmpty'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.notEmpty,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'notEmpty',
+    ),
   );
 
   /// contains_
   static AssertionOperatorTypeBuilder contains_ =
       AssertionOperatorTypeBuilder._(
     valueString: 'contains',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'contains'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.contains_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'contains',
+    ),
   );
 
   /// notContains
   static AssertionOperatorTypeBuilder notContains =
       AssertionOperatorTypeBuilder._(
     valueString: 'notContains',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'notContains'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.notContains,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'notContains',
+    ),
   );
 
   /// eval
   static AssertionOperatorTypeBuilder eval = AssertionOperatorTypeBuilder._(
     valueString: 'eval',
-    system:
-        'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'evaluate'.toFhirStringBuilder,
+    valueEnum: AssertionOperatorTypeBuilderEnum.eval,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'evaluate',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static AssertionOperatorTypeBuilder elementOnly =
-      AssertionOperatorTypeBuilder._(valueString: '');
+      AssertionOperatorTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AssertionOperatorTypeBuilder> values = [
@@ -191,13 +363,6 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     notContains,
     eval,
   ];
-
-  /// Clones the current instance
-  @override
-  AssertionOperatorTypeBuilder clone() => AssertionOperatorTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AssertionOperatorTypeBuilder withElement(
@@ -219,37 +384,4 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AssertionOperatorTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AssertionOperatorType: $newValue',
-      );
-    }
-    return AssertionOperatorTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

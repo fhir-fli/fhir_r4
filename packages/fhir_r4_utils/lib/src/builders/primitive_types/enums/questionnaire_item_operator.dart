@@ -1,11 +1,97 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for QuestionnaireItemOperator
+enum QuestionnaireItemOperatorBuilderEnum {
+  /// exists
+  exists,
+
+  /// =
+  eq,
+
+  /// !=
+  ne,
+
+  /// >
+  gt,
+
+  /// <
+  lt,
+
+  /// >=
+  ge,
+
+  /// <=
+  le,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case QuestionnaireItemOperatorBuilderEnum.exists:
+        return 'exists';
+      case QuestionnaireItemOperatorBuilderEnum.eq:
+        return '=';
+      case QuestionnaireItemOperatorBuilderEnum.ne:
+        return '!=';
+      case QuestionnaireItemOperatorBuilderEnum.gt:
+        return '>';
+      case QuestionnaireItemOperatorBuilderEnum.lt:
+        return '<';
+      case QuestionnaireItemOperatorBuilderEnum.ge:
+        return '>=';
+      case QuestionnaireItemOperatorBuilderEnum.le:
+        return '<=';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static QuestionnaireItemOperatorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return QuestionnaireItemOperatorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static QuestionnaireItemOperatorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'exists':
+        return QuestionnaireItemOperatorBuilderEnum.exists;
+      case '=':
+        return QuestionnaireItemOperatorBuilderEnum.eq;
+      case '!=':
+        return QuestionnaireItemOperatorBuilderEnum.ne;
+      case '>':
+        return QuestionnaireItemOperatorBuilderEnum.gt;
+      case '<':
+        return QuestionnaireItemOperatorBuilderEnum.lt;
+      case '>=':
+        return QuestionnaireItemOperatorBuilderEnum.ge;
+      case '<=':
+        return QuestionnaireItemOperatorBuilderEnum.le;
+    }
+    return null;
+  }
+}
+
 /// The criteria by which a question is enabled.
 class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QuestionnaireItemOperatorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +117,12 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = QuestionnaireItemOperatorBuilderEnum.fromString(
+      valueString,
+    );
     return QuestionnaireItemOperatorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +134,13 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [QuestionnaireItemOperatorBuilder] with element only
+  /// Create empty [QuestionnaireItemOperatorBuilder]
+  /// with element only
   factory QuestionnaireItemOperatorBuilder.empty() =>
-      QuestionnaireItemOperatorBuilder._(valueString: '');
+      QuestionnaireItemOperatorBuilder._(valueString: null);
 
-  /// Factory constructor to create [QuestionnaireItemOperatorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [QuestionnaireItemOperatorBuilder] from JSON.
   factory QuestionnaireItemOperatorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +149,10 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireItemOperatorBuilder.elementOnly.withElement(element);
+      return QuestionnaireItemOperatorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'QuestionnaireItemOperatorBuilder cannot be constructed from JSON.',
@@ -70,79 +164,113 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for QuestionnaireItemOperatorBuilder
+  final QuestionnaireItemOperatorBuilderEnum? valueEnum;
+
   /// exists
   static QuestionnaireItemOperatorBuilder exists =
       QuestionnaireItemOperatorBuilder._(
     valueString: 'exists',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Exists'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.exists,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Exists',
+    ),
   );
 
   /// eq
   static QuestionnaireItemOperatorBuilder eq =
       QuestionnaireItemOperatorBuilder._(
     valueString: '=',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Equals'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.eq,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Equals',
+    ),
   );
 
   /// ne
   static QuestionnaireItemOperatorBuilder ne =
       QuestionnaireItemOperatorBuilder._(
     valueString: '!=',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not Equals'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.ne,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not Equals',
+    ),
   );
 
   /// gt
   static QuestionnaireItemOperatorBuilder gt =
       QuestionnaireItemOperatorBuilder._(
     valueString: '>',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Greater Than'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.gt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Greater Than',
+    ),
   );
 
   /// lt
   static QuestionnaireItemOperatorBuilder lt =
       QuestionnaireItemOperatorBuilder._(
     valueString: '<',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Less Than'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.lt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Less Than',
+    ),
   );
 
   /// ge
   static QuestionnaireItemOperatorBuilder ge =
       QuestionnaireItemOperatorBuilder._(
     valueString: '>=',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Greater or Equals'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.ge,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Greater or Equals',
+    ),
   );
 
   /// le
   static QuestionnaireItemOperatorBuilder le =
       QuestionnaireItemOperatorBuilder._(
     valueString: '<=',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Less or Equals'.toFhirStringBuilder,
+    valueEnum: QuestionnaireItemOperatorBuilderEnum.le,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-operator',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Less or Equals',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static QuestionnaireItemOperatorBuilder elementOnly =
-      QuestionnaireItemOperatorBuilder._(valueString: '');
+      QuestionnaireItemOperatorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<QuestionnaireItemOperatorBuilder> values = [
@@ -154,14 +282,6 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
     ge,
     le,
   ];
-
-  /// Clones the current instance
-  @override
-  QuestionnaireItemOperatorBuilder clone() =>
-      QuestionnaireItemOperatorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   QuestionnaireItemOperatorBuilder withElement(
@@ -183,37 +303,4 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  QuestionnaireItemOperatorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for QuestionnaireItemOperator: $newValue',
-      );
-    }
-    return QuestionnaireItemOperatorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

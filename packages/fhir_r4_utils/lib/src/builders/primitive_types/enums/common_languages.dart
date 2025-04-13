@@ -1,12 +1,441 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CommonLanguages
+enum CommonLanguagesBuilderEnum {
+  /// ar
+  ar,
+
+  /// bn
+  bn,
+
+  /// cs
+  cs,
+
+  /// da
+  da,
+
+  /// de
+  de,
+
+  /// de-AT
+  deAt,
+
+  /// de-CH
+  deCh,
+
+  /// de-DE
+  deDe,
+
+  /// el
+  el,
+
+  /// en
+  en,
+
+  /// en-AU
+  enAu,
+
+  /// en-CA
+  enCa,
+
+  /// en-GB
+  enGb,
+
+  /// en-IN
+  enIn,
+
+  /// en-NZ
+  enNz,
+
+  /// en-SG
+  enSg,
+
+  /// en-US
+  enUs,
+
+  /// es
+  es,
+
+  /// es-AR
+  esAr,
+
+  /// es-ES
+  esEs,
+
+  /// es-UY
+  esUy,
+
+  /// fi
+  fi,
+
+  /// fr
+  fr,
+
+  /// fr-BE
+  frBe,
+
+  /// fr-CH
+  frCh,
+
+  /// fr-FR
+  frFr,
+
+  /// fy
+  fy,
+
+  /// fy-NL
+  fyNl,
+
+  /// hi
+  hi,
+
+  /// hr
+  hr,
+
+  /// it
+  it,
+
+  /// it-CH
+  itCh,
+
+  /// it-IT
+  itIt,
+
+  /// ja
+  ja,
+
+  /// ko
+  ko,
+
+  /// nl
+  nl,
+
+  /// nl-BE
+  nlBe,
+
+  /// nl-NL
+  nlNl,
+
+  /// no
+  no,
+
+  /// no-NO
+  noNo,
+
+  /// pa
+  pa,
+
+  /// pl
+  pl,
+
+  /// pt
+  pt,
+
+  /// pt-BR
+  ptBr,
+
+  /// ru
+  ru,
+
+  /// ru-RU
+  ruRu,
+
+  /// sr
+  sr,
+
+  /// sr-RS
+  srRs,
+
+  /// sv
+  sv,
+
+  /// sv-SE
+  svSe,
+
+  /// te
+  te,
+
+  /// zh
+  zh,
+
+  /// zh-CN
+  zhCn,
+
+  /// zh-HK
+  zhHk,
+
+  /// zh-SG
+  zhSg,
+
+  /// zh-TW
+  zhTw,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CommonLanguagesBuilderEnum.ar:
+        return 'ar';
+      case CommonLanguagesBuilderEnum.bn:
+        return 'bn';
+      case CommonLanguagesBuilderEnum.cs:
+        return 'cs';
+      case CommonLanguagesBuilderEnum.da:
+        return 'da';
+      case CommonLanguagesBuilderEnum.de:
+        return 'de';
+      case CommonLanguagesBuilderEnum.deAt:
+        return 'de-AT';
+      case CommonLanguagesBuilderEnum.deCh:
+        return 'de-CH';
+      case CommonLanguagesBuilderEnum.deDe:
+        return 'de-DE';
+      case CommonLanguagesBuilderEnum.el:
+        return 'el';
+      case CommonLanguagesBuilderEnum.en:
+        return 'en';
+      case CommonLanguagesBuilderEnum.enAu:
+        return 'en-AU';
+      case CommonLanguagesBuilderEnum.enCa:
+        return 'en-CA';
+      case CommonLanguagesBuilderEnum.enGb:
+        return 'en-GB';
+      case CommonLanguagesBuilderEnum.enIn:
+        return 'en-IN';
+      case CommonLanguagesBuilderEnum.enNz:
+        return 'en-NZ';
+      case CommonLanguagesBuilderEnum.enSg:
+        return 'en-SG';
+      case CommonLanguagesBuilderEnum.enUs:
+        return 'en-US';
+      case CommonLanguagesBuilderEnum.es:
+        return 'es';
+      case CommonLanguagesBuilderEnum.esAr:
+        return 'es-AR';
+      case CommonLanguagesBuilderEnum.esEs:
+        return 'es-ES';
+      case CommonLanguagesBuilderEnum.esUy:
+        return 'es-UY';
+      case CommonLanguagesBuilderEnum.fi:
+        return 'fi';
+      case CommonLanguagesBuilderEnum.fr:
+        return 'fr';
+      case CommonLanguagesBuilderEnum.frBe:
+        return 'fr-BE';
+      case CommonLanguagesBuilderEnum.frCh:
+        return 'fr-CH';
+      case CommonLanguagesBuilderEnum.frFr:
+        return 'fr-FR';
+      case CommonLanguagesBuilderEnum.fy:
+        return 'fy';
+      case CommonLanguagesBuilderEnum.fyNl:
+        return 'fy-NL';
+      case CommonLanguagesBuilderEnum.hi:
+        return 'hi';
+      case CommonLanguagesBuilderEnum.hr:
+        return 'hr';
+      case CommonLanguagesBuilderEnum.it:
+        return 'it';
+      case CommonLanguagesBuilderEnum.itCh:
+        return 'it-CH';
+      case CommonLanguagesBuilderEnum.itIt:
+        return 'it-IT';
+      case CommonLanguagesBuilderEnum.ja:
+        return 'ja';
+      case CommonLanguagesBuilderEnum.ko:
+        return 'ko';
+      case CommonLanguagesBuilderEnum.nl:
+        return 'nl';
+      case CommonLanguagesBuilderEnum.nlBe:
+        return 'nl-BE';
+      case CommonLanguagesBuilderEnum.nlNl:
+        return 'nl-NL';
+      case CommonLanguagesBuilderEnum.no:
+        return 'no';
+      case CommonLanguagesBuilderEnum.noNo:
+        return 'no-NO';
+      case CommonLanguagesBuilderEnum.pa:
+        return 'pa';
+      case CommonLanguagesBuilderEnum.pl:
+        return 'pl';
+      case CommonLanguagesBuilderEnum.pt:
+        return 'pt';
+      case CommonLanguagesBuilderEnum.ptBr:
+        return 'pt-BR';
+      case CommonLanguagesBuilderEnum.ru:
+        return 'ru';
+      case CommonLanguagesBuilderEnum.ruRu:
+        return 'ru-RU';
+      case CommonLanguagesBuilderEnum.sr:
+        return 'sr';
+      case CommonLanguagesBuilderEnum.srRs:
+        return 'sr-RS';
+      case CommonLanguagesBuilderEnum.sv:
+        return 'sv';
+      case CommonLanguagesBuilderEnum.svSe:
+        return 'sv-SE';
+      case CommonLanguagesBuilderEnum.te:
+        return 'te';
+      case CommonLanguagesBuilderEnum.zh:
+        return 'zh';
+      case CommonLanguagesBuilderEnum.zhCn:
+        return 'zh-CN';
+      case CommonLanguagesBuilderEnum.zhHk:
+        return 'zh-HK';
+      case CommonLanguagesBuilderEnum.zhSg:
+        return 'zh-SG';
+      case CommonLanguagesBuilderEnum.zhTw:
+        return 'zh-TW';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CommonLanguagesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CommonLanguagesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CommonLanguagesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'ar':
+        return CommonLanguagesBuilderEnum.ar;
+      case 'bn':
+        return CommonLanguagesBuilderEnum.bn;
+      case 'cs':
+        return CommonLanguagesBuilderEnum.cs;
+      case 'da':
+        return CommonLanguagesBuilderEnum.da;
+      case 'de':
+        return CommonLanguagesBuilderEnum.de;
+      case 'de-AT':
+        return CommonLanguagesBuilderEnum.deAt;
+      case 'de-CH':
+        return CommonLanguagesBuilderEnum.deCh;
+      case 'de-DE':
+        return CommonLanguagesBuilderEnum.deDe;
+      case 'el':
+        return CommonLanguagesBuilderEnum.el;
+      case 'en':
+        return CommonLanguagesBuilderEnum.en;
+      case 'en-AU':
+        return CommonLanguagesBuilderEnum.enAu;
+      case 'en-CA':
+        return CommonLanguagesBuilderEnum.enCa;
+      case 'en-GB':
+        return CommonLanguagesBuilderEnum.enGb;
+      case 'en-IN':
+        return CommonLanguagesBuilderEnum.enIn;
+      case 'en-NZ':
+        return CommonLanguagesBuilderEnum.enNz;
+      case 'en-SG':
+        return CommonLanguagesBuilderEnum.enSg;
+      case 'en-US':
+        return CommonLanguagesBuilderEnum.enUs;
+      case 'es':
+        return CommonLanguagesBuilderEnum.es;
+      case 'es-AR':
+        return CommonLanguagesBuilderEnum.esAr;
+      case 'es-ES':
+        return CommonLanguagesBuilderEnum.esEs;
+      case 'es-UY':
+        return CommonLanguagesBuilderEnum.esUy;
+      case 'fi':
+        return CommonLanguagesBuilderEnum.fi;
+      case 'fr':
+        return CommonLanguagesBuilderEnum.fr;
+      case 'fr-BE':
+        return CommonLanguagesBuilderEnum.frBe;
+      case 'fr-CH':
+        return CommonLanguagesBuilderEnum.frCh;
+      case 'fr-FR':
+        return CommonLanguagesBuilderEnum.frFr;
+      case 'fy':
+        return CommonLanguagesBuilderEnum.fy;
+      case 'fy-NL':
+        return CommonLanguagesBuilderEnum.fyNl;
+      case 'hi':
+        return CommonLanguagesBuilderEnum.hi;
+      case 'hr':
+        return CommonLanguagesBuilderEnum.hr;
+      case 'it':
+        return CommonLanguagesBuilderEnum.it;
+      case 'it-CH':
+        return CommonLanguagesBuilderEnum.itCh;
+      case 'it-IT':
+        return CommonLanguagesBuilderEnum.itIt;
+      case 'ja':
+        return CommonLanguagesBuilderEnum.ja;
+      case 'ko':
+        return CommonLanguagesBuilderEnum.ko;
+      case 'nl':
+        return CommonLanguagesBuilderEnum.nl;
+      case 'nl-BE':
+        return CommonLanguagesBuilderEnum.nlBe;
+      case 'nl-NL':
+        return CommonLanguagesBuilderEnum.nlNl;
+      case 'no':
+        return CommonLanguagesBuilderEnum.no;
+      case 'no-NO':
+        return CommonLanguagesBuilderEnum.noNo;
+      case 'pa':
+        return CommonLanguagesBuilderEnum.pa;
+      case 'pl':
+        return CommonLanguagesBuilderEnum.pl;
+      case 'pt':
+        return CommonLanguagesBuilderEnum.pt;
+      case 'pt-BR':
+        return CommonLanguagesBuilderEnum.ptBr;
+      case 'ru':
+        return CommonLanguagesBuilderEnum.ru;
+      case 'ru-RU':
+        return CommonLanguagesBuilderEnum.ruRu;
+      case 'sr':
+        return CommonLanguagesBuilderEnum.sr;
+      case 'sr-RS':
+        return CommonLanguagesBuilderEnum.srRs;
+      case 'sv':
+        return CommonLanguagesBuilderEnum.sv;
+      case 'sv-SE':
+        return CommonLanguagesBuilderEnum.svSe;
+      case 'te':
+        return CommonLanguagesBuilderEnum.te;
+      case 'zh':
+        return CommonLanguagesBuilderEnum.zh;
+      case 'zh-CN':
+        return CommonLanguagesBuilderEnum.zhCn;
+      case 'zh-HK':
+        return CommonLanguagesBuilderEnum.zhHk;
+      case 'zh-SG':
+        return CommonLanguagesBuilderEnum.zhSg;
+      case 'zh-TW':
+        return CommonLanguagesBuilderEnum.zhTw;
+    }
+    return null;
+  }
+}
+
 /// This value set includes common codes from BCP-47
 /// (http://tools.ietf.org/html/bcp47)
 class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CommonLanguagesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +461,12 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CommonLanguagesBuilderEnum.fromString(
+      valueString,
+    );
     return CommonLanguagesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +478,13 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CommonLanguagesBuilder] with element only
+  /// Create empty [CommonLanguagesBuilder]
+  /// with element only
   factory CommonLanguagesBuilder.empty() =>
-      CommonLanguagesBuilder._(valueString: '');
+      CommonLanguagesBuilder._(valueString: null);
 
-  /// Factory constructor to create [CommonLanguagesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CommonLanguagesBuilder] from JSON.
   factory CommonLanguagesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +493,10 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonLanguagesBuilder.elementOnly.withElement(element);
+      return CommonLanguagesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CommonLanguagesBuilder cannot be constructed from JSON.',
@@ -71,457 +508,742 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CommonLanguagesBuilder
+  final CommonLanguagesBuilderEnum? valueEnum;
+
   /// ar
   static CommonLanguagesBuilder ar = CommonLanguagesBuilder._(
     valueString: 'ar',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Arabic'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ar,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Arabic',
+    ),
   );
 
   /// bn
   static CommonLanguagesBuilder bn = CommonLanguagesBuilder._(
     valueString: 'bn',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Bengali'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.bn,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Bengali',
+    ),
   );
 
   /// cs
   static CommonLanguagesBuilder cs = CommonLanguagesBuilder._(
     valueString: 'cs',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Czech'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.cs,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Czech',
+    ),
   );
 
   /// da
   static CommonLanguagesBuilder da = CommonLanguagesBuilder._(
     valueString: 'da',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Danish'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.da,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Danish',
+    ),
   );
 
   /// de
   static CommonLanguagesBuilder de = CommonLanguagesBuilder._(
     valueString: 'de',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'German'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.de,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'German',
+    ),
   );
 
   /// de_AT
-  static CommonLanguagesBuilder de_AT = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder deAt = CommonLanguagesBuilder._(
     valueString: 'de-AT',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'German (Austria)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.deAt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'German (Austria)',
+    ),
   );
 
   /// de_CH
-  static CommonLanguagesBuilder de_CH = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder deCh = CommonLanguagesBuilder._(
     valueString: 'de-CH',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'German (Switzerland)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.deCh,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'German (Switzerland)',
+    ),
   );
 
   /// de_DE
-  static CommonLanguagesBuilder de_DE = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder deDe = CommonLanguagesBuilder._(
     valueString: 'de-DE',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'German (Germany)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.deDe,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'German (Germany)',
+    ),
   );
 
   /// el
   static CommonLanguagesBuilder el = CommonLanguagesBuilder._(
     valueString: 'el',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Greek'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.el,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Greek',
+    ),
   );
 
   /// en
   static CommonLanguagesBuilder en = CommonLanguagesBuilder._(
     valueString: 'en',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.en,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English',
+    ),
   );
 
   /// en_AU
-  static CommonLanguagesBuilder en_AU = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enAu = CommonLanguagesBuilder._(
     valueString: 'en-AU',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (Australia)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enAu,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (Australia)',
+    ),
   );
 
   /// en_CA
-  static CommonLanguagesBuilder en_CA = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enCa = CommonLanguagesBuilder._(
     valueString: 'en-CA',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (Canada)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enCa,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (Canada)',
+    ),
   );
 
   /// en_GB
-  static CommonLanguagesBuilder en_GB = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enGb = CommonLanguagesBuilder._(
     valueString: 'en-GB',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (Great Britain)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enGb,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (Great Britain)',
+    ),
   );
 
   /// en_IN
-  static CommonLanguagesBuilder en_IN = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enIn = CommonLanguagesBuilder._(
     valueString: 'en-IN',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (India)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enIn,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (India)',
+    ),
   );
 
   /// en_NZ
-  static CommonLanguagesBuilder en_NZ = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enNz = CommonLanguagesBuilder._(
     valueString: 'en-NZ',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (New Zeland)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enNz,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (New Zeland)',
+    ),
   );
 
   /// en_SG
-  static CommonLanguagesBuilder en_SG = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enSg = CommonLanguagesBuilder._(
     valueString: 'en-SG',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (Singapore)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enSg,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (Singapore)',
+    ),
   );
 
   /// en_US
-  static CommonLanguagesBuilder en_US = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder enUs = CommonLanguagesBuilder._(
     valueString: 'en-US',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'English (United States)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.enUs,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'English (United States)',
+    ),
   );
 
   /// es
   static CommonLanguagesBuilder es = CommonLanguagesBuilder._(
     valueString: 'es',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Spanish'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.es,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Spanish',
+    ),
   );
 
   /// es_AR
-  static CommonLanguagesBuilder es_AR = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder esAr = CommonLanguagesBuilder._(
     valueString: 'es-AR',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Spanish (Argentina)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.esAr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Spanish (Argentina)',
+    ),
   );
 
   /// es_ES
-  static CommonLanguagesBuilder es_ES = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder esEs = CommonLanguagesBuilder._(
     valueString: 'es-ES',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Spanish (Spain)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.esEs,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Spanish (Spain)',
+    ),
   );
 
   /// es_UY
-  static CommonLanguagesBuilder es_UY = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder esUy = CommonLanguagesBuilder._(
     valueString: 'es-UY',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Spanish (Uruguay)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.esUy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Spanish (Uruguay)',
+    ),
   );
 
   /// fi
   static CommonLanguagesBuilder fi = CommonLanguagesBuilder._(
     valueString: 'fi',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Finnish'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.fi,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Finnish',
+    ),
   );
 
   /// fr
   static CommonLanguagesBuilder fr = CommonLanguagesBuilder._(
     valueString: 'fr',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'French'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.fr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'French',
+    ),
   );
 
   /// fr_BE
-  static CommonLanguagesBuilder fr_BE = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder frBe = CommonLanguagesBuilder._(
     valueString: 'fr-BE',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'French (Belgium)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.frBe,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'French (Belgium)',
+    ),
   );
 
   /// fr_CH
-  static CommonLanguagesBuilder fr_CH = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder frCh = CommonLanguagesBuilder._(
     valueString: 'fr-CH',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'French (Switzerland)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.frCh,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'French (Switzerland)',
+    ),
   );
 
   /// fr_FR
-  static CommonLanguagesBuilder fr_FR = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder frFr = CommonLanguagesBuilder._(
     valueString: 'fr-FR',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'French (France)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.frFr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'French (France)',
+    ),
   );
 
   /// fy
   static CommonLanguagesBuilder fy = CommonLanguagesBuilder._(
     valueString: 'fy',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Frysian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.fy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Frysian',
+    ),
   );
 
   /// fy_NL
-  static CommonLanguagesBuilder fy_NL = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder fyNl = CommonLanguagesBuilder._(
     valueString: 'fy-NL',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Frysian (Netherlands)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.fyNl,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Frysian (Netherlands)',
+    ),
   );
 
   /// hi
   static CommonLanguagesBuilder hi = CommonLanguagesBuilder._(
     valueString: 'hi',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Hindi'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.hi,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Hindi',
+    ),
   );
 
   /// hr
   static CommonLanguagesBuilder hr = CommonLanguagesBuilder._(
     valueString: 'hr',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Croatian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.hr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Croatian',
+    ),
   );
 
   /// it
   static CommonLanguagesBuilder it = CommonLanguagesBuilder._(
     valueString: 'it',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Italian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.it,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Italian',
+    ),
   );
 
   /// it_CH
-  static CommonLanguagesBuilder it_CH = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder itCh = CommonLanguagesBuilder._(
     valueString: 'it-CH',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Italian (Switzerland)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.itCh,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Italian (Switzerland)',
+    ),
   );
 
   /// it_IT
-  static CommonLanguagesBuilder it_IT = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder itIt = CommonLanguagesBuilder._(
     valueString: 'it-IT',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Italian (Italy)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.itIt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Italian (Italy)',
+    ),
   );
 
   /// ja
   static CommonLanguagesBuilder ja = CommonLanguagesBuilder._(
     valueString: 'ja',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Japanese'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ja,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Japanese',
+    ),
   );
 
   /// ko
   static CommonLanguagesBuilder ko = CommonLanguagesBuilder._(
     valueString: 'ko',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Korean'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ko,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Korean',
+    ),
   );
 
   /// nl
   static CommonLanguagesBuilder nl = CommonLanguagesBuilder._(
     valueString: 'nl',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Dutch'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.nl,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Dutch',
+    ),
   );
 
   /// nl_BE
-  static CommonLanguagesBuilder nl_BE = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder nlBe = CommonLanguagesBuilder._(
     valueString: 'nl-BE',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Dutch (Belgium)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.nlBe,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Dutch (Belgium)',
+    ),
   );
 
   /// nl_NL
-  static CommonLanguagesBuilder nl_NL = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder nlNl = CommonLanguagesBuilder._(
     valueString: 'nl-NL',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Dutch (Netherlands)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.nlNl,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Dutch (Netherlands)',
+    ),
   );
 
   /// no
   static CommonLanguagesBuilder no = CommonLanguagesBuilder._(
     valueString: 'no',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Norwegian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.no,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Norwegian',
+    ),
   );
 
   /// no_NO
-  static CommonLanguagesBuilder no_NO = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder noNo = CommonLanguagesBuilder._(
     valueString: 'no-NO',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Norwegian (Norway)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.noNo,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Norwegian (Norway)',
+    ),
   );
 
   /// pa
   static CommonLanguagesBuilder pa = CommonLanguagesBuilder._(
     valueString: 'pa',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Punjabi'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.pa,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Punjabi',
+    ),
   );
 
   /// pl
   static CommonLanguagesBuilder pl = CommonLanguagesBuilder._(
     valueString: 'pl',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Polish'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.pl,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Polish',
+    ),
   );
 
   /// pt
   static CommonLanguagesBuilder pt = CommonLanguagesBuilder._(
     valueString: 'pt',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Portuguese'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.pt,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Portuguese',
+    ),
   );
 
   /// pt_BR
-  static CommonLanguagesBuilder pt_BR = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder ptBr = CommonLanguagesBuilder._(
     valueString: 'pt-BR',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Portuguese (Brazil)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ptBr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Portuguese (Brazil)',
+    ),
   );
 
   /// ru
   static CommonLanguagesBuilder ru = CommonLanguagesBuilder._(
     valueString: 'ru',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Russian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ru,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Russian',
+    ),
   );
 
   /// ru_RU
-  static CommonLanguagesBuilder ru_RU = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder ruRu = CommonLanguagesBuilder._(
     valueString: 'ru-RU',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Russian (Russia)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.ruRu,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Russian (Russia)',
+    ),
   );
 
   /// sr
   static CommonLanguagesBuilder sr = CommonLanguagesBuilder._(
     valueString: 'sr',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Serbian'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.sr,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Serbian',
+    ),
   );
 
   /// sr_RS
-  static CommonLanguagesBuilder sr_RS = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder srRs = CommonLanguagesBuilder._(
     valueString: 'sr-RS',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Serbian (Serbia)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.srRs,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Serbian (Serbia)',
+    ),
   );
 
   /// sv
   static CommonLanguagesBuilder sv = CommonLanguagesBuilder._(
     valueString: 'sv',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Swedish'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.sv,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Swedish',
+    ),
   );
 
   /// sv_SE
-  static CommonLanguagesBuilder sv_SE = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder svSe = CommonLanguagesBuilder._(
     valueString: 'sv-SE',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Swedish (Sweden)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.svSe,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Swedish (Sweden)',
+    ),
   );
 
   /// te
   static CommonLanguagesBuilder te = CommonLanguagesBuilder._(
     valueString: 'te',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Telegu'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.te,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Telegu',
+    ),
   );
 
   /// zh
   static CommonLanguagesBuilder zh = CommonLanguagesBuilder._(
     valueString: 'zh',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Chinese'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.zh,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Chinese',
+    ),
   );
 
   /// zh_CN
-  static CommonLanguagesBuilder zh_CN = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder zhCn = CommonLanguagesBuilder._(
     valueString: 'zh-CN',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Chinese (China)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.zhCn,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Chinese (China)',
+    ),
   );
 
   /// zh_HK
-  static CommonLanguagesBuilder zh_HK = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder zhHk = CommonLanguagesBuilder._(
     valueString: 'zh-HK',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Chinese (Hong Kong)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.zhHk,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Chinese (Hong Kong)',
+    ),
   );
 
   /// zh_SG
-  static CommonLanguagesBuilder zh_SG = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder zhSg = CommonLanguagesBuilder._(
     valueString: 'zh-SG',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Chinese (Singapore)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.zhSg,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Chinese (Singapore)',
+    ),
   );
 
   /// zh_TW
-  static CommonLanguagesBuilder zh_TW = CommonLanguagesBuilder._(
+  static CommonLanguagesBuilder zhTw = CommonLanguagesBuilder._(
     valueString: 'zh-TW',
-    system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Chinese (Taiwan)'.toFhirStringBuilder,
+    valueEnum: CommonLanguagesBuilderEnum.zhTw,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/languages',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Chinese (Taiwan)',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static CommonLanguagesBuilder elementOnly =
-      CommonLanguagesBuilder._(valueString: '');
+  static CommonLanguagesBuilder elementOnly = CommonLanguagesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CommonLanguagesBuilder> values = [
@@ -530,65 +1252,58 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
     cs,
     da,
     de,
-    de_AT,
-    de_CH,
-    de_DE,
+    deAt,
+    deCh,
+    deDe,
     el,
     en,
-    en_AU,
-    en_CA,
-    en_GB,
-    en_IN,
-    en_NZ,
-    en_SG,
-    en_US,
+    enAu,
+    enCa,
+    enGb,
+    enIn,
+    enNz,
+    enSg,
+    enUs,
     es,
-    es_AR,
-    es_ES,
-    es_UY,
+    esAr,
+    esEs,
+    esUy,
     fi,
     fr,
-    fr_BE,
-    fr_CH,
-    fr_FR,
+    frBe,
+    frCh,
+    frFr,
     fy,
-    fy_NL,
+    fyNl,
     hi,
     hr,
     it,
-    it_CH,
-    it_IT,
+    itCh,
+    itIt,
     ja,
     ko,
     nl,
-    nl_BE,
-    nl_NL,
+    nlBe,
+    nlNl,
     no,
-    no_NO,
+    noNo,
     pa,
     pl,
     pt,
-    pt_BR,
+    ptBr,
     ru,
-    ru_RU,
+    ruRu,
     sr,
-    sr_RS,
+    srRs,
     sv,
-    sv_SE,
+    svSe,
     te,
     zh,
-    zh_CN,
-    zh_HK,
-    zh_SG,
-    zh_TW,
+    zhCn,
+    zhHk,
+    zhSg,
+    zhTw,
   ];
-
-  /// Clones the current instance
-  @override
-  CommonLanguagesBuilder clone() => CommonLanguagesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CommonLanguagesBuilder withElement(
@@ -610,37 +1325,4 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CommonLanguagesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CommonLanguages: $newValue',
-      );
-    }
-    return CommonLanguagesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RepositoryType
+enum RepositoryTypeBuilderEnum {
+  /// directlink
+  directlink,
+
+  /// openapi
+  openapi,
+
+  /// login
+  login,
+
+  /// oauth
+  oauth,
+
+  /// other
+  other,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RepositoryTypeBuilderEnum.directlink:
+        return 'directlink';
+      case RepositoryTypeBuilderEnum.openapi:
+        return 'openapi';
+      case RepositoryTypeBuilderEnum.login:
+        return 'login';
+      case RepositoryTypeBuilderEnum.oauth:
+        return 'oauth';
+      case RepositoryTypeBuilderEnum.other:
+        return 'other';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RepositoryTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RepositoryTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RepositoryTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'directlink':
+        return RepositoryTypeBuilderEnum.directlink;
+      case 'openapi':
+        return RepositoryTypeBuilderEnum.openapi;
+      case 'login':
+        return RepositoryTypeBuilderEnum.login;
+      case 'oauth':
+        return RepositoryTypeBuilderEnum.oauth;
+      case 'other':
+        return RepositoryTypeBuilderEnum.other;
+    }
+    return null;
+  }
+}
+
 /// Type for access of external URI.
 class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RepositoryTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = RepositoryTypeBuilderEnum.fromString(
+      valueString,
+    );
     return RepositoryTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [RepositoryTypeBuilder] with element only
+  /// Create empty [RepositoryTypeBuilder]
+  /// with element only
   factory RepositoryTypeBuilder.empty() =>
-      RepositoryTypeBuilder._(valueString: '');
+      RepositoryTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [RepositoryTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [RepositoryTypeBuilder] from JSON.
   factory RepositoryTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RepositoryTypeBuilder.elementOnly.withElement(element);
+      return RepositoryTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RepositoryTypeBuilder cannot be constructed from JSON.',
@@ -70,56 +150,82 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for RepositoryTypeBuilder
+  final RepositoryTypeBuilderEnum? valueEnum;
+
   /// directlink
   static RepositoryTypeBuilder directlink = RepositoryTypeBuilder._(
     valueString: 'directlink',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Click and see'.toFhirStringBuilder,
+    valueEnum: RepositoryTypeBuilderEnum.directlink,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Click and see',
+    ),
   );
 
   /// openapi
   static RepositoryTypeBuilder openapi = RepositoryTypeBuilder._(
     valueString: 'openapi',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display:
-        'The URL is the RESTful or other kind of API that can access to the result.'
-            .toFhirStringBuilder,
+    valueEnum: RepositoryTypeBuilderEnum.openapi,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString:
+          'The URL is the RESTful or other kind of API that can access to the result.',
+    ),
   );
 
   /// login
   static RepositoryTypeBuilder login = RepositoryTypeBuilder._(
     valueString: 'login',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Result cannot be access unless an account is logged in'
-        .toFhirStringBuilder,
+    valueEnum: RepositoryTypeBuilderEnum.login,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Result cannot be access unless an account is logged in',
+    ),
   );
 
   /// oauth
   static RepositoryTypeBuilder oauth = RepositoryTypeBuilder._(
     valueString: 'oauth',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display:
-        'Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)'
-            .toFhirStringBuilder,
+    valueEnum: RepositoryTypeBuilderEnum.oauth,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString:
+          'Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)',
+    ),
   );
 
   /// other
   static RepositoryTypeBuilder other = RepositoryTypeBuilder._(
     valueString: 'other',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display:
-        'Some other complicated or particular way to get resource from URL.'
-            .toFhirStringBuilder,
+    valueEnum: RepositoryTypeBuilderEnum.other,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString:
+          'Some other complicated or particular way to get resource from URL.',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static RepositoryTypeBuilder elementOnly =
-      RepositoryTypeBuilder._(valueString: '');
+  static RepositoryTypeBuilder elementOnly = RepositoryTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<RepositoryTypeBuilder> values = [
@@ -129,13 +235,6 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     oauth,
     other,
   ];
-
-  /// Clones the current instance
-  @override
-  RepositoryTypeBuilder clone() => RepositoryTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   RepositoryTypeBuilder withElement(
@@ -157,37 +256,4 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  RepositoryTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for RepositoryType: $newValue',
-      );
-    }
-    return RepositoryTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

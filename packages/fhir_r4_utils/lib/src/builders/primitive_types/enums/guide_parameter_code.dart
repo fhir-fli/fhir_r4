@@ -1,11 +1,118 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GuideParameterCode
+enum GuideParameterCodeBuilderEnum {
+  /// apply
+  apply,
+
+  /// path-resource
+  pathResource,
+
+  /// path-pages
+  pathPages,
+
+  /// path-tx-cache
+  pathTxCache,
+
+  /// expansion-parameter
+  expansionParameter,
+
+  /// rule-broken-links
+  ruleBrokenLinks,
+
+  /// generate-xml
+  generateXml,
+
+  /// generate-json
+  generateJson,
+
+  /// generate-turtle
+  generateTurtle,
+
+  /// html-template
+  htmlTemplate,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GuideParameterCodeBuilderEnum.apply:
+        return 'apply';
+      case GuideParameterCodeBuilderEnum.pathResource:
+        return 'path-resource';
+      case GuideParameterCodeBuilderEnum.pathPages:
+        return 'path-pages';
+      case GuideParameterCodeBuilderEnum.pathTxCache:
+        return 'path-tx-cache';
+      case GuideParameterCodeBuilderEnum.expansionParameter:
+        return 'expansion-parameter';
+      case GuideParameterCodeBuilderEnum.ruleBrokenLinks:
+        return 'rule-broken-links';
+      case GuideParameterCodeBuilderEnum.generateXml:
+        return 'generate-xml';
+      case GuideParameterCodeBuilderEnum.generateJson:
+        return 'generate-json';
+      case GuideParameterCodeBuilderEnum.generateTurtle:
+        return 'generate-turtle';
+      case GuideParameterCodeBuilderEnum.htmlTemplate:
+        return 'html-template';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GuideParameterCodeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GuideParameterCodeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GuideParameterCodeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'apply':
+        return GuideParameterCodeBuilderEnum.apply;
+      case 'path-resource':
+        return GuideParameterCodeBuilderEnum.pathResource;
+      case 'path-pages':
+        return GuideParameterCodeBuilderEnum.pathPages;
+      case 'path-tx-cache':
+        return GuideParameterCodeBuilderEnum.pathTxCache;
+      case 'expansion-parameter':
+        return GuideParameterCodeBuilderEnum.expansionParameter;
+      case 'rule-broken-links':
+        return GuideParameterCodeBuilderEnum.ruleBrokenLinks;
+      case 'generate-xml':
+        return GuideParameterCodeBuilderEnum.generateXml;
+      case 'generate-json':
+        return GuideParameterCodeBuilderEnum.generateJson;
+      case 'generate-turtle':
+        return GuideParameterCodeBuilderEnum.generateTurtle;
+      case 'html-template':
+        return GuideParameterCodeBuilderEnum.htmlTemplate;
+    }
+    return null;
+  }
+}
+
 /// Code of parameter that is input to the guide.
 class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GuideParameterCodeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +138,12 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GuideParameterCodeBuilderEnum.fromString(
+      valueString,
+    );
     return GuideParameterCodeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +155,13 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GuideParameterCodeBuilder] with element only
+  /// Create empty [GuideParameterCodeBuilder]
+  /// with element only
   factory GuideParameterCodeBuilder.empty() =>
-      GuideParameterCodeBuilder._(valueString: '');
+      GuideParameterCodeBuilder._(valueString: null);
 
-  /// Factory constructor to create [GuideParameterCodeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GuideParameterCodeBuilder] from JSON.
   factory GuideParameterCodeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +170,10 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuideParameterCodeBuilder.elementOnly.withElement(element);
+      return GuideParameterCodeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GuideParameterCodeBuilder cannot be constructed from JSON.',
@@ -70,123 +185,160 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GuideParameterCodeBuilder
+  final GuideParameterCodeBuilderEnum? valueEnum;
+
   /// apply
   static GuideParameterCodeBuilder apply = GuideParameterCodeBuilder._(
     valueString: 'apply',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Apply Metadata Value'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.apply,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Apply Metadata Value',
+    ),
   );
 
   /// path_resource
-  static GuideParameterCodeBuilder path_resource = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder pathResource = GuideParameterCodeBuilder._(
     valueString: 'path-resource',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Resource Path'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.pathResource,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Resource Path',
+    ),
   );
 
   /// path_pages
-  static GuideParameterCodeBuilder path_pages = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder pathPages = GuideParameterCodeBuilder._(
     valueString: 'path-pages',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Pages Path'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.pathPages,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Pages Path',
+    ),
   );
 
   /// path_tx_cache
-  static GuideParameterCodeBuilder path_tx_cache = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder pathTxCache = GuideParameterCodeBuilder._(
     valueString: 'path-tx-cache',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Terminology Cache Path'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.pathTxCache,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Terminology Cache Path',
+    ),
   );
 
   /// expansion_parameter
-  static GuideParameterCodeBuilder expansion_parameter =
+  static GuideParameterCodeBuilder expansionParameter =
       GuideParameterCodeBuilder._(
     valueString: 'expansion-parameter',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Expansion Profile'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.expansionParameter,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Expansion Profile',
+    ),
   );
 
   /// rule_broken_links
-  static GuideParameterCodeBuilder rule_broken_links =
+  static GuideParameterCodeBuilder ruleBrokenLinks =
       GuideParameterCodeBuilder._(
     valueString: 'rule-broken-links',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Broken Links Rule'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.ruleBrokenLinks,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Broken Links Rule',
+    ),
   );
 
   /// generate_xml
-  static GuideParameterCodeBuilder generate_xml = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder generateXml = GuideParameterCodeBuilder._(
     valueString: 'generate-xml',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Generate XML'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.generateXml,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Generate XML',
+    ),
   );
 
   /// generate_json
-  static GuideParameterCodeBuilder generate_json = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder generateJson = GuideParameterCodeBuilder._(
     valueString: 'generate-json',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Generate JSON'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.generateJson,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Generate JSON',
+    ),
   );
 
   /// generate_turtle
-  static GuideParameterCodeBuilder generate_turtle =
-      GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder generateTurtle = GuideParameterCodeBuilder._(
     valueString: 'generate-turtle',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Generate Turtle'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.generateTurtle,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Generate Turtle',
+    ),
   );
 
   /// html_template
-  static GuideParameterCodeBuilder html_template = GuideParameterCodeBuilder._(
+  static GuideParameterCodeBuilder htmlTemplate = GuideParameterCodeBuilder._(
     valueString: 'html-template',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'HTML Template'.toFhirStringBuilder,
+    valueEnum: GuideParameterCodeBuilderEnum.htmlTemplate,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'HTML Template',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static GuideParameterCodeBuilder elementOnly =
-      GuideParameterCodeBuilder._(valueString: '');
+  static GuideParameterCodeBuilder elementOnly = GuideParameterCodeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GuideParameterCodeBuilder> values = [
     apply,
-    path_resource,
-    path_pages,
-    path_tx_cache,
-    expansion_parameter,
-    rule_broken_links,
-    generate_xml,
-    generate_json,
-    generate_turtle,
-    html_template,
+    pathResource,
+    pathPages,
+    pathTxCache,
+    expansionParameter,
+    ruleBrokenLinks,
+    generateXml,
+    generateJson,
+    generateTurtle,
+    htmlTemplate,
   ];
-
-  /// Clones the current instance
-  @override
-  GuideParameterCodeBuilder clone() => GuideParameterCodeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GuideParameterCodeBuilder withElement(
@@ -208,37 +360,4 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GuideParameterCodeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GuideParameterCode: $newValue',
-      );
-    }
-    return GuideParameterCodeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

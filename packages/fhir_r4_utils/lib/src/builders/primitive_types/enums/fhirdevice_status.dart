@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FHIRDeviceStatus
+enum FHIRDeviceStatusBuilderEnum {
+  /// active
+  active,
+
+  /// inactive
+  inactive,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FHIRDeviceStatusBuilderEnum.active:
+        return 'active';
+      case FHIRDeviceStatusBuilderEnum.inactive:
+        return 'inactive';
+      case FHIRDeviceStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case FHIRDeviceStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FHIRDeviceStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FHIRDeviceStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FHIRDeviceStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return FHIRDeviceStatusBuilderEnum.active;
+      case 'inactive':
+        return FHIRDeviceStatusBuilderEnum.inactive;
+      case 'entered-in-error':
+        return FHIRDeviceStatusBuilderEnum.enteredInError;
+      case 'unknown':
+        return FHIRDeviceStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The availability status of the device.
 class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   FHIRDeviceStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = FHIRDeviceStatusBuilderEnum.fromString(
+      valueString,
+    );
     return FHIRDeviceStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [FHIRDeviceStatusBuilder] with element only
+  /// Create empty [FHIRDeviceStatusBuilder]
+  /// with element only
   factory FHIRDeviceStatusBuilder.empty() =>
-      FHIRDeviceStatusBuilder._(valueString: '');
+      FHIRDeviceStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [FHIRDeviceStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [FHIRDeviceStatusBuilder] from JSON.
   factory FHIRDeviceStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRDeviceStatusBuilder.elementOnly.withElement(element);
+      return FHIRDeviceStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FHIRDeviceStatusBuilder cannot be constructed from JSON.',
@@ -70,56 +143,74 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for FHIRDeviceStatusBuilder
+  final FHIRDeviceStatusBuilderEnum? valueEnum;
+
   /// active
   static FHIRDeviceStatusBuilder active = FHIRDeviceStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: FHIRDeviceStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// inactive
   static FHIRDeviceStatusBuilder inactive = FHIRDeviceStatusBuilder._(
     valueString: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: FHIRDeviceStatusBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// entered_in_error
-  static FHIRDeviceStatusBuilder entered_in_error = FHIRDeviceStatusBuilder._(
+  static FHIRDeviceStatusBuilder enteredInError = FHIRDeviceStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: FHIRDeviceStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
   static FHIRDeviceStatusBuilder unknown = FHIRDeviceStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: FHIRDeviceStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static FHIRDeviceStatusBuilder elementOnly =
-      FHIRDeviceStatusBuilder._(valueString: '');
+  static FHIRDeviceStatusBuilder elementOnly = FHIRDeviceStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<FHIRDeviceStatusBuilder> values = [
     active,
     inactive,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  FHIRDeviceStatusBuilder clone() => FHIRDeviceStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatusBuilder withElement(
@@ -141,37 +232,4 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  FHIRDeviceStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for FHIRDeviceStatus: $newValue',
-      );
-    }
-    return FHIRDeviceStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

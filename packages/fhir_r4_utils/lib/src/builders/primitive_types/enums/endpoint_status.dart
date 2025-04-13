@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EndpointStatus
+enum EndpointStatusBuilderEnum {
+  /// active
+  active,
+
+  /// suspended
+  suspended,
+
+  /// error
+  error,
+
+  /// off
+  off,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// test
+  test,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EndpointStatusBuilderEnum.active:
+        return 'active';
+      case EndpointStatusBuilderEnum.suspended:
+        return 'suspended';
+      case EndpointStatusBuilderEnum.error:
+        return 'error';
+      case EndpointStatusBuilderEnum.off:
+        return 'off';
+      case EndpointStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case EndpointStatusBuilderEnum.test:
+        return 'test';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EndpointStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EndpointStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EndpointStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return EndpointStatusBuilderEnum.active;
+      case 'suspended':
+        return EndpointStatusBuilderEnum.suspended;
+      case 'error':
+        return EndpointStatusBuilderEnum.error;
+      case 'off':
+        return EndpointStatusBuilderEnum.off;
+      case 'entered-in-error':
+        return EndpointStatusBuilderEnum.enteredInError;
+      case 'test':
+        return EndpointStatusBuilderEnum.test;
+    }
+    return null;
+  }
+}
+
 /// The status of the endpoint.
 class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EndpointStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = EndpointStatusBuilderEnum.fromString(
+      valueString,
+    );
     return EndpointStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +127,13 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [EndpointStatusBuilder] with element only
+  /// Create empty [EndpointStatusBuilder]
+  /// with element only
   factory EndpointStatusBuilder.empty() =>
-      EndpointStatusBuilder._(valueString: '');
+      EndpointStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [EndpointStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [EndpointStatusBuilder] from JSON.
   factory EndpointStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +142,10 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointStatusBuilder.elementOnly.withElement(element);
+      return EndpointStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EndpointStatusBuilder cannot be constructed from JSON.',
@@ -70,57 +157,92 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for EndpointStatusBuilder
+  final EndpointStatusBuilderEnum? valueEnum;
+
   /// active
   static EndpointStatusBuilder active = EndpointStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// suspended
   static EndpointStatusBuilder suspended = EndpointStatusBuilder._(
     valueString: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Suspended'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.suspended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Suspended',
+    ),
   );
 
   /// error
   static EndpointStatusBuilder error = EndpointStatusBuilder._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.error,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error',
+    ),
   );
 
   /// off
   static EndpointStatusBuilder off = EndpointStatusBuilder._(
     valueString: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Off'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.off,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Off',
+    ),
   );
 
   /// entered_in_error
-  static EndpointStatusBuilder entered_in_error = EndpointStatusBuilder._(
+  static EndpointStatusBuilder enteredInError = EndpointStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in error'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in error',
+    ),
   );
 
   /// test
   static EndpointStatusBuilder test = EndpointStatusBuilder._(
     valueString: 'test',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Test'.toFhirStringBuilder,
+    valueEnum: EndpointStatusBuilderEnum.test,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/endpoint-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Test',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static EndpointStatusBuilder elementOnly =
-      EndpointStatusBuilder._(valueString: '');
+  static EndpointStatusBuilder elementOnly = EndpointStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<EndpointStatusBuilder> values = [
@@ -128,16 +250,9 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     suspended,
     error,
     off,
-    entered_in_error,
+    enteredInError,
     test,
   ];
-
-  /// Clones the current instance
-  @override
-  EndpointStatusBuilder clone() => EndpointStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   EndpointStatusBuilder withElement(
@@ -159,37 +274,4 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  EndpointStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for EndpointStatus: $newValue',
-      );
-    }
-    return EndpointStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

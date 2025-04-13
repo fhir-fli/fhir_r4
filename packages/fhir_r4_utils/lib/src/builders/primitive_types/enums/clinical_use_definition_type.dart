@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ClinicalUseDefinitionType
+enum ClinicalUseDefinitionTypeBuilderEnum {
+  /// indication
+  indication,
+
+  /// contraindication
+  contraindication,
+
+  /// interaction
+  interaction,
+
+  /// undesirable-effect
+  undesirableEffect,
+
+  /// warning
+  warning,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ClinicalUseDefinitionTypeBuilderEnum.indication:
+        return 'indication';
+      case ClinicalUseDefinitionTypeBuilderEnum.contraindication:
+        return 'contraindication';
+      case ClinicalUseDefinitionTypeBuilderEnum.interaction:
+        return 'interaction';
+      case ClinicalUseDefinitionTypeBuilderEnum.undesirableEffect:
+        return 'undesirable-effect';
+      case ClinicalUseDefinitionTypeBuilderEnum.warning:
+        return 'warning';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ClinicalUseDefinitionTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ClinicalUseDefinitionTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ClinicalUseDefinitionTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'indication':
+        return ClinicalUseDefinitionTypeBuilderEnum.indication;
+      case 'contraindication':
+        return ClinicalUseDefinitionTypeBuilderEnum.contraindication;
+      case 'interaction':
+        return ClinicalUseDefinitionTypeBuilderEnum.interaction;
+      case 'undesirable-effect':
+        return ClinicalUseDefinitionTypeBuilderEnum.undesirableEffect;
+      case 'warning':
+        return ClinicalUseDefinitionTypeBuilderEnum.warning;
+    }
+    return null;
+  }
+}
+
 /// Overall defining type of this clinical use definition.
 class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ClinicalUseDefinitionTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ClinicalUseDefinitionTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ClinicalUseDefinitionTypeBuilder] with element only
+  /// Create empty [ClinicalUseDefinitionTypeBuilder]
+  /// with element only
   factory ClinicalUseDefinitionTypeBuilder.empty() =>
-      ClinicalUseDefinitionTypeBuilder._(valueString: '');
+      ClinicalUseDefinitionTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ClinicalUseDefinitionTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ClinicalUseDefinitionTypeBuilder] from JSON.
   factory ClinicalUseDefinitionTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClinicalUseDefinitionTypeBuilder.elementOnly.withElement(element);
+      return ClinicalUseDefinitionTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ClinicalUseDefinitionTypeBuilder cannot be constructed from JSON.',
@@ -70,76 +150,94 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ClinicalUseDefinitionTypeBuilder
+  final ClinicalUseDefinitionTypeBuilderEnum? valueEnum;
+
   /// indication
   static ClinicalUseDefinitionTypeBuilder indication =
       ClinicalUseDefinitionTypeBuilder._(
     valueString: 'indication',
-    system: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Indication'.toFhirStringBuilder,
+    valueEnum: ClinicalUseDefinitionTypeBuilderEnum.indication,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Indication',
+    ),
   );
 
   /// contraindication
   static ClinicalUseDefinitionTypeBuilder contraindication =
       ClinicalUseDefinitionTypeBuilder._(
     valueString: 'contraindication',
-    system: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Contraindication'.toFhirStringBuilder,
+    valueEnum: ClinicalUseDefinitionTypeBuilderEnum.contraindication,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Contraindication',
+    ),
   );
 
   /// interaction
   static ClinicalUseDefinitionTypeBuilder interaction =
       ClinicalUseDefinitionTypeBuilder._(
     valueString: 'interaction',
-    system: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Interaction'.toFhirStringBuilder,
+    valueEnum: ClinicalUseDefinitionTypeBuilderEnum.interaction,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Interaction',
+    ),
   );
 
   /// undesirable_effect
-  static ClinicalUseDefinitionTypeBuilder undesirable_effect =
+  static ClinicalUseDefinitionTypeBuilder undesirableEffect =
       ClinicalUseDefinitionTypeBuilder._(
     valueString: 'undesirable-effect',
-    system: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Undesirable Effect'.toFhirStringBuilder,
+    valueEnum: ClinicalUseDefinitionTypeBuilderEnum.undesirableEffect,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Undesirable Effect',
+    ),
   );
 
   /// warning
   static ClinicalUseDefinitionTypeBuilder warning =
       ClinicalUseDefinitionTypeBuilder._(
     valueString: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Warning'.toFhirStringBuilder,
+    valueEnum: ClinicalUseDefinitionTypeBuilderEnum.warning,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Warning',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ClinicalUseDefinitionTypeBuilder elementOnly =
-      ClinicalUseDefinitionTypeBuilder._(valueString: '');
+      ClinicalUseDefinitionTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ClinicalUseDefinitionTypeBuilder> values = [
     indication,
     contraindication,
     interaction,
-    undesirable_effect,
+    undesirableEffect,
     warning,
   ];
-
-  /// Clones the current instance
-  @override
-  ClinicalUseDefinitionTypeBuilder clone() =>
-      ClinicalUseDefinitionTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionTypeBuilder withElement(
@@ -161,37 +259,4 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ClinicalUseDefinitionTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ClinicalUseDefinitionType: $newValue',
-      );
-    }
-    return ClinicalUseDefinitionTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

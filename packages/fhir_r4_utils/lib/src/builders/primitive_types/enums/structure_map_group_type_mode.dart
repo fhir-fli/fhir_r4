@@ -1,12 +1,70 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapGroupTypeMode
+enum StructureMapGroupTypeModeBuilderEnum {
+  /// none
+  none,
+
+  /// types
+  types,
+
+  /// type-and-types
+  typeAndTypes,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapGroupTypeModeBuilderEnum.none:
+        return 'none';
+      case StructureMapGroupTypeModeBuilderEnum.types:
+        return 'types';
+      case StructureMapGroupTypeModeBuilderEnum.typeAndTypes:
+        return 'type-and-types';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapGroupTypeModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapGroupTypeModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapGroupTypeModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'none':
+        return StructureMapGroupTypeModeBuilderEnum.none;
+      case 'types':
+        return StructureMapGroupTypeModeBuilderEnum.types;
+      case 'type-and-types':
+        return StructureMapGroupTypeModeBuilderEnum.typeAndTypes;
+    }
+    return null;
+  }
+}
+
 /// If this is the default rule set to apply for the source type, or this
 /// combination of types.
 class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   StructureMapGroupTypeModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +90,12 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = StructureMapGroupTypeModeBuilderEnum.fromString(
+      valueString,
+    );
     return StructureMapGroupTypeModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +107,13 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [StructureMapGroupTypeModeBuilder] with element only
+  /// Create empty [StructureMapGroupTypeModeBuilder]
+  /// with element only
   factory StructureMapGroupTypeModeBuilder.empty() =>
-      StructureMapGroupTypeModeBuilder._(valueString: '');
+      StructureMapGroupTypeModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [StructureMapGroupTypeModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [StructureMapGroupTypeModeBuilder] from JSON.
   factory StructureMapGroupTypeModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +122,10 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapGroupTypeModeBuilder.elementOnly.withElement(element);
+      return StructureMapGroupTypeModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapGroupTypeModeBuilder cannot be constructed from JSON.',
@@ -71,51 +137,64 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for StructureMapGroupTypeModeBuilder
+  final StructureMapGroupTypeModeBuilderEnum? valueEnum;
+
   /// none
   static StructureMapGroupTypeModeBuilder none =
       StructureMapGroupTypeModeBuilder._(
     valueString: 'none',
-    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not a Default'.toFhirStringBuilder,
+    valueEnum: StructureMapGroupTypeModeBuilderEnum.none,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-group-type-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not a Default',
+    ),
   );
 
   /// types
   static StructureMapGroupTypeModeBuilder types =
       StructureMapGroupTypeModeBuilder._(
     valueString: 'types',
-    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Default for Type Combination'.toFhirStringBuilder,
+    valueEnum: StructureMapGroupTypeModeBuilderEnum.types,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-group-type-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Default for Type Combination',
+    ),
   );
 
   /// type_and_types
-  static StructureMapGroupTypeModeBuilder type_and_types =
+  static StructureMapGroupTypeModeBuilder typeAndTypes =
       StructureMapGroupTypeModeBuilder._(
     valueString: 'type-and-types',
-    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Default for type + combination'.toFhirStringBuilder,
+    valueEnum: StructureMapGroupTypeModeBuilderEnum.typeAndTypes,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-group-type-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Default for type + combination',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static StructureMapGroupTypeModeBuilder elementOnly =
-      StructureMapGroupTypeModeBuilder._(valueString: '');
+      StructureMapGroupTypeModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<StructureMapGroupTypeModeBuilder> values = [
     none,
     types,
-    type_and_types,
+    typeAndTypes,
   ];
-
-  /// Clones the current instance
-  @override
-  StructureMapGroupTypeModeBuilder clone() =>
-      StructureMapGroupTypeModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   StructureMapGroupTypeModeBuilder withElement(
@@ -137,37 +216,4 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  StructureMapGroupTypeModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for StructureMapGroupTypeMode: $newValue',
-      );
-    }
-    return StructureMapGroupTypeModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

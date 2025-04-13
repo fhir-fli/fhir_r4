@@ -1,12 +1,70 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AllergyIntoleranceSeverity
+enum AllergyIntoleranceSeverityBuilderEnum {
+  /// mild
+  mild,
+
+  /// moderate
+  moderate,
+
+  /// severe
+  severe,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AllergyIntoleranceSeverityBuilderEnum.mild:
+        return 'mild';
+      case AllergyIntoleranceSeverityBuilderEnum.moderate:
+        return 'moderate';
+      case AllergyIntoleranceSeverityBuilderEnum.severe:
+        return 'severe';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AllergyIntoleranceSeverityBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AllergyIntoleranceSeverityBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AllergyIntoleranceSeverityBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'mild':
+        return AllergyIntoleranceSeverityBuilderEnum.mild;
+      case 'moderate':
+        return AllergyIntoleranceSeverityBuilderEnum.moderate;
+      case 'severe':
+        return AllergyIntoleranceSeverityBuilderEnum.severe;
+    }
+    return null;
+  }
+}
+
 /// Clinical assessment of the severity of a reaction event as a whole,
 /// potentially considering multiple different manifestations.
 class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AllergyIntoleranceSeverityBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +90,12 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AllergyIntoleranceSeverityBuilderEnum.fromString(
+      valueString,
+    );
     return AllergyIntoleranceSeverityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +107,13 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AllergyIntoleranceSeverityBuilder] with element only
+  /// Create empty [AllergyIntoleranceSeverityBuilder]
+  /// with element only
   factory AllergyIntoleranceSeverityBuilder.empty() =>
-      AllergyIntoleranceSeverityBuilder._(valueString: '');
+      AllergyIntoleranceSeverityBuilder._(valueString: null);
 
-  /// Factory constructor to create [AllergyIntoleranceSeverityBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AllergyIntoleranceSeverityBuilder] from JSON.
   factory AllergyIntoleranceSeverityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +122,10 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceSeverityBuilder.elementOnly.withElement(element);
+      return AllergyIntoleranceSeverityBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AllergyIntoleranceSeverityBuilder cannot be constructed from JSON.',
@@ -71,39 +137,57 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AllergyIntoleranceSeverityBuilder
+  final AllergyIntoleranceSeverityBuilderEnum? valueEnum;
+
   /// mild
   static AllergyIntoleranceSeverityBuilder mild =
       AllergyIntoleranceSeverityBuilder._(
     valueString: 'mild',
-    system:
-        'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Mild'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceSeverityBuilderEnum.mild,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Mild',
+    ),
   );
 
   /// moderate
   static AllergyIntoleranceSeverityBuilder moderate =
       AllergyIntoleranceSeverityBuilder._(
     valueString: 'moderate',
-    system:
-        'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Moderate'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceSeverityBuilderEnum.moderate,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Moderate',
+    ),
   );
 
   /// severe
   static AllergyIntoleranceSeverityBuilder severe =
       AllergyIntoleranceSeverityBuilder._(
     valueString: 'severe',
-    system:
-        'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Severe'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceSeverityBuilderEnum.severe,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/reaction-event-severity',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Severe',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static AllergyIntoleranceSeverityBuilder elementOnly =
-      AllergyIntoleranceSeverityBuilder._(valueString: '');
+      AllergyIntoleranceSeverityBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AllergyIntoleranceSeverityBuilder> values = [
@@ -111,14 +195,6 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
     moderate,
     severe,
   ];
-
-  /// Clones the current instance
-  @override
-  AllergyIntoleranceSeverityBuilder clone() =>
-      AllergyIntoleranceSeverityBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceSeverityBuilder withElement(
@@ -140,37 +216,4 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AllergyIntoleranceSeverityBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AllergyIntoleranceSeverity: $newValue',
-      );
-    }
-    return AllergyIntoleranceSeverityBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

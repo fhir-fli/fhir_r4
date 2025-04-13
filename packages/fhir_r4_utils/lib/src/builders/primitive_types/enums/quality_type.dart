@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for QualityType
+enum QualityTypeBuilderEnum {
+  /// indel
+  indel,
+
+  /// snp
+  snp,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case QualityTypeBuilderEnum.indel:
+        return 'indel';
+      case QualityTypeBuilderEnum.snp:
+        return 'snp';
+      case QualityTypeBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static QualityTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return QualityTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static QualityTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'indel':
+        return QualityTypeBuilderEnum.indel;
+      case 'snp':
+        return QualityTypeBuilderEnum.snp;
+      case 'unknown':
+        return QualityTypeBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Type for quality report.
 class QualityTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QualityTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = QualityTypeBuilderEnum.fromString(
+      valueString,
+    );
     return QualityTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,12 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [QualityTypeBuilder] with element only
-  factory QualityTypeBuilder.empty() => QualityTypeBuilder._(valueString: '');
+  /// Create empty [QualityTypeBuilder]
+  /// with element only
+  factory QualityTypeBuilder.empty() => QualityTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [QualityTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [QualityTypeBuilder] from JSON.
   factory QualityTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +120,10 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QualityTypeBuilder.elementOnly.withElement(element);
+      return QualityTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'QualityTypeBuilder cannot be constructed from JSON.',
@@ -69,32 +135,53 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for QualityTypeBuilder
+  final QualityTypeBuilderEnum? valueEnum;
+
   /// indel
   static QualityTypeBuilder indel = QualityTypeBuilder._(
     valueString: 'indel',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'INDEL Comparison'.toFhirStringBuilder,
+    valueEnum: QualityTypeBuilderEnum.indel,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quality-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'INDEL Comparison',
+    ),
   );
 
   /// snp
   static QualityTypeBuilder snp = QualityTypeBuilder._(
     valueString: 'snp',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SNP Comparison'.toFhirStringBuilder,
+    valueEnum: QualityTypeBuilderEnum.snp,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quality-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SNP Comparison',
+    ),
   );
 
   /// unknown
   static QualityTypeBuilder unknown = QualityTypeBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'UNKNOWN Comparison'.toFhirStringBuilder,
+    valueEnum: QualityTypeBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/quality-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'UNKNOWN Comparison',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static QualityTypeBuilder elementOnly = QualityTypeBuilder._(valueString: '');
+  static QualityTypeBuilder elementOnly = QualityTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<QualityTypeBuilder> values = [
@@ -102,13 +189,6 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     snp,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  QualityTypeBuilder clone() => QualityTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   QualityTypeBuilder withElement(
@@ -130,37 +210,4 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  QualityTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for QualityType: $newValue',
-      );
-    }
-    return QualityTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

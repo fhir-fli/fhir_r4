@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DocumentMode
+enum DocumentModeBuilderEnum {
+  /// producer
+  producer,
+
+  /// consumer
+  consumer,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DocumentModeBuilderEnum.producer:
+        return 'producer';
+      case DocumentModeBuilderEnum.consumer:
+        return 'consumer';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DocumentModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DocumentModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DocumentModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'producer':
+        return DocumentModeBuilderEnum.producer;
+      case 'consumer':
+        return DocumentModeBuilderEnum.consumer;
+    }
+    return null;
+  }
+}
+
 /// Whether the application produces or consumes documents.
 class DocumentModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DocumentModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = DocumentModeBuilderEnum.fromString(
+      valueString,
+    );
     return DocumentModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +99,13 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [DocumentModeBuilder] with element only
-  factory DocumentModeBuilder.empty() => DocumentModeBuilder._(valueString: '');
+  /// Create empty [DocumentModeBuilder]
+  /// with element only
+  factory DocumentModeBuilder.empty() =>
+      DocumentModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [DocumentModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [DocumentModeBuilder] from JSON.
   factory DocumentModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +114,10 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentModeBuilder.elementOnly.withElement(element);
+      return DocumentModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DocumentModeBuilder cannot be constructed from JSON.',
@@ -69,38 +129,46 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for DocumentModeBuilder
+  final DocumentModeBuilderEnum? valueEnum;
+
   /// producer
   static DocumentModeBuilder producer = DocumentModeBuilder._(
     valueString: 'producer',
-    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Producer'.toFhirStringBuilder,
+    valueEnum: DocumentModeBuilderEnum.producer,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Producer',
+    ),
   );
 
   /// consumer
   static DocumentModeBuilder consumer = DocumentModeBuilder._(
     valueString: 'consumer',
-    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Consumer'.toFhirStringBuilder,
+    valueEnum: DocumentModeBuilderEnum.consumer,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Consumer',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static DocumentModeBuilder elementOnly =
-      DocumentModeBuilder._(valueString: '');
+  static DocumentModeBuilder elementOnly = DocumentModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<DocumentModeBuilder> values = [
     producer,
     consumer,
   ];
-
-  /// Clones the current instance
-  @override
-  DocumentModeBuilder clone() => DocumentModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   DocumentModeBuilder withElement(
@@ -122,37 +190,4 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  DocumentModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for DocumentMode: $newValue',
-      );
-    }
-    return DocumentModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

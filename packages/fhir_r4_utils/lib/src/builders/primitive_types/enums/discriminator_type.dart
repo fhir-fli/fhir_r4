@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DiscriminatorType
+enum DiscriminatorTypeBuilderEnum {
+  /// value
+  value_,
+
+  /// exists
+  exists,
+
+  /// pattern
+  pattern,
+
+  /// type
+  type,
+
+  /// profile
+  profile,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DiscriminatorTypeBuilderEnum.value_:
+        return 'value';
+      case DiscriminatorTypeBuilderEnum.exists:
+        return 'exists';
+      case DiscriminatorTypeBuilderEnum.pattern:
+        return 'pattern';
+      case DiscriminatorTypeBuilderEnum.type:
+        return 'type';
+      case DiscriminatorTypeBuilderEnum.profile:
+        return 'profile';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DiscriminatorTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DiscriminatorTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DiscriminatorTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'value':
+        return DiscriminatorTypeBuilderEnum.value_;
+      case 'exists':
+        return DiscriminatorTypeBuilderEnum.exists;
+      case 'pattern':
+        return DiscriminatorTypeBuilderEnum.pattern;
+      case 'type':
+        return DiscriminatorTypeBuilderEnum.type;
+      case 'profile':
+        return DiscriminatorTypeBuilderEnum.profile;
+    }
+    return null;
+  }
+}
+
 /// How an element value is interpreted when discrimination is evaluated.
 class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DiscriminatorTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = DiscriminatorTypeBuilderEnum.fromString(
+      valueString,
+    );
     return DiscriminatorTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [DiscriminatorTypeBuilder] with element only
+  /// Create empty [DiscriminatorTypeBuilder]
+  /// with element only
   factory DiscriminatorTypeBuilder.empty() =>
-      DiscriminatorTypeBuilder._(valueString: '');
+      DiscriminatorTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [DiscriminatorTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [DiscriminatorTypeBuilder] from JSON.
   factory DiscriminatorTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiscriminatorTypeBuilder.elementOnly.withElement(element);
+      return DiscriminatorTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DiscriminatorTypeBuilder cannot be constructed from JSON.',
@@ -70,49 +150,79 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for DiscriminatorTypeBuilder
+  final DiscriminatorTypeBuilderEnum? valueEnum;
+
   /// value
   static DiscriminatorTypeBuilder value_ = DiscriminatorTypeBuilder._(
     valueString: 'value',
-    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Value'.toFhirStringBuilder,
+    valueEnum: DiscriminatorTypeBuilderEnum.value_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/discriminator-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Value',
+    ),
   );
 
   /// exists
   static DiscriminatorTypeBuilder exists = DiscriminatorTypeBuilder._(
     valueString: 'exists',
-    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Exists'.toFhirStringBuilder,
+    valueEnum: DiscriminatorTypeBuilderEnum.exists,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/discriminator-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Exists',
+    ),
   );
 
   /// pattern
   static DiscriminatorTypeBuilder pattern = DiscriminatorTypeBuilder._(
     valueString: 'pattern',
-    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Pattern'.toFhirStringBuilder,
+    valueEnum: DiscriminatorTypeBuilderEnum.pattern,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/discriminator-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Pattern',
+    ),
   );
 
   /// type
   static DiscriminatorTypeBuilder type = DiscriminatorTypeBuilder._(
     valueString: 'type',
-    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Type'.toFhirStringBuilder,
+    valueEnum: DiscriminatorTypeBuilderEnum.type,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/discriminator-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Type',
+    ),
   );
 
   /// profile
   static DiscriminatorTypeBuilder profile = DiscriminatorTypeBuilder._(
     valueString: 'profile',
-    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Profile'.toFhirStringBuilder,
+    valueEnum: DiscriminatorTypeBuilderEnum.profile,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/discriminator-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Profile',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static DiscriminatorTypeBuilder elementOnly =
-      DiscriminatorTypeBuilder._(valueString: '');
+  static DiscriminatorTypeBuilder elementOnly = DiscriminatorTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<DiscriminatorTypeBuilder> values = [
@@ -122,13 +232,6 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
     type,
     profile,
   ];
-
-  /// Clones the current instance
-  @override
-  DiscriminatorTypeBuilder clone() => DiscriminatorTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   DiscriminatorTypeBuilder withElement(
@@ -150,37 +253,4 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  DiscriminatorTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for DiscriminatorType: $newValue',
-      );
-    }
-    return DiscriminatorTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

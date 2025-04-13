@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for UDIEntryType
+enum UDIEntryTypeBuilderEnum {
+  /// barcode
+  barcode,
+
+  /// rfid
+  rfid,
+
+  /// manual
+  manual,
+
+  /// card
+  card,
+
+  /// self-reported
+  selfReported,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case UDIEntryTypeBuilderEnum.barcode:
+        return 'barcode';
+      case UDIEntryTypeBuilderEnum.rfid:
+        return 'rfid';
+      case UDIEntryTypeBuilderEnum.manual:
+        return 'manual';
+      case UDIEntryTypeBuilderEnum.card:
+        return 'card';
+      case UDIEntryTypeBuilderEnum.selfReported:
+        return 'self-reported';
+      case UDIEntryTypeBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static UDIEntryTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return UDIEntryTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static UDIEntryTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'barcode':
+        return UDIEntryTypeBuilderEnum.barcode;
+      case 'rfid':
+        return UDIEntryTypeBuilderEnum.rfid;
+      case 'manual':
+        return UDIEntryTypeBuilderEnum.manual;
+      case 'card':
+        return UDIEntryTypeBuilderEnum.card;
+      case 'self-reported':
+        return UDIEntryTypeBuilderEnum.selfReported;
+      case 'unknown':
+        return UDIEntryTypeBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes to identify how UDI data was entered.
 class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   UDIEntryTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = UDIEntryTypeBuilderEnum.fromString(
+      valueString,
+    );
     return UDIEntryTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +127,13 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [UDIEntryTypeBuilder] with element only
-  factory UDIEntryTypeBuilder.empty() => UDIEntryTypeBuilder._(valueString: '');
+  /// Create empty [UDIEntryTypeBuilder]
+  /// with element only
+  factory UDIEntryTypeBuilder.empty() =>
+      UDIEntryTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [UDIEntryTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [UDIEntryTypeBuilder] from JSON.
   factory UDIEntryTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +142,10 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UDIEntryTypeBuilder.elementOnly.withElement(element);
+      return UDIEntryTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'UDIEntryTypeBuilder cannot be constructed from JSON.',
@@ -69,57 +157,92 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for UDIEntryTypeBuilder
+  final UDIEntryTypeBuilderEnum? valueEnum;
+
   /// barcode
   static UDIEntryTypeBuilder barcode = UDIEntryTypeBuilder._(
     valueString: 'barcode',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Barcode'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.barcode,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Barcode',
+    ),
   );
 
   /// rfid
   static UDIEntryTypeBuilder rfid = UDIEntryTypeBuilder._(
     valueString: 'rfid',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RFID'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.rfid,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RFID',
+    ),
   );
 
   /// manual
   static UDIEntryTypeBuilder manual = UDIEntryTypeBuilder._(
     valueString: 'manual',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Manual'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.manual,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Manual',
+    ),
   );
 
   /// card
   static UDIEntryTypeBuilder card = UDIEntryTypeBuilder._(
     valueString: 'card',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Card'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.card,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Card',
+    ),
   );
 
   /// self_reported
-  static UDIEntryTypeBuilder self_reported = UDIEntryTypeBuilder._(
+  static UDIEntryTypeBuilder selfReported = UDIEntryTypeBuilder._(
     valueString: 'self-reported',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Self Reported'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.selfReported,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Self Reported',
+    ),
   );
 
   /// unknown
   static UDIEntryTypeBuilder unknown = UDIEntryTypeBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: UDIEntryTypeBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/udi-entry-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static UDIEntryTypeBuilder elementOnly =
-      UDIEntryTypeBuilder._(valueString: '');
+  static UDIEntryTypeBuilder elementOnly = UDIEntryTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<UDIEntryTypeBuilder> values = [
@@ -127,16 +250,9 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
     rfid,
     manual,
     card,
-    self_reported,
+    selfReported,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  UDIEntryTypeBuilder clone() => UDIEntryTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   UDIEntryTypeBuilder withElement(
@@ -158,37 +274,4 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  UDIEntryTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for UDIEntryType: $newValue',
-      );
-    }
-    return UDIEntryTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

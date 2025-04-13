@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SubscriptionStatusCodes
+enum SubscriptionStatusCodesBuilderEnum {
+  /// requested
+  requested,
+
+  /// active
+  active,
+
+  /// error
+  error,
+
+  /// off
+  off,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SubscriptionStatusCodesBuilderEnum.requested:
+        return 'requested';
+      case SubscriptionStatusCodesBuilderEnum.active:
+        return 'active';
+      case SubscriptionStatusCodesBuilderEnum.error:
+        return 'error';
+      case SubscriptionStatusCodesBuilderEnum.off:
+        return 'off';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SubscriptionStatusCodesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SubscriptionStatusCodesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SubscriptionStatusCodesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'requested':
+        return SubscriptionStatusCodesBuilderEnum.requested;
+      case 'active':
+        return SubscriptionStatusCodesBuilderEnum.active;
+      case 'error':
+        return SubscriptionStatusCodesBuilderEnum.error;
+      case 'off':
+        return SubscriptionStatusCodesBuilderEnum.off;
+    }
+    return null;
+  }
+}
+
 /// The status of a subscription.
 class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SubscriptionStatusCodesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SubscriptionStatusCodesBuilderEnum.fromString(
+      valueString,
+    );
     return SubscriptionStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SubscriptionStatusCodesBuilder] with element only
+  /// Create empty [SubscriptionStatusCodesBuilder]
+  /// with element only
   factory SubscriptionStatusCodesBuilder.empty() =>
-      SubscriptionStatusCodesBuilder._(valueString: '');
+      SubscriptionStatusCodesBuilder._(valueString: null);
 
-  /// Factory constructor to create [SubscriptionStatusCodesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SubscriptionStatusCodesBuilder] from JSON.
   factory SubscriptionStatusCodesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionStatusCodesBuilder.elementOnly.withElement(element);
+      return SubscriptionStatusCodesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SubscriptionStatusCodesBuilder cannot be constructed from JSON.',
@@ -70,44 +143,70 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SubscriptionStatusCodesBuilder
+  final SubscriptionStatusCodesBuilderEnum? valueEnum;
+
   /// requested
   static SubscriptionStatusCodesBuilder requested =
       SubscriptionStatusCodesBuilder._(
     valueString: 'requested',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Requested'.toFhirStringBuilder,
+    valueEnum: SubscriptionStatusCodesBuilderEnum.requested,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Requested',
+    ),
   );
 
   /// active
   static SubscriptionStatusCodesBuilder active =
       SubscriptionStatusCodesBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: SubscriptionStatusCodesBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// error
   static SubscriptionStatusCodesBuilder error =
       SubscriptionStatusCodesBuilder._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error'.toFhirStringBuilder,
+    valueEnum: SubscriptionStatusCodesBuilderEnum.error,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error',
+    ),
   );
 
   /// off
   static SubscriptionStatusCodesBuilder off = SubscriptionStatusCodesBuilder._(
     valueString: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Off'.toFhirStringBuilder,
+    valueEnum: SubscriptionStatusCodesBuilderEnum.off,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Off',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static SubscriptionStatusCodesBuilder elementOnly =
-      SubscriptionStatusCodesBuilder._(valueString: '');
+      SubscriptionStatusCodesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SubscriptionStatusCodesBuilder> values = [
@@ -116,13 +215,6 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     error,
     off,
   ];
-
-  /// Clones the current instance
-  @override
-  SubscriptionStatusCodesBuilder clone() => SubscriptionStatusCodesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SubscriptionStatusCodesBuilder withElement(
@@ -144,37 +236,4 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SubscriptionStatusCodesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SubscriptionStatusCodes: $newValue',
-      );
-    }
-    return SubscriptionStatusCodesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

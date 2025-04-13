@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ExplanationOfBenefitStatus
+enum ExplanationOfBenefitStatusBuilderEnum {
+  /// active
+  active,
+
+  /// cancelled
+  cancelled,
+
+  /// draft
+  draft,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ExplanationOfBenefitStatusBuilderEnum.active:
+        return 'active';
+      case ExplanationOfBenefitStatusBuilderEnum.cancelled:
+        return 'cancelled';
+      case ExplanationOfBenefitStatusBuilderEnum.draft:
+        return 'draft';
+      case ExplanationOfBenefitStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ExplanationOfBenefitStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ExplanationOfBenefitStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ExplanationOfBenefitStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return ExplanationOfBenefitStatusBuilderEnum.active;
+      case 'cancelled':
+        return ExplanationOfBenefitStatusBuilderEnum.cancelled;
+      case 'draft':
+        return ExplanationOfBenefitStatusBuilderEnum.draft;
+      case 'entered-in-error':
+        return ExplanationOfBenefitStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// A code specifying the state of the resource instance.
 class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ExplanationOfBenefitStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ExplanationOfBenefitStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ExplanationOfBenefitStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ExplanationOfBenefitStatusBuilder] with element only
+  /// Create empty [ExplanationOfBenefitStatusBuilder]
+  /// with element only
   factory ExplanationOfBenefitStatusBuilder.empty() =>
-      ExplanationOfBenefitStatusBuilder._(valueString: '');
+      ExplanationOfBenefitStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ExplanationOfBenefitStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ExplanationOfBenefitStatusBuilder] from JSON.
   factory ExplanationOfBenefitStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExplanationOfBenefitStatusBuilder.elementOnly.withElement(element);
+      return ExplanationOfBenefitStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ExplanationOfBenefitStatusBuilder cannot be constructed from JSON.',
@@ -70,65 +143,79 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ExplanationOfBenefitStatusBuilder
+  final ExplanationOfBenefitStatusBuilderEnum? valueEnum;
+
   /// active
   static ExplanationOfBenefitStatusBuilder active =
       ExplanationOfBenefitStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: ExplanationOfBenefitStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// cancelled
   static ExplanationOfBenefitStatusBuilder cancelled =
       ExplanationOfBenefitStatusBuilder._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cancelled'.toFhirStringBuilder,
+    valueEnum: ExplanationOfBenefitStatusBuilderEnum.cancelled,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// draft
   static ExplanationOfBenefitStatusBuilder draft =
       ExplanationOfBenefitStatusBuilder._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Draft'.toFhirStringBuilder,
+    valueEnum: ExplanationOfBenefitStatusBuilderEnum.draft,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Draft',
+    ),
   );
 
   /// entered_in_error
-  static ExplanationOfBenefitStatusBuilder entered_in_error =
+  static ExplanationOfBenefitStatusBuilder enteredInError =
       ExplanationOfBenefitStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered In Error'.toFhirStringBuilder,
+    valueEnum: ExplanationOfBenefitStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered In Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ExplanationOfBenefitStatusBuilder elementOnly =
-      ExplanationOfBenefitStatusBuilder._(valueString: '');
+      ExplanationOfBenefitStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ExplanationOfBenefitStatusBuilder> values = [
     active,
     cancelled,
     draft,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  ExplanationOfBenefitStatusBuilder clone() =>
-      ExplanationOfBenefitStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ExplanationOfBenefitStatusBuilder withElement(
@@ -150,37 +237,4 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ExplanationOfBenefitStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ExplanationOfBenefitStatus: $newValue',
-      );
-    }
-    return ExplanationOfBenefitStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

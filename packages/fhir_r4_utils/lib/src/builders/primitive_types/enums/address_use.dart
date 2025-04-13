@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AddressUse
+enum AddressUseBuilderEnum {
+  /// home
+  home,
+
+  /// work
+  work,
+
+  /// temp
+  temp,
+
+  /// old
+  old,
+
+  /// billing
+  billing,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AddressUseBuilderEnum.home:
+        return 'home';
+      case AddressUseBuilderEnum.work:
+        return 'work';
+      case AddressUseBuilderEnum.temp:
+        return 'temp';
+      case AddressUseBuilderEnum.old:
+        return 'old';
+      case AddressUseBuilderEnum.billing:
+        return 'billing';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AddressUseBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AddressUseBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AddressUseBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'home':
+        return AddressUseBuilderEnum.home;
+      case 'work':
+        return AddressUseBuilderEnum.work;
+      case 'temp':
+        return AddressUseBuilderEnum.temp;
+      case 'old':
+        return AddressUseBuilderEnum.old;
+      case 'billing':
+        return AddressUseBuilderEnum.billing;
+    }
+    return null;
+  }
+}
+
 /// The use of an address.
 class AddressUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AddressUseBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AddressUseBuilderEnum.fromString(
+      valueString,
+    );
     return AddressUseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +120,12 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AddressUseBuilder] with element only
-  factory AddressUseBuilder.empty() => AddressUseBuilder._(valueString: '');
+  /// Create empty [AddressUseBuilder]
+  /// with element only
+  factory AddressUseBuilder.empty() => AddressUseBuilder._(valueString: null);
 
-  /// Factory constructor to create [AddressUseBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AddressUseBuilder] from JSON.
   factory AddressUseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +134,10 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AddressUseBuilder.elementOnly.withElement(element);
+      return AddressUseBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AddressUseBuilder cannot be constructed from JSON.',
@@ -69,48 +149,79 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AddressUseBuilder
+  final AddressUseBuilderEnum? valueEnum;
+
   /// home
   static AddressUseBuilder home = AddressUseBuilder._(
     valueString: 'home',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Home'.toFhirStringBuilder,
+    valueEnum: AddressUseBuilderEnum.home,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Home',
+    ),
   );
 
   /// work
   static AddressUseBuilder work = AddressUseBuilder._(
     valueString: 'work',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Work'.toFhirStringBuilder,
+    valueEnum: AddressUseBuilderEnum.work,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Work',
+    ),
   );
 
   /// temp
   static AddressUseBuilder temp = AddressUseBuilder._(
     valueString: 'temp',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Temporary'.toFhirStringBuilder,
+    valueEnum: AddressUseBuilderEnum.temp,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Temporary',
+    ),
   );
 
   /// old
   static AddressUseBuilder old = AddressUseBuilder._(
     valueString: 'old',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Old / Incorrect'.toFhirStringBuilder,
+    valueEnum: AddressUseBuilderEnum.old,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Old / Incorrect',
+    ),
   );
 
   /// billing
   static AddressUseBuilder billing = AddressUseBuilder._(
     valueString: 'billing',
-    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Billing'.toFhirStringBuilder,
+    valueEnum: AddressUseBuilderEnum.billing,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Billing',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static AddressUseBuilder elementOnly = AddressUseBuilder._(valueString: '');
+  static AddressUseBuilder elementOnly = AddressUseBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AddressUseBuilder> values = [
@@ -120,13 +231,6 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     old,
     billing,
   ];
-
-  /// Clones the current instance
-  @override
-  AddressUseBuilder clone() => AddressUseBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AddressUseBuilder withElement(
@@ -148,37 +252,4 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AddressUseBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AddressUse: $newValue',
-      );
-    }
-    return AddressUseBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

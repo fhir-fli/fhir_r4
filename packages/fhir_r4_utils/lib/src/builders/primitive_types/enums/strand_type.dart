@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StrandType
+enum StrandTypeBuilderEnum {
+  /// watson
+  watson,
+
+  /// crick
+  crick,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StrandTypeBuilderEnum.watson:
+        return 'watson';
+      case StrandTypeBuilderEnum.crick:
+        return 'crick';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StrandTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StrandTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StrandTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'watson':
+        return StrandTypeBuilderEnum.watson;
+      case 'crick':
+        return StrandTypeBuilderEnum.crick;
+    }
+    return null;
+  }
+}
+
 /// Type for strand.
 class StrandTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   StrandTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = StrandTypeBuilderEnum.fromString(
+      valueString,
+    );
     return StrandTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +99,12 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [StrandTypeBuilder] with element only
-  factory StrandTypeBuilder.empty() => StrandTypeBuilder._(valueString: '');
+  /// Create empty [StrandTypeBuilder]
+  /// with element only
+  factory StrandTypeBuilder.empty() => StrandTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [StrandTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [StrandTypeBuilder] from JSON.
   factory StrandTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +113,10 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StrandTypeBuilder.elementOnly.withElement(element);
+      return StrandTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StrandTypeBuilder cannot be constructed from JSON.',
@@ -69,37 +128,46 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for StrandTypeBuilder
+  final StrandTypeBuilderEnum? valueEnum;
+
   /// watson
   static StrandTypeBuilder watson = StrandTypeBuilder._(
     valueString: 'watson',
-    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Watson strand of referenceSeq'.toFhirStringBuilder,
+    valueEnum: StrandTypeBuilderEnum.watson,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/strand-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Watson strand of referenceSeq',
+    ),
   );
 
   /// crick
   static StrandTypeBuilder crick = StrandTypeBuilder._(
     valueString: 'crick',
-    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Crick strand of referenceSeq'.toFhirStringBuilder,
+    valueEnum: StrandTypeBuilderEnum.crick,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/strand-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Crick strand of referenceSeq',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static StrandTypeBuilder elementOnly = StrandTypeBuilder._(valueString: '');
+  static StrandTypeBuilder elementOnly = StrandTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<StrandTypeBuilder> values = [
     watson,
     crick,
   ];
-
-  /// Clones the current instance
-  @override
-  StrandTypeBuilder clone() => StrandTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   StrandTypeBuilder withElement(
@@ -121,37 +189,4 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  StrandTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for StrandType: $newValue',
-      );
-    }
-    return StrandTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EncounterLocationStatus
+enum EncounterLocationStatusBuilderEnum {
+  /// planned
+  planned,
+
+  /// active
+  active,
+
+  /// reserved
+  reserved,
+
+  /// completed
+  completed,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EncounterLocationStatusBuilderEnum.planned:
+        return 'planned';
+      case EncounterLocationStatusBuilderEnum.active:
+        return 'active';
+      case EncounterLocationStatusBuilderEnum.reserved:
+        return 'reserved';
+      case EncounterLocationStatusBuilderEnum.completed:
+        return 'completed';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EncounterLocationStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EncounterLocationStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EncounterLocationStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'planned':
+        return EncounterLocationStatusBuilderEnum.planned;
+      case 'active':
+        return EncounterLocationStatusBuilderEnum.active;
+      case 'reserved':
+        return EncounterLocationStatusBuilderEnum.reserved;
+      case 'completed':
+        return EncounterLocationStatusBuilderEnum.completed;
+    }
+    return null;
+  }
+}
+
 /// The status of the location.
 class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EncounterLocationStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = EncounterLocationStatusBuilderEnum.fromString(
+      valueString,
+    );
     return EncounterLocationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [EncounterLocationStatusBuilder] with element only
+  /// Create empty [EncounterLocationStatusBuilder]
+  /// with element only
   factory EncounterLocationStatusBuilder.empty() =>
-      EncounterLocationStatusBuilder._(valueString: '');
+      EncounterLocationStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [EncounterLocationStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [EncounterLocationStatusBuilder] from JSON.
   factory EncounterLocationStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterLocationStatusBuilder.elementOnly.withElement(element);
+      return EncounterLocationStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EncounterLocationStatusBuilder cannot be constructed from JSON.',
@@ -70,49 +143,71 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for EncounterLocationStatusBuilder
+  final EncounterLocationStatusBuilderEnum? valueEnum;
+
   /// planned
   static EncounterLocationStatusBuilder planned =
       EncounterLocationStatusBuilder._(
     valueString: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Planned'.toFhirStringBuilder,
+    valueEnum: EncounterLocationStatusBuilderEnum.planned,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Planned',
+    ),
   );
 
   /// active
   static EncounterLocationStatusBuilder active =
       EncounterLocationStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: EncounterLocationStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// reserved
   static EncounterLocationStatusBuilder reserved =
       EncounterLocationStatusBuilder._(
     valueString: 'reserved',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Reserved'.toFhirStringBuilder,
+    valueEnum: EncounterLocationStatusBuilderEnum.reserved,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Reserved',
+    ),
   );
 
   /// completed
   static EncounterLocationStatusBuilder completed =
       EncounterLocationStatusBuilder._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Completed'.toFhirStringBuilder,
+    valueEnum: EncounterLocationStatusBuilderEnum.completed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Completed',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static EncounterLocationStatusBuilder elementOnly =
-      EncounterLocationStatusBuilder._(valueString: '');
+      EncounterLocationStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<EncounterLocationStatusBuilder> values = [
@@ -121,13 +216,6 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     reserved,
     completed,
   ];
-
-  /// Clones the current instance
-  @override
-  EncounterLocationStatusBuilder clone() => EncounterLocationStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   EncounterLocationStatusBuilder withElement(
@@ -149,37 +237,4 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  EncounterLocationStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for EncounterLocationStatus: $newValue',
-      );
-    }
-    return EncounterLocationStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

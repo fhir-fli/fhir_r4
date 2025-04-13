@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TestReportActionResult
+enum TestReportActionResultBuilderEnum {
+  /// pass
+  pass,
+
+  /// skip
+  skip,
+
+  /// fail
+  fail,
+
+  /// warning
+  warning,
+
+  /// error
+  error,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TestReportActionResultBuilderEnum.pass:
+        return 'pass';
+      case TestReportActionResultBuilderEnum.skip:
+        return 'skip';
+      case TestReportActionResultBuilderEnum.fail:
+        return 'fail';
+      case TestReportActionResultBuilderEnum.warning:
+        return 'warning';
+      case TestReportActionResultBuilderEnum.error:
+        return 'error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TestReportActionResultBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TestReportActionResultBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TestReportActionResultBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'pass':
+        return TestReportActionResultBuilderEnum.pass;
+      case 'skip':
+        return TestReportActionResultBuilderEnum.skip;
+      case 'fail':
+        return TestReportActionResultBuilderEnum.fail;
+      case 'warning':
+        return TestReportActionResultBuilderEnum.warning;
+      case 'error':
+        return TestReportActionResultBuilderEnum.error;
+    }
+    return null;
+  }
+}
+
 /// The results of executing an action.
 class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TestReportActionResultBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = TestReportActionResultBuilderEnum.fromString(
+      valueString,
+    );
     return TestReportActionResultBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [TestReportActionResultBuilder] with element only
+  /// Create empty [TestReportActionResultBuilder]
+  /// with element only
   factory TestReportActionResultBuilder.empty() =>
-      TestReportActionResultBuilder._(valueString: '');
+      TestReportActionResultBuilder._(valueString: null);
 
-  /// Factory constructor to create [TestReportActionResultBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [TestReportActionResultBuilder] from JSON.
   factory TestReportActionResultBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportActionResultBuilder.elementOnly.withElement(element);
+      return TestReportActionResultBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TestReportActionResultBuilder cannot be constructed from JSON.',
@@ -70,55 +150,81 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for TestReportActionResultBuilder
+  final TestReportActionResultBuilderEnum? valueEnum;
+
   /// pass
   static TestReportActionResultBuilder pass = TestReportActionResultBuilder._(
     valueString: 'pass',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Pass'.toFhirStringBuilder,
+    valueEnum: TestReportActionResultBuilderEnum.pass,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Pass',
+    ),
   );
 
   /// skip
   static TestReportActionResultBuilder skip = TestReportActionResultBuilder._(
     valueString: 'skip',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Skip'.toFhirStringBuilder,
+    valueEnum: TestReportActionResultBuilderEnum.skip,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Skip',
+    ),
   );
 
   /// fail
   static TestReportActionResultBuilder fail = TestReportActionResultBuilder._(
     valueString: 'fail',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Fail'.toFhirStringBuilder,
+    valueEnum: TestReportActionResultBuilderEnum.fail,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Fail',
+    ),
   );
 
   /// warning
   static TestReportActionResultBuilder warning =
       TestReportActionResultBuilder._(
     valueString: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Warning'.toFhirStringBuilder,
+    valueEnum: TestReportActionResultBuilderEnum.warning,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Warning',
+    ),
   );
 
   /// error
   static TestReportActionResultBuilder error = TestReportActionResultBuilder._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Error'.toFhirStringBuilder,
+    valueEnum: TestReportActionResultBuilderEnum.error,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static TestReportActionResultBuilder elementOnly =
-      TestReportActionResultBuilder._(valueString: '');
+      TestReportActionResultBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<TestReportActionResultBuilder> values = [
@@ -128,13 +234,6 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     warning,
     error,
   ];
-
-  /// Clones the current instance
-  @override
-  TestReportActionResultBuilder clone() => TestReportActionResultBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   TestReportActionResultBuilder withElement(
@@ -156,37 +255,4 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  TestReportActionResultBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for TestReportActionResult: $newValue',
-      );
-    }
-    return TestReportActionResultBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

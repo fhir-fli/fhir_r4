@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CompositionAttestationMode
+enum CompositionAttestationModeBuilderEnum {
+  /// personal
+  personal,
+
+  /// professional
+  professional,
+
+  /// legal
+  legal,
+
+  /// official
+  official,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CompositionAttestationModeBuilderEnum.personal:
+        return 'personal';
+      case CompositionAttestationModeBuilderEnum.professional:
+        return 'professional';
+      case CompositionAttestationModeBuilderEnum.legal:
+        return 'legal';
+      case CompositionAttestationModeBuilderEnum.official:
+        return 'official';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CompositionAttestationModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CompositionAttestationModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CompositionAttestationModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'personal':
+        return CompositionAttestationModeBuilderEnum.personal;
+      case 'professional':
+        return CompositionAttestationModeBuilderEnum.professional;
+      case 'legal':
+        return CompositionAttestationModeBuilderEnum.legal;
+      case 'official':
+        return CompositionAttestationModeBuilderEnum.official;
+    }
+    return null;
+  }
+}
+
 /// The way in which a person authenticated a composition.
 class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CompositionAttestationModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CompositionAttestationModeBuilderEnum.fromString(
+      valueString,
+    );
     return CompositionAttestationModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CompositionAttestationModeBuilder] with element only
+  /// Create empty [CompositionAttestationModeBuilder]
+  /// with element only
   factory CompositionAttestationModeBuilder.empty() =>
-      CompositionAttestationModeBuilder._(valueString: '');
+      CompositionAttestationModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [CompositionAttestationModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CompositionAttestationModeBuilder] from JSON.
   factory CompositionAttestationModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositionAttestationModeBuilder.elementOnly.withElement(element);
+      return CompositionAttestationModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CompositionAttestationModeBuilder cannot be constructed from JSON.',
@@ -70,49 +143,71 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CompositionAttestationModeBuilder
+  final CompositionAttestationModeBuilderEnum? valueEnum;
+
   /// personal
   static CompositionAttestationModeBuilder personal =
       CompositionAttestationModeBuilder._(
     valueString: 'personal',
-    system: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Personal'.toFhirStringBuilder,
+    valueEnum: CompositionAttestationModeBuilderEnum.personal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Personal',
+    ),
   );
 
   /// professional
   static CompositionAttestationModeBuilder professional =
       CompositionAttestationModeBuilder._(
     valueString: 'professional',
-    system: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Professional'.toFhirStringBuilder,
+    valueEnum: CompositionAttestationModeBuilderEnum.professional,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Professional',
+    ),
   );
 
   /// legal
   static CompositionAttestationModeBuilder legal =
       CompositionAttestationModeBuilder._(
     valueString: 'legal',
-    system: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Legal'.toFhirStringBuilder,
+    valueEnum: CompositionAttestationModeBuilderEnum.legal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Legal',
+    ),
   );
 
   /// official
   static CompositionAttestationModeBuilder official =
       CompositionAttestationModeBuilder._(
     valueString: 'official',
-    system: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Official'.toFhirStringBuilder,
+    valueEnum: CompositionAttestationModeBuilderEnum.official,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/composition-attestation-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Official',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CompositionAttestationModeBuilder elementOnly =
-      CompositionAttestationModeBuilder._(valueString: '');
+      CompositionAttestationModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CompositionAttestationModeBuilder> values = [
@@ -121,14 +216,6 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
     legal,
     official,
   ];
-
-  /// Clones the current instance
-  @override
-  CompositionAttestationModeBuilder clone() =>
-      CompositionAttestationModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CompositionAttestationModeBuilder withElement(
@@ -150,37 +237,4 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CompositionAttestationModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CompositionAttestationMode: $newValue',
-      );
-    }
-    return CompositionAttestationModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

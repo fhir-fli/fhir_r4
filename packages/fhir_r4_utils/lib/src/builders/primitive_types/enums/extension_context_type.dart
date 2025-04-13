@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ExtensionContextType
+enum ExtensionContextTypeBuilderEnum {
+  /// fhirpath
+  fhirpath,
+
+  /// element
+  element_,
+
+  /// extension
+  extensionValue,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ExtensionContextTypeBuilderEnum.fhirpath:
+        return 'fhirpath';
+      case ExtensionContextTypeBuilderEnum.element_:
+        return 'element';
+      case ExtensionContextTypeBuilderEnum.extensionValue:
+        return 'extension';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ExtensionContextTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ExtensionContextTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ExtensionContextTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'fhirpath':
+        return ExtensionContextTypeBuilderEnum.fhirpath;
+      case 'element':
+        return ExtensionContextTypeBuilderEnum.element_;
+      case 'extension':
+        return ExtensionContextTypeBuilderEnum.extensionValue;
+    }
+    return null;
+  }
+}
+
 /// How an extension context is interpreted.
 class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ExtensionContextTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ExtensionContextTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ExtensionContextTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ExtensionContextTypeBuilder] with element only
+  /// Create empty [ExtensionContextTypeBuilder]
+  /// with element only
   factory ExtensionContextTypeBuilder.empty() =>
-      ExtensionContextTypeBuilder._(valueString: '');
+      ExtensionContextTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ExtensionContextTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ExtensionContextTypeBuilder] from JSON.
   factory ExtensionContextTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExtensionContextTypeBuilder.elementOnly.withElement(element);
+      return ExtensionContextTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ExtensionContextTypeBuilder cannot be constructed from JSON.',
@@ -70,37 +136,55 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ExtensionContextTypeBuilder
+  final ExtensionContextTypeBuilderEnum? valueEnum;
+
   /// fhirpath
   static ExtensionContextTypeBuilder fhirpath = ExtensionContextTypeBuilder._(
     valueString: 'fhirpath',
-    system:
-        'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'FHIRPath'.toFhirStringBuilder,
+    valueEnum: ExtensionContextTypeBuilderEnum.fhirpath,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/extension-context-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'FHIRPath',
+    ),
   );
 
   /// element_
   static ExtensionContextTypeBuilder element_ = ExtensionContextTypeBuilder._(
     valueString: 'element',
-    system:
-        'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Element ID'.toFhirStringBuilder,
+    valueEnum: ExtensionContextTypeBuilderEnum.element_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/extension-context-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Element ID',
+    ),
   );
 
   /// extension_
   static ExtensionContextTypeBuilder extensionValue =
       ExtensionContextTypeBuilder._(
     valueString: 'extension',
-    system:
-        'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Extension URL'.toFhirStringBuilder,
+    valueEnum: ExtensionContextTypeBuilderEnum.extensionValue,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/extension-context-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Extension URL',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ExtensionContextTypeBuilder elementOnly =
-      ExtensionContextTypeBuilder._(valueString: '');
+      ExtensionContextTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ExtensionContextTypeBuilder> values = [
@@ -108,13 +192,6 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
     element_,
     extensionValue,
   ];
-
-  /// Clones the current instance
-  @override
-  ExtensionContextTypeBuilder clone() => ExtensionContextTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ExtensionContextTypeBuilder withElement(
@@ -136,37 +213,4 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ExtensionContextTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ExtensionContextType: $newValue',
-      );
-    }
-    return ExtensionContextTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

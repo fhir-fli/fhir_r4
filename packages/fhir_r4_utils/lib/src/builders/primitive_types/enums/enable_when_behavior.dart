@@ -1,12 +1,63 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EnableWhenBehavior
+enum EnableWhenBehaviorBuilderEnum {
+  /// all
+  all,
+
+  /// any
+  any,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EnableWhenBehaviorBuilderEnum.all:
+        return 'all';
+      case EnableWhenBehaviorBuilderEnum.any:
+        return 'any';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EnableWhenBehaviorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EnableWhenBehaviorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EnableWhenBehaviorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'all':
+        return EnableWhenBehaviorBuilderEnum.all;
+      case 'any':
+        return EnableWhenBehaviorBuilderEnum.any;
+    }
+    return null;
+  }
+}
+
 /// Controls how multiple enableWhen values are interpreted - whether all
 /// or any must be true.
 class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EnableWhenBehaviorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +83,12 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = EnableWhenBehaviorBuilderEnum.fromString(
+      valueString,
+    );
     return EnableWhenBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +100,13 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [EnableWhenBehaviorBuilder] with element only
+  /// Create empty [EnableWhenBehaviorBuilder]
+  /// with element only
   factory EnableWhenBehaviorBuilder.empty() =>
-      EnableWhenBehaviorBuilder._(valueString: '');
+      EnableWhenBehaviorBuilder._(valueString: null);
 
-  /// Factory constructor to create [EnableWhenBehaviorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [EnableWhenBehaviorBuilder] from JSON.
   factory EnableWhenBehaviorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +115,10 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EnableWhenBehaviorBuilder.elementOnly.withElement(element);
+      return EnableWhenBehaviorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EnableWhenBehaviorBuilder cannot be constructed from JSON.',
@@ -71,40 +130,46 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for EnableWhenBehaviorBuilder
+  final EnableWhenBehaviorBuilderEnum? valueEnum;
+
   /// all
   static EnableWhenBehaviorBuilder all = EnableWhenBehaviorBuilder._(
     valueString: 'all',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'All'.toFhirStringBuilder,
+    valueEnum: EnableWhenBehaviorBuilderEnum.all,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'All',
+    ),
   );
 
   /// any
   static EnableWhenBehaviorBuilder any = EnableWhenBehaviorBuilder._(
     valueString: 'any',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Any'.toFhirStringBuilder,
+    valueEnum: EnableWhenBehaviorBuilderEnum.any,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Any',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static EnableWhenBehaviorBuilder elementOnly =
-      EnableWhenBehaviorBuilder._(valueString: '');
+  static EnableWhenBehaviorBuilder elementOnly = EnableWhenBehaviorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<EnableWhenBehaviorBuilder> values = [
     all,
     any,
   ];
-
-  /// Clones the current instance
-  @override
-  EnableWhenBehaviorBuilder clone() => EnableWhenBehaviorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   EnableWhenBehaviorBuilder withElement(
@@ -126,37 +191,4 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  EnableWhenBehaviorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for EnableWhenBehavior: $newValue',
-      );
-    }
-    return EnableWhenBehaviorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

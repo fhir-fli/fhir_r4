@@ -1,12 +1,77 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for LinkType
+enum LinkTypeBuilderEnum {
+  /// replaced-by
+  replacedBy,
+
+  /// replaces
+  replaces,
+
+  /// refer
+  refer,
+
+  /// seealso
+  seealso,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case LinkTypeBuilderEnum.replacedBy:
+        return 'replaced-by';
+      case LinkTypeBuilderEnum.replaces:
+        return 'replaces';
+      case LinkTypeBuilderEnum.refer:
+        return 'refer';
+      case LinkTypeBuilderEnum.seealso:
+        return 'seealso';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static LinkTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return LinkTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static LinkTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'replaced-by':
+        return LinkTypeBuilderEnum.replacedBy;
+      case 'replaces':
+        return LinkTypeBuilderEnum.replaces;
+      case 'refer':
+        return LinkTypeBuilderEnum.refer;
+      case 'seealso':
+        return LinkTypeBuilderEnum.seealso;
+    }
+    return null;
+  }
+}
+
 /// The type of link between this patient resource and another patient
 /// resource.
 class LinkTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   LinkTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +97,12 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = LinkTypeBuilderEnum.fromString(
+      valueString,
+    );
     return LinkTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,11 +114,12 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [LinkTypeBuilder] with element only
-  factory LinkTypeBuilder.empty() => LinkTypeBuilder._(valueString: '');
+  /// Create empty [LinkTypeBuilder]
+  /// with element only
+  factory LinkTypeBuilder.empty() => LinkTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [LinkTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [LinkTypeBuilder] from JSON.
   factory LinkTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkTypeBuilder.elementOnly.withElement(element);
+      return LinkTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'LinkTypeBuilder cannot be constructed from JSON.',
@@ -70,55 +143,74 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for LinkTypeBuilder
+  final LinkTypeBuilderEnum? valueEnum;
+
   /// replaced_by
-  static LinkTypeBuilder replaced_by = LinkTypeBuilder._(
+  static LinkTypeBuilder replacedBy = LinkTypeBuilder._(
     valueString: 'replaced-by',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Replaced-by'.toFhirStringBuilder,
+    valueEnum: LinkTypeBuilderEnum.replacedBy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Replaced-by',
+    ),
   );
 
   /// replaces
   static LinkTypeBuilder replaces = LinkTypeBuilder._(
     valueString: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Replaces'.toFhirStringBuilder,
+    valueEnum: LinkTypeBuilderEnum.replaces,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Replaces',
+    ),
   );
 
   /// refer
   static LinkTypeBuilder refer = LinkTypeBuilder._(
     valueString: 'refer',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Refer'.toFhirStringBuilder,
+    valueEnum: LinkTypeBuilderEnum.refer,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Refer',
+    ),
   );
 
   /// seealso
   static LinkTypeBuilder seealso = LinkTypeBuilder._(
     valueString: 'seealso',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'See also'.toFhirStringBuilder,
+    valueEnum: LinkTypeBuilderEnum.seealso,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'See also',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static LinkTypeBuilder elementOnly = LinkTypeBuilder._(valueString: '');
+  static LinkTypeBuilder elementOnly = LinkTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<LinkTypeBuilder> values = [
-    replaced_by,
+    replacedBy,
     replaces,
     refer,
     seealso,
   ];
-
-  /// Clones the current instance
-  @override
-  LinkTypeBuilder clone() => LinkTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   LinkTypeBuilder withElement(
@@ -140,37 +232,4 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  LinkTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for LinkType: $newValue',
-      );
-    }
-    return LinkTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

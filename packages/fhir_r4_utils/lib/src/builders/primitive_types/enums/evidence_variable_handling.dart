@@ -1,12 +1,77 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EvidenceVariableHandling
+enum EvidenceVariableHandlingBuilderEnum {
+  /// continuous
+  continuous,
+
+  /// dichotomous
+  dichotomous,
+
+  /// ordinal
+  ordinal,
+
+  /// polychotomous
+  polychotomous,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EvidenceVariableHandlingBuilderEnum.continuous:
+        return 'continuous';
+      case EvidenceVariableHandlingBuilderEnum.dichotomous:
+        return 'dichotomous';
+      case EvidenceVariableHandlingBuilderEnum.ordinal:
+        return 'ordinal';
+      case EvidenceVariableHandlingBuilderEnum.polychotomous:
+        return 'polychotomous';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EvidenceVariableHandlingBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EvidenceVariableHandlingBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EvidenceVariableHandlingBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'continuous':
+        return EvidenceVariableHandlingBuilderEnum.continuous;
+      case 'dichotomous':
+        return EvidenceVariableHandlingBuilderEnum.dichotomous;
+      case 'ordinal':
+        return EvidenceVariableHandlingBuilderEnum.ordinal;
+      case 'polychotomous':
+        return EvidenceVariableHandlingBuilderEnum.polychotomous;
+    }
+    return null;
+  }
+}
+
 /// The handling of the variable in statistical analysis for exposures or
 /// outcomes (E.g. Dichotomous, Continuous, Descriptive).
 class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EvidenceVariableHandlingBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +97,12 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = EvidenceVariableHandlingBuilderEnum.fromString(
+      valueString,
+    );
     return EvidenceVariableHandlingBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +114,13 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [EvidenceVariableHandlingBuilder] with element only
+  /// Create empty [EvidenceVariableHandlingBuilder]
+  /// with element only
   factory EvidenceVariableHandlingBuilder.empty() =>
-      EvidenceVariableHandlingBuilder._(valueString: '');
+      EvidenceVariableHandlingBuilder._(valueString: null);
 
-  /// Factory constructor to create [EvidenceVariableHandlingBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [EvidenceVariableHandlingBuilder] from JSON.
   factory EvidenceVariableHandlingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +129,10 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceVariableHandlingBuilder.elementOnly.withElement(element);
+      return EvidenceVariableHandlingBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EvidenceVariableHandlingBuilder cannot be constructed from JSON.',
@@ -71,45 +144,71 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for EvidenceVariableHandlingBuilder
+  final EvidenceVariableHandlingBuilderEnum? valueEnum;
+
   /// continuous
   static EvidenceVariableHandlingBuilder continuous =
       EvidenceVariableHandlingBuilder._(
     valueString: 'continuous',
-    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'continuous variable'.toFhirStringBuilder,
+    valueEnum: EvidenceVariableHandlingBuilderEnum.continuous,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/variable-handling',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'continuous variable',
+    ),
   );
 
   /// dichotomous
   static EvidenceVariableHandlingBuilder dichotomous =
       EvidenceVariableHandlingBuilder._(
     valueString: 'dichotomous',
-    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'dichotomous variable'.toFhirStringBuilder,
+    valueEnum: EvidenceVariableHandlingBuilderEnum.dichotomous,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/variable-handling',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'dichotomous variable',
+    ),
   );
 
   /// ordinal
   static EvidenceVariableHandlingBuilder ordinal =
       EvidenceVariableHandlingBuilder._(
     valueString: 'ordinal',
-    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ordinal variable'.toFhirStringBuilder,
+    valueEnum: EvidenceVariableHandlingBuilderEnum.ordinal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/variable-handling',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ordinal variable',
+    ),
   );
 
   /// polychotomous
   static EvidenceVariableHandlingBuilder polychotomous =
       EvidenceVariableHandlingBuilder._(
     valueString: 'polychotomous',
-    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'polychotomous variable'.toFhirStringBuilder,
+    valueEnum: EvidenceVariableHandlingBuilderEnum.polychotomous,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/variable-handling',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'polychotomous variable',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static EvidenceVariableHandlingBuilder elementOnly =
-      EvidenceVariableHandlingBuilder._(valueString: '');
+      EvidenceVariableHandlingBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<EvidenceVariableHandlingBuilder> values = [
@@ -118,13 +217,6 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     ordinal,
     polychotomous,
   ];
-
-  /// Clones the current instance
-  @override
-  EvidenceVariableHandlingBuilder clone() => EvidenceVariableHandlingBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   EvidenceVariableHandlingBuilder withElement(
@@ -146,37 +238,4 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  EvidenceVariableHandlingBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for EvidenceVariableHandling: $newValue',
-      );
-    }
-    return EvidenceVariableHandlingBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

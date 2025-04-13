@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ListStatus
+enum ListStatusBuilderEnum {
+  /// current
+  current,
+
+  /// retired
+  retired,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ListStatusBuilderEnum.current:
+        return 'current';
+      case ListStatusBuilderEnum.retired:
+        return 'retired';
+      case ListStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ListStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ListStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ListStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'current':
+        return ListStatusBuilderEnum.current;
+      case 'retired':
+        return ListStatusBuilderEnum.retired;
+      case 'entered-in-error':
+        return ListStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The current state of the list.
 class ListStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ListStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ListStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ListStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,12 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ListStatusBuilder] with element only
-  factory ListStatusBuilder.empty() => ListStatusBuilder._(valueString: '');
+  /// Create empty [ListStatusBuilder]
+  /// with element only
+  factory ListStatusBuilder.empty() => ListStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ListStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ListStatusBuilder] from JSON.
   factory ListStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +120,10 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListStatusBuilder.elementOnly.withElement(element);
+      return ListStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ListStatusBuilder cannot be constructed from JSON.',
@@ -69,46 +135,60 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ListStatusBuilder
+  final ListStatusBuilderEnum? valueEnum;
+
   /// current
   static ListStatusBuilder current = ListStatusBuilder._(
     valueString: 'current',
-    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Current'.toFhirStringBuilder,
+    valueEnum: ListStatusBuilderEnum.current,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/list-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Current',
+    ),
   );
 
   /// retired
   static ListStatusBuilder retired = ListStatusBuilder._(
     valueString: 'retired',
-    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Retired'.toFhirStringBuilder,
+    valueEnum: ListStatusBuilderEnum.retired,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/list-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Retired',
+    ),
   );
 
   /// entered_in_error
-  static ListStatusBuilder entered_in_error = ListStatusBuilder._(
+  static ListStatusBuilder enteredInError = ListStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered In Error'.toFhirStringBuilder,
+    valueEnum: ListStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/list-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered In Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ListStatusBuilder elementOnly = ListStatusBuilder._(valueString: '');
+  static ListStatusBuilder elementOnly = ListStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ListStatusBuilder> values = [
     current,
     retired,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  ListStatusBuilder clone() => ListStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ListStatusBuilder withElement(
@@ -130,37 +210,4 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ListStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ListStatus: $newValue',
-      );
-    }
-    return ListStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

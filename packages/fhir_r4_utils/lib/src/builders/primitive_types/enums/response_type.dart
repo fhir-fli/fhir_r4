@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ResponseType
+enum ResponseTypeBuilderEnum {
+  /// ok
+  ok,
+
+  /// transient-error
+  transientError,
+
+  /// fatal-error
+  fatalError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ResponseTypeBuilderEnum.ok:
+        return 'ok';
+      case ResponseTypeBuilderEnum.transientError:
+        return 'transient-error';
+      case ResponseTypeBuilderEnum.fatalError:
+        return 'fatal-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ResponseTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ResponseTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ResponseTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'ok':
+        return ResponseTypeBuilderEnum.ok;
+      case 'transient-error':
+        return ResponseTypeBuilderEnum.transientError;
+      case 'fatal-error':
+        return ResponseTypeBuilderEnum.fatalError;
+    }
+    return null;
+  }
+}
+
 /// The kind of response to a message.
 class ResponseTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ResponseTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ResponseTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ResponseTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,13 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ResponseTypeBuilder] with element only
-  factory ResponseTypeBuilder.empty() => ResponseTypeBuilder._(valueString: '');
+  /// Create empty [ResponseTypeBuilder]
+  /// with element only
+  factory ResponseTypeBuilder.empty() =>
+      ResponseTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ResponseTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ResponseTypeBuilder] from JSON.
   factory ResponseTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +121,10 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResponseTypeBuilder.elementOnly.withElement(element);
+      return ResponseTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ResponseTypeBuilder cannot be constructed from JSON.',
@@ -69,47 +136,60 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ResponseTypeBuilder
+  final ResponseTypeBuilderEnum? valueEnum;
+
   /// ok
   static ResponseTypeBuilder ok = ResponseTypeBuilder._(
     valueString: 'ok',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'OK'.toFhirStringBuilder,
+    valueEnum: ResponseTypeBuilderEnum.ok,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'OK',
+    ),
   );
 
   /// transient_error
-  static ResponseTypeBuilder transient_error = ResponseTypeBuilder._(
+  static ResponseTypeBuilder transientError = ResponseTypeBuilder._(
     valueString: 'transient-error',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Transient Error'.toFhirStringBuilder,
+    valueEnum: ResponseTypeBuilderEnum.transientError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Transient Error',
+    ),
   );
 
   /// fatal_error
-  static ResponseTypeBuilder fatal_error = ResponseTypeBuilder._(
+  static ResponseTypeBuilder fatalError = ResponseTypeBuilder._(
     valueString: 'fatal-error',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Fatal Error'.toFhirStringBuilder,
+    valueEnum: ResponseTypeBuilderEnum.fatalError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Fatal Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ResponseTypeBuilder elementOnly =
-      ResponseTypeBuilder._(valueString: '');
+  static ResponseTypeBuilder elementOnly = ResponseTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ResponseTypeBuilder> values = [
     ok,
-    transient_error,
-    fatal_error,
+    transientError,
+    fatalError,
   ];
-
-  /// Clones the current instance
-  @override
-  ResponseTypeBuilder clone() => ResponseTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ResponseTypeBuilder withElement(
@@ -131,37 +211,4 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ResponseTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ResponseType: $newValue',
-      );
-    }
-    return ResponseTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SlicingRules
+enum SlicingRulesBuilderEnum {
+  /// closed
+  closed,
+
+  /// open
+  open,
+
+  /// openAtEnd
+  openAtEnd,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SlicingRulesBuilderEnum.closed:
+        return 'closed';
+      case SlicingRulesBuilderEnum.open:
+        return 'open';
+      case SlicingRulesBuilderEnum.openAtEnd:
+        return 'openAtEnd';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SlicingRulesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SlicingRulesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SlicingRulesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'closed':
+        return SlicingRulesBuilderEnum.closed;
+      case 'open':
+        return SlicingRulesBuilderEnum.open;
+      case 'openAtEnd':
+        return SlicingRulesBuilderEnum.openAtEnd;
+    }
+    return null;
+  }
+}
+
 /// How slices are interpreted when evaluating an instance.
 class SlicingRulesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SlicingRulesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SlicingRulesBuilderEnum.fromString(
+      valueString,
+    );
     return SlicingRulesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,13 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SlicingRulesBuilder] with element only
-  factory SlicingRulesBuilder.empty() => SlicingRulesBuilder._(valueString: '');
+  /// Create empty [SlicingRulesBuilder]
+  /// with element only
+  factory SlicingRulesBuilder.empty() =>
+      SlicingRulesBuilder._(valueString: null);
 
-  /// Factory constructor to create [SlicingRulesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SlicingRulesBuilder] from JSON.
   factory SlicingRulesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +121,10 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SlicingRulesBuilder.elementOnly.withElement(element);
+      return SlicingRulesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SlicingRulesBuilder cannot be constructed from JSON.',
@@ -69,36 +136,53 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SlicingRulesBuilder
+  final SlicingRulesBuilderEnum? valueEnum;
+
   /// closed
   static SlicingRulesBuilder closed = SlicingRulesBuilder._(
     valueString: 'closed',
-    system:
-        'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Closed'.toFhirStringBuilder,
+    valueEnum: SlicingRulesBuilderEnum.closed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Closed',
+    ),
   );
 
   /// open
   static SlicingRulesBuilder open = SlicingRulesBuilder._(
     valueString: 'open',
-    system:
-        'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Open'.toFhirStringBuilder,
+    valueEnum: SlicingRulesBuilderEnum.open,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Open',
+    ),
   );
 
   /// openAtEnd
   static SlicingRulesBuilder openAtEnd = SlicingRulesBuilder._(
     valueString: 'openAtEnd',
-    system:
-        'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Open at End'.toFhirStringBuilder,
+    valueEnum: SlicingRulesBuilderEnum.openAtEnd,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Open at End',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static SlicingRulesBuilder elementOnly =
-      SlicingRulesBuilder._(valueString: '');
+  static SlicingRulesBuilder elementOnly = SlicingRulesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SlicingRulesBuilder> values = [
@@ -106,13 +190,6 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     open,
     openAtEnd,
   ];
-
-  /// Clones the current instance
-  @override
-  SlicingRulesBuilder clone() => SlicingRulesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SlicingRulesBuilder withElement(
@@ -134,37 +211,4 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SlicingRulesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SlicingRules: $newValue',
-      );
-    }
-    return SlicingRulesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

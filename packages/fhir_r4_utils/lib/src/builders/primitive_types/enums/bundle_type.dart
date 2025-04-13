@@ -1,11 +1,111 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for BundleType
+enum BundleTypeBuilderEnum {
+  /// document
+  document,
+
+  /// message
+  message,
+
+  /// transaction
+  transaction,
+
+  /// transaction-response
+  transactionResponse,
+
+  /// batch
+  batch,
+
+  /// batch-response
+  batchResponse,
+
+  /// history
+  history,
+
+  /// searchset
+  searchset,
+
+  /// collection
+  collection,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case BundleTypeBuilderEnum.document:
+        return 'document';
+      case BundleTypeBuilderEnum.message:
+        return 'message';
+      case BundleTypeBuilderEnum.transaction:
+        return 'transaction';
+      case BundleTypeBuilderEnum.transactionResponse:
+        return 'transaction-response';
+      case BundleTypeBuilderEnum.batch:
+        return 'batch';
+      case BundleTypeBuilderEnum.batchResponse:
+        return 'batch-response';
+      case BundleTypeBuilderEnum.history:
+        return 'history';
+      case BundleTypeBuilderEnum.searchset:
+        return 'searchset';
+      case BundleTypeBuilderEnum.collection:
+        return 'collection';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static BundleTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return BundleTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static BundleTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'document':
+        return BundleTypeBuilderEnum.document;
+      case 'message':
+        return BundleTypeBuilderEnum.message;
+      case 'transaction':
+        return BundleTypeBuilderEnum.transaction;
+      case 'transaction-response':
+        return BundleTypeBuilderEnum.transactionResponse;
+      case 'batch':
+        return BundleTypeBuilderEnum.batch;
+      case 'batch-response':
+        return BundleTypeBuilderEnum.batchResponse;
+      case 'history':
+        return BundleTypeBuilderEnum.history;
+      case 'searchset':
+        return BundleTypeBuilderEnum.searchset;
+      case 'collection':
+        return BundleTypeBuilderEnum.collection;
+    }
+    return null;
+  }
+}
+
 /// Indicates the purpose of a bundle - how it is intended to be used.
 class BundleTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   BundleTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +131,12 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = BundleTypeBuilderEnum.fromString(
+      valueString,
+    );
     return BundleTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +148,12 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [BundleTypeBuilder] with element only
-  factory BundleTypeBuilder.empty() => BundleTypeBuilder._(valueString: '');
+  /// Create empty [BundleTypeBuilder]
+  /// with element only
+  factory BundleTypeBuilder.empty() => BundleTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [BundleTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [BundleTypeBuilder] from JSON.
   factory BundleTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +162,10 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BundleTypeBuilder.elementOnly.withElement(element);
+      return BundleTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'BundleTypeBuilder cannot be constructed from JSON.',
@@ -69,100 +177,144 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for BundleTypeBuilder
+  final BundleTypeBuilderEnum? valueEnum;
+
   /// document
   static BundleTypeBuilder document = BundleTypeBuilder._(
     valueString: 'document',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Document'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.document,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Document',
+    ),
   );
 
   /// message
   static BundleTypeBuilder message = BundleTypeBuilder._(
     valueString: 'message',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Message'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.message,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Message',
+    ),
   );
 
   /// transaction
   static BundleTypeBuilder transaction = BundleTypeBuilder._(
     valueString: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Transaction'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.transaction,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Transaction',
+    ),
   );
 
   /// transaction_response
-  static BundleTypeBuilder transaction_response = BundleTypeBuilder._(
+  static BundleTypeBuilder transactionResponse = BundleTypeBuilder._(
     valueString: 'transaction-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Transaction Response'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.transactionResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Transaction Response',
+    ),
   );
 
   /// batch
   static BundleTypeBuilder batch = BundleTypeBuilder._(
     valueString: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Batch'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.batch,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Batch',
+    ),
   );
 
   /// batch_response
-  static BundleTypeBuilder batch_response = BundleTypeBuilder._(
+  static BundleTypeBuilder batchResponse = BundleTypeBuilder._(
     valueString: 'batch-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Batch Response'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.batchResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Batch Response',
+    ),
   );
 
   /// history
   static BundleTypeBuilder history = BundleTypeBuilder._(
     valueString: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'History List'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.history,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'History List',
+    ),
   );
 
   /// searchset
   static BundleTypeBuilder searchset = BundleTypeBuilder._(
     valueString: 'searchset',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Search Results'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.searchset,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Search Results',
+    ),
   );
 
   /// collection
   static BundleTypeBuilder collection = BundleTypeBuilder._(
     valueString: 'collection',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Collection'.toFhirStringBuilder,
+    valueEnum: BundleTypeBuilderEnum.collection,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Collection',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static BundleTypeBuilder elementOnly = BundleTypeBuilder._(valueString: '');
+  static BundleTypeBuilder elementOnly = BundleTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<BundleTypeBuilder> values = [
     document,
     message,
     transaction,
-    transaction_response,
+    transactionResponse,
     batch,
-    batch_response,
+    batchResponse,
     history,
     searchset,
     collection,
   ];
-
-  /// Clones the current instance
-  @override
-  BundleTypeBuilder clone() => BundleTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   BundleTypeBuilder withElement(
@@ -184,37 +336,4 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  BundleTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for BundleType: $newValue',
-      );
-    }
-    return BundleTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

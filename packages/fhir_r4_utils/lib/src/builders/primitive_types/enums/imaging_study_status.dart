@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ImagingStudyStatus
+enum ImagingStudyStatusBuilderEnum {
+  /// registered
+  registered,
+
+  /// available
+  available,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ImagingStudyStatusBuilderEnum.registered:
+        return 'registered';
+      case ImagingStudyStatusBuilderEnum.available:
+        return 'available';
+      case ImagingStudyStatusBuilderEnum.cancelled:
+        return 'cancelled';
+      case ImagingStudyStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case ImagingStudyStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ImagingStudyStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ImagingStudyStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ImagingStudyStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'registered':
+        return ImagingStudyStatusBuilderEnum.registered;
+      case 'available':
+        return ImagingStudyStatusBuilderEnum.available;
+      case 'cancelled':
+        return ImagingStudyStatusBuilderEnum.cancelled;
+      case 'entered-in-error':
+        return ImagingStudyStatusBuilderEnum.enteredInError;
+      case 'unknown':
+        return ImagingStudyStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The status of the ImagingStudy.
 class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ImagingStudyStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ImagingStudyStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ImagingStudyStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ImagingStudyStatusBuilder] with element only
+  /// Create empty [ImagingStudyStatusBuilder]
+  /// with element only
   factory ImagingStudyStatusBuilder.empty() =>
-      ImagingStudyStatusBuilder._(valueString: '');
+      ImagingStudyStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ImagingStudyStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ImagingStudyStatusBuilder] from JSON.
   factory ImagingStudyStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImagingStudyStatusBuilder.elementOnly.withElement(element);
+      return ImagingStudyStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ImagingStudyStatusBuilder cannot be constructed from JSON.',
@@ -70,66 +150,88 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ImagingStudyStatusBuilder
+  final ImagingStudyStatusBuilderEnum? valueEnum;
+
   /// registered
   static ImagingStudyStatusBuilder registered = ImagingStudyStatusBuilder._(
     valueString: 'registered',
-    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Registered'.toFhirStringBuilder,
+    valueEnum: ImagingStudyStatusBuilderEnum.registered,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/imagingstudy-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Registered',
+    ),
   );
 
   /// available
   static ImagingStudyStatusBuilder available = ImagingStudyStatusBuilder._(
     valueString: 'available',
-    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Available'.toFhirStringBuilder,
+    valueEnum: ImagingStudyStatusBuilderEnum.available,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/imagingstudy-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Available',
+    ),
   );
 
   /// cancelled
   static ImagingStudyStatusBuilder cancelled = ImagingStudyStatusBuilder._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cancelled'.toFhirStringBuilder,
+    valueEnum: ImagingStudyStatusBuilderEnum.cancelled,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/imagingstudy-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// entered_in_error
-  static ImagingStudyStatusBuilder entered_in_error =
-      ImagingStudyStatusBuilder._(
+  static ImagingStudyStatusBuilder enteredInError = ImagingStudyStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: ImagingStudyStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/imagingstudy-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
   static ImagingStudyStatusBuilder unknown = ImagingStudyStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: ImagingStudyStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/imagingstudy-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ImagingStudyStatusBuilder elementOnly =
-      ImagingStudyStatusBuilder._(valueString: '');
+  static ImagingStudyStatusBuilder elementOnly = ImagingStudyStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ImagingStudyStatusBuilder> values = [
     registered,
     available,
     cancelled,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ImagingStudyStatusBuilder clone() => ImagingStudyStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ImagingStudyStatusBuilder withElement(
@@ -151,37 +253,4 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ImagingStudyStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ImagingStudyStatus: $newValue',
-      );
-    }
-    return ImagingStudyStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

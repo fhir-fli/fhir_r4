@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionConditionKind
+enum ActionConditionKindBuilderEnum {
+  /// applicability
+  applicability,
+
+  /// start
+  start,
+
+  /// stop
+  stop,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionConditionKindBuilderEnum.applicability:
+        return 'applicability';
+      case ActionConditionKindBuilderEnum.start:
+        return 'start';
+      case ActionConditionKindBuilderEnum.stop:
+        return 'stop';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionConditionKindBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionConditionKindBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionConditionKindBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'applicability':
+        return ActionConditionKindBuilderEnum.applicability;
+      case 'start':
+        return ActionConditionKindBuilderEnum.start;
+      case 'stop':
+        return ActionConditionKindBuilderEnum.stop;
+    }
+    return null;
+  }
+}
+
 /// Defines the kinds of conditions that can appear on actions.
 class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionConditionKindBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ActionConditionKindBuilderEnum.fromString(
+      valueString,
+    );
     return ActionConditionKindBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ActionConditionKindBuilder] with element only
+  /// Create empty [ActionConditionKindBuilder]
+  /// with element only
   factory ActionConditionKindBuilder.empty() =>
-      ActionConditionKindBuilder._(valueString: '');
+      ActionConditionKindBuilder._(valueString: null);
 
-  /// Factory constructor to create [ActionConditionKindBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ActionConditionKindBuilder] from JSON.
   factory ActionConditionKindBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionConditionKindBuilder.elementOnly.withElement(element);
+      return ActionConditionKindBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionConditionKindBuilder cannot be constructed from JSON.',
@@ -70,37 +136,54 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ActionConditionKindBuilder
+  final ActionConditionKindBuilderEnum? valueEnum;
+
   /// applicability
   static ActionConditionKindBuilder applicability =
       ActionConditionKindBuilder._(
     valueString: 'applicability',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Applicability'.toFhirStringBuilder,
+    valueEnum: ActionConditionKindBuilderEnum.applicability,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Applicability',
+    ),
   );
 
   /// start
   static ActionConditionKindBuilder start = ActionConditionKindBuilder._(
     valueString: 'start',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Start'.toFhirStringBuilder,
+    valueEnum: ActionConditionKindBuilderEnum.start,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Start',
+    ),
   );
 
   /// stop
   static ActionConditionKindBuilder stop = ActionConditionKindBuilder._(
     valueString: 'stop',
-    system:
-        'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Stop'.toFhirStringBuilder,
+    valueEnum: ActionConditionKindBuilderEnum.stop,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-condition-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Stop',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ActionConditionKindBuilder elementOnly =
-      ActionConditionKindBuilder._(valueString: '');
+  static ActionConditionKindBuilder elementOnly = ActionConditionKindBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ActionConditionKindBuilder> values = [
@@ -108,13 +191,6 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     start,
     stop,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionConditionKindBuilder clone() => ActionConditionKindBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ActionConditionKindBuilder withElement(
@@ -136,37 +212,4 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ActionConditionKindBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ActionConditionKind: $newValue',
-      );
-    }
-    return ActionConditionKindBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

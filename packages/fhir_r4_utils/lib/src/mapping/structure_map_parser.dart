@@ -384,7 +384,7 @@ class StructureMapParser {
           ..token('type')
           ..token('+')
           ..token('types');
-        typeMode = StructureMapGroupTypeModeBuilder.type_and_types;
+        typeMode = StructureMapGroupTypeModeBuilder.typeAndTypes;
       } else {
         lexer.token('types');
         typeMode = StructureMapGroupTypeModeBuilder.types;
@@ -432,7 +432,7 @@ class StructureMapParser {
           lexer
             ..token('type')
             ..token('+');
-          typeMode = StructureMapGroupTypeModeBuilder.type_and_types;
+          typeMode = StructureMapGroupTypeModeBuilder.typeAndTypes;
         }
         lexer
           ..token('>')

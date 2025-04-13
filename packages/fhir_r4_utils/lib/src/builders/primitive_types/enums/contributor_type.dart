@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ContributorType
+enum ContributorTypeBuilderEnum {
+  /// author
+  author,
+
+  /// editor
+  editor,
+
+  /// reviewer
+  reviewer,
+
+  /// endorser
+  endorser,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ContributorTypeBuilderEnum.author:
+        return 'author';
+      case ContributorTypeBuilderEnum.editor:
+        return 'editor';
+      case ContributorTypeBuilderEnum.reviewer:
+        return 'reviewer';
+      case ContributorTypeBuilderEnum.endorser:
+        return 'endorser';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ContributorTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ContributorTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ContributorTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'author':
+        return ContributorTypeBuilderEnum.author;
+      case 'editor':
+        return ContributorTypeBuilderEnum.editor;
+      case 'reviewer':
+        return ContributorTypeBuilderEnum.reviewer;
+      case 'endorser':
+        return ContributorTypeBuilderEnum.endorser;
+    }
+    return null;
+  }
+}
+
 /// The type of contributor.
 class ContributorTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ContributorTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ContributorTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ContributorTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ContributorTypeBuilder] with element only
+  /// Create empty [ContributorTypeBuilder]
+  /// with element only
   factory ContributorTypeBuilder.empty() =>
-      ContributorTypeBuilder._(valueString: '');
+      ContributorTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ContributorTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ContributorTypeBuilder] from JSON.
   factory ContributorTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorTypeBuilder.elementOnly.withElement(element);
+      return ContributorTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ContributorTypeBuilder cannot be constructed from JSON.',
@@ -70,41 +143,66 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ContributorTypeBuilder
+  final ContributorTypeBuilderEnum? valueEnum;
+
   /// author
   static ContributorTypeBuilder author = ContributorTypeBuilder._(
     valueString: 'author',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Author'.toFhirStringBuilder,
+    valueEnum: ContributorTypeBuilderEnum.author,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contributor-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Author',
+    ),
   );
 
   /// editor
   static ContributorTypeBuilder editor = ContributorTypeBuilder._(
     valueString: 'editor',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Editor'.toFhirStringBuilder,
+    valueEnum: ContributorTypeBuilderEnum.editor,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contributor-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Editor',
+    ),
   );
 
   /// reviewer
   static ContributorTypeBuilder reviewer = ContributorTypeBuilder._(
     valueString: 'reviewer',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Reviewer'.toFhirStringBuilder,
+    valueEnum: ContributorTypeBuilderEnum.reviewer,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contributor-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Reviewer',
+    ),
   );
 
   /// endorser
   static ContributorTypeBuilder endorser = ContributorTypeBuilder._(
     valueString: 'endorser',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Endorser'.toFhirStringBuilder,
+    valueEnum: ContributorTypeBuilderEnum.endorser,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contributor-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Endorser',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ContributorTypeBuilder elementOnly =
-      ContributorTypeBuilder._(valueString: '');
+  static ContributorTypeBuilder elementOnly = ContributorTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ContributorTypeBuilder> values = [
@@ -113,13 +211,6 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
     reviewer,
     endorser,
   ];
-
-  /// Clones the current instance
-  @override
-  ContributorTypeBuilder clone() => ContributorTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ContributorTypeBuilder withElement(
@@ -141,37 +232,4 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ContributorTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ContributorType: $newValue',
-      );
-    }
-    return ContributorTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

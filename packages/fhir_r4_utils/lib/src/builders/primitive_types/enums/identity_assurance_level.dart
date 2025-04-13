@@ -1,12 +1,77 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for IdentityAssuranceLevel
+enum IdentityAssuranceLevelBuilderEnum {
+  /// level1
+  level1,
+
+  /// level2
+  level2,
+
+  /// level3
+  level3,
+
+  /// level4
+  level4,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case IdentityAssuranceLevelBuilderEnum.level1:
+        return 'level1';
+      case IdentityAssuranceLevelBuilderEnum.level2:
+        return 'level2';
+      case IdentityAssuranceLevelBuilderEnum.level3:
+        return 'level3';
+      case IdentityAssuranceLevelBuilderEnum.level4:
+        return 'level4';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static IdentityAssuranceLevelBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return IdentityAssuranceLevelBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static IdentityAssuranceLevelBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'level1':
+        return IdentityAssuranceLevelBuilderEnum.level1;
+      case 'level2':
+        return IdentityAssuranceLevelBuilderEnum.level2;
+      case 'level3':
+        return IdentityAssuranceLevelBuilderEnum.level3;
+      case 'level4':
+        return IdentityAssuranceLevelBuilderEnum.level4;
+    }
+    return null;
+  }
+}
+
 /// The level of confidence that this link represents the same actual
 /// person, based on NIST Authentication Levels.
 class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   IdentityAssuranceLevelBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +97,12 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = IdentityAssuranceLevelBuilderEnum.fromString(
+      valueString,
+    );
     return IdentityAssuranceLevelBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +114,13 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [IdentityAssuranceLevelBuilder] with element only
+  /// Create empty [IdentityAssuranceLevelBuilder]
+  /// with element only
   factory IdentityAssuranceLevelBuilder.empty() =>
-      IdentityAssuranceLevelBuilder._(valueString: '');
+      IdentityAssuranceLevelBuilder._(valueString: null);
 
-  /// Factory constructor to create [IdentityAssuranceLevelBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [IdentityAssuranceLevelBuilder] from JSON.
   factory IdentityAssuranceLevelBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +129,10 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentityAssuranceLevelBuilder.elementOnly.withElement(element);
+      return IdentityAssuranceLevelBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'IdentityAssuranceLevelBuilder cannot be constructed from JSON.',
@@ -71,45 +144,67 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for IdentityAssuranceLevelBuilder
+  final IdentityAssuranceLevelBuilderEnum? valueEnum;
+
   /// level1
   static IdentityAssuranceLevelBuilder level1 = IdentityAssuranceLevelBuilder._(
     valueString: 'level1',
-    system:
-        'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Level 1'.toFhirStringBuilder,
+    valueEnum: IdentityAssuranceLevelBuilderEnum.level1,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Level 1',
+    ),
   );
 
   /// level2
   static IdentityAssuranceLevelBuilder level2 = IdentityAssuranceLevelBuilder._(
     valueString: 'level2',
-    system:
-        'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Level 2'.toFhirStringBuilder,
+    valueEnum: IdentityAssuranceLevelBuilderEnum.level2,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Level 2',
+    ),
   );
 
   /// level3
   static IdentityAssuranceLevelBuilder level3 = IdentityAssuranceLevelBuilder._(
     valueString: 'level3',
-    system:
-        'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Level 3'.toFhirStringBuilder,
+    valueEnum: IdentityAssuranceLevelBuilderEnum.level3,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Level 3',
+    ),
   );
 
   /// level4
   static IdentityAssuranceLevelBuilder level4 = IdentityAssuranceLevelBuilder._(
     valueString: 'level4',
-    system:
-        'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Level 4'.toFhirStringBuilder,
+    valueEnum: IdentityAssuranceLevelBuilderEnum.level4,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Level 4',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static IdentityAssuranceLevelBuilder elementOnly =
-      IdentityAssuranceLevelBuilder._(valueString: '');
+      IdentityAssuranceLevelBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<IdentityAssuranceLevelBuilder> values = [
@@ -118,13 +213,6 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     level3,
     level4,
   ];
-
-  /// Clones the current instance
-  @override
-  IdentityAssuranceLevelBuilder clone() => IdentityAssuranceLevelBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   IdentityAssuranceLevelBuilder withElement(
@@ -146,37 +234,4 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  IdentityAssuranceLevelBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for IdentityAssuranceLevel: $newValue',
-      );
-    }
-    return IdentityAssuranceLevelBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

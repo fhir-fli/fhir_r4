@@ -572,7 +572,7 @@ class FhirMapEngine {
     String? tgtType,
   ]) async {
     if (tgtType == null &&
-        grp.typeMode != StructureMapGroupTypeModeBuilder.type_and_types) {
+        grp.typeMode != StructureMapGroupTypeModeBuilder.typeAndTypes) {
       return false;
     }
     if (grp.input?.length != 2 ||

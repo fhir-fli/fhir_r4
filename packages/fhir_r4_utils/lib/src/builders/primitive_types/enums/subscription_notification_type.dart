@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SubscriptionNotificationType
+enum SubscriptionNotificationTypeBuilderEnum {
+  /// handshake
+  handshake,
+
+  /// heartbeat
+  heartbeat,
+
+  /// event-notification
+  eventNotification,
+
+  /// query-status
+  queryStatus,
+
+  /// query-event
+  queryEvent,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SubscriptionNotificationTypeBuilderEnum.handshake:
+        return 'handshake';
+      case SubscriptionNotificationTypeBuilderEnum.heartbeat:
+        return 'heartbeat';
+      case SubscriptionNotificationTypeBuilderEnum.eventNotification:
+        return 'event-notification';
+      case SubscriptionNotificationTypeBuilderEnum.queryStatus:
+        return 'query-status';
+      case SubscriptionNotificationTypeBuilderEnum.queryEvent:
+        return 'query-event';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SubscriptionNotificationTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SubscriptionNotificationTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SubscriptionNotificationTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'handshake':
+        return SubscriptionNotificationTypeBuilderEnum.handshake;
+      case 'heartbeat':
+        return SubscriptionNotificationTypeBuilderEnum.heartbeat;
+      case 'event-notification':
+        return SubscriptionNotificationTypeBuilderEnum.eventNotification;
+      case 'query-status':
+        return SubscriptionNotificationTypeBuilderEnum.queryStatus;
+      case 'query-event':
+        return SubscriptionNotificationTypeBuilderEnum.queryEvent;
+    }
+    return null;
+  }
+}
+
 /// The type of notification represented by the status message.
 class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SubscriptionNotificationTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SubscriptionNotificationTypeBuilderEnum.fromString(
+      valueString,
+    );
     return SubscriptionNotificationTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SubscriptionNotificationTypeBuilder] with element only
+  /// Create empty [SubscriptionNotificationTypeBuilder]
+  /// with element only
   factory SubscriptionNotificationTypeBuilder.empty() =>
-      SubscriptionNotificationTypeBuilder._(valueString: '');
+      SubscriptionNotificationTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [SubscriptionNotificationTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SubscriptionNotificationTypeBuilder] from JSON.
   factory SubscriptionNotificationTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +135,10 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionNotificationTypeBuilder.elementOnly
-          .withElement(element);
+      return SubscriptionNotificationTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SubscriptionNotificationTypeBuilder cannot be constructed from JSON.',
@@ -71,76 +150,99 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SubscriptionNotificationTypeBuilder
+  final SubscriptionNotificationTypeBuilderEnum? valueEnum;
+
   /// handshake
   static SubscriptionNotificationTypeBuilder handshake =
       SubscriptionNotificationTypeBuilder._(
     valueString: 'handshake',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-notification-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Handshake'.toFhirStringBuilder,
+    valueEnum: SubscriptionNotificationTypeBuilderEnum.handshake,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Handshake',
+    ),
   );
 
   /// heartbeat
   static SubscriptionNotificationTypeBuilder heartbeat =
       SubscriptionNotificationTypeBuilder._(
     valueString: 'heartbeat',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-notification-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Heartbeat'.toFhirStringBuilder,
+    valueEnum: SubscriptionNotificationTypeBuilderEnum.heartbeat,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Heartbeat',
+    ),
   );
 
   /// event_notification
-  static SubscriptionNotificationTypeBuilder event_notification =
+  static SubscriptionNotificationTypeBuilder eventNotification =
       SubscriptionNotificationTypeBuilder._(
     valueString: 'event-notification',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-notification-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Event Notification'.toFhirStringBuilder,
+    valueEnum: SubscriptionNotificationTypeBuilderEnum.eventNotification,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Event Notification',
+    ),
   );
 
   /// query_status
-  static SubscriptionNotificationTypeBuilder query_status =
+  static SubscriptionNotificationTypeBuilder queryStatus =
       SubscriptionNotificationTypeBuilder._(
     valueString: 'query-status',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-notification-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Query Status'.toFhirStringBuilder,
+    valueEnum: SubscriptionNotificationTypeBuilderEnum.queryStatus,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Query Status',
+    ),
   );
 
   /// query_event
-  static SubscriptionNotificationTypeBuilder query_event =
+  static SubscriptionNotificationTypeBuilder queryEvent =
       SubscriptionNotificationTypeBuilder._(
     valueString: 'query-event',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-notification-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Query Event'.toFhirStringBuilder,
+    valueEnum: SubscriptionNotificationTypeBuilderEnum.queryEvent,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Query Event',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static SubscriptionNotificationTypeBuilder elementOnly =
-      SubscriptionNotificationTypeBuilder._(valueString: '');
+      SubscriptionNotificationTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SubscriptionNotificationTypeBuilder> values = [
     handshake,
     heartbeat,
-    event_notification,
-    query_status,
-    query_event,
+    eventNotification,
+    queryStatus,
+    queryEvent,
   ];
-
-  /// Clones the current instance
-  @override
-  SubscriptionNotificationTypeBuilder clone() =>
-      SubscriptionNotificationTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationTypeBuilder withElement(
@@ -162,37 +264,4 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SubscriptionNotificationTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SubscriptionNotificationType: $newValue',
-      );
-    }
-    return SubscriptionNotificationTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

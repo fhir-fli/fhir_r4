@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ObservationRangeCategory
+enum ObservationRangeCategoryBuilderEnum {
+  /// reference
+  reference,
+
+  /// critical
+  critical,
+
+  /// absolute
+  absolute,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ObservationRangeCategoryBuilderEnum.reference:
+        return 'reference';
+      case ObservationRangeCategoryBuilderEnum.critical:
+        return 'critical';
+      case ObservationRangeCategoryBuilderEnum.absolute:
+        return 'absolute';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ObservationRangeCategoryBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ObservationRangeCategoryBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ObservationRangeCategoryBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'reference':
+        return ObservationRangeCategoryBuilderEnum.reference;
+      case 'critical':
+        return ObservationRangeCategoryBuilderEnum.critical;
+      case 'absolute':
+        return ObservationRangeCategoryBuilderEnum.absolute;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the category of observation range.
 class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ObservationRangeCategoryBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ObservationRangeCategoryBuilderEnum.fromString(
+      valueString,
+    );
     return ObservationRangeCategoryBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ObservationRangeCategoryBuilder] with element only
+  /// Create empty [ObservationRangeCategoryBuilder]
+  /// with element only
   factory ObservationRangeCategoryBuilder.empty() =>
-      ObservationRangeCategoryBuilder._(valueString: '');
+      ObservationRangeCategoryBuilder._(valueString: null);
 
-  /// Factory constructor to create [ObservationRangeCategoryBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ObservationRangeCategoryBuilder] from JSON.
   factory ObservationRangeCategoryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationRangeCategoryBuilder.elementOnly.withElement(element);
+      return ObservationRangeCategoryBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ObservationRangeCategoryBuilder cannot be constructed from JSON.',
@@ -70,39 +136,57 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ObservationRangeCategoryBuilder
+  final ObservationRangeCategoryBuilderEnum? valueEnum;
+
   /// reference
   static ObservationRangeCategoryBuilder reference =
       ObservationRangeCategoryBuilder._(
     valueString: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'reference range'.toFhirStringBuilder,
+    valueEnum: ObservationRangeCategoryBuilderEnum.reference,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'reference range',
+    ),
   );
 
   /// critical
   static ObservationRangeCategoryBuilder critical =
       ObservationRangeCategoryBuilder._(
     valueString: 'critical',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'critical range'.toFhirStringBuilder,
+    valueEnum: ObservationRangeCategoryBuilderEnum.critical,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'critical range',
+    ),
   );
 
   /// absolute
   static ObservationRangeCategoryBuilder absolute =
       ObservationRangeCategoryBuilder._(
     valueString: 'absolute',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'absolute range'.toFhirStringBuilder,
+    valueEnum: ObservationRangeCategoryBuilderEnum.absolute,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-range-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'absolute range',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ObservationRangeCategoryBuilder elementOnly =
-      ObservationRangeCategoryBuilder._(valueString: '');
+      ObservationRangeCategoryBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ObservationRangeCategoryBuilder> values = [
@@ -110,13 +194,6 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
     critical,
     absolute,
   ];
-
-  /// Clones the current instance
-  @override
-  ObservationRangeCategoryBuilder clone() => ObservationRangeCategoryBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ObservationRangeCategoryBuilder withElement(
@@ -138,37 +215,4 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ObservationRangeCategoryBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ObservationRangeCategory: $newValue',
-      );
-    }
-    return ObservationRangeCategoryBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

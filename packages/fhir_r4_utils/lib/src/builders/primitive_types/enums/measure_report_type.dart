@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MeasureReportType
+enum MeasureReportTypeBuilderEnum {
+  /// individual
+  individual,
+
+  /// subject-list
+  subjectList,
+
+  /// summary
+  summary,
+
+  /// data-collection
+  dataCollection,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MeasureReportTypeBuilderEnum.individual:
+        return 'individual';
+      case MeasureReportTypeBuilderEnum.subjectList:
+        return 'subject-list';
+      case MeasureReportTypeBuilderEnum.summary:
+        return 'summary';
+      case MeasureReportTypeBuilderEnum.dataCollection:
+        return 'data-collection';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MeasureReportTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MeasureReportTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MeasureReportTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'individual':
+        return MeasureReportTypeBuilderEnum.individual;
+      case 'subject-list':
+        return MeasureReportTypeBuilderEnum.subjectList;
+      case 'summary':
+        return MeasureReportTypeBuilderEnum.summary;
+      case 'data-collection':
+        return MeasureReportTypeBuilderEnum.dataCollection;
+    }
+    return null;
+  }
+}
+
 /// The type of the measure report.
 class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   MeasureReportTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = MeasureReportTypeBuilderEnum.fromString(
+      valueString,
+    );
     return MeasureReportTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [MeasureReportTypeBuilder] with element only
+  /// Create empty [MeasureReportTypeBuilder]
+  /// with element only
   factory MeasureReportTypeBuilder.empty() =>
-      MeasureReportTypeBuilder._(valueString: '');
+      MeasureReportTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [MeasureReportTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [MeasureReportTypeBuilder] from JSON.
   factory MeasureReportTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportTypeBuilder.elementOnly.withElement(element);
+      return MeasureReportTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MeasureReportTypeBuilder cannot be constructed from JSON.',
@@ -70,56 +143,74 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for MeasureReportTypeBuilder
+  final MeasureReportTypeBuilderEnum? valueEnum;
+
   /// individual
   static MeasureReportTypeBuilder individual = MeasureReportTypeBuilder._(
     valueString: 'individual',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Individual'.toFhirStringBuilder,
+    valueEnum: MeasureReportTypeBuilderEnum.individual,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Individual',
+    ),
   );
 
   /// subject_list
-  static MeasureReportTypeBuilder subject_list = MeasureReportTypeBuilder._(
+  static MeasureReportTypeBuilder subjectList = MeasureReportTypeBuilder._(
     valueString: 'subject-list',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Subject List'.toFhirStringBuilder,
+    valueEnum: MeasureReportTypeBuilderEnum.subjectList,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Subject List',
+    ),
   );
 
   /// summary
   static MeasureReportTypeBuilder summary = MeasureReportTypeBuilder._(
     valueString: 'summary',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Summary'.toFhirStringBuilder,
+    valueEnum: MeasureReportTypeBuilderEnum.summary,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Summary',
+    ),
   );
 
   /// data_collection
-  static MeasureReportTypeBuilder data_collection = MeasureReportTypeBuilder._(
+  static MeasureReportTypeBuilder dataCollection = MeasureReportTypeBuilder._(
     valueString: 'data-collection',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Data Collection'.toFhirStringBuilder,
+    valueEnum: MeasureReportTypeBuilderEnum.dataCollection,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Data Collection',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static MeasureReportTypeBuilder elementOnly =
-      MeasureReportTypeBuilder._(valueString: '');
+  static MeasureReportTypeBuilder elementOnly = MeasureReportTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<MeasureReportTypeBuilder> values = [
     individual,
-    subject_list,
+    subjectList,
     summary,
-    data_collection,
+    dataCollection,
   ];
-
-  /// Clones the current instance
-  @override
-  MeasureReportTypeBuilder clone() => MeasureReportTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   MeasureReportTypeBuilder withElement(
@@ -141,37 +232,4 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  MeasureReportTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for MeasureReportType: $newValue',
-      );
-    }
-    return MeasureReportTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

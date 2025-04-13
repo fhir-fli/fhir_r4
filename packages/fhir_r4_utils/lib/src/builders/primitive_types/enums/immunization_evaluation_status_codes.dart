@@ -1,6 +1,91 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ImmunizationEvaluationStatusCodes
+enum ImmunizationEvaluationStatusCodesBuilderEnum {
+  /// in-progress
+  inProgress,
+
+  /// not-done
+  notDone,
+
+  /// on-hold
+  onHold,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// stopped
+  stopped,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ImmunizationEvaluationStatusCodesBuilderEnum.inProgress:
+        return 'in-progress';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.notDone:
+        return 'not-done';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.onHold:
+        return 'on-hold';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.completed:
+        return 'completed';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.stopped:
+        return 'stopped';
+      case ImmunizationEvaluationStatusCodesBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ImmunizationEvaluationStatusCodesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ImmunizationEvaluationStatusCodesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ImmunizationEvaluationStatusCodesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'in-progress':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.inProgress;
+      case 'not-done':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.notDone;
+      case 'on-hold':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.onHold;
+      case 'completed':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.completed;
+      case 'entered-in-error':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.enteredInError;
+      case 'stopped':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.stopped;
+      case 'unknown':
+        return ImmunizationEvaluationStatusCodesBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The value set to instantiate this attribute should be drawn from a
 /// terminologically robust code system that consists of or contains
 /// concepts to support describing the current status of the evaluation for
@@ -9,6 +94,7 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ImmunizationEvaluationStatusCodesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -34,8 +120,12 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ImmunizationEvaluationStatusCodesBuilderEnum.fromString(
+      valueString,
+    );
     return ImmunizationEvaluationStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -47,12 +137,13 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ImmunizationEvaluationStatusCodesBuilder] with element only
+  /// Create empty [ImmunizationEvaluationStatusCodesBuilder]
+  /// with element only
   factory ImmunizationEvaluationStatusCodesBuilder.empty() =>
-      ImmunizationEvaluationStatusCodesBuilder._(valueString: '');
+      ImmunizationEvaluationStatusCodesBuilder._(valueString: null);
 
-  /// Factory constructor to create [ImmunizationEvaluationStatusCodesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ImmunizationEvaluationStatusCodesBuilder] from JSON.
   factory ImmunizationEvaluationStatusCodesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -61,8 +152,10 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationEvaluationStatusCodesBuilder.elementOnly
-          .withElement(element);
+      return ImmunizationEvaluationStatusCodesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ImmunizationEvaluationStatusCodesBuilder cannot be constructed from JSON.',
@@ -74,98 +167,131 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ImmunizationEvaluationStatusCodesBuilder
+  final ImmunizationEvaluationStatusCodesBuilderEnum? valueEnum;
+
   /// in_progress
-  static ImmunizationEvaluationStatusCodesBuilder in_progress =
+  static ImmunizationEvaluationStatusCodesBuilder inProgress =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'In Progress'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.inProgress,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// not_done
-  static ImmunizationEvaluationStatusCodesBuilder not_done =
+  static ImmunizationEvaluationStatusCodesBuilder notDone =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'not-done',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not Done'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.notDone,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not Done',
+    ),
   );
 
   /// on_hold
-  static ImmunizationEvaluationStatusCodesBuilder on_hold =
+  static ImmunizationEvaluationStatusCodesBuilder onHold =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'On Hold'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.onHold,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// completed
   static ImmunizationEvaluationStatusCodesBuilder completed =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Completed'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.completed,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static ImmunizationEvaluationStatusCodesBuilder entered_in_error =
+  static ImmunizationEvaluationStatusCodesBuilder enteredInError =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// stopped
   static ImmunizationEvaluationStatusCodesBuilder stopped =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Stopped'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.stopped,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// unknown
   static ImmunizationEvaluationStatusCodesBuilder unknown =
       ImmunizationEvaluationStatusCodesBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: ImmunizationEvaluationStatusCodesBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/immunization-evaluation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ImmunizationEvaluationStatusCodesBuilder elementOnly =
-      ImmunizationEvaluationStatusCodesBuilder._(valueString: '');
+      ImmunizationEvaluationStatusCodesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ImmunizationEvaluationStatusCodesBuilder> values = [
-    in_progress,
-    not_done,
-    on_hold,
+    inProgress,
+    notDone,
+    onHold,
     completed,
-    entered_in_error,
+    enteredInError,
     stopped,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ImmunizationEvaluationStatusCodesBuilder clone() =>
-      ImmunizationEvaluationStatusCodesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodesBuilder withElement(
@@ -187,37 +313,4 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ImmunizationEvaluationStatusCodesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ImmunizationEvaluationStatusCodes: $newValue',
-      );
-    }
-    return ImmunizationEvaluationStatusCodesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

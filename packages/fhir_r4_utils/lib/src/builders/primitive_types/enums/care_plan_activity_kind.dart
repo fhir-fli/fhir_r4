@@ -1,12 +1,1050 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CarePlanActivityKind
+enum CarePlanActivityKindBuilderEnum {
+  /// Resource
+  resource,
+
+  /// Binary
+  binary,
+
+  /// Bundle
+  bundle,
+
+  /// DomainResource
+  domainResource,
+
+  /// Account
+  account,
+
+  /// ActivityDefinition
+  activityDefinition,
+
+  /// AdministrableProductDefinition
+  administrableProductDefinition,
+
+  /// AdverseEvent
+  adverseEvent,
+
+  /// AllergyIntolerance
+  allergyIntolerance,
+
+  /// Appointment
+  appointment,
+
+  /// AppointmentResponse
+  appointmentResponse,
+
+  /// AuditEvent
+  auditEvent,
+
+  /// Basic
+  basic,
+
+  /// BiologicallyDerivedProduct
+  biologicallyDerivedProduct,
+
+  /// BodyStructure
+  bodyStructure,
+
+  /// CapabilityStatement
+  capabilityStatement,
+
+  /// CarePlan
+  carePlan,
+
+  /// CareTeam
+  careTeam,
+
+  /// CatalogEntry
+  catalogEntry,
+
+  /// ChargeItem
+  chargeItem,
+
+  /// ChargeItemDefinition
+  chargeItemDefinition,
+
+  /// Citation
+  citation,
+
+  /// Claim
+  claim,
+
+  /// ClaimResponse
+  claimResponse,
+
+  /// ClinicalImpression
+  clinicalImpression,
+
+  /// ClinicalUseDefinition
+  clinicalUseDefinition,
+
+  /// CodeSystem
+  codeSystem,
+
+  /// Communication
+  communication,
+
+  /// CommunicationRequest
+  communicationRequest,
+
+  /// CompartmentDefinition
+  compartmentDefinition,
+
+  /// Composition
+  composition,
+
+  /// ConceptMap
+  conceptMap,
+
+  /// Condition
+  condition,
+
+  /// Consent
+  consent,
+
+  /// Contract
+  contract,
+
+  /// Coverage
+  coverage,
+
+  /// CoverageEligibilityRequest
+  coverageEligibilityRequest,
+
+  /// CoverageEligibilityResponse
+  coverageEligibilityResponse,
+
+  /// DetectedIssue
+  detectedIssue,
+
+  /// Device
+  device,
+
+  /// DeviceDefinition
+  deviceDefinition,
+
+  /// DeviceMetric
+  deviceMetric,
+
+  /// DeviceRequest
+  deviceRequest,
+
+  /// DeviceUseStatement
+  deviceUseStatement,
+
+  /// DiagnosticReport
+  diagnosticReport,
+
+  /// DocumentManifest
+  documentManifest,
+
+  /// DocumentReference
+  documentReference,
+
+  /// Encounter
+  encounter,
+
+  /// Endpoint
+  endpoint,
+
+  /// EnrollmentRequest
+  enrollmentRequest,
+
+  /// EnrollmentResponse
+  enrollmentResponse,
+
+  /// EpisodeOfCare
+  episodeOfCare,
+
+  /// EventDefinition
+  eventDefinition,
+
+  /// Evidence
+  evidence,
+
+  /// EvidenceReport
+  evidenceReport,
+
+  /// EvidenceVariable
+  evidenceVariable,
+
+  /// ExampleScenario
+  exampleScenario,
+
+  /// ExplanationOfBenefit
+  explanationOfBenefit,
+
+  /// FamilyMemberHistory
+  familyMemberHistory,
+
+  /// Flag
+  flag,
+
+  /// Goal
+  goal,
+
+  /// GraphDefinition
+  graphDefinition,
+
+  /// Group
+  group,
+
+  /// GuidanceResponse
+  guidanceResponse,
+
+  /// HealthcareService
+  healthcareService,
+
+  /// ImagingStudy
+  imagingStudy,
+
+  /// Immunization
+  immunization,
+
+  /// ImmunizationEvaluation
+  immunizationEvaluation,
+
+  /// ImmunizationRecommendation
+  immunizationRecommendation,
+
+  /// ImplementationGuide
+  implementationGuide,
+
+  /// Ingredient
+  ingredient,
+
+  /// InsurancePlan
+  insurancePlan,
+
+  /// Invoice
+  invoice,
+
+  /// Library
+  library,
+
+  /// Linkage
+  linkage,
+
+  /// List
+  list_,
+
+  /// Location
+  location,
+
+  /// ManufacturedItemDefinition
+  manufacturedItemDefinition,
+
+  /// Measure
+  measure,
+
+  /// MeasureReport
+  measureReport,
+
+  /// Media
+  media,
+
+  /// Medication
+  medication,
+
+  /// MedicationAdministration
+  medicationAdministration,
+
+  /// MedicationDispense
+  medicationDispense,
+
+  /// MedicationKnowledge
+  medicationKnowledge,
+
+  /// MedicationRequest
+  medicationRequest,
+
+  /// MedicationStatement
+  medicationStatement,
+
+  /// MedicinalProductDefinition
+  medicinalProductDefinition,
+
+  /// MessageDefinition
+  messageDefinition,
+
+  /// MessageHeader
+  messageHeader,
+
+  /// MolecularSequence
+  molecularSequence,
+
+  /// NamingSystem
+  namingSystem,
+
+  /// NutritionOrder
+  nutritionOrder,
+
+  /// NutritionProduct
+  nutritionProduct,
+
+  /// Observation
+  observation,
+
+  /// ObservationDefinition
+  observationDefinition,
+
+  /// OperationDefinition
+  operationDefinition,
+
+  /// OperationOutcome
+  operationOutcome,
+
+  /// Organization
+  organization,
+
+  /// OrganizationAffiliation
+  organizationAffiliation,
+
+  /// PackagedProductDefinition
+  packagedProductDefinition,
+
+  /// Patient
+  patient,
+
+  /// PaymentNotice
+  paymentNotice,
+
+  /// PaymentReconciliation
+  paymentReconciliation,
+
+  /// Person
+  person,
+
+  /// PlanDefinition
+  planDefinition,
+
+  /// Practitioner
+  practitioner,
+
+  /// PractitionerRole
+  practitionerRole,
+
+  /// Procedure
+  procedure,
+
+  /// Provenance
+  provenance,
+
+  /// Questionnaire
+  questionnaire,
+
+  /// QuestionnaireResponse
+  questionnaireResponse,
+
+  /// RegulatedAuthorization
+  regulatedAuthorization,
+
+  /// RelatedPerson
+  relatedPerson,
+
+  /// RequestGroup
+  requestGroup,
+
+  /// ResearchDefinition
+  researchDefinition,
+
+  /// ResearchElementDefinition
+  researchElementDefinition,
+
+  /// ResearchStudy
+  researchStudy,
+
+  /// ResearchSubject
+  researchSubject,
+
+  /// RiskAssessment
+  riskAssessment,
+
+  /// Schedule
+  schedule,
+
+  /// SearchParameter
+  searchParameter,
+
+  /// ServiceRequest
+  serviceRequest,
+
+  /// Slot
+  slot,
+
+  /// Specimen
+  specimen,
+
+  /// SpecimenDefinition
+  specimenDefinition,
+
+  /// StructureDefinition
+  structureDefinition,
+
+  /// StructureMap
+  structureMap,
+
+  /// Subscription
+  subscription,
+
+  /// SubscriptionStatus
+  subscriptionStatus,
+
+  /// SubscriptionTopic
+  subscriptionTopic,
+
+  /// Substance
+  substance,
+
+  /// SubstanceDefinition
+  substanceDefinition,
+
+  /// SupplyDelivery
+  supplyDelivery,
+
+  /// SupplyRequest
+  supplyRequest,
+
+  /// Task
+  task,
+
+  /// TerminologyCapabilities
+  terminologyCapabilities,
+
+  /// TestReport
+  testReport,
+
+  /// TestScript
+  testScript,
+
+  /// ValueSet
+  valueSet,
+
+  /// VerificationResult
+  verificationResult,
+
+  /// VisionPrescription
+  visionPrescription,
+
+  /// Parameters
+  parameters,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CarePlanActivityKindBuilderEnum.resource:
+        return 'Resource';
+      case CarePlanActivityKindBuilderEnum.binary:
+        return 'Binary';
+      case CarePlanActivityKindBuilderEnum.bundle:
+        return 'Bundle';
+      case CarePlanActivityKindBuilderEnum.domainResource:
+        return 'DomainResource';
+      case CarePlanActivityKindBuilderEnum.account:
+        return 'Account';
+      case CarePlanActivityKindBuilderEnum.activityDefinition:
+        return 'ActivityDefinition';
+      case CarePlanActivityKindBuilderEnum.administrableProductDefinition:
+        return 'AdministrableProductDefinition';
+      case CarePlanActivityKindBuilderEnum.adverseEvent:
+        return 'AdverseEvent';
+      case CarePlanActivityKindBuilderEnum.allergyIntolerance:
+        return 'AllergyIntolerance';
+      case CarePlanActivityKindBuilderEnum.appointment:
+        return 'Appointment';
+      case CarePlanActivityKindBuilderEnum.appointmentResponse:
+        return 'AppointmentResponse';
+      case CarePlanActivityKindBuilderEnum.auditEvent:
+        return 'AuditEvent';
+      case CarePlanActivityKindBuilderEnum.basic:
+        return 'Basic';
+      case CarePlanActivityKindBuilderEnum.biologicallyDerivedProduct:
+        return 'BiologicallyDerivedProduct';
+      case CarePlanActivityKindBuilderEnum.bodyStructure:
+        return 'BodyStructure';
+      case CarePlanActivityKindBuilderEnum.capabilityStatement:
+        return 'CapabilityStatement';
+      case CarePlanActivityKindBuilderEnum.carePlan:
+        return 'CarePlan';
+      case CarePlanActivityKindBuilderEnum.careTeam:
+        return 'CareTeam';
+      case CarePlanActivityKindBuilderEnum.catalogEntry:
+        return 'CatalogEntry';
+      case CarePlanActivityKindBuilderEnum.chargeItem:
+        return 'ChargeItem';
+      case CarePlanActivityKindBuilderEnum.chargeItemDefinition:
+        return 'ChargeItemDefinition';
+      case CarePlanActivityKindBuilderEnum.citation:
+        return 'Citation';
+      case CarePlanActivityKindBuilderEnum.claim:
+        return 'Claim';
+      case CarePlanActivityKindBuilderEnum.claimResponse:
+        return 'ClaimResponse';
+      case CarePlanActivityKindBuilderEnum.clinicalImpression:
+        return 'ClinicalImpression';
+      case CarePlanActivityKindBuilderEnum.clinicalUseDefinition:
+        return 'ClinicalUseDefinition';
+      case CarePlanActivityKindBuilderEnum.codeSystem:
+        return 'CodeSystem';
+      case CarePlanActivityKindBuilderEnum.communication:
+        return 'Communication';
+      case CarePlanActivityKindBuilderEnum.communicationRequest:
+        return 'CommunicationRequest';
+      case CarePlanActivityKindBuilderEnum.compartmentDefinition:
+        return 'CompartmentDefinition';
+      case CarePlanActivityKindBuilderEnum.composition:
+        return 'Composition';
+      case CarePlanActivityKindBuilderEnum.conceptMap:
+        return 'ConceptMap';
+      case CarePlanActivityKindBuilderEnum.condition:
+        return 'Condition';
+      case CarePlanActivityKindBuilderEnum.consent:
+        return 'Consent';
+      case CarePlanActivityKindBuilderEnum.contract:
+        return 'Contract';
+      case CarePlanActivityKindBuilderEnum.coverage:
+        return 'Coverage';
+      case CarePlanActivityKindBuilderEnum.coverageEligibilityRequest:
+        return 'CoverageEligibilityRequest';
+      case CarePlanActivityKindBuilderEnum.coverageEligibilityResponse:
+        return 'CoverageEligibilityResponse';
+      case CarePlanActivityKindBuilderEnum.detectedIssue:
+        return 'DetectedIssue';
+      case CarePlanActivityKindBuilderEnum.device:
+        return 'Device';
+      case CarePlanActivityKindBuilderEnum.deviceDefinition:
+        return 'DeviceDefinition';
+      case CarePlanActivityKindBuilderEnum.deviceMetric:
+        return 'DeviceMetric';
+      case CarePlanActivityKindBuilderEnum.deviceRequest:
+        return 'DeviceRequest';
+      case CarePlanActivityKindBuilderEnum.deviceUseStatement:
+        return 'DeviceUseStatement';
+      case CarePlanActivityKindBuilderEnum.diagnosticReport:
+        return 'DiagnosticReport';
+      case CarePlanActivityKindBuilderEnum.documentManifest:
+        return 'DocumentManifest';
+      case CarePlanActivityKindBuilderEnum.documentReference:
+        return 'DocumentReference';
+      case CarePlanActivityKindBuilderEnum.encounter:
+        return 'Encounter';
+      case CarePlanActivityKindBuilderEnum.endpoint:
+        return 'Endpoint';
+      case CarePlanActivityKindBuilderEnum.enrollmentRequest:
+        return 'EnrollmentRequest';
+      case CarePlanActivityKindBuilderEnum.enrollmentResponse:
+        return 'EnrollmentResponse';
+      case CarePlanActivityKindBuilderEnum.episodeOfCare:
+        return 'EpisodeOfCare';
+      case CarePlanActivityKindBuilderEnum.eventDefinition:
+        return 'EventDefinition';
+      case CarePlanActivityKindBuilderEnum.evidence:
+        return 'Evidence';
+      case CarePlanActivityKindBuilderEnum.evidenceReport:
+        return 'EvidenceReport';
+      case CarePlanActivityKindBuilderEnum.evidenceVariable:
+        return 'EvidenceVariable';
+      case CarePlanActivityKindBuilderEnum.exampleScenario:
+        return 'ExampleScenario';
+      case CarePlanActivityKindBuilderEnum.explanationOfBenefit:
+        return 'ExplanationOfBenefit';
+      case CarePlanActivityKindBuilderEnum.familyMemberHistory:
+        return 'FamilyMemberHistory';
+      case CarePlanActivityKindBuilderEnum.flag:
+        return 'Flag';
+      case CarePlanActivityKindBuilderEnum.goal:
+        return 'Goal';
+      case CarePlanActivityKindBuilderEnum.graphDefinition:
+        return 'GraphDefinition';
+      case CarePlanActivityKindBuilderEnum.group:
+        return 'Group';
+      case CarePlanActivityKindBuilderEnum.guidanceResponse:
+        return 'GuidanceResponse';
+      case CarePlanActivityKindBuilderEnum.healthcareService:
+        return 'HealthcareService';
+      case CarePlanActivityKindBuilderEnum.imagingStudy:
+        return 'ImagingStudy';
+      case CarePlanActivityKindBuilderEnum.immunization:
+        return 'Immunization';
+      case CarePlanActivityKindBuilderEnum.immunizationEvaluation:
+        return 'ImmunizationEvaluation';
+      case CarePlanActivityKindBuilderEnum.immunizationRecommendation:
+        return 'ImmunizationRecommendation';
+      case CarePlanActivityKindBuilderEnum.implementationGuide:
+        return 'ImplementationGuide';
+      case CarePlanActivityKindBuilderEnum.ingredient:
+        return 'Ingredient';
+      case CarePlanActivityKindBuilderEnum.insurancePlan:
+        return 'InsurancePlan';
+      case CarePlanActivityKindBuilderEnum.invoice:
+        return 'Invoice';
+      case CarePlanActivityKindBuilderEnum.library:
+        return 'Library';
+      case CarePlanActivityKindBuilderEnum.linkage:
+        return 'Linkage';
+      case CarePlanActivityKindBuilderEnum.list_:
+        return 'List';
+      case CarePlanActivityKindBuilderEnum.location:
+        return 'Location';
+      case CarePlanActivityKindBuilderEnum.manufacturedItemDefinition:
+        return 'ManufacturedItemDefinition';
+      case CarePlanActivityKindBuilderEnum.measure:
+        return 'Measure';
+      case CarePlanActivityKindBuilderEnum.measureReport:
+        return 'MeasureReport';
+      case CarePlanActivityKindBuilderEnum.media:
+        return 'Media';
+      case CarePlanActivityKindBuilderEnum.medication:
+        return 'Medication';
+      case CarePlanActivityKindBuilderEnum.medicationAdministration:
+        return 'MedicationAdministration';
+      case CarePlanActivityKindBuilderEnum.medicationDispense:
+        return 'MedicationDispense';
+      case CarePlanActivityKindBuilderEnum.medicationKnowledge:
+        return 'MedicationKnowledge';
+      case CarePlanActivityKindBuilderEnum.medicationRequest:
+        return 'MedicationRequest';
+      case CarePlanActivityKindBuilderEnum.medicationStatement:
+        return 'MedicationStatement';
+      case CarePlanActivityKindBuilderEnum.medicinalProductDefinition:
+        return 'MedicinalProductDefinition';
+      case CarePlanActivityKindBuilderEnum.messageDefinition:
+        return 'MessageDefinition';
+      case CarePlanActivityKindBuilderEnum.messageHeader:
+        return 'MessageHeader';
+      case CarePlanActivityKindBuilderEnum.molecularSequence:
+        return 'MolecularSequence';
+      case CarePlanActivityKindBuilderEnum.namingSystem:
+        return 'NamingSystem';
+      case CarePlanActivityKindBuilderEnum.nutritionOrder:
+        return 'NutritionOrder';
+      case CarePlanActivityKindBuilderEnum.nutritionProduct:
+        return 'NutritionProduct';
+      case CarePlanActivityKindBuilderEnum.observation:
+        return 'Observation';
+      case CarePlanActivityKindBuilderEnum.observationDefinition:
+        return 'ObservationDefinition';
+      case CarePlanActivityKindBuilderEnum.operationDefinition:
+        return 'OperationDefinition';
+      case CarePlanActivityKindBuilderEnum.operationOutcome:
+        return 'OperationOutcome';
+      case CarePlanActivityKindBuilderEnum.organization:
+        return 'Organization';
+      case CarePlanActivityKindBuilderEnum.organizationAffiliation:
+        return 'OrganizationAffiliation';
+      case CarePlanActivityKindBuilderEnum.packagedProductDefinition:
+        return 'PackagedProductDefinition';
+      case CarePlanActivityKindBuilderEnum.patient:
+        return 'Patient';
+      case CarePlanActivityKindBuilderEnum.paymentNotice:
+        return 'PaymentNotice';
+      case CarePlanActivityKindBuilderEnum.paymentReconciliation:
+        return 'PaymentReconciliation';
+      case CarePlanActivityKindBuilderEnum.person:
+        return 'Person';
+      case CarePlanActivityKindBuilderEnum.planDefinition:
+        return 'PlanDefinition';
+      case CarePlanActivityKindBuilderEnum.practitioner:
+        return 'Practitioner';
+      case CarePlanActivityKindBuilderEnum.practitionerRole:
+        return 'PractitionerRole';
+      case CarePlanActivityKindBuilderEnum.procedure:
+        return 'Procedure';
+      case CarePlanActivityKindBuilderEnum.provenance:
+        return 'Provenance';
+      case CarePlanActivityKindBuilderEnum.questionnaire:
+        return 'Questionnaire';
+      case CarePlanActivityKindBuilderEnum.questionnaireResponse:
+        return 'QuestionnaireResponse';
+      case CarePlanActivityKindBuilderEnum.regulatedAuthorization:
+        return 'RegulatedAuthorization';
+      case CarePlanActivityKindBuilderEnum.relatedPerson:
+        return 'RelatedPerson';
+      case CarePlanActivityKindBuilderEnum.requestGroup:
+        return 'RequestGroup';
+      case CarePlanActivityKindBuilderEnum.researchDefinition:
+        return 'ResearchDefinition';
+      case CarePlanActivityKindBuilderEnum.researchElementDefinition:
+        return 'ResearchElementDefinition';
+      case CarePlanActivityKindBuilderEnum.researchStudy:
+        return 'ResearchStudy';
+      case CarePlanActivityKindBuilderEnum.researchSubject:
+        return 'ResearchSubject';
+      case CarePlanActivityKindBuilderEnum.riskAssessment:
+        return 'RiskAssessment';
+      case CarePlanActivityKindBuilderEnum.schedule:
+        return 'Schedule';
+      case CarePlanActivityKindBuilderEnum.searchParameter:
+        return 'SearchParameter';
+      case CarePlanActivityKindBuilderEnum.serviceRequest:
+        return 'ServiceRequest';
+      case CarePlanActivityKindBuilderEnum.slot:
+        return 'Slot';
+      case CarePlanActivityKindBuilderEnum.specimen:
+        return 'Specimen';
+      case CarePlanActivityKindBuilderEnum.specimenDefinition:
+        return 'SpecimenDefinition';
+      case CarePlanActivityKindBuilderEnum.structureDefinition:
+        return 'StructureDefinition';
+      case CarePlanActivityKindBuilderEnum.structureMap:
+        return 'StructureMap';
+      case CarePlanActivityKindBuilderEnum.subscription:
+        return 'Subscription';
+      case CarePlanActivityKindBuilderEnum.subscriptionStatus:
+        return 'SubscriptionStatus';
+      case CarePlanActivityKindBuilderEnum.subscriptionTopic:
+        return 'SubscriptionTopic';
+      case CarePlanActivityKindBuilderEnum.substance:
+        return 'Substance';
+      case CarePlanActivityKindBuilderEnum.substanceDefinition:
+        return 'SubstanceDefinition';
+      case CarePlanActivityKindBuilderEnum.supplyDelivery:
+        return 'SupplyDelivery';
+      case CarePlanActivityKindBuilderEnum.supplyRequest:
+        return 'SupplyRequest';
+      case CarePlanActivityKindBuilderEnum.task:
+        return 'Task';
+      case CarePlanActivityKindBuilderEnum.terminologyCapabilities:
+        return 'TerminologyCapabilities';
+      case CarePlanActivityKindBuilderEnum.testReport:
+        return 'TestReport';
+      case CarePlanActivityKindBuilderEnum.testScript:
+        return 'TestScript';
+      case CarePlanActivityKindBuilderEnum.valueSet:
+        return 'ValueSet';
+      case CarePlanActivityKindBuilderEnum.verificationResult:
+        return 'VerificationResult';
+      case CarePlanActivityKindBuilderEnum.visionPrescription:
+        return 'VisionPrescription';
+      case CarePlanActivityKindBuilderEnum.parameters:
+        return 'Parameters';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CarePlanActivityKindBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CarePlanActivityKindBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CarePlanActivityKindBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'Resource':
+        return CarePlanActivityKindBuilderEnum.resource;
+      case 'Binary':
+        return CarePlanActivityKindBuilderEnum.binary;
+      case 'Bundle':
+        return CarePlanActivityKindBuilderEnum.bundle;
+      case 'DomainResource':
+        return CarePlanActivityKindBuilderEnum.domainResource;
+      case 'Account':
+        return CarePlanActivityKindBuilderEnum.account;
+      case 'ActivityDefinition':
+        return CarePlanActivityKindBuilderEnum.activityDefinition;
+      case 'AdministrableProductDefinition':
+        return CarePlanActivityKindBuilderEnum.administrableProductDefinition;
+      case 'AdverseEvent':
+        return CarePlanActivityKindBuilderEnum.adverseEvent;
+      case 'AllergyIntolerance':
+        return CarePlanActivityKindBuilderEnum.allergyIntolerance;
+      case 'Appointment':
+        return CarePlanActivityKindBuilderEnum.appointment;
+      case 'AppointmentResponse':
+        return CarePlanActivityKindBuilderEnum.appointmentResponse;
+      case 'AuditEvent':
+        return CarePlanActivityKindBuilderEnum.auditEvent;
+      case 'Basic':
+        return CarePlanActivityKindBuilderEnum.basic;
+      case 'BiologicallyDerivedProduct':
+        return CarePlanActivityKindBuilderEnum.biologicallyDerivedProduct;
+      case 'BodyStructure':
+        return CarePlanActivityKindBuilderEnum.bodyStructure;
+      case 'CapabilityStatement':
+        return CarePlanActivityKindBuilderEnum.capabilityStatement;
+      case 'CarePlan':
+        return CarePlanActivityKindBuilderEnum.carePlan;
+      case 'CareTeam':
+        return CarePlanActivityKindBuilderEnum.careTeam;
+      case 'CatalogEntry':
+        return CarePlanActivityKindBuilderEnum.catalogEntry;
+      case 'ChargeItem':
+        return CarePlanActivityKindBuilderEnum.chargeItem;
+      case 'ChargeItemDefinition':
+        return CarePlanActivityKindBuilderEnum.chargeItemDefinition;
+      case 'Citation':
+        return CarePlanActivityKindBuilderEnum.citation;
+      case 'Claim':
+        return CarePlanActivityKindBuilderEnum.claim;
+      case 'ClaimResponse':
+        return CarePlanActivityKindBuilderEnum.claimResponse;
+      case 'ClinicalImpression':
+        return CarePlanActivityKindBuilderEnum.clinicalImpression;
+      case 'ClinicalUseDefinition':
+        return CarePlanActivityKindBuilderEnum.clinicalUseDefinition;
+      case 'CodeSystem':
+        return CarePlanActivityKindBuilderEnum.codeSystem;
+      case 'Communication':
+        return CarePlanActivityKindBuilderEnum.communication;
+      case 'CommunicationRequest':
+        return CarePlanActivityKindBuilderEnum.communicationRequest;
+      case 'CompartmentDefinition':
+        return CarePlanActivityKindBuilderEnum.compartmentDefinition;
+      case 'Composition':
+        return CarePlanActivityKindBuilderEnum.composition;
+      case 'ConceptMap':
+        return CarePlanActivityKindBuilderEnum.conceptMap;
+      case 'Condition':
+        return CarePlanActivityKindBuilderEnum.condition;
+      case 'Consent':
+        return CarePlanActivityKindBuilderEnum.consent;
+      case 'Contract':
+        return CarePlanActivityKindBuilderEnum.contract;
+      case 'Coverage':
+        return CarePlanActivityKindBuilderEnum.coverage;
+      case 'CoverageEligibilityRequest':
+        return CarePlanActivityKindBuilderEnum.coverageEligibilityRequest;
+      case 'CoverageEligibilityResponse':
+        return CarePlanActivityKindBuilderEnum.coverageEligibilityResponse;
+      case 'DetectedIssue':
+        return CarePlanActivityKindBuilderEnum.detectedIssue;
+      case 'Device':
+        return CarePlanActivityKindBuilderEnum.device;
+      case 'DeviceDefinition':
+        return CarePlanActivityKindBuilderEnum.deviceDefinition;
+      case 'DeviceMetric':
+        return CarePlanActivityKindBuilderEnum.deviceMetric;
+      case 'DeviceRequest':
+        return CarePlanActivityKindBuilderEnum.deviceRequest;
+      case 'DeviceUseStatement':
+        return CarePlanActivityKindBuilderEnum.deviceUseStatement;
+      case 'DiagnosticReport':
+        return CarePlanActivityKindBuilderEnum.diagnosticReport;
+      case 'DocumentManifest':
+        return CarePlanActivityKindBuilderEnum.documentManifest;
+      case 'DocumentReference':
+        return CarePlanActivityKindBuilderEnum.documentReference;
+      case 'Encounter':
+        return CarePlanActivityKindBuilderEnum.encounter;
+      case 'Endpoint':
+        return CarePlanActivityKindBuilderEnum.endpoint;
+      case 'EnrollmentRequest':
+        return CarePlanActivityKindBuilderEnum.enrollmentRequest;
+      case 'EnrollmentResponse':
+        return CarePlanActivityKindBuilderEnum.enrollmentResponse;
+      case 'EpisodeOfCare':
+        return CarePlanActivityKindBuilderEnum.episodeOfCare;
+      case 'EventDefinition':
+        return CarePlanActivityKindBuilderEnum.eventDefinition;
+      case 'Evidence':
+        return CarePlanActivityKindBuilderEnum.evidence;
+      case 'EvidenceReport':
+        return CarePlanActivityKindBuilderEnum.evidenceReport;
+      case 'EvidenceVariable':
+        return CarePlanActivityKindBuilderEnum.evidenceVariable;
+      case 'ExampleScenario':
+        return CarePlanActivityKindBuilderEnum.exampleScenario;
+      case 'ExplanationOfBenefit':
+        return CarePlanActivityKindBuilderEnum.explanationOfBenefit;
+      case 'FamilyMemberHistory':
+        return CarePlanActivityKindBuilderEnum.familyMemberHistory;
+      case 'Flag':
+        return CarePlanActivityKindBuilderEnum.flag;
+      case 'Goal':
+        return CarePlanActivityKindBuilderEnum.goal;
+      case 'GraphDefinition':
+        return CarePlanActivityKindBuilderEnum.graphDefinition;
+      case 'Group':
+        return CarePlanActivityKindBuilderEnum.group;
+      case 'GuidanceResponse':
+        return CarePlanActivityKindBuilderEnum.guidanceResponse;
+      case 'HealthcareService':
+        return CarePlanActivityKindBuilderEnum.healthcareService;
+      case 'ImagingStudy':
+        return CarePlanActivityKindBuilderEnum.imagingStudy;
+      case 'Immunization':
+        return CarePlanActivityKindBuilderEnum.immunization;
+      case 'ImmunizationEvaluation':
+        return CarePlanActivityKindBuilderEnum.immunizationEvaluation;
+      case 'ImmunizationRecommendation':
+        return CarePlanActivityKindBuilderEnum.immunizationRecommendation;
+      case 'ImplementationGuide':
+        return CarePlanActivityKindBuilderEnum.implementationGuide;
+      case 'Ingredient':
+        return CarePlanActivityKindBuilderEnum.ingredient;
+      case 'InsurancePlan':
+        return CarePlanActivityKindBuilderEnum.insurancePlan;
+      case 'Invoice':
+        return CarePlanActivityKindBuilderEnum.invoice;
+      case 'Library':
+        return CarePlanActivityKindBuilderEnum.library;
+      case 'Linkage':
+        return CarePlanActivityKindBuilderEnum.linkage;
+      case 'List':
+        return CarePlanActivityKindBuilderEnum.list_;
+      case 'Location':
+        return CarePlanActivityKindBuilderEnum.location;
+      case 'ManufacturedItemDefinition':
+        return CarePlanActivityKindBuilderEnum.manufacturedItemDefinition;
+      case 'Measure':
+        return CarePlanActivityKindBuilderEnum.measure;
+      case 'MeasureReport':
+        return CarePlanActivityKindBuilderEnum.measureReport;
+      case 'Media':
+        return CarePlanActivityKindBuilderEnum.media;
+      case 'Medication':
+        return CarePlanActivityKindBuilderEnum.medication;
+      case 'MedicationAdministration':
+        return CarePlanActivityKindBuilderEnum.medicationAdministration;
+      case 'MedicationDispense':
+        return CarePlanActivityKindBuilderEnum.medicationDispense;
+      case 'MedicationKnowledge':
+        return CarePlanActivityKindBuilderEnum.medicationKnowledge;
+      case 'MedicationRequest':
+        return CarePlanActivityKindBuilderEnum.medicationRequest;
+      case 'MedicationStatement':
+        return CarePlanActivityKindBuilderEnum.medicationStatement;
+      case 'MedicinalProductDefinition':
+        return CarePlanActivityKindBuilderEnum.medicinalProductDefinition;
+      case 'MessageDefinition':
+        return CarePlanActivityKindBuilderEnum.messageDefinition;
+      case 'MessageHeader':
+        return CarePlanActivityKindBuilderEnum.messageHeader;
+      case 'MolecularSequence':
+        return CarePlanActivityKindBuilderEnum.molecularSequence;
+      case 'NamingSystem':
+        return CarePlanActivityKindBuilderEnum.namingSystem;
+      case 'NutritionOrder':
+        return CarePlanActivityKindBuilderEnum.nutritionOrder;
+      case 'NutritionProduct':
+        return CarePlanActivityKindBuilderEnum.nutritionProduct;
+      case 'Observation':
+        return CarePlanActivityKindBuilderEnum.observation;
+      case 'ObservationDefinition':
+        return CarePlanActivityKindBuilderEnum.observationDefinition;
+      case 'OperationDefinition':
+        return CarePlanActivityKindBuilderEnum.operationDefinition;
+      case 'OperationOutcome':
+        return CarePlanActivityKindBuilderEnum.operationOutcome;
+      case 'Organization':
+        return CarePlanActivityKindBuilderEnum.organization;
+      case 'OrganizationAffiliation':
+        return CarePlanActivityKindBuilderEnum.organizationAffiliation;
+      case 'PackagedProductDefinition':
+        return CarePlanActivityKindBuilderEnum.packagedProductDefinition;
+      case 'Patient':
+        return CarePlanActivityKindBuilderEnum.patient;
+      case 'PaymentNotice':
+        return CarePlanActivityKindBuilderEnum.paymentNotice;
+      case 'PaymentReconciliation':
+        return CarePlanActivityKindBuilderEnum.paymentReconciliation;
+      case 'Person':
+        return CarePlanActivityKindBuilderEnum.person;
+      case 'PlanDefinition':
+        return CarePlanActivityKindBuilderEnum.planDefinition;
+      case 'Practitioner':
+        return CarePlanActivityKindBuilderEnum.practitioner;
+      case 'PractitionerRole':
+        return CarePlanActivityKindBuilderEnum.practitionerRole;
+      case 'Procedure':
+        return CarePlanActivityKindBuilderEnum.procedure;
+      case 'Provenance':
+        return CarePlanActivityKindBuilderEnum.provenance;
+      case 'Questionnaire':
+        return CarePlanActivityKindBuilderEnum.questionnaire;
+      case 'QuestionnaireResponse':
+        return CarePlanActivityKindBuilderEnum.questionnaireResponse;
+      case 'RegulatedAuthorization':
+        return CarePlanActivityKindBuilderEnum.regulatedAuthorization;
+      case 'RelatedPerson':
+        return CarePlanActivityKindBuilderEnum.relatedPerson;
+      case 'RequestGroup':
+        return CarePlanActivityKindBuilderEnum.requestGroup;
+      case 'ResearchDefinition':
+        return CarePlanActivityKindBuilderEnum.researchDefinition;
+      case 'ResearchElementDefinition':
+        return CarePlanActivityKindBuilderEnum.researchElementDefinition;
+      case 'ResearchStudy':
+        return CarePlanActivityKindBuilderEnum.researchStudy;
+      case 'ResearchSubject':
+        return CarePlanActivityKindBuilderEnum.researchSubject;
+      case 'RiskAssessment':
+        return CarePlanActivityKindBuilderEnum.riskAssessment;
+      case 'Schedule':
+        return CarePlanActivityKindBuilderEnum.schedule;
+      case 'SearchParameter':
+        return CarePlanActivityKindBuilderEnum.searchParameter;
+      case 'ServiceRequest':
+        return CarePlanActivityKindBuilderEnum.serviceRequest;
+      case 'Slot':
+        return CarePlanActivityKindBuilderEnum.slot;
+      case 'Specimen':
+        return CarePlanActivityKindBuilderEnum.specimen;
+      case 'SpecimenDefinition':
+        return CarePlanActivityKindBuilderEnum.specimenDefinition;
+      case 'StructureDefinition':
+        return CarePlanActivityKindBuilderEnum.structureDefinition;
+      case 'StructureMap':
+        return CarePlanActivityKindBuilderEnum.structureMap;
+      case 'Subscription':
+        return CarePlanActivityKindBuilderEnum.subscription;
+      case 'SubscriptionStatus':
+        return CarePlanActivityKindBuilderEnum.subscriptionStatus;
+      case 'SubscriptionTopic':
+        return CarePlanActivityKindBuilderEnum.subscriptionTopic;
+      case 'Substance':
+        return CarePlanActivityKindBuilderEnum.substance;
+      case 'SubstanceDefinition':
+        return CarePlanActivityKindBuilderEnum.substanceDefinition;
+      case 'SupplyDelivery':
+        return CarePlanActivityKindBuilderEnum.supplyDelivery;
+      case 'SupplyRequest':
+        return CarePlanActivityKindBuilderEnum.supplyRequest;
+      case 'Task':
+        return CarePlanActivityKindBuilderEnum.task;
+      case 'TerminologyCapabilities':
+        return CarePlanActivityKindBuilderEnum.terminologyCapabilities;
+      case 'TestReport':
+        return CarePlanActivityKindBuilderEnum.testReport;
+      case 'TestScript':
+        return CarePlanActivityKindBuilderEnum.testScript;
+      case 'ValueSet':
+        return CarePlanActivityKindBuilderEnum.valueSet;
+      case 'VerificationResult':
+        return CarePlanActivityKindBuilderEnum.verificationResult;
+      case 'VisionPrescription':
+        return CarePlanActivityKindBuilderEnum.visionPrescription;
+      case 'Parameters':
+        return CarePlanActivityKindBuilderEnum.parameters;
+    }
+    return null;
+  }
+}
+
 /// Resource types defined as part of FHIR that can be represented as
 /// in-line definitions of a care plan activity.
 class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CarePlanActivityKindBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +1070,12 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CarePlanActivityKindBuilderEnum.fromString(
+      valueString,
+    );
     return CarePlanActivityKindBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +1087,13 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CarePlanActivityKindBuilder] with element only
+  /// Create empty [CarePlanActivityKindBuilder]
+  /// with element only
   factory CarePlanActivityKindBuilder.empty() =>
-      CarePlanActivityKindBuilder._(valueString: '');
+      CarePlanActivityKindBuilder._(valueString: null);
 
-  /// Factory constructor to create [CarePlanActivityKindBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CarePlanActivityKindBuilder] from JSON.
   factory CarePlanActivityKindBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +1102,10 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityKindBuilder.elementOnly.withElement(element);
+      return CarePlanActivityKindBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CarePlanActivityKindBuilder cannot be constructed from JSON.',
@@ -71,1547 +1117,2118 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CarePlanActivityKindBuilder
+  final CarePlanActivityKindBuilderEnum? valueEnum;
+
   /// Resource
-  static CarePlanActivityKindBuilder Resource = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder resource = CarePlanActivityKindBuilder._(
     valueString: 'Resource',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Resource'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.resource,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Resource',
+    ),
   );
 
   /// Binary
-  static CarePlanActivityKindBuilder Binary = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder binary = CarePlanActivityKindBuilder._(
     valueString: 'Binary',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Binary'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.binary,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Binary',
+    ),
   );
 
   /// Bundle
-  static CarePlanActivityKindBuilder Bundle = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder bundle = CarePlanActivityKindBuilder._(
     valueString: 'Bundle',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Bundle'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.bundle,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Bundle',
+    ),
   );
 
   /// DomainResource
-  static CarePlanActivityKindBuilder DomainResource =
+  static CarePlanActivityKindBuilder domainResource =
       CarePlanActivityKindBuilder._(
     valueString: 'DomainResource',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DomainResource'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.domainResource,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DomainResource',
+    ),
   );
 
   /// Account
-  static CarePlanActivityKindBuilder Account = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder account = CarePlanActivityKindBuilder._(
     valueString: 'Account',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Account'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.account,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Account',
+    ),
   );
 
   /// ActivityDefinition
-  static CarePlanActivityKindBuilder ActivityDefinition =
+  static CarePlanActivityKindBuilder activityDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ActivityDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ActivityDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.activityDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ActivityDefinition',
+    ),
   );
 
   /// AdministrableProductDefinition
-  static CarePlanActivityKindBuilder AdministrableProductDefinition =
+  static CarePlanActivityKindBuilder administrableProductDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'AdministrableProductDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AdministrableProductDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.administrableProductDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AdministrableProductDefinition',
+    ),
   );
 
   /// AdverseEvent
-  static CarePlanActivityKindBuilder AdverseEvent =
+  static CarePlanActivityKindBuilder adverseEvent =
       CarePlanActivityKindBuilder._(
     valueString: 'AdverseEvent',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AdverseEvent'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.adverseEvent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AdverseEvent',
+    ),
   );
 
   /// AllergyIntolerance
-  static CarePlanActivityKindBuilder AllergyIntolerance =
+  static CarePlanActivityKindBuilder allergyIntolerance =
       CarePlanActivityKindBuilder._(
     valueString: 'AllergyIntolerance',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AllergyIntolerance'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.allergyIntolerance,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AllergyIntolerance',
+    ),
   );
 
   /// Appointment
-  static CarePlanActivityKindBuilder Appointment =
+  static CarePlanActivityKindBuilder appointment =
       CarePlanActivityKindBuilder._(
     valueString: 'Appointment',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Appointment'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.appointment,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Appointment',
+    ),
   );
 
   /// AppointmentResponse
-  static CarePlanActivityKindBuilder AppointmentResponse =
+  static CarePlanActivityKindBuilder appointmentResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'AppointmentResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AppointmentResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.appointmentResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AppointmentResponse',
+    ),
   );
 
   /// AuditEvent
-  static CarePlanActivityKindBuilder AuditEvent = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder auditEvent = CarePlanActivityKindBuilder._(
     valueString: 'AuditEvent',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AuditEvent'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.auditEvent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AuditEvent',
+    ),
   );
 
   /// Basic
-  static CarePlanActivityKindBuilder Basic = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder basic = CarePlanActivityKindBuilder._(
     valueString: 'Basic',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Basic'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.basic,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Basic',
+    ),
   );
 
   /// BiologicallyDerivedProduct
-  static CarePlanActivityKindBuilder BiologicallyDerivedProduct =
+  static CarePlanActivityKindBuilder biologicallyDerivedProduct =
       CarePlanActivityKindBuilder._(
     valueString: 'BiologicallyDerivedProduct',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'BiologicallyDerivedProduct'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.biologicallyDerivedProduct,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'BiologicallyDerivedProduct',
+    ),
   );
 
   /// BodyStructure
-  static CarePlanActivityKindBuilder BodyStructure =
+  static CarePlanActivityKindBuilder bodyStructure =
       CarePlanActivityKindBuilder._(
     valueString: 'BodyStructure',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'BodyStructure'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.bodyStructure,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'BodyStructure',
+    ),
   );
 
   /// CapabilityStatement
-  static CarePlanActivityKindBuilder CapabilityStatement =
+  static CarePlanActivityKindBuilder capabilityStatement =
       CarePlanActivityKindBuilder._(
     valueString: 'CapabilityStatement',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CapabilityStatement'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.capabilityStatement,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CapabilityStatement',
+    ),
   );
 
   /// CarePlan
-  static CarePlanActivityKindBuilder CarePlan = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder carePlan = CarePlanActivityKindBuilder._(
     valueString: 'CarePlan',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CarePlan'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.carePlan,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CarePlan',
+    ),
   );
 
   /// CareTeam
-  static CarePlanActivityKindBuilder CareTeam = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder careTeam = CarePlanActivityKindBuilder._(
     valueString: 'CareTeam',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CareTeam'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.careTeam,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CareTeam',
+    ),
   );
 
   /// CatalogEntry
-  static CarePlanActivityKindBuilder CatalogEntry =
+  static CarePlanActivityKindBuilder catalogEntry =
       CarePlanActivityKindBuilder._(
     valueString: 'CatalogEntry',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CatalogEntry'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.catalogEntry,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CatalogEntry',
+    ),
   );
 
   /// ChargeItem
-  static CarePlanActivityKindBuilder ChargeItem = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder chargeItem = CarePlanActivityKindBuilder._(
     valueString: 'ChargeItem',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ChargeItem'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.chargeItem,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ChargeItem',
+    ),
   );
 
   /// ChargeItemDefinition
-  static CarePlanActivityKindBuilder ChargeItemDefinition =
+  static CarePlanActivityKindBuilder chargeItemDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ChargeItemDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ChargeItemDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.chargeItemDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ChargeItemDefinition',
+    ),
   );
 
   /// Citation
-  static CarePlanActivityKindBuilder Citation = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder citation = CarePlanActivityKindBuilder._(
     valueString: 'Citation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Citation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.citation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Citation',
+    ),
   );
 
   /// Claim
-  static CarePlanActivityKindBuilder Claim = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder claim = CarePlanActivityKindBuilder._(
     valueString: 'Claim',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Claim'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.claim,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Claim',
+    ),
   );
 
   /// ClaimResponse
-  static CarePlanActivityKindBuilder ClaimResponse =
+  static CarePlanActivityKindBuilder claimResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'ClaimResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ClaimResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.claimResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ClaimResponse',
+    ),
   );
 
   /// ClinicalImpression
-  static CarePlanActivityKindBuilder ClinicalImpression =
+  static CarePlanActivityKindBuilder clinicalImpression =
       CarePlanActivityKindBuilder._(
     valueString: 'ClinicalImpression',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ClinicalImpression'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.clinicalImpression,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ClinicalImpression',
+    ),
   );
 
   /// ClinicalUseDefinition
-  static CarePlanActivityKindBuilder ClinicalUseDefinition =
+  static CarePlanActivityKindBuilder clinicalUseDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ClinicalUseDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ClinicalUseDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.clinicalUseDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ClinicalUseDefinition',
+    ),
   );
 
   /// CodeSystem
-  static CarePlanActivityKindBuilder CodeSystem = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder codeSystem = CarePlanActivityKindBuilder._(
     valueString: 'CodeSystem',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CodeSystem'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.codeSystem,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CodeSystem',
+    ),
   );
 
   /// Communication
-  static CarePlanActivityKindBuilder Communication =
+  static CarePlanActivityKindBuilder communication =
       CarePlanActivityKindBuilder._(
     valueString: 'Communication',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Communication'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.communication,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Communication',
+    ),
   );
 
   /// CommunicationRequest
-  static CarePlanActivityKindBuilder CommunicationRequest =
+  static CarePlanActivityKindBuilder communicationRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'CommunicationRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CommunicationRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.communicationRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CommunicationRequest',
+    ),
   );
 
   /// CompartmentDefinition
-  static CarePlanActivityKindBuilder CompartmentDefinition =
+  static CarePlanActivityKindBuilder compartmentDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'CompartmentDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CompartmentDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.compartmentDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CompartmentDefinition',
+    ),
   );
 
   /// Composition
-  static CarePlanActivityKindBuilder Composition =
+  static CarePlanActivityKindBuilder composition =
       CarePlanActivityKindBuilder._(
     valueString: 'Composition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Composition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.composition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Composition',
+    ),
   );
 
   /// ConceptMap
-  static CarePlanActivityKindBuilder ConceptMap = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder conceptMap = CarePlanActivityKindBuilder._(
     valueString: 'ConceptMap',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ConceptMap'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.conceptMap,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ConceptMap',
+    ),
   );
 
   /// Condition
-  static CarePlanActivityKindBuilder Condition = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder condition = CarePlanActivityKindBuilder._(
     valueString: 'Condition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Condition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.condition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Condition',
+    ),
   );
 
   /// Consent
-  static CarePlanActivityKindBuilder Consent = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder consent = CarePlanActivityKindBuilder._(
     valueString: 'Consent',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Consent'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.consent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Consent',
+    ),
   );
 
   /// Contract
-  static CarePlanActivityKindBuilder Contract = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder contract = CarePlanActivityKindBuilder._(
     valueString: 'Contract',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Contract'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.contract,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Contract',
+    ),
   );
 
   /// Coverage
-  static CarePlanActivityKindBuilder Coverage = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder coverage = CarePlanActivityKindBuilder._(
     valueString: 'Coverage',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Coverage'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.coverage,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Coverage',
+    ),
   );
 
   /// CoverageEligibilityRequest
-  static CarePlanActivityKindBuilder CoverageEligibilityRequest =
+  static CarePlanActivityKindBuilder coverageEligibilityRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'CoverageEligibilityRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CoverageEligibilityRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.coverageEligibilityRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CoverageEligibilityRequest',
+    ),
   );
 
   /// CoverageEligibilityResponse
-  static CarePlanActivityKindBuilder CoverageEligibilityResponse =
+  static CarePlanActivityKindBuilder coverageEligibilityResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'CoverageEligibilityResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'CoverageEligibilityResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.coverageEligibilityResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'CoverageEligibilityResponse',
+    ),
   );
 
   /// DetectedIssue
-  static CarePlanActivityKindBuilder DetectedIssue =
+  static CarePlanActivityKindBuilder detectedIssue =
       CarePlanActivityKindBuilder._(
     valueString: 'DetectedIssue',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DetectedIssue'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.detectedIssue,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DetectedIssue',
+    ),
   );
 
   /// Device
-  static CarePlanActivityKindBuilder Device = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder device = CarePlanActivityKindBuilder._(
     valueString: 'Device',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Device'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.device,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Device',
+    ),
   );
 
   /// DeviceDefinition
-  static CarePlanActivityKindBuilder DeviceDefinition =
+  static CarePlanActivityKindBuilder deviceDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'DeviceDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DeviceDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.deviceDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DeviceDefinition',
+    ),
   );
 
   /// DeviceMetric
-  static CarePlanActivityKindBuilder DeviceMetric =
+  static CarePlanActivityKindBuilder deviceMetric =
       CarePlanActivityKindBuilder._(
     valueString: 'DeviceMetric',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DeviceMetric'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.deviceMetric,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DeviceMetric',
+    ),
   );
 
   /// DeviceRequest
-  static CarePlanActivityKindBuilder DeviceRequest =
+  static CarePlanActivityKindBuilder deviceRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'DeviceRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DeviceRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.deviceRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DeviceRequest',
+    ),
   );
 
   /// DeviceUseStatement
-  static CarePlanActivityKindBuilder DeviceUseStatement =
+  static CarePlanActivityKindBuilder deviceUseStatement =
       CarePlanActivityKindBuilder._(
     valueString: 'DeviceUseStatement',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DeviceUseStatement'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.deviceUseStatement,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DeviceUseStatement',
+    ),
   );
 
   /// DiagnosticReport
-  static CarePlanActivityKindBuilder DiagnosticReport =
+  static CarePlanActivityKindBuilder diagnosticReport =
       CarePlanActivityKindBuilder._(
     valueString: 'DiagnosticReport',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DiagnosticReport'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.diagnosticReport,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DiagnosticReport',
+    ),
   );
 
   /// DocumentManifest
-  static CarePlanActivityKindBuilder DocumentManifest =
+  static CarePlanActivityKindBuilder documentManifest =
       CarePlanActivityKindBuilder._(
     valueString: 'DocumentManifest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DocumentManifest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.documentManifest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DocumentManifest',
+    ),
   );
 
   /// DocumentReference
-  static CarePlanActivityKindBuilder DocumentReference =
+  static CarePlanActivityKindBuilder documentReference =
       CarePlanActivityKindBuilder._(
     valueString: 'DocumentReference',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DocumentReference'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.documentReference,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DocumentReference',
+    ),
   );
 
   /// Encounter
-  static CarePlanActivityKindBuilder Encounter = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder encounter = CarePlanActivityKindBuilder._(
     valueString: 'Encounter',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Encounter'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.encounter,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Encounter',
+    ),
   );
 
   /// Endpoint
-  static CarePlanActivityKindBuilder Endpoint = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder endpoint = CarePlanActivityKindBuilder._(
     valueString: 'Endpoint',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Endpoint'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.endpoint,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Endpoint',
+    ),
   );
 
   /// EnrollmentRequest
-  static CarePlanActivityKindBuilder EnrollmentRequest =
+  static CarePlanActivityKindBuilder enrollmentRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'EnrollmentRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EnrollmentRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.enrollmentRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EnrollmentRequest',
+    ),
   );
 
   /// EnrollmentResponse
-  static CarePlanActivityKindBuilder EnrollmentResponse =
+  static CarePlanActivityKindBuilder enrollmentResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'EnrollmentResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EnrollmentResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.enrollmentResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EnrollmentResponse',
+    ),
   );
 
   /// EpisodeOfCare
-  static CarePlanActivityKindBuilder EpisodeOfCare =
+  static CarePlanActivityKindBuilder episodeOfCare =
       CarePlanActivityKindBuilder._(
     valueString: 'EpisodeOfCare',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EpisodeOfCare'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.episodeOfCare,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EpisodeOfCare',
+    ),
   );
 
   /// EventDefinition
-  static CarePlanActivityKindBuilder EventDefinition =
+  static CarePlanActivityKindBuilder eventDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'EventDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EventDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.eventDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EventDefinition',
+    ),
   );
 
   /// Evidence
-  static CarePlanActivityKindBuilder Evidence = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder evidence = CarePlanActivityKindBuilder._(
     valueString: 'Evidence',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Evidence'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.evidence,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Evidence',
+    ),
   );
 
   /// EvidenceReport
-  static CarePlanActivityKindBuilder EvidenceReport =
+  static CarePlanActivityKindBuilder evidenceReport =
       CarePlanActivityKindBuilder._(
     valueString: 'EvidenceReport',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EvidenceReport'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.evidenceReport,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EvidenceReport',
+    ),
   );
 
   /// EvidenceVariable
-  static CarePlanActivityKindBuilder EvidenceVariable =
+  static CarePlanActivityKindBuilder evidenceVariable =
       CarePlanActivityKindBuilder._(
     valueString: 'EvidenceVariable',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'EvidenceVariable'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.evidenceVariable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'EvidenceVariable',
+    ),
   );
 
   /// ExampleScenario
-  static CarePlanActivityKindBuilder ExampleScenario =
+  static CarePlanActivityKindBuilder exampleScenario =
       CarePlanActivityKindBuilder._(
     valueString: 'ExampleScenario',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ExampleScenario'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.exampleScenario,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ExampleScenario',
+    ),
   );
 
   /// ExplanationOfBenefit
-  static CarePlanActivityKindBuilder ExplanationOfBenefit =
+  static CarePlanActivityKindBuilder explanationOfBenefit =
       CarePlanActivityKindBuilder._(
     valueString: 'ExplanationOfBenefit',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ExplanationOfBenefit'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.explanationOfBenefit,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ExplanationOfBenefit',
+    ),
   );
 
   /// FamilyMemberHistory
-  static CarePlanActivityKindBuilder FamilyMemberHistory =
+  static CarePlanActivityKindBuilder familyMemberHistory =
       CarePlanActivityKindBuilder._(
     valueString: 'FamilyMemberHistory',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'FamilyMemberHistory'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.familyMemberHistory,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'FamilyMemberHistory',
+    ),
   );
 
   /// Flag
-  static CarePlanActivityKindBuilder Flag = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder flag = CarePlanActivityKindBuilder._(
     valueString: 'Flag',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Flag'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.flag,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Flag',
+    ),
   );
 
   /// Goal
-  static CarePlanActivityKindBuilder Goal = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder goal = CarePlanActivityKindBuilder._(
     valueString: 'Goal',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Goal'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.goal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Goal',
+    ),
   );
 
   /// GraphDefinition
-  static CarePlanActivityKindBuilder GraphDefinition =
+  static CarePlanActivityKindBuilder graphDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'GraphDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'GraphDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.graphDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'GraphDefinition',
+    ),
   );
 
   /// Group
-  static CarePlanActivityKindBuilder Group = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder group = CarePlanActivityKindBuilder._(
     valueString: 'Group',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Group'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.group,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Group',
+    ),
   );
 
   /// GuidanceResponse
-  static CarePlanActivityKindBuilder GuidanceResponse =
+  static CarePlanActivityKindBuilder guidanceResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'GuidanceResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'GuidanceResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.guidanceResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'GuidanceResponse',
+    ),
   );
 
   /// HealthcareService
-  static CarePlanActivityKindBuilder HealthcareService =
+  static CarePlanActivityKindBuilder healthcareService =
       CarePlanActivityKindBuilder._(
     valueString: 'HealthcareService',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'HealthcareService'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.healthcareService,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'HealthcareService',
+    ),
   );
 
   /// ImagingStudy
-  static CarePlanActivityKindBuilder ImagingStudy =
+  static CarePlanActivityKindBuilder imagingStudy =
       CarePlanActivityKindBuilder._(
     valueString: 'ImagingStudy',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ImagingStudy'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.imagingStudy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ImagingStudy',
+    ),
   );
 
   /// Immunization
-  static CarePlanActivityKindBuilder Immunization =
+  static CarePlanActivityKindBuilder immunization =
       CarePlanActivityKindBuilder._(
     valueString: 'Immunization',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Immunization'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.immunization,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Immunization',
+    ),
   );
 
   /// ImmunizationEvaluation
-  static CarePlanActivityKindBuilder ImmunizationEvaluation =
+  static CarePlanActivityKindBuilder immunizationEvaluation =
       CarePlanActivityKindBuilder._(
     valueString: 'ImmunizationEvaluation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ImmunizationEvaluation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.immunizationEvaluation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ImmunizationEvaluation',
+    ),
   );
 
   /// ImmunizationRecommendation
-  static CarePlanActivityKindBuilder ImmunizationRecommendation =
+  static CarePlanActivityKindBuilder immunizationRecommendation =
       CarePlanActivityKindBuilder._(
     valueString: 'ImmunizationRecommendation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ImmunizationRecommendation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.immunizationRecommendation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ImmunizationRecommendation',
+    ),
   );
 
   /// ImplementationGuide
-  static CarePlanActivityKindBuilder ImplementationGuide =
+  static CarePlanActivityKindBuilder implementationGuide =
       CarePlanActivityKindBuilder._(
     valueString: 'ImplementationGuide',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ImplementationGuide'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.implementationGuide,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ImplementationGuide',
+    ),
   );
 
   /// Ingredient
-  static CarePlanActivityKindBuilder Ingredient = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder ingredient = CarePlanActivityKindBuilder._(
     valueString: 'Ingredient',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Ingredient'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.ingredient,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Ingredient',
+    ),
   );
 
   /// InsurancePlan
-  static CarePlanActivityKindBuilder InsurancePlan =
+  static CarePlanActivityKindBuilder insurancePlan =
       CarePlanActivityKindBuilder._(
     valueString: 'InsurancePlan',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'InsurancePlan'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.insurancePlan,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'InsurancePlan',
+    ),
   );
 
   /// Invoice
-  static CarePlanActivityKindBuilder Invoice = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder invoice = CarePlanActivityKindBuilder._(
     valueString: 'Invoice',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Invoice'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.invoice,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Invoice',
+    ),
   );
 
   /// Library
-  static CarePlanActivityKindBuilder Library = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder library = CarePlanActivityKindBuilder._(
     valueString: 'Library',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Library'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.library,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Library',
+    ),
   );
 
   /// Linkage
-  static CarePlanActivityKindBuilder Linkage = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder linkage = CarePlanActivityKindBuilder._(
     valueString: 'Linkage',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Linkage'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.linkage,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Linkage',
+    ),
   );
 
   /// List_
-  static CarePlanActivityKindBuilder List_ = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder list_ = CarePlanActivityKindBuilder._(
     valueString: 'List',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'List'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.list_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'List',
+    ),
   );
 
   /// Location
-  static CarePlanActivityKindBuilder Location = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder location = CarePlanActivityKindBuilder._(
     valueString: 'Location',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Location'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.location,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Location',
+    ),
   );
 
   /// ManufacturedItemDefinition
-  static CarePlanActivityKindBuilder ManufacturedItemDefinition =
+  static CarePlanActivityKindBuilder manufacturedItemDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ManufacturedItemDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ManufacturedItemDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.manufacturedItemDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ManufacturedItemDefinition',
+    ),
   );
 
   /// Measure
-  static CarePlanActivityKindBuilder Measure = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder measure = CarePlanActivityKindBuilder._(
     valueString: 'Measure',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Measure'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.measure,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Measure',
+    ),
   );
 
   /// MeasureReport
-  static CarePlanActivityKindBuilder MeasureReport =
+  static CarePlanActivityKindBuilder measureReport =
       CarePlanActivityKindBuilder._(
     valueString: 'MeasureReport',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MeasureReport'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.measureReport,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MeasureReport',
+    ),
   );
 
   /// Media
-  static CarePlanActivityKindBuilder Media = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder media = CarePlanActivityKindBuilder._(
     valueString: 'Media',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Media'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.media,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Media',
+    ),
   );
 
   /// Medication
-  static CarePlanActivityKindBuilder Medication = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder medication = CarePlanActivityKindBuilder._(
     valueString: 'Medication',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Medication'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medication,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Medication',
+    ),
   );
 
   /// MedicationAdministration
-  static CarePlanActivityKindBuilder MedicationAdministration =
+  static CarePlanActivityKindBuilder medicationAdministration =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicationAdministration',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicationAdministration'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicationAdministration,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicationAdministration',
+    ),
   );
 
   /// MedicationDispense
-  static CarePlanActivityKindBuilder MedicationDispense =
+  static CarePlanActivityKindBuilder medicationDispense =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicationDispense',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicationDispense'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicationDispense,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicationDispense',
+    ),
   );
 
   /// MedicationKnowledge
-  static CarePlanActivityKindBuilder MedicationKnowledge =
+  static CarePlanActivityKindBuilder medicationKnowledge =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicationKnowledge',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicationKnowledge'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicationKnowledge,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicationKnowledge',
+    ),
   );
 
   /// MedicationRequest
-  static CarePlanActivityKindBuilder MedicationRequest =
+  static CarePlanActivityKindBuilder medicationRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicationRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicationRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicationRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicationRequest',
+    ),
   );
 
   /// MedicationStatement
-  static CarePlanActivityKindBuilder MedicationStatement =
+  static CarePlanActivityKindBuilder medicationStatement =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicationStatement',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicationStatement'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicationStatement,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicationStatement',
+    ),
   );
 
   /// MedicinalProductDefinition
-  static CarePlanActivityKindBuilder MedicinalProductDefinition =
+  static CarePlanActivityKindBuilder medicinalProductDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'MedicinalProductDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MedicinalProductDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.medicinalProductDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MedicinalProductDefinition',
+    ),
   );
 
   /// MessageDefinition
-  static CarePlanActivityKindBuilder MessageDefinition =
+  static CarePlanActivityKindBuilder messageDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'MessageDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MessageDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.messageDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MessageDefinition',
+    ),
   );
 
   /// MessageHeader
-  static CarePlanActivityKindBuilder MessageHeader =
+  static CarePlanActivityKindBuilder messageHeader =
       CarePlanActivityKindBuilder._(
     valueString: 'MessageHeader',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MessageHeader'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.messageHeader,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MessageHeader',
+    ),
   );
 
   /// MolecularSequence
-  static CarePlanActivityKindBuilder MolecularSequence =
+  static CarePlanActivityKindBuilder molecularSequence =
       CarePlanActivityKindBuilder._(
     valueString: 'MolecularSequence',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'MolecularSequence'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.molecularSequence,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'MolecularSequence',
+    ),
   );
 
   /// NamingSystem
-  static CarePlanActivityKindBuilder NamingSystem =
+  static CarePlanActivityKindBuilder namingSystem =
       CarePlanActivityKindBuilder._(
     valueString: 'NamingSystem',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'NamingSystem'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.namingSystem,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'NamingSystem',
+    ),
   );
 
   /// NutritionOrder
-  static CarePlanActivityKindBuilder NutritionOrder =
+  static CarePlanActivityKindBuilder nutritionOrder =
       CarePlanActivityKindBuilder._(
     valueString: 'NutritionOrder',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'NutritionOrder'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.nutritionOrder,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'NutritionOrder',
+    ),
   );
 
   /// NutritionProduct
-  static CarePlanActivityKindBuilder NutritionProduct =
+  static CarePlanActivityKindBuilder nutritionProduct =
       CarePlanActivityKindBuilder._(
     valueString: 'NutritionProduct',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'NutritionProduct'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.nutritionProduct,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'NutritionProduct',
+    ),
   );
 
   /// Observation
-  static CarePlanActivityKindBuilder Observation =
+  static CarePlanActivityKindBuilder observation =
       CarePlanActivityKindBuilder._(
     valueString: 'Observation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Observation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.observation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Observation',
+    ),
   );
 
   /// ObservationDefinition
-  static CarePlanActivityKindBuilder ObservationDefinition =
+  static CarePlanActivityKindBuilder observationDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ObservationDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ObservationDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.observationDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ObservationDefinition',
+    ),
   );
 
   /// OperationDefinition
-  static CarePlanActivityKindBuilder OperationDefinition =
+  static CarePlanActivityKindBuilder operationDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'OperationDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'OperationDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.operationDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'OperationDefinition',
+    ),
   );
 
   /// OperationOutcome
-  static CarePlanActivityKindBuilder OperationOutcome =
+  static CarePlanActivityKindBuilder operationOutcome =
       CarePlanActivityKindBuilder._(
     valueString: 'OperationOutcome',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'OperationOutcome'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.operationOutcome,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'OperationOutcome',
+    ),
   );
 
   /// Organization
-  static CarePlanActivityKindBuilder Organization =
+  static CarePlanActivityKindBuilder organization =
       CarePlanActivityKindBuilder._(
     valueString: 'Organization',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Organization'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.organization,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Organization',
+    ),
   );
 
   /// OrganizationAffiliation
-  static CarePlanActivityKindBuilder OrganizationAffiliation =
+  static CarePlanActivityKindBuilder organizationAffiliation =
       CarePlanActivityKindBuilder._(
     valueString: 'OrganizationAffiliation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'OrganizationAffiliation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.organizationAffiliation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'OrganizationAffiliation',
+    ),
   );
 
   /// PackagedProductDefinition
-  static CarePlanActivityKindBuilder PackagedProductDefinition =
+  static CarePlanActivityKindBuilder packagedProductDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'PackagedProductDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PackagedProductDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.packagedProductDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PackagedProductDefinition',
+    ),
   );
 
   /// Patient
-  static CarePlanActivityKindBuilder Patient = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder patient = CarePlanActivityKindBuilder._(
     valueString: 'Patient',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Patient'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.patient,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Patient',
+    ),
   );
 
   /// PaymentNotice
-  static CarePlanActivityKindBuilder PaymentNotice =
+  static CarePlanActivityKindBuilder paymentNotice =
       CarePlanActivityKindBuilder._(
     valueString: 'PaymentNotice',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PaymentNotice'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.paymentNotice,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PaymentNotice',
+    ),
   );
 
   /// PaymentReconciliation
-  static CarePlanActivityKindBuilder PaymentReconciliation =
+  static CarePlanActivityKindBuilder paymentReconciliation =
       CarePlanActivityKindBuilder._(
     valueString: 'PaymentReconciliation',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PaymentReconciliation'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.paymentReconciliation,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PaymentReconciliation',
+    ),
   );
 
   /// Person
-  static CarePlanActivityKindBuilder Person = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder person = CarePlanActivityKindBuilder._(
     valueString: 'Person',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Person'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.person,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Person',
+    ),
   );
 
   /// PlanDefinition
-  static CarePlanActivityKindBuilder PlanDefinition =
+  static CarePlanActivityKindBuilder planDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'PlanDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PlanDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.planDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PlanDefinition',
+    ),
   );
 
   /// Practitioner
-  static CarePlanActivityKindBuilder Practitioner =
+  static CarePlanActivityKindBuilder practitioner =
       CarePlanActivityKindBuilder._(
     valueString: 'Practitioner',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Practitioner'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.practitioner,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// PractitionerRole
-  static CarePlanActivityKindBuilder PractitionerRole =
+  static CarePlanActivityKindBuilder practitionerRole =
       CarePlanActivityKindBuilder._(
     valueString: 'PractitionerRole',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PractitionerRole'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.practitionerRole,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PractitionerRole',
+    ),
   );
 
   /// Procedure
-  static CarePlanActivityKindBuilder Procedure = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder procedure = CarePlanActivityKindBuilder._(
     valueString: 'Procedure',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Procedure'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.procedure,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Procedure',
+    ),
   );
 
   /// Provenance
-  static CarePlanActivityKindBuilder Provenance = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder provenance = CarePlanActivityKindBuilder._(
     valueString: 'Provenance',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Provenance'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.provenance,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Provenance',
+    ),
   );
 
   /// Questionnaire
-  static CarePlanActivityKindBuilder Questionnaire =
+  static CarePlanActivityKindBuilder questionnaire =
       CarePlanActivityKindBuilder._(
     valueString: 'Questionnaire',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Questionnaire'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.questionnaire,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Questionnaire',
+    ),
   );
 
   /// QuestionnaireResponse
-  static CarePlanActivityKindBuilder QuestionnaireResponse =
+  static CarePlanActivityKindBuilder questionnaireResponse =
       CarePlanActivityKindBuilder._(
     valueString: 'QuestionnaireResponse',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'QuestionnaireResponse'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.questionnaireResponse,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'QuestionnaireResponse',
+    ),
   );
 
   /// RegulatedAuthorization
-  static CarePlanActivityKindBuilder RegulatedAuthorization =
+  static CarePlanActivityKindBuilder regulatedAuthorization =
       CarePlanActivityKindBuilder._(
     valueString: 'RegulatedAuthorization',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RegulatedAuthorization'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.regulatedAuthorization,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RegulatedAuthorization',
+    ),
   );
 
   /// RelatedPerson
-  static CarePlanActivityKindBuilder RelatedPerson =
+  static CarePlanActivityKindBuilder relatedPerson =
       CarePlanActivityKindBuilder._(
     valueString: 'RelatedPerson',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RelatedPerson'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.relatedPerson,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RelatedPerson',
+    ),
   );
 
   /// RequestGroup
-  static CarePlanActivityKindBuilder RequestGroup =
+  static CarePlanActivityKindBuilder requestGroup =
       CarePlanActivityKindBuilder._(
     valueString: 'RequestGroup',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RequestGroup'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.requestGroup,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RequestGroup',
+    ),
   );
 
   /// ResearchDefinition
-  static CarePlanActivityKindBuilder ResearchDefinition =
+  static CarePlanActivityKindBuilder researchDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ResearchDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ResearchDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.researchDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ResearchDefinition',
+    ),
   );
 
   /// ResearchElementDefinition
-  static CarePlanActivityKindBuilder ResearchElementDefinition =
+  static CarePlanActivityKindBuilder researchElementDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'ResearchElementDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ResearchElementDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.researchElementDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ResearchElementDefinition',
+    ),
   );
 
   /// ResearchStudy
-  static CarePlanActivityKindBuilder ResearchStudy =
+  static CarePlanActivityKindBuilder researchStudy =
       CarePlanActivityKindBuilder._(
     valueString: 'ResearchStudy',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ResearchStudy'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.researchStudy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ResearchStudy',
+    ),
   );
 
   /// ResearchSubject
-  static CarePlanActivityKindBuilder ResearchSubject =
+  static CarePlanActivityKindBuilder researchSubject =
       CarePlanActivityKindBuilder._(
     valueString: 'ResearchSubject',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ResearchSubject'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.researchSubject,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ResearchSubject',
+    ),
   );
 
   /// RiskAssessment
-  static CarePlanActivityKindBuilder RiskAssessment =
+  static CarePlanActivityKindBuilder riskAssessment =
       CarePlanActivityKindBuilder._(
     valueString: 'RiskAssessment',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RiskAssessment'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.riskAssessment,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RiskAssessment',
+    ),
   );
 
   /// Schedule
-  static CarePlanActivityKindBuilder Schedule = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder schedule = CarePlanActivityKindBuilder._(
     valueString: 'Schedule',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Schedule'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.schedule,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Schedule',
+    ),
   );
 
   /// SearchParameter
-  static CarePlanActivityKindBuilder SearchParameter =
+  static CarePlanActivityKindBuilder searchParameter =
       CarePlanActivityKindBuilder._(
     valueString: 'SearchParameter',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SearchParameter'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.searchParameter,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SearchParameter',
+    ),
   );
 
   /// ServiceRequest
-  static CarePlanActivityKindBuilder ServiceRequest =
+  static CarePlanActivityKindBuilder serviceRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'ServiceRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ServiceRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.serviceRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ServiceRequest',
+    ),
   );
 
   /// Slot
-  static CarePlanActivityKindBuilder Slot = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder slot = CarePlanActivityKindBuilder._(
     valueString: 'Slot',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Slot'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.slot,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Slot',
+    ),
   );
 
   /// Specimen
-  static CarePlanActivityKindBuilder Specimen = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder specimen = CarePlanActivityKindBuilder._(
     valueString: 'Specimen',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Specimen'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.specimen,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Specimen',
+    ),
   );
 
   /// SpecimenDefinition
-  static CarePlanActivityKindBuilder SpecimenDefinition =
+  static CarePlanActivityKindBuilder specimenDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'SpecimenDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SpecimenDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.specimenDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SpecimenDefinition',
+    ),
   );
 
   /// StructureDefinition
-  static CarePlanActivityKindBuilder StructureDefinition =
+  static CarePlanActivityKindBuilder structureDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'StructureDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'StructureDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.structureDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'StructureDefinition',
+    ),
   );
 
   /// StructureMap
-  static CarePlanActivityKindBuilder StructureMap =
+  static CarePlanActivityKindBuilder structureMap =
       CarePlanActivityKindBuilder._(
     valueString: 'StructureMap',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'StructureMap'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.structureMap,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'StructureMap',
+    ),
   );
 
   /// Subscription
-  static CarePlanActivityKindBuilder Subscription =
+  static CarePlanActivityKindBuilder subscription =
       CarePlanActivityKindBuilder._(
     valueString: 'Subscription',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Subscription'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.subscription,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Subscription',
+    ),
   );
 
   /// SubscriptionStatus
-  static CarePlanActivityKindBuilder SubscriptionStatus =
+  static CarePlanActivityKindBuilder subscriptionStatus =
       CarePlanActivityKindBuilder._(
     valueString: 'SubscriptionStatus',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SubscriptionStatus'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.subscriptionStatus,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SubscriptionStatus',
+    ),
   );
 
   /// SubscriptionTopic
-  static CarePlanActivityKindBuilder SubscriptionTopic =
+  static CarePlanActivityKindBuilder subscriptionTopic =
       CarePlanActivityKindBuilder._(
     valueString: 'SubscriptionTopic',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SubscriptionTopic'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.subscriptionTopic,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SubscriptionTopic',
+    ),
   );
 
   /// Substance
-  static CarePlanActivityKindBuilder Substance = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder substance = CarePlanActivityKindBuilder._(
     valueString: 'Substance',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Substance'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.substance,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Substance',
+    ),
   );
 
   /// SubstanceDefinition
-  static CarePlanActivityKindBuilder SubstanceDefinition =
+  static CarePlanActivityKindBuilder substanceDefinition =
       CarePlanActivityKindBuilder._(
     valueString: 'SubstanceDefinition',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SubstanceDefinition'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.substanceDefinition,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SubstanceDefinition',
+    ),
   );
 
   /// SupplyDelivery
-  static CarePlanActivityKindBuilder SupplyDelivery =
+  static CarePlanActivityKindBuilder supplyDelivery =
       CarePlanActivityKindBuilder._(
     valueString: 'SupplyDelivery',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SupplyDelivery'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.supplyDelivery,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SupplyDelivery',
+    ),
   );
 
   /// SupplyRequest
-  static CarePlanActivityKindBuilder SupplyRequest =
+  static CarePlanActivityKindBuilder supplyRequest =
       CarePlanActivityKindBuilder._(
     valueString: 'SupplyRequest',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'SupplyRequest'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.supplyRequest,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'SupplyRequest',
+    ),
   );
 
   /// Task
-  static CarePlanActivityKindBuilder Task = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder task = CarePlanActivityKindBuilder._(
     valueString: 'Task',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Task'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.task,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Task',
+    ),
   );
 
   /// TerminologyCapabilities
-  static CarePlanActivityKindBuilder TerminologyCapabilities =
+  static CarePlanActivityKindBuilder terminologyCapabilities =
       CarePlanActivityKindBuilder._(
     valueString: 'TerminologyCapabilities',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'TerminologyCapabilities'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.terminologyCapabilities,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'TerminologyCapabilities',
+    ),
   );
 
   /// TestReport
-  static CarePlanActivityKindBuilder TestReport = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder testReport = CarePlanActivityKindBuilder._(
     valueString: 'TestReport',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'TestReport'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.testReport,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'TestReport',
+    ),
   );
 
   /// TestScript
-  static CarePlanActivityKindBuilder TestScript = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder testScript = CarePlanActivityKindBuilder._(
     valueString: 'TestScript',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'TestScript'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.testScript,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'TestScript',
+    ),
   );
 
   /// ValueSet
-  static CarePlanActivityKindBuilder ValueSet = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder valueSet = CarePlanActivityKindBuilder._(
     valueString: 'ValueSet',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'ValueSet'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.valueSet,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'ValueSet',
+    ),
   );
 
   /// VerificationResult
-  static CarePlanActivityKindBuilder VerificationResult =
+  static CarePlanActivityKindBuilder verificationResult =
       CarePlanActivityKindBuilder._(
     valueString: 'VerificationResult',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'VerificationResult'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.verificationResult,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'VerificationResult',
+    ),
   );
 
   /// VisionPrescription
-  static CarePlanActivityKindBuilder VisionPrescription =
+  static CarePlanActivityKindBuilder visionPrescription =
       CarePlanActivityKindBuilder._(
     valueString: 'VisionPrescription',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'VisionPrescription'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.visionPrescription,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'VisionPrescription',
+    ),
   );
 
   /// Parameters
-  static CarePlanActivityKindBuilder Parameters = CarePlanActivityKindBuilder._(
+  static CarePlanActivityKindBuilder parameters = CarePlanActivityKindBuilder._(
     valueString: 'Parameters',
-    system:
-        'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Parameters'.toFhirStringBuilder,
+    valueEnum: CarePlanActivityKindBuilderEnum.parameters,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Parameters',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CarePlanActivityKindBuilder elementOnly =
-      CarePlanActivityKindBuilder._(valueString: '');
+      CarePlanActivityKindBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CarePlanActivityKindBuilder> values = [
-    Resource,
-    Binary,
-    Bundle,
-    DomainResource,
-    Account,
-    ActivityDefinition,
-    AdministrableProductDefinition,
-    AdverseEvent,
-    AllergyIntolerance,
-    Appointment,
-    AppointmentResponse,
-    AuditEvent,
-    Basic,
-    BiologicallyDerivedProduct,
-    BodyStructure,
-    CapabilityStatement,
-    CarePlan,
-    CareTeam,
-    CatalogEntry,
-    ChargeItem,
-    ChargeItemDefinition,
-    Citation,
-    Claim,
-    ClaimResponse,
-    ClinicalImpression,
-    ClinicalUseDefinition,
-    CodeSystem,
-    Communication,
-    CommunicationRequest,
-    CompartmentDefinition,
-    Composition,
-    ConceptMap,
-    Condition,
-    Consent,
-    Contract,
-    Coverage,
-    CoverageEligibilityRequest,
-    CoverageEligibilityResponse,
-    DetectedIssue,
-    Device,
-    DeviceDefinition,
-    DeviceMetric,
-    DeviceRequest,
-    DeviceUseStatement,
-    DiagnosticReport,
-    DocumentManifest,
-    DocumentReference,
-    Encounter,
-    Endpoint,
-    EnrollmentRequest,
-    EnrollmentResponse,
-    EpisodeOfCare,
-    EventDefinition,
-    Evidence,
-    EvidenceReport,
-    EvidenceVariable,
-    ExampleScenario,
-    ExplanationOfBenefit,
-    FamilyMemberHistory,
-    Flag,
-    Goal,
-    GraphDefinition,
-    Group,
-    GuidanceResponse,
-    HealthcareService,
-    ImagingStudy,
-    Immunization,
-    ImmunizationEvaluation,
-    ImmunizationRecommendation,
-    ImplementationGuide,
-    Ingredient,
-    InsurancePlan,
-    Invoice,
-    Library,
-    Linkage,
-    List_,
-    Location,
-    ManufacturedItemDefinition,
-    Measure,
-    MeasureReport,
-    Media,
-    Medication,
-    MedicationAdministration,
-    MedicationDispense,
-    MedicationKnowledge,
-    MedicationRequest,
-    MedicationStatement,
-    MedicinalProductDefinition,
-    MessageDefinition,
-    MessageHeader,
-    MolecularSequence,
-    NamingSystem,
-    NutritionOrder,
-    NutritionProduct,
-    Observation,
-    ObservationDefinition,
-    OperationDefinition,
-    OperationOutcome,
-    Organization,
-    OrganizationAffiliation,
-    PackagedProductDefinition,
-    Patient,
-    PaymentNotice,
-    PaymentReconciliation,
-    Person,
-    PlanDefinition,
-    Practitioner,
-    PractitionerRole,
-    Procedure,
-    Provenance,
-    Questionnaire,
-    QuestionnaireResponse,
-    RegulatedAuthorization,
-    RelatedPerson,
-    RequestGroup,
-    ResearchDefinition,
-    ResearchElementDefinition,
-    ResearchStudy,
-    ResearchSubject,
-    RiskAssessment,
-    Schedule,
-    SearchParameter,
-    ServiceRequest,
-    Slot,
-    Specimen,
-    SpecimenDefinition,
-    StructureDefinition,
-    StructureMap,
-    Subscription,
-    SubscriptionStatus,
-    SubscriptionTopic,
-    Substance,
-    SubstanceDefinition,
-    SupplyDelivery,
-    SupplyRequest,
-    Task,
-    TerminologyCapabilities,
-    TestReport,
-    TestScript,
-    ValueSet,
-    VerificationResult,
-    VisionPrescription,
-    Parameters,
+    resource,
+    binary,
+    bundle,
+    domainResource,
+    account,
+    activityDefinition,
+    administrableProductDefinition,
+    adverseEvent,
+    allergyIntolerance,
+    appointment,
+    appointmentResponse,
+    auditEvent,
+    basic,
+    biologicallyDerivedProduct,
+    bodyStructure,
+    capabilityStatement,
+    carePlan,
+    careTeam,
+    catalogEntry,
+    chargeItem,
+    chargeItemDefinition,
+    citation,
+    claim,
+    claimResponse,
+    clinicalImpression,
+    clinicalUseDefinition,
+    codeSystem,
+    communication,
+    communicationRequest,
+    compartmentDefinition,
+    composition,
+    conceptMap,
+    condition,
+    consent,
+    contract,
+    coverage,
+    coverageEligibilityRequest,
+    coverageEligibilityResponse,
+    detectedIssue,
+    device,
+    deviceDefinition,
+    deviceMetric,
+    deviceRequest,
+    deviceUseStatement,
+    diagnosticReport,
+    documentManifest,
+    documentReference,
+    encounter,
+    endpoint,
+    enrollmentRequest,
+    enrollmentResponse,
+    episodeOfCare,
+    eventDefinition,
+    evidence,
+    evidenceReport,
+    evidenceVariable,
+    exampleScenario,
+    explanationOfBenefit,
+    familyMemberHistory,
+    flag,
+    goal,
+    graphDefinition,
+    group,
+    guidanceResponse,
+    healthcareService,
+    imagingStudy,
+    immunization,
+    immunizationEvaluation,
+    immunizationRecommendation,
+    implementationGuide,
+    ingredient,
+    insurancePlan,
+    invoice,
+    library,
+    linkage,
+    list_,
+    location,
+    manufacturedItemDefinition,
+    measure,
+    measureReport,
+    media,
+    medication,
+    medicationAdministration,
+    medicationDispense,
+    medicationKnowledge,
+    medicationRequest,
+    medicationStatement,
+    medicinalProductDefinition,
+    messageDefinition,
+    messageHeader,
+    molecularSequence,
+    namingSystem,
+    nutritionOrder,
+    nutritionProduct,
+    observation,
+    observationDefinition,
+    operationDefinition,
+    operationOutcome,
+    organization,
+    organizationAffiliation,
+    packagedProductDefinition,
+    patient,
+    paymentNotice,
+    paymentReconciliation,
+    person,
+    planDefinition,
+    practitioner,
+    practitionerRole,
+    procedure,
+    provenance,
+    questionnaire,
+    questionnaireResponse,
+    regulatedAuthorization,
+    relatedPerson,
+    requestGroup,
+    researchDefinition,
+    researchElementDefinition,
+    researchStudy,
+    researchSubject,
+    riskAssessment,
+    schedule,
+    searchParameter,
+    serviceRequest,
+    slot,
+    specimen,
+    specimenDefinition,
+    structureDefinition,
+    structureMap,
+    subscription,
+    subscriptionStatus,
+    subscriptionTopic,
+    substance,
+    substanceDefinition,
+    supplyDelivery,
+    supplyRequest,
+    task,
+    terminologyCapabilities,
+    testReport,
+    testScript,
+    valueSet,
+    verificationResult,
+    visionPrescription,
+    parameters,
   ];
-
-  /// Clones the current instance
-  @override
-  CarePlanActivityKindBuilder clone() => CarePlanActivityKindBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CarePlanActivityKindBuilder withElement(
@@ -1633,37 +3250,4 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CarePlanActivityKindBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CarePlanActivityKind: $newValue',
-      );
-    }
-    return CarePlanActivityKindBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

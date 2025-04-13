@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ParticipationStatus
+enum ParticipationStatusBuilderEnum {
+  /// accepted
+  accepted,
+
+  /// declined
+  declined,
+
+  /// tentative
+  tentative,
+
+  /// needs-action
+  needsAction,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ParticipationStatusBuilderEnum.accepted:
+        return 'accepted';
+      case ParticipationStatusBuilderEnum.declined:
+        return 'declined';
+      case ParticipationStatusBuilderEnum.tentative:
+        return 'tentative';
+      case ParticipationStatusBuilderEnum.needsAction:
+        return 'needs-action';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ParticipationStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ParticipationStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ParticipationStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'accepted':
+        return ParticipationStatusBuilderEnum.accepted;
+      case 'declined':
+        return ParticipationStatusBuilderEnum.declined;
+      case 'tentative':
+        return ParticipationStatusBuilderEnum.tentative;
+      case 'needs-action':
+        return ParticipationStatusBuilderEnum.needsAction;
+    }
+    return null;
+  }
+}
+
 /// The Participation status of an appointment.
 class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ParticipationStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ParticipationStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ParticipationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ParticipationStatusBuilder] with element only
+  /// Create empty [ParticipationStatusBuilder]
+  /// with element only
   factory ParticipationStatusBuilder.empty() =>
-      ParticipationStatusBuilder._(valueString: '');
+      ParticipationStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ParticipationStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ParticipationStatusBuilder] from JSON.
   factory ParticipationStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipationStatusBuilder.elementOnly.withElement(element);
+      return ParticipationStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ParticipationStatusBuilder cannot be constructed from JSON.',
@@ -70,56 +143,74 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ParticipationStatusBuilder
+  final ParticipationStatusBuilderEnum? valueEnum;
+
   /// accepted
   static ParticipationStatusBuilder accepted = ParticipationStatusBuilder._(
     valueString: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Accepted'.toFhirStringBuilder,
+    valueEnum: ParticipationStatusBuilderEnum.accepted,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Accepted',
+    ),
   );
 
   /// declined
   static ParticipationStatusBuilder declined = ParticipationStatusBuilder._(
     valueString: 'declined',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Declined'.toFhirStringBuilder,
+    valueEnum: ParticipationStatusBuilderEnum.declined,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Declined',
+    ),
   );
 
   /// tentative
   static ParticipationStatusBuilder tentative = ParticipationStatusBuilder._(
     valueString: 'tentative',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Tentative'.toFhirStringBuilder,
+    valueEnum: ParticipationStatusBuilderEnum.tentative,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Tentative',
+    ),
   );
 
   /// needs_action
-  static ParticipationStatusBuilder needs_action = ParticipationStatusBuilder._(
+  static ParticipationStatusBuilder needsAction = ParticipationStatusBuilder._(
     valueString: 'needs-action',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Needs Action'.toFhirStringBuilder,
+    valueEnum: ParticipationStatusBuilderEnum.needsAction,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Needs Action',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ParticipationStatusBuilder elementOnly =
-      ParticipationStatusBuilder._(valueString: '');
+  static ParticipationStatusBuilder elementOnly = ParticipationStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ParticipationStatusBuilder> values = [
     accepted,
     declined,
     tentative,
-    needs_action,
+    needsAction,
   ];
-
-  /// Clones the current instance
-  @override
-  ParticipationStatusBuilder clone() => ParticipationStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ParticipationStatusBuilder withElement(
@@ -141,37 +232,4 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ParticipationStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ParticipationStatus: $newValue',
-      );
-    }
-    return ParticipationStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

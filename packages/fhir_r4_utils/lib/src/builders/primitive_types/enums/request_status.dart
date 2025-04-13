@@ -1,11 +1,97 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RequestStatus
+enum RequestStatusBuilderEnum {
+  /// draft
+  draft,
+
+  /// active
+  active,
+
+  /// on-hold
+  onHold,
+
+  /// revoked
+  revoked,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RequestStatusBuilderEnum.draft:
+        return 'draft';
+      case RequestStatusBuilderEnum.active:
+        return 'active';
+      case RequestStatusBuilderEnum.onHold:
+        return 'on-hold';
+      case RequestStatusBuilderEnum.revoked:
+        return 'revoked';
+      case RequestStatusBuilderEnum.completed:
+        return 'completed';
+      case RequestStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case RequestStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RequestStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RequestStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RequestStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return RequestStatusBuilderEnum.draft;
+      case 'active':
+        return RequestStatusBuilderEnum.active;
+      case 'on-hold':
+        return RequestStatusBuilderEnum.onHold;
+      case 'revoked':
+        return RequestStatusBuilderEnum.revoked;
+      case 'completed':
+        return RequestStatusBuilderEnum.completed;
+      case 'entered-in-error':
+        return RequestStatusBuilderEnum.enteredInError;
+      case 'unknown':
+        return RequestStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of a request.
 class RequestStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RequestStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +117,12 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = RequestStatusBuilderEnum.fromString(
+      valueString,
+    );
     return RequestStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +134,13 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [RequestStatusBuilder] with element only
+  /// Create empty [RequestStatusBuilder]
+  /// with element only
   factory RequestStatusBuilder.empty() =>
-      RequestStatusBuilder._(valueString: '');
+      RequestStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [RequestStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [RequestStatusBuilder] from JSON.
   factory RequestStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +149,10 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestStatusBuilder.elementOnly.withElement(element);
+      return RequestStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RequestStatusBuilder cannot be constructed from JSON.',
@@ -70,83 +164,116 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for RequestStatusBuilder
+  final RequestStatusBuilderEnum? valueEnum;
+
   /// draft
   static RequestStatusBuilder draft = RequestStatusBuilder._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Draft'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.draft,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Draft',
+    ),
   );
 
   /// active
   static RequestStatusBuilder active = RequestStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// on_hold
-  static RequestStatusBuilder on_hold = RequestStatusBuilder._(
+  static RequestStatusBuilder onHold = RequestStatusBuilder._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'On Hold'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.onHold,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// revoked
   static RequestStatusBuilder revoked = RequestStatusBuilder._(
     valueString: 'revoked',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Revoked'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.revoked,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Revoked',
+    ),
   );
 
   /// completed
   static RequestStatusBuilder completed = RequestStatusBuilder._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Completed'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.completed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static RequestStatusBuilder entered_in_error = RequestStatusBuilder._(
+  static RequestStatusBuilder enteredInError = RequestStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
   static RequestStatusBuilder unknown = RequestStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: RequestStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static RequestStatusBuilder elementOnly =
-      RequestStatusBuilder._(valueString: '');
+  static RequestStatusBuilder elementOnly = RequestStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<RequestStatusBuilder> values = [
     draft,
     active,
-    on_hold,
+    onHold,
     revoked,
     completed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  RequestStatusBuilder clone() => RequestStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   RequestStatusBuilder withElement(
@@ -168,37 +295,4 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  RequestStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for RequestStatus: $newValue',
-      );
-    }
-    return RequestStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

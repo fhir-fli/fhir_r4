@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for NarrativeStatus
+enum NarrativeStatusBuilderEnum {
+  /// generated
+  generated,
+
+  /// extensions
+  extensions,
+
+  /// additional
+  additional,
+
+  /// empty
+  empty_,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case NarrativeStatusBuilderEnum.generated:
+        return 'generated';
+      case NarrativeStatusBuilderEnum.extensions:
+        return 'extensions';
+      case NarrativeStatusBuilderEnum.additional:
+        return 'additional';
+      case NarrativeStatusBuilderEnum.empty_:
+        return 'empty';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static NarrativeStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return NarrativeStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static NarrativeStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'generated':
+        return NarrativeStatusBuilderEnum.generated;
+      case 'extensions':
+        return NarrativeStatusBuilderEnum.extensions;
+      case 'additional':
+        return NarrativeStatusBuilderEnum.additional;
+      case 'empty':
+        return NarrativeStatusBuilderEnum.empty_;
+    }
+    return null;
+  }
+}
+
 /// The status of a resource narrative.
 class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NarrativeStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = NarrativeStatusBuilderEnum.fromString(
+      valueString,
+    );
     return NarrativeStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [NarrativeStatusBuilder] with element only
+  /// Create empty [NarrativeStatusBuilder]
+  /// with element only
   factory NarrativeStatusBuilder.empty() =>
-      NarrativeStatusBuilder._(valueString: '');
+      NarrativeStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [NarrativeStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [NarrativeStatusBuilder] from JSON.
   factory NarrativeStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NarrativeStatusBuilder.elementOnly.withElement(element);
+      return NarrativeStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'NarrativeStatusBuilder cannot be constructed from JSON.',
@@ -70,41 +143,66 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for NarrativeStatusBuilder
+  final NarrativeStatusBuilderEnum? valueEnum;
+
   /// generated
   static NarrativeStatusBuilder generated = NarrativeStatusBuilder._(
     valueString: 'generated',
-    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Generated'.toFhirStringBuilder,
+    valueEnum: NarrativeStatusBuilderEnum.generated,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Generated',
+    ),
   );
 
   /// extensions
   static NarrativeStatusBuilder extensions = NarrativeStatusBuilder._(
     valueString: 'extensions',
-    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Extensions'.toFhirStringBuilder,
+    valueEnum: NarrativeStatusBuilderEnum.extensions,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Extensions',
+    ),
   );
 
   /// additional
   static NarrativeStatusBuilder additional = NarrativeStatusBuilder._(
     valueString: 'additional',
-    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Additional'.toFhirStringBuilder,
+    valueEnum: NarrativeStatusBuilderEnum.additional,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Additional',
+    ),
   );
 
   /// empty_
   static NarrativeStatusBuilder empty_ = NarrativeStatusBuilder._(
     valueString: 'empty',
-    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Empty'.toFhirStringBuilder,
+    valueEnum: NarrativeStatusBuilderEnum.empty_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Empty',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static NarrativeStatusBuilder elementOnly =
-      NarrativeStatusBuilder._(valueString: '');
+  static NarrativeStatusBuilder elementOnly = NarrativeStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<NarrativeStatusBuilder> values = [
@@ -113,13 +211,6 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     additional,
     empty_,
   ];
-
-  /// Clones the current instance
-  @override
-  NarrativeStatusBuilder clone() => NarrativeStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   NarrativeStatusBuilder withElement(
@@ -141,37 +232,4 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  NarrativeStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for NarrativeStatus: $newValue',
-      );
-    }
-    return NarrativeStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

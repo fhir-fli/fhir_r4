@@ -1,11 +1,153 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ContractResourceStatusCodes
+enum ContractResourceStatusCodesBuilderEnum {
+  /// amended
+  amended,
+
+  /// appended
+  appended,
+
+  /// cancelled
+  cancelled,
+
+  /// disputed
+  disputed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// executable
+  executable,
+
+  /// executed
+  executed,
+
+  /// negotiable
+  negotiable,
+
+  /// offered
+  offered,
+
+  /// policy
+  policy,
+
+  /// rejected
+  rejected,
+
+  /// renewed
+  renewed,
+
+  /// revoked
+  revoked,
+
+  /// resolved
+  resolved,
+
+  /// terminated
+  terminated,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ContractResourceStatusCodesBuilderEnum.amended:
+        return 'amended';
+      case ContractResourceStatusCodesBuilderEnum.appended:
+        return 'appended';
+      case ContractResourceStatusCodesBuilderEnum.cancelled:
+        return 'cancelled';
+      case ContractResourceStatusCodesBuilderEnum.disputed:
+        return 'disputed';
+      case ContractResourceStatusCodesBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case ContractResourceStatusCodesBuilderEnum.executable:
+        return 'executable';
+      case ContractResourceStatusCodesBuilderEnum.executed:
+        return 'executed';
+      case ContractResourceStatusCodesBuilderEnum.negotiable:
+        return 'negotiable';
+      case ContractResourceStatusCodesBuilderEnum.offered:
+        return 'offered';
+      case ContractResourceStatusCodesBuilderEnum.policy:
+        return 'policy';
+      case ContractResourceStatusCodesBuilderEnum.rejected:
+        return 'rejected';
+      case ContractResourceStatusCodesBuilderEnum.renewed:
+        return 'renewed';
+      case ContractResourceStatusCodesBuilderEnum.revoked:
+        return 'revoked';
+      case ContractResourceStatusCodesBuilderEnum.resolved:
+        return 'resolved';
+      case ContractResourceStatusCodesBuilderEnum.terminated:
+        return 'terminated';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ContractResourceStatusCodesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ContractResourceStatusCodesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ContractResourceStatusCodesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'amended':
+        return ContractResourceStatusCodesBuilderEnum.amended;
+      case 'appended':
+        return ContractResourceStatusCodesBuilderEnum.appended;
+      case 'cancelled':
+        return ContractResourceStatusCodesBuilderEnum.cancelled;
+      case 'disputed':
+        return ContractResourceStatusCodesBuilderEnum.disputed;
+      case 'entered-in-error':
+        return ContractResourceStatusCodesBuilderEnum.enteredInError;
+      case 'executable':
+        return ContractResourceStatusCodesBuilderEnum.executable;
+      case 'executed':
+        return ContractResourceStatusCodesBuilderEnum.executed;
+      case 'negotiable':
+        return ContractResourceStatusCodesBuilderEnum.negotiable;
+      case 'offered':
+        return ContractResourceStatusCodesBuilderEnum.offered;
+      case 'policy':
+        return ContractResourceStatusCodesBuilderEnum.policy;
+      case 'rejected':
+        return ContractResourceStatusCodesBuilderEnum.rejected;
+      case 'renewed':
+        return ContractResourceStatusCodesBuilderEnum.renewed;
+      case 'revoked':
+        return ContractResourceStatusCodesBuilderEnum.revoked;
+      case 'resolved':
+        return ContractResourceStatusCodesBuilderEnum.resolved;
+      case 'terminated':
+        return ContractResourceStatusCodesBuilderEnum.terminated;
+    }
+    return null;
+  }
+}
+
 /// This value set contract specific codes for status.
 class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ContractResourceStatusCodesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +173,12 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ContractResourceStatusCodesBuilderEnum.fromString(
+      valueString,
+    );
     return ContractResourceStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +190,13 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ContractResourceStatusCodesBuilder] with element only
+  /// Create empty [ContractResourceStatusCodesBuilder]
+  /// with element only
   factory ContractResourceStatusCodesBuilder.empty() =>
-      ContractResourceStatusCodesBuilder._(valueString: '');
+      ContractResourceStatusCodesBuilder._(valueString: null);
 
-  /// Factory constructor to create [ContractResourceStatusCodesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ContractResourceStatusCodesBuilder] from JSON.
   factory ContractResourceStatusCodesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +205,10 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceStatusCodesBuilder.elementOnly
-          .withElement(element);
+      return ContractResourceStatusCodesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ContractResourceStatusCodesBuilder cannot be constructed from JSON.',
@@ -71,144 +220,225 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ContractResourceStatusCodesBuilder
+  final ContractResourceStatusCodesBuilderEnum? valueEnum;
+
   /// amended
   static ContractResourceStatusCodesBuilder amended =
       ContractResourceStatusCodesBuilder._(
     valueString: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Amended'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.amended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Amended',
+    ),
   );
 
   /// appended
   static ContractResourceStatusCodesBuilder appended =
       ContractResourceStatusCodesBuilder._(
     valueString: 'appended',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Appended'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.appended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Appended',
+    ),
   );
 
   /// cancelled
   static ContractResourceStatusCodesBuilder cancelled =
       ContractResourceStatusCodesBuilder._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cancelled'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.cancelled,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// disputed
   static ContractResourceStatusCodesBuilder disputed =
       ContractResourceStatusCodesBuilder._(
     valueString: 'disputed',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Disputed'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.disputed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Disputed',
+    ),
   );
 
   /// entered_in_error
-  static ContractResourceStatusCodesBuilder entered_in_error =
+  static ContractResourceStatusCodesBuilder enteredInError =
       ContractResourceStatusCodesBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// executable
   static ContractResourceStatusCodesBuilder executable =
       ContractResourceStatusCodesBuilder._(
     valueString: 'executable',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Executable'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.executable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Executable',
+    ),
   );
 
   /// executed
   static ContractResourceStatusCodesBuilder executed =
       ContractResourceStatusCodesBuilder._(
     valueString: 'executed',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Executed'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.executed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Executed',
+    ),
   );
 
   /// negotiable
   static ContractResourceStatusCodesBuilder negotiable =
       ContractResourceStatusCodesBuilder._(
     valueString: 'negotiable',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Negotiable'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.negotiable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Negotiable',
+    ),
   );
 
   /// offered
   static ContractResourceStatusCodesBuilder offered =
       ContractResourceStatusCodesBuilder._(
     valueString: 'offered',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Offered'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.offered,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Offered',
+    ),
   );
 
   /// policy
   static ContractResourceStatusCodesBuilder policy =
       ContractResourceStatusCodesBuilder._(
     valueString: 'policy',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Policy'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.policy,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Policy',
+    ),
   );
 
   /// rejected
   static ContractResourceStatusCodesBuilder rejected =
       ContractResourceStatusCodesBuilder._(
     valueString: 'rejected',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Rejected'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.rejected,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Rejected',
+    ),
   );
 
   /// renewed
   static ContractResourceStatusCodesBuilder renewed =
       ContractResourceStatusCodesBuilder._(
     valueString: 'renewed',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Renewed'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.renewed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Renewed',
+    ),
   );
 
   /// revoked
   static ContractResourceStatusCodesBuilder revoked =
       ContractResourceStatusCodesBuilder._(
     valueString: 'revoked',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Revoked'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.revoked,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Revoked',
+    ),
   );
 
   /// resolved
   static ContractResourceStatusCodesBuilder resolved =
       ContractResourceStatusCodesBuilder._(
     valueString: 'resolved',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Resolved'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.resolved,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Resolved',
+    ),
   );
 
   /// terminated
   static ContractResourceStatusCodesBuilder terminated =
       ContractResourceStatusCodesBuilder._(
     valueString: 'terminated',
-    system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Terminated'.toFhirStringBuilder,
+    valueEnum: ContractResourceStatusCodesBuilderEnum.terminated,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Terminated',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ContractResourceStatusCodesBuilder elementOnly =
-      ContractResourceStatusCodesBuilder._(valueString: '');
+      ContractResourceStatusCodesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ContractResourceStatusCodesBuilder> values = [
@@ -216,7 +446,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     appended,
     cancelled,
     disputed,
-    entered_in_error,
+    enteredInError,
     executable,
     executed,
     negotiable,
@@ -228,14 +458,6 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     resolved,
     terminated,
   ];
-
-  /// Clones the current instance
-  @override
-  ContractResourceStatusCodesBuilder clone() =>
-      ContractResourceStatusCodesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ContractResourceStatusCodesBuilder withElement(
@@ -257,37 +479,4 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ContractResourceStatusCodesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ContractResourceStatusCodes: $newValue',
-      );
-    }
-    return ContractResourceStatusCodesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

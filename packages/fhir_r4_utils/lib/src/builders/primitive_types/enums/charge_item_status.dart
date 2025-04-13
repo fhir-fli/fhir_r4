@@ -1,11 +1,97 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ChargeItemStatus
+enum ChargeItemStatusBuilderEnum {
+  /// planned
+  planned,
+
+  /// billable
+  billable,
+
+  /// not-billable
+  notBillable,
+
+  /// aborted
+  aborted,
+
+  /// billed
+  billed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ChargeItemStatusBuilderEnum.planned:
+        return 'planned';
+      case ChargeItemStatusBuilderEnum.billable:
+        return 'billable';
+      case ChargeItemStatusBuilderEnum.notBillable:
+        return 'not-billable';
+      case ChargeItemStatusBuilderEnum.aborted:
+        return 'aborted';
+      case ChargeItemStatusBuilderEnum.billed:
+        return 'billed';
+      case ChargeItemStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case ChargeItemStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ChargeItemStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ChargeItemStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ChargeItemStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'planned':
+        return ChargeItemStatusBuilderEnum.planned;
+      case 'billable':
+        return ChargeItemStatusBuilderEnum.billable;
+      case 'not-billable':
+        return ChargeItemStatusBuilderEnum.notBillable;
+      case 'aborted':
+        return ChargeItemStatusBuilderEnum.aborted;
+      case 'billed':
+        return ChargeItemStatusBuilderEnum.billed;
+      case 'entered-in-error':
+        return ChargeItemStatusBuilderEnum.enteredInError;
+      case 'unknown':
+        return ChargeItemStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of a ChargeItem.
 class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ChargeItemStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +117,12 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ChargeItemStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ChargeItemStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +134,13 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ChargeItemStatusBuilder] with element only
+  /// Create empty [ChargeItemStatusBuilder]
+  /// with element only
   factory ChargeItemStatusBuilder.empty() =>
-      ChargeItemStatusBuilder._(valueString: '');
+      ChargeItemStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ChargeItemStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ChargeItemStatusBuilder] from JSON.
   factory ChargeItemStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +149,10 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ChargeItemStatusBuilder.elementOnly.withElement(element);
+      return ChargeItemStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ChargeItemStatusBuilder cannot be constructed from JSON.',
@@ -70,83 +164,116 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ChargeItemStatusBuilder
+  final ChargeItemStatusBuilderEnum? valueEnum;
+
   /// planned
   static ChargeItemStatusBuilder planned = ChargeItemStatusBuilder._(
     valueString: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Planned'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.planned,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Planned',
+    ),
   );
 
   /// billable
   static ChargeItemStatusBuilder billable = ChargeItemStatusBuilder._(
     valueString: 'billable',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Billable'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.billable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Billable',
+    ),
   );
 
   /// not_billable
-  static ChargeItemStatusBuilder not_billable = ChargeItemStatusBuilder._(
+  static ChargeItemStatusBuilder notBillable = ChargeItemStatusBuilder._(
     valueString: 'not-billable',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not billable'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.notBillable,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not billable',
+    ),
   );
 
   /// aborted
   static ChargeItemStatusBuilder aborted = ChargeItemStatusBuilder._(
     valueString: 'aborted',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Aborted'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.aborted,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Aborted',
+    ),
   );
 
   /// billed
   static ChargeItemStatusBuilder billed = ChargeItemStatusBuilder._(
     valueString: 'billed',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Billed'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.billed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Billed',
+    ),
   );
 
   /// entered_in_error
-  static ChargeItemStatusBuilder entered_in_error = ChargeItemStatusBuilder._(
+  static ChargeItemStatusBuilder enteredInError = ChargeItemStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
   static ChargeItemStatusBuilder unknown = ChargeItemStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: ChargeItemStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ChargeItemStatusBuilder elementOnly =
-      ChargeItemStatusBuilder._(valueString: '');
+  static ChargeItemStatusBuilder elementOnly = ChargeItemStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ChargeItemStatusBuilder> values = [
     planned,
     billable,
-    not_billable,
+    notBillable,
     aborted,
     billed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ChargeItemStatusBuilder clone() => ChargeItemStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ChargeItemStatusBuilder withElement(
@@ -168,37 +295,4 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ChargeItemStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ChargeItemStatus: $newValue',
-      );
-    }
-    return ChargeItemStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

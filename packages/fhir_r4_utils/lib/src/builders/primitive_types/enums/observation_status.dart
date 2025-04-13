@@ -1,11 +1,104 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ObservationStatus
+enum ObservationStatusBuilderEnum {
+  /// registered
+  registered,
+
+  /// preliminary
+  preliminary,
+
+  /// final
+  final_,
+
+  /// amended
+  amended,
+
+  /// corrected
+  corrected,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ObservationStatusBuilderEnum.registered:
+        return 'registered';
+      case ObservationStatusBuilderEnum.preliminary:
+        return 'preliminary';
+      case ObservationStatusBuilderEnum.final_:
+        return 'final';
+      case ObservationStatusBuilderEnum.amended:
+        return 'amended';
+      case ObservationStatusBuilderEnum.corrected:
+        return 'corrected';
+      case ObservationStatusBuilderEnum.cancelled:
+        return 'cancelled';
+      case ObservationStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case ObservationStatusBuilderEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ObservationStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ObservationStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ObservationStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'registered':
+        return ObservationStatusBuilderEnum.registered;
+      case 'preliminary':
+        return ObservationStatusBuilderEnum.preliminary;
+      case 'final':
+        return ObservationStatusBuilderEnum.final_;
+      case 'amended':
+        return ObservationStatusBuilderEnum.amended;
+      case 'corrected':
+        return ObservationStatusBuilderEnum.corrected;
+      case 'cancelled':
+        return ObservationStatusBuilderEnum.cancelled;
+      case 'entered-in-error':
+        return ObservationStatusBuilderEnum.enteredInError;
+      case 'unknown':
+        return ObservationStatusBuilderEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes providing the status of an observation.
 class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ObservationStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +124,12 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ObservationStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ObservationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +141,13 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ObservationStatusBuilder] with element only
+  /// Create empty [ObservationStatusBuilder]
+  /// with element only
   factory ObservationStatusBuilder.empty() =>
-      ObservationStatusBuilder._(valueString: '');
+      ObservationStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ObservationStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ObservationStatusBuilder] from JSON.
   factory ObservationStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +156,10 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationStatusBuilder.elementOnly.withElement(element);
+      return ObservationStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ObservationStatusBuilder cannot be constructed from JSON.',
@@ -70,73 +171,118 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ObservationStatusBuilder
+  final ObservationStatusBuilderEnum? valueEnum;
+
   /// registered
   static ObservationStatusBuilder registered = ObservationStatusBuilder._(
     valueString: 'registered',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Registered'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.registered,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Registered',
+    ),
   );
 
   /// preliminary
   static ObservationStatusBuilder preliminary = ObservationStatusBuilder._(
     valueString: 'preliminary',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Preliminary'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.preliminary,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Preliminary',
+    ),
   );
 
   /// final_
   static ObservationStatusBuilder final_ = ObservationStatusBuilder._(
     valueString: 'final',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Final'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.final_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Final',
+    ),
   );
 
   /// amended
   static ObservationStatusBuilder amended = ObservationStatusBuilder._(
     valueString: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Amended'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.amended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Amended',
+    ),
   );
 
   /// corrected
   static ObservationStatusBuilder corrected = ObservationStatusBuilder._(
     valueString: 'corrected',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Corrected'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.corrected,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Corrected',
+    ),
   );
 
   /// cancelled
   static ObservationStatusBuilder cancelled = ObservationStatusBuilder._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cancelled'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.cancelled,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// entered_in_error
-  static ObservationStatusBuilder entered_in_error = ObservationStatusBuilder._(
+  static ObservationStatusBuilder enteredInError = ObservationStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
   static ObservationStatusBuilder unknown = ObservationStatusBuilder._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unknown'.toFhirStringBuilder,
+    valueEnum: ObservationStatusBuilderEnum.unknown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static ObservationStatusBuilder elementOnly =
-      ObservationStatusBuilder._(valueString: '');
+  static ObservationStatusBuilder elementOnly = ObservationStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ObservationStatusBuilder> values = [
@@ -146,16 +292,9 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     amended,
     corrected,
     cancelled,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ObservationStatusBuilder clone() => ObservationStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ObservationStatusBuilder withElement(
@@ -177,37 +316,4 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ObservationStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ObservationStatus: $newValue',
-      );
-    }
-    return ObservationStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

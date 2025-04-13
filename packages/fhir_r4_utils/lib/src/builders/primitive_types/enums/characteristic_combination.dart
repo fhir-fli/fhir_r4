@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CharacteristicCombination
+enum CharacteristicCombinationBuilderEnum {
+  /// intersection
+  intersection,
+
+  /// union
+  union,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CharacteristicCombinationBuilderEnum.intersection:
+        return 'intersection';
+      case CharacteristicCombinationBuilderEnum.union:
+        return 'union';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CharacteristicCombinationBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CharacteristicCombinationBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CharacteristicCombinationBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'intersection':
+        return CharacteristicCombinationBuilderEnum.intersection;
+      case 'union':
+        return CharacteristicCombinationBuilderEnum.union;
+    }
+    return null;
+  }
+}
+
 /// Logical grouping of characteristics.
 class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CharacteristicCombinationBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CharacteristicCombinationBuilderEnum.fromString(
+      valueString,
+    );
     return CharacteristicCombinationBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CharacteristicCombinationBuilder] with element only
+  /// Create empty [CharacteristicCombinationBuilder]
+  /// with element only
   factory CharacteristicCombinationBuilder.empty() =>
-      CharacteristicCombinationBuilder._(valueString: '');
+      CharacteristicCombinationBuilder._(valueString: null);
 
-  /// Factory constructor to create [CharacteristicCombinationBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CharacteristicCombinationBuilder] from JSON.
   factory CharacteristicCombinationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CharacteristicCombinationBuilder.elementOnly.withElement(element);
+      return CharacteristicCombinationBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CharacteristicCombinationBuilder cannot be constructed from JSON.',
@@ -70,43 +129,49 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CharacteristicCombinationBuilder
+  final CharacteristicCombinationBuilderEnum? valueEnum;
+
   /// intersection
   static CharacteristicCombinationBuilder intersection =
       CharacteristicCombinationBuilder._(
     valueString: 'intersection',
-    system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'intersection'.toFhirStringBuilder,
+    valueEnum: CharacteristicCombinationBuilderEnum.intersection,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/characteristic-combination',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'intersection',
+    ),
   );
 
   /// union
   static CharacteristicCombinationBuilder union =
       CharacteristicCombinationBuilder._(
     valueString: 'union',
-    system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'union'.toFhirStringBuilder,
+    valueEnum: CharacteristicCombinationBuilderEnum.union,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/characteristic-combination',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'union',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CharacteristicCombinationBuilder elementOnly =
-      CharacteristicCombinationBuilder._(valueString: '');
+      CharacteristicCombinationBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CharacteristicCombinationBuilder> values = [
     intersection,
     union,
   ];
-
-  /// Clones the current instance
-  @override
-  CharacteristicCombinationBuilder clone() =>
-      CharacteristicCombinationBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CharacteristicCombinationBuilder withElement(
@@ -128,37 +193,4 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CharacteristicCombinationBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CharacteristicCombination: $newValue',
-      );
-    }
-    return CharacteristicCombinationBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

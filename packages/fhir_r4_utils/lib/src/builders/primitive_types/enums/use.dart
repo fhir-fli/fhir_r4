@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for Use
+enum UseBuilderEnum {
+  /// claim
+  claim,
+
+  /// preauthorization
+  preauthorization,
+
+  /// predetermination
+  predetermination,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case UseBuilderEnum.claim:
+        return 'claim';
+      case UseBuilderEnum.preauthorization:
+        return 'preauthorization';
+      case UseBuilderEnum.predetermination:
+        return 'predetermination';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static UseBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return UseBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static UseBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'claim':
+        return UseBuilderEnum.claim;
+      case 'preauthorization':
+        return UseBuilderEnum.preauthorization;
+      case 'predetermination':
+        return UseBuilderEnum.predetermination;
+    }
+    return null;
+  }
+}
+
 /// The purpose of the Claim: predetermination, preauthorization, claim.
 class UseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   UseBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class UseBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = UseBuilderEnum.fromString(
+      valueString,
+    );
     return UseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,12 @@ class UseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [UseBuilder] with element only
-  factory UseBuilder.empty() => UseBuilder._(valueString: '');
+  /// Create empty [UseBuilder]
+  /// with element only
+  factory UseBuilder.empty() => UseBuilder._(valueString: null);
 
-  /// Factory constructor to create [UseBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [UseBuilder] from JSON.
   factory UseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +120,10 @@ class UseBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UseBuilder.elementOnly.withElement(element);
+      return UseBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'UseBuilder cannot be constructed from JSON.',
@@ -69,32 +135,53 @@ class UseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for UseBuilder
+  final UseBuilderEnum? valueEnum;
+
   /// claim
   static UseBuilder claim = UseBuilder._(
     valueString: 'claim',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Claim'.toFhirStringBuilder,
+    valueEnum: UseBuilderEnum.claim,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Claim',
+    ),
   );
 
   /// preauthorization
   static UseBuilder preauthorization = UseBuilder._(
     valueString: 'preauthorization',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Preauthorization'.toFhirStringBuilder,
+    valueEnum: UseBuilderEnum.preauthorization,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Preauthorization',
+    ),
   );
 
   /// predetermination
   static UseBuilder predetermination = UseBuilder._(
     valueString: 'predetermination',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Predetermination'.toFhirStringBuilder,
+    valueEnum: UseBuilderEnum.predetermination,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Predetermination',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static UseBuilder elementOnly = UseBuilder._(valueString: '');
+  static UseBuilder elementOnly = UseBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<UseBuilder> values = [
@@ -102,13 +189,6 @@ class UseBuilder extends FhirCodeEnumBuilder {
     preauthorization,
     predetermination,
   ];
-
-  /// Clones the current instance
-  @override
-  UseBuilder clone() => UseBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   UseBuilder withElement(
@@ -130,37 +210,4 @@ class UseBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  UseBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for Use: $newValue',
-      );
-    }
-    return UseBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

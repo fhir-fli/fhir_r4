@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for QuestionnaireResponseStatus
+enum QuestionnaireResponseStatusBuilderEnum {
+  /// in-progress
+  inProgress,
+
+  /// completed
+  completed,
+
+  /// amended
+  amended,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// stopped
+  stopped,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case QuestionnaireResponseStatusBuilderEnum.inProgress:
+        return 'in-progress';
+      case QuestionnaireResponseStatusBuilderEnum.completed:
+        return 'completed';
+      case QuestionnaireResponseStatusBuilderEnum.amended:
+        return 'amended';
+      case QuestionnaireResponseStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+      case QuestionnaireResponseStatusBuilderEnum.stopped:
+        return 'stopped';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static QuestionnaireResponseStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return QuestionnaireResponseStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static QuestionnaireResponseStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'in-progress':
+        return QuestionnaireResponseStatusBuilderEnum.inProgress;
+      case 'completed':
+        return QuestionnaireResponseStatusBuilderEnum.completed;
+      case 'amended':
+        return QuestionnaireResponseStatusBuilderEnum.amended;
+      case 'entered-in-error':
+        return QuestionnaireResponseStatusBuilderEnum.enteredInError;
+      case 'stopped':
+        return QuestionnaireResponseStatusBuilderEnum.stopped;
+    }
+    return null;
+  }
+}
+
 /// Lifecycle status of the questionnaire response.
 class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QuestionnaireResponseStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = QuestionnaireResponseStatusBuilderEnum.fromString(
+      valueString,
+    );
     return QuestionnaireResponseStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [QuestionnaireResponseStatusBuilder] with element only
+  /// Create empty [QuestionnaireResponseStatusBuilder]
+  /// with element only
   factory QuestionnaireResponseStatusBuilder.empty() =>
-      QuestionnaireResponseStatusBuilder._(valueString: '');
+      QuestionnaireResponseStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [QuestionnaireResponseStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [QuestionnaireResponseStatusBuilder] from JSON.
   factory QuestionnaireResponseStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +135,10 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireResponseStatusBuilder.elementOnly
-          .withElement(element);
+      return QuestionnaireResponseStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'QuestionnaireResponseStatusBuilder cannot be constructed from JSON.',
@@ -71,76 +150,94 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for QuestionnaireResponseStatusBuilder
+  final QuestionnaireResponseStatusBuilderEnum? valueEnum;
+
   /// in_progress
-  static QuestionnaireResponseStatusBuilder in_progress =
+  static QuestionnaireResponseStatusBuilder inProgress =
       QuestionnaireResponseStatusBuilder._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'In Progress'.toFhirStringBuilder,
+    valueEnum: QuestionnaireResponseStatusBuilderEnum.inProgress,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// completed
   static QuestionnaireResponseStatusBuilder completed =
       QuestionnaireResponseStatusBuilder._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Completed'.toFhirStringBuilder,
+    valueEnum: QuestionnaireResponseStatusBuilderEnum.completed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Completed',
+    ),
   );
 
   /// amended
   static QuestionnaireResponseStatusBuilder amended =
       QuestionnaireResponseStatusBuilder._(
     valueString: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Amended'.toFhirStringBuilder,
+    valueEnum: QuestionnaireResponseStatusBuilderEnum.amended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Amended',
+    ),
   );
 
   /// entered_in_error
-  static QuestionnaireResponseStatusBuilder entered_in_error =
+  static QuestionnaireResponseStatusBuilder enteredInError =
       QuestionnaireResponseStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: QuestionnaireResponseStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// stopped
   static QuestionnaireResponseStatusBuilder stopped =
       QuestionnaireResponseStatusBuilder._(
     valueString: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Stopped'.toFhirStringBuilder,
+    valueEnum: QuestionnaireResponseStatusBuilderEnum.stopped,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static QuestionnaireResponseStatusBuilder elementOnly =
-      QuestionnaireResponseStatusBuilder._(valueString: '');
+      QuestionnaireResponseStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<QuestionnaireResponseStatusBuilder> values = [
-    in_progress,
+    inProgress,
     completed,
     amended,
-    entered_in_error,
+    enteredInError,
     stopped,
   ];
-
-  /// Clones the current instance
-  @override
-  QuestionnaireResponseStatusBuilder clone() =>
-      QuestionnaireResponseStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   QuestionnaireResponseStatusBuilder withElement(
@@ -162,37 +259,4 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  QuestionnaireResponseStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for QuestionnaireResponseStatus: $newValue',
-      );
-    }
-    return QuestionnaireResponseStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

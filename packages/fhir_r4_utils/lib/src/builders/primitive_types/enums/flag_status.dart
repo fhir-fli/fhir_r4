@@ -1,12 +1,70 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FlagStatus
+enum FlagStatusBuilderEnum {
+  /// active
+  active,
+
+  /// inactive
+  inactive,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FlagStatusBuilderEnum.active:
+        return 'active';
+      case FlagStatusBuilderEnum.inactive:
+        return 'inactive';
+      case FlagStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FlagStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FlagStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FlagStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return FlagStatusBuilderEnum.active;
+      case 'inactive':
+        return FlagStatusBuilderEnum.inactive;
+      case 'entered-in-error':
+        return FlagStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Indicates whether this flag is active and needs to be displayed to a
 /// user, or whether it is no longer needed or was entered in error.
 class FlagStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   FlagStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +90,12 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = FlagStatusBuilderEnum.fromString(
+      valueString,
+    );
     return FlagStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,11 +107,12 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [FlagStatusBuilder] with element only
-  factory FlagStatusBuilder.empty() => FlagStatusBuilder._(valueString: '');
+  /// Create empty [FlagStatusBuilder]
+  /// with element only
+  factory FlagStatusBuilder.empty() => FlagStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [FlagStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [FlagStatusBuilder] from JSON.
   factory FlagStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FlagStatusBuilder.elementOnly.withElement(element);
+      return FlagStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FlagStatusBuilder cannot be constructed from JSON.',
@@ -70,46 +136,60 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for FlagStatusBuilder
+  final FlagStatusBuilderEnum? valueEnum;
+
   /// active
   static FlagStatusBuilder active = FlagStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: FlagStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/flag-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// inactive
   static FlagStatusBuilder inactive = FlagStatusBuilder._(
     valueString: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: FlagStatusBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/flag-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// entered_in_error
-  static FlagStatusBuilder entered_in_error = FlagStatusBuilder._(
+  static FlagStatusBuilder enteredInError = FlagStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: FlagStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/flag-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static FlagStatusBuilder elementOnly = FlagStatusBuilder._(valueString: '');
+  static FlagStatusBuilder elementOnly = FlagStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<FlagStatusBuilder> values = [
     active,
     inactive,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  FlagStatusBuilder clone() => FlagStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   FlagStatusBuilder withElement(
@@ -131,37 +211,4 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  FlagStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for FlagStatus: $newValue',
-      );
-    }
-    return FlagStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

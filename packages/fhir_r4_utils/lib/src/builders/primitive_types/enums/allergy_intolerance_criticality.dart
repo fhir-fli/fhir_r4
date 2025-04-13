@@ -1,12 +1,70 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AllergyIntoleranceCriticality
+enum AllergyIntoleranceCriticalityBuilderEnum {
+  /// low
+  low,
+
+  /// high
+  high,
+
+  /// unable-to-assess
+  unableToAssess,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AllergyIntoleranceCriticalityBuilderEnum.low:
+        return 'low';
+      case AllergyIntoleranceCriticalityBuilderEnum.high:
+        return 'high';
+      case AllergyIntoleranceCriticalityBuilderEnum.unableToAssess:
+        return 'unable-to-assess';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AllergyIntoleranceCriticalityBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AllergyIntoleranceCriticalityBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AllergyIntoleranceCriticalityBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'low':
+        return AllergyIntoleranceCriticalityBuilderEnum.low;
+      case 'high':
+        return AllergyIntoleranceCriticalityBuilderEnum.high;
+      case 'unable-to-assess':
+        return AllergyIntoleranceCriticalityBuilderEnum.unableToAssess;
+    }
+    return null;
+  }
+}
+
 /// Estimate of the potential clinical harm, or seriousness, of a reaction
 /// to an identified substance.
 class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AllergyIntoleranceCriticalityBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +90,12 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AllergyIntoleranceCriticalityBuilderEnum.fromString(
+      valueString,
+    );
     return AllergyIntoleranceCriticalityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +107,13 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AllergyIntoleranceCriticalityBuilder] with element only
+  /// Create empty [AllergyIntoleranceCriticalityBuilder]
+  /// with element only
   factory AllergyIntoleranceCriticalityBuilder.empty() =>
-      AllergyIntoleranceCriticalityBuilder._(valueString: '');
+      AllergyIntoleranceCriticalityBuilder._(valueString: null);
 
-  /// Factory constructor to create [AllergyIntoleranceCriticalityBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AllergyIntoleranceCriticalityBuilder] from JSON.
   factory AllergyIntoleranceCriticalityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,8 +122,10 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceCriticalityBuilder.elementOnly
-          .withElement(element);
+      return AllergyIntoleranceCriticalityBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AllergyIntoleranceCriticalityBuilder cannot be constructed from JSON.',
@@ -72,54 +137,67 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AllergyIntoleranceCriticalityBuilder
+  final AllergyIntoleranceCriticalityBuilderEnum? valueEnum;
+
   /// low
   static AllergyIntoleranceCriticalityBuilder low =
       AllergyIntoleranceCriticalityBuilder._(
     valueString: 'low',
-    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Low Risk'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceCriticalityBuilderEnum.low,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Low Risk',
+    ),
   );
 
   /// high
   static AllergyIntoleranceCriticalityBuilder high =
       AllergyIntoleranceCriticalityBuilder._(
     valueString: 'high',
-    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'High Risk'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceCriticalityBuilderEnum.high,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'High Risk',
+    ),
   );
 
   /// unable_to_assess
-  static AllergyIntoleranceCriticalityBuilder unable_to_assess =
+  static AllergyIntoleranceCriticalityBuilder unableToAssess =
       AllergyIntoleranceCriticalityBuilder._(
     valueString: 'unable-to-assess',
-    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Unable to Assess Risk'.toFhirStringBuilder,
+    valueEnum: AllergyIntoleranceCriticalityBuilderEnum.unableToAssess,
+    system: FhirUriBuilder._(
+      valueString:
+          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Unable to Assess Risk',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static AllergyIntoleranceCriticalityBuilder elementOnly =
-      AllergyIntoleranceCriticalityBuilder._(valueString: '');
+      AllergyIntoleranceCriticalityBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AllergyIntoleranceCriticalityBuilder> values = [
     low,
     high,
-    unable_to_assess,
+    unableToAssess,
   ];
-
-  /// Clones the current instance
-  @override
-  AllergyIntoleranceCriticalityBuilder clone() =>
-      AllergyIntoleranceCriticalityBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticalityBuilder withElement(
@@ -141,37 +219,4 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AllergyIntoleranceCriticalityBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AllergyIntoleranceCriticality: $newValue',
-      );
-    }
-    return AllergyIntoleranceCriticalityBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

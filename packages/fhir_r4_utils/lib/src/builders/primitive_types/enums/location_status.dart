@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for LocationStatus
+enum LocationStatusBuilderEnum {
+  /// active
+  active,
+
+  /// suspended
+  suspended,
+
+  /// inactive
+  inactive,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case LocationStatusBuilderEnum.active:
+        return 'active';
+      case LocationStatusBuilderEnum.suspended:
+        return 'suspended';
+      case LocationStatusBuilderEnum.inactive:
+        return 'inactive';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static LocationStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return LocationStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static LocationStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return LocationStatusBuilderEnum.active;
+      case 'suspended':
+        return LocationStatusBuilderEnum.suspended;
+      case 'inactive':
+        return LocationStatusBuilderEnum.inactive;
+    }
+    return null;
+  }
+}
+
 /// Indicates whether the location is still in use.
 class LocationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   LocationStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = LocationStatusBuilderEnum.fromString(
+      valueString,
+    );
     return LocationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [LocationStatusBuilder] with element only
+  /// Create empty [LocationStatusBuilder]
+  /// with element only
   factory LocationStatusBuilder.empty() =>
-      LocationStatusBuilder._(valueString: '');
+      LocationStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [LocationStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [LocationStatusBuilder] from JSON.
   factory LocationStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LocationStatusBuilder.elementOnly.withElement(element);
+      return LocationStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'LocationStatusBuilder cannot be constructed from JSON.',
@@ -70,33 +136,53 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for LocationStatusBuilder
+  final LocationStatusBuilderEnum? valueEnum;
+
   /// active
   static LocationStatusBuilder active = LocationStatusBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: LocationStatusBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// suspended
   static LocationStatusBuilder suspended = LocationStatusBuilder._(
     valueString: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Suspended'.toFhirStringBuilder,
+    valueEnum: LocationStatusBuilderEnum.suspended,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Suspended',
+    ),
   );
 
   /// inactive
   static LocationStatusBuilder inactive = LocationStatusBuilder._(
     valueString: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: LocationStatusBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/location-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static LocationStatusBuilder elementOnly =
-      LocationStatusBuilder._(valueString: '');
+  static LocationStatusBuilder elementOnly = LocationStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<LocationStatusBuilder> values = [
@@ -104,13 +190,6 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
     suspended,
     inactive,
   ];
-
-  /// Clones the current instance
-  @override
-  LocationStatusBuilder clone() => LocationStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   LocationStatusBuilder withElement(
@@ -132,37 +211,4 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  LocationStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for LocationStatus: $newValue',
-      );
-    }
-    return LocationStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,12 +1,63 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ConsentProvisionType
+enum ConsentProvisionTypeBuilderEnum {
+  /// deny
+  deny,
+
+  /// permit
+  permit,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ConsentProvisionTypeBuilderEnum.deny:
+        return 'deny';
+      case ConsentProvisionTypeBuilderEnum.permit:
+        return 'permit';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ConsentProvisionTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ConsentProvisionTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ConsentProvisionTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'deny':
+        return ConsentProvisionTypeBuilderEnum.deny;
+      case 'permit':
+        return ConsentProvisionTypeBuilderEnum.permit;
+    }
+    return null;
+  }
+}
+
 /// How a rule statement is applied, such as adding additional consent or
 /// removing consent.
 class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConsentProvisionTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +83,12 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ConsentProvisionTypeBuilderEnum.fromString(
+      valueString,
+    );
     return ConsentProvisionTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +100,13 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ConsentProvisionTypeBuilder] with element only
+  /// Create empty [ConsentProvisionTypeBuilder]
+  /// with element only
   factory ConsentProvisionTypeBuilder.empty() =>
-      ConsentProvisionTypeBuilder._(valueString: '');
+      ConsentProvisionTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ConsentProvisionTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ConsentProvisionTypeBuilder] from JSON.
   factory ConsentProvisionTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +115,10 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentProvisionTypeBuilder.elementOnly.withElement(element);
+      return ConsentProvisionTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ConsentProvisionTypeBuilder cannot be constructed from JSON.',
@@ -71,40 +130,47 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ConsentProvisionTypeBuilder
+  final ConsentProvisionTypeBuilderEnum? valueEnum;
+
   /// deny
   static ConsentProvisionTypeBuilder deny = ConsentProvisionTypeBuilder._(
     valueString: 'deny',
-    system:
-        'http://hl7.org/fhir/ValueSet/consent-provision-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Opt Out'.toFhirStringBuilder,
+    valueEnum: ConsentProvisionTypeBuilderEnum.deny,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/consent-provision-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Opt Out',
+    ),
   );
 
   /// permit
   static ConsentProvisionTypeBuilder permit = ConsentProvisionTypeBuilder._(
     valueString: 'permit',
-    system:
-        'http://hl7.org/fhir/ValueSet/consent-provision-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Opt In'.toFhirStringBuilder,
+    valueEnum: ConsentProvisionTypeBuilderEnum.permit,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/consent-provision-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Opt In',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ConsentProvisionTypeBuilder elementOnly =
-      ConsentProvisionTypeBuilder._(valueString: '');
+      ConsentProvisionTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ConsentProvisionTypeBuilder> values = [
     deny,
     permit,
   ];
-
-  /// Clones the current instance
-  @override
-  ConsentProvisionTypeBuilder clone() => ConsentProvisionTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ConsentProvisionTypeBuilder withElement(
@@ -126,37 +192,4 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ConsentProvisionTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ConsentProvisionType: $newValue',
-      );
-    }
-    return ConsentProvisionTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

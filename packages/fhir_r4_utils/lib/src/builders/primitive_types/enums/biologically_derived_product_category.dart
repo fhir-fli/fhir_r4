@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for BiologicallyDerivedProductCategory
+enum BiologicallyDerivedProductCategoryBuilderEnum {
+  /// organ
+  organ,
+
+  /// tissue
+  tissue,
+
+  /// fluid
+  fluid,
+
+  /// cells
+  cells,
+
+  /// biologicalAgent
+  biologicalAgent,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case BiologicallyDerivedProductCategoryBuilderEnum.organ:
+        return 'organ';
+      case BiologicallyDerivedProductCategoryBuilderEnum.tissue:
+        return 'tissue';
+      case BiologicallyDerivedProductCategoryBuilderEnum.fluid:
+        return 'fluid';
+      case BiologicallyDerivedProductCategoryBuilderEnum.cells:
+        return 'cells';
+      case BiologicallyDerivedProductCategoryBuilderEnum.biologicalAgent:
+        return 'biologicalAgent';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static BiologicallyDerivedProductCategoryBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return BiologicallyDerivedProductCategoryBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static BiologicallyDerivedProductCategoryBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'organ':
+        return BiologicallyDerivedProductCategoryBuilderEnum.organ;
+      case 'tissue':
+        return BiologicallyDerivedProductCategoryBuilderEnum.tissue;
+      case 'fluid':
+        return BiologicallyDerivedProductCategoryBuilderEnum.fluid;
+      case 'cells':
+        return BiologicallyDerivedProductCategoryBuilderEnum.cells;
+      case 'biologicalAgent':
+        return BiologicallyDerivedProductCategoryBuilderEnum.biologicalAgent;
+    }
+    return null;
+  }
+}
+
 /// Biologically Derived Product Category.
 class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   BiologicallyDerivedProductCategoryBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = BiologicallyDerivedProductCategoryBuilderEnum.fromString(
+      valueString,
+    );
     return BiologicallyDerivedProductCategoryBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [BiologicallyDerivedProductCategoryBuilder] with element only
+  /// Create empty [BiologicallyDerivedProductCategoryBuilder]
+  /// with element only
   factory BiologicallyDerivedProductCategoryBuilder.empty() =>
-      BiologicallyDerivedProductCategoryBuilder._(valueString: '');
+      BiologicallyDerivedProductCategoryBuilder._(valueString: null);
 
-  /// Factory constructor to create [BiologicallyDerivedProductCategoryBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [BiologicallyDerivedProductCategoryBuilder] from JSON.
   factory BiologicallyDerivedProductCategoryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +135,10 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductCategoryBuilder.elementOnly
-          .withElement(element);
+      return BiologicallyDerivedProductCategoryBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'BiologicallyDerivedProductCategoryBuilder cannot be constructed from JSON.',
@@ -71,54 +150,85 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for BiologicallyDerivedProductCategoryBuilder
+  final BiologicallyDerivedProductCategoryBuilderEnum? valueEnum;
+
   /// organ
   static BiologicallyDerivedProductCategoryBuilder organ =
       BiologicallyDerivedProductCategoryBuilder._(
     valueString: 'organ',
-    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Organ'.toFhirStringBuilder,
+    valueEnum: BiologicallyDerivedProductCategoryBuilderEnum.organ,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/product-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Organ',
+    ),
   );
 
   /// tissue
   static BiologicallyDerivedProductCategoryBuilder tissue =
       BiologicallyDerivedProductCategoryBuilder._(
     valueString: 'tissue',
-    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Tissue'.toFhirStringBuilder,
+    valueEnum: BiologicallyDerivedProductCategoryBuilderEnum.tissue,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/product-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Tissue',
+    ),
   );
 
   /// fluid
   static BiologicallyDerivedProductCategoryBuilder fluid =
       BiologicallyDerivedProductCategoryBuilder._(
     valueString: 'fluid',
-    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Fluid'.toFhirStringBuilder,
+    valueEnum: BiologicallyDerivedProductCategoryBuilderEnum.fluid,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/product-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Fluid',
+    ),
   );
 
   /// cells
   static BiologicallyDerivedProductCategoryBuilder cells =
       BiologicallyDerivedProductCategoryBuilder._(
     valueString: 'cells',
-    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cells'.toFhirStringBuilder,
+    valueEnum: BiologicallyDerivedProductCategoryBuilderEnum.cells,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/product-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cells',
+    ),
   );
 
   /// biologicalAgent
   static BiologicallyDerivedProductCategoryBuilder biologicalAgent =
       BiologicallyDerivedProductCategoryBuilder._(
     valueString: 'biologicalAgent',
-    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'BiologicalAgent'.toFhirStringBuilder,
+    valueEnum: BiologicallyDerivedProductCategoryBuilderEnum.biologicalAgent,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/product-category',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'BiologicalAgent',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static BiologicallyDerivedProductCategoryBuilder elementOnly =
-      BiologicallyDerivedProductCategoryBuilder._(valueString: '');
+      BiologicallyDerivedProductCategoryBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<BiologicallyDerivedProductCategoryBuilder> values = [
@@ -128,14 +238,6 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
     cells,
     biologicalAgent,
   ];
-
-  /// Clones the current instance
-  @override
-  BiologicallyDerivedProductCategoryBuilder clone() =>
-      BiologicallyDerivedProductCategoryBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductCategoryBuilder withElement(
@@ -157,37 +259,4 @@ class BiologicallyDerivedProductCategoryBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  BiologicallyDerivedProductCategoryBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for BiologicallyDerivedProductCategory: $newValue',
-      );
-    }
-    return BiologicallyDerivedProductCategoryBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

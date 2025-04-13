@@ -1,11 +1,90 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GroupType
+enum GroupTypeBuilderEnum {
+  /// person
+  person,
+
+  /// animal
+  animal,
+
+  /// practitioner
+  practitioner,
+
+  /// device
+  device,
+
+  /// medication
+  medication,
+
+  /// substance
+  substance,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GroupTypeBuilderEnum.person:
+        return 'person';
+      case GroupTypeBuilderEnum.animal:
+        return 'animal';
+      case GroupTypeBuilderEnum.practitioner:
+        return 'practitioner';
+      case GroupTypeBuilderEnum.device:
+        return 'device';
+      case GroupTypeBuilderEnum.medication:
+        return 'medication';
+      case GroupTypeBuilderEnum.substance:
+        return 'substance';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GroupTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GroupTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GroupTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'person':
+        return GroupTypeBuilderEnum.person;
+      case 'animal':
+        return GroupTypeBuilderEnum.animal;
+      case 'practitioner':
+        return GroupTypeBuilderEnum.practitioner;
+      case 'device':
+        return GroupTypeBuilderEnum.device;
+      case 'medication':
+        return GroupTypeBuilderEnum.medication;
+      case 'substance':
+        return GroupTypeBuilderEnum.substance;
+    }
+    return null;
+  }
+}
+
 /// Types of resources that are part of group.
 class GroupTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GroupTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +110,12 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GroupTypeBuilderEnum.fromString(
+      valueString,
+    );
     return GroupTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +127,12 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GroupTypeBuilder] with element only
-  factory GroupTypeBuilder.empty() => GroupTypeBuilder._(valueString: '');
+  /// Create empty [GroupTypeBuilder]
+  /// with element only
+  factory GroupTypeBuilder.empty() => GroupTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [GroupTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GroupTypeBuilder] from JSON.
   factory GroupTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +141,10 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupTypeBuilder.elementOnly.withElement(element);
+      return GroupTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GroupTypeBuilder cannot be constructed from JSON.',
@@ -69,56 +156,92 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GroupTypeBuilder
+  final GroupTypeBuilderEnum? valueEnum;
+
   /// person
   static GroupTypeBuilder person = GroupTypeBuilder._(
     valueString: 'person',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Person'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.person,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Person',
+    ),
   );
 
   /// animal
   static GroupTypeBuilder animal = GroupTypeBuilder._(
     valueString: 'animal',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Animal'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.animal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Animal',
+    ),
   );
 
   /// practitioner
   static GroupTypeBuilder practitioner = GroupTypeBuilder._(
     valueString: 'practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Practitioner'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.practitioner,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// device
   static GroupTypeBuilder device = GroupTypeBuilder._(
     valueString: 'device',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Device'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.device,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Device',
+    ),
   );
 
   /// medication
   static GroupTypeBuilder medication = GroupTypeBuilder._(
     valueString: 'medication',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Medication'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.medication,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Medication',
+    ),
   );
 
   /// substance
   static GroupTypeBuilder substance = GroupTypeBuilder._(
     valueString: 'substance',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Substance'.toFhirStringBuilder,
+    valueEnum: GroupTypeBuilderEnum.substance,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Substance',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static GroupTypeBuilder elementOnly = GroupTypeBuilder._(valueString: '');
+  static GroupTypeBuilder elementOnly = GroupTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GroupTypeBuilder> values = [
@@ -129,13 +252,6 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     medication,
     substance,
   ];
-
-  /// Clones the current instance
-  @override
-  GroupTypeBuilder clone() => GroupTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GroupTypeBuilder withElement(
@@ -157,37 +273,4 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GroupTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GroupType: $newValue',
-      );
-    }
-    return GroupTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

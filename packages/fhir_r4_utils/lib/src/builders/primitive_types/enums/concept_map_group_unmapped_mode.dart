@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ConceptMapGroupUnmappedMode
+enum ConceptMapGroupUnmappedModeBuilderEnum {
+  /// provided
+  provided,
+
+  /// fixed
+  fixed,
+
+  /// other-map
+  otherMap,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ConceptMapGroupUnmappedModeBuilderEnum.provided:
+        return 'provided';
+      case ConceptMapGroupUnmappedModeBuilderEnum.fixed:
+        return 'fixed';
+      case ConceptMapGroupUnmappedModeBuilderEnum.otherMap:
+        return 'other-map';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ConceptMapGroupUnmappedModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ConceptMapGroupUnmappedModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ConceptMapGroupUnmappedModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'provided':
+        return ConceptMapGroupUnmappedModeBuilderEnum.provided;
+      case 'fixed':
+        return ConceptMapGroupUnmappedModeBuilderEnum.fixed;
+      case 'other-map':
+        return ConceptMapGroupUnmappedModeBuilderEnum.otherMap;
+    }
+    return null;
+  }
+}
+
 /// Defines which action to take if there is no match in the group.
 class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConceptMapGroupUnmappedModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ConceptMapGroupUnmappedModeBuilderEnum.fromString(
+      valueString,
+    );
     return ConceptMapGroupUnmappedModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ConceptMapGroupUnmappedModeBuilder] with element only
+  /// Create empty [ConceptMapGroupUnmappedModeBuilder]
+  /// with element only
   factory ConceptMapGroupUnmappedModeBuilder.empty() =>
-      ConceptMapGroupUnmappedModeBuilder._(valueString: '');
+      ConceptMapGroupUnmappedModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [ConceptMapGroupUnmappedModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ConceptMapGroupUnmappedModeBuilder] from JSON.
   factory ConceptMapGroupUnmappedModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +121,10 @@ class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConceptMapGroupUnmappedModeBuilder.elementOnly
-          .withElement(element);
+      return ConceptMapGroupUnmappedModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ConceptMapGroupUnmappedModeBuilder cannot be constructed from JSON.',
@@ -71,54 +136,64 @@ class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ConceptMapGroupUnmappedModeBuilder
+  final ConceptMapGroupUnmappedModeBuilderEnum? valueEnum;
+
   /// provided
   static ConceptMapGroupUnmappedModeBuilder provided =
       ConceptMapGroupUnmappedModeBuilder._(
     valueString: 'provided',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Provided Code'.toFhirStringBuilder,
+    valueEnum: ConceptMapGroupUnmappedModeBuilderEnum.provided,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Provided Code',
+    ),
   );
 
   /// fixed
   static ConceptMapGroupUnmappedModeBuilder fixed =
       ConceptMapGroupUnmappedModeBuilder._(
     valueString: 'fixed',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Fixed Code'.toFhirStringBuilder,
+    valueEnum: ConceptMapGroupUnmappedModeBuilderEnum.fixed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Fixed Code',
+    ),
   );
 
   /// other_map
-  static ConceptMapGroupUnmappedModeBuilder other_map =
+  static ConceptMapGroupUnmappedModeBuilder otherMap =
       ConceptMapGroupUnmappedModeBuilder._(
     valueString: 'other-map',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Other Map'.toFhirStringBuilder,
+    valueEnum: ConceptMapGroupUnmappedModeBuilderEnum.otherMap,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Other Map',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ConceptMapGroupUnmappedModeBuilder elementOnly =
-      ConceptMapGroupUnmappedModeBuilder._(valueString: '');
+      ConceptMapGroupUnmappedModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ConceptMapGroupUnmappedModeBuilder> values = [
     provided,
     fixed,
-    other_map,
+    otherMap,
   ];
-
-  /// Clones the current instance
-  @override
-  ConceptMapGroupUnmappedModeBuilder clone() =>
-      ConceptMapGroupUnmappedModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ConceptMapGroupUnmappedModeBuilder withElement(
@@ -140,37 +215,4 @@ class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ConceptMapGroupUnmappedModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ConceptMapGroupUnmappedMode: $newValue',
-      );
-    }
-    return ConceptMapGroupUnmappedModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

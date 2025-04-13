@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DocumentReferenceStatus
+enum DocumentReferenceStatusBuilderEnum {
+  /// current
+  current,
+
+  /// superseded
+  superseded,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DocumentReferenceStatusBuilderEnum.current:
+        return 'current';
+      case DocumentReferenceStatusBuilderEnum.superseded:
+        return 'superseded';
+      case DocumentReferenceStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DocumentReferenceStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DocumentReferenceStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DocumentReferenceStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'current':
+        return DocumentReferenceStatusBuilderEnum.current;
+      case 'superseded':
+        return DocumentReferenceStatusBuilderEnum.superseded;
+      case 'entered-in-error':
+        return DocumentReferenceStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The status of the document reference.
 class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DocumentReferenceStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = DocumentReferenceStatusBuilderEnum.fromString(
+      valueString,
+    );
     return DocumentReferenceStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [DocumentReferenceStatusBuilder] with element only
+  /// Create empty [DocumentReferenceStatusBuilder]
+  /// with element only
   factory DocumentReferenceStatusBuilder.empty() =>
-      DocumentReferenceStatusBuilder._(valueString: '');
+      DocumentReferenceStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [DocumentReferenceStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [DocumentReferenceStatusBuilder] from JSON.
   factory DocumentReferenceStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentReferenceStatusBuilder.elementOnly.withElement(element);
+      return DocumentReferenceStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DocumentReferenceStatusBuilder cannot be constructed from JSON.',
@@ -70,53 +136,64 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for DocumentReferenceStatusBuilder
+  final DocumentReferenceStatusBuilderEnum? valueEnum;
+
   /// current
   static DocumentReferenceStatusBuilder current =
       DocumentReferenceStatusBuilder._(
     valueString: 'current',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Current'.toFhirStringBuilder,
+    valueEnum: DocumentReferenceStatusBuilderEnum.current,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Current',
+    ),
   );
 
   /// superseded
   static DocumentReferenceStatusBuilder superseded =
       DocumentReferenceStatusBuilder._(
     valueString: 'superseded',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Superseded'.toFhirStringBuilder,
+    valueEnum: DocumentReferenceStatusBuilderEnum.superseded,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Superseded',
+    ),
   );
 
   /// entered_in_error
-  static DocumentReferenceStatusBuilder entered_in_error =
+  static DocumentReferenceStatusBuilder enteredInError =
       DocumentReferenceStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: DocumentReferenceStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-reference-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static DocumentReferenceStatusBuilder elementOnly =
-      DocumentReferenceStatusBuilder._(valueString: '');
+      DocumentReferenceStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<DocumentReferenceStatusBuilder> values = [
     current,
     superseded,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  DocumentReferenceStatusBuilder clone() => DocumentReferenceStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   DocumentReferenceStatusBuilder withElement(
@@ -138,37 +215,4 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  DocumentReferenceStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for DocumentReferenceStatus: $newValue',
-      );
-    }
-    return DocumentReferenceStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

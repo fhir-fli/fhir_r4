@@ -1,12 +1,91 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for HTTPVerb
+enum HTTPVerbBuilderEnum {
+  /// GET
+  gET,
+
+  /// HEAD
+  hEAD,
+
+  /// POST
+  pOST,
+
+  /// PUT
+  pUT,
+
+  /// DELETE
+  dELETE,
+
+  /// PATCH
+  pATCH,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case HTTPVerbBuilderEnum.gET:
+        return 'GET';
+      case HTTPVerbBuilderEnum.hEAD:
+        return 'HEAD';
+      case HTTPVerbBuilderEnum.pOST:
+        return 'POST';
+      case HTTPVerbBuilderEnum.pUT:
+        return 'PUT';
+      case HTTPVerbBuilderEnum.dELETE:
+        return 'DELETE';
+      case HTTPVerbBuilderEnum.pATCH:
+        return 'PATCH';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static HTTPVerbBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return HTTPVerbBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static HTTPVerbBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'GET':
+        return HTTPVerbBuilderEnum.gET;
+      case 'HEAD':
+        return HTTPVerbBuilderEnum.hEAD;
+      case 'POST':
+        return HTTPVerbBuilderEnum.pOST;
+      case 'PUT':
+        return HTTPVerbBuilderEnum.pUT;
+      case 'DELETE':
+        return HTTPVerbBuilderEnum.dELETE;
+      case 'PATCH':
+        return HTTPVerbBuilderEnum.pATCH;
+    }
+    return null;
+  }
+}
+
 /// HTTP verbs (in the HTTP command line). See [HTTP
 /// rfc](https://tools.ietf.org/html/rfc7231) for details.
 class HTTPVerbBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   HTTPVerbBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +111,12 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = HTTPVerbBuilderEnum.fromString(
+      valueString,
+    );
     return HTTPVerbBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,11 +128,12 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [HTTPVerbBuilder] with element only
-  factory HTTPVerbBuilder.empty() => HTTPVerbBuilder._(valueString: '');
+  /// Create empty [HTTPVerbBuilder]
+  /// with element only
+  factory HTTPVerbBuilder.empty() => HTTPVerbBuilder._(valueString: null);
 
-  /// Factory constructor to create [HTTPVerbBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [HTTPVerbBuilder] from JSON.
   factory HTTPVerbBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +142,10 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return HTTPVerbBuilder.elementOnly.withElement(element);
+      return HTTPVerbBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'HTTPVerbBuilder cannot be constructed from JSON.',
@@ -70,73 +157,102 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for HTTPVerbBuilder
+  final HTTPVerbBuilderEnum? valueEnum;
+
   /// GET
-  static HTTPVerbBuilder GET = HTTPVerbBuilder._(
+  static HTTPVerbBuilder gET = HTTPVerbBuilder._(
     valueString: 'GET',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'GET'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.gET,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'GET',
+    ),
   );
 
   /// HEAD
-  static HTTPVerbBuilder HEAD = HTTPVerbBuilder._(
+  static HTTPVerbBuilder hEAD = HTTPVerbBuilder._(
     valueString: 'HEAD',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'HEAD'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.hEAD,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'HEAD',
+    ),
   );
 
   /// POST
-  static HTTPVerbBuilder POST = HTTPVerbBuilder._(
+  static HTTPVerbBuilder pOST = HTTPVerbBuilder._(
     valueString: 'POST',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'POST'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.pOST,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'POST',
+    ),
   );
 
   /// PUT
-  static HTTPVerbBuilder PUT = HTTPVerbBuilder._(
+  static HTTPVerbBuilder pUT = HTTPVerbBuilder._(
     valueString: 'PUT',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PUT'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.pUT,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PUT',
+    ),
   );
 
   /// DELETE
-  static HTTPVerbBuilder DELETE = HTTPVerbBuilder._(
+  static HTTPVerbBuilder dELETE = HTTPVerbBuilder._(
     valueString: 'DELETE',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DELETE'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.dELETE,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DELETE',
+    ),
   );
 
   /// PATCH
-  static HTTPVerbBuilder PATCH = HTTPVerbBuilder._(
+  static HTTPVerbBuilder pATCH = HTTPVerbBuilder._(
     valueString: 'PATCH',
-    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PATCH'.toFhirStringBuilder,
+    valueEnum: HTTPVerbBuilderEnum.pATCH,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PATCH',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static HTTPVerbBuilder elementOnly = HTTPVerbBuilder._(valueString: '');
+  static HTTPVerbBuilder elementOnly = HTTPVerbBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<HTTPVerbBuilder> values = [
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE,
-    PATCH,
+    gET,
+    hEAD,
+    pOST,
+    pUT,
+    dELETE,
+    pATCH,
   ];
-
-  /// Clones the current instance
-  @override
-  HTTPVerbBuilder clone() => HTTPVerbBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   HTTPVerbBuilder withElement(
@@ -158,37 +274,4 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  HTTPVerbBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for HTTPVerb: $newValue',
-      );
-    }
-    return HTTPVerbBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

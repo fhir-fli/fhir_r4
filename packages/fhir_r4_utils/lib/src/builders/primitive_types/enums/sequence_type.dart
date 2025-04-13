@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SequenceType
+enum SequenceTypeBuilderEnum {
+  /// aa
+  aa,
+
+  /// dna
+  dna,
+
+  /// rna
+  rna,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SequenceTypeBuilderEnum.aa:
+        return 'aa';
+      case SequenceTypeBuilderEnum.dna:
+        return 'dna';
+      case SequenceTypeBuilderEnum.rna:
+        return 'rna';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SequenceTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SequenceTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SequenceTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'aa':
+        return SequenceTypeBuilderEnum.aa;
+      case 'dna':
+        return SequenceTypeBuilderEnum.dna;
+      case 'rna':
+        return SequenceTypeBuilderEnum.rna;
+    }
+    return null;
+  }
+}
+
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 class SequenceTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SequenceTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = SequenceTypeBuilderEnum.fromString(
+      valueString,
+    );
     return SequenceTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,13 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [SequenceTypeBuilder] with element only
-  factory SequenceTypeBuilder.empty() => SequenceTypeBuilder._(valueString: '');
+  /// Create empty [SequenceTypeBuilder]
+  /// with element only
+  factory SequenceTypeBuilder.empty() =>
+      SequenceTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [SequenceTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [SequenceTypeBuilder] from JSON.
   factory SequenceTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +121,10 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SequenceTypeBuilder.elementOnly.withElement(element);
+      return SequenceTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SequenceTypeBuilder cannot be constructed from JSON.',
@@ -69,33 +136,53 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for SequenceTypeBuilder
+  final SequenceTypeBuilderEnum? valueEnum;
+
   /// aa
   static SequenceTypeBuilder aa = SequenceTypeBuilder._(
     valueString: 'aa',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'AA Sequence'.toFhirStringBuilder,
+    valueEnum: SequenceTypeBuilderEnum.aa,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'AA Sequence',
+    ),
   );
 
   /// dna
   static SequenceTypeBuilder dna = SequenceTypeBuilder._(
     valueString: 'dna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DNA Sequence'.toFhirStringBuilder,
+    valueEnum: SequenceTypeBuilderEnum.dna,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DNA Sequence',
+    ),
   );
 
   /// rna
   static SequenceTypeBuilder rna = SequenceTypeBuilder._(
     valueString: 'rna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'RNA Sequence'.toFhirStringBuilder,
+    valueEnum: SequenceTypeBuilderEnum.rna,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sequence-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'RNA Sequence',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static SequenceTypeBuilder elementOnly =
-      SequenceTypeBuilder._(valueString: '');
+  static SequenceTypeBuilder elementOnly = SequenceTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<SequenceTypeBuilder> values = [
@@ -103,13 +190,6 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
     dna,
     rna,
   ];
-
-  /// Clones the current instance
-  @override
-  SequenceTypeBuilder clone() => SequenceTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   SequenceTypeBuilder withElement(
@@ -131,37 +211,4 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  SequenceTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for SequenceType: $newValue',
-      );
-    }
-    return SequenceTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

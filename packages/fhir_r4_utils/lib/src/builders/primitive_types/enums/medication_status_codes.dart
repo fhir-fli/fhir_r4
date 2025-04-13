@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MedicationStatusCodes
+enum MedicationStatusCodesBuilderEnum {
+  /// active
+  active,
+
+  /// inactive
+  inactive,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MedicationStatusCodesBuilderEnum.active:
+        return 'active';
+      case MedicationStatusCodesBuilderEnum.inactive:
+        return 'inactive';
+      case MedicationStatusCodesBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MedicationStatusCodesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MedicationStatusCodesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MedicationStatusCodesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return MedicationStatusCodesBuilderEnum.active;
+      case 'inactive':
+        return MedicationStatusCodesBuilderEnum.inactive;
+      case 'entered-in-error':
+        return MedicationStatusCodesBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Medication Status Codes
 class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   MedicationStatusCodesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = MedicationStatusCodesBuilderEnum.fromString(
+      valueString,
+    );
     return MedicationStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [MedicationStatusCodesBuilder] with element only
+  /// Create empty [MedicationStatusCodesBuilder]
+  /// with element only
   factory MedicationStatusCodesBuilder.empty() =>
-      MedicationStatusCodesBuilder._(valueString: '');
+      MedicationStatusCodesBuilder._(valueString: null);
 
-  /// Factory constructor to create [MedicationStatusCodesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [MedicationStatusCodesBuilder] from JSON.
   factory MedicationStatusCodesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationStatusCodesBuilder.elementOnly.withElement(element);
+      return MedicationStatusCodesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MedicationStatusCodesBuilder cannot be constructed from JSON.',
@@ -70,48 +136,62 @@ class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for MedicationStatusCodesBuilder
+  final MedicationStatusCodesBuilderEnum? valueEnum;
+
   /// active
   static MedicationStatusCodesBuilder active = MedicationStatusCodesBuilder._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Active'.toFhirStringBuilder,
+    valueEnum: MedicationStatusCodesBuilderEnum.active,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Active',
+    ),
   );
 
   /// inactive
   static MedicationStatusCodesBuilder inactive = MedicationStatusCodesBuilder._(
     valueString: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Inactive'.toFhirStringBuilder,
+    valueEnum: MedicationStatusCodesBuilderEnum.inactive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Inactive',
+    ),
   );
 
   /// entered_in_error
-  static MedicationStatusCodesBuilder entered_in_error =
+  static MedicationStatusCodesBuilder enteredInError =
       MedicationStatusCodesBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: MedicationStatusCodesBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static MedicationStatusCodesBuilder elementOnly =
-      MedicationStatusCodesBuilder._(valueString: '');
+      MedicationStatusCodesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<MedicationStatusCodesBuilder> values = [
     active,
     inactive,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  MedicationStatusCodesBuilder clone() => MedicationStatusCodesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   MedicationStatusCodesBuilder withElement(
@@ -133,37 +213,4 @@ class MedicationStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  MedicationStatusCodesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for MedicationStatusCodes: $newValue',
-      );
-    }
-    return MedicationStatusCodesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

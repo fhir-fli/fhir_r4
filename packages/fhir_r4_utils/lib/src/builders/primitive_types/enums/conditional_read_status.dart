@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ConditionalReadStatus
+enum ConditionalReadStatusBuilderEnum {
+  /// not-supported
+  notSupported,
+
+  /// modified-since
+  modifiedSince,
+
+  /// not-match
+  notMatch,
+
+  /// full-support
+  fullSupport,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ConditionalReadStatusBuilderEnum.notSupported:
+        return 'not-supported';
+      case ConditionalReadStatusBuilderEnum.modifiedSince:
+        return 'modified-since';
+      case ConditionalReadStatusBuilderEnum.notMatch:
+        return 'not-match';
+      case ConditionalReadStatusBuilderEnum.fullSupport:
+        return 'full-support';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ConditionalReadStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ConditionalReadStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ConditionalReadStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'not-supported':
+        return ConditionalReadStatusBuilderEnum.notSupported;
+      case 'modified-since':
+        return ConditionalReadStatusBuilderEnum.modifiedSince;
+      case 'not-match':
+        return ConditionalReadStatusBuilderEnum.notMatch;
+      case 'full-support':
+        return ConditionalReadStatusBuilderEnum.fullSupport;
+    }
+    return null;
+  }
+}
+
 /// A code that indicates how the server supports conditional read.
 class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConditionalReadStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ConditionalReadStatusBuilderEnum.fromString(
+      valueString,
+    );
     return ConditionalReadStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ConditionalReadStatusBuilder] with element only
+  /// Create empty [ConditionalReadStatusBuilder]
+  /// with element only
   factory ConditionalReadStatusBuilder.empty() =>
-      ConditionalReadStatusBuilder._(valueString: '');
+      ConditionalReadStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [ConditionalReadStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ConditionalReadStatusBuilder] from JSON.
   factory ConditionalReadStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalReadStatusBuilder.elementOnly.withElement(element);
+      return ConditionalReadStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ConditionalReadStatusBuilder cannot be constructed from JSON.',
@@ -70,64 +143,78 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ConditionalReadStatusBuilder
+  final ConditionalReadStatusBuilderEnum? valueEnum;
+
   /// not_supported
-  static ConditionalReadStatusBuilder not_supported =
+  static ConditionalReadStatusBuilder notSupported =
       ConditionalReadStatusBuilder._(
     valueString: 'not-supported',
-    system:
-        'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Not Supported'.toFhirStringBuilder,
+    valueEnum: ConditionalReadStatusBuilderEnum.notSupported,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Not Supported',
+    ),
   );
 
   /// modified_since
-  static ConditionalReadStatusBuilder modified_since =
+  static ConditionalReadStatusBuilder modifiedSince =
       ConditionalReadStatusBuilder._(
     valueString: 'modified-since',
-    system:
-        'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'If-Modified-Since'.toFhirStringBuilder,
+    valueEnum: ConditionalReadStatusBuilderEnum.modifiedSince,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'If-Modified-Since',
+    ),
   );
 
   /// not_match
-  static ConditionalReadStatusBuilder not_match =
-      ConditionalReadStatusBuilder._(
+  static ConditionalReadStatusBuilder notMatch = ConditionalReadStatusBuilder._(
     valueString: 'not-match',
-    system:
-        'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'If-None-Match'.toFhirStringBuilder,
+    valueEnum: ConditionalReadStatusBuilderEnum.notMatch,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'If-None-Match',
+    ),
   );
 
   /// full_support
-  static ConditionalReadStatusBuilder full_support =
+  static ConditionalReadStatusBuilder fullSupport =
       ConditionalReadStatusBuilder._(
     valueString: 'full-support',
-    system:
-        'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Full Support'.toFhirStringBuilder,
+    valueEnum: ConditionalReadStatusBuilderEnum.fullSupport,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Full Support',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ConditionalReadStatusBuilder elementOnly =
-      ConditionalReadStatusBuilder._(valueString: '');
+      ConditionalReadStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ConditionalReadStatusBuilder> values = [
-    not_supported,
-    modified_since,
-    not_match,
-    full_support,
+    notSupported,
+    modifiedSince,
+    notMatch,
+    fullSupport,
   ];
-
-  /// Clones the current instance
-  @override
-  ConditionalReadStatusBuilder clone() => ConditionalReadStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ConditionalReadStatusBuilder withElement(
@@ -149,37 +236,4 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ConditionalReadStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ConditionalReadStatus: $newValue',
-      );
-    }
-    return ConditionalReadStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

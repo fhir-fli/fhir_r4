@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CapabilityStatementKind
+enum CapabilityStatementKindBuilderEnum {
+  /// instance
+  instance,
+
+  /// capability
+  capability,
+
+  /// requirements
+  requirements,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CapabilityStatementKindBuilderEnum.instance:
+        return 'instance';
+      case CapabilityStatementKindBuilderEnum.capability:
+        return 'capability';
+      case CapabilityStatementKindBuilderEnum.requirements:
+        return 'requirements';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CapabilityStatementKindBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CapabilityStatementKindBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CapabilityStatementKindBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'instance':
+        return CapabilityStatementKindBuilderEnum.instance;
+      case 'capability':
+        return CapabilityStatementKindBuilderEnum.capability;
+      case 'requirements':
+        return CapabilityStatementKindBuilderEnum.requirements;
+    }
+    return null;
+  }
+}
+
 /// How a capability statement is intended to be used.
 class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CapabilityStatementKindBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = CapabilityStatementKindBuilderEnum.fromString(
+      valueString,
+    );
     return CapabilityStatementKindBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [CapabilityStatementKindBuilder] with element only
+  /// Create empty [CapabilityStatementKindBuilder]
+  /// with element only
   factory CapabilityStatementKindBuilder.empty() =>
-      CapabilityStatementKindBuilder._(valueString: '');
+      CapabilityStatementKindBuilder._(valueString: null);
 
-  /// Factory constructor to create [CapabilityStatementKindBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [CapabilityStatementKindBuilder] from JSON.
   factory CapabilityStatementKindBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CapabilityStatementKindBuilder.elementOnly.withElement(element);
+      return CapabilityStatementKindBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CapabilityStatementKindBuilder cannot be constructed from JSON.',
@@ -70,39 +136,57 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for CapabilityStatementKindBuilder
+  final CapabilityStatementKindBuilderEnum? valueEnum;
+
   /// instance
   static CapabilityStatementKindBuilder instance =
       CapabilityStatementKindBuilder._(
     valueString: 'instance',
-    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Instance'.toFhirStringBuilder,
+    valueEnum: CapabilityStatementKindBuilderEnum.instance,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Instance',
+    ),
   );
 
   /// capability
   static CapabilityStatementKindBuilder capability =
       CapabilityStatementKindBuilder._(
     valueString: 'capability',
-    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Capability'.toFhirStringBuilder,
+    valueEnum: CapabilityStatementKindBuilderEnum.capability,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Capability',
+    ),
   );
 
   /// requirements
   static CapabilityStatementKindBuilder requirements =
       CapabilityStatementKindBuilder._(
     valueString: 'requirements',
-    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Requirements'.toFhirStringBuilder,
+    valueEnum: CapabilityStatementKindBuilderEnum.requirements,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Requirements',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static CapabilityStatementKindBuilder elementOnly =
-      CapabilityStatementKindBuilder._(valueString: '');
+      CapabilityStatementKindBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<CapabilityStatementKindBuilder> values = [
@@ -110,13 +194,6 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     capability,
     requirements,
   ];
-
-  /// Clones the current instance
-  @override
-  CapabilityStatementKindBuilder clone() => CapabilityStatementKindBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   CapabilityStatementKindBuilder withElement(
@@ -138,37 +215,4 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  CapabilityStatementKindBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for CapabilityStatementKind: $newValue',
-      );
-    }
-    return CapabilityStatementKindBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

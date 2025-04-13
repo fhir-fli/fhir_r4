@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GuidePageGeneration
+enum GuidePageGenerationBuilderEnum {
+  /// html
+  html,
+
+  /// markdown
+  markdown,
+
+  /// xml
+  xml,
+
+  /// generated
+  generated,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GuidePageGenerationBuilderEnum.html:
+        return 'html';
+      case GuidePageGenerationBuilderEnum.markdown:
+        return 'markdown';
+      case GuidePageGenerationBuilderEnum.xml:
+        return 'xml';
+      case GuidePageGenerationBuilderEnum.generated:
+        return 'generated';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GuidePageGenerationBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GuidePageGenerationBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GuidePageGenerationBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'html':
+        return GuidePageGenerationBuilderEnum.html;
+      case 'markdown':
+        return GuidePageGenerationBuilderEnum.markdown;
+      case 'xml':
+        return GuidePageGenerationBuilderEnum.xml;
+      case 'generated':
+        return GuidePageGenerationBuilderEnum.generated;
+    }
+    return null;
+  }
+}
+
 /// A code that indicates how the page is generated.
 class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GuidePageGenerationBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = GuidePageGenerationBuilderEnum.fromString(
+      valueString,
+    );
     return GuidePageGenerationBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [GuidePageGenerationBuilder] with element only
+  /// Create empty [GuidePageGenerationBuilder]
+  /// with element only
   factory GuidePageGenerationBuilder.empty() =>
-      GuidePageGenerationBuilder._(valueString: '');
+      GuidePageGenerationBuilder._(valueString: null);
 
-  /// Factory constructor to create [GuidePageGenerationBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [GuidePageGenerationBuilder] from JSON.
   factory GuidePageGenerationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidePageGenerationBuilder.elementOnly.withElement(element);
+      return GuidePageGenerationBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GuidePageGenerationBuilder cannot be constructed from JSON.',
@@ -70,45 +143,66 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for GuidePageGenerationBuilder
+  final GuidePageGenerationBuilderEnum? valueEnum;
+
   /// html
   static GuidePageGenerationBuilder html = GuidePageGenerationBuilder._(
     valueString: 'html',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'HTML'.toFhirStringBuilder,
+    valueEnum: GuidePageGenerationBuilderEnum.html,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'HTML',
+    ),
   );
 
   /// markdown
   static GuidePageGenerationBuilder markdown = GuidePageGenerationBuilder._(
     valueString: 'markdown',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Markdown'.toFhirStringBuilder,
+    valueEnum: GuidePageGenerationBuilderEnum.markdown,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Markdown',
+    ),
   );
 
   /// xml
   static GuidePageGenerationBuilder xml = GuidePageGenerationBuilder._(
     valueString: 'xml',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'XML'.toFhirStringBuilder,
+    valueEnum: GuidePageGenerationBuilderEnum.xml,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'XML',
+    ),
   );
 
   /// generated
   static GuidePageGenerationBuilder generated = GuidePageGenerationBuilder._(
     valueString: 'generated',
-    system:
-        'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Generated'.toFhirStringBuilder,
+    valueEnum: GuidePageGenerationBuilderEnum.generated,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Generated',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static GuidePageGenerationBuilder elementOnly =
-      GuidePageGenerationBuilder._(valueString: '');
+  static GuidePageGenerationBuilder elementOnly = GuidePageGenerationBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<GuidePageGenerationBuilder> values = [
@@ -117,13 +211,6 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
     xml,
     generated,
   ];
-
-  /// Clones the current instance
-  @override
-  GuidePageGenerationBuilder clone() => GuidePageGenerationBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   GuidePageGenerationBuilder withElement(
@@ -145,37 +232,4 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  GuidePageGenerationBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for GuidePageGeneration: $newValue',
-      );
-    }
-    return GuidePageGenerationBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

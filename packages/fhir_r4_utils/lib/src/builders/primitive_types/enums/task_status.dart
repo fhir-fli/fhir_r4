@@ -1,11 +1,132 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TaskStatus
+enum TaskStatusBuilderEnum {
+  /// draft
+  draft,
+
+  /// requested
+  requested,
+
+  /// received
+  received,
+
+  /// accepted
+  accepted,
+
+  /// rejected
+  rejected,
+
+  /// ready
+  ready,
+
+  /// cancelled
+  cancelled,
+
+  /// in-progress
+  inProgress,
+
+  /// on-hold
+  onHold,
+
+  /// failed
+  failed,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TaskStatusBuilderEnum.draft:
+        return 'draft';
+      case TaskStatusBuilderEnum.requested:
+        return 'requested';
+      case TaskStatusBuilderEnum.received:
+        return 'received';
+      case TaskStatusBuilderEnum.accepted:
+        return 'accepted';
+      case TaskStatusBuilderEnum.rejected:
+        return 'rejected';
+      case TaskStatusBuilderEnum.ready:
+        return 'ready';
+      case TaskStatusBuilderEnum.cancelled:
+        return 'cancelled';
+      case TaskStatusBuilderEnum.inProgress:
+        return 'in-progress';
+      case TaskStatusBuilderEnum.onHold:
+        return 'on-hold';
+      case TaskStatusBuilderEnum.failed:
+        return 'failed';
+      case TaskStatusBuilderEnum.completed:
+        return 'completed';
+      case TaskStatusBuilderEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TaskStatusBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TaskStatusBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TaskStatusBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return TaskStatusBuilderEnum.draft;
+      case 'requested':
+        return TaskStatusBuilderEnum.requested;
+      case 'received':
+        return TaskStatusBuilderEnum.received;
+      case 'accepted':
+        return TaskStatusBuilderEnum.accepted;
+      case 'rejected':
+        return TaskStatusBuilderEnum.rejected;
+      case 'ready':
+        return TaskStatusBuilderEnum.ready;
+      case 'cancelled':
+        return TaskStatusBuilderEnum.cancelled;
+      case 'in-progress':
+        return TaskStatusBuilderEnum.inProgress;
+      case 'on-hold':
+        return TaskStatusBuilderEnum.onHold;
+      case 'failed':
+        return TaskStatusBuilderEnum.failed;
+      case 'completed':
+        return TaskStatusBuilderEnum.completed;
+      case 'entered-in-error':
+        return TaskStatusBuilderEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// The current status of the task.
 class TaskStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TaskStatusBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +152,12 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = TaskStatusBuilderEnum.fromString(
+      valueString,
+    );
     return TaskStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +169,12 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [TaskStatusBuilder] with element only
-  factory TaskStatusBuilder.empty() => TaskStatusBuilder._(valueString: '');
+  /// Create empty [TaskStatusBuilder]
+  /// with element only
+  factory TaskStatusBuilder.empty() => TaskStatusBuilder._(valueString: null);
 
-  /// Factory constructor to create [TaskStatusBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [TaskStatusBuilder] from JSON.
   factory TaskStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +183,10 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskStatusBuilder.elementOnly.withElement(element);
+      return TaskStatusBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TaskStatusBuilder cannot be constructed from JSON.',
@@ -69,104 +198,170 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for TaskStatusBuilder
+  final TaskStatusBuilderEnum? valueEnum;
+
   /// draft
   static TaskStatusBuilder draft = TaskStatusBuilder._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Draft'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.draft,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Draft',
+    ),
   );
 
   /// requested
   static TaskStatusBuilder requested = TaskStatusBuilder._(
     valueString: 'requested',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Requested'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.requested,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Requested',
+    ),
   );
 
   /// received
   static TaskStatusBuilder received = TaskStatusBuilder._(
     valueString: 'received',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Received'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.received,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Received',
+    ),
   );
 
   /// accepted
   static TaskStatusBuilder accepted = TaskStatusBuilder._(
     valueString: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Accepted'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.accepted,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Accepted',
+    ),
   );
 
   /// rejected
   static TaskStatusBuilder rejected = TaskStatusBuilder._(
     valueString: 'rejected',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Rejected'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.rejected,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Rejected',
+    ),
   );
 
   /// ready
   static TaskStatusBuilder ready = TaskStatusBuilder._(
     valueString: 'ready',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Ready'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.ready,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Ready',
+    ),
   );
 
   /// cancelled
   static TaskStatusBuilder cancelled = TaskStatusBuilder._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Cancelled'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.cancelled,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// in_progress
-  static TaskStatusBuilder in_progress = TaskStatusBuilder._(
+  static TaskStatusBuilder inProgress = TaskStatusBuilder._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'In Progress'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.inProgress,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// on_hold
-  static TaskStatusBuilder on_hold = TaskStatusBuilder._(
+  static TaskStatusBuilder onHold = TaskStatusBuilder._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'On Hold'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.onHold,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// failed
   static TaskStatusBuilder failed = TaskStatusBuilder._(
     valueString: 'failed',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Failed'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.failed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Failed',
+    ),
   );
 
   /// completed
   static TaskStatusBuilder completed = TaskStatusBuilder._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Completed'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.completed,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static TaskStatusBuilder entered_in_error = TaskStatusBuilder._(
+  static TaskStatusBuilder enteredInError = TaskStatusBuilder._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Entered in Error'.toFhirStringBuilder,
+    valueEnum: TaskStatusBuilderEnum.enteredInError,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static TaskStatusBuilder elementOnly = TaskStatusBuilder._(valueString: '');
+  static TaskStatusBuilder elementOnly = TaskStatusBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<TaskStatusBuilder> values = [
@@ -177,19 +372,12 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     rejected,
     ready,
     cancelled,
-    in_progress,
-    on_hold,
+    inProgress,
+    onHold,
     failed,
     completed,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  TaskStatusBuilder clone() => TaskStatusBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   TaskStatusBuilder withElement(
@@ -211,37 +399,4 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  TaskStatusBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for TaskStatus: $newValue',
-      );
-    }
-    return TaskStatusBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

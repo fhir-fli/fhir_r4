@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AddressType
+enum AddressTypeBuilderEnum {
+  /// postal
+  postal,
+
+  /// physical
+  physical,
+
+  /// both
+  both,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AddressTypeBuilderEnum.postal:
+        return 'postal';
+      case AddressTypeBuilderEnum.physical:
+        return 'physical';
+      case AddressTypeBuilderEnum.both:
+        return 'both';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AddressTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AddressTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AddressTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'postal':
+        return AddressTypeBuilderEnum.postal;
+      case 'physical':
+        return AddressTypeBuilderEnum.physical;
+      case 'both':
+        return AddressTypeBuilderEnum.both;
+    }
+    return null;
+  }
+}
+
 /// The type of an address (physical / postal).
 class AddressTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AddressTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AddressTypeBuilderEnum.fromString(
+      valueString,
+    );
     return AddressTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +106,12 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AddressTypeBuilder] with element only
-  factory AddressTypeBuilder.empty() => AddressTypeBuilder._(valueString: '');
+  /// Create empty [AddressTypeBuilder]
+  /// with element only
+  factory AddressTypeBuilder.empty() => AddressTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [AddressTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AddressTypeBuilder] from JSON.
   factory AddressTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +120,10 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AddressTypeBuilder.elementOnly.withElement(element);
+      return AddressTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AddressTypeBuilder cannot be constructed from JSON.',
@@ -69,32 +135,53 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AddressTypeBuilder
+  final AddressTypeBuilderEnum? valueEnum;
+
   /// postal
   static AddressTypeBuilder postal = AddressTypeBuilder._(
     valueString: 'postal',
-    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Postal'.toFhirStringBuilder,
+    valueEnum: AddressTypeBuilderEnum.postal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Postal',
+    ),
   );
 
   /// physical
   static AddressTypeBuilder physical = AddressTypeBuilder._(
     valueString: 'physical',
-    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Physical'.toFhirStringBuilder,
+    valueEnum: AddressTypeBuilderEnum.physical,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Physical',
+    ),
   );
 
   /// both
   static AddressTypeBuilder both = AddressTypeBuilder._(
     valueString: 'both',
-    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Postal & Physical'.toFhirStringBuilder,
+    valueEnum: AddressTypeBuilderEnum.both,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Postal & Physical',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static AddressTypeBuilder elementOnly = AddressTypeBuilder._(valueString: '');
+  static AddressTypeBuilder elementOnly = AddressTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AddressTypeBuilder> values = [
@@ -102,13 +189,6 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
     physical,
     both,
   ];
-
-  /// Clones the current instance
-  @override
-  AddressTypeBuilder clone() => AddressTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AddressTypeBuilder withElement(
@@ -130,37 +210,4 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AddressTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AddressType: $newValue',
-      );
-    }
-    return AddressTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

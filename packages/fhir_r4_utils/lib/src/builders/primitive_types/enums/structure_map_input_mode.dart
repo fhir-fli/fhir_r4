@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapInputMode
+enum StructureMapInputModeBuilderEnum {
+  /// source
+  source,
+
+  /// target
+  target,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapInputModeBuilderEnum.source:
+        return 'source';
+      case StructureMapInputModeBuilderEnum.target:
+        return 'target';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapInputModeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapInputModeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapInputModeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'source':
+        return StructureMapInputModeBuilderEnum.source;
+      case 'target':
+        return StructureMapInputModeBuilderEnum.target;
+    }
+    return null;
+  }
+}
+
 /// Mode for this instance of data.
 class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   StructureMapInputModeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = StructureMapInputModeBuilderEnum.fromString(
+      valueString,
+    );
     return StructureMapInputModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +99,13 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [StructureMapInputModeBuilder] with element only
+  /// Create empty [StructureMapInputModeBuilder]
+  /// with element only
   factory StructureMapInputModeBuilder.empty() =>
-      StructureMapInputModeBuilder._(valueString: '');
+      StructureMapInputModeBuilder._(valueString: null);
 
-  /// Factory constructor to create [StructureMapInputModeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [StructureMapInputModeBuilder] from JSON.
   factory StructureMapInputModeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +114,10 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapInputModeBuilder.elementOnly.withElement(element);
+      return StructureMapInputModeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapInputModeBuilder cannot be constructed from JSON.',
@@ -70,38 +129,47 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for StructureMapInputModeBuilder
+  final StructureMapInputModeBuilderEnum? valueEnum;
+
   /// source
   static StructureMapInputModeBuilder source = StructureMapInputModeBuilder._(
     valueString: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/map-input-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Source Instance'.toFhirStringBuilder,
+    valueEnum: StructureMapInputModeBuilderEnum.source,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-input-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Source Instance',
+    ),
   );
 
   /// target
   static StructureMapInputModeBuilder target = StructureMapInputModeBuilder._(
     valueString: 'target',
-    system: 'http://hl7.org/fhir/ValueSet/map-input-mode'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Target Instance'.toFhirStringBuilder,
+    valueEnum: StructureMapInputModeBuilderEnum.target,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-input-mode',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Target Instance',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static StructureMapInputModeBuilder elementOnly =
-      StructureMapInputModeBuilder._(valueString: '');
+      StructureMapInputModeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<StructureMapInputModeBuilder> values = [
     source,
     target,
   ];
-
-  /// Clones the current instance
-  @override
-  StructureMapInputModeBuilder clone() => StructureMapInputModeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   StructureMapInputModeBuilder withElement(
@@ -123,37 +191,4 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  StructureMapInputModeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for StructureMapInputMode: $newValue',
-      );
-    }
-    return StructureMapInputModeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

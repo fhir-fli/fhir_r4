@@ -1,11 +1,97 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TestScriptRequestMethodCode
+enum TestScriptRequestMethodCodeBuilderEnum {
+  /// delete
+  delete,
+
+  /// get
+  get_,
+
+  /// options
+  options,
+
+  /// patch
+  patch,
+
+  /// post
+  post,
+
+  /// put
+  put,
+
+  /// head
+  head,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TestScriptRequestMethodCodeBuilderEnum.delete:
+        return 'delete';
+      case TestScriptRequestMethodCodeBuilderEnum.get_:
+        return 'get';
+      case TestScriptRequestMethodCodeBuilderEnum.options:
+        return 'options';
+      case TestScriptRequestMethodCodeBuilderEnum.patch:
+        return 'patch';
+      case TestScriptRequestMethodCodeBuilderEnum.post:
+        return 'post';
+      case TestScriptRequestMethodCodeBuilderEnum.put:
+        return 'put';
+      case TestScriptRequestMethodCodeBuilderEnum.head:
+        return 'head';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TestScriptRequestMethodCodeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TestScriptRequestMethodCodeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TestScriptRequestMethodCodeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'delete':
+        return TestScriptRequestMethodCodeBuilderEnum.delete;
+      case 'get':
+        return TestScriptRequestMethodCodeBuilderEnum.get_;
+      case 'options':
+        return TestScriptRequestMethodCodeBuilderEnum.options;
+      case 'patch':
+        return TestScriptRequestMethodCodeBuilderEnum.patch;
+      case 'post':
+        return TestScriptRequestMethodCodeBuilderEnum.post;
+      case 'put':
+        return TestScriptRequestMethodCodeBuilderEnum.put;
+      case 'head':
+        return TestScriptRequestMethodCodeBuilderEnum.head;
+    }
+    return null;
+  }
+}
+
 /// The allowable request method or HTTP operation codes.
 class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TestScriptRequestMethodCodeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +117,12 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = TestScriptRequestMethodCodeBuilderEnum.fromString(
+      valueString,
+    );
     return TestScriptRequestMethodCodeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +134,13 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [TestScriptRequestMethodCodeBuilder] with element only
+  /// Create empty [TestScriptRequestMethodCodeBuilder]
+  /// with element only
   factory TestScriptRequestMethodCodeBuilder.empty() =>
-      TestScriptRequestMethodCodeBuilder._(valueString: '');
+      TestScriptRequestMethodCodeBuilder._(valueString: null);
 
-  /// Factory constructor to create [TestScriptRequestMethodCodeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [TestScriptRequestMethodCodeBuilder] from JSON.
   factory TestScriptRequestMethodCodeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,8 +149,10 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptRequestMethodCodeBuilder.elementOnly
-          .withElement(element);
+      return TestScriptRequestMethodCodeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TestScriptRequestMethodCodeBuilder cannot be constructed from JSON.',
@@ -71,72 +164,113 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for TestScriptRequestMethodCodeBuilder
+  final TestScriptRequestMethodCodeBuilderEnum? valueEnum;
+
   /// delete
   static TestScriptRequestMethodCodeBuilder delete =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'delete',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'DELETE'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.delete,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'DELETE',
+    ),
   );
 
   /// get_
   static TestScriptRequestMethodCodeBuilder get_ =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'get',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'GET'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.get_,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'GET',
+    ),
   );
 
   /// options
   static TestScriptRequestMethodCodeBuilder options =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'options',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'OPTIONS'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.options,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'OPTIONS',
+    ),
   );
 
   /// patch
   static TestScriptRequestMethodCodeBuilder patch =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'patch',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PATCH'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.patch,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PATCH',
+    ),
   );
 
   /// post
   static TestScriptRequestMethodCodeBuilder post =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'post',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'POST'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.post,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'POST',
+    ),
   );
 
   /// put
   static TestScriptRequestMethodCodeBuilder put =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'put',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'PUT'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.put,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'PUT',
+    ),
   );
 
   /// head
   static TestScriptRequestMethodCodeBuilder head =
       TestScriptRequestMethodCodeBuilder._(
     valueString: 'head',
-    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'HEAD'.toFhirStringBuilder,
+    valueEnum: TestScriptRequestMethodCodeBuilderEnum.head,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'HEAD',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static TestScriptRequestMethodCodeBuilder elementOnly =
-      TestScriptRequestMethodCodeBuilder._(valueString: '');
+      TestScriptRequestMethodCodeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<TestScriptRequestMethodCodeBuilder> values = [
@@ -148,14 +282,6 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     put,
     head,
   ];
-
-  /// Clones the current instance
-  @override
-  TestScriptRequestMethodCodeBuilder clone() =>
-      TestScriptRequestMethodCodeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCodeBuilder withElement(
@@ -177,37 +303,4 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  TestScriptRequestMethodCodeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for TestScriptRequestMethodCode: $newValue',
-      );
-    }
-    return TestScriptRequestMethodCodeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

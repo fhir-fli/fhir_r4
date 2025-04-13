@@ -1,11 +1,62 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for VisionEyes
+enum VisionEyesBuilderEnum {
+  /// right
+  right,
+
+  /// left
+  left,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case VisionEyesBuilderEnum.right:
+        return 'right';
+      case VisionEyesBuilderEnum.left:
+        return 'left';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static VisionEyesBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return VisionEyesBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static VisionEyesBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'right':
+        return VisionEyesBuilderEnum.right;
+      case 'left':
+        return VisionEyesBuilderEnum.left;
+    }
+    return null;
+  }
+}
+
 /// A coded concept listing the eye codes.
 class VisionEyesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   VisionEyesBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +82,12 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = VisionEyesBuilderEnum.fromString(
+      valueString,
+    );
     return VisionEyesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +99,12 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [VisionEyesBuilder] with element only
-  factory VisionEyesBuilder.empty() => VisionEyesBuilder._(valueString: '');
+  /// Create empty [VisionEyesBuilder]
+  /// with element only
+  factory VisionEyesBuilder.empty() => VisionEyesBuilder._(valueString: null);
 
-  /// Factory constructor to create [VisionEyesBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [VisionEyesBuilder] from JSON.
   factory VisionEyesBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +113,10 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return VisionEyesBuilder.elementOnly.withElement(element);
+      return VisionEyesBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'VisionEyesBuilder cannot be constructed from JSON.',
@@ -69,37 +128,46 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for VisionEyesBuilder
+  final VisionEyesBuilderEnum? valueEnum;
+
   /// right
   static VisionEyesBuilder right = VisionEyesBuilder._(
     valueString: 'right',
-    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Right Eye'.toFhirStringBuilder,
+    valueEnum: VisionEyesBuilderEnum.right,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/vision-eye-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Right Eye',
+    ),
   );
 
   /// left
   static VisionEyesBuilder left = VisionEyesBuilder._(
     valueString: 'left',
-    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Left Eye'.toFhirStringBuilder,
+    valueEnum: VisionEyesBuilderEnum.left,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/vision-eye-codes',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Left Eye',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static VisionEyesBuilder elementOnly = VisionEyesBuilder._(valueString: '');
+  static VisionEyesBuilder elementOnly = VisionEyesBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<VisionEyesBuilder> values = [
     right,
     left,
   ];
-
-  /// Clones the current instance
-  @override
-  VisionEyesBuilder clone() => VisionEyesBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   VisionEyesBuilder withElement(
@@ -121,37 +189,4 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  VisionEyesBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for VisionEyes: $newValue',
-      );
-    }
-    return VisionEyesBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

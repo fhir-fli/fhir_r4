@@ -1,11 +1,76 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DocumentRelationshipType
+enum DocumentRelationshipTypeBuilderEnum {
+  /// replaces
+  replaces,
+
+  /// transforms
+  transforms,
+
+  /// signs
+  signs,
+
+  /// appends
+  appends,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DocumentRelationshipTypeBuilderEnum.replaces:
+        return 'replaces';
+      case DocumentRelationshipTypeBuilderEnum.transforms:
+        return 'transforms';
+      case DocumentRelationshipTypeBuilderEnum.signs:
+        return 'signs';
+      case DocumentRelationshipTypeBuilderEnum.appends:
+        return 'appends';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DocumentRelationshipTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DocumentRelationshipTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DocumentRelationshipTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'replaces':
+        return DocumentRelationshipTypeBuilderEnum.replaces;
+      case 'transforms':
+        return DocumentRelationshipTypeBuilderEnum.transforms;
+      case 'signs':
+        return DocumentRelationshipTypeBuilderEnum.signs;
+      case 'appends':
+        return DocumentRelationshipTypeBuilderEnum.appends;
+    }
+    return null;
+  }
+}
+
 /// The type of relationship between documents.
 class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DocumentRelationshipTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +96,12 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = DocumentRelationshipTypeBuilderEnum.fromString(
+      valueString,
+    );
     return DocumentRelationshipTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +113,13 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [DocumentRelationshipTypeBuilder] with element only
+  /// Create empty [DocumentRelationshipTypeBuilder]
+  /// with element only
   factory DocumentRelationshipTypeBuilder.empty() =>
-      DocumentRelationshipTypeBuilder._(valueString: '');
+      DocumentRelationshipTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [DocumentRelationshipTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [DocumentRelationshipTypeBuilder] from JSON.
   factory DocumentRelationshipTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +128,10 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentRelationshipTypeBuilder.elementOnly.withElement(element);
+      return DocumentRelationshipTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DocumentRelationshipTypeBuilder cannot be constructed from JSON.',
@@ -70,49 +143,71 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for DocumentRelationshipTypeBuilder
+  final DocumentRelationshipTypeBuilderEnum? valueEnum;
+
   /// replaces
   static DocumentRelationshipTypeBuilder replaces =
       DocumentRelationshipTypeBuilder._(
     valueString: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Replaces'.toFhirStringBuilder,
+    valueEnum: DocumentRelationshipTypeBuilderEnum.replaces,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Replaces',
+    ),
   );
 
   /// transforms
   static DocumentRelationshipTypeBuilder transforms =
       DocumentRelationshipTypeBuilder._(
     valueString: 'transforms',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Transforms'.toFhirStringBuilder,
+    valueEnum: DocumentRelationshipTypeBuilderEnum.transforms,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Transforms',
+    ),
   );
 
   /// signs
   static DocumentRelationshipTypeBuilder signs =
       DocumentRelationshipTypeBuilder._(
     valueString: 'signs',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Signs'.toFhirStringBuilder,
+    valueEnum: DocumentRelationshipTypeBuilderEnum.signs,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Signs',
+    ),
   );
 
   /// appends
   static DocumentRelationshipTypeBuilder appends =
       DocumentRelationshipTypeBuilder._(
     valueString: 'appends',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Appends'.toFhirStringBuilder,
+    valueEnum: DocumentRelationshipTypeBuilderEnum.appends,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Appends',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static DocumentRelationshipTypeBuilder elementOnly =
-      DocumentRelationshipTypeBuilder._(valueString: '');
+      DocumentRelationshipTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<DocumentRelationshipTypeBuilder> values = [
@@ -121,13 +216,6 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     signs,
     appends,
   ];
-
-  /// Clones the current instance
-  @override
-  DocumentRelationshipTypeBuilder clone() => DocumentRelationshipTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   DocumentRelationshipTypeBuilder withElement(
@@ -149,37 +237,4 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  DocumentRelationshipTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for DocumentRelationshipType: $newValue',
-      );
-    }
-    return DocumentRelationshipTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

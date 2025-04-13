@@ -1,11 +1,97 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for UnitsOfTime
+enum UnitsOfTimeBuilderEnum {
+  /// s
+  s,
+
+  /// min
+  min,
+
+  /// h
+  h,
+
+  /// d
+  d,
+
+  /// wk
+  wk,
+
+  /// mo
+  mo,
+
+  /// a
+  a,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case UnitsOfTimeBuilderEnum.s:
+        return 's';
+      case UnitsOfTimeBuilderEnum.min:
+        return 'min';
+      case UnitsOfTimeBuilderEnum.h:
+        return 'h';
+      case UnitsOfTimeBuilderEnum.d:
+        return 'd';
+      case UnitsOfTimeBuilderEnum.wk:
+        return 'wk';
+      case UnitsOfTimeBuilderEnum.mo:
+        return 'mo';
+      case UnitsOfTimeBuilderEnum.a:
+        return 'a';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static UnitsOfTimeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return UnitsOfTimeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static UnitsOfTimeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 's':
+        return UnitsOfTimeBuilderEnum.s;
+      case 'min':
+        return UnitsOfTimeBuilderEnum.min;
+      case 'h':
+        return UnitsOfTimeBuilderEnum.h;
+      case 'd':
+        return UnitsOfTimeBuilderEnum.d;
+      case 'wk':
+        return UnitsOfTimeBuilderEnum.wk;
+      case 'mo':
+        return UnitsOfTimeBuilderEnum.mo;
+      case 'a':
+        return UnitsOfTimeBuilderEnum.a;
+    }
+    return null;
+  }
+}
+
 /// A unit of time (units from UCUM).
 class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   UnitsOfTimeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +117,12 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = UnitsOfTimeBuilderEnum.fromString(
+      valueString,
+    );
     return UnitsOfTimeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,11 +134,12 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [UnitsOfTimeBuilder] with element only
-  factory UnitsOfTimeBuilder.empty() => UnitsOfTimeBuilder._(valueString: '');
+  /// Create empty [UnitsOfTimeBuilder]
+  /// with element only
+  factory UnitsOfTimeBuilder.empty() => UnitsOfTimeBuilder._(valueString: null);
 
-  /// Factory constructor to create [UnitsOfTimeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [UnitsOfTimeBuilder] from JSON.
   factory UnitsOfTimeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -57,7 +148,10 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UnitsOfTimeBuilder.elementOnly.withElement(element);
+      return UnitsOfTimeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'UnitsOfTimeBuilder cannot be constructed from JSON.',
@@ -69,64 +163,105 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for UnitsOfTimeBuilder
+  final UnitsOfTimeBuilderEnum? valueEnum;
+
   /// s
   static UnitsOfTimeBuilder s = UnitsOfTimeBuilder._(
     valueString: 's',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'second'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.s,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'second',
+    ),
   );
 
   /// min
   static UnitsOfTimeBuilder min = UnitsOfTimeBuilder._(
     valueString: 'min',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'minute'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.min,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'minute',
+    ),
   );
 
   /// h
   static UnitsOfTimeBuilder h = UnitsOfTimeBuilder._(
     valueString: 'h',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'hour'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.h,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'hour',
+    ),
   );
 
   /// d
   static UnitsOfTimeBuilder d = UnitsOfTimeBuilder._(
     valueString: 'd',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'day'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.d,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'day',
+    ),
   );
 
   /// wk
   static UnitsOfTimeBuilder wk = UnitsOfTimeBuilder._(
     valueString: 'wk',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'week'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.wk,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'week',
+    ),
   );
 
   /// mo
   static UnitsOfTimeBuilder mo = UnitsOfTimeBuilder._(
     valueString: 'mo',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'month'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.mo,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'month',
+    ),
   );
 
   /// a
   static UnitsOfTimeBuilder a = UnitsOfTimeBuilder._(
     valueString: 'a',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'year'.toFhirStringBuilder,
+    valueEnum: UnitsOfTimeBuilderEnum.a,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'year',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static UnitsOfTimeBuilder elementOnly = UnitsOfTimeBuilder._(valueString: '');
+  static UnitsOfTimeBuilder elementOnly = UnitsOfTimeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<UnitsOfTimeBuilder> values = [
@@ -138,13 +273,6 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
     mo,
     a,
   ];
-
-  /// Clones the current instance
-  @override
-  UnitsOfTimeBuilder clone() => UnitsOfTimeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   UnitsOfTimeBuilder withElement(
@@ -166,37 +294,4 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  UnitsOfTimeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for UnitsOfTime: $newValue',
-      );
-    }
-    return UnitsOfTimeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

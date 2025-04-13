@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for IdentifierUse
+enum IdentifierUseBuilderEnum {
+  /// usual
+  usual,
+
+  /// official
+  official,
+
+  /// temp
+  temp,
+
+  /// secondary
+  secondary,
+
+  /// old
+  old,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case IdentifierUseBuilderEnum.usual:
+        return 'usual';
+      case IdentifierUseBuilderEnum.official:
+        return 'official';
+      case IdentifierUseBuilderEnum.temp:
+        return 'temp';
+      case IdentifierUseBuilderEnum.secondary:
+        return 'secondary';
+      case IdentifierUseBuilderEnum.old:
+        return 'old';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static IdentifierUseBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return IdentifierUseBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static IdentifierUseBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'usual':
+        return IdentifierUseBuilderEnum.usual;
+      case 'official':
+        return IdentifierUseBuilderEnum.official;
+      case 'temp':
+        return IdentifierUseBuilderEnum.temp;
+      case 'secondary':
+        return IdentifierUseBuilderEnum.secondary;
+      case 'old':
+        return IdentifierUseBuilderEnum.old;
+    }
+    return null;
+  }
+}
+
 /// Identifies the purpose for this identifier, if known .
 class IdentifierUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   IdentifierUseBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = IdentifierUseBuilderEnum.fromString(
+      valueString,
+    );
     return IdentifierUseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [IdentifierUseBuilder] with element only
+  /// Create empty [IdentifierUseBuilder]
+  /// with element only
   factory IdentifierUseBuilder.empty() =>
-      IdentifierUseBuilder._(valueString: '');
+      IdentifierUseBuilder._(valueString: null);
 
-  /// Factory constructor to create [IdentifierUseBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [IdentifierUseBuilder] from JSON.
   factory IdentifierUseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentifierUseBuilder.elementOnly.withElement(element);
+      return IdentifierUseBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'IdentifierUseBuilder cannot be constructed from JSON.',
@@ -70,49 +150,79 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for IdentifierUseBuilder
+  final IdentifierUseBuilderEnum? valueEnum;
+
   /// usual
   static IdentifierUseBuilder usual = IdentifierUseBuilder._(
     valueString: 'usual',
-    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Usual'.toFhirStringBuilder,
+    valueEnum: IdentifierUseBuilderEnum.usual,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Usual',
+    ),
   );
 
   /// official
   static IdentifierUseBuilder official = IdentifierUseBuilder._(
     valueString: 'official',
-    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Official'.toFhirStringBuilder,
+    valueEnum: IdentifierUseBuilderEnum.official,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Official',
+    ),
   );
 
   /// temp
   static IdentifierUseBuilder temp = IdentifierUseBuilder._(
     valueString: 'temp',
-    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Temp'.toFhirStringBuilder,
+    valueEnum: IdentifierUseBuilderEnum.temp,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Temp',
+    ),
   );
 
   /// secondary
   static IdentifierUseBuilder secondary = IdentifierUseBuilder._(
     valueString: 'secondary',
-    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Secondary'.toFhirStringBuilder,
+    valueEnum: IdentifierUseBuilderEnum.secondary,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Secondary',
+    ),
   );
 
   /// old
   static IdentifierUseBuilder old = IdentifierUseBuilder._(
     valueString: 'old',
-    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Old'.toFhirStringBuilder,
+    valueEnum: IdentifierUseBuilderEnum.old,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Old',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static IdentifierUseBuilder elementOnly =
-      IdentifierUseBuilder._(valueString: '');
+  static IdentifierUseBuilder elementOnly = IdentifierUseBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<IdentifierUseBuilder> values = [
@@ -122,13 +232,6 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
     secondary,
     old,
   ];
-
-  /// Clones the current instance
-  @override
-  IdentifierUseBuilder clone() => IdentifierUseBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   IdentifierUseBuilder withElement(
@@ -150,37 +253,4 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  IdentifierUseBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for IdentifierUse: $newValue',
-      );
-    }
-    return IdentifierUseBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

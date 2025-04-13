@@ -1,11 +1,83 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for AuditEventAgentNetworkType
+enum AuditEventAgentNetworkTypeBuilderEnum {
+  /// 1
+  value1,
+
+  /// 2
+  value2,
+
+  /// 3
+  value3,
+
+  /// 4
+  value4,
+
+  /// 5
+  value5,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case AuditEventAgentNetworkTypeBuilderEnum.value1:
+        return '1';
+      case AuditEventAgentNetworkTypeBuilderEnum.value2:
+        return '2';
+      case AuditEventAgentNetworkTypeBuilderEnum.value3:
+        return '3';
+      case AuditEventAgentNetworkTypeBuilderEnum.value4:
+        return '4';
+      case AuditEventAgentNetworkTypeBuilderEnum.value5:
+        return '5';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static AuditEventAgentNetworkTypeBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return AuditEventAgentNetworkTypeBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static AuditEventAgentNetworkTypeBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case '1':
+        return AuditEventAgentNetworkTypeBuilderEnum.value1;
+      case '2':
+        return AuditEventAgentNetworkTypeBuilderEnum.value2;
+      case '3':
+        return AuditEventAgentNetworkTypeBuilderEnum.value3;
+      case '4':
+        return AuditEventAgentNetworkTypeBuilderEnum.value4;
+      case '5':
+        return AuditEventAgentNetworkTypeBuilderEnum.value5;
+    }
+    return null;
+  }
+}
+
 /// The type of network access point of this agent in the audit event.
 class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AuditEventAgentNetworkTypeBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +103,12 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = AuditEventAgentNetworkTypeBuilderEnum.fromString(
+      valueString,
+    );
     return AuditEventAgentNetworkTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +120,13 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [AuditEventAgentNetworkTypeBuilder] with element only
+  /// Create empty [AuditEventAgentNetworkTypeBuilder]
+  /// with element only
   factory AuditEventAgentNetworkTypeBuilder.empty() =>
-      AuditEventAgentNetworkTypeBuilder._(valueString: '');
+      AuditEventAgentNetworkTypeBuilder._(valueString: null);
 
-  /// Factory constructor to create [AuditEventAgentNetworkTypeBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [AuditEventAgentNetworkTypeBuilder] from JSON.
   factory AuditEventAgentNetworkTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +135,10 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventAgentNetworkTypeBuilder.elementOnly.withElement(element);
+      return AuditEventAgentNetworkTypeBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'AuditEventAgentNetworkTypeBuilder cannot be constructed from JSON.',
@@ -70,54 +150,85 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for AuditEventAgentNetworkTypeBuilder
+  final AuditEventAgentNetworkTypeBuilderEnum? valueEnum;
+
   /// value1
   static AuditEventAgentNetworkTypeBuilder value1 =
       AuditEventAgentNetworkTypeBuilder._(
     valueString: '1',
-    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Machine Name'.toFhirStringBuilder,
+    valueEnum: AuditEventAgentNetworkTypeBuilderEnum.value1,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Machine Name',
+    ),
   );
 
   /// value2
   static AuditEventAgentNetworkTypeBuilder value2 =
       AuditEventAgentNetworkTypeBuilder._(
     valueString: '2',
-    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'IP Address'.toFhirStringBuilder,
+    valueEnum: AuditEventAgentNetworkTypeBuilderEnum.value2,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'IP Address',
+    ),
   );
 
   /// value3
   static AuditEventAgentNetworkTypeBuilder value3 =
       AuditEventAgentNetworkTypeBuilder._(
     valueString: '3',
-    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Telephone Number'.toFhirStringBuilder,
+    valueEnum: AuditEventAgentNetworkTypeBuilderEnum.value3,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Telephone Number',
+    ),
   );
 
   /// value4
   static AuditEventAgentNetworkTypeBuilder value4 =
       AuditEventAgentNetworkTypeBuilder._(
     valueString: '4',
-    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Email address'.toFhirStringBuilder,
+    valueEnum: AuditEventAgentNetworkTypeBuilderEnum.value4,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Email address',
+    ),
   );
 
   /// value5
   static AuditEventAgentNetworkTypeBuilder value5 =
       AuditEventAgentNetworkTypeBuilder._(
     valueString: '5',
-    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'URI'.toFhirStringBuilder,
+    valueEnum: AuditEventAgentNetworkTypeBuilderEnum.value5,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'URI',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static AuditEventAgentNetworkTypeBuilder elementOnly =
-      AuditEventAgentNetworkTypeBuilder._(valueString: '');
+      AuditEventAgentNetworkTypeBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<AuditEventAgentNetworkTypeBuilder> values = [
@@ -127,14 +238,6 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
     value4,
     value5,
   ];
-
-  /// Clones the current instance
-  @override
-  AuditEventAgentNetworkTypeBuilder clone() =>
-      AuditEventAgentNetworkTypeBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   AuditEventAgentNetworkTypeBuilder withElement(
@@ -156,37 +259,4 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  AuditEventAgentNetworkTypeBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for AuditEventAgentNetworkType: $newValue',
-      );
-    }
-    return AuditEventAgentNetworkTypeBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

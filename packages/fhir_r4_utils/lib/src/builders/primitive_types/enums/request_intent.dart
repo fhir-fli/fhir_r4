@@ -1,12 +1,112 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RequestIntent
+enum RequestIntentBuilderEnum {
+  /// proposal
+  proposal,
+
+  /// plan
+  plan,
+
+  /// directive
+  directive,
+
+  /// order
+  order,
+
+  /// original-order
+  originalOrder,
+
+  /// reflex-order
+  reflexOrder,
+
+  /// filler-order
+  fillerOrder,
+
+  /// instance-order
+  instanceOrder,
+
+  /// option
+  option,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RequestIntentBuilderEnum.proposal:
+        return 'proposal';
+      case RequestIntentBuilderEnum.plan:
+        return 'plan';
+      case RequestIntentBuilderEnum.directive:
+        return 'directive';
+      case RequestIntentBuilderEnum.order:
+        return 'order';
+      case RequestIntentBuilderEnum.originalOrder:
+        return 'original-order';
+      case RequestIntentBuilderEnum.reflexOrder:
+        return 'reflex-order';
+      case RequestIntentBuilderEnum.fillerOrder:
+        return 'filler-order';
+      case RequestIntentBuilderEnum.instanceOrder:
+        return 'instance-order';
+      case RequestIntentBuilderEnum.option:
+        return 'option';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RequestIntentBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RequestIntentBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RequestIntentBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'proposal':
+        return RequestIntentBuilderEnum.proposal;
+      case 'plan':
+        return RequestIntentBuilderEnum.plan;
+      case 'directive':
+        return RequestIntentBuilderEnum.directive;
+      case 'order':
+        return RequestIntentBuilderEnum.order;
+      case 'original-order':
+        return RequestIntentBuilderEnum.originalOrder;
+      case 'reflex-order':
+        return RequestIntentBuilderEnum.reflexOrder;
+      case 'filler-order':
+        return RequestIntentBuilderEnum.fillerOrder;
+      case 'instance-order':
+        return RequestIntentBuilderEnum.instanceOrder;
+      case 'option':
+        return RequestIntentBuilderEnum.option;
+    }
+    return null;
+  }
+}
+
 /// Codes indicating the degree of authority/intentionality associated with
 /// a request.
 class RequestIntentBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RequestIntentBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -32,8 +132,12 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = RequestIntentBuilderEnum.fromString(
+      valueString,
+    );
     return RequestIntentBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -45,12 +149,13 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [RequestIntentBuilder] with element only
+  /// Create empty [RequestIntentBuilder]
+  /// with element only
   factory RequestIntentBuilder.empty() =>
-      RequestIntentBuilder._(valueString: '');
+      RequestIntentBuilder._(valueString: null);
 
-  /// Factory constructor to create [RequestIntentBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [RequestIntentBuilder] from JSON.
   factory RequestIntentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -59,7 +164,10 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestIntentBuilder.elementOnly.withElement(element);
+      return RequestIntentBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RequestIntentBuilder cannot be constructed from JSON.',
@@ -71,81 +179,131 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for RequestIntentBuilder
+  final RequestIntentBuilderEnum? valueEnum;
+
   /// proposal
   static RequestIntentBuilder proposal = RequestIntentBuilder._(
     valueString: 'proposal',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Proposal'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.proposal,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Proposal',
+    ),
   );
 
   /// plan
   static RequestIntentBuilder plan = RequestIntentBuilder._(
     valueString: 'plan',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Plan'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.plan,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Plan',
+    ),
   );
 
   /// directive
   static RequestIntentBuilder directive = RequestIntentBuilder._(
     valueString: 'directive',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Directive'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.directive,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Directive',
+    ),
   );
 
   /// order
   static RequestIntentBuilder order = RequestIntentBuilder._(
     valueString: 'order',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Order'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.order,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Order',
+    ),
   );
 
   /// original_order
-  static RequestIntentBuilder original_order = RequestIntentBuilder._(
+  static RequestIntentBuilder originalOrder = RequestIntentBuilder._(
     valueString: 'original-order',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Original Order'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.originalOrder,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Original Order',
+    ),
   );
 
   /// reflex_order
-  static RequestIntentBuilder reflex_order = RequestIntentBuilder._(
+  static RequestIntentBuilder reflexOrder = RequestIntentBuilder._(
     valueString: 'reflex-order',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Reflex Order'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.reflexOrder,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Reflex Order',
+    ),
   );
 
   /// filler_order
-  static RequestIntentBuilder filler_order = RequestIntentBuilder._(
+  static RequestIntentBuilder fillerOrder = RequestIntentBuilder._(
     valueString: 'filler-order',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Filler Order'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.fillerOrder,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Filler Order',
+    ),
   );
 
   /// instance_order
-  static RequestIntentBuilder instance_order = RequestIntentBuilder._(
+  static RequestIntentBuilder instanceOrder = RequestIntentBuilder._(
     valueString: 'instance-order',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Instance Order'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.instanceOrder,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Instance Order',
+    ),
   );
 
   /// option
   static RequestIntentBuilder option = RequestIntentBuilder._(
     valueString: 'option',
-    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Option'.toFhirStringBuilder,
+    valueEnum: RequestIntentBuilderEnum.option,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Option',
+    ),
   );
 
   /// For instances where an Element is present but not value
-  static RequestIntentBuilder elementOnly =
-      RequestIntentBuilder._(valueString: '');
+  static RequestIntentBuilder elementOnly = RequestIntentBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<RequestIntentBuilder> values = [
@@ -153,19 +311,12 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     plan,
     directive,
     order,
-    original_order,
-    reflex_order,
-    filler_order,
-    instance_order,
+    originalOrder,
+    reflexOrder,
+    fillerOrder,
+    instanceOrder,
     option,
   ];
-
-  /// Clones the current instance
-  @override
-  RequestIntentBuilder clone() => RequestIntentBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   RequestIntentBuilder withElement(
@@ -187,37 +338,4 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  RequestIntentBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for RequestIntent: $newValue',
-      );
-    }
-    return RequestIntentBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }

@@ -1,11 +1,69 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionGroupingBehavior
+enum ActionGroupingBehaviorBuilderEnum {
+  /// visual-group
+  visualGroup,
+
+  /// logical-group
+  logicalGroup,
+
+  /// sentence-group
+  sentenceGroup,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionGroupingBehaviorBuilderEnum.visualGroup:
+        return 'visual-group';
+      case ActionGroupingBehaviorBuilderEnum.logicalGroup:
+        return 'logical-group';
+      case ActionGroupingBehaviorBuilderEnum.sentenceGroup:
+        return 'sentence-group';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionGroupingBehaviorBuilderEnum? fromJson(
+    dynamic json,
+  ) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionGroupingBehaviorBuilderEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionGroupingBehaviorBuilderEnum? fromString(
+    String? value,
+  ) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'visual-group':
+        return ActionGroupingBehaviorBuilderEnum.visualGroup;
+      case 'logical-group':
+        return ActionGroupingBehaviorBuilderEnum.logicalGroup;
+      case 'sentence-group':
+        return ActionGroupingBehaviorBuilderEnum.sentenceGroup;
+    }
+    return null;
+  }
+}
+
 /// Defines organization behavior of a group.
 class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionGroupingBehaviorBuilder._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -31,8 +89,12 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
+    final valueEnum = ActionGroupingBehaviorBuilderEnum.fromString(
+      valueString,
+    );
     return ActionGroupingBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -44,12 +106,13 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [ActionGroupingBehaviorBuilder] with element only
+  /// Create empty [ActionGroupingBehaviorBuilder]
+  /// with element only
   factory ActionGroupingBehaviorBuilder.empty() =>
-      ActionGroupingBehaviorBuilder._(valueString: '');
+      ActionGroupingBehaviorBuilder._(valueString: null);
 
-  /// Factory constructor to create [ActionGroupingBehaviorBuilder]
-  /// from JSON.
+  /// Factory constructor to create
+  /// [ActionGroupingBehaviorBuilder] from JSON.
   factory ActionGroupingBehaviorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
@@ -58,7 +121,10 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionGroupingBehaviorBuilder.elementOnly.withElement(element);
+      return ActionGroupingBehaviorBuilder._(
+        valueString: null,
+        element: element,
+      );
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionGroupingBehaviorBuilder cannot be constructed from JSON.',
@@ -70,53 +136,64 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     );
   }
 
+  ///  An actual enum that can be used for ActionGroupingBehaviorBuilder
+  final ActionGroupingBehaviorBuilderEnum? valueEnum;
+
   /// visual_group
-  static ActionGroupingBehaviorBuilder visual_group =
+  static ActionGroupingBehaviorBuilder visualGroup =
       ActionGroupingBehaviorBuilder._(
     valueString: 'visual-group',
-    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Visual Group'.toFhirStringBuilder,
+    valueEnum: ActionGroupingBehaviorBuilderEnum.visualGroup,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Visual Group',
+    ),
   );
 
   /// logical_group
-  static ActionGroupingBehaviorBuilder logical_group =
+  static ActionGroupingBehaviorBuilder logicalGroup =
       ActionGroupingBehaviorBuilder._(
     valueString: 'logical-group',
-    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Logical Group'.toFhirStringBuilder,
+    valueEnum: ActionGroupingBehaviorBuilderEnum.logicalGroup,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Logical Group',
+    ),
   );
 
   /// sentence_group
-  static ActionGroupingBehaviorBuilder sentence_group =
+  static ActionGroupingBehaviorBuilder sentenceGroup =
       ActionGroupingBehaviorBuilder._(
     valueString: 'sentence-group',
-    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'
-        .toFhirUriBuilder,
-    version: '4.3.0'.toFhirStringBuilder,
-    display: 'Sentence Group'.toFhirStringBuilder,
+    valueEnum: ActionGroupingBehaviorBuilderEnum.sentenceGroup,
+    system: FhirUriBuilder._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+    ),
+    version: FhirStringBuilder._(valueString: '4.3.0'),
+    display: FhirStringBuilder._(
+      valueString: 'Sentence Group',
+    ),
   );
 
   /// For instances where an Element is present but not value
   static ActionGroupingBehaviorBuilder elementOnly =
-      ActionGroupingBehaviorBuilder._(valueString: '');
+      ActionGroupingBehaviorBuilder._(
+    valueString: null,
+    element: ElementBuilder.empty(),
+  );
 
   /// List of all enum-like values
   static List<ActionGroupingBehaviorBuilder> values = [
-    visual_group,
-    logical_group,
-    sentence_group,
+    visualGroup,
+    logicalGroup,
+    sentenceGroup,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionGroupingBehaviorBuilder clone() => ActionGroupingBehaviorBuilder._(
-        valueString: valueString,
-        element: element?.clone() as ElementBuilder?,
-      );
 
   /// Returns the enum value with an element attached
   ActionGroupingBehaviorBuilder withElement(
@@ -138,37 +215,4 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   /// String representation
   @override
   String toString() => valueString ?? '';
-
-  /// Creates a modified copy with updated properties.
-  @override
-  ActionGroupingBehaviorBuilder copyWith({
-    dynamic newValue,
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
-  }) {
-    if (newValue is! String?) {
-      throw ArgumentError(
-        'Invalid input for ActionGroupingBehavior: $newValue',
-      );
-    }
-    return ActionGroupingBehaviorBuilder._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
-    );
-  }
 }
