@@ -53,7 +53,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "src where gender.memberOf(\"http://hl7.org/fhir/ValueSet/administrative-gender\") -> tgt.gender = 'male' \"memberof\";"
                 }
             ]
         }

@@ -48,7 +48,7 @@
             ],
             "rule": [
                 {
-                    "name": "implicit coding for CE Type",
+                    "name": "implicit-coding-for-CE-Type",
                     "source": [
                         {
                             "context": "cda",

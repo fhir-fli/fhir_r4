@@ -242,7 +242,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "We can only handle the first author"
                 },
                 {
                     "name": "author",

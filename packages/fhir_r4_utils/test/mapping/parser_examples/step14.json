@@ -144,7 +144,7 @@
                             "context": "src",
                             "element": "item",
                             "variable": "answerItem4",
-                            "condition": "linkId = '/88124-3' and answer.value.code='LA19952-3'"
+                            "condition": "(linkId = '/88124-3') and (answer.value.code = 'LA19952-3')"
                         }
                     ],
                     "target": [

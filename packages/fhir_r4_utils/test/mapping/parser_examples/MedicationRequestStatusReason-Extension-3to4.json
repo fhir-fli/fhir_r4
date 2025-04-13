@@ -99,7 +99,8 @@
                                         }
                                     ]
                                 }
-                            ]
+                            ],
+                            "documentation": "Using convention detailed here https://build.fhir.org/versions.html#extensions"
                         },
                         {
                             "name": "extension",

@@ -512,36 +512,27 @@ class StructureMapParser {
   }
 
   StructureMapSourceBuilder _parseSource(FHIRLexer lexer) {
-    var context = lexer.take();
-    String? element;
-    String? type;
-    FhirIntegerBuilder? min;
-    String? max;
-    StructureMapSourceListModeBuilder? listMode;
-    FhirIdBuilder? variable;
-    String? defaultValue;
-    String? condition;
-    String? check;
-    String? logMessage;
+    final source =
+        StructureMapSourceBuilder(context: lexer.take().toFhirIdBuilder);
 
     // Handle 'search' context special case
-    if (context == 'search' && lexer.hasToken('(')) {
-      context = '@search';
+    if (source.context?.valueString == 'search' && lexer.hasToken('(')) {
+      source.context = '@search'.toFhirIdBuilder;
       lexer.take();
       final expressionNode = fpe?.parseLexer(lexer);
       if (expressionNode != null) {
-        element = expressionNode.toString();
+        source.element = expressionNode.toString().toFhirStringBuilder;
       }
       lexer.token(')');
     } else if (lexer.hasToken('.')) {
       lexer.token('.');
-      element = lexer.take();
+      source.element = lexer.take().toFhirCodeBuilder;
     }
 
     // Additional step to ensure tokens are properly split and checked
     if (lexer.hasToken(':')) {
       lexer.token(':');
-      type = lexer.takeDottedToken();
+      source.type = lexer.takeDottedToken().toFhirStringBuilder;
       if (!lexer.hasTokenList([
         'as',
         'first',
@@ -551,56 +542,44 @@ class StructureMapParser {
         'only_one',
         'default',
       ])) {
-        min = FhirIntegerBuilder(int.parse(lexer.take()));
+        source.min = FhirIntegerBuilder(int.parse(lexer.take()));
         lexer.token('..');
-        max = lexer.take();
+        source.max = lexer.take().toFhirStringBuilder;
       }
     }
 
     if (lexer.hasToken('default')) {
       lexer.token('default');
-      defaultValue = lexer.readConstant('default value');
+      source.defaultValueX =
+          lexer.readConstant('default value').toFhirStringBuilder;
     }
 
     if (['first', 'last', 'not_first', 'not_last', 'only_one']
         .contains(lexer.current)) {
-      listMode =
+      source.listMode =
           StructureMapSourceListModeBuilder.fromJson({'value': lexer.take()});
     }
 
     if (lexer.hasToken('as')) {
       lexer.take();
-      variable = lexer.take().toFhirIdBuilder;
+      source.variable = lexer.take().toFhirIdBuilder;
     }
 
     // Capture condition and check expressions
     if (lexer.hasToken('where')) {
       lexer.take();
-      condition = fpe?.parseLexer(lexer).toString();
+      source.condition = fpe?.parseLexer(lexer).toString().toFhirStringBuilder;
     }
     if (lexer.hasToken('check')) {
       lexer.take();
-      check = fpe?.parseLexer(lexer).toString();
+      source.check = fpe?.parseLexer(lexer).toString().toFhirStringBuilder;
     }
-
     if (lexer.hasToken('log')) {
       lexer.take();
-      logMessage = fpe?.parseLexer(lexer).toString();
+      source.logMessage = fpe?.parseLexer(lexer).toString().toFhirStringBuilder;
     }
 
-    return StructureMapSourceBuilder(
-      context: context.toFhirIdBuilder,
-      element: element?.toFhirStringBuilder,
-      type: type?.toFhirStringBuilder,
-      min: min,
-      max: max?.toFhirStringBuilder,
-      listMode: listMode,
-      variable: variable,
-      defaultValueX: defaultValue?.toFhirStringBuilder,
-      condition: condition?.toFhirStringBuilder,
-      check: check?.toFhirStringBuilder,
-      logMessage: logMessage?.toFhirStringBuilder,
-    );
+    return source;
   }
 
   StructureMapTargetBuilder _parseTarget(FHIRLexer lexer) {
@@ -862,6 +841,7 @@ class StructureMapParser {
     final id = lexer.readConstant('map id');
 
     if (!id.startsWith('#')) {
+      // ignore: avoid_print
       print('Concept map ID missing # prefix, adding # prefix automatically');
     }
     final cmId = id.startsWith('#') ? id.substring(1) : id;

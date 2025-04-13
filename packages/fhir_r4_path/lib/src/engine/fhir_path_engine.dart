@@ -294,6 +294,7 @@ class FHIRPathEngine {
       }
       // If it looks like a function call => parse parameters
       if (lexer.current == '(') {
+        print('result.name: ${result.name}');
         var f = FpFunction.fromCode(result.name!);
         FunctionDetails? details;
         if (f == null) {

@@ -129,7 +129,8 @@
                                                 }
                                             ]
                                         }
-                                    ]
+                                    ],
+                                    "documentation": "ans.value as value -> tgt.value = create('Quantity') as qty,  qty.value = value \"qty\";"
                                 }
                             ]
                         }

@@ -10,5 +10,5 @@ imports "http://salute.gov.it/ig/cda-fhir-maps/StructureMap/CdaToFhirDataTypes"
 imports "http://salute.gov.it/ig/cda-fhir-maps/StructureMap/FULLHEADER"
 
 group CdaToFHIR(source cda : CdaObservation, target condition : Condition) {
-    cda.value -> condition.code "implicit coding for CE Type";
+    cda.value -> condition.code "implicit-coding-for-CE-Type";
 }

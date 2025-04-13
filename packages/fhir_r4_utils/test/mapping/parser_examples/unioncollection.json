@@ -55,7 +55,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "source.a as a -> target.c as c, c = (%source.a.item($index) + %source.b.item($index)) \"concatenate\";"
                 }
             ]
         }

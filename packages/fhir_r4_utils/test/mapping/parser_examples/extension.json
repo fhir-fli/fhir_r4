@@ -219,7 +219,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "documentation": "src.coding -> tgt.coding; the short form is only woking when you have a <<type>>"
                 },
                 {
                     "name": "system",
