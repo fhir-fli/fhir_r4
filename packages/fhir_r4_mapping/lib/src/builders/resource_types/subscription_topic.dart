@@ -10,7 +10,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         SubscriptionTopicResourceTrigger,
         yamlMapToJson,
         yamlToJson;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:yaml/yaml.dart';
 
 /// [SubscriptionTopicBuilder]

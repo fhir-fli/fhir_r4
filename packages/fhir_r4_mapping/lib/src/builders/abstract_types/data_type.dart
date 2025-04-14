@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:yaml/yaml.dart';
 
 /// Base class for all reusable types defined as part of the FHIR specification.

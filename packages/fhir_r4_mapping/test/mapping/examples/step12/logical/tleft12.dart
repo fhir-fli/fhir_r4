@@ -7,7 +7,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         FhirBase,
         FhirExtension,
         FhirString;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// [TLeft12]
 /// TLeft definition

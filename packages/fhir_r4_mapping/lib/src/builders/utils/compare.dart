@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// Deeply compares to FhirBase objects, either of which can be null
 bool equalsDeepWithNull(FhirBaseBuilder? obj1, FhirBaseBuilder? obj2) {

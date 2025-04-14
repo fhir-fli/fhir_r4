@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart' show Element, FhirExtension, FhirString;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// [TRight1]
 /// TRight definition

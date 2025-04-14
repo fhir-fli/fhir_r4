@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// Creates a new [id] for the Resources that's passed
 ResourceBuilder resourceWithNewId(ResourceBuilder resource) {

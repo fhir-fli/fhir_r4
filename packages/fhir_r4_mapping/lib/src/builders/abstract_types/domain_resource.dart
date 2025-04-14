@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DomainResourceBuilder] Base definition for all FHIR elements.

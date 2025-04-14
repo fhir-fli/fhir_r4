@@ -1,11 +1,10 @@
-# fhir_r4_path
+# fhir_r4_mapping
 
 ## [0.4.0]
 
 * First time publishing this. 
 * Performs parsing of FHIR maps
 * Performs application of FHIR maps
-* Performs validation
 
 ## [0.3.0]
 

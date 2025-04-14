@@ -25,7 +25,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         FhirUuid,
         FhirXhtml,
         InvalidTypes;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:uuid/uuid.dart';
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';

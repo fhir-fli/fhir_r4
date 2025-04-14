@@ -4,7 +4,7 @@
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:fhir_r4/fhir_r4.dart' show QuestionnaireResponse;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
 // import 'examples/step10/export.dart';

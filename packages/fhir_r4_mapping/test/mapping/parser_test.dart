@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 Future<void> main() async {
   final dir = Directory('test/mapping/parser_examples');

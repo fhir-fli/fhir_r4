@@ -1,4 +1,4 @@
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// Acts like a constructor, returns a [ResourceBuilder], accepts a
 /// [Map<String, Dynamic>] as an argument

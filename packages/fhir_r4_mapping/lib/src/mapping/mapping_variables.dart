@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:collection/collection.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// Enum representing the different modes of a variable during FHIR mapping
 enum MappingVariableMode {
