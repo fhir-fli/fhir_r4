@@ -1,4 +1,4 @@
-export 'validation/fhir_validator.dart';
+export 'validation/fhir_validation_engine.dart';
 export 'validation/validate_binding.dart';
 export 'validation/validate_cardinality.dart';
 export 'validation/validate_extensions.dart';

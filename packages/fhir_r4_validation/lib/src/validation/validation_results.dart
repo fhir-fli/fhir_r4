@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_validation/fhir_r4_validation.dart';
 
 /// [ValidationResults]
 class ValidationResults {
@@ -175,9 +177,14 @@ class ValidationResults {
     return outcome;
   }
 
+  static const _jsonEncoder = JsonEncoder.withIndent('    ');
+
+  String _jsonPrettyPrint(Map<String, dynamic> map) =>
+      _jsonEncoder.convert(map);
+
   /// Returns a pretty printed JSON string.
   String prettyPrint() {
-    return jsonPrettyPrint(toOperationOutcome().toJson());
+    return _jsonPrettyPrint(toOperationOutcome().toJson());
   }
 
   /// Returns a pretty printed JSON string.

@@ -1,6 +1,6 @@
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_validation/fhir_r4_validation.dart';
 
 /// Validates the invariants of a [Node] against the corresponding
 /// [fhir.ElementDefinition].
