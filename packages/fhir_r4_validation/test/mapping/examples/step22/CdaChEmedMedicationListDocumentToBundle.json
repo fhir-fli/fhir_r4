@@ -1,0 +1,10 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Error @22, 6: Found 'produced' expecting 'source' or 'target'"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+@host = https://test.ahdis.ch
+### @host = http://localhost:8080
+
+### FHIR Tutorial Step 14
+
+### Post the new StructureMap with transform included
+POST {{host}}/matchbox/fhir/StructureMap HTTP/1.1
+Accept: application/fhir+xml
+Content-Type: application/fhir+json
+
+< map/step14.json
+
+### Do the transform (JSON version)
+POST {{host}}/matchbox/fhir/StructureMap/$transform?source=http://hl7.org/fhir/us/sdoh-clinicalcare/StructureMap/SDOHCC-StructureMapHungerVitalSign HTTP/1.1
+Accept: application/fhir+json
+Content-Type: application/fhir+json
+
+< packages/fhir_r4_utils/test/mapping/examples/step14/source/source14.json

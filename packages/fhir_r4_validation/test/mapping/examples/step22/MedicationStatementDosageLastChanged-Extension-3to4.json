@@ -1,0 +1,263 @@
+{
+    "resourceType": "StructureMap",
+    "id": "R3toR4conversionforCareConnectMedicationStatementDosageLastChangedextension",
+    "url": "http://fhir.nhs.uk/StructureMap/MedicationStatementDosageLastChanged-Extension-3to4",
+    "name": "R3 to R4 conversion for CareConnect MedicationStatement DosageLastChanged extension",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+            "mode": "source",
+            "alias": "MedicationStatement"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+            "mode": "target",
+            "alias": "MedicationStatement"
+        }
+    ],
+    "group": [
+        {
+            "name": "MedicationStatement",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "MedicationStatement",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "MedicationStatement",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "$this.url = 'https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationDosageLastChanged-1'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "extension",
+                            "variable": "tgtext",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Extension"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "tgtext",
+                            "contextType": "variable",
+                            "element": "url",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "http://fhir.hl7.org/fhir/3.0/StructureDefinition/extension-Extension-CareConnect-MedicationDosageLastChanged-1"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "valueDateTime",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "type": "dateTime",
+                                    "element": "value",
+                                    "variable": "vs"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgtext",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "vt",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Extension"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationDosageLastChanged-1"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueDateTime",
+                                    "source": [
+                                        {
+                                            "context": "ext",
+                                            "type": "dateTime",
+                                            "element": "value",
+                                            "variable": "vs1"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "vt",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "variable": "vt1",
+                                            "transform": "create",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "dateTime"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "vt1",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "vs1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "$this.url = 'https://fhir.hl7.org.uk/STU3/StructureDefinition/Extensioncoding-CareConnect-GPC-DosageLastChanged-1'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "extension",
+                            "variable": "tgtext",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Extension"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "tgtext",
+                            "contextType": "variable",
+                            "element": "url",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "http://fhir.hl7.org/fhir/3.0/StructureDefinition/extension-Extension-CareConnect-GPC-MedicationDosageLastChanged-1"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "valueDateTime",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "type": "dateTime",
+                                    "element": "value",
+                                    "variable": "vs"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgtext",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "vt",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Extension"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationDosageLastChanged-1"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueDateTime",
+                                    "source": [
+                                        {
+                                            "context": "ext",
+                                            "type": "dateTime",
+                                            "element": "value",
+                                            "variable": "vs1"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "vt",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "variable": "vt1",
+                                            "transform": "create",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "dateTime"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "vt1",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "vs1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
