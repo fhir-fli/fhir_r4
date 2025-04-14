@@ -96,14 +96,14 @@ class ReplaceMatches extends TernaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['String'];
 
   @override
-  String? execute(Map<String, dynamic> context) {
+  Future<String?> execute(Map<String, dynamic> context) async {
     if (operand.length != 3) {
       throw ArgumentError('Ternary expression must have 3 operands');
     }
 
-    final argument = operand[0].execute(context);
-    final pattern = operand[1].execute(context);
-    final substitution = operand[2].execute(context);
+    final argument = await operand[0].execute(context);
+    final pattern = await operand[1].execute(context);
+    final substitution = await operand[2].execute(context);
 
     // Check if either operand is null
     if (argument == null || pattern == null || substitution == null) {

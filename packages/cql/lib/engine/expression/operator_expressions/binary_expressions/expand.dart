@@ -173,12 +173,12 @@ class Expand extends BinaryExpression {
       ['List<CqlInterval>', 'List'];
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand.isEmpty) {
       return [];
     }
 
-    final source = operand[0].execute(context);
+    final source = await operand[0].execute(context);
     final per = operand.length > 1 ? operand[1].execute(context) : null;
     return expand(source, per);
   }
@@ -209,7 +209,7 @@ class Expand extends BinaryExpression {
       return expandedInterval;
     }
 
-    while ((LessOrEqual.lessOrEqual(start, end)?.value ?? false)) {
+    while ((LessOrEqual.lessOrEqual(start, end)?.valueBoolean ?? false)) {
       expandedInterval.add(start);
       start = Add.add(start, per);
     }
@@ -235,7 +235,7 @@ class Expand extends BinaryExpression {
       return expandedIntervals;
     }
 
-    while ((LessOrEqual.lessOrEqual(start, end)?.value ?? false)) {
+    while ((LessOrEqual.lessOrEqual(start, end)?.valueBoolean ?? false)) {
       expandedIntervals.add(CqlInterval(
         low: start,
         lowClosed: true,

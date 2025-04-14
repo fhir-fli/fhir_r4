@@ -175,9 +175,9 @@ class Coalesce extends NaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     for (final op in operand!) {
-      final result = op.execute(context);
+      final result = await op.execute(context);
       if (result != null) {
         return result;
       }

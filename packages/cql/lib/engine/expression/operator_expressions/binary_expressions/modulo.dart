@@ -102,9 +102,9 @@ class Modulo extends BinaryExpression {
   String get type => 'Modulo';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
 
     if (left == null || right == null) {
       return null;
@@ -112,47 +112,53 @@ class Modulo extends BinaryExpression {
       switch (left) {
         case FhirInteger _:
           if (right is FhirInteger) {
-            return FhirInteger.tryParse(left.value! % right.value!);
+            return FhirInteger.tryParse(left.valueNum! % right.valueNum!);
           } else if (right is FhirDecimal) {
-            return FhirDecimal(double.parse((UcumDecimal.fromNum(left.value!)
-                    .modulo(UcumDecimal.fromNum(right.value!)))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!)
+                        .modulo(UcumDecimal.fromString(right.valueString!)))
+                    .asUcumDecimal()));
           } else if (right is FhirInteger64) {
-            return FhirInteger64(
-                BigInt.from(left.value as int) % (right.value as BigInt));
+            return FhirInteger64(BigInt.from(left.valueInt as int) %
+                (right.valueBigInt as BigInt));
           }
           break;
         case FhirInteger64 _:
           if (right is FhirInteger) {
-            return FhirInteger64(left.value! % BigInt.from(right.value as int));
+            return FhirInteger64(
+                left.valueBigInt! % BigInt.from(right.valueInt as int));
           } else if (right is FhirInteger64) {
-            return FhirInteger64(left.value! % right.value!);
+            return FhirInteger64(left.valueBigInt! % right.valueBigInt!);
           } else if (right is FhirDecimal) {
-            return FhirDecimal(double.parse((UcumDecimal.fromBigInt(left.value!)
-                    .modulo(UcumDecimal.fromNum(right.value!)))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!)
+                        .modulo(UcumDecimal.fromString(right.valueString!)))
+                    .asUcumDecimal()));
           }
           break;
         case FhirDecimal _:
           if (right is FhirInteger) {
-            return FhirDecimal(double.parse((UcumDecimal.fromNum(left.value!)
-                    .modulo(UcumDecimal.fromNum(right.value!)))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!)
+                        .modulo(UcumDecimal.fromString(right.valueString!)))
+                    .asUcumDecimal()));
           } else if (right is FhirInteger64) {
-            return FhirDecimal(double.parse((UcumDecimal.fromNum(left.value!)
-                    .modulo(UcumDecimal.fromBigInt(right.value!)))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!)
+                        .modulo(UcumDecimal.fromString(right.valueString!)))
+                    .asUcumDecimal()));
           } else if (right is FhirDecimal) {
-            return FhirDecimal(double.parse((UcumDecimal.fromNum(left.value!)
-                    .modulo(UcumDecimal.fromNum(right.value!)))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!)
+                        .modulo(UcumDecimal.fromString(right.valueString!)))
+                    .asUcumDecimal()));
           } else if (right is ValidatedQuantity) {
-            return ValidatedQuantity.fromNumber(left.value!) % right;
+            return ValidatedQuantity.fromString(left.valueString!) % right;
           }
           break;
         case ValidatedQuantity _:
           if (right is FhirDecimal && left.isValid()) {
-            return left % ValidatedQuantity.fromNumber(right.value!);
+            return left % ValidatedQuantity.fromString(right.valueString!);
           } else if (right is ValidatedQuantity) {
             return left % right;
           }

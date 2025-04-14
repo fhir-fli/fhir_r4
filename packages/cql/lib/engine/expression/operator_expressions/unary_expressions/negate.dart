@@ -97,16 +97,16 @@ class Negate extends UnaryExpression {
       operand.getReturnTypes(library);
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final value = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
     if (value == null) {
       return null;
     } else if (value is FhirInteger) {
-      return FhirInteger.tryParse(value.value! * -1);
+      return FhirInteger.tryParse(value.valueNum! * -1);
     } else if (value is FhirInteger64) {
-      return FhirInteger64(value.value! * BigInt.from(-1));
+      return FhirInteger64(value.valueBigInt! * BigInt.from(-1));
     } else if (value is FhirDecimal) {
-      return FhirDecimal(value.value! * -1);
+      return FhirDecimal(value.valueNum! * -1);
     } else if (value is ValidatedQuantity && value.isValid()) {
       return ValidatedQuantity(
           value: value.value.multiply(UcumDecimal.fromNum(-1)),

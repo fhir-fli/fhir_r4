@@ -4,14 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void expandTest() {
   group('expand', () {
-    test('expand { Interval[@2018-01-01, @2018-01-04] } per day', () {
+    test('expand { Interval[@2018-01-01, @2018-01-04] } per day', () async {
       final interval1 = LiteralDateInterval(
         low: LiteralDate('2018-01-01'),
         high: LiteralDate('2018-01-04'),
       );
       final list = ListExpression(element: [interval1]);
       final expand = Expand(operand: [list]);
-      final result = expand.execute({});
+      final result = await expand.execute({});
       final interval2 = CqlInterval(
           low: fhir.FhirDate.fromString('2018-01-01'),
           high: fhir.FhirDate.fromString('2018-01-01'));
@@ -26,13 +26,13 @@ void expandTest() {
           high: fhir.FhirDate.fromString('2018-01-04'));
       expect(result, [interval2, interval3, interval4, interval5]);
     });
-    test('// expand { Interval[@T10:00, @T12:30] } per hour', () {
+    test('// expand { Interval[@T10:00, @T12:30] } per hour', () async {
       final interval1 = LiteralIntegerInterval(
         low: LiteralInteger(1),
         high: LiteralInteger(10),
       );
       final expand = Expand(operand: [interval1]);
-      final result = expand.execute({});
+      final result = await expand.execute({});
       expect(result, [
         fhir.FhirInteger(1),
         fhir.FhirInteger(2),

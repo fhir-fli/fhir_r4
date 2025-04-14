@@ -98,8 +98,8 @@ class TimezoneOffsetFrom extends UnaryExpression {
   }
 
   @override
-  FhirDecimal? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     if (operandValue is FhirDateTime) {
       return FhirDecimal(operandValue.timeZoneOffset);
     }

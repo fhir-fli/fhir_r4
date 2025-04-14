@@ -74,7 +74,7 @@ Future<void> _processFile(String file) async {
 
     _compareLibraries(json['library'], visitor.result['library'], file);
 
-    final executionResults = visitor.library.execute(context);
+    final executionResults = await visitor.library.execute(context);
     _compareResults(executionResults, answers, file);
   } catch (e, s) {
     print('Error processing file $file: $e\nStacktrace: $s');

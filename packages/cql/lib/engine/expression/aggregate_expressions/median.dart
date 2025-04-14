@@ -102,8 +102,8 @@ class Median extends AggregateExpression {
   String get type => 'Median';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return median(sourceResult);
   }
 
@@ -122,9 +122,9 @@ class Median extends AggregateExpression {
 
       // Handle FhirNumber or FhirDecimal
       if (sourceResult.every((element) => element is FhirNumber)) {
-        var decimals = sourceResult.map((e) => FhirDecimal(e.value!)).toList();
-        decimals.sort((a, b) => a.value!.compareTo(
-            b.value!)); // Ensure FhirDecimal has a comparable implementation
+        var decimals = sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
+        decimals.sort((a, b) => a.valueNum!.compareTo(
+            b.valueNum!)); // Ensure FhirDecimal has a comparable implementation
 
         int middleIndex = decimals.length ~/ 2;
         if (decimals.length % 2 == 1) {
@@ -132,8 +132,8 @@ class Median extends AggregateExpression {
               middleIndex]; // return the middle element for odd length
         } else {
           // Average the two middle elements for even length
-          return FhirDecimal((decimals[middleIndex - 1].value! +
-                  decimals[middleIndex].value!) /
+          return FhirDecimal((decimals[middleIndex - 1].valueNum! +
+                  decimals[middleIndex].valueNum!) /
               2);
         }
       }

@@ -6,13 +6,13 @@ void overlapsBeforeTest() {
   group('OverlapsAfter', () {
     test(
         """define "OverlapsBeforeIsTrue": Interval[0, 4] overlaps before Interval[1, 4] // true""",
-        () {
+        () async {
       final left = LiteralIntegerInterval(
           low: LiteralInteger(0), high: LiteralInteger(4));
       final right = LiteralIntegerInterval(
           low: LiteralInteger(1), high: LiteralInteger(4));
       final result = OverlapsBefore(operand: [left, right]);
-      expect(result.execute({}), equals(FhirBoolean(true)));
+      expect(await result.execute({}), equals(FhirBoolean(true)));
     });
   });
 }

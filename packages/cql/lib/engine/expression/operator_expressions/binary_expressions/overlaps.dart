@@ -108,12 +108,12 @@ class Overlaps extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('Binary expression requires two operands');
     }
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
     return overlaps(left, right, precision);
   }
 

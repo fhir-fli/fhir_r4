@@ -91,9 +91,9 @@ class Split extends OperatorExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['List<String>'];
 
   @override
-  List<String>? execute(Map<String, dynamic> context) {
-    final stringToSplitValue = stringToSplit.execute(context);
-    final separatorValue = separator.execute(context);
+  Future<List<String>?> execute(Map<String, dynamic> context) async {
+    final stringToSplitValue = await stringToSplit.execute(context);
+    final separatorValue = await separator.execute(context);
     return split(stringToSplitValue, separatorValue);
   }
 

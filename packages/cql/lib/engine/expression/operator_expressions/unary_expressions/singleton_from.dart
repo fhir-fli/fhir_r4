@@ -80,8 +80,8 @@ class SingletonFrom extends UnaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final list = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final list = await operand.execute(context);
     if (list == null) {
       return null;
     } else if (list is List) {

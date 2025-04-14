@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void skipTest() {
   group('skip', () {
-    test('define "Skip2": Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }', () {
+    test('define "Skip2": Skip({ 1, 2, 3, 4, 5 }, 2) // { 3, 4, 5 }', () async {
       final list = cql.ListExpression(element: [
         cql.LiteralInteger(1),
         cql.LiteralInteger(2),
@@ -17,11 +17,11 @@ void skipTest() {
           startIndex: cql.LiteralInteger(2),
           endIndex: cql.NamedTypeSpecifier(
               namespace: cql.QName.fromDataType('Null')));
-      final result = skip.execute({});
+      final result = await skip.execute({});
       expect(result, equals([FhirInteger(3), FhirInteger(4), FhirInteger(5)]));
     });
 
-    test('define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }', () {
+    test('define "SkipNull": Skip({ 1, 3, 5 }, null) // { 1, 3, 5 }', () async {
       final list = cql.ListExpression(element: [
         cql.LiteralInteger(1),
         cql.LiteralInteger(3),
@@ -32,10 +32,10 @@ void skipTest() {
           startIndex: cql.LiteralNull(),
           endIndex: cql.NamedTypeSpecifier(
               namespace: cql.QName.fromDataType('Null')));
-      final result = skip.execute({});
+      final result = await skip.execute({});
       expect(result, equals([FhirInteger(1), FhirInteger(3), FhirInteger(5)]));
     });
-    test('define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }', () {
+    test('define "SkipEmpty": Skip({ 1, 3, 5 }, -1) // { }', () async {
       final list = cql.ListExpression(element: [
         cql.LiteralInteger(1),
         cql.LiteralInteger(3),
@@ -46,16 +46,16 @@ void skipTest() {
           startIndex: cql.LiteralInteger(-1),
           endIndex: cql.NamedTypeSpecifier(
               namespace: cql.QName.fromDataType('Null')));
-      final result = skip.execute({});
+      final result = await skip.execute({});
       expect(result, equals([]));
     });
-    test('define "SkipIsNull": Skip(null, 2)', () {
+    test('define "SkipIsNull": Skip(null, 2)', () async {
       final skip = cql.Slice(
           source: cql.LiteralNull(),
           startIndex: cql.LiteralInteger(2),
           endIndex: cql.NamedTypeSpecifier(
               namespace: cql.QName.fromDataType('Null')));
-      final result = skip.execute({});
+      final result = await skip.execute({});
       expect(result, equals(null));
     });
   });

@@ -127,12 +127,12 @@ class Intersect extends NaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand?.length != 2) {
       throw ArgumentError('Intersect operator requires two operands');
     }
-    final left = operand![0].execute(context);
-    final right = operand![1].execute(context);
+    final left = await operand![0].execute(context);
+    final right = await operand![1].execute(context);
     return intersect(left, right);
   }
 

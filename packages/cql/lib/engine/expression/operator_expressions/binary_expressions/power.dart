@@ -162,20 +162,20 @@ class Power extends BinaryExpression {
   String get type => 'Power';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('Power must have two operands');
     } else {
-      final first = operand.first.execute(context);
-      final second = operand.last.execute(context);
+      final first = await operand.first.execute(context);
+      final second = await operand.last.execute(context);
       if (first == null || second == null) {
         return null;
       } else if (first is FhirInteger && second is FhirInteger) {
-        return FhirInteger.tryParse(pow(first.value!, second.value!));
+        return FhirInteger.tryParse(pow(first.valueNum!, second.valueNum!));
       } else if (first is FhirInteger64 && second is FhirInteger64) {
-        return FhirInteger64(first.value!.pow(second.value!.toInt()));
+        return FhirInteger64(first.valueBigInt!.pow(second.valueBigInt!.toInt()));
       } else if (first is FhirDecimal && second is FhirDecimal) {
-        return FhirDecimal(pow(first.value!, second.value!));
+        return FhirDecimal(pow(first.valueNum!, second.valueNum!));
       } else {
         throw ArgumentError(
             'Power must have two operands of type Integer, Long, or Decimal');

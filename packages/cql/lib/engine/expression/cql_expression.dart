@@ -1033,7 +1033,7 @@ class CqlExpression extends Element {
 
   String? get type => throw 'Get Type Unknown Expression type: $runtimeType';
 
-  dynamic execute(Map<String, dynamic> context) =>
+  Future<dynamic> execute(Map<String, dynamic> context) async =>
       'Execute Unknown Expression type: $runtimeType';
 
   List<String> getReturnTypes(CqlLibrary library) => ['Unknown'];

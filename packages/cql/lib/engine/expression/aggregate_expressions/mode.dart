@@ -98,8 +98,8 @@ class Mode extends AggregateExpression {
   String get type => 'Mode';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return mode(sourceResult);
   }
 

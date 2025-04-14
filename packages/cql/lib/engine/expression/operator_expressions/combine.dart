@@ -97,9 +97,9 @@ class Combine extends OperatorExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['String'];
 
   @override
-  String? execute(Map<String, dynamic> context) {
-    final sourceValue = source.execute(context);
-    final separatorValue = separator?.execute(context);
+  Future<String?> execute(Map<String, dynamic> context) async {
+    final sourceValue = await source.execute(context);
+    final separatorValue = await separator?.execute(context);
     return combine(sourceValue, separatorValue);
   }
 

@@ -93,9 +93,9 @@ class IndexOf extends OperatorExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['FhirInteger'];
 
   @override
-  FhirInteger? execute(Map<String, dynamic> context) {
-    final left = source.execute(context);
-    final right = element.execute(context);
+  Future<FhirInteger?> execute(Map<String, dynamic> context) async {
+    final left = await source.execute(context);
+    final right = await element.execute(context);
     return indexOf(left, right);
   }
 

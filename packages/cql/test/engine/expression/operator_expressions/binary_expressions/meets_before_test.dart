@@ -6,7 +6,7 @@ void meetsBeforeTest() {
   group('MeetsBefore', () {
     test(
         """define "MeetsBeforeIsTrue": Interval[-5, -1] meets before Interval[0, 5]""",
-        () {
+        () async {
       final low1 = LiteralInteger(-5);
       final high1 = LiteralInteger(-1);
       final interval1 = IntervalExpression(low: low1, high: high1);
@@ -14,7 +14,7 @@ void meetsBeforeTest() {
       final high2 = LiteralInteger(5);
       final interval2 = IntervalExpression(low: low2, high: high2);
       final meetsBefore = MeetsBefore(operand: [interval1, interval2]);
-      final result = meetsBefore.execute({});
+      final result = await meetsBefore.execute({});
       expect(result, FhirBoolean(true));
     });
   });

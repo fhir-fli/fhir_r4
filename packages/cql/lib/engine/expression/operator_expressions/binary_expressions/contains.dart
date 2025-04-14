@@ -125,12 +125,12 @@ class Contains extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('Contains expression must have 2 operands');
     }
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
     return contains(left, right);
   }
 

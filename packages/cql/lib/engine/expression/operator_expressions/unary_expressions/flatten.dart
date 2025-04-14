@@ -82,8 +82,8 @@ class Flatten extends UnaryExpression {
   }
 
   @override
-  List? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<List?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     return flatten(operandValue);
   }
 

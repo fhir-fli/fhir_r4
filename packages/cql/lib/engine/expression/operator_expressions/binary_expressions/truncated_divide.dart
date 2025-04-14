@@ -95,9 +95,9 @@ class TruncatedDivide extends BinaryExpression {
   String get type => 'TruncatedDivide';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
 
     if (left == null || right == null) {
       return null;
@@ -107,42 +107,42 @@ class TruncatedDivide extends BinaryExpression {
       case FhirInteger _:
         {
           if (right is FhirInteger) {
-            return FhirInteger(left.value! ~/ right.value!);
+            return FhirInteger(left.valueNum! ~/ right.valueNum!);
           } else if (right is FhirInteger64) {
-            return FhirInteger64(BigInt.from(left.value!) ~/ right.value!);
+            return FhirInteger64(BigInt.from(left.valueNum!) ~/ right.valueBigInt!);
           } else if (right is FhirDecimal) {
-            return FhirDecimal(left.value! ~/ right.value!);
+            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
           }
         }
         break;
       case FhirInteger64 _:
         {
           if (right is FhirInteger) {
-            return FhirInteger64(left.value! ~/ BigInt.from(right.value!));
+            return FhirInteger64(left.valueBigInt! ~/ BigInt.from(right.valueNum!));
           } else if (right is FhirInteger64) {
-            return FhirInteger64(left.value! ~/ right.value!);
+            return FhirInteger64(left.valueBigInt! ~/ right.valueBigInt!);
           } else if (right is FhirDecimal) {
-            return FhirDecimal(left.value!.toDouble() ~/ right.value!);
+            return FhirDecimal(left.valueBigInt!.toDouble() ~/ right.valueNum!);
           }
         }
         break;
       case FhirDecimal _:
         {
           if (right is FhirInteger) {
-            return FhirDecimal(left.value! ~/ right.value!);
+            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
           } else if (right is FhirInteger64) {
-            return FhirDecimal(left.value! ~/ right.value!.toDouble());
+            return FhirDecimal(left.valueNum! ~/ right.valueBigInt!.toDouble());
           } else if (right is FhirDecimal) {
-            return FhirDecimal(left.value! ~/ right.value!);
+            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
           } else if (right is ValidatedQuantity && right.isValid()) {
-            return ValidatedQuantity.fromNumber(left.value!) ~/ right;
+            return ValidatedQuantity.fromNumber(left.valueNum!) ~/ right;
           }
         }
         break;
       case ValidatedQuantity _:
         {
           if (right is FhirDecimal && left.isValid()) {
-            return left ~/ ValidatedQuantity.fromNumber(right.value!);
+            return left ~/ ValidatedQuantity.fromNumber(right.valueNum!);
           } else if (right is ValidatedQuantity &&
               left.isValid() &&
               right.isValid()) {

@@ -31,7 +31,8 @@ import '../../../../cql.dart';
 /// define "IsFalse": true and false
 /// define "IsAlsoFalse": false and null
 /// define "IsNull": true and null
-/// Note that CQL does not prescribe short-circuit evaluation of logical operators.
+/// Note that CQL does not prescribe short-circuit evaluation of logical 
+/// operators.
 class And extends BinaryExpression {
   And({
     required super.operand,
@@ -95,23 +96,24 @@ class And extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     /// Assuming operand is accessible and contains the operands
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
     return and(left, right);
   }
 
   static FhirBoolean? and(dynamic left, dynamic right) {
     /// Both operands are non-null and true
     if (left is FhirBoolean && right is FhirBoolean) {
-      return FhirBoolean(left.value! && right.value!);
+      return FhirBoolean(left.valueBoolean! && right.valueBoolean!);
     }
 
     /// Either operand is false
-    /// One operand is null and the other is false (handled above as "either operand is false")
-    if ((left is FhirBoolean && left.value == false) ||
-        (right is FhirBoolean && right.value == false)) {
+    /// One operand is null and the other is false
+    /// (handled above as "either operand is false")
+    if ((left is FhirBoolean && left.valueBoolean == false) ||
+        (right is FhirBoolean && right.valueBoolean == false)) {
       return FhirBoolean(false);
     }
 
@@ -121,12 +123,17 @@ class And extends BinaryExpression {
     }
 
     /// One operand is null and the other is true
-    if ((left == null && right is FhirBoolean && (right.value ?? false)) ||
-        (right == null && left is FhirBoolean && (left.value ?? false))) {
+    if ((left == null &&
+            right is FhirBoolean &&
+            (right.valueBoolean ?? false)) ||
+        (right == null &&
+            left is FhirBoolean &&
+            (left.valueBoolean ?? false))) {
       return null;
     }
 
-    /// Default return null if not covered above, though all cases should be covered
+    /// Default return null if not covered above, though all cases 
+    /// should be covered
     return null;
   }
 }

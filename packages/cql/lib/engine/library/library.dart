@@ -179,20 +179,20 @@ class CqlLibrary extends Element {
         : CqlValueSet.fromValueSetDef(valueSetDef);
   }
 
-  dynamic execute([Map<String, dynamic>? executionContext]) {
+  Future<dynamic> execute([Map<String, dynamic>? executionContext]) async {
     final Map<String, dynamic> context =
         executionContext ?? <String, dynamic>{};
     context['library'] = this;
     context['startTimestamp'] = fhir.FhirDateTime.fromDateTime(DateTime.now());
-    // final usingDefinitionExecuted = usings?.execute();
-    // final includeDefinitionExecuted = includes?.execute();
-    // final codeSystemsExecuted = codeSystems?.execute();
-    // final valueSetsExecuted = valueSets?.execute();
-    // final codesExecuted = codes?.execute();
-    // final conceptsExecuted = concepts?.execute();
-    // final contextsExecuted = contexts?.execute();
-    // final parametersExecuted = parameters?.execute();
-    final statementsExecuted = statements?.execute(context);
+    // final usingDefinitionExecuted = await usings?.execute();
+    // final includeDefinitionExecuted = await includes?.execute();
+    // final codeSystemsExecuted = await codeSystems?.execute();
+    // final valueSetsExecuted = await valueSets?.execute();
+    // final codesExecuted = await codes?.execute();
+    // final conceptsExecuted = await concepts?.execute();
+    // final contextsExecuted = await contexts?.execute();
+    // final parametersExecuted = await parameters?.execute();
+    final statementsExecuted = await statements?.execute(context);
     return statementsExecuted;
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void containsTest() {
   group('Contains', () {
-    test("""define "ContainsIsTrue": Interval[1, 5] contains 4""", () {
+    test("""define "ContainsIsTrue": Interval[1, 5] contains 4""", () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
         high: LiteralInteger(5),
@@ -13,10 +13,10 @@ void containsTest() {
       final contains = Contains(
         operand: [interval, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(true));
     });
-    test("""define "ContainsIsFalse": Interval[1, 5] contains 6""", () {
+    test("""define "ContainsIsFalse": Interval[1, 5] contains 6""", () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
         high: LiteralInteger(5),
@@ -25,10 +25,10 @@ void containsTest() {
       final contains = Contains(
         operand: [interval, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(false));
     });
-    test("""define "ContainsIsNull": Interval[1, 5] contains null""", () {
+    test("""define "ContainsIsNull": Interval[1, 5] contains null""", () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
         high: LiteralInteger(5),
@@ -37,10 +37,10 @@ void containsTest() {
       final contains = Contains(
         operand: [interval, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, null);
     });
-    test("""define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5""", () {
+    test("""define "ContainsIsTrue": { 1, 3, 5, 7 } contains 5""", () async {
       final list = ListExpression(
         element: [
           LiteralInteger(1),
@@ -53,10 +53,10 @@ void containsTest() {
       final contains = Contains(
         operand: [list, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(true));
     });
-    test("""define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4""", () {
+    test("""define "ContainsIsFalse": { 1, 3, 5, 7 } contains 4""", () async {
       final list = ListExpression(
         element: [
           LiteralInteger(1),
@@ -69,19 +69,19 @@ void containsTest() {
       final contains = Contains(
         operand: [list, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(false));
     });
-    test("""define "ContainsIsAlsoFalse": null contains 4""", () {
+    test("""define "ContainsIsAlsoFalse": null contains 4""", () async {
       final list = LiteralNull();
       final value = LiteralInteger(4);
       final contains = Contains(
         operand: [list, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(false));
     });
-    test("""define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null""", () {
+    test("""define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null""", () async {
       final list = ListExpression(
         element: [
           LiteralInteger(1),
@@ -94,7 +94,7 @@ void containsTest() {
       final contains = Contains(
         operand: [list, value],
       );
-      final result = contains.execute({});
+      final result = await contains.execute({});
       expect(result, FhirBoolean(false));
     });
   });

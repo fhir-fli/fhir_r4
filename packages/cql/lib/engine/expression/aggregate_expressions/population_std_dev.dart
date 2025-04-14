@@ -107,8 +107,8 @@ class PopulationStdDev extends AggregateExpression {
   String get type => 'PopulationStdDev';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return populationStdDev(sourceResult);
   }
 
@@ -119,7 +119,7 @@ class PopulationStdDev extends AggregateExpression {
     }
 
     if (popVarianceResult is FhirDecimal) {
-      double stdDevValue = math.sqrt(popVarianceResult.value!);
+      double stdDevValue = math.sqrt(popVarianceResult.valueNum!);
       return FhirDecimal(stdDevValue);
     } else if (popVarianceResult is ValidatedQuantity) {
       final String varianceString = popVarianceResult.value.asUcumDecimal();

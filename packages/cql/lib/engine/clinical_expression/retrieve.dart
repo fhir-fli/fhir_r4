@@ -368,7 +368,7 @@ class Retrieve extends CqlExpression {
   }
 
   @override
-  List<Map<String, dynamic>> execute(Map<String, dynamic> context) {
+  Future<List<Map<String, dynamic>>> execute(Map<String, dynamic> context) async {
     // Step 1: Build Query
     Map<String, dynamic> query = <String, dynamic>{};
 
@@ -377,14 +377,14 @@ class Retrieve extends CqlExpression {
 
     // Add code filter to query
     if (codes != null) {
-      query['codes'] = codes!.execute(context);
+      query['codes'] = await codes!.execute(context);
     } else if (codeFilter != null) {
       query['codeFilter'] = codeFilter!.map((e) => e.toJson()).toList();
     }
 
     // Add date filter to query
     if (dateRange != null) {
-      query['dateRange'] = dateRange!.execute(context);
+      query['dateRange'] =await dateRange!.execute(context);
     } else if (dateFilter != null) {
       query['dateFilter'] = dateFilter!.map((e) => e.toJson()).toList();
     }
@@ -396,7 +396,7 @@ class Retrieve extends CqlExpression {
 
     // Add context to query
     if (this.context != null) {
-      query['context'] = this.context!.execute(context);
+      query['context'] = await this.context!.execute(context);
     }
 
     // Add includes to query

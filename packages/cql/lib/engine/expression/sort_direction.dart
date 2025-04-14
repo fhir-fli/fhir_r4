@@ -13,8 +13,6 @@ extension SortDirectionExtension on SortDirection {
         return 'desc';
       case SortDirection.descending:
         return 'descending';
-      default:
-        throw Exception("Unsupported SortDirection value");
     }
   }
 

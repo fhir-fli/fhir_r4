@@ -12,12 +12,12 @@ class CqlTuple implements CqlType {
 
   @override
   bool equivalent(Object other) => other is CqlTuple
-      ? Equivalent.equivalent(this, other).value ?? false
+      ? Equivalent.equivalent(this, other).valueBoolean ?? false
       : false;
 
   @override
   bool? equal(Object other) =>
-      other is CqlTuple ? Equal.equal(this, other)?.value : null;
+      other is CqlTuple ? Equal.equal(this, other)?.valueBoolean : null;
 
   @override
   String toString() {

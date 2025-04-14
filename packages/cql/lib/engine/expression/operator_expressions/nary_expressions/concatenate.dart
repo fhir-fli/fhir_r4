@@ -161,12 +161,12 @@ class Concatenate extends NaryExpression {
 
 // Assuming you want to integrate this into your existing method with a 'plus' flag
   @override
-  String? execute(Map<String, dynamic> context) {
+  Future<String?> execute(Map<String, dynamic> context) async {
     if (operand == null || operand!.length != 2) {
       throw ArgumentError('Concatenate operator requires exactly 2 operands');
     } else {
-      final left = operand!.first.execute(context);
-      final right = operand!.last.execute(context);
+      final left = await operand!.first.execute(context);
+      final right = await operand!.last.execute(context);
       // Use the plus flag to decide which function to use
       return plus ? concatenatePlus(left, right) : concatenateAnd(left, right);
     }

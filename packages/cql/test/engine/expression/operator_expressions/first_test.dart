@@ -4,19 +4,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void firstTest() {
   group('first', () {
-    test('define "First1": First({ 1, 2, 5 }) // 1', () {
+    test('define "First1": First({ 1, 2, 5 }) // 1', () async {
       final list = ListExpression(element: [
         LiteralInteger(1),
         LiteralInteger(2),
         LiteralInteger(5),
       ]);
       final first = First(source: list);
-      final result = first.execute({});
+      final result = await first.execute({});
       expect(result, equals(FhirInteger(1)));
     });
-    test('define "FirstIsNull": First(null)', () {
+    test('define "FirstIsNull": First(null)', () async {
       final first = First(source: LiteralNull());
-      final result = first.execute({});
+      final result = await first.execute({});
       expect(result, isNull);
     });
   });

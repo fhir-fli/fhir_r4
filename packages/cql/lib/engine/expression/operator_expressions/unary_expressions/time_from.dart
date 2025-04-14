@@ -99,8 +99,8 @@ class TimeFrom extends UnaryExpression {
   }
 
   @override
-  FhirTime? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirTime?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     if (operandValue is FhirDateTime) {
       return FhirTime.fromUnits(
         hour: operandValue.hour,

@@ -83,8 +83,8 @@ class PopulationVariance extends AggregateExpression {
   String get type => 'PopulationVariance';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return populationVariance(sourceResult);
   }
 
@@ -102,13 +102,13 @@ class PopulationVariance extends AggregateExpression {
     if (mean is FhirDecimal) {
       FhirDecimal sumOfSquaredDiffs = FhirDecimal(0.0);
       for (final val in sourceResult as List<dynamic>) {
-        var diff = FhirDecimal(val.value! - mean.value!);
-        var squaredDiff = FhirDecimal(diff.value! * diff.value!);
+        var diff = FhirDecimal(val.valueNum! - mean.valueNum!);
+        var squaredDiff = FhirDecimal(diff.valueNum! * diff.valueNum!);
         sumOfSquaredDiffs =
-            FhirDecimal(sumOfSquaredDiffs.value! + squaredDiff.value!);
+            FhirDecimal(sumOfSquaredDiffs.valueNum! + squaredDiff.valueNum!);
       }
       var variance =
-          sumOfSquaredDiffs.value! / sourceResult.length; // N instead of N-1
+          sumOfSquaredDiffs.valueNum! / sourceResult.length; // N instead of N-1
       return FhirDecimal(variance);
     } else if (mean is ValidatedQuantity) {
       UcumDecimal? sumOfSquaredValues;

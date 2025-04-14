@@ -106,8 +106,8 @@ class Sum extends AggregateExpression {
   String get type => 'Sum';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return sum(sourceResult);
   }
 

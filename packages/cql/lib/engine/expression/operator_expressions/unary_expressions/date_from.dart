@@ -98,8 +98,8 @@ class DateFrom extends UnaryExpression {
   }
 
   @override
-  FhirDate? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirDate?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     if (operandValue is FhirDateTimeBase && operandValue.year != null) {
       return FhirDate.fromUnits(
         year: operandValue.year!,

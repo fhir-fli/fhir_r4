@@ -68,7 +68,7 @@ class TimeOfDay extends OperatorExpression {
   String get type => 'TimeOfDay';
 
   @override
-  FhirTime execute(Map<String, dynamic> context) {
+  Future<FhirTime> execute(Map<String, dynamic> context) async {
     final startTimestamp = context['startTimestamp'] as FhirDateTime;
     return FhirTime(startTimestamp.toIso8601String()!.substring(11, 23));
   }

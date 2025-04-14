@@ -1,4 +1,4 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import '../../cql.dart';
 
@@ -90,24 +90,14 @@ class Property extends CqlExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source?.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source?.execute(context);
     try {
       final sourceJson = sourceResult.toJson();
-      final result = walkFhirPath(context: sourceJson, pathExpression: path);
+      final result =
+          await walkFhirPath(context: sourceJson, pathExpression: path);
       if (result.length == 1) {
-        switch (result.first) {
-          case int _:
-            return FhirInteger(result.first);
-          case BigInt _:
-            return FhirInteger64(result.first);
-          case double _:
-            return FhirDecimal(result.first);
-          case DateTime _:
-            return FhirDateTime.fromDateTime(result.first);
-          default:
-            return result.first;
-        }
+        return result.first;
       } else {
         return result;
       }

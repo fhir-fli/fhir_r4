@@ -100,8 +100,8 @@ class Avg extends AggregateExpression {
   String get type => 'Avg';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return avg(sourceResult);
   }
 
@@ -118,15 +118,15 @@ class Avg extends AggregateExpression {
         return null;
       }
       if (sourceResult.every((element) => element is FhirNumber)) {
-        sourceResult = sourceResult.map((e) => FhirDecimal(e.value!)).toList();
+        sourceResult = sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
         final sum = sourceResult.fold(FhirDecimal(0),
             (FhirDecimal previousValue, dynamic element) {
           return FhirDecimal(
-              previousValue.value! + (element as FhirDecimal).value!);
+              previousValue.valueNum! + (element as FhirDecimal).valueNum!);
         });
-        return sum.value == null
+        return sum.valueNum == null
             ? null
-            : FhirDecimal(sum.value! / sourceResult.length);
+            : FhirDecimal(sum.valueNum! / sourceResult.length);
       } else if (sourceResult
           .every((element) => element is ValidatedQuantity)) {
         ValidatedQuantity? sum;

@@ -100,17 +100,17 @@ class ToLong extends UnaryExpression {
   }
 
   @override
-  FhirInteger64? execute(Map<String, dynamic> context) {
-    final result = operand.execute(context);
+  Future<FhirInteger64?> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
     switch (result) {
       case null:
         return null;
       case FhirBoolean _:
         {
-          if (result.value == null) {
+          if (result.valueBoolean == null) {
             return null;
           } else {
-            return result.value!
+            return result.valueBoolean!
                 ? FhirInteger64.fromNum(1)
                 : FhirInteger64.fromNum(0);
           }
@@ -126,9 +126,9 @@ class ToLong extends UnaryExpression {
         }
       case FhirInteger _:
         {
-          return result.value == null
+          return result.valueInt == null
               ? null
-              : FhirInteger64.fromNum(result.value!);
+              : FhirInteger64.fromNum(result.valueInt!);
         }
       case FhirInteger64 _:
         {

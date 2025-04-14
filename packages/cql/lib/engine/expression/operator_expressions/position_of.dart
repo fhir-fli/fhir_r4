@@ -91,9 +91,9 @@ class PositionOf extends OperatorExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['FhirInteger'];
 
   @override
-  FhirInteger? execute(Map<String, dynamic> context) {
-    final patternValue = pattern.execute(context);
-    final stringValue = string.execute(context);
+  Future<FhirInteger?> execute(Map<String, dynamic> context) async {
+    final patternValue = await pattern.execute(context);
+    final stringValue = await string.execute(context);
     if (patternValue == null || stringValue == null) {
       return null;
     }

@@ -92,8 +92,8 @@ class Distinct extends UnaryExpression {
   }
 
   @override
-  List<dynamic>? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<List<dynamic>?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     return distinct(operandValue);
   }
 

@@ -104,8 +104,8 @@ class AllTrue extends AggregateExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return allTrue(sourceResult);
   }
 
@@ -114,8 +114,9 @@ class AllTrue extends AggregateExpression {
       return FhirBoolean(true);
     } else if (sourceResult is List) {
       for (final element in sourceResult) {
+        print('Element: $element');
         if (element != null &&
-            ((element is FhirBoolean && !(element.value ?? true)) ||
+            ((element is FhirBoolean && !(element.valueBoolean ?? true)) ||
                 (element is bool && !element))) {
           return FhirBoolean(false);
         }

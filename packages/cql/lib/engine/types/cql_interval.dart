@@ -24,7 +24,7 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
             "Invalid Interval - the ending boundary must be greater than or equal to the starting boundary.");
       }
     } else if (low != null && high != null) {
-      bool? isStartGreater = Greater.greater(getStart(), getEnd())?.value;
+      bool? isStartGreater = Greater.greater(getStart(), getEnd())?.valueBoolean;
       if (isStartGreater == true) {
         throw Exception(
             "Invalid Interval - the ending boundary must be greater than or equal to the starting boundary.");
@@ -103,18 +103,18 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
       ? false
       : value is CqlInterval
           ? (GreaterOrEqual.greaterOrEqual(value.getStart(), getStart())
-                      ?.value ??
+                      ?.valueBoolean ??
                   false) &&
-              (LessOrEqual.lessOrEqual(value.getEnd(), getEnd())?.value ??
+              (LessOrEqual.lessOrEqual(value.getEnd(), getEnd())?.valueBoolean ??
                   false)
-          : (GreaterOrEqual.greaterOrEqual(value, getStart())?.value ??
+          : (GreaterOrEqual.greaterOrEqual(value, getStart())?.valueBoolean ??
                   false) &&
-              (LessOrEqual.lessOrEqual(value, getEnd())?.value ?? false);
+              (LessOrEqual.lessOrEqual(value, getEnd())?.valueBoolean ?? false);
 
   @override
   bool equivalent(Object other) => other is CqlInterval
-      ? (Equivalent.equivalent(getStart(), other.getStart()).value ?? false) &&
-          (Equivalent.equivalent(getEnd(), other.getEnd()).value ?? false)
+      ? (Equivalent.equivalent(getStart(), other.getStart()).valueBoolean ?? false) &&
+          (Equivalent.equivalent(getEnd(), other.getEnd()).valueBoolean ?? false)
       : false;
 
   @override
@@ -128,7 +128,7 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
 
       return And.and(Equal.equal(getStart(), other.getStart()),
               Equal.equal(getEnd(), other.getEnd()))
-          ?.value;
+          ?.valueBoolean;
     }
 
     if (other is int) {
@@ -162,20 +162,20 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
     }
 
     // Determine if intervals overlap
-    bool overlaps = Overlaps.overlaps(this, right)?.value ?? false;
+    bool overlaps = Overlaps.overlaps(this, right)?.valueBoolean ?? false;
     if (!overlaps) {
       return null;
     }
 
     // Find the maximum start point and minimum end point for the intersection
-    var maxStart = (Greater.greater(leftStart, rightStart)?.value ?? false)
+    var maxStart = (Greater.greater(leftStart, rightStart)?.valueBoolean ?? false)
         ? leftStart
         : rightStart;
     var minEnd =
-        (Less.less(leftEnd, rightEnd)?.value ?? false) ? leftEnd : rightEnd;
+        (Less.less(leftEnd, rightEnd)?.valueBoolean ?? false) ? leftEnd : rightEnd;
 
     // Ensure the intersection is valid (start is before end)
-    if (!(Greater.greater(minEnd, maxStart)?.value ?? false)) {
+    if (!(Greater.greater(minEnd, maxStart)?.valueBoolean ?? false)) {
       return null;
     }
 
@@ -200,7 +200,7 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
     }
 
     // Determine if intervals overlap
-    bool overlaps = Overlaps.overlaps(this, right)?.value ?? false;
+    bool overlaps = Overlaps.overlaps(this, right)?.valueBoolean ?? false;
     if (!overlaps) {
       return this;
     }
@@ -211,16 +211,16 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
 
     dynamic start;
     dynamic end;
-    if ((Less.less(leftStart, rightStart)?.value ?? false)) {
+    if ((Less.less(leftStart, rightStart)?.valueBoolean ?? false)) {
       start = leftStart;
       end = Predecessor.predecessor(rightStart);
-    } else if (Greater.greater(leftEnd, rightEnd)?.value ?? false) {
+    } else if (Greater.greater(leftEnd, rightEnd)?.valueBoolean ?? false) {
       start = Successor.successor(rightEnd);
       end = leftEnd;
     }
 
     // Ensure the intersection is valid (start is before end)
-    if (!(Greater.greater(end, start)?.value ?? false)) {
+    if (!(Greater.greater(end, start)?.valueBoolean ?? false)) {
       return null;
     }
 

@@ -80,8 +80,8 @@ class Length extends UnaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['FhirInteger'];
 
   @override
-  FhirInteger? execute(Map<String, dynamic> context) {
-    final operand = this.operand.execute(context);
+  Future<FhirInteger?> execute(Map<String, dynamic> context) async {
+    final operand = await this.operand.execute(context);
     if (operand == null) {
       return null;
     }

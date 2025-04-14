@@ -106,17 +106,17 @@ class Round extends OperatorExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirDecimal'];
 
   @override
-  FhirDecimal? execute(Map<String, dynamic> context) {
-    final value = operand.execute(context);
+  Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
     if (value == null) {
       return null;
     } else if (value is FhirDecimal) {
-      final precisionValue = precision?.execute(context);
+      final precisionValue = await precision?.execute(context);
       if (precisionValue == null) {
-        return FhirDecimal(value.value!.round());
+        return FhirDecimal(value.valueNum!.round());
       } else if (precisionValue is FhirInteger) {
-        num mod = pow(10.0, precisionValue.value!.toDouble());
-        return FhirDecimal((value.value! * mod).round().toDouble() / mod);
+        num mod = pow(10.0, precisionValue.valueNum!.toDouble());
+        return FhirDecimal((value.valueNum! * mod).round().toDouble() / mod);
       } else {
         return null;
       }

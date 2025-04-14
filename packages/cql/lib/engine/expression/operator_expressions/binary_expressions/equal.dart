@@ -146,12 +146,12 @@ class Equal extends BinaryExpression {
   String get type => 'Equal';
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('Equal expression must have 2 operands');
     } else {
-      final left = operand[0].execute(context);
-      final right = operand[1].execute(context);
+      final left = await operand[0].execute(context);
+      final right = await operand[1].execute(context);
       final result = equal(left, right);
       return result;
     }
@@ -188,9 +188,9 @@ class Equal extends BinaryExpression {
           } else if (right is BigInt) {
             result = left.toDouble() == right.toDouble();
           } else if (right is FhirNumber) {
-            result = left == right.value;
+            result = left == right.valueNum;
           } else if (right is FhirInteger64) {
-            result = BigInt.from(left) == right.value;
+            result = BigInt.from(left) == right.valueBigInt;
           } else {
             result = false;
           }
@@ -203,9 +203,9 @@ class Equal extends BinaryExpression {
           } else if (right is BigInt) {
             result = left == right;
           } else if (right is FhirNumber) {
-            result = left == BigInt.from(right.value!);
+            result = left == BigInt.from(right.valueNum!);
           } else if (right is FhirInteger64) {
-            result = left == right.value;
+            result = left == right.valueBigInt;
           } else {
             result = false;
           }
@@ -214,13 +214,13 @@ class Equal extends BinaryExpression {
       case FhirNumber _:
         {
           if (right is num) {
-            result = left.value == right;
+            result = left.valueNum == right;
           } else if (right is BigInt) {
-            result = left.value == right.toDouble();
+            result = left.valueNum == right.toDouble();
           } else if (right is FhirNumber) {
             result = left == right;
           } else if (right is FhirInteger64) {
-            result = left.value == right.value?.toDouble();
+            result = left.valueString == right.valueString;
           } else {
             result = false;
           }
@@ -229,11 +229,11 @@ class Equal extends BinaryExpression {
       case FhirInteger64 _:
         {
           if (right is num) {
-            result = left.value == BigInt.from(right);
+            result = left.valueBigInt == BigInt.from(right);
           } else if (right is BigInt) {
-            result = left.value == right;
+            result = left.valueBigInt == right;
           } else if (right is FhirNumber) {
-            result = left.value == BigInt.from(right.value!);
+            result = left.valueString == right.valueString;
           } else if (right is FhirInteger64) {
             result = left == right;
           } else {
@@ -251,7 +251,7 @@ class Equal extends BinaryExpression {
         if (right is List && left.length == right.length) {
           result = true;
           for (int i = 0; i < left.length; i++) {
-            final tempResult = equal(left[i], right[i])?.value;
+            final tempResult = equal(left[i], right[i])?.valueBoolean;
             if (tempResult == false || tempResult == null) {
               result = tempResult;
               break;
@@ -274,7 +274,8 @@ class Equal extends BinaryExpression {
               for (var key in left.elements!.keys) {
                 // Check for key presence and value equality.
                 final tempResult = right.elements!.containsKey(key)
-                    ? equal(left.elements![key], right.elements![key])?.value
+                    ? equal(left.elements![key], right.elements![key])
+                        ?.valueBoolean
                     : false;
 
                 // If a mismatch is found, or comparison is indeterminate,
@@ -301,7 +302,7 @@ class Equal extends BinaryExpression {
             for (var key in left.keys) {
               // Check for key presence and value equality.
               final tempResult = right.containsKey(key)
-                  ? equal(left[key], right[key])?.value
+                  ? equal(left[key], right[key])?.valueBoolean
                   : false;
 
               // If a mismatch is found, or comparison is indeterminate,

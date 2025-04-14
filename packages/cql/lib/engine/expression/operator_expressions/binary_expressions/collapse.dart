@@ -127,12 +127,12 @@ class Collapse extends BinaryExpression {
       const ['List<CqlInterval>'];
 
   @override
-  List<CqlInterval>? execute(Map<String, dynamic> context) {
+  Future<List<CqlInterval>?> execute(Map<String, dynamic> context) async {
     if (operand.isEmpty) {
       return [];
     }
 
-    final source = operand[0].execute(context);
+    final source = await operand[0].execute(context);
     final per = operand.length > 1 ? operand[1].execute(context) : null;
     return collapse(source, per);
   }
@@ -163,15 +163,15 @@ class Collapse extends BinaryExpression {
 
         // Check if current and next source overlap or meet
         final overlaps =
-            Overlaps.overlaps(currentInterval, nextInterval)?.value ?? false;
+            Overlaps.overlaps(currentInterval, nextInterval)?.valueBoolean ?? false;
         final meets =
-            Meets.meets(currentInterval, nextInterval)?.value ?? false;
+            Meets.meets(currentInterval, nextInterval)?.valueBoolean ?? false;
 
         if (overlaps || meets) {
           // Merge the source
           final newEnd =
               (Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
-                          ?.value ??
+                          ?.valueBoolean ??
                       false)
                   ? currentInterval?.getEnd()
                   : nextInterval.getEnd();

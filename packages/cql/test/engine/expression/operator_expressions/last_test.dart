@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void lastTest() {
   group('last', () {
-    test('define "Last5": Last({ 1, 3, 5 }) // 5', () {
+    test('define "Last5": Last({ 1, 3, 5 }) // 5', () async {
       final ListExpression source = ListExpression(
         element: [
           LiteralInteger(1),
@@ -13,12 +13,12 @@ void lastTest() {
         ],
       );
       final Last last = Last(source: source);
-      final result = last.execute({});
+      final result = await last.execute({});
       expect(result, equals(FhirInteger(5)));
     });
-    test('define "LastIsNull": Last(null)', () {
+    test('define "LastIsNull": Last(null)', () async {
       final Last last = Last(source: LiteralNull());
-      final result = last.execute({});
+      final result = await last.execute({});
       expect(result, isNull);
     });
   });

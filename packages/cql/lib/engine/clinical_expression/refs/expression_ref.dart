@@ -60,7 +60,7 @@ class ExpressionRef extends Ref {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     return context[name];
   }
 

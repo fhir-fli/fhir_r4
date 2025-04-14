@@ -116,8 +116,8 @@ class Predecessor extends UnaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final value = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
     return predecessor(value);
   }
 
@@ -125,11 +125,11 @@ class Predecessor extends UnaryExpression {
     if (value == null) {
       return null;
     } else if (value is FhirInteger) {
-      return FhirInteger.tryParse(value.value! - 1);
+      return FhirInteger.tryParse(value.valueNum! - 1);
     } else if (value is FhirInteger64) {
-      return FhirInteger64(value.value! - BigInt.from(1));
+      return FhirInteger64(value.valueBigInt! - BigInt.from(1));
     } else if (value is FhirDecimal) {
-      return FhirDecimal(value.value! - 0.00000001);
+      return FhirDecimal(value.valueNum! - 0.00000001);
     } else if (value is FhirDateTimeBase) {
       if (value.yearsPrecision) {
         return value - ExtendedDuration(years: 1);

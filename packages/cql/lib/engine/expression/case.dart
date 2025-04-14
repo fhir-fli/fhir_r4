@@ -114,27 +114,32 @@ class Case extends CqlExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (comparand == null) {
-      final index = caseItem.indexWhere((element) {
-        final whenResult = element.when_.execute(context);
-        if (whenResult is FhirBoolean) {
-          return whenResult.value!;
-        } else {
-          return false;
+      int index = -1;
+      for (int i = 0; i < caseItem.length; i++) {
+        final result = await caseItem[i].when_.execute(context);
+        if (result is FhirBoolean && (result.valueBoolean ?? false)) {
+          index = i;
+          break;
         }
-      });
+      }
       if (index != -1) {
         return caseItem[index].then.execute(context);
       } else {
         return elseExpr.execute(context);
       }
     } else {
-      final comparandResult = comparand!.execute(context);
-      final index = caseItem.indexWhere((element) {
-        final whenResult = element.when_.execute(context);
-        return Equal.equal(comparandResult, whenResult)?.value ?? false;
-      });
+      final comparandResult = await comparand!.execute(context);
+      int index = -1;
+      for (int i = 0; i < caseItem.length; i++) {
+        final whenResult = await caseItem[i].when_.execute(context);
+        if (Equal.equal(comparandResult, whenResult)?.valueBoolean ?? false) {
+          index = i;
+          break;
+        }
+      }
+
       if (index != -1) {
         return caseItem[index].then.execute(context);
       } else {

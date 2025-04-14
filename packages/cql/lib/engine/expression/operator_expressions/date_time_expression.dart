@@ -162,15 +162,15 @@ class DateTimeExpression extends OperatorExpression {
   String get type => 'DateTime';
 
   @override
-  FhirDateTime execute(Map<String, dynamic> context) {
-    final yearValue = year.execute(context);
-    final monthValue = month?.execute(context);
-    final dayValue = day?.execute(context);
-    final hourValue = hour?.execute(context);
-    final minuteValue = minute?.execute(context);
-    final secondValue = second?.execute(context);
-    final millisecondValue = millisecond?.execute(context);
-    final timezoneOffsetValue = timezoneOffset?.execute(context);
+  Future<FhirDateTime> execute(Map<String, dynamic> context) async {
+    final yearValue = await year.execute(context);
+    final monthValue = await month?.execute(context);
+    final dayValue = await day?.execute(context);
+    final hourValue = await hour?.execute(context);
+    final minuteValue = await minute?.execute(context);
+    final secondValue = await second?.execute(context);
+    final millisecondValue = await millisecond?.execute(context);
+    final timezoneOffsetValue = await timezoneOffset?.execute(context);
 
     return FhirDateTime.fromUnits(
         year: yearValue?.value,

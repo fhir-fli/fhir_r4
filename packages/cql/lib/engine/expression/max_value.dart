@@ -133,7 +133,7 @@ class MaxValue extends CqlExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) =>
+  Future<dynamic> execute(Map<String, dynamic> context) async =>
       maxValue(valueType.localPart);
 
   static dynamic maxValue(String type) {

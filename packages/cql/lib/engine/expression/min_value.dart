@@ -132,7 +132,7 @@ class MinValue extends CqlExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     return minValue(valueType.localPart);
   }
 

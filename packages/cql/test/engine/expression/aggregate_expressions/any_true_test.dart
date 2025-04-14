@@ -4,39 +4,39 @@ import 'package:flutter_test/flutter_test.dart';
 
 void anyTrue() {
   group('anyTrue', () {
-    test('define "AnyTrueIsTrue": AnyTrue({ true, false, null })', () {
+    test('define "AnyTrueIsTrue": AnyTrue({ true, false, null })', () async {
       final list = ListExpression(element: [
         LiteralBoolean(true),
         LiteralBoolean(false),
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result = anyTrue.execute({});
+      final result =await  anyTrue.execute({});
       expect(result, FhirBoolean(true));
     });
-    test('define "AnyTrueIsFalse": AnyTrue({ false, false, null })', () {
+    test('define "AnyTrueIsFalse": AnyTrue({ false, false, null })', () async {
       final list = ListExpression(element: [
         LiteralBoolean(false),
         LiteralBoolean(false),
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result = anyTrue.execute({});
+      final result =await  anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
-    test('define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })', () {
+    test('define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })', () async {
       final list = ListExpression(element: [
         LiteralNull(),
         LiteralNull(),
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result = anyTrue.execute({});
+      final result =await  anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
-    test('define "AnyTrueIsFalseWhenNull": AnyTrue(null)', () {
+    test('define "AnyTrueIsFalseWhenNull": AnyTrue(null)', () async {
       final anyTrue = AnyTrue(source: LiteralNull());
-      final result = anyTrue.execute({});
+      final result =await  anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
   });

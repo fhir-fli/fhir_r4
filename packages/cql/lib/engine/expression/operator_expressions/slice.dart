@@ -76,10 +76,10 @@ class Slice extends OperatorExpression {
   String get type => 'Slice';
 
   @override
-  List<dynamic>? execute(Map<String, dynamic> context) {
-    final start = startIndex.execute(context);
-    final end = endIndex.execute(context);
-    final src = source.execute(context);
+  Future<List<dynamic>?> execute(Map<String, dynamic> context) async {
+    final start = await startIndex.execute(context);
+    final end = await endIndex.execute(context);
+    final src = await source.execute(context);
     return slice(src, start, end);
   }
 
@@ -91,15 +91,15 @@ class Slice extends OperatorExpression {
     } else if (start == null) {
       return [];
     } else if ((start is num && start < 0) ||
-        (start is FhirNumber && (start.value ?? 0) < 0) ||
-        (start is FhirInteger64 && (start.value?.toInt() ?? 0) < 0) ||
+        (start is FhirNumber && (start.valueNum ?? 0) < 0) ||
+        (start is FhirInteger64 && (start.valueBigInt?.toInt() ?? 0) < 0) ||
         (start is BigInt && start.toInt() < 0)) {
       return [];
     } else {
       final startIndex = start is int
           ? start
-          : start is FhirNumber && start.value is int
-              ? start.value! as int
+          : start is FhirNumber && start.valueNum is int
+              ? start.valueNum! as int
               : null;
       if (startIndex == null) {
         throw ArgumentError(
@@ -107,8 +107,8 @@ class Slice extends OperatorExpression {
       }
       final endIndex = end is int
           ? end
-          : end is FhirNumber && end.value is int
-              ? end.value! as int
+          : end is FhirNumber && end.valueNum is int
+              ? end.valueNum! as int
               : null;
       return src.sublist(startIndex, endIndex);
     }

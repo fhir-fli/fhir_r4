@@ -102,8 +102,8 @@ class Variance extends AggregateExpression {
   String get type => 'Variance';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return variance(sourceResult);
   }
 
@@ -122,12 +122,14 @@ class Variance extends AggregateExpression {
     if (mean is FhirDecimal) {
       FhirDecimal sumOfSquaredDiffs = FhirDecimal(0.0);
       for (final val in sourceResult as List<dynamic>) {
-        var diff = FhirDecimal(val.value! - mean.value!);
-        var squaredDiff = FhirDecimal(diff.value! * diff.value!);
-        sumOfSquaredDiffs =
-            FhirDecimal(sumOfSquaredDiffs.value! + squaredDiff.value!);
+        if (val is FhirNumber) {
+          var diff = FhirDecimal(val.valueNum! - mean.valueNum!);
+          var squaredDiff = FhirDecimal(diff.valueNum! * diff.valueNum!);
+          sumOfSquaredDiffs =
+              FhirDecimal(sumOfSquaredDiffs.valueNum! + squaredDiff.valueNum!);
+        }
       }
-      var variance = sumOfSquaredDiffs.value! / sourceResult.length;
+      var variance = sumOfSquaredDiffs.valueNum! / sourceResult.length;
       return FhirDecimal(variance);
     }
 

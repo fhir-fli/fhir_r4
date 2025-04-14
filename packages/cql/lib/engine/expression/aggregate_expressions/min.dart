@@ -113,8 +113,8 @@ class Min extends AggregateExpression {
   String get type => 'Min';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return min(sourceResult);
   }
 
@@ -140,37 +140,37 @@ class Min extends AggregateExpression {
           return value < element ? value : element;
         }
         if (value is FhirInteger) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is double) {
           return value < element ? value : element;
         }
         if (value is FhirDecimal) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is BigInt) {
           return value < element ? value : element;
         }
         if (value is FhirInteger64) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is DateTime) {
           return value.isBefore(element) ? value : element;
         }
         if (value is FhirDateTime) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is FhirDate) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is FhirTime) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         if (value is String) {
           return value.compareTo(element) < 0 ? value : element;
         }
         if (value is ValidatedQuantity) {
-          return (Less.less(value, element)?.value ?? true) ? value : element;
+          return (Less.less(value, element)?.valueBoolean ?? true) ? value : element;
         }
         throw ArgumentError('Invalid type for Min: ${value.runtimeType}');
       });

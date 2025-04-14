@@ -46,7 +46,7 @@ class CodeRef extends Ref {
   }
 
   @override
-  CqlCode? execute(Map<String, dynamic> context) {
+  Future<CqlCode?> execute(Map<String, dynamic> context) async {
     // Retrieve the CqlLibrary from the context
     var library = context['library'];
     if (library == null || library is! CqlLibrary) {

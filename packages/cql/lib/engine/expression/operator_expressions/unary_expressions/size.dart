@@ -90,8 +90,8 @@ class Size extends UnaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final interval = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final interval = await operand.execute(context);
     if (interval == null) {
       return null;
     } else if (interval is CqlInterval) {

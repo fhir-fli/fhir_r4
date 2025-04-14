@@ -98,11 +98,11 @@ class IfThenElse extends CqlExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final conditionResult = condition.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final conditionResult = await condition.execute(context);
     if (conditionResult is FhirBoolean || conditionResult == null) {
       if (conditionResult == null ||
-          !((conditionResult as FhirBoolean).value ?? false)) {
+          !((conditionResult as FhirBoolean).valueBoolean ?? false)) {
         return elseExpr.execute(context);
       } else {
         return then.execute(context);

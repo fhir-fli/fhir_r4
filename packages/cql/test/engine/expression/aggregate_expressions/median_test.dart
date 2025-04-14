@@ -5,7 +5,7 @@ import 'package:ucum/ucum.dart';
 
 void medianTest() {
   group('median', () {
-    test('define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0', () {
+    test('define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0', () async {
       final list = ListExpression(
         element: [
           LiteralDecimal(2.0),
@@ -15,12 +15,12 @@ void medianTest() {
         ],
       );
       final median = Median(source: list);
-      final result = median.execute({});
+      final result = await median.execute({});
       expect(result, equals(FhirDecimal(5.0)));
     });
     test(
         """define "QuantityMedian": Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'""",
-        () {
+        () async{
       final list = ListExpression(
         element: [
           LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
@@ -29,7 +29,7 @@ void medianTest() {
         ],
       );
       final median = Median(source: list);
-      final result = median.execute({});
+      final result =await  median.execute({});
       expect(
           result,
           equals(
@@ -37,7 +37,7 @@ void medianTest() {
     });
     test(
         'define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quantity })',
-        () {
+        () async{
       final list = ListExpression(
         element: [
           LiteralNull(),
@@ -46,12 +46,12 @@ void medianTest() {
         ],
       );
       final median = Median(source: list);
-      final result = median.execute({});
+      final result =await  median.execute({});
       expect(result, equals(null));
     });
-    test('define "MedianIsAlsoNull": Median(null as List<Decimal>)', () {
+    test('define "MedianIsAlsoNull": Median(null as List<Decimal>)', () async {
       final median = Median(source: LiteralNull());
-      final result = median.execute({});
+      final result =await  median.execute({});
       expect(result, equals(null));
     });
   });

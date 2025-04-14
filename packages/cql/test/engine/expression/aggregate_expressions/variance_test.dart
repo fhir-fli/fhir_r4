@@ -7,7 +7,7 @@ void varianceTest() {
   group('variance', () {
     test(
         'define "DecimalVariance": Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.0',
-        () {
+        () async {
       final list = ListExpression(
         element: [
           LiteralDecimal(1.0),
@@ -18,12 +18,12 @@ void varianceTest() {
         ],
       );
       final variance = Variance(source: list);
-      final result = variance.execute({});
+      final result = await variance.execute({});
       expect(result, equals(FhirDecimal(2.0)));
     });
     test(
         """define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'""",
-        () {
+        () async {
       final list = ListExpression(
         element: [
           LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
@@ -34,12 +34,12 @@ void varianceTest() {
         ],
       );
       final variance = Variance(source: list);
-      final result = variance.execute({});
+      final result =await  variance.execute({});
       expect(result, equals(ValidatedQuantity.fromNumber(2.0, unit: 'mg')));
     });
     test(
         'define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })',
-        () {
+        () async {
       final list = ListExpression(
         element: [
           LiteralNull(),
@@ -48,12 +48,12 @@ void varianceTest() {
         ],
       );
       final variance = Variance(source: list);
-      final result = variance.execute({});
+      final result =await  variance.execute({});
       expect(result, equals(null));
     });
-    test('define "VarianceIsAlsoNull": Variance(null as List<Decimal>)', () {
+    test('define "VarianceIsAlsoNull": Variance(null as List<Decimal>)', () async {
       final variance = Variance(source: LiteralNull());
-      final result = variance.execute({});
+      final result =await  variance.execute({});
       expect(result, equals(null));
     });
   });

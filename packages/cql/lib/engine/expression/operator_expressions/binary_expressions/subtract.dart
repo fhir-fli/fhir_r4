@@ -157,13 +157,13 @@ class Subtract extends BinaryExpression {
   String get type => 'Subtract';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw CqlException(
           message: "The Subtract expression must have 2 operands.");
     } else {
-      final left = operand[0].execute(context);
-      final right = operand[1].execute(context);
+      final left = await operand[0].execute(context);
+      final right = await operand[1].execute(context);
       return subtract(left, right);
     }
   }
@@ -176,38 +176,38 @@ class Subtract extends BinaryExpression {
     switch (left) {
       case FhirInteger _:
         return right is FhirInteger
-            ? FhirInteger.tryParse(left.value! - right.value!)
+            ? FhirInteger.tryParse(left.valueNum! - right.valueNum!)
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromNum(left.value!)
-                    .subtract(UcumDecimal.fromNum(right.value!))
+                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                    .subtract(UcumDecimal.fromString(right.valueString!))
                     .asUcumDecimal()))
                 : right is FhirInteger64
                     ? FhirInteger64.tryParse(
-                        (left.value as int) - right.value!.toInt())
+                        (left.valueInt as int) - right.valueBigInt!.toInt())
                     : null;
       case FhirInteger64 _:
         return right is FhirInteger64
-            ? FhirInteger64(left.value! - right.value!)
+            ? FhirInteger64(left.valueBigInt! - right.valueBigInt!)
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromBigInt(left.value!)
-                    .subtract(UcumDecimal.fromNum(right.value!))
+                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                    .subtract(UcumDecimal.fromString(right.valueString!))
                     .asUcumDecimal()))
                 : right is FhirInteger
                     ? FhirInteger64.tryParse(
-                        left.value!.toInt() - right.value!.toInt())
+                        left.valueBigInt!.toInt() - right.valueInt!)
                     : null;
       case FhirDecimal _:
         return right is FhirDecimal
-            ? FhirDecimal(double.parse(UcumDecimal.fromNum(left.value!)
-                .subtract(UcumDecimal.fromNum(right.value!))
+            ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                .subtract(UcumDecimal.fromString(right.valueString!))
                 .asUcumDecimal()))
             : right is FhirInteger
-                ? FhirDecimal(double.parse(UcumDecimal.fromNum(left.value!)
-                    .subtract(UcumDecimal.fromNum(right.value!))
+                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                    .subtract(UcumDecimal.fromString(right.valueString!))
                     .asUcumDecimal()))
                 : right is FhirInteger64
-                    ? FhirDecimal(double.parse(UcumDecimal.fromNum(left.value!)
-                        .subtract(UcumDecimal.fromBigInt(right.value!))
+                    ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                        .subtract(UcumDecimal.fromString(right.valueString!))
                         .asUcumDecimal()))
                     : null;
       case ValidatedQuantity _:

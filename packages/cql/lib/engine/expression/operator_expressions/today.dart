@@ -68,7 +68,7 @@ class Today extends OperatorExpression {
   String get type => 'Today';
 
   @override
-  FhirDate execute(Map<String, dynamic> context) {
+  Future<FhirDate> execute(Map<String, dynamic> context) async {
     final startTimestamp = context['startTimestamp'] as FhirDateTime;
     return FhirDate.fromString(
         startTimestamp.toIso8601String()!.substring(0, 10));

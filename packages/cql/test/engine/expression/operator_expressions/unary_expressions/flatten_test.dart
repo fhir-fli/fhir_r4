@@ -6,7 +6,7 @@ void flattenTest() {
   group('flatten', () {
     test(
         'define "Flatten": flatten { { 1, 2 }, { 3, 4, 5 } } // { 1, 2, 3, 4, 5 }',
-        () {
+        () async {
       final list1 = ListExpression(element: [
         LiteralInteger(1),
         LiteralInteger(2),
@@ -17,7 +17,7 @@ void flattenTest() {
         LiteralInteger(5),
       ]);
       final flatten = Flatten(operand: ListExpression(element: [list1, list2]));
-      final result = flatten.execute({});
+      final result = await flatten.execute({});
       expect(
           result,
           equals([
@@ -28,9 +28,9 @@ void flattenTest() {
             FhirInteger(5)
           ]));
     });
-    test('define "FlattenIsNull": flatten null', () {
+    test('define "FlattenIsNull": flatten null', () async {
       final flatten = Flatten(operand: LiteralNull());
-      final result = flatten.execute({});
+      final result = await flatten.execute({});
       expect(result, isNull);
     });
   });

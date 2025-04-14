@@ -8,7 +8,9 @@ import '../../../../cql.dart';
 /// xor (left Boolean, right Boolean) Boolean
 /// Description:
 ///
-/// The xor (exclusive or) operator returns true if one argument is true and the other is false. If both arguments are true or both arguments are false, the result is false. Otherwise, the result is null.
+/// The xor (exclusive or) operator returns true if one argument is true and
+/// the other is false. If both arguments are true or both arguments are false,
+/// the result is false. Otherwise, the result is null.
 ///
 /// The following table defines the truth table for this operator:
 ///
@@ -85,10 +87,10 @@ class Xor extends BinaryExpression {
   String get type => 'Xor';
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     /// Assuming operand is accessible and contains the operands
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
 
     /// If both operands are null
     if (left == null && right == null) {
@@ -97,20 +99,20 @@ class Xor extends BinaryExpression {
 
     /// If one operand is true and the other is false
     if ((left is FhirBoolean &&
-            left.value == true &&
+            left.valueBoolean == true &&
             right is FhirBoolean &&
-            right.value == false) ||
+            right.valueBoolean == false) ||
         (right is FhirBoolean &&
-            right.value == true &&
+            right.valueBoolean == true &&
             left is FhirBoolean &&
-            left.value == false)) {
+            left.valueBoolean == false)) {
       return FhirBoolean(true);
     } else
 
     /// If both operands are true or both are false
     if ((left is FhirBoolean &&
         right is FhirBoolean &&
-        left.value == right.value)) {
+        left.valueBoolean == right.valueBoolean)) {
       return FhirBoolean(false);
     }
 

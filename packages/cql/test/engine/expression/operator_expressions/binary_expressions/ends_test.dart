@@ -4,29 +4,29 @@ import 'package:flutter_test/flutter_test.dart';
 
 void endsTest() {
   group('ends', () {
-    test('define "EndsIsTrue": Interval[0, 5] ends Interval[-1, 5]', () {
+    test('define "EndsIsTrue": Interval[0, 5] ends Interval[-1, 5]', () async {
       final left = LiteralIntegerInterval(
           low: LiteralInteger(0), high: LiteralInteger(5));
       final right = LiteralIntegerInterval(
           low: LiteralInteger(-1), high: LiteralInteger(5));
       final ends = Ends(operand: [left, right]);
-      final result = ends.execute({});
+      final result = await ends.execute({});
       expect(result, equals(FhirBoolean(true)));
     });
-    test('define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]', () {
+    test('define "EndsIsFalse": Interval[-1, 7] ends Interval[0, 7]', () async {
       final left = LiteralIntegerInterval(
           low: LiteralInteger(-1), high: LiteralInteger(7));
       final right = LiteralIntegerInterval(
           low: LiteralInteger(0), high: LiteralInteger(7));
       final ends = Ends(operand: [left, right]);
-      final result = ends.execute({});
+      final result = await ends.execute({});
       expect(result, equals(FhirBoolean(false)));
     });
-    test('define "EndsIsNull": Interval[1, 5] ends null', () {
+    test('define "EndsIsNull": Interval[1, 5] ends null', () async {
       final left = LiteralIntegerInterval(
           low: LiteralInteger(1), high: LiteralInteger(5));
       final ends = Ends(operand: [left, LiteralNull()]);
-      final result = ends.execute({});
+      final result = await ends.execute({});
       expect(result, equals(null));
     });
   });

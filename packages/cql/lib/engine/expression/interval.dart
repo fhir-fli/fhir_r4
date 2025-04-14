@@ -119,9 +119,9 @@ class IntervalExpression extends CqlExpression {
   }
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) {
-    final low = this.low?.execute(context);
-    final high = this.high?.execute(context);
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async {
+    final low = await this.low?.execute(context);
+    final high = await this.high?.execute(context);
     return CqlInterval(
       low: low,
       lowClosed: lowClosed,

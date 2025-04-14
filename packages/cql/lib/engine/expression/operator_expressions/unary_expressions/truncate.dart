@@ -83,16 +83,16 @@ class Truncate extends UnaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirInteger'];
 
   @override
-  FhirInteger? execute(Map<String, dynamic> context) {
-    final value = operand.execute(context);
+  Future<FhirInteger?> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
     if (value == null) {
       return null;
     } else if (value is FhirInteger) {
       return value;
     } else if (value is FhirInteger64) {
-      return FhirInteger.tryParse(value.value!);
+      return FhirInteger.tryParse(value.valueString!);
     } else if (value is FhirDecimal) {
-      return FhirInteger(value.value!.truncate());
+      return FhirInteger(value.valueDouble!.truncate());
     } else {
       throw ArgumentError(
           'Truncate operator can only be used with Decimal or Integer');

@@ -265,5 +265,6 @@ class Literal extends CqlExpression {
   String get type => 'Literal';
 
   @override
-  dynamic execute(Map<String, dynamic> context) => value?.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async =>
+      value?.execute(context);
 }

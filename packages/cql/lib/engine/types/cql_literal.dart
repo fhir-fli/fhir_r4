@@ -77,7 +77,7 @@ class LiteralNull extends LiteralType {
   }
 
   @override
-  String? execute(Map<String, dynamic> context) => null;
+  Future<String?> execute(Map<String, dynamic> context) async => null;
 
   @override
   String toString() => 'LiteralNull';
@@ -113,7 +113,8 @@ class LiteralBoolean extends LiteralType {
       };
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) => FhirBoolean(value);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async =>
+      FhirBoolean(value);
 
   @override
   String get type => 'Boolean';
@@ -164,7 +165,7 @@ class LiteralCode extends LiteralType {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlCode'];
 
   @override
-  CqlCode execute(Map<String, dynamic> context) => CqlCode(
+  Future<CqlCode> execute(Map<String, dynamic> context) async => CqlCode(
         code: code,
         display: display,
         // system: system,
@@ -205,9 +206,13 @@ class LiteralConcept extends LiteralType {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlConcept'];
 
   @override
-  CqlConcept execute(Map<String, dynamic> context) {
-    return CqlConcept(
-        display: display, codes: codes.map((e) => e.execute(context)).toList());
+  Future<CqlConcept> execute(Map<String, dynamic> context) async {
+    final codesList = <CqlCode>[];
+    for (final code in codes) {
+      final codeResult = await code.execute(context);
+      codesList.add(codeResult);
+    }
+    return CqlConcept(display: display, codes: codesList);
   }
 }
 
@@ -332,7 +337,8 @@ class LiteralDate extends LiteralType {
   }
 
   @override
-  FhirDate execute(Map<String, dynamic> context) => FhirDate.fromString(value);
+  Future<FhirDate> execute(Map<String, dynamic> context) async =>
+      FhirDate.fromString(value);
 
   @override
   String get type => 'Date';
@@ -384,7 +390,7 @@ class LiteralDateTime extends LiteralType {
   String toString() => 'LiteralDateTime: $value';
 
   @override
-  FhirDateTime execute(Map<String, dynamic> context) =>
+  Future<FhirDateTime> execute(Map<String, dynamic> context) async =>
       FhirDateTime.fromString(value);
 
   @override
@@ -451,7 +457,8 @@ class LiteralDecimal extends LiteralType {
       };
 
   @override
-  FhirDecimal execute(Map<String, dynamic> context) => FhirDecimal(value);
+  Future<FhirDecimal> execute(Map<String, dynamic> context) async =>
+      FhirDecimal(value);
 
   @override
   String get type => 'Decimal';
@@ -492,7 +499,8 @@ class LiteralInteger extends LiteralType {
       };
 
   @override
-  FhirInteger execute(Map<String, dynamic> context) => FhirInteger(value);
+  Future<FhirInteger> execute(Map<String, dynamic> context) async =>
+      FhirInteger(value);
 
   @override
   String get type => 'Integer';
@@ -533,7 +541,8 @@ class LiteralLong extends LiteralType {
       };
 
   @override
-  FhirInteger64 execute(Map<String, dynamic> context) => FhirInteger64(value);
+  Future<FhirInteger64> execute(Map<String, dynamic> context) async =>
+      FhirInteger64(value);
 
   @override
   String get type => 'Long';
@@ -568,7 +577,7 @@ class LiteralQuantity extends LiteralType {
   }
 
   @override
-  ValidatedQuantity execute(Map<String, dynamic> context) {
+  Future<ValidatedQuantity> execute(Map<String, dynamic> context) async {
     return ValidatedQuantity(
       value: UcumDecimal.fromString(value.value.toString()),
       unit: unit,
@@ -642,7 +651,7 @@ class LiteralString extends LiteralType {
       };
 
   @override
-  String execute(Map<String, dynamic> context) => value;
+  Future<String> execute(Map<String, dynamic> context) async => value;
 
   @override
   String get type => 'String';
@@ -715,7 +724,8 @@ class LiteralTime extends LiteralType {
   String get type => 'Time';
 
   @override
-  FhirTime execute(Map<String, dynamic> context) => FhirTime(value);
+  Future<FhirTime> execute(Map<String, dynamic> context) async =>
+      FhirTime(value);
 
   @override
   List<String> getReturnTypes(CqlLibrary library) => ['FhirTime'];
@@ -786,12 +796,12 @@ class LiteralIntegerInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) =>
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
       CqlInterval<FhirInteger>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }
 
@@ -832,12 +842,12 @@ class LiteralDecimalInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) =>
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
       CqlInterval<FhirDecimal>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }
 
@@ -878,12 +888,12 @@ class LiteralQuantityInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) =>
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
       CqlInterval<ValidatedQuantity>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }
 
@@ -924,11 +934,12 @@ class LiteralDateInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) => CqlInterval<FhirDate>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
+      CqlInterval<FhirDate>(
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }
 
@@ -969,12 +980,12 @@ class LiteralDateTimeInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) =>
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
       CqlInterval<FhirDateTime>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }
 
@@ -1015,10 +1026,11 @@ class LiteralTimeInterval extends LiteralCqlInterval {
   List<String> getReturnTypes(CqlLibrary library) => ['CqlInterval'];
 
   @override
-  CqlInterval? execute(Map<String, dynamic> context) => CqlInterval<FhirTime>(
-        low: low?.execute(context),
-        lowClosed: lowClosed?.execute(context).value,
-        high: high?.execute(context),
-        highClosed: highClosed?.execute(context).value,
+  Future<CqlInterval?> execute(Map<String, dynamic> context) async =>
+      CqlInterval<FhirTime>(
+        low: await low?.execute(context),
+        lowClosed: (await lowClosed?.execute(context))?.valueBoolean,
+        high: await high?.execute(context),
+        highClosed: (await highClosed?.execute(context))?.valueBoolean,
       );
 }

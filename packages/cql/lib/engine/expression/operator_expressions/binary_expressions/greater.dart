@@ -137,9 +137,9 @@ class Greater extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
     return greater(left, right);
   }
 

@@ -88,26 +88,26 @@ class Or extends BinaryExpression {
   String get type => 'Or';
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     /// Assuming operand is accessible and contains the operands
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
 
     /// If either operand is true
-    if ((left is FhirBoolean && left.value == true) ||
-        (right is FhirBoolean && right.value == true)) {
+    if ((left is FhirBoolean && left.valueBoolean == true) ||
+        (right is FhirBoolean && right.valueBoolean == true)) {
       return FhirBoolean(true);
     }
 
     /// If both operands are false
-    if ((left is FhirBoolean && left.value == false) &&
-        (right is FhirBoolean && right.value == false)) {
+    if ((left is FhirBoolean && left.valueBoolean == false) &&
+        (right is FhirBoolean && right.valueBoolean == false)) {
       return FhirBoolean(false);
     }
 
     /// If one operand is false and the other is null
-    if (((left is FhirBoolean && left.value == false) && right == null) ||
-        ((right is FhirBoolean && right.value == false) && left == null)) {
+    if (((left is FhirBoolean && left.valueBoolean == false) && right == null) ||
+        ((right is FhirBoolean && right.valueBoolean == false) && left == null)) {
       return null;
     }
 

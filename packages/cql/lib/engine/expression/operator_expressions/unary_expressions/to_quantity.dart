@@ -125,23 +125,23 @@ class ToQuantity extends UnaryExpression {
   String get type => 'ToQuantity';
 
   @override
-  ValidatedQuantity? execute(Map<String, dynamic> context) {
-    final result = operand.execute(context);
+  Future<ValidatedQuantity?> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
     switch (result) {
       case null:
         return null;
       case FhirInteger _:
-        return result.value == null
+        return result.valueInt == null
             ? null
-            : ValidatedQuantity.fromNumber(result.value!, unit: '1');
+            : ValidatedQuantity.fromNumber(result.valueInt!, unit: '1');
       case FhirInteger64 _:
-        return result.value == null
+        return result.valueBigInt == null
             ? null
-            : ValidatedQuantity.fromBigInt(result.value!, unit: '1');
+            : ValidatedQuantity.fromBigInt(result.valueBigInt!, unit: '1');
       case FhirDecimal _:
-        return result.value == null
+        return result.valueDouble == null
             ? null
-            : ValidatedQuantity.fromNumber(result.value!, unit: '1');
+            : ValidatedQuantity.fromNumber(result.valueDouble!, unit: '1');
       case String _:
         return ValidatedQuantity.fromString(result);
       case ValidatedQuantity _:

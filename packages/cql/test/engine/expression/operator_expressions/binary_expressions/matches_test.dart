@@ -4,22 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 
 void matchesTest() {
   group('Matches', () {
-    test(""""define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')""", () {
+    test(""""define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')""", () async {
       final argument = LiteralString('1,2three');
       final pattern = LiteralString('\\d,\\d\\w+');
       final matches = Matches(operand: [argument, pattern]);
-      expect(matches.execute({}), FhirBoolean(true));
+      expect(await matches.execute({}), FhirBoolean(true));
     });
-    test(""""define "MatchesFalse": Matches('1,2three', '\\w+')""", () {
+    test(""""define "MatchesFalse": Matches('1,2three', '\\w+')""", () async {
       final argument = LiteralString('1,2three');
       final pattern = LiteralString('\\w+');
       final matches = Matches(operand: [argument, pattern]);
-      expect(matches.execute({}), FhirBoolean(false));
+      expect(await matches.execute({}), FhirBoolean(false));
     });
-    test(""""define "MatchesIsNull": Matches('12three', null)""", () {
+    test(""""define "MatchesIsNull": Matches('12three', null)""", () async {
       final argument = LiteralString('12three');
       final matches = Matches(operand: [argument, LiteralNull()]);
-      expect(matches.execute({}), null);
+      expect(await matches.execute({}), null);
     });
   });
 }

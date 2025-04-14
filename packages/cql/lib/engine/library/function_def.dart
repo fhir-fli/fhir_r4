@@ -93,7 +93,7 @@ class FunctionDef extends ExpressionDef {
   };
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     throw UnimplementedError();
   }
 }

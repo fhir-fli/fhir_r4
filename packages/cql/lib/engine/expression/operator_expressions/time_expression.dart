@@ -125,11 +125,11 @@ class TimeExpression extends OperatorExpression {
   String get type => 'TimeExpression';
 
   @override
-  FhirTime execute(Map<String, dynamic> context) {
-    final hourValue = hour.execute(context);
-    final minuteValue = minute?.execute(context);
-    final secondValue = second?.execute(context);
-    final millisecondValue = millisecond?.execute(context);
+  Future<FhirTime> execute(Map<String, dynamic> context) async {
+    final hourValue = await hour.execute(context);
+    final minuteValue = await minute?.execute(context);
+    final secondValue = await second?.execute(context);
+    final millisecondValue = await millisecond?.execute(context);
 
     return FhirTime.fromUnits(
       hour: hourValue,

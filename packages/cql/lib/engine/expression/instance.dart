@@ -81,7 +81,7 @@ class Instance extends CqlExpression {
   String get type => 'Instance';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     switch (classType.localPart) {
       case 'Null':
         return null;
@@ -95,7 +95,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type String must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is String) {
             return result;
           }
@@ -110,7 +110,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Boolean must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is bool || result is String) {
             return FhirBoolean(result);
           } else if (result is FhirBoolean) {
@@ -128,7 +128,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Date must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is String) {
             return FhirDate.fromString(result);
           } else if (result is FhirDate) {
@@ -146,7 +146,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type DateTime must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is String) {
             return FhirDateTime.fromString(result);
           } else if (result is FhirDateTime) {
@@ -164,7 +164,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Integer must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is int) {
             return FhirInteger(result);
           } else if (result is FhirInteger) {
@@ -182,7 +182,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Long must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is int) {
             return FhirInteger64.fromNum(result);
           } else if (result is FhirInteger64) {
@@ -200,7 +200,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Decimal must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is num) {
             return FhirDecimal(result);
           } else if (result is FhirDecimal) {
@@ -218,7 +218,7 @@ class Instance extends CqlExpression {
             throw ArgumentError(
                 'Instance of type Time must have exactly one element');
           }
-          final result = element!.first.value.execute(context);
+          final result = await element!.first.value.execute(context);
           if (result is String) {
             return FhirTime(result);
           } else if (result is FhirTime) {
@@ -234,7 +234,7 @@ class Instance extends CqlExpression {
           } else {
             final Map<String, dynamic> json = {};
             for (final e in element!) {
-              json[e.name] = e.value.execute(context);
+              json[e.name] = await e.value.execute(context);
             }
             return CqlCode.fromJson(json);
           }
@@ -247,7 +247,7 @@ class Instance extends CqlExpression {
           } else {
             final Map<String, dynamic> json = {};
             for (final e in element!) {
-              json[e.name] = e.value.execute(context);
+              json[e.name] = await e.value.execute(context);
             }
             return CqlConcept.fromJson(json);
           }

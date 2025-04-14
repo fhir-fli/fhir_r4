@@ -82,12 +82,12 @@ class EndsWith extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('StartsWith must have 2 operands');
     }
-    final argument = operand[0].execute(context);
-    final prefix = operand[1].execute(context);
+    final argument = await operand[0].execute(context);
+    final prefix = await operand[1].execute(context);
     if (argument == null || prefix == null) {
       return null;
     }

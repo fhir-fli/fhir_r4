@@ -130,12 +130,12 @@ class Exp extends UnaryExpression {
   }
 
   @override
-  FhirDecimal? execute(Map<String, dynamic> context) {
-    final first = operand.execute(context);
+  Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
+    final first = await operand.execute(context);
     if (first == null || first is! FhirDecimal) {
       return null;
     }
-    return FhirDecimal(exp(first.value!));
+    return FhirDecimal(exp(first.valueNum!));
   }
 
   @override

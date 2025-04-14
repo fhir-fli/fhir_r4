@@ -5,7 +5,7 @@ import 'package:ucum/ucum.dart';
 
 void sumTest() {
   group('sum', () {
-    test('define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0', () {
+    test('define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0', () async {
       final list = ListExpression(element: [
         LiteralDecimal(1.0),
         LiteralDecimal(2.0),
@@ -14,12 +14,12 @@ void sumTest() {
         LiteralDecimal(5.0),
       ]);
       final sum = Sum(source: list);
-      final result = sum.execute({});
+      final result =await  sum.execute({});
       expect(result, equals(FhirDecimal(15.0)));
     });
     test(
         """define "QuantitySum": Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'""",
-        () {
+        () async {
       final list = ListExpression(element: [
         LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
         LiteralQuantity(LiteralDecimal(2.0), unit: 'mg'),
@@ -28,7 +28,7 @@ void sumTest() {
         LiteralQuantity(LiteralDecimal(5.0), unit: 'mg'),
       ]);
       final sum = Sum(source: list);
-      final result = sum.execute({});
+      final result =await  sum.execute({});
       expect(
           result,
           equals(
@@ -36,19 +36,19 @@ void sumTest() {
     });
     test(
         'define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity })',
-        () {
+        () async {
       final list = ListExpression(element: [
         LiteralNull(),
         LiteralNull(),
         LiteralNull(),
       ]);
       final sum = Sum(source: list);
-      final result = sum.execute({});
+      final result =await  sum.execute({});
       expect(result, equals(null));
     });
-    test('define "SumIsAlsoNull": Sum(null as List<Decimal>)', () {
+    test('define "SumIsAlsoNull": Sum(null as List<Decimal>)', () async {
       final sum = Sum(source: LiteralNull());
-      final result = sum.execute({});
+      final result =await  sum.execute({});
       expect(result, equals(null));
     });
   });

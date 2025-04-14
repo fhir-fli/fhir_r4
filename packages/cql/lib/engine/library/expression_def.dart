@@ -25,9 +25,9 @@ class ExpressionDefs {
     return data;
   }
 
-  Map<String, dynamic> execute(Map<String, dynamic> context) {
+  Future<Map<String, dynamic>> execute(Map<String, dynamic> context) async {
     for (final e in def) {
-      context.addAll(e.execute(context));
+      context.addAll(await e.execute(context));
     }
     return context;
   }
@@ -181,8 +181,8 @@ class ExpressionDef extends Element {
     AccessModifier.private: 'Private',
   };
 
-  dynamic execute(Map<String, dynamic> context) =>
-      {name: expression?.execute(context)};
+  Future<dynamic> execute(Map<String, dynamic> context) async =>
+      {name: await expression?.execute(context)};
 
   List<String> getReturnTypes(CqlLibrary library) =>
       expression?.getReturnTypes(library) ?? [];

@@ -74,10 +74,10 @@ class IsTrue extends UnaryExpression {
   }
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     if (operandValue is FhirBoolean) {
-      return FhirBoolean(operandValue.value == true);
+      return FhirBoolean(operandValue.valueBoolean == true);
     } else {
       return FhirBoolean(false);
     }

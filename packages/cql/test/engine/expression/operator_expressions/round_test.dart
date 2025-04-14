@@ -4,21 +4,21 @@ import 'package:flutter_test/flutter_test.dart';
 
 void roundTest() {
   group('Round', () {
-    test("""define "IntegerRound": Round(1) // 1""", () {
+    test("""define "IntegerRound": Round(1) // 1""", () async {
       final input = LiteralDecimal(1);
       final result = Round(operand: input);
-      expect(result.execute({}), FhirDecimal(1));
+      expect(await result.execute({}), FhirDecimal(1));
     });
-    test("""define "DecimalRound": Round(3.14159, 3) // 3.142""", () {
+    test("""define "DecimalRound": Round(3.14159, 3) // 3.142""", () async {
       final input = LiteralDecimal(3.14159);
       final precision = LiteralInteger(3);
       final result = Round(operand: input, precision: precision);
-      expect(result.execute({}), FhirDecimal(3.142));
+      expect(await result.execute({}), FhirDecimal(3.142));
     });
-    test("""define "RoundIsNull": Round(null)""", () {
+    test("""define "RoundIsNull": Round(null)""", () async {
       final input = LiteralNull();
       final result = Round(operand: input);
-      expect(result.execute({}), isNull);
+      expect(await result.execute({}), isNull);
     });
   });
 }

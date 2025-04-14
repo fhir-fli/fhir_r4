@@ -110,5 +110,5 @@ class Message extends OperatorExpression {
   String get type => 'Message';
 
   @override
-  dynamic execute(Map<String, dynamic> context) => source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async => source.execute(context);
 }

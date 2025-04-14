@@ -109,7 +109,7 @@ packages:
       path: "packages/fhir_r4_path"
       relative: true
     source: path
-    version: "0.4.0"
+    version: "0.4.1"
   file:
     dependency: transitive
     description:

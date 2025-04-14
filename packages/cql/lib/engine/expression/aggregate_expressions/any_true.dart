@@ -82,8 +82,8 @@ class AnyTrue extends AggregateExpression {
   String get type => 'AnyTrue';
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return anyTrue(sourceResult);
   }
 
@@ -92,7 +92,7 @@ class AnyTrue extends AggregateExpression {
       return FhirBoolean(false);
     } else if (sourceResult is List) {
       for (final element in sourceResult) {
-        if ((element is FhirBoolean && (element.value ?? true)) ||
+        if ((element is FhirBoolean && (element.valueBoolean ?? true)) ||
             (element is bool && element == true)) {
           return FhirBoolean(true);
         }

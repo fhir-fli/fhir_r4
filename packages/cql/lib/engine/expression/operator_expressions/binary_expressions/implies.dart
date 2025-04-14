@@ -93,31 +93,31 @@ class Implies extends BinaryExpression {
   String get type => 'Implies';
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     /// Assuming operand is accessible and contains the operands
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
 
     /// TRUE implies TRUE and FALSE implies anything is TRUE
     if ((left is FhirBoolean &&
-            left.value == true &&
+            left.valueBoolean == true &&
             right is FhirBoolean &&
-            right.value == true) ||
-        (left is FhirBoolean && left.value == false) ||
+            right.valueBoolean == true) ||
+        (left is FhirBoolean && left.valueBoolean == false) ||
         (left == null)) {
       return FhirBoolean(true);
     }
 
     /// TRUE implies FALSE
     if (left is FhirBoolean &&
-        left.value == true &&
+        left.valueBoolean == true &&
         right is FhirBoolean &&
-        right.value == false) {
+        right.valueBoolean == false) {
       return FhirBoolean(false);
     }
 
     /// TRUE implies NULL
-    if (left is FhirBoolean && left.value == true && right == null) {
+    if (left is FhirBoolean && left.valueBoolean == true && right == null) {
       return null;
     }
 

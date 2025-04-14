@@ -149,9 +149,9 @@ class Log extends BinaryExpression {
   String get type => 'Log';
 
   @override
-  FhirDecimal? execute(Map<String, dynamic> context) {
-    final first = operand.first.execute(context);
-    final second = operand.last.execute(context);
+  Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
+    final first = await operand.first.execute(context);
+    final second = await operand.last.execute(context);
 
     if (first == null ||
         second == null ||
@@ -159,7 +159,7 @@ class Log extends BinaryExpression {
         second is! FhirDecimal) {
       return null;
     }
-    return FhirDecimal(log(first.value!) / log(second.value!));
+    return FhirDecimal(log(first.valueNum!) / log(second.valueNum!));
   }
 
   @override

@@ -75,7 +75,7 @@ class Now extends OperatorExpression {
   String get type => 'Now';
 
   @override
-  FhirDateTime execute(Map<String, dynamic> context) {
+  Future<FhirDateTime> execute(Map<String, dynamic> context) async {
     return context['startTimestamp'];
   }
 }

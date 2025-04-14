@@ -99,17 +99,17 @@ class ToDecimal extends UnaryExpression {
   }
 
   @override
-  FhirDecimal? execute(Map<String, dynamic> context) {
-    final result = operand.execute(context);
+  Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
     switch (result) {
       case null:
         return null;
       case FhirBoolean _:
         {
-          if (result.value == null) {
+          if (result.valueBoolean == null) {
             return null;
           } else {
-            return result.value! ? FhirDecimal(1.0) : FhirDecimal(0.0);
+            return result.valueBoolean! ? FhirDecimal(1.0) : FhirDecimal(0.0);
           }
         }
       case String _:
@@ -127,11 +127,11 @@ class ToDecimal extends UnaryExpression {
         }
       case FhirInteger _:
         {
-          return result.value == null ? null : FhirDecimal(result.value!);
+          return result.valueInt == null ? null : FhirDecimal(result.valueInt!);
         }
       case FhirInteger64 _:
         {
-          final value = result.value;
+          final value = result.valueBigInt;
           if (value == null) {
             return null;
           } else {

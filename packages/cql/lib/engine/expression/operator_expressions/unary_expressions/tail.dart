@@ -62,8 +62,8 @@ class Tail extends UnaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final value = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
     if (value is List) {
       return value.sublist(1);
     }

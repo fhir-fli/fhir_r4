@@ -46,8 +46,6 @@ extension SeverityExtension on Severity {
         return 3;
       case Severity.message:
         return 4;
-      default:
-        return -1; // This should never happen
     }
   }
 

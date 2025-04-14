@@ -89,8 +89,8 @@ class Last extends OperatorExpression {
   String get type => 'Last';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final list = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final list = await source.execute(context);
     if (list == null) {
       return null;
     } else if (list is List) {

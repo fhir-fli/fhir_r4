@@ -72,8 +72,8 @@ class IsNull extends UnaryExpression {
   }
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     return FhirBoolean(operandValue == null);
   }
 }

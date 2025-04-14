@@ -6,7 +6,7 @@ void intersectTest() {
   group('Intersect', () {
     test(
         """define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]""",
-        () {
+        () async {
       final left = LiteralIntegerInterval(
         low: LiteralInteger(1),
         lowClosed: LiteralBoolean(true),
@@ -21,7 +21,7 @@ void intersectTest() {
       );
       final result = Intersect(operand: [left, right]);
       expect(
-          result.execute({}),
+          await result.execute({}),
           equals(CqlInterval<FhirInteger>(
             low: FhirInteger(3),
             lowClosed: true,
@@ -32,7 +32,7 @@ void intersectTest() {
 
     test(
         """define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)""",
-        () {
+        () async {
       final left = LiteralIntegerInterval(
         low: LiteralInteger(3),
         lowClosed: LiteralBoolean(true),
@@ -42,7 +42,7 @@ void intersectTest() {
       final right =
           As(operand: LiteralNull(), resultTypeName: 'Interval<Integer>');
       final result = Intersect(operand: [left, right]);
-      expect(result.execute({}), equals(null));
+      expect(await result.execute({}), equals(null));
     });
   });
 }

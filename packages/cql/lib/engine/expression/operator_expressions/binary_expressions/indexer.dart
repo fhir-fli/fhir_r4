@@ -84,9 +84,9 @@ class Indexer extends BinaryExpression {
   String get type => 'Indexer';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final result = operand[0].execute(context);
-    final index = operand[1].execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final result = await operand[0].execute(context);
+    final index = await operand[1].execute(context);
     if (result == null || index == null) {
       return null;
     }
@@ -94,13 +94,13 @@ class Indexer extends BinaryExpression {
       if (index < 0 || index >= result.length) {
         return null;
       }
-      return result[index.value! as int];
+      return result[index.valueInt!];
     }
     if (result is List && index is FhirInteger) {
       if (index < 0 || index >= result.length) {
         return null;
       }
-      return result[index.value! as int];
+      return result[index.valueInt!];
     }
     return null;
   }

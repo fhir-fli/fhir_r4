@@ -168,9 +168,9 @@ class Equivalent extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
 
   @override
-  FhirBoolean execute(Map<String, dynamic> context) {
-    final left = operand[0].execute(context);
-    final right = operand[1].execute(context);
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
     return equivalent(left, right);
   }
 
@@ -216,20 +216,22 @@ class Equivalent extends BinaryExpression {
       case FhirNumber _:
       case FhirInteger64 _:
         if (right is num || right is BigInt) {
-          result = UcumDecimal.fromString(left.value!.toString())
+          result = UcumDecimal.fromString(left.valueString!)
               .equivalent(UcumDecimal.fromString(right.toString()));
         } else if ((right is FhirNumber) || (right is FhirInteger64)) {
-          result = UcumDecimal.fromString(left.value!.toString())
+          result = UcumDecimal.fromString(left.valueString!)
               .equivalent(UcumDecimal.fromString(right.toString()));
         } else if (right is ValidatedQuantity && left is FhirDecimal) {
-          result = ValidatedQuantity.fromNumber(left.value!).equivalent(right);
+          result =
+              ValidatedQuantity.fromString(left.valueString!).equivalent(right);
         }
         break;
       case ValidatedQuantity _:
         if (right is ValidatedQuantity) {
           result = left.equivalent(right);
         } else if (right is FhirDecimal) {
-          result = left.equivalent(ValidatedQuantity.fromNumber(right.value!));
+          result =
+              left.equivalent(ValidatedQuantity.fromString(right.valueString!));
         } else if (right is double) {
           result = left.equivalent(ValidatedQuantity.fromNumber(right));
         } else {
@@ -243,7 +245,7 @@ class Equivalent extends BinaryExpression {
         if (right is List && left.length == right.length) {
           result = true;
           for (var i = 0; i < left.length; i++) {
-            if (!(equivalent(left[i], right[i]).value ?? false)) {
+            if (!(equivalent(left[i], right[i]).valueBoolean ?? false)) {
               result = false;
               break;
             }
@@ -266,7 +268,7 @@ class Equivalent extends BinaryExpression {
                 // Check for key presence and value equality.
                 final tempResult = right.elements!.containsKey(key)
                     ? equivalent(left.elements![key], right.elements![key])
-                        .value
+                        .valueBoolean
                     : false;
 
                 // If a mismatch is found, or comparison is indeterminate,
@@ -289,7 +291,7 @@ class Equivalent extends BinaryExpression {
             for (var key in left.keys) {
               // Check for key presence and value equality.
               final tempResult = right.containsKey(key)
-                  ? equivalent(left[key], right[key]).value
+                  ? equivalent(left[key], right[key]).valueBoolean
                   : false;
 
               // If a mismatch is found, or comparison is indeterminate,

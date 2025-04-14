@@ -144,8 +144,8 @@ class As extends UnaryExpression {
   }
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final result = operand.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
     if (result == null) {
       return null;
     }

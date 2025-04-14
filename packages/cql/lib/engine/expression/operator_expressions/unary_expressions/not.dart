@@ -89,12 +89,12 @@ class Not extends UnaryExpression {
   }
 
   @override
-  FhirBoolean? execute(Map<String, dynamic> context) {
-    final operandValue = operand.execute(context);
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final operandValue = await operand.execute(context);
     if (operandValue == null) {
       return null;
     } else if (operandValue is FhirBoolean) {
-      return FhirBoolean(!operandValue.value!);
+      return FhirBoolean(!operandValue.valueBoolean!);
     } else if (operandValue is bool) {
       return FhirBoolean(!operandValue);
     } else {

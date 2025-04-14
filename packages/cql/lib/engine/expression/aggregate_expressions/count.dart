@@ -99,8 +99,8 @@ class Count extends AggregateExpression {
   List<String> getReturnTypes(CqlLibrary library) => ['FhirInteger'];
 
   @override
-  FhirInteger execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<FhirInteger> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return count(sourceResult);
   }
 

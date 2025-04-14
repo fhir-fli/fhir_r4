@@ -117,12 +117,12 @@ class DifferenceBetween extends BinaryExpression {
 
   // TODO(Dokotela): uncertainties
   @override
-  dynamic execute(Map<String, dynamic> context) {
+  Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
       throw ArgumentError('Difference Between must have 2 operands');
     }
-    final low = operand[0].execute(context);
-    final high = operand[1].execute(context);
+    final low = await operand[0].execute(context);
+    final high = await operand[1].execute(context);
     if (low == null || high == null) {
       return null;
     } else if (low is FhirDateTimeBase) {

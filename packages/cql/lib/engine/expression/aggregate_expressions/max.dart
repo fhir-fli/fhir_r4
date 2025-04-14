@@ -129,8 +129,8 @@ class Max extends AggregateExpression {
   String get type => 'Max';
 
   @override
-  dynamic execute(Map<String, dynamic> context) {
-    final sourceResult = source.execute(context);
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
     return max(sourceResult);
   }
 
@@ -156,7 +156,7 @@ class Max extends AggregateExpression {
           return value > element ? value : element;
         }
         if (value is FhirInteger) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
@@ -164,7 +164,7 @@ class Max extends AggregateExpression {
           return value > element ? value : element;
         }
         if (value is FhirDecimal) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
@@ -172,7 +172,7 @@ class Max extends AggregateExpression {
           return value > element ? value : element;
         }
         if (value is FhirInteger64) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
@@ -180,17 +180,17 @@ class Max extends AggregateExpression {
           return value.isBefore(element) ? value : element;
         }
         if (value is FhirDateTime) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
         if (value is FhirDate) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
         if (value is FhirTime) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
@@ -198,7 +198,7 @@ class Max extends AggregateExpression {
           return value.compareTo(element) > 0 ? value : element;
         }
         if (value is ValidatedQuantity) {
-          return (Greater.greater(value, element)?.value ?? true)
+          return (Greater.greater(value, element)?.valueBoolean ?? true)
               ? value
               : element;
         }
