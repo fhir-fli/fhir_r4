@@ -8,7 +8,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 Future<void> main() async {
-  final dir = Directory('test/mapping/parser_examples');
+  final dir = Directory('test/parser_examples');
   final parser = await StructureMapParser.create();
   for (final file in dir.listSync()) {
     if (file is File && file.path.endsWith('.json')) {
