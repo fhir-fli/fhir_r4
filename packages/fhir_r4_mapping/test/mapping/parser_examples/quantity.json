@@ -1,0 +1,142 @@
+{
+    "resourceType": "StructureMap",
+    "id": "qty",
+    "url": "http://ahdis.ch/matchbox/fml/qty",
+    "name": "qty",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+            "mode": "source",
+            "alias": "QuestionnaireResponse"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+            "mode": "target",
+            "alias": "Observation"
+        }
+    ],
+    "group": [
+        {
+            "name": "stringtocoding",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "QuestionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Observation",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "item"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "contextType": "variable",
+                            "variable": "obs",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "tgt"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "ExtractBloodPressure",
+                            "variable": [
+                                "item",
+                                "obs"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExtractBloodPressure",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Observation",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "systolic_bp",
+                            "condition": "(linkId = 'systolic-bp_1.2')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "qty",
+                            "source": [
+                                {
+                                    "context": "systolic_bp",
+                                    "element": "answer",
+                                    "variable": "ans"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "qty",
+                                    "source": [
+                                        {
+                                            "context": "ans",
+                                            "element": "value",
+                                            "variable": "value"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "tgt",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "qty",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "value"
+                                                },
+                                                {
+                                                    "valueString": "kg"
+                                                },
+                                                {
+                                                    "valueString": "http://unit.org"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "documentation": "ans.value as value -> tgt.value = create('Quantity') as qty,  qty.value = value \"qty\";"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

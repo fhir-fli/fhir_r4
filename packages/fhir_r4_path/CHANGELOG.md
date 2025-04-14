@@ -1,5 +1,10 @@
 # fhir_r4_path
 
+## [0.4.1]
+
+* Updated engine to work better with mapping
+* Updated Lexer to work better with mapping
+
 ## [0.4.0]
 
 * just update to use the most recent fhir_r4 package

@@ -1,0 +1,344 @@
+{
+    "resourceType": "StructureMap",
+    "id": "basic-test-medication-request",
+    "url": "http://basic.test/medication-request",
+    "name": "basic-test-medication-request",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+            "mode": "source",
+            "alias": "MedicationRequest"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+            "mode": "target",
+            "alias": "MedicationRequest"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+            "mode": "source",
+            "alias": "CodeableConcept"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/CodeableConcept",
+            "mode": "target",
+            "alias": "CodeableConcept"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Coding",
+            "mode": "source",
+            "alias": "Coding"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Coding",
+            "mode": "target",
+            "alias": "Coding"
+        }
+    ],
+    "group": [
+        {
+            "name": "MedicationRequest",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "MedicationRequest",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "MedicationRequest",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "$this.url = 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-PrescriptionType-1'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "extension",
+                            "variable": "tgtext"
+                        },
+                        {
+                            "context": "tgtext",
+                            "contextType": "variable",
+                            "element": "url",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-PrescriptionType"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "valueCodeableConcept",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "type": "CodeableConcept",
+                                    "element": "value",
+                                    "variable": "vs"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgtext",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "variable": "vt",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "CodeableConcept"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CodeableConceptPrescriptionType",
+                                    "variable": [
+                                        "vs",
+                                        "vt"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CodeableConceptPrescriptionType",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "CodeableConcept",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CodeableConcept",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "coding",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "coding",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "coding",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "text",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "text",
+                            "variable": "text"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "text",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coding",
+            "typeMode": "type-and-types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Coding",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Coding",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "$this = 'https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-PrescriptionType-1'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "system",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-PrescriptionType-1"
+                                }
+                            ]
+                        }
+                    ],
+                    "documentation": "src.coding -> tgt.coding; the short form is only woking when you have a <<type>>"
+                },
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "(($this = 'https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-PrescriptionType-1') = false)"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "system",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "system"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "version",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "version",
+                            "variable": "version"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "version",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "version"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "code",
+                            "variable": "code"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "display",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "display",
+                            "variable": "display"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "display",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "display"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "userSelected",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "userSelected",
+                            "variable": "userSelected"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "userSelected",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "userSelected"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

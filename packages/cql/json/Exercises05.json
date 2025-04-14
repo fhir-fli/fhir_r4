@@ -1,0 +1,286 @@
+{
+    "library": {
+        "annotation": [
+            {
+                "translatorVersion": "3.3.2",
+                "translatorOptions": "",
+                "signatureLevel": "None",
+                "type": "CqlToElmInfo"
+            },
+            {
+                "message": "The function FHIRHelpers.ToString has multiple overloads and due to the SignatureLevel setting (None), the overload signature is not being included in the output. This may result in ambiguous function resolution at runtime, consider setting the SignatureLevel to Overloads or All to ensure that the output includes sufficient information to support correct overload selection at runtime.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            }
+        ],
+        "identifier": {
+            "id": "Exercises05Key"
+        },
+        "schemaIdentifier": {
+            "id": "urn:hl7-org:elm",
+            "version": "r1"
+        },
+        "usings": {
+            "def": [
+                {
+                    "localIdentifier": "System",
+                    "uri": "urn:hl7-org:elm-types:r1"
+                },
+                {
+                    "localIdentifier": "FHIR",
+                    "uri": "http://hl7.org/fhir",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "includes": {
+            "def": [
+                {
+                    "localIdentifier": "FHIRHelpers",
+                    "path": "FHIRHelpers",
+                    "version": "4.0.1"
+                }
+            ]
+        },
+        "codeSystems": {
+            "def": [
+                {
+                    "name": "LOINC:2.46",
+                    "id": "http://loinc.org",
+                    "version": "2.46",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "SNOMEDCT:2016-03",
+                    "id": "http://snomed.info/sct",
+                    "version": "http://snomed.info/sct/731000124108/version/20160301",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Marital Status Codes",
+                    "id": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "valueSets": {
+            "def": [
+                {
+                    "name": "Encounter Inpatient",
+                    "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Patient Expired",
+                    "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.309",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Psychiatric/Mental Health Diagnosis",
+                    "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.299",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Emergency Department Visit",
+                    "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Marital Status",
+                    "id": "http://hl7.org/fhir/ValueSet/marital-status",
+                    "accessLevel": "Public"
+                }
+            ]
+        },
+        "codes": {
+            "def": [
+                {
+                    "name": "Birthdate",
+                    "id": "21112-8",
+                    "display": "Birth date",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "LOINC:2.46"
+                    }
+                },
+                {
+                    "name": "Dead",
+                    "id": "419099009",
+                    "display": "Dead",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "SNOMEDCT:2016-03"
+                    }
+                },
+                {
+                    "name": "Marital Status - Married",
+                    "id": "M",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "Marital Status Codes"
+                    }
+                }
+            ]
+        },
+        "contexts": {
+            "def": [
+                {
+                    "name": "Patient"
+                }
+            ]
+        },
+        "statements": {
+            "def": [
+                {
+                    "name": "Patient",
+                    "context": "Patient",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "dataType": "{http://hl7.org/fhir}Patient",
+                            "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
+                            "type": "Retrieve"
+                        }
+                    }
+                },
+                {
+                    "name": "Patient Gender",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "gender",
+                        "type": "Property",
+                        "source": {
+                            "name": "Patient",
+                            "type": "ExpressionRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Patient Gender is Male",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Equal",
+                        "operand": [
+                            {
+                                "name": "ToString",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "gender",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "male",
+                                "type": "Literal"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Patient Marital Status",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "maritalStatus",
+                        "type": "Property",
+                        "source": {
+                            "name": "Patient",
+                            "type": "ExpressionRef"
+                        }
+                    }
+                },
+                {
+                    "name": "Patient is Married (=)",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Equal",
+                        "operand": [
+                            {
+                                "name": "ToConcept",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "maritalStatus",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "ToConcept",
+                                "operand": {
+                                    "name": "Marital Status - Married",
+                                    "type": "CodeRef"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Patient is Married (~)",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Equivalent",
+                        "operand": [
+                            {
+                                "name": "ToConcept",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "maritalStatus",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "ToConcept",
+                                "operand": {
+                                    "name": "Marital Status - Married",
+                                    "type": "CodeRef"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Married in Marital Status",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "InValueSet",
+                        "code": {
+                            "name": "Marital Status - Married",
+                            "type": "CodeRef"
+                        },
+                        "valueset": {
+                            "name": "Marital Status",
+                            "preserve": true
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
