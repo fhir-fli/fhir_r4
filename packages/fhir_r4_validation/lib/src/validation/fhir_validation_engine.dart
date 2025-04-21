@@ -44,7 +44,7 @@ class FhirValidationEngine {
   }) async {
     final type = structureToValidate['resourceType'] as String?;
     final results = ValidationResults();
-    final resourceCache = CanonicalResourceManager();
+    final resourceCache = CanonicalResourceCache();
 
     if (type == null) {
       return results

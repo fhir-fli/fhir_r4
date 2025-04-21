@@ -17,7 +17,7 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = CanonicalResourceManager();
+      final resourceCache = CanonicalResourceCache();
 
       final results = await validateStructure(
         node: node,
@@ -36,7 +36,7 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = CanonicalResourceManager();
+      final resourceCache = CanonicalResourceCache();
 
       final results = await validateStructure(
         node: node,
@@ -83,7 +83,7 @@ void main() {
         'Patient.name': elementName,
         'Patient.name.given': elementGiven,
       };
-      final resourceCache = CanonicalResourceManager();
+      final resourceCache = CanonicalResourceCache();
 
       final results = await validateStructure(
         node: node,
@@ -115,7 +115,7 @@ void main() {
         ],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = CanonicalResourceManager();
+      final resourceCache = CanonicalResourceCache();
 
       final results = await validateStructure(
         node: node,

@@ -90,11 +90,11 @@ final result2 = await engine.evaluate(patient2, node);
 
 ### Resource Caching
 
-The library includes a `CanonicalResourceManager` for efficient handling of canonical resources:
+The library includes a `CanonicalResourceCache` for efficient handling of canonical resources:
 
 ```dart
 // Create a manager
-final manager = CanonicalResourceManager();
+final manager = CanonicalResourceCache();
 
 // Store a canonical resource
 final valueSet = ValueSet(

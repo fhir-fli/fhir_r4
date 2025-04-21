@@ -17,7 +17,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -49,7 +49,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       expect(validationResults.results, isNotEmpty);
@@ -98,7 +98,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -124,7 +124,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // Expect no errors
@@ -150,7 +150,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       expect(validationResults.results, isNotEmpty); // Expect errors
@@ -215,7 +215,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        resourceCache: CanonicalResourceManager(),
+        resourceCache: CanonicalResourceCache(),
       );
 
       // Expect one error for the invalid entry
