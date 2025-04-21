@@ -85,10 +85,10 @@ packages:
     dependency: "direct main"
     description:
       name: fhir_r4_path
-      sha256: a454f61b95171c600c90cb5a26bc7feeb8e719e543bbafb321b8544b2bec9339
+      sha256: "05311f6240e2e02c0c4cee0feec6b8a62fba427309c7c18a136cb7f081449745"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.3"
   file:
     dependency: transitive
     description:

@@ -122,7 +122,8 @@ class Median extends AggregateExpression {
 
       // Handle FhirNumber or FhirDecimal
       if (sourceResult.every((element) => element is FhirNumber)) {
-        var decimals = sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
+        var decimals =
+            sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
         decimals.sort((a, b) => a.valueNum!.compareTo(
             b.valueNum!)); // Ensure FhirDecimal has a comparable implementation
 

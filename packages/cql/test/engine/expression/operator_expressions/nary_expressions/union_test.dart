@@ -26,7 +26,8 @@ void unionTest() {
       final result = await union.execute({});
       expect(result, equals(null));
     });
-    test('define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }', () async {
+    test('define "Union": { 1, 2, 3 } union { 4, 5 } // { 1, 2, 3, 4, 5 }',
+        () async {
       final set1 = ListExpression(element: [
         LiteralInteger(1),
         LiteralInteger(2),

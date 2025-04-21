@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void sameAsTest() {
   group('SameAs', () {
-    test("""define "SameAsTrue": @2012-01-01 same day as @2012-01-01""", () async {
+    test("""define "SameAsTrue": @2012-01-01 same day as @2012-01-01""",
+        () async {
       final left = LiteralDate('2012-01-01');
       final right = LiteralDate('2012-01-01');
       const precision = CqlDateTimePrecision.day;
@@ -14,7 +15,8 @@ void sameAsTest() {
       );
       expect(await expression.execute({}), FhirBoolean(true));
     });
-    test("""define "SameAsFalse": @2012-01-01 same day as @2012-01-02""", () async {
+    test("""define "SameAsFalse": @2012-01-01 same day as @2012-01-02""",
+        () async {
       final left = LiteralDate('2012-01-01');
       final right = LiteralDate('2012-01-02');
       const precision = CqlDateTimePrecision.day;

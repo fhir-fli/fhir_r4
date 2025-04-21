@@ -4,12 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void maxValue() {
   group('MaxValue', () {
-    test("""define "IntegerMaximum": maximum Integer // 2147483647""", () async {
+    test("""define "IntegerMaximum": maximum Integer // 2147483647""",
+        () async {
       final QName valueType = QName.fromFull('Integer');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute({}), equals(fhir.FhirInteger(2147483647)));
     });
-    test("""define "LongMaximum": maximum Long // 9223372036854775807""", () async {
+    test("""define "LongMaximum": maximum Long // 9223372036854775807""",
+        () async {
       final QName valueType = QName.fromFull('Long');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute({}),

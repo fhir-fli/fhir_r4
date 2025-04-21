@@ -17,7 +17,8 @@ void meetsTest() {
       final result = await meets.execute({});
       expect(result, FhirBoolean(true));
     });
-    test("""define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]""", () async {
+    test("""define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]""",
+        () async {
       final low1 = LiteralInteger(6);
       final high1 = LiteralInteger(10);
       final interval1 = IntervalExpression(low: low1, high: high1);

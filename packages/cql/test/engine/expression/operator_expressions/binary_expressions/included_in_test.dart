@@ -64,7 +64,8 @@ void includedInTest() {
       final result = await includedIn.execute({});
       expect(result, isNull);
     });
-    test('define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }', () async {
+    test('define "IncludedInIsFalse": { 1, 3, 5 } included in { 1, 3 }',
+        () async {
       final left = ListExpression(
         element: [
           LiteralInteger(1),
@@ -82,7 +83,8 @@ void includedInTest() {
       final result = await includedIn.execute({});
       expect(result, equals(FhirBoolean(false)));
     });
-    test('define "IncludedInIsFalse": { 1, 3 } included in { 1, 3, 5 }', () async {
+    test('define "IncludedInIsFalse": { 1, 3 } included in { 1, 3, 5 }',
+        () async {
       final right = ListExpression(
         element: [
           LiteralInteger(1),

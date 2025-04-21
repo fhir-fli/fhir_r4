@@ -12,19 +12,19 @@ void avgTest() {
         LiteralDecimal(4.8)
       ]);
       final avg = Avg(source: list);
-      final result =await  avg.execute({});
+      final result = await avg.execute({});
       expect(result, equals(FhirDecimal(5.0)));
     });
     test(
         """define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'""",
-        () async{
+        () async {
       final list = ListExpression(element: [
         LiteralQuantity(LiteralDecimal(5.5), unit: 'cm'),
         LiteralQuantity(LiteralDecimal(4.7), unit: 'cm'),
         LiteralQuantity(LiteralDecimal(4.8), unit: 'cm')
       ]);
       final avg = Avg(source: list);
-      final result =await  avg.execute({});
+      final result = await avg.execute({});
       expect(
           result,
           equals(
@@ -33,7 +33,7 @@ void avgTest() {
     test('define "AvgIsNull": Avg(null as List<Decimal>)', () async {
       final list = ListExpression(element: [LiteralNull()]);
       final avg = Avg(source: list);
-      final result =await  avg.execute({});
+      final result = await avg.execute({});
       expect(result, equals(null));
     });
   });

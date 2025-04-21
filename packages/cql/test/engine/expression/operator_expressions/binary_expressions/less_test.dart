@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void lessTest() {
   group('Less', () {
-    test("""define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12""", () async {
+    test("""define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12""",
+        () async {
       final left = LiteralDateTime('2012-01-01');
       final right = LiteralDateTime('2012-01-01T12');
       final less = Less(operand: [left, right]);
@@ -48,7 +49,8 @@ void lessTest() {
       final result = await less.execute({});
       expect(result, equals(null));
     });
-    test("""define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12""", () async {
+    test("""define "DateTimeLessIsNull": @2012-01-01 < @2012-01-01T12""",
+        () async {
       final left = LiteralDateTime('2012-01-01');
       final right = LiteralDateTime('2012-01-01T12');
       final less = Less(operand: [left, right]);

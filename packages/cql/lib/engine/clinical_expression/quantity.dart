@@ -87,5 +87,6 @@ class Quantity extends CqlExpression {
   int get hashCode => value.hashCode ^ unit.hashCode;
 
   @override
-  Future<ValidatedQuantity> execute(Map<String, dynamic> context) async => validatedQuantity;
+  Future<ValidatedQuantity> execute(Map<String, dynamic> context) async =>
+      validatedQuantity;
 }

@@ -43,7 +43,8 @@ void equivalentTest() {
       ).execute({});
       expect(result, equals(FhirBoolean(false)));
     });
-    test("""define "StringEquivalentIsTrue": 'John Doe' ~ 'john doe'""", () async {
+    test("""define "StringEquivalentIsTrue": 'John Doe' ~ 'john doe'""",
+        () async {
       final left = LiteralString('John Doe');
       final right = LiteralString('john doe');
       final result = await Equivalent(
@@ -51,7 +52,8 @@ void equivalentTest() {
       ).execute({});
       expect(result, equals(FhirBoolean(true)));
     });
-    test("""define "QuantityEquivalentIsFalse": 3.5 'cm2' ~ 3.5 'cm'""", () async {
+    test("""define "QuantityEquivalentIsFalse": 3.5 'cm2' ~ 3.5 'cm'""",
+        () async {
       final left = LiteralQuantity(
         LiteralDecimal(3.5),
         unit: 'cm2',
@@ -81,7 +83,7 @@ void equivalentTest() {
     });
     test(
         """define "ListEquivalentIsTrue": { null, 1, 2, 3 } ~ { null, 1, 2, 3 }""",
-        () async{
+        () async {
       final left = ListExpression(element: [
         LiteralNull(),
         LiteralInteger(1),
@@ -100,7 +102,7 @@ void equivalentTest() {
       expect(result, equals(FhirBoolean(true)));
     });
     test("""define "DateTimeEquivalentIsFalse": @2012-01-01 ~ @2012-01-01T12""",
-        () async{
+        () async {
       final left = LiteralDateTime('2012-01-01');
       final right = LiteralDateTime('2012-01-01T12');
       final result = await Equivalent(

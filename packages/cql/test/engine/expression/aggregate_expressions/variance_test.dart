@@ -34,7 +34,7 @@ void varianceTest() {
         ],
       );
       final variance = Variance(source: list);
-      final result =await  variance.execute({});
+      final result = await variance.execute({});
       expect(result, equals(ValidatedQuantity.fromNumber(2.0, unit: 'mg')));
     });
     test(
@@ -48,12 +48,13 @@ void varianceTest() {
         ],
       );
       final variance = Variance(source: list);
-      final result =await  variance.execute({});
+      final result = await variance.execute({});
       expect(result, equals(null));
     });
-    test('define "VarianceIsAlsoNull": Variance(null as List<Decimal>)', () async {
+    test('define "VarianceIsAlsoNull": Variance(null as List<Decimal>)',
+        () async {
       final variance = Variance(source: LiteralNull());
-      final result =await  variance.execute({});
+      final result = await variance.execute({});
       expect(result, equals(null));
     });
   });

@@ -18,7 +18,7 @@ void stddevTest() {
         ],
       );
       final stddev = StdDev(source: list);
-      final result =await  stddev.execute({});
+      final result = await stddev.execute({});
       expect(result, equals(FhirDecimal(1.4142135623730951)));
     });
     test(
@@ -34,7 +34,7 @@ void stddevTest() {
         ],
       );
       final stddev = StdDev(source: list);
-      final result =await  stddev.execute({});
+      final result = await stddev.execute({});
       expect(
           result,
           equals(ValidatedQuantity(
@@ -51,12 +51,12 @@ void stddevTest() {
         ],
       );
       final stddev = StdDev(source: list);
-      final result =await  stddev.execute({});
+      final result = await stddev.execute({});
       expect(result, equals(null));
     });
     test('define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)', () async {
       final stddev = StdDev(source: LiteralNull());
-      final result =await  stddev.execute({});
+      final result = await stddev.execute({});
       expect(result, equals(null));
     });
   });

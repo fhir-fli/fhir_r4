@@ -163,7 +163,8 @@ class Collapse extends BinaryExpression {
 
         // Check if current and next source overlap or meet
         final overlaps =
-            Overlaps.overlaps(currentInterval, nextInterval)?.valueBoolean ?? false;
+            Overlaps.overlaps(currentInterval, nextInterval)?.valueBoolean ??
+                false;
         final meets =
             Meets.meets(currentInterval, nextInterval)?.valueBoolean ?? false;
 

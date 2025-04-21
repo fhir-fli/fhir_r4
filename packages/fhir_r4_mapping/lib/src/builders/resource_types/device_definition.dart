@@ -515,7 +515,9 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     if (manufacturerX != null) {
       final fhirType = manufacturerX!.fhirType;
       addField(
-          'manufacturer${fhirType.capitalizeFirstLetter()}', manufacturerX,);
+        'manufacturer${fhirType.capitalizeFirstLetter()}',
+        manufacturerX,
+      );
     }
 
     addField('deviceName', deviceName);

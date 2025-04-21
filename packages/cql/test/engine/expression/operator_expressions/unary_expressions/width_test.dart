@@ -20,7 +20,8 @@ void widthTest() {
       final result = await width.execute({});
       expect(result, equals(null));
     });
-    test("""define "NullInterval": width of Interval[0, null) //null""", () async {
+    test("""define "NullInterval": width of Interval[0, null) //null""",
+        () async {
       final interval = IntervalExpression(
           low: LiteralInteger(0), high: LiteralNull(), highClosed: false);
       final width = Width(operand: interval);

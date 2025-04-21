@@ -10,7 +10,7 @@ class OnlineResourceCache extends CanonicalResourceCache {
   OnlineResourceCache({
     super.enforceUniqueId = false,
     Client? client,
-  }): super(client: client ?? Client());
+  }) : super(client: client ?? Client());
 
   @override
   Future<T?> getCanonicalResource<T extends CanonicalResource>(

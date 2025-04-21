@@ -4,12 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void minValue() {
   group('MinValue', () {
-    test("""define "IntegerMinimum": minimum Integer // -2147483648""", () async {
+    test("""define "IntegerMinimum": minimum Integer // -2147483648""",
+        () async {
       final QName valueType = QName.fromFull('Integer');
       final MinValue minValue = MinValue(valueType: valueType);
       expect(await minValue.execute({}), equals(fhir.FhirInteger(-2147483648)));
     });
-    test("""define "LongMinimum": minimum Long // -9223372036854775808""", () async {
+    test("""define "LongMinimum": minimum Long // -9223372036854775808""",
+        () async {
       final QName valueType = QName.fromFull('Long');
       final MinValue minValue = MinValue(valueType: valueType);
       expect(await minValue.execute({}),

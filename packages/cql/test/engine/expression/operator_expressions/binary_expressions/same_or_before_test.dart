@@ -65,7 +65,8 @@ void sameOrBeforeTest() {
       final expression = SameOrBefore(operand: [left, right]);
       expect(await expression.execute({}), equals(FhirBoolean(false)));
     });
-    test("""define "SameOrBeforeIsNull": Interval[1, 4] before null""", () async {
+    test("""define "SameOrBeforeIsNull": Interval[1, 4] before null""",
+        () async {
       final left =
           IntervalExpression(low: LiteralInteger(1), high: LiteralInteger(4));
       final right = LiteralNull();

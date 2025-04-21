@@ -15,7 +15,8 @@ void truncateTest() {
       expect(await result.execute({}), equals(FhirInteger(1)));
     });
 
-    test("""define "DecimalTruncate": Truncate(1987.00000871) // 1""", () async {
+    test("""define "DecimalTruncate": Truncate(1987.00000871) // 1""",
+        () async {
       final input = LiteralDecimal(1987.00000871);
       final result = Truncate(operand: input);
       expect(await result.execute({}), equals(FhirInteger(1987)));

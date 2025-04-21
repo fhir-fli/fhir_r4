@@ -23,7 +23,8 @@ void negateTest() {
     test("""define "QuantityNegate": 3.3 'mg' // -3.3 'mg'""", () async {
       final input = LiteralQuantity(LiteralDecimal(3.3), unit: 'mg');
       final result = Negate(operand: input);
-      expect(await result.execute({}), ValidatedQuantity.fromString("-3.3 'mg'"));
+      expect(
+          await result.execute({}), ValidatedQuantity.fromString("-3.3 'mg'"));
     });
     test("""define "NegateIsNull": -(null as Integer)""", () async {
       final input =

@@ -65,7 +65,7 @@ import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 Future<void> transformPatient() async {
   // Set up the resource cache
-  final resourceCache = OnlineResourceManager();
+  final resourceCache = OnlineResourceCache();
   
   // Load necessary structure definitions
   resourceCache.saveCanonicalResource(patientStructureDef);
@@ -92,15 +92,15 @@ Future<void> transformPatient() async {
 FHIR-FLI Mapping provides three levels of resource caching:
 
 - **ResourceCache**: Abstract base class defining the interface
-- **CanonicalResourceManager**: Local in-memory cache
-- **OnlineResourceManager**: Combines local caching with online resolution
+- **CanonicalResourceCache**: Local in-memory cache
+- **OnlineResourceCache**: Combines local caching with online resolution
 
 ```dart
 // For offline-only operation
-final localCache = CanonicalResourceManager();
+final localCache = CanonicalResourceCache();
 
 // For mixed local/online operation
-final onlineCache = OnlineResourceManager();
+final onlineCache = OnlineResourceCache();
 ```
 
 ## Advanced Usage

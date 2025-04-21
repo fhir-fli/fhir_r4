@@ -23,7 +23,7 @@ import 'examples/step8/export.dart';
 import 'examples/step9/export.dart';
 
 Future<void> main() async {
-  final resourceCache = CanonicalResourceManager();
+  final resourceCache = CanonicalResourceCache();
   group('1', () {
     resourceCache
       ..saveCanonicalResource(structureDefinitionTLeft1)
@@ -648,12 +648,7 @@ Future<void> main() async {
 
   group('Step 14', () {
     test('Step 14', () async {
-      // await resourceCache.saveCanonicalResource(conditionCategoryCodeSystem);
-      // await resourceCache.saveCanonicalResource(conditionClinicalCodeSystem);
-      // await resourceCache.saveCanonicalResource(conditionVerStatusCodeSystem);
-      // await resourceCache.saveCanonicalResource(observationCategoryCodeSystem);
-      // await resourceCache.saveCanonicalResource(observationCategoryValueSet);
-      final step14ResourceCache = OnlineResourceManager();
+      final step14ResourceCache = OnlineResourceCache();
       final result = await fhirMappingEngine(
         QuestionnaireResponse.fromJson(source14).toBuilder,
         structureMapStep14,

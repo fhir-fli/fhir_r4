@@ -11,7 +11,8 @@ void endTest() {
       final result = await end.execute({});
       expect(result, equals(FhirInteger(5)));
     });
-    test("""define "EndIsNull": end of (null as Interval<Integer>)""", () async {
+    test("""define "EndIsNull": end of (null as Interval<Integer>)""",
+        () async {
       final interval =
           As(operand: LiteralNull(), asType: QName.fromDataType('Interval'));
       final end = End(operand: interval);

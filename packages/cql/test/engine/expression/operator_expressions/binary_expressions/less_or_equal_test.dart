@@ -33,7 +33,8 @@ void lessOrEqualTest() {
       final result = await lessOrEqual.execute({});
       expect(result, equals(FhirBoolean(true)));
     });
-    test("""define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)""", () async {
+    test("""define "DecimalLessOrEqualIsFalse": 3.5 <= (3.5 - 0.1)""",
+        () async {
       final left = LiteralDecimal(3.5);
       final right = Subtract(operand: [
         LiteralDecimal(3.5),
@@ -43,7 +44,8 @@ void lessOrEqualTest() {
       final result = await lessOrEqual.execute({});
       expect(result, equals(FhirBoolean(false)));
     });
-    test("""define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'""", () async {
+    test("""define "QuantityLessOrEqualIsNull": 3.6 'cm2' <= 3.6 'cm'""",
+        () async {
       final left = LiteralQuantity(LiteralDecimal(3.6), unit: 'cm2');
       final right = LiteralQuantity(LiteralDecimal(3.6), unit: 'cm');
       final lessOrEqual = LessOrEqual(operand: [left, right]);

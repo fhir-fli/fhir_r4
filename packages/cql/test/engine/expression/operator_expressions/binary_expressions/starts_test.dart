@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void startsTest() {
   group('Starts', () {
-    test("""define "StartsIsTrue": Interval[0, 5] starts Interval[0, 7]""", () async {
+    test("""define "StartsIsTrue": Interval[0, 5] starts Interval[0, 7]""",
+        () async {
       final low1 = LiteralInteger(0);
       final high1 = LiteralInteger(5);
       final interval1 = IntervalExpression(low: low1, high: high1);

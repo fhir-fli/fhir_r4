@@ -30,7 +30,8 @@ void exceptTest() {
       final result = await except.execute({});
       expect(result, equals(null));
     });
-    test('define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }', () async {
+    test('define "Except": { 1, 3, 5, 7 } except { 1, 3 } // { 5, 7 }',
+        () async {
       final left = ListExpression(element: [
         LiteralInteger(1),
         LiteralInteger(3),

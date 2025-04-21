@@ -2,7 +2,7 @@ import 'package:cql/cql.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void beforeTest()  {
+void beforeTest() {
   group('Before', () {
     test("""define "BeforeIsTrue": @2012-01-01 before month of @2012-02-01""",
         () async {
@@ -29,7 +29,8 @@ void beforeTest()  {
       final expression = Before(precision: precision, operand: [left, right]);
       expect(await expression.execute({}), equals(null));
     });
-    test("""define "BeforeIsNull": @2012-01-01 before month of null""", () async {
+    test("""define "BeforeIsNull": @2012-01-01 before month of null""",
+        () async {
       final left = LiteralDate('2012-01-01');
       final right = LiteralNull();
       const precision = CqlDateTimePrecision.month;

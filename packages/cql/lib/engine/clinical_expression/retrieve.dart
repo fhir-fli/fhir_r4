@@ -368,7 +368,8 @@ class Retrieve extends CqlExpression {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> execute(Map<String, dynamic> context) async {
+  Future<List<Map<String, dynamic>>> execute(
+      Map<String, dynamic> context) async {
     // Step 1: Build Query
     Map<String, dynamic> query = <String, dynamic>{};
 
@@ -384,7 +385,7 @@ class Retrieve extends CqlExpression {
 
     // Add date filter to query
     if (dateRange != null) {
-      query['dateRange'] =await dateRange!.execute(context);
+      query['dateRange'] = await dateRange!.execute(context);
     } else if (dateFilter != null) {
       query['dateFilter'] = dateFilter!.map((e) => e.toJson()).toList();
     }

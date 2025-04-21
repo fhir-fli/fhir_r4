@@ -31,7 +31,7 @@ import '../../../../cql.dart';
 /// define "IsFalse": true and false
 /// define "IsAlsoFalse": false and null
 /// define "IsNull": true and null
-/// Note that CQL does not prescribe short-circuit evaluation of logical 
+/// Note that CQL does not prescribe short-circuit evaluation of logical
 /// operators.
 class And extends BinaryExpression {
   And({
@@ -132,7 +132,7 @@ class And extends BinaryExpression {
       return null;
     }
 
-    /// Default return null if not covered above, though all cases 
+    /// Default return null if not covered above, though all cases
     /// should be covered
     return null;
   }

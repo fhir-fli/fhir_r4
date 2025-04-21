@@ -134,13 +134,17 @@ class OverlapsAfter extends BinaryExpression {
       if (leftEnd is FhirDateTimeBase &&
           rightEnd is FhirDateTimeBase &&
           precision != null) {
-        after = After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
-        overlaps = Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
+        after =
+            After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
+        overlaps =
+            Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
       } else if (leftEnd is FhirTime &&
           rightEnd is FhirTime &&
           precision != null) {
-        after = After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
-        overlaps = Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
+        after =
+            After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
+        overlaps =
+            Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
       } else if (leftEnd is Comparable && rightEnd is Comparable) {
         after = leftEnd.compareTo(rightEnd) > 0;
         overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? overlaps;

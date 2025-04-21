@@ -143,9 +143,10 @@ class Multiply extends BinaryExpression {
                     UcumDecimal.fromString(right.valueString!))
                 .asUcumDecimal());
           } else if (right is FhirDecimal) {
-            return FhirDecimal(double.parse((UcumDecimal.fromString(left.valueString!) *
-                    UcumDecimal.fromString(right.valueString!))
-                .asUcumDecimal()));
+            return FhirDecimal(double.parse(
+                (UcumDecimal.fromString(left.valueString!) *
+                        UcumDecimal.fromString(right.valueString!))
+                    .asUcumDecimal()));
           } else if (right is ValidatedQuantity) {
             return ValidatedQuantity.fromString(left.valueString!) * right;
           }

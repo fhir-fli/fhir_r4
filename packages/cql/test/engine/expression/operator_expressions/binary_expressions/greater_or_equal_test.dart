@@ -33,7 +33,8 @@ void greaterOrEqualTest() {
       final result = await greaterOrEqual.execute({});
       expect(result, equals(FhirBoolean(true)));
     });
-    test("""define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)""", () async {
+    test("""define "DecimalGreaterOrEqualIsFalse": 3.5 >= (3.5 + 0.1)""",
+        () async {
       final left = LiteralDecimal(3.5);
       final right = Add(operand: [
         LiteralDecimal(3.5),

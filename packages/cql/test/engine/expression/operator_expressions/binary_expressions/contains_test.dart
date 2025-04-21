@@ -81,7 +81,8 @@ void containsTest() {
       final result = await contains.execute({});
       expect(result, FhirBoolean(false));
     });
-    test("""define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null""", () async {
+    test("""define "ContainsNullIsFalse": { 1, 3, 5, 7 } contains null""",
+        () async {
       final list = ListExpression(
         element: [
           LiteralInteger(1),

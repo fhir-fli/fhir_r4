@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void combineTest() {
   group('combine', () {
-    test("""define "CombineList": Combine({ 'A', 'B', 'C' }) // 'ABC'""", () async {
+    test("""define "CombineList": Combine({ 'A', 'B', 'C' }) // 'ABC'""",
+        () async {
       final list = ListExpression(
         element: [
           LiteralString('A'),
@@ -12,7 +13,7 @@ void combineTest() {
         ],
       );
       final combine = Combine(source: list);
-      final result =await  combine.execute({});
+      final result = await combine.execute({});
       expect(result, 'ABC');
     });
     test(
@@ -26,7 +27,7 @@ void combineTest() {
         ],
       );
       final combine = Combine(source: list, separator: LiteralString(' '));
-      final result =await  combine.execute({});
+      final result = await combine.execute({});
       expect(result, 'A B C');
     });
     test(
@@ -41,7 +42,7 @@ void combineTest() {
         ],
       );
       final combine = Combine(source: list);
-      final result =await  combine.execute({});
+      final result = await combine.execute({});
       expect(result, 'ABC');
     });
   });
