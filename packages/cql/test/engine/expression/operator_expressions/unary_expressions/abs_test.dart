@@ -29,7 +29,8 @@ void absTest() {
     test("""define "QuantityAbs": Abs(-5.5 'mg') // 5.5 'mg'""", () async {
       final input = LiteralQuantity(LiteralDecimal(-5.5), unit: 'mg');
       final result = Abs(operand: input);
-      expect(await result.execute({}), ValidatedQuantity.fromString("5.5 'mg'"));
+      expect(
+          await result.execute({}), ValidatedQuantity.fromString("5.5 'mg'"));
     });
   });
 }

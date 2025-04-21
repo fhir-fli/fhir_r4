@@ -106,8 +106,10 @@ class Or extends BinaryExpression {
     }
 
     /// If one operand is false and the other is null
-    if (((left is FhirBoolean && left.valueBoolean == false) && right == null) ||
-        ((right is FhirBoolean && right.valueBoolean == false) && left == null)) {
+    if (((left is FhirBoolean && left.valueBoolean == false) &&
+            right == null) ||
+        ((right is FhirBoolean && right.valueBoolean == false) &&
+            left == null)) {
       return null;
     }
 

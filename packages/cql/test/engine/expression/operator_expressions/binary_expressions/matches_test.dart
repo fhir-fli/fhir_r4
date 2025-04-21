@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void matchesTest() {
   group('Matches', () {
-    test(""""define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')""", () async {
+    test(""""define "MatchesTrue": Matches('1,2three', '\\d,\\d\\w+')""",
+        () async {
       final argument = LiteralString('1,2three');
       final pattern = LiteralString('\\d,\\d\\w+');
       final matches = Matches(operand: [argument, pattern]);

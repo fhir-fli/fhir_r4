@@ -173,7 +173,8 @@ class Power extends BinaryExpression {
       } else if (first is FhirInteger && second is FhirInteger) {
         return FhirInteger.tryParse(pow(first.valueNum!, second.valueNum!));
       } else if (first is FhirInteger64 && second is FhirInteger64) {
-        return FhirInteger64(first.valueBigInt!.pow(second.valueBigInt!.toInt()));
+        return FhirInteger64(
+            first.valueBigInt!.pow(second.valueBigInt!.toInt()));
       } else if (first is FhirDecimal && second is FhirDecimal) {
         return FhirDecimal(pow(first.valueNum!, second.valueNum!));
       } else {

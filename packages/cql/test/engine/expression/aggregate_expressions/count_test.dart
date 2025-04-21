@@ -28,7 +28,7 @@ void countTest() {
     });
     test('define "CountNull0": Count(null as List<Decimal>) // 0', () async {
       final count = Count(source: LiteralNull());
-      final result =await  count.execute({});
+      final result = await count.execute({});
       expect(result, equals(fhir.FhirInteger(0)));
     });
   });

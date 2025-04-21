@@ -19,7 +19,8 @@ void indexOfTest() {
       final result = await indexof.execute({});
       expect(result, FhirInteger(2));
     });
-    test('define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1', () async {
+    test('define "IndexOfNotFound": IndexOf({ 1, 3, 5, 7 }, 4) // -1',
+        () async {
       final indexof = IndexOf(
         source: ListExpression(
           element: [

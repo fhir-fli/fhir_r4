@@ -7,7 +7,7 @@ void main() {
   group('populationStdDev', () {
     test(
         'define "DecimalPopulationStdDev": PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.4142135623730951',
-        () async{
+        () async {
       final list = ListExpression(element: [
         LiteralDecimal(1.0),
         LiteralDecimal(2.0),
@@ -20,7 +20,7 @@ void main() {
     });
     test(
         """define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'""",
-        ()async {
+        () async {
       final list = ListExpression(element: [
         LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
         LiteralQuantity(LiteralDecimal(2.0), unit: 'mg'),
@@ -36,7 +36,7 @@ void main() {
     });
     test(
         'define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })',
-        ()async {
+        () async {
       final list = ListExpression(element: [
         LiteralNull(),
         LiteralNull(),
@@ -47,7 +47,7 @@ void main() {
     });
     test(
         'define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)',
-        () async{
+        () async {
       final result = await PopulationStdDev(source: LiteralNull()).execute({});
       expect(result, equals(null));
     });

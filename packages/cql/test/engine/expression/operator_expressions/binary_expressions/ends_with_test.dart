@@ -11,14 +11,16 @@ void endsWithTest() {
       final result = await endsWith.execute({});
       expect(result, equals(FhirBoolean(true)));
     });
-    test("""define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false""", () async {
+    test("""define "EndsWithIsFalse": EndsWith('ABC', 'Z') // false""",
+        () async {
       final argument = LiteralString('ABC');
       final suffix = LiteralString('Z');
       final endsWith = EndsWith(operand: [argument, suffix]);
       final result = await endsWith.execute({});
       expect(result, equals(FhirBoolean(false)));
     });
-    test("""define "EndsWithIsNull": EndsWith('ABC', null) // null""", () async {
+    test("""define "EndsWithIsNull": EndsWith('ABC', null) // null""",
+        () async {
       final argument = LiteralString('ABC');
       final endsWith = EndsWith(operand: [argument, LiteralNull()]);
       final result = await endsWith.execute({});

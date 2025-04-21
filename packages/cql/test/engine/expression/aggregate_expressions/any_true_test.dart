@@ -11,7 +11,7 @@ void anyTrue() {
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result =await  anyTrue.execute({});
+      final result = await anyTrue.execute({});
       expect(result, FhirBoolean(true));
     });
     test('define "AnyTrueIsFalse": AnyTrue({ false, false, null })', () async {
@@ -21,22 +21,23 @@ void anyTrue() {
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result =await  anyTrue.execute({});
+      final result = await anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
-    test('define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })', () async {
+    test('define "AnyTrueIsAlsoFalse": AnyTrue({ null, null, null })',
+        () async {
       final list = ListExpression(element: [
         LiteralNull(),
         LiteralNull(),
         LiteralNull(),
       ]);
       final anyTrue = AnyTrue(source: list);
-      final result =await  anyTrue.execute({});
+      final result = await anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
     test('define "AnyTrueIsFalseWhenNull": AnyTrue(null)', () async {
       final anyTrue = AnyTrue(source: LiteralNull());
-      final result =await  anyTrue.execute({});
+      final result = await anyTrue.execute({});
       expect(result, FhirBoolean(false));
     });
   });

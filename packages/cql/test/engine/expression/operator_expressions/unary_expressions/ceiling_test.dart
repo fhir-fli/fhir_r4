@@ -14,7 +14,8 @@ void ceilingTest() {
       final result = Ceiling(operand: input);
       expect(await result.execute({}), equals(FhirInteger(2)));
     });
-    test("""define "QuantityCeilingIsNull": Ceiling(null as Decimal)""", () async {
+    test("""define "QuantityCeilingIsNull": Ceiling(null as Decimal)""",
+        () async {
       final input = LiteralNull();
       final result = Ceiling(operand: input);
       expect(await result.execute({}), equals(null));

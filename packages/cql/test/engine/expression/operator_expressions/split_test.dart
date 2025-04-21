@@ -11,7 +11,8 @@ void splitTest() {
       final result = await split.execute({});
       expect(result, ['A', 'B', 'C']);
     });
-    test("""define "SplitNotFound": Split('A B C', ',') // { 'A B C' }""", () async {
+    test("""define "SplitNotFound": Split('A B C', ',') // { 'A B C' }""",
+        () async {
       final string = LiteralString('A B C');
       final separator = LiteralString(',');
       final split = Split(stringToSplit: string, separator: separator);

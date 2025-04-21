@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void distinctTest() {
   group('distinct', () {
-    test('define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }', () async {
+    test('define "Distinct": distinct { 1, 3, 3, 5, 5 } // { 1, 3, 5 }',
+        () async {
       final list = ListExpression(element: [
         LiteralInteger(1),
         LiteralInteger(3),

@@ -5,7 +5,6 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_validation/fhir_r4_validation.dart';
 import 'package:http/http.dart';
 
-
 /// A modular FHIR Validator class
 class FhirValidationEngine {
   /// Validate a FHIR resource from a Dart FHIR class

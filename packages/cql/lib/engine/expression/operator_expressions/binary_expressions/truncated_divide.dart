@@ -109,7 +109,8 @@ class TruncatedDivide extends BinaryExpression {
           if (right is FhirInteger) {
             return FhirInteger(left.valueNum! ~/ right.valueNum!);
           } else if (right is FhirInteger64) {
-            return FhirInteger64(BigInt.from(left.valueNum!) ~/ right.valueBigInt!);
+            return FhirInteger64(
+                BigInt.from(left.valueNum!) ~/ right.valueBigInt!);
           } else if (right is FhirDecimal) {
             return FhirDecimal(left.valueNum! ~/ right.valueNum!);
           }
@@ -118,7 +119,8 @@ class TruncatedDivide extends BinaryExpression {
       case FhirInteger64 _:
         {
           if (right is FhirInteger) {
-            return FhirInteger64(left.valueBigInt! ~/ BigInt.from(right.valueNum!));
+            return FhirInteger64(
+                left.valueBigInt! ~/ BigInt.from(right.valueNum!));
           } else if (right is FhirInteger64) {
             return FhirInteger64(left.valueBigInt! ~/ right.valueBigInt!);
           } else if (right is FhirDecimal) {

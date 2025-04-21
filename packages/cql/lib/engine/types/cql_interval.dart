@@ -24,7 +24,8 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
             "Invalid Interval - the ending boundary must be greater than or equal to the starting boundary.");
       }
     } else if (low != null && high != null) {
-      bool? isStartGreater = Greater.greater(getStart(), getEnd())?.valueBoolean;
+      bool? isStartGreater =
+          Greater.greater(getStart(), getEnd())?.valueBoolean;
       if (isStartGreater == true) {
         throw Exception(
             "Invalid Interval - the ending boundary must be greater than or equal to the starting boundary.");
@@ -105,7 +106,8 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
           ? (GreaterOrEqual.greaterOrEqual(value.getStart(), getStart())
                       ?.valueBoolean ??
                   false) &&
-              (LessOrEqual.lessOrEqual(value.getEnd(), getEnd())?.valueBoolean ??
+              (LessOrEqual.lessOrEqual(value.getEnd(), getEnd())
+                      ?.valueBoolean ??
                   false)
           : (GreaterOrEqual.greaterOrEqual(value, getStart())?.valueBoolean ??
                   false) &&
@@ -113,8 +115,10 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
 
   @override
   bool equivalent(Object other) => other is CqlInterval
-      ? (Equivalent.equivalent(getStart(), other.getStart()).valueBoolean ?? false) &&
-          (Equivalent.equivalent(getEnd(), other.getEnd()).valueBoolean ?? false)
+      ? (Equivalent.equivalent(getStart(), other.getStart()).valueBoolean ??
+              false) &&
+          (Equivalent.equivalent(getEnd(), other.getEnd()).valueBoolean ??
+              false)
       : false;
 
   @override
@@ -168,11 +172,13 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
     }
 
     // Find the maximum start point and minimum end point for the intersection
-    var maxStart = (Greater.greater(leftStart, rightStart)?.valueBoolean ?? false)
-        ? leftStart
-        : rightStart;
-    var minEnd =
-        (Less.less(leftEnd, rightEnd)?.valueBoolean ?? false) ? leftEnd : rightEnd;
+    var maxStart =
+        (Greater.greater(leftStart, rightStart)?.valueBoolean ?? false)
+            ? leftStart
+            : rightStart;
+    var minEnd = (Less.less(leftEnd, rightEnd)?.valueBoolean ?? false)
+        ? leftEnd
+        : rightEnd;
 
     // Ensure the intersection is valid (start is before end)
     if (!(Greater.greater(minEnd, maxStart)?.valueBoolean ?? false)) {

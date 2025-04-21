@@ -20,7 +20,8 @@ void inTest() {
       final result = await inValue.execute({});
       expect(result, FhirBoolean(false));
     });
-    test("""define "InIsAlsoFalse": 3 in (null as Interval<Integer>)""", () async {
+    test("""define "InIsAlsoFalse": 3 in (null as Interval<Integer>)""",
+        () async {
       final value = LiteralInteger(3);
       final interval =
           As(operand: LiteralNull(), asType: QName.fromFull('Interval'));

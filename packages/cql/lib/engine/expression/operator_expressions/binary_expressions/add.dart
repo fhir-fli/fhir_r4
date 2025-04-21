@@ -125,9 +125,10 @@ class Add extends BinaryExpression {
         return right is FhirInteger
             ? FhirInteger((left.valueNum! + right.valueNum!).toInt())
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .add(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
+                        .add(UcumDecimal.fromString(right.valueString!))
+                        .asUcumDecimal()))
                 : right is FhirInteger64
                     ? FhirInteger64.fromNum(
                         (left.valueNum as int) + right.valueBigInt!.toInt())
@@ -136,9 +137,10 @@ class Add extends BinaryExpression {
         return right is FhirInteger64
             ? FhirInteger64(left.valueBigInt! + right.valueBigInt!)
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .add(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
+                        .add(UcumDecimal.fromString(right.valueString!))
+                        .asUcumDecimal()))
                 : right is FhirInteger
                     ? FhirInteger64.fromNum(
                         left.valueBigInt!.toInt() + right.valueNum!.toInt())
@@ -149,13 +151,15 @@ class Add extends BinaryExpression {
                 .add(UcumDecimal.fromString(right.valueString!))
                 .asUcumDecimal()))
             : right is FhirInteger
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .add(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
-                : right is FhirInteger64
-                    ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
                         .add(UcumDecimal.fromString(right.valueString!))
                         .asUcumDecimal()))
+                : right is FhirInteger64
+                    ? FhirDecimal(double.parse(
+                        UcumDecimal.fromString(left.valueString!)
+                            .add(UcumDecimal.fromString(right.valueString!))
+                            .asUcumDecimal()))
                     : null;
       case ValidatedQuantity _:
         return right is ValidatedQuantity

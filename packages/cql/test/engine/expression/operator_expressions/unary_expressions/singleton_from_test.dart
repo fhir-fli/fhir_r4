@@ -14,7 +14,8 @@ void singletonFromTest() {
       final list = ListExpression(
           element: [LiteralInteger(1), LiteralInteger(3), LiteralInteger(5)]);
       final singletonFrom = SingletonFrom(operand: list);
-      expect(await () => singletonFrom.execute({}), throwsA(isA<ArgumentError>()));
+      expect(
+          await () => singletonFrom.execute({}), throwsA(isA<ArgumentError>()));
     });
     test('define "SingletonFromIsNull": singleton from (null as List<Integer>)',
         () async {

@@ -178,9 +178,10 @@ class Subtract extends BinaryExpression {
         return right is FhirInteger
             ? FhirInteger.tryParse(left.valueNum! - right.valueNum!)
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .subtract(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
+                        .subtract(UcumDecimal.fromString(right.valueString!))
+                        .asUcumDecimal()))
                 : right is FhirInteger64
                     ? FhirInteger64.tryParse(
                         (left.valueInt as int) - right.valueBigInt!.toInt())
@@ -189,9 +190,10 @@ class Subtract extends BinaryExpression {
         return right is FhirInteger64
             ? FhirInteger64(left.valueBigInt! - right.valueBigInt!)
             : right is FhirDecimal
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .subtract(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
+                        .subtract(UcumDecimal.fromString(right.valueString!))
+                        .asUcumDecimal()))
                 : right is FhirInteger
                     ? FhirInteger64.tryParse(
                         left.valueBigInt!.toInt() - right.valueInt!)
@@ -202,11 +204,13 @@ class Subtract extends BinaryExpression {
                 .subtract(UcumDecimal.fromString(right.valueString!))
                 .asUcumDecimal()))
             : right is FhirInteger
-                ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
-                    .subtract(UcumDecimal.fromString(right.valueString!))
-                    .asUcumDecimal()))
+                ? FhirDecimal(double.parse(
+                    UcumDecimal.fromString(left.valueString!)
+                        .subtract(UcumDecimal.fromString(right.valueString!))
+                        .asUcumDecimal()))
                 : right is FhirInteger64
-                    ? FhirDecimal(double.parse(UcumDecimal.fromString(left.valueString!)
+                    ? FhirDecimal(double.parse(UcumDecimal.fromString(
+                            left.valueString!)
                         .subtract(UcumDecimal.fromString(right.valueString!))
                         .asUcumDecimal()))
                     : null;

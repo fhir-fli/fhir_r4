@@ -14,7 +14,8 @@ void successorTest() {
       final result = Successor(operand: input);
       expect(await result.execute({}), fhir.FhirInteger64.fromNum(101));
     });
-    test("""define "DecimalSuccessor": successor of 1.0 // 1.00000001""", () async {
+    test("""define "DecimalSuccessor": successor of 1.0 // 1.00000001""",
+        () async {
       final input = LiteralDecimal(1.0);
       final result = Successor(operand: input);
       expect(await result.execute({}), fhir.FhirDecimal(1.00000001));
@@ -25,7 +26,8 @@ void successorTest() {
       final result = Successor(operand: input);
       expect(await result.execute({}), fhir.FhirDate.fromString('2014-01-02'));
     });
-    test("""define "SuccessorIsNull": successor of (null as Quantity)""", () async {
+    test("""define "SuccessorIsNull": successor of (null as Quantity)""",
+        () async {
       final input = As(resultTypeName: 'Quantity', operand: LiteralNull());
       final result = Successor(operand: input);
       expect(await result.execute({}), null);

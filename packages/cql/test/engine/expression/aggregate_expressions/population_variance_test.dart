@@ -48,7 +48,8 @@ void populationVarianceTest() {
     test(
         'define "PopulationVarianceIsAlsoNull": PopulationVariance(null as List<Decimal>)',
         () async {
-      final result =await  PopulationVariance(source: LiteralNull()).execute({});
+      final result =
+          await PopulationVariance(source: LiteralNull()).execute({});
       expect(result, equals(null));
     });
     test('PopulationVariance({ 1, 2, 3, null }) = 0.66666666', () async {
@@ -58,7 +59,7 @@ void populationVarianceTest() {
         LiteralDecimal(3),
         LiteralNull(),
       ]);
-      final result =await  PopulationVariance(source: list).execute({});
+      final result = await PopulationVariance(source: list).execute({});
       expect(result, equals(FhirDecimal(0.6666666666666666)));
     });
     test('PopulationStdDev({ 1, 2, 3, null }) = 0.816496580927726', () async {
@@ -68,7 +69,7 @@ void populationVarianceTest() {
         LiteralDecimal(3),
         LiteralNull(),
       ]);
-      final result =await  PopulationStdDev(source: list).execute({});
+      final result = await PopulationStdDev(source: list).execute({});
       expect(result, equals(FhirDecimal(0.816496580927726)));
     });
   });

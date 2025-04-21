@@ -118,7 +118,8 @@ class Avg extends AggregateExpression {
         return null;
       }
       if (sourceResult.every((element) => element is FhirNumber)) {
-        sourceResult = sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
+        sourceResult =
+            sourceResult.map((e) => FhirDecimal(e.valueNum!)).toList();
         final sum = sourceResult.fold(FhirDecimal(0),
             (FhirDecimal previousValue, dynamic element) {
           return FhirDecimal(
