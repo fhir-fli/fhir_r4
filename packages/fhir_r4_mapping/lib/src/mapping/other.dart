@@ -32,11 +32,8 @@ class TransformationContext {
 /// Resolves structure definitions for FHIR mapping.
 class DefinitionResolver {
   /// Creates a [DefinitionResolver] with a [cache] and optional [map].
-  DefinitionResolver(ResourceCache cache, this.map)
+  DefinitionResolver(ResourceCache cache)
       : _worker = WorkerContext(resourceCache: cache);
-
-  /// The optional structure map for resolving definitions.
-  final StructureMap? map;
 
   final WorkerContext _worker;
 
@@ -46,7 +43,10 @@ class DefinitionResolver {
   }
 
   /// Resolves a [StructureDefinition] by [type].
-  Future<StructureDefinition?> resolveByType(String? type) async {
+  Future<StructureDefinition?> resolveByType(
+    String? type,
+    StructureMap? map,
+  ) async {
     if (type == null) {
       return null;
     }
@@ -76,6 +76,7 @@ class DefinitionResolver {
   /// Resolves an [ElementDefinition] for [objectLocation].
   Future<ElementDefinition?> resolveElementDefinition(
     String? objectLocation,
+    StructureMap? map,
   ) async {
     if (objectLocation == null) {
       return null;
@@ -83,17 +84,18 @@ class DefinitionResolver {
 
     final pathParts = objectLocation.split('.');
     final baseType = pathParts.first;
-    final sd = await resolveByType(baseType);
+    final sd = await resolveByType(baseType, map);
     if (sd == null) {
       return null;
     }
 
-    return _resolveElementDefinition(sd, pathParts);
+    return _resolveElementDefinition(sd, pathParts, map);
   }
 
   Future<ElementDefinition?> _resolveElementDefinition(
     StructureDefinition sd,
     List<String> pathParts,
+    StructureMap? map,
   ) async {
     final ed = _resolveElementDefinitionFromStructure(sd, pathParts.join('.'));
     if (ed != null) {
@@ -109,11 +111,12 @@ class DefinitionResolver {
         final nextType =
             ed.singleTypeString ?? resolvePolymorphicType(ed, path);
 
-        final sd = await resolveByType(nextType);
+        final sd = await resolveByType(nextType, map);
         if (sd != null) {
           return _resolveElementDefinition(
             sd,
             [nextType!, ...pathParts.sublist(i - 1)],
+            map,
           );
         } else {
           return null;
@@ -124,15 +127,21 @@ class DefinitionResolver {
   }
 
   /// Determines if [objectLocation] is a list.
-  Future<bool> isElementAList(String? objectLocation) async {
-    final elementDef = await resolveElementDefinition(objectLocation);
+  Future<bool> isElementAList(
+    String? objectLocation,
+    StructureMap? map,
+  ) async {
+    final elementDef = await resolveElementDefinition(objectLocation, map);
     return elementDef?.isCollection ?? false;
   }
 
   /// Gets possible types for an element at [objectLocation].
-  Future<List<String>> typesForElement(String? objectLocation) async {
+  Future<List<String>> typesForElement(
+    String? objectLocation,
+    StructureMap? map,
+  ) async {
     if (objectLocation == null) return <String>[];
-    final elementDef = await resolveElementDefinition(objectLocation);
+    final elementDef = await resolveElementDefinition(objectLocation, map);
     return elementDef?.type?.map((t) => t.code.toString()).toList() ??
         <String>[];
   }

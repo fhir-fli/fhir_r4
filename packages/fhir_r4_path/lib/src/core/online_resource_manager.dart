@@ -3,11 +3,11 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:http/http.dart';
 
-/// An online-capable extension of [CanonicalResourceManager].
+/// An online-capable extension of [CanonicalResourceCache].
 /// Falls back to HTTP GET when a resource isn't cached locally.
-class OnlineResourceManager extends CanonicalResourceManager {
-  /// Creates an [OnlineResourceManager] with optional HTTP client.
-  OnlineResourceManager({
+class OnlineResourceCache extends CanonicalResourceCache {
+  /// Creates an [OnlineResourceCache] with optional HTTP client.
+  OnlineResourceCache({
     super.enforceUniqueId = false,
     Client? client,
   }): super(client: client ?? Client());
