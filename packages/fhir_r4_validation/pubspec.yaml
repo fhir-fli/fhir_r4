@@ -18,12 +18,8 @@ environment:
 
 dependencies:
   collection: ^1.19.0
-  # fhir_r4: ^0.4.1
-  fhir_r4:
-    path: ../fhir_r4
-  # fhir_r4_path: ^0.4.0
-  fhir_r4_path:
-    path: ../fhir_r4_path
+  fhir_r4: ^0.4.1
+  fhir_r4_path: ^0.4.1
   http: ^1.3.0
 
 dev_dependencies:

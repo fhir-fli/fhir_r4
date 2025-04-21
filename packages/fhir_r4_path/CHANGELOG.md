@@ -1,5 +1,11 @@
 # fhir_r4_path
 
+## [0.4.2]
+
+* Simplified CanonicalResourceManager
+* Added OnlineResourceManager
+
+
 ## [0.4.1]
 
 * Updated engine to work better with mapping

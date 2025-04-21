@@ -22,8 +22,8 @@ import 'package:fhir_r4/fhir_r4.dart'
         StructureMap,
         ValueSet,
         ValueSetContains;
-import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:uuid/uuid.dart';
 
 Future<FhirBase?> fhirMappingEngine(
@@ -632,7 +632,7 @@ class FhirMapEngine {
         newStatedType = sd.type.toString();
       }
     }
-    return actualType == statedType;
+    return newActualType == newStatedType;
   }
 
   Future<String> _getActualType(
@@ -1740,7 +1740,6 @@ class FhirMapEngine {
     MappingVariables variables,
     List<StructureMapParameterBuilder> parameters,
   ) async {
-    print('translate: ${parameters.first.toJson()}');
     final sourceElement = _getParam(variables, parameters.first);
     final conceptMapUrl = _getParamStringGeneral(
       variables,
@@ -1781,11 +1780,7 @@ class FhirMapEngine {
             ? sourceElement.valueString
             : sourceElement.toJson()['coding'];
 
-    print('sourceCoding: $sourceCoding');
-
     final conceptMap = await _findConceptMap(conceptMapUrl, map);
-
-    print('conceptMap: ${conceptMap?.toJson()}');
 
     return conceptMap == null
         ? null

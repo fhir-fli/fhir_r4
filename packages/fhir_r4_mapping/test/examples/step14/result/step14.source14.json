@@ -37,7 +37,8 @@
                         "coding": [
                             {
                                 "system": "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
-                                "code": "food-insecurity"
+                                "code": "food-insecurity",
+                                "display": "Food Insecurity"
                             }
                         ]
                     }
@@ -118,7 +119,8 @@
                         "coding": [
                             {
                                 "system": "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
-                                "code": "food-insecurity"
+                                "code": "food-insecurity",
+                                "display": "Food Insecurity"
                             }
                         ]
                     }
