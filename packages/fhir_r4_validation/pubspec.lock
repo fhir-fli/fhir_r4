@@ -66,7 +66,7 @@ packages:
     source: hosted
     version: "1.11.1"
   crypto:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: crypto
       sha256: "1e445881f28f22d6140f181e07737b22f1e099a5e1ff94b0af2f9e4a463f4855"
@@ -76,16 +76,18 @@ packages:
   fhir_r4:
     dependency: "direct main"
     description:
-      path: "../fhir_r4"
-      relative: true
-    source: path
+      name: fhir_r4
+      sha256: "2dff38ed8dbdce26d7cf64f32ce64364b7434830c1c7eda9fe676de3b1f438bf"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.4.1"
   fhir_r4_path:
     dependency: "direct main"
     description:
-      path: "../fhir_r4_path"
-      relative: true
-    source: path
+      name: fhir_r4_path
+      sha256: a454f61b95171c600c90cb5a26bc7feeb8e719e543bbafb321b8544b2bec9339
+      url: "https://pub.dev"
+    source: hosted
     version: "0.4.1"
   file:
     dependency: transitive
@@ -384,7 +386,7 @@ packages:
     source: hosted
     version: "2.2.2"
   uuid:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: uuid
       sha256: a5be9ef6618a7ac1e964353ef476418026db906c4facdedaa299b7a2e71690ff
@@ -440,7 +442,7 @@ packages:
     source: hosted
     version: "1.2.1"
   xml:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: xml
       sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
@@ -448,7 +450,7 @@ packages:
     source: hosted
     version: "6.5.0"
   yaml:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: yaml
       sha256: b9da305ac7c39faa3f030eccd175340f968459dae4af175130b3fc47e40d76ce

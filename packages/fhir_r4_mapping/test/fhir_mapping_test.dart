@@ -3,8 +3,8 @@
 
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:fhir_r4/fhir_r4.dart' show QuestionnaireResponse;
-import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
 // import 'examples/step10/export.dart';
@@ -648,15 +648,16 @@ Future<void> main() async {
 
   group('Step 14', () {
     test('Step 14', () async {
-      await resourceCache.saveCanonicalResource(conditionCategoryCodeSystem);
-      await resourceCache.saveCanonicalResource(conditionClinicalCodeSystem);
-      await resourceCache.saveCanonicalResource(conditionVerStatusCodeSystem);
-      await resourceCache.saveCanonicalResource(observationCategoryCodeSystem);
-      await resourceCache.saveCanonicalResource(observationCategoryValueSet);
+      // await resourceCache.saveCanonicalResource(conditionCategoryCodeSystem);
+      // await resourceCache.saveCanonicalResource(conditionClinicalCodeSystem);
+      // await resourceCache.saveCanonicalResource(conditionVerStatusCodeSystem);
+      // await resourceCache.saveCanonicalResource(observationCategoryCodeSystem);
+      // await resourceCache.saveCanonicalResource(observationCategoryValueSet);
+      final step14ResourceCache = OnlineResourceManager();
       final result = await fhirMappingEngine(
         QuestionnaireResponse.fromJson(source14).toBuilder,
         structureMapStep14,
-        resourceCache,
+        step14ResourceCache,
         BundleBuilder.empty(),
       );
 

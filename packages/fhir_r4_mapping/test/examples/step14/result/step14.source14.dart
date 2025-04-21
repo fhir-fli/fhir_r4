@@ -45,7 +45,8 @@ final resultStep14Source14 = {
               {
                 "system":
                     "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
-                "code": "food-insecurity"
+                "code": "food-insecurity",
+                "display": "Food Insecurity"
               }
             ]
           }
@@ -123,7 +124,8 @@ final resultStep14Source14 = {
               {
                 "system":
                     "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
-                "code": "food-insecurity"
+                "code": "food-insecurity",
+                "display": "Food Insecurity"
               }
             ]
           }

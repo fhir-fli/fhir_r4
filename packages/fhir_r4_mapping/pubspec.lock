@@ -76,9 +76,10 @@ packages:
   fhir_r4:
     dependency: "direct main"
     description:
-      path: "../fhir_r4"
-      relative: true
-    source: path
+      name: fhir_r4
+      sha256: "2dff38ed8dbdce26d7cf64f32ce64364b7434830c1c7eda9fe676de3b1f438bf"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.4.1"
   fhir_r4_path:
     dependency: "direct main"
