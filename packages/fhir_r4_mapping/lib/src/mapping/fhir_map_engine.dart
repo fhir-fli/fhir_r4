@@ -33,29 +33,24 @@ Future<FhirBase?> fhirMappingEngine(
   FhirBaseBuilder? target, [
   FhirBaseBuilder? Function(String)? extendedEmptyFromType,
 ]) async {
-  final mapEngine = await FhirMapEngine.create(cache, map)
+  final mapEngine = await FhirMapEngine.create(cache)
     ..extendedEmptyFromType = extendedEmptyFromType;
   final transform = await mapEngine.transformBuilder('', source, map, target);
   return transform;
 }
 
 class FhirMapEngine {
-  FhirMapEngine._(ResourceCache cache, this.map)
-      : resolver = DefinitionResolver(cache, map) {
+  FhirMapEngine._(ResourceCache cache) : resolver = DefinitionResolver(cache) {
     context = TransformationContext(resolver);
     services = FHIRPathHostServices();
   }
 
-  static Future<FhirMapEngine> create(
-    ResourceCache cache,
-    StructureMap map,
-  ) async {
-    final engine = FhirMapEngine._(cache, map);
+  static Future<FhirMapEngine> create(ResourceCache cache) async {
+    final engine = FhirMapEngine._(cache);
     engine.fpe = await FHIRPathEngine.create(WorkerContext(), engine.services);
     return engine;
   }
 
-  final StructureMap map;
   final DefinitionResolver resolver;
   late final TransformationContext context;
   late final IEvaluationContext? services;

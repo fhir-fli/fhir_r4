@@ -7,7 +7,7 @@ import 'package:ucum/ucum.dart';
 
 class WorkerContext {
   WorkerContext({this.txClient, ResourceCache? resourceCache})
-      : resourceCache = resourceCache ?? CanonicalResourceManager();
+      : resourceCache = resourceCache ?? CanonicalResourceCache();
   // Fields to store resources
   final ResourceCache resourceCache;
   final UcumService ucumService = UcumService();

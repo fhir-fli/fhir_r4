@@ -23,9 +23,9 @@ class CachedCanonicalResource<T extends CanonicalResource> {
 }
 
 /// A canonical resource manager that eagerly loads and caches resources.
-class CanonicalResourceManager extends ResourceCache {
-  /// Creates a [CanonicalResourceManager] instance.
-  CanonicalResourceManager({
+class CanonicalResourceCache extends ResourceCache {
+  /// Creates a [CanonicalResourceCache] instance.
+  CanonicalResourceCache({
     this.enforceUniqueId = false,
     super.client,
   })  : _byId = {},
