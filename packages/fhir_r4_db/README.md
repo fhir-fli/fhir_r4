@@ -20,7 +20,7 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 ```yaml
 dependencies:
   fhir_r4_db: ^0.4.0
-  fhir_r4: ^0.4.1
+  fhir_r4: ^0.4.2
 ```
 
 ## Quick Start

@@ -1,5 +1,9 @@
 # fhir_r4_path
 
+## [0.4.4]
+
+* Updated dependencies
+
 ## [0.4.3]
 
 * Naming consistency: ResourceCache, CanonicalResourceCache, OnlineResourceCache

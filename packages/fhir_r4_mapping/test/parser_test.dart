@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
+import 'package:test/test.dart';
 
 Future<void> main() async {
   final dir = Directory('test/parser_examples');
@@ -18,7 +19,6 @@ Future<void> main() async {
 }
 
 void testFile(String key, StructureMapParser parser) {
-  print('Testing $key');
   final structureMapString = File(key).readAsStringSync();
   final realStructureMap =
       StructureMap.fromJsonString(structureMapString).toJson()
@@ -35,13 +35,14 @@ void testFile(String key, StructureMapParser parser) {
 
     final equals = const DeepCollectionEquality()
         .equals(realStructureMap, structureMapJson);
-    print('equals: $equals');
+    test(key, () {
+      expect(equals, true);
+    });
     if (!equals) {
       File(key.replaceAll('.json', '_ours.json'))
           .writeAsStringSync(prettyJson(structureMapJson));
       // throw Exception('StructureMap not equal');
     }
-    print('\n\n**********************************');
   } catch (e, s) {
     print('$key: $e');
     print(s);

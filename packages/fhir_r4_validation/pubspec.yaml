@@ -18,7 +18,7 @@ environment:
 
 dependencies:
   collection: ^1.19.0
-  fhir_r4: ^0.4.1
+  fhir_r4: ^0.4.2
   fhir_r4_path: ^0.4.3
   http: ^1.3.0
 

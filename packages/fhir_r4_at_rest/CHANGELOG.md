@@ -1,5 +1,9 @@
 # fhir_r4_at_rest
 
+## [0.4.1]
+
+* Updated dependencies
+
 ## [0.4.0]
 
 * just update to use the most recent fhir_r4 package
