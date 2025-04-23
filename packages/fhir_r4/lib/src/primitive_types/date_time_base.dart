@@ -933,15 +933,6 @@ abstract class FhirDateTimeBase extends PrimitiveType
       throw ArgumentError(
         'Invalid date-time string (no match): $dateTimeString',
       );
-    } else if (T == FhirDate) {
-      if (match.namedGroup('hour') != null ||
-          match.namedGroup('minute') != null ||
-          match.namedGroup('second') != null ||
-          match.namedGroup('fraction') != null) {
-        throw ArgumentError(
-          'Invalid date-time string (FhirDate): $dateTimeString',
-        );
-      }
     } else if (T == FhirInstant) {
       if (match.namedGroup('year') == null ||
           match.namedGroup('month') == null ||
@@ -976,12 +967,17 @@ abstract class FhirDateTimeBase extends PrimitiveType
       'year': int.tryParse(match.namedGroup('year') ?? ''),
       'month': int.tryParse(match.namedGroup('month') ?? ''),
       'day': int.tryParse(match.namedGroup('day') ?? ''),
-      'hour': int.tryParse(match.namedGroup('hour') ?? ''),
-      'minute': int.tryParse(match.namedGroup('minute') ?? ''),
-      'second': int.tryParse(match.namedGroup('second') ?? ''),
-      'millisecond': millisecond,
-      'microsecond': microsecond,
-      'timeZoneOffset': match.namedGroup('timezone')?.stringToTimeZoneOffset,
+      'hour':
+          T == FhirDate ? null : int.tryParse(match.namedGroup('hour') ?? ''),
+      'minute':
+          T == FhirDate ? null : int.tryParse(match.namedGroup('minute') ?? ''),
+      'second':
+          T == FhirDate ? null : int.tryParse(match.namedGroup('second') ?? ''),
+      'millisecond': T == FhirDate ? null : millisecond,
+      'microsecond': T == FhirDate ? null : microsecond,
+      'timeZoneOffset': T == FhirDate
+          ? null
+          : match.namedGroup('timezone')?.stringToTimeZoneOffset,
       'isUtc': (match.namedGroup('timezone')?.contains('Z') ?? false) ? 0 : 1,
     };
   }

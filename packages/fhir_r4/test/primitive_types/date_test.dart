@@ -60,9 +60,15 @@ void dateTest() {
 
     test('yyyyMMddFromString with Offset', () {
       final dateyyyyMMddFromString = FhirDate.fromString(yyyyMMddOffset);
-      expect(dateyyyyMMddFromString.valueString, equals(yyyyMMddOffset));
+      expect(
+        dateyyyyMMddFromString.valueString,
+        equals(yyyyMMddOffset.substring(0, 10)),
+      );
       expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromString.toJson()['value'], equals(yyyyMMddOffset));
+      expect(
+        dateyyyyMMddFromString.toJson()['value'],
+        equals(yyyyMMddOffset.substring(0, 10)),
+      );
     });
 
     final invalidDateString = 'invalid-date$offset';
@@ -80,14 +86,17 @@ void dateTest() {
 
     test('Leap Year Date from String with Offset', () {
       final leapYearFromString = FhirDate.fromString(leapYearDateWithOffset);
-      expect(leapYearFromString.valueString, equals(leapYearDateWithOffset));
+      expect(
+        leapYearFromString.valueString,
+        equals(leapYearDateWithOffset.substring(0, 10)),
+      );
       expect(
         leapYearFromString.valueDateTime,
         equals(leapYearDateTime.toLocal()),
       );
       expect(
         leapYearFromString.toJson()['value'],
-        equals(leapYearDateWithOffset),
+        equals(leapYearDateWithOffset.substring(0, 10)),
       );
     });
 

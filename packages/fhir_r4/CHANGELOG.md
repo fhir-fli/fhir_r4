@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.4.2]
+
+* Fixed bug not allowing DateTime to be passed to FhirDate
+
 ## [0.4.1]
 
 * added back getChildrenByType to PrimitiveType
