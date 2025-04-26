@@ -110,7 +110,13 @@ class Slice extends OperatorExpression {
           : end is FhirNumber && end.valueNum is int
               ? end.valueNum! as int
               : null;
-      return src.sublist(startIndex, endIndex);
+      return src.sublist(
+          startIndex,
+          endIndex != null
+              ? endIndex > src.length
+                  ? src.length
+                  : endIndex
+              : null);
     }
   }
 }

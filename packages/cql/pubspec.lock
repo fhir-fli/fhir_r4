@@ -132,19 +132,17 @@ packages:
   fhir_r4:
     dependency: "direct main"
     description:
-      name: fhir_r4
-      sha256: "5ef018e0b35d7824076c192358b3d4f39c1af666004c3a61d4678bdb2d82a656"
-      url: "https://pub.dev"
-    source: hosted
+      path: "../fhir_r4"
+      relative: true
+    source: path
     version: "0.4.2"
   fhir_r4_path:
     dependency: "direct main"
     description:
-      name: fhir_r4_path
-      sha256: "05311f6240e2e02c0c4cee0feec6b8a62fba427309c7c18a136cb7f081449745"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.3"
+      path: "../fhir_r4_path"
+      relative: true
+    source: path
+    version: "0.4.4"
   file:
     dependency: transitive
     description:

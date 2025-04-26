@@ -26,7 +26,7 @@ void predecessorTest() {
       final input = LiteralDate('2014-01-01');
       final output = Predecessor(operand: input);
       expect(
-          output.execute({}), equals(fhir.FhirDate.fromString('2013-12-31')));
+          await output.execute({}), equals(fhir.FhirDate.fromString('2013-12-31')));
     });
     test("""define "PredecessorIsNull": predecessor of (null as Quantity)""",
         () async {

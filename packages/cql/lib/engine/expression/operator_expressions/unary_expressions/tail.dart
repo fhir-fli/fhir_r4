@@ -1,5 +1,22 @@
 import '../../../../cql.dart';
 
+/// Tail
+///
+/// The Tail operator returns all but the first element of a list.
+/// If the source list is null, the result is null.
+///
+/// Signature:
+///   Tail(argument List<T>) List<T>
+///
+/// Description:
+///   The Tail operator returns the elements in the list starting at index 1
+///   through the end. If the list has fewer than 1 element, the result is
+///   an empty list.
+///
+/// Examples:
+///   define "TailNonEmpty": Tail({1,2,3,4}) // {2,3,4}
+///   define "TailEmpty":    Tail({})          // {}
+///   define "TailNull":     Tail(null)        // null
 class Tail extends UnaryExpression {
   Tail({
     required super.operand,
@@ -62,10 +79,9 @@ class Tail extends UnaryExpression {
   }
 
   @override
-  Future<dynamic> execute(Map<String, dynamic> context) async {
-    final value = await operand.execute(context);
-    if (value is List) {
-      return value.sublist(1);
-    }
+  Future<List<dynamic>?> execute(Map<String, dynamic> context) async {
+    final src = await operand.execute(context);
+    // Delegate to central Slice implementation: skip first element
+    return Slice.slice(src, 1, null);
   }
 }

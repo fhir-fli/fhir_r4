@@ -22,8 +22,14 @@ void minValue() {
         () async {
       final QName valueType = QName.fromFull('DateTime');
       final MinValue minValue = MinValue(valueType: valueType);
-      expect(await minValue.execute({}),
-          equals(fhir.FhirDateTime.fromString('0001-01-01T00:00:00.000')));
+      final minValueExecute = await minValue.execute({});
+      print('minValueExecute: $minValueExecute (${minValueExecute.runtimeType})');
+      final fromString =
+          fhir.FhirDateTime.fromString('0001-01-01T00:00:00.000');
+      print('fromString: $fromString (${fromString.runtimeType})');
+      expect(minValueExecute, equals(fromString));
+      // expect(await minValue.execute({}),
+      //     equals(fhir.FhirDateTime.fromString('0001-01-01T00:00:00.000')));
     });
     // TODO(Dokotela): is quantity an error?
     // test("""define "ErrorMinimum": minimum Quantity""", () async {

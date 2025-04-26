@@ -214,7 +214,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
     if (year == null) {
       return null;
     }
-    final buffer = StringBuffer('$year');
+    final buffer = StringBuffer(year.toString().padLeft(4, '0'));
 
     if (month != null) {
       buffer.write('-${month.toString().padLeft(2, '0')}');
@@ -637,91 +637,64 @@ abstract class FhirDateTimeBase extends PrimitiveType
   }
 
   /// Math operations
+  /// 
+  /// Adds an [ExtendedDuration] to a [FhirDateTimeBase] 
+  /// and returns a new instance.
   static FhirDateTimeBase plus<T>(
-    FhirDateTimeBase fhirDateTimeBase,
+    FhirDateTimeBase base,
     ExtendedDuration o,
   ) {
-    final normalizedMicrosecond =
-        int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
-            0;
+    final micros = int.tryParse(
+          base.microsecond?.padRight(6, '0') ?? '0',
+        ) ??
+        0;
 
-    // Construct a Dart DateTime to handle overflow corrections
-    final dateTime = DateTime(
-      (fhirDateTimeBase.year ?? 0) + o.years,
-      (fhirDateTimeBase.month ?? 0) + o.months == 0
-          ? 1
-          : (fhirDateTimeBase.month ?? 0) + o.months,
-      (fhirDateTimeBase.day ?? 0) + o.days == 0
-          ? 1
-          : (fhirDateTimeBase.day ?? 0) + o.days,
-      (fhirDateTimeBase.hour ?? 0) + o.hours,
-      (fhirDateTimeBase.minute ?? 0) + o.minutes,
-      (fhirDateTimeBase.second ?? 0) + o.seconds,
-      (fhirDateTimeBase.millisecond ?? 0) + o.milliseconds,
-      normalizedMicrosecond + o.microseconds,
-    );
+    // sum up, defaulting missing parts to the FHIR‐logical minimums
+    final y = (base.year ?? 0) + o.years;
+    final m = (base.month ?? 1) + o.months;
+    final d = (base.day ?? 1) + o.days;
+    final h = (base.hour ?? 0) + o.hours;
+    final min = (base.minute ?? 0) + o.minutes;
+    final s = (base.second ?? 0) + o.seconds;
+    final ms = (base.millisecond ?? 0) + o.milliseconds;
+    final us = micros + o.microseconds;
 
-    // Map the adjusted values back to a FhirDateTimeBase, respecting original
-    // precision
+    final dt = base.isUtc
+        ? DateTime.utc(y, m, d, h, min, s, ms, us)
+        : DateTime(y, m, d, h, min, s, ms, us);
+
     return fromUnits<T>(
-      year: dateTime.year,
-      month: fhirDateTimeBase.month != null ? dateTime.month : null,
-      day: fhirDateTimeBase.day != null ? dateTime.day : null,
-      hour: fhirDateTimeBase.hour != null ? dateTime.hour : null,
-      minute: fhirDateTimeBase.minute != null ? dateTime.minute : null,
-      second: fhirDateTimeBase.second != null ? dateTime.second : null,
-      millisecond:
-          fhirDateTimeBase.millisecond != null ? dateTime.millisecond : null,
-      microsecond:
-          fhirDateTimeBase.microsecond != null ? dateTime.microsecond : null,
-      timeZoneOffset: fhirDateTimeBase.timeZoneOffset,
-      isUtc: fhirDateTimeBase.isUtc,
+      year: dt.year,
+      month: base.month != null ? dt.month : null,
+      day: base.day != null ? dt.day : null,
+      hour: base.hour != null ? dt.hour : null,
+      minute: base.minute != null ? dt.minute : null,
+      second: base.second != null ? dt.second : null,
+      millisecond: base.millisecond != null ? dt.millisecond : null,
+      microsecond: base.microsecond != null ? dt.microsecond : null,
+      timeZoneOffset: base.timeZoneOffset,
+      isUtc: base.isUtc,
     );
   }
 
-  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  /// Math operations
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase] 
+  /// and returns a new instance.
   static FhirDateTimeBase minus<T>(
-    FhirDateTimeBase fhirDateTimeBase,
+    FhirDateTimeBase base,
     ExtendedDuration o,
-  ) {
-    final normalizedMicrosecond =
-        int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
-            0;
-
-    // Construct a Dart DateTime to handle overflow corrections
-    final dateTime = DateTime(
-      (fhirDateTimeBase.year ?? 0) - o.years,
-      (fhirDateTimeBase.month ?? 0) - o.months == 0
-          ? 1
-          : (fhirDateTimeBase.month ?? 0) - o.months,
-      (fhirDateTimeBase.day ?? 0) - o.days == 0
-          ? 1
-          : (fhirDateTimeBase.day ?? 0) - o.days,
-      (fhirDateTimeBase.hour ?? 0) - o.hours,
-      (fhirDateTimeBase.minute ?? 0) - o.minutes,
-      (fhirDateTimeBase.second ?? 0) - o.seconds,
-      (fhirDateTimeBase.millisecond ?? 0) - o.milliseconds,
-      normalizedMicrosecond - o.microseconds,
-    );
-
-    // Map the adjusted values back to a FhirDateTimeBase, respecting original
-    // precision
-    return fromUnits<T>(
-      year: dateTime.year,
-      month: fhirDateTimeBase.month != null ? dateTime.month : null,
-      day: fhirDateTimeBase.day != null ? dateTime.day : null,
-      hour: fhirDateTimeBase.hour != null ? dateTime.hour : null,
-      minute: fhirDateTimeBase.minute != null ? dateTime.minute : null,
-      second: fhirDateTimeBase.second != null ? dateTime.second : null,
-      millisecond:
-          fhirDateTimeBase.millisecond != null ? dateTime.millisecond : null,
-      microsecond:
-          fhirDateTimeBase.microsecond != null ? dateTime.microsecond : null,
-      timeZoneOffset: fhirDateTimeBase.timeZoneOffset,
-      isUtc: fhirDateTimeBase.isUtc,
-    );
-  }
+  ) =>
+      plus<T>(
+          base,
+          ExtendedDuration(
+            years: -o.years,
+            months: -o.months,
+            days: -o.days,
+            hours: -o.hours,
+            minutes: -o.minutes,
+            seconds: -o.seconds,
+            milliseconds: -o.milliseconds,
+            microseconds: -o.microseconds,
+          ));
 
   /// Helper methods (cleanup, conversions, timezone formatting)
   static String _cleanInput(String input) {

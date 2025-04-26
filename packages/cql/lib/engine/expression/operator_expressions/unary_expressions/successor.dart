@@ -132,27 +132,27 @@ class Successor extends UnaryExpression {
       return FhirDecimal(value.valueNum! + 0.00000001);
     } else if (value is FhirDateTimeBase) {
       if (value.yearsPrecision) {
-        return value - ExtendedDuration(years: 1);
+        return value + ExtendedDuration(years: 1);
       }
       if (value.monthsPrecision) {
-        return value - ExtendedDuration(months: 1);
+        return value + ExtendedDuration(months: 1);
       }
       if (value.daysPrecision) {
-        return value - ExtendedDuration(days: 1);
+        return value + ExtendedDuration(days: 1);
       }
 
       if (value.hoursPrecision) {
-        return value - ExtendedDuration(hours: 1);
+        return value + ExtendedDuration(hours: 1);
       }
 
       if (value.minutesPrecision) {
-        return value - ExtendedDuration(minutes: 1);
+        return value + ExtendedDuration(minutes: 1);
       }
       if (value.secondsPrecision) {
-        return value - ExtendedDuration(seconds: 1);
+        return value + ExtendedDuration(seconds: 1);
       }
 
-      return value - ExtendedDuration(milliseconds: 1);
+      return value + ExtendedDuration(milliseconds: 1);
     } else if (value is FhirTime) {
       if (value.millisecond != null) {
         return value.plus(milliseconds: 1);

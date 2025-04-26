@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.4.3]
+
+* Fixed addition and subtraction fo ExtendedDuration to FhirDateTimeBase
+* Fixed construction of String for FhirDateTimeBase where year is less than 4 digits
+
 ## [0.4.2]
 
 * Fixed bug not allowing DateTime to be passed to FhirDate

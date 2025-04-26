@@ -11,6 +11,7 @@ import 'singleton_from_test.dart';
 import 'size_test.dart';
 import 'start_test.dart';
 import 'successor_test.dart';
+import 'tail_test.dart';
 import 'truncate_test.dart';
 import 'width_test.dart';
 
@@ -28,6 +29,7 @@ void unaryExpressions() {
   sizeTest();
   startTest();
   successorTest();
+  tailTest();
   truncateTest();
   widthTest();
 }
