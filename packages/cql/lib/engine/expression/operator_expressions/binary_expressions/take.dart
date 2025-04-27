@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
+
 import '../../../../../cql.dart';
 
 /// Take<T>
@@ -84,7 +86,21 @@ class Take extends BinaryExpression {
       throw ArgumentError('Take operator requires 2 operands');
     }
     final src = await operand[0].execute(context);
+    if (src == null) {
+      return null;
+    }
     final count = await operand[1].execute(context);
+    if (count == null) {
+      return [];
+    }
+    if (!(count is int || count is FhirInteger)) {
+      throw CqlException(
+        message: 'Take operator requires the second operand to be an Integer ''but it found ${count.runtimeType}',
+      );
+    }
+    if (count < 0) {
+      return [];
+    }
     // Delegate to central Slice implementation
     return Slice.slice(src, 0, count);
   }

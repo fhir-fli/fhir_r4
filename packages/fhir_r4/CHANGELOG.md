@@ -4,6 +4,7 @@
 
 * Fixed addition and subtraction fo ExtendedDuration to FhirDateTimeBase
 * Fixed construction of String for FhirDateTimeBase where year is less than 4 digits
+* Fixed plus and subtract for FhirTime
 
 ## [0.4.2]
 

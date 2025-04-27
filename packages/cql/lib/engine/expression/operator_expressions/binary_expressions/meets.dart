@@ -140,10 +140,8 @@ class Meets extends BinaryExpression {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
       final rightEnd = right.getEnd();
-      print('$leftEnd == ${Predecessor.predecessor(rightStart)}');
       final leftMeetsRight =
           Equal.equal(leftEnd, Predecessor.predecessor(rightStart));
-      print('leftMeetsRight: ${leftMeetsRight}');
       if (leftMeetsRight?.valueBoolean == true) {
         return leftMeetsRight;
       }

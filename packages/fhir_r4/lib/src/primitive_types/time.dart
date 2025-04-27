@@ -262,6 +262,16 @@ class FhirTime extends PrimitiveType
     int seconds = 0,
     int milliseconds = 0,
   }) {
+    // 1) remember what precision this instance had
+    final origPrecision = millisecond != null
+        ? TemporalPrecisionEnum.millisecond
+        : second != null
+            ? TemporalPrecisionEnum.second
+            : minute != null
+                ? TemporalPrecisionEnum.minute
+                : TemporalPrecisionEnum.hour;
+
+    // 2) do your full-precision add exactly as before
     var newMs = (millisecond ?? 0) + milliseconds;
     var newSec = (second ?? 0) + seconds + (newMs ~/ 1000);
     newMs %= 1000;
@@ -271,12 +281,16 @@ class FhirTime extends PrimitiveType
     newMin %= 60;
     newHr %= 24;
 
-    return FhirTime.fromUnits(
+    // 3) build a raw full‐precision FhirTime
+    final raw = FhirTime.fromUnits(
       hour: newHr,
       minute: newMin,
       second: newSec,
       millisecond: newMs,
     );
+
+    // 4) truncate or zero‐fill back to the original precision
+    return raw.adjustToPrecision(origPrecision);
   }
 
   /// Subtracts hours, minutes, seconds, milliseconds from this time
@@ -287,6 +301,16 @@ class FhirTime extends PrimitiveType
     int seconds = 0,
     int milliseconds = 0,
   }) {
+    // 1) remember what precision this instance had
+    final origPrecision = millisecond != null
+        ? TemporalPrecisionEnum.millisecond
+        : second != null
+            ? TemporalPrecisionEnum.second
+            : minute != null
+                ? TemporalPrecisionEnum.minute
+                : TemporalPrecisionEnum.hour;
+
+    // 2) do your full‐precision subtract exactly as before
     var newMs = (millisecond ?? 0) - milliseconds;
     var newSec = (second ?? 0) - seconds;
     var newMin = (minute ?? 0) - minutes;
@@ -306,12 +330,16 @@ class FhirTime extends PrimitiveType
     }
     newHr = (newHr % 24 + 24) % 24;
 
-    return FhirTime.fromUnits(
+    // 3) build a raw full‐precision FhirTime
+    final raw = FhirTime.fromUnits(
       hour: newHr,
       minute: newMin,
       second: newSec,
       millisecond: newMs,
     );
+
+    // 4) truncate or zero‐fill back to the original precision
+    return raw.adjustToPrecision(origPrecision);
   }
 
   // --------------------------------------------------------------------------

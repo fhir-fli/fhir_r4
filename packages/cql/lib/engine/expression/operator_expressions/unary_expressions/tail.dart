@@ -81,6 +81,18 @@ class Tail extends UnaryExpression {
   @override
   Future<List<dynamic>?> execute(Map<String, dynamic> context) async {
     final src = await operand.execute(context);
+    if (src == null) {
+      return null;
+    }
+    if (src is! List) {
+      throw CqlException(
+        message:
+            'Tail operator requires a list as operand, but got ${src.runtimeType}',
+      );
+    }
+    if (src.isEmpty) {
+      return [];
+    }
     // Delegate to central Slice implementation: skip first element
     return Slice.slice(src, 1, null);
   }

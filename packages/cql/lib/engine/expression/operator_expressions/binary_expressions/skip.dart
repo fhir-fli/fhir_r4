@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
+
 import '../../../../../cql.dart';
 
 /// Skip<T>
@@ -83,7 +85,21 @@ class Skip extends BinaryExpression {
       throw ArgumentError('Skip operator requires 2 operands');
     }
     final src = await operand[0].execute(context);
+    if (src == null) {
+      return null;
+    }
     final count = await operand[1].execute(context);
+    if (count == null) {
+      return src;
+    }
+    if (!(count is int || count is FhirInteger)) {
+      throw CqlException(
+        message: 'Skip operator requires a list and an integer as operands',
+      );
+    }
+    if(count < 0) {
+      return [];
+    }
     // Delegate to central Slice implementation
     return Slice.slice(src, count, null);
   }
