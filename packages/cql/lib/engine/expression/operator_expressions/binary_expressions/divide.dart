@@ -115,8 +115,8 @@ class Divide extends BinaryExpression {
       return null;
     } else if ((left is FhirNumber || left is FhirInteger64) &&
         (right is FhirNumber || right is FhirInteger64)) {
-      final leftDecimal = UcumDecimal.fromString(left.value.toString());
-      final rightDecimal = UcumDecimal.fromString(right.value.toString());
+      final leftDecimal = UcumDecimal.fromString(left.valueString);
+      final rightDecimal = UcumDecimal.fromString(right.valueString);
       final result = leftDecimal / rightDecimal;
       return FhirDecimal(double.parse(result.asUcumDecimal()));
     } else if ((left is ValidatedQuantity || left is FhirDecimal) &&

@@ -173,13 +173,13 @@ class DateTimeExpression extends OperatorExpression {
     final timezoneOffsetValue = await timezoneOffset?.execute(context);
 
     return FhirDateTime.fromUnits(
-        year: yearValue?.value,
-        month: monthValue?.value,
-        day: dayValue?.value,
-        hour: hourValue?.value,
-        minute: minuteValue?.value,
-        second: secondValue?.value,
-        millisecond: millisecondValue?.value,
+        year: yearValue?.valueNum,
+        month: monthValue?.valueNum,
+        day: dayValue?.valueNum,
+        hour: hourValue?.valueNum,
+        minute: minuteValue?.valueNum,
+        second: secondValue?.valueNum,
+        millisecond: millisecondValue?.valueNum,
         timeZoneOffset: timezoneOffsetValue?.stringToTimeZoneOffset);
   }
 }

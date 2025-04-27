@@ -20,7 +20,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   CqlLibrary library;
   final modelInfoProvider = StandardModelInfoProvider();
   int nodeNumber = 0;
-  final shouldPrint = true;
+  final shouldPrint = false;
 
   @override
   AccessModifier visitAccessModifier(AccessModifierContext ctx) =>

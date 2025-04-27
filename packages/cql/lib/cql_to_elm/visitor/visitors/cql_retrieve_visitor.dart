@@ -6,7 +6,7 @@ class CqlRetrieveVisitor extends CqlBaseVisitor<Retrieve> {
 
   @override
   Retrieve visitRetrieve(RetrieveContext ctx) {
-    printIf(ctx, true);
+    printIf(ctx);
     CqlExpression? context;
     NamedTypeSpecifier? name;
     String? codeProperty;

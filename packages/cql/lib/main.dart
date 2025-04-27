@@ -32,7 +32,7 @@ void parseFile(BuildContext context) async {
     final Map<String, dynamic> manifestMap = json.decode(assetsFile)
       ..removeWhere((key, value) => !key.contains('cql/'));
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 3; i++) {
       final file =
           manifestMap.keys.firstWhereOrNull((e) => e.contains('$i.cql'));
       if (file == null) break;
