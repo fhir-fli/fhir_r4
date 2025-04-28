@@ -1,0 +1,21 @@
+import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+
+///
+/// Data elements that meet criteria using this
+/// datatype should document a
+/// recommendation to use the device indicated
+/// by the QDM category and
+/// its corresponding value set.
+///
+
+class DeviceRecommended {
+  final LiteralDateTime? authorDatetime;
+  final LiteralCode? negationRationale;
+  final LiteralCode? reason;
+
+  DeviceRecommended({
+    this.authorDatetime,
+    this.negationRationale,
+    this.reason,
+  });
+}

@@ -1,0 +1,22 @@
+import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+
+/// Data elements that meet criteria using this datatype should document
+/// a reaction in specific patients who have a low threshold to the normal reported or
+/// expected reactions of the diagnostic study indicated by the QDM category and its
+/// corresponding value set.
+
+class DiagnosticStudyIntolerance {
+  final LiteralQuantity? radiationDosage;
+  final LiteralQuantity? radiationDuration;
+  final LiteralCode? reaction;
+  final LiteralDateTime? startDatetime;
+  final LiteralDateTime? stopDatetime;
+
+  DiagnosticStudyIntolerance({
+    this.startDatetime,
+    this.stopDatetime,
+    this.reaction,
+    this.radiationDosage,
+    this.radiationDuration,
+  });
+}

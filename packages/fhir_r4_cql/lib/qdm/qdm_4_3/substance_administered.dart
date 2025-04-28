@@ -1,0 +1,23 @@
+import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+
+/// Data elements that meet criteria using this datatype should document
+/// that the substance indicated by the QDM category and its corresponding value set was
+/// actually given to the patient.
+
+class SubstanceAdministered {
+  final LiteralQuantity? dose;
+  final LiteralCode? frequency;
+  final LiteralCode? negationRationale;
+  final LiteralCode? route;
+  final LiteralDateTime? startDatetime;
+  final LiteralDateTime? stopDatetime;
+
+  SubstanceAdministered({
+    this.startDatetime,
+    this.stopDatetime,
+    this.negationRationale,
+    this.dose,
+    this.frequency,
+    this.route,
+  });
+}
