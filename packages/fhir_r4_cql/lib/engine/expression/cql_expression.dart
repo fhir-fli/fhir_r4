@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Expression type defines the abstract base type for all expressions used in the ELM expression language.
 class CqlExpression extends Element {
   CqlExpression({
@@ -865,8 +864,7 @@ class CqlExpression extends Element {
           return Slice(
               source: operand[0],
               startIndex: operand[1],
-              endIndex: LiteralNull(
-                  resultTypeName: QName.fromDataType('Integer').toJson()));
+              endIndex: LiteralNull());
         }
       // return Skip(operand: operand);
       // case 'Slice':
@@ -919,8 +917,7 @@ class CqlExpression extends Element {
           return Slice(
               source: operand[0],
               startIndex: LiteralInteger(1),
-              endIndex: LiteralNull(
-                  resultTypeName: QName.fromDataType('Integer').toJson()));
+              endIndex: LiteralNull());
         }
       case 'Take':
         {

@@ -31,12 +31,14 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1"
+                    "uri": "urn:hl7-org:elm-types:r1",
+                    "annotation": []
                 },
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -45,7 +47,8 @@
                 {
                     "localIdentifier": "FHIRHelpers",
                     "path": "FHIRHelpers",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -54,22 +57,26 @@
                 {
                     "name": "LOINC",
                     "id": "http://loinc.org",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "ActCode",
                     "id": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "MedicationRequestCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "ObservationCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/observation-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 }
             ]
         },
@@ -78,17 +85,23 @@
                 {
                     "name": "Community Medication",
                     "id": "http://example.org/fhir/ValueSet/community-medication",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Vital Sign",
                     "id": "http://example.org/fhir/ValueSet/vital-sign",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Laboratory",
                     "id": "http://example.org/fhir/ValueSet/laboratory",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 }
             ]
         },
@@ -99,8 +112,10 @@
                     "id": "2339-0",
                     "display": "Glucose Bld-mCnc",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC"
+                        "name": "LOINC",
+                        "annotation": []
                     }
                 },
                 {
@@ -108,8 +123,10 @@
                     "id": "IMP",
                     "display": "Inpatient Encounter",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "codeSystem": {
-                        "name": "ActCode"
+                        "name": "ActCode",
+                        "annotation": []
                     }
                 }
             ]
@@ -120,58 +137,81 @@
                     "name": "Blood Glucose Observations",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "category",
                                     "codeComparator": "in",
                                     "type": "Retrieve",
+                                    "annotation": [],
                                     "codes": {
                                         "name": "Laboratory",
                                         "preserve": true,
-                                        "type": "ValueSetRef"
-                                    }
+                                        "type": "ValueSetRef",
+                                        "annotation": []
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "And",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "type": "And",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "In",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToString",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "status",
                                                             "scope": "O",
-                                                            "type": "Property"
+                                                            "type": "Property",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "type": "List",
+                                                    "annotation": [],
                                                     "element": [
                                                         {
                                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                             "value": "final",
-                                                            "type": "Literal"
+                                                            "type": "Literal",
+                                                            "annotation": []
                                                         },
                                                         {
                                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                             "value": "amended",
-                                                            "type": "Literal"
+                                                            "type": "Literal",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 }
@@ -179,38 +219,50 @@
                                         },
                                         {
                                             "type": "Is",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": {
                                                 "path": "value",
                                                 "scope": "O",
-                                                "type": "Property"
+                                                "type": "Property",
+                                                "annotation": []
                                             },
                                             "isTypeSpecifier": {
                                                 "name": "{http://hl7.org/fhir}Quantity",
-                                                "type": "NamedTypeSpecifier"
+                                                "type": "NamedTypeSpecifier",
+                                                "annotation": []
                                             }
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Equivalent",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToConcept",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "code",
                                                     "scope": "O",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "ToConcept",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": {
                                                 "name": "Blood Glucose",
-                                                "type": "CodeRef"
+                                                "type": "CodeRef",
+                                                "annotation": []
                                             }
                                         }
                                     ]
@@ -223,46 +275,65 @@
                     "name": "Difference in Blood Glucose Observations",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O1",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Blood Glucose Observations",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             },
                             {
                                 "alias": "O2",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Blood Glucose Observations",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "return": {
+                            "annotation": [],
                             "expression": {
                                 "type": "Abs",
+                                "annotation": [],
+                                "signature": [],
                                 "operand": {
                                     "type": "Subtract",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToQuantity",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "strict": false,
                                                     "type": "As",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "value",
                                                         "scope": "O2",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "asTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}Quantity",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
@@ -271,18 +342,24 @@
                                             "name": "ToQuantity",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "strict": false,
                                                     "type": "As",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "value",
                                                         "scope": "O1",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "asTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}Quantity",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
@@ -297,11 +374,15 @@
                     "name": "Greatest Absolute Difference in Blood Glucose Observations",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Max",
+                        "annotation": [],
+                        "signature": [],
                         "source": {
                             "name": "Difference in Blood Glucose Observations",
-                            "type": "ExpressionRef"
+                            "type": "ExpressionRef",
+                            "annotation": []
                         }
                     }
                 },
@@ -309,55 +390,76 @@
                     "name": "Quantitative Laboratory Results",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "category",
                                     "codeComparator": "in",
                                     "type": "Retrieve",
+                                    "annotation": [],
                                     "codes": {
                                         "name": "Laboratory",
                                         "preserve": true,
-                                        "type": "ValueSetRef"
-                                    }
+                                        "type": "ValueSetRef",
+                                        "annotation": []
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "And",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "type": "In",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToString",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "status",
                                                     "scope": "O",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "List",
+                                            "annotation": [],
                                             "element": [
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "final",
-                                                    "type": "Literal"
+                                                    "type": "Literal",
+                                                    "annotation": []
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "amended",
-                                                    "type": "Literal"
+                                                    "type": "Literal",
+                                                    "annotation": []
                                                 }
                                             ]
                                         }
@@ -365,14 +467,18 @@
                                 },
                                 {
                                     "type": "Is",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": {
                                         "path": "value",
                                         "scope": "O",
-                                        "type": "Property"
+                                        "type": "Property",
+                                        "annotation": []
                                     },
                                     "isTypeSpecifier": {
                                         "name": "{http://hl7.org/fhir}Quantity",
-                                        "type": "NamedTypeSpecifier"
+                                        "type": "NamedTypeSpecifier",
+                                        "annotation": []
                                     }
                                 }
                             ]
@@ -383,74 +489,99 @@
                     "name": "Difference in Quantitative Tests",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O1",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Quantitative Laboratory Results",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             },
                             {
                                 "alias": "O2",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Quantitative Laboratory Results",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "Equivalent",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "path": "code",
                                     "scope": "O1",
-                                    "type": "Property"
+                                    "type": "Property",
+                                    "annotation": []
                                 },
                                 {
                                     "path": "code",
                                     "scope": "O2",
-                                    "type": "Property"
+                                    "type": "Property",
+                                    "annotation": []
                                 }
                             ]
                         },
                         "return": {
+                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
+                                "annotation": [],
                                 "element": [
                                     {
                                         "name": "code",
                                         "value": {
                                             "path": "code",
                                             "scope": "O1",
-                                            "type": "Property"
+                                            "type": "Property",
+                                            "annotation": []
                                         }
                                     },
                                     {
                                         "name": "difference",
                                         "value": {
                                             "type": "Abs",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": {
                                                 "type": "Subtract",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "name": "ToQuantity",
                                                         "libraryName": "FHIRHelpers",
                                                         "type": "FunctionRef",
+                                                        "annotation": [],
+                                                        "signature": [],
                                                         "operand": [
                                                             {
                                                                 "strict": false,
                                                                 "type": "As",
+                                                                "annotation": [],
+                                                                "signature": [],
                                                                 "operand": {
                                                                     "path": "value",
                                                                     "scope": "O2",
-                                                                    "type": "Property"
+                                                                    "type": "Property",
+                                                                    "annotation": []
                                                                 },
                                                                 "asTypeSpecifier": {
                                                                     "name": "{http://hl7.org/fhir}Quantity",
-                                                                    "type": "NamedTypeSpecifier"
+                                                                    "type": "NamedTypeSpecifier",
+                                                                    "annotation": []
                                                                 }
                                                             }
                                                         ]
@@ -459,18 +590,24 @@
                                                         "name": "ToQuantity",
                                                         "libraryName": "FHIRHelpers",
                                                         "type": "FunctionRef",
+                                                        "annotation": [],
+                                                        "signature": [],
                                                         "operand": [
                                                             {
                                                                 "strict": false,
                                                                 "type": "As",
+                                                                "annotation": [],
+                                                                "signature": [],
                                                                 "operand": {
                                                                     "path": "value",
                                                                     "scope": "O1",
-                                                                    "type": "Property"
+                                                                    "type": "Property",
+                                                                    "annotation": []
                                                                 },
                                                                 "asTypeSpecifier": {
                                                                     "name": "{http://hl7.org/fhir}Quantity",
-                                                                    "type": "NamedTypeSpecifier"
+                                                                    "type": "NamedTypeSpecifier",
+                                                                    "annotation": []
                                                                 }
                                                             }
                                                         ]
@@ -488,77 +625,105 @@
                     "name": "Greatest Difference Per Test",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "TestCode",
+                                "annotation": [],
                                 "expression": {
                                     "type": "Query",
+                                    "annotation": [],
                                     "source": [
                                         {
                                             "alias": "D",
+                                            "annotation": [],
                                             "expression": {
                                                 "name": "Difference in Quantitative Tests",
-                                                "type": "ExpressionRef"
+                                                "type": "ExpressionRef",
+                                                "annotation": []
                                             }
                                         }
                                     ],
+                                    "let": [],
+                                    "relationship": [],
                                     "return": {
+                                        "annotation": [],
                                         "expression": {
                                             "path": "code",
                                             "scope": "D",
-                                            "type": "Property"
+                                            "type": "Property",
+                                            "annotation": []
                                         }
                                     }
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "return": {
+                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
+                                "annotation": [],
                                 "element": [
                                     {
                                         "name": "code",
                                         "value": {
                                             "name": "TestCode",
-                                            "type": "AliasRef"
+                                            "type": "AliasRef",
+                                            "annotation": []
                                         }
                                     },
                                     {
                                         "name": "maxDifference",
                                         "value": {
                                             "type": "Max",
+                                            "annotation": [],
+                                            "signature": [],
                                             "source": {
                                                 "type": "Query",
+                                                "annotation": [],
                                                 "source": [
                                                     {
                                                         "alias": "D",
+                                                        "annotation": [],
                                                         "expression": {
                                                             "name": "Difference in Quantitative Tests",
-                                                            "type": "ExpressionRef"
+                                                            "type": "ExpressionRef",
+                                                            "annotation": []
                                                         }
                                                     }
                                                 ],
+                                                "let": [],
+                                                "relationship": [],
                                                 "where": {
                                                     "type": "Equivalent",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "code",
                                                             "scope": "D",
-                                                            "type": "Property"
+                                                            "type": "Property",
+                                                            "annotation": []
                                                         },
                                                         {
                                                             "name": "TestCode",
-                                                            "type": "AliasRef"
+                                                            "type": "AliasRef",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 },
                                                 "return": {
+                                                    "annotation": [],
                                                     "expression": {
                                                         "path": "difference",
                                                         "scope": "D",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     }
                                                 }
                                             }
@@ -573,105 +738,144 @@
                     "name": "Average Quantitative Result Per Test",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "TestCode",
+                                "annotation": [],
                                 "expression": {
                                     "type": "Query",
+                                    "annotation": [],
                                     "source": [
                                         {
                                             "alias": "T",
+                                            "annotation": [],
                                             "expression": {
                                                 "name": "Quantitative Laboratory Results",
-                                                "type": "ExpressionRef"
+                                                "type": "ExpressionRef",
+                                                "annotation": []
                                             }
                                         }
                                     ],
+                                    "let": [],
+                                    "relationship": [],
                                     "return": {
+                                        "annotation": [],
                                         "expression": {
                                             "path": "code",
                                             "scope": "T",
-                                            "type": "Property"
+                                            "type": "Property",
+                                            "annotation": []
                                         }
                                     }
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "return": {
+                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
+                                "annotation": [],
                                 "element": [
                                     {
                                         "name": "code",
                                         "value": {
                                             "name": "TestCode",
-                                            "type": "AliasRef"
+                                            "type": "AliasRef",
+                                            "annotation": []
                                         }
                                     },
                                     {
                                         "name": "avg",
                                         "value": {
                                             "type": "Avg",
+                                            "annotation": [],
+                                            "signature": [],
                                             "source": {
                                                 "type": "Query",
+                                                "annotation": [],
                                                 "source": [
                                                     {
                                                         "alias": "X",
+                                                        "annotation": [],
                                                         "expression": {
                                                             "type": "Query",
+                                                            "annotation": [],
                                                             "source": [
                                                                 {
                                                                     "alias": "T",
+                                                                    "annotation": [],
                                                                     "expression": {
                                                                         "name": "Quantitative Laboratory Results",
-                                                                        "type": "ExpressionRef"
+                                                                        "type": "ExpressionRef",
+                                                                        "annotation": []
                                                                     }
                                                                 }
                                                             ],
+                                                            "let": [],
+                                                            "relationship": [],
                                                             "where": {
                                                                 "type": "Equivalent",
+                                                                "annotation": [],
+                                                                "signature": [],
                                                                 "operand": [
                                                                     {
                                                                         "path": "code",
                                                                         "scope": "T",
-                                                                        "type": "Property"
+                                                                        "type": "Property",
+                                                                        "annotation": []
                                                                     },
                                                                     {
                                                                         "name": "TestCode",
-                                                                        "type": "AliasRef"
+                                                                        "type": "AliasRef",
+                                                                        "annotation": []
                                                                     }
                                                                 ]
                                                             },
                                                             "return": {
+                                                                "annotation": [],
                                                                 "expression": {
                                                                     "strict": false,
                                                                     "type": "As",
+                                                                    "annotation": [],
+                                                                    "signature": [],
                                                                     "operand": {
                                                                         "path": "value",
                                                                         "scope": "T",
-                                                                        "type": "Property"
+                                                                        "type": "Property",
+                                                                        "annotation": []
                                                                     },
                                                                     "asTypeSpecifier": {
                                                                         "name": "{http://hl7.org/fhir}Quantity",
-                                                                        "type": "NamedTypeSpecifier"
+                                                                        "type": "NamedTypeSpecifier",
+                                                                        "annotation": []
                                                                     }
                                                                 }
                                                             }
                                                         }
                                                     }
                                                 ],
+                                                "let": [],
+                                                "relationship": [],
                                                 "return": {
                                                     "distinct": false,
+                                                    "annotation": [],
                                                     "expression": {
                                                         "name": "ToQuantity",
                                                         "libraryName": "FHIRHelpers",
                                                         "type": "FunctionRef",
+                                                        "annotation": [],
+                                                        "signature": [],
                                                         "operand": [
                                                             {
                                                                 "name": "X",
-                                                                "type": "AliasRef"
+                                                                "type": "AliasRef",
+                                                                "annotation": []
                                                             }
                                                         ]
                                                     }

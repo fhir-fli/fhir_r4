@@ -2,71 +2,74 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:antlr4/antlr4.dart';
-import 'package:fhir_r4_cql/fhir_r4_cql.dart';
-
-
-const bool print = true;
+import 'package:http/http.dart';
+import 'package:path/path.dart' as path;
 
 Future<void> main() async {
-  final dir = Directory('lib/cql/libraries');
-  final files = await dir.list().toList();
-  for (final file in files) {
-    log(file.path);
-    final cqlFile = await File(file.path).readAsString();
+  // Define the source and destination directories
+  final cqlDir = Directory('cql');
+  final jsonDir = Directory('json');
 
-    final parserAndErrors = parse(cqlFile);
-    final parser = parserAndErrors.parser;
+  // Create the JSON directory if it doesn't exist
+  if (!await jsonDir.exists()) {
+    await jsonDir.create(recursive: true);
+  }
 
-    try {
-      final visitor = CqlBaseVisitor(CqlLibrary());
-      visitor.visit(parser.library_());
-      final errors = parserAndErrors.errorListener.errors
-          .map((e) => e.copyWith(
-              libraryId: visitor.library.identifier?.id,
-              libraryVersion: visitor.library.identifier?.version))
-          .toList();
-      visitor.library.annotation ??= [];
-      visitor.library.annotation!.addAll(errors);
-      await File(file.path
-              .replaceAll('cql/libraries', 'cql/libraries_json')
-              .replaceAll('.cql', '2.json'))
-          .writeAsString(
-              jsonPrettyPrint({'library': visitor.library.toJson()}));
-      // var resultLibrary = visitor.result['library'];
-      // (resultLibrary as Map<String, dynamic>).remove('annotation');
-      // if (print) {
-      //   log(jsonEncode(visitor.result));
-      // }
+  // Find all .cql files in the CQL directory and its subdirectories
+  await _processCqlFiles(cqlDir, jsonDir);
 
-      // log(visitor.library.execute().toString());
-    } catch (e, s) {
-      log(e.toString());
-      log(s.toString());
-      await File(file.path
-              .replaceAll('cql/libraries', 'cql/libraries_json')
-              .replaceAll('.cql', '2.json'))
-          .writeAsString('$e: $s');
+  print('CQL to JSON conversion complete!');
+}
+
+Future<void> _processCqlFiles(Directory sourceDir, Directory targetDir) async {
+  // Recursively process all files and directories
+  await for (final entity in sourceDir.list(recursive: true)) {
+    if (entity is File && entity.path.endsWith('.cql')) {
+      await _processCqlFile(entity, sourceDir.path, targetDir.path);
     }
   }
 }
 
-CqlParsersAndErrors parse(String pathExpression) {
-  final input = InputStream.fromString(pathExpression);
-  final lexer = cqlLexer(input);
-  final tokens = CommonTokenStream(lexer);
-  final parser = cqlParser(tokens);
-  final errorListener = ElmErrorListener();
-  parser.addErrorListener(errorListener);
-  parser.buildParseTree = true;
-  return CqlParsersAndErrors(parser, errorListener);
-}
+Future<void> _processCqlFile(
+    File cqlFile, String sourceDirPath, String targetDirPath) async {
+  try {
+    // Read the CQL file
+    final cqlContent = await cqlFile.readAsString();
 
-class CqlParsersAndErrors {
-  final ElmErrorListener errorListener;
-  final cqlParser parser;
+    // Determine the corresponding JSON file path
+    final relativePath = path.relative(cqlFile.path, from: sourceDirPath);
+    final jsonFilePath =
+        path.join(targetDirPath, relativePath.replaceAll('.cql', '.json'));
 
-  CqlParsersAndErrors(this.parser, this.errorListener);
+    // Create necessary parent directories for the JSON file
+    final jsonFile = File(jsonFilePath);
+    await jsonFile.parent.create(recursive: true);
+
+    print('Converting ${cqlFile.path} to JSON...');
+
+    // Send the CQL to the local translation service
+    final response = await post(
+        Uri.parse('http://localhost:8080/cql/translator'),
+        body: cqlContent,
+        headers: {
+          'Content-Type': 'application/cql',
+          'Accept': 'application/elm+json'
+        });
+
+    if (response.statusCode == 200) {
+      // Parse and pretty-print the JSON response
+      final jsonContent = jsonDecode(response.body);
+      await jsonFile.writeAsString(jsonPrettyPrint(jsonContent));
+      print('Successfully created ${jsonFile.path}');
+    } else {
+      print('Error converting ${cqlFile.path}: HTTP ${response.statusCode}');
+      print('Response: ${response.body}');
+    }
+  } catch (e, s) {
+    print('Error processing ${cqlFile.path}: $e');
+    log(e.toString());
+    log(s.toString());
+  }
 }
 
 const jsonEncoder = JsonEncoder.withIndent('    ');

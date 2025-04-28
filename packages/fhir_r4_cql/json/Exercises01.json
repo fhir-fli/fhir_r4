@@ -19,7 +19,8 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1"
+                    "uri": "urn:hl7-org:elm-types:r1",
+                    "annotation": []
                 }
             ]
         },
@@ -29,31 +30,40 @@
                     "name": "This is a quoted identifier",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Add",
+                        "annotation": [],
+                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
+                                "annotation": [],
+                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2021",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "3",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "29",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 }
                             },
                             {
                                 "value": 3,
                                 "unit": "days",
-                                "type": "Quantity"
+                                "type": "Quantity",
+                                "annotation": []
                             }
                         ]
                     }
@@ -62,30 +72,39 @@
                     "name": "_1MoreIdentifier",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "value": 0.0,
                         "unit": "g",
-                        "type": "Quantity"
+                        "type": "Quantity",
+                        "annotation": []
                     }
                 },
                 {
                     "name": "Inequality Expression",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Not",
+                        "annotation": [],
+                        "signature": [],
                         "operand": {
                             "type": "Equal",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "4",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "5",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 }
                             ]
                         }
@@ -95,18 +114,23 @@
                     "name": "Relative Comparison Expression",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "LessOrEqual",
+                        "annotation": [],
+                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "4",
-                                "type": "Literal"
+                                "type": "Literal",
+                                "annotation": []
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "5",
-                                "type": "Literal"
+                                "type": "Literal",
+                                "annotation": []
                             }
                         ]
                     }
@@ -115,37 +139,46 @@
                     "name": "Quantity Expression",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "value": 5,
                         "unit": "g/dL",
-                        "type": "Quantity"
+                        "type": "Quantity",
+                        "annotation": []
                     }
                 },
                 {
                     "name": "Reference Expression",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "name": "Quantity Expression",
-                        "type": "ExpressionRef"
+                        "type": "ExpressionRef",
+                        "annotation": []
                     }
                 },
                 {
                     "name": "String Concatenation",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Concatenate",
+                        "annotation": [],
+                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "1",
-                                "type": "Literal"
+                                "type": "Literal",
+                                "annotation": []
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "John",
-                                "type": "Literal"
+                                "type": "Literal",
+                                "annotation": []
                             }
                         ]
                     }
@@ -154,32 +187,40 @@
                     "name": "Warning Message",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Message",
+                        "annotation": [],
+                        "signature": [],
                         "source": {
                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                             "value": "1",
-                            "type": "Literal"
+                            "type": "Literal",
+                            "annotation": []
                         },
                         "condition": {
                             "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
                             "value": "true",
-                            "type": "Literal"
+                            "type": "Literal",
+                            "annotation": []
                         },
                         "code": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "123",
-                            "type": "Literal"
+                            "type": "Literal",
+                            "annotation": []
                         },
                         "severity": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "Warning",
-                            "type": "Literal"
+                            "type": "Literal",
+                            "annotation": []
                         },
                         "message": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "This is a warning message",
-                            "type": "Literal"
+                            "type": "Literal",
+                            "annotation": []
                         }
                     }
                 },
@@ -187,40 +228,51 @@
                     "name": "Nested Warning Message",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Add",
+                        "annotation": [],
+                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "1",
-                                "type": "Literal"
+                                "type": "Literal",
+                                "annotation": []
                             },
                             {
                                 "type": "Message",
+                                "annotation": [],
+                                "signature": [],
                                 "source": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "condition": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
                                     "value": "true",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "code": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "123",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "severity": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Warning",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 },
                                 "message": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "The value is 2",
-                                    "type": "Literal"
+                                    "type": "Literal",
+                                    "annotation": []
                                 }
                             }
                         ]

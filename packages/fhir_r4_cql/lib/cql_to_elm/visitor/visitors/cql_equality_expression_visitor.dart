@@ -37,10 +37,27 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     // Transform operands to ensure they are compatible if required
     if (operand.length == 2) {
       for (var i = 0; i < operand.length; i++) {
+        var isSingletonReturn = false;
         final op = operand[i];
         if (op is ListExpression) {
+          if ((op.element?.length ?? 0) > 1) {
+            final elements = <CqlExpression>[];
+            if (op.element!.first is ListExpression) {
+              for (final element in op.element!) {
+                if (element is ListExpression) {
+                  elements.add(element);
+                } else {
+                  isSingletonReturn = true;
+                  elements.add(ToList(operand: element));
+                }
+              }
+            } else {
+              elements.addAll(op.element!);
+            }
+            op.element = elements;
+          }
           if (_requiresQueryOperand(op)) {
-            operand[i] = _buildQueryFromOperand(op);
+            operand[i] = _buildQueryFromOperand(op, isSingletonReturn);
           }
         }
       }
@@ -104,6 +121,11 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   /// Determines if the operand requires transformation into a Query
   bool _requiresQueryOperand(CqlExpression operand) {
     if (operand is ListExpression) {
+      print('***********************************');
+      for (final element in operand.element ?? <CqlExpression>[]) {
+        print(element.getReturnTypes(library));
+      }
+      print('***********************************\n\n');
       final elementTypes = operand.element
           ?.map((e) => e.getReturnTypes(library))
           .expand((types) => types)
@@ -114,7 +136,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   }
 
   /// Builds a Query from an operand when required
-  Query _buildQueryFromOperand(CqlExpression operand) {
+  Query _buildQueryFromOperand(CqlExpression operand, bool isSingletonReturn) {
     const alias = 'X';
     final query = Query(
       source: [
@@ -125,25 +147,16 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       ],
       returnClause: ReturnClause(
         distinct: false,
-        expression: As(
-          operand: AliasRef(name: alias),
-          asTypeSpecifier: _buildChoiceTypeFromOperand(operand),
-        ),
+        expression: isSingletonReturn
+            ? SingletonFrom(operand: AliasRef(name: alias))
+            : As(
+                operand: AliasRef(name: alias),
+                asTypeSpecifier: _buildChoiceTypeFromOperand(operand),
+              ),
       ),
     );
 
     return query;
-  }
-
-  Query _buildSingletonQueryFromOperand(CqlExpression listExpr) {
-    const alias = 'X';
-    return Query(
-      source: [RelationshipClause(alias: alias, expression: listExpr)],
-      returnClause: ReturnClause(
-        distinct: false,
-        expression: SingletonFrom(operand: AliasRef(name: alias)),
-      ),
-    );
   }
 
   /// Builds a ChoiceTypeSpecifier from an operand

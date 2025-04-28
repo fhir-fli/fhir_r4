@@ -19,12 +19,14 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1"
+                    "uri": "urn:hl7-org:elm-types:r1",
+                    "annotation": []
                 },
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -33,7 +35,8 @@
                 {
                     "localIdentifier": "FHIRHelpers",
                     "path": "FHIRHelpers",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -42,17 +45,20 @@
                 {
                     "name": "ActCode",
                     "id": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "MedicationRequestCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "ObservationCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/observation-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 }
             ]
         },
@@ -61,17 +67,23 @@
                 {
                     "name": "Community Medication",
                     "id": "http://example.org/fhir/ValueSet/community-medication",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Vital Sign",
                     "id": "http://example.org/fhir/ValueSet/vital-sign",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Laboratory",
                     "id": "http://example.org/fhir/ValueSet/laboratory",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 }
             ]
         },
@@ -82,8 +94,10 @@
                     "id": "IMP",
                     "display": "Inpatient Encounter",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "codeSystem": {
-                        "name": "ActCode"
+                        "name": "ActCode",
+                        "annotation": []
                     }
                 }
             ]
@@ -91,7 +105,8 @@
         "contexts": {
             "def": [
                 {
-                    "name": "Patient"
+                    "name": "Patient",
+                    "annotation": []
                 }
             ]
         },
@@ -100,12 +115,20 @@
                 {
                     "name": "Patient",
                     "context": "Patient",
+                    "annotation": [],
                     "expression": {
                         "type": "SingletonFrom",
+                        "annotation": [],
+                        "signature": [],
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
-                            "type": "Retrieve"
+                            "type": "Retrieve",
+                            "annotation": [],
+                            "include": [],
+                            "codeFilter": [],
+                            "dateFilter": [],
+                            "otherFilter": []
                         }
                     }
                 },
@@ -113,100 +136,148 @@
                     "name": "Encounters",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Encounter",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                        "type": "Retrieve"
+                        "type": "Retrieve",
+                        "annotation": [],
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Inpatient Encounters",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Encounter",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
                         "codeProperty": "class",
                         "codeComparator": "~",
                         "type": "Retrieve",
+                        "annotation": [],
                         "codes": {
                             "type": "ToList",
+                            "annotation": [],
+                            "signature": [],
                             "operand": {
                                 "name": "Inpatient Encounter",
-                                "type": "CodeRef"
+                                "type": "CodeRef",
+                                "annotation": []
                             }
-                        }
+                        },
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Medication Requests",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}MedicationRequest",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
-                        "type": "Retrieve"
+                        "type": "Retrieve",
+                        "annotation": [],
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Community Medication Requests",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}MedicationRequest",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
                         "codeProperty": "category",
                         "codeComparator": "in",
                         "type": "Retrieve",
+                        "annotation": [],
                         "codes": {
                             "name": "Community Medication",
                             "preserve": true,
-                            "type": "ValueSetRef"
-                        }
+                            "type": "ValueSetRef",
+                            "annotation": []
+                        },
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Observations",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Observation",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
-                        "type": "Retrieve"
+                        "type": "Retrieve",
+                        "annotation": [],
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Vital Signs",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Observation",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                         "codeProperty": "category",
                         "codeComparator": "in",
                         "type": "Retrieve",
+                        "annotation": [],
                         "codes": {
                             "name": "Vital Sign",
                             "preserve": true,
-                            "type": "ValueSetRef"
-                        }
+                            "type": "ValueSetRef",
+                            "annotation": []
+                        },
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Laboratory Results",
                     "context": "Patient",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Observation",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                         "codeProperty": "category",
                         "codeComparator": "in",
                         "type": "Retrieve",
+                        "annotation": [],
                         "codes": {
                             "name": "Laboratory",
                             "preserve": true,
-                            "type": "ValueSetRef"
-                        }
+                            "type": "ValueSetRef",
+                            "annotation": []
+                        },
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 }
             ]

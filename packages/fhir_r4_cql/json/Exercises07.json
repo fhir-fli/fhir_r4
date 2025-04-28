@@ -121,12 +121,14 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1"
+                    "uri": "urn:hl7-org:elm-types:r1",
+                    "annotation": []
                 },
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -135,7 +137,8 @@
                 {
                     "localIdentifier": "FHIRHelpers",
                     "path": "FHIRHelpers",
-                    "version": "4.0.1"
+                    "version": "4.0.1",
+                    "annotation": []
                 }
             ]
         },
@@ -144,22 +147,26 @@
                 {
                     "name": "LOINC",
                     "id": "http://loinc.org",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "ActCode",
                     "id": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "MedicationRequestCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 },
                 {
                     "name": "ObservationCategory",
                     "id": "http://terminology.hl7.org/CodeSystem/observation-category",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": []
                 }
             ]
         },
@@ -168,17 +175,23 @@
                 {
                     "name": "Community Medication",
                     "id": "http://example.org/fhir/ValueSet/community-medication",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Vital Sign",
                     "id": "http://example.org/fhir/ValueSet/vital-sign",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 },
                 {
                     "name": "Laboratory",
                     "id": "http://example.org/fhir/ValueSet/laboratory",
-                    "accessLevel": "Public"
+                    "accessLevel": "Public",
+                    "annotation": [],
+                    "codeSystem": []
                 }
             ]
         },
@@ -189,8 +202,10 @@
                     "id": "2339-0",
                     "display": "Glucose Bld-mCnc",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC"
+                        "name": "LOINC",
+                        "annotation": []
                     }
                 },
                 {
@@ -198,8 +213,10 @@
                     "id": "IMP",
                     "display": "Inpatient Encounter",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "codeSystem": {
-                        "name": "ActCode"
+                        "name": "ActCode",
+                        "annotation": []
                     }
                 }
             ]
@@ -210,55 +227,76 @@
                     "name": "Final or Amended Quantitative Laboratory Results",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "category",
                                     "codeComparator": "in",
                                     "type": "Retrieve",
+                                    "annotation": [],
                                     "codes": {
                                         "name": "Laboratory",
                                         "preserve": true,
-                                        "type": "ValueSetRef"
-                                    }
+                                        "type": "ValueSetRef",
+                                        "annotation": []
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "And",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "type": "In",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToString",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "status",
                                                     "scope": "O",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "List",
+                                            "annotation": [],
                                             "element": [
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "final",
-                                                    "type": "Literal"
+                                                    "type": "Literal",
+                                                    "annotation": []
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "amended",
-                                                    "type": "Literal"
+                                                    "type": "Literal",
+                                                    "annotation": []
                                                 }
                                             ]
                                         }
@@ -266,14 +304,18 @@
                                 },
                                 {
                                     "type": "Is",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": {
                                         "path": "value",
                                         "scope": "O",
-                                        "type": "Property"
+                                        "type": "Property",
+                                        "annotation": []
                                     },
                                     "isTypeSpecifier": {
                                         "name": "{http://hl7.org/fhir}Quantity",
-                                        "type": "NamedTypeSpecifier"
+                                        "type": "NamedTypeSpecifier",
+                                        "annotation": []
                                     }
                                 }
                             ]
@@ -284,67 +326,95 @@
                     "name": "Quantitative Laboratory Encounters",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "E",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
                         "relationship": [
                             {
                                 "alias": "O",
                                 "type": "With",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "category",
                                     "codeComparator": "in",
                                     "type": "Retrieve",
+                                    "annotation": [],
                                     "codes": {
                                         "name": "Laboratory",
                                         "preserve": true,
-                                        "type": "ValueSetRef"
-                                    }
+                                        "type": "ValueSetRef",
+                                        "annotation": []
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 },
                                 "suchThat": {
                                     "type": "And",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "And",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "type": "In",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "name": "ToString",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
+                                                            "annotation": [],
+                                                            "signature": [],
                                                             "operand": [
                                                                 {
                                                                     "path": "status",
                                                                     "scope": "O",
-                                                                    "type": "Property"
+                                                                    "type": "Property",
+                                                                    "annotation": []
                                                                 }
                                                             ]
                                                         },
                                                         {
                                                             "type": "List",
+                                                            "annotation": [],
                                                             "element": [
                                                                 {
                                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                                     "value": "final",
-                                                                    "type": "Literal"
+                                                                    "type": "Literal",
+                                                                    "annotation": []
                                                                 },
                                                                 {
                                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                                     "value": "amended",
-                                                                    "type": "Literal"
+                                                                    "type": "Literal",
+                                                                    "annotation": []
                                                                 }
                                                             ]
                                                         }
@@ -352,37 +422,49 @@
                                                 },
                                                 {
                                                     "type": "Is",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "value",
                                                         "scope": "O",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "isTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}Quantity",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "In",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToDateTime",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "strict": false,
                                                             "type": "As",
+                                                            "annotation": [],
+                                                            "signature": [],
                                                             "operand": {
                                                                 "path": "effective",
                                                                 "scope": "O",
-                                                                "type": "Property"
+                                                                "type": "Property",
+                                                                "annotation": []
                                                             },
                                                             "asTypeSpecifier": {
                                                                 "name": "{http://hl7.org/fhir}dateTime",
-                                                                "type": "NamedTypeSpecifier"
+                                                                "type": "NamedTypeSpecifier",
+                                                                "annotation": []
                                                             }
                                                         }
                                                     ]
@@ -391,11 +473,14 @@
                                                     "name": "ToInterval",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "period",
                                                             "scope": "E",
-                                                            "type": "Property"
+                                                            "type": "Property",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 }
@@ -411,45 +496,64 @@
                     "name": "Quantitative Laboratory Encounters (2)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "E",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
                         "relationship": [
                             {
                                 "alias": "O",
                                 "type": "With",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Final or Amended Quantitative Laboratory Results",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 },
                                 "suchThat": {
                                     "type": "In",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToDateTime",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "strict": false,
                                                     "type": "As",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "effective",
                                                         "scope": "O",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "asTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}dateTime",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
@@ -458,11 +562,14 @@
                                             "name": "ToInterval",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "period",
                                                     "scope": "E",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         }
@@ -476,50 +583,75 @@
                     "name": "Quantitative Laboratory Encounters (3)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "E",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "Exists",
+                            "annotation": [],
+                            "signature": [],
                             "operand": {
                                 "type": "Query",
+                                "annotation": [],
                                 "source": [
                                     {
                                         "alias": "O",
+                                        "annotation": [],
                                         "expression": {
                                             "name": "Final or Amended Quantitative Laboratory Results",
-                                            "type": "ExpressionRef"
+                                            "type": "ExpressionRef",
+                                            "annotation": []
                                         }
                                     }
                                 ],
+                                "let": [],
+                                "relationship": [],
                                 "where": {
                                     "type": "In",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToDateTime",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "strict": false,
                                                     "type": "As",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "effective",
                                                         "scope": "O",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "asTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}dateTime",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
@@ -528,11 +660,14 @@
                                             "name": "ToInterval",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "period",
                                                     "scope": "E",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         }
@@ -546,56 +681,85 @@
                     "name": "Procedure",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Procedure",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                        "type": "Retrieve"
+                        "type": "Retrieve",
+                        "annotation": [],
+                        "include": [],
+                        "codeFilter": [],
+                        "dateFilter": [],
+                        "otherFilter": []
                     }
                 },
                 {
                     "name": "Encounter Without Procedure",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "E",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
                         "relationship": [
                             {
                                 "alias": "P",
                                 "type": "Without",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Procedure",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 },
                                 "suchThat": {
                                     "type": "In",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToDateTime",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "strict": false,
                                                     "type": "As",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": {
                                                         "path": "performed",
                                                         "scope": "P",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     },
                                                     "asTypeSpecifier": {
                                                         "name": "{http://hl7.org/fhir}dateTime",
-                                                        "type": "NamedTypeSpecifier"
+                                                        "type": "NamedTypeSpecifier",
+                                                        "annotation": []
                                                     }
                                                 }
                                             ]
@@ -604,11 +768,14 @@
                                             "name": "ToInterval",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "period",
                                                     "scope": "E",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         }
@@ -622,53 +789,84 @@
                     "name": "Encounter Without Procedure (2)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "E",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve"
+                                    "type": "Retrieve",
+                                    "annotation": [],
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "Not",
+                            "annotation": [],
+                            "signature": [],
                             "operand": {
                                 "type": "Exists",
+                                "annotation": [],
+                                "signature": [],
                                 "operand": {
                                     "type": "Query",
+                                    "annotation": [],
                                     "source": [
                                         {
                                             "alias": "P",
+                                            "annotation": [],
                                             "expression": {
                                                 "dataType": "{http://hl7.org/fhir}Procedure",
                                                 "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                                                "type": "Retrieve"
+                                                "type": "Retrieve",
+                                                "annotation": [],
+                                                "include": [],
+                                                "codeFilter": [],
+                                                "dateFilter": [],
+                                                "otherFilter": []
                                             }
                                         }
                                     ],
+                                    "let": [],
+                                    "relationship": [],
                                     "where": {
                                         "type": "In",
+                                        "annotation": [],
+                                        "signature": [],
                                         "operand": [
                                             {
                                                 "name": "ToDateTime",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "strict": false,
                                                         "type": "As",
+                                                        "annotation": [],
+                                                        "signature": [],
                                                         "operand": {
                                                             "path": "performed",
                                                             "scope": "P",
-                                                            "type": "Property"
+                                                            "type": "Property",
+                                                            "annotation": []
                                                         },
                                                         "asTypeSpecifier": {
                                                             "name": "{http://hl7.org/fhir}dateTime",
-                                                            "type": "NamedTypeSpecifier"
+                                                            "type": "NamedTypeSpecifier",
+                                                            "annotation": []
                                                         }
                                                     }
                                                 ]
@@ -677,11 +875,14 @@
                                                 "name": "ToInterval",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "path": "period",
                                                         "scope": "E",
-                                                        "type": "Property"
+                                                        "type": "Property",
+                                                        "annotation": []
                                                     }
                                                 ]
                                             }
@@ -696,58 +897,81 @@
                     "name": "Blood Glucose Observations",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O",
+                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "category",
                                     "codeComparator": "in",
                                     "type": "Retrieve",
+                                    "annotation": [],
                                     "codes": {
                                         "name": "Laboratory",
                                         "preserve": true,
-                                        "type": "ValueSetRef"
-                                    }
+                                        "type": "ValueSetRef",
+                                        "annotation": []
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "And",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "type": "And",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "In",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToString",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "status",
                                                             "scope": "O",
-                                                            "type": "Property"
+                                                            "type": "Property",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "type": "List",
+                                                    "annotation": [],
                                                     "element": [
                                                         {
                                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                             "value": "final",
-                                                            "type": "Literal"
+                                                            "type": "Literal",
+                                                            "annotation": []
                                                         },
                                                         {
                                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                             "value": "amended",
-                                                            "type": "Literal"
+                                                            "type": "Literal",
+                                                            "annotation": []
                                                         }
                                                     ]
                                                 }
@@ -755,38 +979,50 @@
                                         },
                                         {
                                             "type": "Is",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": {
                                                 "path": "value",
                                                 "scope": "O",
-                                                "type": "Property"
+                                                "type": "Property",
+                                                "annotation": []
                                             },
                                             "isTypeSpecifier": {
                                                 "name": "{http://hl7.org/fhir}Quantity",
-                                                "type": "NamedTypeSpecifier"
+                                                "type": "NamedTypeSpecifier",
+                                                "annotation": []
                                             }
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Equivalent",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToConcept",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "code",
                                                     "scope": "O",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "ToConcept",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": {
                                                 "name": "Blood Glucose",
-                                                "type": "CodeRef"
+                                                "type": "CodeRef",
+                                                "annotation": []
                                             }
                                         }
                                     ]
@@ -794,25 +1030,33 @@
                             ]
                         },
                         "sort": {
+                            "annotation": [],
                             "by": [
                                 {
                                     "direction": "desc",
                                     "type": "ByExpression",
+                                    "annotation": [],
                                     "expression": {
                                         "name": "ToDateTime",
                                         "libraryName": "FHIRHelpers",
                                         "type": "FunctionRef",
+                                        "annotation": [],
+                                        "signature": [],
                                         "operand": [
                                             {
                                                 "strict": false,
                                                 "type": "As",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": {
                                                     "name": "effective",
-                                                    "type": "IdentifierRef"
+                                                    "type": "IdentifierRef",
+                                                    "annotation": []
                                                 },
                                                 "asTypeSpecifier": {
                                                     "name": "{http://hl7.org/fhir}dateTime",
-                                                    "type": "NamedTypeSpecifier"
+                                                    "type": "NamedTypeSpecifier",
+                                                    "annotation": []
                                                 }
                                             }
                                         ]
@@ -826,61 +1070,83 @@
                     "name": "Blood Glucose Observations (2)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "O",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Final or Amended Quantitative Laboratory Results",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             }
                         ],
+                        "let": [],
+                        "relationship": [],
                         "where": {
                             "type": "Equivalent",
+                            "annotation": [],
+                            "signature": [],
                             "operand": [
                                 {
                                     "name": "ToConcept",
                                     "libraryName": "FHIRHelpers",
                                     "type": "FunctionRef",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": [
                                         {
                                             "path": "code",
                                             "scope": "O",
-                                            "type": "Property"
+                                            "type": "Property",
+                                            "annotation": []
                                         }
                                     ]
                                 },
                                 {
                                     "type": "ToConcept",
+                                    "annotation": [],
+                                    "signature": [],
                                     "operand": {
                                         "name": "Blood Glucose",
-                                        "type": "CodeRef"
+                                        "type": "CodeRef",
+                                        "annotation": []
                                     }
                                 }
                             ]
                         },
                         "sort": {
+                            "annotation": [],
                             "by": [
                                 {
                                     "direction": "desc",
                                     "type": "ByExpression",
+                                    "annotation": [],
                                     "expression": {
                                         "name": "ToDateTime",
                                         "libraryName": "FHIRHelpers",
                                         "type": "FunctionRef",
+                                        "annotation": [],
+                                        "signature": [],
                                         "operand": [
                                             {
                                                 "strict": false,
                                                 "type": "As",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": {
                                                     "name": "effective",
-                                                    "type": "IdentifierRef"
+                                                    "type": "IdentifierRef",
+                                                    "annotation": []
                                                 },
                                                 "asTypeSpecifier": {
                                                     "name": "{http://hl7.org/fhir}dateTime",
-                                                    "type": "NamedTypeSpecifier"
+                                                    "type": "NamedTypeSpecifier",
+                                                    "annotation": []
                                                 }
                                             }
                                         ]
@@ -894,11 +1160,15 @@
                     "name": "Most Recent Blood Glucose",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "First",
+                        "annotation": [],
+                        "signature": [],
                         "source": {
                             "name": "Blood Glucose Observations",
-                            "type": "ExpressionRef"
+                            "type": "ExpressionRef",
+                            "annotation": []
                         }
                     }
                 },
@@ -906,52 +1176,72 @@
                     "name": "Difference Between Two Most Recent Blood Glucose",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
+                    "annotation": [],
                     "expression": {
                         "type": "Query",
+                        "annotation": [],
                         "source": [
                             {
                                 "alias": "MR",
+                                "annotation": [],
                                 "expression": {
                                     "name": "Most Recent Blood Glucose",
-                                    "type": "ExpressionRef"
+                                    "type": "ExpressionRef",
+                                    "annotation": []
                                 }
                             }
                         ],
                         "let": [
                             {
                                 "identifier": "priorBloodGlucose",
+                                "annotation": [],
                                 "expression": {
                                     "type": "First",
+                                    "annotation": [],
+                                    "signature": [],
                                     "source": {
                                         "type": "Query",
+                                        "annotation": [],
                                         "source": [
                                             {
                                                 "alias": "O",
+                                                "annotation": [],
                                                 "expression": {
                                                     "name": "Blood Glucose Observations",
-                                                    "type": "ExpressionRef"
+                                                    "type": "ExpressionRef",
+                                                    "annotation": []
                                                 }
                                             }
                                         ],
+                                        "let": [],
+                                        "relationship": [],
                                         "where": {
                                             "type": "Before",
+                                            "annotation": [],
+                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToDateTime",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "strict": false,
                                                             "type": "As",
+                                                            "annotation": [],
+                                                            "signature": [],
                                                             "operand": {
                                                                 "path": "effective",
                                                                 "scope": "O",
-                                                                "type": "Property"
+                                                                "type": "Property",
+                                                                "annotation": []
                                                             },
                                                             "asTypeSpecifier": {
                                                                 "name": "{http://hl7.org/fhir}dateTime",
-                                                                "type": "NamedTypeSpecifier"
+                                                                "type": "NamedTypeSpecifier",
+                                                                "annotation": []
                                                             }
                                                         }
                                                     ]
@@ -960,21 +1250,28 @@
                                                     "name": "ToDateTime",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
+                                                    "annotation": [],
+                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "strict": false,
                                                             "type": "As",
+                                                            "annotation": [],
+                                                            "signature": [],
                                                             "operand": {
                                                                 "path": "effective",
                                                                 "type": "Property",
+                                                                "annotation": [],
                                                                 "source": {
                                                                     "name": "Most Recent Blood Glucose",
-                                                                    "type": "ExpressionRef"
+                                                                    "type": "ExpressionRef",
+                                                                    "annotation": []
                                                                 }
                                                             },
                                                             "asTypeSpecifier": {
                                                                 "name": "{http://hl7.org/fhir}dateTime",
-                                                                "type": "NamedTypeSpecifier"
+                                                                "type": "NamedTypeSpecifier",
+                                                                "annotation": []
                                                             }
                                                         }
                                                     ]
@@ -985,26 +1282,36 @@
                                 }
                             }
                         ],
+                        "relationship": [],
                         "return": {
+                            "annotation": [],
                             "expression": {
                                 "type": "Subtract",
+                                "annotation": [],
+                                "signature": [],
                                 "operand": [
                                     {
                                         "name": "ToQuantity",
                                         "libraryName": "FHIRHelpers",
                                         "type": "FunctionRef",
+                                        "annotation": [],
+                                        "signature": [],
                                         "operand": [
                                             {
                                                 "strict": false,
                                                 "type": "As",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "scope": "MR",
-                                                    "type": "Property"
+                                                    "type": "Property",
+                                                    "annotation": []
                                                 },
                                                 "asTypeSpecifier": {
                                                     "name": "{http://hl7.org/fhir}Quantity",
-                                                    "type": "NamedTypeSpecifier"
+                                                    "type": "NamedTypeSpecifier",
+                                                    "annotation": []
                                                 }
                                             }
                                         ]
@@ -1013,21 +1320,28 @@
                                         "name": "ToQuantity",
                                         "libraryName": "FHIRHelpers",
                                         "type": "FunctionRef",
+                                        "annotation": [],
+                                        "signature": [],
                                         "operand": [
                                             {
                                                 "strict": false,
                                                 "type": "As",
+                                                "annotation": [],
+                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
+                                                    "annotation": [],
                                                     "source": {
                                                         "name": "priorBloodGlucose",
-                                                        "type": "QueryLetRef"
+                                                        "type": "QueryLetRef",
+                                                        "annotation": []
                                                     }
                                                 },
                                                 "asTypeSpecifier": {
                                                     "name": "{http://hl7.org/fhir}Quantity",
-                                                    "type": "NamedTypeSpecifier"
+                                                    "type": "NamedTypeSpecifier",
+                                                    "annotation": []
                                                 }
                                             }
                                         ]
