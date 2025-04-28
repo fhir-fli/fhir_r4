@@ -725,11 +725,7 @@
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
-                            "type": "Retrieve",
-                            "include": [],
-                            "codeFilter": [],
-                            "dateFilter": [],
-                            "otherFilter": []
+                            "type": "Retrieve"
                         }
                     }
                 },
@@ -767,8 +763,7 @@
                                     }
                                 }
                             ],
-                            "let": [],
-                            "relationship": [],
+
                             "where": {
                                 "type": "Equivalent",
                                 "operand": [
@@ -838,8 +833,7 @@
                                     }
                                 }
                             ],
-                            "let": [],
-                            "relationship": [],
+
                             "where": {
                                 "type": "Equivalent",
                                 "operand": [
@@ -900,7 +894,6 @@
                         "type": "Case",
                         "caseItem": [
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -957,7 +950,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -990,7 +982,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -1047,7 +1038,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -1458,7 +1448,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -1901,7 +1890,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -1952,7 +1940,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Is",
                                     "operand": {
@@ -3564,10 +3551,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "If",
                                 "condition": {
@@ -3670,10 +3655,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "If",
                                 "condition": {
@@ -3778,8 +3761,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -3802,7 +3784,6 @@
                             ]
                         },
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "name": "E",
                                 "type": "AliasRef"
@@ -3917,8 +3898,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -3941,7 +3921,6 @@
                             ]
                         },
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "name": "E",
                                 "type": "AliasRef"
@@ -4056,8 +4035,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -4080,7 +4058,6 @@
                             ]
                         },
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "name": "E",
                                 "type": "AliasRef"
@@ -4195,8 +4172,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -4219,7 +4195,6 @@
                             ]
                         },
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "name": "E",
                                 "type": "AliasRef"
@@ -5377,9 +5352,7 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [
@@ -5437,10 +5410,8 @@
                                                     }
                                                 }
                                             ],
-                                            "let": [],
-                                            "relationship": [],
+
                                             "return": {
-                                                "annotation": [],
                                                 "expression": {
                                                     "strict": false,
                                                     "type": "As",
@@ -5557,9 +5528,7 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [
@@ -5587,10 +5556,8 @@
                                                     }
                                                 }
                                             ],
-                                            "let": [],
-                                            "relationship": [],
+
                                             "return": {
-                                                "annotation": [],
                                                 "expression": {
                                                     "strict": false,
                                                     "type": "As",
@@ -5631,10 +5598,8 @@
                                                     }
                                                 }
                                             ],
-                                            "let": [],
-                                            "relationship": [],
+
                                             "return": {
-                                                "annotation": [],
                                                 "expression": {
                                                     "strict": false,
                                                     "type": "As",
@@ -5928,10 +5893,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [

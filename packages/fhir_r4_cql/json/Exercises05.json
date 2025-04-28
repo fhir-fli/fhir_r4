@@ -69,32 +69,27 @@
                 {
                     "name": "Encounter Inpatient",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Patient Expired",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.309",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Psychiatric/Mental Health Diagnosis",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.299",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Emergency Department Visit",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Marital Status",
                     "id": "http://hl7.org/fhir/ValueSet/marital-status",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -145,11 +140,7 @@
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
-                            "type": "Retrieve",
-                            "include": [],
-                            "codeFilter": [],
-                            "dateFilter": [],
-                            "otherFilter": []
+                            "type": "Retrieve"
                         }
                     }
                 },

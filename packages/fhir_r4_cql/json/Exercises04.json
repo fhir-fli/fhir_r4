@@ -2091,8 +2091,7 @@
                                         }
                                     }
                                 ],
-                                "let": [],
-                                "relationship": [],
+
                                 "return": {
                                     "distinct": false,
                                     "expression": {
@@ -2424,8 +2423,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -2492,8 +2490,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -2605,8 +2602,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -2673,8 +2669,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -2741,8 +2736,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -2806,8 +2800,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
                                         "distinct": false,
                                         "expression": {
@@ -3415,8 +3408,7 @@
                                         }
                                     }
                                 ],
-                                "let": [],
-                                "relationship": [],
+
                                 "return": {
                                     "distinct": false,
                                     "expression": {

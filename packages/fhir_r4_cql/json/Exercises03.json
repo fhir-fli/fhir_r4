@@ -2340,7 +2340,6 @@
                         },
                         "caseItem": [
                             {
-                                "annotation": [],
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG",
@@ -2353,7 +2352,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/ACTUAT",
@@ -2366,7 +2364,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/HR",
@@ -2379,7 +2376,6 @@
                                 }
                             },
                             {
-                                "annotation": [],
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/ML",
@@ -2436,7 +2432,6 @@
                         "type": "Case",
                         "caseItem": [
                             {
-                                "annotation": [],
                                 "when": {
                                     "type": "Equal",
                                     "operand": [

@@ -157,8 +157,7 @@
                 {
                     "name": "Marital Status",
                     "id": "http://hl7.org/fhir/ValueSet/marital-status",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -236,11 +235,7 @@
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
-                            "type": "Retrieve",
-                            "include": [],
-                            "codeFilter": [],
-                            "dateFilter": [],
-                            "otherFilter": []
+                            "type": "Retrieve"
                         }
                     }
                 },
@@ -259,8 +254,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "And",
                             "operand": [
@@ -398,8 +392,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Or",
                             "operand": [
@@ -474,11 +467,7 @@
                                             "name": "Blood pressure",
                                             "type": "CodeRef"
                                         }
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    }
                                 }
                             }
                         ],
@@ -499,8 +488,7 @@
                                                 }
                                             }
                                         ],
-                                        "let": [],
-                                        "relationship": [],
+
                                         "where": {
                                             "type": "Equivalent",
                                             "operand": [
@@ -544,8 +532,7 @@
                                                 }
                                             }
                                         ],
-                                        "let": [],
-                                        "relationship": [],
+
                                         "where": {
                                             "type": "Equivalent",
                                             "operand": [
@@ -574,7 +561,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -672,8 +658,7 @@
                                                 }
                                             }
                                         ],
-                                        "let": [],
-                                        "relationship": [],
+
                                         "where": {
                                             "type": "Equal",
                                             "operand": [
@@ -700,7 +685,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -708,7 +692,6 @@
                                     "type": "Case",
                                     "caseItem": [
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}base64Binary",
                                                 "type": "Is",
@@ -742,7 +725,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
@@ -776,7 +758,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
@@ -810,7 +791,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
@@ -844,7 +824,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
@@ -878,7 +857,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
@@ -912,7 +890,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
@@ -946,7 +923,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
@@ -980,7 +956,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
@@ -1014,7 +989,6 @@
                                             }
                                         },
                                         {
-                                            "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
@@ -1093,8 +1067,7 @@
                                                 }
                                             }
                                         ],
-                                        "let": [],
-                                        "relationship": [],
+
                                         "where": {
                                             "type": "Equal",
                                             "operand": [
@@ -1137,8 +1110,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "where": {
                                         "type": "Equal",
                                         "operand": [
@@ -1180,8 +1152,7 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "where": {
                                         "type": "Equal",
                                         "operand": [
@@ -1207,7 +1178,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -1230,8 +1200,7 @@
                                                                 }
                                                             }
                                                         ],
-                                                        "let": [],
-                                                        "relationship": [],
+
                                                         "where": {
                                                             "type": "Not",
                                                             "operand": {
@@ -1260,8 +1229,7 @@
                                                     }
                                                 }
                                             ],
-                                            "let": [],
-                                            "relationship": [],
+
                                             "return": {
                                                 "distinct": false,
                                                 "expression": {
@@ -1306,8 +1274,7 @@
                                                                 }
                                                             }
                                                         ],
-                                                        "let": [],
-                                                        "relationship": [],
+
                                                         "where": {
                                                             "type": "Not",
                                                             "operand": {
@@ -1336,8 +1303,7 @@
                                                     }
                                                 }
                                             ],
-                                            "let": [],
-                                            "relationship": [],
+
                                             "return": {
                                                 "distinct": false,
                                                 "expression": {

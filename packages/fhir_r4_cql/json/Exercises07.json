@@ -168,20 +168,17 @@
                 {
                     "name": "Community Medication",
                     "id": "http://example.org/fhir/ValueSet/community-medication",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Vital Sign",
                     "id": "http://example.org/fhir/ValueSet/vital-sign",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Laboratory",
                     "id": "http://example.org/fhir/ValueSet/laboratory",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -228,16 +225,9 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
-                                }
+                                    }}
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -301,15 +291,10 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 }
                             }
                         ],
-                        "let": [],
                         "relationship": [
                             {
                                 "alias": "O",
@@ -324,11 +309,7 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    }
                                 },
                                 "suchThat": {
                                     "type": "And",
@@ -437,15 +418,10 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 }
                             }
                         ],
-                        "let": [],
                         "relationship": [
                             {
                                 "alias": "O",
@@ -507,16 +483,10 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
                         "where": {
                             "type": "Exists",
                             "operand": {
@@ -530,8 +500,6 @@
                                         }
                                     }
                                 ],
-                                "let": [],
-                                "relationship": [],
                                 "where": {
                                     "type": "In",
                                     "operand": [
@@ -580,11 +548,7 @@
                     "expression": {
                         "dataType": "{http://hl7.org/fhir}Procedure",
                         "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                        "type": "Retrieve",
-                        "include": [],
-                        "codeFilter": [],
-                        "dateFilter": [],
-                        "otherFilter": []
+                        "type": "Retrieve"
                     }
                 },
                 {
@@ -599,15 +563,10 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 }
                             }
                         ],
-                        "let": [],
                         "relationship": [
                             {
                                 "alias": "P",
@@ -615,11 +574,7 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Procedure",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 },
                                 "suchThat": {
                                     "type": "In",
@@ -674,16 +629,10 @@
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Encounter",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Encounter",
-                                    "type": "Retrieve",
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    "type": "Retrieve"
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
                         "where": {
                             "type": "Not",
                             "operand": {
@@ -696,16 +645,10 @@
                                             "expression": {
                                                 "dataType": "{http://hl7.org/fhir}Procedure",
                                                 "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
-                                                "type": "Retrieve",
-                                                "include": [],
-                                                "codeFilter": [],
-                                                "dateFilter": [],
-                                                "otherFilter": []
+                                                "type": "Retrieve"
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
                                     "where": {
                                         "type": "In",
                                         "operand": [
@@ -767,16 +710,10 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    }
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -856,7 +793,6 @@
                             ]
                         },
                         "sort": {
-                            "annotation": [],
                             "by": [
                                 {
                                     "direction": "desc",
@@ -900,8 +836,6 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
                         "where": {
                             "type": "Equivalent",
                             "operand": [
@@ -927,7 +861,6 @@
                             ]
                         },
                         "sort": {
-                            "annotation": [],
                             "by": [
                                 {
                                     "direction": "desc",
@@ -999,8 +932,6 @@
                                                 }
                                             }
                                         ],
-                                        "let": [],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Before",
                                             "operand": [
@@ -1053,9 +984,7 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Subtract",
                                 "operand": [

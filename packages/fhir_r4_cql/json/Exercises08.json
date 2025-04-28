@@ -78,20 +78,17 @@
                 {
                     "name": "Community Medication",
                     "id": "http://example.org/fhir/ValueSet/community-medication",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Vital Sign",
                     "id": "http://example.org/fhir/ValueSet/vital-sign",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Laboratory",
                     "id": "http://example.org/fhir/ValueSet/laboratory",
-                    "accessLevel": "Public",
-                    "codeSystem": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -138,16 +135,11 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    }
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "And",
                             "operand": [
@@ -250,10 +242,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Abs",
                                 "operand": {
@@ -336,16 +326,11 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    },
-                                    "include": [],
-                                    "codeFilter": [],
-                                    "dateFilter": [],
-                                    "otherFilter": []
+                                    }
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "And",
                             "operand": [
@@ -419,8 +404,7 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "where": {
                             "type": "Equivalent",
                             "operand": [
@@ -437,7 +421,6 @@
                             ]
                         },
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [
@@ -525,10 +508,8 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
-                                        "annotation": [],
                                         "expression": {
                                             "path": "code",
                                             "scope": "D",
@@ -538,10 +519,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [
@@ -567,8 +546,7 @@
                                                         }
                                                     }
                                                 ],
-                                                "let": [],
-                                                "relationship": [],
+
                                                 "where": {
                                                     "type": "Equivalent",
                                                     "operand": [
@@ -584,7 +562,6 @@
                                                     ]
                                                 },
                                                 "return": {
-                                                    "annotation": [],
                                                     "expression": {
                                                         "path": "difference",
                                                         "scope": "D",
@@ -619,10 +596,8 @@
                                             }
                                         }
                                     ],
-                                    "let": [],
-                                    "relationship": [],
+
                                     "return": {
-                                        "annotation": [],
                                         "expression": {
                                             "path": "code",
                                             "scope": "T",
@@ -632,10 +607,8 @@
                                 }
                             }
                         ],
-                        "let": [],
-                        "relationship": [],
+
                         "return": {
-                            "annotation": [],
                             "expression": {
                                 "type": "Tuple",
                                 "element": [
@@ -666,8 +639,7 @@
                                                                     }
                                                                 }
                                                             ],
-                                                            "let": [],
-                                                            "relationship": [],
+
                                                             "where": {
                                                                 "type": "Equivalent",
                                                                 "operand": [
@@ -683,7 +655,6 @@
                                                                 ]
                                                             },
                                                             "return": {
-                                                                "annotation": [],
                                                                 "expression": {
                                                                     "strict": false,
                                                                     "type": "As",
@@ -701,8 +672,7 @@
                                                         }
                                                     }
                                                 ],
-                                                "let": [],
-                                                "relationship": [],
+
                                                 "return": {
                                                     "distinct": false,
                                                     "expression": {
