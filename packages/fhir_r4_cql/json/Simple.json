@@ -19,8 +19,7 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1",
-                    "annotation": []
+                    "uri": "urn:hl7-org:elm-types:r1"
                 }
             ]
         },
@@ -30,23 +29,18 @@
                     "name": "TwoPlusTwo",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Add",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "2",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "2",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }

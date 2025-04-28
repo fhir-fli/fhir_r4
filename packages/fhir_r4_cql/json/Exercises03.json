@@ -19,8 +19,7 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1",
-                    "annotation": []
+                    "uri": "urn:hl7-org:elm-types:r1"
                 }
             ]
         },
@@ -30,27 +29,20 @@
                     "name": "String Equality",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsFalse",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -60,27 +52,20 @@
                     "name": "String Equivalence",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equivalent",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -90,27 +75,20 @@
                     "name": "String Comparison",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Less",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -120,31 +98,22 @@
                     "name": "String Inequality",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Not",
-                            "annotation": [],
-                            "signature": [],
                             "operand": {
                                 "type": "Equal",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "Abel",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "abel",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -155,31 +124,22 @@
                     "name": "String Inequivalence",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsFalse",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Not",
-                            "annotation": [],
-                            "signature": [],
                             "operand": {
                                 "type": "Equivalent",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "Abel",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "abel",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -190,30 +150,21 @@
                     "name": "String Equality With Null",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsNull",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 {
                                     "asType": "{urn:hl7-org:elm-types:r1}String",
                                     "type": "As",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
-                                        "type": "Null",
-                                        "annotation": []
+                                        "type": "Null"
                                     }
                                 }
                             ]
@@ -224,30 +175,21 @@
                     "name": "String Equivalence With Null",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsFalse",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equivalent",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Abel",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 {
                                     "asType": "{urn:hl7-org:elm-types:r1}String",
                                     "type": "As",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
-                                        "type": "Null",
-                                        "annotation": []
+                                        "type": "Null"
                                     }
                                 }
                             ]
@@ -258,25 +200,21 @@
                     "name": "T1",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Tuple",
-                        "annotation": [],
                         "element": [
                             {
                                 "name": "X",
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "name": "Y",
                                 "value": {
-                                    "type": "Null",
-                                    "annotation": []
+                                    "type": "Null"
                                 }
                             }
                         ]
@@ -286,25 +224,21 @@
                     "name": "T2",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Tuple",
-                        "annotation": [],
                         "element": [
                             {
                                 "name": "X",
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "name": "Y",
                                 "value": {
-                                    "type": "Null",
-                                    "annotation": []
+                                    "type": "Null"
                                 }
                             }
                         ]
@@ -314,18 +248,15 @@
                     "name": "T3",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Tuple",
-                        "annotation": [],
                         "element": [
                             {
                                 "name": "X",
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -333,8 +264,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -344,25 +274,18 @@
                     "name": "TEqual",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "name": "T1",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 },
                                 {
                                     "name": "T2",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         }
@@ -372,25 +295,18 @@
                     "name": "TEqualWithNull",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsNull",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "name": "T2",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 },
                                 {
                                     "name": "T3",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         }
@@ -400,25 +316,18 @@
                     "name": "TEquivalent",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsFalse",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equivalent",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "name": "T2",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 },
                                 {
                                     "name": "T3",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         }
@@ -428,19 +337,16 @@
                     "name": "C1",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "classType": "{urn:hl7-org:elm-types:r1}Code",
                         "type": "Instance",
-                        "annotation": [],
                         "element": [
                             {
                                 "name": "code",
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "ABC",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -448,8 +354,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Code ABC",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -457,8 +362,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "http://example.com",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -466,8 +370,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "2017-01",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -477,19 +380,16 @@
                     "name": "C2",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "classType": "{urn:hl7-org:elm-types:r1}Code",
                         "type": "Instance",
-                        "annotation": [],
                         "element": [
                             {
                                 "name": "code",
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "ABC",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -497,8 +397,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "Variant Description",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -506,8 +405,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "http://example.com",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -515,8 +413,7 @@
                                 "value": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "2017-05",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -526,25 +423,18 @@
                     "name": "CEqual",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsFalse",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "name": "C1",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 },
                                 {
                                     "name": "C2",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         }
@@ -554,25 +444,18 @@
                     "name": "CEquivalent",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equivalent",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "name": "C1",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 },
                                 {
                                     "name": "C2",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         }
@@ -582,43 +465,31 @@
                     "name": "Standard Precedence",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Add",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "2",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         },
                                         {
                                             "type": "Multiply",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "5",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "10",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             ]
                                         }
@@ -627,8 +498,7 @@
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "52",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -638,53 +508,40 @@
                     "name": "Force Precedence",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Multiply",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "Add",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "2",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "5",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             ]
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "10",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "70",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -694,41 +551,28 @@
                     "name": "Division Always Results in a Decimal",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Divide",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "10",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         },
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "2",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         }
                                     ]
@@ -736,8 +580,7 @@
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "5.0",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -747,40 +590,30 @@
                     "name": "Truncated Divide for Integer Division",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "TruncatedDivide",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "10",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "2",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "5",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -790,40 +623,30 @@
                     "name": "Modulo is the Remainder",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Modulo",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "10",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "2",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "0",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -833,36 +656,25 @@
                     "name": "Negation",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Negate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "10",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "type": "Negate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "10",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -873,37 +685,26 @@
                     "name": "Absolute Value",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Abs",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Negate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "10",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "10",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -913,32 +714,23 @@
                     "name": "Successor Of",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Successor",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "1",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -948,32 +740,23 @@
                     "name": "Predecessor Of",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Predecessor",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "1",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "0",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -983,42 +766,30 @@
                     "name": "Minimum Integer",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                    "type": "MinValue",
-                                    "annotation": []
+                                    "type": "MinValue"
                                 },
                                 {
                                     "type": "Subtract",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "Negate",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "2147483647",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "1",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 }
@@ -1030,26 +801,19 @@
                     "name": "Maximum Integer",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                    "type": "MaxValue",
-                                    "annotation": []
+                                    "type": "MaxValue"
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2147483647",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1059,36 +823,25 @@
                     "name": "Default Round",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Round",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "5.5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "type": "ToDecimal",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "6",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1099,38 +852,28 @@
                     "name": "Precision Round",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Round",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "5.55",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     },
                                     "precision": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "1",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "5.6",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1140,32 +883,23 @@
                     "name": "Truncate",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Truncate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "5.5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "5",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1175,41 +909,28 @@
                     "name": "Truncate Negative",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Truncate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Negate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                             "value": "5.5",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     }
                                 },
                                 {
                                     "type": "Negate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1220,32 +941,23 @@
                     "name": "Floor",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Floor",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "5.5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "5",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1255,41 +967,28 @@
                     "name": "Floor Negative",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Floor",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Negate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                             "value": "5.5",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     }
                                 },
                                 {
                                     "type": "Negate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "6",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1300,32 +999,23 @@
                     "name": "Ceiling",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Ceiling",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "5.5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "6",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1335,41 +1025,28 @@
                     "name": "Ceiling Negative",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Ceiling",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Negate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                             "value": "5.5",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     }
                                 },
                                 {
                                     "type": "Negate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1380,40 +1057,30 @@
                     "name": "Integer Exponent",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Power",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "2",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "5",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "25",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1423,49 +1090,35 @@
                     "name": "Decimal Exponent",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Power",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "25",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                             "value": "0.5",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "ToDecimal",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "5",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1476,54 +1129,38 @@
                     "name": "Logarithm Base 5",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Log",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "25",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         },
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "5",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         }
                                     ]
                                 },
                                 {
                                     "type": "ToDecimal",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "2",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1534,41 +1171,28 @@
                     "name": "Logarithm Base 25",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Log",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "5",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         },
                                         {
                                             "type": "ToDecimal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                 "value": "25",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         }
                                     ]
@@ -1576,8 +1200,7 @@
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "0.5",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1587,37 +1210,26 @@
                     "name": "Natural Logarithm",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Ln",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "ToDecimal",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "10",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "2.30258209288405",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1627,36 +1239,25 @@
                     "name": "Exponent",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "IsTrue",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Exp",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                         "value": "2.30258509288405",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 },
                                 {
                                     "type": "ToDecimal",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                         "value": "10",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 }
                             ]
@@ -1667,36 +1268,28 @@
                     "name": "String Concatenate",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Concatenate",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "AB",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "CD",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 ]
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCD",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -1705,26 +1298,19 @@
                     "name": "String Concatenate With Nulls",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Concatenate",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "AB",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "asType": "{urn:hl7-org:elm-types:r1}String",
                                 "type": "As",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": {
-                                    "type": "Null",
-                                    "annotation": []
+                                    "type": "Null"
                                 }
                             }
                         ]
@@ -1734,61 +1320,44 @@
                     "name": "String Null Concatenate",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Concatenate",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Coalesce",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "type": "Concatenate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "type": "Coalesce",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                         "value": "AB",
-                                                        "type": "Literal",
-                                                        "annotation": []
+                                                        "type": "Literal"
                                                     },
                                                     {
                                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                         "value": "",
-                                                        "type": "Literal",
-                                                        "annotation": []
+                                                        "type": "Literal"
                                                     }
                                                 ]
                                             },
                                             {
                                                 "type": "Coalesce",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{urn:hl7-org:elm-types:r1}String",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
-                                                            "type": "Null",
-                                                            "annotation": []
+                                                            "type": "Null"
                                                         }
                                                     },
                                                     {
                                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                         "value": "",
-                                                        "type": "Literal",
-                                                        "annotation": []
+                                                        "type": "Literal"
                                                     }
                                                 ]
                                             }
@@ -1797,27 +1366,22 @@
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 ]
                             },
                             {
                                 "type": "Coalesce",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "CD",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                                         "value": "",
-                                        "type": "Literal",
-                                        "annotation": []
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -1828,16 +1392,12 @@
                     "name": "String Length",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Length",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "ABCD",
-                            "type": "Literal",
-                            "annotation": []
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1845,23 +1405,18 @@
                     "name": "String Indexer",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Indexer",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCD",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "0",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -1870,22 +1425,17 @@
                     "name": "PositionOf",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "PositionOf",
-                        "annotation": [],
-                        "signature": [],
                         "pattern": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "C",
-                            "type": "Literal",
-                            "annotation": []
+                            "type": "Literal"
                         },
                         "string": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "ABCDCBA",
-                            "type": "Literal",
-                            "annotation": []
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1893,22 +1443,17 @@
                     "name": "LastPositionOf",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "LastPositionOf",
-                        "annotation": [],
-                        "signature": [],
                         "pattern": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "C",
-                            "type": "Literal",
-                            "annotation": []
+                            "type": "Literal"
                         },
                         "string": {
                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                             "value": "ABCDCBA",
-                            "type": "Literal",
-                            "annotation": []
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1916,23 +1461,18 @@
                     "name": "StartsWith",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "StartsWith",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "AB",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCDCBA",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -1941,23 +1481,18 @@
                     "name": "EndsWith",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "EndsWith",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "AB",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCDCBA",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -1966,23 +1501,18 @@
                     "name": "Matches",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Matches",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCD",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "AB.*",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -1991,29 +1521,23 @@
                     "name": "ReplaceMatches",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "ReplaceMatches",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "ABCD",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "C",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "X",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -2022,56 +1546,43 @@
                     "name": "Date Equal",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2081,56 +1592,43 @@
                     "name": "Date Less Than",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Less",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2140,56 +1638,43 @@
                     "name": "Date Less Or Equal",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "LessOrEqual",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2199,57 +1684,44 @@
                     "name": "Same Year As",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "precision": "Year",
                         "type": "SameAs",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2259,57 +1731,44 @@
                     "name": "Same Year Or Before",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "precision": "Year",
                         "type": "SameOrBefore",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2012",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2319,57 +1778,44 @@
                     "name": "Before Year Of",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "precision": "Year",
                         "type": "Before",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2012",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "15",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2379,94 +1825,76 @@
                     "name": "Day Quantity",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 1,
                         "unit": "day",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "Years Quantity",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 2,
                         "unit": "years",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "Minutes Quantity",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 30,
                         "unit": "minutes",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "UCUM Days",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 1,
                         "unit": "d",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "UCUM Annum",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 2,
                         "unit": "a",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "UCUM Minutes",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 30,
                         "unit": "min",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "1 Year Ago",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Subtract",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
-                                "type": "Today",
-                                "annotation": [],
-                                "signature": []
+                                "type": "Today"
                             },
                             {
                                 "value": 1,
                                 "unit": "year",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2475,52 +1903,41 @@
                     "name": "Add 30 Minutes",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Add",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "DateTime",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "hour": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "14",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "minute": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "30",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "value": 30,
                                 "unit": "minutes",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2529,28 +1946,21 @@
                     "name": "Add 24 Months",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Add",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "value": 24,
                                 "unit": "months",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2559,23 +1969,18 @@
                     "name": "Calendar Years Equivalent To UCUM Annum (a)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equivalent",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "year",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "a",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2584,23 +1989,18 @@
                     "name": "Calendar Months Equivalent To UCUM Month (mo)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equivalent",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "month",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "mo",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2609,23 +2009,18 @@
                     "name": "Calendar Weeks Equal To UCUM Weeks (wk)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "week",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "wk",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2634,23 +2029,18 @@
                     "name": "Calendar Days Equal To UCUM Days (d)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "day",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "d",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2659,23 +2049,18 @@
                     "name": "Calendar Hours Equal To UCUM Hours (h)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "hour",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "h",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2684,23 +2069,18 @@
                     "name": "Calendar Minutes Equal To UCUM Minutes (min)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "minute",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "min",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2709,23 +2089,18 @@
                     "name": "Calendar Seconds Equal To UCUM Seconds (s)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "second",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "s",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2734,23 +2109,18 @@
                     "name": "Calendar Milliseconds Equal To UCUM Milliseconds (ms)",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "value": 1,
                                 "unit": "millisecond",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             },
                             {
                                 "value": 1,
                                 "unit": "ms",
-                                "type": "Quantity",
-                                "annotation": []
+                                "type": "Quantity"
                             }
                         ]
                     }
@@ -2759,57 +2129,44 @@
                     "name": "Duration In Months Between",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "precision": "Month",
                         "type": "DurationBetween",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "31",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2819,57 +2176,44 @@
                     "name": "Difference In Months Between",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "precision": "Month",
                         "type": "DifferenceBetween",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "31",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
                                 "type": "Date",
-                                "annotation": [],
-                                "signature": [],
                                 "year": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2014",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "month": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "2",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "day": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                     "value": "1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ]
@@ -2879,76 +2223,59 @@
                     "name": "strength",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "value": 10.0,
                         "unit": "mg/mL",
-                        "type": "Quantity",
-                        "annotation": []
+                        "type": "Quantity"
                     }
                 },
                 {
                     "name": "If Conditional",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "If",
-                        "annotation": [],
                         "condition": {
                             "type": "Less",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "path": "value",
                                     "type": "Property",
-                                    "annotation": [],
                                     "source": {
                                         "name": "strength",
-                                        "type": "ExpressionRef",
-                                        "annotation": []
+                                        "type": "ExpressionRef"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "0.1",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         },
                         "then": {
                             "classType": "{urn:hl7-org:elm-types:r1}Quantity",
                             "type": "Instance",
-                            "annotation": [],
                             "element": [
                                 {
                                     "name": "value",
                                     "value": {
                                         "type": "Multiply",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "path": "value",
                                                 "type": "Property",
-                                                "annotation": [],
                                                 "source": {
                                                     "name": "strength",
-                                                    "type": "ExpressionRef",
-                                                    "annotation": []
+                                                    "type": "ExpressionRef"
                                                 }
                                             },
                                             {
                                                 "type": "ToDecimal",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "1000",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             }
                                         ]
@@ -2958,34 +2285,26 @@
                                     "name": "unit",
                                     "value": {
                                         "type": "Concatenate",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                 "value": "mcg",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             },
                                             {
                                                 "type": "Substring",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "stringToSub": {
                                                     "path": "unit",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "strength",
-                                                        "type": "ExpressionRef",
-                                                        "annotation": []
+                                                        "type": "ExpressionRef"
                                                     }
                                                 },
                                                 "startIndex": {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                                     "value": "2",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             }
                                         ]
@@ -2995,8 +2314,7 @@
                         },
                         "else": {
                             "name": "strength",
-                            "type": "ExpressionRef",
-                            "annotation": []
+                            "type": "ExpressionRef"
                         }
                     }
                 },
@@ -3004,26 +2322,21 @@
                     "name": "unit",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "valueType": "{urn:hl7-org:elm-types:r1}String",
                         "value": "MG/ACTUAT",
-                        "type": "Literal",
-                        "annotation": []
+                        "type": "Literal"
                     }
                 },
                 {
                     "name": "Selected Case Conditional",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Case",
-                        "annotation": [],
                         "comparand": {
                             "name": "unit",
-                            "type": "ExpressionRef",
-                            "annotation": []
+                            "type": "ExpressionRef"
                         },
                         "caseItem": [
                             {
@@ -3031,14 +2344,12 @@
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "then": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "mg",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -3046,14 +2357,12 @@
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/ACTUAT",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "then": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "mg/{actuat}",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -3061,14 +2370,12 @@
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/HR",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "then": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "mg/h",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             },
                             {
@@ -3076,45 +2383,36 @@
                                 "when": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "MG/ML",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 },
                                 "then": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "mg/mL",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ],
                         "else": {
                             "type": "Concatenate",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Concatenate",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
                                             "value": "{",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         },
                                         {
                                             "name": "unit",
-                                            "type": "ExpressionRef",
-                                            "annotation": []
+                                            "type": "ExpressionRef"
                                         }
                                     ]
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "}",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -3124,60 +2422,48 @@
                     "name": "doseFormCode",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                         "value": "316897",
-                        "type": "Literal",
-                        "annotation": []
+                        "type": "Literal"
                     }
                 },
                 {
                     "name": "Conditional Case",
                     "context": "Unfiltered",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Case",
-                        "annotation": [],
                         "caseItem": [
                             {
                                 "annotation": [],
                                 "when": {
                                     "type": "Equal",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "doseFormCode",
-                                            "type": "ExpressionRef",
-                                            "annotation": []
+                                            "type": "ExpressionRef"
                                         },
                                         {
                                             "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                             "value": "316897",
-                                            "type": "Literal",
-                                            "annotation": []
+                                            "type": "Literal"
                                         }
                                     ]
                                 },
                                 "then": {
                                     "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
                                     "value": "12.6",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             }
                         ],
                         "else": {
                             "type": "ToDecimal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
                                 "value": "30",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         }
                     }

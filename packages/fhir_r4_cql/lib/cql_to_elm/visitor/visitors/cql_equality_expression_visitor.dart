@@ -121,11 +121,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   /// Determines if the operand requires transformation into a Query
   bool _requiresQueryOperand(CqlExpression operand) {
     if (operand is ListExpression) {
-      print('***********************************');
-      for (final element in operand.element ?? <CqlExpression>[]) {
-        print(element.getReturnTypes(library));
-      }
-      print('***********************************\n\n');
       final elementTypes = operand.element
           ?.map((e) => e.getReturnTypes(library))
           .expand((types) => types)

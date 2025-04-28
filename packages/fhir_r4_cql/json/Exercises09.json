@@ -115,14 +115,12 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1",
-                    "annotation": []
+                    "uri": "urn:hl7-org:elm-types:r1"
                 },
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.1",
-                    "annotation": []
+                    "version": "4.0.1"
                 }
             ]
         },
@@ -131,8 +129,7 @@
                 {
                     "localIdentifier": "FHIRHelpers",
                     "path": "FHIRHelpers",
-                    "version": "4.0.1",
-                    "annotation": []
+                    "version": "4.0.1"
                 }
             ]
         },
@@ -141,20 +138,17 @@
                 {
                     "name": "LOINC",
                     "id": "http://loinc.org",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Marital Status Codes",
                     "id": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "CDC Race and Ethnicity Codes",
                     "id": "urn:oid:2.16.840.1.113883.6.238",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -164,7 +158,6 @@
                     "name": "Marital Status",
                     "id": "http://hl7.org/fhir/ValueSet/marital-status",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 }
             ]
@@ -175,10 +168,8 @@
                     "name": "Marital Status - Married",
                     "id": "M",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "Marital Status Codes",
-                        "annotation": []
+                        "name": "Marital Status Codes"
                     }
                 },
                 {
@@ -186,10 +177,8 @@
                     "id": "1002-5",
                     "display": "American Indian or Alaska Native",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "CDC Race and Ethnicity Codes",
-                        "annotation": []
+                        "name": "CDC Race and Ethnicity Codes"
                     }
                 },
                 {
@@ -197,10 +186,8 @@
                     "id": "1735-0",
                     "display": "Alaska Native",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "CDC Race and Ethnicity Codes",
-                        "annotation": []
+                        "name": "CDC Race and Ethnicity Codes"
                     }
                 },
                 {
@@ -208,10 +195,8 @@
                     "id": "85354-9",
                     "display": "blood pressure",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC",
-                        "annotation": []
+                        "name": "LOINC"
                     }
                 },
                 {
@@ -219,10 +204,8 @@
                     "id": "8462-4",
                     "display": "Diastolic blood pressure",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC",
-                        "annotation": []
+                        "name": "LOINC"
                     }
                 },
                 {
@@ -230,10 +213,8 @@
                     "id": "8480-6",
                     "display": "Systolic blood pressure",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC",
-                        "annotation": []
+                        "name": "LOINC"
                     }
                 }
             ]
@@ -241,8 +222,7 @@
         "contexts": {
             "def": [
                 {
-                    "name": "Patient",
-                    "annotation": []
+                    "name": "Patient"
                 }
             ]
         },
@@ -251,16 +231,12 @@
                 {
                     "name": "Patient",
                     "context": "Patient",
-                    "annotation": [],
                     "expression": {
                         "type": "SingletonFrom",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
                             "type": "Retrieve",
-                            "annotation": [],
                             "include": [],
                             "codeFilter": [],
                             "dateFilter": [],
@@ -272,18 +248,14 @@
                     "name": "TestPrimitives",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Query",
-                        "annotation": [],
                         "source": [
                             {
                                 "alias": "P",
-                                "annotation": [],
                                 "expression": {
                                     "name": "Patient",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             }
                         ],
@@ -291,68 +263,49 @@
                         "relationship": [],
                         "where": {
                             "type": "And",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "And",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "And",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "type": "And",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "type": "Equal",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": [
                                                                 {
                                                                     "name": "ToString",
                                                                     "libraryName": "FHIRHelpers",
                                                                     "type": "FunctionRef",
-                                                                    "annotation": [],
-                                                                    "signature": [],
                                                                     "operand": [
                                                                         {
                                                                             "path": "gender",
                                                                             "scope": "P",
-                                                                            "type": "Property",
-                                                                            "annotation": []
+                                                                            "type": "Property"
                                                                         }
                                                                     ]
                                                                 },
                                                                 {
                                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                                     "value": "male",
-                                                                    "type": "Literal",
-                                                                    "annotation": []
+                                                                    "type": "Literal"
                                                                 }
                                                             ]
                                                         },
                                                         {
                                                             "type": "IsTrue",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": {
                                                                 "name": "ToBoolean",
                                                                 "libraryName": "FHIRHelpers",
                                                                 "type": "FunctionRef",
-                                                                "annotation": [],
-                                                                "signature": [],
                                                                 "operand": [
                                                                     {
                                                                         "path": "active",
                                                                         "scope": "P",
-                                                                        "type": "Property",
-                                                                        "annotation": []
+                                                                        "type": "Property"
                                                                     }
                                                                 ]
                                                             }
@@ -361,28 +314,21 @@
                                                 },
                                                 {
                                                     "type": "Before",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "name": "ToDate",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": [
                                                                 {
                                                                     "path": "birthDate",
                                                                     "scope": "P",
-                                                                    "type": "Property",
-                                                                    "annotation": []
+                                                                    "type": "Property"
                                                                 }
                                                             ]
                                                         },
                                                         {
-                                                            "type": "Today",
-                                                            "annotation": [],
-                                                            "signature": []
+                                                            "type": "Today"
                                                         }
                                                     ]
                                                 }
@@ -390,59 +336,45 @@
                                         },
                                         {
                                             "type": "InValueSet",
-                                            "annotation": [],
-                                            "signature": [],
                                             "code": {
                                                 "name": "ToConcept",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "path": "maritalStatus",
                                                         "scope": "P",
-                                                        "type": "Property",
-                                                        "annotation": []
+                                                        "type": "Property"
                                                     }
                                                 ]
                                             },
                                             "valueset": {
                                                 "name": "Marital Status",
-                                                "preserve": true,
-                                                "annotation": []
+                                                "preserve": true
                                             }
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Equivalent",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToConcept",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "path": "maritalStatus",
                                                     "scope": "P",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "ToConcept",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
                                                 "name": "Marital Status - Married",
-                                                "type": "CodeRef",
-                                                "annotation": []
+                                                "type": "CodeRef"
                                             }
                                         }
                                     ]
@@ -455,18 +387,14 @@
                     "name": "TestChoice",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Query",
-                        "annotation": [],
                         "source": [
                             {
                                 "alias": "P",
-                                "annotation": [],
                                 "expression": {
                                     "name": "Patient",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             }
                         ],
@@ -474,30 +402,21 @@
                         "relationship": [],
                         "where": {
                             "type": "Or",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "IsFalse",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "name": "ToBoolean",
                                         "libraryName": "FHIRHelpers",
                                         "type": "FunctionRef",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "asType": "{http://hl7.org/fhir}boolean",
                                                 "type": "As",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "deceased",
                                                     "scope": "P",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             }
                                         ]
@@ -505,38 +424,27 @@
                                 },
                                 {
                                     "type": "Before",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToDateTime",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "asType": "{http://hl7.org/fhir}dateTime",
                                                     "type": "As",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": {
                                                         "path": "deceased",
                                                         "scope": "P",
-                                                        "type": "Property",
-                                                        "annotation": []
+                                                        "type": "Property"
                                                     }
                                                 }
                                             ]
                                         },
                                         {
                                             "type": "ToDateTime",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": {
-                                                "type": "Today",
-                                                "annotation": [],
-                                                "signature": []
+                                                "type": "Today"
                                             }
                                         }
                                     ]
@@ -549,29 +457,22 @@
                     "name": "TestSlices",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Query",
-                        "annotation": [],
                         "source": [
                             {
                                 "alias": "BP",
-                                "annotation": [],
                                 "expression": {
                                     "dataType": "{http://hl7.org/fhir}Observation",
                                     "templateId": "http://hl7.org/fhir/StructureDefinition/Observation",
                                     "codeProperty": "code",
                                     "codeComparator": "~",
                                     "type": "Retrieve",
-                                    "annotation": [],
                                     "codes": {
                                         "type": "ToList",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": {
                                             "name": "Blood pressure",
-                                            "type": "CodeRef",
-                                            "annotation": []
+                                            "type": "CodeRef"
                                         }
                                     },
                                     "include": [],
@@ -584,23 +485,17 @@
                         "let": [
                             {
                                 "identifier": "SystolicBP",
-                                "annotation": [],
                                 "expression": {
                                     "type": "SingletonFrom",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Query",
-                                        "annotation": [],
                                         "source": [
                                             {
                                                 "alias": "C",
-                                                "annotation": [],
                                                 "expression": {
                                                     "path": "component",
                                                     "scope": "BP",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             }
                                         ],
@@ -608,32 +503,24 @@
                                         "relationship": [],
                                         "where": {
                                             "type": "Equivalent",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToConcept",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "code",
                                                             "scope": "C",
-                                                            "type": "Property",
-                                                            "annotation": []
+                                                            "type": "Property"
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "type": "ToConcept",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": {
                                                         "name": "Systolic blood pressure",
-                                                        "type": "CodeRef",
-                                                        "annotation": []
+                                                        "type": "CodeRef"
                                                     }
                                                 }
                                             ]
@@ -643,23 +530,17 @@
                             },
                             {
                                 "identifier": "DiastolicBP",
-                                "annotation": [],
                                 "expression": {
                                     "type": "SingletonFrom",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Query",
-                                        "annotation": [],
                                         "source": [
                                             {
                                                 "alias": "C",
-                                                "annotation": [],
                                                 "expression": {
                                                     "path": "component",
                                                     "scope": "BP",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             }
                                         ],
@@ -667,32 +548,24 @@
                                         "relationship": [],
                                         "where": {
                                             "type": "Equivalent",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToConcept",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "code",
                                                             "scope": "C",
-                                                            "type": "Property",
-                                                            "annotation": []
+                                                            "type": "Property"
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "type": "ToConcept",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": {
                                                         "name": "Diastolic blood pressure",
-                                                        "type": "CodeRef",
-                                                        "annotation": []
+                                                        "type": "CodeRef"
                                                     }
                                                 }
                                             ]
@@ -704,34 +577,24 @@
                         "relationship": [],
                         "where": {
                             "type": "And",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Less",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToQuantity",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "asType": "{http://hl7.org/fhir}Quantity",
                                                     "type": "As",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": {
                                                         "path": "value",
                                                         "type": "Property",
-                                                        "annotation": [],
                                                         "source": {
                                                             "name": "SystolicBP",
-                                                            "type": "QueryLetRef",
-                                                            "annotation": []
+                                                            "type": "QueryLetRef"
                                                         }
                                                     }
                                                 }
@@ -740,36 +603,27 @@
                                         {
                                             "value": 140,
                                             "unit": "mm[Hg]",
-                                            "type": "Quantity",
-                                            "annotation": []
+                                            "type": "Quantity"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Less",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "name": "ToQuantity",
                                             "libraryName": "FHIRHelpers",
                                             "type": "FunctionRef",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "asType": "{http://hl7.org/fhir}Quantity",
                                                     "type": "As",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": {
                                                         "path": "value",
                                                         "type": "Property",
-                                                        "annotation": [],
                                                         "source": {
                                                             "name": "DiastolicBP",
-                                                            "type": "QueryLetRef",
-                                                            "annotation": []
+                                                            "type": "QueryLetRef"
                                                         }
                                                     }
                                                 }
@@ -778,8 +632,7 @@
                                         {
                                             "value": 90,
                                             "unit": "mm[Hg]",
-                                            "type": "Quantity",
-                                            "annotation": []
+                                            "type": "Quantity"
                                         }
                                     ]
                                 }
@@ -791,41 +644,31 @@
                     "name": "TestSimpleExtensions",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Query",
-                        "annotation": [],
                         "source": [
                             {
                                 "alias": "P",
-                                "annotation": [],
                                 "expression": {
                                     "name": "Patient",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             }
                         ],
                         "let": [
                             {
                                 "identifier": "birthsex",
-                                "annotation": [],
                                 "expression": {
                                     "type": "SingletonFrom",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Query",
-                                        "annotation": [],
                                         "source": [
                                             {
                                                 "alias": "E",
-                                                "annotation": [],
                                                 "expression": {
                                                     "path": "extension",
                                                     "scope": "P",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             }
                                         ],
@@ -833,29 +676,23 @@
                                         "relationship": [],
                                         "where": {
                                             "type": "Equal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToString",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "url",
                                                             "scope": "E",
-                                                            "type": "Property",
-                                                            "annotation": []
+                                                            "type": "Property"
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             ]
                                         }
@@ -866,28 +703,21 @@
                         "relationship": [],
                         "where": {
                             "type": "Equal",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Case",
-                                    "annotation": [],
                                     "caseItem": [
                                         {
                                             "annotation": [],
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}base64Binary",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -895,22 +725,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}base64Binary",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -922,16 +746,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -939,22 +759,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}uri",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -966,16 +780,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -983,22 +793,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}string",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1010,16 +814,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1027,22 +827,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}string",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1054,16 +848,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1071,22 +861,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}string",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1098,16 +882,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1115,22 +895,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}uri",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1142,16 +916,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}string",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1159,22 +929,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}string",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1186,16 +950,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1203,22 +963,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}uri",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1230,16 +984,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1247,22 +997,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}uri",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1274,16 +1018,12 @@
                                             "when": {
                                                 "isType": "{http://hl7.org/fhir}uri",
                                                 "type": "Is",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": {
                                                     "path": "value",
                                                     "type": "Property",
-                                                    "annotation": [],
                                                     "source": {
                                                         "name": "birthsex",
-                                                        "type": "QueryLetRef",
-                                                        "annotation": []
+                                                        "type": "QueryLetRef"
                                                     }
                                                 }
                                             },
@@ -1291,22 +1031,16 @@
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "asType": "{http://hl7.org/fhir}uri",
                                                         "type": "As",
-                                                        "annotation": [],
-                                                        "signature": [],
                                                         "operand": {
                                                             "path": "value",
                                                             "type": "Property",
-                                                            "annotation": [],
                                                             "source": {
                                                                 "name": "birthsex",
-                                                                "type": "QueryLetRef",
-                                                                "annotation": []
+                                                                "type": "QueryLetRef"
                                                             }
                                                         }
                                                     }
@@ -1315,15 +1049,13 @@
                                         }
                                     ],
                                     "else": {
-                                        "type": "Null",
-                                        "annotation": []
+                                        "type": "Null"
                                     }
                                 },
                                 {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                     "value": "M",
-                                    "type": "Literal",
-                                    "annotation": []
+                                    "type": "Literal"
                                 }
                             ]
                         }
@@ -1333,41 +1065,31 @@
                     "name": "TestComplexExtensions",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Query",
-                        "annotation": [],
                         "source": [
                             {
                                 "alias": "P",
-                                "annotation": [],
                                 "expression": {
                                     "name": "Patient",
-                                    "type": "ExpressionRef",
-                                    "annotation": []
+                                    "type": "ExpressionRef"
                                 }
                             }
                         ],
                         "let": [
                             {
                                 "identifier": "race",
-                                "annotation": [],
                                 "expression": {
                                     "type": "SingletonFrom",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": {
                                         "type": "Query",
-                                        "annotation": [],
                                         "source": [
                                             {
                                                 "alias": "E",
-                                                "annotation": [],
                                                 "expression": {
                                                     "path": "extension",
                                                     "scope": "P",
-                                                    "type": "Property",
-                                                    "annotation": []
+                                                    "type": "Property"
                                                 }
                                             }
                                         ],
@@ -1375,29 +1097,23 @@
                                         "relationship": [],
                                         "where": {
                                             "type": "Equal",
-                                            "annotation": [],
-                                            "signature": [],
                                             "operand": [
                                                 {
                                                     "name": "ToString",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "path": "url",
                                                             "scope": "E",
-                                                            "type": "Property",
-                                                            "annotation": []
+                                                            "type": "Property"
                                                         }
                                                     ]
                                                 },
                                                 {
                                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                     "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
-                                                    "type": "Literal",
-                                                    "annotation": []
+                                                    "type": "Literal"
                                                 }
                                             ]
                                         }
@@ -1406,22 +1122,17 @@
                             },
                             {
                                 "identifier": "ombCategory",
-                                "annotation": [],
                                 "expression": {
                                     "type": "Query",
-                                    "annotation": [],
                                     "source": [
                                         {
                                             "alias": "E",
-                                            "annotation": [],
                                             "expression": {
                                                 "path": "extension",
                                                 "type": "Property",
-                                                "annotation": [],
                                                 "source": {
                                                     "name": "race",
-                                                    "type": "QueryLetRef",
-                                                    "annotation": []
+                                                    "type": "QueryLetRef"
                                                 }
                                             }
                                         }
@@ -1430,29 +1141,23 @@
                                     "relationship": [],
                                     "where": {
                                         "type": "Equal",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "path": "url",
                                                         "scope": "E",
-                                                        "type": "Property",
-                                                        "annotation": []
+                                                        "type": "Property"
                                                     }
                                                 ]
                                             },
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                 "value": "ombCategory",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         ]
                                     }
@@ -1460,22 +1165,17 @@
                             },
                             {
                                 "identifier": "detailed",
-                                "annotation": [],
                                 "expression": {
                                     "type": "Query",
-                                    "annotation": [],
                                     "source": [
                                         {
                                             "alias": "E",
-                                            "annotation": [],
                                             "expression": {
                                                 "path": "extension",
                                                 "type": "Property",
-                                                "annotation": [],
                                                 "source": {
                                                     "name": "race",
-                                                    "type": "QueryLetRef",
-                                                    "annotation": []
+                                                    "type": "QueryLetRef"
                                                 }
                                             }
                                         }
@@ -1484,29 +1184,23 @@
                                     "relationship": [],
                                     "where": {
                                         "type": "Equal",
-                                        "annotation": [],
-                                        "signature": [],
                                         "operand": [
                                             {
                                                 "name": "ToString",
                                                 "libraryName": "FHIRHelpers",
                                                 "type": "FunctionRef",
-                                                "annotation": [],
-                                                "signature": [],
                                                 "operand": [
                                                     {
                                                         "path": "url",
                                                         "scope": "E",
-                                                        "type": "Property",
-                                                        "annotation": []
+                                                        "type": "Property"
                                                     }
                                                 ]
                                             },
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                 "value": "detailed",
-                                                "type": "Literal",
-                                                "annotation": []
+                                                "type": "Literal"
                                             }
                                         ]
                                     }
@@ -1516,32 +1210,23 @@
                         "relationship": [],
                         "where": {
                             "type": "And",
-                            "annotation": [],
-                            "signature": [],
                             "operand": [
                                 {
                                     "type": "Contains",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "Query",
-                                            "annotation": [],
                                             "source": [
                                                 {
                                                     "alias": "X",
-                                                    "annotation": [],
                                                     "expression": {
                                                         "type": "Query",
-                                                        "annotation": [],
                                                         "source": [
                                                             {
                                                                 "alias": "$this",
-                                                                "annotation": [],
                                                                 "expression": {
                                                                     "name": "ombCategory",
-                                                                    "type": "QueryLetRef",
-                                                                    "annotation": []
+                                                                    "type": "QueryLetRef"
                                                                 }
                                                             }
                                                         ],
@@ -1549,35 +1234,26 @@
                                                         "relationship": [],
                                                         "where": {
                                                             "type": "Not",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": {
                                                                 "type": "IsNull",
-                                                                "annotation": [],
-                                                                "signature": [],
                                                                 "operand": {
                                                                     "path": "value",
                                                                     "type": "Property",
-                                                                    "annotation": [],
                                                                     "source": {
                                                                         "name": "$this",
-                                                                        "type": "AliasRef",
-                                                                        "annotation": []
+                                                                        "type": "AliasRef"
                                                                     }
                                                                 }
                                                             }
                                                         },
                                                         "return": {
                                                             "distinct": false,
-                                                            "annotation": [],
                                                             "expression": {
                                                                 "path": "value",
                                                                 "type": "Property",
-                                                                "annotation": [],
                                                                 "source": {
                                                                     "name": "$this",
-                                                                    "type": "AliasRef",
-                                                                    "annotation": []
+                                                                    "type": "AliasRef"
                                                                 }
                                                             }
                                                         }
@@ -1588,23 +1264,17 @@
                                             "relationship": [],
                                             "return": {
                                                 "distinct": false,
-                                                "annotation": [],
                                                 "expression": {
                                                     "name": "ToCode",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "asType": "{http://hl7.org/fhir}Coding",
                                                             "type": "As",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": {
                                                                 "name": "X",
-                                                                "type": "AliasRef",
-                                                                "annotation": []
+                                                                "type": "AliasRef"
                                                             }
                                                         }
                                                     ]
@@ -1613,34 +1283,26 @@
                                         },
                                         {
                                             "name": "American Indian or Alaska Native",
-                                            "type": "CodeRef",
-                                            "annotation": []
+                                            "type": "CodeRef"
                                         }
                                     ]
                                 },
                                 {
                                     "type": "Contains",
-                                    "annotation": [],
-                                    "signature": [],
                                     "operand": [
                                         {
                                             "type": "Query",
-                                            "annotation": [],
                                             "source": [
                                                 {
                                                     "alias": "X",
-                                                    "annotation": [],
                                                     "expression": {
                                                         "type": "Query",
-                                                        "annotation": [],
                                                         "source": [
                                                             {
                                                                 "alias": "$this",
-                                                                "annotation": [],
                                                                 "expression": {
                                                                     "name": "detailed",
-                                                                    "type": "QueryLetRef",
-                                                                    "annotation": []
+                                                                    "type": "QueryLetRef"
                                                                 }
                                                             }
                                                         ],
@@ -1648,35 +1310,26 @@
                                                         "relationship": [],
                                                         "where": {
                                                             "type": "Not",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": {
                                                                 "type": "IsNull",
-                                                                "annotation": [],
-                                                                "signature": [],
                                                                 "operand": {
                                                                     "path": "value",
                                                                     "type": "Property",
-                                                                    "annotation": [],
                                                                     "source": {
                                                                         "name": "$this",
-                                                                        "type": "AliasRef",
-                                                                        "annotation": []
+                                                                        "type": "AliasRef"
                                                                     }
                                                                 }
                                                             }
                                                         },
                                                         "return": {
                                                             "distinct": false,
-                                                            "annotation": [],
                                                             "expression": {
                                                                 "path": "value",
                                                                 "type": "Property",
-                                                                "annotation": [],
                                                                 "source": {
                                                                     "name": "$this",
-                                                                    "type": "AliasRef",
-                                                                    "annotation": []
+                                                                    "type": "AliasRef"
                                                                 }
                                                             }
                                                         }
@@ -1687,23 +1340,17 @@
                                             "relationship": [],
                                             "return": {
                                                 "distinct": false,
-                                                "annotation": [],
                                                 "expression": {
                                                     "name": "ToCode",
                                                     "libraryName": "FHIRHelpers",
                                                     "type": "FunctionRef",
-                                                    "annotation": [],
-                                                    "signature": [],
                                                     "operand": [
                                                         {
                                                             "asType": "{http://hl7.org/fhir}Coding",
                                                             "type": "As",
-                                                            "annotation": [],
-                                                            "signature": [],
                                                             "operand": {
                                                                 "name": "X",
-                                                                "type": "AliasRef",
-                                                                "annotation": []
+                                                                "type": "AliasRef"
                                                             }
                                                         }
                                                     ]
@@ -1712,8 +1359,7 @@
                                         },
                                         {
                                             "name": "Alaska Native",
-                                            "type": "CodeRef",
-                                            "annotation": []
+                                            "type": "CodeRef"
                                         }
                                     ]
                                 }

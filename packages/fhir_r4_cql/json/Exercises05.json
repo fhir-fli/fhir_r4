@@ -25,14 +25,12 @@
             "def": [
                 {
                     "localIdentifier": "System",
-                    "uri": "urn:hl7-org:elm-types:r1",
-                    "annotation": []
+                    "uri": "urn:hl7-org:elm-types:r1"
                 },
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.1",
-                    "annotation": []
+                    "version": "4.0.1"
                 }
             ]
         },
@@ -41,8 +39,7 @@
                 {
                     "localIdentifier": "FHIRHelpers",
                     "path": "FHIRHelpers",
-                    "version": "4.0.1",
-                    "annotation": []
+                    "version": "4.0.1"
                 }
             ]
         },
@@ -52,21 +49,18 @@
                     "name": "LOINC:2.46",
                     "id": "http://loinc.org",
                     "version": "2.46",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "SNOMEDCT:2016-03",
                     "id": "http://snomed.info/sct",
                     "version": "http://snomed.info/sct/731000124108/version/20160301",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 },
                 {
                     "name": "Marital Status Codes",
                     "id": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
-                    "accessLevel": "Public",
-                    "annotation": []
+                    "accessLevel": "Public"
                 }
             ]
         },
@@ -76,35 +70,30 @@
                     "name": "Encounter Inpatient",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 },
                 {
                     "name": "Patient Expired",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.309",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 },
                 {
                     "name": "Psychiatric/Mental Health Diagnosis",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.299",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 },
                 {
                     "name": "Emergency Department Visit",
                     "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 },
                 {
                     "name": "Marital Status",
                     "id": "http://hl7.org/fhir/ValueSet/marital-status",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": []
                 }
             ]
@@ -116,10 +105,8 @@
                     "id": "21112-8",
                     "display": "Birth date",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "LOINC:2.46",
-                        "annotation": []
+                        "name": "LOINC:2.46"
                     }
                 },
                 {
@@ -127,20 +114,16 @@
                     "id": "419099009",
                     "display": "Dead",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "SNOMEDCT:2016-03",
-                        "annotation": []
+                        "name": "SNOMEDCT:2016-03"
                     }
                 },
                 {
                     "name": "Marital Status - Married",
                     "id": "M",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "codeSystem": {
-                        "name": "Marital Status Codes",
-                        "annotation": []
+                        "name": "Marital Status Codes"
                     }
                 }
             ]
@@ -148,8 +131,7 @@
         "contexts": {
             "def": [
                 {
-                    "name": "Patient",
-                    "annotation": []
+                    "name": "Patient"
                 }
             ]
         },
@@ -158,16 +140,12 @@
                 {
                     "name": "Patient",
                     "context": "Patient",
-                    "annotation": [],
                     "expression": {
                         "type": "SingletonFrom",
-                        "annotation": [],
-                        "signature": [],
                         "operand": {
                             "dataType": "{http://hl7.org/fhir}Patient",
                             "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
                             "type": "Retrieve",
-                            "annotation": [],
                             "include": [],
                             "codeFilter": [],
                             "dateFilter": [],
@@ -179,15 +157,12 @@
                     "name": "Patient Gender",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "path": "gender",
                         "type": "Property",
-                        "annotation": [],
                         "source": {
                             "name": "Patient",
-                            "type": "ExpressionRef",
-                            "annotation": []
+                            "type": "ExpressionRef"
                         }
                     }
                 },
@@ -195,27 +170,20 @@
                     "name": "Patient Gender is Male",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "name": "ToString",
                                 "libraryName": "FHIRHelpers",
                                 "type": "FunctionRef",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "path": "gender",
                                         "type": "Property",
-                                        "annotation": [],
                                         "source": {
                                             "name": "Patient",
-                                            "type": "ExpressionRef",
-                                            "annotation": []
+                                            "type": "ExpressionRef"
                                         }
                                     }
                                 ]
@@ -223,8 +191,7 @@
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                 "value": "male",
-                                "type": "Literal",
-                                "annotation": []
+                                "type": "Literal"
                             }
                         ]
                     }
@@ -233,15 +200,12 @@
                     "name": "Patient Marital Status",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "path": "maritalStatus",
                         "type": "Property",
-                        "annotation": [],
                         "source": {
                             "name": "Patient",
-                            "type": "ExpressionRef",
-                            "annotation": []
+                            "type": "ExpressionRef"
                         }
                     }
                 },
@@ -249,39 +213,29 @@
                     "name": "Patient is Married (=)",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equal",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "name": "ToConcept",
                                 "libraryName": "FHIRHelpers",
                                 "type": "FunctionRef",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "path": "maritalStatus",
                                         "type": "Property",
-                                        "annotation": [],
                                         "source": {
                                             "name": "Patient",
-                                            "type": "ExpressionRef",
-                                            "annotation": []
+                                            "type": "ExpressionRef"
                                         }
                                     }
                                 ]
                             },
                             {
                                 "type": "ToConcept",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": {
                                     "name": "Marital Status - Married",
-                                    "type": "CodeRef",
-                                    "annotation": []
+                                    "type": "CodeRef"
                                 }
                             }
                         ]
@@ -291,39 +245,29 @@
                     "name": "Patient is Married (~)",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "Equivalent",
-                        "annotation": [],
-                        "signature": [],
                         "operand": [
                             {
                                 "name": "ToConcept",
                                 "libraryName": "FHIRHelpers",
                                 "type": "FunctionRef",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": [
                                     {
                                         "path": "maritalStatus",
                                         "type": "Property",
-                                        "annotation": [],
                                         "source": {
                                             "name": "Patient",
-                                            "type": "ExpressionRef",
-                                            "annotation": []
+                                            "type": "ExpressionRef"
                                         }
                                     }
                                 ]
                             },
                             {
                                 "type": "ToConcept",
-                                "annotation": [],
-                                "signature": [],
                                 "operand": {
                                     "name": "Marital Status - Married",
-                                    "type": "CodeRef",
-                                    "annotation": []
+                                    "type": "CodeRef"
                                 }
                             }
                         ]
@@ -333,20 +277,15 @@
                     "name": "Married in Marital Status",
                     "context": "Patient",
                     "accessLevel": "Public",
-                    "annotation": [],
                     "expression": {
                         "type": "InValueSet",
-                        "annotation": [],
-                        "signature": [],
                         "code": {
                             "name": "Marital Status - Married",
-                            "type": "CodeRef",
-                            "annotation": []
+                            "type": "CodeRef"
                         },
                         "valueset": {
                             "name": "Marital Status",
-                            "preserve": true,
-                            "annotation": []
+                            "preserve": true
                         }
                     }
                 }
