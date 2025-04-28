@@ -12,11 +12,8 @@ Choice Types
 */
 library Exercises02
 
-define "Boolean True":
-  true
-
-define "Boolean False":
-  false
+define "Boolean True": true
+define "Boolean False": false
 
 /*
 Fill in the blanks to make the expressions evaluate to true
@@ -24,29 +21,20 @@ Fill in the blanks to make the expressions evaluate to true
 
 // # Boolean Values
 
-
-
 define "Boolean Not":
-  ( not true ) is false
+  (not true) is false
 
 define "Boolean And":
-  ( true
-      and false
-  ) is false
+  (true and false) is false
 
 define "Boolean Xor":
-  ( true
-      xor false
-  ) is true
+  (true xor false) is true
 
 // Translator issue [#617](https://github.com/cqframework/clinical_quality_language/issues/617)
-
-
 define "Boolean Implies":
-  ( false implies true ) is true
+  (false implies true) is true
 
 // # String Values
-
 
 define "Simple String":
   'John Doe'
@@ -55,13 +43,12 @@ define "String Escapes":
   'John O\'Mally'
 
 define "String Equality":
-  ( 'John Doe' = 'john doe' ) is false
+  ('John Doe' = 'john doe') is false
 
 define "String Comparisons":
-  ( 'Deer' < 'Doe' ) is true
+  ('Deer' < 'Doe') is true
 
 // # Numbers
-
 
 define "Integer":
   5
@@ -79,7 +66,7 @@ define "Standard Arithmetic Precedence":
   2 + 5 * 10
 
 define "Use Parentheses to Force Precedence":
-  ( 2 + 5 ) * 10
+  (2 + 5) * 10
 
 define "Division Returns Decimal":
   10 / 2
@@ -91,7 +78,6 @@ define "Mod returns remainder":
   10 mod 2
 
 // # Quantities
-
 
 define "Mass Quantity":
   25 'mg'
@@ -106,7 +92,6 @@ define "Calculate the Units":
   10 'cm' * 10 'cm'
 
 // # Date and Time Values
-
 
 define "Date Value":
   @2021-03-01
@@ -158,12 +143,8 @@ define "TimeOfDay Function":
 
 // # Structured Values
 
-
 define "Simple Info":
-  Tuple {
-    name: 'Patrick',
-    dob: @2014-01-01
-  }
+  Tuple { name: 'Patrick', dob: @2014-01-01 }
 
 define "Nested Info":
   {
@@ -174,14 +155,15 @@ define "Nested Info":
       city: 'Dayton',
       state: 'OH'
     },
-    phones: { {
-      number: '202-413-1234',
-      use: 'home'
-    } }
+    phones: {
+      {
+        number: '202-413-1234',
+        use: 'home'
+      }
+    }
   }
 
 // # Missing Information
-
 
 define "Null Comparison":
   1 = null
@@ -196,12 +178,10 @@ define "Not Null Predicate":
   1 is not null
 
 define "3-Valued Logic And":
-  false
-    and null
+  false and null
 
 define "3-Valued Logic Or":
-  true
-    or null
+  true or null
 
 define "Coalesce Expression":
   Coalesce(null, 1)

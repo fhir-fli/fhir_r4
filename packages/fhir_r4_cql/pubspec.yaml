@@ -35,6 +35,3 @@ flutter:
   assets:
     - cql/
     - json/
-
-dependency_overrides:
-  meta: ^1.12.0

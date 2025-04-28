@@ -2,7 +2,7 @@
     "library": {
         "annotation": [
             {
-                "translatorVersion": "3.3.2",
+                "translatorVersion": "3.18.0",
                 "translatorOptions": "",
                 "signatureLevel": "None",
                 "type": "CqlToElmInfo"
@@ -229,7 +229,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -489,7 +488,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Exists",
                             "operand": {
@@ -503,7 +501,6 @@
                                         }
                                     }
                                 ],
-                                "relationship": [],
                                 "where": {
                                     "type": "In",
                                     "operand": [
@@ -637,7 +634,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Not",
                             "operand": {
@@ -654,7 +650,6 @@
                                             }
                                         }
                                     ],
-                                    "relationship": [],
                                     "where": {
                                         "type": "In",
                                         "operand": [
@@ -720,7 +715,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -843,7 +837,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Equivalent",
                             "operand": [
@@ -940,7 +933,6 @@
                                                 }
                                             }
                                         ],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Before",
                                             "operand": [
@@ -993,7 +985,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
                             "expression": {
                                 "type": "Subtract",

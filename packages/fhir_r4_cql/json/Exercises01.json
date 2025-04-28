@@ -1,7 +1,15 @@
 {
     "library": {
+        "annotation": [
+            {
+                "translatorVersion": "3.18.0",
+                "translatorOptions": "",
+                "signatureLevel": "None",
+                "type": "CqlToElmInfo"
+            }
+        ],
         "identifier": {
-            "id": "Exercises01Key"
+            "id": "Exercises01"
         },
         "schemaIdentifier": {
             "id": "urn:hl7-org:elm",

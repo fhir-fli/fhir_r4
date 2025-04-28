@@ -2,7 +2,7 @@
     "library": {
         "annotation": [
             {
-                "translatorVersion": "3.3.2",
+                "translatorVersion": "3.18.0",
                 "translatorOptions": "",
                 "signatureLevel": "None",
                 "type": "CqlToElmInfo"
@@ -139,7 +139,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -242,7 +241,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
                             "expression": {
                                 "type": "Abs",
@@ -330,7 +328,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -404,7 +401,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Equivalent",
                             "operand": [
@@ -508,7 +504,6 @@
                                             }
                                         }
                                     ],
-                                    "relationship": [],
                                     "return": {
                                         "expression": {
                                             "path": "code",
@@ -519,7 +514,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
                             "expression": {
                                 "type": "Tuple",
@@ -546,7 +540,6 @@
                                                         }
                                                     }
                                                 ],
-                                                "relationship": [],
                                                 "where": {
                                                     "type": "Equivalent",
                                                     "operand": [
@@ -596,7 +589,6 @@
                                             }
                                         }
                                     ],
-                                    "relationship": [],
                                     "return": {
                                         "expression": {
                                             "path": "code",
@@ -607,7 +599,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "return": {
                             "expression": {
                                 "type": "Tuple",
@@ -639,7 +630,6 @@
                                                                     }
                                                                 }
                                                             ],
-                                                            "relationship": [],
                                                             "where": {
                                                                 "type": "Equivalent",
                                                                 "operand": [

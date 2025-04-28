@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   CqlEqualityExpressionVisitor(super.library);
 
@@ -37,25 +36,21 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
     // Transform operands to ensure they are compatible if required
     if (operand.length == 2) {
-      final leftOperand = operand[0];
-      final rightOperand = operand[1];
-
-      if (_requiresQueryOperand(leftOperand) ||
-          _requiresQueryOperand(rightOperand)) {
-        if (_requiresQueryOperand(leftOperand)) {
-          operand[0] = _buildQueryFromOperand(leftOperand);
-        }
-        if (_requiresQueryOperand(rightOperand)) {
-          operand[1] = _buildQueryFromOperand(rightOperand);
+      for (var i = 0; i < operand.length; i++) {
+        final op = operand[i];
+        if (op is ListExpression) {
+          if (_requiresQueryOperand(op)) {
+            operand[i] = _buildQueryFromOperand(op);
+          }
         }
       }
 
-      if (_requiresDecimalPromotion(leftOperand)) {
-        if (rightOperand is LiteralInteger) {
-          operand[1] = ToDecimal(operand: rightOperand);
-        } else if (rightOperand is LiteralNull) {
+      if (_requiresDecimalPromotion(operand[0])) {
+        if (operand[1] is LiteralInteger) {
+          operand[1] = ToDecimal(operand: operand[1]);
+        } else if (operand[1] is LiteralNull) {
           operand[1] = As(
-            operand: rightOperand,
+            operand: operand[1],
             asType: QName.fromDataType('Decimal'),
           );
         }
@@ -76,14 +71,14 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         default:
           final errorMessage =
               'Unsupported equality operator: $equalityOperator';
-          
+
           throw ArgumentError('$thisNode $errorMessage');
       }
     }
 
     final errorMessage =
         'Invalid EqualityExpression: operands=${operand.length}, operator=$equalityOperator';
-    
+
     throw ArgumentError('$thisNode $errorMessage');
   }
 
@@ -120,7 +115,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
   /// Builds a Query from an operand when required
   Query _buildQueryFromOperand(CqlExpression operand) {
-    
     const alias = 'X';
     final query = Query(
       source: [
@@ -137,13 +131,23 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         ),
       ),
     );
-    
+
     return query;
+  }
+
+  Query _buildSingletonQueryFromOperand(CqlExpression listExpr) {
+    const alias = 'X';
+    return Query(
+      source: [RelationshipClause(alias: alias, expression: listExpr)],
+      returnClause: ReturnClause(
+        distinct: false,
+        expression: SingletonFrom(operand: AliasRef(name: alias)),
+      ),
+    );
   }
 
   /// Builds a ChoiceTypeSpecifier from an operand
   ChoiceTypeSpecifier _buildChoiceTypeFromOperand(CqlExpression operand) {
-    
     if (operand is ListExpression) {
       final elementTypes = operand.element
           ?.map((e) => e.getReturnTypes(library))
@@ -159,7 +163,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       }).toList();
 
       final choiceTypeSpecifier = ChoiceTypeSpecifier(choice: choices);
-      
+
       return choiceTypeSpecifier;
     }
     throw ArgumentError('Expected a ListExpression for ChoiceTypeSpecifier.');
@@ -167,7 +171,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
   /// Determine if a Union should transform into a Query
   bool _requiresQuery(NaryExpression union) {
-    
     final operandTypes = union.operand
         ?.map((op) => op.getReturnTypes(library))
         .expand((types) => types)
@@ -175,13 +178,12 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
     final requiresQuery = (operandTypes?.length ?? 0) > 1 &&
         !(operandTypes?.contains('Null') ?? false);
-    
+
     return requiresQuery;
   }
 
   /// Transform a Union into either an `As` or a `Query` depending on operand types
   CqlExpression _transformUnionToQuery(NaryExpression union, int parentNode) {
-    
     final allOperandsAreLists =
         union.operand?.every((op) => op is ListExpression) ?? false;
 
@@ -222,7 +224,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
           ),
         ),
       );
-      
+
       return query;
     }
   }
@@ -242,12 +244,12 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     if (choices == null || choices.isEmpty) {
       const errorMessage =
           'ChoiceTypeSpecifier requires at least one valid type.';
-      
+
       throw ArgumentError(errorMessage);
     }
 
     final choiceTypeSpecifier = ChoiceTypeSpecifier(choice: choices);
-    
+
     return choiceTypeSpecifier;
   }
 }

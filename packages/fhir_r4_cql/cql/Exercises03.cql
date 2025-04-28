@@ -13,160 +13,151 @@ Duration and Difference
 Conditionals
 Operator Precedence
 */
-library Exercises03Key
+library Exercises03
 
 // # String Equality and Equivalence
 
-
 define "String Equality":
-  ( 'Abel' = 'abel' ) is false
+  ('Abel' = 'abel') is false
 
 define "String Equivalence":
-  ( 'Abel' ~ 'abel' ) is true
+  ('Abel' ~ 'abel') is true
 
 define "String Comparison":
-  ( 'Abel' < 'abel' ) is true
+  ('Abel' < 'abel') is true
 
 define "String Inequality":
-  ( 'Abel' != 'abel' ) is true
+  ('Abel' != 'abel') is true
 
 define "String Inequivalence":
-  ( 'Abel' !~ 'abel' ) is false
+  ('Abel' !~ 'abel') is false
 
 define "String Equality With Null":
-  ( 'Abel' = null ) is null
+  ('Abel' = null) is null
 
 define "String Equivalence With Null":
-  ( 'Abel' ~ null ) is false
+  ('Abel' ~ null) is false
 
 // # Equality vs Equivalence
 
-
-define T1:
-  {
-    X: 1,
-    Y: null
-  }
-
-define T2:
-  {
-    X: 1,
-    Y: null
-  }
-
-define T3:
-  {
-    X: 1,
-    Y: 2
-  }
+define T1: { X: 1, Y: null }
+define T2: { X: 1, Y: null }
+define T3: { X: 1, Y: 2 }
 
 define TEqual:
-  ( T1 = T2 ) is true
+  (T1 = T2) is true
 
 define TEqualWithNull:
-  ( T2 = T3 ) is null
+  (T2 = T3) is null
 
 define TEquivalent:
-  ( T2 ~ T3 ) is false
+  (T2 ~ T3) is false
 
 define C1:
-  Code { code: 'ABC', display: 'Code ABC', system: 'http://example.com', version: '2017-01' }
+  Code {
+    code: 'ABC',
+    display: 'Code ABC',
+    system: 'http://example.com',
+    version: '2017-01'
+  }
 
 define C2:
-  Code { code: 'ABC', display: 'Variant Description', system: 'http://example.com', version: '2017-05' }
+  Code {
+    code: 'ABC',
+    display: 'Variant Description',
+    system: 'http://example.com',
+    version: '2017-05'
+  }
 
 define CEqual:
-  ( C1 = C2 ) is false
+  (C1 = C2) is false
 
 define CEquivalent:
-  ( C1 ~ C2 ) is true
+  (C1 ~ C2) is true
 
 // # Arithmetic Operators
 
-
 define "Standard Precedence":
-  ( 2 + 5 * 10 = 52 ) is true
+  (2 + 5 * 10 = 52) is true
 
 define "Force Precedence":
-  ( ( 2 + 5 ) * 10 = 70 ) is true
+  ((2 + 5) * 10 = 70) is true
 
 define "Division Always Results in a Decimal":
-  ( 10 / 2 = 5.0 ) is true
+  (10 / 2 = 5.0) is true
 
 define "Truncated Divide for Integer Division":
-  ( 10 div 2 = 5 ) is true
+  (10 div 2 = 5) is true
 
 define "Modulo is the Remainder":
-  ( 10 mod 2 = 0 ) is true
+  (10 mod 2 = 0) is true
 
 define "Negation":
-  ( - ( 10 ) = - 10 ) is true
+  (-(10) = -10) is true
 
 define "Absolute Value":
-  ( Abs(- 10) = 10 ) is true
+  (Abs(-10) = 10) is true
 
 define "Successor Of":
-  ( successor of 1 = 2 ) is true
+  (successor of 1 = 2) is true
 
 define "Predecessor Of":
-  ( predecessor of 1 = 0 ) is true
+  (predecessor of 1 = 0) is true
 
 define "Minimum Integer":
-  ( minimum Integer = - 2147483647 - 1 ) is true
+  (minimum Integer = -2147483647 - 1) is true
 
 define "Maximum Integer":
-  ( maximum Integer = 2147483647 ) is true
+  (maximum Integer = 2147483647) is true
 
 // # Rounding And Exponents
 
-
 define "Default Round":
-  ( Round(5.5) = 6 ) is true
+  (Round(5.5) = 6) is true
 
 define "Precision Round":
-  ( Round(5.55, 1) = 5.6 ) is true
+  (Round(5.55, 1) = 5.6) is true
 
 define "Truncate":
-  ( Truncate(5.5) = 5 ) is true
+  (Truncate(5.5) = 5) is true
 
 define "Truncate Negative":
-  ( Truncate(- 5.5) = - 5 ) is true
+  (Truncate(-5.5) = -5) is true
 
 define "Floor":
-  ( Floor(5.5) = 5 ) is true
+  (Floor(5.5) = 5) is true
 
 define "Floor Negative":
-  ( Floor(- 5.5) = - 6 ) is true
+  (Floor(-5.5) = -6) is true
 
 define "Ceiling":
-  ( Ceiling(5.5) = 6 ) is true
+  (Ceiling(5.5) = 6) is true
 
 define "Ceiling Negative":
-  ( Ceiling(- 5.5) = - 5 ) is true
+  (Ceiling(-5.5) = -5) is true
 
 define "Integer Exponent":
-  ( 2 ^ 5 = 25 ) is true
+  (2 ^ 5 = 25) is true
 
 define "Decimal Exponent":
-  ( 25 ^ 0.5 = 5 ) is true
+  (25 ^ 0.5 = 5) is true
 
 define "Logarithm Base 5":
-  ( Log(25, 5) = 2 ) is true
+  (Log(25, 5) = 2) is true
 
 define "Logarithm Base 25":
-  ( Log(5, 25) = 0.5 ) is true
+  (Log(5, 25) = 0.5) is true
 
 define "Natural Logarithm":
-  ( Ln(10) = 2.30258209288405 ) is true
+  (Ln(10) = 2.30258209288405) is true
 
 define "Exponent":
-  ( Exp(2.30258509288405) = 10 ) is true
+  (Exp(2.30258509288405) = 10) is true
 
 // # String Manipulation
 
-
 define "String Concatenate":
-  'AB' + 'CD' = 'ABCD'
+   'AB' + 'CD' = 'ABCD'
 
 define "String Concatenate With Nulls":
   'AB' + null
@@ -200,7 +191,6 @@ define "ReplaceMatches":
 
 // # Date Comparisons
 
-
 define "Date Equal":
   @2014-01-15 = @2014-02-15
 
@@ -220,7 +210,6 @@ define "Before Year Of":
   @2012-01-15 before year of @2014-02-15
 
 // # Date Arithmetic
-
 
 define "Day Quantity":
   1 day
@@ -275,7 +264,6 @@ define "Calendar Milliseconds Equal To UCUM Milliseconds (ms)":
 
 // # Duration And Difference
 
-
 define "Duration In Months Between":
   duration in months between @2014-01-31 and @2014-02-01
 
@@ -284,13 +272,17 @@ define "Difference In Months Between":
 
 // # Conditionals
 
-
 define strength:
   10.0 'mg/mL'
 
 define "If Conditional":
-  if strength.value < 0.1 then Quantity { value: strength.value * 1000, unit: 'mcg' + Substring(strength.unit, 2) } 
-    else strength
+  if strength.value < 0.1 then
+    Quantity {
+      value: strength.value * 1000,
+      unit: 'mcg' + Substring(strength.unit, 2)
+    }
+  else
+    strength
 
 define unit:
   'MG/ACTUAT'
@@ -300,13 +292,15 @@ define "Selected Case Conditional":
     when 'MG' then 'mg'
     when 'MG/ACTUAT' then 'mg/{actuat}'
     when 'MG/HR' then 'mg/h'
-    when 'MG/ML' then 'mg/mL' 
-    else '{' + unit + '}' end
+    when 'MG/ML' then 'mg/mL'
+    else '{' + unit + '}'
+  end
 
 define doseFormCode:
   316897
 
 define "Conditional Case":
   case
-    when doseFormCode = 316897 then 12.6 
-    else 30 end
+    when doseFormCode = 316897 then 12.6
+    else 30
+  end

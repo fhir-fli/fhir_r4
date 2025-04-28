@@ -9,7 +9,7 @@ Case-Sensitivity
 There are several lexical errors throughout this library. Correct the errors to
 obtain a lexically correct library.
 */
-library Exercises01Key
+library Exercises01
 
 // # Lexical Errors
 

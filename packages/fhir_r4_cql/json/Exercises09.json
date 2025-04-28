@@ -2,7 +2,7 @@
     "library": {
         "annotation": [
             {
-                "translatorVersion": "3.3.2",
+                "translatorVersion": "3.18.0",
                 "translatorOptions": "",
                 "signatureLevel": "None",
                 "type": "CqlToElmInfo"
@@ -254,7 +254,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -392,7 +391,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Or",
                             "operand": [
@@ -488,7 +486,6 @@
                                                 }
                                             }
                                         ],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Equivalent",
                                             "operand": [
@@ -532,7 +529,6 @@
                                                 }
                                             }
                                         ],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Equivalent",
                                             "operand": [
@@ -561,7 +557,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
@@ -659,7 +654,6 @@
                                                 }
                                             }
                                         ],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Equal",
                                             "operand": [
@@ -686,7 +680,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -1025,7 +1018,6 @@
                                         }
                                     ],
                                     "else": {
-                                        "resultTypeName": "{urn:hl7-org:elm-types:r1}String",
                                         "type": "Null"
                                     }
                                 },
@@ -1070,7 +1062,6 @@
                                                 }
                                             }
                                         ],
-                                        "relationship": [],
                                         "where": {
                                             "type": "Equal",
                                             "operand": [
@@ -1113,7 +1104,6 @@
                                             }
                                         }
                                     ],
-                                    "relationship": [],
                                     "where": {
                                         "type": "Equal",
                                         "operand": [
@@ -1155,7 +1145,6 @@
                                             }
                                         }
                                     ],
-                                    "relationship": [],
                                     "where": {
                                         "type": "Equal",
                                         "operand": [
@@ -1181,7 +1170,6 @@
                                 }
                             }
                         ],
-                        "relationship": [],
                         "where": {
                             "type": "And",
                             "operand": [
