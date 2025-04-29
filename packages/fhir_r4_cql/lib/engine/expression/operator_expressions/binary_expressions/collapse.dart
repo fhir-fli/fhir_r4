@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to get the unique set of intervals that completely cover the ranges
 /// present in the given list of intervals.
 /// Adjacent intervals within a sorted list are merged if they either overlap or
@@ -98,10 +97,13 @@ class Collapse extends BinaryExpression {
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = {
-      'type': type,
-      'operand': operand.map((x) => x.toJson()).toList(),
-    };
+    final Map<String, dynamic> json = {'type': type};
+    if (operand.length > 1) {
+      json['operand'] = operand.map((x) => x.toJson()).toList();
+    } else {
+      json['operand'] = [operand[0].toJson(), LiteralNull().toJson()];
+    }
+
     if (annotation != null) {
       json['annotation'] = annotation!.map((e) => e.toJson()).toList();
     }

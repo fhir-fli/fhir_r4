@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The AliasRef expression allows for the reference of a specific source within the scope of a query.
 class AliasRef extends CqlExpression {
   final String name;
@@ -64,4 +63,10 @@ class AliasRef extends CqlExpression {
 
   @override
   String get type => 'AliasRef';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    // Look up the alias in the per-row context
+    return context[name];
+  }
 }

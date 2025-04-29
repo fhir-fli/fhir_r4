@@ -1,4 +1,5 @@
 export 'annotation.dart';
+export 'cql_runtime_exception.dart';
 export 'cql_to_elm_base.dart';
 export 'cql_to_elm_error.dart';
 export 'cql_to_elm_info.dart';

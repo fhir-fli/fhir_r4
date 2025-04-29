@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The SingletonFrom expression extracts a single element from the source list.
 /// If the source list is empty, the result is null.
 /// If the source list contains one element, that element is returned.
@@ -91,11 +90,19 @@ class SingletonFrom extends UnaryExpression {
       } else if (list.length == 1) {
         return list.first;
       } else {
-        throw ArgumentError(
-            'The source list for SingletonFrom contains more than one element');
+        throw CqlException(
+          message:
+              'The source list for SingletonFrom contains more than one element',
+          severity: Severity.error,
+          sourceLocator: SourceLocator.fromNode(this, context['library']),
+        );
       }
     } else {
-      throw ArgumentError('SingletonFrom can only be applied to a list');
+      throw CqlException(
+        message: 'SingletonFrom can only be applied to a list',
+        severity: Severity.error,
+        sourceLocator: SourceLocator.fromNode(this, context['library']),
+      );
     }
   }
 }

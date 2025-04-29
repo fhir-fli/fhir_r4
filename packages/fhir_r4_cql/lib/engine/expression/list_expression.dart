@@ -76,7 +76,7 @@ class ListExpression extends CqlExpression {
   @override
   Future<List<dynamic>> execute(Map<String, dynamic> context) async {
     final result = <dynamic>[];
-    for (final e in element ?? []) {
+    for (final e in element ?? <CqlExpression>[]) {
       result.add(await e.execute(context));
     }
     return result;

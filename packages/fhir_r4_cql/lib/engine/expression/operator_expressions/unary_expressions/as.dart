@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// As operator allowing casting the result of an expression to a given target
 /// type.
 /// As : UnaryExpression
@@ -146,156 +145,148 @@ class As extends UnaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    final result = await operand.execute(context);
-    if (result == null) {
+    // 1) Evaluate the operand
+    final dynamic value = await operand.execute(context);
+
+    // 2) If null, always null
+    if (value == null) {
       return null;
     }
 
+    // 3) If there's an asTypeSpecifier, we must cast _each_ element of a list
+    if (asTypeSpecifier != null) {
+      // Only lists can be cast at the element level
+      if (value is List) {
+        return value
+            .map((e) => _applySpecifier(e, asTypeSpecifier!))
+            .where((e) => e != null)
+            .toList();
+      } else {
+        // Non-list with a ListTypeSpecifier is a type error → null
+        return null;
+      }
+    }
+
+    // 4) If there's a simple asType, run your atomic‐cast logic
     if (asType != null) {
       switch (asType!.localPart) {
         case 'Integer':
-          {
-            if (result is FhirInteger) {
-              return result;
-            }
-            break;
-          }
+          return value is FhirInteger ? value : null;
         case 'Decimal':
-          {
-            if (result is FhirDecimal) {
-              return result;
-            }
-            break;
-          }
+          return value is FhirDecimal ? value : null;
         case 'String':
-          {
-            if (result is String) {
-              return result;
-            }
-            break;
-          }
+          return value is String ? value : null;
         case 'Boolean':
-          {
-            if (result is FhirBoolean) {
-              return result;
-            }
-            break;
-          }
+          return value is FhirBoolean ? value : null;
         case 'Quantity':
-          {
-            if (result is ValidatedQuantity) {
-              return result;
-            }
-            break;
-          }
+          return value is ValidatedQuantity ? value : null;
         case 'Ratio':
-          {
-            if (result is ValidatedRatio) {
-              return result;
-            }
-            break;
-          }
+          return value is ValidatedRatio ? value : null;
         case 'DateTime':
-          {
-            if (result is FhirDateTime) {
-              return result;
-            }
-            break;
-          }
-        case 'Time':
-          {
-            if (result is FhirTime) {
-              return result;
-            }
-            break;
-          }
+          return value is FhirDateTime ? value : null;
         case 'Date':
-          {
-            if (result is FhirDate) {
-              return result;
-            }
-            break;
-          }
+          return value is FhirDate ? value : null;
+        case 'Time':
+          return value is FhirTime ? value : null;
         case 'Code':
-          {
-            if (result is Code) {
-              return result;
-            }
-            break;
-          }
+          return value is Code ? value : null;
         case 'Concept':
-          {
-            if (result is Concept) {
-              return result;
-            }
-            break;
-          }
+          return value is Concept ? value : null;
         case 'Interval':
-          {
-            if (result is IntervalExpression) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval ? value : null;
         case 'Interval<Integer>':
-          {
-            if (result is CqlInterval<FhirInteger>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<FhirInteger> ? value : null;
         case 'Interval<Long>':
-          {
-            if (result is CqlInterval<FhirInteger64>) {
-              return result;
-            }
-            break;
-          }
-
+          return value is CqlInterval<FhirInteger64> ? value : null;
         case 'Interval<Decimal>':
-          {
-            if (result is CqlInterval<FhirDecimal>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<FhirDecimal> ? value : null;
         case 'Interval<FhirDate>':
-          {
-            if (result is CqlInterval<FhirDate>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<FhirDate> ? value : null;
         case 'Interval<FhirDateTime>':
-          {
-            if (result is CqlInterval<FhirDateTime>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<FhirDateTime> ? value : null;
         case 'Interval<FhirTime>':
-          {
-            if (result is CqlInterval<FhirTime>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<FhirTime> ? value : null;
         case 'Interval<Quantity>':
-          {
-            if (result is CqlInterval<ValidatedQuantity>) {
-              return result;
-            }
-            break;
-          }
+          return value is CqlInterval<ValidatedQuantity> ? value : null;
         case 'ValueSet':
-          {
-            if (result is ValueSet) {
-              return result;
-            }
-            break;
-          }
+          return value is ValueSet ? value : null;
+        default:
+          return null;
       }
     }
+
+    // 5) No specifier or asType: just pass the value through
+    return value;
+  }
+
+  /// Recursively applies a TypeSpecifierExpression to a single element,
+  /// returning the element if it matches, or null if it doesn't.
+  dynamic _applySpecifier(dynamic element, TypeSpecifierExpression spec) {
+    // 1) ListTypeSpecifier: unwrap and reapply to the same element
+    if (spec is ListTypeSpecifier && spec.elementType != null) {
+      return _applySpecifier(element, spec.elementType!);
+    }
+
+    // 2) ChoiceTypeSpecifier: succeed if ANY choice matches
+    if (spec is ChoiceTypeSpecifier) {
+      for (final choice in spec.choice ?? <TypeSpecifierExpression>[]) {
+        final matched = _applySpecifier(element, choice);
+        if (matched != null) return matched;
+      }
+      return null;
+    }
+
+    // 3) NamedTypeSpecifier: atomic check
+    if (spec is NamedTypeSpecifier) {
+      final name = spec.namespace.localPart;
+      switch (name) {
+        case 'Integer':
+          return element is FhirInteger ? element : null;
+        case 'Decimal':
+          return element is FhirDecimal ? element : null;
+        case 'String':
+          return element is String ? element : null;
+        case 'Boolean':
+          return element is FhirBoolean ? element : null;
+        case 'Quantity':
+          return element is ValidatedQuantity ? element : null;
+        case 'Ratio':
+          return element is ValidatedRatio ? element : null;
+        case 'DateTime':
+          return element is FhirDateTime ? element : null;
+        case 'Date':
+          return element is FhirDate ? element : null;
+        case 'Time':
+          return element is FhirTime ? element : null;
+        case 'Code':
+          return element is Code ? element : null;
+        case 'Concept':
+          return element is Concept ? element : null;
+        case 'Interval':
+          return element is CqlInterval ? element : null;
+        case 'Interval<Integer>':
+          return element is CqlInterval<FhirInteger> ? element : null;
+        case 'Interval<Long>':
+          return element is CqlInterval<FhirInteger64> ? element : null;
+        case 'Interval<Decimal>':
+          return element is CqlInterval<FhirDecimal> ? element : null;
+        case 'Interval<FhirDate>':
+          return element is CqlInterval<FhirDate> ? element : null;
+        case 'Interval<FhirDateTime>':
+          return element is CqlInterval<FhirDateTime> ? element : null;
+        case 'Interval<FhirTime>':
+          return element is CqlInterval<FhirTime> ? element : null;
+        case 'Interval<Quantity>':
+          return element is CqlInterval<ValidatedQuantity> ? element : null;
+        case 'ValueSet':
+          return element is ValueSet ? element : null;
+        default:
+          return null;
+      }
+    }
+
+    // Unknown specifier type → null
+    return null;
   }
 
   @override

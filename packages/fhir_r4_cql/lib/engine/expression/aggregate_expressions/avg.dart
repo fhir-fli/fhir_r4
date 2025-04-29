@@ -107,6 +107,7 @@ class Avg extends AggregateExpression {
   }
 
   static dynamic avg(dynamic sourceResult) {
+
     if (sourceResult == null) {
       return null;
     }

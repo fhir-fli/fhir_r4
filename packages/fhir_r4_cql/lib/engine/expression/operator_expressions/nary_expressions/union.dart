@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Union operator returns the union of its arguments.
 /// This operator has two overloads: List, Interval.
 /// For the list overload, this operator returns a list with all unique

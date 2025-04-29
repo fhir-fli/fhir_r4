@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ExpressionDefs {
   String? type;
   List<ExpressionDef> def = <ExpressionDef>[];
@@ -27,8 +26,14 @@ class ExpressionDefs {
   }
 
   Future<Map<String, dynamic>> execute(Map<String, dynamic> context) async {
+    int i = 0;
     for (final e in def) {
-      context.addAll(await e.execute(context));
+      try {
+        context.addAll(await e.execute(context));
+      } catch (e) {
+        context['Exception$i'] = e.toString();
+        i++;
+      }
     }
     return context;
   }
@@ -182,8 +187,9 @@ class ExpressionDef extends Element {
     AccessModifier.private: 'Private',
   };
 
-  Future<dynamic> execute(Map<String, dynamic> context) async =>
-      {name: await expression?.execute(context)};
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return {name: await expression?.execute(context)};
+  }
 
   List<String> getReturnTypes(CqlLibrary library) =>
       expression?.getReturnTypes(library) ?? [];

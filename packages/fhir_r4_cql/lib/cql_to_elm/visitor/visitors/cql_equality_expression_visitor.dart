@@ -7,96 +7,131 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   @override
   CqlExpression visitEqualityExpression(EqualityExpressionContext ctx) {
     final int thisNode = getNextNode();
-
     String? equalityOperator;
-    List<CqlExpression> operand = [];
+    final operands = <CqlExpression>[];
 
+    // 1) Parse out the two operands and the operator symbol
     for (final child in ctx.children ?? <ParseTree>[]) {
-      if (child is! TerminalNodeImpl) {
-        final result = byContext(child);
-
-        // Check if the left-hand side of Union qualifies for Query transformation
-        if (result is NaryExpression && result is Union) {
-          if (_requiresQuery(result)) {
-            final query = _transformUnionToQuery(result, thisNode);
-            operand.add(query);
-            continue;
-          }
-        }
-
-        if (result is CqlExpression) {
-          operand.add(result);
-        } else if (result is String) {
-          operand.add(ExpressionRef(name: result));
-        }
-      } else {
+      if (child is TerminalNodeImpl) {
         equalityOperator = child.text;
+      } else {
+        final result = byContext(child);
+        if (result is CqlExpression) {
+          operands.add(result);
+        } else if (result is String) {
+          operands.add(ExpressionRef(name: result));
+        }
       }
     }
 
-    // Transform operands to ensure they are compatible if required
-    if (operand.length == 2) {
-      for (var i = 0; i < operand.length; i++) {
-        var isSingletonReturn = false;
-        final op = operand[i];
-        if (op is ListExpression) {
-          if ((op.element?.length ?? 0) > 1) {
-            final elements = <CqlExpression>[];
-            if (op.element!.first is ListExpression) {
-              for (final element in op.element!) {
-                if (element is ListExpression) {
-                  elements.add(element);
+    // 2) If we have exactly two operands, potentially rewrite list‐literals
+    if (operands.length == 2) {
+      for (var i = 0; i < 2; i++) {
+        final expr = operands[i];
+        if (expr is ListExpression) {
+          // ───── Inject ToList for implicit flatten ─────
+          final elements = expr.element ?? [];
+          bool isOnlyLists = true;
+          bool isSingletonReturn = false;
+          if (elements.length > 1) {
+            final newElements = <CqlExpression>[];
+            if (elements.first is ListExpression) {
+              for (final elt in elements) {
+                if (elt is ListExpression) {
+                  newElements.add(elt);
                 } else {
+                  isOnlyLists = false;
                   isSingletonReturn = true;
-                  elements.add(ToList(operand: element));
+                  newElements.add(ToList(operand: elt));
                 }
               }
             } else {
-              elements.addAll(op.element!);
+              isOnlyLists = false;
+              newElements.addAll(elements);
             }
-            op.element = elements;
+            expr.element = newElements;
           }
-          if (_requiresQueryOperand(op)) {
-            operand[i] = _buildQueryFromOperand(op, isSingletonReturn);
+
+          // ───── Compute the three “needs Query” flags ─────
+
+          // 1) flattenNeeded: list-of-lists + scalars
+          final flattenNeeded = (expr.element?.first is ListExpression) &&
+              expr.element!.skip(1).any((e) => e is! ListExpression);
+
+          // 2) setOpCast: sibling is a UNION that truly mixes element types
+          final sibling = operands[1 - i];
+          bool setOpCast = false;
+          if (sibling is Union) {
+            final seen = <String>{};
+            for (final opNode in sibling.operand!) {
+              // unwrap any As(ListExpression) around the list literal
+              ListExpression? listExpr;
+              if (opNode is ListExpression) {
+                listExpr = opNode;
+              } else if (opNode is As && opNode.operand is ListExpression) {
+                listExpr = opNode.operand as ListExpression;
+              }
+              if (listExpr != null) {
+                for (final inner in listExpr.element ?? <CqlExpression>[]) {
+                  seen.addAll(inner.getReturnTypes(library));
+                }
+              }
+            }
+            // only cast if more than one element-type (e.g. Integer + String)
+            setOpCast = seen.length > 1;
+          }
+
+          // 3) genericCast: declared element-type vs actual literal types differ
+          final actualTypes = expr.element
+                  ?.map((e) => e.getReturnTypes(library))
+                  .expand((ts) => ts)
+                  .toSet() ??
+              {};
+          final declaredTypes =
+              expr.getReturnTypes(library).where((t) => t != 'List').toSet();
+          final genericCast = declaredTypes.isNotEmpty &&
+              !declaredTypes.containsAll(actualTypes);
+
+          // ───── Wrap in Query if ANY of those is true ─────
+          if ((flattenNeeded && !isOnlyLists) || setOpCast || genericCast) {
+            if (flattenNeeded && isSingletonReturn) {
+              _addDemoteWarning(ctx);
+            }
+            operands[i] = _buildQueryFromOperand(
+                expr, flattenNeeded && isSingletonReturn);
           }
         }
       }
 
-      if (_requiresDecimalPromotion(operand[0])) {
-        if (operand[1] is LiteralInteger) {
-          operand[1] = ToDecimal(operand: operand[1]);
-        } else if (operand[1] is LiteralNull) {
-          operand[1] = As(
-            operand: operand[1],
+      // ───── Decimal promotion (unchanged) ─────
+      if (_requiresDecimalPromotion(operands[0])) {
+        if (operands[1] is LiteralInteger) {
+          operands[1] = ToDecimal(operand: operands[1]);
+        } else if (operands[1] is LiteralNull) {
+          operands[1] = As(
+            operand: operands[1],
             asType: QName.fromDataType('Decimal'),
           );
         }
       }
     }
 
-    // Validate operands and operator
-    if (operand.length == 2 && equalityOperator != null) {
+    // 4) Build the final Equal/Not/Equivalent node
+    if (operands.length == 2 && equalityOperator != null) {
       switch (equalityOperator) {
         case '=':
-          return Equal(operand: translateOperand(operand));
+          return Equal(operand: translateOperand(operands));
         case '!=':
-          return Not(operand: Equal(operand: translateOperand(operand)));
+          return Not(operand: Equal(operand: translateOperand(operands)));
         case '~':
-          return Equivalent(operand: translateOperand(operand));
+          return Equivalent(operand: translateOperand(operands));
         case '!~':
-          return Not(operand: Equivalent(operand: translateOperand(operand)));
-        default:
-          final errorMessage =
-              'Unsupported equality operator: $equalityOperator';
-
-          throw ArgumentError('$thisNode $errorMessage');
+          return Not(operand: Equivalent(operand: translateOperand(operands)));
       }
     }
 
-    final errorMessage =
-        'Invalid EqualityExpression: operands=${operand.length}, operator=$equalityOperator';
-
-    throw ArgumentError('$thisNode $errorMessage');
+    throw ArgumentError(
+        '$thisNode Invalid EqualityExpression: operands=${operands.length}, operator=$equalityOperator');
   }
 
   bool _requiresDecimalPromotion(CqlExpression expression) {
@@ -115,18 +150,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       return aggregatesRequiringDecimalPromotion.contains(expressionType);
     }
 
-    return false;
-  }
-
-  /// Determines if the operand requires transformation into a Query
-  bool _requiresQueryOperand(CqlExpression operand) {
-    if (operand is ListExpression) {
-      final elementTypes = operand.element
-          ?.map((e) => e.getReturnTypes(library))
-          .expand((types) => types)
-          .toSet();
-      return elementTypes != null && elementTypes.length > 1;
-    }
     return false;
   }
 
@@ -177,87 +200,19 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     throw ArgumentError('Expected a ListExpression for ChoiceTypeSpecifier.');
   }
 
-  /// Determine if a Union should transform into a Query
-  bool _requiresQuery(NaryExpression union) {
-    final operandTypes = union.operand
-        ?.map((op) => op.getReturnTypes(library))
-        .expand((types) => types)
-        .toSet();
-
-    final requiresQuery = (operandTypes?.length ?? 0) > 1 &&
-        !(operandTypes?.contains('Null') ?? false);
-
-    return requiresQuery;
-  }
-
-  /// Transform a Union into either an `As` or a `Query` depending on operand types
-  CqlExpression _transformUnionToQuery(NaryExpression union, int parentNode) {
-    final allOperandsAreLists =
-        union.operand?.every((op) => op is ListExpression) ?? false;
-
-    if (allOperandsAreLists) {
-      final transformedOperands = union.operand?.map((op) {
-        return As(
-          operand: op,
-          asTypeSpecifier: _buildChoiceTypeFromOperand(op),
-        );
-      }).toList();
-
-      if (transformedOperands == null || transformedOperands.isEmpty) {
-        throw ArgumentError('Union must contain valid operands.');
-      }
-
-      final unionExpression = Union(operand: transformedOperands);
-      return unionExpression;
-    } else {
-      final aliasCounter = parentNode;
-      final source = union.operand?.map((op) {
-        return RelationshipClause(
-          alias: 'Alias$aliasCounter',
-          expression: op,
-        );
-      }).toList();
-
-      if (source == null || source.isEmpty) {
-        throw ArgumentError('Union must contain valid sources.');
-      }
-
-      final query = Query(
-        source: source,
-        returnClause: ReturnClause(
-          distinct: false,
-          expression: As(
-            operand: ExpressionRef(name: 'Alias$aliasCounter'),
-            asTypeSpecifier: _buildChoiceType(union),
-          ),
-        ),
-      );
-
-      return query;
-    }
-  }
-
-  /// Build the ChoiceTypeSpecifier for the Query return clause
-  ChoiceTypeSpecifier _buildChoiceType(NaryExpression union) {
-    final elementTypes = union.operand
-        ?.map((op) => op.getReturnTypes(library))
-        .expand((types) => types)
-        .toSet();
-
-    final choices = elementTypes
-        ?.map((type) =>
-            NamedTypeSpecifier(namespace: QName.fromDataType(type.toString())))
-        .toList();
-
-    if (choices == null || choices.isEmpty) {
-      const errorMessage =
-          'ChoiceTypeSpecifier requires at least one valid type.';
-
-      throw ArgumentError(errorMessage);
-    }
-
-    final choiceTypeSpecifier = ChoiceTypeSpecifier(choice: choices);
-
-    return choiceTypeSpecifier;
+  void _addDemoteWarning(ParserRuleContext ctx) {
+    library.annotation ??= <CqlToElmBase>[];
+    library.annotation!.add(
+      CqlToElmError(
+        libraryId: library.identifier?.id,
+        startLine: ctx.start?.line,
+        startChar: ctx.start?.charPositionInLine,
+        endLine: ctx.stop?.line,
+        endChar: ctx.stop?.charPositionInLine,
+        message: 'List-valued expression was demoted to a singleton.',
+        errorType: ErrorType.semantic,
+        errorSeverity: ErrorSeverity.warning,
+      ),
+    );
   }
 }

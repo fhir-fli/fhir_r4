@@ -92,12 +92,11 @@ void _compareLibraries(
     final areEqual =
         const DeepCollectionEquality().equals(jsonLibrary, resultLibrary);
     print('${file.split("/").last} Elm is equal: $areEqual');
-    if (file.contains('04.cql')) {
-      final results = {'library': resultLibrary};
-      ;
-      // print(jsonEncode(jsonLibrary));
-      print(jsonEncode(results));
-    }
+    // if (file.contains('04.cql')) {
+    //   final results = {'library': resultLibrary};
+    //   // print(jsonEncode(jsonLibrary));
+    //   print(jsonEncode(results));
+    // }
   }
 }
 

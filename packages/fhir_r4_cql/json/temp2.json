@@ -3190,176 +3190,114 @@
                         "type": "Equal",
                         "operand": [
                             {
-                                "type": "Query",
-                                "source": [
+                                "type": "List",
+                                "element": [
                                     {
-                                        "alias": "X",
-                                        "expression": {
-                                            "type": "List",
-                                            "element": [
-                                                {
-                                                    "type": "List",
-                                                    "element": [
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "1",
-                                                            "type": "Literal"
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "2",
-                                                            "type": "Literal"
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "3",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "List",
-                                                    "element": [
-                                                        {
-                                                            "type": "List",
-                                                            "element": [
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                    "value": "a",
-                                                                    "type": "Literal"
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                    "value": "b",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "List",
-                                                            "element": [
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                    "value": "x",
-                                                                    "type": "Literal"
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                    "value": "y",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
+                                        "type": "List",
+                                        "element": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "1",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "2",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "3",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "List",
+                                        "element": [
+                                            {
+                                                "type": "List",
+                                                "element": [
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": "a",
+                                                        "type": "Literal"
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": "b",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "List",
+                                                "element": [
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": "x",
+                                                        "type": "Literal"
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": "y",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            }
+                                        ]
                                     }
-                                ],
-                                "return": {
-                                    "distinct": false,
-                                    "expression": {
-                                        "type": "As",
-                                        "operand": {
-                                            "name": "X",
-                                            "type": "AliasRef"
-                                        },
-                                        "asTypeSpecifier": {
-                                            "type": "ChoiceTypeSpecifier",
-                                            "choice": [
-                                                {
-                                                    "name": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "type": "NamedTypeSpecifier"
-                                                },
-                                                {
-                                                    "name": "{urn:hl7-org:elm-types:r1}String",
-                                                    "type": "NamedTypeSpecifier"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                }
+                                ]
                             },
                             {
-                                "type": "Query",
-                                "source": [
+                                "type": "List",
+                                "element": [
                                     {
-                                        "alias": "X",
-                                        "expression": {
-                                            "type": "List",
-                                            "element": [
-                                                {
-                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "value": "1",
-                                                    "type": "Literal"
-                                                },
-                                                {
-                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "value": "2",
-                                                    "type": "Literal"
-                                                },
-                                                {
-                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "value": "3",
-                                                    "type": "Literal"
-                                                },
-                                                {
-                                                    "type": "List",
-                                                    "element": [
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                            "value": "a",
-                                                            "type": "Literal"
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                            "value": "b",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "List",
-                                                    "element": [
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                            "value": "x",
-                                                            "type": "Literal"
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                            "value": "y",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "1",
+                                        "type": "Literal"
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "2",
+                                        "type": "Literal"
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "3",
+                                        "type": "Literal"
+                                    },
+                                    {
+                                        "type": "List",
+                                        "element": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "a",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "b",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "List",
+                                        "element": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "x",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "y",
+                                                "type": "Literal"
+                                            }
+                                        ]
                                     }
-                                ],
-                                "return": {
-                                    "distinct": false,
-                                    "expression": {
-                                        "type": "As",
-                                        "operand": {
-                                            "name": "X",
-                                            "type": "AliasRef"
-                                        },
-                                        "asTypeSpecifier": {
-                                            "type": "ChoiceTypeSpecifier",
-                                            "choice": [
-                                                {
-                                                    "name": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "type": "NamedTypeSpecifier"
-                                                },
-                                                {
-                                                    "name": "{urn:hl7-org:elm-types:r1}String",
-                                                    "type": "NamedTypeSpecifier"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                }
+                                ]
                             }
                         ]
                     }
@@ -3620,6 +3558,9 @@
                                                 }
                                             }
                                         ]
+                                    },
+                                    {
+                                        "type": "Null"
                                     }
                                 ]
                             },
