@@ -33,7 +33,7 @@ void parseFile(BuildContext context) async {
     final Map<String, dynamic> manifestMap = json.decode(assetsFile)
       ..removeWhere((key, value) => !key.contains('cql/'));
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 6; i++) {
       final file =
           manifestMap.keys.firstWhereOrNull((e) => e.contains('$i.cql'));
       if (file == null) break;
@@ -92,11 +92,11 @@ void _compareLibraries(
     final areEqual =
         const DeepCollectionEquality().equals(jsonLibrary, resultLibrary);
     print('${file.split("/").last} Elm is equal: $areEqual');
-    // if (file.contains('04.cql')) {
-    //   final results = {'library': resultLibrary};
-    //   // print(jsonEncode(jsonLibrary));
-    //   print(jsonEncode(results));
-    // }
+    if (file.contains('05.cql')) {
+      final results = {'library': resultLibrary};
+      // print(jsonEncode(jsonLibrary));
+      print(jsonEncode(results));
+    }
   }
 }
 
@@ -130,6 +130,7 @@ bool _areValuesEqual(dynamic result, dynamic answer) {
   } else if (result is FhirTime && answer is FhirTime) {
     return _calculateMilliseconds(result) == _calculateMilliseconds(answer);
   }
+
   return result == answer;
 }
 

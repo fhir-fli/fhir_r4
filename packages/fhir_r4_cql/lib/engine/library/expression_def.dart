@@ -26,13 +26,11 @@ class ExpressionDefs {
   }
 
   Future<Map<String, dynamic>> execute(Map<String, dynamic> context) async {
-    int i = 0;
     for (final e in def) {
       try {
         context.addAll(await e.execute(context));
-      } catch (e) {
-        context['Exception$i'] = e.toString();
-        i++;
+      } catch (exception) {
+        context[e.name] = exception;
       }
     }
     return context;
@@ -188,7 +186,6 @@ class ExpressionDef extends Element {
   };
 
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    print('Executing expression: $name');
     return {name: await expression?.execute(context)};
   }
 

@@ -121,7 +121,7 @@ class PopulationStdDev extends AggregateExpression {
 
     if (popVarianceResult is FhirDecimal) {
       double stdDevValue = math.sqrt(popVarianceResult.valueNum!);
-      return FhirDecimal(stdDevValue);
+      return FhirDecimal(stdDevValue.toStringAsFixed(8));
     } else if (popVarianceResult is ValidatedQuantity) {
       final String varianceString = popVarianceResult.value.asUcumDecimal();
       final double? varianceDouble = double.tryParse(varianceString);

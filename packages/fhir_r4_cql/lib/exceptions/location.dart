@@ -32,6 +32,15 @@ class Location {
   @override
   int get hashCode => Object.hash(startLine, startChar, endLine, endChar);
 
+  Map<String, dynamic> toJson() {
+    return {
+      'startLine': startLine,
+      'startChar': startChar,
+      'endLine': endLine,
+      'endChar': endChar,
+    };
+  }
+
   @override
   String toString() =>
       "Location{ startLine=$startLine, startChar=$startChar, endLine=$endLine, endChar=$endChar }";

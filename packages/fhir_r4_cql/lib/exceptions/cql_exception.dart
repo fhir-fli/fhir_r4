@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlException implements Exception {
   final String? message;
   final Exception? cause;
@@ -35,6 +34,25 @@ class CqlException implements Exception {
 
   // Getter for message to mimic Java's getMessage method
   String? get getMessage => message;
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (message != null) 'message': message,
+      if (cause != null) 'cause': cause.toString(),
+      if (sourceLocator != null) 'sourceLocator': sourceLocator!.toJson(),
+      'severity': severity.toString(),
+    };
+  }
+
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CqlException) return false;
+
+    return message == other.message &&
+        cause == other.cause &&
+        sourceLocator == other.sourceLocator &&
+        severity == other.severity;
+  }
 
   @override
   String toString() {

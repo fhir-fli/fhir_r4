@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The PopulationVariance operator returns the statistical population variance of the elements in source.
 /// If a path is specified, elements with no value for the property specified by the path are ignored.
 /// If the source contains no non-null elements, null is returned.
@@ -90,7 +89,7 @@ class PopulationVariance extends AggregateExpression {
   }
 
   static dynamic populationVariance(dynamic sourceResult) {
-    if (sourceResult == null || sourceResult.isEmpty) {
+    if (sourceResult == null || sourceResult is! List || sourceResult.isEmpty) {
       return null;
     }
     sourceResult.removeWhere((element) => element == null);
@@ -102,18 +101,18 @@ class PopulationVariance extends AggregateExpression {
 
     if (mean is FhirDecimal) {
       FhirDecimal sumOfSquaredDiffs = FhirDecimal(0.0);
-      for (final val in sourceResult as List<dynamic>) {
-        var diff = FhirDecimal(val.valueNum! - mean.valueNum!);
+      for (final val in sourceResult) {
+        var diff = FhirDecimal((val as FhirNumber).valueNum! - mean.valueNum!);
         var squaredDiff = FhirDecimal(diff.valueNum! * diff.valueNum!);
         sumOfSquaredDiffs =
             FhirDecimal(sumOfSquaredDiffs.valueNum! + squaredDiff.valueNum!);
       }
       var variance =
           sumOfSquaredDiffs.valueNum! / sourceResult.length; // N instead of N-1
-      return FhirDecimal(variance);
+      return FhirDecimal(variance.toStringAsFixed(8));
     } else if (mean is ValidatedQuantity) {
       UcumDecimal? sumOfSquaredValues;
-      for (final val in sourceResult as List<dynamic>) {
+      for (final val in sourceResult) {
         ValidatedQuantity? diffValue = val - mean;
         if (diffValue != null) {
           UcumDecimal squaredDiffValue = diffValue.value * diffValue.value;

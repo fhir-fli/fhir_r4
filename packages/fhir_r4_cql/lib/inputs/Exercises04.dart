@@ -92,7 +92,14 @@ final exercises04 = <String, dynamic>{
   'Flatten Expression': FhirBoolean(true),
   'Distinct Expression': FhirBoolean(true),
   'Flatten Not Recursive': FhirBoolean(false),
-  'Flatten Lists and Elements': FhirBoolean(false),
+  'Flatten Lists and Elements': CqlException(
+      message:
+          'The source list for SingletonFrom contains more than one element',
+      sourceLocator: SourceLocator(
+          librarySystemId: 'http://cql.hl7.org/Library/unknown',
+          libraryName: 'Exercises04Key',
+          nodeType: 'SingletonFrom'),
+      severity: Severity.error),
   'Collapse Expression': FhirBoolean(true),
   'Expand Expression': FhirBoolean(true),
 };

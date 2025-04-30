@@ -2751,7 +2751,7 @@
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
-                                "value": "0.66666666",
+                                "value": "0.66666667",
                                 "type": "Literal"
                             }
                         ]
@@ -2815,7 +2815,7 @@
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}Decimal",
-                                "value": "0.81649657",
+                                "value": "0.81649658",
                                 "type": "Literal"
                             }
                         ]

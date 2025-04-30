@@ -116,12 +116,9 @@ class Union extends NaryExpression {
       throw ArgumentError('After expression must have 2 operands');
     }
 
-    print('${operand![0].toString()}');
-    print('${operand![1].toString()}');
     final left = await operand![0].execute(context);
     final right = await operand![1].execute(context);
-    print('Left: $left');
-    print('Right: $right');
+
     return union(left, right);
   }
 

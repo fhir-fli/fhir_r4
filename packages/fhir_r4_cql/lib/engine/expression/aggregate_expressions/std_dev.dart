@@ -108,7 +108,9 @@ class StdDev extends AggregateExpression {
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     final sourceResult = await source.execute(context);
-    return stddev(sourceResult);
+    final result = stddev(sourceResult);
+    
+    return result;
   }
 
   static dynamic stddev(dynamic sourceResult) {
@@ -120,7 +122,7 @@ class StdDev extends AggregateExpression {
     /// For FhirDecimal
     if (varianceResult is FhirDecimal) {
       double stdDevValue = math.sqrt(varianceResult.valueNum!);
-      return FhirDecimal(stdDevValue);
+      return FhirDecimal(stdDevValue.toStringAsFixed(8));
     }
 
     /// For ValidatedQuantity

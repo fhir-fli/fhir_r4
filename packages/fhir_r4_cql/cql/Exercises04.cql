@@ -203,10 +203,10 @@ define "Aggregate StdDev":
   StdDev({ 1, 2, 3, null }) = 1
 
 define "Aggregate Population Variance":
-  PopulationVariance({ 1, 2, 3, null }) = 0.66666666
+  PopulationVariance({ 1, 2, 3, null }) = 0.66666667
 
 define "Aggregate Population StdDev":
-  PopulationStdDev({ 1, 2, 3, null }) = 0.81649657
+  PopulationStdDev({ 1, 2, 3, null }) = 0.81649658
 
 define "Aggregate All True":
   AllTrue({ true, false, true }) is false
