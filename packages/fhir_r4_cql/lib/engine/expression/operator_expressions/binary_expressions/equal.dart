@@ -153,7 +153,7 @@ class Equal extends BinaryExpression {
     } else {
       final left = await operand[0].execute(context);
       final right = await operand[1].execute(context);
-
+      // print('Left: $left, Right: $right');
       final result = equal(left, right);
       return result;
     }

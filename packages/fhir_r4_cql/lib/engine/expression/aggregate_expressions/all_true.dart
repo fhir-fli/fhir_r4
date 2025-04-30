@@ -115,7 +115,6 @@ class AllTrue extends AggregateExpression {
       return FhirBoolean(true);
     } else if (sourceResult is List) {
       for (final element in sourceResult) {
-        print('Element: $element');
         if (element != null &&
             ((element is FhirBoolean && !(element.valueBoolean ?? true)) ||
                 (element is bool && !element))) {

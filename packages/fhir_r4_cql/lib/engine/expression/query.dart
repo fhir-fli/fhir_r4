@@ -91,20 +91,19 @@ class Query extends CqlExpression {
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     // 1) Build the Cartesian product of all sources
-    List<Map<String, dynamic>> rows = [{}];
+    List<Map<String, dynamic>> rows = [{}]; // ← start with a single, empty map
     for (final src in source) {
       final dynamic listValue = await src.expression.execute(context);
-      if (listValue == null) {
-        return null;
-      }
+      if (listValue == null) return null;
       if (listValue is! Iterable) {
         throw ArgumentError('Query source ${src.alias} must be a List');
       }
+
       final List<Map<String, dynamic>> newRows = [];
       for (final row in rows) {
         for (final element in listValue) {
-          final Map<String, dynamic> newRow = Map.of(row);
-          newRow[src.alias] = element;
+          // clone the existing row and add this source’s alias → element
+          final newRow = Map<String, dynamic>.from(row)..[src.alias] = element;
           newRows.add(newRow);
         }
       }
@@ -202,7 +201,8 @@ class Query extends CqlExpression {
         final execCtx = <String, dynamic>{}
           ..addAll(context)
           ..addAll(row);
-        result.add(await returnClause!.expression.execute(execCtx));
+        final res = await returnClause!.expression.execute(execCtx);
+        result.add(res);
       }
       if (returnClause!.distinct ?? false) {
         return result.toSet().toList();

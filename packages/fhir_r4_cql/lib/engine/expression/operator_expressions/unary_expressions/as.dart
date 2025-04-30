@@ -155,16 +155,15 @@ class As extends UnaryExpression {
 
     // 3) If there's an asTypeSpecifier, we must cast _each_ element of a list
     if (asTypeSpecifier != null) {
-      // Only lists can be cast at the element level
+      // 1) If the operand evaluated to a List, cast every element
       if (value is List) {
         return value
             .map((e) => _applySpecifier(e, asTypeSpecifier!))
             .where((e) => e != null)
             .toList();
-      } else {
-        // Non-list with a ListTypeSpecifier is a type error → null
-        return null;
       }
+      // 2) Otherwise, cast the single value
+      return _applySpecifier(value, asTypeSpecifier!);
     }
 
     // 4) If there's a simple asType, run your atomic‐cast logic

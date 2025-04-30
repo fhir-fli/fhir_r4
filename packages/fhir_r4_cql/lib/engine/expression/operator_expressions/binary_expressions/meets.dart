@@ -129,7 +129,6 @@ class Meets extends BinaryExpression {
 
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    print('Meets.execute: left: $left, right: $right');
     return meets(left, right);
   }
 

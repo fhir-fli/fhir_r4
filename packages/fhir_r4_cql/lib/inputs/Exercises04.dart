@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final exercises04 = <String, dynamic>{
   'Closed-Open Interval': FhirBoolean(true),
   'Closed-Open Decimal Interval': FhirBoolean(true),
@@ -37,8 +36,8 @@ final exercises04 = <String, dynamic>{
   'Integer List': [1, 2, 3, 4, 5],
   'Choice List': [1, 'abc', null],
   'Tuple List': <dynamic>[
-    <String, dynamic>{"X": 1, "Y": 1},
-    <String, dynamic>{"X": 2, "Y": 2}
+    <String, dynamic>{"X": 1.toFhirInteger, "Y": 1.toFhirInteger},
+    <String, dynamic>{"X": 2.toFhirInteger, "Y": 2.toFhirInteger}
   ],
   'List Indexer': FhirBoolean(true),
   'List Index Of': FhirBoolean(true),

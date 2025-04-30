@@ -115,8 +115,13 @@ class Union extends NaryExpression {
     if (operand?.length != 2) {
       throw ArgumentError('After expression must have 2 operands');
     }
+
+    print('${operand![0].toString()}');
+    print('${operand![1].toString()}');
     final left = await operand![0].execute(context);
     final right = await operand![1].execute(context);
+    print('Left: $left');
+    print('Right: $right');
     return union(left, right);
   }
 
@@ -159,7 +164,8 @@ class Union extends NaryExpression {
         throw ArgumentError(
             'Union operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
       }
-      return left.toSet().union(right.toSet()).toList();
+      final result = left.toSet().union(right.toSet()).toList();
+      return result;
     } else {
       throw ArgumentError(
           'Union operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
