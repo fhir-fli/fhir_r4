@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
@@ -85,7 +86,15 @@ class Property extends CqlExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) {
     if (source != null) {
-      return source!.getReturnTypes(library);
+      final sourceReturnTypes = source!.getReturnTypes(library);
+      final returnTypes = <String>[];
+      for(final type in sourceReturnTypes){
+        final endType = resolveSimplePath('$type.$path');
+        if(endType != null){
+          returnTypes.add(endType.type);
+        }
+      }
+      return returnTypes;
     }
     return [];
   }

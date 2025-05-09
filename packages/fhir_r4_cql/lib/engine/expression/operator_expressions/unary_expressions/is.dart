@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Is operator allowing testing the type of a result.
 class Is extends UnaryExpression {
   /// Type to test against.
@@ -74,4 +73,22 @@ class Is extends UnaryExpression {
 
   @override
   String get type => 'Is';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    // 1) Evaluate the operand
+    final dynamic value = await operand.execute(context);
+
+    // 2) If null, always null
+    if (value == null) {
+      return null;
+    }
+
+    print('Value: $value');
+    print('IsType: $isType');
+    print('IsTypeSpecifier: $isTypeSpecifier');
+
+    // 5) No specifier or asType: just pass the value through
+    return value;
+  }
 }

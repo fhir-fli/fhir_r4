@@ -357,8 +357,9 @@ class Retrieve extends CqlExpression {
   String get type => 'Retrieve';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) =>
-      ['List<Map<String, dynamic>>'];
+  List<String> getReturnTypes(CqlLibrary library) {
+    return dataType.getReturnTypes(library);
+  }
 
   /// Helper function to write not null values to the query map
   void writeNotNullToQuery(
@@ -375,7 +376,7 @@ class Retrieve extends CqlExpression {
     Map<String, dynamic> query = <String, dynamic>{};
 
     // Add dataType to query
-    query['type'] = dataType.toJson();
+    query['type'] = dataType.localPart;
 
     // Add code filter to query
     if (codes != null) {

@@ -81,7 +81,9 @@ class SingletonFrom extends UnaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
+    print('operand: $operand');
     final list = await operand.execute(context);
+    print('SingletonFrom: $list');
     if (list == null) {
       return null;
     } else if (list is List) {
@@ -104,5 +106,10 @@ class SingletonFrom extends UnaryExpression {
         sourceLocator: SourceLocator.fromNode(this, context['library']),
       );
     }
+  }
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    return operand.getReturnTypes(library);
   }
 }

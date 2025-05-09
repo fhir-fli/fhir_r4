@@ -185,14 +185,6 @@ class CqlLibrary extends Element {
         executionContext ?? <String, dynamic>{};
     context['library'] = this;
     context['startTimestamp'] = fhir.FhirDateTime.fromDateTime(DateTime.now());
-    // final usingDefinitionExecuted = await usings?.execute();
-    // final includeDefinitionExecuted = await includes?.execute();
-    // final codeSystemsExecuted = await codeSystems?.execute();
-    // final valueSetsExecuted = await valueSets?.execute();
-    // final codesExecuted = await codes?.execute();
-    // final conceptsExecuted = await concepts?.execute();
-    // final contextsExecuted = await contexts?.execute();
-    // final parametersExecuted = await parameters?.execute();
     final statementsExecuted = await statements?.execute(context);
     return statementsExecuted;
   }

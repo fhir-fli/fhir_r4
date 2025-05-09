@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 class ExpressionDefs {
@@ -186,6 +188,7 @@ class ExpressionDef extends Element {
   };
 
   Future<dynamic> execute(Map<String, dynamic> context) async {
+    print('Executing expression: $name (${expression?.type})');
     return {name: await expression?.execute(context)};
   }
 

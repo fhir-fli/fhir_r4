@@ -87,15 +87,19 @@ void _compareLibraries(
   if (jsonLibrary is Map<String, dynamic> &&
       resultLibrary is Map<String, dynamic>) {
     jsonLibrary.remove('annotation');
-    resultLibrary.remove('annotation');
+    final resultAnnotation = resultLibrary.remove('annotation');
 
     final areEqual =
         const DeepCollectionEquality().equals(jsonLibrary, resultLibrary);
     print('${file.split("/").last} Elm is equal: $areEqual');
     if (file.contains('05.cql')) {
+      resultLibrary = {
+        'annotation': resultAnnotation,
+        ...resultLibrary,
+      };
       final results = {'library': resultLibrary};
       // print(jsonEncode(jsonLibrary));
-      print(jsonEncode(results));
+      // print(jsonEncode(results));
     }
   }
 }

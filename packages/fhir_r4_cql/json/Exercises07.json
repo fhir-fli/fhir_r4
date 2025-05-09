@@ -225,7 +225,8 @@
                                         "name": "Laboratory",
                                         "preserve": true,
                                         "type": "ValueSetRef"
-                                    }}
+                                    }
+                                }
                             }
                         ],
                         "where": {

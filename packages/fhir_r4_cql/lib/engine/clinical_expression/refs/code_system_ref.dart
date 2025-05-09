@@ -48,4 +48,17 @@ class CodeSystemRef extends Ref {
 
   @override
   String get type => 'CodeSystemRef';
+
+    @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    if (resultTypeName != null) {
+      return [resultTypeName!];
+    }
+    if (resultTypeSpecifier != null) {
+      // unwrap the specifier into a list of type names
+      return resultTypeSpecifier!.getReturnTypes(library);
+    }
+    return ['CodeSystem'];
+  }
+
 }

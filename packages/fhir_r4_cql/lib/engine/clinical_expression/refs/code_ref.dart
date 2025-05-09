@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The CodeRef expression allows a previously defined code to be referenced
 /// within an expression.
 class CodeRef extends Ref {
@@ -39,6 +38,18 @@ class CodeRef extends Ref {
 
   @override
   String get type => 'CodeRef';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    if (resultTypeName != null) {
+      return [resultTypeName!];
+    }
+    if (resultTypeSpecifier != null) {
+      // unwrap the specifier into a list of type names
+      return resultTypeSpecifier!.getReturnTypes(library);
+    }
+    return ['Code'];
+  }
 
   @override
   Map<String, dynamic> toJson() {

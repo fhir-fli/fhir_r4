@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Expression that references a previously defined NamedExpression.
 class ExpressionRef extends Ref {
   ExpressionRef({
@@ -55,7 +54,7 @@ class ExpressionRef extends Ref {
     writeNotNull('annotation', annotation?.map((e) => e.toJson()).toList());
     writeNotNull('localId', localId);
     writeNotNull('locator', locator);
-    writeNotNull('resultTypeName', resultTypeName);
+    // writeNotNull('resultTypeName', resultTypeName);
     writeNotNull('resultTypeSpecifier', resultTypeSpecifier?.toJson());
     return val;
   }
@@ -67,13 +66,27 @@ class ExpressionRef extends Ref {
 
   @override
   List<String> getReturnTypes(CqlLibrary library) {
-    final expression =
-        library.statements?.def.indexWhere((element) => element.name == name);
-    if (expression != null && expression != -1) {
-      return library.statements?.def[expression].expression
-              ?.getReturnTypes(library) ??
-          [];
+    // 1) If we explicitly set a declared resultTypeName, use it.
+    if (resultTypeName != null) {
+      return [resultTypeName!];
     }
+
+    // 2) If there’s a resultTypeSpecifier (e.g. for choice types), unwrap it.
+    if (resultTypeSpecifier != null) {
+      return resultTypeSpecifier!.getReturnTypes(library);
+    }
+
+    // 3) Otherwise, look up the named define and delegate to its expression.
+    final defs = library.statements?.def;
+    if (defs != null) {
+      final idx = defs.indexWhere((d) => d.name == name);
+      print('ExpressionRef: $name, idx: $idx');
+      if (idx != -1) {
+        return defs[idx].expression?.getReturnTypes(library) ?? [];
+      }
+    }
+
+    // 4) Last‐ditch fallback
     return [];
   }
 }

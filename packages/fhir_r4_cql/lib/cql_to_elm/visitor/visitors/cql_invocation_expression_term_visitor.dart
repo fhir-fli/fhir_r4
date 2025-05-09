@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<Property> {
   CqlInvocationExpressionTermVisitor(super.library);
 
@@ -23,7 +22,10 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<Property> {
       }
     }
     if (qualifiedInvocation?.name != null) {
-      return Property(source: expressionTerm, path: qualifiedInvocation!.name);
+      return Property(
+        source: expressionTerm,
+        path: qualifiedInvocation!.name,
+      );
     }
     throw ArgumentError('$thisNode Invalid InvocationExpressionTerm');
   }

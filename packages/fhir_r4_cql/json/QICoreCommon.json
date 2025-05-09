@@ -763,7 +763,6 @@
                                     }
                                 }
                             ],
-
                             "where": {
                                 "type": "Equivalent",
                                 "operand": [
@@ -833,7 +832,6 @@
                                     }
                                 }
                             ],
-
                             "where": {
                                 "type": "Equivalent",
                                 "operand": [
@@ -3551,7 +3549,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "If",
@@ -3655,7 +3652,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "If",
@@ -3761,7 +3757,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -3898,7 +3893,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -4035,7 +4029,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -4172,7 +4165,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "Equal",
                             "operand": [
@@ -5410,7 +5402,6 @@
                                                     }
                                                 }
                                             ],
-
                                             "return": {
                                                 "expression": {
                                                     "strict": false,
@@ -5556,7 +5547,6 @@
                                                     }
                                                 }
                                             ],
-
                                             "return": {
                                                 "expression": {
                                                     "strict": false,
@@ -5598,7 +5588,6 @@
                                                     }
                                                 }
                                             ],
-
                                             "return": {
                                                 "expression": {
                                                     "strict": false,
@@ -5893,7 +5882,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "Tuple",

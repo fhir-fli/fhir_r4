@@ -8,7 +8,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// This class provides an empty implementation of [CqlVisitor],
 /// which can be extended to create a visitor which only needs to handle
 /// a subset of the available methods.
@@ -926,7 +925,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
         operand.first,
         As(
             operand: operand.last,
-            asType: QName.fromFull((operand.first as LiteralType).valueType))
+            asType: QName.parse((operand.first as LiteralType).valueType))
       ];
     } else if (operand.first is LiteralNull &&
         operand.last is LiteralType &&
@@ -934,7 +933,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       return [
         As(
             operand: operand.first,
-            asType: QName.fromFull((operand.first as LiteralType).valueType)),
+            asType: QName.parse((operand.first as LiteralType).valueType)),
         operand.last
       ];
     } else {
@@ -1414,7 +1413,15 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
               expressionIndex = library.statements?.def
                   .indexWhere((element) => element.name == name);
               if (expressionIndex != null && expressionIndex != -1) {
-                return ExpressionRef(name: name, libraryName: libraryName);
+                final def = library.statements!.def[expressionIndex];
+                // infer its return type now (after Property is fixed):
+                final types = def.expression!.getReturnTypes(library);
+                final typeName = types.isNotEmpty ? types.first : null;
+                return ExpressionRef(
+                  name: name,
+                  libraryName: libraryName,
+                  resultTypeName: typeName == 'Unknown' ? null : typeName,
+                );
               } else {
                 return IdentifierRef(name: name, libraryName: libraryName);
               }

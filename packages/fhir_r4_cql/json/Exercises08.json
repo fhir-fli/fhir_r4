@@ -139,7 +139,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "And",
                             "operand": [
@@ -242,7 +241,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "Abs",
@@ -330,7 +328,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "And",
                             "operand": [
@@ -404,7 +401,6 @@
                                 }
                             }
                         ],
-
                         "where": {
                             "type": "Equivalent",
                             "operand": [
@@ -508,7 +504,6 @@
                                             }
                                         }
                                     ],
-
                                     "return": {
                                         "expression": {
                                             "path": "code",
@@ -519,7 +514,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "Tuple",
@@ -546,7 +540,6 @@
                                                         }
                                                     }
                                                 ],
-
                                                 "where": {
                                                     "type": "Equivalent",
                                                     "operand": [
@@ -596,7 +589,6 @@
                                             }
                                         }
                                     ],
-
                                     "return": {
                                         "expression": {
                                             "path": "code",
@@ -607,7 +599,6 @@
                                 }
                             }
                         ],
-
                         "return": {
                             "expression": {
                                 "type": "Tuple",
@@ -639,7 +630,6 @@
                                                                     }
                                                                 }
                                                             ],
-
                                                             "where": {
                                                                 "type": "Equivalent",
                                                                 "operand": [
@@ -672,7 +662,6 @@
                                                         }
                                                     }
                                                 ],
-
                                                 "return": {
                                                     "distinct": false,
                                                     "expression": {

@@ -19,7 +19,23 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         if (result is CqlExpression) {
           operands.add(result);
         } else if (result is String) {
-          operands.add(ExpressionRef(name: result));
+          // figure out which statement this name refers to:
+          final idx =
+              library.statements?.def.indexWhere((d) => d.name == result);
+          // get the declared return type from that statement
+          final declaredTypes = (idx != null && idx != -1)
+              // AFTER you’ve fixed Property.getReturnTypes, this will work:
+              ? library.statements!.def[idx].expression!.getReturnTypes(library)
+              : <String>[];
+          // pick the first (there should only be one)
+          final typeName =
+              declaredTypes.isNotEmpty ? declaredTypes.first : null;
+
+          operands.add(ExpressionRef(
+            name: result,
+            libraryName: library.identifier?.id,
+            resultTypeName: typeName,
+          ));
         }
       }
     }
@@ -112,6 +128,66 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
             operand: operands[1],
             asType: QName.fromDataType('Decimal'),
           );
+        }
+      }
+    }
+
+    // ───── Inject FHIRHelpers wrappers ─────
+    if (operands.length == 2 && equalityOperator != null) {
+      final left = operands[0];
+      final right = operands[1];
+
+      final leftTypes =
+          left.getReturnTypes(library).map((t) => t.toLowerCase()).toList();
+      final rightTypes =
+          right.getReturnTypes(library).map((t) => t.toLowerCase()).toList();
+
+      final leftIsCode =
+          leftTypes.any((t) => t.endsWith('code') || t.endsWith('codeenum'));
+      final rightIsCode =
+          rightTypes.any((t) => t.endsWith('code') || t.endsWith('codeenum'));
+      final leftIsConcept = leftTypes.any((t) => t.endsWith('concept'));
+      final rightIsConcept = rightTypes.any((t) => t.endsWith('concept'));
+
+      final leftIsLiteralString = left is LiteralString;
+      final rightIsLiteralString = right is LiteralString;
+
+      // 1) Under =/!= only, wrap codes → strings
+      if (equalityOperator == '=' || equalityOperator == '!=') {
+        if (leftIsCode && rightIsLiteralString) {
+          operands[0] = FunctionRef(
+            name: 'ToString',
+            libraryName: 'FHIRHelpers',
+            operand: [left],
+          );
+        } else if (rightIsCode && leftIsLiteralString) {
+          operands[1] = FunctionRef(
+            name: 'ToString',
+            libraryName: 'FHIRHelpers',
+            operand: [right],
+          );
+        }
+      }
+
+      // 2) For *any* concept comparison (both =/!= and ~/!~), wrap *both* sides
+      if (leftIsConcept || rightIsConcept) {
+        if (leftIsConcept) {
+          operands[0] = FunctionRef(
+            name: 'ToConcept',
+            libraryName: 'FHIRHelpers',
+            operand: [operands[0]],
+          );
+        } else {
+          operands[0] = ToConcept(operand: operands[0]);
+        }
+        if (rightIsConcept) {
+          operands[1] = FunctionRef(
+            name: 'ToConcept',
+            libraryName: 'FHIRHelpers',
+            operand: [operands[1]],
+          );
+        } else {
+          operands[1] = ToConcept(operand: operands[1]);
         }
       }
     }

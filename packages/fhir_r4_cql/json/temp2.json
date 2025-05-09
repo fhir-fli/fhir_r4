@@ -1,5 +1,11 @@
 {
     "library": {
+        "annotation": [
+            {
+                "type": "CqlToElmInfo",
+                "translatorVersion": "2.11.0"
+            }
+        ],
         "identifier": {
             "id": "Exercises05Key"
         },
@@ -151,12 +157,19 @@
                         "type": "Equal",
                         "operand": [
                             {
-                                "path": "gender",
-                                "type": "Property",
-                                "source": {
-                                    "name": "Patient",
-                                    "type": "ExpressionRef"
-                                }
+                                "name": "ToString",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "gender",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -187,16 +200,26 @@
                         "type": "Equal",
                         "operand": [
                             {
-                                "path": "maritalStatus",
-                                "type": "Property",
-                                "source": {
-                                    "name": "Patient",
-                                    "type": "ExpressionRef"
-                                }
+                                "name": "ToConcept",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "maritalStatus",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
                             },
                             {
-                                "name": "Marital Status - Married",
-                                "type": "CodeRef"
+                                "type": "ToConcept",
+                                "operand": {
+                                    "name": "Marital Status - Married",
+                                    "type": "CodeRef"
+                                }
                             }
                         ]
                     }
@@ -209,16 +232,26 @@
                         "type": "Equivalent",
                         "operand": [
                             {
-                                "path": "maritalStatus",
-                                "type": "Property",
-                                "source": {
-                                    "name": "Patient",
-                                    "type": "ExpressionRef"
-                                }
+                                "name": "ToConcept",
+                                "libraryName": "FHIRHelpers",
+                                "type": "FunctionRef",
+                                "operand": [
+                                    {
+                                        "path": "maritalStatus",
+                                        "type": "Property",
+                                        "source": {
+                                            "name": "Patient",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                ]
                             },
                             {
-                                "name": "Marital Status - Married",
-                                "type": "CodeRef"
+                                "type": "ToConcept",
+                                "operand": {
+                                    "name": "Marital Status - Married",
+                                    "type": "CodeRef"
+                                }
                             }
                         ]
                     }
@@ -228,18 +261,15 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "type": "In",
-                        "operand": [
-                            {
-                                "name": "Marital Status - Married",
-                                "type": "CodeRef"
-                            },
-                            {
-                                "name": "Marital Status",
-                                "preserve": true,
-                                "type": "ValueSetRef"
-                            }
-                        ]
+                        "type": "InValueSet",
+                        "code": {
+                            "name": "Marital Status - Married",
+                            "type": "CodeRef"
+                        },
+                        "valueset": {
+                            "name": "Marital Status",
+                            "preserve": true
+                        }
                     }
                 }
             ]
