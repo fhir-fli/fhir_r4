@@ -183,7 +183,8 @@ class FhirPositiveInt extends FhirNumber
   bool equalsDeep(FhirBase? other) =>
       other is FhirPositiveInt &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Equality checks [FhirPositiveInt], or an [int]/[double] with the same value.
   @override

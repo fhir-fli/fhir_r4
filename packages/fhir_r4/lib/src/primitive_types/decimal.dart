@@ -201,7 +201,8 @@ class FhirDecimal extends FhirNumber
   bool equalsDeep(FhirBase? other) =>
       other is FhirDecimal &&
       other.valueNum == valueNum &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

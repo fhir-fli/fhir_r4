@@ -240,7 +240,8 @@ class FhirBoolean extends PrimitiveType
   bool equalsDeep(FhirBase? other) {
     return other is FhirBoolean &&
         other.valueBoolean == valueBoolean &&
-        other.element == element;
+        ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
   }
 
   /// Shallow equality. Checks if [other] is `bool` or [FhirBoolean].

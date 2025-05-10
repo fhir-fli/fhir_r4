@@ -185,7 +185,8 @@ class FhirTime extends PrimitiveType
   bool equalsDeep(FhirBase? other) =>
       other is FhirTime &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Overridden equality operator checking if [other] is a [FhirTime]
   /// with same string.

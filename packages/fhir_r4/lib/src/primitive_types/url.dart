@@ -193,7 +193,8 @@ class FhirUrl extends FhirUri
   bool equalsDeep(FhirBase? other) =>
       other is FhirUrl &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirUrl], [Uri], or [String].
   @override

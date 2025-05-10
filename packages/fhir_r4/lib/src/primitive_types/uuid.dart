@@ -283,7 +283,8 @@ class FhirUuid extends FhirUri
   bool equalsDeep(FhirBase? other) =>
       (other is FhirUuid &&
           other.valueString == valueString &&
-          other.element == element) ||
+          ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)))) ||
       (other is UuidValue && other.toString() == valueString);
 
   /// Shallow equality for convenience (also checks [UuidValue]

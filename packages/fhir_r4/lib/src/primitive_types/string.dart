@@ -178,7 +178,8 @@ class FhirString extends PrimitiveType
   bool equalsDeep(FhirBase? other) =>
       other is FhirString &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Equality operator override.
   @override

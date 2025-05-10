@@ -188,7 +188,8 @@ class FhirUnsignedInt extends FhirNumber
   bool equalsDeep(FhirBase? other) =>
       other is FhirUnsignedInt &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Equality checks [FhirUnsignedInt], or an [int]/[double] with the same value.
   @override

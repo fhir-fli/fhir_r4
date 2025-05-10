@@ -244,7 +244,8 @@ class FhirUri extends PrimitiveType
   bool equalsDeep(FhirBase? other) =>
       other is FhirUri &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirUri], [Uri], or [String].
   @override

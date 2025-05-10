@@ -231,7 +231,8 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
   bool equalsDeep(FhirBase? other) =>
       other is FhirInteger64 &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Equality operator checks other [FhirInteger64], [BigInt], or [String].
   @override

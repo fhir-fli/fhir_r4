@@ -288,7 +288,8 @@ class FhirXhtml extends PrimitiveType {
   bool equalsDeep(FhirBase? other) =>
       other is FhirXhtml &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   @override
   bool equals(Object other) =>

@@ -206,7 +206,8 @@ class FhirId extends FhirUri
   bool equalsDeep(FhirBase? other) =>
       other is FhirId &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirId] or [String].
   @override

@@ -219,7 +219,8 @@ abstract class FhirNumber extends PrimitiveType
   bool equalsDeep(FhirBase? other) =>
       other is FhirNumber &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   /// Equality operator checks if [other] is a [FhirNumber] with the same
   /// string, or if [other] is a Dart [num] with the same numeric value.

@@ -839,7 +839,8 @@ abstract class FhirDateTimeBase extends PrimitiveType
   bool equalsDeep(FhirBase? other) =>
       other is FhirDateTimeBase &&
       other.valueString == valueString &&
-      other.element == element;
+      ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

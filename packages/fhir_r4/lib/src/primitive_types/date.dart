@@ -205,10 +205,12 @@ class FhirDate extends FhirDateTimeBase
   int get hashCode => valueString.hashCode;
 
   @override
-  bool equalsDeep(FhirBase? other) =>
-      other is FhirDate &&
-      other.valueString == valueString &&
-      other.element == element;
+  bool equalsDeep(FhirBase? other) {
+    return other is FhirDate &&
+        other.valueString == valueString &&
+        ((element == null && other.element == null) ||
+            (element != null && element!.equalsDeep(other.element)));
+  }
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
