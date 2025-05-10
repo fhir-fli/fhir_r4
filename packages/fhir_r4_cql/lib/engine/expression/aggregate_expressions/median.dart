@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Median operator returns the median of the elements in source.
 /// If a path is specified, elements with no value for the property specified
 /// by the path are ignored.
@@ -101,6 +100,19 @@ class Median extends AggregateExpression {
 
   @override
   String get type => 'Median';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final elementTypes = source.getReturnTypes(library).toSet();
+
+    if (elementTypes.isEmpty) {
+      return [];
+    } else if (elementTypes.contains('Quantity')) {
+      return ['Quantity'];
+    } else {
+      return ['Decimal'];
+    }
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

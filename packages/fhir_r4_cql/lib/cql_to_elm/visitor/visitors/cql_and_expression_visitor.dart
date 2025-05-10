@@ -26,7 +26,7 @@ class CqlAndExpressionVisitor extends CqlBaseVisitor<And> {
             As(
                 operand: operand.last,
                 asType:
-                    QName.fromFull((operand.first as LiteralType).valueType))
+                    QName.parse((operand.first as LiteralType).valueType))
           ]);
         } else if (operand.first is LiteralNull &&
             operand.last is LiteralNull) {
@@ -34,7 +34,7 @@ class CqlAndExpressionVisitor extends CqlBaseVisitor<And> {
             As(
                 operand: operand.first,
                 asType:
-                    QName.fromFull((operand.last as LiteralType).valueType)),
+                    QName.parse((operand.last as LiteralType).valueType)),
             operand.last,
           ]);
         }

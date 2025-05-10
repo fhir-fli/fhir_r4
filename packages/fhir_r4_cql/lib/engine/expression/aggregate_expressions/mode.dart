@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Mode operator returns the statistical mode of the elements in source.
 /// If a path is specified, elements with no value for the property specified
 /// by the path are ignored.
@@ -97,6 +96,12 @@ class Mode extends AggregateExpression {
 
   @override
   String get type => 'Mode';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library).toSet();
+    return returnTypes.toList();
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

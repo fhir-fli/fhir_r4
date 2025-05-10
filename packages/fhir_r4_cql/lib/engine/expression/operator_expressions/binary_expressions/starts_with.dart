@@ -79,7 +79,7 @@ class StartsWith extends BinaryExpression {
   String get type => 'StartsWith';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {

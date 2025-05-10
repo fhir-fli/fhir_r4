@@ -7,7 +7,6 @@ class CqlMembershipExpressionVisitor extends CqlBaseVisitor<dynamic> {
   @override
   dynamic visitMembershipExpression(MembershipExpressionContext ctx) {
     printIf(ctx);
-    print('visitMembershipExpression ${ctx.text}');
     final int thisNode = getNextNode();
     bool inContains = true;
     CqlDateTimePrecision? dateTimePrecisionSpecifier;

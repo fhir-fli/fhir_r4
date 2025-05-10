@@ -23,14 +23,14 @@ class NamedTypeSpecifier extends TypeSpecifierExpression {
   });
 
   factory NamedTypeSpecifier.fromFull(String full) => NamedTypeSpecifier(
-        namespace: QName.fromFull(full),
+        namespace: QName.parse(full),
       );
 
   factory NamedTypeSpecifier.fromJson(Map<String, dynamic> json) {
     String? modelName = json['modelName'] as String?;
     String? name = json['name'] as String?;
     return NamedTypeSpecifier(
-      namespace: QName.fromFull(name ?? modelName ?? ''),
+      namespace: QName.parse(name ?? modelName ?? ''),
       annotation: json['annotation'] != null
           ? (json['annotation'] as List)
               .map((e) => CqlToElmBase.fromJson(e))

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Except operator returns the set difference of the two arguments.
 /// This operator has two overloads: List, List and Interval, Interval.
 /// For the list overload, returns a list with elements from the first operand
@@ -112,6 +111,16 @@ class Except extends NaryExpression {
       data['resultTypeSpecifier'] = resultTypeSpecifier!.toJson();
     }
     return data;
+  }
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    if (operand?.length != 2) {
+      throw ArgumentError('Except expression must have 2 operands');
+    }
+    final left = operand![0];
+    final returnTypes = left.getReturnTypes(library);
+    return returnTypes;
   }
 
   @override

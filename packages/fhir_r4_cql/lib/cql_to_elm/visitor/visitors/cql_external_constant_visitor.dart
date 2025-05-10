@@ -1,50 +1,45 @@
 import 'package:antlr4/antlr4.dart';
+import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
-// TODO(Dokotela): test that it works
-class CqlExternalConstantVisitor extends CqlBaseVisitor<dynamic> {
+/// Visits constructs like `%String`, `%FhirDateTime`, or
+/// `%MyExternalConstant`
+class CqlExternalConstantVisitor extends CqlBaseVisitor<CqlExpression> {
   CqlExternalConstantVisitor(super.library);
 
   @override
-  dynamic visitExternalConstant(ExternalConstantContext ctx) {
-    // Initial debugging entry point for ExternalConstant
-    print('[DEBUG] Entering visitExternalConstant with context: $ctx');
-    final int thisNode = getNextNode();
-    print('[DEBUG] Node ID for ExternalConstant: $thisNode');
+  CqlExpression visitExternalConstant(ExternalConstantContext ctx) {
+    // 1) Pull off all the terminal texts except the leading '%'
+    final raw = ctx.children!
+        .whereType<TerminalNodeImpl>()
+        .map((t) => t.text)
+        .where((s) => s != '%')
+        .join();
 
-    // Components of the external constant
-    String? identifier;
-
-    // Iterate over children to determine whether it is an identifier or a string
-    for (final child in ctx.children ?? <ParseTree>[]) {
-      print('[DEBUG] Processing child in visitExternalConstant: $child');
-      if (child is TerminalNodeImpl) {
-        // Assuming `%` is the first part; skip it
-        if (child.text == '%') {
-          print('[DEBUG] Found % sign');
-          continue;
-        }
-
-        // Assign the identifier or string value
-        identifier = child.text;
-        print('[DEBUG] Assigned identifier or string: $identifier');
-      }
+    if (raw.isEmpty) {
+      throw ArgumentError('Invalid external constant at ${ctx.text}');
     }
 
-    // Ensure the identifier is assigned correctly
-    if (identifier == null) {
-      final errorMessage =
-          'Invalid ExternalConstant: missing identifier or string';
-      print('[ERROR] $errorMessage');
-      throw ArgumentError('$thisNode $errorMessage');
+    // 2) Elm‐core types, e.g. %String, %Boolean, %Integer, %DateTime, etc.
+    if (QName.elmCoreTypes.contains(raw)) {
+      final qn = QName.fromElmType(raw);
+      return NamedTypeSpecifier(namespace: qn);
     }
 
-    // Build the ExternalConstant object
-    final externalConstant =
-        NamedTypeSpecifier(namespace: QName.fromLocalPart(identifier));
-    print('[DEBUG] Returning ExternalConstant: $externalConstant');
+    // 3) FHIR primitives or resource types, e.g. %FhirDecimal, %Patient, etc.
+    if (QName.fhirTypes.contains(raw) ||
+        R4ResourceType.typesAsStrings.contains(raw)) {
+      final qn = QName.fromFhirType(raw);
+      return NamedTypeSpecifier(namespace: qn);
+    }
 
-    return externalConstant;
+    // 4) Fully‐qualified QName syntax `{ns}LocalPart}`
+    if (raw.startsWith('{')) {
+      final qn = QName.parse(raw);
+      return NamedTypeSpecifier(namespace: qn);
+    }
+
+    // 5) Otherwise: this really is an external constant lookup
+    return NamedTypeSpecifier(namespace: QName(localPart: raw));
   }
 }

@@ -47,18 +47,18 @@ class XsdToModelInfoConverter {
         modelInfo.contextInfo.add(ContextInfo(
           name: name,
           contextType: NamedTypeSpecifier(
-            namespace: QName.fromNamespace(
-              targetNamespace.value,
-              name,
+            namespace: QName(
+              namespaceURI: targetNamespace.value,
+              localPart: name,
             ),
           ),
         ));
       } else {
         // Handle complex types
         final contextType = NamedTypeSpecifier(
-          namespace: QName.fromNamespace(
-            targetNamespace.value,
-            name,
+          namespace: QName(
+            namespaceURI: targetNamespace.value,
+            localPart: name,
           ),
         );
 

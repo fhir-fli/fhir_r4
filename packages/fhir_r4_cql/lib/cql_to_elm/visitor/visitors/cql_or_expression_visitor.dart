@@ -29,20 +29,20 @@ class CqlOrExpressionVisitor extends CqlBaseVisitor<BinaryExpression> {
           return orXor
               ? Or(operand: [
                   left,
-                  As(operand: right, asType: QName.fromFull(left.valueType))
+                  As(operand: right, asType: QName.parse(left.valueType))
                 ])
               : Xor(operand: [
                   left,
-                  As(operand: right, asType: QName.fromFull(left.valueType))
+                  As(operand: right, asType: QName.parse(left.valueType))
                 ]);
         } else if (left is LiteralNull && right is! LiteralNull) {
           return orXor
               ? Or(operand: [
-                  As(operand: left, asType: QName.fromFull(right.valueType)),
+                  As(operand: left, asType: QName.parse(right.valueType)),
                   right,
                 ])
               : Xor(operand: [
-                  As(operand: left, asType: QName.fromFull(right.valueType)),
+                  As(operand: left, asType: QName.parse(right.valueType)),
                   right,
                 ]);
         }

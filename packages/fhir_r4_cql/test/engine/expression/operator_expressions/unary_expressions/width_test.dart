@@ -15,7 +15,7 @@ void widthTest() {
         """define "WidthIsNull": width of (null as Interval<Integer>) // null""",
         () async {
       final interval =
-          As(operand: LiteralNull(), asType: QName.fromDataType('Interval'));
+          As(operand: LiteralNull(), asType: QName.fromElmType('Interval'));
       final width = Width(operand: interval);
       final result = await width.execute({});
       expect(result, equals(null));

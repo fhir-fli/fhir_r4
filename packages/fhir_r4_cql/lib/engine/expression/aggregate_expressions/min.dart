@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Min operator returns the minimum element in the source.
 /// Comparison semantics are defined by the comparison operators for the type
 /// of the values being aggregated.
@@ -112,6 +111,15 @@ class Min extends AggregateExpression {
 
   @override
   String get type => 'Min';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    }
+    return [returnTypes.first];
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

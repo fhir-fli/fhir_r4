@@ -133,7 +133,7 @@ class SameAs extends BinaryExpression {
   String get type => 'SameAs';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {

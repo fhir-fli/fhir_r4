@@ -17,7 +17,7 @@ class NullExpression extends Literal {
   factory NullExpression.fromJson(Map<String, dynamic> json) => NullExpression(
         valueType: json['valueType'] != null
             ? QName.fromJson(json['valueType'])
-            : QName.fromLocalPart('Null'),
+            : QName.fromElmType('Null'),
         resultType: json['resultTypeName'] != null
             ? QName.fromJson(json['resultTypeName'])
             : null,

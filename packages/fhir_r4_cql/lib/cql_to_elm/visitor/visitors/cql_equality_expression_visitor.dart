@@ -119,6 +119,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         }
       }
 
+      print('Operand0: ${operands[0].runtimeType}');
+      print('ReturnTypes0: ${operands[0].getReturnTypes(library)}');
       // ───── Decimal promotion (unchanged) ─────
       if (_requiresDecimalPromotion(operands[0])) {
         if (operands[1] is LiteralInteger) {
@@ -126,7 +128,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         } else if (operands[1] is LiteralNull) {
           operands[1] = As(
             operand: operands[1],
-            asType: QName.fromDataType('Decimal'),
+            asType: QName.fromElmType('Decimal'),
           );
         }
       }
@@ -211,22 +213,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   }
 
   bool _requiresDecimalPromotion(CqlExpression expression) {
-    // List of aggregate functions requiring Decimal promotion
-    const aggregatesRequiringDecimalPromotion = {
-      'Avg',
-      'Median',
-      'Variance',
-      'StdDev',
-      'PopulationVariance',
-      'PopulationStdDev'
-    };
-
-    if (expression is AggregateExpression) {
-      final expressionType = expression.runtimeType.toString();
-      return aggregatesRequiringDecimalPromotion.contains(expressionType);
-    }
-
-    return false;
+    final returnTypes = expression.getReturnTypes(library);
+    return returnTypes.any((e) => e.toLowerCase().endsWith('decimal'));
   }
 
   /// Builds a Query from an operand when required
@@ -256,6 +244,9 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   /// Builds a ChoiceTypeSpecifier from an operand
   ChoiceTypeSpecifier _buildChoiceTypeFromOperand(CqlExpression operand) {
     if (operand is ListExpression) {
+      for (final el in operand.element ?? <CqlExpression>[]) {
+        print("element: $el ${el.runtimeType}");
+      }
       final elementTypes = operand.element
           ?.map((e) => e.getReturnTypes(library))
           .expand((types) => types)
@@ -266,7 +257,13 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       }
 
       final choices = elementTypes.map((type) {
-        return NamedTypeSpecifier(namespace: QName.fromDataType(type));
+        return NamedTypeSpecifier(
+          namespace: QName.elmCoreTypes.contains(type)
+              ? QName.fromElmType(type)
+              : QName.fhirTypes.contains(type)
+                  ? QName.fromFhirType(type)
+                  : QName(localPart: type),
+        );
       }).toList();
 
       final choiceTypeSpecifier = ChoiceTypeSpecifier(choice: choices);

@@ -81,7 +81,7 @@ class Floor extends UnaryExpression {
   }
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirInteger'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Integer'];
 
   @override
   Future<FhirInteger?> execute(Map<String, dynamic> context) async {

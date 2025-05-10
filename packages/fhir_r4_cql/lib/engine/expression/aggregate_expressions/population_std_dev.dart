@@ -5,7 +5,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The PopulationStdDev operator returns the statistical standard deviation of
 /// the elements in source.
 /// If a path is specified, elements with no value for the property specified
@@ -106,6 +105,18 @@ class PopulationStdDev extends AggregateExpression {
 
   @override
   String get type => 'PopulationStdDev';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    } else if (returnTypes.contains('Quantity')) {
+      return ['Quantity'];
+    } else {
+      return ['Decimal'];
+    }
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

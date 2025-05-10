@@ -6,13 +6,13 @@ void maxValue() {
   group('MaxValue', () {
     test("""define "IntegerMaximum": maximum Integer // 2147483647""",
         () async {
-      final QName valueType = QName.fromFull('Integer');
+      final QName valueType = QName.parse('Integer');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute({}), equals(fhir.FhirInteger(2147483647)));
     });
     test("""define "LongMaximum": maximum Long // 9223372036854775807""",
         () async {
-      final QName valueType = QName.fromFull('Long');
+      final QName valueType = QName.parse('Long');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute({}),
           equals(fhir.FhirInteger64.fromString('9223372036854775807')));
@@ -20,14 +20,14 @@ void maxValue() {
     test(
         """define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999""",
         () async {
-      final QName valueType = QName.fromFull('DateTime');
+      final QName valueType = QName.parse('DateTime');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute({}),
           equals(fhir.FhirDateTime.fromString('9999-12-31T23:59:59.999')));
     });
     // TODO(Dokotela) does Quantity throw error or not?
     // test("""define "ErrorMaximum": maximum Quantity""", () async {
-    //   final QName valueType = QName.fromFull('Quantity');
+    //   final QName valueType = QName.parse('Quantity');
     //   final maxValue = MaxValue(valueType: valueType);
     //   expect(await maxValue.execute({}), equals(ValidatedQuantity()));
     // });

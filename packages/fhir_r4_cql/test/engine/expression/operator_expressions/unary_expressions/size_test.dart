@@ -32,7 +32,7 @@ void sizeTest() {
         () async {
       final size = Size(
           operand: As(
-              operand: LiteralNull(), asType: QName.fromDataType('Interval')));
+              operand: LiteralNull(), asType: QName.fromElmType('Interval')));
       final result = await size.execute({});
       expect(result, equals(null));
     });

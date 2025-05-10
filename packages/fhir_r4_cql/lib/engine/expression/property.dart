@@ -3,7 +3,6 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Property operator returns the value of the property on source specified
 /// by the path attribute.
 /// If the result of evaluating source is null, the result is null.
@@ -88,10 +87,11 @@ class Property extends CqlExpression {
     if (source != null) {
       final sourceReturnTypes = source!.getReturnTypes(library);
       final returnTypes = <String>[];
-      for(final type in sourceReturnTypes){
+      for (final type in sourceReturnTypes) {
         final endType = resolveSimplePath('$type.$path');
-        if(endType != null){
-          returnTypes.add(endType.type);
+        if (endType != null) {
+          returnTypes
+              .add(endType.isList ? 'List<${endType.type}>' : endType.type);
         }
       }
       return returnTypes;

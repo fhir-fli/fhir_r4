@@ -36,7 +36,7 @@ void meetsTest() {
       final high1 = LiteralInteger(10);
       final interval1 = IntervalExpression(low: low1, high: high1);
       final interval2 =
-          As(operand: LiteralNull(), asType: QName.fromDataType('Interval'));
+          As(operand: LiteralNull(), asType: QName.fromElmType('Interval'));
       final meets = Meets(operand: [interval1, interval2]);
       final result = await meets.execute({});
       expect(result, isNull);

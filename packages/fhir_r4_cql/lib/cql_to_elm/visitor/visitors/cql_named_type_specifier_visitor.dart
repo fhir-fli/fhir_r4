@@ -23,7 +23,7 @@ class CqlNamedTypeSpecifierVisitor extends CqlBaseVisitor<NamedTypeSpecifier> {
     // TODO: unclear what to do with qualifiers
     if (referentialOrTypeNameIdentifier != null) {
       return NamedTypeSpecifier(
-          namespace: QName.fromFull(referentialOrTypeNameIdentifier));
+          namespace: QName.parse(referentialOrTypeNameIdentifier));
     } else {
       throw ArgumentError('$thisNode Invalid NamedTypeSpecifier');
     }

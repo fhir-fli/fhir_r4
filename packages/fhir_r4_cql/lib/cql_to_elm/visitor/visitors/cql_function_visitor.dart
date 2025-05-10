@@ -1,251 +1,122 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
   CqlFunctionVisitor(super.library);
 
   @override
   dynamic visitFunction(FunctionContext ctx) {
-    
     String? ref;
     List<CqlExpression> operand = [];
 
-    // Extract the function name and operands
+    // 1) Extract the function name and its operands
     for (final child in ctx.children ?? <ParseTree>[]) {
-      
       if (child is ReferentialIdentifierContext) {
         ref = visitReferentialIdentifier(child);
-        
       } else if (child is ParamListContext) {
-        final paramList = visitParamList(child);
-        operand.addAll(paramList);
-        
+        operand.addAll(visitParamList(child));
       }
     }
+    if (ref == null) {
+      throw ArgumentError('Invalid Function');
+    }
 
-    if (ref != null) {
-      
-      // Define sets of functions for easier classification
-      const queryBasedFunctions = {
-        'Avg',
-        'Median',
-        'Mode',
-        'Variance',
-        'StdDev',
-        'PopulationVariance',
-        'PopulationStdDev',
-      };
-
-      const aggregateFunctions = {
-        'Sum': 'Integer',
-        'Min': 'Integer',
-        'Max': 'Integer',
-        'Count': 'Integer',
-      };
-
-      // STEP 1: Wrap LiteralNull elements when appropriate for aggregate functions
-      if (aggregateFunctions.containsKey(ref)) {
-        final aggregateType = aggregateFunctions[ref]!;
-        operand = operand.map((element) {
-          
-          if (element is ListExpression) {
-            final processed = _processAggregateOperand(element, aggregateType);
-            
-            return processed;
-          }
-          return element;
-        }).toList();
-      }
-
-      // STEP 2: Determine if the function needs query transformation
-      if (queryBasedFunctions.contains(ref)) {
-        
-        const alwaysQueryFunctions = {
-          'Avg',
-          'Variance',
-          'StdDev',
-          'PopulationVariance',
-          'PopulationStdDev',
-          'Median',
-        };
-
-        if (alwaysQueryFunctions.contains(ref)) {
-          
-          if (operand.isNotEmpty && operand.first is ListExpression) {
-            operand[0] =
-                _transformToQuery(operand.first as ListExpression, ref);
-            
-          }
-        } else {
-          // Leave the conditional check only for those that may not always require wrapping
-          if (_requiresQueryTransformation(operand, ref)) {
-            operand[0] =
-                _transformToQuery(operand.first as ListExpression, ref);
-          }
-        }
-      }
-
-      // STEP 3: Ensure numeric literals are wrapped with `ToDecimal` when necessary
+    //
+    // STEP 1: Wrap `Null` for all _simple_ aggregates
+    //
+    // These do not require a Query; they just need their nulls cast to the
+    // element type so that Sum/Min/Max/Count/Mode see Integer rather than bare Null.
+    //
+    const aggregateFunctions = {
+      'Sum': 'Integer',
+      'Min': 'Integer',
+      'Max': 'Integer',
+      'Count': 'Integer',
+      'Mode': 'Integer',
+    };
+    if (aggregateFunctions.containsKey(ref)) {
+      final aggType = aggregateFunctions[ref]!;
       operand = operand.map((e) {
-        
-        if (e is LiteralInteger && ref == 'Equal') {
-          final wrapped = ToDecimal(operand: e);
-          
-          return wrapped;
+        if (e is ListExpression) {
+          return _processAggregateOperand(e, aggType);
         }
         return e;
       }).toList();
-
-      // Create and return the corresponding expression
-      final expression = CqlExpression.byName(ref, operand, library);
-      
-      return expression;
     }
 
-    throw ArgumentError('Invalid Function');
-  }
-
-  bool _requiresQueryTransformation(
-      List<CqlExpression> operand, String functionName) {
-    if (operand.isNotEmpty && operand.first is ListExpression) {
-      final listExpression = operand.first as ListExpression;
-      final elementTypes = listExpression.element
-              ?.expand((e) => e.getReturnTypes(library))
-              .toSet() ??
-          {};
-
-      // Existing transformation rules for mixed types or containing `Null`.
-      final requiresTransformation = elementTypes.contains('LiteralNull') ||
-          elementTypes.contains('Null') ||
-          elementTypes.length >
-              1; // Transform if the elements are heterogeneous.
-      
-      return requiresTransformation;
+    //
+    // STEP 2: Convert to a Query **only** for those that sort and promote to Decimal
+    //
+    // These need a `return ToDecimal(X)` so that avg/median/etc get the correct
+    // decimal result even if the list was Integers.
+    //
+    const queryBasedFunctions = {
+      'Avg',
+      'Median',
+      'Variance',
+      'StdDev',
+      'PopulationVariance',
+      'PopulationStdDev',
+    };
+    if (queryBasedFunctions.contains(ref) &&
+        operand.isNotEmpty &&
+        operand.first is ListExpression) {
+      operand[0] = _transformToQuery(operand.first as ListExpression, ref);
     }
-    return false;
+
+    //
+    // STEP 3: Delegate to the standard factory
+    //
+    return CqlExpression.byName(ref, operand, library);
   }
 
+  /// Wraps any `Null` elements in the list with `As(…, <aggType>)`.
   ListExpression _processAggregateOperand(
-      ListExpression listExpression, String aggregateType) {
-    final elements = listExpression.element;
-
-    // Determine the target type based on the majority of the elements
-    final elementTypes = elements
-        ?.map((e) => e.getReturnTypes(library))
-        .expand((e) => e)
-        .toSet()
-        .toList();
-
-    
-    // Default to `Integer` if more `Integer` elements are present, otherwise use `Decimal`
-    final majorityType = elementTypes?.contains('FhirInteger') ?? false
-        ? QName.fromDataType('Integer')
-        : QName.fromDataType('Decimal');
-
-    final transformedElements = elements?.map((e) {
-      
+      ListExpression listExpr, String aggType) {
+    final wrapperType = QName.fromElmType(aggType);
+    final transformed = listExpr.element?.map((e) {
       if (e is LiteralNull) {
-        final wrapped = As(
-          operand: e,
-          asType: majorityType,
-        );
-        
-        return wrapped;
+        return As(operand: e, asType: wrapperType);
       }
       return e;
     }).toList();
-
-    final processedListExpression = ListExpression(
-      typeSpecifier: listExpression.typeSpecifier,
-      element: transformedElements,
+    return ListExpression(
+      typeSpecifier: listExpr.typeSpecifier,
+      element: transformed,
     );
-    return processedListExpression;
   }
 
-  Query _transformToQuery(ListExpression listExpression, String functionName) {
+  /// Builds a Query over the original list, aliasing each element to X,
+  /// then returns `ToDecimal(AliasRef("X"))` so that sorting & decimal‐promotion
+  /// happen.
+  Query _transformToQuery(ListExpression listExpr, String functionName) {
     const aliasName = 'X';
+    final returnTypes =
+        listExpr.getReturnTypes(library).map((e) => e.toLowerCase()).toList();
+    final wrapType = returnTypes.any((e) => e.endsWith('integer')) &&
+            returnTypes
+                .every((e) => e.endsWith('integer') || e.endsWith('null'))
+        ? 'Integer'
+        : returnTypes.any((e) => e.endsWith('quantity'))
+            ? 'Quantity'
+            : 'Decimal';
 
-    final elementTypes = listExpression.element
-            ?.expand((e) => e.getReturnTypes(library))
-            .toSet() ??
-        {};
-    
+    final processedList = _processAggregateOperand(listExpr, wrapType);
 
-    // Determine the casting type based on elements and function
-    final castingType = _determineCastingType(elementTypes, functionName);
-    
-
-    // Transform elements, wrapping Null with the determined type
-    final transformedElements = listExpression.element?.map((e) {
-      
-      if (e is LiteralNull) {
-        final wrapped = As(
-          operand: e,
-          asType: QName.fromDataType(castingType),
-        );
-        
-        return wrapped;
-      }
-      return e;
-    }).toList();
-
-    // Construct the AliasedQuerySource
-    final aliasedQuerySource = AliasedQuerySource(
+    final aliasedSource = AliasedQuerySource(
       alias: aliasName,
       expression: ListExpression(
-        typeSpecifier: listExpression.typeSpecifier,
-        element: transformedElements,
+        typeSpecifier: listExpr.typeSpecifier,
+        element: processedList.element,
       ),
     );
-    
 
-    // Construct the ReturnClause
+    // always ToDecimal(X) in the return for these functions
     final returnClause = ReturnClause(
       distinct: false,
-      expression: ToDecimal(
-        operand: AliasRef(name: aliasName),
-      ),
+      expression: ToDecimal(operand: AliasRef(name: aliasName)),
     );
-    
 
-    // Create and return the Query
-    final query = Query(
-      source: [aliasedQuerySource],
-      returnClause: returnClause,
-    );
-    
-    return query;
-  }
-
-  String _determineCastingType(Set<String> elementTypes, String functionName) {
-    // If all elements are the same type, use that type
-    if (elementTypes.length == 1) {
-      final type = elementTypes.first;
-      
-      return type; // E.g., "Integer"
-    } else if (elementTypes.length == 2) {
-      if (elementTypes.contains('LiteralNull') ||
-          elementTypes.contains('Null')) {
-        elementTypes.remove('LiteralNull');
-        elementTypes.remove('Null');
-        if (elementTypes.length == 1) {
-          final type = elementTypes.first;
-          return type;
-        }
-      }
-    }
-
-    // Handle mixed types or function-specific cases
-    if (functionName == 'Avg' ||
-        functionName == 'Variance' ||
-        functionName == 'StdDev') {
-      
-      return 'Decimal'; // Functions that promote to Decimal
-    }
-
-    // Default fallback if unsure
-    
-    return 'Integer';
+    return Query(source: [aliasedSource], returnClause: returnClause);
   }
 }

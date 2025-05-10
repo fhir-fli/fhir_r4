@@ -89,6 +89,15 @@ class Query extends CqlExpression {
   String get type => 'Query';
 
   @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = <String>[];
+    for (final s in source) {
+      returnTypes.addAll(s.getReturnTypes(library));
+    }
+    return returnTypes.toSet().toList();
+  }
+
+  @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     // 1) Build the Cartesian product of all sources
     List<Map<String, dynamic>> rows = [{}]; // ← start with a single, empty map

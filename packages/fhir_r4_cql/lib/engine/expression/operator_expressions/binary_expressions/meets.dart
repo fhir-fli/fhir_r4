@@ -118,7 +118,7 @@ class Meets extends BinaryExpression {
   String get type => 'Meets';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
   // TODO(Dokotela): with precision
   @override

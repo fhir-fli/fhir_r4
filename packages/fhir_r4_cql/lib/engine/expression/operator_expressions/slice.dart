@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Slice operator returns a portion of the elements in a list, beginning at the start index and ending just before the ending index.
 /// If the source list is null, the result is null.
 /// If the startIndex is null, the slice begins at the first element of the list.
@@ -75,6 +74,12 @@ class Slice extends OperatorExpression {
 
   @override
   String get type => 'Slice';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    return returnTypes;
+  }
 
   @override
   Future<List<dynamic>?> execute(Map<String, dynamic> context) async {

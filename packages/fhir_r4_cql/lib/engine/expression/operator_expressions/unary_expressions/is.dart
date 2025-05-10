@@ -84,10 +84,6 @@ class Is extends UnaryExpression {
       return null;
     }
 
-    print('Value: $value');
-    print('IsType: $isType');
-    print('IsTypeSpecifier: $isTypeSpecifier');
-
     // 5) No specifier or asType: just pass the value through
     return value;
   }

@@ -33,7 +33,7 @@ void startsTest() {
       final high1 = LiteralInteger(5);
       final interval1 = IntervalExpression(low: low1, high: high1);
       final interval2 =
-          As(operand: LiteralNull(), asType: QName.fromDataType('Interval'));
+          As(operand: LiteralNull(), asType: QName.fromElmType('Interval'));
       final starts = Starts(operand: [interval1, interval2]);
       final result = await starts.execute({});
       expect(result, isNull);

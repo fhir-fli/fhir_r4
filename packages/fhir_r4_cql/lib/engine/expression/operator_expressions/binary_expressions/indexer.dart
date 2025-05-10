@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the indexth element in a string or list.
 /// Indexes in strings and lists are defined to be 0-based.
 /// If the index is less than 0 or greater than the length of the string or
@@ -108,11 +107,15 @@ class Indexer extends BinaryExpression {
 
   @override
   List<String> getReturnTypes(CqlLibrary library) {
-    if (operand[0].getReturnTypes(library).contains('String') &&
-        operand[1].getReturnTypes(library).contains('FhirInteger')) {
+    final leftReturnTypes =
+        operand[0].getReturnTypes(library).map((e) => e.toLowerCase()).toList();
+    final rightReturnTypes =
+        operand[1].getReturnTypes(library).map((e) => e.toLowerCase()).toList();
+    if (leftReturnTypes.contains('string') &&
+        rightReturnTypes.contains('integer')) {
       return ['String'];
-    } else if (operand[0].getReturnTypes(library).contains('List') &&
-        operand[1].getReturnTypes(library).contains('FhirInteger')) {
+    } else if (leftReturnTypes.contains('list') &&
+        rightReturnTypes.contains('integer')) {
       return ['dynamic'];
     }
     return [];

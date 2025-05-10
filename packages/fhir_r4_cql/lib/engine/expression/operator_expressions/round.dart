@@ -104,11 +104,12 @@ class Round extends OperatorExpression {
   String get type => 'Round';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirDecimal'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Decimal'];
 
   @override
   Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
     final value = await operand.execute(context);
+    print('Value: $value (${value.runtimeType})');
     if (value == null) {
       return null;
     } else if (value is FhirDecimal) {

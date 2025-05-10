@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlInFixSetExpressionVisitor extends CqlBaseVisitor<NaryExpression> {
   CqlInFixSetExpressionVisitor(super.library);
 
@@ -113,7 +112,12 @@ class CqlInFixSetExpressionVisitor extends CqlBaseVisitor<NaryExpression> {
   ChoiceTypeSpecifier _buildChoiceType(Set<String> combinedTypes) {
     final choiceType = ChoiceTypeSpecifier(
       choice: combinedTypes.map((type) {
-        return NamedTypeSpecifier(namespace: QName.fromDataType(type));
+        return NamedTypeSpecifier(
+            namespace: QName.elmCoreTypes.contains(type)
+                ? QName.fromElmType(type)
+                : QName.fhirTypes.contains(type)
+                    ? QName.fromFhirType(type)
+                    : QName(localPart: type));
       }).toList(),
     );
 

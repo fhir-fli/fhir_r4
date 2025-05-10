@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// First operator returns the first element in a list.
 /// If the order by attribute is specified, the list is sorted by that
 /// ordering prior to returning the first element.
@@ -85,6 +84,15 @@ class First extends OperatorExpression {
 
   @override
   String get type => 'First';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    }
+    return [returnTypes.first];
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

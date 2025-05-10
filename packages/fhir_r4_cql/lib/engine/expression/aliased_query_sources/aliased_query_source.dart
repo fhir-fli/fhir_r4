@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The AliasedQuerySource element defines a single source for inclusion in a query scope.
 /// The type of the source is determined by the expression element, and the source can be accessed within the query scope by the given alias.
 class AliasedQuerySource extends CqlExpression {
@@ -60,4 +59,9 @@ class AliasedQuerySource extends CqlExpression {
 
   @override
   String toString() => toJson().toString();
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    return expression.getReturnTypes(library);
+  }
 }

@@ -12,7 +12,7 @@ void absTest() {
     });
     test("""define "IntegerAbsIsNull": Abs(null as Integer)""", () async {
       final input =
-          As(asType: QName.fromDataType('Integer'), operand: LiteralNull());
+          As(asType: QName.fromElmType('Integer'), operand: LiteralNull());
       final result = Abs(operand: input);
       expect(await result.execute({}), isNull);
     });

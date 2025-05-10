@@ -87,7 +87,7 @@ class As extends UnaryExpression {
             ? null
             : TypeSpecifierExpression.fromJson(json['asTypeSpecifier'])
         ..asType =
-            json['asType'] == null ? null : QName.fromFull(json['asType'])
+            json['asType'] == null ? null : QName.parse(json['asType'])
         ..strict = json['strict'];
 
   @override

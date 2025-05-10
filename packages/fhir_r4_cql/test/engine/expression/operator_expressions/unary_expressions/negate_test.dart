@@ -28,7 +28,7 @@ void negateTest() {
     });
     test("""define "NegateIsNull": -(null as Integer)""", () async {
       final input =
-          As(asType: QName.fromDataType('Integer'), operand: LiteralNull());
+          As(asType: QName.fromElmType('Integer'), operand: LiteralNull());
       final result = Negate(operand: input);
       expect(await result.execute({}), isNull);
     });

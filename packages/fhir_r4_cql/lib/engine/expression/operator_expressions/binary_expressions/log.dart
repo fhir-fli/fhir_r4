@@ -56,7 +56,7 @@ class Log extends BinaryExpression {
     } else if (first is LiteralDecimal) {
       operand.add(first);
     } else if (first is LiteralNull) {
-      operand.add(As(operand: first, asType: QName.fromDataType('Decimal')));
+      operand.add(As(operand: first, asType: QName.fromElmType('Decimal')));
     } else {
       final return1 = operand.first.getReturnTypes(library);
       if (return1.length == 1) {
@@ -67,7 +67,7 @@ class Log extends BinaryExpression {
           operand.add(first);
         } else if (return1.first == 'Null') {
           operand
-              .add(As(operand: first, asType: QName.fromDataType('Decimal')));
+              .add(As(operand: first, asType: QName.fromElmType('Decimal')));
         }
       }
     }
@@ -76,7 +76,7 @@ class Log extends BinaryExpression {
     } else if (second is LiteralDecimal) {
       operand.add(second);
     } else if (second is LiteralNull) {
-      operand.add(As(operand: second, asType: QName.fromDataType('Decimal')));
+      operand.add(As(operand: second, asType: QName.fromElmType('Decimal')));
     } else {
       final return2 = operand.last.getReturnTypes(library);
       if (return2.length == 1) {
@@ -84,7 +84,7 @@ class Log extends BinaryExpression {
           operand.add(ToDecimal(operand: second));
         } else if (return2.first == 'Null') {
           operand
-              .add(As(operand: second, asType: QName.fromDataType('Decimal')));
+              .add(As(operand: second, asType: QName.fromElmType('Decimal')));
         }
       }
     }
@@ -164,5 +164,5 @@ class Log extends BinaryExpression {
   }
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirDecimal'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Decimal'];
 }

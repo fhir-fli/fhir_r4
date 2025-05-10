@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlRetrieveVisitor extends CqlBaseVisitor<Retrieve> {
   CqlRetrieveVisitor(super.library);
 
@@ -51,8 +50,10 @@ class CqlRetrieveVisitor extends CqlBaseVisitor<Retrieve> {
                     (modelInfo.typeInfo[index] as ProfileInfo).identifier;
                 localPart = (modelInfo.typeInfo[index] as ProfileInfo).name;
               }
-              name.namespace = QName.fromNamespace(modelInfo.url.toString(),
-                  localPart ?? templateId ?? name.namespace.localPart);
+              name.namespace = QName(
+                  namespaceURI: modelInfo.url.toString(),
+                  localPart:
+                      localPart ?? templateId ?? name.namespace.localPart);
               break;
             }
           }

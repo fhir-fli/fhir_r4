@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Variance operator returns the statistical variance of the elements in
 /// source.
 /// If a path is specified, elements with no value for the property specified
@@ -101,6 +100,18 @@ class Variance extends AggregateExpression {
 
   @override
   String get type => 'Variance';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    } else if (returnTypes.contains('Quantity')) {
+      return ['Quantity'];
+    } else {
+      return ['Decimal'];
+    }
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

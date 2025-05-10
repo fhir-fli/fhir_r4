@@ -34,7 +34,7 @@ class Convert extends UnaryExpression {
   factory Convert.fromJson(Map<String, dynamic> json) => Convert(
         toTypeSpecifier:
             TypeSpecifierExpression.fromJson(json['toTypeSpecifier']),
-        toType: QName.fromFull(json['toType']),
+        toType: QName.parse(json['toType']),
         operand: CqlExpression.fromJson(json['operand']!),
         annotation: json['annotation'] != null
             ? (json['annotation'] as List)

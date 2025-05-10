@@ -122,5 +122,5 @@ class Xor extends BinaryExpression {
   }
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 }

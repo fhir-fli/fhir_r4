@@ -80,7 +80,7 @@ class EndsWith extends BinaryExpression {
   String get type => 'EndsWith';
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => const ['FhirBoolean'];
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {

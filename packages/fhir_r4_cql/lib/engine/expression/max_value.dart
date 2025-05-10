@@ -70,7 +70,7 @@ class MaxValue extends CqlExpression {
   });
 
   factory MaxValue.fromJson(Map<String, dynamic> json) => MaxValue(
-        valueType: QName.fromFull(json['valueType']!),
+        valueType: QName.parse(json['valueType']!),
         annotation: json['annotation'] != null
             ? (json['annotation'] as List)
                 .map((e) => CqlToElmBase.fromJson(e))

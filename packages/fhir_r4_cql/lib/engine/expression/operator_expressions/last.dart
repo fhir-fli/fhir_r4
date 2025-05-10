@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Last operator returns the last element in a list.
 /// If the order by attribute is specified, the list is sorted by that ordering
 /// prior to returning the last element.
@@ -88,6 +87,15 @@ class Last extends OperatorExpression {
 
   @override
   String get type => 'Last';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    }
+    return [returnTypes.last];
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

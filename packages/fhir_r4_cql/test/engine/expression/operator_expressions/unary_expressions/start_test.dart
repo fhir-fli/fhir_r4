@@ -18,7 +18,7 @@ void startTest() {
     test("""define "StartIsNull": start of (null as Interval<Integer>)""",
         () async {
       final interval =
-          As(operand: LiteralNull(), asType: QName.fromDataType('Interval'));
+          As(operand: LiteralNull(), asType: QName.fromElmType('Interval'));
       final start = Start(operand: interval);
       final result = await start.execute({});
       expect(result, isNull);

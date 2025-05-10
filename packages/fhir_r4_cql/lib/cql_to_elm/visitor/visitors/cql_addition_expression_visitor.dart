@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   CqlAdditionExpressionVisitor(super.library);
 
@@ -46,11 +45,11 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     if (left is LiteralType && right is LiteralNull) {
       return Subtract(operand: [
         left,
-        As(operand: right, asType: QName.fromFull(left.valueType))
+        As(operand: right, asType: QName.parse(left.valueType))
       ]);
     } else if (left is LiteralNull && right is LiteralType) {
       return Subtract(operand: [
-        As(operand: left, asType: QName.fromFull(right.valueType)),
+        As(operand: left, asType: QName.parse(right.valueType)),
         right
       ]);
     } else {
@@ -68,10 +67,10 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       return Concatenate(
         operand: [
           left is LiteralNull
-              ? As(operand: left, asType: QName.fromDataType('String'))
+              ? As(operand: left, asType: QName.fromElmType('String'))
               : left,
           right is LiteralNull
-              ? As(operand: right, asType: QName.fromDataType('String'))
+              ? As(operand: right, asType: QName.fromElmType('String'))
               : right
         ],
         plus: true,
@@ -82,13 +81,13 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         operand: [
           Coalesce(operand: [
             left is LiteralNull
-                ? As(operand: left, asType: QName.fromDataType('String'))
+                ? As(operand: left, asType: QName.fromElmType('String'))
                 : left,
             LiteralString(''),
           ]),
           Coalesce(operand: [
             right is LiteralNull
-                ? As(operand: right, asType: QName.fromDataType('String'))
+                ? As(operand: right, asType: QName.fromElmType('String'))
                 : right,
             LiteralString(''),
           ]),
@@ -138,7 +137,9 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     } else if (right is LiteralNull) {
       return Add(operand: [
         left,
-        As(operand: right, asType: QName.fromFull(left.type))
+        As(
+            operand: right,
+            asType: left.type == null ? null : QName.parse(left.type!))
       ]);
     }
     return Add(operand: [left, right]);
@@ -154,7 +155,9 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     } else if (right is LiteralNull) {
       return Add(operand: [
         left,
-        As(operand: right, asType: QName.fromFull(left.type))
+        As(
+            operand: right,
+            asType: left.type == null ? null : QName.parse(left.type!))
       ]);
     }
     return Add(operand: [left, right]);
@@ -168,7 +171,9 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     } else if (right is LiteralNull) {
       return Add(operand: [
         left,
-        As(operand: right, asType: QName.fromFull(left.type))
+        As(
+            operand: right,
+            asType: left.type == null ? null : QName.parse(left.type!))
       ]);
     }
     return Add(operand: [left, right]);
@@ -181,7 +186,9 @@ class CqlAdditionExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     } else if (right is LiteralNull) {
       return Add(operand: [
         left,
-        As(operand: right, asType: QName.fromFull(left.type))
+        As(
+            operand: right,
+            asType: left.type == null ? null : QName.parse(left.type!))
       ]);
     }
     return Add(operand: [left, right]);

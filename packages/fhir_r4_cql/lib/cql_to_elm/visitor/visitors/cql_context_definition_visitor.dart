@@ -2,7 +2,6 @@ import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlContextDefinitionVisitor extends CqlBaseVisitor<void> {
   CqlContextDefinitionVisitor(super.library);
 
@@ -44,8 +43,9 @@ class CqlContextDefinitionVisitor extends CqlBaseVisitor<void> {
                       templateId: R4ResourceType.typesAsStrings.contains(name)
                           ? 'http://hl7.org/fhir/StructureDefinition/$name'
                           : name,
-                      dataType:
-                          QName.fromNamespace(modelInfo.url.toString(), name),
+                      dataType: QName(
+                          namespaceURI: modelInfo.url.toString(),
+                          localPart: name),
                     ),
                   ),
                 ),

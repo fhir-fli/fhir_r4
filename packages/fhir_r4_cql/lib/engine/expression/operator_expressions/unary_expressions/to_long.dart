@@ -141,5 +141,5 @@ class ToLong extends UnaryExpression {
   }
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => ['FhirInteger64'];
+  List<String> getReturnTypes(CqlLibrary library) => ['Integer64'];
 }

@@ -16,7 +16,7 @@ class ParameterTypeSpecifier extends TypeSpecifierExpression {
     super.locator,
     super.resultTypeName,
     super.resultTypeSpecifier,
-  }) : parameterName = QName.fromFull(parameterName);
+  }) : parameterName = QName.parse(parameterName);
 
   factory ParameterTypeSpecifier.fromJson(Map<String, dynamic> json) {
     final parameterName = json['parameterName'] as String? ?? '';

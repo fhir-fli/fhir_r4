@@ -83,6 +83,18 @@ class PopulationVariance extends AggregateExpression {
   String get type => 'PopulationVariance';
 
   @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    } else if (returnTypes.contains('Quantity')) {
+      return ['Quantity'];
+    } else {
+      return ['Decimal'];
+    }
+  }
+
+  @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     final sourceResult = await source.execute(context);
     return populationVariance(sourceResult);

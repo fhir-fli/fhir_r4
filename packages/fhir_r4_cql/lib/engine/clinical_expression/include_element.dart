@@ -44,7 +44,7 @@ class IncludeElement extends Element {
 
   factory IncludeElement.fromJson(Map<String, dynamic> json) => IncludeElement(
         includeFrom: json['includeFrom'],
-        relatedDataType: QName.fromFull(json['relatedDataType']),
+        relatedDataType: QName.parse(json['relatedDataType']),
         relatedProperty: json['relatedProperty'],
         relatedSearch: json['relatedSearch'],
         isReverse: json['isReverse'],

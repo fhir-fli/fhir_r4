@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Avg operator returns the average of the non-null elements in source.
 /// If a path is specified, elements with no value for the property specified
 /// by the path are ignored.
@@ -107,7 +106,6 @@ class Avg extends AggregateExpression {
   }
 
   static dynamic avg(dynamic sourceResult) {
-
     if (sourceResult == null) {
       return null;
     }
@@ -154,37 +152,15 @@ class Avg extends AggregateExpression {
 
   @override
   List<String> getReturnTypes(CqlLibrary library) {
-    if (source is ListExpression) {
-      final elementTypes = source.getReturnTypes(library).toSet();
+    final elementTypes = source.getReturnTypes(library).toSet();
 
-      if (elementTypes.isEmpty) {
-        throw ArgumentError('Source must have at least one valid type.');
-      }
-
-      elementTypes
-        ..remove('FhirInteger')
-        ..remove('FhirDecimal')
-        ..remove('FhirNumber')
-        ..remove('num')
-        ..remove('int')
-        ..remove('double')
-        ..remove('FhirInteger64')
-        ..remove('BigInt')
-        ..remove('Null')
-        ..remove('null');
-
-      if (elementTypes.isEmpty) {
-        return ['FhirDecimal'];
-      }
-
-      if (elementTypes.length == 1 &&
-          elementTypes.contains('ValidatedQuantity')) {
-        return ['ValidatedQuantity'];
-      }
-
-      throw ArgumentError('Invalid source type for Avg: $elementTypes');
+    if (elementTypes.isEmpty) {
+      return [];
+    } else if (elementTypes.contains('Quantity')) {
+      return ['Quantity'];
+    } else {
+      return ['Decimal'];
     }
-    return ['Unknown'];
   }
 
   @override

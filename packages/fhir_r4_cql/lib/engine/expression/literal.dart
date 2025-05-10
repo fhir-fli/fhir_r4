@@ -125,7 +125,7 @@ class Literal extends CqlExpression {
         break;
     }
     return Literal(
-      valueType: QName.fromFull(valueType),
+      valueType: QName.parse(valueType),
       value: value,
     );
   }
@@ -134,113 +134,113 @@ class Literal extends CqlExpression {
     switch (type) {
       case LiteralBoolean _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Boolean'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Boolean'),
           value: type,
         );
       case LiteralCode _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Code'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Code'),
           value: type,
         );
       case LiteralConcept _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Concept'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Concept'),
           value: type,
         );
       case LiteralValueSet _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}ValueSet'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}ValueSet'),
           value: type,
         );
       case LiteralCodeSystem _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}CodeSystem'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}CodeSystem'),
           value: type,
         );
       case LiteralDate _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Date'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Date'),
           value: type,
         );
       case LiteralDateTime _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}DateTime'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}DateTime'),
           value: type,
         );
       case LiteralDecimal _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Decimal'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Decimal'),
           value: type,
         );
       case LiteralInteger _:
         {
           return Literal(
-            valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Integer'),
+            valueType: QName.parse('{urn:hl7-org:elm-types:r1}Integer'),
             value: type,
           );
         }
       case LiteralLong _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Long'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Long'),
           value: type,
         );
       case LiteralQuantity _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Quantity'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Quantity'),
           value: type,
         );
       case LiteralRatio _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Ratio'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Ratio'),
           value: type,
         );
       case LiteralString _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}String'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}String'),
           value: type,
         );
       case LiteralTime _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Time'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Time'),
           value: type,
         );
       case LiteralIntegerInterval _:
         return Literal(
           valueType:
-              QName.fromFull('{urn:hl7-org:elm-types:r1}IntegerInterval'),
+              QName.parse('{urn:hl7-org:elm-types:r1}IntegerInterval'),
           value: type,
         );
       case LiteralDecimalInterval _:
         return Literal(
           valueType:
-              QName.fromFull('{urn:hl7-org:elm-types:r1}DecimalInterval'),
+              QName.parse('{urn:hl7-org:elm-types:r1}DecimalInterval'),
           value: type,
         );
       case LiteralQuantityInterval _:
         return Literal(
           valueType:
-              QName.fromFull('{urn:hl7-org:elm-types:r1}QuantityInterval'),
+              QName.parse('{urn:hl7-org:elm-types:r1}QuantityInterval'),
           value: type,
         );
       case LiteralDateTimeInterval _:
         return Literal(
           valueType:
-              QName.fromFull('{urn:hl7-org:elm-types:r1}DateTimeInterval'),
+              QName.parse('{urn:hl7-org:elm-types:r1}DateTimeInterval'),
           value: type,
         );
       case LiteralDateInterval _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}DateInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}DateInterval'),
           value: type,
         );
       case LiteralTimeInterval _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}TimeInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}TimeInterval'),
           value: type,
         );
       case NullExpression _:
         return Literal(
-          valueType: QName.fromFull('{urn:hl7-org:elm-types:r1}Null'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}Null'),
           value: type as Null,
         );
     }

@@ -48,14 +48,14 @@ class Concatenate extends NaryExpression {
     if (first is LiteralString) {
       operand.add(first);
     } else if (first is LiteralNull) {
-      operand.add(As(operand: first, asType: QName.fromDataType('String')));
+      operand.add(As(operand: first, asType: QName.fromElmType('String')));
     } else {
       final return1 = first.getReturnTypes(library);
       if (return1.length == 1) {
         if (return1.first == 'LiteralString') {
           operand.add(first);
         } else if (return1.first == 'LiteralNull') {
-          operand.add(As(operand: first, asType: QName.fromDataType('String')));
+          operand.add(As(operand: first, asType: QName.fromElmType('String')));
         }
       }
     }
@@ -63,7 +63,7 @@ class Concatenate extends NaryExpression {
     if (second is LiteralString) {
       operand.add(second);
     } else if (second is LiteralNull) {
-      operand.add(As(operand: second, asType: QName.fromDataType('String')));
+      operand.add(As(operand: second, asType: QName.fromElmType('String')));
     } else {
       final return2 = second.getReturnTypes(library);
       if (return2.length == 1) {
@@ -71,7 +71,7 @@ class Concatenate extends NaryExpression {
           operand.add(second);
         } else if (return2.first == 'LiteralNull') {
           operand
-              .add(As(operand: second, asType: QName.fromDataType('String')));
+              .add(As(operand: second, asType: QName.fromElmType('String')));
         }
       }
     }

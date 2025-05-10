@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Sum operator returns the sum of non-null elements in the source.
 /// If a path is specified, elements with no value for the property specified
 /// by the path are ignored.
@@ -105,6 +104,15 @@ class Sum extends AggregateExpression {
 
   @override
   String get type => 'Sum';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    final returnTypes = source.getReturnTypes(library);
+    if (returnTypes.isEmpty) {
+      return [];
+    }
+    return [returnTypes.first];
+  }
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
