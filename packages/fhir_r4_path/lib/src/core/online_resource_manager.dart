@@ -31,7 +31,7 @@ class OnlineResourceCache extends CanonicalResourceCache {
     String? version,
   ) async {
     try {
-      var uri = Uri.parse(url);
+      var uri = Uri.parse(url.replaceAll('http://', 'https://'));
       if (version != null) {
         final params = <String, String>{
           ...uri.queryParameters,
@@ -45,8 +45,15 @@ class OnlineResourceCache extends CanonicalResourceCache {
         'Content-Type': 'application/json',
       };
 
-      final response = await client!.get(uri, headers: headers);
-      if (response.statusCode != 200) return null;
+      var response = await client!.get(uri, headers: headers);
+      if (response.statusCode != 200) {
+        headers['Accept'] = 'application/json';
+        response = await client!.get(uri, headers: headers);
+        if (response.statusCode != 200) {
+          // Failed to fetch the resource
+          return null;
+        }
+      }
 
       final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
       final resourceType = jsonMap['resourceType'] as String?;

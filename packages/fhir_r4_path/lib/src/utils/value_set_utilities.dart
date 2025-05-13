@@ -865,7 +865,7 @@ class ValueSetChecker {
     }
 
     if (valueSet != null) {
-      final result = _validateCodeInValueSet(code, warnings);
+      final result = await _validateCodeInValueSet(code, warnings);
       if (result.errors.isNotEmpty) {
         errors.insertAll(0, result.errors);
       }
@@ -978,15 +978,15 @@ class ValueSetChecker {
     return null;
   }
 
-  CodeInValueSetResult _validateCodeInValueSet(
+  Future<CodeInValueSetResult> _validateCodeInValueSet(
     CodeableConcept code,
     List<String> warnings,
-  ) {
+  ) async {
     final errors = <String>[];
     final matchedCodes = <bool?>[];
 
     for (final coding in code.coding ?? <Coding>[]) {
-      final matched = codeInValueSet(
+      final matched = await codeInValueSet(
         coding.system?.primitiveValue,
         coding.code?.primitiveValue,
         warnings,
@@ -1003,7 +1003,11 @@ class ValueSetChecker {
   }
 
   /// Check if a code is in the value set
-  bool? codeInValueSet(String? system, String? code, List<String>? warnings) {
+  Future<bool?> codeInValueSet(
+    String? system,
+    String? code,
+    List<String>? warnings,
+  ) async {
     if (valueSet == null) return false;
 
     if (valueSet!.expansion != null) {
@@ -1015,13 +1019,13 @@ class ValueSetChecker {
     if (valueSet!.compose != null) {
       bool? result = false;
       for (final include in valueSet!.compose!.include) {
-        final match = _inComponent(include, system, code);
+        final match = await _inComponent(include, system, code);
         if (match ?? false) return true;
         if (match == null) result = null;
       }
 
       for (final exclude in valueSet!.compose!.exclude ?? <ValueSetInclude>[]) {
-        final match = _inComponent(exclude, system, code);
+        final match = await _inComponent(exclude, system, code);
         if (match ?? false) return false;
       }
 
@@ -1031,17 +1035,27 @@ class ValueSetChecker {
     return false;
   }
 
-  bool? _inComponent(
+  Future<bool?> _inComponent(
     ValueSetInclude component,
     String? system,
     String? code,
-  ) {
+  ) async {
     if (system == null) return false;
+    if (code == null) return null;
     if (component.system?.primitiveValue != system) return false;
 
-    for (final concept in component.concept ?? <ValueSetConcept>[]) {
-      if (concept.code.primitiveValue == code) {
-        return true;
+    if (component.concept == null && component.system?.valueString != null) {
+      final codeSystem = await resolveCodeSystem(component.system?.valueString);
+      final codeSystemConcept = findCodeInConceptList(
+        codeSystem?.concept ?? <CodeSystemConcept>[],
+        code,
+      );
+      return codeSystemConcept != null;
+    } else {
+      for (final concept in component.concept ?? <ValueSetConcept>[]) {
+        if (concept.code.primitiveValue == code) {
+          return true;
+        }
       }
     }
 
