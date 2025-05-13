@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlCode implements CqlType {
   String? code;
   String? display;
@@ -65,11 +64,11 @@ class CqlCode implements CqlType {
         version.hashCode;
   }
 
-  factory CqlCode.fromCodeDef(CodeDef codeDef) {
+  factory CqlCode.fromCodeDef(CodeDef codeDef, String? codeSystemDef) {
     return CqlCode(
       code: codeDef.id,
       display: codeDef.display,
-      system: codeDef.codeSystem?.name,
+      system: codeSystemDef ?? codeDef.codeSystem?.name,
     );
   }
 }

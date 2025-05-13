@@ -27,7 +27,8 @@ class QName {
     'Boolean',
     'Concept',
     'Interval',
-    'ValueSet'
+    'ValueSet',
+    'Null',
   };
 
   static final fhirTypes =

@@ -23,7 +23,7 @@ class CqlValueSet extends CqlVocabulary {
     );
     for (var cs in vs.codeSystem ?? <CodeSystemRef>[]) {
       vsi.codeSystems ??= <CqlCodeSystem>[];
-      vsi.codeSystems!.add(CqlCodeSystem.fromCodeSystem(cs));
+      vsi.codeSystems!.add(CqlCodeSystem.fromCodeSystemRef(cs));
     }
     return vsi;
   }

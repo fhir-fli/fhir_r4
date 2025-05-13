@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Named function definition that can be invoked by any expression in the
 /// artifact.
 class FunctionDef extends ExpressionDef {
@@ -95,6 +94,30 @@ class FunctionDef extends ExpressionDef {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    throw UnimplementedError();
+    // If the function is external or has no expression, throw an error
+    if (external == true || expression == null) {
+      throw ArgumentError(
+          'Cannot execute external function or function without expression: $name');
+    }
+
+    // Create a new context for function execution
+    final Map<String, dynamic> functionContext = Map.from(context);
+
+    // If the function has operands defined in the context, make them available to the function expression
+    if (operand != null && operand!.isNotEmpty) {
+      for (var param in operand!) {
+        // Check if this parameter is in the context (should have been provided by the caller)
+        if (context.containsKey(param.name)) {
+          // Maps the operand name to the value provided in the context
+          functionContext[param.name] = context[param.name];
+        } else {
+          // Parameter not provided - could throw an error or use null
+          functionContext[param.name] = null;
+        }
+      }
+    }
+
+    // Execute the function body with the function context
+    return await expression!.execute(functionContext);
   }
 }

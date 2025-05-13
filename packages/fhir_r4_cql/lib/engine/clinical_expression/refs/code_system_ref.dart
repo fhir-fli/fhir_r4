@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The CodeSystemRef expression allows a previously defined named code system to
 /// be referenced within an expression. Conceptually, referencing a code system
 /// returns the set of codes in the code system. Note that this operation should
@@ -49,7 +48,7 @@ class CodeSystemRef extends Ref {
   @override
   String get type => 'CodeSystemRef';
 
-    @override
+  @override
   List<String> getReturnTypes(CqlLibrary library) {
     if (resultTypeName != null) {
       return [resultTypeName!];
@@ -61,4 +60,16 @@ class CodeSystemRef extends Ref {
     return ['CodeSystem'];
   }
 
+  @override
+  Future<CqlCodeSystem?> execute(Map<String, dynamic> context) async {
+    // Retrieve the CqlLibrary from the context
+    var library = context['library'];
+    if (library == null || library is! CqlLibrary) {
+      throw ArgumentError('CqlLibrary not found in context');
+    }
+
+    final CqlCodeSystem? codeSystem = library.resolveCodeSystemRef(name);
+
+    return codeSystem;
+  }
 }

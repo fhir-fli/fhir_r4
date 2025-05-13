@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 // CqlCodeSystem type extending Vocabulary
 class CqlCodeSystem extends CqlVocabulary {
   CqlCodeSystem({
@@ -9,7 +8,7 @@ class CqlCodeSystem extends CqlVocabulary {
     required super.name,
   });
 
-  factory CqlCodeSystem.fromCodeSystem(CodeSystemRef cs) {
+  factory CqlCodeSystem.fromCodeSystemRef(CodeSystemRef cs) {
     return CqlCodeSystem(
       id: cs.localId ?? cs.type,
       version: cs.name,
@@ -33,9 +32,15 @@ class CqlCodeSystem extends CqlVocabulary {
   }
 
   // Static method to create a CqlCodeSystemInfo from a CqlCodeSystem
-  static CqlCodeSystem fromCodeSystemRef(CodeSystemRef cs) {
+  factory CqlCodeSystem.fromCodeSystemDef(CodeSystemDef codeSystemDef) {
+    if (codeSystemDef.id == null || codeSystemDef.name == null) {
+      throw ArgumentError('ValueSetDef must have id, version, and name');
+    }
     return CqlCodeSystem(
-        id: cs.localId ?? cs.type, version: cs.name, name: cs.name);
+      id: codeSystemDef.id!,
+      version: codeSystemDef.version,
+      name: codeSystemDef.name!,
+    );
   }
 
   // Getter for ID

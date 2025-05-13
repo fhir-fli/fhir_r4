@@ -1,5 +1,13 @@
+import 'package:fhir_r4/fhir_r4.dart'
+    show CodeableConcept, FhirBoolean, FhirCode, ValueSet;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
-
+import 'package:fhir_r4_path/fhir_r4_path.dart'
+    show
+        CanonicalResourceCache,
+        OnlineResourceCache,
+        ValidationOptions,
+        ValueSetChecker,
+        WorkerContext;
 
 /// The InValueSet operator returns true if the given code is in the given value
 /// set.
@@ -95,4 +103,84 @@ class InValueSet extends OperatorExpression {
 
   @override
   String get type => 'InValueSet';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    // Retrieve the CqlLibrary from the context
+    var library = context['library'];
+    if (library == null || library is! CqlLibrary) {
+      throw ArgumentError('CqlLibrary not found in context');
+    }
+    CqlValueSet? valueSetRef = await valueset?.execute(context);
+    if (valueSetRef == null) {
+      valueSetRef = await valuesetExpression?.execute(context);
+    }
+    if (valueSetRef == null) {
+      throw ArgumentError('ValueSet not found in context');
+    }
+    final resourceCache = context['resourceCache'] ?? OnlineResourceCache();
+
+    final valueSet = await (resourceCache as CanonicalResourceCache)
+        .getCanonicalResource<ValueSet>(valueSetRef.id, valueSetRef.version);
+
+    if (valueSet == null) {
+      throw ArgumentError('ValueSet not found in context');
+    }
+
+    final workerContext = WorkerContext(resourceCache: resourceCache);
+    context['workerContext'] = workerContext;
+    final checker = ValueSetChecker(
+      context: workerContext,
+      options: ValidationOptions(),
+      valueSet: valueSet,
+    );
+    final codeValue = await code.execute(context);
+
+    switch (codeValue) {
+      case String _:
+        return FhirBoolean(
+            (await checker.codeInValueSet(null, codeValue, null)) ?? false);
+      case CqlCode _:
+        return FhirBoolean((await checker.codeInValueSet(
+                codeValue.system, codeValue.code, null)) ??
+            false);
+      case FhirCode _:
+        return FhirBoolean(
+            (await checker.codeInValueSet(null, codeValue.valueString, null)) ??
+                false);
+      case CqlConcept _:
+        if (codeValue.codes.isEmpty) {
+          return null;
+        }
+        for (final code in codeValue.codes) {
+          final inValueSet =
+              (await checker.codeInValueSet(code.system, code.code, null)) ??
+                  false;
+          if (inValueSet) {
+            return FhirBoolean(true);
+          }
+        }
+        return FhirBoolean(false);
+      case CodeableConcept _:
+        if (codeValue.coding == null || codeValue.coding!.isEmpty) {
+          return null;
+        }
+        for (final coding in codeValue.coding!) {
+          final inValueSet = (await checker.codeInValueSet(
+                  coding.system?.valueString,
+                  coding.code?.valueString,
+                  null)) ??
+              false;
+          if (inValueSet) {
+            return FhirBoolean(true);
+          }
+        }
+        return FhirBoolean(false);
+      default:
+        throw ArgumentError('Invalid code type');
+    }
+  }
 }

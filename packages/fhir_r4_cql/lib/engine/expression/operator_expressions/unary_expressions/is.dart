@@ -76,6 +76,7 @@ class Is extends UnaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
+
     // 1) Evaluate the operand
     final dynamic value = await operand.execute(context);
 

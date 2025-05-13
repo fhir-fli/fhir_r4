@@ -119,8 +119,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         }
       }
 
-      print('Operand0: ${operands[0].runtimeType}');
-      print('ReturnTypes0: ${operands[0].getReturnTypes(library)}');
       // ───── Decimal promotion (unchanged) ─────
       if (_requiresDecimalPromotion(operands[0])) {
         if (operands[1] is LiteralInteger) {

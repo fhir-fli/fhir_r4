@@ -150,7 +150,6 @@ class Equal extends BinaryExpression {
     if (operand.length != 2) {
       throw ArgumentError('Equal expression must have 2 operands');
     } else {
-      print(operand[0].toJson());
       final left = await operand[0].execute(context);
       final right = await operand[1].execute(context);
       final result = equal(left, right);
