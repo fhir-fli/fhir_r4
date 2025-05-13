@@ -3,10 +3,17 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 final exercises05 = <String, dynamic>{
-  'Patient': 'Patient(id=example)',
-  'Patient Gender': 'code',
+  'Patient': Patient.fromJson(context05['Patient']),
+  'Patient Gender': AdministrativeGender.male,
   'Patient Gender is Male': FhirBoolean(true),
-  'Patient Martial Status': 'CodeableConcept',
+  'Patient Marital Status': CodeableConcept.fromJson({
+    'coding': [
+      {
+        'system': 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus',
+        'code': 'M'
+      }
+    ]
+  }),
   'Patient is Married (=)': FhirBoolean(true),
   'Patient is Married (~)': FhirBoolean(true),
   'Married in Marital Status': FhirBoolean(true),

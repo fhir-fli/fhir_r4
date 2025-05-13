@@ -69,4 +69,16 @@ class ToString extends UnaryExpression {
 
   @override
   String get type => 'ToString';
+
+
+
+  /// Boolean: true|false
+/// Integer: (-)?#0
+/// Decimal: (-)?#0.0#
+/// Quantity: (-)?#0.0# '<unit>'
+/// Date: YYYY-MM-DD
+/// DateTime: YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
+/// Time: hh:mm:ss.fff
+/// Ratio: <quantity>:<quantity>
+/// If the argument is null, the result is null.
 }

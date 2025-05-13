@@ -103,15 +103,23 @@ class Property extends CqlExpression {
   Future<dynamic> execute(Map<String, dynamic> context) async {
     final sourceResult = await source?.execute(context);
     try {
-      final sourceJson = sourceResult.toJson();
-      final result =
-          await walkFhirPath(context: sourceJson, pathExpression: path);
+      final context = sourceResult is FhirBase
+          ? sourceResult
+          : sourceResult is Map<String, dynamic>
+              ? Resource.fromJson(sourceResult)
+              : sourceResult is List &&
+                      sourceResult.length == 1 &&
+                      sourceResult.first is Map<String, dynamic>
+                  ? Resource.fromJson(sourceResult.first)
+                  : null;
+      final result = await walkFhirPath(context: context, pathExpression: path);
       if (result.length == 1) {
         return result.first;
       } else {
         return result;
       }
     } catch (e) {
+      print('Error executing Property: $e');
       return null;
     }
   }

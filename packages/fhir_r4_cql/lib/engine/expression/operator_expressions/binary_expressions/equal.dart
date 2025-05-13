@@ -4,7 +4,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the arguments are equal.
 /// Returns true if the arguments are equal, false if they are known unequal, and null otherwise.
 /// Equality semantics are defined to be value-based.
@@ -151,6 +150,7 @@ class Equal extends BinaryExpression {
     if (operand.length != 2) {
       throw ArgumentError('Equal expression must have 2 operands');
     } else {
+      print(operand[0].toJson());
       final left = await operand[0].execute(context);
       final right = await operand[1].execute(context);
       final result = equal(left, right);
@@ -182,6 +182,9 @@ class Equal extends BinaryExpression {
       case CqlConcept _:
         result = left.equal(right);
         break;
+      case FhirCode _:
+        result = (right is FhirCode && left.equalsDeep(right)) ||
+            (right is String && left.valueString == right);
       case num _:
         {
           if (right is num) {

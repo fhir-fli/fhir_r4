@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The SingletonFrom expression extracts a single element from the source list.
@@ -81,15 +82,18 @@ class SingletonFrom extends UnaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    print('operand: $operand');
     final list = await operand.execute(context);
-    print('SingletonFrom: $list');
     if (list == null) {
       return null;
     } else if (list is List) {
       if (list.isEmpty) {
         return null;
       } else if (list.length == 1) {
+        if (list.first is Map<String, dynamic> &&
+            list.first['resourceType'] is String &&
+            (list.first['resourceType'] as String).isFhirResourceType) {
+          return Resource.fromJson(list.first);
+        }
         return list.first;
       } else {
         throw CqlException(

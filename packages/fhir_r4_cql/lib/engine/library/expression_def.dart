@@ -188,6 +188,7 @@ class ExpressionDef extends Element {
   };
 
   Future<dynamic> execute(Map<String, dynamic> context) async {
+    print('Executing expression: $name (${expression?.type})');
     return {name: await expression?.execute(context)};
   }
 
