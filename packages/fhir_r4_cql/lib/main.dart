@@ -14,6 +14,8 @@ import 'inputs/inputs.dart';
 
 const bool shouldPrint = false;
 
+const testNumber = 3;
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -33,7 +35,7 @@ void parseFile(BuildContext context) async {
     final Map<String, dynamic> manifestMap = json.decode(assetsFile)
       ..removeWhere((key, value) => !key.contains('cql/'));
 
-    for (int i = 1; i < 6; i++) {
+    for (int i = 1; i < testNumber + 1; i++) {
       final file =
           manifestMap.keys.firstWhereOrNull((e) => e.contains('$i.cql'));
       if (file == null) break;
@@ -92,14 +94,14 @@ void _compareLibraries(
     final areEqual =
         const DeepCollectionEquality().equals(jsonLibrary, resultLibrary);
     print('${file.split("/").last} Elm is equal: $areEqual');
-    if (file.contains('05.cql')) {
+    if (file.contains('0$testNumber.cql')) {
       resultLibrary = {
         'annotation': resultAnnotation,
         ...resultLibrary,
       };
       final results = {'library': resultLibrary};
       // print(jsonEncode(jsonLibrary));
-      // print(jsonEncode(results));
+      print(jsonEncode(results));
     }
   }
 }
@@ -108,6 +110,8 @@ void _compareResults(dynamic results, dynamic answers, String file) {
   if (results is Map<String, dynamic>) {
     results.remove('startTimestamp');
     results.remove('library');
+    results.remove('workerContext');
+    results.remove('resourceCache');
 
     bool areEqual = true;
     String equalReason = '';
