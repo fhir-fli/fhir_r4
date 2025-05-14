@@ -101,13 +101,13 @@ class Case extends CqlExpression {
     if (types.isEmpty) {
       return types;
     } else {
-      if (types.contains('ValidatedQuantity') ||
-          types.contains('FhirDecimal')) {
-        return ['FhirDecimal'];
-      } else if (types.contains('FhirInteger64')) {
-        return ['FhirInteger64'];
-      } else if (types.contains('FhirInteger')) {
-        return ['FhirInteger'];
+      if (types.contains('Quantity') ||
+          types.contains('Decimal')) {
+        return ['Decimal'];
+      } else if (types.contains('Integer64')) {
+        return ['Integer64'];
+      } else if (types.contains('Integer')) {
+        return ['Integer'];
       } else {
         return types.toSet().toList();
       }

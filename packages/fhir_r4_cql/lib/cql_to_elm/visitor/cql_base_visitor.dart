@@ -1471,6 +1471,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   }
 
   Multiply handleMultiply(CqlExpression left, CqlExpression right) {
+    final leftTypes = left.getReturnTypes(library);
+    final rightTypes = right.getReturnTypes(library);
     switch (left) {
       case LiteralInteger _:
         {
@@ -1520,47 +1522,46 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
 
           if (leftType.length == 1 && rightType.length == 1) {
             switch (leftType.first) {
-              case 'FhirInteger':
+              case 'Integer':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Multiply(operand: [left, right]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return Multiply(operand: [ToLong(operand: left), right]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Multiply(operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirInteger64':
+              case 'Integer64':
                 {
-                  if (rightType.first == 'FhirInteger' ||
-                      rightType.first == 'FhirInteger64') {
+                  if (rightType.first == 'Integer' ||
+                      rightType.first == 'Integer64') {
                     return Multiply(operand: [left, ToLong(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Multiply(operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirDecimal':
+              case 'Decimal':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Multiply(operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return Multiply(operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Multiply(operand: [left, right]);
                   }
                 }
                 break;
-              case 'ValidatedQuantity':
+              case 'Quantity':
                 {
-                  if (rightType.first == 'FhirInteger' ||
-                      rightType.first == 'FhirInteger64') {
-                    // print('leftType: $leftType rightType: $rightType');
+                  if (rightType.first == 'Integer' ||
+                      rightType.first == 'Integer64') {
                     return Multiply(operand: [left, ToDecimal(operand: right)]);
                   }
-                  if (rightType.first == 'FhirDecimal' ||
-                      rightType.first == 'ValidatedQuantity') {
+                  if (rightType.first == 'Decimal' ||
+                      rightType.first == 'Quantity') {
                     return Multiply(operand: [left, right]);
                   }
                 }
@@ -1621,47 +1622,47 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           final rightType = right.getReturnTypes(library);
           if (leftType.length == 1 && rightType.length == 1) {
             switch (leftType.first) {
-              case 'FhirInteger':
+              case 'Integer':
                 {
-                  if (rightType.first == 'FhirInteger' ||
-                      rightType.first == 'FhirInteger64') {
+                  if (rightType.first == 'Integer' ||
+                      rightType.first == 'Integer64') {
                     return Divide(operand: [
                       ToDecimal(operand: left),
                       ToDecimal(operand: right)
                     ]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Divide(operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirInteger64':
+              case 'Integer64':
                 {
-                  if (rightType.first == 'FhirInteger' ||
-                      rightType.first == 'FhirInteger64') {
+                  if (rightType.first == 'Integer' ||
+                      rightType.first == 'Integer64') {
                     return Divide(operand: [
                       ToDecimal(operand: left),
                       ToDecimal(operand: right)
                     ]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Divide(operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirDecimal':
+              case 'Decimal':
                 {
-                  if (rightType.first == 'FhirInteger' ||
-                      rightType.first == 'FhirInteger64') {
+                  if (rightType.first == 'Integer' ||
+                      rightType.first == 'Integer64') {
                     return Divide(operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Divide(operand: [left, right]);
                   }
                 }
                 break;
-              case 'ValidatedQuantity':
+              case 'Quantity':
                 {
-                  if (rightType.first == 'FhirDecimal') {
+                  if (rightType.first == 'Decimal') {
                     return Divide(operand: [left, ToQuantity(operand: right)]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return Divide(operand: [left, right]);
                   }
                 }
@@ -1728,54 +1729,54 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           final rightType = right.getReturnTypes(library);
           if (leftType.length == 1 && rightType.length == 1) {
             switch (leftType.first) {
-              case 'FhirInteger':
+              case 'Integer':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return TruncatedDivide(operand: [left, right]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return TruncatedDivide(
                         operand: [ToLong(operand: left), right]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return TruncatedDivide(
                         operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirInteger64':
+              case 'Integer64':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return TruncatedDivide(
                         operand: [left, ToLong(operand: right)]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return TruncatedDivide(operand: [left, right]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return TruncatedDivide(
                         operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirDecimal':
+              case 'Decimal':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return TruncatedDivide(
                         operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return TruncatedDivide(
                         operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return TruncatedDivide(operand: [left, right]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return TruncatedDivide(
                         operand: [ToQuantity(operand: left), right]);
                   }
                 }
                 break;
-              case 'ValidatedQuantity':
+              case 'Quantity':
                 {
-                  if (rightType.first == 'FhirDecimal') {
+                  if (rightType.first == 'Decimal') {
                     return TruncatedDivide(
                         operand: [left, ToQuantity(operand: right)]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return TruncatedDivide(operand: [left, right]);
                   }
                 }
@@ -1845,50 +1846,50 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           final rightType = right.getReturnTypes(library);
           if (leftType.length == 1 && rightType.length == 1) {
             switch (leftType.first) {
-              case 'FhirInteger':
+              case 'Integer':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Modulo(operand: [left, right]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return Modulo(operand: [ToLong(operand: left), right]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Modulo(operand: [ToDecimal(operand: left), right]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return Modulo(operand: [ToQuantity(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirInteger64':
+              case 'Integer64':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Modulo(operand: [left, ToLong(operand: right)]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return Modulo(operand: [left, right]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Modulo(operand: [ToDecimal(operand: left), right]);
                   }
                 }
                 break;
-              case 'FhirDecimal':
+              case 'Decimal':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Modulo(operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirInteger64') {
+                  } else if (rightType.first == 'Integer64') {
                     return Modulo(operand: [left, ToDecimal(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Modulo(operand: [left, right]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return Modulo(operand: [ToQuantity(operand: left), right]);
                   }
                 }
                 break;
-              case 'ValidatedQuantity':
+              case 'Quantity':
                 {
-                  if (rightType.first == 'FhirInteger') {
+                  if (rightType.first == 'Integer') {
                     return Modulo(operand: [left, ToQuantity(operand: right)]);
-                  } else if (rightType.first == 'FhirDecimal') {
+                  } else if (rightType.first == 'Decimal') {
                     return Modulo(operand: [left, ToQuantity(operand: right)]);
-                  } else if (rightType.first == 'ValidatedQuantity') {
+                  } else if (rightType.first == 'Quantity') {
                     return Modulo(operand: [left, right]);
                   }
                 }

@@ -14,7 +14,7 @@ import 'inputs/inputs.dart';
 
 const bool shouldPrint = false;
 
-const testNumber = 3;
+const testNumber = 6;
 
 void main() => runApp(const MyApp());
 
@@ -101,7 +101,7 @@ void _compareLibraries(
       };
       final results = {'library': resultLibrary};
       // print(jsonEncode(jsonLibrary));
-      print(jsonEncode(results));
+      // print(jsonEncode(results));
     }
   }
 }

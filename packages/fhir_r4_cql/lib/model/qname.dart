@@ -137,4 +137,50 @@ class QName {
         return null;
     }
   }
+
+  static String fhirToElmTypes(String fhirType){
+    switch (fhirType.toLowerCase()) {
+      case 'boolean':
+      case 'fhirboolean':
+        return 'Boolean';
+      case 'integer':
+      case 'fhirinteger':
+        return 'Integer';
+      case 'decimal':
+      case 'fhirdecimal':
+        return 'Decimal';
+      case 'string':
+      case 'fhirstring':
+        return 'String';
+      case 'dateTime':
+      case 'fhirdateTime':
+        return 'DateTime';
+      case 'date':
+      case 'fhirdate':
+        return 'Date';
+      case 'time':
+      case 'fhirtime':
+        return 'Time';
+      case 'code':
+      case 'fhircode':
+        return 'Code';
+      case 'uri':
+      case 'fhiruri':
+        return 'Uri';
+      case 'oid':
+      case 'fhiroid':
+        return 'Oid';
+      case 'uuid':
+      case 'fhiruuid':
+        return 'Uuid';
+      case 'base64Binary':
+      case 'fhirbase64binary':
+        return 'Base64Binary';
+      case 'validatedquantity':
+      case 'quantity':
+        return 'Quantity';
+      default:
+        return fhirType;
+    }
+  }
 }

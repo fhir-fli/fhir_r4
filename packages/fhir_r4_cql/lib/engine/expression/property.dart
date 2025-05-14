@@ -1,7 +1,8 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/fhir/validated_quantity.dart' show ValidatedQuantity;
 
 /// The Property operator returns the value of the property on source specified
 /// by the path attribute.
@@ -88,10 +89,11 @@ class Property extends CqlExpression {
       final sourceReturnTypes = source!.getReturnTypes(library);
       final returnTypes = <String>[];
       for (final type in sourceReturnTypes) {
-        final endType = resolveSimplePath('$type.$path');
+        final endType = fhir.resolveSimplePath('$type.$path');
         if (endType != null) {
+          final resolvedType = QName.fhirToElmTypes(endType.type);
           returnTypes
-              .add(endType.isList ? 'List<${endType.type}>' : endType.type);
+              .add(endType.isList ? 'List<${resolvedType}>' : resolvedType);
         }
       }
       return returnTypes;
@@ -103,15 +105,21 @@ class Property extends CqlExpression {
   Future<dynamic> execute(Map<String, dynamic> context) async {
     final sourceResult = await source?.execute(context);
     try {
-      final context = sourceResult is FhirBase
+      final context = sourceResult is fhir.FhirBase
           ? sourceResult
           : sourceResult is Map<String, dynamic>
-              ? Resource.fromJson(sourceResult)
+              ? fhir.Resource.fromJson(sourceResult)
               : sourceResult is List &&
                       sourceResult.length == 1 &&
                       sourceResult.first is Map<String, dynamic>
-                  ? Resource.fromJson(sourceResult.first)
-                  : null;
+                  ? fhir.Resource.fromJson(sourceResult.first)
+                  : sourceResult is ValidatedQuantity
+                      ? fhir.Quantity(
+                          value: fhir.FhirDecimal.tryParse(
+                              sourceResult.value.asUcumDecimal()),
+                          unit: fhir.FhirString(sourceResult.unit),
+                        )
+                      : null;
       final result = await walkFhirPath(context: context, pathExpression: path);
       if (result.length == 1) {
         return result.first;

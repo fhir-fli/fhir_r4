@@ -82,6 +82,11 @@ class Instance extends CqlExpression {
   String get type => 'Instance';
 
   @override
+  List<String> getReturnTypes(CqlLibrary library) {
+    return [classType.localPart]; 
+  }
+
+  @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     switch (classType.localPart) {
       case 'Null':

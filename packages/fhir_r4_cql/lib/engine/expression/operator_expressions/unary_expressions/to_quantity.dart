@@ -155,5 +155,5 @@ class ToQuantity extends UnaryExpression {
   }
 
   @override
-  List<String> getReturnTypes(CqlLibrary library) => ['ValidatedQuantity'];
+  List<String> getReturnTypes(CqlLibrary library) => ['Quantity'];
 }

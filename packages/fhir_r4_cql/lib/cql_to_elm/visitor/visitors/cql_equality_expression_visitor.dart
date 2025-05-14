@@ -242,9 +242,6 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
   /// Builds a ChoiceTypeSpecifier from an operand
   ChoiceTypeSpecifier _buildChoiceTypeFromOperand(CqlExpression operand) {
     if (operand is ListExpression) {
-      for (final el in operand.element ?? <CqlExpression>[]) {
-        print("element: $el ${el.runtimeType}");
-      }
       final elementTypes = operand.element
           ?.map((e) => e.getReturnTypes(library))
           .expand((types) => types)

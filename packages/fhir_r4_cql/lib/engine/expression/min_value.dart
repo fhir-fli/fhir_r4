@@ -86,7 +86,7 @@ class MinValue extends CqlExpression {
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> val = {
-      'valueType': valueType,
+      'valueType': valueType.toJson(),
       'type': type,
     };
 
@@ -114,19 +114,19 @@ class MinValue extends CqlExpression {
   List<String> getReturnTypes(CqlLibrary library) {
     switch (valueType.localPart) {
       case 'Integer':
-        return ['FhirInteger'];
+        return ['Integer'];
       case 'Long':
-        return ['FhirInteger64'];
+        return ['Integer64'];
       case 'Decimal':
-        return ['FhirDecimal'];
+        return ['Decimal'];
       case 'Quantity':
-        return ['ValidatedQuantity'];
+        return ['Quantity'];
       case 'Date':
-        return ['FhirDate'];
+        return ['Date'];
       case 'DateTime':
-        return ['FhirDateTime'];
+        return ['DateTime'];
       case 'Time':
-        return ['FhirTime'];
+        return ['Time'];
       default:
         return ['None'];
     }

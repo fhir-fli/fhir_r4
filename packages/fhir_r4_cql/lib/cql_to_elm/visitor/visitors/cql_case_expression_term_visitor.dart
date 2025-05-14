@@ -35,27 +35,27 @@ class CqlCaseExpressionTermVisitor extends CqlBaseVisitor<Case> {
         }
       }
       final totalTypes = caseTypes.toSet().union(elseTypes.toSet());
-      if (totalTypes.contains('ValidatedQuantity') ||
-          totalTypes.contains('FhirDecimal')) {
+      if (totalTypes.contains('Quantity') ||
+          totalTypes.contains('Decimal')) {
         if (elseTypes.length == 1 &&
-            (elseTypes.first == 'FhirInteger64' ||
-                elseTypes.first == 'FhirInteger')) {
+            (elseTypes.first == 'Integer64' ||
+                elseTypes.first == 'Integer')) {
           elseExpr = ToDecimal(operand: elseExpr);
         }
         for (var i = 0; i < caseTypes.length; i++) {
-          if (caseTypes[i] == 'FhirInteger64' ||
-              caseTypes[i] == 'FhirInteger') {
+          if (caseTypes[i] == 'Integer64' ||
+              caseTypes[i] == 'Integer') {
             caseItem[i] = CaseItem(
                 when_: caseItem[i].when_,
                 then: ToDecimal(operand: caseItem[i].then));
           }
         }
-      } else if (totalTypes.contains('FhirInteger64')) {
-        if (elseTypes.length == 1 && elseTypes.first == 'FhirInteger') {
+      } else if (totalTypes.contains('Integer64')) {
+        if (elseTypes.length == 1 && elseTypes.first == 'Integer') {
           elseExpr = ToLong(operand: elseExpr);
         }
         for (var i = 0; i < caseTypes.length; i++) {
-          if (caseTypes[i] == 'FhirInteger') {
+          if (caseTypes[i] == 'Integer') {
             caseItem[i] = CaseItem(
                 when_: caseItem[i].when_,
                 then: ToLong(operand: caseItem[i].then));

@@ -80,7 +80,6 @@ class ExpressionRef extends Ref {
     final defs = library.statements?.def;
     if (defs != null) {
       final idx = defs.indexWhere((d) => d.name == name);
-      print('ExpressionRef: $name, idx: $idx');
       if (idx != -1) {
         return defs[idx].expression?.getReturnTypes(library) ?? [];
       }

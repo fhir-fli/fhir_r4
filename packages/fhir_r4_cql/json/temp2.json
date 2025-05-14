@@ -2269,9 +2269,12 @@
                                                 }
                                             },
                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                "value": "1000",
-                                                "type": "Literal"
+                                                "type": "ToDecimal",
+                                                "operand": {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                    "value": "1000",
+                                                    "type": "Literal"
+                                                }
                                             }
                                         ]
                                     }
@@ -2449,9 +2452,12 @@
                             }
                         ],
                         "else": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                            "value": "30",
-                            "type": "Literal"
+                            "type": "ToDecimal",
+                            "operand": {
+                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                "value": "30",
+                                "type": "Literal"
+                            }
                         }
                     }
                 }

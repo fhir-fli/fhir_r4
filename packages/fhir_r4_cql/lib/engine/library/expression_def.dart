@@ -192,6 +192,7 @@ class ExpressionDef extends Element {
     return {name: await expression?.execute(context)};
   }
 
-  List<String> getReturnTypes(CqlLibrary library) =>
-      expression?.getReturnTypes(library) ?? [];
+  List<String> getReturnTypes(CqlLibrary library) {
+    return expression?.getReturnTypes(library) ?? [];
+  }
 }

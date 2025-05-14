@@ -109,7 +109,6 @@ class Round extends OperatorExpression {
   @override
   Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
     final value = await operand.execute(context);
-    print('Value: $value (${value.runtimeType})');
     if (value == null) {
       return null;
     } else if (value is FhirDecimal) {
