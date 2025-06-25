@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Expression that references an unresolved or resolved identifier.
 class IdentifierRef extends Ref {
   IdentifierRef({

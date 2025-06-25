@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The IncludeElement type specifies include information for an include within
 /// a retrieve.
 class IncludeElement extends Element {

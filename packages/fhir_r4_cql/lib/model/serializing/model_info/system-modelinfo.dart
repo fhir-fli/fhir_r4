@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final systemmodelinfo = ModelInfo.fromJson({
   "name": "System",
   "url": "urn:hl7-org:elm-types:r1",

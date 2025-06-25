@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final quickmodelinfo330 = ModelInfo.fromJson({
   "name": "QUICK",
   "url": "http://hl7.org/fhir/us/qicore",

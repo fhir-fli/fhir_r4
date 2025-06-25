@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final fhirmodelinfo301 = ModelInfo.fromJson({
   "name": "FHIR",
   "url": "http://hl7.org/fhir",

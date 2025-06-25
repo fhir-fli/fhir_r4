@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to perform integer division of its arguments.
 /// If either argument is null, the result is null.
 /// If the result of the operation cannot be represented, or the right argument

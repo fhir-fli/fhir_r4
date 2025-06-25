@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ValueSetDefs {
   String? type;
   List<ValueSetDef> def = [];

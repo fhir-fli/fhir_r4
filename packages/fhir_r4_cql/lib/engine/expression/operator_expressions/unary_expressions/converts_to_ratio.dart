@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the value of its argument can be converted to a Ratio value.
 /// The operator accepts strings using the following format: <quantity>:<quantity>,
 /// where it's a quantity, followed by a colon (:), followed by another quantity.

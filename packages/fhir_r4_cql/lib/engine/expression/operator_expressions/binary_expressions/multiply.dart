@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to perform numeric multiplication of its arguments.
 /// For multiplication operations involving quantities, the resulting quantity
 /// will have the appropriate unit.

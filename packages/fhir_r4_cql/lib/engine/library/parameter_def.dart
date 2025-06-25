@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ParameterDefs {
   String? type;
   List<ParameterDef> def = <ParameterDef>[];

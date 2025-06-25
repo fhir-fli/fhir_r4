@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Skip<T>
 ///
 /// The Skip operator returns the elements in a list, skipping the first N elements.
@@ -98,7 +97,7 @@ class Skip extends BinaryExpression {
         message: 'Skip operator requires a list and an integer as operands',
       );
     }
-    if(count < 0) {
+    if (count < 0) {
       return [];
     }
     // Delegate to central Slice implementation

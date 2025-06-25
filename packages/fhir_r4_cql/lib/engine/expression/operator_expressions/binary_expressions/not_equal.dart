@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if its arguments are not the same value.
 /// Returns true if its arguments are not the same value.
 /// This operator is a shorthand for invoking logical negation of the Equal operator.

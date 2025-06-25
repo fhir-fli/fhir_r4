@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Tail
 ///
 /// The Tail operator returns all but the first element of a list.

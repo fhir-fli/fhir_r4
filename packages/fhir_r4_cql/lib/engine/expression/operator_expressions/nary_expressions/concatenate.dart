@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to perform string concatenation of its arguments.
 /// If any argument is null, the result is null.
 /// Signature:
@@ -70,8 +69,7 @@ class Concatenate extends NaryExpression {
         if (return2.first == 'LiteralString') {
           operand.add(second);
         } else if (return2.first == 'LiteralNull') {
-          operand
-              .add(As(operand: second, asType: QName.fromElmType('String')));
+          operand.add(As(operand: second, asType: QName.fromElmType('String')));
         }
       }
     }

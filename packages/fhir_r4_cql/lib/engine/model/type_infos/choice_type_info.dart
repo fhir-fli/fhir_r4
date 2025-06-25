@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a choice type information, extending [TypeInfo].
 ///
 /// The [ChoiceTypeInfo] type represents a choice type, extending TypeInfo,

@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the date and time of the start timestamp associated with
 /// the evaluation request.
 /// Now is defined to always return the same value within any given evaluation.

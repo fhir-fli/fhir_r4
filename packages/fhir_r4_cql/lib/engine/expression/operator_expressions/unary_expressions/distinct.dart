@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Distinct operator returns a list containing only the unique elements
 /// within the input list.
 /// The operator uses equality comparison semantics as defined in the Equal

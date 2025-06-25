@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class Annotation extends CqlToElmBase {
   // Optional locator information for the annotation
   final Locator? locator;

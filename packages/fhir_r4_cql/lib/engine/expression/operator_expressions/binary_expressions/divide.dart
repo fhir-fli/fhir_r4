@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to perform numeric division of its arguments.
 /// Note that the result type of Divide is Decimal, even if its arguments are
 /// of type Integer.

@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the first operand completely includes the second operand.
 /// Returns true if the starting point of the first interval is less than or
 /// equal to the starting point of the second interval, and the ending point of

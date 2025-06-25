@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Subsumes operator returns true if the given codes are equivalent, or if
 /// the first code subsumes the second (i.e. the first code is an ancestor of
 /// the second in a subsumption hierarchy), and false otherwise.

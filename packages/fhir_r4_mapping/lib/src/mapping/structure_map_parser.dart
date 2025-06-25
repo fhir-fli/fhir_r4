@@ -1,8 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars, constant_identifier_names
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Class to parse and render StructureMap resources
 class StructureMapParser {

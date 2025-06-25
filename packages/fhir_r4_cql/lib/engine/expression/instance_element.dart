@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Instance element used within an Instance expression.
 class InstanceElement extends Element {
   /// Required name of the instance element.

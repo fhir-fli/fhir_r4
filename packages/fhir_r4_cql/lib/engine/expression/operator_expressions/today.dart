@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the date (with no time component) of the start timestamp
 /// associated with the evaluation request.
 /// Signature:

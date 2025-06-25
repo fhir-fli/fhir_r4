@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the first argument is greater than or equal to the
 /// second argument.
 /// Returns true if the first argument is greater than or equal to the second

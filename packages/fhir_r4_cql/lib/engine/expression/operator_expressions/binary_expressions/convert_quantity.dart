@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to convert a Quantity to an equivalent Quantity with the given unit.
 /// If the unit of the input quantity can be converted to the target unit,
 /// the result is an equivalent Quantity with the target unit.

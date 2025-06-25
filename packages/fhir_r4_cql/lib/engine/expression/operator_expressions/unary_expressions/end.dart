@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the ending point of an interval.
 /// If the high boundary of the interval is open, this operator returns the
 /// Predecessor of the high value of the interval.

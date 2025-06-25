@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents the CqlToElmError type
 class CqlToElmError extends Locator {
   /// errorSeverity attribute

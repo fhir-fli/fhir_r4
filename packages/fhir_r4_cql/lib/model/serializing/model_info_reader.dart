@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 abstract class ModelInfoReader {
   /// Replace this method with your actual XML parsing logic.
   ModelInfo read(String xmlContent);

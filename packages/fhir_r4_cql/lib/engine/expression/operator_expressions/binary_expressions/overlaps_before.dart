@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to determine if the first interval starts before and overlaps the
 /// second interval.
 /// Returns true if Start(i1) < Start(i2) and End(i1) >= Start(i2).

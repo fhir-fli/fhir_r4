@@ -28,7 +28,6 @@ class CqlListSelectorVisitor extends CqlBaseVisitor<ListExpression> {
       return e;
     }).toList();
 
-
     return ListExpression(
       typeSpecifier: typeSpecifier,
       element: transformed,

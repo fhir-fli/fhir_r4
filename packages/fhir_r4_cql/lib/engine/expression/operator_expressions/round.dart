@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the nearest integer to its argument.
 /// The semantics of round are defined as a traditional round, meaning that a
 /// decimal value of 0.5 or higher will round to 1.

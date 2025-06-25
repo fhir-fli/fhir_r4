@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a bound parameter type specifier.
 ///
 /// The [BoundParameterTypeSpecifier] type defines a type replacing a class parameter,

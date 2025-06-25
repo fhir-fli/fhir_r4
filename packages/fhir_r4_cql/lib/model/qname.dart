@@ -138,7 +138,7 @@ class QName {
     }
   }
 
-  static String fhirToElmTypes(String fhirType){
+  static String fhirToElmTypes(String fhirType) {
     switch (fhirType.toLowerCase()) {
       case 'boolean':
       case 'fhirboolean':

@@ -5,7 +5,6 @@ import 'package:xml2json/xml2json.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class StandardModelInfoReader implements ModelInfoReader {
   /// Replace this method with your actual XML parsing logic.
   @override

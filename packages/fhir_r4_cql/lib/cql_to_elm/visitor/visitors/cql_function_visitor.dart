@@ -37,8 +37,8 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
       operand = operand.map((e) {
         if (e is ListExpression) {
           final aggType = simpleAggregates.containsKey(ref)
-            ? simpleAggregates[ref]!
-            : _inferElementType(e);
+              ? simpleAggregates[ref]!
+              : _inferElementType(e);
           return _processAggregateOperand(e, aggType);
         }
         return e;
@@ -90,10 +90,11 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
   /// If they’re all Integers, returns "Integer"; otherwise "Decimal".
   String _inferElementType(ListExpression listExpr) {
     final nonNullTypes = listExpr.element
-        ?.where((e) => e is! LiteralNull)
-        .expand((e) => e.getReturnTypes(library))
-        .map((t) => t.toLowerCase())
-        .toSet() ?? {};
+            ?.where((e) => e is! LiteralNull)
+            .expand((e) => e.getReturnTypes(library))
+            .map((t) => t.toLowerCase())
+            .toSet() ??
+        {};
     if (nonNullTypes.length == 1) {
       final t = nonNullTypes.single;
       return t.endsWith('decimal') ? 'Decimal' : 'Integer';
@@ -111,7 +112,8 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
     final returnTypes =
         listExpr.getReturnTypes(library).map((e) => e.toLowerCase()).toList();
     final wrapType = returnTypes.any((e) => e.endsWith('integer')) &&
-            returnTypes.every((e) => e.endsWith('integer') || e.endsWith('null'))
+            returnTypes
+                .every((e) => e.endsWith('integer') || e.endsWith('null'))
         ? 'Integer'
         : returnTypes.any((e) => e.endsWith('quantity'))
             ? 'Quantity'

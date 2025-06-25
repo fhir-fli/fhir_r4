@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to compare two Date, DateTime, or Time values to the specified
 /// precision to determine if the first argument is the same or before the
 /// second argument.

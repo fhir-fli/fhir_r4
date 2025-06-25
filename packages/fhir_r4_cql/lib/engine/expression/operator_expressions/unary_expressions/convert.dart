@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator for converting a value to a specific type.
 /// Converts a value to a specific type.
 /// The result of the operator is the value of the argument converted to the

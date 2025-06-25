@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The SortClause element defines the sort order for the query.
 class SortClause extends Element {
   final List<SortByItem> by;

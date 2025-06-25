@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Models an element within [TupleTypeInfo].
 ///
 /// The [TupleTypeInfoElement] defines an element within the TupleTypeInfo,

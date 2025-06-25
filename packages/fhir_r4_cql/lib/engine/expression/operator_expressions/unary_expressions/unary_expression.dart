@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract base class for expressions that take a single argument.
 abstract class UnaryExpression extends OperatorExpression {
   /// CqlExpression as the operand.

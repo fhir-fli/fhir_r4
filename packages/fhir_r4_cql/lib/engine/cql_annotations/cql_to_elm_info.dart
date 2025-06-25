@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents the CqlToElmInfo type
 class CqlToElmInfo extends CqlToElmBase {
   /// translatorOptions attribute

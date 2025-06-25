@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The SubsumedBy operator returns true if the given codes are equivalent, or
 /// if the first code is subsumed by the second code (i.e. the first code is a
 /// descendent of the second code in a subsumption hierarchy), and false

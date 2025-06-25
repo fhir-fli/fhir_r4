@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Expression allowing class instances to be built up.
 /// Instance : Expression
 ///  ¦
@@ -83,7 +82,7 @@ class Instance extends CqlExpression {
 
   @override
   List<String> getReturnTypes(CqlLibrary library) {
-    return [classType.localPart]; 
+    return [classType.localPart];
   }
 
   @override

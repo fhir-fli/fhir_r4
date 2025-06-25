@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The CodeFilterElement type specifies a terminology filter criteria for use
 /// within a retrieve, specified as either [property] [comparator] [value] or
 /// [search] [comparator] [value].

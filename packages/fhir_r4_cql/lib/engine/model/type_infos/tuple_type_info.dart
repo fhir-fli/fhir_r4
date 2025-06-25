@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a tuple type information, extending [TypeInfo].
 ///
 /// The [TupleTypeInfo] type extends TypeInfo and consists of elements

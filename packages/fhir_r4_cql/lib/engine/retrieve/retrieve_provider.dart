@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 abstract class RetrieveProvider {
   Iterable<Object> retrieve(
       String context,

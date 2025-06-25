@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return its argument as a List value.
 /// The operator accepts a singleton value of any type and returns a list with the value as the single element.
 /// If the argument is null, the operator returns an empty list.

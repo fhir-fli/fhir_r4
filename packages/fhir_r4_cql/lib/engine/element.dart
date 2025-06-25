@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class Element {
   // The annotation element provides a mechanism for decorating expressions
   // with application-specific information such as translation hints, visual

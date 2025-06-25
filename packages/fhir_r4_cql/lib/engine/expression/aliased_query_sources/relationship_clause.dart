@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The RelationshipClause element allows related sources to be used to restrict the elements included from another source in a query scope.
 /// Note that the elements referenced by the relationship clause can only be accessed within the suchThat condition, and that elements of the related source are not included in the query scope.
 class RelationshipClause extends AliasedQuerySource {

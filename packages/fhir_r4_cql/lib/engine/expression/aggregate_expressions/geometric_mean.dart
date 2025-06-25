@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The GeometricMean operator returns the geometric mean of the non-null elements in source.
 /// If a path is specified, elements with no value for the property specified by the path are ignored.
 /// If the source contains no non-null elements, null is returned.

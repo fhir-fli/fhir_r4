@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract type for TypeSpecifier.
 abstract class TypeSpecifierExpression extends CqlExpression {
   TypeSpecifierExpression({

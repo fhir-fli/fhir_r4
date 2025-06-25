@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to compare two Date, DateTime, or Time values to the specified
 /// precision for equality.
 /// The SameAs operator compares values starting from the year or hour component

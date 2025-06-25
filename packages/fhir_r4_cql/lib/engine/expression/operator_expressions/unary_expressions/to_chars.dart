@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to take a string and returns a list with one string for each character in the input.
 /// If the argument is null, the result is null.
 class ToChars extends UnaryExpression {

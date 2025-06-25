@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class NamespaceManager {
   final Map<String, String> namespaces;
   final Map<String, String> reverseNamespaces;

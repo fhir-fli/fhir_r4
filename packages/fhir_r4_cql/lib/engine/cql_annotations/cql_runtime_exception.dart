@@ -20,7 +20,7 @@ class CqlRuntimeException implements Exception {
     final loc = [
       if (libraryId != null) 'lib=$libraryId',
       if (locator != null) 'loc=$locator',
-      if (localId   != null) 'expr=$localId',
+      if (localId != null) 'expr=$localId',
     ].join(',');
     return 'CqlRuntimeException: $message${loc.isNotEmpty ? ' ($loc)' : ''}';
   }

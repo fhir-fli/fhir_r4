@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to compute the natural logarithm of its argument.
 /// If the argument is null, the result is null.
 /// If the result of the operation cannot be represented, the result is null.

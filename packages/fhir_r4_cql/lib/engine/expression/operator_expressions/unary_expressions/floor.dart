@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the first integer less than or equal to the argument.
 /// If the argument is null, the result is null.
 /// Signature:

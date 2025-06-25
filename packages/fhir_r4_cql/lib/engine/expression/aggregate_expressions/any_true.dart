@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The AnyTrue operator returns true if any non-null element in source is true.
 /// If a path is specified, elements with no value for the property specified
 /// by the path are ignored.

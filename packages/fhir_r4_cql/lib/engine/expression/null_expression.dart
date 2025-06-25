@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Null operator returning a null or missing information marker.
 class NullExpression extends Literal {
   final QName? resultType;

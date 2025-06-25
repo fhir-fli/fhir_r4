@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return true if the given string starts with the given prefix.
 /// If the prefix is the empty string, the result is true.
 /// If either argument is null, the result is null.

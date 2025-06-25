@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The retrieve expression defines clinical data that will be used by
 /// the artifact. This expression allows clinically relevant filtering
 /// criteria to be provided in a well-defined and computable way. This

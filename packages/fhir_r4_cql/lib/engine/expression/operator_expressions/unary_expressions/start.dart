@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the starting point of an interval.
 /// If the low boundary of the interval is open, this operator returns the
 /// Successor of the low value of the interval.

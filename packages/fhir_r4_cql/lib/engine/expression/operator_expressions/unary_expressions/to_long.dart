@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to convert the value of its argument to an Long value.
 /// The operator accepts strings using the format: (+|-)?#0, meaning an optional
 /// polarity indicator,

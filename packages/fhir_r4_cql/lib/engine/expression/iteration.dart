@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Iteration expression returns the current iteration number of a scoped operation.
 class Iteration extends CqlExpression {
   final String scope;

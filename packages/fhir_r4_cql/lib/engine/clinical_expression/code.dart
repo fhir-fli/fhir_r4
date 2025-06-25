@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Code type represents a literal code selector.
 class Code extends CqlExpression {
   /// The code.

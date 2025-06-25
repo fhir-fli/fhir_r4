@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to construct a DateTime value from the given components.
 /// At least one component other than timezoneOffset must be specified,
 /// and no component may be specified at a precision below an unspecified

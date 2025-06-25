@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to determine if the first interval starts immediately after the
 /// second interval ends.
 /// Returns true if End(i2) = Predecessor(Start(i1)).

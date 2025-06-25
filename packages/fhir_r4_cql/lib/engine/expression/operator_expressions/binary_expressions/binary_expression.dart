@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract base class for expressions that take two arguments.
 abstract class BinaryExpression extends OperatorExpression {
   /// Because XML doesn't always directly translate lists to maps

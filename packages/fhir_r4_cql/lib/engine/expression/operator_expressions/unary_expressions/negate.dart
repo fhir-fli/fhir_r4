@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the negative of its argument.
 /// When negating quantities, the unit is unchanged.
 /// If the argument is null or the result of negating the argument cannot be

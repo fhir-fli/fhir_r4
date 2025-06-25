@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a case operator allowing multiple conditional expressions to be
 /// chained together.
 class Case extends CqlExpression {
@@ -101,8 +100,7 @@ class Case extends CqlExpression {
     if (types.isEmpty) {
       return types;
     } else {
-      if (types.contains('Quantity') ||
-          types.contains('Decimal')) {
+      if (types.contains('Quantity') || types.contains('Decimal')) {
         return ['Decimal'];
       } else if (types.contains('Integer64')) {
         return ['Integer64'];

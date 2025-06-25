@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The OtherFilterElement type specifies an arbitrarily-typed filter criteria
 /// for use within a retrieve, specified as either
 /// [property] [comparator] [value] or [search] [comparator] [value].

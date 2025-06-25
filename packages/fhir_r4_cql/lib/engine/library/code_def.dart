@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CodeDefs extends Element {
   String? type;
   List<CodeDef> def = <CodeDef>[];

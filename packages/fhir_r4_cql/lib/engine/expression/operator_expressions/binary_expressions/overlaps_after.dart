@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to determine if the first interval overlaps and ends after the
 /// second interval.
 /// Returns true if End(i1) > End(i2) and Start(i1) <= End(i2).

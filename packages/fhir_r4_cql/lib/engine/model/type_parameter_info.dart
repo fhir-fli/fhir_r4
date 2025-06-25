@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents type parameter information.
 ///
 /// The [TypeParameterInfo] type specifies details regarding a generic class parameter,

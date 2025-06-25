@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the length of its argument.
 /// For strings, the length is the number of characters in the string.
 /// For lists, the length is the number of elements in the list.

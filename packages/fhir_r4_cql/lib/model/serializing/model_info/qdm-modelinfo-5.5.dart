@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final qdmmodelinfo55 = ModelInfo.fromJson({
   "name": "QDM",
   "url": "urn:healthit-gov:qdm:v5_5",

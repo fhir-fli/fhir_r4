@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Contains information regarding data conversions.
 ///
 /// The [ConversionInfo] type includes specifications for data conversions,

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if a value can be converted to a specific type.
 /// Returns true if the given value can be converted to a specific type,
 /// and false otherwise.

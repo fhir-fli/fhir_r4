@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to test for membership in an interval or list.
 /// Returns true if the given point is greater than or equal to the starting
 /// point of the interval and less than or equal to the ending point of the

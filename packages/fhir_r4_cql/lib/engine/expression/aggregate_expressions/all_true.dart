@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The AllTrue operator returns true if all the non-null elements in source
 /// are true.
 /// If a path is specified, elements with no value for the property specified

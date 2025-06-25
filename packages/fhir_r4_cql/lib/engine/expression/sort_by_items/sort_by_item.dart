@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The SortByItem element specifies the direction for sorting.
 abstract class SortByItem extends Element {
   final SortDirection direction;

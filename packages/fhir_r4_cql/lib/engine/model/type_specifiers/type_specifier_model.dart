@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 abstract class TypeSpecifierModel {
   final String? type;
   TypeSpecifierModel({this.type});

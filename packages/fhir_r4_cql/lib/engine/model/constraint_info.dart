@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ConstraintInfo {
   // Optional attribute - Description of the constraint
   final String? description;

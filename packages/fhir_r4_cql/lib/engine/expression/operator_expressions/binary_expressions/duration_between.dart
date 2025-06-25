@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the number of whole calendar periods for the specified
 /// precision between the first and second arguments.
 /// If the first argument is after the second argument, the result is negative.

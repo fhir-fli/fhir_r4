@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the value of its argument can be converted to a Quantity value.
 /// The operator may be used with Integer, Decimal, Ratio, or String values.
 /// For String values, the operator accepts strings using the following format:

@@ -1,7 +1,6 @@
 // Vocabulary type
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 abstract class CqlVocabulary implements CqlType {
   String id;
   String? version;

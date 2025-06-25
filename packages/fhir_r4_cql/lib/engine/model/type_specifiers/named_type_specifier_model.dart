@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a named type specifier, extending [TypeSpecifier].
 ///
 /// The [NamedTypeSpecifier] type represents a named type, inheriting from TypeSpecifier,

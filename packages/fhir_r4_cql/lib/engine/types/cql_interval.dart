@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
   T? low;
   bool lowClosed;

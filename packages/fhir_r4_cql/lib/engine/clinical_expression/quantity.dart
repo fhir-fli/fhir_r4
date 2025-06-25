@@ -2,7 +2,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Quantity type defines a clinical quantity. For example, the quantity 10
 /// days or 30 mmHg. The value is a decimal, while the unit is expected to be a
 /// valid UCUM unit.

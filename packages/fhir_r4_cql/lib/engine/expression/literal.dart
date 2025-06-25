@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Literal expression defining a single scalar value.
 class Literal extends CqlExpression {
   /// Qualified name of the value type.
@@ -206,26 +205,22 @@ class Literal extends CqlExpression {
         );
       case LiteralIntegerInterval _:
         return Literal(
-          valueType:
-              QName.parse('{urn:hl7-org:elm-types:r1}IntegerInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}IntegerInterval'),
           value: type,
         );
       case LiteralDecimalInterval _:
         return Literal(
-          valueType:
-              QName.parse('{urn:hl7-org:elm-types:r1}DecimalInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}DecimalInterval'),
           value: type,
         );
       case LiteralQuantityInterval _:
         return Literal(
-          valueType:
-              QName.parse('{urn:hl7-org:elm-types:r1}QuantityInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}QuantityInterval'),
           value: type,
         );
       case LiteralDateTimeInterval _:
         return Literal(
-          valueType:
-              QName.parse('{urn:hl7-org:elm-types:r1}DateTimeInterval'),
+          valueType: QName.parse('{urn:hl7-org:elm-types:r1}DateTimeInterval'),
           value: type,
         );
       case LiteralDateInterval _:

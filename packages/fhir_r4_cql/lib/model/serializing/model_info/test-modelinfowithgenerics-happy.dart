@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final testmodelinfowithgenericshappy = ModelInfo.fromJson({
   "name": "GENTEST",
   "url": "http://example.com/gentest",

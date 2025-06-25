@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to compute the logarithm of its first argument, using the second
 /// argument as the base.
 /// If either argument is null, the result is null.
@@ -66,8 +65,7 @@ class Log extends BinaryExpression {
         } else if (return1.first == 'FhirDecimal') {
           operand.add(first);
         } else if (return1.first == 'Null') {
-          operand
-              .add(As(operand: first, asType: QName.fromElmType('Decimal')));
+          operand.add(As(operand: first, asType: QName.fromElmType('Decimal')));
         }
       }
     }

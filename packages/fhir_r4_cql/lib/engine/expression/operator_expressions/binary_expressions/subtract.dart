@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to perform numeric subtraction of its arguments.
 /// When subtracting quantities, the dimensions of each quantity must be the
 /// same, but not necessarily the unit.

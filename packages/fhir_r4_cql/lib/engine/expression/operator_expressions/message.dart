@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Message operator is used to support errors, warnings, messages, and
 /// tracing in an ELM evaluation environment.
 /// The operator is defined to return the input source.

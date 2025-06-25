@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a tuple type specifier.
 ///
 /// The [TupleTypeSpecifier] type defines the possible elements of a tuple.

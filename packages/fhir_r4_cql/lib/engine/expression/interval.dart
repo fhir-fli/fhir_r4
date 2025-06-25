@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Interval selector defining an interval value.
 /// The Interval selector defines an interval value. An interval must be
 /// defined using a point type that supports comparison, as well as Successor

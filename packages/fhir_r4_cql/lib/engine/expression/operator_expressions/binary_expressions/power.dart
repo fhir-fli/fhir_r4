@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to raise the first argument to the power given by the second argument.
 /// If either argument is null, the result is null.
 /// If the result of the operation cannot be represented, the result is null.

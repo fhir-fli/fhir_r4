@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The CqlToElmBase type defines the abstract base type for all annotation
 /// elements in the CQL Translator.
 abstract class CqlToElmBase {

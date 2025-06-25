@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final simplemodelinfo = ModelInfo.fromJson({
   "name": "Simple",
   "url": "https://github.com/cqframework/cql-execution/simple",

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The ByColumn element specifies that the sort should be performed using the given column and direction.
 /// This approach is used to specify the sort order for a query when the result is a list of tuples.
 class ByColumn extends SortByItem {

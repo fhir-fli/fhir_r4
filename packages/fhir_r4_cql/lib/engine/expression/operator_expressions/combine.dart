@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to combine a list of strings, optionally separating each string
 /// with the given separator.
 /// If either argument is null, the result is null. If the source list is empty,

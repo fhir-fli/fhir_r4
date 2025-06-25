@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract base class for an expression that takes any number of arguments,
 /// including zero.
 abstract class NaryExpression extends OperatorExpression {

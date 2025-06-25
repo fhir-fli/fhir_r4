@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to convert the given string with all characters converted to their lowercase equivalents.
 /// If the argument is null, the result is null.
 class Lower extends UnaryExpression {

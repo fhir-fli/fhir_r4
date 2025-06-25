@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlTimeBoundaryExpressionTermVisitor extends CqlBaseVisitor<dynamic> {
   CqlTimeBoundaryExpressionTermVisitor(super.library);
 

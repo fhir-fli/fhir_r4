@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the absolute value of its argument.
 /// When taking the absolute value of a quantity, the unit is unchanged.
 /// If the argument is null or the result of taking the absolute value cannot

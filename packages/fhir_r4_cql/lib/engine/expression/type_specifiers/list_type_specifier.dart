@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a list type specifier, extending [TypeSpecifier].
 ///
 /// The [ListTypeSpecifier] type represents a list type, inheriting from TypeSpecifier,

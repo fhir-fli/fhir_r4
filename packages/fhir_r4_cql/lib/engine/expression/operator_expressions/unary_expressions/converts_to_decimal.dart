@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the value of its argument can be converted to a Decimal value.
 /// The operator accepts strings using the following format: (+|-)?#0(.0#)?
 /// If the input string is not formatted correctly or cannot be interpreted as a valid Decimal value, the result is false.

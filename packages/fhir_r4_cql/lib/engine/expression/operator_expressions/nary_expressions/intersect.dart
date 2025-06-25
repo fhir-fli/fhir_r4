@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Intersect operator returns the intersection of its arguments.
 /// This operator has two overloads: List, Interval.
 /// For the list overload, returns a list with the elements that appear in both

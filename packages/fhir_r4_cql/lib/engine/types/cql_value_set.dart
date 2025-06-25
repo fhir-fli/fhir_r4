@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlValueSet extends CqlVocabulary {
   List<CqlCodeSystem>? codeSystems;
 

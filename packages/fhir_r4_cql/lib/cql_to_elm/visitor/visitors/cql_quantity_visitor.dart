@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 // Visitor for Quantity Expressions, ensuring we correctly capture quantities and units
 class CqlQuantityVisitor extends CqlBaseVisitor<LiteralQuantity> {
   CqlQuantityVisitor(super.library);

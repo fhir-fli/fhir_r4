@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to match the given string using the regular expression pattern,
 /// replacing each match with the given substitution.
 /// The substitution string may refer to identified match groups in the regular

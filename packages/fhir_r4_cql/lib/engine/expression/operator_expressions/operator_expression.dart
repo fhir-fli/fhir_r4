@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract base class for all built-in operators used in the ELM expression
 /// language.
 abstract class OperatorExpression extends CqlExpression {

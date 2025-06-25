@@ -23,7 +23,8 @@ void minValue() {
       final QName valueType = QName.parse('DateTime');
       final MinValue minValue = MinValue(valueType: valueType);
       final minValueExecute = await minValue.execute({});
-      print('minValueExecute: $minValueExecute (${minValueExecute.runtimeType})');
+      print(
+          'minValueExecute: $minValueExecute (${minValueExecute.runtimeType})');
       final fromString =
           fhir.FhirDateTime.fromString('0001-01-01T00:00:00.000');
       print('fromString: $fromString (${fromString.runtimeType})');

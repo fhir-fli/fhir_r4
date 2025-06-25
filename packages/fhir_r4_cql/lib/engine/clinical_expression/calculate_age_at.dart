@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Calculates the age in the specified precision of a person born on a given
 /// date, as of another given date.
 ///

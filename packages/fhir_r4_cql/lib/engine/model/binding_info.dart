@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Specifies binding information for an element
 class BindingInfo {
   // Optional attribute - User-friendly description of the binding

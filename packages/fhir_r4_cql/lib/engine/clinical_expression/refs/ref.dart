@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The CodeRef expression allows a previously defined code to be referenced
 /// within an expression.
 abstract class Ref extends CqlExpression {

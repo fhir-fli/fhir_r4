@@ -1,7 +1,6 @@
 // Create a registry of providers
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final List<ModelInfoReaderProvider> modelInfoReaderProviders = [
   StandardModelInfoReaderProvider(),
 ];

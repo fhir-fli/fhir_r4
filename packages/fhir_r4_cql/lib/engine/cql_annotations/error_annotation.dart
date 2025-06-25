@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ErrorAnnotation extends Annotation {
   final int? endChar;
   final int? endLine;

@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the maximum representable value for the given type.
 /// The MaxValue operator is defined for the Integer, Decimal, Date, DateTime,
 /// and Time types.

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The operation exoects a single argument of type ValueSet. This may be a
 /// static reference to a value set (i.e. a ValueSetRef), or a ValueSet value
 /// to support dynamic value set usage. The operation is used as the implicit

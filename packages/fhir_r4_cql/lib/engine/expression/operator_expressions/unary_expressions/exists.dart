@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Exists operator returns true if the list contains any elements.
 /// If the argument is null, the result is false.
 class Exists extends UnaryExpression {

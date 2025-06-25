@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlMultiplicationExpressionTermVisitor
     extends CqlBaseVisitor<CqlExpression> {
   CqlMultiplicationExpressionTermVisitor(super.library);

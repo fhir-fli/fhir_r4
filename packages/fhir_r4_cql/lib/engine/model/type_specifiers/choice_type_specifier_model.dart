@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a choice type specifier, extending [TypeSpecifier].
 ///
 /// The [ChoiceTypeSpecifier] type represents a choice type,

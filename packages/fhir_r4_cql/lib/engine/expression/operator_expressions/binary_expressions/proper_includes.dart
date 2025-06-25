@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the first operand includes the second and is strictly larger.
 /// Returns true if the first interval includes every element of the second interval,
 /// using equality semantics, and the first interval is strictly larger.

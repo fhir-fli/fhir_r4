@@ -53,8 +53,7 @@ void inTest() {
     });
     test("""define "InIsAlsoFalse": 5 in null""", () async {
       final value = LiteralInteger(3);
-      final interval =
-          As(operand: LiteralNull(), asType: QName.parse('List'));
+      final interval = As(operand: LiteralNull(), asType: QName.parse('List'));
       final inValue = In(operand: [value, interval]);
       final result = await inValue.execute({'library': CqlLibrary()});
       expect(result, FhirBoolean(false));

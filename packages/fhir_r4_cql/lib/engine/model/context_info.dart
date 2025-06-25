@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Defines an available context type for the model.
 ///
 /// The [ContextInfo] type defines the available context types for the model,

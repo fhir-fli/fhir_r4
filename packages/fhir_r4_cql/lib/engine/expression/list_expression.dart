@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// List selector returning a List value.
 class ListExpression extends CqlExpression {
   /// Elements of the list evaluated in order.

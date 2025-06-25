@@ -1,7 +1,6 @@
 // Exception specific to terminology provider operations
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class TerminologyProviderException implements Exception {
   String message;
   TerminologyProviderException(this.message);

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 final uscoremodelinfo310 = ModelInfo.fromJson({
   "name": "USCore",
   "url": "http://hl7.org/fhir/us/core",

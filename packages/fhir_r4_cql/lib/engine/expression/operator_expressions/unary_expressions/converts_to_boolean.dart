@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the value of its argument can be converted to a Boolean value.
 /// The operator accepts various string representations of true and false.
 /// If the input cannot be interpreted as a valid Boolean value, the result is false.

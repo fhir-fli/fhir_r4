@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The ReturnClause element defines the shape of the result set of the query.
 class ReturnClause extends Element {
   final bool? distinct;

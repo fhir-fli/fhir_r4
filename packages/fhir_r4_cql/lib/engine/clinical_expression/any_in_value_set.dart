@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The AnyInValueSet operator returns true if any of the given codes are in the
 /// given value set.
 ///

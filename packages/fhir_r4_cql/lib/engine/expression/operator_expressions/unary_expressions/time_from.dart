@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the Time of the argument.
 /// When extracting the time from a DateTime value, implementations should
 /// normalize to the timezone offset of the evaluation request timestamp.

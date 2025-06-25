@@ -3,7 +3,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// If operator evaluating a condition and returning the appropriate argument.
 /// If : Expression
 ///  ¦

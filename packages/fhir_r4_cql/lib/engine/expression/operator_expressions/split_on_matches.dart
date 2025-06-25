@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to split a string into a list of strings using matches of a regex pattern.
 /// If the stringToSplit argument is null, the result is null.
 /// If the stringToSplit argument does not contain any appearances of the separator pattern,

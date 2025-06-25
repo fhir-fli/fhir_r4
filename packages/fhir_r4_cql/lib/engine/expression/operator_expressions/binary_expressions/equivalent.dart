@@ -4,7 +4,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the arguments are the same value or both null.
 /// Returns true if the arguments are the same value or both null, and false
 /// otherwise.

@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to determine if the first interval starts after the second
 /// interval ends.
 /// Returns true if the starting point of the first interval is greater than

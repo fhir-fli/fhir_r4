@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Expression allowing the value of a parameter to be referenced within an expression.
 class ParameterRef extends Ref {
   ParameterRef({

@@ -15,4 +15,4 @@ POST {{host}}/matchbox/fhir/StructureMap/$transform?source=http://hl7.org/fhir/u
 Accept: application/fhir+json
 Content-Type: application/fhir+json
 
-< packages/fhir_r4_utils/test/mapping/examples/step14/source/source14.json
+< packages/fhir_r4_mapping/test/mapping/examples/step14/source/source14.json

@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Take<T>
 ///
 /// The Take operator returns the first N elements of a list.
@@ -96,7 +95,8 @@ class Take extends BinaryExpression {
     }
     if (!(count is int || count is FhirInteger)) {
       throw CqlException(
-        message: 'Take operator requires the second operand to be an Integer ''but it found ${count.runtimeType}',
+        message: 'Take operator requires the second operand to be an Integer '
+            'but it found ${count.runtimeType}',
       );
     }
     if (count < 0) {

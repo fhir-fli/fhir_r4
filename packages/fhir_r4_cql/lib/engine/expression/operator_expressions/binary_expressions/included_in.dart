@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the first operand is completely included in the second
 /// operand.
 /// Returns true if the starting point of the first interval is greater than or

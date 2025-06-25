@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CodeSystemDefs {
   String? type;
   List<CodeSystemDef> def = [];

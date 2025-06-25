@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents information related to a profile, extending [ClassInfo].
 ///
 /// The [ProfileInfo] type represents details regarding a profile,

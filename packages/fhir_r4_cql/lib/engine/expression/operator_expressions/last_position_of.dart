@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the 0-based index of the beginning of the last
 /// appearance of the given pattern in the given string.
 /// If the pattern is not found, the result is -1.

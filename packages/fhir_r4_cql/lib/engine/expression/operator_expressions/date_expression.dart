@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to construct a date value from the given components.
 /// At least one component must be specified, and no component may be specified at a precision below an unspecified precision.
 /// For example, month may be null, but if it is, day must be null as well.

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a simple type, extending [TypeInfo].
 ///
 /// The [SimpleTypeInfo] type represents a simple type, extending [TypeInfo],

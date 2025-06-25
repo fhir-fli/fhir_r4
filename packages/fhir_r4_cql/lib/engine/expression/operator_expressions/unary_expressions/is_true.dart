@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// IsTrue operator determining whether its argument evaluates to true.
 /// Signature:
 ///

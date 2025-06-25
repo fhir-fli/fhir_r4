@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The IndexOf operator returns the 0-based index of the given element in the
 /// given source list.
 /// The operator uses equality semantics as defined in the Equal operator to

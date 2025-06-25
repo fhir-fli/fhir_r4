@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlCaseExpressionTermVisitor extends CqlBaseVisitor<Case> {
   CqlCaseExpressionTermVisitor(super.library);
 
@@ -35,16 +34,13 @@ class CqlCaseExpressionTermVisitor extends CqlBaseVisitor<Case> {
         }
       }
       final totalTypes = caseTypes.toSet().union(elseTypes.toSet());
-      if (totalTypes.contains('Quantity') ||
-          totalTypes.contains('Decimal')) {
+      if (totalTypes.contains('Quantity') || totalTypes.contains('Decimal')) {
         if (elseTypes.length == 1 &&
-            (elseTypes.first == 'Integer64' ||
-                elseTypes.first == 'Integer')) {
+            (elseTypes.first == 'Integer64' || elseTypes.first == 'Integer')) {
           elseExpr = ToDecimal(operand: elseExpr);
         }
         for (var i = 0; i < caseTypes.length; i++) {
-          if (caseTypes[i] == 'Integer64' ||
-              caseTypes[i] == 'Integer') {
+          if (caseTypes[i] == 'Integer64' || caseTypes[i] == 'Integer') {
             caseItem[i] = CaseItem(
                 when_: caseItem[i].when_,
                 then: ToDecimal(operand: caseItem[i].then));

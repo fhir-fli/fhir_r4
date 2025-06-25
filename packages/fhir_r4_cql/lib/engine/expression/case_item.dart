@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents an element within a case operator, specifying conditions and their corresponding actions.
 class CaseItem extends Element {
   /// Action to perform if the condition is met.

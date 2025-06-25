@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class ClassInfo extends TypeInfo {
   final String? comment;
   final List<ConstraintInfo>? constraint;

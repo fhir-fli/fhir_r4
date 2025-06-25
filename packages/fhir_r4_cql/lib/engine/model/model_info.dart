@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Defines metadata associated with a specific model for use by the CQL translator.
 ///
 /// The [ModelInfo] type encapsulates metadata enabling the model to be utilized

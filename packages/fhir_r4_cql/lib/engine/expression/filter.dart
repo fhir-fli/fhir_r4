@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Filter operator returns a list with only those elements in the source list for which the condition element evaluates to true.
 /// If the source argument is null, the result is null.
 class Filter extends CqlExpression {

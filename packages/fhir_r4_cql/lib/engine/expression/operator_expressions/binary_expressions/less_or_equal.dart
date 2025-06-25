@@ -3,7 +3,6 @@ import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to check if the first argument is less than or equal to the second argument.
 /// Returns true if the first argument is less than or equal to the second argument.
 /// For comparisons involving quantities, the dimensions of each quantity must be the same, but not necessarily the unit.

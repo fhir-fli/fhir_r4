@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The ConceptRef expression allows a previously defined concept to be
 /// referenced within an expression.
 class ConceptRef extends Ref {
@@ -46,7 +45,7 @@ class ConceptRef extends Ref {
     return val;
   }
 
-    @override
+  @override
   List<String> getReturnTypes(CqlLibrary library) {
     if (resultTypeName != null) {
       return [resultTypeName!];
@@ -57,5 +56,4 @@ class ConceptRef extends Ref {
     }
     return ['CodeableConcept'];
   }
-
 }

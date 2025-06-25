@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Current expression returns the value of the object currently in scope.
 /// It's an error to invoke the Current operator outside of a scoped operation.
 class Current extends CqlExpression {

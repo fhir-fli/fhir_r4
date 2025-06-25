@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Element within ClassInfoElement type, deprecated.
 ///
 /// The [ClassInfoElement] type specifies an element deprecated in favor of

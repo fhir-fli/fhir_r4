@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents an element within TupleTypeSpecifier.
 ///
 /// The [TupleTypeSpecifierElement] type defines the name and type of a single element

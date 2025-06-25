@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the size of an interval (End(i) - Start(i) + point-size),
 /// where point-size is determined by: Successor(Minimum_T) - Minimum_T.
 /// Note: This operator is not defined for intervals of type Date, DateTime,

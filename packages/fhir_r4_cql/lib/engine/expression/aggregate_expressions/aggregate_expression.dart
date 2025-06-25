@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Abstract base class for Aggregate expressions performing operations on lists of data.
 abstract class AggregateExpression extends CqlExpression {
   final String? path;

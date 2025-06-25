@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to return the date (with no time components specified) of the argument.
 /// If the argument is null, the result is null.
 /// Signature:

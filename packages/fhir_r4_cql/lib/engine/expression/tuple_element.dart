@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Element within a Tuple expression providing the value of a specific element within a tuple literal expression.
 class TupleElement extends Element {
   /// Name of the tuple element.

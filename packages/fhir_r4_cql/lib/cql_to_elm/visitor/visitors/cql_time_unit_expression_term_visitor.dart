@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlTimeUnitExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
   CqlTimeUnitExpressionTermVisitor(super.library);
 

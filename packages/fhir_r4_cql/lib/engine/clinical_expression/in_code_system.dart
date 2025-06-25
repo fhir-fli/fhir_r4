@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The InCodeSystem operator returns true if the given code is in the given
 /// code system.
 ///

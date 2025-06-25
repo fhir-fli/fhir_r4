@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents an interval type specifier, extending [TypeSpecifier].
 ///
 /// The [IntervalTypeSpecifier] type represents an interval type, inheriting from TypeSpecifier,

@@ -75,7 +75,6 @@ class ValueSetRef extends Ref {
     return ['ValueSet'];
   }
 
-
   @override
   Future<CqlValueSet?> execute(Map<String, dynamic> context) async {
     // Retrieve the CqlLibrary from the context

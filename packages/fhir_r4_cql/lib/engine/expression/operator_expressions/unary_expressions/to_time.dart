@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to convert the value of its argument to a Time value.
 /// For String values, the operator expects the string to be formatted using ISO-8601 time representation: hh:mm:ss.fff.
 /// In addition, the string must be interpretable as a valid time-of-day value.

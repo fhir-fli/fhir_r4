@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// The Count operator returns the number of non-null elements in the source.
 /// If a path is specified, the count returns the number of elements that have
 /// a value for the property specified by the path.

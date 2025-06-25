@@ -1,7 +1,6 @@
 import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 class CqlSuccessorExpressionTermVisitor extends CqlBaseVisitor<Successor> {
   CqlSuccessorExpressionTermVisitor(super.library);
 

@@ -2,7 +2,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Operator to determine if the first interval ends the second interval.
 /// Returns true if Start(i1) >= Start(i2) and End(i1) = End(i2).
 /// If precision is specified and the point type is Date, DateTime, or Time,

@@ -1,6 +1,5 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-
 /// Represents a list type, extending [TypeInfo].
 ///
 /// The [ListTypeInfo] type represents a list type, extending [TypeInfo],
