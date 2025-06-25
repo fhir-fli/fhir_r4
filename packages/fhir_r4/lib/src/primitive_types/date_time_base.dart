@@ -637,8 +637,8 @@ abstract class FhirDateTimeBase extends PrimitiveType
   }
 
   /// Math operations
-  /// 
-  /// Adds an [ExtendedDuration] to a [FhirDateTimeBase] 
+  ///
+  /// Adds an [ExtendedDuration] to a [FhirDateTimeBase]
   /// and returns a new instance.
   static FhirDateTimeBase plus<T>(
     FhirDateTimeBase base,
@@ -677,24 +677,25 @@ abstract class FhirDateTimeBase extends PrimitiveType
     );
   }
 
-  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase] 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase]
   /// and returns a new instance.
   static FhirDateTimeBase minus<T>(
     FhirDateTimeBase base,
     ExtendedDuration o,
   ) =>
       plus<T>(
-          base,
-          ExtendedDuration(
-            years: -o.years,
-            months: -o.months,
-            days: -o.days,
-            hours: -o.hours,
-            minutes: -o.minutes,
-            seconds: -o.seconds,
-            milliseconds: -o.milliseconds,
-            microseconds: -o.microseconds,
-          ));
+        base,
+        ExtendedDuration(
+          years: -o.years,
+          months: -o.months,
+          days: -o.days,
+          hours: -o.hours,
+          minutes: -o.minutes,
+          seconds: -o.seconds,
+          milliseconds: -o.milliseconds,
+          microseconds: -o.microseconds,
+        ),
+      );
 
   /// Helper methods (cleanup, conversions, timezone formatting)
   static String _cleanInput(String input) {
@@ -840,7 +841,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
       other is FhirDateTimeBase &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

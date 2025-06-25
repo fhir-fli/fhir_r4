@@ -207,7 +207,7 @@ class FhirOid extends FhirUri
       other is FhirOid &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirOid] or [String].
   @override

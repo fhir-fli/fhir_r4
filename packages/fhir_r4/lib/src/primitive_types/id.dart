@@ -207,7 +207,7 @@ class FhirId extends FhirUri
       other is FhirId &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirId] or [String].
   @override

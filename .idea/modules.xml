@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/packages/fhir_r4_bulk/melos_fhir_r4_bulk.iml" filepath="$PROJECT_DIR$/packages/fhir_r4_bulk/melos_fhir_r4_bulk.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/fhir_r4_db/melos_fhir_r4_db.iml" filepath="$PROJECT_DIR$/packages/fhir_r4_db/melos_fhir_r4_db.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/fhir_r4_path/melos_fhir_r4_path.iml" filepath="$PROJECT_DIR$/packages/fhir_r4_path/melos_fhir_r4_path.iml" />
-      <module fileurl="file://$PROJECT_DIR$/packages/fhir_r4_utils/melos_fhir_r4_utils.iml" filepath="$PROJECT_DIR$/packages/fhir_r4_utils/melos_fhir_r4_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/fhir_r4_mapping/melos_fhir_r4_mapping.iml" filepath="$PROJECT_DIR$/packages/fhir_r4_mapping/melos_fhir_r4_mapping.iml" />
       <module fileurl="file://$PROJECT_DIR$/melos_fhir_r4.iml" filepath="$PROJECT_DIR$/melos_fhir_r4.iml" />
     </modules>
   </component>

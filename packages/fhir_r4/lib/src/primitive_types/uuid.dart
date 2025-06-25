@@ -284,7 +284,7 @@ class FhirUuid extends FhirUri
       (other is FhirUuid &&
           other.valueString == valueString &&
           ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)))) ||
+              (element != null && element!.equalsDeep(other.element)))) ||
       (other is UuidValue && other.toString() == valueString);
 
   /// Shallow equality for convenience (also checks [UuidValue]

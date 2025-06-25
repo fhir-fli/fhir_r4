@@ -212,7 +212,7 @@ class FhirInstant extends FhirDateTimeBase
       other is FhirInstant &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

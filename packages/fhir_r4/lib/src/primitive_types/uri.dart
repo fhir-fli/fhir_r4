@@ -245,7 +245,7 @@ class FhirUri extends PrimitiveType
       other is FhirUri &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   /// Checks equality with [FhirUri], [Uri], or [String].
   @override

@@ -189,7 +189,7 @@ class FhirUnsignedInt extends FhirNumber
       other is FhirUnsignedInt &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   /// Equality checks [FhirUnsignedInt], or an [int]/[double] with the same value.
   @override

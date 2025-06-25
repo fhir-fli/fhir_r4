@@ -184,7 +184,7 @@ class FhirPositiveInt extends FhirNumber
       other is FhirPositiveInt &&
       other.valueString == valueString &&
       ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element)));
+          (element != null && element!.equalsDeep(other.element)));
 
   /// Equality checks [FhirPositiveInt], or an [int]/[double] with the same value.
   @override

@@ -261,7 +261,7 @@ class FhirBase64Binary extends PrimitiveType
       (other is FhirBase64Binary &&
           other.valueString == valueString &&
           ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element))));
+              (element != null && element!.equalsDeep(other.element))));
 
   /// Operator `==` override.
   @override
@@ -271,7 +271,7 @@ class FhirBase64Binary extends PrimitiveType
       (other is FhirBase64Binary &&
           other.valueString == valueString &&
           ((element == null && other.element == null) ||
-            (element != null && element!.equalsDeep(other.element))));
+              (element != null && element!.equalsDeep(other.element))));
 
   /// Hash code override.
   @override
