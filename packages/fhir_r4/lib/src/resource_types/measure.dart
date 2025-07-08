@@ -27,7 +27,9 @@ class Measure extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXMeasure? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -60,7 +62,8 @@ class Measure extends CanonicalResource {
     this.guidance,
     this.group,
     this.supplementalData,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           resourceType: R4ResourceType.Measure,
         );
 

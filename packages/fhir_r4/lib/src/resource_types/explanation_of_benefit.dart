@@ -2501,11 +2501,25 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     required this.sequence,
     required this.category,
     this.code,
-    this.timingX,
-    this.valueX,
+    TimingXExplanationOfBenefitSupportingInfo? timingX,
+    FhirDate? timingDate,
+    Period? timingPeriod,
+    ValueXExplanationOfBenefitSupportingInfo? valueX,
+    FhirBoolean? valueBoolean,
+    FhirString? valueString,
+    Quantity? valueQuantity,
+    Attachment? valueAttachment,
+    Reference? valueReference,
     this.reason,
     super.disallowExtensions,
-  }) : super();
+  })  : timingX = timingX ?? timingDate ?? timingPeriod,
+        valueX = valueX ??
+            valueBoolean ??
+            valueString ??
+            valueQuantity ??
+            valueAttachment ??
+            valueReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitSupportingInfo.fromJson(
@@ -4100,9 +4114,12 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     super.modifierExtension,
     this.date,
     this.type,
-    this.locationX,
+    LocationXExplanationOfBenefitAccident? locationX,
+    Address? locationAddress,
+    Reference? locationReference,
     super.disallowExtensions,
-  }) : super();
+  })  : locationX = locationX ?? locationAddress ?? locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAccident.fromJson(
@@ -4459,8 +4476,13 @@ class ExplanationOfBenefitItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXExplanationOfBenefitItem? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
+    LocationXExplanationOfBenefitItem? locationX,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -4473,7 +4495,12 @@ class ExplanationOfBenefitItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super();
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitItem.fromJson(
@@ -6929,8 +6956,13 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXExplanationOfBenefitAddItem? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
+    LocationXExplanationOfBenefitAddItem? locationX,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -6941,7 +6973,12 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super();
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitAddItem.fromJson(
@@ -10166,10 +10203,18 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedX,
-    this.usedX,
+    AllowedXExplanationOfBenefitFinancial? allowedX,
+    FhirUnsignedInt? allowedUnsignedInt,
+    FhirString? allowedString,
+    Money? allowedMoney,
+    UsedXExplanationOfBenefitFinancial? usedX,
+    FhirUnsignedInt? usedUnsignedInt,
+    Money? usedMoney,
     super.disallowExtensions,
-  }) : super();
+  })  : allowedX =
+            allowedX ?? allowedUnsignedInt ?? allowedString ?? allowedMoney,
+        usedX = usedX ?? usedUnsignedInt ?? usedMoney,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitFinancial.fromJson(

@@ -31,7 +31,9 @@ class MedicationRequest extends DomainResource {
     this.category,
     this.priority,
     this.doNotPerform,
-    this.reportedX,
+    ReportedXMedicationRequest? reportedX,
+    FhirBoolean? reportedBoolean,
+    Reference? reportedReference,
     required this.medicationX,
     required this.subject,
     this.encounter,
@@ -56,7 +58,8 @@ class MedicationRequest extends DomainResource {
     this.priorPrescription,
     this.detectedIssue,
     this.eventHistory,
-  }) : super(
+  })  : reportedX = reportedX ?? reportedBoolean ?? reportedReference,
+        super(
           resourceType: R4ResourceType.MedicationRequest,
         );
 

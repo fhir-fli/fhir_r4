@@ -27,14 +27,17 @@ class DetectedIssue extends DomainResource {
     this.code,
     this.severity,
     this.patient,
-    this.identifiedX,
+    IdentifiedXDetectedIssue? identifiedX,
+    FhirDateTime? identifiedDateTime,
+    Period? identifiedPeriod,
     this.author,
     this.implicated,
     this.evidence,
     this.detail,
     this.reference,
     this.mitigation,
-  }) : super(
+  })  : identifiedX = identifiedX ?? identifiedDateTime ?? identifiedPeriod,
+        super(
           resourceType: R4ResourceType.DetectedIssue,
         );
 

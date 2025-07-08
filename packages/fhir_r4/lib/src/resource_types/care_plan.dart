@@ -1396,15 +1396,23 @@ class CarePlanDetail extends BackboneElement {
     required this.status,
     this.statusReason,
     this.doNotPerform,
-    this.scheduledX,
+    ScheduledXCarePlanDetail? scheduledX,
+    Timing? scheduledTiming,
+    Period? scheduledPeriod,
+    FhirString? scheduledString,
     this.location,
     this.performer,
-    this.productX,
+    ProductXCarePlanDetail? productX,
+    CodeableConcept? productCodeableConcept,
+    Reference? productReference,
     this.dailyAmount,
     this.quantity,
     this.description,
     super.disallowExtensions,
-  }) : super();
+  })  : scheduledX =
+            scheduledX ?? scheduledTiming ?? scheduledPeriod ?? scheduledString,
+        productX = productX ?? productCodeableConcept ?? productReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlanDetail.fromJson(

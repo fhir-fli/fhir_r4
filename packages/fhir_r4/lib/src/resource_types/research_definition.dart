@@ -31,7 +31,9 @@ class ResearchDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectX,
+    SubjectXResearchDefinition? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     this.date,
     this.publisher,
     this.contact,
@@ -56,7 +58,8 @@ class ResearchDefinition extends DomainResource {
     this.exposure,
     this.exposureAlternative,
     this.outcome,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           resourceType: R4ResourceType.ResearchDefinition,
         );
 

@@ -29,7 +29,9 @@ class Media extends DomainResource {
     this.view,
     this.subject,
     this.encounter,
-    this.createdX,
+    CreatedXMedia? createdX,
+    FhirDateTime? createdDateTime,
+    Period? createdPeriod,
     this.issued,
     this.operator_,
     this.reasonCode,
@@ -42,7 +44,8 @@ class Media extends DomainResource {
     this.duration,
     required this.content,
     this.note,
-  }) : super(
+  })  : createdX = createdX ?? createdDateTime ?? createdPeriod,
+        super(
           resourceType: R4ResourceType.Media,
         );
 

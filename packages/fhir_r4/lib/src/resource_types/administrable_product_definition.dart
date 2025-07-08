@@ -669,10 +669,21 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueX,
+    ValueXAdministrableProductDefinitionProperty? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    FhirDate? valueDate,
+    FhirBoolean? valueBoolean,
+    Attachment? valueAttachment,
     this.status,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionProperty.fromJson(

@@ -25,7 +25,10 @@ class DeviceUseStatement extends DomainResource {
     required this.status,
     required this.subject,
     this.derivedFrom,
-    this.timingX,
+    TimingXDeviceUseStatement? timingX,
+    Timing? timingTiming,
+    Period? timingPeriod,
+    FhirDateTime? timingDateTime,
     this.recordedOn,
     this.source,
     required this.device,
@@ -33,7 +36,8 @@ class DeviceUseStatement extends DomainResource {
     this.reasonReference,
     this.bodySite,
     this.note,
-  }) : super(
+  })  : timingX = timingX ?? timingTiming ?? timingPeriod ?? timingDateTime,
+        super(
           resourceType: R4ResourceType.DeviceUseStatement,
         );
 

@@ -26,11 +26,19 @@ class TriggerDefinition extends DataType
     super.extension_,
     required this.type,
     this.name,
-    this.timingX,
+    TimingXTriggerDefinition? timingX,
+    Timing? timingTiming,
+    Reference? timingReference,
+    FhirDate? timingDate,
+    FhirDateTime? timingDateTime,
     this.data,
     this.condition,
     super.disallowExtensions,
-  });
+  }) : timingX = timingX ??
+            timingTiming ??
+            timingReference ??
+            timingDate ??
+            timingDateTime;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TriggerDefinition.fromJson(

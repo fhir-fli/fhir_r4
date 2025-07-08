@@ -2105,9 +2105,13 @@ class ImmunizationProtocolApplied extends BackboneElement {
     this.authority,
     this.targetDisease,
     required this.doseNumberX,
-    this.seriesDosesX,
+    SeriesDosesXImmunizationProtocolApplied? seriesDosesX,
+    FhirPositiveInt? seriesDosesPositiveInt,
+    FhirString? seriesDosesString,
     super.disallowExtensions,
-  }) : super();
+  })  : seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationProtocolApplied.fromJson(

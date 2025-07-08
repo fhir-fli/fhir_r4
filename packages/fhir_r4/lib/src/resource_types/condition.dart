@@ -29,15 +29,37 @@ class Condition extends DomainResource {
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetX,
-    this.abatementX,
+    OnsetXCondition? onsetX,
+    FhirDateTime? onsetDateTime,
+    Age? onsetAge,
+    Period? onsetPeriod,
+    Range? onsetRange,
+    FhirString? onsetString,
+    AbatementXCondition? abatementX,
+    FhirDateTime? abatementDateTime,
+    Age? abatementAge,
+    Period? abatementPeriod,
+    Range? abatementRange,
+    FhirString? abatementString,
     this.recordedDate,
     this.recorder,
     this.asserter,
     this.stage,
     this.evidence,
     this.note,
-  }) : super(
+  })  : onsetX = onsetX ??
+            onsetDateTime ??
+            onsetAge ??
+            onsetPeriod ??
+            onsetRange ??
+            onsetString,
+        abatementX = abatementX ??
+            abatementDateTime ??
+            abatementAge ??
+            abatementPeriod ??
+            abatementRange ??
+            abatementString,
+        super(
           resourceType: R4ResourceType.Condition,
         );
 

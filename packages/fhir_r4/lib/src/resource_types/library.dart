@@ -31,7 +31,9 @@ class Library extends CanonicalResource {
     required super.status,
     super.experimental,
     required this.type,
-    this.subjectX,
+    SubjectXLibrary? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -53,7 +55,8 @@ class Library extends CanonicalResource {
     this.parameter,
     this.dataRequirement,
     this.content,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           resourceType: R4ResourceType.Library,
         );
 

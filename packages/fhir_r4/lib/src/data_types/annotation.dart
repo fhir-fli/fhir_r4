@@ -24,11 +24,13 @@ class Annotation extends DataType
   const Annotation({
     super.id,
     super.extension_,
-    this.authorX,
+    AuthorXAnnotation? authorX,
+    Reference? authorReference,
+    FhirString? authorString,
     this.time,
     required this.text,
     super.disallowExtensions,
-  });
+  }) : authorX = authorX ?? authorReference ?? authorString;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Annotation.fromJson(

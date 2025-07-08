@@ -1597,10 +1597,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.periodX,
+    PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
+    FhirDuration? periodDuration,
+    FhirString? periodString,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
-  }) : super();
+  })  : periodX = periodX ?? periodDuration ?? periodString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
@@ -1959,9 +1962,20 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueX,
+    ValueXPackagedProductDefinitionProperty? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    FhirDate? valueDate,
+    FhirBoolean? valueBoolean,
+    Attachment? valueAttachment,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionProperty.fromJson(

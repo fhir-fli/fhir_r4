@@ -32,7 +32,10 @@ class PlanDefinition extends CanonicalResource {
     this.type,
     required super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXPlanDefinition? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
+    FhirCanonical? subjectCanonical,
     super.date,
     super.publisher,
     super.contact,
@@ -54,7 +57,11 @@ class PlanDefinition extends CanonicalResource {
     this.library_,
     this.goal,
     this.action,
-  }) : super(
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        super(
           resourceType: R4ResourceType.PlanDefinition,
         );
 
@@ -1643,10 +1650,15 @@ class PlanDefinitionTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailX,
+    DetailXPlanDefinitionTarget? detailX,
+    Quantity? detailQuantity,
+    Range? detailRange,
+    CodeableConcept? detailCodeableConcept,
     this.due,
     super.disallowExtensions,
-  }) : super();
+  })  : detailX =
+            detailX ?? detailQuantity ?? detailRange ?? detailCodeableConcept,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionTarget.fromJson(
@@ -2017,13 +2029,22 @@ class PlanDefinitionAction extends BackboneElement {
     this.reason,
     this.documentation,
     this.goalId,
-    this.subjectX,
+    SubjectXPlanDefinitionAction? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
+    FhirCanonical? subjectCanonical,
     this.trigger,
     this.condition,
     this.input,
     this.output,
     this.relatedAction,
-    this.timingX,
+    TimingXPlanDefinitionAction? timingX,
+    FhirDateTime? timingDateTime,
+    Age? timingAge,
+    Period? timingPeriod,
+    FhirDuration? timingDuration,
+    Range? timingRange,
+    Timing? timingTiming,
     this.participant,
     this.type,
     this.groupingBehavior,
@@ -2031,12 +2052,26 @@ class PlanDefinitionAction extends BackboneElement {
     this.requiredBehavior,
     this.precheckBehavior,
     this.cardinalityBehavior,
-    this.definitionX,
+    DefinitionXPlanDefinitionAction? definitionX,
+    FhirCanonical? definitionCanonical,
+    FhirUri? definitionUri,
     this.transform,
     this.dynamicValue,
     this.action,
     super.disallowExtensions,
-  }) : super();
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        timingX = timingX ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingDuration ??
+            timingRange ??
+            timingTiming,
+        definitionX = definitionX ?? definitionCanonical ?? definitionUri,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionAction.fromJson(
@@ -3394,9 +3429,12 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.modifierExtension,
     required this.actionId,
     required this.relationship,
-    this.offsetX,
+    OffsetXPlanDefinitionRelatedAction? offsetX,
+    FhirDuration? offsetDuration,
+    Range? offsetRange,
     super.disallowExtensions,
-  }) : super();
+  })  : offsetX = offsetX ?? offsetDuration ?? offsetRange,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionRelatedAction.fromJson(

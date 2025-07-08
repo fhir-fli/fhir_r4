@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.4.4]
+
+* Added ability to define type of Polymorphics for most fields (but not for required ones)
+
 ## [0.4.3]
 
 * Fixed addition and subtraction fo ExtendedDuration to FhirDateTimeBase

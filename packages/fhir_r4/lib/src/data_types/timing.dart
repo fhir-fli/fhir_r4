@@ -373,7 +373,10 @@ class TimingRepeat extends Element {
   const TimingRepeat({
     super.id,
     super.extension_,
-    this.boundsX,
+    BoundsXTimingRepeat? boundsX,
+    FhirDuration? boundsDuration,
+    Range? boundsRange,
+    Period? boundsPeriod,
     this.count,
     this.countMax,
     this.duration,
@@ -389,7 +392,7 @@ class TimingRepeat extends Element {
     this.when,
     this.offset,
     super.disallowExtensions,
-  });
+  }) : boundsX = boundsX ?? boundsDuration ?? boundsRange ?? boundsPeriod;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TimingRepeat.fromJson(

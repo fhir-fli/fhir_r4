@@ -2470,8 +2470,13 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXClaimResponseAddItem? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
+    LocationXClaimResponseAddItem? locationX,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -2482,7 +2487,12 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super();
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseAddItem.fromJson(

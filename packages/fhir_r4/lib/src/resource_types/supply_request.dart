@@ -27,7 +27,10 @@ class SupplyRequest extends DomainResource {
     required this.itemX,
     required this.quantity,
     this.parameter,
-    this.occurrenceX,
+    OccurrenceXSupplyRequest? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
     this.authoredOn,
     this.requester,
     this.supplier,
@@ -35,7 +38,11 @@ class SupplyRequest extends DomainResource {
     this.reasonReference,
     this.deliverFrom,
     this.deliverTo,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           resourceType: R4ResourceType.SupplyRequest,
         );
 
@@ -812,9 +819,18 @@ class SupplyRequestParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXSupplyRequestParameter? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    Range? valueRange,
+    FhirBoolean? valueBoolean,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueRange ??
+            valueBoolean,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequestParameter.fromJson(

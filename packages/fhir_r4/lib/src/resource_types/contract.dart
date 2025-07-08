@@ -41,7 +41,9 @@ class Contract extends DomainResource {
     this.alias,
     this.author,
     this.scope,
-    this.topicX,
+    TopicXContract? topicX,
+    CodeableConcept? topicCodeableConcept,
+    Reference? topicReference,
     this.type,
     this.subType,
     this.contentDefinition,
@@ -52,8 +54,14 @@ class Contract extends DomainResource {
     this.friendly,
     this.legal,
     this.rule,
-    this.legallyBindingX,
-  }) : super(
+    LegallyBindingXContract? legallyBindingX,
+    Attachment? legallyBindingAttachment,
+    Reference? legallyBindingReference,
+  })  : topicX = topicX ?? topicCodeableConcept ?? topicReference,
+        legallyBindingX = legallyBindingX ??
+            legallyBindingAttachment ??
+            legallyBindingReference,
+        super(
           resourceType: R4ResourceType.Contract,
         );
 
@@ -1737,7 +1745,9 @@ class ContractTerm extends BackboneElement {
     this.identifier,
     this.issued,
     this.applies,
-    this.topicX,
+    TopicXContractTerm? topicX,
+    CodeableConcept? topicCodeableConcept,
+    Reference? topicReference,
     this.type,
     this.subType,
     this.text,
@@ -1747,7 +1757,8 @@ class ContractTerm extends BackboneElement {
     this.action,
     this.group,
     super.disallowExtensions,
-  }) : super();
+  })  : topicX = topicX ?? topicCodeableConcept ?? topicReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractTerm.fromJson(
@@ -4840,7 +4851,9 @@ class ContractValuedItem extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.entityX,
+    EntityXContractValuedItem? entityX,
+    CodeableConcept? entityCodeableConcept,
+    Reference? entityReference,
     this.identifier,
     this.effectiveTime,
     this.quantity,
@@ -4855,7 +4868,8 @@ class ContractValuedItem extends BackboneElement {
     this.linkId,
     this.securityLabelNumber,
     super.disallowExtensions,
-  }) : super();
+  })  : entityX = entityX ?? entityCodeableConcept ?? entityReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractValuedItem.fromJson(
@@ -5485,7 +5499,10 @@ class ContractAction extends BackboneElement {
     required this.status,
     this.context,
     this.contextLinkId,
-    this.occurrenceX,
+    OccurrenceXContractAction? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
     this.requester,
     this.requesterLinkId,
     this.performerType,
@@ -5499,7 +5516,11 @@ class ContractAction extends BackboneElement {
     this.note,
     this.securityLabelNumber,
     super.disallowExtensions,
-  }) : super();
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAction.fromJson(

@@ -36,10 +36,16 @@ class ConceptMap extends CanonicalResource {
     super.jurisdiction,
     this.purpose,
     this.copyright,
-    this.sourceX,
-    this.targetX,
+    SourceXConceptMap? sourceX,
+    FhirUri? sourceUri,
+    FhirCanonical? sourceCanonical,
+    TargetXConceptMap? targetX,
+    FhirUri? targetUri,
+    FhirCanonical? targetCanonical,
     this.group,
-  }) : super(
+  })  : sourceX = sourceX ?? sourceUri ?? sourceCanonical,
+        targetX = targetX ?? targetUri ?? targetCanonical,
+        super(
           resourceType: R4ResourceType.ConceptMap,
         );
 

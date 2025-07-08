@@ -29,14 +29,25 @@ class AllergyIntolerance extends DomainResource {
     this.code,
     required this.patient,
     this.encounter,
-    this.onsetX,
+    OnsetXAllergyIntolerance? onsetX,
+    FhirDateTime? onsetDateTime,
+    Age? onsetAge,
+    Period? onsetPeriod,
+    Range? onsetRange,
+    FhirString? onsetString,
     this.recordedDate,
     this.recorder,
     this.asserter,
     this.lastOccurrence,
     this.note,
     this.reaction,
-  }) : super(
+  })  : onsetX = onsetX ??
+            onsetDateTime ??
+            onsetAge ??
+            onsetPeriod ??
+            onsetRange ??
+            onsetString,
+        super(
           resourceType: R4ResourceType.AllergyIntolerance,
         );
 

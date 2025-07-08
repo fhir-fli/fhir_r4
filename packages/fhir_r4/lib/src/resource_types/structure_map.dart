@@ -2305,7 +2305,57 @@ class StructureMapSource extends BackboneElement {
     this.min,
     this.max,
     this.type,
-    this.defaultValueX,
+    DefaultValueXStructureMapSource? defaultValueX,
+    FhirBase64Binary? defaultValueBase64Binary,
+    FhirBoolean? defaultValueBoolean,
+    FhirCanonical? defaultValueCanonical,
+    FhirCode? defaultValueCode,
+    FhirDate? defaultValueDate,
+    FhirDateTime? defaultValueDateTime,
+    FhirDecimal? defaultValueDecimal,
+    FhirId? defaultValueId,
+    FhirInstant? defaultValueInstant,
+    FhirInteger? defaultValueInteger,
+    FhirMarkdown? defaultValueMarkdown,
+    FhirOid? defaultValueOid,
+    FhirPositiveInt? defaultValuePositiveInt,
+    FhirString? defaultValueString,
+    FhirTime? defaultValueTime,
+    FhirUnsignedInt? defaultValueUnsignedInt,
+    FhirUri? defaultValueUri,
+    FhirUrl? defaultValueUrl,
+    FhirUuid? defaultValueUuid,
+    Address? defaultValueAddress,
+    Age? defaultValueAge,
+    Annotation? defaultValueAnnotation,
+    Attachment? defaultValueAttachment,
+    CodeableConcept? defaultValueCodeableConcept,
+    Coding? defaultValueCoding,
+    ContactPoint? defaultValueContactPoint,
+    Count? defaultValueCount,
+    Distance? defaultValueDistance,
+    FhirDuration? defaultValueDuration,
+    HumanName? defaultValueHumanName,
+    Identifier? defaultValueIdentifier,
+    Money? defaultValueMoney,
+    Period? defaultValuePeriod,
+    Quantity? defaultValueQuantity,
+    Range? defaultValueRange,
+    Ratio? defaultValueRatio,
+    Reference? defaultValueReference,
+    SampledData? defaultValueSampledData,
+    Signature? defaultValueSignature,
+    Timing? defaultValueTiming,
+    ContactDetail? defaultValueContactDetail,
+    Contributor? defaultValueContributor,
+    DataRequirement? defaultValueDataRequirement,
+    FhirExpression? defaultValueExpression,
+    ParameterDefinition? defaultValueParameterDefinition,
+    RelatedArtifact? defaultValueRelatedArtifact,
+    TriggerDefinition? defaultValueTriggerDefinition,
+    UsageContext? defaultValueUsageContext,
+    Dosage? defaultValueDosage,
+    FhirMeta? defaultValueMeta,
     this.element,
     this.listMode,
     this.variable,
@@ -2313,7 +2363,58 @@ class StructureMapSource extends BackboneElement {
     this.check,
     this.logMessage,
     super.disallowExtensions,
-  }) : super();
+  })  : defaultValueX = defaultValueX ??
+            defaultValueBase64Binary ??
+            defaultValueBoolean ??
+            defaultValueCanonical ??
+            defaultValueCode ??
+            defaultValueDate ??
+            defaultValueDateTime ??
+            defaultValueDecimal ??
+            defaultValueId ??
+            defaultValueInstant ??
+            defaultValueInteger ??
+            defaultValueMarkdown ??
+            defaultValueOid ??
+            defaultValuePositiveInt ??
+            defaultValueString ??
+            defaultValueTime ??
+            defaultValueUnsignedInt ??
+            defaultValueUri ??
+            defaultValueUrl ??
+            defaultValueUuid ??
+            defaultValueAddress ??
+            defaultValueAge ??
+            defaultValueAnnotation ??
+            defaultValueAttachment ??
+            defaultValueCodeableConcept ??
+            defaultValueCoding ??
+            defaultValueContactPoint ??
+            defaultValueCount ??
+            defaultValueDistance ??
+            defaultValueDuration ??
+            defaultValueHumanName ??
+            defaultValueIdentifier ??
+            defaultValueMoney ??
+            defaultValuePeriod ??
+            defaultValueQuantity ??
+            defaultValueRange ??
+            defaultValueRatio ??
+            defaultValueReference ??
+            defaultValueSampledData ??
+            defaultValueSignature ??
+            defaultValueTiming ??
+            defaultValueContactDetail ??
+            defaultValueContributor ??
+            defaultValueDataRequirement ??
+            defaultValueExpression ??
+            defaultValueParameterDefinition ??
+            defaultValueRelatedArtifact ??
+            defaultValueTriggerDefinition ??
+            defaultValueUsageContext ??
+            defaultValueDosage ??
+            defaultValueMeta,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapSource.fromJson(

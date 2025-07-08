@@ -29,7 +29,9 @@ class Goal extends DomainResource {
     this.priority,
     required this.description,
     required this.subject,
-    this.startX,
+    StartXGoal? startX,
+    FhirDate? startDate,
+    CodeableConcept? startCodeableConcept,
     this.target,
     this.statusDate,
     this.statusReason,
@@ -38,7 +40,8 @@ class Goal extends DomainResource {
     this.note,
     this.outcomeCode,
     this.outcomeReference,
-  }) : super(
+  })  : startX = startX ?? startDate ?? startCodeableConcept,
+        super(
           resourceType: R4ResourceType.Goal,
         );
 
@@ -814,10 +817,28 @@ class GoalTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailX,
-    this.dueX,
+    DetailXGoalTarget? detailX,
+    Quantity? detailQuantity,
+    Range? detailRange,
+    CodeableConcept? detailCodeableConcept,
+    FhirString? detailString,
+    FhirBoolean? detailBoolean,
+    FhirInteger? detailInteger,
+    Ratio? detailRatio,
+    DueXGoalTarget? dueX,
+    FhirDate? dueDate,
+    FhirDuration? dueDuration,
     super.disallowExtensions,
-  }) : super();
+  })  : detailX = detailX ??
+            detailQuantity ??
+            detailRange ??
+            detailCodeableConcept ??
+            detailString ??
+            detailBoolean ??
+            detailInteger ??
+            detailRatio,
+        dueX = dueX ?? dueDate ?? dueDuration,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GoalTarget.fromJson(

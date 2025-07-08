@@ -14,12 +14,14 @@ class Population extends BackboneType {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.ageX,
+    AgeXPopulation? ageX,
+    Range? ageRange,
+    CodeableConcept? ageCodeableConcept,
     this.gender,
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
-  });
+  }) : ageX = ageX ?? ageRange ?? ageCodeableConcept;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Population.fromJson(

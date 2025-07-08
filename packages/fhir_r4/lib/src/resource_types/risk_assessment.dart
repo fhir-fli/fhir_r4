@@ -28,7 +28,9 @@ class RiskAssessment extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.occurrenceX,
+    OccurrenceXRiskAssessment? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
     this.condition,
     this.performer,
     this.reasonCode,
@@ -37,7 +39,8 @@ class RiskAssessment extends DomainResource {
     this.prediction,
     this.mitigation,
     this.note,
-  }) : super(
+  })  : occurrenceX = occurrenceX ?? occurrenceDateTime ?? occurrencePeriod,
+        super(
           resourceType: R4ResourceType.RiskAssessment,
         );
 
@@ -833,13 +836,19 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.outcome,
-    this.probabilityX,
+    ProbabilityXRiskAssessmentPrediction? probabilityX,
+    FhirDecimal? probabilityDecimal,
+    Range? probabilityRange,
     this.qualitativeRisk,
     this.relativeRisk,
-    this.whenX,
+    WhenXRiskAssessmentPrediction? whenX,
+    Period? whenPeriod,
+    Range? whenRange,
     this.rationale,
     super.disallowExtensions,
-  }) : super();
+  })  : probabilityX = probabilityX ?? probabilityDecimal ?? probabilityRange,
+        whenX = whenX ?? whenPeriod ?? whenRange,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessmentPrediction.fromJson(

@@ -2735,9 +2735,12 @@ class NutritionOrderAdministration extends BackboneElement {
     super.modifierExtension,
     this.schedule,
     this.quantity,
-    this.rateX,
+    RateXNutritionOrderAdministration? rateX,
+    Quantity? rateQuantity,
+    Ratio? rateRatio,
     super.disallowExtensions,
-  }) : super();
+  })  : rateX = rateX ?? rateQuantity ?? rateRatio,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionOrderAdministration.fromJson(

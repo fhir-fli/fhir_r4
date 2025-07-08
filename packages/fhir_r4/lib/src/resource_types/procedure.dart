@@ -32,7 +32,12 @@ class Procedure extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.performedX,
+    PerformedXProcedure? performedX,
+    FhirDateTime? performedDateTime,
+    Period? performedPeriod,
+    FhirString? performedString,
+    Age? performedAge,
+    Range? performedRange,
     this.recorder,
     this.asserter,
     this.performer,
@@ -49,7 +54,13 @@ class Procedure extends DomainResource {
     this.focalDevice,
     this.usedReference,
     this.usedCode,
-  }) : super(
+  })  : performedX = performedX ??
+            performedDateTime ??
+            performedPeriod ??
+            performedString ??
+            performedAge ??
+            performedRange,
+        super(
           resourceType: R4ResourceType.Procedure,
         );
 

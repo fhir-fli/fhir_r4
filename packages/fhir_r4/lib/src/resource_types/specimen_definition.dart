@@ -993,11 +993,15 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.cap,
     this.description,
     this.capacity,
-    this.minimumVolumeX,
+    MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX,
+    Quantity? minimumVolumeQuantity,
+    FhirString? minimumVolumeString,
     this.additive,
     this.preparation,
     super.disallowExtensions,
-  }) : super();
+  })  : minimumVolumeX =
+            minimumVolumeX ?? minimumVolumeQuantity ?? minimumVolumeString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(

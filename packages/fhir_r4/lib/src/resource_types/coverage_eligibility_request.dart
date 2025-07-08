@@ -28,7 +28,9 @@ class CoverageEligibilityRequest extends DomainResource {
     this.priority,
     required this.purpose,
     required this.patient,
-    this.servicedX,
+    ServicedXCoverageEligibilityRequest? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
     required this.created,
     this.enterer,
     this.provider,
@@ -37,7 +39,8 @@ class CoverageEligibilityRequest extends DomainResource {
     this.supportingInfo,
     this.insurance,
     this.item,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        super(
           resourceType: R4ResourceType.CoverageEligibilityRequest,
         );
 
@@ -1930,9 +1933,13 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.diagnosisX,
+    DiagnosisXCoverageEligibilityRequestDiagnosis? diagnosisX,
+    CodeableConcept? diagnosisCodeableConcept,
+    Reference? diagnosisReference,
     super.disallowExtensions,
-  }) : super();
+  })  : diagnosisX =
+            diagnosisX ?? diagnosisCodeableConcept ?? diagnosisReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestDiagnosis.fromJson(

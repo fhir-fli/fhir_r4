@@ -721,14 +721,22 @@ class SpecimenCollection extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.collector,
-    this.collectedX,
+    CollectedXSpecimenCollection? collectedX,
+    FhirDateTime? collectedDateTime,
+    Period? collectedPeriod,
     this.duration,
     this.quantity,
     this.method,
     this.bodySite,
-    this.fastingStatusX,
+    FastingStatusXSpecimenCollection? fastingStatusX,
+    CodeableConcept? fastingStatusCodeableConcept,
+    FhirDuration? fastingStatusDuration,
     super.disallowExtensions,
-  }) : super();
+  })  : collectedX = collectedX ?? collectedDateTime ?? collectedPeriod,
+        fastingStatusX = fastingStatusX ??
+            fastingStatusCodeableConcept ??
+            fastingStatusDuration,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenCollection.fromJson(
@@ -1197,9 +1205,12 @@ class SpecimenProcessing extends BackboneElement {
     this.description,
     this.procedure,
     this.additive,
-    this.timeX,
+    TimeXSpecimenProcessing? timeX,
+    FhirDateTime? timeDateTime,
+    Period? timePeriod,
     super.disallowExtensions,
-  }) : super();
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenProcessing.fromJson(
@@ -1574,9 +1585,12 @@ class SpecimenContainer extends BackboneElement {
     this.type,
     this.capacity,
     this.specimenQuantity,
-    this.additiveX,
+    AdditiveXSpecimenContainer? additiveX,
+    CodeableConcept? additiveCodeableConcept,
+    Reference? additiveReference,
     super.disallowExtensions,
-  }) : super();
+  })  : additiveX = additiveX ?? additiveCodeableConcept ?? additiveReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenContainer.fromJson(

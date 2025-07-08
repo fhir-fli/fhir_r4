@@ -29,7 +29,9 @@ class ResearchElementDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectX,
+    SubjectXResearchElementDefinition? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     this.date,
     this.publisher,
     this.contact,
@@ -53,7 +55,8 @@ class ResearchElementDefinition extends DomainResource {
     required this.type,
     this.variableType,
     required this.characteristic,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
 
@@ -1305,15 +1308,34 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     this.exclude,
     this.unitOfMeasure,
     this.studyEffectiveDescription,
-    this.studyEffectiveX,
+    StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX,
+    FhirDateTime? studyEffectiveDateTime,
+    Period? studyEffectivePeriod,
+    FhirDuration? studyEffectiveDuration,
+    Timing? studyEffectiveTiming,
     this.studyEffectiveTimeFromStart,
     this.studyEffectiveGroupMeasure,
     this.participantEffectiveDescription,
-    this.participantEffectiveX,
+    ParticipantEffectiveXResearchElementDefinitionCharacteristic?
+        participantEffectiveX,
+    FhirDateTime? participantEffectiveDateTime,
+    Period? participantEffectivePeriod,
+    FhirDuration? participantEffectiveDuration,
+    Timing? participantEffectiveTiming,
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
     super.disallowExtensions,
-  }) : super();
+  })  : studyEffectiveX = studyEffectiveX ??
+            studyEffectiveDateTime ??
+            studyEffectivePeriod ??
+            studyEffectiveDuration ??
+            studyEffectiveTiming,
+        participantEffectiveX = participantEffectiveX ??
+            participantEffectiveDateTime ??
+            participantEffectivePeriod ??
+            participantEffectiveDuration ??
+            participantEffectiveTiming,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchElementDefinitionCharacteristic.fromJson(

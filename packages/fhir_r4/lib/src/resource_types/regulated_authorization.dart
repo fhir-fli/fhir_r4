@@ -760,10 +760,13 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.identifier,
     this.type,
     this.status,
-    this.dateX,
+    DateXRegulatedAuthorizationCase? dateX,
+    Period? datePeriod,
+    FhirDateTime? dateDateTime,
     this.application,
     super.disallowExtensions,
-  }) : super();
+  })  : dateX = dateX ?? datePeriod ?? dateDateTime,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(

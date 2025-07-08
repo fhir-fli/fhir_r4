@@ -1355,11 +1355,14 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.diseaseStatus,
     this.comorbidity,
     this.intendedEffect,
-    this.durationX,
+    DurationXClinicalUseDefinitionIndication? durationX,
+    Range? durationRange,
+    FhirString? durationString,
     this.undesirableEffect,
     this.otherTherapy,
     super.disallowExtensions,
-  }) : super();
+  })  : durationX = durationX ?? durationRange ?? durationString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionIndication.fromJson(

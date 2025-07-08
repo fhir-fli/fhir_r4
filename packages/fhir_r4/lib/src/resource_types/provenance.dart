@@ -30,7 +30,9 @@ class Provenance extends DomainResource {
     super.extension_,
     super.modifierExtension,
     required this.target,
-    this.occurredX,
+    OccurredXProvenance? occurredX,
+    Period? occurredPeriod,
+    FhirDateTime? occurredDateTime,
     required this.recorded,
     this.policy,
     this.location,
@@ -39,7 +41,8 @@ class Provenance extends DomainResource {
     required this.agent,
     this.entity,
     this.signature,
-  }) : super(
+  })  : occurredX = occurredX ?? occurredPeriod ?? occurredDateTime,
+        super(
           resourceType: R4ResourceType.Provenance,
         );
 

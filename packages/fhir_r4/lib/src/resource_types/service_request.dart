@@ -33,11 +33,19 @@ class ServiceRequest extends DomainResource {
     this.doNotPerform,
     this.code,
     this.orderDetail,
-    this.quantityX,
+    QuantityXServiceRequest? quantityX,
+    Quantity? quantityQuantity,
+    Ratio? quantityRatio,
+    Range? quantityRange,
     required this.subject,
     this.encounter,
-    this.occurrenceX,
-    this.asNeededX,
+    OccurrenceXServiceRequest? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
+    AsNeededXServiceRequest? asNeededX,
+    FhirBoolean? asNeededBoolean,
+    CodeableConcept? asNeededCodeableConcept,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -53,7 +61,14 @@ class ServiceRequest extends DomainResource {
     this.note,
     this.patientInstruction,
     this.relevantHistory,
-  }) : super(
+  })  : quantityX =
+            quantityX ?? quantityQuantity ?? quantityRatio ?? quantityRange,
+        occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        asNeededX = asNeededX ?? asNeededBoolean ?? asNeededCodeableConcept,
+        super(
           resourceType: R4ResourceType.ServiceRequest,
         );
 

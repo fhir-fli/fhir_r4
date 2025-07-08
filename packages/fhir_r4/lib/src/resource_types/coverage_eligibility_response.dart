@@ -24,7 +24,9 @@ class CoverageEligibilityResponse extends DomainResource {
     required this.status,
     required this.purpose,
     required this.patient,
-    this.servicedX,
+    ServicedXCoverageEligibilityResponse? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
     required this.created,
     this.requestor,
     required this.request,
@@ -35,7 +37,8 @@ class CoverageEligibilityResponse extends DomainResource {
     this.preAuthRef,
     this.form,
     this.error,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        super(
           resourceType: R4ResourceType.CoverageEligibilityResponse,
         );
 
@@ -1752,10 +1755,19 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedX,
-    this.usedX,
+    AllowedXCoverageEligibilityResponseBenefit? allowedX,
+    FhirUnsignedInt? allowedUnsignedInt,
+    FhirString? allowedString,
+    Money? allowedMoney,
+    UsedXCoverageEligibilityResponseBenefit? usedX,
+    FhirUnsignedInt? usedUnsignedInt,
+    FhirString? usedString,
+    Money? usedMoney,
     super.disallowExtensions,
-  }) : super();
+  })  : allowedX =
+            allowedX ?? allowedUnsignedInt ?? allowedString ?? allowedMoney,
+        usedX = usedX ?? usedUnsignedInt ?? usedString ?? usedMoney,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseBenefit.fromJson(

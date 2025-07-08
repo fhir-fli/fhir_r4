@@ -29,10 +29,25 @@ class Observation extends DomainResource {
     this.subject,
     this.focus,
     this.encounter,
-    this.effectiveX,
+    EffectiveXObservation? effectiveX,
+    FhirDateTime? effectiveDateTime,
+    Period? effectivePeriod,
+    Timing? effectiveTiming,
+    FhirInstant? effectiveInstant,
     this.issued,
     this.performer,
-    this.valueX,
+    ValueXObservation? valueX,
+    Quantity? valueQuantity,
+    CodeableConcept? valueCodeableConcept,
+    FhirString? valueString,
+    FhirBoolean? valueBoolean,
+    FhirInteger? valueInteger,
+    Range? valueRange,
+    Ratio? valueRatio,
+    SampledData? valueSampledData,
+    FhirTime? valueTime,
+    FhirDateTime? valueDateTime,
+    Period? valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.note,
@@ -44,7 +59,24 @@ class Observation extends DomainResource {
     this.hasMember,
     this.derivedFrom,
     this.component,
-  }) : super(
+  })  : effectiveX = effectiveX ??
+            effectiveDateTime ??
+            effectivePeriod ??
+            effectiveTiming ??
+            effectiveInstant,
+        valueX = valueX ??
+            valueQuantity ??
+            valueCodeableConcept ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueRange ??
+            valueRatio ??
+            valueSampledData ??
+            valueTime ??
+            valueDateTime ??
+            valuePeriod,
+        super(
           resourceType: R4ResourceType.Observation,
         );
 
@@ -1586,12 +1618,35 @@ class ObservationComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueX,
+    ValueXObservationComponent? valueX,
+    Quantity? valueQuantity,
+    CodeableConcept? valueCodeableConcept,
+    FhirString? valueString,
+    FhirBoolean? valueBoolean,
+    FhirInteger? valueInteger,
+    Range? valueRange,
+    Ratio? valueRatio,
+    SampledData? valueSampledData,
+    FhirTime? valueTime,
+    FhirDateTime? valueDateTime,
+    Period? valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueQuantity ??
+            valueCodeableConcept ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueRange ??
+            valueRatio ??
+            valueSampledData ??
+            valueTime ??
+            valueDateTime ??
+            valuePeriod,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationComponent.fromJson(

@@ -2554,10 +2554,14 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.dosage,
-    this.indicationX,
+    IndicationXMedicationKnowledgeAdministrationGuidelines? indicationX,
+    CodeableConcept? indicationCodeableConcept,
+    Reference? indicationReference,
     this.patientCharacteristics,
     super.disallowExtensions,
-  }) : super();
+  })  : indicationX =
+            indicationX ?? indicationCodeableConcept ?? indicationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeAdministrationGuidelines.fromJson(
@@ -4141,9 +4145,18 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXMedicationKnowledgeDrugCharacteristic? valueX,
+    CodeableConcept? valueCodeableConcept,
+    FhirString? valueString,
+    Quantity? valueQuantity,
+    FhirBase64Binary? valueBase64Binary,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueString ??
+            valueQuantity ??
+            valueBase64Binary,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeDrugCharacteristic.fromJson(

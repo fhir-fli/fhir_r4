@@ -2074,11 +2074,25 @@ class ClaimSupportingInfo extends BackboneElement {
     required this.sequence,
     required this.category,
     this.code,
-    this.timingX,
-    this.valueX,
+    TimingXClaimSupportingInfo? timingX,
+    FhirDate? timingDate,
+    Period? timingPeriod,
+    ValueXClaimSupportingInfo? valueX,
+    FhirBoolean? valueBoolean,
+    FhirString? valueString,
+    Quantity? valueQuantity,
+    Attachment? valueAttachment,
+    Reference? valueReference,
     this.reason,
     super.disallowExtensions,
-  }) : super();
+  })  : timingX = timingX ?? timingDate ?? timingPeriod,
+        valueX = valueX ??
+            valueBoolean ??
+            valueString ??
+            valueQuantity ??
+            valueAttachment ??
+            valueReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSupportingInfo.fromJson(
@@ -3766,9 +3780,12 @@ class ClaimAccident extends BackboneElement {
     super.modifierExtension,
     required this.date,
     this.type,
-    this.locationX,
+    LocationXClaimAccident? locationX,
+    Address? locationAddress,
+    Reference? locationReference,
     super.disallowExtensions,
-  }) : super();
+  })  : locationX = locationX ?? locationAddress ?? locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimAccident.fromJson(
@@ -4121,8 +4138,13 @@ class ClaimItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXClaimItem? servicedX,
+    FhirDate? servicedDate,
+    Period? servicedPeriod,
+    LocationXClaimItem? locationX,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -4133,7 +4155,12 @@ class ClaimItem extends BackboneElement {
     this.encounter,
     this.detail,
     super.disallowExtensions,
-  }) : super();
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimItem.fromJson(

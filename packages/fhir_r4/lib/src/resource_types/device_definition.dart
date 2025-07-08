@@ -22,7 +22,9 @@ class DeviceDefinition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerX,
+    ManufacturerXDeviceDefinition? manufacturerX,
+    FhirString? manufacturerString,
+    Reference? manufacturerReference,
     this.deviceName,
     this.modelNumber,
     this.type,
@@ -42,7 +44,9 @@ class DeviceDefinition extends DomainResource {
     this.quantity,
     this.parentDevice,
     this.material,
-  }) : super(
+  })  : manufacturerX =
+            manufacturerX ?? manufacturerString ?? manufacturerReference,
+        super(
           resourceType: R4ResourceType.DeviceDefinition,
         );
 

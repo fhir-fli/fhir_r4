@@ -2957,9 +2957,24 @@ class ValueSetParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.valueX,
+    ValueXValueSetParameter? valueX,
+    FhirString? valueString,
+    FhirBoolean? valueBoolean,
+    FhirInteger? valueInteger,
+    FhirDecimal? valueDecimal,
+    FhirUri? valueUri,
+    FhirCode? valueCode,
+    FhirDateTime? valueDateTime,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueDecimal ??
+            valueUri ??
+            valueCode ??
+            valueDateTime,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetParameter.fromJson(

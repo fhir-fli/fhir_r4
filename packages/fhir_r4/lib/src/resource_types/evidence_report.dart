@@ -27,7 +27,9 @@ class EvidenceReport extends DomainResource {
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
-    this.citeAsX,
+    CiteAsXEvidenceReport? citeAsX,
+    Reference? citeAsReference,
+    FhirMarkdown? citeAsMarkdown,
     this.type,
     this.note,
     this.relatedArtifact,
@@ -40,7 +42,8 @@ class EvidenceReport extends DomainResource {
     this.endorser,
     this.relatesTo,
     this.section,
-  }) : super(
+  })  : citeAsX = citeAsX ?? citeAsReference ?? citeAsMarkdown,
+        super(
           resourceType: R4ResourceType.EvidenceReport,
         );
 

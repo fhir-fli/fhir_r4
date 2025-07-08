@@ -95,21 +95,21 @@ packages:
       path: "packages/fhir_r4"
       relative: true
     source: path
-    version: "0.4.1"
+    version: "0.4.3"
   fhir_r4_at_rest:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_at_rest"
       relative: true
     source: path
-    version: "0.4.0"
+    version: "0.4.1"
   fhir_r4_path:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_path"
       relative: true
     source: path
-    version: "0.4.1"
+    version: "0.4.4"
   file:
     dependency: transitive
     description:

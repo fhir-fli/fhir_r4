@@ -30,12 +30,15 @@ class Consent extends DomainResource {
     this.dateTime,
     this.performer,
     this.organization,
-    this.sourceX,
+    SourceXConsent? sourceX,
+    Attachment? sourceAttachment,
+    Reference? sourceReference,
     this.policy,
     this.policyRule,
     this.verification,
     this.provision,
-  }) : super(
+  })  : sourceX = sourceX ?? sourceAttachment ?? sourceReference,
+        super(
           resourceType: R4ResourceType.Consent,
         );
 

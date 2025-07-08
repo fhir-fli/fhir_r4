@@ -26,11 +26,18 @@ class SupplyDelivery extends DomainResource {
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceX,
+    OccurrenceXSupplyDelivery? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
     this.supplier,
     this.destination,
     this.receiver,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           resourceType: R4ResourceType.SupplyDelivery,
         );
 
@@ -692,9 +699,12 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.itemX,
+    ItemXSupplyDeliverySuppliedItem? itemX,
+    CodeableConcept? itemCodeableConcept,
+    Reference? itemReference,
     super.disallowExtensions,
-  }) : super();
+  })  : itemX = itemX ?? itemCodeableConcept ?? itemReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyDeliverySuppliedItem.fromJson(

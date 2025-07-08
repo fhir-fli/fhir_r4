@@ -32,9 +32,16 @@ class ImmunizationEvaluation extends DomainResource {
     this.doseStatusReason,
     this.description,
     this.series,
-    this.doseNumberX,
-    this.seriesDosesX,
-  }) : super(
+    DoseNumberXImmunizationEvaluation? doseNumberX,
+    FhirPositiveInt? doseNumberPositiveInt,
+    FhirString? doseNumberString,
+    SeriesDosesXImmunizationEvaluation? seriesDosesX,
+    FhirPositiveInt? seriesDosesPositiveInt,
+    FhirString? seriesDosesString,
+  })  : doseNumberX = doseNumberX ?? doseNumberPositiveInt ?? doseNumberString,
+        seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super(
           resourceType: R4ResourceType.ImmunizationEvaluation,
         );
 

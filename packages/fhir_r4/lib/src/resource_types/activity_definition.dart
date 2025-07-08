@@ -29,7 +29,10 @@ class ActivityDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXActivityDefinition? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
+    FhirCanonical? subjectCanonical,
     super.date,
     super.publisher,
     super.contact,
@@ -55,10 +58,18 @@ class ActivityDefinition extends CanonicalResource {
     this.intent,
     this.priority,
     this.doNotPerform,
-    this.timingX,
+    TimingXActivityDefinition? timingX,
+    Timing? timingTiming,
+    FhirDateTime? timingDateTime,
+    Age? timingAge,
+    Period? timingPeriod,
+    Range? timingRange,
+    FhirDuration? timingDuration,
     this.location,
     this.participant,
-    this.productX,
+    ProductXActivityDefinition? productX,
+    Reference? productReference,
+    CodeableConcept? productCodeableConcept,
     this.quantity,
     this.dosage,
     this.bodySite,
@@ -67,7 +78,19 @@ class ActivityDefinition extends CanonicalResource {
     this.observationResultRequirement,
     this.transform,
     this.dynamicValue,
-  }) : super(
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        timingX = timingX ??
+            timingTiming ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingRange ??
+            timingDuration,
+        productX = productX ?? productReference ?? productCodeableConcept,
+        super(
           resourceType: R4ResourceType.ActivityDefinition,
         );
 

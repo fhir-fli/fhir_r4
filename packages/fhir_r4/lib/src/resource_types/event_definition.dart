@@ -28,7 +28,9 @@ class EventDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXEventDefinition? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -48,7 +50,8 @@ class EventDefinition extends CanonicalResource {
     this.endorser,
     this.relatedArtifact,
     required this.trigger,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           resourceType: R4ResourceType.EventDefinition,
         );
 

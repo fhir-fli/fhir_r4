@@ -1201,15 +1201,23 @@ class IngredientStrength extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.presentationX,
+    PresentationXIngredientStrength? presentationX,
+    Ratio? presentationRatio,
+    RatioRange? presentationRatioRange,
     this.textPresentation,
-    this.concentrationX,
+    ConcentrationXIngredientStrength? concentrationX,
+    Ratio? concentrationRatio,
+    RatioRange? concentrationRatioRange,
     this.textConcentration,
     this.measurementPoint,
     this.country,
     this.referenceStrength,
     super.disallowExtensions,
-  }) : super();
+  })  : presentationX =
+            presentationX ?? presentationRatio ?? presentationRatioRange,
+        concentrationX =
+            concentrationX ?? concentrationRatio ?? concentrationRatioRange,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientStrength.fromJson(

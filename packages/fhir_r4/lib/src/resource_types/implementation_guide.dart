@@ -2178,10 +2178,13 @@ class ImplementationGuideResource extends BackboneElement {
     this.fhirVersion,
     this.name,
     this.description,
-    this.exampleX,
+    ExampleXImplementationGuideResource? exampleX,
+    FhirBoolean? exampleBoolean,
+    FhirCanonical? exampleCanonical,
     this.groupingId,
     super.disallowExtensions,
-  }) : super();
+  })  : exampleX = exampleX ?? exampleBoolean ?? exampleCanonical,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource.fromJson(
@@ -3979,10 +3982,13 @@ class ImplementationGuideResource1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.reference,
-    this.exampleX,
+    ExampleXImplementationGuideResource1? exampleX,
+    FhirBoolean? exampleBoolean,
+    FhirCanonical? exampleCanonical,
     this.relativePath,
     super.disallowExtensions,
-  }) : super();
+  })  : exampleX = exampleX ?? exampleBoolean ?? exampleCanonical,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource1.fromJson(

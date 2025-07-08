@@ -30,7 +30,9 @@ class Dosage extends BackboneType
     this.additionalInstruction,
     this.patientInstruction,
     this.timing,
-    this.asNeededX,
+    AsNeededXDosage? asNeededX,
+    FhirBoolean? asNeededBoolean,
+    CodeableConcept? asNeededCodeableConcept,
     this.site,
     this.route,
     this.method,
@@ -39,7 +41,7 @@ class Dosage extends BackboneType
     this.maxDosePerAdministration,
     this.maxDosePerLifetime,
     super.disallowExtensions,
-  });
+  }) : asNeededX = asNeededX ?? asNeededBoolean ?? asNeededCodeableConcept;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Dosage.fromJson(
@@ -630,10 +632,16 @@ class DosageDoseAndRate extends Element {
     super.id,
     super.extension_,
     this.type,
-    this.doseX,
-    this.rateX,
+    DoseXDosageDoseAndRate? doseX,
+    Range? doseRange,
+    Quantity? doseQuantity,
+    RateXDosageDoseAndRate? rateX,
+    Ratio? rateRatio,
+    Range? rateRange,
+    Quantity? rateQuantity,
     super.disallowExtensions,
-  });
+  })  : doseX = doseX ?? doseRange ?? doseQuantity,
+        rateX = rateX ?? rateRatio ?? rateRange ?? rateQuantity;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DosageDoseAndRate.fromJson(

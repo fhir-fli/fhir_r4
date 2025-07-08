@@ -674,9 +674,12 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     super.modifierExtension,
     this.collector,
     this.source,
-    this.collectedX,
+    CollectedXBiologicallyDerivedProductCollection? collectedX,
+    FhirDateTime? collectedDateTime,
+    Period? collectedPeriod,
     super.disallowExtensions,
-  }) : super();
+  })  : collectedX = collectedX ?? collectedDateTime ?? collectedPeriod,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
@@ -1026,9 +1029,12 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.description,
     this.procedure,
     this.additive,
-    this.timeX,
+    TimeXBiologicallyDerivedProductProcessing? timeX,
+    FhirDateTime? timeDateTime,
+    Period? timePeriod,
     super.disallowExtensions,
-  }) : super();
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
@@ -1399,9 +1405,12 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.timeX,
+    TimeXBiologicallyDerivedProductManipulation? timeX,
+    FhirDateTime? timeDateTime,
+    Period? timePeriod,
     super.disallowExtensions,
-  }) : super();
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(

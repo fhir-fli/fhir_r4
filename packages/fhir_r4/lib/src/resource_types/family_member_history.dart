@@ -30,15 +30,34 @@ class FamilyMemberHistory extends DomainResource {
     this.name,
     required this.relationship,
     this.sex,
-    this.bornX,
-    this.ageX,
+    BornXFamilyMemberHistory? bornX,
+    Period? bornPeriod,
+    FhirDate? bornDate,
+    FhirString? bornString,
+    AgeXFamilyMemberHistory? ageX,
+    Age? ageAge,
+    Range? ageRange,
+    FhirString? ageString,
     this.estimatedAge,
-    this.deceasedX,
+    DeceasedXFamilyMemberHistory? deceasedX,
+    FhirBoolean? deceasedBoolean,
+    Age? deceasedAge,
+    Range? deceasedRange,
+    FhirDate? deceasedDate,
+    FhirString? deceasedString,
     this.reasonCode,
     this.reasonReference,
     this.note,
     this.condition,
-  }) : super(
+  })  : bornX = bornX ?? bornPeriod ?? bornDate ?? bornString,
+        ageX = ageX ?? ageAge ?? ageRange ?? ageString,
+        deceasedX = deceasedX ??
+            deceasedBoolean ??
+            deceasedAge ??
+            deceasedRange ??
+            deceasedDate ??
+            deceasedString,
+        super(
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
 
@@ -953,10 +972,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     required this.code,
     this.outcome,
     this.contributedToDeath,
-    this.onsetX,
+    OnsetXFamilyMemberHistoryCondition? onsetX,
+    Age? onsetAge,
+    Range? onsetRange,
+    Period? onsetPeriod,
+    FhirString? onsetString,
     this.note,
     super.disallowExtensions,
-  }) : super();
+  })  : onsetX = onsetX ?? onsetAge ?? onsetRange ?? onsetPeriod ?? onsetString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistoryCondition.fromJson(

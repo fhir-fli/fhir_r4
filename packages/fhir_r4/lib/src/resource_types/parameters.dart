@@ -313,11 +313,112 @@ class ParametersParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.valueX,
+    ValueXParametersParameter? valueX,
+    FhirBase64Binary? valueBase64Binary,
+    FhirBoolean? valueBoolean,
+    FhirCanonical? valueCanonical,
+    FhirCode? valueCode,
+    FhirDate? valueDate,
+    FhirDateTime? valueDateTime,
+    FhirDecimal? valueDecimal,
+    FhirId? valueId,
+    FhirInstant? valueInstant,
+    FhirInteger? valueInteger,
+    FhirMarkdown? valueMarkdown,
+    FhirOid? valueOid,
+    FhirPositiveInt? valuePositiveInt,
+    FhirString? valueString,
+    FhirTime? valueTime,
+    FhirUnsignedInt? valueUnsignedInt,
+    FhirUri? valueUri,
+    FhirUrl? valueUrl,
+    FhirUuid? valueUuid,
+    Address? valueAddress,
+    Age? valueAge,
+    Annotation? valueAnnotation,
+    Attachment? valueAttachment,
+    CodeableConcept? valueCodeableConcept,
+    Coding? valueCoding,
+    ContactPoint? valueContactPoint,
+    Count? valueCount,
+    Distance? valueDistance,
+    FhirDuration? valueDuration,
+    HumanName? valueHumanName,
+    Identifier? valueIdentifier,
+    Money? valueMoney,
+    Period? valuePeriod,
+    Quantity? valueQuantity,
+    Range? valueRange,
+    Ratio? valueRatio,
+    Reference? valueReference,
+    SampledData? valueSampledData,
+    Signature? valueSignature,
+    Timing? valueTiming,
+    ContactDetail? valueContactDetail,
+    Contributor? valueContributor,
+    DataRequirement? valueDataRequirement,
+    FhirExpression? valueExpression,
+    ParameterDefinition? valueParameterDefinition,
+    RelatedArtifact? valueRelatedArtifact,
+    TriggerDefinition? valueTriggerDefinition,
+    UsageContext? valueUsageContext,
+    Dosage? valueDosage,
+    FhirMeta? valueMeta,
     this.resource,
     this.part_,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueBase64Binary ??
+            valueBoolean ??
+            valueCanonical ??
+            valueCode ??
+            valueDate ??
+            valueDateTime ??
+            valueDecimal ??
+            valueId ??
+            valueInstant ??
+            valueInteger ??
+            valueMarkdown ??
+            valueOid ??
+            valuePositiveInt ??
+            valueString ??
+            valueTime ??
+            valueUnsignedInt ??
+            valueUri ??
+            valueUrl ??
+            valueUuid ??
+            valueAddress ??
+            valueAge ??
+            valueAnnotation ??
+            valueAttachment ??
+            valueCodeableConcept ??
+            valueCoding ??
+            valueContactPoint ??
+            valueCount ??
+            valueDistance ??
+            valueDuration ??
+            valueHumanName ??
+            valueIdentifier ??
+            valueMoney ??
+            valuePeriod ??
+            valueQuantity ??
+            valueRange ??
+            valueRatio ??
+            valueReference ??
+            valueSampledData ??
+            valueSignature ??
+            valueTiming ??
+            valueContactDetail ??
+            valueContributor ??
+            valueDataRequirement ??
+            valueExpression ??
+            valueParameterDefinition ??
+            valueRelatedArtifact ??
+            valueTriggerDefinition ??
+            valueUsageContext ??
+            valueDosage ??
+            valueMeta,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ParametersParameter.fromJson(

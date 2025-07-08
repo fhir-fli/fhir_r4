@@ -858,7 +858,13 @@ class RequestGroupAction extends BackboneElement {
     this.documentation,
     this.condition,
     this.relatedAction,
-    this.timingX,
+    TimingXRequestGroupAction? timingX,
+    FhirDateTime? timingDateTime,
+    Age? timingAge,
+    Period? timingPeriod,
+    FhirDuration? timingDuration,
+    Range? timingRange,
+    Timing? timingTiming,
     this.participant,
     this.type,
     this.groupingBehavior,
@@ -869,7 +875,14 @@ class RequestGroupAction extends BackboneElement {
     this.resource,
     this.action,
     super.disallowExtensions,
-  }) : super();
+  })  : timingX = timingX ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingDuration ??
+            timingRange ??
+            timingTiming,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupAction.fromJson(
@@ -1953,9 +1966,12 @@ class RequestGroupRelatedAction extends BackboneElement {
     super.modifierExtension,
     required this.actionId,
     required this.relationship,
-    this.offsetX,
+    OffsetXRequestGroupRelatedAction? offsetX,
+    FhirDuration? offsetDuration,
+    Range? offsetRange,
     super.disallowExtensions,
-  }) : super();
+  })  : offsetX = offsetX ?? offsetDuration ?? offsetRange,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupRelatedAction.fromJson(

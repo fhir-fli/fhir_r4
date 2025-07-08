@@ -26,17 +26,24 @@ class Patient extends DomainResource {
     this.telecom,
     this.gender,
     this.birthDate,
-    this.deceasedX,
+    DeceasedXPatient? deceasedX,
+    FhirBoolean? deceasedBoolean,
+    FhirDateTime? deceasedDateTime,
     this.address,
     this.maritalStatus,
-    this.multipleBirthX,
+    MultipleBirthXPatient? multipleBirthX,
+    FhirBoolean? multipleBirthBoolean,
+    FhirInteger? multipleBirthInteger,
     this.photo,
     this.contact,
     this.communication,
     this.generalPractitioner,
     this.managingOrganization,
     this.link,
-  }) : super(
+  })  : deceasedX = deceasedX ?? deceasedBoolean ?? deceasedDateTime,
+        multipleBirthX =
+            multipleBirthX ?? multipleBirthBoolean ?? multipleBirthInteger,
+        super(
           resourceType: R4ResourceType.Patient,
         );
 

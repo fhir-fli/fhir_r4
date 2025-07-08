@@ -51,7 +51,9 @@ class MedicationStatement extends DomainResource {
     required this.medicationX,
     required this.subject,
     this.context,
-    this.effectiveX,
+    EffectiveXMedicationStatement? effectiveX,
+    FhirDateTime? effectiveDateTime,
+    Period? effectivePeriod,
     this.dateAsserted,
     this.informationSource,
     this.derivedFrom,
@@ -59,7 +61,8 @@ class MedicationStatement extends DomainResource {
     this.reasonReference,
     this.note,
     this.dosage,
-  }) : super(
+  })  : effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           resourceType: R4ResourceType.MedicationStatement,
         );
 

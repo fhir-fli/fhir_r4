@@ -1239,9 +1239,12 @@ class MedicationAdministrationDosage extends BackboneElement {
     this.route,
     this.method,
     this.dose,
-    this.rateX,
+    RateXMedicationAdministrationDosage? rateX,
+    Ratio? rateRatio,
+    Quantity? rateQuantity,
     super.disallowExtensions,
-  }) : super();
+  })  : rateX = rateX ?? rateRatio ?? rateQuantity,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministrationDosage.fromJson(

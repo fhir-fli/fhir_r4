@@ -507,12 +507,19 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.dateCriterion,
     this.description,
     this.series,
-    this.doseNumberX,
-    this.seriesDosesX,
+    DoseNumberXImmunizationRecommendationRecommendation? doseNumberX,
+    FhirPositiveInt? doseNumberPositiveInt,
+    FhirString? doseNumberString,
+    SeriesDosesXImmunizationRecommendationRecommendation? seriesDosesX,
+    FhirPositiveInt? seriesDosesPositiveInt,
+    FhirString? seriesDosesString,
     this.supportingImmunization,
     this.supportingPatientInformation,
     super.disallowExtensions,
-  }) : super();
+  })  : doseNumberX = doseNumberX ?? doseNumberPositiveInt ?? doseNumberString,
+        seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationRecommendation.fromJson(

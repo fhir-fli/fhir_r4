@@ -26,7 +26,9 @@ class MedicationDispense extends DomainResource {
     this.identifier,
     this.partOf,
     required this.status,
-    this.statusReasonX,
+    StatusReasonXMedicationDispense? statusReasonX,
+    CodeableConcept? statusReasonCodeableConcept,
+    Reference? statusReasonReference,
     this.category,
     required this.medicationX,
     this.subject,
@@ -47,7 +49,10 @@ class MedicationDispense extends DomainResource {
     this.substitution,
     this.detectedIssue,
     this.eventHistory,
-  }) : super(
+  })  : statusReasonX = statusReasonX ??
+            statusReasonCodeableConcept ??
+            statusReasonReference,
+        super(
           resourceType: R4ResourceType.MedicationDispense,
         );
 

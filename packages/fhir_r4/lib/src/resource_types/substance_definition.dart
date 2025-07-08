@@ -890,10 +890,13 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-    this.amountX,
+    AmountXSubstanceDefinitionMoiety? amountX,
+    Quantity? amountQuantity,
+    FhirString? amountString,
     this.measurementType,
     super.disallowExtensions,
-  }) : super();
+  })  : amountX = amountX ?? amountQuantity ?? amountString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1359,9 +1362,20 @@ class SubstanceDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueX,
+    ValueXSubstanceDefinitionProperty? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    FhirDate? valueDate,
+    FhirBoolean? valueBoolean,
+    Attachment? valueAttachment,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionProperty.fromJson(
@@ -4096,15 +4110,24 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.substanceDefinitionX,
+    SubstanceDefinitionXSubstanceDefinitionRelationship? substanceDefinitionX,
+    Reference? substanceDefinitionReference,
+    CodeableConcept? substanceDefinitionCodeableConcept,
     required this.type,
     this.isDefining,
-    this.amountX,
+    AmountXSubstanceDefinitionRelationship? amountX,
+    Quantity? amountQuantity,
+    Ratio? amountRatio,
+    FhirString? amountString,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
     super.disallowExtensions,
-  }) : super();
+  })  : substanceDefinitionX = substanceDefinitionX ??
+            substanceDefinitionReference ??
+            substanceDefinitionCodeableConcept,
+        amountX = amountX ?? amountQuantity ?? amountRatio ?? amountString,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionRelationship.fromJson(

@@ -31,7 +31,9 @@ class DiagnosticReport extends DomainResource {
     required this.code,
     this.subject,
     this.encounter,
-    this.effectiveX,
+    EffectiveXDiagnosticReport? effectiveX,
+    FhirDateTime? effectiveDateTime,
+    Period? effectivePeriod,
     this.issued,
     this.performer,
     this.resultsInterpreter,
@@ -42,7 +44,8 @@ class DiagnosticReport extends DomainResource {
     this.conclusion,
     this.conclusionCode,
     this.presentedForm,
-  }) : super(
+  })  : effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           resourceType: R4ResourceType.DiagnosticReport,
         );
 

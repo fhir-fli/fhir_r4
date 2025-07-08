@@ -1048,10 +1048,35 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXQuestionnaireResponseAnswer? valueX,
+    FhirBoolean? valueBoolean,
+    FhirDecimal? valueDecimal,
+    FhirInteger? valueInteger,
+    FhirDate? valueDate,
+    FhirDateTime? valueDateTime,
+    FhirTime? valueTime,
+    FhirString? valueString,
+    FhirUri? valueUri,
+    Attachment? valueAttachment,
+    Coding? valueCoding,
+    Quantity? valueQuantity,
+    Reference? valueReference,
     this.item,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueBoolean ??
+            valueDecimal ??
+            valueInteger ??
+            valueDate ??
+            valueDateTime ??
+            valueTime ??
+            valueString ??
+            valueUri ??
+            valueAttachment ??
+            valueCoding ??
+            valueQuantity ??
+            valueReference,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseAnswer.fromJson(

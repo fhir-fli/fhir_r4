@@ -35,7 +35,9 @@ class CommunicationRequest extends DomainResource {
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceX,
+    OccurrenceXCommunicationRequest? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
     this.authoredOn,
     this.requester,
     this.recipient,
@@ -43,7 +45,8 @@ class CommunicationRequest extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.note,
-  }) : super(
+  })  : occurrenceX = occurrenceX ?? occurrenceDateTime ?? occurrencePeriod,
+        super(
           resourceType: R4ResourceType.CommunicationRequest,
         );
 

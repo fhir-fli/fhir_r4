@@ -33,7 +33,9 @@ class ClinicalImpression extends DomainResource {
     this.description,
     required this.subject,
     this.encounter,
-    this.effectiveX,
+    EffectiveXClinicalImpression? effectiveX,
+    FhirDateTime? effectiveDateTime,
+    Period? effectivePeriod,
     this.date,
     this.assessor,
     this.previous,
@@ -46,7 +48,8 @@ class ClinicalImpression extends DomainResource {
     this.prognosisReference,
     this.supportingInfo,
     this.note,
-  }) : super(
+  })  : effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           resourceType: R4ResourceType.ClinicalImpression,
         );
 

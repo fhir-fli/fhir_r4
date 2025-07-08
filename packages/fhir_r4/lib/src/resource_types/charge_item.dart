@@ -32,7 +32,10 @@ class ChargeItem extends DomainResource {
     required this.code,
     required this.subject,
     this.context,
-    this.occurrenceX,
+    OccurrenceXChargeItem? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
     this.performer,
     this.performingOrganization,
     this.requestingOrganization,
@@ -46,11 +49,18 @@ class ChargeItem extends DomainResource {
     this.enteredDate,
     this.reason,
     this.service,
-    this.productX,
+    ProductXChargeItem? productX,
+    Reference? productReference,
+    CodeableConcept? productCodeableConcept,
     this.account,
     this.note,
     this.supportingInformation,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        productX = productX ?? productReference ?? productCodeableConcept,
+        super(
           resourceType: R4ResourceType.ChargeItem,
         );
 

@@ -3109,9 +3109,20 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueX,
+    ValueXMedicinalProductDefinitionCharacteristic? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    FhirDate? valueDate,
+    FhirBoolean? valueBoolean,
+    Attachment? valueAttachment,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCharacteristic.fromJson(

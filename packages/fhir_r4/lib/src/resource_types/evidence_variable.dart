@@ -1867,9 +1867,13 @@ class EvidenceVariableCategory extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.valueX,
+    ValueXEvidenceVariableCategory? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    Range? valueRange,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ?? valueCodeableConcept ?? valueQuantity ?? valueRange,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(

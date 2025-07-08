@@ -34,7 +34,10 @@ class DeviceRequest extends DomainResource {
     this.parameter,
     required this.subject,
     this.encounter,
-    this.occurrenceX,
+    OccurrenceXDeviceRequest? occurrenceX,
+    FhirDateTime? occurrenceDateTime,
+    Period? occurrencePeriod,
+    Timing? occurrenceTiming,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -45,7 +48,11 @@ class DeviceRequest extends DomainResource {
     this.supportingInfo,
     this.note,
     this.relevantHistory,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           resourceType: R4ResourceType.DeviceRequest,
         );
 
@@ -1059,9 +1066,18 @@ class DeviceRequestParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXDeviceRequestParameter? valueX,
+    CodeableConcept? valueCodeableConcept,
+    Quantity? valueQuantity,
+    Range? valueRange,
+    FhirBoolean? valueBoolean,
     super.disallowExtensions,
-  }) : super();
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueRange ??
+            valueBoolean,
+        super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceRequestParameter.fromJson(

@@ -27,14 +27,16 @@ class DataRequirement extends DataType
     super.extension_,
     required this.type,
     this.profile,
-    this.subjectX,
+    SubjectXDataRequirement? subjectX,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     this.mustSupport,
     this.codeFilter,
     this.dateFilter,
     this.limit,
     this.sort,
     super.disallowExtensions,
-  });
+  }) : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirement.fromJson(
@@ -851,9 +853,12 @@ class DataRequirementDateFilter extends Element {
     super.extension_,
     this.path,
     this.searchParam,
-    this.valueX,
+    ValueXDataRequirementDateFilter? valueX,
+    FhirDateTime? valueDateTime,
+    Period? valuePeriod,
+    FhirDuration? valueDuration,
     super.disallowExtensions,
-  });
+  }) : valueX = valueX ?? valueDateTime ?? valuePeriod ?? valueDuration;
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
