@@ -35,11 +35,16 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     this.status,
     this.intent,
     this.priority,
-    this.codeX,
+    CodeXDeviceRequestBuilder? codeX,
+    ReferenceBuilder? codeReference,
+    CodeableConceptBuilder? codeCodeableConcept,
     this.parameter,
     this.subject,
     this.encounter,
-    this.occurrenceX,
+    OccurrenceXDeviceRequestBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -50,7 +55,12 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     this.supportingInfo,
     this.note,
     this.relevantHistory,
-  }) : super(
+  })  : codeX = codeX ?? codeReference ?? codeCodeableConcept,
+        occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           objectPath: 'DeviceRequest',
           resourceType: R4ResourceType.DeviceRequest,
         );
@@ -1740,6 +1750,11 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? supportingInfo,
     List<AnnotationBuilder>? note,
     List<ReferenceBuilder>? relevantHistory,
+    ReferenceBuilder? codeReference,
+    CodeableConceptBuilder? codeCodeableConcept,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1765,11 +1780,15 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       intent: intent ?? this.intent,
       priority: priority ?? this.priority,
-      codeX: codeX ?? this.codeX,
+      codeX: codeX ?? codeReference ?? codeCodeableConcept ?? this.codeX,
       parameter: parameter ?? this.parameter,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,
@@ -2014,9 +2033,18 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXDeviceRequestParameterBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    FhirBooleanBuilder? valueBoolean,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueRange ??
+            valueBoolean,
+        super(
           objectPath: 'DeviceRequest.parameter',
         );
 
@@ -2499,6 +2527,10 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? code,
     ValueXDeviceRequestParameterBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    FhirBooleanBuilder? valueBoolean,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2511,7 +2543,12 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueRange ??
+          valueBoolean ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

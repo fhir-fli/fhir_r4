@@ -43,7 +43,10 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     this.type,
     super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXPlanDefinitionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
     super.date,
     super.publisher,
     super.contact,
@@ -65,7 +68,11 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     this.library_,
     this.goal,
     this.action,
-  }) : super(
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        super(
           objectPath: 'PlanDefinition',
           resourceType: R4ResourceType.PlanDefinition,
         );
@@ -1995,6 +2002,9 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     List<FhirCanonicalBuilder>? library_,
     List<PlanDefinitionGoalBuilder>? goal,
     List<PlanDefinitionActionBuilder>? action,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2019,7 +2029,11 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
       type: type ?? this.type,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          subjectCanonical ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -3007,10 +3021,15 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailX,
+    DetailXPlanDefinitionTargetBuilder? detailX,
+    QuantityBuilder? detailQuantity,
+    RangeBuilder? detailRange,
+    CodeableConceptBuilder? detailCodeableConcept,
     this.due,
     super.disallowExtensions,
-  }) : super(
+  })  : detailX =
+            detailX ?? detailQuantity ?? detailRange ?? detailCodeableConcept,
+        super(
           objectPath: 'PlanDefinition.goal.target',
         );
 
@@ -3503,6 +3522,9 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? measure,
     DetailXPlanDefinitionTargetBuilder? detailX,
     FhirDurationBuilder? due,
+    QuantityBuilder? detailQuantity,
+    RangeBuilder? detailRange,
+    CodeableConceptBuilder? detailCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3515,7 +3537,11 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       measure: measure ?? this.measure,
-      detailX: detailX ?? this.detailX,
+      detailX: detailX ??
+          detailQuantity ??
+          detailRange ??
+          detailCodeableConcept ??
+          this.detailX,
       due: due ?? this.due,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -3606,13 +3632,22 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     this.reason,
     this.documentation,
     this.goalId,
-    this.subjectX,
+    SubjectXPlanDefinitionActionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
     this.trigger,
     this.condition,
     this.input,
     this.output,
     this.relatedAction,
-    this.timingX,
+    TimingXPlanDefinitionActionBuilder? timingX,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    FhirDurationBuilder? timingDuration,
+    RangeBuilder? timingRange,
+    TimingBuilder? timingTiming,
     this.participant,
     this.type,
     this.groupingBehavior,
@@ -3620,12 +3655,26 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     this.requiredBehavior,
     this.precheckBehavior,
     this.cardinalityBehavior,
-    this.definitionX,
+    DefinitionXPlanDefinitionActionBuilder? definitionX,
+    FhirCanonicalBuilder? definitionCanonical,
+    FhirUriBuilder? definitionUri,
     this.transform,
     this.dynamicValue,
     this.action,
     super.disallowExtensions,
-  }) : super(
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        timingX = timingX ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingDuration ??
+            timingRange ??
+            timingTiming,
+        definitionX = definitionX ?? definitionCanonical ?? definitionUri,
+        super(
           objectPath: 'PlanDefinition.action',
         );
 
@@ -5497,6 +5546,17 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     FhirCanonicalBuilder? transform,
     List<PlanDefinitionDynamicValueBuilder>? dynamicValue,
     List<PlanDefinitionActionBuilder>? action,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    FhirDurationBuilder? timingDuration,
+    RangeBuilder? timingRange,
+    TimingBuilder? timingTiming,
+    FhirCanonicalBuilder? definitionCanonical,
+    FhirUriBuilder? definitionUri,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5517,13 +5577,24 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
       reason: reason ?? this.reason,
       documentation: documentation ?? this.documentation,
       goalId: goalId ?? this.goalId,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          subjectCanonical ??
+          this.subjectX,
       trigger: trigger ?? this.trigger,
       condition: condition ?? this.condition,
       input: input ?? this.input,
       output: output ?? this.output,
       relatedAction: relatedAction ?? this.relatedAction,
-      timingX: timingX ?? this.timingX,
+      timingX: timingX ??
+          timingDateTime ??
+          timingAge ??
+          timingPeriod ??
+          timingDuration ??
+          timingRange ??
+          timingTiming ??
+          this.timingX,
       participant: participant ?? this.participant,
       type: type ?? this.type,
       groupingBehavior: groupingBehavior ?? this.groupingBehavior,
@@ -5531,7 +5602,10 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
       requiredBehavior: requiredBehavior ?? this.requiredBehavior,
       precheckBehavior: precheckBehavior ?? this.precheckBehavior,
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
-      definitionX: definitionX ?? this.definitionX,
+      definitionX: definitionX ??
+          definitionCanonical ??
+          definitionUri ??
+          this.definitionX,
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       action: action ?? this.action,
@@ -6220,9 +6294,12 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.actionId,
     this.relationship,
-    this.offsetX,
+    OffsetXPlanDefinitionRelatedActionBuilder? offsetX,
+    FhirDurationBuilder? offsetDuration,
+    RangeBuilder? offsetRange,
     super.disallowExtensions,
-  }) : super(
+  })  : offsetX = offsetX ?? offsetDuration ?? offsetRange,
+        super(
           objectPath: 'PlanDefinition.action.relatedAction',
         );
 
@@ -6712,6 +6789,8 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     FhirIdBuilder? actionId,
     ActionRelationshipTypeBuilder? relationship,
     OffsetXPlanDefinitionRelatedActionBuilder? offsetX,
+    FhirDurationBuilder? offsetDuration,
+    RangeBuilder? offsetRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6725,7 +6804,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       actionId: actionId ?? this.actionId,
       relationship: relationship ?? this.relationship,
-      offsetX: offsetX ?? this.offsetX,
+      offsetX: offsetX ?? offsetDuration ?? offsetRange ?? this.offsetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

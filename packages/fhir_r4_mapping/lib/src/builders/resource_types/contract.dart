@@ -60,7 +60,9 @@ class ContractBuilder extends DomainResourceBuilder {
     this.alias,
     this.author,
     this.scope,
-    this.topicX,
+    TopicXContractBuilder? topicX,
+    CodeableConceptBuilder? topicCodeableConcept,
+    ReferenceBuilder? topicReference,
     this.type,
     this.subType,
     this.contentDefinition,
@@ -71,8 +73,14 @@ class ContractBuilder extends DomainResourceBuilder {
     this.friendly,
     this.legal,
     this.rule,
-    this.legallyBindingX,
-  }) : super(
+    LegallyBindingXContractBuilder? legallyBindingX,
+    AttachmentBuilder? legallyBindingAttachment,
+    ReferenceBuilder? legallyBindingReference,
+  })  : topicX = topicX ?? topicCodeableConcept ?? topicReference,
+        legallyBindingX = legallyBindingX ??
+            legallyBindingAttachment ??
+            legallyBindingReference,
+        super(
           objectPath: 'Contract',
           resourceType: R4ResourceType.Contract,
         );
@@ -2099,6 +2107,10 @@ class ContractBuilder extends DomainResourceBuilder {
     List<ContractLegalBuilder>? legal,
     List<ContractRuleBuilder>? rule,
     LegallyBindingXContractBuilder? legallyBindingX,
+    CodeableConceptBuilder? topicCodeableConcept,
+    ReferenceBuilder? topicReference,
+    AttachmentBuilder? legallyBindingAttachment,
+    ReferenceBuilder? legallyBindingReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2136,7 +2148,7 @@ class ContractBuilder extends DomainResourceBuilder {
       alias: alias ?? this.alias,
       author: author ?? this.author,
       scope: scope ?? this.scope,
-      topicX: topicX ?? this.topicX,
+      topicX: topicX ?? topicCodeableConcept ?? topicReference ?? this.topicX,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       contentDefinition: contentDefinition ?? this.contentDefinition,
@@ -2147,7 +2159,10 @@ class ContractBuilder extends DomainResourceBuilder {
       friendly: friendly ?? this.friendly,
       legal: legal ?? this.legal,
       rule: rule ?? this.rule,
-      legallyBindingX: legallyBindingX ?? this.legallyBindingX,
+      legallyBindingX: legallyBindingX ??
+          legallyBindingAttachment ??
+          legallyBindingReference ??
+          this.legallyBindingX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -3100,7 +3115,9 @@ class ContractTermBuilder extends BackboneElementBuilder {
     this.identifier,
     this.issued,
     this.applies,
-    this.topicX,
+    TopicXContractTermBuilder? topicX,
+    CodeableConceptBuilder? topicCodeableConcept,
+    ReferenceBuilder? topicReference,
     this.type,
     this.subType,
     this.text,
@@ -3110,7 +3127,8 @@ class ContractTermBuilder extends BackboneElementBuilder {
     this.action,
     this.group,
     super.disallowExtensions,
-  }) : super(
+  })  : topicX = topicX ?? topicCodeableConcept ?? topicReference,
+        super(
           objectPath: 'Contract.term',
         );
 
@@ -3935,6 +3953,8 @@ class ContractTermBuilder extends BackboneElementBuilder {
     List<ContractAssetBuilder>? asset,
     List<ContractActionBuilder>? action,
     List<ContractTermBuilder>? group,
+    CodeableConceptBuilder? topicCodeableConcept,
+    ReferenceBuilder? topicReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3949,7 +3969,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
       identifier: identifier ?? this.identifier,
       issued: issued ?? this.issued,
       applies: applies ?? this.applies,
-      topicX: topicX ?? this.topicX,
+      topicX: topicX ?? topicCodeableConcept ?? topicReference ?? this.topicX,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       text: text ?? this.text,
@@ -6069,9 +6089,34 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXContractAnswerBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueBoolean ??
+            valueDecimal ??
+            valueInteger ??
+            valueDate ??
+            valueDateTime ??
+            valueTime ??
+            valueString ??
+            valueUri ??
+            valueAttachment ??
+            valueCoding ??
+            valueQuantity ??
+            valueReference,
+        super(
           objectPath: 'Contract.term.offer.answer',
         );
 
@@ -6757,6 +6802,18 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ValueXContractAnswerBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6768,7 +6825,20 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueBoolean ??
+          valueDecimal ??
+          valueInteger ??
+          valueDate ??
+          valueDateTime ??
+          valueTime ??
+          valueString ??
+          valueUri ??
+          valueAttachment ??
+          valueCoding ??
+          valueQuantity ??
+          valueReference ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -8535,7 +8605,9 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.entityX,
+    EntityXContractValuedItemBuilder? entityX,
+    CodeableConceptBuilder? entityCodeableConcept,
+    ReferenceBuilder? entityReference,
     this.identifier,
     this.effectiveTime,
     this.quantity,
@@ -8550,7 +8622,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     this.linkId,
     this.securityLabelNumber,
     super.disallowExtensions,
-  }) : super(
+  })  : entityX = entityX ?? entityCodeableConcept ?? entityReference,
+        super(
           objectPath: 'Contract.term.asset.valuedItem',
         );
 
@@ -9536,6 +9609,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     ReferenceBuilder? recipient,
     List<FhirStringBuilder>? linkId,
     List<FhirUnsignedIntBuilder>? securityLabelNumber,
+    CodeableConceptBuilder? entityCodeableConcept,
+    ReferenceBuilder? entityReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -9547,7 +9622,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      entityX: entityX ?? this.entityX,
+      entityX:
+          entityX ?? entityCodeableConcept ?? entityReference ?? this.entityX,
       identifier: identifier ?? this.identifier,
       effectiveTime: effectiveTime ?? this.effectiveTime,
       quantity: quantity ?? this.quantity,
@@ -9712,7 +9788,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
     this.status,
     this.context,
     this.contextLinkId,
-    this.occurrenceX,
+    OccurrenceXContractActionBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     this.requester,
     this.requesterLinkId,
     this.performerType,
@@ -9726,7 +9805,11 @@ class ContractActionBuilder extends BackboneElementBuilder {
     this.note,
     this.securityLabelNumber,
     super.disallowExtensions,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           objectPath: 'Contract.term.action',
         );
 
@@ -11193,6 +11276,9 @@ class ContractActionBuilder extends BackboneElementBuilder {
     List<FhirStringBuilder>? reasonLinkId,
     List<AnnotationBuilder>? note,
     List<FhirUnsignedIntBuilder>? securityLabelNumber,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -11212,7 +11298,11 @@ class ContractActionBuilder extends BackboneElementBuilder {
       status: status ?? this.status,
       context: context ?? this.context,
       contextLinkId: contextLinkId ?? this.contextLinkId,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
       requester: requester ?? this.requester,
       requesterLinkId: requesterLinkId ?? this.requesterLinkId,
       performerType: performerType ?? this.performerType,
@@ -12372,9 +12462,12 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentX,
+    ContentXContractFriendlyBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     super.disallowExtensions,
-  }) : super(
+  })  : contentX = contentX ?? contentAttachment ?? contentReference,
+        super(
           objectPath: 'Contract.friendly',
         );
 
@@ -12770,6 +12863,8 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ContentXContractFriendlyBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12781,7 +12876,8 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      contentX:
+          contentX ?? contentAttachment ?? contentReference ?? this.contentX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -12846,9 +12942,12 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentX,
+    ContentXContractLegalBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     super.disallowExtensions,
-  }) : super(
+  })  : contentX = contentX ?? contentAttachment ?? contentReference,
+        super(
           objectPath: 'Contract.legal',
         );
 
@@ -13242,6 +13341,8 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ContentXContractLegalBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13253,7 +13354,8 @@ class ContractLegalBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      contentX:
+          contentX ?? contentAttachment ?? contentReference ?? this.contentX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -13319,9 +13421,12 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentX,
+    ContentXContractRuleBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     super.disallowExtensions,
-  }) : super(
+  })  : contentX = contentX ?? contentAttachment ?? contentReference,
+        super(
           objectPath: 'Contract.rule',
         );
 
@@ -13716,6 +13821,8 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ContentXContractRuleBuilder? contentX,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13727,7 +13834,8 @@ class ContractRuleBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      contentX:
+          contentX ?? contentAttachment ?? contentReference ?? this.contentX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

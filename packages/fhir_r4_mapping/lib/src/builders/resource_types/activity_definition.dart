@@ -35,7 +35,10 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     this.subtitle,
     super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXActivityDefinitionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
     super.date,
     super.publisher,
     super.contact,
@@ -61,10 +64,18 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     this.intent,
     this.priority,
     this.doNotPerform,
-    this.timingX,
+    TimingXActivityDefinitionBuilder? timingX,
+    TimingBuilder? timingTiming,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    RangeBuilder? timingRange,
+    FhirDurationBuilder? timingDuration,
     this.location,
     this.participant,
-    this.productX,
+    ProductXActivityDefinitionBuilder? productX,
+    ReferenceBuilder? productReference,
+    CodeableConceptBuilder? productCodeableConcept,
     this.quantity,
     this.dosage,
     this.bodySite,
@@ -73,7 +84,19 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     this.observationResultRequirement,
     this.transform,
     this.dynamicValue,
-  }) : super(
+  })  : subjectX = subjectX ??
+            subjectCodeableConcept ??
+            subjectReference ??
+            subjectCanonical,
+        timingX = timingX ??
+            timingTiming ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingRange ??
+            timingDuration,
+        productX = productX ?? productReference ?? productCodeableConcept,
+        super(
           objectPath: 'ActivityDefinition',
           resourceType: R4ResourceType.ActivityDefinition,
         );
@@ -2895,6 +2918,17 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     List<ReferenceBuilder>? observationResultRequirement,
     FhirCanonicalBuilder? transform,
     List<ActivityDefinitionDynamicValueBuilder>? dynamicValue,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
+    FhirCanonicalBuilder? subjectCanonical,
+    TimingBuilder? timingTiming,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    RangeBuilder? timingRange,
+    FhirDurationBuilder? timingDuration,
+    ReferenceBuilder? productReference,
+    CodeableConceptBuilder? productCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2918,7 +2952,11 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          subjectCanonical ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -2944,10 +2982,20 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
       intent: intent ?? this.intent,
       priority: priority ?? this.priority,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      timingX: timingX ?? this.timingX,
+      timingX: timingX ??
+          timingTiming ??
+          timingDateTime ??
+          timingAge ??
+          timingPeriod ??
+          timingRange ??
+          timingDuration ??
+          this.timingX,
       location: location ?? this.location,
       participant: participant ?? this.participant,
-      productX: productX ?? this.productX,
+      productX: productX ??
+          productReference ??
+          productCodeableConcept ??
+          this.productX,
       quantity: quantity ?? this.quantity,
       dosage: dosage ?? this.dosage,
       bodySite: bodySite ?? this.bodySite,

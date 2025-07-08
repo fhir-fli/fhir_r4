@@ -3560,9 +3560,18 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.relationshipType,
     this.targetClassifier,
-    this.targetX,
+    TargetXCitationRelatesToBuilder? targetX,
+    FhirUriBuilder? targetUri,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
+    AttachmentBuilder? targetAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : targetX = targetX ??
+            targetUri ??
+            targetIdentifier ??
+            targetReference ??
+            targetAttachment,
+        super(
           objectPath: 'Citation.relatesTo',
         );
 
@@ -4090,6 +4099,10 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? relationshipType,
     List<CodeableConceptBuilder>? targetClassifier,
     TargetXCitationRelatesToBuilder? targetX,
+    FhirUriBuilder? targetUri,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
+    AttachmentBuilder? targetAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4103,7 +4116,12 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetX: targetX ?? this.targetX,
+      targetX: targetX ??
+          targetUri ??
+          targetIdentifier ??
+          targetReference ??
+          targetAttachment ??
+          this.targetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -7797,9 +7815,18 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     super.modifierExtension,
     this.relationshipType,
     this.targetClassifier,
-    this.targetX,
+    TargetXCitationRelatesTo1Builder? targetX,
+    FhirUriBuilder? targetUri,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
+    AttachmentBuilder? targetAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : targetX = targetX ??
+            targetUri ??
+            targetIdentifier ??
+            targetReference ??
+            targetAttachment,
+        super(
           objectPath: 'Citation.citedArtifact.relatesTo',
         );
 
@@ -8327,6 +8354,10 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     CodeableConceptBuilder? relationshipType,
     List<CodeableConceptBuilder>? targetClassifier,
     TargetXCitationRelatesTo1Builder? targetX,
+    FhirUriBuilder? targetUri,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
+    AttachmentBuilder? targetAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8340,7 +8371,12 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetX: targetX ?? this.targetX,
+      targetX: targetX ??
+          targetUri ??
+          targetIdentifier ??
+          targetReference ??
+          targetAttachment ??
+          this.targetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

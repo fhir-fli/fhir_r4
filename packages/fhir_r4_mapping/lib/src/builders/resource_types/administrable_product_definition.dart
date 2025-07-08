@@ -1140,10 +1140,21 @@ class AdministrableProductDefinitionPropertyBuilder
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXAdministrableProductDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     this.status,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super(
           objectPath: 'AdministrableProductDefinition.property',
         );
 
@@ -1692,6 +1703,11 @@ class AdministrableProductDefinitionPropertyBuilder
     CodeableConceptBuilder? type,
     ValueXAdministrableProductDefinitionPropertyBuilder? valueX,
     CodeableConceptBuilder? status,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1704,7 +1720,13 @@ class AdministrableProductDefinitionPropertyBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueDate ??
+          valueBoolean ??
+          valueAttachment ??
+          this.valueX,
       status: status ?? this.status,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

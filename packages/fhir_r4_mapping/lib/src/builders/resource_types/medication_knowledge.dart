@@ -2685,11 +2685,14 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemX,
+    ItemXMedicationKnowledgeIngredientBuilder? itemX,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     this.isActive,
     this.strength,
     super.disallowExtensions,
-  }) : super(
+  })  : itemX = itemX ?? itemCodeableConcept ?? itemReference,
+        super(
           objectPath: 'MedicationKnowledge.ingredient',
         );
 
@@ -3166,6 +3169,8 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     ItemXMedicationKnowledgeIngredientBuilder? itemX,
     FhirBooleanBuilder? isActive,
     RatioBuilder? strength,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3177,7 +3182,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
+      itemX: itemX ?? itemCodeableConcept ?? itemReference ?? this.itemX,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
     )..objectPath = newObjectPath;
@@ -4215,10 +4220,14 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     super.extension_,
     super.modifierExtension,
     this.dosage,
-    this.indicationX,
+    IndicationXMedicationKnowledgeAdministrationGuidelinesBuilder? indicationX,
+    CodeableConceptBuilder? indicationCodeableConcept,
+    ReferenceBuilder? indicationReference,
     this.patientCharacteristics,
     super.disallowExtensions,
-  }) : super(
+  })  : indicationX =
+            indicationX ?? indicationCodeableConcept ?? indicationReference,
+        super(
           objectPath: 'MedicationKnowledge.administrationGuidelines',
         );
 
@@ -4710,6 +4719,8 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     IndicationXMedicationKnowledgeAdministrationGuidelinesBuilder? indicationX,
     List<MedicationKnowledgePatientCharacteristicsBuilder>?
         patientCharacteristics,
+    CodeableConceptBuilder? indicationCodeableConcept,
+    ReferenceBuilder? indicationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4722,7 +4733,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       dosage: dosage ?? this.dosage,
-      indicationX: indicationX ?? this.indicationX,
+      indicationX: indicationX ??
+          indicationCodeableConcept ??
+          indicationReference ??
+          this.indicationX,
       patientCharacteristics:
           patientCharacteristics ?? this.patientCharacteristics,
     )..objectPath = newObjectPath;
@@ -5263,10 +5277,16 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.characteristicX,
+    CharacteristicXMedicationKnowledgePatientCharacteristicsBuilder?
+        characteristicX,
+    CodeableConceptBuilder? characteristicCodeableConcept,
+    QuantityBuilder? characteristicQuantity,
     this.value,
     super.disallowExtensions,
-  }) : super(
+  })  : characteristicX = characteristicX ??
+            characteristicCodeableConcept ??
+            characteristicQuantity,
+        super(
           objectPath:
               'MedicationKnowledge.administrationGuidelines.patientCharacteristics',
         );
@@ -5747,6 +5767,8 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     CharacteristicXMedicationKnowledgePatientCharacteristicsBuilder?
         characteristicX,
     List<FhirStringBuilder>? value,
+    CodeableConceptBuilder? characteristicCodeableConcept,
+    QuantityBuilder? characteristicQuantity,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5758,7 +5780,10 @@ class MedicationKnowledgePatientCharacteristicsBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      characteristicX: characteristicX ?? this.characteristicX,
+      characteristicX: characteristicX ??
+          characteristicCodeableConcept ??
+          characteristicQuantity ??
+          this.characteristicX,
       value: value ?? this.value,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -6741,9 +6766,18 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXMedicationKnowledgeDrugCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    FhirBase64BinaryBuilder? valueBase64Binary,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueString ??
+            valueQuantity ??
+            valueBase64Binary,
+        super(
           objectPath: 'MedicationKnowledge.drugCharacteristic',
         );
 
@@ -7231,6 +7265,10 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXMedicationKnowledgeDrugCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    FhirBase64BinaryBuilder? valueBase64Binary,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7243,7 +7281,12 @@ class MedicationKnowledgeDrugCharacteristicBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueString ??
+          valueQuantity ??
+          valueBase64Binary ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

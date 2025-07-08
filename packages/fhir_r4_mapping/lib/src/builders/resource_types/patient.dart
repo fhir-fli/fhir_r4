@@ -33,17 +33,24 @@ class PatientBuilder extends DomainResourceBuilder {
     this.telecom,
     this.gender,
     this.birthDate,
-    this.deceasedX,
+    DeceasedXPatientBuilder? deceasedX,
+    FhirBooleanBuilder? deceasedBoolean,
+    FhirDateTimeBuilder? deceasedDateTime,
     this.address,
     this.maritalStatus,
-    this.multipleBirthX,
+    MultipleBirthXPatientBuilder? multipleBirthX,
+    FhirBooleanBuilder? multipleBirthBoolean,
+    FhirIntegerBuilder? multipleBirthInteger,
     this.photo,
     this.contact,
     this.communication,
     this.generalPractitioner,
     this.managingOrganization,
     this.link,
-  }) : super(
+  })  : deceasedX = deceasedX ?? deceasedBoolean ?? deceasedDateTime,
+        multipleBirthX =
+            multipleBirthX ?? multipleBirthBoolean ?? multipleBirthInteger,
+        super(
           objectPath: 'Patient',
           resourceType: R4ResourceType.Patient,
         );
@@ -1328,6 +1335,10 @@ class PatientBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? generalPractitioner,
     ReferenceBuilder? managingOrganization,
     List<PatientLinkBuilder>? link,
+    FhirBooleanBuilder? deceasedBoolean,
+    FhirDateTimeBuilder? deceasedDateTime,
+    FhirBooleanBuilder? multipleBirthBoolean,
+    FhirIntegerBuilder? multipleBirthInteger,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1349,10 +1360,14 @@ class PatientBuilder extends DomainResourceBuilder {
       telecom: telecom ?? this.telecom,
       gender: gender ?? this.gender,
       birthDate: birthDate ?? this.birthDate,
-      deceasedX: deceasedX ?? this.deceasedX,
+      deceasedX:
+          deceasedX ?? deceasedBoolean ?? deceasedDateTime ?? this.deceasedX,
       address: address ?? this.address,
       maritalStatus: maritalStatus ?? this.maritalStatus,
-      multipleBirthX: multipleBirthX ?? this.multipleBirthX,
+      multipleBirthX: multipleBirthX ??
+          multipleBirthBoolean ??
+          multipleBirthInteger ??
+          this.multipleBirthX,
       photo: photo ?? this.photo,
       contact: contact ?? this.contact,
       communication: communication ?? this.communication,

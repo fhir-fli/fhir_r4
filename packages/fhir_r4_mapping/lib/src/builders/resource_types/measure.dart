@@ -36,7 +36,9 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     this.subtitle,
     super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXMeasureBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -69,7 +71,8 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     this.guidance,
     this.group,
     this.supplementalData,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           objectPath: 'Measure',
           resourceType: R4ResourceType.Measure,
         );
@@ -2423,6 +2426,8 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     FhirMarkdownBuilder? guidance,
     List<MeasureGroupBuilder>? group,
     List<MeasureSupplementalDataBuilder>? supplementalData,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2446,7 +2451,10 @@ class MeasureBuilder extends CanonicalResourceBuilder {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

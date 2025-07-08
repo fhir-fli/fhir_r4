@@ -1937,15 +1937,23 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.presentationX,
+    PresentationXIngredientStrengthBuilder? presentationX,
+    RatioBuilder? presentationRatio,
+    RatioRangeBuilder? presentationRatioRange,
     this.textPresentation,
-    this.concentrationX,
+    ConcentrationXIngredientStrengthBuilder? concentrationX,
+    RatioBuilder? concentrationRatio,
+    RatioRangeBuilder? concentrationRatioRange,
     this.textConcentration,
     this.measurementPoint,
     this.country,
     this.referenceStrength,
     super.disallowExtensions,
-  }) : super(
+  })  : presentationX =
+            presentationX ?? presentationRatio ?? presentationRatioRange,
+        concentrationX =
+            concentrationX ?? concentrationRatio ?? concentrationRatioRange,
+        super(
           objectPath: 'Ingredient.substance.strength',
         );
 
@@ -2683,6 +2691,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     FhirStringBuilder? measurementPoint,
     List<CodeableConceptBuilder>? country,
     List<IngredientReferenceStrengthBuilder>? referenceStrength,
+    RatioBuilder? presentationRatio,
+    RatioRangeBuilder? presentationRatioRange,
+    RatioBuilder? concentrationRatio,
+    RatioRangeBuilder? concentrationRatioRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2694,9 +2706,15 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      presentationX: presentationX ?? this.presentationX,
+      presentationX: presentationX ??
+          presentationRatio ??
+          presentationRatioRange ??
+          this.presentationX,
       textPresentation: textPresentation ?? this.textPresentation,
-      concentrationX: concentrationX ?? this.concentrationX,
+      concentrationX: concentrationX ??
+          concentrationRatio ??
+          concentrationRatioRange ??
+          this.concentrationX,
       textConcentration: textConcentration ?? this.textConcentration,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
@@ -2808,11 +2826,14 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.substance,
-    this.strengthX,
+    StrengthXIngredientReferenceStrengthBuilder? strengthX,
+    RatioBuilder? strengthRatio,
+    RatioRangeBuilder? strengthRatioRange,
     this.measurementPoint,
     this.country,
     super.disallowExtensions,
-  }) : super(
+  })  : strengthX = strengthX ?? strengthRatio ?? strengthRatioRange,
+        super(
           objectPath: 'Ingredient.substance.strength.referenceStrength',
         );
 
@@ -3329,6 +3350,8 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     StrengthXIngredientReferenceStrengthBuilder? strengthX,
     FhirStringBuilder? measurementPoint,
     List<CodeableConceptBuilder>? country,
+    RatioBuilder? strengthRatio,
+    RatioRangeBuilder? strengthRatioRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3341,7 +3364,8 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       substance: substance ?? this.substance,
-      strengthX: strengthX ?? this.strengthX,
+      strengthX:
+          strengthX ?? strengthRatio ?? strengthRatioRange ?? this.strengthX,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
     )..objectPath = newObjectPath;

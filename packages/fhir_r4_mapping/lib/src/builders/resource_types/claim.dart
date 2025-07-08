@@ -3391,11 +3391,25 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
     this.sequence,
     this.category,
     this.code,
-    this.timingX,
-    this.valueX,
+    TimingXClaimSupportingInfoBuilder? timingX,
+    FhirDateBuilder? timingDate,
+    PeriodBuilder? timingPeriod,
+    ValueXClaimSupportingInfoBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    AttachmentBuilder? valueAttachment,
+    ReferenceBuilder? valueReference,
     this.reason,
     super.disallowExtensions,
-  }) : super(
+  })  : timingX = timingX ?? timingDate ?? timingPeriod,
+        valueX = valueX ??
+            valueBoolean ??
+            valueString ??
+            valueQuantity ??
+            valueAttachment ??
+            valueReference,
+        super(
           objectPath: 'Claim.supportingInfo',
         );
 
@@ -4126,6 +4140,13 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
     TimingXClaimSupportingInfoBuilder? timingX,
     ValueXClaimSupportingInfoBuilder? valueX,
     CodeableConceptBuilder? reason,
+    FhirDateBuilder? timingDate,
+    PeriodBuilder? timingPeriod,
+    FhirBooleanBuilder? valueBoolean,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    AttachmentBuilder? valueAttachment,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4140,8 +4161,14 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
       sequence: sequence ?? this.sequence,
       category: category ?? this.category,
       code: code ?? this.code,
-      timingX: timingX ?? this.timingX,
-      valueX: valueX ?? this.valueX,
+      timingX: timingX ?? timingDate ?? timingPeriod ?? this.timingX,
+      valueX: valueX ??
+          valueBoolean ??
+          valueString ??
+          valueQuantity ??
+          valueAttachment ??
+          valueReference ??
+          this.valueX,
       reason: reason ?? this.reason,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -4238,12 +4265,16 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    this.diagnosisX,
+    DiagnosisXClaimDiagnosisBuilder? diagnosisX,
+    CodeableConceptBuilder? diagnosisCodeableConcept,
+    ReferenceBuilder? diagnosisReference,
     this.type,
     this.onAdmission,
     this.packageCode,
     super.disallowExtensions,
-  }) : super(
+  })  : diagnosisX =
+            diagnosisX ?? diagnosisCodeableConcept ?? diagnosisReference,
+        super(
           objectPath: 'Claim.diagnosis',
         );
 
@@ -4800,6 +4831,8 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
     List<CodeableConceptBuilder>? type,
     CodeableConceptBuilder? onAdmission,
     CodeableConceptBuilder? packageCode,
+    CodeableConceptBuilder? diagnosisCodeableConcept,
+    ReferenceBuilder? diagnosisReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4812,7 +4845,10 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      diagnosisX: diagnosisX ?? this.diagnosisX,
+      diagnosisX: diagnosisX ??
+          diagnosisCodeableConcept ??
+          diagnosisReference ??
+          this.diagnosisX,
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
@@ -4908,10 +4944,14 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
     this.sequence,
     this.type,
     this.date,
-    this.procedureX,
+    ProcedureXClaimProcedureBuilder? procedureX,
+    CodeableConceptBuilder? procedureCodeableConcept,
+    ReferenceBuilder? procedureReference,
     this.udi,
     super.disallowExtensions,
-  }) : super(
+  })  : procedureX =
+            procedureX ?? procedureCodeableConcept ?? procedureReference,
+        super(
           objectPath: 'Claim.procedure',
         );
 
@@ -5489,6 +5529,8 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
     FhirDateTimeBuilder? date,
     ProcedureXClaimProcedureBuilder? procedureX,
     List<ReferenceBuilder>? udi,
+    CodeableConceptBuilder? procedureCodeableConcept,
+    ReferenceBuilder? procedureReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5503,7 +5545,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
       sequence: sequence ?? this.sequence,
       type: type ?? this.type,
       date: date ?? this.date,
-      procedureX: procedureX ?? this.procedureX,
+      procedureX: procedureX ??
+          procedureCodeableConcept ??
+          procedureReference ??
+          this.procedureX,
       udi: udi ?? this.udi,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -6335,9 +6380,12 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.date,
     this.type,
-    this.locationX,
+    LocationXClaimAccidentBuilder? locationX,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     super.disallowExtensions,
-  }) : super(
+  })  : locationX = locationX ?? locationAddress ?? locationReference,
+        super(
           objectPath: 'Claim.accident',
         );
 
@@ -6810,6 +6858,8 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
     FhirDateBuilder? date,
     CodeableConceptBuilder? type,
     LocationXClaimAccidentBuilder? locationX,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6823,7 +6873,8 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       date: date ?? this.date,
       type: type ?? this.type,
-      locationX: locationX ?? this.locationX,
+      locationX:
+          locationX ?? locationAddress ?? locationReference ?? this.locationX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -6911,8 +6962,13 @@ class ClaimItemBuilder extends BackboneElementBuilder {
     this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXClaimItemBuilder? servicedX,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
+    LocationXClaimItemBuilder? locationX,
+    CodeableConceptBuilder? locationCodeableConcept,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -6923,7 +6979,12 @@ class ClaimItemBuilder extends BackboneElementBuilder {
     this.encounter,
     this.detail,
     super.disallowExtensions,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super(
           objectPath: 'Claim.item',
         );
 
@@ -8382,6 +8443,11 @@ class ClaimItemBuilder extends BackboneElementBuilder {
     List<CodeableConceptBuilder>? subSite,
     List<ReferenceBuilder>? encounter,
     List<ClaimDetailBuilder>? detail,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
+    CodeableConceptBuilder? locationCodeableConcept,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8403,8 +8469,12 @@ class ClaimItemBuilder extends BackboneElementBuilder {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedX: servicedX ?? this.servicedX,
-      locationX: locationX ?? this.locationX,
+      servicedX: servicedX ?? servicedDate ?? servicedPeriod ?? this.servicedX,
+      locationX: locationX ??
+          locationCodeableConcept ??
+          locationAddress ??
+          locationReference ??
+          this.locationX,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,

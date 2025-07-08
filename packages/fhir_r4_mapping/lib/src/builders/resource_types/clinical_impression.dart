@@ -39,7 +39,9 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     this.description,
     this.subject,
     this.encounter,
-    this.effectiveX,
+    EffectiveXClinicalImpressionBuilder? effectiveX,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     this.date,
     this.assessor,
     this.previous,
@@ -52,7 +54,8 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     this.prognosisReference,
     this.supportingInfo,
     this.note,
-  }) : super(
+  })  : effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           objectPath: 'ClinicalImpression',
           resourceType: R4ResourceType.ClinicalImpression,
         );
@@ -1442,6 +1445,8 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? prognosisReference,
     List<ReferenceBuilder>? supportingInfo,
     List<AnnotationBuilder>? note,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1464,7 +1469,8 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
       description: description ?? this.description,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
+      effectiveX:
+          effectiveX ?? effectiveDateTime ?? effectivePeriod ?? this.effectiveX,
       date: date ?? this.date,
       assessor: assessor ?? this.assessor,
       previous: previous ?? this.previous,

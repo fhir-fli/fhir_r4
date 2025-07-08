@@ -35,15 +35,34 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     this.name,
     this.relationship,
     this.sex,
-    this.bornX,
-    this.ageX,
+    BornXFamilyMemberHistoryBuilder? bornX,
+    PeriodBuilder? bornPeriod,
+    FhirDateBuilder? bornDate,
+    FhirStringBuilder? bornString,
+    AgeXFamilyMemberHistoryBuilder? ageX,
+    AgeBuilder? ageAge,
+    RangeBuilder? ageRange,
+    FhirStringBuilder? ageString,
     this.estimatedAge,
-    this.deceasedX,
+    DeceasedXFamilyMemberHistoryBuilder? deceasedX,
+    FhirBooleanBuilder? deceasedBoolean,
+    AgeBuilder? deceasedAge,
+    RangeBuilder? deceasedRange,
+    FhirDateBuilder? deceasedDate,
+    FhirStringBuilder? deceasedString,
     this.reasonCode,
     this.reasonReference,
     this.note,
     this.condition,
-  }) : super(
+  })  : bornX = bornX ?? bornPeriod ?? bornDate ?? bornString,
+        ageX = ageX ?? ageAge ?? ageRange ?? ageString,
+        deceasedX = deceasedX ??
+            deceasedBoolean ??
+            deceasedAge ??
+            deceasedRange ??
+            deceasedDate ??
+            deceasedString,
+        super(
           objectPath: 'FamilyMemberHistory',
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
@@ -1657,6 +1676,17 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? reasonReference,
     List<AnnotationBuilder>? note,
     List<FamilyMemberHistoryConditionBuilder>? condition,
+    PeriodBuilder? bornPeriod,
+    FhirDateBuilder? bornDate,
+    FhirStringBuilder? bornString,
+    AgeBuilder? ageAge,
+    RangeBuilder? ageRange,
+    FhirStringBuilder? ageString,
+    FhirBooleanBuilder? deceasedBoolean,
+    AgeBuilder? deceasedAge,
+    RangeBuilder? deceasedRange,
+    FhirDateBuilder? deceasedDate,
+    FhirStringBuilder? deceasedString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1683,10 +1713,16 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       name: name ?? this.name,
       relationship: relationship ?? this.relationship,
       sex: sex ?? this.sex,
-      bornX: bornX ?? this.bornX,
-      ageX: ageX ?? this.ageX,
+      bornX: bornX ?? bornPeriod ?? bornDate ?? bornString ?? this.bornX,
+      ageX: ageX ?? ageAge ?? ageRange ?? ageString ?? this.ageX,
       estimatedAge: estimatedAge ?? this.estimatedAge,
-      deceasedX: deceasedX ?? this.deceasedX,
+      deceasedX: deceasedX ??
+          deceasedBoolean ??
+          deceasedAge ??
+          deceasedRange ??
+          deceasedDate ??
+          deceasedString ??
+          this.deceasedX,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
@@ -1893,10 +1929,15 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     this.code,
     this.outcome,
     this.contributedToDeath,
-    this.onsetX,
+    OnsetXFamilyMemberHistoryConditionBuilder? onsetX,
+    AgeBuilder? onsetAge,
+    RangeBuilder? onsetRange,
+    PeriodBuilder? onsetPeriod,
+    FhirStringBuilder? onsetString,
     this.note,
     super.disallowExtensions,
-  }) : super(
+  })  : onsetX = onsetX ?? onsetAge ?? onsetRange ?? onsetPeriod ?? onsetString,
+        super(
           objectPath: 'FamilyMemberHistory.condition',
         );
 
@@ -2510,6 +2551,10 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     FhirBooleanBuilder? contributedToDeath,
     OnsetXFamilyMemberHistoryConditionBuilder? onsetX,
     List<AnnotationBuilder>? note,
+    AgeBuilder? onsetAge,
+    RangeBuilder? onsetRange,
+    PeriodBuilder? onsetPeriod,
+    FhirStringBuilder? onsetString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2524,7 +2569,12 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       outcome: outcome ?? this.outcome,
       contributedToDeath: contributedToDeath ?? this.contributedToDeath,
-      onsetX: onsetX ?? this.onsetX,
+      onsetX: onsetX ??
+          onsetAge ??
+          onsetRange ??
+          onsetPeriod ??
+          onsetString ??
+          this.onsetX,
       note: note ?? this.note,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

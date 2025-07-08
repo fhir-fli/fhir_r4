@@ -2670,10 +2670,13 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.periodX,
+    PeriodXPackagedProductDefinitionShelfLifeStorageBuilder? periodX,
+    FhirDurationBuilder? periodDuration,
+    FhirStringBuilder? periodString,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
-  }) : super(
+  })  : periodX = periodX ?? periodDuration ?? periodString,
+        super(
           objectPath: 'PackagedProductDefinition.package.shelfLifeStorage',
         );
 
@@ -3158,6 +3161,8 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     CodeableConceptBuilder? type,
     PeriodXPackagedProductDefinitionShelfLifeStorageBuilder? periodX,
     List<CodeableConceptBuilder>? specialPrecautionsForStorage,
+    FhirDurationBuilder? periodDuration,
+    FhirStringBuilder? periodString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3170,7 +3175,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      periodX: periodX ?? this.periodX,
+      periodX: periodX ?? periodDuration ?? periodString ?? this.periodX,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
     )..objectPath = newObjectPath;
@@ -3250,9 +3255,20 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXPackagedProductDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super(
           objectPath: 'PackagedProductDefinition.package.property',
         );
 
@@ -3769,6 +3785,11 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXPackagedProductDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3781,7 +3802,13 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueDate ??
+          valueBoolean ??
+          valueAttachment ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

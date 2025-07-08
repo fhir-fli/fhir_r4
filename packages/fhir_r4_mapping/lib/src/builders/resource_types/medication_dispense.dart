@@ -32,9 +32,13 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     this.identifier,
     this.partOf,
     this.status,
-    this.statusReasonX,
+    StatusReasonXMedicationDispenseBuilder? statusReasonX,
+    CodeableConceptBuilder? statusReasonCodeableConcept,
+    ReferenceBuilder? statusReasonReference,
     this.category,
-    this.medicationX,
+    MedicationXMedicationDispenseBuilder? medicationX,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     this.subject,
     this.context,
     this.supportingInformation,
@@ -53,7 +57,12 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     this.substitution,
     this.detectedIssue,
     this.eventHistory,
-  }) : super(
+  })  : statusReasonX = statusReasonX ??
+            statusReasonCodeableConcept ??
+            statusReasonReference,
+        medicationX =
+            medicationX ?? medicationCodeableConcept ?? medicationReference,
+        super(
           objectPath: 'MedicationDispense',
           resourceType: R4ResourceType.MedicationDispense,
         );
@@ -1629,6 +1638,10 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     MedicationDispenseSubstitutionBuilder? substitution,
     List<ReferenceBuilder>? detectedIssue,
     List<ReferenceBuilder>? eventHistory,
+    CodeableConceptBuilder? statusReasonCodeableConcept,
+    ReferenceBuilder? statusReasonReference,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1647,9 +1660,15 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
       identifier: identifier ?? this.identifier,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusReasonX: statusReasonX ?? this.statusReasonX,
+      statusReasonX: statusReasonX ??
+          statusReasonCodeableConcept ??
+          statusReasonReference ??
+          this.statusReasonX,
       category: category ?? this.category,
-      medicationX: medicationX ?? this.medicationX,
+      medicationX: medicationX ??
+          medicationCodeableConcept ??
+          medicationReference ??
+          this.medicationX,
       subject: subject ?? this.subject,
       context: context ?? this.context,
       supportingInformation:

@@ -35,7 +35,9 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
-    this.citeAsX,
+    CiteAsXEvidenceReportBuilder? citeAsX,
+    ReferenceBuilder? citeAsReference,
+    FhirMarkdownBuilder? citeAsMarkdown,
     this.type,
     this.note,
     this.relatedArtifact,
@@ -48,7 +50,8 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
     this.endorser,
     this.relatesTo,
     this.section,
-  }) : super(
+  })  : citeAsX = citeAsX ?? citeAsReference ?? citeAsMarkdown,
+        super(
           objectPath: 'EvidenceReport',
           resourceType: R4ResourceType.EvidenceReport,
         );
@@ -1374,6 +1377,8 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
     List<ContactDetailBuilder>? endorser,
     List<EvidenceReportRelatesToBuilder>? relatesTo,
     List<EvidenceReportSectionBuilder>? section,
+    ReferenceBuilder? citeAsReference,
+    FhirMarkdownBuilder? citeAsMarkdown,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1394,7 +1399,7 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
       useContext: useContext ?? this.useContext,
       identifier: identifier ?? this.identifier,
       relatedIdentifier: relatedIdentifier ?? this.relatedIdentifier,
-      citeAsX: citeAsX ?? this.citeAsX,
+      citeAsX: citeAsX ?? citeAsReference ?? citeAsMarkdown ?? this.citeAsX,
       type: type ?? this.type,
       note: note ?? this.note,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
@@ -2072,11 +2077,22 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXEvidenceReportCharacteristicBuilder? valueX,
+    ReferenceBuilder? valueReference,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirBooleanBuilder? valueBoolean,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
     this.exclude,
     this.period,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueReference ??
+            valueCodeableConcept ??
+            valueBoolean ??
+            valueQuantity ??
+            valueRange,
+        super(
           objectPath: 'EvidenceReport.subject.characteristic',
         );
 
@@ -2669,6 +2685,11 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
     ValueXEvidenceReportCharacteristicBuilder? valueX,
     FhirBooleanBuilder? exclude,
     PeriodBuilder? period,
+    ReferenceBuilder? valueReference,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirBooleanBuilder? valueBoolean,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2681,7 +2702,13 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueReference ??
+          valueCodeableConcept ??
+          valueBoolean ??
+          valueQuantity ??
+          valueRange ??
+          this.valueX,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
     )..objectPath = newObjectPath;
@@ -2768,9 +2795,12 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.targetX,
+    TargetXEvidenceReportRelatesToBuilder? targetX,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
     super.disallowExtensions,
-  }) : super(
+  })  : targetX = targetX ?? targetIdentifier ?? targetReference,
+        super(
           objectPath: 'EvidenceReport.relatesTo',
         );
 
@@ -3214,6 +3244,8 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     ReportRelationshipTypeBuilder? code,
     TargetXEvidenceReportRelatesToBuilder? targetX,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3226,7 +3258,7 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      targetX: targetX ?? this.targetX,
+      targetX: targetX ?? targetIdentifier ?? targetReference ?? this.targetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

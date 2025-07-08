@@ -38,7 +38,12 @@ class ProcedureBuilder extends DomainResourceBuilder {
     this.code,
     this.subject,
     this.encounter,
-    this.performedX,
+    PerformedXProcedureBuilder? performedX,
+    FhirDateTimeBuilder? performedDateTime,
+    PeriodBuilder? performedPeriod,
+    FhirStringBuilder? performedString,
+    AgeBuilder? performedAge,
+    RangeBuilder? performedRange,
     this.recorder,
     this.asserter,
     this.performer,
@@ -55,7 +60,13 @@ class ProcedureBuilder extends DomainResourceBuilder {
     this.focalDevice,
     this.usedReference,
     this.usedCode,
-  }) : super(
+  })  : performedX = performedX ??
+            performedDateTime ??
+            performedPeriod ??
+            performedString ??
+            performedAge ??
+            performedRange,
+        super(
           objectPath: 'Procedure',
           resourceType: R4ResourceType.Procedure,
         );
@@ -1891,6 +1902,11 @@ class ProcedureBuilder extends DomainResourceBuilder {
     List<ProcedureFocalDeviceBuilder>? focalDevice,
     List<ReferenceBuilder>? usedReference,
     List<CodeableConceptBuilder>? usedCode,
+    FhirDateTimeBuilder? performedDateTime,
+    PeriodBuilder? performedPeriod,
+    FhirStringBuilder? performedString,
+    AgeBuilder? performedAge,
+    RangeBuilder? performedRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1918,7 +1934,13 @@ class ProcedureBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      performedX: performedX ?? this.performedX,
+      performedX: performedX ??
+          performedDateTime ??
+          performedPeriod ??
+          performedString ??
+          performedAge ??
+          performedRange ??
+          this.performedX,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,
       performer: performer ?? this.performer,

@@ -25,7 +25,10 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     this.status,
     this.subject,
     this.derivedFrom,
-    this.timingX,
+    TimingXDeviceUseStatementBuilder? timingX,
+    TimingBuilder? timingTiming,
+    PeriodBuilder? timingPeriod,
+    FhirDateTimeBuilder? timingDateTime,
     this.recordedOn,
     this.source,
     this.device,
@@ -33,7 +36,8 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     this.reasonReference,
     this.bodySite,
     this.note,
-  }) : super(
+  })  : timingX = timingX ?? timingTiming ?? timingPeriod ?? timingDateTime,
+        super(
           objectPath: 'DeviceUseStatement',
           resourceType: R4ResourceType.DeviceUseStatement,
         );
@@ -1132,6 +1136,9 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? reasonReference,
     CodeableConceptBuilder? bodySite,
     List<AnnotationBuilder>? note,
+    TimingBuilder? timingTiming,
+    PeriodBuilder? timingPeriod,
+    FhirDateTimeBuilder? timingDateTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1152,7 +1159,11 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       subject: subject ?? this.subject,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      timingX: timingX ?? this.timingX,
+      timingX: timingX ??
+          timingTiming ??
+          timingPeriod ??
+          timingDateTime ??
+          this.timingX,
       recordedOn: recordedOn ?? this.recordedOn,
       source: source ?? this.source,
       device: device ?? this.device,

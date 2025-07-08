@@ -38,7 +38,9 @@ class EvidenceBuilder extends DomainResourceBuilder {
     this.identifier,
     this.version,
     this.title,
-    this.citeAsX,
+    CiteAsXEvidenceBuilder? citeAsX,
+    ReferenceBuilder? citeAsReference,
+    FhirMarkdownBuilder? citeAsMarkdown,
     this.status,
     this.date,
     this.useContext,
@@ -59,7 +61,8 @@ class EvidenceBuilder extends DomainResourceBuilder {
     this.studyType,
     this.statistic,
     this.certainty,
-  }) : super(
+  })  : citeAsX = citeAsX ?? citeAsReference ?? citeAsMarkdown,
+        super(
           objectPath: 'Evidence',
           resourceType: R4ResourceType.Evidence,
         );
@@ -1702,6 +1705,8 @@ class EvidenceBuilder extends DomainResourceBuilder {
     CodeableConceptBuilder? studyType,
     List<EvidenceStatisticBuilder>? statistic,
     List<EvidenceCertaintyBuilder>? certainty,
+    ReferenceBuilder? citeAsReference,
+    FhirMarkdownBuilder? citeAsMarkdown,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1721,7 +1726,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
       title: title ?? this.title,
-      citeAsX: citeAsX ?? this.citeAsX,
+      citeAsX: citeAsX ?? citeAsReference ?? citeAsMarkdown ?? this.citeAsX,
       status: status ?? this.status,
       date: date ?? this.date,
       useContext: useContext ?? this.useContext,

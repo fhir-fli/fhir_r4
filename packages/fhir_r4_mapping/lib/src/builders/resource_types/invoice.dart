@@ -1818,10 +1818,14 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    this.chargeItemX,
+    ChargeItemXInvoiceLineItemBuilder? chargeItemX,
+    ReferenceBuilder? chargeItemReference,
+    CodeableConceptBuilder? chargeItemCodeableConcept,
     this.priceComponent,
     super.disallowExtensions,
-  }) : super(
+  })  : chargeItemX =
+            chargeItemX ?? chargeItemReference ?? chargeItemCodeableConcept,
+        super(
           objectPath: 'Invoice.lineItem',
         );
 
@@ -2318,6 +2322,8 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     FhirPositiveIntBuilder? sequence,
     ChargeItemXInvoiceLineItemBuilder? chargeItemX,
     List<InvoicePriceComponentBuilder>? priceComponent,
+    ReferenceBuilder? chargeItemReference,
+    CodeableConceptBuilder? chargeItemCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2330,7 +2336,10 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      chargeItemX: chargeItemX ?? this.chargeItemX,
+      chargeItemX: chargeItemX ??
+          chargeItemReference ??
+          chargeItemCodeableConcept ??
+          this.chargeItemX,
       priceComponent: priceComponent ?? this.priceComponent,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

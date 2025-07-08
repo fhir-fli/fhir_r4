@@ -957,9 +957,20 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXManufacturedItemDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super(
           objectPath: 'ManufacturedItemDefinition.property',
         );
 
@@ -1476,6 +1487,11 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXManufacturedItemDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1488,7 +1504,13 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueDate ??
+          valueBoolean ??
+          valueAttachment ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

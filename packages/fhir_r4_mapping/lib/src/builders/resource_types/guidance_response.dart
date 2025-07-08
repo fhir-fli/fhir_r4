@@ -23,7 +23,10 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
-    this.moduleX,
+    ModuleXGuidanceResponseBuilder? moduleX,
+    FhirUriBuilder? moduleUri,
+    FhirCanonicalBuilder? moduleCanonical,
+    CodeableConceptBuilder? moduleCodeableConcept,
     this.status,
     this.subject,
     this.encounter,
@@ -36,7 +39,9 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     this.outputParameters,
     this.result,
     this.dataRequirement,
-  }) : super(
+  })  : moduleX =
+            moduleX ?? moduleUri ?? moduleCanonical ?? moduleCodeableConcept,
+        super(
           objectPath: 'GuidanceResponse',
           resourceType: R4ResourceType.GuidanceResponse,
         );
@@ -1219,6 +1224,9 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     ReferenceBuilder? outputParameters,
     ReferenceBuilder? result,
     List<DataRequirementBuilder>? dataRequirement,
+    FhirUriBuilder? moduleUri,
+    FhirCanonicalBuilder? moduleCanonical,
+    CodeableConceptBuilder? moduleCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1236,7 +1244,11 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       requestIdentifier: requestIdentifier ?? this.requestIdentifier,
       identifier: identifier ?? this.identifier,
-      moduleX: moduleX ?? this.moduleX,
+      moduleX: moduleX ??
+          moduleUri ??
+          moduleCanonical ??
+          moduleCodeableConcept ??
+          this.moduleX,
       status: status ?? this.status,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,

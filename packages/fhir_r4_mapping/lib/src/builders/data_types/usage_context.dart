@@ -27,10 +27,18 @@ class UsageContextBuilder extends DataTypeBuilder
     super.id,
     super.extension_,
     this.code,
-    this.valueX,
+    ValueXUsageContextBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    ReferenceBuilder? valueReference,
     super.disallowExtensions,
     super.objectPath = 'UsageContextBuilder',
-  });
+  }) : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueRange ??
+            valueReference;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -475,6 +483,10 @@ class UsageContextBuilder extends DataTypeBuilder
     List<FhirExtensionBuilder>? extension_,
     CodingBuilder? code,
     ValueXUsageContextBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -486,7 +498,12 @@ class UsageContextBuilder extends DataTypeBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueRange ??
+          valueReference ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

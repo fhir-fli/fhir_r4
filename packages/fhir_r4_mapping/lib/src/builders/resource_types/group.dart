@@ -1120,11 +1120,22 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXGroupCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirBooleanBuilder? valueBoolean,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    ReferenceBuilder? valueReference,
     this.exclude,
     this.period,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueBoolean ??
+            valueQuantity ??
+            valueRange ??
+            valueReference,
+        super(
           objectPath: 'Group.characteristic',
         );
 
@@ -1718,6 +1729,11 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     ValueXGroupCharacteristicBuilder? valueX,
     FhirBooleanBuilder? exclude,
     PeriodBuilder? period,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirBooleanBuilder? valueBoolean,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1730,7 +1746,13 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueBoolean ??
+          valueQuantity ??
+          valueRange ??
+          valueReference ??
+          this.valueX,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
     )..objectPath = newObjectPath;

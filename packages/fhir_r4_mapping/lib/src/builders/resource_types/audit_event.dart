@@ -3845,9 +3845,12 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXAuditEventDetailBuilder? valueX,
+    FhirStringBuilder? valueString,
+    FhirBase64BinaryBuilder? valueBase64Binary,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ?? valueString ?? valueBase64Binary,
+        super(
           objectPath: 'AuditEvent.entity.detail',
         );
 
@@ -4286,6 +4289,8 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     FhirStringBuilder? type,
     ValueXAuditEventDetailBuilder? valueX,
+    FhirStringBuilder? valueString,
+    FhirBase64BinaryBuilder? valueBase64Binary,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4298,7 +4303,7 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ?? valueString ?? valueBase64Binary ?? this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

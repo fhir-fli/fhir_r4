@@ -36,7 +36,9 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     this.code,
     this.subject,
     this.encounter,
-    this.effectiveX,
+    EffectiveXDiagnosticReportBuilder? effectiveX,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     this.issued,
     this.performer,
     this.resultsInterpreter,
@@ -47,7 +49,8 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     this.conclusion,
     this.conclusionCode,
     this.presentedForm,
-  }) : super(
+  })  : effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           objectPath: 'DiagnosticReport',
           resourceType: R4ResourceType.DiagnosticReport,
         );
@@ -1360,6 +1363,8 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     FhirStringBuilder? conclusion,
     List<CodeableConceptBuilder>? conclusionCode,
     List<AttachmentBuilder>? presentedForm,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1382,7 +1387,8 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
+      effectiveX:
+          effectiveX ?? effectiveDateTime ?? effectivePeriod ?? this.effectiveX,
       issued: issued ?? this.issued,
       performer: performer ?? this.performer,
       resultsInterpreter: resultsInterpreter ?? this.resultsInterpreter,

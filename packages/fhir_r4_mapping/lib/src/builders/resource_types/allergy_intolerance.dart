@@ -34,14 +34,25 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     this.code,
     this.patient,
     this.encounter,
-    this.onsetX,
+    OnsetXAllergyIntoleranceBuilder? onsetX,
+    FhirDateTimeBuilder? onsetDateTime,
+    AgeBuilder? onsetAge,
+    PeriodBuilder? onsetPeriod,
+    RangeBuilder? onsetRange,
+    FhirStringBuilder? onsetString,
     this.recordedDate,
     this.recorder,
     this.asserter,
     this.lastOccurrence,
     this.note,
     this.reaction,
-  }) : super(
+  })  : onsetX = onsetX ??
+            onsetDateTime ??
+            onsetAge ??
+            onsetPeriod ??
+            onsetRange ??
+            onsetString,
+        super(
           objectPath: 'AllergyIntolerance',
           resourceType: R4ResourceType.AllergyIntolerance,
         );
@@ -1352,6 +1363,11 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     FhirDateTimeBuilder? lastOccurrence,
     List<AnnotationBuilder>? note,
     List<AllergyIntoleranceReactionBuilder>? reaction,
+    FhirDateTimeBuilder? onsetDateTime,
+    AgeBuilder? onsetAge,
+    PeriodBuilder? onsetPeriod,
+    RangeBuilder? onsetRange,
+    FhirStringBuilder? onsetString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1376,7 +1392,13 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
-      onsetX: onsetX ?? this.onsetX,
+      onsetX: onsetX ??
+          onsetDateTime ??
+          onsetAge ??
+          onsetPeriod ??
+          onsetRange ??
+          onsetString ??
+          this.onsetX,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

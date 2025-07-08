@@ -1909,14 +1909,23 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.definitionX,
+    DefinitionXEvidenceVariableCharacteristicBuilder? definitionX,
+    ReferenceBuilder? definitionReference,
+    FhirCanonicalBuilder? definitionCanonical,
+    CodeableConceptBuilder? definitionCodeableConcept,
+    FhirExpressionBuilder? definitionExpression,
     this.method,
     this.device,
     this.exclude,
     this.timeFromStart,
     this.groupMeasure,
     super.disallowExtensions,
-  }) : super(
+  })  : definitionX = definitionX ??
+            definitionReference ??
+            definitionCanonical ??
+            definitionCodeableConcept ??
+            definitionExpression,
+        super(
           objectPath: 'EvidenceVariable.characteristic',
         );
 
@@ -2613,6 +2622,10 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     FhirBooleanBuilder? exclude,
     EvidenceVariableTimeFromStartBuilder? timeFromStart,
     GroupMeasureBuilder? groupMeasure,
+    ReferenceBuilder? definitionReference,
+    FhirCanonicalBuilder? definitionCanonical,
+    CodeableConceptBuilder? definitionCodeableConcept,
+    FhirExpressionBuilder? definitionExpression,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2625,7 +2638,12 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      definitionX: definitionX ?? this.definitionX,
+      definitionX: definitionX ??
+          definitionReference ??
+          definitionCanonical ??
+          definitionCodeableConcept ??
+          definitionExpression ??
+          this.definitionX,
       method: method ?? this.method,
       device: device ?? this.device,
       exclude: exclude ?? this.exclude,
@@ -3284,9 +3302,13 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.valueX,
+    ValueXEvidenceVariableCategoryBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ?? valueCodeableConcept ?? valueQuantity ?? valueRange,
+        super(
           objectPath: 'EvidenceVariable.category',
         );
 
@@ -3754,6 +3776,9 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     FhirStringBuilder? name,
     ValueXEvidenceVariableCategoryBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3766,7 +3791,11 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueRange ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

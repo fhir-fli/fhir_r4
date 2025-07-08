@@ -5016,9 +5016,24 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.valueX,
+    ValueXValueSetParameterBuilder? valueX,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    FhirDecimalBuilder? valueDecimal,
+    FhirUriBuilder? valueUri,
+    FhirCodeBuilder? valueCode,
+    FhirDateTimeBuilder? valueDateTime,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueDecimal ??
+            valueUri ??
+            valueCode ??
+            valueDateTime,
+        super(
           objectPath: 'ValueSet.expansion.parameter',
         );
 
@@ -5602,6 +5617,13 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     FhirStringBuilder? name,
     ValueXValueSetParameterBuilder? valueX,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    FhirDecimalBuilder? valueDecimal,
+    FhirUriBuilder? valueUri,
+    FhirCodeBuilder? valueCode,
+    FhirDateTimeBuilder? valueDateTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5614,7 +5636,15 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueString ??
+          valueBoolean ??
+          valueInteger ??
+          valueDecimal ??
+          valueUri ??
+          valueCode ??
+          valueDateTime ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

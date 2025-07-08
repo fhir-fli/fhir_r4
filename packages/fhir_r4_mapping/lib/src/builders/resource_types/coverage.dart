@@ -1960,10 +1960,13 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXCoverageCostToBeneficiaryBuilder? valueX,
+    QuantityBuilder? valueQuantity,
+    MoneyBuilder? valueMoney,
     this.exception,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ?? valueQuantity ?? valueMoney,
+        super(
           objectPath: 'Coverage.costToBeneficiary',
         );
 
@@ -2436,6 +2439,8 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? type,
     ValueXCoverageCostToBeneficiaryBuilder? valueX,
     List<CoverageExceptionBuilder>? exception,
+    QuantityBuilder? valueQuantity,
+    MoneyBuilder? valueMoney,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2448,7 +2453,7 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ?? valueQuantity ?? valueMoney ?? this.valueX,
       exception: exception ?? this.exception,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

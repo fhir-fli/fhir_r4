@@ -31,7 +31,9 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     super.status,
     super.experimental,
     this.type,
-    this.subjectX,
+    SubjectXLibraryBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -53,7 +55,8 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     this.parameter,
     this.dataRequirement,
     this.content,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           objectPath: 'Library',
           resourceType: R4ResourceType.Library,
         );
@@ -1917,6 +1920,8 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     List<ParameterDefinitionBuilder>? parameter,
     List<DataRequirementBuilder>? dataRequirement,
     List<AttachmentBuilder>? content,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1941,7 +1946,10 @@ class LibraryBuilder extends CanonicalResourceBuilder {
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
       type: type ?? this.type,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

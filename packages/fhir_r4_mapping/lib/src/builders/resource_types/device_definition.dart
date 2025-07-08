@@ -32,7 +32,9 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerX,
+    ManufacturerXDeviceDefinitionBuilder? manufacturerX,
+    FhirStringBuilder? manufacturerString,
+    ReferenceBuilder? manufacturerReference,
     this.deviceName,
     this.modelNumber,
     this.type,
@@ -52,7 +54,9 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     this.quantity,
     this.parentDevice,
     this.material,
-  }) : super(
+  })  : manufacturerX =
+            manufacturerX ?? manufacturerString ?? manufacturerReference,
+        super(
           objectPath: 'DeviceDefinition',
           resourceType: R4ResourceType.DeviceDefinition,
         );
@@ -1537,6 +1541,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     QuantityBuilder? quantity,
     ReferenceBuilder? parentDevice,
     List<DeviceDefinitionMaterialBuilder>? material,
+    FhirStringBuilder? manufacturerString,
+    ReferenceBuilder? manufacturerReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1554,7 +1560,10 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
-      manufacturerX: manufacturerX ?? this.manufacturerX,
+      manufacturerX: manufacturerX ??
+          manufacturerString ??
+          manufacturerReference ??
+          this.manufacturerX,
       deviceName: deviceName ?? this.deviceName,
       modelNumber: modelNumber ?? this.modelNumber,
       type: type ?? this.type,

@@ -30,7 +30,9 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.eventX,
+    EventXMessageHeaderBuilder? eventX,
+    CodingBuilder? eventCoding,
+    FhirUriBuilder? eventUri,
     this.destination,
     this.sender,
     this.enterer,
@@ -41,7 +43,8 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     this.response,
     this.focus,
     this.definition,
-  }) : super(
+  })  : eventX = eventX ?? eventCoding ?? eventUri,
+        super(
           objectPath: 'MessageHeader',
           resourceType: R4ResourceType.MessageHeader,
         );
@@ -986,6 +989,8 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     MessageHeaderResponseBuilder? response,
     List<ReferenceBuilder>? focus,
     FhirCanonicalBuilder? definition,
+    CodingBuilder? eventCoding,
+    FhirUriBuilder? eventUri,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1001,7 +1006,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      eventX: eventX ?? this.eventX,
+      eventX: eventX ?? eventCoding ?? eventUri ?? this.eventX,
       destination: destination ?? this.destination,
       sender: sender ?? this.sender,
       enterer: enterer ?? this.enterer,

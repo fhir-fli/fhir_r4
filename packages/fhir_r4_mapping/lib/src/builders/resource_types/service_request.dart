@@ -33,11 +33,19 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     this.doNotPerform,
     this.code,
     this.orderDetail,
-    this.quantityX,
+    QuantityXServiceRequestBuilder? quantityX,
+    QuantityBuilder? quantityQuantity,
+    RatioBuilder? quantityRatio,
+    RangeBuilder? quantityRange,
     this.subject,
     this.encounter,
-    this.occurrenceX,
-    this.asNeededX,
+    OccurrenceXServiceRequestBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
+    AsNeededXServiceRequestBuilder? asNeededX,
+    FhirBooleanBuilder? asNeededBoolean,
+    CodeableConceptBuilder? asNeededCodeableConcept,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -53,7 +61,14 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     this.note,
     this.patientInstruction,
     this.relevantHistory,
-  }) : super(
+  })  : quantityX =
+            quantityX ?? quantityQuantity ?? quantityRatio ?? quantityRange,
+        occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        asNeededX = asNeededX ?? asNeededBoolean ?? asNeededCodeableConcept,
+        super(
           objectPath: 'ServiceRequest',
           resourceType: R4ResourceType.ServiceRequest,
         );
@@ -2249,6 +2264,14 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     List<AnnotationBuilder>? note,
     FhirStringBuilder? patientInstruction,
     List<ReferenceBuilder>? relevantHistory,
+    QuantityBuilder? quantityQuantity,
+    RatioBuilder? quantityRatio,
+    RangeBuilder? quantityRange,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
+    FhirBooleanBuilder? asNeededBoolean,
+    CodeableConceptBuilder? asNeededCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2278,11 +2301,22 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
       doNotPerform: doNotPerform ?? this.doNotPerform,
       code: code ?? this.code,
       orderDetail: orderDetail ?? this.orderDetail,
-      quantityX: quantityX ?? this.quantityX,
+      quantityX: quantityX ??
+          quantityQuantity ??
+          quantityRatio ??
+          quantityRange ??
+          this.quantityX,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
-      asNeededX: asNeededX ?? this.asNeededX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
+      asNeededX: asNeededX ??
+          asNeededBoolean ??
+          asNeededCodeableConcept ??
+          this.asNeededX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,

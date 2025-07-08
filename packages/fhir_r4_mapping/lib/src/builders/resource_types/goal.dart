@@ -29,7 +29,9 @@ class GoalBuilder extends DomainResourceBuilder {
     this.priority,
     this.description,
     this.subject,
-    this.startX,
+    StartXGoalBuilder? startX,
+    FhirDateBuilder? startDate,
+    CodeableConceptBuilder? startCodeableConcept,
     this.target,
     this.statusDate,
     this.statusReason,
@@ -38,7 +40,8 @@ class GoalBuilder extends DomainResourceBuilder {
     this.note,
     this.outcomeCode,
     this.outcomeReference,
-  }) : super(
+  })  : startX = startX ?? startDate ?? startCodeableConcept,
+        super(
           objectPath: 'Goal',
           resourceType: R4ResourceType.Goal,
         );
@@ -1228,6 +1231,8 @@ class GoalBuilder extends DomainResourceBuilder {
     List<AnnotationBuilder>? note,
     List<CodeableConceptBuilder>? outcomeCode,
     List<ReferenceBuilder>? outcomeReference,
+    FhirDateBuilder? startDate,
+    CodeableConceptBuilder? startCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1250,7 +1255,7 @@ class GoalBuilder extends DomainResourceBuilder {
       priority: priority ?? this.priority,
       description: description ?? this.description,
       subject: subject ?? this.subject,
-      startX: startX ?? this.startX,
+      startX: startX ?? startDate ?? startCodeableConcept ?? this.startX,
       target: target ?? this.target,
       statusDate: statusDate ?? this.statusDate,
       statusReason: statusReason ?? this.statusReason,
@@ -1444,10 +1449,28 @@ class GoalTargetBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailX,
-    this.dueX,
+    DetailXGoalTargetBuilder? detailX,
+    QuantityBuilder? detailQuantity,
+    RangeBuilder? detailRange,
+    CodeableConceptBuilder? detailCodeableConcept,
+    FhirStringBuilder? detailString,
+    FhirBooleanBuilder? detailBoolean,
+    FhirIntegerBuilder? detailInteger,
+    RatioBuilder? detailRatio,
+    DueXGoalTargetBuilder? dueX,
+    FhirDateBuilder? dueDate,
+    FhirDurationBuilder? dueDuration,
     super.disallowExtensions,
-  }) : super(
+  })  : detailX = detailX ??
+            detailQuantity ??
+            detailRange ??
+            detailCodeableConcept ??
+            detailString ??
+            detailBoolean ??
+            detailInteger ??
+            detailRatio,
+        dueX = dueX ?? dueDate ?? dueDuration,
+        super(
           objectPath: 'Goal.target',
         );
 
@@ -2122,6 +2145,15 @@ class GoalTargetBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? measure,
     DetailXGoalTargetBuilder? detailX,
     DueXGoalTargetBuilder? dueX,
+    QuantityBuilder? detailQuantity,
+    RangeBuilder? detailRange,
+    CodeableConceptBuilder? detailCodeableConcept,
+    FhirStringBuilder? detailString,
+    FhirBooleanBuilder? detailBoolean,
+    FhirIntegerBuilder? detailInteger,
+    RatioBuilder? detailRatio,
+    FhirDateBuilder? dueDate,
+    FhirDurationBuilder? dueDuration,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2134,8 +2166,16 @@ class GoalTargetBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       measure: measure ?? this.measure,
-      detailX: detailX ?? this.detailX,
-      dueX: dueX ?? this.dueX,
+      detailX: detailX ??
+          detailQuantity ??
+          detailRange ??
+          detailCodeableConcept ??
+          detailString ??
+          detailBoolean ??
+          detailInteger ??
+          detailRatio ??
+          this.detailX,
+      dueX: dueX ?? dueDate ?? dueDuration ?? this.dueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

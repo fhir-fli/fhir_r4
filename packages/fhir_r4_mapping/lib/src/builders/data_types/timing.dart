@@ -571,7 +571,10 @@ class TimingRepeatBuilder extends ElementBuilder {
   TimingRepeatBuilder({
     super.id,
     super.extension_,
-    this.boundsX,
+    BoundsXTimingRepeatBuilder? boundsX,
+    FhirDurationBuilder? boundsDuration,
+    RangeBuilder? boundsRange,
+    PeriodBuilder? boundsPeriod,
     this.count,
     this.countMax,
     this.duration,
@@ -588,7 +591,7 @@ class TimingRepeatBuilder extends ElementBuilder {
     this.offset,
     super.disallowExtensions,
     super.objectPath = 'TimingRepeatBuilder',
-  });
+  }) : boundsX = boundsX ?? boundsDuration ?? boundsRange ?? boundsPeriod;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -1754,6 +1757,9 @@ class TimingRepeatBuilder extends ElementBuilder {
     List<FhirTimeBuilder>? timeOfDay,
     List<EventTimingBuilder>? when,
     FhirUnsignedIntBuilder? offset,
+    FhirDurationBuilder? boundsDuration,
+    RangeBuilder? boundsRange,
+    PeriodBuilder? boundsPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1764,7 +1770,11 @@ class TimingRepeatBuilder extends ElementBuilder {
     final newResult = TimingRepeatBuilder(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-      boundsX: boundsX ?? this.boundsX,
+      boundsX: boundsX ??
+          boundsDuration ??
+          boundsRange ??
+          boundsPeriod ??
+          this.boundsX,
       count: count ?? this.count,
       countMax: countMax ?? this.countMax,
       duration: duration ?? this.duration,

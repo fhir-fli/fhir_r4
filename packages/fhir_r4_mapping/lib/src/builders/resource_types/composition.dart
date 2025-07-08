@@ -1872,9 +1872,12 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.targetX,
+    TargetXCompositionRelatesToBuilder? targetX,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
     super.disallowExtensions,
-  }) : super(
+  })  : targetX = targetX ?? targetIdentifier ?? targetReference,
+        super(
           objectPath: 'Composition.relatesTo',
         );
 
@@ -2316,6 +2319,8 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     DocumentRelationshipTypeBuilder? code,
     TargetXCompositionRelatesToBuilder? targetX,
+    IdentifierBuilder? targetIdentifier,
+    ReferenceBuilder? targetReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2328,7 +2333,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      targetX: targetX ?? this.targetX,
+      targetX: targetX ?? targetIdentifier ?? targetReference ?? this.targetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

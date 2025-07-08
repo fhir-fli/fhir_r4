@@ -2468,15 +2468,23 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     this.status,
     this.statusReason,
     this.doNotPerform,
-    this.scheduledX,
+    ScheduledXCarePlanDetailBuilder? scheduledX,
+    TimingBuilder? scheduledTiming,
+    PeriodBuilder? scheduledPeriod,
+    FhirStringBuilder? scheduledString,
     this.location,
     this.performer,
-    this.productX,
+    ProductXCarePlanDetailBuilder? productX,
+    CodeableConceptBuilder? productCodeableConcept,
+    ReferenceBuilder? productReference,
     this.dailyAmount,
     this.quantity,
     this.description,
     super.disallowExtensions,
-  }) : super(
+  })  : scheduledX =
+            scheduledX ?? scheduledTiming ?? scheduledPeriod ?? scheduledString,
+        productX = productX ?? productCodeableConcept ?? productReference,
+        super(
           objectPath: 'CarePlan.activity.detail',
         );
 
@@ -3690,6 +3698,11 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     QuantityBuilder? dailyAmount,
     QuantityBuilder? quantity,
     FhirStringBuilder? description,
+    TimingBuilder? scheduledTiming,
+    PeriodBuilder? scheduledPeriod,
+    FhirStringBuilder? scheduledString,
+    CodeableConceptBuilder? productCodeableConcept,
+    ReferenceBuilder? productReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3712,10 +3725,17 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      scheduledX: scheduledX ?? this.scheduledX,
+      scheduledX: scheduledX ??
+          scheduledTiming ??
+          scheduledPeriod ??
+          scheduledString ??
+          this.scheduledX,
       location: location ?? this.location,
       performer: performer ?? this.performer,
-      productX: productX ?? this.productX,
+      productX: productX ??
+          productCodeableConcept ??
+          productReference ??
+          this.productX,
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,

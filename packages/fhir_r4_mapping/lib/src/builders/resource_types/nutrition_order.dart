@@ -4535,9 +4535,12 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.schedule,
     this.quantity,
-    this.rateX,
+    RateXNutritionOrderAdministrationBuilder? rateX,
+    QuantityBuilder? rateQuantity,
+    RatioBuilder? rateRatio,
     super.disallowExtensions,
-  }) : super(
+  })  : rateX = rateX ?? rateQuantity ?? rateRatio,
+        super(
           objectPath: 'NutritionOrder.enteralFormula.administration',
         );
 
@@ -4998,6 +5001,8 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     TimingBuilder? schedule,
     QuantityBuilder? quantity,
     RateXNutritionOrderAdministrationBuilder? rateX,
+    QuantityBuilder? rateQuantity,
+    RatioBuilder? rateRatio,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5011,7 +5016,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       schedule: schedule ?? this.schedule,
       quantity: quantity ?? this.quantity,
-      rateX: rateX ?? this.rateX,
+      rateX: rateX ?? rateQuantity ?? rateRatio ?? this.rateX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

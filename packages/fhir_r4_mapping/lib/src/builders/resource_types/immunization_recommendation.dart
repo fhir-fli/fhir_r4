@@ -854,12 +854,19 @@ class ImmunizationRecommendationRecommendationBuilder
     this.dateCriterion,
     this.description,
     this.series,
-    this.doseNumberX,
-    this.seriesDosesX,
+    DoseNumberXImmunizationRecommendationRecommendationBuilder? doseNumberX,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    SeriesDosesXImmunizationRecommendationRecommendationBuilder? seriesDosesX,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
     this.supportingImmunization,
     this.supportingPatientInformation,
     super.disallowExtensions,
-  }) : super(
+  })  : doseNumberX = doseNumberX ?? doseNumberPositiveInt ?? doseNumberString,
+        seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super(
           objectPath: 'ImmunizationRecommendation.recommendation',
         );
 
@@ -1788,6 +1795,10 @@ class ImmunizationRecommendationRecommendationBuilder
     SeriesDosesXImmunizationRecommendationRecommendationBuilder? seriesDosesX,
     List<ReferenceBuilder>? supportingImmunization,
     List<ReferenceBuilder>? supportingPatientInformation,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1808,8 +1819,14 @@ class ImmunizationRecommendationRecommendationBuilder
       dateCriterion: dateCriterion ?? this.dateCriterion,
       description: description ?? this.description,
       series: series ?? this.series,
-      doseNumberX: doseNumberX ?? this.doseNumberX,
-      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
+      doseNumberX: doseNumberX ??
+          doseNumberPositiveInt ??
+          doseNumberString ??
+          this.doseNumberX,
+      seriesDosesX: seriesDosesX ??
+          seriesDosesPositiveInt ??
+          seriesDosesString ??
+          this.seriesDosesX,
       supportingImmunization:
           supportingImmunization ?? this.supportingImmunization,
       supportingPatientInformation:

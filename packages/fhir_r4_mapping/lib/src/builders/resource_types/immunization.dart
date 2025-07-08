@@ -35,7 +35,9 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     this.vaccineCode,
     this.patient,
     this.encounter,
-    this.occurrenceX,
+    OccurrenceXImmunizationBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    FhirStringBuilder? occurrenceString,
     this.recorded,
     this.primarySource,
     this.reportOrigin,
@@ -57,7 +59,8 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     this.fundingSource,
     this.reaction,
     this.protocolApplied,
-  }) : super(
+  })  : occurrenceX = occurrenceX ?? occurrenceDateTime ?? occurrenceString,
+        super(
           objectPath: 'Immunization',
           resourceType: R4ResourceType.Immunization,
         );
@@ -1711,6 +1714,8 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     CodeableConceptBuilder? fundingSource,
     List<ImmunizationReactionBuilder>? reaction,
     List<ImmunizationProtocolAppliedBuilder>? protocolApplied,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    FhirStringBuilder? occurrenceString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1732,7 +1737,10 @@ class ImmunizationBuilder extends DomainResourceBuilder {
       vaccineCode: vaccineCode ?? this.vaccineCode,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrenceString ??
+          this.occurrenceX,
       recorded: recorded ?? this.recorded,
       primarySource: primarySource ?? this.primarySource,
       reportOrigin: reportOrigin ?? this.reportOrigin,
@@ -3539,10 +3547,17 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     this.series,
     this.authority,
     this.targetDisease,
-    this.doseNumberX,
-    this.seriesDosesX,
+    DoseNumberXImmunizationProtocolAppliedBuilder? doseNumberX,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    SeriesDosesXImmunizationProtocolAppliedBuilder? seriesDosesX,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
     super.disallowExtensions,
-  }) : super(
+  })  : doseNumberX = doseNumberX ?? doseNumberPositiveInt ?? doseNumberString,
+        seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super(
           objectPath: 'Immunization.protocolApplied',
         );
 
@@ -4164,6 +4179,10 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     List<CodeableConceptBuilder>? targetDisease,
     DoseNumberXImmunizationProtocolAppliedBuilder? doseNumberX,
     SeriesDosesXImmunizationProtocolAppliedBuilder? seriesDosesX,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4178,8 +4197,14 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
       series: series ?? this.series,
       authority: authority ?? this.authority,
       targetDisease: targetDisease ?? this.targetDisease,
-      doseNumberX: doseNumberX ?? this.doseNumberX,
-      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
+      doseNumberX: doseNumberX ??
+          doseNumberPositiveInt ??
+          doseNumberString ??
+          this.doseNumberX,
+      seriesDosesX: seriesDosesX ??
+          seriesDosesPositiveInt ??
+          seriesDosesString ??
+          this.seriesDosesX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

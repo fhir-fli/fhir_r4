@@ -973,11 +973,14 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemX,
+    ItemXMedicationIngredientBuilder? itemX,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     this.isActive,
     this.strength,
     super.disallowExtensions,
-  }) : super(
+  })  : itemX = itemX ?? itemCodeableConcept ?? itemReference,
+        super(
           objectPath: 'Medication.ingredient',
         );
 
@@ -1451,6 +1454,8 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     ItemXMedicationIngredientBuilder? itemX,
     FhirBooleanBuilder? isActive,
     RatioBuilder? strength,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1462,7 +1467,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
+      itemX: itemX ?? itemCodeableConcept ?? itemReference ?? this.itemX,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
     )..objectPath = newObjectPath;

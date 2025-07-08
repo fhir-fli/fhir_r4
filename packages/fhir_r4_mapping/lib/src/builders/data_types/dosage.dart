@@ -30,7 +30,9 @@ class DosageBuilder extends BackboneTypeBuilder
     this.additionalInstruction,
     this.patientInstruction,
     this.timing,
-    this.asNeededX,
+    AsNeededXDosageBuilder? asNeededX,
+    FhirBooleanBuilder? asNeededBoolean,
+    CodeableConceptBuilder? asNeededCodeableConcept,
     this.site,
     this.route,
     this.method,
@@ -40,7 +42,7 @@ class DosageBuilder extends BackboneTypeBuilder
     this.maxDosePerLifetime,
     super.disallowExtensions,
     super.objectPath = 'DosageBuilder',
-  });
+  }) : asNeededX = asNeededX ?? asNeededBoolean ?? asNeededCodeableConcept;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -886,6 +888,8 @@ class DosageBuilder extends BackboneTypeBuilder
     RatioBuilder? maxDosePerPeriod,
     QuantityBuilder? maxDosePerAdministration,
     QuantityBuilder? maxDosePerLifetime,
+    FhirBooleanBuilder? asNeededBoolean,
+    CodeableConceptBuilder? asNeededCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -903,7 +907,10 @@ class DosageBuilder extends BackboneTypeBuilder
           additionalInstruction ?? this.additionalInstruction,
       patientInstruction: patientInstruction ?? this.patientInstruction,
       timing: timing ?? this.timing,
-      asNeededX: asNeededX ?? this.asNeededX,
+      asNeededX: asNeededX ??
+          asNeededBoolean ??
+          asNeededCodeableConcept ??
+          this.asNeededX,
       site: site ?? this.site,
       route: route ?? this.route,
       method: method ?? this.method,
@@ -1048,11 +1055,17 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
     super.id,
     super.extension_,
     this.type,
-    this.doseX,
-    this.rateX,
+    DoseXDosageDoseAndRateBuilder? doseX,
+    RangeBuilder? doseRange,
+    QuantityBuilder? doseQuantity,
+    RateXDosageDoseAndRateBuilder? rateX,
+    RatioBuilder? rateRatio,
+    RangeBuilder? rateRange,
+    QuantityBuilder? rateQuantity,
     super.disallowExtensions,
     super.objectPath = 'DosageDoseAndRateBuilder',
-  });
+  })  : doseX = doseX ?? doseRange ?? doseQuantity,
+        rateX = rateX ?? rateRatio ?? rateRange ?? rateQuantity;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -1561,6 +1574,11 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
     CodeableConceptBuilder? type,
     DoseXDosageDoseAndRateBuilder? doseX,
     RateXDosageDoseAndRateBuilder? rateX,
+    RangeBuilder? doseRange,
+    QuantityBuilder? doseQuantity,
+    RatioBuilder? rateRatio,
+    RangeBuilder? rateRange,
+    QuantityBuilder? rateQuantity,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1572,8 +1590,8 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
-      doseX: doseX ?? this.doseX,
-      rateX: rateX ?? this.rateX,
+      doseX: doseX ?? doseRange ?? doseQuantity ?? this.doseX,
+      rateX: rateX ?? rateRatio ?? rateRange ?? rateQuantity ?? this.rateX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

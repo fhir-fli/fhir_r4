@@ -38,8 +38,12 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     this.category,
     this.priority,
     this.doNotPerform,
-    this.reportedX,
-    this.medicationX,
+    ReportedXMedicationRequestBuilder? reportedX,
+    FhirBooleanBuilder? reportedBoolean,
+    ReferenceBuilder? reportedReference,
+    MedicationXMedicationRequestBuilder? medicationX,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     this.subject,
     this.encounter,
     this.supportingInformation,
@@ -63,7 +67,10 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     this.priorPrescription,
     this.detectedIssue,
     this.eventHistory,
-  }) : super(
+  })  : reportedX = reportedX ?? reportedBoolean ?? reportedReference,
+        medicationX =
+            medicationX ?? medicationCodeableConcept ?? medicationReference,
+        super(
           objectPath: 'MedicationRequest',
           resourceType: R4ResourceType.MedicationRequest,
         );
@@ -2039,6 +2046,10 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     ReferenceBuilder? priorPrescription,
     List<ReferenceBuilder>? detectedIssue,
     List<ReferenceBuilder>? eventHistory,
+    FhirBooleanBuilder? reportedBoolean,
+    ReferenceBuilder? reportedReference,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2061,8 +2072,12 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
       category: category ?? this.category,
       priority: priority ?? this.priority,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      reportedX: reportedX ?? this.reportedX,
-      medicationX: medicationX ?? this.medicationX,
+      reportedX:
+          reportedX ?? reportedBoolean ?? reportedReference ?? this.reportedX,
+      medicationX: medicationX ??
+          medicationCodeableConcept ??
+          medicationReference ??
+          this.medicationX,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       supportingInformation:
@@ -3496,10 +3511,13 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.allowedX,
+    AllowedXMedicationRequestSubstitutionBuilder? allowedX,
+    FhirBooleanBuilder? allowedBoolean,
+    CodeableConceptBuilder? allowedCodeableConcept,
     this.reason,
     super.disallowExtensions,
-  }) : super(
+  })  : allowedX = allowedX ?? allowedBoolean ?? allowedCodeableConcept,
+        super(
           objectPath: 'MedicationRequest.substitution',
         );
 
@@ -3931,6 +3949,8 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     AllowedXMedicationRequestSubstitutionBuilder? allowedX,
     CodeableConceptBuilder? reason,
+    FhirBooleanBuilder? allowedBoolean,
+    CodeableConceptBuilder? allowedCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3942,7 +3962,8 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      allowedX: allowedX ?? this.allowedX,
+      allowedX:
+          allowedX ?? allowedBoolean ?? allowedCodeableConcept ?? this.allowedX,
       reason: reason ?? this.reason,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

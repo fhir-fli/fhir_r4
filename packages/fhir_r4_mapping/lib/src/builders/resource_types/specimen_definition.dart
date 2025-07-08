@@ -1652,11 +1652,15 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     this.cap,
     this.description,
     this.capacity,
-    this.minimumVolumeX,
+    MinimumVolumeXSpecimenDefinitionContainerBuilder? minimumVolumeX,
+    QuantityBuilder? minimumVolumeQuantity,
+    FhirStringBuilder? minimumVolumeString,
     this.additive,
     this.preparation,
     super.disallowExtensions,
-  }) : super(
+  })  : minimumVolumeX =
+            minimumVolumeX ?? minimumVolumeQuantity ?? minimumVolumeString,
+        super(
           objectPath: 'SpecimenDefinition.typeTested.container',
         );
 
@@ -2317,6 +2321,8 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     MinimumVolumeXSpecimenDefinitionContainerBuilder? minimumVolumeX,
     List<SpecimenDefinitionAdditiveBuilder>? additive,
     FhirStringBuilder? preparation,
+    QuantityBuilder? minimumVolumeQuantity,
+    FhirStringBuilder? minimumVolumeString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2333,7 +2339,10 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
       cap: cap ?? this.cap,
       description: description ?? this.description,
       capacity: capacity ?? this.capacity,
-      minimumVolumeX: minimumVolumeX ?? this.minimumVolumeX,
+      minimumVolumeX: minimumVolumeX ??
+          minimumVolumeQuantity ??
+          minimumVolumeString ??
+          this.minimumVolumeX,
       additive: additive ?? this.additive,
       preparation: preparation ?? this.preparation,
     )..objectPath = newObjectPath;
@@ -2443,9 +2452,12 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.additiveX,
+    AdditiveXSpecimenDefinitionAdditiveBuilder? additiveX,
+    CodeableConceptBuilder? additiveCodeableConcept,
+    ReferenceBuilder? additiveReference,
     super.disallowExtensions,
-  }) : super(
+  })  : additiveX = additiveX ?? additiveCodeableConcept ?? additiveReference,
+        super(
           objectPath: 'SpecimenDefinition.typeTested.container.additive',
         );
 
@@ -2844,6 +2856,8 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     AdditiveXSpecimenDefinitionAdditiveBuilder? additiveX,
+    CodeableConceptBuilder? additiveCodeableConcept,
+    ReferenceBuilder? additiveReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2855,7 +2869,10 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      additiveX: additiveX ?? this.additiveX,
+      additiveX: additiveX ??
+          additiveCodeableConcept ??
+          additiveReference ??
+          this.additiveX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

@@ -5012,9 +5012,20 @@ class MedicinalProductDefinitionCharacteristicBuilder
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXMedicinalProductDefinitionCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super(
           objectPath: 'MedicinalProductDefinition.characteristic',
         );
 
@@ -5531,6 +5542,11 @@ class MedicinalProductDefinitionCharacteristicBuilder
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXMedicinalProductDefinitionCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5543,7 +5559,13 @@ class MedicinalProductDefinitionCharacteristicBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueDate ??
+          valueBoolean ??
+          valueAttachment ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

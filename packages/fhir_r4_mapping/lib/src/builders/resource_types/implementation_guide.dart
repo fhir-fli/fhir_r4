@@ -3750,10 +3750,13 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     this.fhirVersion,
     this.name,
     this.description,
-    this.exampleX,
+    ExampleXImplementationGuideResourceBuilder? exampleX,
+    FhirBooleanBuilder? exampleBoolean,
+    FhirCanonicalBuilder? exampleCanonical,
     this.groupingId,
     super.disallowExtensions,
-  }) : super(
+  })  : exampleX = exampleX ?? exampleBoolean ?? exampleCanonical,
+        super(
           objectPath: 'ImplementationGuide.definition.resource',
         );
 
@@ -4401,6 +4404,8 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     FhirStringBuilder? description,
     ExampleXImplementationGuideResourceBuilder? exampleX,
     FhirIdBuilder? groupingId,
+    FhirBooleanBuilder? exampleBoolean,
+    FhirCanonicalBuilder? exampleCanonical,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4416,7 +4421,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
       fhirVersion: fhirVersion ?? this.fhirVersion,
       name: name ?? this.name,
       description: description ?? this.description,
-      exampleX: exampleX ?? this.exampleX,
+      exampleX: exampleX ?? exampleBoolean ?? exampleCanonical ?? this.exampleX,
       groupingId: groupingId ?? this.groupingId,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -4513,12 +4518,15 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.nameX,
+    NameXImplementationGuidePageBuilder? nameX,
+    FhirUrlBuilder? nameUrl,
+    ReferenceBuilder? nameReference,
     this.title,
     this.generation,
     this.page,
     super.disallowExtensions,
-  }) : super(
+  })  : nameX = nameX ?? nameUrl ?? nameReference,
+        super(
           objectPath: 'ImplementationGuide.definition.page',
         );
 
@@ -5050,6 +5058,8 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     FhirStringBuilder? title,
     GuidePageGenerationBuilder? generation,
     List<ImplementationGuidePageBuilder>? page,
+    FhirUrlBuilder? nameUrl,
+    ReferenceBuilder? nameReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5061,7 +5071,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      nameX: nameX ?? this.nameX,
+      nameX: nameX ?? nameUrl ?? nameReference ?? this.nameX,
       title: title ?? this.title,
       generation: generation ?? this.generation,
       page: page ?? this.page,
@@ -6841,10 +6851,13 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.reference,
-    this.exampleX,
+    ExampleXImplementationGuideResource1Builder? exampleX,
+    FhirBooleanBuilder? exampleBoolean,
+    FhirCanonicalBuilder? exampleCanonical,
     this.relativePath,
     super.disallowExtensions,
-  }) : super(
+  })  : exampleX = exampleX ?? exampleBoolean ?? exampleCanonical,
+        super(
           objectPath: 'ImplementationGuide.manifest.resource',
         );
 
@@ -7320,6 +7333,8 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     ReferenceBuilder? reference,
     ExampleXImplementationGuideResource1Builder? exampleX,
     FhirUrlBuilder? relativePath,
+    FhirBooleanBuilder? exampleBoolean,
+    FhirCanonicalBuilder? exampleCanonical,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7332,7 +7347,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
-      exampleX: exampleX ?? this.exampleX,
+      exampleX: exampleX ?? exampleBoolean ?? exampleCanonical ?? this.exampleX,
       relativePath: relativePath ?? this.relativePath,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

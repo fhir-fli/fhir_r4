@@ -1459,9 +1459,13 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.substanceX,
+    SubstanceXSubstanceIngredientBuilder? substanceX,
+    CodeableConceptBuilder? substanceCodeableConcept,
+    ReferenceBuilder? substanceReference,
     super.disallowExtensions,
-  }) : super(
+  })  : substanceX =
+            substanceX ?? substanceCodeableConcept ?? substanceReference,
+        super(
           objectPath: 'Substance.ingredient',
         );
 
@@ -1889,6 +1893,8 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     RatioBuilder? quantity,
     SubstanceXSubstanceIngredientBuilder? substanceX,
+    CodeableConceptBuilder? substanceCodeableConcept,
+    ReferenceBuilder? substanceReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1901,7 +1907,10 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      substanceX: substanceX ?? this.substanceX,
+      substanceX: substanceX ??
+          substanceCodeableConcept ??
+          substanceReference ??
+          this.substanceX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

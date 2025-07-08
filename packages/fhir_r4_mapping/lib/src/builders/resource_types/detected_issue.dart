@@ -33,14 +33,17 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     this.code,
     this.severity,
     this.patient,
-    this.identifiedX,
+    IdentifiedXDetectedIssueBuilder? identifiedX,
+    FhirDateTimeBuilder? identifiedDateTime,
+    PeriodBuilder? identifiedPeriod,
     this.author,
     this.implicated,
     this.evidence,
     this.detail,
     this.reference,
     this.mitigation,
-  }) : super(
+  })  : identifiedX = identifiedX ?? identifiedDateTime ?? identifiedPeriod,
+        super(
           objectPath: 'DetectedIssue',
           resourceType: R4ResourceType.DetectedIssue,
         );
@@ -1080,6 +1083,8 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     FhirStringBuilder? detail,
     FhirUriBuilder? reference,
     List<DetectedIssueMitigationBuilder>? mitigation,
+    FhirDateTimeBuilder? identifiedDateTime,
+    PeriodBuilder? identifiedPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1100,7 +1105,10 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       severity: severity ?? this.severity,
       patient: patient ?? this.patient,
-      identifiedX: identifiedX ?? this.identifiedX,
+      identifiedX: identifiedX ??
+          identifiedDateTime ??
+          identifiedPeriod ??
+          this.identifiedX,
       author: author ?? this.author,
       implicated: implicated ?? this.implicated,
       evidence: evidence ?? this.evidence,

@@ -1764,10 +1764,35 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXQuestionnaireResponseAnswerBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     this.item,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueBoolean ??
+            valueDecimal ??
+            valueInteger ??
+            valueDate ??
+            valueDateTime ??
+            valueTime ??
+            valueString ??
+            valueUri ??
+            valueAttachment ??
+            valueCoding ??
+            valueQuantity ??
+            valueReference,
+        super(
           objectPath: 'QuestionnaireResponse.item.answer',
         );
 
@@ -2496,6 +2521,18 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     ValueXQuestionnaireResponseAnswerBuilder? valueX,
     List<QuestionnaireResponseItemBuilder>? item,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2507,7 +2544,20 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueBoolean ??
+          valueDecimal ??
+          valueInteger ??
+          valueDate ??
+          valueDateTime ??
+          valueTime ??
+          valueString ??
+          valueUri ??
+          valueAttachment ??
+          valueCoding ??
+          valueQuantity ??
+          valueReference ??
+          this.valueX,
       item: item ?? this.item,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

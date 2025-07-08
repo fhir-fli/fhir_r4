@@ -35,10 +35,25 @@ class ObservationBuilder extends DomainResourceBuilder {
     this.subject,
     this.focus,
     this.encounter,
-    this.effectiveX,
+    EffectiveXObservationBuilder? effectiveX,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
+    TimingBuilder? effectiveTiming,
+    FhirInstantBuilder? effectiveInstant,
     this.issued,
     this.performer,
-    this.valueX,
+    ValueXObservationBuilder? valueX,
+    QuantityBuilder? valueQuantity,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    SampledDataBuilder? valueSampledData,
+    FhirTimeBuilder? valueTime,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.note,
@@ -50,7 +65,24 @@ class ObservationBuilder extends DomainResourceBuilder {
     this.hasMember,
     this.derivedFrom,
     this.component,
-  }) : super(
+  })  : effectiveX = effectiveX ??
+            effectiveDateTime ??
+            effectivePeriod ??
+            effectiveTiming ??
+            effectiveInstant,
+        valueX = valueX ??
+            valueQuantity ??
+            valueCodeableConcept ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueRange ??
+            valueRatio ??
+            valueSampledData ??
+            valueTime ??
+            valueDateTime ??
+            valuePeriod,
+        super(
           objectPath: 'Observation',
           resourceType: R4ResourceType.Observation,
         );
@@ -1960,6 +1992,21 @@ class ObservationBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? hasMember,
     List<ReferenceBuilder>? derivedFrom,
     List<ObservationComponentBuilder>? component,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
+    TimingBuilder? effectiveTiming,
+    FhirInstantBuilder? effectiveInstant,
+    QuantityBuilder? valueQuantity,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    SampledDataBuilder? valueSampledData,
+    FhirTimeBuilder? valueTime,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1984,10 +2031,27 @@ class ObservationBuilder extends DomainResourceBuilder {
       subject: subject ?? this.subject,
       focus: focus ?? this.focus,
       encounter: encounter ?? this.encounter,
-      effectiveX: effectiveX ?? this.effectiveX,
+      effectiveX: effectiveX ??
+          effectiveDateTime ??
+          effectivePeriod ??
+          effectiveTiming ??
+          effectiveInstant ??
+          this.effectiveX,
       issued: issued ?? this.issued,
       performer: performer ?? this.performer,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueQuantity ??
+          valueCodeableConcept ??
+          valueString ??
+          valueBoolean ??
+          valueInteger ??
+          valueRange ??
+          valueRatio ??
+          valueSampledData ??
+          valueTime ??
+          valueDateTime ??
+          valuePeriod ??
+          this.valueX,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       note: note ?? this.note,
@@ -2883,12 +2947,35 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXObservationComponentBuilder? valueX,
+    QuantityBuilder? valueQuantity,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    SampledDataBuilder? valueSampledData,
+    FhirTimeBuilder? valueTime,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueQuantity ??
+            valueCodeableConcept ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueRange ??
+            valueRatio ??
+            valueSampledData ??
+            valueTime ??
+            valueDateTime ??
+            valuePeriod,
+        super(
           objectPath: 'Observation.component',
         );
 
@@ -3701,6 +3788,17 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? dataAbsentReason,
     List<CodeableConceptBuilder>? interpretation,
     List<ObservationReferenceRangeBuilder>? referenceRange,
+    QuantityBuilder? valueQuantity,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    SampledDataBuilder? valueSampledData,
+    FhirTimeBuilder? valueTime,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3713,7 +3811,19 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueQuantity ??
+          valueCodeableConcept ??
+          valueString ??
+          valueBoolean ??
+          valueInteger ??
+          valueRange ??
+          valueRatio ??
+          valueSampledData ??
+          valueTime ??
+          valueDateTime ??
+          valuePeriod ??
+          this.valueX,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       referenceRange: referenceRange ?? this.referenceRange,

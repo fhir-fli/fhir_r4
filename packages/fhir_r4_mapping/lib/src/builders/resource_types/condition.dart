@@ -35,15 +35,37 @@ class ConditionBuilder extends DomainResourceBuilder {
     this.bodySite,
     this.subject,
     this.encounter,
-    this.onsetX,
-    this.abatementX,
+    OnsetXConditionBuilder? onsetX,
+    FhirDateTimeBuilder? onsetDateTime,
+    AgeBuilder? onsetAge,
+    PeriodBuilder? onsetPeriod,
+    RangeBuilder? onsetRange,
+    FhirStringBuilder? onsetString,
+    AbatementXConditionBuilder? abatementX,
+    FhirDateTimeBuilder? abatementDateTime,
+    AgeBuilder? abatementAge,
+    PeriodBuilder? abatementPeriod,
+    RangeBuilder? abatementRange,
+    FhirStringBuilder? abatementString,
     this.recordedDate,
     this.recorder,
     this.asserter,
     this.stage,
     this.evidence,
     this.note,
-  }) : super(
+  })  : onsetX = onsetX ??
+            onsetDateTime ??
+            onsetAge ??
+            onsetPeriod ??
+            onsetRange ??
+            onsetString,
+        abatementX = abatementX ??
+            abatementDateTime ??
+            abatementAge ??
+            abatementPeriod ??
+            abatementRange ??
+            abatementString,
+        super(
           objectPath: 'Condition',
           resourceType: R4ResourceType.Condition,
         );
@@ -1473,6 +1495,16 @@ class ConditionBuilder extends DomainResourceBuilder {
     List<ConditionStageBuilder>? stage,
     List<ConditionEvidenceBuilder>? evidence,
     List<AnnotationBuilder>? note,
+    FhirDateTimeBuilder? onsetDateTime,
+    AgeBuilder? onsetAge,
+    PeriodBuilder? onsetPeriod,
+    RangeBuilder? onsetRange,
+    FhirStringBuilder? onsetString,
+    FhirDateTimeBuilder? abatementDateTime,
+    AgeBuilder? abatementAge,
+    PeriodBuilder? abatementPeriod,
+    RangeBuilder? abatementRange,
+    FhirStringBuilder? abatementString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1497,8 +1529,20 @@ class ConditionBuilder extends DomainResourceBuilder {
       bodySite: bodySite ?? this.bodySite,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      onsetX: onsetX ?? this.onsetX,
-      abatementX: abatementX ?? this.abatementX,
+      onsetX: onsetX ??
+          onsetDateTime ??
+          onsetAge ??
+          onsetPeriod ??
+          onsetRange ??
+          onsetString ??
+          this.onsetX,
+      abatementX: abatementX ??
+          abatementDateTime ??
+          abatementAge ??
+          abatementPeriod ??
+          abatementRange ??
+          abatementString ??
+          this.abatementX,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

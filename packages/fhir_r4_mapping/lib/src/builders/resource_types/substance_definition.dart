@@ -1566,10 +1566,13 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-    this.amountX,
+    AmountXSubstanceDefinitionMoietyBuilder? amountX,
+    QuantityBuilder? amountQuantity,
+    FhirStringBuilder? amountString,
     this.measurementType,
     super.disallowExtensions,
-  }) : super(
+  })  : amountX = amountX ?? amountQuantity ?? amountString,
+        super(
           objectPath: 'SubstanceDefinition.moiety',
         );
 
@@ -2215,6 +2218,8 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     FhirStringBuilder? molecularFormula,
     AmountXSubstanceDefinitionMoietyBuilder? amountX,
     CodeableConceptBuilder? measurementType,
+    QuantityBuilder? amountQuantity,
+    FhirStringBuilder? amountString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2232,7 +2237,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
       stereochemistry: stereochemistry ?? this.stereochemistry,
       opticalActivity: opticalActivity ?? this.opticalActivity,
       molecularFormula: molecularFormula ?? this.molecularFormula,
-      amountX: amountX ?? this.amountX,
+      amountX: amountX ?? amountQuantity ?? amountString ?? this.amountX,
       measurementType: measurementType ?? this.measurementType,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -2341,9 +2346,20 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXSubstanceDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueDate ??
+            valueBoolean ??
+            valueAttachment,
+        super(
           objectPath: 'SubstanceDefinition.property',
         );
 
@@ -2859,6 +2875,11 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXSubstanceDefinitionPropertyBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    FhirDateBuilder? valueDate,
+    FhirBooleanBuilder? valueBoolean,
+    AttachmentBuilder? valueAttachment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2871,7 +2892,13 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueDate ??
+          valueBoolean ??
+          valueAttachment ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -6739,15 +6766,25 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.substanceDefinitionX,
+    SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder?
+        substanceDefinitionX,
+    ReferenceBuilder? substanceDefinitionReference,
+    CodeableConceptBuilder? substanceDefinitionCodeableConcept,
     this.type,
     this.isDefining,
-    this.amountX,
+    AmountXSubstanceDefinitionRelationshipBuilder? amountX,
+    QuantityBuilder? amountQuantity,
+    RatioBuilder? amountRatio,
+    FhirStringBuilder? amountString,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
     super.disallowExtensions,
-  }) : super(
+  })  : substanceDefinitionX = substanceDefinitionX ??
+            substanceDefinitionReference ??
+            substanceDefinitionCodeableConcept,
+        amountX = amountX ?? amountQuantity ?? amountRatio ?? amountString,
+        super(
           objectPath: 'SubstanceDefinition.relationship',
         );
 
@@ -7471,6 +7508,11 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     RatioBuilder? ratioHighLimitAmount,
     CodeableConceptBuilder? comparator,
     List<ReferenceBuilder>? source,
+    ReferenceBuilder? substanceDefinitionReference,
+    CodeableConceptBuilder? substanceDefinitionCodeableConcept,
+    QuantityBuilder? amountQuantity,
+    RatioBuilder? amountRatio,
+    FhirStringBuilder? amountString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7482,10 +7524,17 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      substanceDefinitionX: substanceDefinitionX ?? this.substanceDefinitionX,
+      substanceDefinitionX: substanceDefinitionX ??
+          substanceDefinitionReference ??
+          substanceDefinitionCodeableConcept ??
+          this.substanceDefinitionX,
       type: type ?? this.type,
       isDefining: isDefining ?? this.isDefining,
-      amountX: amountX ?? this.amountX,
+      amountX: amountX ??
+          amountQuantity ??
+          amountRatio ??
+          amountString ??
+          this.amountX,
       ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
       comparator: comparator ?? this.comparator,
       source: source ?? this.source,

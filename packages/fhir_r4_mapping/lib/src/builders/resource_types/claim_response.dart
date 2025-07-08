@@ -4276,8 +4276,13 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedX,
-    this.locationX,
+    ServicedXClaimResponseAddItemBuilder? servicedX,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
+    LocationXClaimResponseAddItemBuilder? locationX,
+    CodeableConceptBuilder? locationCodeableConcept,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -4288,7 +4293,12 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        locationX = locationX ??
+            locationCodeableConcept ??
+            locationAddress ??
+            locationReference,
+        super(
           objectPath: 'ClaimResponse.addItem',
         );
 
@@ -5634,6 +5644,11 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     List<FhirPositiveIntBuilder>? noteNumber,
     List<ClaimResponseAdjudicationBuilder>? adjudication,
     List<ClaimResponseDetailBuilder>? detail,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
+    CodeableConceptBuilder? locationCodeableConcept,
+    AddressBuilder? locationAddress,
+    ReferenceBuilder? locationReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5652,8 +5667,12 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedX: servicedX ?? this.servicedX,
-      locationX: locationX ?? this.locationX,
+      servicedX: servicedX ?? servicedDate ?? servicedPeriod ?? this.servicedX,
+      locationX: locationX ??
+          locationCodeableConcept ??
+          locationAddress ??
+          locationReference ??
+          this.locationX,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,

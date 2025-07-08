@@ -33,7 +33,9 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     this.code,
     this.subject,
     this.encounter,
-    this.occurrenceX,
+    OccurrenceXRiskAssessmentBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
     this.condition,
     this.performer,
     this.reasonCode,
@@ -42,7 +44,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     this.prediction,
     this.mitigation,
     this.note,
-  }) : super(
+  })  : occurrenceX = occurrenceX ?? occurrenceDateTime ?? occurrencePeriod,
+        super(
           objectPath: 'RiskAssessment',
           resourceType: R4ResourceType.RiskAssessment,
         );
@@ -1235,6 +1238,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     List<RiskAssessmentPredictionBuilder>? prediction,
     FhirStringBuilder? mitigation,
     List<AnnotationBuilder>? note,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1258,7 +1263,10 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          this.occurrenceX,
       condition: condition ?? this.condition,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
@@ -1458,13 +1466,19 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.outcome,
-    this.probabilityX,
+    ProbabilityXRiskAssessmentPredictionBuilder? probabilityX,
+    FhirDecimalBuilder? probabilityDecimal,
+    RangeBuilder? probabilityRange,
     this.qualitativeRisk,
     this.relativeRisk,
-    this.whenX,
+    WhenXRiskAssessmentPredictionBuilder? whenX,
+    PeriodBuilder? whenPeriod,
+    RangeBuilder? whenRange,
     this.rationale,
     super.disallowExtensions,
-  }) : super(
+  })  : probabilityX = probabilityX ?? probabilityDecimal ?? probabilityRange,
+        whenX = whenX ?? whenPeriod ?? whenRange,
+        super(
           objectPath: 'RiskAssessment.prediction',
         );
 
@@ -2121,6 +2135,10 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     FhirDecimalBuilder? relativeRisk,
     WhenXRiskAssessmentPredictionBuilder? whenX,
     FhirStringBuilder? rationale,
+    FhirDecimalBuilder? probabilityDecimal,
+    RangeBuilder? probabilityRange,
+    PeriodBuilder? whenPeriod,
+    RangeBuilder? whenRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2133,10 +2151,13 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       outcome: outcome ?? this.outcome,
-      probabilityX: probabilityX ?? this.probabilityX,
+      probabilityX: probabilityX ??
+          probabilityDecimal ??
+          probabilityRange ??
+          this.probabilityX,
       qualitativeRisk: qualitativeRisk ?? this.qualitativeRisk,
       relativeRisk: relativeRisk ?? this.relativeRisk,
-      whenX: whenX ?? this.whenX,
+      whenX: whenX ?? whenPeriod ?? whenRange ?? this.whenX,
       rationale: rationale ?? this.rationale,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

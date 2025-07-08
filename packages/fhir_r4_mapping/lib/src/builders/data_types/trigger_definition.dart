@@ -26,12 +26,20 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     super.extension_,
     this.type,
     this.name,
-    this.timingX,
+    TimingXTriggerDefinitionBuilder? timingX,
+    TimingBuilder? timingTiming,
+    ReferenceBuilder? timingReference,
+    FhirDateBuilder? timingDate,
+    FhirDateTimeBuilder? timingDateTime,
     this.data,
     this.condition,
     super.disallowExtensions,
     super.objectPath = 'TriggerDefinitionBuilder',
-  });
+  }) : timingX = timingX ??
+            timingTiming ??
+            timingReference ??
+            timingDate ??
+            timingDateTime;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -614,6 +622,10 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     TimingXTriggerDefinitionBuilder? timingX,
     List<DataRequirementBuilder>? data,
     FhirExpressionBuilder? condition,
+    TimingBuilder? timingTiming,
+    ReferenceBuilder? timingReference,
+    FhirDateBuilder? timingDate,
+    FhirDateTimeBuilder? timingDateTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -626,7 +638,12 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       name: name ?? this.name,
-      timingX: timingX ?? this.timingX,
+      timingX: timingX ??
+          timingTiming ??
+          timingReference ??
+          timingDate ??
+          timingDateTime ??
+          this.timingX,
       data: data ?? this.data,
       condition: condition ?? this.condition,
     )..objectPath = newObjectPath;

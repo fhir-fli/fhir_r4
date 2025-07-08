@@ -24,12 +24,14 @@ class AnnotationBuilder extends DataTypeBuilder
   AnnotationBuilder({
     super.id,
     super.extension_,
-    this.authorX,
+    AuthorXAnnotationBuilder? authorX,
+    ReferenceBuilder? authorReference,
+    FhirStringBuilder? authorString,
     this.time,
     this.text,
     super.disallowExtensions,
     super.objectPath = 'AnnotationBuilder',
-  });
+  }) : authorX = authorX ?? authorReference ?? authorString;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -468,6 +470,8 @@ class AnnotationBuilder extends DataTypeBuilder
     AuthorXAnnotationBuilder? authorX,
     FhirDateTimeBuilder? time,
     FhirMarkdownBuilder? text,
+    ReferenceBuilder? authorReference,
+    FhirStringBuilder? authorString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -478,7 +482,7 @@ class AnnotationBuilder extends DataTypeBuilder
     final newResult = AnnotationBuilder(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-      authorX: authorX ?? this.authorX,
+      authorX: authorX ?? authorReference ?? authorString ?? this.authorX,
       time: time ?? this.time,
       text: text ?? this.text,
     )..objectPath = newObjectPath;

@@ -33,7 +33,9 @@ class DataRequirementBuilder extends DataTypeBuilder
     super.extension_,
     this.type,
     this.profile,
-    this.subjectX,
+    SubjectXDataRequirementBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     this.mustSupport,
     this.codeFilter,
     this.dateFilter,
@@ -41,7 +43,7 @@ class DataRequirementBuilder extends DataTypeBuilder
     this.sort,
     super.disallowExtensions,
     super.objectPath = 'DataRequirementBuilder',
-  });
+  }) : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -788,6 +790,8 @@ class DataRequirementBuilder extends DataTypeBuilder
     List<DataRequirementDateFilterBuilder>? dateFilter,
     FhirPositiveIntBuilder? limit,
     List<DataRequirementSortBuilder>? sort,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -800,7 +804,10 @@ class DataRequirementBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       mustSupport: mustSupport ?? this.mustSupport,
       codeFilter: codeFilter ?? this.codeFilter,
       dateFilter: dateFilter ?? this.dateFilter,
@@ -1453,10 +1460,13 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     super.extension_,
     this.path,
     this.searchParam,
-    this.valueX,
+    ValueXDataRequirementDateFilterBuilder? valueX,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
+    FhirDurationBuilder? valueDuration,
     super.disallowExtensions,
     super.objectPath = 'DataRequirementDateFilterBuilder',
-  });
+  }) : valueX = valueX ?? valueDateTime ?? valuePeriod ?? valueDuration;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -1941,6 +1951,9 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     FhirStringBuilder? path,
     FhirStringBuilder? searchParam,
     ValueXDataRequirementDateFilterBuilder? valueX,
+    FhirDateTimeBuilder? valueDateTime,
+    PeriodBuilder? valuePeriod,
+    FhirDurationBuilder? valueDuration,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1953,7 +1966,11 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
       extension_: extension_ ?? this.extension_,
       path: path ?? this.path,
       searchParam: searchParam ?? this.searchParam,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueDateTime ??
+          valuePeriod ??
+          valueDuration ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

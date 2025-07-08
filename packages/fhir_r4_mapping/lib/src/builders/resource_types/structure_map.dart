@@ -4073,7 +4073,57 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     this.min,
     this.max,
     this.type,
-    this.defaultValueX,
+    DefaultValueXStructureMapSourceBuilder? defaultValueX,
+    FhirBase64BinaryBuilder? defaultValueBase64Binary,
+    FhirBooleanBuilder? defaultValueBoolean,
+    FhirCanonicalBuilder? defaultValueCanonical,
+    FhirCodeBuilder? defaultValueCode,
+    FhirDateBuilder? defaultValueDate,
+    FhirDateTimeBuilder? defaultValueDateTime,
+    FhirDecimalBuilder? defaultValueDecimal,
+    FhirIdBuilder? defaultValueId,
+    FhirInstantBuilder? defaultValueInstant,
+    FhirIntegerBuilder? defaultValueInteger,
+    FhirMarkdownBuilder? defaultValueMarkdown,
+    FhirOidBuilder? defaultValueOid,
+    FhirPositiveIntBuilder? defaultValuePositiveInt,
+    FhirStringBuilder? defaultValueString,
+    FhirTimeBuilder? defaultValueTime,
+    FhirUnsignedIntBuilder? defaultValueUnsignedInt,
+    FhirUriBuilder? defaultValueUri,
+    FhirUrlBuilder? defaultValueUrl,
+    FhirUuidBuilder? defaultValueUuid,
+    AddressBuilder? defaultValueAddress,
+    AgeBuilder? defaultValueAge,
+    AnnotationBuilder? defaultValueAnnotation,
+    AttachmentBuilder? defaultValueAttachment,
+    CodeableConceptBuilder? defaultValueCodeableConcept,
+    CodingBuilder? defaultValueCoding,
+    ContactPointBuilder? defaultValueContactPoint,
+    CountBuilder? defaultValueCount,
+    DistanceBuilder? defaultValueDistance,
+    FhirDurationBuilder? defaultValueDuration,
+    HumanNameBuilder? defaultValueHumanName,
+    IdentifierBuilder? defaultValueIdentifier,
+    MoneyBuilder? defaultValueMoney,
+    PeriodBuilder? defaultValuePeriod,
+    QuantityBuilder? defaultValueQuantity,
+    RangeBuilder? defaultValueRange,
+    RatioBuilder? defaultValueRatio,
+    ReferenceBuilder? defaultValueReference,
+    SampledDataBuilder? defaultValueSampledData,
+    SignatureBuilder? defaultValueSignature,
+    TimingBuilder? defaultValueTiming,
+    ContactDetailBuilder? defaultValueContactDetail,
+    ContributorBuilder? defaultValueContributor,
+    DataRequirementBuilder? defaultValueDataRequirement,
+    FhirExpressionBuilder? defaultValueExpression,
+    ParameterDefinitionBuilder? defaultValueParameterDefinition,
+    RelatedArtifactBuilder? defaultValueRelatedArtifact,
+    TriggerDefinitionBuilder? defaultValueTriggerDefinition,
+    UsageContextBuilder? defaultValueUsageContext,
+    DosageBuilder? defaultValueDosage,
+    FhirMetaBuilder? defaultValueMeta,
     this.element,
     this.listMode,
     this.variable,
@@ -4081,7 +4131,58 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     this.check,
     this.logMessage,
     super.disallowExtensions,
-  }) : super(
+  })  : defaultValueX = defaultValueX ??
+            defaultValueBase64Binary ??
+            defaultValueBoolean ??
+            defaultValueCanonical ??
+            defaultValueCode ??
+            defaultValueDate ??
+            defaultValueDateTime ??
+            defaultValueDecimal ??
+            defaultValueId ??
+            defaultValueInstant ??
+            defaultValueInteger ??
+            defaultValueMarkdown ??
+            defaultValueOid ??
+            defaultValuePositiveInt ??
+            defaultValueString ??
+            defaultValueTime ??
+            defaultValueUnsignedInt ??
+            defaultValueUri ??
+            defaultValueUrl ??
+            defaultValueUuid ??
+            defaultValueAddress ??
+            defaultValueAge ??
+            defaultValueAnnotation ??
+            defaultValueAttachment ??
+            defaultValueCodeableConcept ??
+            defaultValueCoding ??
+            defaultValueContactPoint ??
+            defaultValueCount ??
+            defaultValueDistance ??
+            defaultValueDuration ??
+            defaultValueHumanName ??
+            defaultValueIdentifier ??
+            defaultValueMoney ??
+            defaultValuePeriod ??
+            defaultValueQuantity ??
+            defaultValueRange ??
+            defaultValueRatio ??
+            defaultValueReference ??
+            defaultValueSampledData ??
+            defaultValueSignature ??
+            defaultValueTiming ??
+            defaultValueContactDetail ??
+            defaultValueContributor ??
+            defaultValueDataRequirement ??
+            defaultValueExpression ??
+            defaultValueParameterDefinition ??
+            defaultValueRelatedArtifact ??
+            defaultValueTriggerDefinition ??
+            defaultValueUsageContext ??
+            defaultValueDosage ??
+            defaultValueMeta,
+        super(
           objectPath: 'StructureMap.group.rule.source',
         );
 
@@ -6363,6 +6464,56 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     FhirStringBuilder? condition,
     FhirStringBuilder? check,
     FhirStringBuilder? logMessage,
+    FhirBase64BinaryBuilder? defaultValueBase64Binary,
+    FhirBooleanBuilder? defaultValueBoolean,
+    FhirCanonicalBuilder? defaultValueCanonical,
+    FhirCodeBuilder? defaultValueCode,
+    FhirDateBuilder? defaultValueDate,
+    FhirDateTimeBuilder? defaultValueDateTime,
+    FhirDecimalBuilder? defaultValueDecimal,
+    FhirIdBuilder? defaultValueId,
+    FhirInstantBuilder? defaultValueInstant,
+    FhirIntegerBuilder? defaultValueInteger,
+    FhirMarkdownBuilder? defaultValueMarkdown,
+    FhirOidBuilder? defaultValueOid,
+    FhirPositiveIntBuilder? defaultValuePositiveInt,
+    FhirStringBuilder? defaultValueString,
+    FhirTimeBuilder? defaultValueTime,
+    FhirUnsignedIntBuilder? defaultValueUnsignedInt,
+    FhirUriBuilder? defaultValueUri,
+    FhirUrlBuilder? defaultValueUrl,
+    FhirUuidBuilder? defaultValueUuid,
+    AddressBuilder? defaultValueAddress,
+    AgeBuilder? defaultValueAge,
+    AnnotationBuilder? defaultValueAnnotation,
+    AttachmentBuilder? defaultValueAttachment,
+    CodeableConceptBuilder? defaultValueCodeableConcept,
+    CodingBuilder? defaultValueCoding,
+    ContactPointBuilder? defaultValueContactPoint,
+    CountBuilder? defaultValueCount,
+    DistanceBuilder? defaultValueDistance,
+    FhirDurationBuilder? defaultValueDuration,
+    HumanNameBuilder? defaultValueHumanName,
+    IdentifierBuilder? defaultValueIdentifier,
+    MoneyBuilder? defaultValueMoney,
+    PeriodBuilder? defaultValuePeriod,
+    QuantityBuilder? defaultValueQuantity,
+    RangeBuilder? defaultValueRange,
+    RatioBuilder? defaultValueRatio,
+    ReferenceBuilder? defaultValueReference,
+    SampledDataBuilder? defaultValueSampledData,
+    SignatureBuilder? defaultValueSignature,
+    TimingBuilder? defaultValueTiming,
+    ContactDetailBuilder? defaultValueContactDetail,
+    ContributorBuilder? defaultValueContributor,
+    DataRequirementBuilder? defaultValueDataRequirement,
+    FhirExpressionBuilder? defaultValueExpression,
+    ParameterDefinitionBuilder? defaultValueParameterDefinition,
+    RelatedArtifactBuilder? defaultValueRelatedArtifact,
+    TriggerDefinitionBuilder? defaultValueTriggerDefinition,
+    UsageContextBuilder? defaultValueUsageContext,
+    DosageBuilder? defaultValueDosage,
+    FhirMetaBuilder? defaultValueMeta,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6378,7 +6529,58 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
       min: min ?? this.min,
       max: max ?? this.max,
       type: type ?? this.type,
-      defaultValueX: defaultValueX ?? this.defaultValueX,
+      defaultValueX: defaultValueX ??
+          defaultValueBase64Binary ??
+          defaultValueBoolean ??
+          defaultValueCanonical ??
+          defaultValueCode ??
+          defaultValueDate ??
+          defaultValueDateTime ??
+          defaultValueDecimal ??
+          defaultValueId ??
+          defaultValueInstant ??
+          defaultValueInteger ??
+          defaultValueMarkdown ??
+          defaultValueOid ??
+          defaultValuePositiveInt ??
+          defaultValueString ??
+          defaultValueTime ??
+          defaultValueUnsignedInt ??
+          defaultValueUri ??
+          defaultValueUrl ??
+          defaultValueUuid ??
+          defaultValueAddress ??
+          defaultValueAge ??
+          defaultValueAnnotation ??
+          defaultValueAttachment ??
+          defaultValueCodeableConcept ??
+          defaultValueCoding ??
+          defaultValueContactPoint ??
+          defaultValueCount ??
+          defaultValueDistance ??
+          defaultValueDuration ??
+          defaultValueHumanName ??
+          defaultValueIdentifier ??
+          defaultValueMoney ??
+          defaultValuePeriod ??
+          defaultValueQuantity ??
+          defaultValueRange ??
+          defaultValueRatio ??
+          defaultValueReference ??
+          defaultValueSampledData ??
+          defaultValueSignature ??
+          defaultValueTiming ??
+          defaultValueContactDetail ??
+          defaultValueContributor ??
+          defaultValueDataRequirement ??
+          defaultValueExpression ??
+          defaultValueParameterDefinition ??
+          defaultValueRelatedArtifact ??
+          defaultValueTriggerDefinition ??
+          defaultValueUsageContext ??
+          defaultValueDosage ??
+          defaultValueMeta ??
+          this.defaultValueX,
       element: element ?? this.element,
       listMode: listMode ?? this.listMode,
       variable: variable ?? this.variable,
@@ -7331,9 +7533,20 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXStructureMapParameterBuilder? valueX,
+    FhirIdBuilder? valueId,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    FhirDecimalBuilder? valueDecimal,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueId ??
+            valueString ??
+            valueBoolean ??
+            valueInteger ??
+            valueDecimal,
+        super(
           objectPath: 'StructureMap.group.rule.target.parameter',
         );
 
@@ -7813,6 +8026,11 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ValueXStructureMapParameterBuilder? valueX,
+    FhirIdBuilder? valueId,
+    FhirStringBuilder? valueString,
+    FhirBooleanBuilder? valueBoolean,
+    FhirIntegerBuilder? valueInteger,
+    FhirDecimalBuilder? valueDecimal,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7824,7 +8042,13 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueId ??
+          valueString ??
+          valueBoolean ??
+          valueInteger ??
+          valueDecimal ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

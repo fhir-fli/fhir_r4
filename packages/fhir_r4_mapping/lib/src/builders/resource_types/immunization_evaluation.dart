@@ -32,9 +32,16 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     this.doseStatusReason,
     this.description,
     this.series,
-    this.doseNumberX,
-    this.seriesDosesX,
-  }) : super(
+    DoseNumberXImmunizationEvaluationBuilder? doseNumberX,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    SeriesDosesXImmunizationEvaluationBuilder? seriesDosesX,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
+  })  : doseNumberX = doseNumberX ?? doseNumberPositiveInt ?? doseNumberString,
+        seriesDosesX =
+            seriesDosesX ?? seriesDosesPositiveInt ?? seriesDosesString,
+        super(
           objectPath: 'ImmunizationEvaluation',
           resourceType: R4ResourceType.ImmunizationEvaluation,
         );
@@ -1152,6 +1159,10 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     FhirStringBuilder? series,
     DoseNumberXImmunizationEvaluationBuilder? doseNumberX,
     SeriesDosesXImmunizationEvaluationBuilder? seriesDosesX,
+    FhirPositiveIntBuilder? doseNumberPositiveInt,
+    FhirStringBuilder? doseNumberString,
+    FhirPositiveIntBuilder? seriesDosesPositiveInt,
+    FhirStringBuilder? seriesDosesString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1178,8 +1189,14 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       doseStatusReason: doseStatusReason ?? this.doseStatusReason,
       description: description ?? this.description,
       series: series ?? this.series,
-      doseNumberX: doseNumberX ?? this.doseNumberX,
-      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
+      doseNumberX: doseNumberX ??
+          doseNumberPositiveInt ??
+          doseNumberString ??
+          this.doseNumberX,
+      seriesDosesX: seriesDosesX ??
+          seriesDosesPositiveInt ??
+          seriesDosesString ??
+          this.seriesDosesX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

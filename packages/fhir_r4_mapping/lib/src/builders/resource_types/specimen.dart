@@ -1243,14 +1243,22 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.collector,
-    this.collectedX,
+    CollectedXSpecimenCollectionBuilder? collectedX,
+    FhirDateTimeBuilder? collectedDateTime,
+    PeriodBuilder? collectedPeriod,
     this.duration,
     this.quantity,
     this.method,
     this.bodySite,
-    this.fastingStatusX,
+    FastingStatusXSpecimenCollectionBuilder? fastingStatusX,
+    CodeableConceptBuilder? fastingStatusCodeableConcept,
+    FhirDurationBuilder? fastingStatusDuration,
     super.disallowExtensions,
-  }) : super(
+  })  : collectedX = collectedX ?? collectedDateTime ?? collectedPeriod,
+        fastingStatusX = fastingStatusX ??
+            fastingStatusCodeableConcept ??
+            fastingStatusDuration,
+        super(
           objectPath: 'Specimen.collection',
         );
 
@@ -1914,6 +1922,10 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? method,
     CodeableConceptBuilder? bodySite,
     FastingStatusXSpecimenCollectionBuilder? fastingStatusX,
+    FhirDateTimeBuilder? collectedDateTime,
+    PeriodBuilder? collectedPeriod,
+    CodeableConceptBuilder? fastingStatusCodeableConcept,
+    FhirDurationBuilder? fastingStatusDuration,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1926,12 +1938,16 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       collector: collector ?? this.collector,
-      collectedX: collectedX ?? this.collectedX,
+      collectedX:
+          collectedX ?? collectedDateTime ?? collectedPeriod ?? this.collectedX,
       duration: duration ?? this.duration,
       quantity: quantity ?? this.quantity,
       method: method ?? this.method,
       bodySite: bodySite ?? this.bodySite,
-      fastingStatusX: fastingStatusX ?? this.fastingStatusX,
+      fastingStatusX: fastingStatusX ??
+          fastingStatusCodeableConcept ??
+          fastingStatusDuration ??
+          this.fastingStatusX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -2035,9 +2051,12 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     this.description,
     this.procedure,
     this.additive,
-    this.timeX,
+    TimeXSpecimenProcessingBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     super.disallowExtensions,
-  }) : super(
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super(
           objectPath: 'Specimen.processing',
         );
 
@@ -2550,6 +2569,8 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? procedure,
     List<ReferenceBuilder>? additive,
     TimeXSpecimenProcessingBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2564,7 +2585,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
-      timeX: timeX ?? this.timeX,
+      timeX: timeX ?? timeDateTime ?? timePeriod ?? this.timeX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -2653,9 +2674,12 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     this.type,
     this.capacity,
     this.specimenQuantity,
-    this.additiveX,
+    AdditiveXSpecimenContainerBuilder? additiveX,
+    CodeableConceptBuilder? additiveCodeableConcept,
+    ReferenceBuilder? additiveReference,
     super.disallowExtensions,
-  }) : super(
+  })  : additiveX = additiveX ?? additiveCodeableConcept ?? additiveReference,
+        super(
           objectPath: 'Specimen.container',
         );
 
@@ -3237,6 +3261,8 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     QuantityBuilder? capacity,
     QuantityBuilder? specimenQuantity,
     AdditiveXSpecimenContainerBuilder? additiveX,
+    CodeableConceptBuilder? additiveCodeableConcept,
+    ReferenceBuilder? additiveReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3253,7 +3279,10 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       capacity: capacity ?? this.capacity,
       specimenQuantity: specimenQuantity ?? this.specimenQuantity,
-      additiveX: additiveX ?? this.additiveX,
+      additiveX: additiveX ??
+          additiveCodeableConcept ??
+          additiveReference ??
+          this.additiveX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

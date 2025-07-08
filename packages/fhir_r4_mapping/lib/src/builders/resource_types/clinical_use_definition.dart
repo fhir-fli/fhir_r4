@@ -2187,11 +2187,14 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     this.diseaseStatus,
     this.comorbidity,
     this.intendedEffect,
-    this.durationX,
+    DurationXClinicalUseDefinitionIndicationBuilder? durationX,
+    RangeBuilder? durationRange,
+    FhirStringBuilder? durationString,
     this.undesirableEffect,
     this.otherTherapy,
     super.disallowExtensions,
-  }) : super(
+  })  : durationX = durationX ?? durationRange ?? durationString,
+        super(
           objectPath: 'ClinicalUseDefinition.indication',
         );
 
@@ -2820,6 +2823,8 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     DurationXClinicalUseDefinitionIndicationBuilder? durationX,
     List<ReferenceBuilder>? undesirableEffect,
     List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy,
+    RangeBuilder? durationRange,
+    FhirStringBuilder? durationString,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2836,7 +2841,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
       diseaseStatus: diseaseStatus ?? this.diseaseStatus,
       comorbidity: comorbidity ?? this.comorbidity,
       intendedEffect: intendedEffect ?? this.intendedEffect,
-      durationX: durationX ?? this.durationX,
+      durationX: durationX ?? durationRange ?? durationString ?? this.durationX,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       otherTherapy: otherTherapy ?? this.otherTherapy,
     )..objectPath = newObjectPath;
@@ -3531,9 +3536,12 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemX,
+    ItemXClinicalUseDefinitionInteractantBuilder? itemX,
+    ReferenceBuilder? itemReference,
+    CodeableConceptBuilder? itemCodeableConcept,
     super.disallowExtensions,
-  }) : super(
+  })  : itemX = itemX ?? itemReference ?? itemCodeableConcept,
+        super(
           objectPath: 'ClinicalUseDefinition.interaction.interactant',
         );
 
@@ -3930,6 +3938,8 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ItemXClinicalUseDefinitionInteractantBuilder? itemX,
+    ReferenceBuilder? itemReference,
+    CodeableConceptBuilder? itemCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3941,7 +3951,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemX: itemX ?? this.itemX,
+      itemX: itemX ?? itemReference ?? itemCodeableConcept ?? this.itemX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

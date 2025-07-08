@@ -2028,9 +2028,22 @@ class NutritionProductProductCharacteristicBuilder
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueX,
+    ValueXNutritionProductProductCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    AttachmentBuilder? valueAttachment,
+    FhirBooleanBuilder? valueBoolean,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueString ??
+            valueQuantity ??
+            valueBase64Binary ??
+            valueAttachment ??
+            valueBoolean,
+        super(
           objectPath: 'NutritionProduct.productCharacteristic',
         );
 
@@ -2579,6 +2592,12 @@ class NutritionProductProductCharacteristicBuilder
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? type,
     ValueXNutritionProductProductCharacteristicBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    FhirStringBuilder? valueString,
+    QuantityBuilder? valueQuantity,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    AttachmentBuilder? valueAttachment,
+    FhirBooleanBuilder? valueBoolean,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2591,7 +2610,14 @@ class NutritionProductProductCharacteristicBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueString ??
+          valueQuantity ??
+          valueBase64Binary ??
+          valueAttachment ??
+          valueBoolean ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

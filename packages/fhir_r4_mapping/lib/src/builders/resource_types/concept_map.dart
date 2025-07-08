@@ -45,10 +45,16 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     super.jurisdiction,
     this.purpose,
     this.copyright,
-    this.sourceX,
-    this.targetX,
+    SourceXConceptMapBuilder? sourceX,
+    FhirUriBuilder? sourceUri,
+    FhirCanonicalBuilder? sourceCanonical,
+    TargetXConceptMapBuilder? targetX,
+    FhirUriBuilder? targetUri,
+    FhirCanonicalBuilder? targetCanonical,
     this.group,
-  }) : super(
+  })  : sourceX = sourceX ?? sourceUri ?? sourceCanonical,
+        targetX = targetX ?? targetUri ?? targetCanonical,
+        super(
           objectPath: 'ConceptMap',
           resourceType: R4ResourceType.ConceptMap,
         );
@@ -1389,6 +1395,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     SourceXConceptMapBuilder? sourceX,
     TargetXConceptMapBuilder? targetX,
     List<ConceptMapGroupBuilder>? group,
+    FhirUriBuilder? sourceUri,
+    FhirCanonicalBuilder? sourceCanonical,
+    FhirUriBuilder? targetUri,
+    FhirCanonicalBuilder? targetCanonical,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1419,8 +1429,8 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
       copyright: copyright ?? this.copyright,
-      sourceX: sourceX ?? this.sourceX,
-      targetX: targetX ?? this.targetX,
+      sourceX: sourceX ?? sourceUri ?? sourceCanonical ?? this.sourceX,
+      targetX: targetX ?? targetUri ?? targetCanonical ?? this.targetX,
       group: group ?? this.group,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

@@ -35,11 +35,15 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     this.status,
     this.statusReason,
     this.category,
-    this.medicationX,
+    MedicationXMedicationAdministrationBuilder? medicationX,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     this.subject,
     this.context,
     this.supportingInformation,
-    this.effectiveX,
+    EffectiveXMedicationAdministrationBuilder? effectiveX,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -48,7 +52,10 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     this.note,
     this.dosage,
     this.eventHistory,
-  }) : super(
+  })  : medicationX =
+            medicationX ?? medicationCodeableConcept ?? medicationReference,
+        effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           objectPath: 'MedicationAdministration',
           resourceType: R4ResourceType.MedicationAdministration,
         );
@@ -1478,6 +1485,10 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     List<AnnotationBuilder>? note,
     MedicationAdministrationDosageBuilder? dosage,
     List<ReferenceBuilder>? eventHistory,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1499,12 +1510,16 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
-      medicationX: medicationX ?? this.medicationX,
+      medicationX: medicationX ??
+          medicationCodeableConcept ??
+          medicationReference ??
+          this.medicationX,
       subject: subject ?? this.subject,
       context: context ?? this.context,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-      effectiveX: effectiveX ?? this.effectiveX,
+      effectiveX:
+          effectiveX ?? effectiveDateTime ?? effectivePeriod ?? this.effectiveX,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
@@ -2170,9 +2185,12 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
     this.route,
     this.method,
     this.dose,
-    this.rateX,
+    RateXMedicationAdministrationDosageBuilder? rateX,
+    RatioBuilder? rateRatio,
+    QuantityBuilder? rateQuantity,
     super.disallowExtensions,
-  }) : super(
+  })  : rateX = rateX ?? rateRatio ?? rateQuantity,
+        super(
           objectPath: 'MedicationAdministration.dosage',
         );
 
@@ -2753,6 +2771,8 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? method,
     QuantityBuilder? dose,
     RateXMedicationAdministrationDosageBuilder? rateX,
+    RatioBuilder? rateRatio,
+    QuantityBuilder? rateQuantity,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2769,7 +2789,7 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
       route: route ?? this.route,
       method: method ?? this.method,
       dose: dose ?? this.dose,
-      rateX: rateX ?? this.rateX,
+      rateX: rateX ?? rateRatio ?? rateQuantity ?? this.rateX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

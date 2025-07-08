@@ -31,7 +31,9 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     this.subtitle,
     this.status,
     this.experimental,
-    this.subjectX,
+    SubjectXResearchDefinitionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     this.date,
     this.publisher,
     this.contact,
@@ -56,7 +58,8 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     this.exposure,
     this.exposureAlternative,
     this.outcome,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           objectPath: 'ResearchDefinition',
           resourceType: R4ResourceType.ResearchDefinition,
         );
@@ -2145,6 +2148,8 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     ReferenceBuilder? exposure,
     ReferenceBuilder? exposureAlternative,
     ReferenceBuilder? outcome,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2169,7 +2174,10 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

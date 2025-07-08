@@ -36,7 +36,9 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     super.extension_,
     super.modifierExtension,
     this.target,
-    this.occurredX,
+    OccurredXProvenanceBuilder? occurredX,
+    PeriodBuilder? occurredPeriod,
+    FhirDateTimeBuilder? occurredDateTime,
     this.recorded,
     this.policy,
     this.location,
@@ -45,7 +47,8 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     this.agent,
     this.entity,
     this.signature,
-  }) : super(
+  })  : occurredX = occurredX ?? occurredPeriod ?? occurredDateTime,
+        super(
           objectPath: 'Provenance',
           resourceType: R4ResourceType.Provenance,
         );
@@ -1031,6 +1034,8 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     List<ProvenanceAgentBuilder>? agent,
     List<ProvenanceEntityBuilder>? entity,
     List<SignatureBuilder>? signature,
+    PeriodBuilder? occurredPeriod,
+    FhirDateTimeBuilder? occurredDateTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1047,7 +1052,8 @@ class ProvenanceBuilder extends DomainResourceBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
-      occurredX: occurredX ?? this.occurredX,
+      occurredX:
+          occurredX ?? occurredPeriod ?? occurredDateTime ?? this.occurredX,
       recorded: recorded ?? this.recorded,
       policy: policy ?? this.policy,
       location: location ?? this.location,

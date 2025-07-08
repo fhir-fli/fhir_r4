@@ -48,10 +48,14 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     this.status,
     this.statusReason,
     this.category,
-    this.medicationX,
+    MedicationXMedicationStatementBuilder? medicationX,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
     this.subject,
     this.context,
-    this.effectiveX,
+    EffectiveXMedicationStatementBuilder? effectiveX,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     this.dateAsserted,
     this.informationSource,
     this.derivedFrom,
@@ -59,7 +63,10 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     this.reasonReference,
     this.note,
     this.dosage,
-  }) : super(
+  })  : medicationX =
+            medicationX ?? medicationCodeableConcept ?? medicationReference,
+        effectiveX = effectiveX ?? effectiveDateTime ?? effectivePeriod,
+        super(
           objectPath: 'MedicationStatement',
           resourceType: R4ResourceType.MedicationStatement,
         );
@@ -1378,6 +1385,10 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? reasonReference,
     List<AnnotationBuilder>? note,
     List<DosageBuilder>? dosage,
+    CodeableConceptBuilder? medicationCodeableConcept,
+    ReferenceBuilder? medicationReference,
+    FhirDateTimeBuilder? effectiveDateTime,
+    PeriodBuilder? effectivePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1399,10 +1410,14 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
-      medicationX: medicationX ?? this.medicationX,
+      medicationX: medicationX ??
+          medicationCodeableConcept ??
+          medicationReference ??
+          this.medicationX,
       subject: subject ?? this.subject,
       context: context ?? this.context,
-      effectiveX: effectiveX ?? this.effectiveX,
+      effectiveX:
+          effectiveX ?? effectiveDateTime ?? effectivePeriod ?? this.effectiveX,
       dateAsserted: dateAsserted ?? this.dateAsserted,
       informationSource: informationSource ?? this.informationSource,
       derivedFrom: derivedFrom ?? this.derivedFrom,

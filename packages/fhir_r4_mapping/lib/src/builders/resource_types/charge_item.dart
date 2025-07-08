@@ -37,7 +37,10 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     this.code,
     this.subject,
     this.context,
-    this.occurrenceX,
+    OccurrenceXChargeItemBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     this.performer,
     this.performingOrganization,
     this.requestingOrganization,
@@ -51,11 +54,18 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     this.enteredDate,
     this.reason,
     this.service,
-    this.productX,
+    ProductXChargeItemBuilder? productX,
+    ReferenceBuilder? productReference,
+    CodeableConceptBuilder? productCodeableConcept,
     this.account,
     this.note,
     this.supportingInformation,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        productX = productX ?? productReference ?? productCodeableConcept,
+        super(
           objectPath: 'ChargeItem',
           resourceType: R4ResourceType.ChargeItem,
         );
@@ -1786,6 +1796,11 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? account,
     List<AnnotationBuilder>? note,
     List<ReferenceBuilder>? supportingInformation,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
+    ReferenceBuilder? productReference,
+    CodeableConceptBuilder? productCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1809,7 +1824,11 @@ class ChargeItemBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       context: context ?? this.context,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
       performer: performer ?? this.performer,
       performingOrganization:
           performingOrganization ?? this.performingOrganization,
@@ -1825,7 +1844,10 @@ class ChargeItemBuilder extends DomainResourceBuilder {
       enteredDate: enteredDate ?? this.enteredDate,
       reason: reason ?? this.reason,
       service: service ?? this.service,
-      productX: productX ?? this.productX,
+      productX: productX ??
+          productReference ??
+          productCodeableConcept ??
+          this.productX,
       account: account ?? this.account,
       note: note ?? this.note,
       supportingInformation:

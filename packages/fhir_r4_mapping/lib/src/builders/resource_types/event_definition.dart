@@ -28,7 +28,9 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     this.subtitle,
     super.status,
     super.experimental,
-    this.subjectX,
+    SubjectXEventDefinitionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     super.date,
     super.publisher,
     super.contact,
@@ -48,7 +50,8 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     this.endorser,
     this.relatedArtifact,
     this.trigger,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           objectPath: 'EventDefinition',
           resourceType: R4ResourceType.EventDefinition,
         );
@@ -1787,6 +1790,8 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     List<ContactDetailBuilder>? endorser,
     List<RelatedArtifactBuilder>? relatedArtifact,
     List<TriggerDefinitionBuilder>? trigger,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1810,7 +1815,10 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

@@ -29,10 +29,15 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     this.status,
     this.category,
     this.priority,
-    this.itemX,
+    ItemXSupplyRequestBuilder? itemX,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     this.quantity,
     this.parameter,
-    this.occurrenceX,
+    OccurrenceXSupplyRequestBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     this.authoredOn,
     this.requester,
     this.supplier,
@@ -40,7 +45,12 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     this.reasonReference,
     this.deliverFrom,
     this.deliverTo,
-  }) : super(
+  })  : itemX = itemX ?? itemCodeableConcept ?? itemReference,
+        occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           objectPath: 'SupplyRequest',
           resourceType: R4ResourceType.SupplyRequest,
         );
@@ -1270,6 +1280,11 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     List<ReferenceBuilder>? reasonReference,
     ReferenceBuilder? deliverFrom,
     ReferenceBuilder? deliverTo,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1289,10 +1304,14 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      itemX: itemX ?? this.itemX,
+      itemX: itemX ?? itemCodeableConcept ?? itemReference ?? this.itemX,
       quantity: quantity ?? this.quantity,
       parameter: parameter ?? this.parameter,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       supplier: supplier ?? this.supplier,
@@ -1480,9 +1499,18 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXSupplyRequestParameterBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    FhirBooleanBuilder? valueBoolean,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCodeableConcept ??
+            valueQuantity ??
+            valueRange ??
+            valueBoolean,
+        super(
           objectPath: 'SupplyRequest.parameter',
         );
 
@@ -1965,6 +1993,10 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     CodeableConceptBuilder? code,
     ValueXSupplyRequestParameterBuilder? valueX,
+    CodeableConceptBuilder? valueCodeableConcept,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    FhirBooleanBuilder? valueBoolean,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1977,7 +2009,12 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCodeableConcept ??
+          valueQuantity ??
+          valueRange ??
+          valueBoolean ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

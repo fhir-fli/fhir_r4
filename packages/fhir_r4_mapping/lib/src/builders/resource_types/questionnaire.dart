@@ -3023,9 +3023,30 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.question,
     this.operator_,
-    this.answerX,
+    AnswerXQuestionnaireEnableWhenBuilder? answerX,
+    FhirBooleanBuilder? answerBoolean,
+    FhirDecimalBuilder? answerDecimal,
+    FhirIntegerBuilder? answerInteger,
+    FhirDateBuilder? answerDate,
+    FhirDateTimeBuilder? answerDateTime,
+    FhirTimeBuilder? answerTime,
+    FhirStringBuilder? answerString,
+    CodingBuilder? answerCoding,
+    QuantityBuilder? answerQuantity,
+    ReferenceBuilder? answerReference,
     super.disallowExtensions,
-  }) : super(
+  })  : answerX = answerX ??
+            answerBoolean ??
+            answerDecimal ??
+            answerInteger ??
+            answerDate ??
+            answerDateTime ??
+            answerTime ??
+            answerString ??
+            answerCoding ??
+            answerQuantity ??
+            answerReference,
+        super(
           objectPath: 'Questionnaire.item.enableWhen',
         );
 
@@ -3748,6 +3769,16 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     FhirStringBuilder? question,
     QuestionnaireItemOperatorBuilder? operator_,
     AnswerXQuestionnaireEnableWhenBuilder? answerX,
+    FhirBooleanBuilder? answerBoolean,
+    FhirDecimalBuilder? answerDecimal,
+    FhirIntegerBuilder? answerInteger,
+    FhirDateBuilder? answerDate,
+    FhirDateTimeBuilder? answerDateTime,
+    FhirTimeBuilder? answerTime,
+    FhirStringBuilder? answerString,
+    CodingBuilder? answerCoding,
+    QuantityBuilder? answerQuantity,
+    ReferenceBuilder? answerReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3761,7 +3792,18 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       question: question ?? this.question,
       operator_: operator_ ?? this.operator_,
-      answerX: answerX ?? this.answerX,
+      answerX: answerX ??
+          answerBoolean ??
+          answerDecimal ??
+          answerInteger ??
+          answerDate ??
+          answerDateTime ??
+          answerTime ??
+          answerString ??
+          answerCoding ??
+          answerQuantity ??
+          answerReference ??
+          this.answerX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -3838,10 +3880,23 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXQuestionnaireAnswerOptionBuilder? valueX,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    CodingBuilder? valueCoding,
+    ReferenceBuilder? valueReference,
     this.initialSelected,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueInteger ??
+            valueDate ??
+            valueTime ??
+            valueString ??
+            valueCoding ??
+            valueReference,
+        super(
           objectPath: 'Questionnaire.item.answerOption',
         );
 
@@ -4398,6 +4453,12 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     ValueXQuestionnaireAnswerOptionBuilder? valueX,
     FhirBooleanBuilder? initialSelected,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    CodingBuilder? valueCoding,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4409,7 +4470,14 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueInteger ??
+          valueDate ??
+          valueTime ??
+          valueString ??
+          valueCoding ??
+          valueReference ??
+          this.valueX,
       initialSelected: initialSelected ?? this.initialSelected,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
@@ -4482,9 +4550,34 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueX,
+    ValueXQuestionnaireInitialBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueBoolean ??
+            valueDecimal ??
+            valueInteger ??
+            valueDate ??
+            valueDateTime ??
+            valueTime ??
+            valueString ??
+            valueUri ??
+            valueAttachment ??
+            valueCoding ??
+            valueQuantity ??
+            valueReference,
+        super(
           objectPath: 'Questionnaire.item.initial',
         );
 
@@ -5167,6 +5260,18 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ValueXQuestionnaireInitialBuilder? valueX,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIntegerBuilder? valueInteger,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirTimeBuilder? valueTime,
+    FhirStringBuilder? valueString,
+    FhirUriBuilder? valueUri,
+    AttachmentBuilder? valueAttachment,
+    CodingBuilder? valueCoding,
+    QuantityBuilder? valueQuantity,
+    ReferenceBuilder? valueReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5178,7 +5283,20 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueBoolean ??
+          valueDecimal ??
+          valueInteger ??
+          valueDate ??
+          valueDateTime ??
+          valueTime ??
+          valueString ??
+          valueUri ??
+          valueAttachment ??
+          valueCoding ??
+          valueQuantity ??
+          valueReference ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

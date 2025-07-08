@@ -475,11 +475,112 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.valueX,
+    ValueXParametersParameterBuilder? valueX,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    FhirBooleanBuilder? valueBoolean,
+    FhirCanonicalBuilder? valueCanonical,
+    FhirCodeBuilder? valueCode,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIdBuilder? valueId,
+    FhirInstantBuilder? valueInstant,
+    FhirIntegerBuilder? valueInteger,
+    FhirMarkdownBuilder? valueMarkdown,
+    FhirOidBuilder? valueOid,
+    FhirPositiveIntBuilder? valuePositiveInt,
+    FhirStringBuilder? valueString,
+    FhirTimeBuilder? valueTime,
+    FhirUnsignedIntBuilder? valueUnsignedInt,
+    FhirUriBuilder? valueUri,
+    FhirUrlBuilder? valueUrl,
+    FhirUuidBuilder? valueUuid,
+    AddressBuilder? valueAddress,
+    AgeBuilder? valueAge,
+    AnnotationBuilder? valueAnnotation,
+    AttachmentBuilder? valueAttachment,
+    CodeableConceptBuilder? valueCodeableConcept,
+    CodingBuilder? valueCoding,
+    ContactPointBuilder? valueContactPoint,
+    CountBuilder? valueCount,
+    DistanceBuilder? valueDistance,
+    FhirDurationBuilder? valueDuration,
+    HumanNameBuilder? valueHumanName,
+    IdentifierBuilder? valueIdentifier,
+    MoneyBuilder? valueMoney,
+    PeriodBuilder? valuePeriod,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    ReferenceBuilder? valueReference,
+    SampledDataBuilder? valueSampledData,
+    SignatureBuilder? valueSignature,
+    TimingBuilder? valueTiming,
+    ContactDetailBuilder? valueContactDetail,
+    ContributorBuilder? valueContributor,
+    DataRequirementBuilder? valueDataRequirement,
+    FhirExpressionBuilder? valueExpression,
+    ParameterDefinitionBuilder? valueParameterDefinition,
+    RelatedArtifactBuilder? valueRelatedArtifact,
+    TriggerDefinitionBuilder? valueTriggerDefinition,
+    UsageContextBuilder? valueUsageContext,
+    DosageBuilder? valueDosage,
+    FhirMetaBuilder? valueMeta,
     this.resource,
     this.part_,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueBase64Binary ??
+            valueBoolean ??
+            valueCanonical ??
+            valueCode ??
+            valueDate ??
+            valueDateTime ??
+            valueDecimal ??
+            valueId ??
+            valueInstant ??
+            valueInteger ??
+            valueMarkdown ??
+            valueOid ??
+            valuePositiveInt ??
+            valueString ??
+            valueTime ??
+            valueUnsignedInt ??
+            valueUri ??
+            valueUrl ??
+            valueUuid ??
+            valueAddress ??
+            valueAge ??
+            valueAnnotation ??
+            valueAttachment ??
+            valueCodeableConcept ??
+            valueCoding ??
+            valueContactPoint ??
+            valueCount ??
+            valueDistance ??
+            valueDuration ??
+            valueHumanName ??
+            valueIdentifier ??
+            valueMoney ??
+            valuePeriod ??
+            valueQuantity ??
+            valueRange ??
+            valueRatio ??
+            valueReference ??
+            valueSampledData ??
+            valueSignature ??
+            valueTiming ??
+            valueContactDetail ??
+            valueContributor ??
+            valueDataRequirement ??
+            valueExpression ??
+            valueParameterDefinition ??
+            valueRelatedArtifact ??
+            valueTriggerDefinition ??
+            valueUsageContext ??
+            valueDosage ??
+            valueMeta,
+        super(
           objectPath: 'Parameters.parameter',
         );
 
@@ -2399,6 +2500,56 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
     ValueXParametersParameterBuilder? valueX,
     ResourceBuilder? resource,
     List<ParametersParameterBuilder>? part_,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    FhirBooleanBuilder? valueBoolean,
+    FhirCanonicalBuilder? valueCanonical,
+    FhirCodeBuilder? valueCode,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIdBuilder? valueId,
+    FhirInstantBuilder? valueInstant,
+    FhirIntegerBuilder? valueInteger,
+    FhirMarkdownBuilder? valueMarkdown,
+    FhirOidBuilder? valueOid,
+    FhirPositiveIntBuilder? valuePositiveInt,
+    FhirStringBuilder? valueString,
+    FhirTimeBuilder? valueTime,
+    FhirUnsignedIntBuilder? valueUnsignedInt,
+    FhirUriBuilder? valueUri,
+    FhirUrlBuilder? valueUrl,
+    FhirUuidBuilder? valueUuid,
+    AddressBuilder? valueAddress,
+    AgeBuilder? valueAge,
+    AnnotationBuilder? valueAnnotation,
+    AttachmentBuilder? valueAttachment,
+    CodeableConceptBuilder? valueCodeableConcept,
+    CodingBuilder? valueCoding,
+    ContactPointBuilder? valueContactPoint,
+    CountBuilder? valueCount,
+    DistanceBuilder? valueDistance,
+    FhirDurationBuilder? valueDuration,
+    HumanNameBuilder? valueHumanName,
+    IdentifierBuilder? valueIdentifier,
+    MoneyBuilder? valueMoney,
+    PeriodBuilder? valuePeriod,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    ReferenceBuilder? valueReference,
+    SampledDataBuilder? valueSampledData,
+    SignatureBuilder? valueSignature,
+    TimingBuilder? valueTiming,
+    ContactDetailBuilder? valueContactDetail,
+    ContributorBuilder? valueContributor,
+    DataRequirementBuilder? valueDataRequirement,
+    FhirExpressionBuilder? valueExpression,
+    ParameterDefinitionBuilder? valueParameterDefinition,
+    RelatedArtifactBuilder? valueRelatedArtifact,
+    TriggerDefinitionBuilder? valueTriggerDefinition,
+    UsageContextBuilder? valueUsageContext,
+    DosageBuilder? valueDosage,
+    FhirMetaBuilder? valueMeta,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2411,7 +2562,58 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueBase64Binary ??
+          valueBoolean ??
+          valueCanonical ??
+          valueCode ??
+          valueDate ??
+          valueDateTime ??
+          valueDecimal ??
+          valueId ??
+          valueInstant ??
+          valueInteger ??
+          valueMarkdown ??
+          valueOid ??
+          valuePositiveInt ??
+          valueString ??
+          valueTime ??
+          valueUnsignedInt ??
+          valueUri ??
+          valueUrl ??
+          valueUuid ??
+          valueAddress ??
+          valueAge ??
+          valueAnnotation ??
+          valueAttachment ??
+          valueCodeableConcept ??
+          valueCoding ??
+          valueContactPoint ??
+          valueCount ??
+          valueDistance ??
+          valueDuration ??
+          valueHumanName ??
+          valueIdentifier ??
+          valueMoney ??
+          valuePeriod ??
+          valueQuantity ??
+          valueRange ??
+          valueRatio ??
+          valueReference ??
+          valueSampledData ??
+          valueSignature ??
+          valueTiming ??
+          valueContactDetail ??
+          valueContributor ??
+          valueDataRequirement ??
+          valueExpression ??
+          valueParameterDefinition ??
+          valueRelatedArtifact ??
+          valueTriggerDefinition ??
+          valueUsageContext ??
+          valueDosage ??
+          valueMeta ??
+          this.valueX,
       resource: resource ?? this.resource,
       part_: part_ ?? this.part_,
     )..objectPath = newObjectPath;

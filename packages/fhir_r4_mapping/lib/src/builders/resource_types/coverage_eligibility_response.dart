@@ -32,7 +32,9 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     this.status,
     this.purpose,
     this.patient,
-    this.servicedX,
+    ServicedXCoverageEligibilityResponseBuilder? servicedX,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
     this.created,
     this.requestor,
     this.request,
@@ -43,7 +45,8 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     this.preAuthRef,
     this.form,
     this.error,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        super(
           objectPath: 'CoverageEligibilityResponse',
           resourceType: R4ResourceType.CoverageEligibilityResponse,
         );
@@ -1235,6 +1238,8 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     FhirStringBuilder? preAuthRef,
     CodeableConceptBuilder? form,
     List<CoverageEligibilityResponseErrorBuilder>? error,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1254,7 +1259,7 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
       status: status ?? this.status,
       purpose: purpose ?? this.purpose,
       patient: patient ?? this.patient,
-      servicedX: servicedX ?? this.servicedX,
+      servicedX: servicedX ?? servicedDate ?? servicedPeriod ?? this.servicedX,
       created: created ?? this.created,
       requestor: requestor ?? this.requestor,
       request: request ?? this.request,
@@ -3038,10 +3043,19 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.allowedX,
-    this.usedX,
+    AllowedXCoverageEligibilityResponseBenefitBuilder? allowedX,
+    FhirUnsignedIntBuilder? allowedUnsignedInt,
+    FhirStringBuilder? allowedString,
+    MoneyBuilder? allowedMoney,
+    UsedXCoverageEligibilityResponseBenefitBuilder? usedX,
+    FhirUnsignedIntBuilder? usedUnsignedInt,
+    FhirStringBuilder? usedString,
+    MoneyBuilder? usedMoney,
     super.disallowExtensions,
-  }) : super(
+  })  : allowedX =
+            allowedX ?? allowedUnsignedInt ?? allowedString ?? allowedMoney,
+        usedX = usedX ?? usedUnsignedInt ?? usedString ?? usedMoney,
+        super(
           objectPath: 'CoverageEligibilityResponse.insurance.item.benefit',
         );
 
@@ -3630,6 +3644,12 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? type,
     AllowedXCoverageEligibilityResponseBenefitBuilder? allowedX,
     UsedXCoverageEligibilityResponseBenefitBuilder? usedX,
+    FhirUnsignedIntBuilder? allowedUnsignedInt,
+    FhirStringBuilder? allowedString,
+    MoneyBuilder? allowedMoney,
+    FhirUnsignedIntBuilder? usedUnsignedInt,
+    FhirStringBuilder? usedString,
+    MoneyBuilder? usedMoney,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3642,8 +3662,12 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      allowedX: allowedX ?? this.allowedX,
-      usedX: usedX ?? this.usedX,
+      allowedX: allowedX ??
+          allowedUnsignedInt ??
+          allowedString ??
+          allowedMoney ??
+          this.allowedX,
+      usedX: usedX ?? usedUnsignedInt ?? usedString ?? usedMoney ?? this.usedX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

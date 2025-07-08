@@ -14,10 +14,112 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     super.id,
     super.extension_,
     this.url,
-    this.valueX,
+    ValueXExtensionBuilder? valueX,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    FhirBooleanBuilder? valueBoolean,
+    FhirCanonicalBuilder? valueCanonical,
+    FhirCodeBuilder? valueCode,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIdBuilder? valueId,
+    FhirInstantBuilder? valueInstant,
+    FhirIntegerBuilder? valueInteger,
+    FhirMarkdownBuilder? valueMarkdown,
+    FhirOidBuilder? valueOid,
+    FhirPositiveIntBuilder? valuePositiveInt,
+    FhirStringBuilder? valueString,
+    FhirTimeBuilder? valueTime,
+    FhirUnsignedIntBuilder? valueUnsignedInt,
+    FhirUriBuilder? valueUri,
+    FhirUrlBuilder? valueUrl,
+    FhirUuidBuilder? valueUuid,
+    AddressBuilder? valueAddress,
+    AgeBuilder? valueAge,
+    AnnotationBuilder? valueAnnotation,
+    AttachmentBuilder? valueAttachment,
+    CodeableConceptBuilder? valueCodeableConcept,
+    CodeableReferenceBuilder? valueCodeableReference,
+    CodingBuilder? valueCoding,
+    ContactPointBuilder? valueContactPoint,
+    CountBuilder? valueCount,
+    DistanceBuilder? valueDistance,
+    FhirDurationBuilder? valueDuration,
+    HumanNameBuilder? valueHumanName,
+    IdentifierBuilder? valueIdentifier,
+    MoneyBuilder? valueMoney,
+    PeriodBuilder? valuePeriod,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    RatioRangeBuilder? valueRatioRange,
+    ReferenceBuilder? valueReference,
+    SampledDataBuilder? valueSampledData,
+    SignatureBuilder? valueSignature,
+    TimingBuilder? valueTiming,
+    ContactDetailBuilder? valueContactDetail,
+    ContributorBuilder? valueContributor,
+    DataRequirementBuilder? valueDataRequirement,
+    FhirExpressionBuilder? valueExpression,
+    ParameterDefinitionBuilder? valueParameterDefinition,
+    RelatedArtifactBuilder? valueRelatedArtifact,
+    TriggerDefinitionBuilder? valueTriggerDefinition,
+    UsageContextBuilder? valueUsageContext,
+    DosageBuilder? valueDosage,
     super.disallowExtensions,
     super.objectPath = 'FhirExtensionBuilder',
-  });
+  }) : valueX = valueX ??
+            valueBase64Binary ??
+            valueBoolean ??
+            valueCanonical ??
+            valueCode ??
+            valueDate ??
+            valueDateTime ??
+            valueDecimal ??
+            valueId ??
+            valueInstant ??
+            valueInteger ??
+            valueMarkdown ??
+            valueOid ??
+            valuePositiveInt ??
+            valueString ??
+            valueTime ??
+            valueUnsignedInt ??
+            valueUri ??
+            valueUrl ??
+            valueUuid ??
+            valueAddress ??
+            valueAge ??
+            valueAnnotation ??
+            valueAttachment ??
+            valueCodeableConcept ??
+            valueCodeableReference ??
+            valueCoding ??
+            valueContactPoint ??
+            valueCount ??
+            valueDistance ??
+            valueDuration ??
+            valueHumanName ??
+            valueIdentifier ??
+            valueMoney ??
+            valuePeriod ??
+            valueQuantity ??
+            valueRange ??
+            valueRatio ??
+            valueRatioRange ??
+            valueReference ??
+            valueSampledData ??
+            valueSignature ??
+            valueTiming ??
+            valueContactDetail ??
+            valueContributor ??
+            valueDataRequirement ??
+            valueExpression ??
+            valueParameterDefinition ??
+            valueRelatedArtifact ??
+            valueTriggerDefinition ??
+            valueUsageContext ??
+            valueDosage;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -1851,6 +1953,57 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     List<FhirExtensionBuilder>? extension_,
     FhirStringBuilder? url,
     ValueXExtensionBuilder? valueX,
+    FhirBase64BinaryBuilder? valueBase64Binary,
+    FhirBooleanBuilder? valueBoolean,
+    FhirCanonicalBuilder? valueCanonical,
+    FhirCodeBuilder? valueCode,
+    FhirDateBuilder? valueDate,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
+    FhirIdBuilder? valueId,
+    FhirInstantBuilder? valueInstant,
+    FhirIntegerBuilder? valueInteger,
+    FhirMarkdownBuilder? valueMarkdown,
+    FhirOidBuilder? valueOid,
+    FhirPositiveIntBuilder? valuePositiveInt,
+    FhirStringBuilder? valueString,
+    FhirTimeBuilder? valueTime,
+    FhirUnsignedIntBuilder? valueUnsignedInt,
+    FhirUriBuilder? valueUri,
+    FhirUrlBuilder? valueUrl,
+    FhirUuidBuilder? valueUuid,
+    AddressBuilder? valueAddress,
+    AgeBuilder? valueAge,
+    AnnotationBuilder? valueAnnotation,
+    AttachmentBuilder? valueAttachment,
+    CodeableConceptBuilder? valueCodeableConcept,
+    CodeableReferenceBuilder? valueCodeableReference,
+    CodingBuilder? valueCoding,
+    ContactPointBuilder? valueContactPoint,
+    CountBuilder? valueCount,
+    DistanceBuilder? valueDistance,
+    FhirDurationBuilder? valueDuration,
+    HumanNameBuilder? valueHumanName,
+    IdentifierBuilder? valueIdentifier,
+    MoneyBuilder? valueMoney,
+    PeriodBuilder? valuePeriod,
+    QuantityBuilder? valueQuantity,
+    RangeBuilder? valueRange,
+    RatioBuilder? valueRatio,
+    RatioRangeBuilder? valueRatioRange,
+    ReferenceBuilder? valueReference,
+    SampledDataBuilder? valueSampledData,
+    SignatureBuilder? valueSignature,
+    TimingBuilder? valueTiming,
+    ContactDetailBuilder? valueContactDetail,
+    ContributorBuilder? valueContributor,
+    DataRequirementBuilder? valueDataRequirement,
+    FhirExpressionBuilder? valueExpression,
+    ParameterDefinitionBuilder? valueParameterDefinition,
+    RelatedArtifactBuilder? valueRelatedArtifact,
+    TriggerDefinitionBuilder? valueTriggerDefinition,
+    UsageContextBuilder? valueUsageContext,
+    DosageBuilder? valueDosage,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1862,7 +2015,59 @@ class FhirExtensionBuilder extends DataTypeBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       url: url ?? this.url,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueBase64Binary ??
+          valueBoolean ??
+          valueCanonical ??
+          valueCode ??
+          valueDate ??
+          valueDateTime ??
+          valueDecimal ??
+          valueId ??
+          valueInstant ??
+          valueInteger ??
+          valueMarkdown ??
+          valueOid ??
+          valuePositiveInt ??
+          valueString ??
+          valueTime ??
+          valueUnsignedInt ??
+          valueUri ??
+          valueUrl ??
+          valueUuid ??
+          valueAddress ??
+          valueAge ??
+          valueAnnotation ??
+          valueAttachment ??
+          valueCodeableConcept ??
+          valueCodeableReference ??
+          valueCoding ??
+          valueContactPoint ??
+          valueCount ??
+          valueDistance ??
+          valueDuration ??
+          valueHumanName ??
+          valueIdentifier ??
+          valueMoney ??
+          valuePeriod ??
+          valueQuantity ??
+          valueRange ??
+          valueRatio ??
+          valueRatioRange ??
+          valueReference ??
+          valueSampledData ??
+          valueSignature ??
+          valueTiming ??
+          valueContactDetail ??
+          valueContributor ??
+          valueDataRequirement ??
+          valueExpression ??
+          valueParameterDefinition ??
+          valueRelatedArtifact ??
+          valueTriggerDefinition ??
+          valueUsageContext ??
+          valueDosage ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

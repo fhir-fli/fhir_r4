@@ -1829,9 +1829,14 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentX,
+    ContentXCommunicationPayloadBuilder? contentX,
+    FhirStringBuilder? contentString,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     super.disallowExtensions,
-  }) : super(
+  })  : contentX =
+            contentX ?? contentString ?? contentAttachment ?? contentReference,
+        super(
           objectPath: 'Communication.payload',
         );
 
@@ -2256,6 +2261,9 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ContentXCommunicationPayloadBuilder? contentX,
+    FhirStringBuilder? contentString,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2267,7 +2275,11 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      contentX: contentX ??
+          contentString ??
+          contentAttachment ??
+          contentReference ??
+          this.contentX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

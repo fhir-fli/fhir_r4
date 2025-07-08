@@ -1262,10 +1262,13 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
     this.identifier,
     this.type,
     this.status,
-    this.dateX,
+    DateXRegulatedAuthorizationCaseBuilder? dateX,
+    PeriodBuilder? datePeriod,
+    FhirDateTimeBuilder? dateDateTime,
     this.application,
     super.disallowExtensions,
-  }) : super(
+  })  : dateX = dateX ?? datePeriod ?? dateDateTime,
+        super(
           objectPath: 'RegulatedAuthorization.case',
         );
 
@@ -1803,6 +1806,8 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
     CodeableConceptBuilder? status,
     DateXRegulatedAuthorizationCaseBuilder? dateX,
     List<RegulatedAuthorizationCaseBuilder>? application,
+    PeriodBuilder? datePeriod,
+    FhirDateTimeBuilder? dateDateTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1817,7 +1822,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
       status: status ?? this.status,
-      dateX: dateX ?? this.dateX,
+      dateX: dateX ?? datePeriod ?? dateDateTime ?? this.dateX,
       application: application ?? this.application,
     )..objectPath = newObjectPath;
     // Copy user data and annotations

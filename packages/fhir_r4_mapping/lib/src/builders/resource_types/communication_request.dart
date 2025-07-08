@@ -40,7 +40,9 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceX,
+    OccurrenceXCommunicationRequestBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
     this.authoredOn,
     this.requester,
     this.recipient,
@@ -48,7 +50,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     this.reasonCode,
     this.reasonReference,
     this.note,
-  }) : super(
+  })  : occurrenceX = occurrenceX ?? occurrenceDateTime ?? occurrencePeriod,
+        super(
           objectPath: 'CommunicationRequest',
           resourceType: R4ResourceType.CommunicationRequest,
         );
@@ -1500,6 +1503,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     List<CodeableConceptBuilder>? reasonCode,
     List<ReferenceBuilder>? reasonReference,
     List<AnnotationBuilder>? note,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1529,7 +1534,10 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
       about: about ?? this.about,
       encounter: encounter ?? this.encounter,
       payload: payload ?? this.payload,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          this.occurrenceX,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       recipient: recipient ?? this.recipient,
@@ -1758,9 +1766,14 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentX,
+    ContentXCommunicationRequestPayloadBuilder? contentX,
+    FhirStringBuilder? contentString,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     super.disallowExtensions,
-  }) : super(
+  })  : contentX =
+            contentX ?? contentString ?? contentAttachment ?? contentReference,
+        super(
           objectPath: 'CommunicationRequest.payload',
         );
 
@@ -2187,6 +2200,9 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     ContentXCommunicationRequestPayloadBuilder? contentX,
+    FhirStringBuilder? contentString,
+    AttachmentBuilder? contentAttachment,
+    ReferenceBuilder? contentReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2198,7 +2214,11 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentX: contentX ?? this.contentX,
+      contentX: contentX ??
+          contentString ??
+          contentAttachment ??
+          contentReference ??
+          this.contentX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

@@ -31,11 +31,18 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceX,
+    OccurrenceXSupplyDeliveryBuilder? occurrenceX,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     this.supplier,
     this.destination,
     this.receiver,
-  }) : super(
+  })  : occurrenceX = occurrenceX ??
+            occurrenceDateTime ??
+            occurrencePeriod ??
+            occurrenceTiming,
+        super(
           objectPath: 'SupplyDelivery',
           resourceType: R4ResourceType.SupplyDelivery,
         );
@@ -1028,6 +1035,9 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     ReferenceBuilder? supplier,
     ReferenceBuilder? destination,
     List<ReferenceBuilder>? receiver,
+    FhirDateTimeBuilder? occurrenceDateTime,
+    PeriodBuilder? occurrencePeriod,
+    TimingBuilder? occurrenceTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1050,7 +1060,11 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
       patient: patient ?? this.patient,
       type: type ?? this.type,
       suppliedItem: suppliedItem ?? this.suppliedItem,
-      occurrenceX: occurrenceX ?? this.occurrenceX,
+      occurrenceX: occurrenceX ??
+          occurrenceDateTime ??
+          occurrencePeriod ??
+          occurrenceTiming ??
+          this.occurrenceX,
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
@@ -1209,9 +1223,12 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.itemX,
+    ItemXSupplyDeliverySuppliedItemBuilder? itemX,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     super.disallowExtensions,
-  }) : super(
+  })  : itemX = itemX ?? itemCodeableConcept ?? itemReference,
+        super(
           objectPath: 'SupplyDelivery.suppliedItem',
         );
 
@@ -1640,6 +1657,8 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     QuantityBuilder? quantity,
     ItemXSupplyDeliverySuppliedItemBuilder? itemX,
+    CodeableConceptBuilder? itemCodeableConcept,
+    ReferenceBuilder? itemReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1652,7 +1671,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      itemX: itemX ?? this.itemX,
+      itemX: itemX ?? itemCodeableConcept ?? itemReference ?? this.itemX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

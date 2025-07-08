@@ -36,7 +36,9 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     this.priority,
     this.purpose,
     this.patient,
-    this.servicedX,
+    ServicedXCoverageEligibilityRequestBuilder? servicedX,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
     this.created,
     this.enterer,
     this.provider,
@@ -45,7 +47,8 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     this.supportingInfo,
     this.insurance,
     this.item,
-  }) : super(
+  })  : servicedX = servicedX ?? servicedDate ?? servicedPeriod,
+        super(
           objectPath: 'CoverageEligibilityRequest',
           resourceType: R4ResourceType.CoverageEligibilityRequest,
         );
@@ -1177,6 +1180,8 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     List<CoverageEligibilityRequestSupportingInfoBuilder>? supportingInfo,
     List<CoverageEligibilityRequestInsuranceBuilder>? insurance,
     List<CoverageEligibilityRequestItemBuilder>? item,
+    FhirDateBuilder? servicedDate,
+    PeriodBuilder? servicedPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1197,7 +1202,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
       priority: priority ?? this.priority,
       purpose: purpose ?? this.purpose,
       patient: patient ?? this.patient,
-      servicedX: servicedX ?? this.servicedX,
+      servicedX: servicedX ?? servicedDate ?? servicedPeriod ?? this.servicedX,
       created: created ?? this.created,
       enterer: enterer ?? this.enterer,
       provider: provider ?? this.provider,
@@ -3279,9 +3284,13 @@ class CoverageEligibilityRequestDiagnosisBuilder
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.diagnosisX,
+    DiagnosisXCoverageEligibilityRequestDiagnosisBuilder? diagnosisX,
+    CodeableConceptBuilder? diagnosisCodeableConcept,
+    ReferenceBuilder? diagnosisReference,
     super.disallowExtensions,
-  }) : super(
+  })  : diagnosisX =
+            diagnosisX ?? diagnosisCodeableConcept ?? diagnosisReference,
+        super(
           objectPath: 'CoverageEligibilityRequest.item.diagnosis',
         );
 
@@ -3679,6 +3688,8 @@ class CoverageEligibilityRequestDiagnosisBuilder
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     DiagnosisXCoverageEligibilityRequestDiagnosisBuilder? diagnosisX,
+    CodeableConceptBuilder? diagnosisCodeableConcept,
+    ReferenceBuilder? diagnosisReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3690,7 +3701,10 @@ class CoverageEligibilityRequestDiagnosisBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      diagnosisX: diagnosisX ?? this.diagnosisX,
+      diagnosisX: diagnosisX ??
+          diagnosisCodeableConcept ??
+          diagnosisReference ??
+          this.diagnosisX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

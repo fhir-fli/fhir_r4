@@ -4351,9 +4351,24 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueX,
+    ValueXCodeSystemPropertyBuilder? valueX,
+    FhirCodeBuilder? valueCode,
+    CodingBuilder? valueCoding,
+    FhirStringBuilder? valueString,
+    FhirIntegerBuilder? valueInteger,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
     super.disallowExtensions,
-  }) : super(
+  })  : valueX = valueX ??
+            valueCode ??
+            valueCoding ??
+            valueString ??
+            valueInteger ??
+            valueBoolean ??
+            valueDateTime ??
+            valueDecimal,
+        super(
           objectPath: 'CodeSystem.concept.property',
         );
 
@@ -4936,6 +4951,13 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
     List<FhirExtensionBuilder>? modifierExtension,
     FhirCodeBuilder? code,
     ValueXCodeSystemPropertyBuilder? valueX,
+    FhirCodeBuilder? valueCode,
+    CodingBuilder? valueCoding,
+    FhirStringBuilder? valueString,
+    FhirIntegerBuilder? valueInteger,
+    FhirBooleanBuilder? valueBoolean,
+    FhirDateTimeBuilder? valueDateTime,
+    FhirDecimalBuilder? valueDecimal,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4948,7 +4970,15 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueX: valueX ?? this.valueX,
+      valueX: valueX ??
+          valueCode ??
+          valueCoding ??
+          valueString ??
+          valueInteger ??
+          valueBoolean ??
+          valueDateTime ??
+          valueDecimal ??
+          this.valueX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

@@ -34,7 +34,9 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     this.subtitle,
     this.status,
     this.experimental,
-    this.subjectX,
+    SubjectXResearchElementDefinitionBuilder? subjectX,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     this.date,
     this.publisher,
     this.contact,
@@ -58,7 +60,8 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     this.type,
     this.variableType,
     this.characteristic,
-  }) : super(
+  })  : subjectX = subjectX ?? subjectCodeableConcept ?? subjectReference,
+        super(
           objectPath: 'ResearchElementDefinition',
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
@@ -2164,6 +2167,8 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     ResearchElementTypeBuilder? type,
     VariableTypeBuilder? variableType,
     List<ResearchElementDefinitionCharacteristicBuilder>? characteristic,
+    CodeableConceptBuilder? subjectCodeableConcept,
+    ReferenceBuilder? subjectReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2188,7 +2193,10 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectX: subjectX ?? this.subjectX,
+      subjectX: subjectX ??
+          subjectCodeableConcept ??
+          subjectReference ??
+          this.subjectX,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -2500,20 +2508,49 @@ class ResearchElementDefinitionCharacteristicBuilder
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.definitionX,
+    DefinitionXResearchElementDefinitionCharacteristicBuilder? definitionX,
+    CodeableConceptBuilder? definitionCodeableConcept,
+    FhirCanonicalBuilder? definitionCanonical,
+    FhirExpressionBuilder? definitionExpression,
+    DataRequirementBuilder? definitionDataRequirement,
     this.usageContext,
     this.exclude,
     this.unitOfMeasure,
     this.studyEffectiveDescription,
-    this.studyEffectiveX,
+    StudyEffectiveXResearchElementDefinitionCharacteristicBuilder?
+        studyEffectiveX,
+    FhirDateTimeBuilder? studyEffectiveDateTime,
+    PeriodBuilder? studyEffectivePeriod,
+    FhirDurationBuilder? studyEffectiveDuration,
+    TimingBuilder? studyEffectiveTiming,
     this.studyEffectiveTimeFromStart,
     this.studyEffectiveGroupMeasure,
     this.participantEffectiveDescription,
-    this.participantEffectiveX,
+    ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder?
+        participantEffectiveX,
+    FhirDateTimeBuilder? participantEffectiveDateTime,
+    PeriodBuilder? participantEffectivePeriod,
+    FhirDurationBuilder? participantEffectiveDuration,
+    TimingBuilder? participantEffectiveTiming,
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
     super.disallowExtensions,
-  }) : super(
+  })  : definitionX = definitionX ??
+            definitionCodeableConcept ??
+            definitionCanonical ??
+            definitionExpression ??
+            definitionDataRequirement,
+        studyEffectiveX = studyEffectiveX ??
+            studyEffectiveDateTime ??
+            studyEffectivePeriod ??
+            studyEffectiveDuration ??
+            studyEffectiveTiming,
+        participantEffectiveX = participantEffectiveX ??
+            participantEffectiveDateTime ??
+            participantEffectivePeriod ??
+            participantEffectiveDuration ??
+            participantEffectiveTiming,
+        super(
           objectPath: 'ResearchElementDefinition.characteristic',
         );
 
@@ -3695,6 +3732,18 @@ class ResearchElementDefinitionCharacteristicBuilder
         participantEffectiveX,
     FhirDurationBuilder? participantEffectiveTimeFromStart,
     GroupMeasureBuilder? participantEffectiveGroupMeasure,
+    CodeableConceptBuilder? definitionCodeableConcept,
+    FhirCanonicalBuilder? definitionCanonical,
+    FhirExpressionBuilder? definitionExpression,
+    DataRequirementBuilder? definitionDataRequirement,
+    FhirDateTimeBuilder? studyEffectiveDateTime,
+    PeriodBuilder? studyEffectivePeriod,
+    FhirDurationBuilder? studyEffectiveDuration,
+    TimingBuilder? studyEffectiveTiming,
+    FhirDateTimeBuilder? participantEffectiveDateTime,
+    PeriodBuilder? participantEffectivePeriod,
+    FhirDurationBuilder? participantEffectiveDuration,
+    TimingBuilder? participantEffectiveTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3706,21 +3755,35 @@ class ResearchElementDefinitionCharacteristicBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      definitionX: definitionX ?? this.definitionX,
+      definitionX: definitionX ??
+          definitionCodeableConcept ??
+          definitionCanonical ??
+          definitionExpression ??
+          definitionDataRequirement ??
+          this.definitionX,
       usageContext: usageContext ?? this.usageContext,
       exclude: exclude ?? this.exclude,
       unitOfMeasure: unitOfMeasure ?? this.unitOfMeasure,
       studyEffectiveDescription:
           studyEffectiveDescription ?? this.studyEffectiveDescription,
-      studyEffectiveX: studyEffectiveX ?? this.studyEffectiveX,
+      studyEffectiveX: studyEffectiveX ??
+          studyEffectiveDateTime ??
+          studyEffectivePeriod ??
+          studyEffectiveDuration ??
+          studyEffectiveTiming ??
+          this.studyEffectiveX,
       studyEffectiveTimeFromStart:
           studyEffectiveTimeFromStart ?? this.studyEffectiveTimeFromStart,
       studyEffectiveGroupMeasure:
           studyEffectiveGroupMeasure ?? this.studyEffectiveGroupMeasure,
       participantEffectiveDescription: participantEffectiveDescription ??
           this.participantEffectiveDescription,
-      participantEffectiveX:
-          participantEffectiveX ?? this.participantEffectiveX,
+      participantEffectiveX: participantEffectiveX ??
+          participantEffectiveDateTime ??
+          participantEffectivePeriod ??
+          participantEffectiveDuration ??
+          participantEffectiveTiming ??
+          this.participantEffectiveX,
       participantEffectiveTimeFromStart: participantEffectiveTimeFromStart ??
           this.participantEffectiveTimeFromStart,
       participantEffectiveGroupMeasure: participantEffectiveGroupMeasure ??

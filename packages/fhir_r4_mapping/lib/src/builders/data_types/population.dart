@@ -14,13 +14,15 @@ class PopulationBuilder extends BackboneTypeBuilder {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.ageX,
+    AgeXPopulationBuilder? ageX,
+    RangeBuilder? ageRange,
+    CodeableConceptBuilder? ageCodeableConcept,
     this.gender,
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
     super.objectPath = 'PopulationBuilder',
-  });
+  }) : ageX = ageX ?? ageRange ?? ageCodeableConcept;
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
@@ -507,6 +509,8 @@ class PopulationBuilder extends BackboneTypeBuilder {
     CodeableConceptBuilder? gender,
     CodeableConceptBuilder? race,
     CodeableConceptBuilder? physiologicalCondition,
+    RangeBuilder? ageRange,
+    CodeableConceptBuilder? ageCodeableConcept,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -518,7 +522,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      ageX: ageX ?? this.ageX,
+      ageX: ageX ?? ageRange ?? ageCodeableConcept ?? this.ageX,
       gender: gender ?? this.gender,
       race: race ?? this.race,
       physiologicalCondition:

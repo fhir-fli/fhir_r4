@@ -1575,7 +1575,13 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     this.documentation,
     this.condition,
     this.relatedAction,
-    this.timingX,
+    TimingXRequestGroupActionBuilder? timingX,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    FhirDurationBuilder? timingDuration,
+    RangeBuilder? timingRange,
+    TimingBuilder? timingTiming,
     this.participant,
     this.type,
     this.groupingBehavior,
@@ -1586,7 +1592,14 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     this.resource,
     this.action,
     super.disallowExtensions,
-  }) : super(
+  })  : timingX = timingX ??
+            timingDateTime ??
+            timingAge ??
+            timingPeriod ??
+            timingDuration ??
+            timingRange ??
+            timingTiming,
+        super(
           objectPath: 'RequestGroup.action',
         );
 
@@ -2898,6 +2911,12 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     ActionCardinalityBehaviorBuilder? cardinalityBehavior,
     ReferenceBuilder? resource,
     List<RequestGroupActionBuilder>? action,
+    FhirDateTimeBuilder? timingDateTime,
+    AgeBuilder? timingAge,
+    PeriodBuilder? timingPeriod,
+    FhirDurationBuilder? timingDuration,
+    RangeBuilder? timingRange,
+    TimingBuilder? timingTiming,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2918,7 +2937,14 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
       documentation: documentation ?? this.documentation,
       condition: condition ?? this.condition,
       relatedAction: relatedAction ?? this.relatedAction,
-      timingX: timingX ?? this.timingX,
+      timingX: timingX ??
+          timingDateTime ??
+          timingAge ??
+          timingPeriod ??
+          timingDuration ??
+          timingRange ??
+          timingTiming ??
+          this.timingX,
       participant: participant ?? this.participant,
       type: type ?? this.type,
       groupingBehavior: groupingBehavior ?? this.groupingBehavior,
@@ -3564,9 +3590,12 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     super.modifierExtension,
     this.actionId,
     this.relationship,
-    this.offsetX,
+    OffsetXRequestGroupRelatedActionBuilder? offsetX,
+    FhirDurationBuilder? offsetDuration,
+    RangeBuilder? offsetRange,
     super.disallowExtensions,
-  }) : super(
+  })  : offsetX = offsetX ?? offsetDuration ?? offsetRange,
+        super(
           objectPath: 'RequestGroup.action.relatedAction',
         );
 
@@ -4056,6 +4085,8 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     FhirIdBuilder? actionId,
     ActionRelationshipTypeBuilder? relationship,
     OffsetXRequestGroupRelatedActionBuilder? offsetX,
+    FhirDurationBuilder? offsetDuration,
+    RangeBuilder? offsetRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4069,7 +4100,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       actionId: actionId ?? this.actionId,
       relationship: relationship ?? this.relationship,
-      offsetX: offsetX ?? this.offsetX,
+      offsetX: offsetX ?? offsetDuration ?? offsetRange ?? this.offsetX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {

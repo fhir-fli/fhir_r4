@@ -29,7 +29,9 @@ class MediaBuilder extends DomainResourceBuilder {
     this.view,
     this.subject,
     this.encounter,
-    this.createdX,
+    CreatedXMediaBuilder? createdX,
+    FhirDateTimeBuilder? createdDateTime,
+    PeriodBuilder? createdPeriod,
     this.issued,
     this.operator_,
     this.reasonCode,
@@ -42,7 +44,8 @@ class MediaBuilder extends DomainResourceBuilder {
     this.duration,
     this.content,
     this.note,
-  }) : super(
+  })  : createdX = createdX ?? createdDateTime ?? createdPeriod,
+        super(
           objectPath: 'Media',
           resourceType: R4ResourceType.Media,
         );
@@ -1473,6 +1476,8 @@ class MediaBuilder extends DomainResourceBuilder {
     FhirDecimalBuilder? duration,
     AttachmentBuilder? content,
     List<AnnotationBuilder>? note,
+    FhirDateTimeBuilder? createdDateTime,
+    PeriodBuilder? createdPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1497,7 +1502,7 @@ class MediaBuilder extends DomainResourceBuilder {
       view: view ?? this.view,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      createdX: createdX ?? this.createdX,
+      createdX: createdX ?? createdDateTime ?? createdPeriod ?? this.createdX,
       issued: issued ?? this.issued,
       operator_: operator_ ?? this.operator_,
       reasonCode: reasonCode ?? this.reasonCode,

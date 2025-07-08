@@ -1172,9 +1172,12 @@ class BiologicallyDerivedProductCollectionBuilder
     super.modifierExtension,
     this.collector,
     this.source,
-    this.collectedX,
+    CollectedXBiologicallyDerivedProductCollectionBuilder? collectedX,
+    FhirDateTimeBuilder? collectedDateTime,
+    PeriodBuilder? collectedPeriod,
     super.disallowExtensions,
-  }) : super(
+  })  : collectedX = collectedX ?? collectedDateTime ?? collectedPeriod,
+        super(
           objectPath: 'BiologicallyDerivedProduct.collection',
         );
 
@@ -1635,6 +1638,8 @@ class BiologicallyDerivedProductCollectionBuilder
     ReferenceBuilder? collector,
     ReferenceBuilder? source,
     CollectedXBiologicallyDerivedProductCollectionBuilder? collectedX,
+    FhirDateTimeBuilder? collectedDateTime,
+    PeriodBuilder? collectedPeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1648,7 +1653,8 @@ class BiologicallyDerivedProductCollectionBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       collector: collector ?? this.collector,
       source: source ?? this.source,
-      collectedX: collectedX ?? this.collectedX,
+      collectedX:
+          collectedX ?? collectedDateTime ?? collectedPeriod ?? this.collectedX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -1731,9 +1737,12 @@ class BiologicallyDerivedProductProcessingBuilder
     this.description,
     this.procedure,
     this.additive,
-    this.timeX,
+    TimeXBiologicallyDerivedProductProcessingBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     super.disallowExtensions,
-  }) : super(
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super(
           objectPath: 'BiologicallyDerivedProduct.processing',
         );
 
@@ -2236,6 +2245,8 @@ class BiologicallyDerivedProductProcessingBuilder
     CodeableConceptBuilder? procedure,
     ReferenceBuilder? additive,
     TimeXBiologicallyDerivedProductProcessingBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2250,7 +2261,7 @@ class BiologicallyDerivedProductProcessingBuilder
       description: description ?? this.description,
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
-      timeX: timeX ?? this.timeX,
+      timeX: timeX ?? timeDateTime ?? timePeriod ?? this.timeX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
@@ -2337,9 +2348,12 @@ class BiologicallyDerivedProductManipulationBuilder
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.timeX,
+    TimeXBiologicallyDerivedProductManipulationBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     super.disallowExtensions,
-  }) : super(
+  })  : timeX = timeX ?? timeDateTime ?? timePeriod,
+        super(
           objectPath: 'BiologicallyDerivedProduct.manipulation',
         );
 
@@ -2778,6 +2792,8 @@ class BiologicallyDerivedProductManipulationBuilder
     List<FhirExtensionBuilder>? modifierExtension,
     FhirStringBuilder? description,
     TimeXBiologicallyDerivedProductManipulationBuilder? timeX,
+    FhirDateTimeBuilder? timeDateTime,
+    PeriodBuilder? timePeriod,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2790,7 +2806,7 @@ class BiologicallyDerivedProductManipulationBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      timeX: timeX ?? this.timeX,
+      timeX: timeX ?? timeDateTime ?? timePeriod ?? this.timeX,
     )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
