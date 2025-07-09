@@ -343,10 +343,7 @@ class PackagedProductDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -905,10 +902,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1316,10 +1310,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1776,10 +1767,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2140,10 +2128,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2473,10 +2458,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -316,10 +316,7 @@ class VerificationResult extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -934,10 +931,7 @@ class VerificationResultPrimarySource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1379,10 +1373,7 @@ class VerificationResultAttestation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1784,10 +1775,7 @@ class VerificationResultValidator extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -212,10 +212,7 @@ class Bundle extends Resource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -604,10 +601,7 @@ class BundleLink extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -960,10 +954,7 @@ class BundleEntry extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1326,10 +1317,7 @@ class BundleSearch extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1681,10 +1669,7 @@ class BundleRequest extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2079,10 +2064,7 @@ class BundleResponse extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

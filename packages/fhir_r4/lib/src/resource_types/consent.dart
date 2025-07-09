@@ -333,10 +333,7 @@ class Consent extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -887,10 +884,7 @@ class ConsentPolicy extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1203,10 +1197,7 @@ class ConsentVerification extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1634,10 +1625,7 @@ class ConsentProvision extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2076,10 +2064,7 @@ class ConsentActor extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2378,10 +2363,7 @@ class ConsentData extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          final hasAnyValues = tempList.any((v) => v != null);
-          if (hasAnyValues) {
-            json[key] = tempList;
-          }
+          json[key] = tempList;
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -3,7 +3,6 @@
 ## [0.4.4]
 
 * Added ability to define type of Polymorphics for most fields (but not for required ones)
-* Fixed a toJson bug that made null lists appear for PrimitiveLists with only Extensions
 
 ## [0.4.3]
 
