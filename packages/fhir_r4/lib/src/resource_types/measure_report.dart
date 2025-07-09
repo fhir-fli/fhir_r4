@@ -45,7 +45,7 @@ class MeasureReport extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class MeasureReport extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,7 +118,7 @@ class MeasureReport extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+      )!,
       reporter: JsonParser.parseObject<Reference>(
         json,
         'reporter',
@@ -293,7 +293,10 @@ class MeasureReport extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -678,7 +681,7 @@ class MeasureReportGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -826,7 +829,10 @@ class MeasureReportGroup extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1037,7 +1043,7 @@ class MeasureReportPopulation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1061,7 +1067,7 @@ class MeasureReportPopulation extends BackboneElement {
         json,
         'count',
         FhirInteger.fromJson,
-      ),
+      )!,
       subjectResults: JsonParser.parseObject<Reference>(
         json,
         'subjectResults',
@@ -1168,7 +1174,10 @@ class MeasureReportPopulation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1363,7 +1372,7 @@ class MeasureReportStratifier extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1490,7 +1499,10 @@ class MeasureReportStratifier extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1673,7 +1685,7 @@ class MeasureReportStratum extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1821,7 +1833,10 @@ class MeasureReportStratum extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2030,7 +2045,7 @@ class MeasureReportComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2151,7 +2166,10 @@ class MeasureReportComponent extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2328,7 +2346,7 @@ class MeasureReportPopulation1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2352,7 +2370,7 @@ class MeasureReportPopulation1 extends BackboneElement {
         json,
         'count',
         FhirInteger.fromJson,
-      ),
+      )!,
       subjectResults: JsonParser.parseObject<Reference>(
         json,
         'subjectResults',
@@ -2459,7 +2477,10 @@ class MeasureReportPopulation1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

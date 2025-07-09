@@ -46,7 +46,7 @@ class CatalogEntry extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class CatalogEntry extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -128,7 +128,7 @@ class CatalogEntry extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       validityPeriod: JsonParser.parseObject<Period>(
         json,
         'validityPeriod',
@@ -138,12 +138,12 @@ class CatalogEntry extends DomainResource {
         json,
         'validTo',
         FhirDateTime.fromJson,
-      ),
+      )!,
       lastUpdated: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastUpdated',
         FhirDateTime.fromJson,
-      ),
+      )!,
       additionalCharacteristic:
           (json['additionalCharacteristic'] as List<dynamic>?)
               ?.map<CodeableConcept>(
@@ -311,7 +311,10 @@ class CatalogEntry extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -728,7 +731,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -850,7 +853,10 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

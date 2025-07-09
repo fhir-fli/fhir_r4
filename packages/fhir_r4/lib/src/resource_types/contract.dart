@@ -74,7 +74,7 @@ class Contract extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -84,12 +84,12 @@ class Contract extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -127,17 +127,17 @@ class Contract extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<ContractResourceStatusCodes>(
         json,
         'status',
         ContractResourceStatusCodes.fromJson,
-      ),
+      )!,
       legalState: JsonParser.parseObject<CodeableConcept>(
         json,
         'legalState',
@@ -152,7 +152,7 @@ class Contract extends DomainResource {
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      ),
+      )!,
       contentDerivative: JsonParser.parseObject<CodeableConcept>(
         json,
         'contentDerivative',
@@ -162,7 +162,7 @@ class Contract extends DomainResource {
         json,
         'issued',
         FhirDateTime.fromJson,
-      ),
+      )!,
       applies: JsonParser.parseObject<Period>(
         json,
         'applies',
@@ -205,22 +205,22 @@ class Contract extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      ),
+      )!,
       alias: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
-      ),
+      )!,
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
@@ -603,7 +603,10 @@ class Contract extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1352,7 +1355,7 @@ class ContractContentDefinition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1386,7 +1389,7 @@ class ContractContentDefinition extends BackboneElement {
         json,
         'publicationDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       publicationStatus:
           JsonParser.parsePrimitive<ContractResourcePublicationStatusCodes>(
         json,
@@ -1397,7 +1400,7 @@ class ContractContentDefinition extends BackboneElement {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1520,7 +1523,10 @@ class ContractContentDefinition extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1769,7 +1775,7 @@ class ContractTerm extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1793,7 +1799,7 @@ class ContractTerm extends BackboneElement {
         json,
         'issued',
         FhirDateTime.fromJson,
-      ),
+      )!,
       applies: JsonParser.parseObject<Period>(
         json,
         'applies',
@@ -1820,7 +1826,7 @@ class ContractTerm extends BackboneElement {
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
       securityLabel: (json['securityLabel'] as List<dynamic>?)
           ?.map<ContractSecurityLabel>(
             (v) => ContractSecurityLabel.fromJson(
@@ -2003,7 +2009,10 @@ class ContractTerm extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2345,7 +2354,7 @@ class ContractSecurityLabel extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2364,7 +2373,7 @@ class ContractSecurityLabel extends BackboneElement {
         json,
         'number',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       classification: JsonParser.parseObject<Coding>(
         json,
         'classification',
@@ -2492,7 +2501,10 @@ class ContractSecurityLabel extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2707,7 +2719,7 @@ class ContractOffer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2769,17 +2781,17 @@ class ContractOffer extends BackboneElement {
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
       linkId: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'linkId',
         FhirString.fromJson,
-      ),
+      )!,
       securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
         json,
         'securityLabelNumber',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2913,7 +2925,10 @@ class ContractOffer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3212,7 +3227,7 @@ class ContractParty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3335,7 +3350,10 @@ class ContractParty extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3509,7 +3527,7 @@ class ContractAnswer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3672,7 +3690,10 @@ class ContractAnswer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3899,7 +3920,7 @@ class ContractAsset extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3956,7 +3977,7 @@ class ContractAsset extends BackboneElement {
         json,
         'condition',
         FhirString.fromJson,
-      ),
+      )!,
       periodType: (json['periodType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -3982,12 +4003,12 @@ class ContractAsset extends BackboneElement {
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
       linkId: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'linkId',
         FhirString.fromJson,
-      ),
+      )!,
       answer: (json['answer'] as List<dynamic>?)
           ?.map<ContractAnswer>(
             (v) => ContractAnswer.fromJson(
@@ -3999,7 +4020,7 @@ class ContractAsset extends BackboneElement {
         json,
         'securityLabelNumber',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       valuedItem: (json['valuedItem'] as List<dynamic>?)
           ?.map<ContractValuedItem>(
             (v) => ContractValuedItem.fromJson(
@@ -4161,7 +4182,10 @@ class ContractAsset extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4536,7 +4560,7 @@ class ContractContext extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4567,7 +4591,7 @@ class ContractContext extends BackboneElement {
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -4671,7 +4695,10 @@ class ContractContext extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4880,7 +4907,7 @@ class ContractValuedItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4911,7 +4938,7 @@ class ContractValuedItem extends BackboneElement {
         json,
         'effectiveTime',
         FhirDateTime.fromJson,
-      ),
+      )!,
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
@@ -4926,12 +4953,12 @@ class ContractValuedItem extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      ),
+      )!,
       points: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'points',
         FhirDecimal.fromJson,
-      ),
+      )!,
       net: JsonParser.parseObject<Money>(
         json,
         'net',
@@ -4941,12 +4968,12 @@ class ContractValuedItem extends BackboneElement {
         json,
         'payment',
         FhirString.fromJson,
-      ),
+      )!,
       paymentDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'paymentDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
@@ -4961,12 +4988,12 @@ class ContractValuedItem extends BackboneElement {
         json,
         'linkId',
         FhirString.fromJson,
-      ),
+      )!,
       securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
         json,
         'securityLabelNumber',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -5133,7 +5160,10 @@ class ContractValuedItem extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5531,7 +5561,7 @@ class ContractAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5550,7 +5580,7 @@ class ContractAction extends BackboneElement {
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -5572,7 +5602,7 @@ class ContractAction extends BackboneElement {
         json,
         'linkId',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
@@ -5587,7 +5617,7 @@ class ContractAction extends BackboneElement {
         json,
         'contextLinkId',
         FhirString.fromJson,
-      ),
+      )!,
       occurrenceX: JsonParser.parsePolymorphic<OccurrenceXContractAction>(
         json,
         {
@@ -5607,7 +5637,7 @@ class ContractAction extends BackboneElement {
         json,
         'requesterLinkId',
         FhirString.fromJson,
-      ),
+      )!,
       performerType: (json['performerType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -5629,7 +5659,7 @@ class ContractAction extends BackboneElement {
         json,
         'performerLinkId',
         FhirString.fromJson,
-      ),
+      )!,
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -5648,12 +5678,12 @@ class ContractAction extends BackboneElement {
         json,
         'reason',
         FhirString.fromJson,
-      ),
+      )!,
       reasonLinkId: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'reasonLinkId',
         FhirString.fromJson,
-      ),
+      )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -5665,7 +5695,7 @@ class ContractAction extends BackboneElement {
         json,
         'securityLabelNumber',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -5866,7 +5896,10 @@ class ContractAction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6340,7 +6373,7 @@ class ContractSubject extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6463,7 +6496,10 @@ class ContractSubject extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6644,7 +6680,7 @@ class ContractSigner extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6776,7 +6812,10 @@ class ContractSigner extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6969,7 +7008,7 @@ class ContractFriendly extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7091,7 +7130,10 @@ class ContractFriendly extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -7264,7 +7306,7 @@ class ContractLegal extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7384,7 +7426,10 @@ class ContractLegal extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -7558,7 +7603,7 @@ class ContractRule extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7679,7 +7724,10 @@ class ContractRule extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -39,7 +39,7 @@ class ImmunizationRecommendation extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -49,12 +49,12 @@ class ImmunizationRecommendation extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -218,7 +218,10 @@ class ImmunizationRecommendation extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -530,7 +533,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -588,12 +591,12 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       series: JsonParser.parsePrimitive<FhirString>(
         json,
         'series',
         FhirString.fromJson,
-      ),
+      )!,
       doseNumberX: JsonParser.parsePolymorphic<
           DoseNumberXImmunizationRecommendationRecommendation>(
         json,
@@ -783,7 +786,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1137,7 +1143,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1259,7 +1265,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -62,7 +62,7 @@ class ResearchStudy extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -72,12 +72,12 @@ class ResearchStudy extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -115,7 +115,7 @@ class ResearchStudy extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       protocol: (json['protocol'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -198,7 +198,7 @@ class ResearchStudy extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       enrollment: (json['enrollment'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -465,7 +465,10 @@ class ResearchStudy extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1051,7 +1054,7 @@ class ResearchStudyArm extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1080,7 +1083,7 @@ class ResearchStudyArm extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1183,7 +1186,10 @@ class ResearchStudyArm extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1377,7 +1383,7 @@ class ResearchStudyObjective extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1396,7 +1402,7 @@ class ResearchStudyObjective extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -1498,7 +1504,10 @@ class ResearchStudyObjective extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

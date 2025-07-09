@@ -6,7 +6,7 @@ part of 'test_script.dart';
 
 /// Using the shared fhirSentinel defined in FhirBase
 
-abstract class $TestScriptCopyWith<T> extends $DomainResourceCopyWith<T> {
+abstract class $TestScriptCopyWith<T> extends $CanonicalResourceCopyWith<T> {
   @override
   T call({
     FhirString? id,

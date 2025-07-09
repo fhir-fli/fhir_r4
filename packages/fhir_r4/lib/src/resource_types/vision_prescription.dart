@@ -41,7 +41,7 @@ class VisionPrescription extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -51,12 +51,12 @@ class VisionPrescription extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -252,7 +252,10 @@ class VisionPrescription extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -598,7 +601,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -627,17 +630,17 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'sphere',
         FhirDecimal.fromJson,
-      ),
+      )!,
       cylinder: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'cylinder',
         FhirDecimal.fromJson,
-      ),
+      )!,
       axis: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'axis',
         FhirInteger.fromJson,
-      ),
+      )!,
       prism: (json['prism'] as List<dynamic>?)
           ?.map<VisionPrescriptionPrism>(
             (v) => VisionPrescriptionPrism.fromJson(
@@ -649,22 +652,22 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'add',
         FhirDecimal.fromJson,
-      ),
+      )!,
       power: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'power',
         FhirDecimal.fromJson,
-      ),
+      )!,
       backCurve: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'backCurve',
         FhirDecimal.fromJson,
-      ),
+      )!,
       diameter: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'diameter',
         FhirDecimal.fromJson,
-      ),
+      )!,
       duration: JsonParser.parseObject<Quantity>(
         json,
         'duration',
@@ -674,12 +677,12 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         json,
         'color',
         FhirString.fromJson,
-      ),
+      )!,
       brand: JsonParser.parsePrimitive<FhirString>(
         json,
         'brand',
         FhirString.fromJson,
-      ),
+      )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -833,7 +836,10 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1190,7 +1196,7 @@ class VisionPrescriptionPrism extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1311,7 +1317,10 @@ class VisionPrescriptionPrism extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

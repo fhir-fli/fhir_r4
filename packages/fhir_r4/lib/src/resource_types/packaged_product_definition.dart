@@ -46,7 +46,7 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,7 +99,7 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -121,7 +121,7 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'statusDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       containedItemQuantity: (json['containedItemQuantity'] as List<dynamic>?)
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
@@ -133,7 +133,7 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       legalStatusOfSupply: (json['legalStatusOfSupply'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionLegalStatusOfSupply>(
             (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
@@ -159,7 +159,7 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'copackagedIndicator',
         FhirBoolean.fromJson,
-      ),
+      )!,
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -343,7 +343,10 @@ class PackagedProductDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -779,7 +782,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -902,7 +905,10 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1094,7 +1100,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1125,7 +1131,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         json,
         'quantity',
         FhirInteger.fromJson,
-      ),
+      )!,
       material: (json['material'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -1310,7 +1316,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1614,7 +1623,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1767,7 +1776,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1986,7 +1998,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2128,7 +2140,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2330,7 +2345,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2458,7 +2473,10 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

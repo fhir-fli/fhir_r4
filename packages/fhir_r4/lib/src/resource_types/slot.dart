@@ -44,7 +44,7 @@ class Slot extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -54,12 +54,12 @@ class Slot extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -143,12 +143,12 @@ class Slot extends DomainResource {
         json,
         'overbooked',
         FhirBoolean.fromJson,
-      ),
+      )!,
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -290,7 +290,10 @@ class Slot extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

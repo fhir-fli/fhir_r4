@@ -45,7 +45,7 @@ class TestReport extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class TestReport extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -96,7 +96,7 @@ class TestReport extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<TestReportStatus>(
         json,
         'status',
@@ -116,17 +116,17 @@ class TestReport extends DomainResource {
         json,
         'score',
         FhirDecimal.fromJson,
-      ),
+      )!,
       tester: JsonParser.parsePrimitive<FhirString>(
         json,
         'tester',
         FhirString.fromJson,
-      ),
+      )!,
       issued: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'issued',
         FhirDateTime.fromJson,
-      ),
+      )!,
       participant: (json['participant'] as List<dynamic>?)
           ?.map<TestReportParticipant>(
             (v) => TestReportParticipant.fromJson(
@@ -294,7 +294,10 @@ class TestReport extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -695,7 +698,7 @@ class TestReportParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -724,7 +727,7 @@ class TestReportParticipant extends BackboneElement {
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -825,7 +828,10 @@ class TestReportParticipant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1015,7 +1021,7 @@ class TestReportSetup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1129,7 +1135,10 @@ class TestReportSetup extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1291,7 +1300,7 @@ class TestReportAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1412,7 +1421,10 @@ class TestReportAction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1592,7 +1604,7 @@ class TestReportOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1616,12 +1628,12 @@ class TestReportOperation extends BackboneElement {
         json,
         'message',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       detail: JsonParser.parsePrimitive<FhirUri>(
         json,
         'detail',
         FhirUri.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1722,7 +1734,10 @@ class TestReportOperation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1915,7 +1930,7 @@ class TestReportAssert extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1939,12 +1954,12 @@ class TestReportAssert extends BackboneElement {
         json,
         'message',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       detail: JsonParser.parsePrimitive<FhirString>(
         json,
         'detail',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2045,7 +2060,10 @@ class TestReportAssert extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2238,7 +2256,7 @@ class TestReportTest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2257,12 +2275,12 @@ class TestReportTest extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       action: (json['action'] as List<dynamic>)
           .map<TestReportAction>(
             (v) => TestReportAction.fromJson(
@@ -2372,7 +2390,10 @@ class TestReportTest extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2564,7 +2585,7 @@ class TestReportAction1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2685,7 +2706,10 @@ class TestReportAction1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2864,7 +2888,7 @@ class TestReportTeardown extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2978,7 +3002,10 @@ class TestReportTeardown extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3139,7 +3166,7 @@ class TestReportAction2 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3251,7 +3278,10 @@ class TestReportAction2 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

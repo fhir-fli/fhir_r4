@@ -52,7 +52,7 @@ class SubstanceDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -62,12 +62,12 @@ class SubstanceDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -105,7 +105,7 @@ class SubstanceDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
@@ -134,7 +134,7 @@ class SubstanceDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       informationSource: (json['informationSource'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -388,7 +388,10 @@ class SubstanceDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -907,7 +910,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -936,7 +939,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       stereochemistry: JsonParser.parseObject<CodeableConcept>(
         json,
         'stereochemistry',
@@ -951,7 +954,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         json,
         'molecularFormula',
         FhirString.fromJson,
-      ),
+      )!,
       amountX: JsonParser.parsePolymorphic<AmountXSubstanceDefinitionMoiety>(
         json,
         {
@@ -1094,7 +1097,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1386,7 +1392,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1527,7 +1533,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1731,7 +1740,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1865,7 +1874,10 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2065,7 +2077,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2094,12 +2106,12 @@ class SubstanceDefinitionStructure extends BackboneElement {
         json,
         'molecularFormula',
         FhirString.fromJson,
-      ),
+      )!,
       molecularFormulaByMoiety: JsonParser.parsePrimitive<FhirString>(
         json,
         'molecularFormulaByMoiety',
         FhirString.fromJson,
-      ),
+      )!,
       molecularWeight:
           JsonParser.parseObject<SubstanceDefinitionMolecularWeight>(
         json,
@@ -2251,7 +2263,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2523,7 +2538,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2547,7 +2562,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         json,
         'representation',
         FhirString.fromJson,
-      ),
+      )!,
       format: JsonParser.parseObject<CodeableConcept>(
         json,
         'format',
@@ -2667,7 +2682,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2880,7 +2898,7 @@ class SubstanceDefinitionCode extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2909,7 +2927,7 @@ class SubstanceDefinitionCode extends BackboneElement {
         json,
         'statusDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -3033,7 +3051,10 @@ class SubstanceDefinitionCode extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3266,7 +3287,7 @@ class SubstanceDefinitionName extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3300,7 +3321,7 @@ class SubstanceDefinitionName extends BackboneElement {
         json,
         'preferred',
         FhirBoolean.fromJson,
-      ),
+      )!,
       language: (json['language'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -3484,7 +3505,10 @@ class SubstanceDefinitionName extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3797,7 +3821,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3826,7 +3850,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -3928,7 +3952,10 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4138,7 +4165,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4170,7 +4197,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         json,
         'isDefining',
         FhirBoolean.fromJson,
-      ),
+      )!,
       amountX:
           JsonParser.parsePolymorphic<AmountXSubstanceDefinitionRelationship>(
         json,
@@ -4338,7 +4365,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4622,7 +4652,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4775,7 +4805,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

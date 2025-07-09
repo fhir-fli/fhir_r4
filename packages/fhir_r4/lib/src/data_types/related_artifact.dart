@@ -43,7 +43,7 @@ class RelatedArtifact extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -60,22 +60,22 @@ class RelatedArtifact extends DataType
         json,
         'label',
         FhirString.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       citation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'citation',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
-      ),
+      )!,
       document: JsonParser.parseObject<Attachment>(
         json,
         'document',
@@ -85,7 +85,7 @@ class RelatedArtifact extends DataType
         json,
         'resource',
         FhirCanonical.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -208,7 +208,10 @@ class RelatedArtifact extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

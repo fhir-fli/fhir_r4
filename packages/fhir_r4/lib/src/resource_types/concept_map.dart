@@ -58,7 +58,7 @@ class ConceptMap extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -68,12 +68,12 @@ class ConceptMap extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -114,27 +114,27 @@ class ConceptMap extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -144,7 +144,7 @@ class ConceptMap extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -175,12 +175,12 @@ class ConceptMap extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       sourceX: JsonParser.parsePolymorphic<SourceXConceptMap>(
         json,
         {
@@ -345,7 +345,10 @@ class ConceptMap extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -868,7 +871,7 @@ class ConceptMapGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -887,22 +890,22 @@ class ConceptMapGroup extends BackboneElement {
         json,
         'source',
         FhirUri.fromJson,
-      ),
+      )!,
       sourceVersion: JsonParser.parsePrimitive<FhirString>(
         json,
         'sourceVersion',
         FhirString.fromJson,
-      ),
+      )!,
       target: JsonParser.parsePrimitive<FhirUri>(
         json,
         'target',
         FhirUri.fromJson,
-      ),
+      )!,
       targetVersion: JsonParser.parsePrimitive<FhirString>(
         json,
         'targetVersion',
         FhirString.fromJson,
-      ),
+      )!,
       element: (json['element'] as List<dynamic>)
           .map<ConceptMapElement>(
             (v) => ConceptMapElement.fromJson(
@@ -1034,7 +1037,10 @@ class ConceptMapGroup extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1273,7 +1279,7 @@ class ConceptMapElement extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1292,12 +1298,12 @@ class ConceptMapElement extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       target: (json['target'] as List<dynamic>?)
           ?.map<ConceptMapTarget>(
             (v) => ConceptMapTarget.fromJson(
@@ -1406,7 +1412,10 @@ class ConceptMapElement extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1604,7 +1613,7 @@ class ConceptMapTarget extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1623,12 +1632,12 @@ class ConceptMapTarget extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       equivalence: JsonParser.parsePrimitive<ConceptMapEquivalence>(
         json,
         'equivalence',
@@ -1638,7 +1647,7 @@ class ConceptMapTarget extends BackboneElement {
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
       dependsOn: (json['dependsOn'] as List<dynamic>?)
           ?.map<ConceptMapDependsOn>(
             (v) => ConceptMapDependsOn.fromJson(
@@ -1775,7 +1784,10 @@ class ConceptMapTarget extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2016,7 +2028,7 @@ class ConceptMapDependsOn extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2040,7 +2052,7 @@ class ConceptMapDependsOn extends BackboneElement {
         json,
         'system',
         FhirCanonical.fromJson,
-      ),
+      )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
@@ -2050,7 +2062,7 @@ class ConceptMapDependsOn extends BackboneElement {
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2161,7 +2173,10 @@ class ConceptMapDependsOn extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2370,7 +2385,7 @@ class ConceptMapUnmapped extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2394,17 +2409,17 @@ class ConceptMapUnmapped extends BackboneElement {
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       url: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'url',
         FhirCanonical.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2518,7 +2533,10 @@ class ConceptMapUnmapped extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -35,7 +35,7 @@ class Bundle extends Resource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -45,12 +45,12 @@ class Bundle extends Resource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
@@ -65,12 +65,12 @@ class Bundle extends Resource {
         json,
         'timestamp',
         FhirInstant.fromJson,
-      ),
+      )!,
       total: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'total',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       link: (json['link'] as List<dynamic>?)
           ?.map<BundleLink>(
             (v) => BundleLink.fromJson(
@@ -212,7 +212,10 @@ class Bundle extends Resource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -479,7 +482,7 @@ class BundleLink extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -601,7 +604,10 @@ class BundleLink extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -781,7 +787,7 @@ class BundleEntry extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -807,7 +813,7 @@ class BundleEntry extends BackboneElement {
         json,
         'fullUrl',
         FhirUri.fromJson,
-      ),
+      )!,
       resource: JsonParser.parseObject<Resource>(
         json,
         'resource',
@@ -954,7 +960,10 @@ class BundleEntry extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1194,7 +1203,7 @@ class BundleSearch extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1213,12 +1222,12 @@ class BundleSearch extends BackboneElement {
         json,
         'mode',
         SearchEntryMode.fromJson,
-      ),
+      )!,
       score: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'score',
         FhirDecimal.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1317,7 +1326,10 @@ class BundleSearch extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1502,7 +1514,7 @@ class BundleRequest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1531,22 +1543,22 @@ class BundleRequest extends BackboneElement {
         json,
         'ifNoneMatch',
         FhirString.fromJson,
-      ),
+      )!,
       ifModifiedSince: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'ifModifiedSince',
         FhirInstant.fromJson,
-      ),
+      )!,
       ifMatch: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifMatch',
         FhirString.fromJson,
-      ),
+      )!,
       ifNoneExist: JsonParser.parsePrimitive<FhirString>(
         json,
         'ifNoneExist',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1669,7 +1681,10 @@ class BundleRequest extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1909,7 +1924,7 @@ class BundleResponse extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1933,17 +1948,17 @@ class BundleResponse extends BackboneElement {
         json,
         'location',
         FhirUri.fromJson,
-      ),
+      )!,
       etag: JsonParser.parsePrimitive<FhirString>(
         json,
         'etag',
         FhirString.fromJson,
-      ),
+      )!,
       lastModified: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'lastModified',
         FhirInstant.fromJson,
-      ),
+      )!,
       outcome: JsonParser.parseObject<Resource>(
         json,
         'outcome',
@@ -2064,7 +2079,10 @@ class BundleResponse extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

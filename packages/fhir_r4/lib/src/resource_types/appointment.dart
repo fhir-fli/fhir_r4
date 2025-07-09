@@ -56,7 +56,7 @@ class Appointment extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -66,12 +66,12 @@ class Appointment extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -159,12 +159,12 @@ class Appointment extends DomainResource {
         json,
         'priority',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       supportingInformation: (json['supportingInformation'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -176,17 +176,17 @@ class Appointment extends DomainResource {
         json,
         'start',
         FhirInstant.fromJson,
-      ),
+      )!,
       end: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'end',
         FhirInstant.fromJson,
-      ),
+      )!,
       minutesDuration: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'minutesDuration',
         FhirPositiveInt.fromJson,
-      ),
+      )!,
       slot: (json['slot'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -198,17 +198,17 @@ class Appointment extends DomainResource {
         json,
         'created',
         FhirDateTime.fromJson,
-      ),
+      )!,
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
       patientInstruction: JsonParser.parsePrimitive<FhirString>(
         json,
         'patientInstruction',
         FhirString.fromJson,
-      ),
+      )!,
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -446,7 +446,10 @@ class Appointment extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1000,7 +1003,7 @@ class AppointmentParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1031,7 +1034,7 @@ class AppointmentParticipant extends BackboneElement {
         json,
         'required',
         ParticipantRequired.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<ParticipationStatus>(
         json,
         'status',
@@ -1153,7 +1156,10 @@ class AppointmentParticipant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

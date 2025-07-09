@@ -62,7 +62,7 @@ class ClinicalImpression extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -72,12 +72,12 @@ class ClinicalImpression extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -130,7 +130,7 @@ class ClinicalImpression extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
@@ -152,7 +152,7 @@ class ClinicalImpression extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+      )!,
       assessor: JsonParser.parseObject<Reference>(
         json,
         'assessor',
@@ -181,12 +181,12 @@ class ClinicalImpression extends DomainResource {
         json,
         'protocol',
         FhirUri.fromJson,
-      ),
+      )!,
       summary: JsonParser.parsePrimitive<FhirString>(
         json,
         'summary',
         FhirString.fromJson,
-      ),
+      )!,
       finding: (json['finding'] as List<dynamic>?)
           ?.map<ClinicalImpressionFinding>(
             (v) => ClinicalImpressionFinding.fromJson(
@@ -413,7 +413,10 @@ class ClinicalImpression extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -950,7 +953,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1076,7 +1079,10 @@ class ClinicalImpressionInvestigation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1256,7 +1262,7 @@ class ClinicalImpressionFinding extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1285,7 +1291,7 @@ class ClinicalImpressionFinding extends BackboneElement {
         json,
         'basis',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1388,7 +1394,10 @@ class ClinicalImpressionFinding extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

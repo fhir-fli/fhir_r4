@@ -35,6 +35,11 @@ abstract class $EvidenceReportCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<ContactDetail>? endorser,
     List<EvidenceReportRelatesTo>? relatesTo,
     List<EvidenceReportSection>? section,
+    FhirDateTime? date,
+    FhirMarkdown? description,
+    FhirBoolean? experimental,
+    List<CodeableConcept>? jurisdiction,
+    FhirString? version,
     bool? disallowExtensions,
   });
 }
@@ -73,6 +78,11 @@ class _$EvidenceReportCopyWithImpl<T> implements $EvidenceReportCopyWith<T> {
     Object? endorser = fhirSentinel,
     Object? relatesTo = fhirSentinel,
     Object? section = fhirSentinel,
+    Object? date = fhirSentinel,
+    Object? description = fhirSentinel,
+    Object? experimental = fhirSentinel,
+    Object? jurisdiction = fhirSentinel,
+    Object? version = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
   }) {
     return _then(

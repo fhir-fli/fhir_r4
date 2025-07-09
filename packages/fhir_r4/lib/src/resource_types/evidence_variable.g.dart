@@ -41,6 +41,7 @@ abstract class $EvidenceVariableCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<EvidenceVariableCharacteristic>? characteristic,
     EvidenceVariableHandling? handling,
     List<EvidenceVariableCategory>? category,
+    List<CodeableConcept>? jurisdiction,
     bool? disallowExtensions,
   });
 }
@@ -86,6 +87,7 @@ class _$EvidenceVariableCopyWithImpl<T>
     Object? characteristic = fhirSentinel,
     Object? handling = fhirSentinel,
     Object? category = fhirSentinel,
+    Object? jurisdiction = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
   }) {
     return _then(

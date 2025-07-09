@@ -33,7 +33,7 @@ class Binary extends Resource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -43,12 +43,12 @@ class Binary extends Resource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
@@ -63,7 +63,7 @@ class Binary extends Resource {
         json,
         'data',
         FhirBase64Binary.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -175,7 +175,10 @@ class Binary extends Resource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

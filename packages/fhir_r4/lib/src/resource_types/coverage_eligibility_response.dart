@@ -51,7 +51,7 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -61,12 +61,12 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -147,7 +147,7 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'disposition',
         FhirString.fromJson,
-      ),
+      )!,
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
@@ -164,7 +164,7 @@ class CoverageEligibilityResponse extends DomainResource {
         json,
         'preAuthRef',
         FhirString.fromJson,
-      ),
+      )!,
       form: JsonParser.parseObject<CodeableConcept>(
         json,
         'form',
@@ -340,7 +340,10 @@ class CoverageEligibilityResponse extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -792,7 +795,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -816,7 +819,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
         json,
         'inforce',
         FhirBoolean.fromJson,
-      ),
+      )!,
       benefitPeriod: JsonParser.parseObject<Period>(
         json,
         'benefitPeriod',
@@ -939,7 +942,10 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1161,7 +1167,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1202,17 +1208,17 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'excluded',
         FhirBoolean.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       network: JsonParser.parseObject<CodeableConcept>(
         json,
         'network',
@@ -1239,7 +1245,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'authorizationRequired',
         FhirBoolean.fromJson,
-      ),
+      )!,
       authorizationSupporting:
           (json['authorizationSupporting'] as List<dynamic>?)
               ?.map<CodeableConcept>(
@@ -1252,7 +1258,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         json,
         'authorizationUrl',
         FhirUri.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1408,7 +1414,10 @@ class CoverageEligibilityResponseItem extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1778,7 +1787,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1934,7 +1943,10 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2159,7 +2171,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2272,7 +2284,10 @@ class CoverageEligibilityResponseError extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

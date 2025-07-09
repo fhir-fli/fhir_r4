@@ -41,7 +41,7 @@ class Schedule extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -51,12 +51,12 @@ class Schedule extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -94,7 +94,7 @@ class Schedule extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      ),
+      )!,
       serviceCategory: (json['serviceCategory'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -132,7 +132,7 @@ class Schedule extends DomainResource {
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -262,7 +262,10 @@ class Schedule extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

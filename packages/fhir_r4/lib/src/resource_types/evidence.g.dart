@@ -42,6 +42,7 @@ abstract class $EvidenceCopyWith<T> extends $DomainResourceCopyWith<T> {
     CodeableConcept? studyType,
     List<EvidenceStatistic>? statistic,
     List<EvidenceCertainty>? certainty,
+    List<CodeableConcept>? jurisdiction,
     bool? disallowExtensions,
   });
 }
@@ -87,6 +88,7 @@ class _$EvidenceCopyWithImpl<T> implements $EvidenceCopyWith<T> {
     Object? studyType = fhirSentinel,
     Object? statistic = fhirSentinel,
     Object? certainty = fhirSentinel,
+    Object? jurisdiction = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
   }) {
     return _then(

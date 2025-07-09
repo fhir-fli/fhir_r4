@@ -58,7 +58,7 @@ class Media extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -68,12 +68,12 @@ class Media extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -162,7 +162,7 @@ class Media extends DomainResource {
         json,
         'issued',
         FhirInstant.fromJson,
-      ),
+      )!,
       operator_: JsonParser.parseObject<Reference>(
         json,
         'operator',
@@ -184,7 +184,7 @@ class Media extends DomainResource {
         json,
         'deviceName',
         FhirString.fromJson,
-      ),
+      )!,
       device: JsonParser.parseObject<Reference>(
         json,
         'device',
@@ -194,22 +194,22 @@ class Media extends DomainResource {
         json,
         'height',
         FhirPositiveInt.fromJson,
-      ),
+      )!,
       width: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'width',
         FhirPositiveInt.fromJson,
-      ),
+      )!,
       frames: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'frames',
         FhirPositiveInt.fromJson,
-      ),
+      )!,
       duration: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'duration',
         FhirDecimal.fromJson,
-      ),
+      )!,
       content: JsonParser.parseObject<Attachment>(
         json,
         'content',
@@ -420,7 +420,10 @@ class Media extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

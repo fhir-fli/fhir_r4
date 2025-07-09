@@ -7,7 +7,7 @@ part 'test_script.g.dart';
 /// [TestScript]
 /// A structured set of tests against a FHIR server or client
 /// implementation to determine compliance against the FHIR specification.
-class TestScript extends DomainResource {
+class TestScript extends CanonicalResource {
   /// Primary constructor for
   /// [TestScript]
 
@@ -20,19 +20,19 @@ class TestScript extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
+    required super.url,
     this.identifier,
-    this.version,
+    super.version,
     required this.name,
     this.title,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.origin,
@@ -57,7 +57,7 @@ class TestScript extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -67,12 +67,12 @@ class TestScript extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -113,7 +113,7 @@ class TestScript extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -123,7 +123,7 @@ class TestScript extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -133,7 +133,7 @@ class TestScript extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -143,7 +143,7 @@ class TestScript extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -174,12 +174,12 @@ class TestScript extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       origin: (json['origin'] as List<dynamic>?)
           ?.map<TestScriptOrigin>(
             (v) => TestScriptOrigin.fromJson(
@@ -282,30 +282,11 @@ class TestScript extends DomainResource {
   @override
   String get fhirType => 'TestScript';
 
-  /// [url]
-  /// An absolute URI that is used to identify this test script when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this test script is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the test
-  /// script is stored on different servers.
-  final FhirUri url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this test script when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   final Identifier? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the test script
-  /// when it is referenced in a specification, model, design or instance.
-  /// This is an arbitrary value managed by the test script author and is not
-  /// expected to be globally unique. For example, it might be a timestamp
-  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
-  /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the test script. This name should
@@ -316,52 +297,6 @@ class TestScript extends DomainResource {
   /// [title]
   /// A short, descriptive, user-friendly title for the test script.
   final FhirString? title;
-
-  /// [status]
-  /// The status of this test script. Enables tracking the life-cycle of the
-  /// content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this test script is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the test script was published. The
-  /// date must change when the business version changes and it must change
-  /// if the status code changes. In addition, it should change when the
-  /// substantive content of the test script changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the test
-  /// script.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the test script from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate test script instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the test script is intended to be
-  /// used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this test script is needed and why it has been
@@ -459,7 +394,10 @@ class TestScript extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -688,7 +626,9 @@ class TestScript extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'url':
-        fields.add(url);
+        if (url != null) {
+          fields.add(url!);
+        }
       case 'identifier':
         if (identifier != null) {
           fields.add(identifier!);
@@ -704,7 +644,9 @@ class TestScript extends DomainResource {
           fields.add(title!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -1039,7 +981,7 @@ class TestScriptOrigin extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1161,7 +1103,10 @@ class TestScriptOrigin extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1337,7 +1282,7 @@ class TestScriptDestination extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1459,7 +1404,10 @@ class TestScriptDestination extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1635,7 +1583,7 @@ class TestScriptMetadata extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1761,7 +1709,10 @@ class TestScriptMetadata extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1938,7 +1889,7 @@ class TestScriptLink extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1962,7 +1913,7 @@ class TestScriptLink extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2060,7 +2011,10 @@ class TestScriptLink extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2243,7 +2197,7 @@ class TestScriptCapability extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2272,22 +2226,22 @@ class TestScriptCapability extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       origin: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'origin',
         FhirInteger.fromJson,
-      ),
+      )!,
       destination: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'destination',
         FhirInteger.fromJson,
-      ),
+      )!,
       link: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'link',
         FhirUri.fromJson,
-      ),
+      )!,
       capabilities: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'capabilities',
@@ -2415,7 +2369,10 @@ class TestScriptCapability extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2665,7 +2622,7 @@ class TestScriptFixture extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2802,7 +2759,10 @@ class TestScriptFixture extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2999,7 +2959,7 @@ class TestScriptVariable extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3023,37 +2983,37 @@ class TestScriptVariable extends BackboneElement {
         json,
         'defaultValue',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
-      ),
+      )!,
       headerField: JsonParser.parsePrimitive<FhirString>(
         json,
         'headerField',
         FhirString.fromJson,
-      ),
+      )!,
       hint: JsonParser.parsePrimitive<FhirString>(
         json,
         'hint',
         FhirString.fromJson,
-      ),
+      )!,
       path: JsonParser.parsePrimitive<FhirString>(
         json,
         'path',
         FhirString.fromJson,
-      ),
+      )!,
       sourceId: JsonParser.parsePrimitive<FhirId>(
         json,
         'sourceId',
         FhirId.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -3182,7 +3142,10 @@ class TestScriptVariable extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3448,7 +3411,7 @@ class TestScriptSetup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3562,7 +3525,10 @@ class TestScriptSetup extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3724,7 +3690,7 @@ class TestScriptAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3846,7 +3812,10 @@ class TestScriptAction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4040,7 +4009,7 @@ class TestScriptOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4064,32 +4033,32 @@ class TestScriptOperation extends BackboneElement {
         json,
         'resource',
         FhirCode.fromJson,
-      ),
+      )!,
       label: JsonParser.parsePrimitive<FhirString>(
         json,
         'label',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       accept: JsonParser.parsePrimitive<FhirCode>(
         json,
         'accept',
         FhirCode.fromJson,
-      ),
+      )!,
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
         FhirCode.fromJson,
-      ),
+      )!,
       destination: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'destination',
         FhirInteger.fromJson,
-      ),
+      )!,
       encodeRequestUrl: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'encodeRequestUrl',
@@ -4099,17 +4068,17 @@ class TestScriptOperation extends BackboneElement {
         json,
         'method',
         TestScriptRequestMethodCode.fromJson,
-      ),
+      )!,
       origin: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'origin',
         FhirInteger.fromJson,
-      ),
+      )!,
       params: JsonParser.parsePrimitive<FhirString>(
         json,
         'params',
         FhirString.fromJson,
-      ),
+      )!,
       requestHeader: (json['requestHeader'] as List<dynamic>?)
           ?.map<TestScriptRequestHeader>(
             (v) => TestScriptRequestHeader.fromJson(
@@ -4121,27 +4090,27 @@ class TestScriptOperation extends BackboneElement {
         json,
         'requestId',
         FhirId.fromJson,
-      ),
+      )!,
       responseId: JsonParser.parsePrimitive<FhirId>(
         json,
         'responseId',
         FhirId.fromJson,
-      ),
+      )!,
       sourceId: JsonParser.parsePrimitive<FhirId>(
         json,
         'sourceId',
         FhirId.fromJson,
-      ),
+      )!,
       targetId: JsonParser.parsePrimitive<FhirId>(
         json,
         'targetId',
         FhirId.fromJson,
-      ),
+      )!,
       url: JsonParser.parsePrimitive<FhirString>(
         json,
         'url',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -4308,7 +4277,10 @@ class TestScriptOperation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4710,7 +4682,7 @@ class TestScriptRequestHeader extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4831,7 +4803,10 @@ class TestScriptRequestHeader extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5027,7 +5002,7 @@ class TestScriptAssert extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5046,107 +5021,107 @@ class TestScriptAssert extends BackboneElement {
         json,
         'label',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       direction: JsonParser.parsePrimitive<AssertionDirectionType>(
         json,
         'direction',
         AssertionDirectionType.fromJson,
-      ),
+      )!,
       compareToSourceId: JsonParser.parsePrimitive<FhirString>(
         json,
         'compareToSourceId',
         FhirString.fromJson,
-      ),
+      )!,
       compareToSourceExpression: JsonParser.parsePrimitive<FhirString>(
         json,
         'compareToSourceExpression',
         FhirString.fromJson,
-      ),
+      )!,
       compareToSourcePath: JsonParser.parsePrimitive<FhirString>(
         json,
         'compareToSourcePath',
         FhirString.fromJson,
-      ),
+      )!,
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
         FhirCode.fromJson,
-      ),
+      )!,
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
-      ),
+      )!,
       headerField: JsonParser.parsePrimitive<FhirString>(
         json,
         'headerField',
         FhirString.fromJson,
-      ),
+      )!,
       minimumId: JsonParser.parsePrimitive<FhirString>(
         json,
         'minimumId',
         FhirString.fromJson,
-      ),
+      )!,
       navigationLinks: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'navigationLinks',
         FhirBoolean.fromJson,
-      ),
+      )!,
       operator_: JsonParser.parsePrimitive<AssertionOperatorType>(
         json,
         'operator',
         AssertionOperatorType.fromJson,
-      ),
+      )!,
       path: JsonParser.parsePrimitive<FhirString>(
         json,
         'path',
         FhirString.fromJson,
-      ),
+      )!,
       requestMethod: JsonParser.parsePrimitive<TestScriptRequestMethodCode>(
         json,
         'requestMethod',
         TestScriptRequestMethodCode.fromJson,
-      ),
+      )!,
       requestURL: JsonParser.parsePrimitive<FhirString>(
         json,
         'requestURL',
         FhirString.fromJson,
-      ),
+      )!,
       resource: JsonParser.parsePrimitive<FhirCode>(
         json,
         'resource',
         FhirCode.fromJson,
-      ),
+      )!,
       response: JsonParser.parsePrimitive<AssertionResponseTypes>(
         json,
         'response',
         AssertionResponseTypes.fromJson,
-      ),
+      )!,
       responseCode: JsonParser.parsePrimitive<FhirString>(
         json,
         'responseCode',
         FhirString.fromJson,
-      ),
+      )!,
       sourceId: JsonParser.parsePrimitive<FhirId>(
         json,
         'sourceId',
         FhirId.fromJson,
-      ),
+      )!,
       validateProfileId: JsonParser.parsePrimitive<FhirId>(
         json,
         'validateProfileId',
         FhirId.fromJson,
-      ),
+      )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
-      ),
+      )!,
       warningOnly: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'warningOnly',
@@ -5345,7 +5320,10 @@ class TestScriptAssert extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5823,7 +5801,7 @@ class TestScriptTest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5842,12 +5820,12 @@ class TestScriptTest extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       action: (json['action'] as List<dynamic>)
           .map<TestScriptAction>(
             (v) => TestScriptAction.fromJson(
@@ -5957,7 +5935,10 @@ class TestScriptTest extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6149,7 +6130,7 @@ class TestScriptAction1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6271,7 +6252,10 @@ class TestScriptAction1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6450,7 +6434,7 @@ class TestScriptTeardown extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6564,7 +6548,10 @@ class TestScriptTeardown extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6725,7 +6712,7 @@ class TestScriptAction2 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6837,7 +6824,10 @@ class TestScriptAction2 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

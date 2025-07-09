@@ -1492,9 +1492,7 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     if (fastingStatusX != null) {
       final fhirType = fastingStatusX!.fhirType;
       addField(
-        'fastingStatus${fhirType.capitalizeFirstLetter()}',
-        fastingStatusX,
-      );
+          'fastingStatus${fhirType.capitalizeFirstLetter()}', fastingStatusX);
     }
 
     return json;

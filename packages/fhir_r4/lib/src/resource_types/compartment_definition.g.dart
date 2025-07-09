@@ -7,7 +7,7 @@ part of 'compartment_definition.dart';
 /// Using the shared fhirSentinel defined in FhirBase
 
 abstract class $CompartmentDefinitionCopyWith<T>
-    extends $DomainResourceCopyWith<T> {
+    extends $CanonicalResourceCopyWith<T> {
   @override
   T call({
     FhirString? id,
@@ -32,6 +32,7 @@ abstract class $CompartmentDefinitionCopyWith<T>
     CompartmentType? code,
     FhirBoolean? search,
     List<CompartmentDefinitionResource>? resource,
+    List<CodeableConcept>? jurisdiction,
     bool? disallowExtensions,
   });
 }
@@ -67,6 +68,7 @@ class _$CompartmentDefinitionCopyWithImpl<T>
     Object? code = fhirSentinel,
     Object? search = fhirSentinel,
     Object? resource = fhirSentinel,
+    Object? jurisdiction = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
   }) {
     return _then(

@@ -74,7 +74,7 @@ class PlanDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -84,12 +84,12 @@ class PlanDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -132,22 +132,22 @@ class PlanDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -157,12 +157,12 @@ class PlanDefinition extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       subjectX: JsonParser.parsePolymorphic<SubjectXPlanDefinition>(
         json,
         {
@@ -180,7 +180,7 @@ class PlanDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -211,27 +211,27 @@ class PlanDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      ),
+      )!,
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      ),
+      )!,
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -283,7 +283,7 @@ class PlanDefinition extends CanonicalResource {
         json,
         'library',
         FhirCanonical.fromJson,
-      ),
+      )!,
       goal: (json['goal'] as List<dynamic>?)
           ?.map<PlanDefinitionGoal>(
             (v) => PlanDefinitionGoal.fromJson(
@@ -517,7 +517,10 @@ class PlanDefinition extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1232,7 +1235,7 @@ class PlanDefinitionGoal extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1411,7 +1414,10 @@ class PlanDefinitionGoal extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1669,7 +1675,7 @@ class PlanDefinitionTarget extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1820,7 +1826,10 @@ class PlanDefinitionTarget extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2082,7 +2091,7 @@ class PlanDefinitionAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2101,27 +2110,27 @@ class PlanDefinitionAction extends BackboneElement {
         json,
         'prefix',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       textEquivalent: JsonParser.parsePrimitive<FhirString>(
         json,
         'textEquivalent',
         FhirString.fromJson,
-      ),
+      )!,
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
-      ),
+      )!,
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -2147,7 +2156,7 @@ class PlanDefinitionAction extends BackboneElement {
         json,
         'goalId',
         FhirId.fromJson,
-      ),
+      )!,
       subjectX: JsonParser.parsePolymorphic<SubjectXPlanDefinitionAction>(
         json,
         {
@@ -2218,27 +2227,27 @@ class PlanDefinitionAction extends BackboneElement {
         json,
         'groupingBehavior',
         ActionGroupingBehavior.fromJson,
-      ),
+      )!,
       selectionBehavior: JsonParser.parsePrimitive<ActionSelectionBehavior>(
         json,
         'selectionBehavior',
         ActionSelectionBehavior.fromJson,
-      ),
+      )!,
       requiredBehavior: JsonParser.parsePrimitive<ActionRequiredBehavior>(
         json,
         'requiredBehavior',
         ActionRequiredBehavior.fromJson,
-      ),
+      )!,
       precheckBehavior: JsonParser.parsePrimitive<ActionPrecheckBehavior>(
         json,
         'precheckBehavior',
         ActionPrecheckBehavior.fromJson,
-      ),
+      )!,
       cardinalityBehavior: JsonParser.parsePrimitive<ActionCardinalityBehavior>(
         json,
         'cardinalityBehavior',
         ActionCardinalityBehavior.fromJson,
-      ),
+      )!,
       definitionX: JsonParser.parsePolymorphic<DefinitionXPlanDefinitionAction>(
         json,
         {
@@ -2250,7 +2259,7 @@ class PlanDefinitionAction extends BackboneElement {
         json,
         'transform',
         FhirCanonical.fromJson,
-      ),
+      )!,
       dynamicValue: (json['dynamicValue'] as List<dynamic>?)
           ?.map<PlanDefinitionDynamicValue>(
             (v) => PlanDefinitionDynamicValue.fromJson(
@@ -2530,7 +2539,10 @@ class PlanDefinitionAction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3141,7 +3153,7 @@ class PlanDefinitionCondition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3263,7 +3275,10 @@ class PlanDefinitionCondition extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3445,7 +3460,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3584,7 +3599,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3787,7 +3805,7 @@ class PlanDefinitionParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3909,7 +3927,10 @@ class PlanDefinitionParticipant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4090,7 +4111,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4109,7 +4130,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
         json,
         'path',
         FhirString.fromJson,
-      ),
+      )!,
       expression: JsonParser.parseObject<FhirExpression>(
         json,
         'expression',
@@ -4219,7 +4240,10 @@ class PlanDefinitionDynamicValue extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

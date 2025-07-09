@@ -51,7 +51,7 @@ class StructureMap extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -61,12 +61,12 @@ class StructureMap extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -97,7 +97,7 @@ class StructureMap extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -109,7 +109,7 @@ class StructureMap extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -119,17 +119,17 @@ class StructureMap extends CanonicalResource {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -139,7 +139,7 @@ class StructureMap extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -170,12 +170,12 @@ class StructureMap extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       structure: (json['structure'] as List<dynamic>?)
           ?.map<StructureMapStructure>(
             (v) => StructureMapStructure.fromJson(
@@ -187,7 +187,7 @@ class StructureMap extends CanonicalResource {
         json,
         'import',
         FhirCanonical.fromJson,
-      ),
+      )!,
       group: (json['group'] as List<dynamic>)
           .map<StructureMapGroup>(
             (v) => StructureMapGroup.fromJson(
@@ -325,7 +325,10 @@ class StructureMap extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -820,7 +823,7 @@ class StructureMapStructure extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -849,12 +852,12 @@ class StructureMapStructure extends BackboneElement {
         json,
         'alias',
         FhirString.fromJson,
-      ),
+      )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -959,7 +962,10 @@ class StructureMapStructure extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1169,7 +1175,7 @@ class StructureMapGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1193,7 +1199,7 @@ class StructureMapGroup extends BackboneElement {
         json,
         'extends',
         FhirId.fromJson,
-      ),
+      )!,
       typeMode: JsonParser.parsePrimitive<StructureMapGroupTypeMode>(
         json,
         'typeMode',
@@ -1203,7 +1209,7 @@ class StructureMapGroup extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
       input: (json['input'] as List<dynamic>)
           .map<StructureMapInput>(
             (v) => StructureMapInput.fromJson(
@@ -1333,7 +1339,10 @@ class StructureMapGroup extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1567,7 +1576,7 @@ class StructureMapInput extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1591,7 +1600,7 @@ class StructureMapInput extends BackboneElement {
         json,
         'type',
         FhirString.fromJson,
-      ),
+      )!,
       mode: JsonParser.parsePrimitive<StructureMapInputMode>(
         json,
         'mode',
@@ -1601,7 +1610,7 @@ class StructureMapInput extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1706,7 +1715,10 @@ class StructureMapInput extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1915,7 +1927,7 @@ class StructureMapRule extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1967,7 +1979,7 @@ class StructureMapRule extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2080,7 +2092,10 @@ class StructureMapRule extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2425,7 +2440,7 @@ class StructureMapSource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2449,17 +2464,17 @@ class StructureMapSource extends BackboneElement {
         json,
         'min',
         FhirInteger.fromJson,
-      ),
+      )!,
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parsePrimitive<FhirString>(
         json,
         'type',
         FhirString.fromJson,
-      ),
+      )!,
       defaultValueX:
           JsonParser.parsePolymorphic<DefaultValueXStructureMapSource>(
         json,
@@ -2520,32 +2535,32 @@ class StructureMapSource extends BackboneElement {
         json,
         'element',
         FhirString.fromJson,
-      ),
+      )!,
       listMode: JsonParser.parsePrimitive<StructureMapSourceListMode>(
         json,
         'listMode',
         StructureMapSourceListMode.fromJson,
-      ),
+      )!,
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
-      ),
+      )!,
       condition: JsonParser.parsePrimitive<FhirString>(
         json,
         'condition',
         FhirString.fromJson,
-      ),
+      )!,
       check: JsonParser.parsePrimitive<FhirString>(
         json,
         'check',
         FhirString.fromJson,
-      ),
+      )!,
       logMessage: JsonParser.parsePrimitive<FhirString>(
         json,
         'logMessage',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2849,7 +2864,10 @@ class StructureMapSource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3371,7 +3389,7 @@ class StructureMapTarget extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3390,37 +3408,37 @@ class StructureMapTarget extends BackboneElement {
         json,
         'context',
         FhirId.fromJson,
-      ),
+      )!,
       contextType: JsonParser.parsePrimitive<StructureMapContextType>(
         json,
         'contextType',
         StructureMapContextType.fromJson,
-      ),
+      )!,
       element: JsonParser.parsePrimitive<FhirString>(
         json,
         'element',
         FhirString.fromJson,
-      ),
+      )!,
       variable: JsonParser.parsePrimitive<FhirId>(
         json,
         'variable',
         FhirId.fromJson,
-      ),
+      )!,
       listMode: JsonParser.parsePrimitiveList<StructureMapTargetListMode>(
         json,
         'listMode',
         StructureMapTargetListMode.fromJson,
-      ),
+      )!,
       listRuleId: JsonParser.parsePrimitive<FhirId>(
         json,
         'listRuleId',
         FhirId.fromJson,
-      ),
+      )!,
       transform: JsonParser.parsePrimitive<StructureMapTransform>(
         json,
         'transform',
         StructureMapTransform.fromJson,
-      ),
+      )!,
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<StructureMapParameter>(
             (v) => StructureMapParameter.fromJson(
@@ -3548,7 +3566,10 @@ class StructureMapTarget extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3816,7 +3837,7 @@ class StructureMapParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3948,7 +3969,10 @@ class StructureMapParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4134,7 +4158,7 @@ class StructureMapDependent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4255,7 +4279,10 @@ class StructureMapDependent extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

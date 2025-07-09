@@ -65,7 +65,7 @@ class DeviceRequest extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -75,12 +75,12 @@ class DeviceRequest extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,12 +118,12 @@ class DeviceRequest extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      ),
+      )!,
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      ),
+      )!,
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -147,7 +147,7 @@ class DeviceRequest extends DomainResource {
         json,
         'status',
         RequestStatus.fromJson,
-      ),
+      )!,
       intent: JsonParser.parsePrimitive<RequestIntent>(
         json,
         'intent',
@@ -157,7 +157,7 @@ class DeviceRequest extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      ),
+      )!,
       codeX: JsonParser.parsePolymorphic<CodeXDeviceRequest>(
         json,
         {
@@ -194,7 +194,7 @@ class DeviceRequest extends DomainResource {
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-      ),
+      )!,
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
@@ -471,7 +471,10 @@ class DeviceRequest extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1088,7 +1091,7 @@ class DeviceRequestParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1225,7 +1228,10 @@ class DeviceRequestParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

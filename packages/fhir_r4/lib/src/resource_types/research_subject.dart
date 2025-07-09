@@ -41,7 +41,7 @@ class ResearchSubject extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -51,12 +51,12 @@ class ResearchSubject extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -114,12 +114,12 @@ class ResearchSubject extends DomainResource {
         json,
         'assignedArm',
         FhirString.fromJson,
-      ),
+      )!,
       actualArm: JsonParser.parsePrimitive<FhirString>(
         json,
         'actualArm',
         FhirString.fromJson,
-      ),
+      )!,
       consent: JsonParser.parseObject<Reference>(
         json,
         'consent',
@@ -248,7 +248,10 @@ class ResearchSubject extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

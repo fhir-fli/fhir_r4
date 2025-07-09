@@ -38,7 +38,7 @@ class SpecimenDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -48,12 +48,12 @@ class SpecimenDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class SpecimenDefinition extends DomainResource {
         json,
         'timeAspect',
         FhirString.fromJson,
-      ),
+      )!,
       collection: (json['collection'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -229,7 +229,10 @@ class SpecimenDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -551,7 +554,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -570,7 +573,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'isDerived',
         FhirBoolean.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -590,7 +593,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'requirement',
         FhirString.fromJson,
-      ),
+      )!,
       retentionTime: JsonParser.parseObject<FhirDuration>(
         json,
         'retentionTime',
@@ -734,7 +737,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1012,7 +1018,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1046,7 +1052,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       capacity: JsonParser.parseObject<Quantity>(
         json,
         'capacity',
@@ -1071,7 +1077,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'preparation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1200,7 +1206,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1482,7 +1491,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1605,7 +1614,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1783,7 +1795,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1817,7 +1829,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1926,7 +1938,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

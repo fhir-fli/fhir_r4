@@ -47,7 +47,7 @@ class VerificationResult extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class VerificationResult extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -100,7 +100,7 @@ class VerificationResult extends DomainResource {
         json,
         'targetLocation',
         FhirString.fromJson,
-      ),
+      )!,
       need: JsonParser.parseObject<CodeableConcept>(
         json,
         'need',
@@ -115,7 +115,7 @@ class VerificationResult extends DomainResource {
         json,
         'statusDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       validationType: JsonParser.parseObject<CodeableConcept>(
         json,
         'validationType',
@@ -137,12 +137,12 @@ class VerificationResult extends DomainResource {
         json,
         'lastPerformed',
         FhirDateTime.fromJson,
-      ),
+      )!,
       nextScheduled: JsonParser.parsePrimitive<FhirDate>(
         json,
         'nextScheduled',
         FhirDate.fromJson,
-      ),
+      )!,
       failureAction: JsonParser.parseObject<CodeableConcept>(
         json,
         'failureAction',
@@ -316,7 +316,10 @@ class VerificationResult extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -754,7 +757,7 @@ class VerificationResultPrimarySource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -797,7 +800,7 @@ class VerificationResultPrimarySource extends BackboneElement {
         json,
         'validationDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       canPushUpdates: JsonParser.parseObject<CodeableConcept>(
         json,
         'canPushUpdates',
@@ -931,7 +934,10 @@ class VerificationResultPrimarySource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1192,7 +1198,7 @@ class VerificationResultAttestation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1226,17 +1232,17 @@ class VerificationResultAttestation extends BackboneElement {
         json,
         'date',
         FhirDate.fromJson,
-      ),
+      )!,
       sourceIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
         json,
         'sourceIdentityCertificate',
         FhirString.fromJson,
-      ),
+      )!,
       proxyIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
         json,
         'proxyIdentityCertificate',
         FhirString.fromJson,
-      ),
+      )!,
       proxySignature: JsonParser.parseObject<Signature>(
         json,
         'proxySignature',
@@ -1373,7 +1379,10 @@ class VerificationResultAttestation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1644,7 +1653,7 @@ class VerificationResultValidator extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1668,7 +1677,7 @@ class VerificationResultValidator extends BackboneElement {
         json,
         'identityCertificate',
         FhirString.fromJson,
-      ),
+      )!,
       attestationSignature: JsonParser.parseObject<Signature>(
         json,
         'attestationSignature',
@@ -1775,7 +1784,10 @@ class VerificationResultValidator extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

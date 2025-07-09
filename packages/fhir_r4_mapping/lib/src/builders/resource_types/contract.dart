@@ -746,9 +746,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (legallyBindingX != null) {
       final fhirType = legallyBindingX!.fhirType;
       addField(
-        'legallyBinding${fhirType.capitalizeFirstLetter()}',
-        legallyBindingX,
-      );
+          'legallyBinding${fhirType.capitalizeFirstLetter()}', legallyBindingX);
     }
 
     return json;

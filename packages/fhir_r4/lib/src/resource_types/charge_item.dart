@@ -73,7 +73,7 @@ class ChargeItem extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -83,12 +83,12 @@ class ChargeItem extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -126,12 +126,12 @@ class ChargeItem extends DomainResource {
         json,
         'definitionUri',
         FhirUri.fromJson,
-      ),
+      )!,
       definitionCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'definitionCanonical',
         FhirCanonical.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<ChargeItemStatus>(
         json,
         'status',
@@ -205,7 +205,7 @@ class ChargeItem extends DomainResource {
         json,
         'factorOverride',
         FhirDecimal.fromJson,
-      ),
+      )!,
       priceOverride: JsonParser.parseObject<Money>(
         json,
         'priceOverride',
@@ -215,7 +215,7 @@ class ChargeItem extends DomainResource {
         json,
         'overrideReason',
         FhirString.fromJson,
-      ),
+      )!,
       enterer: JsonParser.parseObject<Reference>(
         json,
         'enterer',
@@ -225,7 +225,7 @@ class ChargeItem extends DomainResource {
         json,
         'enteredDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       reason: (json['reason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -487,7 +487,10 @@ class ChargeItem extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1124,7 +1127,7 @@ class ChargeItemPerformer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1247,7 +1250,10 @@ class ChargeItemPerformer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

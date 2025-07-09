@@ -59,7 +59,7 @@ class OperationDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -69,12 +69,12 @@ class OperationDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -110,7 +110,7 @@ class OperationDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -120,12 +120,12 @@ class OperationDefinition extends CanonicalResource {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       kind: JsonParser.parsePrimitive<OperationKind>(
         json,
         'kind',
@@ -135,7 +135,7 @@ class OperationDefinition extends CanonicalResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -145,7 +145,7 @@ class OperationDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -176,12 +176,12 @@ class OperationDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       affectsState: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'affectsState',
         FhirBoolean.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
@@ -191,17 +191,17 @@ class OperationDefinition extends CanonicalResource {
         json,
         'comment',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       base: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'base',
         FhirCanonical.fromJson,
-      ),
+      )!,
       resource: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'resource',
         FhirCode.fromJson,
-      ),
+      )!,
       system: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'system',
@@ -221,12 +221,12 @@ class OperationDefinition extends CanonicalResource {
         json,
         'inputProfile',
         FhirCanonical.fromJson,
-      ),
+      )!,
       outputProfile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'outputProfile',
         FhirCanonical.fromJson,
-      ),
+      )!,
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<OperationDefinitionParameter>(
             (v) => OperationDefinitionParameter.fromJson(
@@ -409,7 +409,10 @@ class OperationDefinition extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1021,7 +1024,7 @@ class OperationDefinitionParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1060,22 +1063,22 @@ class OperationDefinitionParameter extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parsePrimitive<FHIRAllTypes>(
         json,
         'type',
         FHIRAllTypes.fromJson,
-      ),
+      )!,
       targetProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'targetProfile',
         FhirCanonical.fromJson,
-      ),
+      )!,
       searchType: JsonParser.parsePrimitive<SearchParamType>(
         json,
         'searchType',
         SearchParamType.fromJson,
-      ),
+      )!,
       binding: JsonParser.parseObject<OperationDefinitionBinding>(
         json,
         'binding',
@@ -1239,7 +1242,10 @@ class OperationDefinitionParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1547,7 +1553,7 @@ class OperationDefinitionBinding extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1671,7 +1677,10 @@ class OperationDefinitionBinding extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1848,7 +1857,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1872,7 +1881,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
         json,
         'sourceId',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1972,7 +1981,10 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2152,7 +2164,7 @@ class OperationDefinitionOverload extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2171,12 +2183,12 @@ class OperationDefinitionOverload extends BackboneElement {
         json,
         'parameterName',
         FhirString.fromJson,
-      ),
+      )!,
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2273,7 +2285,10 @@ class OperationDefinitionOverload extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

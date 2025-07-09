@@ -56,7 +56,7 @@ class Composition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -66,12 +66,12 @@ class Composition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -151,7 +151,7 @@ class Composition extends DomainResource {
         json,
         'confidentiality',
         FhirCode.fromJson,
-      ),
+      )!,
       attester: (json['attester'] as List<dynamic>?)
           ?.map<CompositionAttester>(
             (v) => CompositionAttester.fromJson(
@@ -349,7 +349,10 @@ class Composition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -791,7 +794,7 @@ class CompositionAttester extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -815,7 +818,7 @@ class CompositionAttester extends BackboneElement {
         json,
         'time',
         FhirDateTime.fromJson,
-      ),
+      )!,
       party: JsonParser.parseObject<Reference>(
         json,
         'party',
@@ -921,7 +924,10 @@ class CompositionAttester extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1114,7 +1120,7 @@ class CompositionRelatesTo extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1244,7 +1250,10 @@ class CompositionRelatesTo extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1433,7 +1442,7 @@ class CompositionEvent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1575,7 +1584,10 @@ class CompositionEvent extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1777,7 +1789,7 @@ class CompositionSection extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1796,7 +1808,7 @@ class CompositionSection extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -1823,7 +1835,7 @@ class CompositionSection extends BackboneElement {
         json,
         'mode',
         ListMode.fromJson,
-      ),
+      )!,
       orderedBy: JsonParser.parseObject<CodeableConcept>(
         json,
         'orderedBy',
@@ -1997,7 +2009,10 @@ class CompositionSection extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

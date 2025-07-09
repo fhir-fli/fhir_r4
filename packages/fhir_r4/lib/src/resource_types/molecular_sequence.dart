@@ -48,7 +48,7 @@ class MolecularSequence extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -58,12 +58,12 @@ class MolecularSequence extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class MolecularSequence extends DomainResource {
         json,
         'type',
         SequenceType.fromJson,
-      ),
+      )!,
       coordinateSystem: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'coordinateSystem',
@@ -148,7 +148,7 @@ class MolecularSequence extends DomainResource {
         json,
         'observedSeq',
         FhirString.fromJson,
-      ),
+      )!,
       quality: (json['quality'] as List<dynamic>?)
           ?.map<MolecularSequenceQuality>(
             (v) => MolecularSequenceQuality.fromJson(
@@ -160,7 +160,7 @@ class MolecularSequence extends DomainResource {
         json,
         'readCoverage',
         FhirInteger.fromJson,
-      ),
+      )!,
       repository: (json['repository'] as List<dynamic>?)
           ?.map<MolecularSequenceRepository>(
             (v) => MolecularSequenceRepository.fromJson(
@@ -348,7 +348,10 @@ class MolecularSequence extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -819,7 +822,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -843,12 +846,12 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
         json,
         'genomeBuild',
         FhirString.fromJson,
-      ),
+      )!,
       orientation: JsonParser.parsePrimitive<OrientationType>(
         json,
         'orientation',
         OrientationType.fromJson,
-      ),
+      )!,
       referenceSeqId: JsonParser.parseObject<CodeableConcept>(
         json,
         'referenceSeqId',
@@ -863,22 +866,22 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
         json,
         'referenceSeqString',
         FhirString.fromJson,
-      ),
+      )!,
       strand: JsonParser.parsePrimitive<StrandType>(
         json,
         'strand',
         StrandType.fromJson,
-      ),
+      )!,
       windowStart: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'windowStart',
         FhirInteger.fromJson,
-      ),
+      )!,
       windowEnd: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'windowEnd',
         FhirInteger.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1021,7 +1024,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1314,7 +1320,7 @@ class MolecularSequenceVariant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1333,27 +1339,27 @@ class MolecularSequenceVariant extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
-      ),
+      )!,
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
-      ),
+      )!,
       observedAllele: JsonParser.parsePrimitive<FhirString>(
         json,
         'observedAllele',
         FhirString.fromJson,
-      ),
+      )!,
       referenceAllele: JsonParser.parsePrimitive<FhirString>(
         json,
         'referenceAllele',
         FhirString.fromJson,
-      ),
+      )!,
       cigar: JsonParser.parsePrimitive<FhirString>(
         json,
         'cigar',
         FhirString.fromJson,
-      ),
+      )!,
       variantPointer: JsonParser.parseObject<Reference>(
         json,
         'variantPointer',
@@ -1490,7 +1496,10 @@ class MolecularSequenceVariant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1744,7 +1753,7 @@ class MolecularSequenceQuality extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1773,12 +1782,12 @@ class MolecularSequenceQuality extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
-      ),
+      )!,
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
-      ),
+      )!,
       score: JsonParser.parseObject<Quantity>(
         json,
         'score',
@@ -1793,42 +1802,42 @@ class MolecularSequenceQuality extends BackboneElement {
         json,
         'truthTP',
         FhirDecimal.fromJson,
-      ),
+      )!,
       queryTP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'queryTP',
         FhirDecimal.fromJson,
-      ),
+      )!,
       truthFN: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'truthFN',
         FhirDecimal.fromJson,
-      ),
+      )!,
       queryFP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'queryFP',
         FhirDecimal.fromJson,
-      ),
+      )!,
       gtFP: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'gtFP',
         FhirDecimal.fromJson,
-      ),
+      )!,
       precision: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'precision',
         FhirDecimal.fromJson,
-      ),
+      )!,
       recall: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'recall',
         FhirDecimal.fromJson,
-      ),
+      )!,
       fScore: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'fScore',
         FhirDecimal.fromJson,
-      ),
+      )!,
       roc: JsonParser.parseObject<MolecularSequenceRoc>(
         json,
         'roc',
@@ -2004,7 +2013,10 @@ class MolecularSequenceQuality extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2382,7 +2394,7 @@ class MolecularSequenceRoc extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2401,37 +2413,37 @@ class MolecularSequenceRoc extends BackboneElement {
         json,
         'score',
         FhirInteger.fromJson,
-      ),
+      )!,
       numTP: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numTP',
         FhirInteger.fromJson,
-      ),
+      )!,
       numFP: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numFP',
         FhirInteger.fromJson,
-      ),
+      )!,
       numFN: JsonParser.parsePrimitiveList<FhirInteger>(
         json,
         'numFN',
         FhirInteger.fromJson,
-      ),
+      )!,
       precision: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'precision',
         FhirDecimal.fromJson,
-      ),
+      )!,
       sensitivity: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'sensitivity',
         FhirDecimal.fromJson,
-      ),
+      )!,
       fMeasure: JsonParser.parsePrimitiveList<FhirDecimal>(
         json,
         'fMeasure',
         FhirDecimal.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2555,7 +2567,10 @@ class MolecularSequenceRoc extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2814,7 +2829,7 @@ class MolecularSequenceRepository extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2838,27 +2853,27 @@ class MolecularSequenceRepository extends BackboneElement {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       datasetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'datasetId',
         FhirString.fromJson,
-      ),
+      )!,
       variantsetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'variantsetId',
         FhirString.fromJson,
-      ),
+      )!,
       readsetId: JsonParser.parsePrimitive<FhirString>(
         json,
         'readsetId',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2978,7 +2993,10 @@ class MolecularSequenceRepository extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3219,7 +3237,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3243,12 +3261,12 @@ class MolecularSequenceStructureVariant extends BackboneElement {
         json,
         'exact',
         FhirBoolean.fromJson,
-      ),
+      )!,
       length: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'length',
         FhirInteger.fromJson,
-      ),
+      )!,
       outer: JsonParser.parseObject<MolecularSequenceOuter>(
         json,
         'outer',
@@ -3368,7 +3386,10 @@ class MolecularSequenceStructureVariant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3593,7 +3614,7 @@ class MolecularSequenceOuter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3612,12 +3633,12 @@ class MolecularSequenceOuter extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
-      ),
+      )!,
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -3718,7 +3739,10 @@ class MolecularSequenceOuter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3897,7 +3921,7 @@ class MolecularSequenceInner extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3916,12 +3940,12 @@ class MolecularSequenceInner extends BackboneElement {
         json,
         'start',
         FhirInteger.fromJson,
-      ),
+      )!,
       end: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'end',
         FhirInteger.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -4022,7 +4046,10 @@ class MolecularSequenceInner extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

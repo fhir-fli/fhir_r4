@@ -50,7 +50,7 @@ class DetectedIssue extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class DetectedIssue extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -113,7 +113,7 @@ class DetectedIssue extends DomainResource {
         json,
         'severity',
         DetectedIssueSeverity.fromJson,
-      ),
+      )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
@@ -149,12 +149,12 @@ class DetectedIssue extends DomainResource {
         json,
         'detail',
         FhirString.fromJson,
-      ),
+      )!,
       reference: JsonParser.parsePrimitive<FhirUri>(
         json,
         'reference',
         FhirUri.fromJson,
-      ),
+      )!,
       mitigation: (json['mitigation'] as List<dynamic>?)
           ?.map<DetectedIssueMitigation>(
             (v) => DetectedIssueMitigation.fromJson(
@@ -315,7 +315,10 @@ class DetectedIssue extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -732,7 +735,7 @@ class DetectedIssueEvidence extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -858,7 +861,10 @@ class DetectedIssueEvidence extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1041,7 +1047,7 @@ class DetectedIssueMitigation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1065,7 +1071,7 @@ class DetectedIssueMitigation extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+      )!,
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
@@ -1173,7 +1179,10 @@ class DetectedIssueMitigation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

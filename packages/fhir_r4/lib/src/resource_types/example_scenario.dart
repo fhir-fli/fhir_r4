@@ -6,7 +6,7 @@ part 'example_scenario.g.dart';
 
 /// [ExampleScenario]
 /// Example of workflow instance.
-class ExampleScenario extends DomainResource {
+class ExampleScenario extends CanonicalResource {
   /// Primary constructor for
   /// [ExampleScenario]
 
@@ -19,17 +19,17 @@ class ExampleScenario extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.useContext,
+    super.jurisdiction,
     this.copyright,
     this.purpose,
     this.actor,
@@ -49,7 +49,7 @@ class ExampleScenario extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -59,12 +59,12 @@ class ExampleScenario extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -107,12 +107,12 @@ class ExampleScenario extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -122,7 +122,7 @@ class ExampleScenario extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -132,7 +132,7 @@ class ExampleScenario extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -158,12 +158,12 @@ class ExampleScenario extends DomainResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       purpose: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       actor: (json['actor'] as List<dynamic>?)
           ?.map<ExampleScenarioActor>(
             (v) => ExampleScenarioActor.fromJson(
@@ -189,7 +189,7 @@ class ExampleScenario extends DomainResource {
         json,
         'workflow',
         FhirCanonical.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -235,79 +235,17 @@ class ExampleScenario extends DomainResource {
   @override
   String get fhirType => 'ExampleScenario';
 
-  /// [url]
-  /// An absolute URI that is used to identify this example scenario when it
-  /// is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this example scenario is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the
-  /// example scenario is stored on different servers.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this example scenario when
   /// it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version]
-  /// The identifier that is used to identify this version of the example
-  /// scenario when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the example scenario
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the example scenario. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
-
-  /// [status]
-  /// The status of this example scenario. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this example scenario is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the example scenario was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the example scenario changes. (e.g. the
-  /// 'content logical definition').
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the example
-  /// scenario.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate example scenario instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the example scenario is intended
-  /// to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [copyright]
   /// A copyright statement relating to the example scenario and/or its
@@ -380,7 +318,10 @@ class ExampleScenario extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -590,7 +531,9 @@ class ExampleScenario extends DomainResource {
           fields.add(name!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -860,7 +803,7 @@ class ExampleScenarioActor extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -889,12 +832,12 @@ class ExampleScenarioActor extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -999,7 +942,10 @@ class ExampleScenarioActor extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1208,7 +1154,7 @@ class ExampleScenarioInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1237,12 +1183,12 @@ class ExampleScenarioInstance extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       version: (json['version'] as List<dynamic>?)
           ?.map<ExampleScenarioVersion>(
             (v) => ExampleScenarioVersion.fromJson(
@@ -1370,7 +1316,10 @@ class ExampleScenarioInstance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1605,7 +1554,7 @@ class ExampleScenarioVersion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1726,7 +1675,10 @@ class ExampleScenarioVersion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1902,7 +1854,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1926,7 +1878,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         json,
         'versionId',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2023,7 +1975,10 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2204,7 +2159,7 @@ class ExampleScenarioProcess extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2228,17 +2183,17 @@ class ExampleScenarioProcess extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       preConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'preConditions',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       postConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'postConditions',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(
@@ -2354,7 +2309,10 @@ class ExampleScenarioProcess extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2578,7 +2536,7 @@ class ExampleScenarioStep extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2604,7 +2562,7 @@ class ExampleScenarioStep extends BackboneElement {
         json,
         'pause',
         FhirBoolean.fromJson,
-      ),
+      )!,
       operation: JsonParser.parseObject<ExampleScenarioOperation>(
         json,
         'operation',
@@ -2722,7 +2680,10 @@ class ExampleScenarioStep extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2939,7 +2900,7 @@ class ExampleScenarioOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2963,37 +2924,37 @@ class ExampleScenarioOperation extends BackboneElement {
         json,
         'type',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       initiator: JsonParser.parsePrimitive<FhirString>(
         json,
         'initiator',
         FhirString.fromJson,
-      ),
+      )!,
       receiver: JsonParser.parsePrimitive<FhirString>(
         json,
         'receiver',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       initiatorActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'initiatorActive',
         FhirBoolean.fromJson,
-      ),
+      )!,
       receiverActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'receiverActive',
         FhirBoolean.fromJson,
-      ),
+      )!,
       request: JsonParser.parseObject<ExampleScenarioContainedInstance>(
         json,
         'request',
@@ -3132,7 +3093,10 @@ class ExampleScenarioOperation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3431,7 +3395,7 @@ class ExampleScenarioAlternative extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3455,7 +3419,7 @@ class ExampleScenarioAlternative extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(
@@ -3565,7 +3529,10 @@ class ExampleScenarioAlternative extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

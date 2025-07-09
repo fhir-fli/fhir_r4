@@ -50,7 +50,7 @@ class DeviceUseStatement extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class DeviceUseStatement extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -135,7 +135,7 @@ class DeviceUseStatement extends DomainResource {
         json,
         'recordedOn',
         FhirDateTime.fromJson,
-      ),
+      )!,
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
@@ -331,7 +331,10 @@ class DeviceUseStatement extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

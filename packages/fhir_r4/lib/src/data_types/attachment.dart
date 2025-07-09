@@ -63,7 +63,7 @@ class Attachment extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -75,42 +75,42 @@ class Attachment extends DataType
         json,
         'contentType',
         FhirCode.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
-      ),
+      )!,
       url: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'url',
         FhirUrl.fromJson,
-      ),
+      )!,
       size: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'size',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       hash: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'hash',
         FhirBase64Binary.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       creation: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'creation',
         FhirDateTime.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -236,7 +236,10 @@ class Attachment extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

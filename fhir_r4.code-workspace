@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../fhir_generator"
+		},
+		{
+			"path": "../fhir_r5"
+		}
+	],
+	"settings": {}
+}

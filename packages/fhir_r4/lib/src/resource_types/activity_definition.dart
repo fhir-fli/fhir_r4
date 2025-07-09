@@ -103,7 +103,7 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -113,12 +113,12 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -161,32 +161,32 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       subjectX: JsonParser.parsePolymorphic<SubjectXActivityDefinition>(
         json,
         {
@@ -204,7 +204,7 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -235,27 +235,27 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      ),
+      )!,
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      ),
+      )!,
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -307,17 +307,17 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'library',
         FhirCanonical.fromJson,
-      ),
+      )!,
       kind: JsonParser.parsePrimitive<RequestResourceType>(
         json,
         'kind',
         RequestResourceType.fromJson,
-      ),
+      )!,
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
-      ),
+      )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -327,17 +327,17 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'intent',
         RequestIntent.fromJson,
-      ),
+      )!,
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
-      ),
+      )!,
       doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
-      ),
+      )!,
       timingX: JsonParser.parsePolymorphic<TimingXActivityDefinition>(
         json,
         {
@@ -413,7 +413,7 @@ class ActivityDefinition extends CanonicalResource {
         json,
         'transform',
         FhirCanonical.fromJson,
-      ),
+      )!,
       dynamicValue: (json['dynamicValue'] as List<dynamic>?)
           ?.map<ActivityDefinitionDynamicValue>(
             (v) => ActivityDefinitionDynamicValue.fromJson(
@@ -742,7 +742,10 @@ class ActivityDefinition extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1713,7 +1716,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1835,7 +1838,10 @@ class ActivityDefinitionParticipant extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2017,7 +2023,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2146,7 +2152,10 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

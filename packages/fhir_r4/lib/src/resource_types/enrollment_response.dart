@@ -41,7 +41,7 @@ class EnrollmentResponse extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -51,12 +51,12 @@ class EnrollmentResponse extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -94,7 +94,7 @@ class EnrollmentResponse extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
-      ),
+      )!,
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
@@ -104,17 +104,17 @@ class EnrollmentResponse extends DomainResource {
         json,
         'outcome',
         RemittanceOutcome.fromJson,
-      ),
+      )!,
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
-      ),
+      )!,
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-      ),
+      )!,
       organization: JsonParser.parseObject<Reference>(
         json,
         'organization',
@@ -247,7 +247,10 @@ class EnrollmentResponse extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -47,7 +47,7 @@ class Signature extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -81,17 +81,17 @@ class Signature extends DataType
         json,
         'targetFormat',
         FhirCode.fromJson,
-      ),
+      )!,
       sigFormat: JsonParser.parsePrimitive<FhirCode>(
         json,
         'sigFormat',
         FhirCode.fromJson,
-      ),
+      )!,
       data: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'data',
         FhirBase64Binary.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -218,7 +218,10 @@ class Signature extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

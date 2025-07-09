@@ -60,7 +60,7 @@ class CodeSystem extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -70,12 +70,12 @@ class CodeSystem extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,27 +118,27 @@ class CodeSystem extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -148,7 +148,7 @@ class CodeSystem extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -179,37 +179,37 @@ class CodeSystem extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       caseSensitive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'caseSensitive',
         FhirBoolean.fromJson,
-      ),
+      )!,
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
-      ),
+      )!,
       hierarchyMeaning: JsonParser.parsePrimitive<CodeSystemHierarchyMeaning>(
         json,
         'hierarchyMeaning',
         CodeSystemHierarchyMeaning.fromJson,
-      ),
+      )!,
       compositional: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'compositional',
         FhirBoolean.fromJson,
-      ),
+      )!,
       versionNeeded: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'versionNeeded',
         FhirBoolean.fromJson,
-      ),
+      )!,
       content: JsonParser.parsePrimitive<CodeSystemContentMode>(
         json,
         'content',
@@ -219,12 +219,12 @@ class CodeSystem extends CanonicalResource {
         json,
         'supplements',
         FhirCanonical.fromJson,
-      ),
+      )!,
       count: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'count',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       filter: (json['filter'] as List<dynamic>?)
           ?.map<CodeSystemFilter>(
             (v) => CodeSystemFilter.fromJson(
@@ -418,7 +418,10 @@ class CodeSystem extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1034,7 +1037,7 @@ class CodeSystemFilter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1058,7 +1061,7 @@ class CodeSystemFilter extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       operator_: JsonParser.parsePrimitiveList<FilterOperator>(
         json,
         'operator',
@@ -1174,7 +1177,10 @@ class CodeSystemFilter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1380,7 +1386,7 @@ class CodeSystemProperty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1404,12 +1410,12 @@ class CodeSystemProperty extends BackboneElement {
         json,
         'uri',
         FhirUri.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parsePrimitive<PropertyTypeEnum>(
         json,
         'type',
@@ -1526,7 +1532,10 @@ class CodeSystemProperty extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1737,7 +1746,7 @@ class CodeSystemConcept extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1761,12 +1770,12 @@ class CodeSystemConcept extends BackboneElement {
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       definition: JsonParser.parsePrimitive<FhirString>(
         json,
         'definition',
         FhirString.fromJson,
-      ),
+      )!,
       designation: (json['designation'] as List<dynamic>?)
           ?.map<CodeSystemDesignation>(
             (v) => CodeSystemDesignation.fromJson(
@@ -1908,7 +1917,10 @@ class CodeSystemConcept extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2147,7 +2159,7 @@ class CodeSystemDesignation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2166,7 +2178,7 @@ class CodeSystemDesignation extends BackboneElement {
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       use: JsonParser.parseObject<Coding>(
         json,
         'use',
@@ -2277,7 +2289,10 @@ class CodeSystemDesignation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2469,7 +2484,7 @@ class CodeSystemProperty1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2618,7 +2633,10 @@ class CodeSystemProperty1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

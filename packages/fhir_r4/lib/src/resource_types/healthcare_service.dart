@@ -56,7 +56,7 @@ class HealthcareService extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -66,12 +66,12 @@ class HealthcareService extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -109,7 +109,7 @@ class HealthcareService extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      ),
+      )!,
       providedBy: JsonParser.parseObject<Reference>(
         json,
         'providedBy',
@@ -147,17 +147,17 @@ class HealthcareService extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
       extraDetails: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'extraDetails',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       photo: JsonParser.parseObject<Attachment>(
         json,
         'photo',
@@ -223,7 +223,7 @@ class HealthcareService extends DomainResource {
         json,
         'appointmentRequired',
         FhirBoolean.fromJson,
-      ),
+      )!,
       availableTime: (json['availableTime'] as List<dynamic>?)
           ?.map<HealthcareServiceAvailableTime>(
             (v) => HealthcareServiceAvailableTime.fromJson(
@@ -242,7 +242,7 @@ class HealthcareService extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
-      ),
+      )!,
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -458,7 +458,10 @@ class HealthcareService extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1044,7 +1047,7 @@ class HealthcareServiceEligibility extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1068,7 +1071,7 @@ class HealthcareServiceEligibility extends BackboneElement {
         json,
         'comment',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1165,7 +1168,10 @@ class HealthcareServiceEligibility extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1347,7 +1353,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1366,22 +1372,22 @@ class HealthcareServiceAvailableTime extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
-      ),
+      )!,
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
-      ),
+      )!,
       availableStartTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableStartTime',
         FhirTime.fromJson,
-      ),
+      )!,
       availableEndTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableEndTime',
         FhirTime.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1490,7 +1496,10 @@ class HealthcareServiceAvailableTime extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1701,7 +1710,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1824,7 +1833,10 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

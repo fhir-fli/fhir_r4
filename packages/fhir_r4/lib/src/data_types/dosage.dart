@@ -52,7 +52,7 @@ class Dosage extends BackboneType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -71,12 +71,12 @@ class Dosage extends BackboneType
         json,
         'sequence',
         FhirInteger.fromJson,
-      ),
+      )!,
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
       additionalInstruction: (json['additionalInstruction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -88,7 +88,7 @@ class Dosage extends BackboneType
         json,
         'patientInstruction',
         FhirString.fromJson,
-      ),
+      )!,
       timing: JsonParser.parseObject<Timing>(
         json,
         'timing',
@@ -291,7 +291,10 @@ class Dosage extends BackboneType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -652,7 +655,7 @@ class DosageDoseAndRate extends Element {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -795,7 +798,10 @@ class DosageDoseAndRate extends Element {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

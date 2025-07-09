@@ -48,7 +48,7 @@ class Coding extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -60,27 +60,27 @@ class Coding extends DataType
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       userSelected: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'userSelected',
         FhirBoolean.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -198,7 +198,10 @@ class Coding extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

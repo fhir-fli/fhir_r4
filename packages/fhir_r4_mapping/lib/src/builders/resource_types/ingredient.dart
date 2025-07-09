@@ -2196,18 +2196,14 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     if (presentationX != null) {
       final fhirType = presentationX!.fhirType;
       addField(
-        'presentation${fhirType.capitalizeFirstLetter()}',
-        presentationX,
-      );
+          'presentation${fhirType.capitalizeFirstLetter()}', presentationX);
     }
 
     addField('textPresentation', textPresentation);
     if (concentrationX != null) {
       final fhirType = concentrationX!.fhirType;
       addField(
-        'concentration${fhirType.capitalizeFirstLetter()}',
-        concentrationX,
-      );
+          'concentration${fhirType.capitalizeFirstLetter()}', concentrationX);
     }
 
     addField('textConcentration', textConcentration);

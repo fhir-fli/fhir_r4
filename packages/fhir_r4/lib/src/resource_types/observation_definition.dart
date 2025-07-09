@@ -46,7 +46,7 @@ class ObservationDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class ObservationDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -111,12 +111,12 @@ class ObservationDefinition extends DomainResource {
         json,
         'permittedDataType',
         ObservationDataType.fromJson,
-      ),
+      )!,
       multipleResultsAllowed: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleResultsAllowed',
         FhirBoolean.fromJson,
-      ),
+      )!,
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
@@ -126,7 +126,7 @@ class ObservationDefinition extends DomainResource {
         json,
         'preferredReportName',
         FhirString.fromJson,
-      ),
+      )!,
       quantitativeDetails:
           JsonParser.parseObject<ObservationDefinitionQuantitativeDetails>(
         json,
@@ -309,7 +309,10 @@ class ObservationDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -729,7 +732,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -758,12 +761,12 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
         json,
         'conversionFactor',
         FhirDecimal.fromJson,
-      ),
+      )!,
       decimalPrecision: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'decimalPrecision',
         FhirInteger.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -872,7 +875,10 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1090,7 +1096,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1109,7 +1115,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'category',
         ObservationRangeCategory.fromJson,
-      ),
+      )!,
       range: JsonParser.parseObject<Range>(
         json,
         'range',
@@ -1131,7 +1137,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'gender',
         AdministrativeGender.fromJson,
-      ),
+      )!,
       age: JsonParser.parseObject<Range>(
         json,
         'age',
@@ -1146,7 +1152,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         json,
         'condition',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1273,7 +1279,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

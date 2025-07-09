@@ -1891,9 +1891,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     if (minimumVolumeX != null) {
       final fhirType = minimumVolumeX!.fhirType;
       addField(
-        'minimumVolume${fhirType.capitalizeFirstLetter()}',
-        minimumVolumeX,
-      );
+          'minimumVolume${fhirType.capitalizeFirstLetter()}', minimumVolumeX);
     }
 
     addField('additive', additive);

@@ -27,7 +27,7 @@ import 'package:yaml/yaml.dart';
 /// [TestScriptBuilder]
 /// A structured set of tests against a FHIR server or client
 /// implementation to determine compliance against the FHIR specification.
-class TestScriptBuilder extends DomainResourceBuilder {
+class TestScriptBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
   /// [TestScriptBuilder]
 
@@ -40,19 +40,19 @@ class TestScriptBuilder extends DomainResourceBuilder {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
-    this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.origin,
@@ -368,30 +368,11 @@ class TestScriptBuilder extends DomainResourceBuilder {
   @override
   String get fhirType => 'TestScript';
 
-  /// [url]
-  /// An absolute URI that is used to identify this test script when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this test script is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the test
-  /// script is stored on different servers.
-  FhirUriBuilder? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this test script when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   IdentifierBuilder? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the test script
-  /// when it is referenced in a specification, model, design or instance.
-  /// This is an arbitrary value managed by the test script author and is not
-  /// expected to be globally unique. For example, it might be a timestamp
-  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
-  /// expectation that versions can be placed in a lexicographical sequence.
-  FhirStringBuilder? version;
 
   /// [name]
   /// A natural language name identifying the test script. This name should
@@ -402,52 +383,6 @@ class TestScriptBuilder extends DomainResourceBuilder {
   /// [title]
   /// A short, descriptive, user-friendly title for the test script.
   FhirStringBuilder? title;
-
-  /// [status]
-  /// The status of this test script. Enables tracking the life-cycle of the
-  /// content.
-  PublicationStatusBuilder? status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this test script is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  FhirBooleanBuilder? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the test script was published. The
-  /// date must change when the business version changes and it must change
-  /// if the status code changes. In addition, it should change when the
-  /// substantive content of the test script changes.
-  FhirDateTimeBuilder? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the test
-  /// script.
-  FhirStringBuilder? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  List<ContactDetailBuilder>? contact;
-
-  /// [description]
-  /// A free text natural language description of the test script from a
-  /// consumer's perspective.
-  FhirMarkdownBuilder? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate test script instances.
-  List<UsageContextBuilder>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the test script is intended to be
-  /// used.
-  List<CodeableConceptBuilder>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this test script is needed and why it has been

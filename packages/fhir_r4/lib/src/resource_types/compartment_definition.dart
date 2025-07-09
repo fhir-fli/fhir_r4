@@ -7,7 +7,7 @@ part 'compartment_definition.g.dart';
 /// [CompartmentDefinition]
 /// A compartment definition that defines how resources are accessed on a
 /// server.
-class CompartmentDefinition extends DomainResource {
+class CompartmentDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [CompartmentDefinition]
 
@@ -20,16 +20,16 @@ class CompartmentDefinition extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
-    this.version,
+    required super.url,
+    super.version,
     required this.name,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
     this.purpose,
     required this.code,
     required this.search,
@@ -47,7 +47,7 @@ class CompartmentDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class CompartmentDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -98,7 +98,7 @@ class CompartmentDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -113,7 +113,7 @@ class CompartmentDefinition extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -123,7 +123,7 @@ class CompartmentDefinition extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -147,7 +147,7 @@ class CompartmentDefinition extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<CompartmentType>(
         json,
         'code',
@@ -210,73 +210,11 @@ class CompartmentDefinition extends DomainResource {
   @override
   String get fhirType => 'CompartmentDefinition';
 
-  /// [url]
-  /// An absolute URI that is used to identify this compartment definition
-  /// when it is referenced in a specification, model, design or an instance;
-  /// also called its canonical identifier. This SHOULD be globally unique
-  /// and SHOULD be a literal address at which at which an authoritative
-  /// instance of this compartment definition is (or will be) published. This
-  /// URL can be the target of a canonical reference. It SHALL remain the
-  /// same when the compartment definition is stored on different servers.
-  final FhirUri url;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the compartment
-  /// definition when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the compartment
-  /// definition author and is not expected to be globally unique. For
-  /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
-  /// is not available. There is also no expectation that versions can be
-  /// placed in a lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the compartment definition. This
   /// name should be usable as an identifier for the module by machine
   /// processing applications such as code generation.
   final FhirString name;
-
-  /// [status]
-  /// The status of this compartment definition. Enables tracking the
-  /// life-cycle of the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this compartment definition is
-  /// authored for testing purposes (or education/evaluation/marketing) and
-  /// is not intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the compartment definition was
-  /// published. The date must change when the business version changes and
-  /// it must change if the status code changes. In addition, it should
-  /// change when the substantive content of the compartment definition
-  /// changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the
-  /// compartment definition.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the compartment definition
-  /// from a consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate compartment definition instances.
-  final List<UsageContext>? useContext;
 
   /// [purpose]
   /// Explanation of why this compartment definition is needed and why it has
@@ -338,7 +276,10 @@ class CompartmentDefinition extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -517,7 +458,9 @@ class CompartmentDefinition extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'url':
-        fields.add(url);
+        if (url != null) {
+          fields.add(url!);
+        }
       case 'version':
         if (version != null) {
           fields.add(version!);
@@ -525,7 +468,9 @@ class CompartmentDefinition extends DomainResource {
       case 'name':
         fields.add(name);
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -764,7 +709,7 @@ class CompartmentDefinitionResource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -788,12 +733,12 @@ class CompartmentDefinitionResource extends BackboneElement {
         json,
         'param',
         FhirString.fromJson,
-      ),
+      )!,
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -896,7 +841,10 @@ class CompartmentDefinitionResource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

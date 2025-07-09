@@ -43,7 +43,7 @@ class Practitioner extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -53,12 +53,12 @@ class Practitioner extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -96,7 +96,7 @@ class Practitioner extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      ),
+      )!,
       name: (json['name'] as List<dynamic>?)
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
@@ -122,12 +122,12 @@ class Practitioner extends DomainResource {
         json,
         'gender',
         AdministrativeGender.fromJson,
-      ),
+      )!,
       birthDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'birthDate',
         FhirDate.fromJson,
-      ),
+      )!,
       photo: (json['photo'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
@@ -284,7 +284,10 @@ class Practitioner extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -664,7 +667,7 @@ class PractitionerQualification extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -805,7 +808,10 @@ class PractitionerQualification extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -45,7 +45,7 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,7 +99,7 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'productCategory',
         BiologicallyDerivedProductCategory.fromJson,
-      ),
+      )!,
       productCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'productCode',
@@ -109,7 +109,7 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'status',
         BiologicallyDerivedProductStatus.fromJson,
-      ),
+      )!,
       request: (json['request'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -121,7 +121,7 @@ class BiologicallyDerivedProduct extends DomainResource {
         json,
         'quantity',
         FhirInteger.fromJson,
-      ),
+      )!,
       parent: (json['parent'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -295,7 +295,10 @@ class BiologicallyDerivedProduct extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -690,7 +693,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -830,7 +833,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1045,7 +1051,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1064,7 +1070,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       procedure: JsonParser.parseObject<CodeableConcept>(
         json,
         'procedure',
@@ -1193,7 +1199,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1421,7 +1430,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1440,7 +1449,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       timeX: JsonParser.parsePolymorphic<
           TimeXBiologicallyDerivedProductManipulation>(
         json,
@@ -1551,7 +1560,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1746,7 +1758,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1765,17 +1777,17 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       temperature: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'temperature',
         FhirDecimal.fromJson,
-      ),
+      )!,
       scale: JsonParser.parsePrimitive<BiologicallyDerivedProductStorageScale>(
         json,
         'scale',
         BiologicallyDerivedProductStorageScale.fromJson,
-      ),
+      )!,
       duration: JsonParser.parseObject<Period>(
         json,
         'duration',
@@ -1885,7 +1897,10 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

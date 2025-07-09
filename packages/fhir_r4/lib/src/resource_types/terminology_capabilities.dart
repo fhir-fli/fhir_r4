@@ -59,7 +59,7 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -69,12 +69,12 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -110,37 +110,37 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      ),
+      )!,
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -171,12 +171,12 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       kind: JsonParser.parsePrimitive<CapabilityStatementKind>(
         json,
         'kind',
@@ -197,7 +197,7 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'lockedDate',
         FhirBoolean.fromJson,
-      ),
+      )!,
       codeSystem: (json['codeSystem'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesCodeSystem>(
             (v) => TerminologyCapabilitiesCodeSystem.fromJson(
@@ -214,7 +214,7 @@ class TerminologyCapabilities extends CanonicalResource {
         json,
         'codeSearch',
         CodeSearchSupport.fromJson,
-      ),
+      )!,
       validateCode: JsonParser.parseObject<TerminologyCapabilitiesValidateCode>(
         json,
         'validateCode',
@@ -394,7 +394,10 @@ class TerminologyCapabilities extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -979,7 +982,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1003,7 +1006,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1100,7 +1103,10 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1280,7 +1286,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1304,7 +1310,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         json,
         'url',
         FhirUrl.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1402,7 +1408,10 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1584,7 +1593,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1603,7 +1612,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'uri',
         FhirCanonical.fromJson,
-      ),
+      )!,
       version: (json['version'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesVersion>(
             (v) => TerminologyCapabilitiesVersion.fromJson(
@@ -1615,7 +1624,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         json,
         'subsumption',
         FhirBoolean.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1717,7 +1726,10 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1917,7 +1929,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1936,22 +1948,22 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'code',
         FhirString.fromJson,
-      ),
+      )!,
       isDefault: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'isDefault',
         FhirBoolean.fromJson,
-      ),
+      )!,
       compositional: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'compositional',
         FhirBoolean.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'language',
         FhirCode.fromJson,
-      ),
+      )!,
       filter: (json['filter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesFilter>(
             (v) => TerminologyCapabilitiesFilter.fromJson(
@@ -1963,7 +1975,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         json,
         'property',
         FhirCode.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2077,7 +2089,10 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2317,7 +2332,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2438,7 +2453,10 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2618,7 +2636,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2637,17 +2655,17 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'hierarchical',
         FhirBoolean.fromJson,
-      ),
+      )!,
       paging: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'paging',
         FhirBoolean.fromJson,
-      ),
+      )!,
       incomplete: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'incomplete',
         FhirBoolean.fromJson,
-      ),
+      )!,
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<TerminologyCapabilitiesParameter>(
             (v) => TerminologyCapabilitiesParameter.fromJson(
@@ -2659,7 +2677,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         json,
         'textFilter',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2768,7 +2786,10 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2993,7 +3014,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3017,7 +3038,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         json,
         'documentation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -3114,7 +3135,10 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3293,7 +3317,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3405,7 +3429,10 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3569,7 +3596,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3681,7 +3708,10 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3844,7 +3874,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3863,7 +3893,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         json,
         'translation',
         FhirBoolean.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -3956,7 +3986,10 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

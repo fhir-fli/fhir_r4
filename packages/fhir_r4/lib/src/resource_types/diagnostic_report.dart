@@ -58,7 +58,7 @@ class DiagnosticReport extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -68,12 +68,12 @@ class DiagnosticReport extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -152,7 +152,7 @@ class DiagnosticReport extends DomainResource {
         json,
         'issued',
         FhirInstant.fromJson,
-      ),
+      )!,
       performer: (json['performer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -199,7 +199,7 @@ class DiagnosticReport extends DomainResource {
         json,
         'conclusion',
         FhirString.fromJson,
-      ),
+      )!,
       conclusionCode: (json['conclusionCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -401,7 +401,10 @@ class DiagnosticReport extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -906,7 +909,7 @@ class DiagnosticReportMedia extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -925,7 +928,7 @@ class DiagnosticReportMedia extends BackboneElement {
         json,
         'comment',
         FhirString.fromJson,
-      ),
+      )!,
       link: JsonParser.parseObject<Reference>(
         json,
         'link',
@@ -1029,7 +1032,10 @@ class DiagnosticReportMedia extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

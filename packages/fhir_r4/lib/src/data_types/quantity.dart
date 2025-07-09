@@ -78,7 +78,7 @@ class Quantity extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -90,27 +90,27 @@ class Quantity extends DataType
         json,
         'value',
         FhirDecimal.fromJson,
-      ),
+      )!,
       comparator: JsonParser.parsePrimitive<QuantityComparator>(
         json,
         'comparator',
         QuantityComparator.fromJson,
-      ),
+      )!,
       unit: JsonParser.parsePrimitive<FhirString>(
         json,
         'unit',
         FhirString.fromJson,
-      ),
+      )!,
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -225,7 +225,10 @@ class Quantity extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

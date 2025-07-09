@@ -45,7 +45,7 @@ class AuditEvent extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class AuditEvent extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -103,7 +103,7 @@ class AuditEvent extends DomainResource {
         json,
         'action',
         AuditEventAction.fromJson,
-      ),
+      )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -118,12 +118,12 @@ class AuditEvent extends DomainResource {
         json,
         'outcome',
         AuditEventOutcome.fromJson,
-      ),
+      )!,
       outcomeDesc: JsonParser.parsePrimitive<FhirString>(
         json,
         'outcomeDesc',
         FhirString.fromJson,
-      ),
+      )!,
       purposeOfEvent: (json['purposeOfEvent'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -286,7 +286,10 @@ class AuditEvent extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -677,7 +680,7 @@ class AuditEventAgent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -713,12 +716,12 @@ class AuditEventAgent extends BackboneElement {
         json,
         'altId',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       requestor: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'requestor',
@@ -733,7 +736,7 @@ class AuditEventAgent extends BackboneElement {
         json,
         'policy',
         FhirUri.fromJson,
-      ),
+      )!,
       media: JsonParser.parseObject<Coding>(
         json,
         'media',
@@ -896,7 +899,10 @@ class AuditEventAgent extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1209,7 +1215,7 @@ class AuditEventNetwork extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1228,12 +1234,12 @@ class AuditEventNetwork extends BackboneElement {
         json,
         'address',
         FhirString.fromJson,
-      ),
+      )!,
       type: JsonParser.parsePrimitive<AuditEventAgentNetworkType>(
         json,
         'type',
         AuditEventAgentNetworkType.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1332,7 +1338,10 @@ class AuditEventNetwork extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1512,7 +1521,7 @@ class AuditEventSource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1531,7 +1540,7 @@ class AuditEventSource extends BackboneElement {
         json,
         'site',
         FhirString.fromJson,
-      ),
+      )!,
       observer: JsonParser.parseObject<Reference>(
         json,
         'observer',
@@ -1646,7 +1655,10 @@ class AuditEventSource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1845,7 +1857,7 @@ class AuditEventEntity extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1891,17 +1903,17 @@ class AuditEventEntity extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       query: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'query',
         FhirBase64Binary.fromJson,
-      ),
+      )!,
       detail: (json['detail'] as List<dynamic>?)
           ?.map<AuditEventDetail>(
             (v) => AuditEventDetail.fromJson(
@@ -2036,7 +2048,10 @@ class AuditEventEntity extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2321,7 +2336,7 @@ class AuditEventDetail extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2450,7 +2465,10 @@ class AuditEventDetail extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

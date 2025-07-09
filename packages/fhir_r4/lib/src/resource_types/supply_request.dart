@@ -55,7 +55,7 @@ class SupplyRequest extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -65,12 +65,12 @@ class SupplyRequest extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -108,7 +108,7 @@ class SupplyRequest extends DomainResource {
         json,
         'status',
         SupplyRequestStatus.fromJson,
-      ),
+      )!,
       category: JsonParser.parseObject<CodeableConcept>(
         json,
         'category',
@@ -118,7 +118,7 @@ class SupplyRequest extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      ),
+      )!,
       itemX: JsonParser.parsePolymorphic<ItemXSupplyRequest>(
         json,
         {
@@ -150,7 +150,7 @@ class SupplyRequest extends DomainResource {
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-      ),
+      )!,
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
@@ -357,7 +357,10 @@ class SupplyRequest extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -841,7 +844,7 @@ class SupplyRequestParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -978,7 +981,10 @@ class SupplyRequestParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

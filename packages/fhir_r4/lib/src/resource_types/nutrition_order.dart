@@ -50,7 +50,7 @@ class NutritionOrder extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class NutritionOrder extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -103,17 +103,17 @@ class NutritionOrder extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      ),
+      )!,
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      ),
+      )!,
       instantiates: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiates',
         FhirUri.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<RequestStatus>(
         json,
         'status',
@@ -372,7 +372,10 @@ class NutritionOrder extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -848,7 +851,7 @@ class NutritionOrderOralDiet extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -902,7 +905,7 @@ class NutritionOrderOralDiet extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1022,7 +1025,10 @@ class NutritionOrderOralDiet extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1262,7 +1268,7 @@ class NutritionOrderNutrient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1383,7 +1389,10 @@ class NutritionOrderNutrient extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1563,7 +1572,7 @@ class NutritionOrderTexture extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1686,7 +1695,10 @@ class NutritionOrderTexture extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1869,7 +1881,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1893,7 +1905,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'productName',
         FhirString.fromJson,
-      ),
+      )!,
       schedule: (json['schedule'] as List<dynamic>?)
           ?.map<Timing>(
             (v) => Timing.fromJson(
@@ -1910,7 +1922,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2024,7 +2036,10 @@ class NutritionOrderSupplement extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2256,7 +2271,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2280,7 +2295,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'baseFormulaProductName',
         FhirString.fromJson,
-      ),
+      )!,
       additiveType: JsonParser.parseObject<CodeableConcept>(
         json,
         'additiveType',
@@ -2290,7 +2305,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'additiveProductName',
         FhirString.fromJson,
-      ),
+      )!,
       caloricDensity: JsonParser.parseObject<Quantity>(
         json,
         'caloricDensity',
@@ -2317,7 +2332,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'administrationInstruction',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -2458,7 +2473,10 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2751,7 +2769,7 @@ class NutritionOrderAdministration extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2892,7 +2910,10 @@ class NutritionOrderAdministration extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

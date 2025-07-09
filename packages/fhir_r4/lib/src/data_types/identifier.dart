@@ -46,7 +46,7 @@ class Identifier extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -58,7 +58,7 @@ class Identifier extends DataType
         json,
         'use',
         IdentifierUse.fromJson,
-      ),
+      )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -68,12 +68,12 @@ class Identifier extends DataType
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
-      ),
+      )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -199,7 +199,10 @@ class Identifier extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

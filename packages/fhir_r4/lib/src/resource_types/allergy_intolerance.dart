@@ -60,7 +60,7 @@ class AllergyIntolerance extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -70,12 +70,12 @@ class AllergyIntolerance extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -123,17 +123,17 @@ class AllergyIntolerance extends DomainResource {
         json,
         'type',
         AllergyIntoleranceType.fromJson,
-      ),
+      )!,
       category: JsonParser.parsePrimitiveList<AllergyIntoleranceCategory>(
         json,
         'category',
         AllergyIntoleranceCategory.fromJson,
-      ),
+      )!,
       criticality: JsonParser.parsePrimitive<AllergyIntoleranceCriticality>(
         json,
         'criticality',
         AllergyIntoleranceCriticality.fromJson,
-      ),
+      )!,
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -163,7 +163,7 @@ class AllergyIntolerance extends DomainResource {
         json,
         'recordedDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       recorder: JsonParser.parseObject<Reference>(
         json,
         'recorder',
@@ -178,7 +178,7 @@ class AllergyIntolerance extends DomainResource {
         json,
         'lastOccurrence',
         FhirDateTime.fromJson,
-      ),
+      )!,
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -388,7 +388,10 @@ class AllergyIntolerance extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -881,7 +884,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -912,17 +915,17 @@ class AllergyIntoleranceReaction extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       onset: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'onset',
         FhirDateTime.fromJson,
-      ),
+      )!,
       severity: JsonParser.parsePrimitive<AllergyIntoleranceSeverity>(
         json,
         'severity',
         AllergyIntoleranceSeverity.fromJson,
-      ),
+      )!,
       exposureRoute: JsonParser.parseObject<CodeableConcept>(
         json,
         'exposureRoute',
@@ -1066,7 +1069,10 @@ class AllergyIntoleranceReaction extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

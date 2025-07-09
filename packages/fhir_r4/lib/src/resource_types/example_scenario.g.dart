@@ -6,7 +6,8 @@ part of 'example_scenario.dart';
 
 /// Using the shared fhirSentinel defined in FhirBase
 
-abstract class $ExampleScenarioCopyWith<T> extends $DomainResourceCopyWith<T> {
+abstract class $ExampleScenarioCopyWith<T>
+    extends $CanonicalResourceCopyWith<T> {
   @override
   T call({
     FhirString? id,
@@ -35,6 +36,7 @@ abstract class $ExampleScenarioCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<ExampleScenarioProcess>? process,
     List<FhirCanonical>? workflow,
     bool? disallowExtensions,
+    FhirMarkdown? description,
   });
 }
 
@@ -72,6 +74,7 @@ class _$ExampleScenarioCopyWithImpl<T> implements $ExampleScenarioCopyWith<T> {
     Object? process = fhirSentinel,
     Object? workflow = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
+    Object? description = fhirSentinel,
   }) {
     return _then(
       ExampleScenario(

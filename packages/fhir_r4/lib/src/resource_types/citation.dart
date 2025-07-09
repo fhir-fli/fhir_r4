@@ -65,7 +65,7 @@ class Citation extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -75,12 +75,12 @@ class Citation extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -123,17 +123,17 @@ class Citation extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -143,7 +143,7 @@ class Citation extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -153,7 +153,7 @@ class Citation extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -184,22 +184,22 @@ class Citation extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      ),
+      )!,
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      ),
+      )!,
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -519,7 +519,10 @@ class Citation extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -793,7 +796,9 @@ class Citation extends DomainResource {
           fields.add(title!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -1176,7 +1181,7 @@ class CitationSummary extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1297,7 +1302,10 @@ class CitationSummary extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1474,7 +1482,7 @@ class CitationClassification extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1597,7 +1605,10 @@ class CitationClassification extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1777,7 +1788,7 @@ class CitationStatusDate extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1801,7 +1812,7 @@ class CitationStatusDate extends BackboneElement {
         json,
         'actual',
         FhirBoolean.fromJson,
-      ),
+      )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -1907,7 +1918,10 @@ class CitationStatusDate extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2098,7 +2112,7 @@ class CitationRelatesTo extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2246,7 +2260,10 @@ class CitationRelatesTo extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2469,7 +2486,7 @@ class CitationCitedArtifact extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2502,7 +2519,7 @@ class CitationCitedArtifact extends BackboneElement {
         json,
         'dateAccessed',
         FhirDateTime.fromJson,
-      ),
+      )!,
       version: JsonParser.parseObject<CitationVersion>(
         json,
         'version',
@@ -2734,7 +2751,10 @@ class CitationCitedArtifact extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3108,7 +3128,7 @@ class CitationVersion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3229,7 +3249,10 @@ class CitationVersion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3407,7 +3430,7 @@ class CitationStatusDate1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3431,7 +3454,7 @@ class CitationStatusDate1 extends BackboneElement {
         json,
         'actual',
         FhirBoolean.fromJson,
-      ),
+      )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -3537,7 +3560,10 @@ class CitationStatusDate1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3728,7 +3754,7 @@ class CitationTitle extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3860,7 +3886,10 @@ class CitationTitle extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4054,7 +4083,7 @@ class CitationAbstract extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4088,7 +4117,7 @@ class CitationAbstract extends BackboneElement {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -4193,7 +4222,10 @@ class CitationAbstract extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4401,7 +4433,7 @@ class CitationPart extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4425,7 +4457,7 @@ class CitationPart extends BackboneElement {
         json,
         'value',
         FhirString.fromJson,
-      ),
+      )!,
       baseCitation: JsonParser.parseObject<Reference>(
         json,
         'baseCitation',
@@ -4531,7 +4563,10 @@ class CitationPart extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -4726,7 +4761,7 @@ class CitationRelatesTo1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4874,7 +4909,10 @@ class CitationRelatesTo1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5094,7 +5132,7 @@ class CitationPublicationForm extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5123,12 +5161,12 @@ class CitationPublicationForm extends BackboneElement {
         json,
         'articleDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       lastRevisionDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastRevisionDate',
         FhirDateTime.fromJson,
-      ),
+      )!,
       language: (json['language'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -5140,32 +5178,32 @@ class CitationPublicationForm extends BackboneElement {
         json,
         'accessionNumber',
         FhirString.fromJson,
-      ),
+      )!,
       pageString: JsonParser.parsePrimitive<FhirString>(
         json,
         'pageString',
         FhirString.fromJson,
-      ),
+      )!,
       firstPage: JsonParser.parsePrimitive<FhirString>(
         json,
         'firstPage',
         FhirString.fromJson,
-      ),
+      )!,
       lastPage: JsonParser.parsePrimitive<FhirString>(
         json,
         'lastPage',
         FhirString.fromJson,
-      ),
+      )!,
       pageCount: JsonParser.parsePrimitive<FhirString>(
         json,
         'pageCount',
         FhirString.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -5300,7 +5338,10 @@ class CitationPublicationForm extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5617,7 +5658,7 @@ class CitationPublishedIn extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5648,7 +5689,7 @@ class CitationPublishedIn extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       publisher: JsonParser.parseObject<Reference>(
         json,
         'publisher',
@@ -5658,7 +5699,7 @@ class CitationPublishedIn extends BackboneElement {
         json,
         'publisherLocation',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -5768,7 +5809,10 @@ class CitationPublishedIn extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -5994,7 +6038,7 @@ class CitationPeriodicRelease extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6018,12 +6062,12 @@ class CitationPeriodicRelease extends BackboneElement {
         json,
         'volume',
         FhirString.fromJson,
-      ),
+      )!,
       issue: JsonParser.parsePrimitive<FhirString>(
         json,
         'issue',
         FhirString.fromJson,
-      ),
+      )!,
       dateOfPublication: JsonParser.parseObject<CitationDateOfPublication>(
         json,
         'dateOfPublication',
@@ -6134,7 +6178,10 @@ class CitationPeriodicRelease extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6347,7 +6394,7 @@ class CitationDateOfPublication extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6366,32 +6413,32 @@ class CitationDateOfPublication extends BackboneElement {
         json,
         'date',
         FhirDate.fromJson,
-      ),
+      )!,
       year: JsonParser.parsePrimitive<FhirString>(
         json,
         'year',
         FhirString.fromJson,
-      ),
+      )!,
       month: JsonParser.parsePrimitive<FhirString>(
         json,
         'month',
         FhirString.fromJson,
-      ),
+      )!,
       day: JsonParser.parsePrimitive<FhirString>(
         json,
         'day',
         FhirString.fromJson,
-      ),
+      )!,
       season: JsonParser.parsePrimitive<FhirString>(
         json,
         'season',
         FhirString.fromJson,
-      ),
+      )!,
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -6505,7 +6552,10 @@ class CitationDateOfPublication extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -6744,7 +6794,7 @@ class CitationWebLocation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -6768,7 +6818,7 @@ class CitationWebLocation extends BackboneElement {
         json,
         'url',
         FhirUri.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -6865,7 +6915,10 @@ class CitationWebLocation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -7045,7 +7098,7 @@ class CitationClassification1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7177,7 +7230,10 @@ class CitationClassification1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -7374,7 +7430,7 @@ class CitationWhoClassified extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7408,12 +7464,12 @@ class CitationWhoClassified extends BackboneElement {
         json,
         'classifierCopyright',
         FhirString.fromJson,
-      ),
+      )!,
       freeToShare: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'freeToShare',
         FhirBoolean.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -7523,7 +7579,10 @@ class CitationWhoClassified extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -7749,7 +7808,7 @@ class CitationContributorship extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -7768,7 +7827,7 @@ class CitationContributorship extends BackboneElement {
         json,
         'complete',
         FhirBoolean.fromJson,
-      ),
+      )!,
       entry: (json['entry'] as List<dynamic>?)
           ?.map<CitationEntry>(
             (v) => CitationEntry.fromJson(
@@ -7884,7 +7943,10 @@ class CitationContributorship extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -8088,7 +8150,7 @@ class CitationEntry extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -8112,12 +8174,12 @@ class CitationEntry extends BackboneElement {
         json,
         'initials',
         FhirString.fromJson,
-      ),
+      )!,
       collectiveName: JsonParser.parsePrimitive<FhirString>(
         json,
         'collectiveName',
         FhirString.fromJson,
-      ),
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -8169,12 +8231,12 @@ class CitationEntry extends BackboneElement {
         json,
         'correspondingContact',
         FhirBoolean.fromJson,
-      ),
+      )!,
       listOrder: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'listOrder',
         FhirPositiveInt.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -8313,7 +8375,10 @@ class CitationEntry extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -8643,7 +8708,7 @@ class CitationAffiliationInfo extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -8662,12 +8727,12 @@ class CitationAffiliationInfo extends BackboneElement {
         json,
         'affiliation',
         FhirString.fromJson,
-      ),
+      )!,
       role: JsonParser.parsePrimitive<FhirString>(
         json,
         'role',
         FhirString.fromJson,
-      ),
+      )!,
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -8775,7 +8840,10 @@ class CitationAffiliationInfo extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -8969,7 +9037,7 @@ class CitationContributionInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -8993,7 +9061,7 @@ class CitationContributionInstance extends BackboneElement {
         json,
         'time',
         FhirDateTime.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -9090,7 +9158,10 @@ class CitationContributionInstance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -9271,7 +9342,7 @@ class CitationSummary1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -9412,7 +9483,10 @@ class CitationSummary1 extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

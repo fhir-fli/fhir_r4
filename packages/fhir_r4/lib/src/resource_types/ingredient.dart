@@ -40,7 +40,7 @@ class Ingredient extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -50,12 +50,12 @@ class Ingredient extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -115,7 +115,7 @@ class Ingredient extends DomainResource {
         json,
         'allergenicIndicator',
         FhirBoolean.fromJson,
-      ),
+      )!,
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<IngredientManufacturer>(
             (v) => IngredientManufacturer.fromJson(
@@ -262,7 +262,10 @@ class Ingredient extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -606,7 +609,7 @@ class IngredientManufacturer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -625,7 +628,7 @@ class IngredientManufacturer extends BackboneElement {
         json,
         'role',
         IngredientManufacturerRole.fromJson,
-      ),
+      )!,
       manufacturer: JsonParser.parseObject<Reference>(
         json,
         'manufacturer',
@@ -730,7 +733,10 @@ class IngredientManufacturer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -907,7 +913,7 @@ class IngredientSubstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1034,7 +1040,10 @@ class IngredientSubstance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1228,7 +1237,7 @@ class IngredientStrength extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1255,7 +1264,7 @@ class IngredientStrength extends BackboneElement {
         json,
         'textPresentation',
         FhirString.fromJson,
-      ),
+      )!,
       concentrationX:
           JsonParser.parsePolymorphic<ConcentrationXIngredientStrength>(
         json,
@@ -1268,12 +1277,12 @@ class IngredientStrength extends BackboneElement {
         json,
         'textConcentration',
         FhirString.fromJson,
-      ),
+      )!,
       measurementPoint: JsonParser.parsePrimitive<FhirString>(
         json,
         'measurementPoint',
         FhirString.fromJson,
-      ),
+      )!,
       country: (json['country'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -1434,7 +1443,10 @@ class IngredientStrength extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1720,7 +1732,7 @@ class IngredientReferenceStrength extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1752,7 +1764,7 @@ class IngredientReferenceStrength extends BackboneElement {
         json,
         'measurementPoint',
         FhirString.fromJson,
-      ),
+      )!,
       country: (json['country'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -1870,7 +1882,10 @@ class IngredientReferenceStrength extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

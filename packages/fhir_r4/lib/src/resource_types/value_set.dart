@@ -53,7 +53,7 @@ class ValueSet extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -63,12 +63,12 @@ class ValueSet extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -111,27 +111,27 @@ class ValueSet extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      ),
+      )!,
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      ),
+      )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -141,7 +141,7 @@ class ValueSet extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -172,17 +172,17 @@ class ValueSet extends CanonicalResource {
         json,
         'immutable',
         FhirBoolean.fromJson,
-      ),
+      )!,
       purpose: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      ),
+      )!,
       compose: JsonParser.parseObject<ValueSetCompose>(
         json,
         'compose',
@@ -326,7 +326,10 @@ class ValueSet extends CanonicalResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -825,7 +828,7 @@ class ValueSetCompose extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -844,12 +847,12 @@ class ValueSetCompose extends BackboneElement {
         json,
         'lockedDate',
         FhirDate.fromJson,
-      ),
+      )!,
       inactive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inactive',
         FhirBoolean.fromJson,
-      ),
+      )!,
       include: (json['include'] as List<dynamic>)
           .map<ValueSetInclude>(
             (v) => ValueSetInclude.fromJson(
@@ -977,7 +980,10 @@ class ValueSetCompose extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1187,7 +1193,7 @@ class ValueSetInclude extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1206,12 +1212,12 @@ class ValueSetInclude extends BackboneElement {
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       concept: (json['concept'] as List<dynamic>?)
           ?.map<ValueSetConcept>(
             (v) => ValueSetConcept.fromJson(
@@ -1230,7 +1236,7 @@ class ValueSetInclude extends BackboneElement {
         json,
         'valueSet',
         FhirCanonical.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1347,7 +1353,10 @@ class ValueSetInclude extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1572,7 +1581,7 @@ class ValueSetConcept extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1596,7 +1605,7 @@ class ValueSetConcept extends BackboneElement {
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       designation: (json['designation'] as List<dynamic>?)
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
@@ -1708,7 +1717,10 @@ class ValueSetConcept extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1903,7 +1915,7 @@ class ValueSetDesignation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1922,7 +1934,7 @@ class ValueSetDesignation extends BackboneElement {
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       use: JsonParser.parseObject<Coding>(
         json,
         'use',
@@ -2033,7 +2045,10 @@ class ValueSetDesignation extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2229,7 +2244,7 @@ class ValueSetFilter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2365,7 +2380,10 @@ class ValueSetFilter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2559,7 +2577,7 @@ class ValueSetExpansion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2578,7 +2596,7 @@ class ValueSetExpansion extends BackboneElement {
         json,
         'identifier',
         FhirUri.fromJson,
-      ),
+      )!,
       timestamp: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'timestamp',
@@ -2588,12 +2606,12 @@ class ValueSetExpansion extends BackboneElement {
         json,
         'total',
         FhirInteger.fromJson,
-      ),
+      )!,
       offset: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'offset',
         FhirInteger.fromJson,
-      ),
+      )!,
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<ValueSetParameter>(
             (v) => ValueSetParameter.fromJson(
@@ -2731,7 +2749,10 @@ class ValueSetExpansion extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -2985,7 +3006,7 @@ class ValueSetParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3136,7 +3157,10 @@ class ValueSetParameter extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -3351,7 +3375,7 @@ class ValueSetContains extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3370,32 +3394,32 @@ class ValueSetContains extends BackboneElement {
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       abstract_: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'abstract',
         FhirBoolean.fromJson,
-      ),
+      )!,
       inactive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'inactive',
         FhirBoolean.fromJson,
-      ),
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-      ),
+      )!,
       designation: (json['designation'] as List<dynamic>?)
           ?.map<ValueSetDesignation>(
             (v) => ValueSetDesignation.fromJson(
@@ -3546,7 +3570,10 @@ class ValueSetContains extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

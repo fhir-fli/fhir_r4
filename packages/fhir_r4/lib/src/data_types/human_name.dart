@@ -42,7 +42,7 @@ class HumanName extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -54,32 +54,32 @@ class HumanName extends DataType
         json,
         'use',
         NameUse.fromJson,
-      ),
+      )!,
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      ),
+      )!,
       family: JsonParser.parsePrimitive<FhirString>(
         json,
         'family',
         FhirString.fromJson,
-      ),
+      )!,
       given: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'given',
         FhirString.fromJson,
-      ),
+      )!,
       prefix: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'prefix',
         FhirString.fromJson,
-      ),
+      )!,
       suffix: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'suffix',
         FhirString.fromJson,
-      ),
+      )!,
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -209,7 +209,10 @@ class HumanName extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

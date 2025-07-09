@@ -123,9 +123,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return BiologicallyDerivedProductCategory._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'BiologicallyDerivedProductCategory cannot be constructed from JSON.',

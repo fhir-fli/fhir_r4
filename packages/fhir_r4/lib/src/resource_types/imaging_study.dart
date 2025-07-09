@@ -57,7 +57,7 @@ class ImagingStudy extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -67,12 +67,12 @@ class ImagingStudy extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -132,7 +132,7 @@ class ImagingStudy extends DomainResource {
         json,
         'started',
         FhirDateTime.fromJson,
-      ),
+      )!,
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -163,12 +163,12 @@ class ImagingStudy extends DomainResource {
         json,
         'numberOfSeries',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       numberOfInstances: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'numberOfInstances',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       procedureReference: JsonParser.parseObject<Reference>(
         json,
         'procedureReference',
@@ -211,7 +211,7 @@ class ImagingStudy extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       series: (json['series'] as List<dynamic>?)
           ?.map<ImagingStudySeries>(
             (v) => ImagingStudySeries.fromJson(
@@ -407,7 +407,10 @@ class ImagingStudy extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -938,7 +941,7 @@ class ImagingStudySeries extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -962,7 +965,7 @@ class ImagingStudySeries extends BackboneElement {
         json,
         'number',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       modality: JsonParser.parseObject<Coding>(
         json,
         'modality',
@@ -972,12 +975,12 @@ class ImagingStudySeries extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       numberOfInstances: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'numberOfInstances',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -1006,7 +1009,7 @@ class ImagingStudySeries extends BackboneElement {
         json,
         'started',
         FhirDateTime.fromJson,
-      ),
+      )!,
       performer: (json['performer'] as List<dynamic>?)
           ?.map<ImagingStudyPerformer>(
             (v) => ImagingStudyPerformer.fromJson(
@@ -1171,7 +1174,10 @@ class ImagingStudySeries extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1496,7 +1502,7 @@ class ImagingStudyPerformer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1617,7 +1623,10 @@ class ImagingStudyPerformer extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1797,7 +1806,7 @@ class ImagingStudyInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1826,12 +1835,12 @@ class ImagingStudyInstance extends BackboneElement {
         json,
         'number',
         FhirUnsignedInt.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1936,7 +1945,10 @@ class ImagingStudyInstance extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

@@ -3121,7 +3121,7 @@ class SPDXLicense extends FhirCodeEnum {
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 2-Clause "Simplified" License',
+      valueString: 'BSD 2-Clause \"Simplified\" License',
     ),
   );
 
@@ -3212,7 +3212,7 @@ class SPDXLicense extends FhirCodeEnum {
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 3-Clause "New" or "Revised" License',
+      valueString: 'BSD 3-Clause \"New\" or \"Revised\" License',
     ),
   );
 
@@ -3238,7 +3238,7 @@ class SPDXLicense extends FhirCodeEnum {
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 4-Clause "Original" or "Old" License',
+      valueString: 'BSD 4-Clause \"Original\" or \"Old\" License',
     ),
   );
 

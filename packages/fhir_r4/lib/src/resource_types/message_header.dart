@@ -47,7 +47,7 @@ class MessageHeader extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class MessageHeader extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -149,7 +149,7 @@ class MessageHeader extends DomainResource {
         json,
         'definition',
         FhirCanonical.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -302,7 +302,10 @@ class MessageHeader extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -702,7 +705,7 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -721,7 +724,7 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       target: JsonParser.parseObject<Reference>(
         json,
         'target',
@@ -844,7 +847,10 @@ class MessageHeaderDestination extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1054,7 +1060,7 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1073,17 +1079,17 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       software: JsonParser.parsePrimitive<FhirString>(
         json,
         'software',
         FhirString.fromJson,
-      ),
+      )!,
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       contact: JsonParser.parseObject<ContactPoint>(
         json,
         'contact',
@@ -1204,7 +1210,10 @@ class MessageHeaderSource extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1428,7 +1437,7 @@ class MessageHeaderResponse extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1560,7 +1569,10 @@ class MessageHeaderResponse extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

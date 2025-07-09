@@ -1784,9 +1784,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
       addField(
-        'defaultValue${fhirType.capitalizeFirstLetter()}',
-        defaultValueX,
-      );
+          'defaultValue${fhirType.capitalizeFirstLetter()}', defaultValueX);
     }
 
     addField('meaningWhenMissing', meaningWhenMissing);

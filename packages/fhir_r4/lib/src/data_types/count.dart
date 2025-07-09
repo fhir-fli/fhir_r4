@@ -43,7 +43,7 @@ class Count extends Quantity
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -55,27 +55,27 @@ class Count extends Quantity
         json,
         'value',
         FhirDecimal.fromJson,
-      ),
+      )!,
       comparator: JsonParser.parsePrimitive<QuantityComparator>(
         json,
         'comparator',
         QuantityComparator.fromJson,
-      ),
+      )!,
       unit: JsonParser.parsePrimitive<FhirString>(
         json,
         'unit',
         FhirString.fromJson,
-      ),
+      )!,
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
-      ),
+      )!,
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -165,7 +165,10 @@ class Count extends Quantity
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

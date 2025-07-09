@@ -57,7 +57,7 @@ class EvidenceVariable extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -67,12 +67,12 @@ class EvidenceVariable extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      ),
+      )!,
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      ),
+      )!,
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -115,27 +115,27 @@ class EvidenceVariable extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      ),
+      )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      ),
+      )!,
       shortTitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'shortTitle',
         FhirString.fromJson,
-      ),
+      )!,
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      ),
+      )!,
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -169,7 +169,7 @@ class EvidenceVariable extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      ),
+      )!,
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -216,13 +216,13 @@ class EvidenceVariable extends DomainResource {
         json,
         'actual',
         FhirBoolean.fromJson,
-      ),
+      )!,
       characteristicCombination:
           JsonParser.parsePrimitive<CharacteristicCombination>(
         json,
         'characteristicCombination',
         CharacteristicCombination.fromJson,
-      ),
+      )!,
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<EvidenceVariableCharacteristic>(
             (v) => EvidenceVariableCharacteristic.fromJson(
@@ -234,7 +234,7 @@ class EvidenceVariable extends DomainResource {
         json,
         'handling',
         EvidenceVariableHandling.fromJson,
-      ),
+      )!,
       category: (json['category'] as List<dynamic>?)
           ?.map<EvidenceVariableCategory>(
             (v) => EvidenceVariableCategory.fromJson(
@@ -469,7 +469,10 @@ class EvidenceVariable extends DomainResource {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -726,7 +729,9 @@ class EvidenceVariable extends DomainResource {
           fields.add(subtitle!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'date':
         if (date != null) {
           fields.add(date!);
@@ -1058,7 +1063,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1077,7 +1082,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       definitionX: JsonParser.parsePolymorphic<
           DefinitionXEvidenceVariableCharacteristic>(
         json,
@@ -1102,7 +1107,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'exclude',
         FhirBoolean.fromJson,
-      ),
+      )!,
       timeFromStart: JsonParser.parseObject<EvidenceVariableTimeFromStart>(
         json,
         'timeFromStart',
@@ -1112,7 +1117,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         json,
         'groupMeasure',
         GroupMeasure.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -1250,7 +1255,10 @@ class EvidenceVariableCharacteristic extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1526,7 +1534,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1545,7 +1553,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      ),
+      )!,
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
@@ -1669,7 +1677,10 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
@@ -1884,7 +1895,7 @@ class EvidenceVariableCategory extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1903,7 +1914,7 @@ class EvidenceVariableCategory extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      ),
+      )!,
       valueX: JsonParser.parsePolymorphic<ValueXEvidenceVariableCategory>(
         json,
         {
@@ -2017,7 +2028,10 @@ class EvidenceVariableCategory extends BackboneElement {
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;

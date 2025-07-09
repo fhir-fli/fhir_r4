@@ -120,7 +120,7 @@ class _$NamingSystemCopyWithImpl<T> implements $NamingSystemCopyWith<T> {
             : jurisdiction as List<CodeableConcept>?,
         usage: identical(usage, fhirSentinel)
             ? _value.usage
-            : usage as FhirString?,
+            : usage as FhirMarkdown?,
         uniqueId: identical(uniqueId, fhirSentinel)
             ? _value.uniqueId
             : (uniqueId as List<NamingSystemUniqueId>?) ?? _value.uniqueId,

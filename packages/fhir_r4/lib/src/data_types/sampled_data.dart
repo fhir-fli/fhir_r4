@@ -45,7 +45,7 @@ class SampledData extends DataType
         json,
         'id',
         FhirString.fromJson,
-      ),
+      )!,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -67,17 +67,17 @@ class SampledData extends DataType
         json,
         'factor',
         FhirDecimal.fromJson,
-      ),
+      )!,
       lowerLimit: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'lowerLimit',
         FhirDecimal.fromJson,
-      ),
+      )!,
       upperLimit: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'upperLimit',
         FhirDecimal.fromJson,
-      ),
+      )!,
       dimensions: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'dimensions',
@@ -87,7 +87,7 @@ class SampledData extends DataType
         json,
         'data',
         FhirString.fromJson,
-      ),
+      )!,
     );
   }
 
@@ -214,7 +214,10 @@ class SampledData extends DataType
         }
         if (tempList.isEmpty) return;
         if (isPrimitive) {
-          json[key] = tempList;
+          final hasAnyValues = tempList.any((v) => v != null);
+          if (hasAnyValues) {
+            json[key] = tempList;
+          }
           final anyExt = tempExtensions.any(isNonEmpty);
           if (anyExt) {
             json['_$key'] = tempExtensions;
