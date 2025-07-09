@@ -1877,7 +1877,8 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json);
+        json,
+      );
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5451,7 +5452,9 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     if (characteristicX != null) {
       final fhirType = characteristicX!.fhirType;
       addField(
-          'characteristic${fhirType.capitalizeFirstLetter()}', characteristicX);
+        'characteristic${fhirType.capitalizeFirstLetter()}',
+        characteristicX,
+      );
     }
 
     addField('value', value);

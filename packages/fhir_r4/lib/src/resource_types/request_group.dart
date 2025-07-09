@@ -52,7 +52,7 @@ class RequestGroup extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -62,12 +62,12 @@ class RequestGroup extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -105,12 +105,12 @@ class RequestGroup extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -144,7 +144,7 @@ class RequestGroup extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      )!,
+      ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -164,7 +164,7 @@ class RequestGroup extends DomainResource {
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-      )!,
+      ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
@@ -896,7 +896,7 @@ class RequestGroupAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -915,27 +915,27 @@ class RequestGroupAction extends BackboneElement {
         json,
         'prefix',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       textEquivalent: JsonParser.parsePrimitive<FhirString>(
         json,
         'textEquivalent',
         FhirString.fromJson,
-      )!,
+      ),
       priority: JsonParser.parsePrimitive<RequestPriority>(
         json,
         'priority',
         RequestPriority.fromJson,
-      )!,
+      ),
       code: (json['code'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -991,27 +991,27 @@ class RequestGroupAction extends BackboneElement {
         json,
         'groupingBehavior',
         ActionGroupingBehavior.fromJson,
-      )!,
+      ),
       selectionBehavior: JsonParser.parsePrimitive<ActionSelectionBehavior>(
         json,
         'selectionBehavior',
         ActionSelectionBehavior.fromJson,
-      )!,
+      ),
       requiredBehavior: JsonParser.parsePrimitive<ActionRequiredBehavior>(
         json,
         'requiredBehavior',
         ActionRequiredBehavior.fromJson,
-      )!,
+      ),
       precheckBehavior: JsonParser.parsePrimitive<ActionPrecheckBehavior>(
         json,
         'precheckBehavior',
         ActionPrecheckBehavior.fromJson,
-      )!,
+      ),
       cardinalityBehavior: JsonParser.parsePrimitive<ActionCardinalityBehavior>(
         json,
         'cardinalityBehavior',
         ActionCardinalityBehavior.fromJson,
-      )!,
+      ),
       resource: JsonParser.parseObject<Reference>(
         json,
         'resource',
@@ -1684,7 +1684,7 @@ class RequestGroupCondition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1991,7 +1991,7 @@ class RequestGroupRelatedAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

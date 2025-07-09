@@ -44,7 +44,7 @@ class AdministrableProductDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -54,12 +54,12 @@ class AdministrableProductDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -697,7 +697,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1078,7 +1078,7 @@ class AdministrableProductDefinitionRouteOfAdministration
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1508,7 +1508,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1816,7 +1816,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1845,7 +1845,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
         json,
         'supportingInformation',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

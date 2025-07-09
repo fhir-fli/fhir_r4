@@ -33,7 +33,7 @@ class MarketingStatus extends BackboneType {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -72,7 +72,7 @@ class MarketingStatus extends BackboneType {
         json,
         'restoreDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 

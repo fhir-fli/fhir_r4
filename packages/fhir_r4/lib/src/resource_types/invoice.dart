@@ -49,7 +49,7 @@ class Invoice extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -59,12 +59,12 @@ class Invoice extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -107,7 +107,7 @@ class Invoice extends DomainResource {
         json,
         'cancelledReason',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -127,7 +127,7 @@ class Invoice extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<InvoiceParticipant>(
             (v) => InvoiceParticipant.fromJson(
@@ -173,7 +173,7 @@ class Invoice extends DomainResource {
         json,
         'paymentTerms',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -810,7 +810,7 @@ class InvoiceParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1117,7 +1117,7 @@ class InvoiceLineItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1136,7 +1136,7 @@ class InvoiceLineItem extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       chargeItemX: JsonParser.parsePolymorphic<ChargeItemXInvoiceLineItem>(
         json,
         {
@@ -1480,7 +1480,7 @@ class InvoicePriceComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1509,7 +1509,7 @@ class InvoicePriceComponent extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      )!,
+      ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',

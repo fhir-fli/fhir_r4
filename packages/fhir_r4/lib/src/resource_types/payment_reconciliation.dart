@@ -48,7 +48,7 @@ class PaymentReconciliation extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -58,12 +58,12 @@ class PaymentReconciliation extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -131,12 +131,12 @@ class PaymentReconciliation extends DomainResource {
         json,
         'outcome',
         RemittanceOutcome.fromJson,
-      )!,
+      ),
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
-      )!,
+      ),
       paymentDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'paymentDate',
@@ -778,7 +778,7 @@ class PaymentReconciliationDetail extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -827,7 +827,7 @@ class PaymentReconciliationDetail extends BackboneElement {
         json,
         'date',
         FhirDate.fromJson,
-      )!,
+      ),
       responsible: JsonParser.parseObject<Reference>(
         json,
         'responsible',
@@ -1278,7 +1278,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1297,12 +1297,12 @@ class PaymentReconciliationProcessNote extends BackboneElement {
         json,
         'type',
         NoteType.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

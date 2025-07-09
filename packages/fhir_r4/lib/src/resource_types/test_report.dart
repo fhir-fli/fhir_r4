@@ -45,7 +45,7 @@ class TestReport extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class TestReport extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -96,7 +96,7 @@ class TestReport extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<TestReportStatus>(
         json,
         'status',
@@ -116,17 +116,17 @@ class TestReport extends DomainResource {
         json,
         'score',
         FhirDecimal.fromJson,
-      )!,
+      ),
       tester: JsonParser.parsePrimitive<FhirString>(
         json,
         'tester',
         FhirString.fromJson,
-      )!,
+      ),
       issued: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'issued',
         FhirDateTime.fromJson,
-      )!,
+      ),
       participant: (json['participant'] as List<dynamic>?)
           ?.map<TestReportParticipant>(
             (v) => TestReportParticipant.fromJson(
@@ -698,7 +698,7 @@ class TestReportParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -727,7 +727,7 @@ class TestReportParticipant extends BackboneElement {
         json,
         'display',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1021,7 +1021,7 @@ class TestReportSetup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1300,7 +1300,7 @@ class TestReportAction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1604,7 +1604,7 @@ class TestReportOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1628,12 +1628,12 @@ class TestReportOperation extends BackboneElement {
         json,
         'message',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       detail: JsonParser.parsePrimitive<FhirUri>(
         json,
         'detail',
         FhirUri.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1930,7 +1930,7 @@ class TestReportAssert extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1954,12 +1954,12 @@ class TestReportAssert extends BackboneElement {
         json,
         'message',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       detail: JsonParser.parsePrimitive<FhirString>(
         json,
         'detail',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2256,7 +2256,7 @@ class TestReportTest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2275,12 +2275,12 @@ class TestReportTest extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       action: (json['action'] as List<dynamic>)
           .map<TestReportAction>(
             (v) => TestReportAction.fromJson(
@@ -2585,7 +2585,7 @@ class TestReportAction1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2888,7 +2888,7 @@ class TestReportTeardown extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3166,7 +3166,7 @@ class TestReportAction2 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

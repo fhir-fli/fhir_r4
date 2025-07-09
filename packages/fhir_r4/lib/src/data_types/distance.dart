@@ -40,7 +40,7 @@ class Distance extends Quantity
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -52,27 +52,27 @@ class Distance extends Quantity
         json,
         'value',
         FhirDecimal.fromJson,
-      )!,
+      ),
       comparator: JsonParser.parsePrimitive<QuantityComparator>(
         json,
         'comparator',
         QuantityComparator.fromJson,
-      )!,
+      ),
       unit: JsonParser.parsePrimitive<FhirString>(
         json,
         'unit',
         FhirString.fromJson,
-      )!,
+      ),
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
-      )!,
+      ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-      )!,
+      ),
     );
   }
 

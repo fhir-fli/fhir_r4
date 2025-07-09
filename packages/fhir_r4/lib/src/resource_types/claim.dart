@@ -61,7 +61,7 @@ class Claim extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -71,12 +71,12 @@ class Claim extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -1088,7 +1088,7 @@ class ClaimRelated extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1417,7 +1417,7 @@ class ClaimPayee extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1722,7 +1722,7 @@ class ClaimCareTeam extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1751,7 +1751,7 @@ class ClaimCareTeam extends BackboneElement {
         json,
         'responsible',
         FhirBoolean.fromJson,
-      )!,
+      ),
       role: JsonParser.parseObject<CodeableConcept>(
         json,
         'role',
@@ -2115,7 +2115,7 @@ class ClaimSupportingInfo extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2583,7 +2583,7 @@ class ClaimDiagnosis extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2985,7 +2985,7 @@ class ClaimProcedure extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3016,7 +3016,7 @@ class ClaimProcedure extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       procedureX: JsonParser.parsePolymorphic<ProcedureXClaimProcedure>(
         json,
         {
@@ -3388,7 +3388,7 @@ class ClaimInsurance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3427,12 +3427,12 @@ class ClaimInsurance extends BackboneElement {
         json,
         'businessArrangement',
         FhirString.fromJson,
-      )!,
+      ),
       preAuthRef: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'preAuthRef',
         FhirString.fromJson,
-      )!,
+      ),
       claimResponse: JsonParser.parseObject<Reference>(
         json,
         'claimResponse',
@@ -3820,7 +3820,7 @@ class ClaimAccident extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4198,7 +4198,7 @@ class ClaimItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4222,22 +4222,22 @@ class ClaimItem extends BackboneElement {
         json,
         'careTeamSequence',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       diagnosisSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'diagnosisSequence',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       procedureSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'procedureSequence',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       informationSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'informationSequence',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       revenue: JsonParser.parseObject<CodeableConcept>(
         json,
         'revenue',
@@ -4296,7 +4296,7 @@ class ClaimItem extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      )!,
+      ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
@@ -5041,7 +5041,7 @@ class ClaimDetail extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5104,7 +5104,7 @@ class ClaimDetail extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      )!,
+      ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
@@ -5610,7 +5610,7 @@ class ClaimSubDetail extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5673,7 +5673,7 @@ class ClaimSubDetail extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      )!,
+      ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',

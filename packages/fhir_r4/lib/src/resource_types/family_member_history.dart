@@ -70,7 +70,7 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -80,12 +80,12 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -123,12 +123,12 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<FamilyHistoryStatus>(
         json,
         'status',
@@ -148,12 +148,12 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
@@ -184,7 +184,7 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'estimatedAge',
         FhirBoolean.fromJson,
-      )!,
+      ),
       deceasedX: JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(
         json,
         {
@@ -994,7 +994,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1023,7 +1023,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         json,
         'contributedToDeath',
         FhirBoolean.fromJson,
-      )!,
+      ),
       onsetX: JsonParser.parsePolymorphic<OnsetXFamilyMemberHistoryCondition>(
         json,
         {

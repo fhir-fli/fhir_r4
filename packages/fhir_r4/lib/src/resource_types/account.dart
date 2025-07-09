@@ -45,7 +45,7 @@ class Account extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class Account extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -108,7 +108,7 @@ class Account extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       subject: (json['subject'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -137,7 +137,7 @@ class Account extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       guarantor: (json['guarantor'] as List<dynamic>?)
           ?.map<AccountGuarantor>(
             (v) => AccountGuarantor.fromJson(
@@ -681,7 +681,7 @@ class AccountCoverage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -705,7 +705,7 @@ class AccountCoverage extends BackboneElement {
         json,
         'priority',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -989,7 +989,7 @@ class AccountGuarantor extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1013,7 +1013,7 @@ class AccountGuarantor extends BackboneElement {
         json,
         'onHold',
         FhirBoolean.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',

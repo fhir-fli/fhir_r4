@@ -53,7 +53,7 @@ class DocumentReference extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -63,12 +63,12 @@ class DocumentReference extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -116,7 +116,7 @@ class DocumentReference extends DomainResource {
         json,
         'docStatus',
         CompositionStatus.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -138,7 +138,7 @@ class DocumentReference extends DomainResource {
         json,
         'date',
         FhirInstant.fromJson,
-      )!,
+      ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -167,7 +167,7 @@ class DocumentReference extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -823,7 +823,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1124,7 +1124,7 @@ class DocumentReferenceContent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1433,7 +1433,7 @@ class DocumentReferenceContext extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

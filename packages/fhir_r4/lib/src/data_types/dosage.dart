@@ -52,7 +52,7 @@ class Dosage extends BackboneType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -71,12 +71,12 @@ class Dosage extends BackboneType
         json,
         'sequence',
         FhirInteger.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
       additionalInstruction: (json['additionalInstruction'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -88,7 +88,7 @@ class Dosage extends BackboneType
         json,
         'patientInstruction',
         FhirString.fromJson,
-      )!,
+      ),
       timing: JsonParser.parseObject<Timing>(
         json,
         'timing',
@@ -655,7 +655,7 @@ class DosageDoseAndRate extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

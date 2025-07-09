@@ -54,7 +54,7 @@ class ImmunizationEvaluation extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -64,12 +64,12 @@ class ImmunizationEvaluation extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -117,7 +117,7 @@ class ImmunizationEvaluation extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       authority: JsonParser.parseObject<Reference>(
         json,
         'authority',
@@ -149,12 +149,12 @@ class ImmunizationEvaluation extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       series: JsonParser.parsePrimitive<FhirString>(
         json,
         'series',
         FhirString.fromJson,
-      )!,
+      ),
       doseNumberX:
           JsonParser.parsePolymorphic<DoseNumberXImmunizationEvaluation>(
         json,

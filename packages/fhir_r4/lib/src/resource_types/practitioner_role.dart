@@ -47,7 +47,7 @@ class PractitionerRole extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class PractitionerRole extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -100,7 +100,7 @@ class PractitionerRole extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -169,7 +169,7 @@ class PractitionerRole extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
-      )!,
+      ),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -772,7 +772,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -791,22 +791,22 @@ class PractitionerRoleAvailableTime extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
-      )!,
+      ),
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
-      )!,
+      ),
       availableStartTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableStartTime',
         FhirTime.fromJson,
-      )!,
+      ),
       availableEndTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'availableEndTime',
         FhirTime.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1129,7 +1129,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

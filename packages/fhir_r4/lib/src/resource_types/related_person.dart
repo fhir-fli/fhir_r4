@@ -46,7 +46,7 @@ class RelatedPerson extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class RelatedPerson extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,7 +99,7 @@ class RelatedPerson extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      )!,
+      ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
@@ -130,12 +130,12 @@ class RelatedPerson extends DomainResource {
         json,
         'gender',
         AdministrativeGender.fromJson,
-      )!,
+      ),
       birthDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'birthDate',
         FhirDate.fromJson,
-      )!,
+      ),
       address: (json['address'] as List<dynamic>?)
           ?.map<Address>(
             (v) => Address.fromJson(
@@ -710,7 +710,7 @@ class RelatedPersonCommunication extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -734,7 +734,7 @@ class RelatedPersonCommunication extends BackboneElement {
         json,
         'preferred',
         FhirBoolean.fromJson,
-      )!,
+      ),
     );
   }
 

@@ -85,7 +85,7 @@ class Period extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -97,12 +97,12 @@ class Period extends DataType
         json,
         'start',
         FhirDateTime.fromJson,
-      )!,
+      ),
       end: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'end',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 

@@ -57,7 +57,7 @@ class Communication extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -67,12 +67,12 @@ class Communication extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -110,12 +110,12 @@ class Communication extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -158,7 +158,7 @@ class Communication extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      )!,
+      ),
       medium: (json['medium'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -192,12 +192,12 @@ class Communication extends DomainResource {
         json,
         'sent',
         FhirDateTime.fromJson,
-      )!,
+      ),
       received: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'received',
         FhirDateTime.fromJson,
-      )!,
+      ),
       recipient: (json['recipient'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -1011,7 +1011,7 @@ class CommunicationPayload extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

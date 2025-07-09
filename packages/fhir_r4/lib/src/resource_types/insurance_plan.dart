@@ -46,7 +46,7 @@ class InsurancePlan extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class InsurancePlan extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,7 +99,7 @@ class InsurancePlan extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -111,12 +111,12 @@ class InsurancePlan extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       alias: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -769,7 +769,7 @@ class InsurancePlanContact extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1124,7 +1124,7 @@ class InsurancePlanCoverage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1453,7 +1453,7 @@ class InsurancePlanBenefit extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1477,7 +1477,7 @@ class InsurancePlanBenefit extends BackboneElement {
         json,
         'requirement',
         FhirString.fromJson,
-      )!,
+      ),
       limit: (json['limit'] as List<dynamic>?)
           ?.map<InsurancePlanLimit>(
             (v) => InsurancePlanLimit.fromJson(
@@ -1780,7 +1780,7 @@ class InsurancePlanLimit extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2088,7 +2088,7 @@ class InsurancePlanPlan extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2502,7 +2502,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2526,7 +2526,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
         json,
         'groupSize',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       cost: JsonParser.parseObject<Money>(
         json,
         'cost',
@@ -2536,7 +2536,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
         json,
         'comment',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2854,7 +2854,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3158,7 +3158,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3464,7 +3464,7 @@ class InsurancePlanCost extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

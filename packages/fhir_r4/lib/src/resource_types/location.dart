@@ -51,7 +51,7 @@ class Location extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -61,12 +61,12 @@ class Location extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -104,7 +104,7 @@ class Location extends DomainResource {
         json,
         'status',
         LocationStatus.fromJson,
-      )!,
+      ),
       operationalStatus: JsonParser.parseObject<Coding>(
         json,
         'operationalStatus',
@@ -114,22 +114,22 @@ class Location extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       alias: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       mode: JsonParser.parsePrimitive<LocationMode>(
         json,
         'mode',
         LocationMode.fromJson,
-      )!,
+      ),
       type: (json['type'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -180,7 +180,7 @@ class Location extends DomainResource {
         json,
         'availabilityExceptions',
         FhirString.fromJson,
-      )!,
+      ),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -844,7 +844,7 @@ class LocationPosition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -873,7 +873,7 @@ class LocationPosition extends BackboneElement {
         json,
         'altitude',
         FhirDecimal.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1172,7 +1172,7 @@ class LocationHoursOfOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1191,22 +1191,22 @@ class LocationHoursOfOperation extends BackboneElement {
         json,
         'daysOfWeek',
         DaysOfWeek.fromJson,
-      )!,
+      ),
       allDay: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'allDay',
         FhirBoolean.fromJson,
-      )!,
+      ),
       openingTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'openingTime',
         FhirTime.fromJson,
-      )!,
+      ),
       closingTime: JsonParser.parsePrimitive<FhirTime>(
         json,
         'closingTime',
         FhirTime.fromJson,
-      )!,
+      ),
     );
   }
 

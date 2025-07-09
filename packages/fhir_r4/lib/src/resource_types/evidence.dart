@@ -64,7 +64,7 @@ class Evidence extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -74,12 +74,12 @@ class Evidence extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -122,12 +122,12 @@ class Evidence extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       citeAsX: JsonParser.parsePolymorphic<CiteAsXEvidence>(
         json,
         {
@@ -156,17 +156,17 @@ class Evidence extends DomainResource {
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -218,7 +218,7 @@ class Evidence extends DomainResource {
         json,
         'assertion',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -752,9 +752,7 @@ class Evidence extends DomainResource {
           fields.add(citeAsX!);
         }
       case 'status':
-        if (status != null) {
-          fields.add(status!);
-        }
+        fields.add(status);
       case 'date':
         if (date != null) {
           fields.add(date!);
@@ -1099,7 +1097,7 @@ class EvidenceVariableDefinition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1118,7 +1116,7 @@ class EvidenceVariableDefinition extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -1509,7 +1507,7 @@ class EvidenceStatistic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1528,7 +1526,7 @@ class EvidenceStatistic extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -1555,12 +1553,12 @@ class EvidenceStatistic extends BackboneElement {
         json,
         'numberOfEvents',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       numberAffected: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'numberAffected',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       sampleSize: JsonParser.parseObject<EvidenceSampleSize>(
         json,
         'sampleSize',
@@ -2018,7 +2016,7 @@ class EvidenceSampleSize extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2037,7 +2035,7 @@ class EvidenceSampleSize extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -2049,17 +2047,17 @@ class EvidenceSampleSize extends BackboneElement {
         json,
         'numberOfStudies',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       numberOfParticipants: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'numberOfParticipants',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       knownDataCount: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'knownDataCount',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2402,7 +2400,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2421,7 +2419,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -2443,7 +2441,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
         json,
         'level',
         FhirDecimal.fromJson,
-      )!,
+      ),
       range: JsonParser.parseObject<Range>(
         json,
         'range',
@@ -2834,7 +2832,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3192,7 +3190,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3216,7 +3214,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
         json,
         'handling',
         EvidenceVariableHandling.fromJson,
-      )!,
+      ),
       valueCategory: (json['valueCategory'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -3578,7 +3576,7 @@ class EvidenceCertainty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3597,7 +3595,7 @@ class EvidenceCertainty extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -3619,7 +3617,7 @@ class EvidenceCertainty extends BackboneElement {
         json,
         'rater',
         FhirString.fromJson,
-      )!,
+      ),
       subcomponent: (json['subcomponent'] as List<dynamic>?)
           ?.map<EvidenceCertainty>(
             (v) => EvidenceCertainty.fromJson(

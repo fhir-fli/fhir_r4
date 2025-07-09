@@ -45,7 +45,7 @@ class Specimen extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class Specimen extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -103,7 +103,7 @@ class Specimen extends DomainResource {
         json,
         'status',
         SpecimenStatus.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -118,7 +118,7 @@ class Specimen extends DomainResource {
         json,
         'receivedTime',
         FhirDateTime.fromJson,
-      )!,
+      ),
       parent: (json['parent'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -750,7 +750,7 @@ class SpecimenCollection extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1227,7 +1227,7 @@ class SpecimenProcessing extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1246,7 +1246,7 @@ class SpecimenProcessing extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       procedure: JsonParser.parseObject<CodeableConcept>(
         json,
         'procedure',
@@ -1610,7 +1610,7 @@ class SpecimenContainer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1636,7 +1636,7 @@ class SpecimenContainer extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',

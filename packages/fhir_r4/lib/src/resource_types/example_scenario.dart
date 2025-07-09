@@ -49,7 +49,7 @@ class ExampleScenario extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -59,12 +59,12 @@ class ExampleScenario extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -107,22 +107,22 @@ class ExampleScenario extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -132,7 +132,7 @@ class ExampleScenario extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -158,12 +158,12 @@ class ExampleScenario extends CanonicalResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       purpose: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       actor: (json['actor'] as List<dynamic>?)
           ?.map<ExampleScenarioActor>(
             (v) => ExampleScenarioActor.fromJson(
@@ -189,7 +189,7 @@ class ExampleScenario extends CanonicalResource {
         json,
         'workflow',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -803,7 +803,7 @@ class ExampleScenarioActor extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -832,12 +832,12 @@ class ExampleScenarioActor extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1154,7 +1154,7 @@ class ExampleScenarioInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1183,12 +1183,12 @@ class ExampleScenarioInstance extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       version: (json['version'] as List<dynamic>?)
           ?.map<ExampleScenarioVersion>(
             (v) => ExampleScenarioVersion.fromJson(
@@ -1554,7 +1554,7 @@ class ExampleScenarioVersion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1854,7 +1854,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1878,7 +1878,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         json,
         'versionId',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2159,7 +2159,7 @@ class ExampleScenarioProcess extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2183,17 +2183,17 @@ class ExampleScenarioProcess extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       preConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'preConditions',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       postConditions: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'postConditions',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(
@@ -2536,7 +2536,7 @@ class ExampleScenarioStep extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2562,7 +2562,7 @@ class ExampleScenarioStep extends BackboneElement {
         json,
         'pause',
         FhirBoolean.fromJson,
-      )!,
+      ),
       operation: JsonParser.parseObject<ExampleScenarioOperation>(
         json,
         'operation',
@@ -2900,7 +2900,7 @@ class ExampleScenarioOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2924,37 +2924,37 @@ class ExampleScenarioOperation extends BackboneElement {
         json,
         'type',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       initiator: JsonParser.parsePrimitive<FhirString>(
         json,
         'initiator',
         FhirString.fromJson,
-      )!,
+      ),
       receiver: JsonParser.parsePrimitive<FhirString>(
         json,
         'receiver',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       initiatorActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'initiatorActive',
         FhirBoolean.fromJson,
-      )!,
+      ),
       receiverActive: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'receiverActive',
         FhirBoolean.fromJson,
-      )!,
+      ),
       request: JsonParser.parseObject<ExampleScenarioContainedInstance>(
         json,
         'request',
@@ -3395,7 +3395,7 @@ class ExampleScenarioAlternative extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3419,7 +3419,7 @@ class ExampleScenarioAlternative extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       step: (json['step'] as List<dynamic>?)
           ?.map<ExampleScenarioStep>(
             (v) => ExampleScenarioStep.fromJson(

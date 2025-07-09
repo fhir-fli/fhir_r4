@@ -37,7 +37,7 @@ class ContactDetail extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -49,7 +49,7 @@ class ContactDetail extends DataType
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(

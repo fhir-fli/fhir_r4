@@ -66,7 +66,7 @@ class MedicinalProductDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -76,12 +76,12 @@ class MedicinalProductDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -129,7 +129,7 @@ class MedicinalProductDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
@@ -139,12 +139,12 @@ class MedicinalProductDefinition extends DomainResource {
         json,
         'statusDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       combinedPharmaceuticalDoseForm: JsonParser.parseObject<CodeableConcept>(
         json,
         'combinedPharmaceuticalDoseForm',
@@ -161,7 +161,7 @@ class MedicinalProductDefinition extends DomainResource {
         json,
         'indication',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       legalStatusOfSupply: JsonParser.parseObject<CodeableConcept>(
         json,
         'legalStatusOfSupply',
@@ -1183,7 +1183,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1488,7 +1488,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1843,7 +1843,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2146,7 +2146,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2473,7 +2473,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2782,7 +2782,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3154,7 +3154,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

@@ -39,7 +39,7 @@ class Substance extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -49,12 +49,12 @@ class Substance extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -92,7 +92,7 @@ class Substance extends DomainResource {
         json,
         'status',
         FHIRSubstanceStatus.fromJson,
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -109,7 +109,7 @@ class Substance extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       instance: (json['instance'] as List<dynamic>?)
           ?.map<SubstanceInstance>(
             (v) => SubstanceInstance.fromJson(
@@ -576,7 +576,7 @@ class SubstanceInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -600,7 +600,7 @@ class SubstanceInstance extends BackboneElement {
         json,
         'expiry',
         FhirDateTime.fromJson,
-      )!,
+      ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
@@ -905,7 +905,7 @@ class SubstanceIngredient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

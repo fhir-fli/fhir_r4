@@ -45,7 +45,7 @@ class FhirGroup extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class FhirGroup extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -98,7 +98,7 @@ class FhirGroup extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<GroupType>(
         json,
         'type',
@@ -118,12 +118,12 @@ class FhirGroup extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       quantity: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'quantity',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       managingEntity: JsonParser.parseObject<Reference>(
         json,
         'managingEntity',
@@ -655,7 +655,7 @@ class GroupCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1048,7 +1048,7 @@ class GroupMember extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1077,7 +1077,7 @@ class GroupMember extends BackboneElement {
         json,
         'inactive',
         FhirBoolean.fromJson,
-      )!,
+      ),
     );
   }
 

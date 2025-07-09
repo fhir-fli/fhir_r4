@@ -72,7 +72,7 @@ class ResearchDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -82,12 +82,12 @@ class ResearchDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,7 +118,7 @@ class ResearchDefinition extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -130,27 +130,27 @@ class ResearchDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       shortTitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'shortTitle',
         FhirString.fromJson,
-      )!,
+      ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -160,7 +160,7 @@ class ResearchDefinition extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       subjectX: JsonParser.parsePolymorphic<SubjectXResearchDefinition>(
         json,
         {
@@ -172,12 +172,12 @@ class ResearchDefinition extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -189,12 +189,12 @@ class ResearchDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       comment: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      )!,
+      ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
@@ -213,27 +213,27 @@ class ResearchDefinition extends DomainResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -285,7 +285,7 @@ class ResearchDefinition extends DomainResource {
         json,
         'library',
         FhirCanonical.fromJson,
-      )!,
+      ),
       population: JsonParser.parseObject<Reference>(
         json,
         'population',

@@ -54,7 +54,7 @@ class MedicationKnowledge extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -64,12 +64,12 @@ class MedicationKnowledge extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -105,7 +105,7 @@ class MedicationKnowledge extends DomainResource {
         json,
         'status',
         MedicationKnowledgeStatusCodes.fromJson,
-      )!,
+      ),
       manufacturer: JsonParser.parseObject<Reference>(
         json,
         'manufacturer',
@@ -125,7 +125,7 @@ class MedicationKnowledge extends DomainResource {
         json,
         'synonym',
         FhirString.fromJson,
-      )!,
+      ),
       relatedMedicationKnowledge:
           (json['relatedMedicationKnowledge'] as List<dynamic>?)
               ?.map<MedicationKnowledgeRelatedMedicationKnowledge>(
@@ -166,7 +166,7 @@ class MedicationKnowledge extends DomainResource {
         json,
         'preparationInstruction',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       intendedRoute: (json['intendedRoute'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -995,7 +995,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1299,7 +1299,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1605,7 +1605,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1631,7 +1631,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
         json,
         'isActive',
         FhirBoolean.fromJson,
-      )!,
+      ),
       strength: JsonParser.parseObject<Ratio>(
         json,
         'strength',
@@ -1956,7 +1956,7 @@ class MedicationKnowledgeCost extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1980,7 +1980,7 @@ class MedicationKnowledgeCost extends BackboneElement {
         json,
         'source',
         FhirString.fromJson,
-      )!,
+      ),
       cost: JsonParser.parseObject<Money>(
         json,
         'cost',
@@ -2280,7 +2280,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2304,7 +2304,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2590,7 +2590,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2947,7 +2947,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3250,7 +3250,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3277,7 +3277,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
         json,
         'value',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -3578,7 +3578,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3885,7 +3885,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4200,7 +4200,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4545,7 +4545,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4902,7 +4902,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5202,7 +5202,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5481,7 +5481,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5785,7 +5785,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

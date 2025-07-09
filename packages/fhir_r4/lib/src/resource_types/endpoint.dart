@@ -46,7 +46,7 @@ class FhirEndpoint extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class FhirEndpoint extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -109,7 +109,7 @@ class FhirEndpoint extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       managingOrganization: JsonParser.parseObject<Reference>(
         json,
         'managingOrganization',
@@ -138,7 +138,7 @@ class FhirEndpoint extends DomainResource {
         json,
         'payloadMimeType',
         FhirCode.fromJson,
-      )!,
+      ),
       address: JsonParser.parsePrimitive<FhirUrl>(
         json,
         'address',
@@ -148,7 +148,7 @@ class FhirEndpoint extends DomainResource {
         json,
         'header',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

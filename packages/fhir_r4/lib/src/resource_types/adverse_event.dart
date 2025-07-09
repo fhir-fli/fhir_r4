@@ -55,7 +55,7 @@ class AdverseEvent extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -65,12 +65,12 @@ class AdverseEvent extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -133,17 +133,17 @@ class AdverseEvent extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       detected: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'detected',
         FhirDateTime.fromJson,
-      )!,
+      ),
       recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'recordedDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
       resultingCondition: (json['resultingCondition'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -922,7 +922,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1229,7 +1229,7 @@ class AdverseEventCausality extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1253,7 +1253,7 @@ class AdverseEventCausality extends BackboneElement {
         json,
         'productRelatedness',
         FhirString.fromJson,
-      )!,
+      ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',

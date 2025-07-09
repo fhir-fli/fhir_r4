@@ -63,7 +63,7 @@ class Task extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -73,12 +73,12 @@ class Task extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -116,12 +116,12 @@ class Task extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitive<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -165,7 +165,7 @@ class Task extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      )!,
+      ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -175,7 +175,7 @@ class Task extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       focus: JsonParser.parseObject<Reference>(
         json,
         'focus',
@@ -200,12 +200,12 @@ class Task extends DomainResource {
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-      )!,
+      ),
       lastModified: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastModified',
         FhirDateTime.fromJson,
-      )!,
+      ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
@@ -1206,7 +1206,7 @@ class TaskRestriction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1225,7 +1225,7 @@ class TaskRestriction extends BackboneElement {
         json,
         'repetitions',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',
@@ -1536,7 +1536,7 @@ class TaskInput extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2242,7 +2242,7 @@ class TaskOutput extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

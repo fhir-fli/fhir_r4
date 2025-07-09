@@ -753,7 +753,9 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement);
+      'clinicalRecommendationStatement',
+      clinicalRecommendationStatement,
+    );
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);

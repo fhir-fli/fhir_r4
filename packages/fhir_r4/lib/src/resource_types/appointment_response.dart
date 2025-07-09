@@ -41,7 +41,7 @@ class AppointmentResponse extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -51,12 +51,12 @@ class AppointmentResponse extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,12 +99,12 @@ class AppointmentResponse extends DomainResource {
         json,
         'start',
         FhirInstant.fromJson,
-      )!,
+      ),
       end: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'end',
         FhirInstant.fromJson,
-      )!,
+      ),
       participantType: (json['participantType'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -126,7 +126,7 @@ class AppointmentResponse extends DomainResource {
         json,
         'comment',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

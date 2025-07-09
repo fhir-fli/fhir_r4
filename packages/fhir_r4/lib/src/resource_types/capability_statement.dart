@@ -61,7 +61,7 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -71,12 +71,12 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -112,37 +112,37 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -173,12 +173,12 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       kind: JsonParser.parsePrimitive<CapabilityStatementKind>(
         json,
         'kind',
@@ -188,12 +188,12 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'instantiates',
         FhirCanonical.fromJson,
-      )!,
+      ),
       imports: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'imports',
         FhirCanonical.fromJson,
-      )!,
+      ),
       software: JsonParser.parseObject<CapabilityStatementSoftware>(
         json,
         'software',
@@ -218,12 +218,12 @@ class CapabilityStatement extends CanonicalResource {
         json,
         'patchFormat',
         FhirCode.fromJson,
-      )!,
+      ),
       implementationGuide: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'implementationGuide',
         FhirCanonical.fromJson,
-      )!,
+      ),
       rest: (json['rest'] as List<dynamic>?)
           ?.map<CapabilityStatementRest>(
             (v) => CapabilityStatementRest.fromJson(
@@ -1038,7 +1038,7 @@ class CapabilityStatementSoftware extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1062,12 +1062,12 @@ class CapabilityStatementSoftware extends BackboneElement {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       releaseDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'releaseDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1367,7 +1367,7 @@ class CapabilityStatementImplementation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1391,7 +1391,7 @@ class CapabilityStatementImplementation extends BackboneElement {
         json,
         'url',
         FhirUrl.fromJson,
-      )!,
+      ),
       custodian: JsonParser.parseObject<Reference>(
         json,
         'custodian',
@@ -1702,7 +1702,7 @@ class CapabilityStatementRest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1726,7 +1726,7 @@ class CapabilityStatementRest extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       security: JsonParser.parseObject<CapabilityStatementSecurity>(
         json,
         'security',
@@ -1764,7 +1764,7 @@ class CapabilityStatementRest extends BackboneElement {
         json,
         'compartment',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2167,7 +2167,7 @@ class CapabilityStatementSecurity extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2186,7 +2186,7 @@ class CapabilityStatementSecurity extends BackboneElement {
         json,
         'cors',
         FhirBoolean.fromJson,
-      )!,
+      ),
       service: (json['service'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -2198,7 +2198,7 @@ class CapabilityStatementSecurity extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2514,7 +2514,7 @@ class CapabilityStatementResource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2538,17 +2538,17 @@ class CapabilityStatementResource extends BackboneElement {
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       supportedProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'supportedProfile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       documentation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       interaction: (json['interaction'] as List<dynamic>?)
           ?.map<CapabilityStatementInteraction>(
             (v) => CapabilityStatementInteraction.fromJson(
@@ -2560,52 +2560,52 @@ class CapabilityStatementResource extends BackboneElement {
         json,
         'versioning',
         ResourceVersionPolicy.fromJson,
-      )!,
+      ),
       readHistory: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'readHistory',
         FhirBoolean.fromJson,
-      )!,
+      ),
       updateCreate: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'updateCreate',
         FhirBoolean.fromJson,
-      )!,
+      ),
       conditionalCreate: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'conditionalCreate',
         FhirBoolean.fromJson,
-      )!,
+      ),
       conditionalRead: JsonParser.parsePrimitive<ConditionalReadStatus>(
         json,
         'conditionalRead',
         ConditionalReadStatus.fromJson,
-      )!,
+      ),
       conditionalUpdate: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'conditionalUpdate',
         FhirBoolean.fromJson,
-      )!,
+      ),
       conditionalDelete: JsonParser.parsePrimitive<ConditionalDeleteStatus>(
         json,
         'conditionalDelete',
         ConditionalDeleteStatus.fromJson,
-      )!,
+      ),
       referencePolicy: JsonParser.parsePrimitiveList<ReferenceHandlingPolicy>(
         json,
         'referencePolicy',
         ReferenceHandlingPolicy.fromJson,
-      )!,
+      ),
       searchInclude: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'searchInclude',
         FhirString.fromJson,
-      )!,
+      ),
       searchRevInclude: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'searchRevInclude',
         FhirString.fromJson,
-      )!,
+      ),
       searchParam: (json['searchParam'] as List<dynamic>?)
           ?.map<CapabilityStatementSearchParam>(
             (v) => CapabilityStatementSearchParam.fromJson(
@@ -3207,7 +3207,7 @@ class CapabilityStatementInteraction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3231,7 +3231,7 @@ class CapabilityStatementInteraction extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -3515,7 +3515,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3539,7 +3539,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
         json,
         'definition',
         FhirCanonical.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<SearchParamType>(
         json,
         'type',
@@ -3549,7 +3549,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -3875,7 +3875,7 @@ class CapabilityStatementOperation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3904,7 +3904,7 @@ class CapabilityStatementOperation extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -4211,7 +4211,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4235,7 +4235,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -4517,7 +4517,7 @@ class CapabilityStatementMessaging extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4543,12 +4543,12 @@ class CapabilityStatementMessaging extends BackboneElement {
         json,
         'reliableCache',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       documentation: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       supportedMessage: (json['supportedMessage'] as List<dynamic>?)
           ?.map<CapabilityStatementSupportedMessage>(
             (v) => CapabilityStatementSupportedMessage.fromJson(
@@ -4881,7 +4881,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5184,7 +5184,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5488,7 +5488,7 @@ class CapabilityStatementDocument extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5512,7 +5512,7 @@ class CapabilityStatementDocument extends BackboneElement {
         json,
         'documentation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',

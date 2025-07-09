@@ -45,7 +45,7 @@ class FhirList extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class FhirList extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -108,7 +108,7 @@ class FhirList extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -128,7 +128,7 @@ class FhirList extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       source: JsonParser.parseObject<Reference>(
         json,
         'source',
@@ -725,7 +725,7 @@ class ListEntry extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -749,12 +749,12 @@ class ListEntry extends BackboneElement {
         json,
         'deleted',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       item: JsonParser.parseObject<Reference>(
         json,
         'item',

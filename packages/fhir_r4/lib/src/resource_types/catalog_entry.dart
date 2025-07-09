@@ -46,7 +46,7 @@ class CatalogEntry extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class CatalogEntry extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -128,7 +128,7 @@ class CatalogEntry extends DomainResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       validityPeriod: JsonParser.parseObject<Period>(
         json,
         'validityPeriod',
@@ -138,12 +138,12 @@ class CatalogEntry extends DomainResource {
         json,
         'validTo',
         FhirDateTime.fromJson,
-      )!,
+      ),
       lastUpdated: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'lastUpdated',
         FhirDateTime.fromJson,
-      )!,
+      ),
       additionalCharacteristic:
           (json['additionalCharacteristic'] as List<dynamic>?)
               ?.map<CodeableConcept>(
@@ -731,7 +731,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

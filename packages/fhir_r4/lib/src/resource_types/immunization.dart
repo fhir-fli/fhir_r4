@@ -62,7 +62,7 @@ class Immunization extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -72,12 +72,12 @@ class Immunization extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -147,12 +147,12 @@ class Immunization extends DomainResource {
         json,
         'recorded',
         FhirDateTime.fromJson,
-      )!,
+      ),
       primarySource: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'primarySource',
         FhirBoolean.fromJson,
-      )!,
+      ),
       reportOrigin: JsonParser.parseObject<CodeableConcept>(
         json,
         'reportOrigin',
@@ -172,12 +172,12 @@ class Immunization extends DomainResource {
         json,
         'lotNumber',
         FhirString.fromJson,
-      )!,
+      ),
       expirationDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'expirationDate',
         FhirDate.fromJson,
-      )!,
+      ),
       site: JsonParser.parseObject<CodeableConcept>(
         json,
         'site',
@@ -225,7 +225,7 @@ class Immunization extends DomainResource {
         json,
         'isSubpotent',
         FhirBoolean.fromJson,
-      )!,
+      ),
       subpotentReason: (json['subpotentReason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -1140,7 +1140,7 @@ class ImmunizationPerformer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1445,7 +1445,7 @@ class ImmunizationEducation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1464,22 +1464,22 @@ class ImmunizationEducation extends BackboneElement {
         json,
         'documentType',
         FhirString.fromJson,
-      )!,
+      ),
       reference: JsonParser.parsePrimitive<FhirUri>(
         json,
         'reference',
         FhirUri.fromJson,
-      )!,
+      ),
       publicationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'publicationDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
       presentationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'presentationDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1799,7 +1799,7 @@ class ImmunizationReaction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1818,7 +1818,7 @@ class ImmunizationReaction extends BackboneElement {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       detail: JsonParser.parseObject<Reference>(
         json,
         'detail',
@@ -1828,7 +1828,7 @@ class ImmunizationReaction extends BackboneElement {
         json,
         'reported',
         FhirBoolean.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2134,7 +2134,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2153,7 +2153,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
         json,
         'series',
         FhirString.fromJson,
-      )!,
+      ),
       authority: JsonParser.parseObject<Reference>(
         json,
         'authority',

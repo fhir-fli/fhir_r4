@@ -41,7 +41,7 @@ class Annotation extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -60,7 +60,7 @@ class Annotation extends DataType
         json,
         'time',
         FhirDateTime.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'text',

@@ -45,7 +45,7 @@ class DocumentManifest extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class DocumentManifest extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,7 +118,7 @@ class DocumentManifest extends DomainResource {
         json,
         'created',
         FhirDateTime.fromJson,
-      )!,
+      ),
       author: (json['author'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -137,12 +137,12 @@ class DocumentManifest extends DomainResource {
         json,
         'source',
         FhirUri.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       content: (json['content'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
@@ -711,7 +711,7 @@ class DocumentManifestRelated extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

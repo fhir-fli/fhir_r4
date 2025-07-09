@@ -55,7 +55,7 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -65,12 +65,12 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -113,27 +113,27 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       derivedFrom: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -143,7 +143,7 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -174,22 +174,22 @@ class SubscriptionTopic extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -945,7 +945,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -964,7 +964,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
@@ -974,7 +974,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'supportedInteraction',
         InteractionTrigger.fromJson,
-      )!,
+      ),
       queryCriteria: JsonParser.parseObject<SubscriptionTopicQueryCriteria>(
         json,
         'queryCriteria',
@@ -984,7 +984,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         json,
         'fhirPathCriteria',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1335,7 +1335,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1354,27 +1354,27 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
         json,
         'previous',
         FhirString.fromJson,
-      )!,
+      ),
       resultForCreate: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForCreate',
         CriteriaNotExistsBehavior.fromJson,
-      )!,
+      ),
       current: JsonParser.parsePrimitive<FhirString>(
         json,
         'current',
         FhirString.fromJson,
-      )!,
+      ),
       resultForDelete: JsonParser.parsePrimitive<CriteriaNotExistsBehavior>(
         json,
         'resultForDelete',
         CriteriaNotExistsBehavior.fromJson,
-      )!,
+      ),
       requireBoth: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'requireBoth',
         FhirBoolean.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1718,7 +1718,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1737,7 +1737,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       event: JsonParser.parseObject<CodeableConcept>(
         json,
         'event',
@@ -2058,7 +2058,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2077,12 +2077,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       resource: JsonParser.parsePrimitive<FhirUri>(
         json,
         'resource',
         FhirUri.fromJson,
-      )!,
+      ),
       filterParameter: JsonParser.parsePrimitive<FhirString>(
         json,
         'filterParameter',
@@ -2092,12 +2092,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         json,
         'filterDefinition',
         FhirUri.fromJson,
-      )!,
+      ),
       modifier: JsonParser.parsePrimitiveList<SubscriptionSearchModifier>(
         json,
         'modifier',
         SubscriptionSearchModifier.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2447,7 +2447,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2471,12 +2471,12 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         json,
         'include',
         FhirString.fromJson,
-      )!,
+      ),
       revInclude: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'revInclude',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

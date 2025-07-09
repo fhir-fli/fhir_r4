@@ -46,7 +46,7 @@ class CareTeam extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -56,12 +56,12 @@ class CareTeam extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -99,7 +99,7 @@ class CareTeam extends DomainResource {
         json,
         'status',
         CareTeamStatus.fromJson,
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -111,7 +111,7 @@ class CareTeam extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
@@ -744,7 +744,7 @@ class CareTeamParticipant extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

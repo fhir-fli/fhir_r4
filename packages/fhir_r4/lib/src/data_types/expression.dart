@@ -45,7 +45,7 @@ class FhirExpression extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -57,12 +57,12 @@ class FhirExpression extends DataType
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirId>(
         json,
         'name',
         FhirId.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<ExpressionLanguage>(
         json,
         'language',
@@ -72,12 +72,12 @@ class FhirExpression extends DataType
         json,
         'expression',
         FhirString.fromJson,
-      )!,
+      ),
       reference: JsonParser.parsePrimitive<FhirUri>(
         json,
         'reference',
         FhirUri.fromJson,
-      )!,
+      ),
     );
   }
 

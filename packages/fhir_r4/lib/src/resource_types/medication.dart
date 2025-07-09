@@ -43,7 +43,7 @@ class Medication extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -53,12 +53,12 @@ class Medication extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class Medication extends DomainResource {
         json,
         'status',
         MedicationStatusCodes.fromJson,
-      )!,
+      ),
       manufacturer: JsonParser.parseObject<Reference>(
         json,
         'manufacturer',
@@ -608,7 +608,7 @@ class MedicationIngredient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -634,7 +634,7 @@ class MedicationIngredient extends BackboneElement {
         json,
         'isActive',
         FhirBoolean.fromJson,
-      )!,
+      ),
       strength: JsonParser.parseObject<Ratio>(
         json,
         'strength',
@@ -957,7 +957,7 @@ class MedicationBatch extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -976,12 +976,12 @@ class MedicationBatch extends BackboneElement {
         json,
         'lotNumber',
         FhirString.fromJson,
-      )!,
+      ),
       expirationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'expirationDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 

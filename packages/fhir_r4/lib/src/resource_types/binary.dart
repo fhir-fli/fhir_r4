@@ -33,7 +33,7 @@ class Binary extends Resource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -43,12 +43,12 @@ class Binary extends Resource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       contentType: JsonParser.parsePrimitive<FhirCode>(
         json,
         'contentType',
@@ -63,7 +63,7 @@ class Binary extends Resource {
         json,
         'data',
         FhirBase64Binary.fromJson,
-      )!,
+      ),
     );
   }
 

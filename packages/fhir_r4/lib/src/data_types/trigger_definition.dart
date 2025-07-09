@@ -49,7 +49,7 @@ class TriggerDefinition extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -66,7 +66,7 @@ class TriggerDefinition extends DataType
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(
         json,
         {

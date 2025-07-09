@@ -58,7 +58,7 @@ class CarePlan extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -68,12 +68,12 @@ class CarePlan extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -111,12 +111,12 @@ class CarePlan extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -159,12 +159,12 @@ class CarePlan extends DomainResource {
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
@@ -184,7 +184,7 @@ class CarePlan extends DomainResource {
         json,
         'created',
         FhirDateTime.fromJson,
-      )!,
+      ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
@@ -1014,7 +1014,7 @@ class CarePlanActivity extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1429,7 +1429,7 @@ class CarePlanDetail extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1448,17 +1448,17 @@ class CarePlanDetail extends BackboneElement {
         json,
         'kind',
         CarePlanActivityKind.fromJson,
-      )!,
+      ),
       instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
@@ -1499,7 +1499,7 @@ class CarePlanDetail extends BackboneElement {
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
-      )!,
+      ),
       scheduledX: JsonParser.parsePolymorphic<ScheduledXCarePlanDetail>(
         json,
         {
@@ -1541,7 +1541,7 @@ class CarePlanDetail extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

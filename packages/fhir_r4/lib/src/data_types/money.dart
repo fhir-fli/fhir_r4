@@ -42,7 +42,7 @@ class Money extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -54,12 +54,12 @@ class Money extends DataType
         json,
         'value',
         FhirDecimal.fromJson,
-      )!,
+      ),
       currency: JsonParser.parsePrimitive<FhirCode>(
         json,
         'currency',
         FhirCode.fromJson,
-      )!,
+      ),
     );
   }
 

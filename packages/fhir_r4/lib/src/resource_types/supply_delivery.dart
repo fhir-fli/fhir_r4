@@ -50,7 +50,7 @@ class SupplyDelivery extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class SupplyDelivery extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -117,7 +117,7 @@ class SupplyDelivery extends DomainResource {
         json,
         'status',
         SupplyDeliveryStatus.fromJson,
-      )!,
+      ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
@@ -718,7 +718,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

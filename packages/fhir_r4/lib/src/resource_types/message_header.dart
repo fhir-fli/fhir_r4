@@ -47,7 +47,7 @@ class MessageHeader extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class MessageHeader extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -149,7 +149,7 @@ class MessageHeader extends DomainResource {
         json,
         'definition',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -705,7 +705,7 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -724,7 +724,7 @@ class MessageHeaderDestination extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       target: JsonParser.parseObject<Reference>(
         json,
         'target',
@@ -1060,7 +1060,7 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1079,17 +1079,17 @@ class MessageHeaderSource extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       software: JsonParser.parsePrimitive<FhirString>(
         json,
         'software',
         FhirString.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       contact: JsonParser.parseObject<ContactPoint>(
         json,
         'contact',
@@ -1437,7 +1437,7 @@ class MessageHeaderResponse extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

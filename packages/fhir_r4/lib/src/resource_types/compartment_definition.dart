@@ -47,7 +47,7 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -57,12 +57,12 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -93,12 +93,12 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -108,12 +108,12 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -123,7 +123,7 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -147,7 +147,7 @@ class CompartmentDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       code: JsonParser.parsePrimitive<CompartmentType>(
         json,
         'code',
@@ -709,7 +709,7 @@ class CompartmentDefinitionResource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -733,12 +733,12 @@ class CompartmentDefinitionResource extends BackboneElement {
         json,
         'param',
         FhirString.fromJson,
-      )!,
+      ),
       documentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'documentation',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

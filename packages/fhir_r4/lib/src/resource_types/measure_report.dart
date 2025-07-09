@@ -45,7 +45,7 @@ class MeasureReport extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class MeasureReport extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -118,7 +118,7 @@ class MeasureReport extends DomainResource {
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       reporter: JsonParser.parseObject<Reference>(
         json,
         'reporter',
@@ -681,7 +681,7 @@ class MeasureReportGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1043,7 +1043,7 @@ class MeasureReportPopulation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1067,7 +1067,7 @@ class MeasureReportPopulation extends BackboneElement {
         json,
         'count',
         FhirInteger.fromJson,
-      )!,
+      ),
       subjectResults: JsonParser.parseObject<Reference>(
         json,
         'subjectResults',
@@ -1372,7 +1372,7 @@ class MeasureReportStratifier extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1685,7 +1685,7 @@ class MeasureReportStratum extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2045,7 +2045,7 @@ class MeasureReportComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2346,7 +2346,7 @@ class MeasureReportPopulation1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2370,7 +2370,7 @@ class MeasureReportPopulation1 extends BackboneElement {
         json,
         'count',
         FhirInteger.fromJson,
-      )!,
+      ),
       subjectResults: JsonParser.parseObject<Reference>(
         json,
         'subjectResults',

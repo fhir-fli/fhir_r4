@@ -61,7 +61,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -71,12 +71,12 @@ class StructureDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -107,7 +107,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
@@ -119,7 +119,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -129,17 +129,17 @@ class StructureDefinition extends CanonicalResource {
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -149,7 +149,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -180,12 +180,12 @@ class StructureDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       keyword: (json['keyword'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
@@ -197,7 +197,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
-      )!,
+      ),
       mapping: (json['mapping'] as List<dynamic>?)
           ?.map<StructureDefinitionMapping>(
             (v) => StructureDefinitionMapping.fromJson(
@@ -226,7 +226,7 @@ class StructureDefinition extends CanonicalResource {
         json,
         'contextInvariant',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<FhirUri>(
         json,
         'type',
@@ -236,12 +236,12 @@ class StructureDefinition extends CanonicalResource {
         json,
         'baseDefinition',
         FhirCanonical.fromJson,
-      )!,
+      ),
       derivation: JsonParser.parsePrimitive<TypeDerivationRule>(
         json,
         'derivation',
         TypeDerivationRule.fromJson,
-      )!,
+      ),
       snapshot: JsonParser.parseObject<StructureDefinitionSnapshot>(
         json,
         'snapshot',
@@ -1064,7 +1064,7 @@ class StructureDefinitionMapping extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1088,17 +1088,17 @@ class StructureDefinitionMapping extends BackboneElement {
         json,
         'uri',
         FhirUri.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       comment: JsonParser.parsePrimitive<FhirString>(
         json,
         'comment',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1418,7 +1418,7 @@ class StructureDefinitionContext extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1719,7 +1719,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1999,7 +1999,7 @@ class StructureDefinitionDifferential extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

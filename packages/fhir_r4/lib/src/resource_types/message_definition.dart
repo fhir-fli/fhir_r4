@@ -58,7 +58,7 @@ class MessageDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -68,12 +68,12 @@ class MessageDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -116,42 +116,42 @@ class MessageDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       replaces: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'replaces',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-      )!,
+      ),
       publisher: JsonParser.parsePrimitive<FhirString>(
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -182,22 +182,22 @@ class MessageDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       base: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'base',
         FhirCanonical.fromJson,
-      )!,
+      ),
       parent: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'parent',
         FhirCanonical.fromJson,
-      )!,
+      ),
       eventX: JsonParser.parsePolymorphic<EventXMessageDefinition>(
         json,
         {
@@ -209,7 +209,7 @@ class MessageDefinition extends CanonicalResource {
         json,
         'category',
         MessageSignificanceCategory.fromJson,
-      )!,
+      ),
       focus: (json['focus'] as List<dynamic>?)
           ?.map<MessageDefinitionFocus>(
             (v) => MessageDefinitionFocus.fromJson(
@@ -221,7 +221,7 @@ class MessageDefinition extends CanonicalResource {
         json,
         'responseRequired',
         MessageheaderResponseRequest.fromJson,
-      )!,
+      ),
       allowedResponse: (json['allowedResponse'] as List<dynamic>?)
           ?.map<MessageDefinitionAllowedResponse>(
             (v) => MessageDefinitionAllowedResponse.fromJson(
@@ -233,7 +233,7 @@ class MessageDefinition extends CanonicalResource {
         json,
         'graph',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1003,7 +1003,7 @@ class MessageDefinitionFocus extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1027,7 +1027,7 @@ class MessageDefinitionFocus extends BackboneElement {
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       min: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'min',
@@ -1037,7 +1037,7 @@ class MessageDefinitionFocus extends BackboneElement {
         json,
         'max',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1356,7 +1356,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1380,7 +1380,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
         json,
         'situation',
         FhirMarkdown.fromJson,
-      )!,
+      ),
     );
   }
 

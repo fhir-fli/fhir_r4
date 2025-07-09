@@ -59,7 +59,7 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -69,12 +69,12 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -117,27 +117,27 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       derivedFromUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'derivedFromUri',
         FhirUri.fromJson,
-      )!,
+      ),
       partOf: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'partOf',
         FhirCanonical.fromJson,
-      )!,
+      ),
       replaces: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'replaces',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
@@ -147,7 +147,7 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -157,7 +157,7 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -188,17 +188,17 @@ class ChargeItemDefinition extends DomainResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -684,9 +684,7 @@ class ChargeItemDefinition extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'url':
-        if (url != null) {
-          fields.add(url!);
-        }
+        fields.add(url);
       case 'identifier':
         if (identifier != null) {
           fields.addAll(identifier!);
@@ -712,9 +710,7 @@ class ChargeItemDefinition extends DomainResource {
           fields.addAll(replaces!);
         }
       case 'status':
-        if (status != null) {
-          fields.add(status!);
-        }
+        fields.add(status);
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -1031,7 +1027,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1050,17 +1046,17 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<FhirString>(
         json,
         'language',
         FhirString.fromJson,
-      )!,
+      ),
       expression: JsonParser.parsePrimitive<FhirString>(
         json,
         'expression',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1367,7 +1363,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1688,7 +1684,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1717,7 +1713,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
         json,
         'factor',
         FhirDecimal.fromJson,
-      )!,
+      ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',

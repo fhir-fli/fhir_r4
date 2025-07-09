@@ -59,7 +59,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -69,12 +69,12 @@ class SearchParameter extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -105,12 +105,12 @@ class SearchParameter extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -120,17 +120,17 @@ class SearchParameter extends CanonicalResource {
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -140,7 +140,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -152,7 +152,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map<UsageContext>(
             (v) => UsageContext.fromJson(
@@ -171,7 +171,7 @@ class SearchParameter extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
@@ -191,47 +191,47 @@ class SearchParameter extends CanonicalResource {
         json,
         'expression',
         FhirString.fromJson,
-      )!,
+      ),
       xpath: JsonParser.parsePrimitive<FhirString>(
         json,
         'xpath',
         FhirString.fromJson,
-      )!,
+      ),
       xpathUsage: JsonParser.parsePrimitive<XPathUsageType>(
         json,
         'xpathUsage',
         XPathUsageType.fromJson,
-      )!,
+      ),
       target: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'target',
         FhirCode.fromJson,
-      )!,
+      ),
       multipleOr: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleOr',
         FhirBoolean.fromJson,
-      )!,
+      ),
       multipleAnd: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'multipleAnd',
         FhirBoolean.fromJson,
-      )!,
+      ),
       comparator: JsonParser.parsePrimitiveList<SearchComparator>(
         json,
         'comparator',
         SearchComparator.fromJson,
-      )!,
+      ),
       modifier: JsonParser.parsePrimitiveList<SearchModifierCode>(
         json,
         'modifier',
         SearchModifierCode.fromJson,
-      )!,
+      ),
       chain: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'chain',
         FhirString.fromJson,
-      )!,
+      ),
       component: (json['component'] as List<dynamic>?)
           ?.map<SearchParameterComponent>(
             (v) => SearchParameterComponent.fromJson(
@@ -1022,7 +1022,7 @@ class SearchParameterComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

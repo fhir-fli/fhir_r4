@@ -55,7 +55,7 @@ class Address extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -67,47 +67,47 @@ class Address extends DataType
         json,
         'use',
         AddressUse.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<AddressType>(
         json,
         'type',
         AddressType.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
       line: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'line',
         FhirString.fromJson,
-      )!,
+      ),
       city: JsonParser.parsePrimitive<FhirString>(
         json,
         'city',
         FhirString.fromJson,
-      )!,
+      ),
       district: JsonParser.parsePrimitive<FhirString>(
         json,
         'district',
         FhirString.fromJson,
-      )!,
+      ),
       state: JsonParser.parsePrimitive<FhirString>(
         json,
         'state',
         FhirString.fromJson,
-      )!,
+      ),
       postalCode: JsonParser.parsePrimitive<FhirString>(
         json,
         'postalCode',
         FhirString.fromJson,
-      )!,
+      ),
       country: JsonParser.parsePrimitive<FhirString>(
         json,
         'country',
         FhirString.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',

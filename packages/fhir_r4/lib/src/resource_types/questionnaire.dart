@@ -57,7 +57,7 @@ class Questionnaire extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -67,12 +67,12 @@ class Questionnaire extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -115,37 +115,37 @@ class Questionnaire extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       derivedFrom: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'derivedFrom',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       subjectType: JsonParser.parsePrimitiveList<FhirCode>(
         json,
         'subjectType',
         FhirCode.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -155,7 +155,7 @@ class Questionnaire extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -186,22 +186,22 @@ class Questionnaire extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -945,7 +945,7 @@ class QuestionnaireItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -969,7 +969,7 @@ class QuestionnaireItem extends BackboneElement {
         json,
         'definition',
         FhirUri.fromJson,
-      )!,
+      ),
       code: (json['code'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
@@ -981,12 +981,12 @@ class QuestionnaireItem extends BackboneElement {
         json,
         'prefix',
         FhirString.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<QuestionnaireItemType>(
         json,
         'type',
@@ -1003,32 +1003,32 @@ class QuestionnaireItem extends BackboneElement {
         json,
         'enableBehavior',
         EnableWhenBehavior.fromJson,
-      )!,
+      ),
       required_: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'required',
         FhirBoolean.fromJson,
-      )!,
+      ),
       repeats: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'repeats',
         FhirBoolean.fromJson,
-      )!,
+      ),
       readOnly: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'readOnly',
         FhirBoolean.fromJson,
-      )!,
+      ),
       maxLength: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'maxLength',
         FhirInteger.fromJson,
-      )!,
+      ),
       answerValueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'answerValueSet',
         FhirCanonical.fromJson,
-      )!,
+      ),
       answerOption: (json['answerOption'] as List<dynamic>?)
           ?.map<QuestionnaireAnswerOption>(
             (v) => QuestionnaireAnswerOption.fromJson(
@@ -1627,7 +1627,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2034,7 +2034,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2064,7 +2064,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
         json,
         'initialSelected',
         FhirBoolean.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2388,7 +2388,7 @@ class QuestionnaireInitial extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

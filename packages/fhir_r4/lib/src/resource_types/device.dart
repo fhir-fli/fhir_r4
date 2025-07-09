@@ -60,7 +60,7 @@ class Device extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -70,12 +70,12 @@ class Device extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -125,7 +125,7 @@ class Device extends DomainResource {
         json,
         'status',
         FHIRDeviceStatus.fromJson,
-      )!,
+      ),
       statusReason: (json['statusReason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -137,32 +137,32 @@ class Device extends DomainResource {
         json,
         'distinctIdentifier',
         FhirString.fromJson,
-      )!,
+      ),
       manufacturer: JsonParser.parsePrimitive<FhirString>(
         json,
         'manufacturer',
         FhirString.fromJson,
-      )!,
+      ),
       manufactureDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'manufactureDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
       expirationDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'expirationDate',
         FhirDateTime.fromJson,
-      )!,
+      ),
       lotNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'lotNumber',
         FhirString.fromJson,
-      )!,
+      ),
       serialNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'serialNumber',
         FhirString.fromJson,
-      )!,
+      ),
       deviceName: (json['deviceName'] as List<dynamic>?)
           ?.map<DeviceDeviceName>(
             (v) => DeviceDeviceName.fromJson(
@@ -174,12 +174,12 @@ class Device extends DomainResource {
         json,
         'modelNumber',
         FhirString.fromJson,
-      )!,
+      ),
       partNumber: JsonParser.parsePrimitive<FhirString>(
         json,
         'partNumber',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -232,7 +232,7 @@ class Device extends DomainResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -1086,7 +1086,7 @@ class DeviceUdiCarrier extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1105,32 +1105,32 @@ class DeviceUdiCarrier extends BackboneElement {
         json,
         'deviceIdentifier',
         FhirString.fromJson,
-      )!,
+      ),
       issuer: JsonParser.parsePrimitive<FhirUri>(
         json,
         'issuer',
         FhirUri.fromJson,
-      )!,
+      ),
       jurisdiction: JsonParser.parsePrimitive<FhirUri>(
         json,
         'jurisdiction',
         FhirUri.fromJson,
-      )!,
+      ),
       carrierAIDC: JsonParser.parsePrimitive<FhirBase64Binary>(
         json,
         'carrierAIDC',
         FhirBase64Binary.fromJson,
-      )!,
+      ),
       carrierHRF: JsonParser.parsePrimitive<FhirString>(
         json,
         'carrierHRF',
         FhirString.fromJson,
-      )!,
+      ),
       entryType: JsonParser.parsePrimitive<UDIEntryType>(
         json,
         'entryType',
         UDIEntryType.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1507,7 +1507,7 @@ class DeviceDeviceName extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1810,7 +1810,7 @@ class DeviceSpecialization extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1834,7 +1834,7 @@ class DeviceSpecialization extends BackboneElement {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2113,7 +2113,7 @@ class DeviceVersion extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2440,7 +2440,7 @@ class DeviceProperty extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

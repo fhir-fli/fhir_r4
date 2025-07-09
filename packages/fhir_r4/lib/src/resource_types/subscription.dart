@@ -44,7 +44,7 @@ class Subscription extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -54,12 +54,12 @@ class Subscription extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -102,7 +102,7 @@ class Subscription extends DomainResource {
         json,
         'end',
         FhirInstant.fromJson,
-      )!,
+      ),
       reason: JsonParser.parsePrimitive<FhirString>(
         json,
         'reason',
@@ -117,7 +117,7 @@ class Subscription extends DomainResource {
         json,
         'error',
         FhirString.fromJson,
-      )!,
+      ),
       channel: JsonParser.parseObject<SubscriptionChannel>(
         json,
         'channel',
@@ -572,7 +572,7 @@ class SubscriptionChannel extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -596,17 +596,17 @@ class SubscriptionChannel extends BackboneElement {
         json,
         'endpoint',
         FhirUrl.fromJson,
-      )!,
+      ),
       payload: JsonParser.parsePrimitive<FhirCode>(
         json,
         'payload',
         FhirCode.fromJson,
-      )!,
+      ),
       header: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'header',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

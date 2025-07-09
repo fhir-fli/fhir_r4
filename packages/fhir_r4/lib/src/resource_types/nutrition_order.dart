@@ -50,7 +50,7 @@ class NutritionOrder extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class NutritionOrder extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -103,17 +103,17 @@ class NutritionOrder extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       instantiates: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiates',
         FhirUri.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<RequestStatus>(
         json,
         'status',
@@ -851,7 +851,7 @@ class NutritionOrderOralDiet extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -905,7 +905,7 @@ class NutritionOrderOralDiet extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1268,7 +1268,7 @@ class NutritionOrderNutrient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1572,7 +1572,7 @@ class NutritionOrderTexture extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1881,7 +1881,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1905,7 +1905,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'productName',
         FhirString.fromJson,
-      )!,
+      ),
       schedule: (json['schedule'] as List<dynamic>?)
           ?.map<Timing>(
             (v) => Timing.fromJson(
@@ -1922,7 +1922,7 @@ class NutritionOrderSupplement extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2271,7 +2271,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2295,7 +2295,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'baseFormulaProductName',
         FhirString.fromJson,
-      )!,
+      ),
       additiveType: JsonParser.parseObject<CodeableConcept>(
         json,
         'additiveType',
@@ -2305,7 +2305,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'additiveProductName',
         FhirString.fromJson,
-      )!,
+      ),
       caloricDensity: JsonParser.parseObject<Quantity>(
         json,
         'caloricDensity',
@@ -2332,7 +2332,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
         json,
         'administrationInstruction',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2769,7 +2769,7 @@ class NutritionOrderAdministration extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

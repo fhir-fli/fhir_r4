@@ -40,7 +40,7 @@ class EnrollmentRequest extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -50,12 +50,12 @@ class EnrollmentRequest extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -93,12 +93,12 @@ class EnrollmentRequest extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
-      )!,
+      ),
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-      )!,
+      ),
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',

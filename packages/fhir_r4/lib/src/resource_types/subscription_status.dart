@@ -40,7 +40,7 @@ class SubscriptionStatus extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -50,12 +50,12 @@ class SubscriptionStatus extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -86,7 +86,7 @@ class SubscriptionStatus extends DomainResource {
         json,
         'status',
         SubscriptionStatusCodes.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<SubscriptionNotificationType>(
         json,
         'type',
@@ -96,7 +96,7 @@ class SubscriptionStatus extends DomainResource {
         json,
         'eventsSinceSubscriptionStart',
         FhirString.fromJson,
-      )!,
+      ),
       notificationEvent: (json['notificationEvent'] as List<dynamic>?)
           ?.map<SubscriptionStatusNotificationEvent>(
             (v) => SubscriptionStatusNotificationEvent.fromJson(
@@ -113,7 +113,7 @@ class SubscriptionStatus extends DomainResource {
         json,
         'topic',
         FhirCanonical.fromJson,
-      )!,
+      ),
       error: (json['error'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -576,7 +576,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -600,7 +600,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         json,
         'timestamp',
         FhirInstant.fromJson,
-      )!,
+      ),
       focus: JsonParser.parseObject<Reference>(
         json,
         'focus',

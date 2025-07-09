@@ -42,7 +42,7 @@ class BodyStructure extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -52,12 +52,12 @@ class BodyStructure extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -95,7 +95,7 @@ class BodyStructure extends DomainResource {
         json,
         'active',
         FhirBoolean.fromJson,
-      )!,
+      ),
       morphology: JsonParser.parseObject<CodeableConcept>(
         json,
         'morphology',
@@ -117,7 +117,7 @@ class BodyStructure extends DomainResource {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       image: (json['image'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(

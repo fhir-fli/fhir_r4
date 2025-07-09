@@ -38,7 +38,7 @@ class FhirMeta extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -50,22 +50,22 @@ class FhirMeta extends DataType
         json,
         'versionId',
         FhirId.fromJson,
-      )!,
+      ),
       lastUpdated: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'lastUpdated',
         FhirInstant.fromJson,
-      )!,
+      ),
       source: JsonParser.parsePrimitive<FhirUri>(
         json,
         'source',
         FhirUri.fromJson,
-      )!,
+      ),
       profile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       security: (json['security'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(

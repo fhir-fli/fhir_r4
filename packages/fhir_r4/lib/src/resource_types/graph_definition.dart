@@ -50,7 +50,7 @@ class GraphDefinition extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class GraphDefinition extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class GraphDefinition extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -111,12 +111,12 @@ class GraphDefinition extends CanonicalResource {
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -126,7 +126,7 @@ class GraphDefinition extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -157,7 +157,7 @@ class GraphDefinition extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       start: JsonParser.parsePrimitive<FhirCode>(
         json,
         'start',
@@ -167,7 +167,7 @@ class GraphDefinition extends CanonicalResource {
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       link: (json['link'] as List<dynamic>?)
           ?.map<GraphDefinitionLink>(
             (v) => GraphDefinitionLink.fromJson(
@@ -739,7 +739,7 @@ class GraphDefinitionLink extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -758,27 +758,27 @@ class GraphDefinitionLink extends BackboneElement {
         json,
         'path',
         FhirString.fromJson,
-      )!,
+      ),
       sliceName: JsonParser.parsePrimitive<FhirString>(
         json,
         'sliceName',
         FhirString.fromJson,
-      )!,
+      ),
       min: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'min',
         FhirInteger.fromJson,
-      )!,
+      ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       target: (json['target'] as List<dynamic>?)
           ?.map<GraphDefinitionTarget>(
             (v) => GraphDefinitionTarget.fromJson(
@@ -1145,7 +1145,7 @@ class GraphDefinitionTarget extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1169,12 +1169,12 @@ class GraphDefinitionTarget extends BackboneElement {
         json,
         'params',
         FhirString.fromJson,
-      )!,
+      ),
       profile: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       compartment: (json['compartment'] as List<dynamic>?)
           ?.map<GraphDefinitionCompartment>(
             (v) => GraphDefinitionCompartment.fromJson(
@@ -1525,7 +1525,7 @@ class GraphDefinitionCompartment extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1559,12 +1559,12 @@ class GraphDefinitionCompartment extends BackboneElement {
         json,
         'expression',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

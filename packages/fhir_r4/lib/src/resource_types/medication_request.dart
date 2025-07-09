@@ -72,7 +72,7 @@ class MedicationRequest extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -82,12 +82,12 @@ class MedicationRequest extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -147,12 +147,12 @@ class MedicationRequest extends DomainResource {
         json,
         'priority',
         RequestPriority.fromJson,
-      )!,
+      ),
       doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'doNotPerform',
         FhirBoolean.fromJson,
-      )!,
+      ),
       reportedX: JsonParser.parsePolymorphic<ReportedXMedicationRequest>(
         json,
         {
@@ -188,7 +188,7 @@ class MedicationRequest extends DomainResource {
         json,
         'authoredOn',
         FhirDateTime.fromJson,
-      )!,
+      ),
       requester: JsonParser.parseObject<Reference>(
         json,
         'requester',
@@ -227,12 +227,12 @@ class MedicationRequest extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-      )!,
+      ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-      )!,
+      ),
       basedOn: (json['basedOn'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -1312,7 +1312,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1346,7 +1346,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
         json,
         'numberOfRepeatsAllowed',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
@@ -1749,7 +1749,7 @@ class MedicationRequestInitialFill extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2056,7 +2056,7 @@ class MedicationRequestSubstitution extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

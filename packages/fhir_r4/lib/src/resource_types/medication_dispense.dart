@@ -65,7 +65,7 @@ class MedicationDispense extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -75,12 +75,12 @@ class MedicationDispense extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -202,12 +202,12 @@ class MedicationDispense extends DomainResource {
         json,
         'whenPrepared',
         FhirDateTime.fromJson,
-      )!,
+      ),
       whenHandedOver: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'whenHandedOver',
         FhirDateTime.fromJson,
-      )!,
+      ),
       destination: JsonParser.parseObject<Reference>(
         json,
         'destination',
@@ -1086,7 +1086,7 @@ class MedicationDispensePerformer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1396,7 +1396,7 @@ class MedicationDispenseSubstitution extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

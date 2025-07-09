@@ -38,7 +38,7 @@ class SpecimenDefinition extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -48,12 +48,12 @@ class SpecimenDefinition extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -101,7 +101,7 @@ class SpecimenDefinition extends DomainResource {
         json,
         'timeAspect',
         FhirString.fromJson,
-      )!,
+      ),
       collection: (json['collection'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
@@ -554,7 +554,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -573,7 +573,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'isDerived',
         FhirBoolean.fromJson,
-      )!,
+      ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
@@ -593,7 +593,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         json,
         'requirement',
         FhirString.fromJson,
-      )!,
+      ),
       retentionTime: JsonParser.parseObject<FhirDuration>(
         json,
         'retentionTime',
@@ -1018,7 +1018,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1052,7 +1052,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       capacity: JsonParser.parseObject<Quantity>(
         json,
         'capacity',
@@ -1077,7 +1077,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
         json,
         'preparation',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1491,7 +1491,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1795,7 +1795,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1829,7 +1829,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
         json,
         'instruction',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

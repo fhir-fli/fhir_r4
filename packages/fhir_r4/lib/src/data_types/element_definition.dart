@@ -407,7 +407,7 @@ class ElementDefinition extends BackboneType {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -431,22 +431,22 @@ class ElementDefinition extends BackboneType {
         json,
         'representation',
         PropertyRepresentation.fromJson,
-      )!,
+      ),
       sliceName: JsonParser.parsePrimitive<FhirString>(
         json,
         'sliceName',
         FhirString.fromJson,
-      )!,
+      ),
       sliceIsConstraining: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'sliceIsConstraining',
         FhirBoolean.fromJson,
-      )!,
+      ),
       label: JsonParser.parsePrimitive<FhirString>(
         json,
         'label',
         FhirString.fromJson,
-      )!,
+      ),
       code: (json['code'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
@@ -463,37 +463,37 @@ class ElementDefinition extends BackboneType {
         json,
         'short',
         FhirString.fromJson,
-      )!,
+      ),
       definition: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'definition',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       comment: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'comment',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       requirements: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'requirements',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       alias: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'alias',
         FhirString.fromJson,
-      )!,
+      ),
       min: JsonParser.parsePrimitive<FhirUnsignedInt>(
         json,
         'min',
         FhirUnsignedInt.fromJson,
-      )!,
+      ),
       max: JsonParser.parsePrimitive<FhirString>(
         json,
         'max',
         FhirString.fromJson,
-      )!,
+      ),
       base: JsonParser.parseObject<ElementDefinitionBase>(
         json,
         'base',
@@ -503,7 +503,7 @@ class ElementDefinition extends BackboneType {
         json,
         'contentReference',
         FhirUri.fromJson,
-      )!,
+      ),
       type: (json['type'] as List<dynamic>?)
           ?.map<ElementDefinitionType>(
             (v) => ElementDefinitionType.fromJson(
@@ -572,12 +572,12 @@ class ElementDefinition extends BackboneType {
         json,
         'meaningWhenMissing',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       orderMeaning: JsonParser.parsePrimitive<FhirString>(
         json,
         'orderMeaning',
         FhirString.fromJson,
-      )!,
+      ),
       fixedX: JsonParser.parsePolymorphic<FixedXElementDefinition>(
         json,
         {
@@ -729,12 +729,12 @@ class ElementDefinition extends BackboneType {
         json,
         'maxLength',
         FhirInteger.fromJson,
-      )!,
+      ),
       condition: JsonParser.parsePrimitiveList<FhirId>(
         json,
         'condition',
         FhirId.fromJson,
-      )!,
+      ),
       constraint: (json['constraint'] as List<dynamic>?)
           ?.map<ElementDefinitionConstraint>(
             (v) => ElementDefinitionConstraint.fromJson(
@@ -746,22 +746,22 @@ class ElementDefinition extends BackboneType {
         json,
         'mustSupport',
         FhirBoolean.fromJson,
-      )!,
+      ),
       isModifier: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'isModifier',
         FhirBoolean.fromJson,
-      )!,
+      ),
       isModifierReason: JsonParser.parsePrimitive<FhirString>(
         json,
         'isModifierReason',
         FhirString.fromJson,
-      )!,
+      ),
       isSummary: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'isSummary',
         FhirBoolean.fromJson,
-      )!,
+      ),
       binding: JsonParser.parseObject<ElementDefinitionBinding>(
         json,
         'binding',
@@ -3005,7 +3005,7 @@ class ElementDefinitionSlicing extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3024,12 +3024,12 @@ class ElementDefinitionSlicing extends Element {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       ordered: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'ordered',
         FhirBoolean.fromJson,
-      )!,
+      ),
       rules: JsonParser.parsePrimitive<SlicingRules>(
         json,
         'rules',
@@ -3346,7 +3346,7 @@ class ElementDefinitionDiscriminator extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3633,7 +3633,7 @@ class ElementDefinitionBase extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3939,7 +3939,7 @@ class ElementDefinitionType extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3956,22 +3956,22 @@ class ElementDefinitionType extends Element {
         json,
         'profile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       targetProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
         json,
         'targetProfile',
         FhirCanonical.fromJson,
-      )!,
+      ),
       aggregation: JsonParser.parsePrimitiveList<AggregationMode>(
         json,
         'aggregation',
         AggregationMode.fromJson,
-      )!,
+      ),
       versioning: JsonParser.parsePrimitive<ReferenceVersionRules>(
         json,
         'versioning',
         ReferenceVersionRules.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -4310,7 +4310,7 @@ class ElementDefinitionExample extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5008,7 +5008,7 @@ class ElementDefinitionConstraint extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5025,7 +5025,7 @@ class ElementDefinitionConstraint extends Element {
         json,
         'requirements',
         FhirString.fromJson,
-      )!,
+      ),
       severity: JsonParser.parsePrimitive<ConstraintSeverity>(
         json,
         'severity',
@@ -5040,17 +5040,17 @@ class ElementDefinitionConstraint extends Element {
         json,
         'expression',
         FhirString.fromJson,
-      )!,
+      ),
       xpath: JsonParser.parsePrimitive<FhirString>(
         json,
         'xpath',
         FhirString.fromJson,
-      )!,
+      ),
       source: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'source',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -5412,7 +5412,7 @@ class ElementDefinitionBinding extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5429,12 +5429,12 @@ class ElementDefinitionBinding extends Element {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       valueSet: JsonParser.parsePrimitive<FhirCanonical>(
         json,
         'valueSet',
         FhirCanonical.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -5720,7 +5720,7 @@ class ElementDefinitionMapping extends Element {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -5737,7 +5737,7 @@ class ElementDefinitionMapping extends Element {
         json,
         'language',
         FhirCode.fromJson,
-      )!,
+      ),
       map: JsonParser.parsePrimitive<FhirString>(
         json,
         'map',
@@ -5747,7 +5747,7 @@ class ElementDefinitionMapping extends Element {
         json,
         'comment',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

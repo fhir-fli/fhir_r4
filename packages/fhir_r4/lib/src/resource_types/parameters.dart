@@ -31,7 +31,7 @@ class Parameters extends Resource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -41,12 +41,12 @@ class Parameters extends Resource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map<ParametersParameter>(
             (v) => ParametersParameter.fromJson(
@@ -432,7 +432,7 @@ class ParametersParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

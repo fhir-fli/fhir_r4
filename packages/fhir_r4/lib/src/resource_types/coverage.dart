@@ -50,7 +50,7 @@ class Coverage extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -60,12 +60,12 @@ class Coverage extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -123,7 +123,7 @@ class Coverage extends DomainResource {
         json,
         'subscriberId',
         FhirString.fromJson,
-      )!,
+      ),
       beneficiary: JsonParser.parseObject<Reference>(
         json,
         'beneficiary',
@@ -133,7 +133,7 @@ class Coverage extends DomainResource {
         json,
         'dependent',
         FhirString.fromJson,
-      )!,
+      ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
@@ -162,12 +162,12 @@ class Coverage extends DomainResource {
         json,
         'order',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       network: JsonParser.parsePrimitive<FhirString>(
         json,
         'network',
         FhirString.fromJson,
-      )!,
+      ),
       costToBeneficiary: (json['costToBeneficiary'] as List<dynamic>?)
           ?.map<CoverageCostToBeneficiary>(
             (v) => CoverageCostToBeneficiary.fromJson(
@@ -179,7 +179,7 @@ class Coverage extends DomainResource {
         json,
         'subrogation',
         FhirBoolean.fromJson,
-      )!,
+      ),
       contract: (json['contract'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -838,7 +838,7 @@ class CoverageClass extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -867,7 +867,7 @@ class CoverageClass extends BackboneElement {
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1166,7 +1166,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1515,7 +1515,7 @@ class CoverageException extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

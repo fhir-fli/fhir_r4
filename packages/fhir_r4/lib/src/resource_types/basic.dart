@@ -40,7 +40,7 @@ class Basic extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -50,12 +50,12 @@ class Basic extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -103,7 +103,7 @@ class Basic extends DomainResource {
         json,
         'created',
         FhirDate.fromJson,
-      )!,
+      ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',

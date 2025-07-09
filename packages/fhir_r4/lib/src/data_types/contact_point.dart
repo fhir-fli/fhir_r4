@@ -41,7 +41,7 @@ class ContactPoint extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -53,22 +53,22 @@ class ContactPoint extends DataType
         json,
         'system',
         ContactPointSystem.fromJson,
-      )!,
+      ),
       value: JsonParser.parsePrimitive<FhirString>(
         json,
         'value',
         FhirString.fromJson,
-      )!,
+      ),
       use: JsonParser.parsePrimitive<ContactPointUse>(
         json,
         'use',
         ContactPointUse.fromJson,
-      )!,
+      ),
       rank: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'rank',
         FhirPositiveInt.fromJson,
-      )!,
+      ),
       period: JsonParser.parseObject<Period>(
         json,
         'period',

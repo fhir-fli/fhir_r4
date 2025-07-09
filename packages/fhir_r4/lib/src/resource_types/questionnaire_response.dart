@@ -45,7 +45,7 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -55,12 +55,12 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -110,7 +110,7 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'questionnaire',
         FhirCanonical.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<QuestionnaireResponseStatus>(
         json,
         'status',
@@ -130,7 +130,7 @@ class QuestionnaireResponse extends DomainResource {
         json,
         'authored',
         FhirDateTime.fromJson,
-      )!,
+      ),
       author: JsonParser.parseObject<Reference>(
         json,
         'author',
@@ -688,7 +688,7 @@ class QuestionnaireResponseItem extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -712,12 +712,12 @@ class QuestionnaireResponseItem extends BackboneElement {
         json,
         'definition',
         FhirUri.fromJson,
-      )!,
+      ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
       answer: (json['answer'] as List<dynamic>?)
           ?.map<QuestionnaireResponseAnswer>(
             (v) => QuestionnaireResponseAnswer.fromJson(
@@ -1093,7 +1093,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

@@ -56,7 +56,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -66,12 +66,12 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -102,12 +102,12 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'url',
         FhirUri.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
@@ -117,17 +117,17 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
@@ -137,7 +137,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -168,7 +168,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       packageId: JsonParser.parsePrimitive<FhirId>(
         json,
         'packageId',
@@ -178,7 +178,7 @@ class ImplementationGuide extends CanonicalResource {
         json,
         'license',
         SPDXLicense.fromJson,
-      )!,
+      ),
       fhirVersion: JsonParser.parsePrimitiveList<FHIRVersion>(
         json,
         'fhirVersion',
@@ -877,7 +877,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -901,12 +901,12 @@ class ImplementationGuideDependsOn extends BackboneElement {
         json,
         'packageId',
         FhirId.fromJson,
-      )!,
+      ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -1206,7 +1206,7 @@ class ImplementationGuideGlobal extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1509,7 +1509,7 @@ class ImplementationGuideDefinition extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1897,7 +1897,7 @@ class ImplementationGuideGrouping extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1921,7 +1921,7 @@ class ImplementationGuideGrouping extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2210,7 +2210,7 @@ class ImplementationGuideResource extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2234,17 +2234,17 @@ class ImplementationGuideResource extends BackboneElement {
         json,
         'fhirVersion',
         FHIRVersion.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       description: JsonParser.parsePrimitive<FhirString>(
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       exampleX:
           JsonParser.parsePolymorphic<ExampleXImplementationGuideResource>(
         json,
@@ -2257,7 +2257,7 @@ class ImplementationGuideResource extends BackboneElement {
         json,
         'groupingId',
         FhirId.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -2639,7 +2639,7 @@ class ImplementationGuidePage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3007,7 +3007,7 @@ class ImplementationGuideParameter extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3310,7 +3310,7 @@ class ImplementationGuideTemplate extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3339,7 +3339,7 @@ class ImplementationGuideTemplate extends BackboneElement {
         json,
         'scope',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -3638,7 +3638,7 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -3657,7 +3657,7 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'rendering',
         FhirUrl.fromJson,
-      )!,
+      ),
       resource: (json['resource'] as List<dynamic>)
           .map<ImplementationGuideResource1>(
             (v) => ImplementationGuideResource1.fromJson(
@@ -3676,12 +3676,12 @@ class ImplementationGuideManifest extends BackboneElement {
         json,
         'image',
         FhirString.fromJson,
-      )!,
+      ),
       other: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'other',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -4029,7 +4029,7 @@ class ImplementationGuideResource1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4061,7 +4061,7 @@ class ImplementationGuideResource1 extends BackboneElement {
         json,
         'relativePath',
         FhirUrl.fromJson,
-      )!,
+      ),
     );
   }
 
@@ -4379,7 +4379,7 @@ class ImplementationGuidePage1 extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -4403,12 +4403,12 @@ class ImplementationGuidePage1 extends BackboneElement {
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       anchor: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'anchor',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

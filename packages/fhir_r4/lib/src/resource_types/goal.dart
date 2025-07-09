@@ -54,7 +54,7 @@ class Goal extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -64,12 +64,12 @@ class Goal extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -153,12 +153,12 @@ class Goal extends DomainResource {
         json,
         'statusDate',
         FhirDate.fromJson,
-      )!,
+      ),
       statusReason: JsonParser.parsePrimitive<FhirString>(
         json,
         'statusReason',
         FhirString.fromJson,
-      )!,
+      ),
       expressedBy: JsonParser.parseObject<Reference>(
         json,
         'expressedBy',
@@ -852,7 +852,7 @@ class GoalTarget extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(

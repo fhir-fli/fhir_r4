@@ -39,7 +39,7 @@ class ProdCharacteristic extends BackboneType {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -88,17 +88,17 @@ class ProdCharacteristic extends BackboneType {
         json,
         'shape',
         FhirString.fromJson,
-      )!,
+      ),
       color: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'color',
         FhirString.fromJson,
-      )!,
+      ),
       imprint: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'imprint',
         FhirString.fromJson,
-      )!,
+      ),
       image: (json['image'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(

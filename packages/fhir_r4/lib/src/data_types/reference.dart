@@ -111,7 +111,7 @@ class Reference extends DataType
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -123,12 +123,12 @@ class Reference extends DataType
         json,
         'reference',
         FhirString.fromJson,
-      )!,
+      ),
       type: JsonParser.parsePrimitive<FhirUri>(
         json,
         'type',
         FhirUri.fromJson,
-      )!,
+      ),
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
@@ -138,7 +138,7 @@ class Reference extends DataType
         json,
         'display',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

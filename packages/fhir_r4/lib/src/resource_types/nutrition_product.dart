@@ -42,7 +42,7 @@ class NutritionProduct extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -52,12 +52,12 @@ class NutritionProduct extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -657,7 +657,7 @@ class NutritionProductNutrient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -963,7 +963,7 @@ class NutritionProductIngredient extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1267,7 +1267,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1626,7 +1626,7 @@ class NutritionProductInstance extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1657,17 +1657,17 @@ class NutritionProductInstance extends BackboneElement {
         json,
         'lotNumber',
         FhirString.fromJson,
-      )!,
+      ),
       expiry: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'expiry',
         FhirDateTime.fromJson,
-      )!,
+      ),
       useBy: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'useBy',
         FhirDateTime.fromJson,
-      )!,
+      ),
     );
   }
 

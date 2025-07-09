@@ -53,7 +53,7 @@ class RiskAssessment extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -63,12 +63,12 @@ class RiskAssessment extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -186,7 +186,7 @@ class RiskAssessment extends DomainResource {
         json,
         'mitigation',
         FhirString.fromJson,
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
@@ -862,7 +862,7 @@ class RiskAssessmentPrediction extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -899,7 +899,7 @@ class RiskAssessmentPrediction extends BackboneElement {
         json,
         'relativeRisk',
         FhirDecimal.fromJson,
-      )!,
+      ),
       whenX: JsonParser.parsePolymorphic<WhenXRiskAssessmentPrediction>(
         json,
         {
@@ -911,7 +911,7 @@ class RiskAssessmentPrediction extends BackboneElement {
         json,
         'rationale',
         FhirString.fromJson,
-      )!,
+      ),
     );
   }
 

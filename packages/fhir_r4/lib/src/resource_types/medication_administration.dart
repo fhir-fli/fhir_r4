@@ -55,7 +55,7 @@ class MedicationAdministration extends DomainResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -65,12 +65,12 @@ class MedicationAdministration extends DomainResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -108,7 +108,7 @@ class MedicationAdministration extends DomainResource {
         json,
         'instantiates',
         FhirUri.fromJson,
-      )!,
+      ),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
@@ -950,7 +950,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1261,7 +1261,7 @@ class MedicationAdministrationDosage extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1280,7 +1280,7 @@ class MedicationAdministrationDosage extends BackboneElement {
         json,
         'text',
         FhirString.fromJson,
-      )!,
+      ),
       site: JsonParser.parseObject<CodeableConcept>(
         json,
         'site',

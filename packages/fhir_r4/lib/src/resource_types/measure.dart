@@ -76,7 +76,7 @@ class Measure extends CanonicalResource {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
@@ -86,12 +86,12 @@ class Measure extends CanonicalResource {
         json,
         'implicitRules',
         FhirUri.fromJson,
-      )!,
+      ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-      )!,
+      ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
@@ -134,32 +134,32 @@ class Measure extends CanonicalResource {
         json,
         'version',
         FhirString.fromJson,
-      )!,
+      ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-      )!,
+      ),
       title: JsonParser.parsePrimitive<FhirString>(
         json,
         'title',
         FhirString.fromJson,
-      )!,
+      ),
       subtitle: JsonParser.parsePrimitive<FhirString>(
         json,
         'subtitle',
         FhirString.fromJson,
-      )!,
+      ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-      )!,
+      ),
       experimental: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'experimental',
         FhirBoolean.fromJson,
-      )!,
+      ),
       subjectX: JsonParser.parsePolymorphic<SubjectXMeasure>(
         json,
         {
@@ -176,7 +176,7 @@ class Measure extends CanonicalResource {
         json,
         'publisher',
         FhirString.fromJson,
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
           ?.map<ContactDetail>(
             (v) => ContactDetail.fromJson(
@@ -207,27 +207,27 @@ class Measure extends CanonicalResource {
         json,
         'purpose',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       usage: JsonParser.parsePrimitive<FhirString>(
         json,
         'usage',
         FhirString.fromJson,
-      )!,
+      ),
       copyright: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'copyright',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       approvalDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'approvalDate',
         FhirDate.fromJson,
-      )!,
+      ),
       lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'lastReviewDate',
         FhirDate.fromJson,
-      )!,
+      ),
       effectivePeriod: JsonParser.parseObject<Period>(
         json,
         'effectivePeriod',
@@ -279,12 +279,12 @@ class Measure extends CanonicalResource {
         json,
         'library',
         FhirCanonical.fromJson,
-      )!,
+      ),
       disclaimer: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'disclaimer',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       scoring: JsonParser.parseObject<CodeableConcept>(
         json,
         'scoring',
@@ -306,22 +306,22 @@ class Measure extends CanonicalResource {
         json,
         'riskAdjustment',
         FhirString.fromJson,
-      )!,
+      ),
       rateAggregation: JsonParser.parsePrimitive<FhirString>(
         json,
         'rateAggregation',
         FhirString.fromJson,
-      )!,
+      ),
       rationale: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'rationale',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       clinicalRecommendationStatement: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'clinicalRecommendationStatement',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       improvementNotation: JsonParser.parseObject<CodeableConcept>(
         json,
         'improvementNotation',
@@ -331,12 +331,12 @@ class Measure extends CanonicalResource {
         json,
         'definition',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       guidance: JsonParser.parsePrimitive<FhirMarkdown>(
         json,
         'guidance',
         FhirMarkdown.fromJson,
-      )!,
+      ),
       group: (json['group'] as List<dynamic>?)
           ?.map<MeasureGroup>(
             (v) => MeasureGroup.fromJson(
@@ -1468,7 +1468,7 @@ class MeasureGroup extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1492,7 +1492,7 @@ class MeasureGroup extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       population: (json['population'] as List<dynamic>?)
           ?.map<MeasurePopulation>(
             (v) => MeasurePopulation.fromJson(
@@ -1828,7 +1828,7 @@ class MeasurePopulation extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -1852,7 +1852,7 @@ class MeasurePopulation extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
@@ -2158,7 +2158,7 @@ class MeasureStratifier extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2182,7 +2182,7 @@ class MeasureStratifier extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
@@ -2521,7 +2521,7 @@ class MeasureComponent extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2545,7 +2545,7 @@ class MeasureComponent extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
@@ -2856,7 +2856,7 @@ class MeasureSupplementalData extends BackboneElement {
         json,
         'id',
         FhirString.fromJson,
-      )!,
+      ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
@@ -2887,7 +2887,7 @@ class MeasureSupplementalData extends BackboneElement {
         json,
         'description',
         FhirString.fromJson,
-      )!,
+      ),
       criteria: JsonParser.parseObject<FhirExpression>(
         json,
         'criteria',
