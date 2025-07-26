@@ -141,7 +141,8 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Constructs a [FhirUnsignedIntBuilder] from a YAML input ([String] or [YamlMap]).
+  /// Constructs a [FhirUnsignedIntBuilder] from a YAML input
+  /// ([String] or [YamlMap]).
   static FhirUnsignedIntBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirUnsignedIntBuilder.fromJson(

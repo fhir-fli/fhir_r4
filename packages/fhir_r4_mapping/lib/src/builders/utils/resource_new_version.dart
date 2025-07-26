@@ -1,8 +1,8 @@
 import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
-/// Returns a [FhirMetaBuilder] object, creates a new one if none is passed, otherwise
-/// updates the [lastUpdated] and increases the [version] by 1
+/// Returns a [FhirMetaBuilder] object, creates a new one if none is passed,
+/// otherwise updates the [lastUpdated] and increases the [version] by 1
 FhirMetaBuilder updateFhirMetaVersion(
   FhirMetaBuilder? oldFhirMeta, [
   // ignore: avoid_positional_boolean_parameters

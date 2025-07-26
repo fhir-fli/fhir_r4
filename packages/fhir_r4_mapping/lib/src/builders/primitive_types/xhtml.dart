@@ -122,7 +122,8 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder {
     }
   }
 
-  /// Attempts to parse [input] as [FhirXhtmlBuilder]. Returns `null` if it fails.
+  /// Attempts to parse [input] as [FhirXhtmlBuilder]. Returns `null`
+  /// if it fails.
   static FhirXhtmlBuilder? tryParse(dynamic input) {
     if (input is String) {
       try {
