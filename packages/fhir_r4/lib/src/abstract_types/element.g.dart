@@ -21,6 +21,7 @@ class $ElementCopyWithImpl<T> implements $ElementCopyWith<T> {
   final Element _value;
   final T Function(Element) _then;
 
+  /// Constructor for the copyWith implementation.
   $ElementCopyWithImpl(this._value, this._then);
 
   @override

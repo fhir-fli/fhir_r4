@@ -266,7 +266,9 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
   final T Function(ResearchElementDefinitionCharacteristic) _then;
 
   _$ResearchElementDefinitionCharacteristicCopyWithImpl(
-      this._value, this._then);
+    this._value,
+    this._then,
+  );
 
   @override
   T call({

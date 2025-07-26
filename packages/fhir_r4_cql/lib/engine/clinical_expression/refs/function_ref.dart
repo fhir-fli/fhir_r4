@@ -166,10 +166,10 @@ class FunctionRef extends ExpressionRef {
   }
 
   Future<dynamic> _helperToString(context) async {
-    if (this.operand == null || this.operand!.isEmpty) {
+    if (operand == null || operand!.isEmpty) {
       return null;
-    } else if (this.operand!.length == 1) {
-      return await ToString(operand: this.operand![0]).execute(context);
+    } else if (operand!.length == 1) {
+      return await ToString(operand: operand![0]).execute(context);
     } else {
       final List<dynamic> results = [];
       for (final operand in this.operand!) {
@@ -187,10 +187,10 @@ class FunctionRef extends ExpressionRef {
   }
 
   Future<dynamic> _helperToConcept(context) async {
-    if (this.operand == null || this.operand!.isEmpty) {
+    if (operand == null || operand!.isEmpty) {
       return null;
-    } else if (this.operand!.length == 1) {
-      return await ToConcept(operand: this.operand![0]).execute(context);
+    } else if (operand!.length == 1) {
+      return await ToConcept(operand: operand![0]).execute(context);
     } else {
       final List<dynamic> results = [];
       for (final operand in this.operand!) {

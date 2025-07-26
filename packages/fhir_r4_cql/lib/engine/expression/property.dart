@@ -93,7 +93,7 @@ class Property extends CqlExpression {
         if (endType != null) {
           final resolvedType = QName.fhirToElmTypes(endType.type);
           returnTypes
-              .add(endType.isList ? 'List<${resolvedType}>' : resolvedType);
+              .add(endType.isList ? 'List<$resolvedType>' : resolvedType);
         }
       }
       return returnTypes;

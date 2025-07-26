@@ -203,9 +203,7 @@ class CqlLibrary extends Element {
   }
 
   Future<FunctionDef?> resolveFunctionRef(String name, String libraryId) async {
-    List<IncludeDef>? libraries = this
-        .includes
-        ?.def
+    List<IncludeDef>? libraries = includes?.def
         .where((include) => include.localIdentifier == libraryId)
         .toList();
 

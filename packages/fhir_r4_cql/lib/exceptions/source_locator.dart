@@ -59,6 +59,7 @@ class SourceLocator {
     return "${libraryName.isNotEmpty ? libraryName : "?"}$location";
   }
 
+  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! SourceLocator) return false;

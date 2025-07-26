@@ -115,9 +115,7 @@ class InValueSet extends OperatorExpression {
       throw ArgumentError('CqlLibrary not found in context');
     }
     CqlValueSet? valueSetRef = await valueset?.execute(context);
-    if (valueSetRef == null) {
-      valueSetRef = await valuesetExpression?.execute(context);
-    }
+    valueSetRef ??= await valuesetExpression?.execute(context);
     if (valueSetRef == null) {
       throw ArgumentError('ValueSet not found in context');
     }
