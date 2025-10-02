@@ -116,7 +116,7 @@ class FhirUnsignedInt extends FhirNumber
 
   /// Constructs a [FhirUnsignedInt] from a JSON [Map].
   factory FhirUnsignedInt.fromJson(Map<String, dynamic> json) {
-    final rawValue = json['value'] as num?;
+    final rawValue = json['value'];
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     return FhirUnsignedInt(

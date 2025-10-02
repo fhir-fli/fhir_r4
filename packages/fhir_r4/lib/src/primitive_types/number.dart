@@ -107,7 +107,7 @@ abstract class FhirNumber extends PrimitiveType
   ///
   /// Uses [fromNum] internally. Expects `'value'` to be a [num].
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
+    final value = json['value'];
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
 
