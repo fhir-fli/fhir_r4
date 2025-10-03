@@ -46,6 +46,11 @@ abstract class FhirBase {
     return o != null;
   }
 
+  @override
+  bool operator ==(Object other) {
+    return other is FhirBase && equalsDeep(other);
+  }
+
   /// Checks if the object is equal to another object.
   // ignore: avoid_positional_boolean_parameters
   bool compareDeepStrings(String? s1, String? s2, bool allowNull) {
