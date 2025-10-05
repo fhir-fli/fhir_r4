@@ -1,0 +1,61 @@
+name: fhir_r4_auth
+description: Secure authentication and authorization package for FHIR R4 applications implementing SMART on FHIR
+version: 0.4.0
+homepage: https://www.fhirfli.dev/
+repository: https://github.com/fhirfli/fhir_r4_auth
+issue_tracker: https://github.com/fhirfli/fhir_r4_auth/issues
+documentation: https://pub.dev/documentation/fhir_r4_auth/latest/
+
+topics:
+  - fhir
+  - smart-on-fhir
+  - healthcare
+  - authentication
+  - oauth2
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  # Core
+  flutter:
+    sdk: flutter
+  http: ^1.5.0
+  
+  # FHIR
+  fhir_r4: ^0.4.2
+  
+  # Security & Storage
+  flutter_secure_storage: ^9.2.4
+  dart_jsonwebtoken: ^2.14.0      # JWT validation and parsing
+  crypto: ^3.0.6                   # PKCE and crypto operations
+  
+  # OAuth & Authentication
+  flutter_appauth: ^10.0.0         # Native OAuth for mobile
+  flutter_web_auth_2: ^4.1.0       # Web authentication fallback
+  url_launcher: ^6.3.2             # Launching auth URLs
+  
+  # Utilities
+  logging: ^1.2.0                  # Audit logging
+  uuid: ^4.5.0                     # Generate state/nonce
+
+dev_dependencies:
+  # Testing
+  flutter_test:
+    sdk: flutter
+  test: ^1.25.0
+  mockito: ^5.4.4
+  fake_async: ^1.3.1
+  
+  # Code generation for tests only
+  build_runner: ^2.4.9
+  
+  # Linting
+  flutter_lints: ^4.0.0
+  very_good_analysis: ^6.0.0
+  
+  # Testing utilities
+  http_mock_adapter: ^0.6.0
+  integration_test:
+    sdk: flutter
