@@ -3,6 +3,8 @@
 ## [0.4.1]
 
 * Updated dependencies
+* Added to Readme
+* Fixed a small management around some edge cases in parse requests
 
 ## [0.4.0]
 

@@ -180,5 +180,6 @@ OperationOutcome incorrectResultType<T>(Resource result) => OperationOutcome(
 
 /// Returns true if the OperationOutcome is informational
 bool isInformational(OperationOutcome operationOutcome) =>
+    operationOutcome.issue.isNotEmpty &&
     operationOutcome.issue.first.code.toString().toLowerCase() ==
-    'informational';
+        'informational';

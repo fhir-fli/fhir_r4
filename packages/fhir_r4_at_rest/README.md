@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/fhir_r4_at_rest.svg)](https://pub.dev/packages/fhir_r4_at_rest)
 
-A Dart package providing type-safe, fluent RESTful operations for FHIR R4 resources. This library simplifies interactions with FHIR servers by providing structured request classes for all standard FHIR operations.
+A Dart package for building FHIR R4 RESTful requests and parsing responses. This package handles request construction and response parsing, while authentication is handled by passing authenticated HTTP clients (e.g., from the `fhir_r4_auth` package).
 
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7. Use of the FHIR trademark does not constitute endorsement of this product by HL7.
 
@@ -11,8 +11,26 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 - Type-safe request builders for all FHIR RESTful operations
 - Fluent interface for constructing complex queries
 - Resource-specific search parameter builders
-- HTTP client abstraction for easy testing and customization
+- Structured response parsing with `ReturnResults`
+- Works with any HTTP client (authenticated or not)
 - Comprehensive parameter validation
+
+## Quick Start
+
+```dart
+import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
+import 'package:fhir_r4/fhir_r4.dart';
+
+// Simple read from an open server
+final request = FhirReadRequest(
+  base: Uri.parse('http://hapi.fhir.org/baseR4'),
+  resourceType: 'Patient', 
+  id: '12345',
+);
+
+final response = await request.sendRequest();
+final patient = Patient.fromJson(jsonDecode(response.body));
+```
 
 ## Installation
 
@@ -20,7 +38,16 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 dependencies:
   fhir_r4_at_rest: ^0.4.0
   fhir_r4: ^0.4.2
+  
+  # Optional: For authenticated requests
+  fhir_r4_auth: ^0.4.0
 ```
+
+## FHIR Version Support
+
+This package supports FHIR R4. For other FHIR versions, see:
+- `fhir_r5_at_rest` - R5 support
+- `fhir_r6_at_rest` - R6 support
 
 ## Basic Usage
 
@@ -215,6 +242,8 @@ final response = await request.sendRequest();
 
 ## Handling Responses
 
+### Basic Response Handling
+
 ```dart
 try {
   final response = await request.sendRequest();
@@ -235,6 +264,38 @@ try {
 }
 ```
 
+### Using ReturnResults for Structured Response Handling
+
+The library provides `ReturnResults` to separate successful resources from errors:
+
+```dart
+final response = await request.sendRequest();
+final resource = Resource.fromJson(jsonDecode(response.body));
+final result = parseRequestResult(resource);
+
+// Check for successfully returned resources
+if (result.resources.isNotEmpty) {
+  for (final resource in result.resources) {
+    // Process each resource
+    print('Retrieved resource: ${resource.id}');
+  }
+}
+
+// Check for error OperationOutcomes
+if (result.errorOperationOutcomes.isNotEmpty) {
+  for (final error in result.errorOperationOutcomes) {
+    print('Error: ${error.issue.first.diagnostics}');
+  }
+}
+
+// Check for informational OperationOutcomes
+if (result.informationOperationOutcomes.isNotEmpty) {
+  for (final info in result.informationOperationOutcomes) {
+    print('Info: ${info.issue.first.diagnostics}');
+  }
+}
+```
+
 ## Custom HTTP Client
 
 ```dart
@@ -247,10 +308,67 @@ final request = FhirReadRequest(
 );
 ```
 
+## Authentication
+
+This package works with any HTTP client, including authenticated clients from the `fhir_r4_auth` package.
+
+### Using with fhir_r4_auth Package
+
+```dart
+import 'package:fhir_r4_auth/fhir_r4_auth.dart';
+
+// Create and authenticate a SMART on FHIR client
+final authClient = SmartFhirClient(
+  fhirUri: FhirUri('https://server.org/fhir'),
+  clientId: 'my-client-id',
+  redirectUri: FhirUri('https://myapp.com/callback'),
+  scopes: ['patient/*.read'],
+);
+
+await authClient.login();
+
+// Pass the authenticated client to any request
+final request = FhirReadRequest(
+  base: Uri.parse('https://server.org/fhir'),
+  resourceType: 'Patient',
+  id: '12345',
+  client: authClient, // Authenticated client handles auth headers
+);
+
+final response = await request.sendRequest();
+```
+
+### Using with Custom Headers
+
+For simple token-based authentication without a full OAuth flow:
+
+```dart
+final request = FhirReadRequest(
+  base: Uri.parse('https://server.org/fhir'),
+  resourceType: 'Patient',
+  id: '12345',
+  headers: {'Authorization': 'Bearer your-access-token'},
+);
+```
+
+### Using with Any Custom HTTP Client
+
+```dart
+// Any client that extends http.Client
+final customClient = MyCustomHttpClient(); 
+
+final request = FhirReadRequest(
+  base: Uri.parse('https://server.org/fhir'),
+  resourceType: 'Patient',
+  id: '12345',
+  client: customClient,
+);
+```
+
 ## Documentation
 
 For more detailed documentation, examples, and API reference, visit:
-[FHIR-FLI Documentation](https://docs.fire.ly)
+[FHIR-FLI Documentation](https://fhir-fli.github.io/fhir_fli_documentation/docs)
 
 ## License
 

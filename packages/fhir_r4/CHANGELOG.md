@@ -3,6 +3,8 @@
 ## [0.4.4]
 
 * Added ability to define type of Polymorphics for most fields (but not for required ones)
+* Changed some of the equality functions, moved from Utils into FhirBase
+* Changed some of the quality functions IN FhirBase to non-static
 
 ## [0.4.3]
 

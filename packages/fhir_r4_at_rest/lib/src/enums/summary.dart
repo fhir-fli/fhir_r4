@@ -1,4 +1,4 @@
-/// COMPARTMENT Enum
+/// SUMMARY Enum
 /// The client can request the server to return only a portion of the resources
 /// by using this parameter
 /// Defined here: https://www.hl7.org/fhir/search.html#summary
