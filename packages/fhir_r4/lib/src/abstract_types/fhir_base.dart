@@ -46,6 +46,12 @@ abstract class FhirBase {
     return o != null;
   }
 
+  @override
+  // ignore: hash_and_equals, avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    return other is FhirBase && equalsDeep(other);
+  }
+
   /// Checks if the object is equal to another object.
   // ignore: avoid_positional_boolean_parameters
   bool compareDeepStrings(String? s1, String? s2, bool allowNull) {
@@ -60,30 +66,6 @@ abstract class FhirBase {
       return false;
     }
     return s1 == s2;
-  }
-
-  /// Checks if the object is equal to another object.
-  static bool compareDeepLists<T extends FhirBase>(
-    List<T>? e1,
-    List<T>? e2,
-    // ignore: avoid_positional_boolean_parameters
-    bool allowNull,
-  ) {
-    if (noList(e1) && noList(e2) && allowNull) {
-      return true;
-    }
-    if (noList(e1) || noList(e2)) {
-      return false;
-    }
-    if (e1!.length != e2!.length) {
-      return false;
-    }
-    for (var i = 0; i < e1.length; i++) {
-      if (!compareDeepBases(e1[i], e2[i], allowNull)) {
-        return false;
-      }
-    }
-    return true;
   }
 
   /// Retrieves the properties of the object.
@@ -119,6 +101,31 @@ abstract class FhirBase {
     return false;
   }
 
+  /// Converts the object to a JSON representation.
+  Map<String, dynamic> toJson();
+
+  /// Converts the object to a YAML string.
+  String toYaml() => json2yaml(toJson());
+
+  /// Converts the object to a JSON string.
+  String toJsonString() => jsonEncode(toJson());
+
+  /// Converts the object to a pretty JSON string.
+  String prettyPrint() => prettyPrintJson(toJson());
+
+  /// Copies the object with new values.
+  $FhirBaseCopyWith<FhirBase> get copyWith;
+
+  /// Subclasses must implement the clone method.
+  FhirBase clone() => copyWith();
+
+  /// Returns an Object cast as a Type if it is that type.
+  T? isAs<T extends FhirBase>() => this is T ? this as T : null;
+
+  // ===========================================================================
+  // STATIC COMPARISON METHODS
+  // ===========================================================================
+
   /// Checks if the list is empty.
   static bool noList<T extends FhirBase>(List<T>? list) {
     return list == null ||
@@ -126,7 +133,34 @@ abstract class FhirBase {
         (list.length == 1 && list.first.isEmpty());
   }
 
-  /// Checks if the object is equal to another object.
+  /// Deeply compares two FhirBase objects, either of which can be null.
+  /// This is a convenience method that handles null checking before
+  /// calling equalsDeep.
+  bool equalsDeepWithNull(FhirBase? obj1, FhirBase? obj2) {
+    if (obj1 == null && obj2 == null) {
+      return true;
+    } else if (obj1 == null || obj2 == null) {
+      return false;
+    } else {
+      return obj1.equalsDeep(obj2);
+    }
+  }
+
+  /// Compares two lists of FhirBase objects for equality.
+  /// Returns true if both lists are null, or if they have the same length
+  /// and all corresponding elements are deeply equal.
+  bool listEquals<T extends FhirBase>(List<T>? list1, List<T>? list2) {
+    if (list1 == null && list2 == null) return true;
+    if (list1 == null || list2 == null) return false;
+    if (list1.length != list2.length) return false;
+    for (var i = 0; i < list1.length; i++) {
+      if (!list1[i].equalsDeep(list2[i])) return false;
+    }
+    return true;
+  }
+
+  /// Checks if the object is equal to another object with optional null
+  /// handling.
   static bool compareDeepBases(
     FhirBase? e1,
     FhirBase? e2,
@@ -153,8 +187,35 @@ abstract class FhirBase {
     }
   }
 
-  /// Compares two [FhirBase] objects deeply.
-  static bool compareDeep(
+  /// Compares two lists with optional null/empty handling.
+  bool compareDeepLists<T extends FhirBase>(
+    List<T>? e1,
+    List<T>? e2,
+    // ignore: avoid_positional_boolean_parameters
+    bool allowNull,
+  ) {
+    if (noList(e1) && noList(e2) && allowNull) {
+      return true;
+    }
+    if (noList(e1) || noList(e2)) {
+      return false;
+    }
+    if (e1!.length != e2!.length) {
+      return false;
+    }
+    for (var i = 0; i < e1.length; i++) {
+      if (!compareDeepBases(e1[i], e2[i], allowNull)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// Compares two [FhirBase] objects deeply using JSON comparison.
+  /// This method converts both objects to JSON and compares the resulting
+  /// structures, which catches all differences including those in nested
+  /// objects.
+  bool compareDeep(
     FhirBase? e1,
     FhirBase? e2, [
     bool allowNull = false,
@@ -171,27 +232,6 @@ abstract class FhirBase {
     }
     return const DeepCollectionEquality().equals(e1.toJson(), e2.toJson());
   }
-
-  /// Converts the object to a JSON representation.
-  Map<String, dynamic> toJson();
-
-  /// Converts the object to a YAML string.
-  String toYaml() => json2yaml(toJson());
-
-  /// Converts the object to a JSON string.
-  String toJsonString() => jsonEncode(toJson());
-
-  /// Converts the object to a pretty JSON string.
-  String prettyPrint() => prettyPrintJson(toJson());
-
-  /// Copies the object with new values.
-  $FhirBaseCopyWith<FhirBase> get copyWith;
-
-  /// Subclasses must implement the clone method.
-  FhirBase clone() => copyWith();
-
-  /// Returns an Object cast as a Type if it is that type.
-  T? isAs<T extends FhirBase>() => this is T ? this as T : null;
 }
 
 /// The public interface for copyWith for Element.

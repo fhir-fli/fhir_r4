@@ -3940,13 +3940,13 @@ class ImplementationGuideManifest extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ImplementationGuideResource>(
+    if (!listEquals<ImplementationGuideResource1>(
       resource,
       o.resource,
     )) {
       return false;
     }
-    if (!listEquals<ImplementationGuidePage>(
+    if (!listEquals<ImplementationGuidePage1>(
       page,
       o.page,
     )) {

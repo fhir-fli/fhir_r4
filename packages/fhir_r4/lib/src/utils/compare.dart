@@ -1,31 +1,10 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 
-/// Deeply compares to FhirBase objects, either of which can be null
-bool equalsDeepWithNull(FhirBase? obj1, FhirBase? obj2) {
-  if (obj1 == null && obj2 == null) {
-    return true;
-  } else if (obj1 == null || obj2 == null) {
-    return false;
-  } else {
-    return obj1.equalsDeep(obj2);
-  }
-}
-
-/// Compares two lists for equality.
-bool listEquals<T>(List<FhirBase>? list1, List<FhirBase>? list2) {
-  if (list1 == null && list2 == null) return true;
-  if (list1 == null || list2 == null) return false;
-  if (list1.length != list2.length) return false;
-  for (var i = 0; i < list1.length; i++) {
-    if (!list1[i].equalsDeep(list2[i])) return false;
-  }
-  return true;
-}
-
-/// Compares two [dynamic] objects deeply.
+/// Compares two [dynamic] JSON objects deeply.
+/// This is primarily used for testing to compare JSON structures
+/// that may have different ordering.
 bool deepCompare(dynamic json1, dynamic json2) {
   if (const DeepCollectionEquality().equals(json1, json2)) {
     return true;
@@ -73,6 +52,7 @@ class CustomBaseEquality extends DefaultEquality<Object?> {
 }
 
 /// Custom equality for [String]s, mostly used in testing.
+/// This handles URL-encoded strings specially.
 class CustomStringEquality implements Equality<String> {
   /// Default constructor.
   const CustomStringEquality();

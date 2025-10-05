@@ -117,8 +117,7 @@ class Element extends FhirBase {
     if (o == null || o is! Element) {
       return false;
     }
-    return id == o.id &&
-        FhirBase.compareDeepLists(extension_, o.extension_, true);
+    return id == o.id && compareDeepLists(extension_, o.extension_, true);
   }
 
   /// Method to compare shallow equality of two elements.
