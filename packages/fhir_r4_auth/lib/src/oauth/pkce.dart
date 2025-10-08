@@ -5,8 +5,8 @@ library;
 import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
-
-import '../core/auth_types.dart';
+import 'package:fhir_r4_auth/fhir_r4_auth.dart'
+    show CodeChallengeMethod, OAuthParameters;
 
 /// PKCE generator for OAuth 2.0 authorization code flow
 class PkceManager {

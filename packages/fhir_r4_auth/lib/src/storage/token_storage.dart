@@ -2,20 +2,18 @@
 library;
 
 import 'dart:convert';
+import 'package:fhir_r4_auth/fhir_r4_auth.dart'
+    show SmartTokenResponse, AuthState, StorageKeys, StorageException;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logging/logging.dart';
-
-import '../core/auth_exceptions.dart';
-import '../core/auth_types.dart';
-import 'token_model.dart';
 
 /// Abstract interface for token storage
 abstract class TokenStorage {
   /// Save tokens securely
-  Future<void> saveTokens(TokenResponse tokens);
+  Future<void> saveTokens(SmartTokenResponse tokens);
 
   /// Load tokens from storage
-  Future<TokenResponse?> loadTokens();
+  Future<SmartTokenResponse?> loadTokens();
 
   /// Clear all tokens
   Future<void> clearTokens();
@@ -57,7 +55,7 @@ class SecureTokenStorage implements TokenStorage {
   String _key(String key) => '$keyPrefix$key';
 
   @override
-  Future<void> saveTokens(TokenResponse tokens) async {
+  Future<void> saveTokens(SmartTokenResponse tokens) async {
     try {
       _logger.fine('Saving tokens to secure storage');
 
@@ -82,7 +80,7 @@ class SecureTokenStorage implements TokenStorage {
   }
 
   @override
-  Future<TokenResponse?> loadTokens() async {
+  Future<SmartTokenResponse?> loadTokens() async {
     try {
       _logger.fine('Loading tokens from secure storage');
 
@@ -97,7 +95,7 @@ class SecureTokenStorage implements TokenStorage {
         return null;
       }
 
-      final tokens = TokenResponse.fromStoredJson(json);
+      final tokens = SmartTokenResponse.fromStoredJson(json);
 
       // Check if tokens are expired
       if (tokens.isExpired && tokens.refreshToken == null) {

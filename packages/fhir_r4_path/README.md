@@ -142,7 +142,7 @@ try {
 
 ## Documentation
 
-For more detailed documentation, see the [FHIR-FLI documentation site](https://docs.fire.ly).
+For more detailed documentation, see the [FHIR-FLI documentation site](https://fhir-fli.github.io/fhir_fli_documentation/docs).
 
 For the complete FHIRPath specification, see the [official HL7 documentation](https://hl7.org/fhirpath/).
 

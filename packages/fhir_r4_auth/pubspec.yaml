@@ -30,6 +30,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   dart_jsonwebtoken: ^2.14.0      # JWT validation and parsing
   crypto: ^3.0.6                   # PKCE and crypto operations
+  jose: ^0.3.5                     # JWT/JWK/JOSE implementation
   
   # OAuth & Authentication
   flutter_appauth: ^10.0.0         # Native OAuth for mobile

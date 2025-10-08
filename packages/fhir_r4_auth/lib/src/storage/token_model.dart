@@ -4,9 +4,9 @@ library;
 import 'dart:convert';
 import '../core/auth_types.dart';
 
-/// Represents OAuth 2.0 tokens and associated metadata
-class TokenResponse {
-  TokenResponse({
+/// Represents OAuth 2.0 tokens and associated SMART on FHIR metadata
+class SmartTokenResponse {
+  SmartTokenResponse({
     required this.accessToken,
     this.refreshToken,
     this.idToken,
@@ -101,8 +101,8 @@ class TokenResponse {
   }
 
   /// Create from OAuth token response
-  factory TokenResponse.fromJson(Map<String, dynamic> json) {
-    return TokenResponse(
+  factory SmartTokenResponse.fromJson(Map<String, dynamic> json) {
+    return SmartTokenResponse(
       accessToken: json[OAuthParameters.accessToken] as String,
       refreshToken: json[OAuthParameters.refreshToken] as String?,
       idToken: json[OAuthParameters.idToken] as String?,
@@ -144,12 +144,12 @@ class TokenResponse {
   }
 
   /// Create from stored JSON string
-  factory TokenResponse.fromStoredJson(String json) {
+  factory SmartTokenResponse.fromStoredJson(String json) {
     final map = jsonDecode(json) as Map<String, dynamic>;
     if (map['issuedAt'] != null) {
       map['issuedAt'] = DateTime.parse(map['issuedAt'] as String);
     }
-    return TokenResponse.fromJson(map);
+    return SmartTokenResponse.fromJson(map);
   }
 
   /// Convert to JSON string for storage
@@ -174,7 +174,7 @@ class TokenResponse {
   };
 
   /// Create a copy with updated fields
-  TokenResponse copyWith({
+  SmartTokenResponse copyWith({
     String? accessToken,
     String? refreshToken,
     String? idToken,
@@ -191,7 +191,7 @@ class TokenResponse {
     String? tenant,
     Map<String, dynamic>? additionalClaims,
   }) {
-    return TokenResponse(
+    return SmartTokenResponse(
       accessToken: accessToken ?? this.accessToken,
       refreshToken: refreshToken ?? this.refreshToken,
       idToken: idToken ?? this.idToken,
@@ -332,7 +332,7 @@ class AuthState {
   });
 
   /// Current token response
-  final TokenResponse? tokenResponse;
+  final SmartTokenResponse? tokenResponse;
 
   /// When user last authenticated
   final DateTime? lastAuthenticated;
@@ -366,7 +366,7 @@ class AuthState {
   factory AuthState.fromJson(Map<String, dynamic> json) {
     return AuthState(
       tokenResponse: json['tokenResponse'] != null
-          ? TokenResponse.fromJson(
+          ? SmartTokenResponse.fromJson(
               json['tokenResponse'] as Map<String, dynamic>)
           : null,
       lastAuthenticated: json['lastAuthenticated'] != null

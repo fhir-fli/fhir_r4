@@ -3070,7 +3070,7 @@ class FHIRPathEngine {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+        if (l.compareDeepLists(lUnit, rUnit, true)) {
           return opLessThan(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -3130,7 +3130,7 @@ class FHIRPathEngine {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+        if (l.compareDeepLists(lUnit, rUnit, true)) {
           return opGreater(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -3189,7 +3189,7 @@ class FHIRPathEngine {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+        if (l.compareDeepLists(lUnit, rUnit, true)) {
           return opLessOrEqual(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -3248,7 +3248,7 @@ class FHIRPathEngine {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (FhirBase.compareDeepLists(lUnit, rUnit, true)) {
+        if (l.compareDeepLists(lUnit, rUnit, true)) {
           return opGreaterOrEqual(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -4321,7 +4321,7 @@ class FHIRPathEngine {
     for (final item in focus) {
       var found = false;
       for (final t in target) {
-        if (FhirBase.compareDeep(item, t)) {
+        if (t.compareDeep(item, t)) {
           found = true;
           break;
         }
@@ -7155,7 +7155,7 @@ class FHIRPathEngine {
     for (final item in target) {
       var found = false;
       for (final t in focus) {
-        if (FhirBase.compareDeep(item, t)) {
+        if (t.compareDeep(item, t)) {
           found = true;
           break;
         }
@@ -7522,7 +7522,7 @@ class FHIRPathEngine {
     } else if (left.isPrimitive && right.isPrimitive) {
       return left.primitiveValue == right.primitiveValue;
     } else {
-      return FhirBase.compareDeep(left, right);
+      return left.compareDeep(left, right);
     }
   }
 
@@ -7769,7 +7769,7 @@ class FHIRPathEngine {
       );
     }
     if (!left.isPrimitive && !right.isPrimitive) {
-      return equalsDeepWithNull(left, right);
+      return left.equalsDeepWithNull(left, right);
     } else {
       return false;
     }

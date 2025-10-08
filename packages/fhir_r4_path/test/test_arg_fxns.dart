@@ -1076,7 +1076,7 @@ Future<void> testArgFxns() async {
   test('combine', () async {
     expect(
       // ignore: inference_failure_on_function_invocation
-      listEquals(
+      patient3.listEquals(
         await walkFhirPath(
           context: patient3,
           pathExpression: '%a.combine(%b)',
