@@ -214,14 +214,18 @@ Map<String, dynamic> _mockCapabilityStatement() {
     'date': DateTime.now().toIso8601String(),
     'kind': 'instance',
     'fhirVersion': '4.0.1',
-    'rest': <Map<String, dynamic>>[
-      <String, dynamic>{
+    'format': ['application/fhir+json', 'application/fhir+xml'],
+    'rest': [
+      // List of maps
+      {
         'mode': 'server',
-        'security': <String, dynamic>{
-          'service': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'coding': <Map<String, dynamic>>[
-                <String, dynamic>{
+        'security': {
+          'service': [
+            // List of maps
+            {
+              'coding': [
+                // List of maps
+                {
                   'system':
                       'http://terminology.hl7.org/CodeSystem/restful-security-service',
                   'code': 'SMART-on-FHIR',
@@ -229,35 +233,37 @@ Map<String, dynamic> _mockCapabilityStatement() {
               ],
             },
           ],
-          'extension': <Map<String, dynamic>>[
-            <String, dynamic>{
+          'extension': [
+            // List of maps
+            {
               'url':
                   'http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris',
-              'extension': <Map<String, dynamic>>[
-                <String, dynamic>{
+              'extension': [
+                // List of maps
+                {
                   'url': 'authorize',
                   'valueUri': 'https://example.com/authorize',
                 },
-                <String, dynamic>{
+                {
                   'url': 'token',
                   'valueUri': 'https://example.com/token',
                 },
-                <String, dynamic>{
+                {
                   'url': 'revoke',
                   'valueUri': 'https://example.com/revoke',
                 },
-                <String, dynamic>{
+                {
                   'url': 'introspect',
                   'valueUri': 'https://example.com/introspect',
                 },
               ],
             },
-            <String, dynamic>{
+            {
               'url':
                   'http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities',
               'valueCode': 'launch-standalone',
             },
-            <String, dynamic>{
+            {
               'url':
                   'http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities',
               'valueCode': 'client-public',

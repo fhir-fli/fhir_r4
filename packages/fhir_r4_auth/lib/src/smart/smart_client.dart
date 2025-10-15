@@ -368,11 +368,12 @@ class SmartFhirClient extends FhirAuthClient {
       );
     }
 
-    // Extract OAuth URIs from extensions
+    // Extract OAuth URIs and capabilities from extensions
     String? authEndpoint;
     String? tokenEndpoint;
     String? revocationEndpoint;
     String? introspectionEndpoint;
+    final capabilities = <SmartCapability>[];
 
     for (final extension in security?.extension_ ?? <FhirExtension>[]) {
       if (extension.url.toString() ==
@@ -398,8 +399,25 @@ class SmartFhirClient extends FhirAuthClient {
                 'Discovered introspection endpoint: $_introspectionEndpoint');
           }
         }
+      } else if (extension.url.toString() ==
+          'http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities') {
+        final valueCode = extension.valueCode?.toString();
+        if (valueCode != null) {
+          try {
+            final capability = SmartCapability.values.firstWhere(
+              (cap) => cap.value == valueCode,
+            );
+            capabilities.add(capability);
+            _logger.fine('Discovered capability: $valueCode');
+          } catch (e) {
+            _logger.warning('Unknown SMART capability: $valueCode');
+          }
+        }
       }
     }
+
+    // Store capabilities
+    _serverCapabilities = capabilities;
 
     if (authEndpoint == null || tokenEndpoint == null) {
       throw const ConfigurationException(
