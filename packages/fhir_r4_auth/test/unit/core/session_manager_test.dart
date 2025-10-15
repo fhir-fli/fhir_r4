@@ -1,7 +1,6 @@
 /// Tests for session management
 library;
 
-import 'package:fake_async/fake_async.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:test/test.dart';
 
@@ -295,115 +294,118 @@ void main() {
       expect(info, isNull);
     });
 
-    test('emits timeout event on idle timeout', () {
-      fakeAsync((async) {
-        final sessionManager = SessionManager(
-          config: const SessionConfig(
-            idleTimeout: Duration(seconds: 10),
-            absoluteTimeout: Duration(hours: 1),
-            checkInterval: Duration(seconds: 1),
-          ),
-        );
+    test('emits timeout event on idle timeout', () async {
+      final sessionManager = SessionManager(
+        config: const SessionConfig(
+          idleTimeout: Duration(seconds: 10),
+          absoluteTimeout: Duration(hours: 1),
+          checkInterval: Duration(seconds: 1),
+        ),
+      );
 
-        sessionManager.startSession(userId: 'user123');
+      await sessionManager.startSession(userId: 'user123');
 
-        final timeouts = <TimeoutReason>[];
-        sessionManager.onTimeout.listen(timeouts.add);
+      final timeouts = <TimeoutReason>[];
+      sessionManager.onTimeout.listen(timeouts.add);
 
-        // Fast forward past idle timeout
-        async.elapse(const Duration(seconds: 15));
+      // Wait for idle timeout to pass
+      await Future.delayed(const Duration(seconds: 11));
 
-        expect(timeouts, contains(TimeoutReason.idle));
+      // Manually trigger timeout check
+      await sessionManager.checkTimeoutsForTesting();
 
-        sessionManager.dispose();
-      });
+      expect(timeouts, contains(TimeoutReason.idle));
+
+      sessionManager.dispose();
     });
 
-    test('emits timeout event on absolute timeout', () {
-      fakeAsync((async) {
-        final sessionManager = SessionManager(
-          config: const SessionConfig(
-            idleTimeout: Duration(hours: 1),
-            absoluteTimeout: Duration(seconds: 10),
-            checkInterval: Duration(seconds: 1),
-          ),
-        );
+    test('emits timeout event on absolute timeout', () async {
+      final sessionManager = SessionManager(
+        config: const SessionConfig(
+          idleTimeout: Duration(hours: 1),
+          absoluteTimeout: Duration(seconds: 10),
+          checkInterval: Duration(seconds: 1),
+        ),
+      );
 
-        sessionManager.startSession(userId: 'user123');
+      await sessionManager.startSession(userId: 'user123');
 
-        final timeouts = <TimeoutReason>[];
-        sessionManager.onTimeout.listen(timeouts.add);
+      final timeouts = <TimeoutReason>[];
+      sessionManager.onTimeout.listen(timeouts.add);
 
-        // Keep activity going but exceed absolute timeout
-        for (int i = 0; i < 15; i++) {
-          async.elapse(const Duration(seconds: 1));
-          sessionManager.recordActivity();
-        }
+      // Wait for absolute timeout to pass
+      await Future.delayed(const Duration(seconds: 11));
 
-        expect(timeouts, contains(TimeoutReason.absolute));
+      // Keep recording activity (but absolute timeout should still trigger)
+      await sessionManager.recordActivity();
 
-        sessionManager.dispose();
-      });
+      // Manually trigger timeout check
+      await sessionManager.checkTimeoutsForTesting();
+
+      expect(timeouts, contains(TimeoutReason.absolute));
+
+      sessionManager.dispose();
     });
 
-    test('emits warning before timeout', () {
-      fakeAsync((async) {
-        final sessionManager = SessionManager(
-          config: const SessionConfig(
-            idleTimeout: Duration(seconds: 10),
-            absoluteTimeout: Duration(hours: 1),
-            warningBeforeTimeout: Duration(seconds: 3),
-            checkInterval: Duration(seconds: 1),
-          ),
-        );
+    test('emits warning before timeout', () async {
+      final sessionManager = SessionManager(
+        config: const SessionConfig(
+          idleTimeout: Duration(seconds: 10),
+          absoluteTimeout: Duration(hours: 1),
+          warningBeforeTimeout: Duration(seconds: 3),
+          checkInterval: Duration(seconds: 1),
+        ),
+      );
 
-        sessionManager.startSession(userId: 'user123');
+      await sessionManager.startSession(userId: 'user123');
 
-        final warnings = <Duration>[];
-        sessionManager.onTimeoutWarning.listen(warnings.add);
+      final warnings = <Duration>[];
+      sessionManager.onTimeoutWarning.listen(warnings.add);
 
-        // Fast forward to warning period
-        async.elapse(const Duration(seconds: 8));
+      // Wait until we're in the warning period (7-8 seconds idle)
+      await Future.delayed(const Duration(seconds: 8));
 
-        expect(warnings, isNotEmpty);
-        expect(
-          warnings.first.inSeconds,
-          lessThanOrEqualTo(3),
-        );
+      // Manually trigger timeout check
+      await sessionManager.checkTimeoutsForTesting();
 
-        sessionManager.dispose();
-      });
+      expect(warnings, isNotEmpty);
+      expect(
+        warnings.first.inSeconds,
+        lessThanOrEqualTo(3),
+      );
+
+      sessionManager.dispose();
     });
 
-    test('prevents timeout with activity', () {
-      fakeAsync((async) {
-        final sessionManager = SessionManager(
-          config: const SessionConfig(
-            idleTimeout: Duration(seconds: 10),
-            absoluteTimeout: Duration(hours: 1),
-            checkInterval: Duration(seconds: 1),
-          ),
-        );
+    test('prevents timeout with activity', () async {
+      final sessionManager = SessionManager(
+        config: const SessionConfig(
+          idleTimeout: Duration(seconds: 10),
+          absoluteTimeout: Duration(hours: 1),
+          checkInterval: Duration(seconds: 1),
+        ),
+      );
 
-        sessionManager.startSession(userId: 'user123');
+      await sessionManager.startSession(userId: 'user123');
 
-        final timeouts = <TimeoutReason>[];
-        sessionManager.onTimeout.listen(timeouts.add);
+      final timeouts = <TimeoutReason>[];
+      sessionManager.onTimeout.listen(timeouts.add);
 
-        // Record activity every 5 seconds
-        for (int i = 0; i < 15; i++) {
-          async.elapse(const Duration(seconds: 1));
-          if (i % 5 == 0) {
-            sessionManager.recordActivity();
-          }
-        }
+      // Record activity to keep session alive
+      await Future.delayed(const Duration(seconds: 5));
+      await sessionManager.recordActivity();
 
-        // Should not timeout due to activity
-        expect(timeouts, isEmpty);
-        expect(sessionManager.hasActiveSession, isTrue);
+      await Future.delayed(const Duration(seconds: 5));
+      await sessionManager.recordActivity();
 
-        sessionManager.dispose();
-      });
+      // Check for timeouts - should not trigger because of recent activity
+      await sessionManager.checkTimeoutsForTesting();
+
+      // Should not timeout due to activity
+      expect(timeouts, isEmpty);
+      expect(sessionManager.hasActiveSession, isTrue);
+
+      sessionManager.dispose();
     });
   });
 

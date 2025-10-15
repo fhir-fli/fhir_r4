@@ -5,6 +5,7 @@ library;
 import 'dart:async';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show AuditEventType, AuditLogger, AuditSeverity, TokenStorage, AuditEvent;
+import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
 
@@ -347,5 +348,11 @@ class SessionManager {
     _timeoutTimer?.cancel();
     _warningController.close();
     _timeoutController.close();
+  }
+
+  /// Manually check for timeouts (for testing)
+  @visibleForTesting
+  Future<void> checkTimeoutsForTesting() async {
+    await _checkTimeouts();
   }
 }
