@@ -44,8 +44,12 @@ class StateManager {
     // Clean up expired states first
     _cleanupExpired();
 
-    // Generate at least 128 bits of entropy (22 base64 characters)
-    final length = (_minEntropyBits / 6).ceil(); // 6 bits per base64 char
+    // Generate at least 128 bits of entropy (22 base64 chars)
+    // AND minimum 32 characters per OAuth 2.0 security best practices
+    final entropyLength =
+        (_minEntropyBits / 6).ceil(); // 6 bits per base64 char
+    final length = max(32, entropyLength);
+
     final state = _generateSecureRandom(length);
 
     // Store with expiry

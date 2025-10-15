@@ -11,7 +11,7 @@ class AuthConfig {
     required this.fhirBaseUrl,
     required this.clientId,
     required this.redirectUri,
-    this.scopes = const [],
+    this.scopes = const <String>[],
     this.clientSecret,
     this.authMethod = ClientAuthMethod.none,
   });
@@ -58,7 +58,7 @@ class AuthConfig {
       fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
       clientId: json['clientId'] as String,
       redirectUri: Uri.parse(json['redirectUri'] as String),
-      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? [],
+      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
       clientSecret: json['clientSecret'] as String?,
       authMethod: ClientAuthMethod.values.byName(
         json['authMethod'] as String? ?? 'none',
@@ -81,7 +81,7 @@ class SmartConfig extends AuthConfig {
     this.iss,
     this.authorizeUrl,
     this.tokenUrl,
-    this.capabilities = const [],
+    this.capabilities = const <SmartCapability>[],
     this.customParameters = const {},
     this.audience,
     this.needPatientBanner,
@@ -260,7 +260,7 @@ class SmartConfig extends AuthConfig {
               ?.map((c) => SmartCapability.values
                   .firstWhere((cap) => cap.value == c as String))
               .toList() ??
-          [],
+          <SmartCapability>[],
       customParameters: (json['customParameters'] as Map<String, dynamic>?)
               ?.cast<String, String>() ??
           const {},
@@ -303,7 +303,7 @@ class SmartConfig extends AuthConfig {
       fhirBaseUrl: FhirUri(iss ?? currentUrl.toString()),
       clientId: clientId,
       redirectUri: redirectUri,
-      scopes: scopes ?? [],
+      scopes: scopes ?? <String>[],
       clientSecret: clientSecret,
       launchType: launchType,
       launchToken: launch,

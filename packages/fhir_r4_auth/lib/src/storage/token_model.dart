@@ -87,16 +87,18 @@ class SmartTokenResponse {
   /// Check if refresh token is expired (with buffer)
   bool get isRefreshExpired {
     if (refreshToken == null) return true;
-    final expiry = expiresAt;
-    if (expiry == null) return false;
-    return DateTime.now().isAfter(
-      expiry.subtract(TokenExpiryBuffer.refreshToken),
-    );
+
+    // Per OAuth 2.0 RFC 6749: refresh token expiration is intentionally not
+    // communicated to the client. SMART on FHIR does not define refresh_expires_in.
+    // Refresh tokens typically have much longer lifetimes than access tokens,
+    // or don't expire at all until revoked by the user or authorization server.
+    // We treat refresh tokens as valid until the server tells us otherwise.
+    return false;
   }
 
   /// Parse granted scopes into a list
   List<String> get scopesList {
-    if (scope == null || scope!.isEmpty) return [];
+    if (scope == null || scope!.isEmpty) return <String>[];
     return scope!.split(' ');
   }
 

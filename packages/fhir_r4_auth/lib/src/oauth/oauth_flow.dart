@@ -4,19 +4,20 @@ library;
 import 'dart:convert';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show
-        SmartTokenResponse,
         AuthorizationException,
+        GrantType,
+        HttpHeaders,
+        JwtValidator,
         NetworkException,
+        OAuthParameters,
+        PkceManager,
+        RateLimitConfig,
+        RateLimiter,
+        ResponseType,
         SecurityException,
         SecurityViolationType,
-        PkceManager,
-        StateManager,
-        JwtValidator,
-        GrantType,
-        ResponseType,
-        OAuthParameters,
-        ContentTypes,
-        HttpHeaders;
+        SmartTokenResponse,
+        StateManager;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
@@ -28,18 +29,21 @@ class OAuthFlow {
     required this.tokenEndpoint,
     required this.redirectUri,
     this.clientSecret,
-    this.scopes = const [],
-    this.additionalParameters = const {},
+    this.scopes = const <String>[],
+    this.additionalParameters = const <String, String>{},
     this.useBasicAuth = true,
     http.Client? httpClient,
     PkceManager? pkceManager,
     StateManager? stateManager,
     JwtValidator? jwtValidator,
+    RateLimiter? rateLimiter,
     Logger? logger,
   })  : _httpClient = httpClient ?? http.Client(),
         _pkceManager = pkceManager ?? PkceManager(),
         _stateManager = stateManager ?? StateManager(),
         _jwtValidator = jwtValidator ?? JwtValidator(),
+        _rateLimiter =
+            rateLimiter ?? RateLimiter(config: RateLimitConfig.tokenEndpoint()),
         _logger = logger ?? Logger('OAuthFlow');
 
   /// OAuth client ID
@@ -70,6 +74,7 @@ class OAuthFlow {
   final PkceManager _pkceManager;
   final StateManager _stateManager;
   final JwtValidator _jwtValidator;
+  final RateLimiter _rateLimiter;
   final Logger _logger;
 
   /// Current state parameter
@@ -160,10 +165,19 @@ class OAuthFlow {
     return exchangeCodeForToken(code);
   }
 
-  /// Exchange authorization code for access token
+  /// Exchange authorization code for access token (with rate limiting)
   Future<SmartTokenResponse> exchangeCodeForToken(String code) async {
     _logger.fine('Exchanging authorization code for token');
 
+    // Use client ID as rate limit key
+    return _rateLimiter.execute(
+      'token_exchange:$clientId',
+      () => _performTokenExchange(code),
+    );
+  }
+
+  /// Perform the actual token exchange
+  Future<SmartTokenResponse> _performTokenExchange(String code) async {
     // Build request body
     final body = <String, String>{
       OAuthParameters.grantType: GrantType.authorizationCode.value,
@@ -175,8 +189,8 @@ class OAuthFlow {
 
     // Add client credentials
     final headers = <String, String>{
-      HttpHeaders.contentType: ContentTypes.formUrlEncoded,
-      HttpHeaders.accept: ContentTypes.json,
+      HttpHeaders.contentType: 'application/x-www-form-urlencoded',
+      HttpHeaders.accept: 'application/json',
     };
 
     if (useBasicAuth && clientSecret != null) {
@@ -227,17 +241,30 @@ class OAuthFlow {
 
     // Validate ID token if present
     if (tokenResponse.idToken != null && _currentNonce != null) {
-      await _validateIdToken(tokenResponse.idToken!, _currentNonce!);
+      await _validateIdToken(
+        tokenResponse.idToken!,
+        _currentNonce!,
+        tokenResponse.accessToken,
+      );
     }
 
     _logger.fine('Token exchange successful');
     return tokenResponse;
   }
 
-  /// Refresh access token using refresh token
+  /// Refresh access token using refresh token (with rate limiting)
   Future<SmartTokenResponse> refreshAccessToken(String refreshToken) async {
     _logger.fine('Refreshing access token');
 
+    // Use client ID as rate limit key
+    return _rateLimiter.execute(
+      'token_refresh:$clientId',
+      () => _performTokenRefresh(refreshToken),
+    );
+  }
+
+  /// Perform the actual token refresh
+  Future<SmartTokenResponse> _performTokenRefresh(String refreshToken) async {
     final body = <String, String>{
       OAuthParameters.grantType: GrantType.refreshToken.value,
       OAuthParameters.refreshToken: refreshToken,
@@ -245,8 +272,8 @@ class OAuthFlow {
     };
 
     final headers = <String, String>{
-      HttpHeaders.contentType: ContentTypes.formUrlEncoded,
-      HttpHeaders.accept: ContentTypes.json,
+      HttpHeaders.contentType: 'application/x-www-form-urlencoded',
+      HttpHeaders.accept: 'application/json',
     };
 
     if (useBasicAuth && clientSecret != null) {
@@ -290,6 +317,16 @@ class OAuthFlow {
     final responseData = jsonDecode(response.body) as Map<String, dynamic>;
     final tokenResponse = SmartTokenResponse.fromJson(responseData);
 
+    // Validate new ID token if present
+    // Note: Refresh responses may not include nonce, so we validate without it
+    if (tokenResponse.idToken != null) {
+      await _validateIdToken(
+        tokenResponse.idToken!,
+        null,
+        tokenResponse.accessToken,
+      );
+    }
+
     _logger.fine('Token refresh successful');
     return tokenResponse;
   }
@@ -297,15 +334,10 @@ class OAuthFlow {
   /// Revoke a token
   Future<void> revokeToken(
     String token, {
-    String tokenTypeHint = 'access_token',
+    required Uri revocationEndpoint,
+    String tokenTypeHint = 'refresh_token',
   }) async {
     _logger.fine('Revoking token');
-
-    // Check if revocation endpoint exists (not all servers support it)
-    // For now, we'll assume it's at a standard location
-    final revocationEndpoint = tokenEndpoint.replace(
-      path: tokenEndpoint.path.replaceAll('/token', '/revoke'),
-    );
 
     final body = <String, String>{
       'token': token,
@@ -313,7 +345,7 @@ class OAuthFlow {
     };
 
     final headers = <String, String>{
-      HttpHeaders.contentType: ContentTypes.formUrlEncoded,
+      HttpHeaders.contentType: 'application/x-www-form-urlencoded',
     };
 
     if (useBasicAuth && clientSecret != null) {
@@ -345,15 +377,20 @@ class OAuthFlow {
     }
   }
 
-  /// Validate ID token
-  Future<void> _validateIdToken(String idToken, String expectedNonce) async {
+  /// Validate ID token with at_hash validation
+  Future<void> _validateIdToken(
+    String idToken,
+    String? expectedNonce,
+    String accessToken,
+  ) async {
     try {
       await _jwtValidator.validateToken(
         idToken,
         expectedNonce: expectedNonce,
+        accessToken: accessToken,
+        validateAtHash: true,
       );
 
-      // Additional validation can be done here
       _logger.fine('ID token validated successfully');
     } catch (e) {
       _logger.severe('ID token validation failed', e);
@@ -364,6 +401,9 @@ class OAuthFlow {
       );
     }
   }
+
+  /// Get rate limiter statistics
+  Map<String, dynamic> getRateLimitStats() => _rateLimiter.getStats();
 
   /// Reset flow state
   void reset() {
