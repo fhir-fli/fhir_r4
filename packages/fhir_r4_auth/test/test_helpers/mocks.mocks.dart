@@ -667,4 +667,14 @@ class MockSessionManager extends _i1.Mock implements _i3.SessionManager {
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  _i4.Future<void> checkTimeoutsForTesting() => (super.noSuchMethod(
+        Invocation.method(
+          #checkTimeoutsForTesting,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

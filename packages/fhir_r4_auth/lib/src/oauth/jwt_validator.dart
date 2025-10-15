@@ -278,7 +278,7 @@ class JwtValidator {
 
     // Validate not before
     if (validateNotBefore) {
-      if (claims.notBefore.subtract(clockSkew).isAfter(now)) {
+      if (claims.notBefore?.subtract(clockSkew).isAfter(now) ?? false) {
         throw SecurityException(
           'JWT token not yet valid',
           details: 'Token not valid until ${claims.notBefore}',

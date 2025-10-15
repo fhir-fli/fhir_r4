@@ -221,7 +221,7 @@ class JwtClaims {
     required this.audience,
     required this.expiresAt,
     required this.issuedAt,
-    required this.notBefore,
+    this.notBefore,
     this.jwtId,
     this.nonce,
     this.azp,
@@ -244,7 +244,7 @@ class JwtClaims {
   final DateTime issuedAt;
 
   /// Not before (nbf)
-  final DateTime notBefore;
+  final DateTime? notBefore;
 
   /// JWT ID (jti)
   final String? jwtId;
@@ -262,7 +262,10 @@ class JwtClaims {
   bool get isExpired => DateTime.now().isAfter(expiresAt);
 
   /// Check if token is not yet valid
-  bool get isNotYetValid => DateTime.now().isBefore(notBefore);
+  bool get isNotYetValid {
+    if (notBefore == null) return false;
+    return DateTime.now().isBefore(notBefore!);
+  }
 
   /// Check if token is currently valid
   bool get isValid => !isExpired && !isNotYetValid;
@@ -285,7 +288,7 @@ class JwtClaims {
       audience: json['aud'], // Can be String or List<String>
       expiresAt: parseNumericDate(json['exp']),
       issuedAt: parseNumericDate(json['iat']),
-      notBefore: parseNumericDate(json['nbf'] ?? json['iat']),
+      notBefore: json['nbf'] != null ? parseNumericDate(json['nbf']) : null,
       jwtId: json['jti'] as String?,
       nonce: json['nonce'] as String?,
       azp: json['azp'] as String?,
@@ -315,7 +318,7 @@ class JwtClaims {
       'aud': audience,
       'exp': expiresAt.millisecondsSinceEpoch ~/ 1000,
       'iat': issuedAt.millisecondsSinceEpoch ~/ 1000,
-      'nbf': notBefore.millisecondsSinceEpoch ~/ 1000,
+      if (notBefore != null) 'nbf': notBefore!.millisecondsSinceEpoch ~/ 1000,
       if (jwtId != null) 'jti': jwtId,
       if (nonce != null) 'nonce': nonce,
       if (azp != null) 'azp': azp,
