@@ -100,7 +100,7 @@ class FhirTime extends PrimitiveType
 
   /// Constructs a [FhirTime] from a JSON [Map].
   factory FhirTime.fromJson(Map<String, dynamic> json) {
-    final rawValue = json['value'] as String?;
+    final rawValue = json['value'];
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     return FhirTime(rawValue, element: parsedElement);

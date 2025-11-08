@@ -105,7 +105,7 @@ class FhirInteger extends FhirNumber
 
   /// Creates a [FhirInteger] from JSON.
   factory FhirInteger.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
+    final value = json['value'];
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     return FhirInteger(value, element: parsedElement);

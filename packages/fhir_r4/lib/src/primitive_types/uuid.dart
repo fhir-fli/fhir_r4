@@ -111,7 +111,7 @@ class FhirUuid extends FhirUri
 
   /// Constructs a [FhirUuid] from a JSON [Map].
   factory FhirUuid.fromJson(Map<String, dynamic> json) {
-    final rawValue = json['value'] as String?;
+    final rawValue = json['value'];
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);

@@ -120,7 +120,7 @@ class FhirDecimal extends FhirNumber
 
   /// Creates a [FhirDecimal] from JSON.
   factory FhirDecimal.fromJson(Map<String, dynamic> json) {
-    final rawValue = json['value'] as num?;
+    final rawValue = json['value'];
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     return FhirDecimal(
