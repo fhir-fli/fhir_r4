@@ -312,7 +312,7 @@ abstract class $QuestionnaireEnableWhenCopyWith<T>
     List<FhirExtension>? modifierExtension,
     FhirString? question,
     QuestionnaireItemOperator? operator_,
-    FhirBoolean? answerX,
+    AnswerXQuestionnaireEnableWhen? answerX,
     bool? disallowExtensions,
   });
 }
@@ -351,7 +351,7 @@ class _$QuestionnaireEnableWhenCopyWithImpl<T>
             : (operator_ as QuestionnaireItemOperator?) ?? _value.operator_,
         answerX: identical(answerX, fhirSentinel)
             ? _value.answerX
-            : (answerX as FhirBoolean?) ?? _value.answerX,
+            : (answerX as AnswerXQuestionnaireEnableWhen?) ?? _value.answerX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -375,7 +375,7 @@ abstract class $QuestionnaireAnswerOptionCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirInteger? valueX,
+    ValueXQuestionnaireAnswerOption? valueX,
     FhirBoolean? initialSelected,
     bool? disallowExtensions,
   });
@@ -408,7 +408,7 @@ class _$QuestionnaireAnswerOptionCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirInteger?) ?? _value.valueX,
+            : (valueX as ValueXQuestionnaireAnswerOption?) ?? _value.valueX,
         initialSelected: identical(initialSelected, fhirSentinel)
             ? _value.initialSelected
             : initialSelected as FhirBoolean?,
@@ -436,7 +436,7 @@ abstract class $QuestionnaireInitialCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueX,
+    ValueXQuestionnaireInitial? valueX,
     bool? disallowExtensions,
   });
 }
@@ -467,7 +467,7 @@ class _$QuestionnaireInitialCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirBoolean?) ?? _value.valueX,
+            : (valueX as ValueXQuestionnaireInitial?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

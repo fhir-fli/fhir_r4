@@ -73,7 +73,7 @@ abstract class $TimingRepeatCopyWith<T> extends $ElementCopyWith<T> {
   T call({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirDuration? boundsX,
+    BoundsXTimingRepeat? boundsX,
     FhirPositiveInt? count,
     FhirPositiveInt? countMax,
     FhirDecimal? duration,
@@ -127,7 +127,7 @@ class _$TimingRepeatCopyWithImpl<T> implements $TimingRepeatCopyWith<T> {
             : extension_ as List<FhirExtension>?,
         boundsX: identical(boundsX, fhirSentinel)
             ? _value.boundsX
-            : boundsX as FhirDuration?,
+            : boundsX as BoundsXTimingRepeat?,
         count: identical(count, fhirSentinel)
             ? _value.count
             : count as FhirPositiveInt?,

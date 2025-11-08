@@ -470,7 +470,7 @@ abstract class $StructureMapSourceCopyWith<T>
     FhirInteger? min,
     FhirString? max,
     FhirString? type,
-    FhirBase64Binary? defaultValueX,
+    DefaultValueXStructureMapSource? defaultValueX,
     FhirString? element,
     StructureMapSourceListMode? listMode,
     FhirId? variable,
@@ -523,7 +523,7 @@ class _$StructureMapSourceCopyWithImpl<T>
         type: identical(type, fhirSentinel) ? _value.type : type as FhirString?,
         defaultValueX: identical(defaultValueX, fhirSentinel)
             ? _value.defaultValueX
-            : defaultValueX as FhirBase64Binary?,
+            : defaultValueX as DefaultValueXStructureMapSource?,
         element: identical(element, fhirSentinel)
             ? _value.element
             : element as FhirString?,
@@ -655,7 +655,7 @@ abstract class $StructureMapParameterCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirId? valueX,
+    ValueXStructureMapParameter? valueX,
     bool? disallowExtensions,
   });
 }
@@ -686,7 +686,7 @@ class _$StructureMapParameterCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirId?) ?? _value.valueX,
+            : (valueX as ValueXStructureMapParameter?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -27,7 +27,7 @@ abstract class $ResearchElementDefinitionCopyWith<T>
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectX,
+    SubjectXResearchElementDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -152,7 +152,7 @@ class _$ResearchElementDefinitionCopyWithImpl<T>
             : experimental as FhirBoolean?,
         subjectX: identical(subjectX, fhirSentinel)
             ? _value.subjectX
-            : subjectX as CodeableConcept?,
+            : subjectX as SubjectXResearchElementDefinition?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         publisher: identical(publisher, fhirSentinel)
@@ -244,16 +244,17 @@ abstract class $ResearchElementDefinitionCharacteristicCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? definitionX,
+    DefinitionXResearchElementDefinitionCharacteristic? definitionX,
     List<UsageContext>? usageContext,
     FhirBoolean? exclude,
     CodeableConcept? unitOfMeasure,
     FhirString? studyEffectiveDescription,
-    FhirDateTime? studyEffectiveX,
+    StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX,
     FhirDuration? studyEffectiveTimeFromStart,
     GroupMeasure? studyEffectiveGroupMeasure,
     FhirString? participantEffectiveDescription,
-    FhirDateTime? participantEffectiveX,
+    ParticipantEffectiveXResearchElementDefinitionCharacteristic?
+        participantEffectiveX,
     FhirDuration? participantEffectiveTimeFromStart,
     GroupMeasure? participantEffectiveGroupMeasure,
     bool? disallowExtensions,
@@ -266,9 +267,7 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
   final T Function(ResearchElementDefinitionCharacteristic) _then;
 
   _$ResearchElementDefinitionCharacteristicCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -300,7 +299,9 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         definitionX: identical(definitionX, fhirSentinel)
             ? _value.definitionX
-            : (definitionX as CodeableConcept?) ?? _value.definitionX,
+            : (definitionX
+                    as DefinitionXResearchElementDefinitionCharacteristic?) ??
+                _value.definitionX,
         usageContext: identical(usageContext, fhirSentinel)
             ? _value.usageContext
             : usageContext as List<UsageContext>?,
@@ -316,7 +317,8 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
                 : studyEffectiveDescription as FhirString?,
         studyEffectiveX: identical(studyEffectiveX, fhirSentinel)
             ? _value.studyEffectiveX
-            : studyEffectiveX as FhirDateTime?,
+            : studyEffectiveX
+                as StudyEffectiveXResearchElementDefinitionCharacteristic?,
         studyEffectiveTimeFromStart:
             identical(studyEffectiveTimeFromStart, fhirSentinel)
                 ? _value.studyEffectiveTimeFromStart
@@ -331,7 +333,8 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
                 : participantEffectiveDescription as FhirString?,
         participantEffectiveX: identical(participantEffectiveX, fhirSentinel)
             ? _value.participantEffectiveX
-            : participantEffectiveX as FhirDateTime?,
+            : participantEffectiveX
+                as ParticipantEffectiveXResearchElementDefinitionCharacteristic?,
         participantEffectiveTimeFromStart:
             identical(participantEffectiveTimeFromStart, fhirSentinel)
                 ? _value.participantEffectiveTimeFromStart

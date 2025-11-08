@@ -17,7 +17,7 @@ abstract class $MessageHeaderCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Coding? eventX,
+    EventXMessageHeader? eventX,
     List<MessageHeaderDestination>? destination,
     Reference? sender,
     Reference? enterer,
@@ -83,7 +83,7 @@ class _$MessageHeaderCopyWithImpl<T> implements $MessageHeaderCopyWith<T> {
             : modifierExtension as List<FhirExtension>?,
         eventX: identical(eventX, fhirSentinel)
             ? _value.eventX
-            : (eventX as Coding?) ?? _value.eventX,
+            : (eventX as EventXMessageHeader?) ?? _value.eventX,
         destination: identical(destination, fhirSentinel)
             ? _value.destination
             : destination as List<MessageHeaderDestination>?,

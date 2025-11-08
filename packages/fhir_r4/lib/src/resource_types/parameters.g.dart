@@ -67,7 +67,7 @@ abstract class $ParametersParameterCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    FhirBase64Binary? valueX,
+    ValueXParametersParameter? valueX,
     Resource? resource,
     List<ParametersParameter>? part_,
     bool? disallowExtensions,
@@ -106,7 +106,7 @@ class _$ParametersParameterCopyWithImpl<T>
             : (name as FhirString?) ?? _value.name,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirBase64Binary?,
+            : valueX as ValueXParametersParameter?,
         resource: identical(resource, fhirSentinel)
             ? _value.resource
             : resource as Resource?,

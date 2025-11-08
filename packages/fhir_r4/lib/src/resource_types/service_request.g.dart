@@ -30,11 +30,11 @@ abstract class $ServiceRequestCopyWith<T> extends $DomainResourceCopyWith<T> {
     FhirBoolean? doNotPerform,
     CodeableConcept? code,
     List<CodeableConcept>? orderDetail,
-    Quantity? quantityX,
+    QuantityXServiceRequest? quantityX,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? occurrenceX,
-    FhirBoolean? asNeededX,
+    OccurrenceXServiceRequest? occurrenceX,
+    AsNeededXServiceRequest? asNeededX,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,
@@ -166,7 +166,7 @@ class _$ServiceRequestCopyWithImpl<T> implements $ServiceRequestCopyWith<T> {
             : orderDetail as List<CodeableConcept>?,
         quantityX: identical(quantityX, fhirSentinel)
             ? _value.quantityX
-            : quantityX as Quantity?,
+            : quantityX as QuantityXServiceRequest?,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : (subject as Reference?) ?? _value.subject,
@@ -175,10 +175,10 @@ class _$ServiceRequestCopyWithImpl<T> implements $ServiceRequestCopyWith<T> {
             : encounter as Reference?,
         occurrenceX: identical(occurrenceX, fhirSentinel)
             ? _value.occurrenceX
-            : occurrenceX as FhirDateTime?,
+            : occurrenceX as OccurrenceXServiceRequest?,
         asNeededX: identical(asNeededX, fhirSentinel)
             ? _value.asNeededX
-            : asNeededX as FhirBoolean?,
+            : asNeededX as AsNeededXServiceRequest?,
         authoredOn: identical(authoredOn, fhirSentinel)
             ? _value.authoredOn
             : authoredOn as FhirDateTime?,

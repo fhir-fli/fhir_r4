@@ -218,7 +218,7 @@ abstract class $CompositionRelatesToCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    Identifier? targetX,
+    TargetXCompositionRelatesTo? targetX,
     bool? disallowExtensions,
   });
 }
@@ -253,7 +253,7 @@ class _$CompositionRelatesToCopyWithImpl<T>
             : (code as DocumentRelationshipType?) ?? _value.code,
         targetX: identical(targetX, fhirSentinel)
             ? _value.targetX
-            : (targetX as Identifier?) ?? _value.targetX,
+            : (targetX as TargetXCompositionRelatesTo?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

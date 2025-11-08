@@ -137,7 +137,7 @@ abstract class $AdministrableProductDefinitionPropertyCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueX,
+    ValueXAdministrableProductDefinitionProperty? valueX,
     CodeableConcept? status,
     bool? disallowExtensions,
   });
@@ -174,7 +174,7 @@ class _$AdministrableProductDefinitionPropertyCopyWithImpl<T>
             : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXAdministrableProductDefinitionProperty?,
         status: identical(status, fhirSentinel)
             ? _value.status
             : status as CodeableConcept?,
@@ -221,9 +221,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationCopyWithImpl<T>
   final T Function(AdministrableProductDefinitionRouteOfAdministration) _then;
 
   _$AdministrableProductDefinitionRouteOfAdministrationCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -310,9 +308,7 @@ class _$AdministrableProductDefinitionTargetSpeciesCopyWithImpl<T>
   final T Function(AdministrableProductDefinitionTargetSpecies) _then;
 
   _$AdministrableProductDefinitionTargetSpeciesCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -378,9 +374,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodCopyWithImpl<T>
   final T Function(AdministrableProductDefinitionWithdrawalPeriod) _then;
 
   _$AdministrableProductDefinitionWithdrawalPeriodCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({

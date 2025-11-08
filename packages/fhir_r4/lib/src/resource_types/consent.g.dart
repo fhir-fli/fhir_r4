@@ -25,7 +25,7 @@ abstract class $ConsentCopyWith<T> extends $DomainResourceCopyWith<T> {
     FhirDateTime? dateTime,
     List<Reference>? performer,
     List<Reference>? organization,
-    Attachment? sourceX,
+    SourceXConsent? sourceX,
     List<ConsentPolicy>? policy,
     CodeableConcept? policyRule,
     List<ConsentVerification>? verification,
@@ -111,7 +111,7 @@ class _$ConsentCopyWithImpl<T> implements $ConsentCopyWith<T> {
             : organization as List<Reference>?,
         sourceX: identical(sourceX, fhirSentinel)
             ? _value.sourceX
-            : sourceX as Attachment?,
+            : sourceX as SourceXConsent?,
         policy: identical(policy, fhirSentinel)
             ? _value.policy
             : policy as List<ConsentPolicy>?,

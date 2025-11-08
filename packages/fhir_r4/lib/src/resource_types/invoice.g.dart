@@ -217,7 +217,7 @@ abstract class $InvoiceLineItemCopyWith<T> extends $BackboneElementCopyWith<T> {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Reference? chargeItemX,
+    ChargeItemXInvoiceLineItem? chargeItemX,
     List<InvoicePriceComponent>? priceComponent,
     bool? disallowExtensions,
   });
@@ -253,7 +253,8 @@ class _$InvoiceLineItemCopyWithImpl<T> implements $InvoiceLineItemCopyWith<T> {
             : sequence as FhirPositiveInt?,
         chargeItemX: identical(chargeItemX, fhirSentinel)
             ? _value.chargeItemX
-            : (chargeItemX as Reference?) ?? _value.chargeItemX,
+            : (chargeItemX as ChargeItemXInvoiceLineItem?) ??
+                _value.chargeItemX,
         priceComponent: identical(priceComponent, fhirSentinel)
             ? _value.priceComponent
             : priceComponent as List<InvoicePriceComponent>?,

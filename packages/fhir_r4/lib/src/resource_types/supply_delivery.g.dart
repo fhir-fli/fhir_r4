@@ -24,7 +24,7 @@ abstract class $SupplyDeliveryCopyWith<T> extends $DomainResourceCopyWith<T> {
     Reference? patient,
     CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
-    FhirDateTime? occurrenceX,
+    OccurrenceXSupplyDelivery? occurrenceX,
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
@@ -104,7 +104,7 @@ class _$SupplyDeliveryCopyWithImpl<T> implements $SupplyDeliveryCopyWith<T> {
             : suppliedItem as SupplyDeliverySuppliedItem?,
         occurrenceX: identical(occurrenceX, fhirSentinel)
             ? _value.occurrenceX
-            : occurrenceX as FhirDateTime?,
+            : occurrenceX as OccurrenceXSupplyDelivery?,
         supplier: identical(supplier, fhirSentinel)
             ? _value.supplier
             : supplier as Reference?,
@@ -135,7 +135,7 @@ abstract class $SupplyDeliverySuppliedItemCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
-    CodeableConcept? itemX,
+    ItemXSupplyDeliverySuppliedItem? itemX,
     bool? disallowExtensions,
   });
 }
@@ -170,7 +170,7 @@ class _$SupplyDeliverySuppliedItemCopyWithImpl<T>
             : quantity as Quantity?,
         itemX: identical(itemX, fhirSentinel)
             ? _value.itemX
-            : itemX as CodeableConcept?,
+            : itemX as ItemXSupplyDeliverySuppliedItem?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

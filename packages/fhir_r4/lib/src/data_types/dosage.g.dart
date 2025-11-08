@@ -17,7 +17,7 @@ abstract class $DosageCopyWith<T> extends $BackboneTypeCopyWith<T> {
     List<CodeableConcept>? additionalInstruction,
     FhirString? patientInstruction,
     Timing? timing,
-    FhirBoolean? asNeededX,
+    AsNeededXDosage? asNeededX,
     CodeableConcept? site,
     CodeableConcept? route,
     CodeableConcept? method,
@@ -78,7 +78,7 @@ class _$DosageCopyWithImpl<T> implements $DosageCopyWith<T> {
             identical(timing, fhirSentinel) ? _value.timing : timing as Timing?,
         asNeededX: identical(asNeededX, fhirSentinel)
             ? _value.asNeededX
-            : asNeededX as FhirBoolean?,
+            : asNeededX as AsNeededXDosage?,
         site: identical(site, fhirSentinel)
             ? _value.site
             : site as CodeableConcept?,
@@ -122,8 +122,8 @@ abstract class $DosageDoseAndRateCopyWith<T> extends $ElementCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     CodeableConcept? type,
-    Range? doseX,
-    Ratio? rateX,
+    DoseXDosageDoseAndRate? doseX,
+    RateXDosageDoseAndRate? rateX,
     bool? disallowExtensions,
   });
 }
@@ -153,8 +153,12 @@ class _$DosageDoseAndRateCopyWithImpl<T>
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        doseX: identical(doseX, fhirSentinel) ? _value.doseX : doseX as Range?,
-        rateX: identical(rateX, fhirSentinel) ? _value.rateX : rateX as Ratio?,
+        doseX: identical(doseX, fhirSentinel)
+            ? _value.doseX
+            : doseX as DoseXDosageDoseAndRate?,
+        rateX: identical(rateX, fhirSentinel)
+            ? _value.rateX
+            : rateX as RateXDosageDoseAndRate?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

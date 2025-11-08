@@ -210,9 +210,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl<T>
   final T Function(MedicationKnowledgeRelatedMedicationKnowledge) _then;
 
   _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -327,7 +325,7 @@ abstract class $MedicationKnowledgeIngredientCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? itemX,
+    ItemXMedicationKnowledgeIngredient? itemX,
     FhirBoolean? isActive,
     Ratio? strength,
     bool? disallowExtensions,
@@ -362,7 +360,7 @@ class _$MedicationKnowledgeIngredientCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         itemX: identical(itemX, fhirSentinel)
             ? _value.itemX
-            : (itemX as CodeableConcept?) ?? _value.itemX,
+            : (itemX as ItemXMedicationKnowledgeIngredient?) ?? _value.itemX,
         isActive: identical(isActive, fhirSentinel)
             ? _value.isActive
             : isActive as FhirBoolean?,
@@ -521,7 +519,7 @@ abstract class $MedicationKnowledgeAdministrationGuidelinesCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<MedicationKnowledgeDosage>? dosage,
-    CodeableConcept? indicationX,
+    IndicationXMedicationKnowledgeAdministrationGuidelines? indicationX,
     List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics,
     bool? disallowExtensions,
   });
@@ -533,9 +531,7 @@ class _$MedicationKnowledgeAdministrationGuidelinesCopyWithImpl<T>
   final T Function(MedicationKnowledgeAdministrationGuidelines) _then;
 
   _$MedicationKnowledgeAdministrationGuidelinesCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -561,7 +557,8 @@ class _$MedicationKnowledgeAdministrationGuidelinesCopyWithImpl<T>
             : dosage as List<MedicationKnowledgeDosage>?,
         indicationX: identical(indicationX, fhirSentinel)
             ? _value.indicationX
-            : indicationX as CodeableConcept?,
+            : indicationX
+                as IndicationXMedicationKnowledgeAdministrationGuidelines?,
         patientCharacteristics: identical(patientCharacteristics, fhirSentinel)
             ? _value.patientCharacteristics
             : patientCharacteristics
@@ -653,7 +650,7 @@ abstract class $MedicationKnowledgePatientCharacteristicsCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? characteristicX,
+    CharacteristicXMedicationKnowledgePatientCharacteristics? characteristicX,
     List<FhirString>? value,
     bool? disallowExtensions,
   });
@@ -665,9 +662,7 @@ class _$MedicationKnowledgePatientCharacteristicsCopyWithImpl<T>
   final T Function(MedicationKnowledgePatientCharacteristics) _then;
 
   _$MedicationKnowledgePatientCharacteristicsCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -689,7 +684,9 @@ class _$MedicationKnowledgePatientCharacteristicsCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         characteristicX: identical(characteristicX, fhirSentinel)
             ? _value.characteristicX
-            : (characteristicX as CodeableConcept?) ?? _value.characteristicX,
+            : (characteristicX
+                    as CharacteristicXMedicationKnowledgePatientCharacteristics?) ??
+                _value.characteristicX,
         value: identical(value, fhirSentinel)
             ? _value.value
             : value as List<FhirString>?,
@@ -731,9 +728,7 @@ class _$MedicationKnowledgeMedicineClassificationCopyWithImpl<T>
   final T Function(MedicationKnowledgeMedicineClassification) _then;
 
   _$MedicationKnowledgeMedicineClassificationCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -848,7 +843,7 @@ abstract class $MedicationKnowledgeDrugCharacteristicCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueX,
+    ValueXMedicationKnowledgeDrugCharacteristic? valueX,
     bool? disallowExtensions,
   });
 }
@@ -883,7 +878,7 @@ class _$MedicationKnowledgeDrugCharacteristicCopyWithImpl<T>
             : type as CodeableConcept?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXMedicationKnowledgeDrugCharacteristic?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

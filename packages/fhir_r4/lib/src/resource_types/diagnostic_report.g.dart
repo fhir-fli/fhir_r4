@@ -24,7 +24,7 @@ abstract class $DiagnosticReportCopyWith<T> extends $DomainResourceCopyWith<T> {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? effectiveX,
+    EffectiveXDiagnosticReport? effectiveX,
     FhirInstant? issued,
     List<Reference>? performer,
     List<Reference>? resultsInterpreter,
@@ -119,7 +119,7 @@ class _$DiagnosticReportCopyWithImpl<T>
             : encounter as Reference?,
         effectiveX: identical(effectiveX, fhirSentinel)
             ? _value.effectiveX
-            : effectiveX as FhirDateTime?,
+            : effectiveX as EffectiveXDiagnosticReport?,
         issued: identical(issued, fhirSentinel)
             ? _value.issued
             : issued as FhirInstant?,

@@ -140,7 +140,7 @@ abstract class $BiologicallyDerivedProductCollectionCopyWith<T>
     List<FhirExtension>? modifierExtension,
     Reference? collector,
     Reference? source,
-    FhirDateTime? collectedX,
+    CollectedXBiologicallyDerivedProductCollection? collectedX,
     bool? disallowExtensions,
   });
 }
@@ -179,7 +179,7 @@ class _$BiologicallyDerivedProductCollectionCopyWithImpl<T>
             : source as Reference?,
         collectedX: identical(collectedX, fhirSentinel)
             ? _value.collectedX
-            : collectedX as FhirDateTime?,
+            : collectedX as CollectedXBiologicallyDerivedProductCollection?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -209,7 +209,7 @@ abstract class $BiologicallyDerivedProductProcessingCopyWith<T>
     FhirString? description,
     CodeableConcept? procedure,
     Reference? additive,
-    FhirDateTime? timeX,
+    TimeXBiologicallyDerivedProductProcessing? timeX,
     bool? disallowExtensions,
   });
 }
@@ -252,7 +252,7 @@ class _$BiologicallyDerivedProductProcessingCopyWithImpl<T>
             : additive as Reference?,
         timeX: identical(timeX, fhirSentinel)
             ? _value.timeX
-            : timeX as FhirDateTime?,
+            : timeX as TimeXBiologicallyDerivedProductProcessing?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -280,7 +280,7 @@ abstract class $BiologicallyDerivedProductManipulationCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    FhirDateTime? timeX,
+    TimeXBiologicallyDerivedProductManipulation? timeX,
     bool? disallowExtensions,
   });
 }
@@ -315,7 +315,7 @@ class _$BiologicallyDerivedProductManipulationCopyWithImpl<T>
             : description as FhirString?,
         timeX: identical(timeX, fhirSentinel)
             ? _value.timeX
-            : timeX as FhirDateTime?,
+            : timeX as TimeXBiologicallyDerivedProductManipulation?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

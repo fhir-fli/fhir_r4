@@ -208,7 +208,7 @@ abstract class $SpecimenDefinitionContainerCopyWith<T>
     CodeableConcept? cap,
     FhirString? description,
     Quantity? capacity,
-    Quantity? minimumVolumeX,
+    MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX,
     List<SpecimenDefinitionAdditive>? additive,
     FhirString? preparation,
     bool? disallowExtensions,
@@ -262,7 +262,7 @@ class _$SpecimenDefinitionContainerCopyWithImpl<T>
             : capacity as Quantity?,
         minimumVolumeX: identical(minimumVolumeX, fhirSentinel)
             ? _value.minimumVolumeX
-            : minimumVolumeX as Quantity?,
+            : minimumVolumeX as MinimumVolumeXSpecimenDefinitionContainer?,
         additive: identical(additive, fhirSentinel)
             ? _value.additive
             : additive as List<SpecimenDefinitionAdditive>?,
@@ -294,7 +294,7 @@ abstract class $SpecimenDefinitionAdditiveCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? additiveX,
+    AdditiveXSpecimenDefinitionAdditive? additiveX,
     bool? disallowExtensions,
   });
 }
@@ -325,7 +325,8 @@ class _$SpecimenDefinitionAdditiveCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         additiveX: identical(additiveX, fhirSentinel)
             ? _value.additiveX
-            : (additiveX as CodeableConcept?) ?? _value.additiveX,
+            : (additiveX as AdditiveXSpecimenDefinitionAdditive?) ??
+                _value.additiveX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

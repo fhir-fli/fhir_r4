@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
 /// Polymorphic types for FHIR data types.

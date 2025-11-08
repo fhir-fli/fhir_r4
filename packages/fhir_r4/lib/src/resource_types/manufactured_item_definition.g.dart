@@ -120,7 +120,7 @@ abstract class $ManufacturedItemDefinitionPropertyCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueX,
+    ValueXManufacturedItemDefinitionProperty? valueX,
     bool? disallowExtensions,
   });
 }
@@ -155,7 +155,7 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<T>
             : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXManufacturedItemDefinitionProperty?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

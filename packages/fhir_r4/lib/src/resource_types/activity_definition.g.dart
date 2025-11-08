@@ -26,7 +26,7 @@ abstract class $ActivityDefinitionCopyWith<T>
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectX,
+    SubjectXActivityDefinition? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -52,10 +52,10 @@ abstract class $ActivityDefinitionCopyWith<T>
     RequestIntent? intent,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    Timing? timingX,
+    TimingXActivityDefinition? timingX,
     Reference? location,
     List<ActivityDefinitionParticipant>? participant,
-    Reference? productX,
+    ProductXActivityDefinition? productX,
     Quantity? quantity,
     List<Dosage>? dosage,
     List<CodeableConcept>? bodySite,
@@ -175,7 +175,7 @@ class _$ActivityDefinitionCopyWithImpl<T>
             : experimental as FhirBoolean?,
         subjectX: identical(subjectX, fhirSentinel)
             ? _value.subjectX
-            : subjectX as CodeableConcept?,
+            : subjectX as SubjectXActivityDefinition?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         publisher: identical(publisher, fhirSentinel)
@@ -252,7 +252,7 @@ class _$ActivityDefinitionCopyWithImpl<T>
             : doNotPerform as FhirBoolean?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX
-            : timingX as Timing?,
+            : timingX as TimingXActivityDefinition?,
         location: identical(location, fhirSentinel)
             ? _value.location
             : location as Reference?,
@@ -261,7 +261,7 @@ class _$ActivityDefinitionCopyWithImpl<T>
             : participant as List<ActivityDefinitionParticipant>?,
         productX: identical(productX, fhirSentinel)
             ? _value.productX
-            : productX as Reference?,
+            : productX as ProductXActivityDefinition?,
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,

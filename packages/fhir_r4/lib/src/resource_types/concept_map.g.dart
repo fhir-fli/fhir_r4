@@ -32,8 +32,8 @@ abstract class $ConceptMapCopyWith<T> extends $CanonicalResourceCopyWith<T> {
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
     FhirMarkdown? copyright,
-    FhirUri? sourceX,
-    FhirUri? targetX,
+    SourceXConceptMap? sourceX,
+    TargetXConceptMap? targetX,
     List<ConceptMapGroup>? group,
     bool? disallowExtensions,
   });
@@ -137,10 +137,10 @@ class _$ConceptMapCopyWithImpl<T> implements $ConceptMapCopyWith<T> {
             : copyright as FhirMarkdown?,
         sourceX: identical(sourceX, fhirSentinel)
             ? _value.sourceX
-            : sourceX as FhirUri?,
+            : sourceX as SourceXConceptMap?,
         targetX: identical(targetX, fhirSentinel)
             ? _value.targetX
-            : targetX as FhirUri?,
+            : targetX as TargetXConceptMap?,
         group: identical(group, fhirSentinel)
             ? _value.group
             : group as List<ConceptMapGroup>?,

@@ -144,12 +144,12 @@ abstract class $SpecimenCollectionCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? collector,
-    FhirDateTime? collectedX,
+    CollectedXSpecimenCollection? collectedX,
     FhirDuration? duration,
     Quantity? quantity,
     CodeableConcept? method,
     CodeableConcept? bodySite,
-    CodeableConcept? fastingStatusX,
+    FastingStatusXSpecimenCollection? fastingStatusX,
     bool? disallowExtensions,
   });
 }
@@ -189,7 +189,7 @@ class _$SpecimenCollectionCopyWithImpl<T>
             : collector as Reference?,
         collectedX: identical(collectedX, fhirSentinel)
             ? _value.collectedX
-            : collectedX as FhirDateTime?,
+            : collectedX as CollectedXSpecimenCollection?,
         duration: identical(duration, fhirSentinel)
             ? _value.duration
             : duration as FhirDuration?,
@@ -204,7 +204,7 @@ class _$SpecimenCollectionCopyWithImpl<T>
             : bodySite as CodeableConcept?,
         fastingStatusX: identical(fastingStatusX, fhirSentinel)
             ? _value.fastingStatusX
-            : fastingStatusX as CodeableConcept?,
+            : fastingStatusX as FastingStatusXSpecimenCollection?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -231,7 +231,7 @@ abstract class $SpecimenProcessingCopyWith<T>
     FhirString? description,
     CodeableConcept? procedure,
     List<Reference>? additive,
-    FhirDateTime? timeX,
+    TimeXSpecimenProcessing? timeX,
     bool? disallowExtensions,
   });
 }
@@ -274,7 +274,7 @@ class _$SpecimenProcessingCopyWithImpl<T>
             : additive as List<Reference>?,
         timeX: identical(timeX, fhirSentinel)
             ? _value.timeX
-            : timeX as FhirDateTime?,
+            : timeX as TimeXSpecimenProcessing?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -303,7 +303,7 @@ abstract class $SpecimenContainerCopyWith<T>
     CodeableConcept? type,
     Quantity? capacity,
     Quantity? specimenQuantity,
-    CodeableConcept? additiveX,
+    AdditiveXSpecimenContainer? additiveX,
     bool? disallowExtensions,
   });
 }
@@ -354,7 +354,7 @@ class _$SpecimenContainerCopyWithImpl<T>
             : specimenQuantity as Quantity?,
         additiveX: identical(additiveX, fhirSentinel)
             ? _value.additiveX
-            : additiveX as CodeableConcept?,
+            : additiveX as AdditiveXSpecimenContainer?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

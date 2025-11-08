@@ -276,10 +276,10 @@ abstract class $CarePlanDetailCopyWith<T> extends $BackboneElementCopyWith<T> {
     CarePlanActivityStatus? status,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,
-    Timing? scheduledX,
+    ScheduledXCarePlanDetail? scheduledX,
     Reference? location,
     List<Reference>? performer,
-    CodeableConcept? productX,
+    ProductXCarePlanDetail? productX,
     Quantity? dailyAmount,
     Quantity? quantity,
     FhirString? description,
@@ -358,7 +358,7 @@ class _$CarePlanDetailCopyWithImpl<T> implements $CarePlanDetailCopyWith<T> {
             : doNotPerform as FhirBoolean?,
         scheduledX: identical(scheduledX, fhirSentinel)
             ? _value.scheduledX
-            : scheduledX as Timing?,
+            : scheduledX as ScheduledXCarePlanDetail?,
         location: identical(location, fhirSentinel)
             ? _value.location
             : location as Reference?,
@@ -367,7 +367,7 @@ class _$CarePlanDetailCopyWithImpl<T> implements $CarePlanDetailCopyWith<T> {
             : performer as List<Reference>?,
         productX: identical(productX, fhirSentinel)
             ? _value.productX
-            : productX as CodeableConcept?,
+            : productX as ProductXCarePlanDetail?,
         dailyAmount: identical(dailyAmount, fhirSentinel)
             ? _value.dailyAmount
             : dailyAmount as Quantity?,

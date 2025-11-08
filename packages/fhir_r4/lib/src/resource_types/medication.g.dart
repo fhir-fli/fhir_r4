@@ -118,7 +118,7 @@ abstract class $MedicationIngredientCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? itemX,
+    ItemXMedicationIngredient? itemX,
     FhirBoolean? isActive,
     Ratio? strength,
     bool? disallowExtensions,
@@ -153,7 +153,7 @@ class _$MedicationIngredientCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         itemX: identical(itemX, fhirSentinel)
             ? _value.itemX
-            : (itemX as CodeableConcept?) ?? _value.itemX,
+            : (itemX as ItemXMedicationIngredient?) ?? _value.itemX,
         isActive: identical(isActive, fhirSentinel)
             ? _value.isActive
             : isActive as FhirBoolean?,

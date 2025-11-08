@@ -26,7 +26,7 @@ abstract class $MediaCopyWith<T> extends $DomainResourceCopyWith<T> {
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? createdX,
+    CreatedXMedia? createdX,
     FhirInstant? issued,
     Reference? operator_,
     List<CodeableConcept>? reasonCode,
@@ -132,7 +132,7 @@ class _$MediaCopyWithImpl<T> implements $MediaCopyWith<T> {
             : encounter as Reference?,
         createdX: identical(createdX, fhirSentinel)
             ? _value.createdX
-            : createdX as FhirDateTime?,
+            : createdX as CreatedXMedia?,
         issued: identical(issued, fhirSentinel)
             ? _value.issued
             : issued as FhirInstant?,

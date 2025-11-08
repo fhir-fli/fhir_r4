@@ -21,9 +21,9 @@ abstract class $MedicationDispenseCopyWith<T>
     List<Identifier>? identifier,
     List<Reference>? partOf,
     MedicationDispenseStatusCodes? status,
-    CodeableConcept? statusReasonX,
+    StatusReasonXMedicationDispense? statusReasonX,
     CodeableConcept? category,
-    CodeableConcept? medicationX,
+    MedicationXMedicationDispense? medicationX,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
@@ -120,13 +120,14 @@ class _$MedicationDispenseCopyWithImpl<T>
             : (status as MedicationDispenseStatusCodes?) ?? _value.status,
         statusReasonX: identical(statusReasonX, fhirSentinel)
             ? _value.statusReasonX
-            : statusReasonX as CodeableConcept?,
+            : statusReasonX as StatusReasonXMedicationDispense?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
         medicationX: identical(medicationX, fhirSentinel)
             ? _value.medicationX
-            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+            : (medicationX as MedicationXMedicationDispense?) ??
+                _value.medicationX,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,

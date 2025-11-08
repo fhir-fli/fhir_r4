@@ -12,7 +12,7 @@ abstract class $UsageContextCopyWith<T> extends $DataTypeCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     Coding? code,
-    CodeableConcept? valueX,
+    ValueXUsageContext? valueX,
     bool? disallowExtensions,
   });
 }
@@ -42,7 +42,7 @@ class _$UsageContextCopyWithImpl<T> implements $UsageContextCopyWith<T> {
             : (code as Coding?) ?? _value.code,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as CodeableConcept?) ?? _value.valueX,
+            : (valueX as ValueXUsageContext?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

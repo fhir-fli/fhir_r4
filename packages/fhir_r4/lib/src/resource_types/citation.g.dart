@@ -403,7 +403,7 @@ abstract class $CitationRelatesToCopyWith<T>
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    FhirUri? targetX,
+    TargetXCitationRelatesTo? targetX,
     bool? disallowExtensions,
   });
 }
@@ -442,7 +442,7 @@ class _$CitationRelatesToCopyWithImpl<T>
             : targetClassifier as List<CodeableConcept>?,
         targetX: identical(targetX, fhirSentinel)
             ? _value.targetX
-            : (targetX as FhirUri?) ?? _value.targetX,
+            : (targetX as TargetXCitationRelatesTo?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -912,7 +912,7 @@ abstract class $CitationRelatesTo1CopyWith<T>
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    FhirUri? targetX,
+    TargetXCitationRelatesTo1? targetX,
     bool? disallowExtensions,
   });
 }
@@ -951,7 +951,7 @@ class _$CitationRelatesTo1CopyWithImpl<T>
             : targetClassifier as List<CodeableConcept>?,
         targetX: identical(targetX, fhirSentinel)
             ? _value.targetX
-            : (targetX as FhirUri?) ?? _value.targetX,
+            : (targetX as TargetXCitationRelatesTo1?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

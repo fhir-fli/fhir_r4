@@ -32,7 +32,7 @@ abstract class $CommunicationRequestCopyWith<T>
     List<Reference>? about,
     Reference? encounter,
     List<CommunicationRequestPayload>? payload,
-    FhirDateTime? occurrenceX,
+    OccurrenceXCommunicationRequest? occurrenceX,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? recipient,
@@ -149,7 +149,7 @@ class _$CommunicationRequestCopyWithImpl<T>
             : payload as List<CommunicationRequestPayload>?,
         occurrenceX: identical(occurrenceX, fhirSentinel)
             ? _value.occurrenceX
-            : occurrenceX as FhirDateTime?,
+            : occurrenceX as OccurrenceXCommunicationRequest?,
         authoredOn: identical(authoredOn, fhirSentinel)
             ? _value.authoredOn
             : authoredOn as FhirDateTime?,
@@ -191,7 +191,7 @@ abstract class $CommunicationRequestPayloadCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirString? contentX,
+    ContentXCommunicationRequestPayload? contentX,
     bool? disallowExtensions,
   });
 }
@@ -222,7 +222,8 @@ class _$CommunicationRequestPayloadCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         contentX: identical(contentX, fhirSentinel)
             ? _value.contentX
-            : (contentX as FhirString?) ?? _value.contentX,
+            : (contentX as ContentXCommunicationRequestPayload?) ??
+                _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

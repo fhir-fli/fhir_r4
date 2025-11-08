@@ -406,8 +406,8 @@ abstract class $ClaimSupportingInfoCopyWith<T>
     FhirPositiveInt? sequence,
     CodeableConcept? category,
     CodeableConcept? code,
-    FhirDate? timingX,
-    FhirBoolean? valueX,
+    TimingXClaimSupportingInfo? timingX,
+    ValueXClaimSupportingInfo? valueX,
     CodeableConcept? reason,
     bool? disallowExtensions,
   });
@@ -453,10 +453,10 @@ class _$ClaimSupportingInfoCopyWithImpl<T>
             : code as CodeableConcept?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX
-            : timingX as FhirDate?,
+            : timingX as TimingXClaimSupportingInfo?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirBoolean?,
+            : valueX as ValueXClaimSupportingInfo?,
         reason: identical(reason, fhirSentinel)
             ? _value.reason
             : reason as CodeableConcept?,
@@ -483,7 +483,7 @@ abstract class $ClaimDiagnosisCopyWith<T> extends $BackboneElementCopyWith<T> {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    CodeableConcept? diagnosisX,
+    DiagnosisXClaimDiagnosis? diagnosisX,
     List<CodeableConcept>? type,
     CodeableConcept? onAdmission,
     CodeableConcept? packageCode,
@@ -523,7 +523,7 @@ class _$ClaimDiagnosisCopyWithImpl<T> implements $ClaimDiagnosisCopyWith<T> {
             : (sequence as FhirPositiveInt?) ?? _value.sequence,
         diagnosisX: identical(diagnosisX, fhirSentinel)
             ? _value.diagnosisX
-            : (diagnosisX as CodeableConcept?) ?? _value.diagnosisX,
+            : (diagnosisX as DiagnosisXClaimDiagnosis?) ?? _value.diagnosisX,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
@@ -558,7 +558,7 @@ abstract class $ClaimProcedureCopyWith<T> extends $BackboneElementCopyWith<T> {
     FhirPositiveInt? sequence,
     List<CodeableConcept>? type,
     FhirDateTime? date,
-    CodeableConcept? procedureX,
+    ProcedureXClaimProcedure? procedureX,
     List<Reference>? udi,
     bool? disallowExtensions,
   });
@@ -601,7 +601,7 @@ class _$ClaimProcedureCopyWithImpl<T> implements $ClaimProcedureCopyWith<T> {
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         procedureX: identical(procedureX, fhirSentinel)
             ? _value.procedureX
-            : (procedureX as CodeableConcept?) ?? _value.procedureX,
+            : (procedureX as ProcedureXClaimProcedure?) ?? _value.procedureX,
         udi:
             identical(udi, fhirSentinel) ? _value.udi : udi as List<Reference>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -711,7 +711,7 @@ abstract class $ClaimAccidentCopyWith<T> extends $BackboneElementCopyWith<T> {
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
     CodeableConcept? type,
-    Address? locationX,
+    LocationXClaimAccident? locationX,
     bool? disallowExtensions,
   });
 }
@@ -749,7 +749,7 @@ class _$ClaimAccidentCopyWithImpl<T> implements $ClaimAccidentCopyWith<T> {
             : type as CodeableConcept?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as Address?,
+            : locationX as LocationXClaimAccident?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -782,8 +782,8 @@ abstract class $ClaimItemCopyWith<T> extends $BackboneElementCopyWith<T> {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedX,
-    CodeableConcept? locationX,
+    ServicedXClaimItem? servicedX,
+    LocationXClaimItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -872,10 +872,10 @@ class _$ClaimItemCopyWithImpl<T> implements $ClaimItemCopyWith<T> {
             : programCode as List<CodeableConcept>?,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
-            : servicedX as FhirDate?,
+            : servicedX as ServicedXClaimItem?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as CodeableConcept?,
+            : locationX as LocationXClaimItem?,
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,

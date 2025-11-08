@@ -29,14 +29,14 @@ abstract class $ElementDefinitionCopyWith<T> extends $BackboneTypeCopyWith<T> {
     ElementDefinitionBase? base,
     FhirUri? contentReference,
     List<ElementDefinitionType>? type,
-    FhirBase64Binary? defaultValueX,
+    DefaultValueXElementDefinition? defaultValueX,
     FhirMarkdown? meaningWhenMissing,
     FhirString? orderMeaning,
-    FhirBase64Binary? fixedX,
-    FhirBase64Binary? patternX,
+    FixedXElementDefinition? fixedX,
+    PatternXElementDefinition? patternX,
     List<ElementDefinitionExample>? example,
-    FhirDate? minValueX,
-    FhirDate? maxValueX,
+    MinValueXElementDefinition? minValueX,
+    MaxValueXElementDefinition? maxValueX,
     FhirInteger? maxLength,
     List<FhirId>? condition,
     List<ElementDefinitionConstraint>? constraint,
@@ -156,7 +156,7 @@ class _$ElementDefinitionCopyWithImpl<T>
             : type as List<ElementDefinitionType>?,
         defaultValueX: identical(defaultValueX, fhirSentinel)
             ? _value.defaultValueX
-            : defaultValueX as FhirBase64Binary?,
+            : defaultValueX as DefaultValueXElementDefinition?,
         meaningWhenMissing: identical(meaningWhenMissing, fhirSentinel)
             ? _value.meaningWhenMissing
             : meaningWhenMissing as FhirMarkdown?,
@@ -165,19 +165,19 @@ class _$ElementDefinitionCopyWithImpl<T>
             : orderMeaning as FhirString?,
         fixedX: identical(fixedX, fhirSentinel)
             ? _value.fixedX
-            : fixedX as FhirBase64Binary?,
+            : fixedX as FixedXElementDefinition?,
         patternX: identical(patternX, fhirSentinel)
             ? _value.patternX
-            : patternX as FhirBase64Binary?,
+            : patternX as PatternXElementDefinition?,
         example: identical(example, fhirSentinel)
             ? _value.example
             : example as List<ElementDefinitionExample>?,
         minValueX: identical(minValueX, fhirSentinel)
             ? _value.minValueX
-            : minValueX as FhirDate?,
+            : minValueX as MinValueXElementDefinition?,
         maxValueX: identical(maxValueX, fhirSentinel)
             ? _value.maxValueX
-            : maxValueX as FhirDate?,
+            : maxValueX as MaxValueXElementDefinition?,
         maxLength: identical(maxLength, fhirSentinel)
             ? _value.maxLength
             : maxLength as FhirInteger?,
@@ -479,7 +479,7 @@ abstract class $ElementDefinitionExampleCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? label,
-    FhirBase64Binary? valueX,
+    ValueXElementDefinitionExample? valueX,
     bool? disallowExtensions,
   });
 }
@@ -510,7 +510,7 @@ class _$ElementDefinitionExampleCopyWithImpl<T>
             : (label as FhirString?) ?? _value.label,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirBase64Binary?) ?? _value.valueX,
+            : (valueX as ValueXElementDefinitionExample?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

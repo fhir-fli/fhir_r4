@@ -12,7 +12,7 @@ abstract class $PopulationCopyWith<T> extends $BackboneTypeCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Range? ageX,
+    AgeXPopulation? ageX,
     CodeableConcept? gender,
     CodeableConcept? race,
     CodeableConcept? physiologicalCondition,
@@ -46,7 +46,9 @@ class _$PopulationCopyWithImpl<T> implements $PopulationCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        ageX: identical(ageX, fhirSentinel) ? _value.ageX : ageX as Range?,
+        ageX: identical(ageX, fhirSentinel)
+            ? _value.ageX
+            : ageX as AgeXPopulation?,
         gender: identical(gender, fhirSentinel)
             ? _value.gender
             : gender as CodeableConcept?,

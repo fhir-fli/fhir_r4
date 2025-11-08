@@ -11,7 +11,7 @@ abstract class $AnnotationCopyWith<T> extends $DataTypeCopyWith<T> {
   T call({
     FhirString? id,
     List<FhirExtension>? extension_,
-    Reference? authorX,
+    AuthorXAnnotation? authorX,
     FhirDateTime? time,
     FhirMarkdown? text,
     bool? disallowExtensions,
@@ -41,7 +41,7 @@ class _$AnnotationCopyWithImpl<T> implements $AnnotationCopyWith<T> {
             : extension_ as List<FhirExtension>?,
         authorX: identical(authorX, fhirSentinel)
             ? _value.authorX
-            : authorX as Reference?,
+            : authorX as AuthorXAnnotation?,
         time:
             identical(time, fhirSentinel) ? _value.time : time as FhirDateTime?,
         text: identical(text, fhirSentinel)

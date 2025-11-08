@@ -486,7 +486,7 @@ abstract class $CodeSystemProperty1CopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    FhirCode? valueX,
+    ValueXCodeSystemProperty? valueX,
     bool? disallowExtensions,
   });
 }
@@ -521,7 +521,7 @@ class _$CodeSystemProperty1CopyWithImpl<T>
             : (code as FhirCode?) ?? _value.code,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirCode?) ?? _value.valueX,
+            : (valueX as ValueXCodeSystemProperty?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

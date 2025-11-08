@@ -12,7 +12,7 @@ abstract class $FhirExtensionCopyWith<T> extends $DataTypeCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? url,
-    FhirBase64Binary? valueX,
+    ValueXExtension? valueX,
     bool? disallowExtensions,
   });
 }
@@ -42,7 +42,7 @@ class _$FhirExtensionCopyWithImpl<T> implements $FhirExtensionCopyWith<T> {
             : (url as FhirString?) ?? _value.url,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirBase64Binary?,
+            : valueX as ValueXExtension?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

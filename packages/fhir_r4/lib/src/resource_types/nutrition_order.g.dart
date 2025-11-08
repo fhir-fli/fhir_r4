@@ -540,7 +540,7 @@ abstract class $NutritionOrderAdministrationCopyWith<T>
     List<FhirExtension>? modifierExtension,
     Timing? schedule,
     Quantity? quantity,
-    Quantity? rateX,
+    RateXNutritionOrderAdministration? rateX,
     bool? disallowExtensions,
   });
 }
@@ -577,8 +577,9 @@ class _$NutritionOrderAdministrationCopyWithImpl<T>
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,
-        rateX:
-            identical(rateX, fhirSentinel) ? _value.rateX : rateX as Quantity?,
+        rateX: identical(rateX, fhirSentinel)
+            ? _value.rateX
+            : rateX as RateXNutritionOrderAdministration?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

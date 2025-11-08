@@ -193,7 +193,7 @@ abstract class $CommunicationPayloadCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirString? contentX,
+    ContentXCommunicationPayload? contentX,
     bool? disallowExtensions,
   });
 }
@@ -224,7 +224,7 @@ class _$CommunicationPayloadCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         contentX: identical(contentX, fhirSentinel)
             ? _value.contentX
-            : (contentX as FhirString?) ?? _value.contentX,
+            : (contentX as ContentXCommunicationPayload?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

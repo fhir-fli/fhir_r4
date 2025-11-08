@@ -36,7 +36,7 @@ abstract class $MessageDefinitionCopyWith<T>
     FhirMarkdown? copyright,
     FhirCanonical? base,
     List<FhirCanonical>? parent,
-    Coding? eventX,
+    EventXMessageDefinition? eventX,
     MessageSignificanceCategory? category,
     List<MessageDefinitionFocus>? focus,
     MessageheaderResponseRequest? responseRequired,
@@ -161,7 +161,7 @@ class _$MessageDefinitionCopyWithImpl<T>
             : parent as List<FhirCanonical>?,
         eventX: identical(eventX, fhirSentinel)
             ? _value.eventX
-            : (eventX as Coding?) ?? _value.eventX,
+            : (eventX as EventXMessageDefinition?) ?? _value.eventX,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as MessageSignificanceCategory?,

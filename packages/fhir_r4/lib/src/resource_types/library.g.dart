@@ -26,7 +26,7 @@ abstract class $LibraryCopyWith<T> extends $CanonicalResourceCopyWith<T> {
     PublicationStatus? status,
     FhirBoolean? experimental,
     CodeableConcept? type,
-    CodeableConcept? subjectX,
+    SubjectXLibrary? subjectX,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -146,7 +146,7 @@ class _$LibraryCopyWithImpl<T> implements $LibraryCopyWith<T> {
             : (type as CodeableConcept?) ?? _value.type,
         subjectX: identical(subjectX, fhirSentinel)
             ? _value.subjectX
-            : subjectX as CodeableConcept?,
+            : subjectX as SubjectXLibrary?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         publisher: identical(publisher, fhirSentinel)

@@ -28,10 +28,10 @@ abstract class $FamilyMemberHistoryCopyWith<T>
     FhirString? name,
     CodeableConcept? relationship,
     CodeableConcept? sex,
-    Period? bornX,
-    Age? ageX,
+    BornXFamilyMemberHistory? bornX,
+    AgeXFamilyMemberHistory? ageX,
     FhirBoolean? estimatedAge,
-    FhirBoolean? deceasedX,
+    DeceasedXFamilyMemberHistory? deceasedX,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
@@ -123,14 +123,18 @@ class _$FamilyMemberHistoryCopyWithImpl<T>
             : (relationship as CodeableConcept?) ?? _value.relationship,
         sex:
             identical(sex, fhirSentinel) ? _value.sex : sex as CodeableConcept?,
-        bornX: identical(bornX, fhirSentinel) ? _value.bornX : bornX as Period?,
-        ageX: identical(ageX, fhirSentinel) ? _value.ageX : ageX as Age?,
+        bornX: identical(bornX, fhirSentinel)
+            ? _value.bornX
+            : bornX as BornXFamilyMemberHistory?,
+        ageX: identical(ageX, fhirSentinel)
+            ? _value.ageX
+            : ageX as AgeXFamilyMemberHistory?,
         estimatedAge: identical(estimatedAge, fhirSentinel)
             ? _value.estimatedAge
             : estimatedAge as FhirBoolean?,
         deceasedX: identical(deceasedX, fhirSentinel)
             ? _value.deceasedX
-            : deceasedX as FhirBoolean?,
+            : deceasedX as DeceasedXFamilyMemberHistory?,
         reasonCode: identical(reasonCode, fhirSentinel)
             ? _value.reasonCode
             : reasonCode as List<CodeableConcept>?,
@@ -166,7 +170,7 @@ abstract class $FamilyMemberHistoryConditionCopyWith<T>
     CodeableConcept? code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
-    Age? onsetX,
+    OnsetXFamilyMemberHistoryCondition? onsetX,
     List<Annotation>? note,
     bool? disallowExtensions,
   });
@@ -209,8 +213,9 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<T>
         contributedToDeath: identical(contributedToDeath, fhirSentinel)
             ? _value.contributedToDeath
             : contributedToDeath as FhirBoolean?,
-        onsetX:
-            identical(onsetX, fhirSentinel) ? _value.onsetX : onsetX as Age?,
+        onsetX: identical(onsetX, fhirSentinel)
+            ? _value.onsetX
+            : onsetX as OnsetXFamilyMemberHistoryCondition?,
         note: identical(note, fhirSentinel)
             ? _value.note
             : note as List<Annotation>?,

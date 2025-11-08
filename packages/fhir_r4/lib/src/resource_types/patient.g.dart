@@ -23,10 +23,10 @@ abstract class $PatientCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
     FhirDate? birthDate,
-    FhirBoolean? deceasedX,
+    DeceasedXPatient? deceasedX,
     List<Address>? address,
     CodeableConcept? maritalStatus,
-    FhirBoolean? multipleBirthX,
+    MultipleBirthXPatient? multipleBirthX,
     List<Attachment>? photo,
     List<PatientContact>? contact,
     List<PatientCommunication>? communication,
@@ -111,7 +111,7 @@ class _$PatientCopyWithImpl<T> implements $PatientCopyWith<T> {
             : birthDate as FhirDate?,
         deceasedX: identical(deceasedX, fhirSentinel)
             ? _value.deceasedX
-            : deceasedX as FhirBoolean?,
+            : deceasedX as DeceasedXPatient?,
         address: identical(address, fhirSentinel)
             ? _value.address
             : address as List<Address>?,
@@ -120,7 +120,7 @@ class _$PatientCopyWithImpl<T> implements $PatientCopyWith<T> {
             : maritalStatus as CodeableConcept?,
         multipleBirthX: identical(multipleBirthX, fhirSentinel)
             ? _value.multipleBirthX
-            : multipleBirthX as FhirBoolean?,
+            : multipleBirthX as MultipleBirthXPatient?,
         photo: identical(photo, fhirSentinel)
             ? _value.photo
             : photo as List<Attachment>?,

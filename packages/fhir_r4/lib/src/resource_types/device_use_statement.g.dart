@@ -23,7 +23,7 @@ abstract class $DeviceUseStatementCopyWith<T>
     DeviceUseStatementStatus? status,
     Reference? subject,
     List<Reference>? derivedFrom,
-    Timing? timingX,
+    TimingXDeviceUseStatement? timingX,
     FhirDateTime? recordedOn,
     Reference? source,
     Reference? device,
@@ -104,7 +104,7 @@ class _$DeviceUseStatementCopyWithImpl<T>
             : derivedFrom as List<Reference>?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX
-            : timingX as Timing?,
+            : timingX as TimingXDeviceUseStatement?,
         recordedOn: identical(recordedOn, fhirSentinel)
             ? _value.recordedOn
             : recordedOn as FhirDateTime?,

@@ -21,7 +21,7 @@ abstract class $EvidenceCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<Identifier>? identifier,
     FhirString? version,
     FhirString? title,
-    Reference? citeAsX,
+    CiteAsXEvidence? citeAsX,
     PublicationStatus? status,
     FhirDateTime? date,
     List<UsageContext>? useContext,
@@ -123,7 +123,7 @@ class _$EvidenceCopyWithImpl<T> implements $EvidenceCopyWith<T> {
             : title as FhirString?,
         citeAsX: identical(citeAsX, fhirSentinel)
             ? _value.citeAsX
-            : citeAsX as Reference?,
+            : citeAsX as CiteAsXEvidence?,
         status: identical(status, fhirSentinel)
             ? _value.status
             : (status as PublicationStatus?) ?? _value.status,

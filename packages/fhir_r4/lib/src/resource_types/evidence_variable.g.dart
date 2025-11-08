@@ -199,7 +199,7 @@ abstract class $EvidenceVariableCharacteristicCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Reference? definitionX,
+    DefinitionXEvidenceVariableCharacteristic? definitionX,
     CodeableConcept? method,
     Reference? device,
     FhirBoolean? exclude,
@@ -244,7 +244,8 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<T>
             : description as FhirString?,
         definitionX: identical(definitionX, fhirSentinel)
             ? _value.definitionX
-            : (definitionX as Reference?) ?? _value.definitionX,
+            : (definitionX as DefinitionXEvidenceVariableCharacteristic?) ??
+                _value.definitionX,
         method: identical(method, fhirSentinel)
             ? _value.method
             : method as CodeableConcept?,
@@ -356,7 +357,7 @@ abstract class $EvidenceVariableCategoryCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    CodeableConcept? valueX,
+    ValueXEvidenceVariableCategory? valueX,
     bool? disallowExtensions,
   });
 }
@@ -389,7 +390,7 @@ class _$EvidenceVariableCategoryCopyWithImpl<T>
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXEvidenceVariableCategory?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -440,7 +440,7 @@ abstract class $AuditEventDetailCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? type,
-    FhirString? valueX,
+    ValueXAuditEventDetail? valueX,
     bool? disallowExtensions,
   });
 }
@@ -475,7 +475,7 @@ class _$AuditEventDetailCopyWithImpl<T>
             : (type as FhirString?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirString?) ?? _value.valueX,
+            : (valueX as ValueXAuditEventDetail?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

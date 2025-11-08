@@ -18,7 +18,7 @@ abstract class $ProvenanceCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Reference>? target,
-    Period? occurredX,
+    OccurredXProvenance? occurredX,
     FhirInstant? recorded,
     List<FhirUri>? policy,
     Reference? location,
@@ -84,7 +84,7 @@ class _$ProvenanceCopyWithImpl<T> implements $ProvenanceCopyWith<T> {
             : (target as List<Reference>?) ?? _value.target,
         occurredX: identical(occurredX, fhirSentinel)
             ? _value.occurredX
-            : occurredX as Period?,
+            : occurredX as OccurredXProvenance?,
         recorded: identical(recorded, fhirSentinel)
             ? _value.recorded
             : (recorded as FhirInstant?) ?? _value.recorded,

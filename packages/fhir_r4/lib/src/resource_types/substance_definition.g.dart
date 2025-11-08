@@ -182,7 +182,7 @@ abstract class $SubstanceDefinitionMoietyCopyWith<T>
     CodeableConcept? stereochemistry,
     CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
-    Quantity? amountX,
+    AmountXSubstanceDefinitionMoiety? amountX,
     CodeableConcept? measurementType,
     bool? disallowExtensions,
   });
@@ -237,7 +237,7 @@ class _$SubstanceDefinitionMoietyCopyWithImpl<T>
             : molecularFormula as FhirString?,
         amountX: identical(amountX, fhirSentinel)
             ? _value.amountX
-            : amountX as Quantity?,
+            : amountX as AmountXSubstanceDefinitionMoiety?,
         measurementType: identical(measurementType, fhirSentinel)
             ? _value.measurementType
             : measurementType as CodeableConcept?,
@@ -266,7 +266,7 @@ abstract class $SubstanceDefinitionPropertyCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueX,
+    ValueXSubstanceDefinitionProperty? valueX,
     bool? disallowExtensions,
   });
 }
@@ -301,7 +301,7 @@ class _$SubstanceDefinitionPropertyCopyWithImpl<T>
             : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXSubstanceDefinitionProperty?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -806,10 +806,10 @@ abstract class $SubstanceDefinitionRelationshipCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Reference? substanceDefinitionX,
+    SubstanceDefinitionXSubstanceDefinitionRelationship? substanceDefinitionX,
     CodeableConcept? type,
     FhirBoolean? isDefining,
-    Quantity? amountX,
+    AmountXSubstanceDefinitionRelationship? amountX,
     Ratio? ratioHighLimitAmount,
     CodeableConcept? comparator,
     List<Reference>? source,
@@ -849,7 +849,8 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         substanceDefinitionX: identical(substanceDefinitionX, fhirSentinel)
             ? _value.substanceDefinitionX
-            : substanceDefinitionX as Reference?,
+            : substanceDefinitionX
+                as SubstanceDefinitionXSubstanceDefinitionRelationship?,
         type: identical(type, fhirSentinel)
             ? _value.type
             : (type as CodeableConcept?) ?? _value.type,
@@ -858,7 +859,7 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<T>
             : isDefining as FhirBoolean?,
         amountX: identical(amountX, fhirSentinel)
             ? _value.amountX
-            : amountX as Quantity?,
+            : amountX as AmountXSubstanceDefinitionRelationship?,
         ratioHighLimitAmount: identical(ratioHighLimitAmount, fhirSentinel)
             ? _value.ratioHighLimitAmount
             : ratioHighLimitAmount as Ratio?,

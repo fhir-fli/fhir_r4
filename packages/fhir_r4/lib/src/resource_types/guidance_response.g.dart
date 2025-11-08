@@ -19,7 +19,7 @@ abstract class $GuidanceResponseCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<FhirExtension>? modifierExtension,
     Identifier? requestIdentifier,
     List<Identifier>? identifier,
-    FhirUri? moduleX,
+    ModuleXGuidanceResponse? moduleX,
     GuidanceResponseStatus? status,
     Reference? subject,
     Reference? encounter,
@@ -98,7 +98,7 @@ class _$GuidanceResponseCopyWithImpl<T>
             : identifier as List<Identifier>?,
         moduleX: identical(moduleX, fhirSentinel)
             ? _value.moduleX
-            : (moduleX as FhirUri?) ?? _value.moduleX,
+            : (moduleX as ModuleXGuidanceResponse?) ?? _value.moduleX,
         status: identical(status, fhirSentinel)
             ? _value.status
             : (status as GuidanceResponseStatus?) ?? _value.status,

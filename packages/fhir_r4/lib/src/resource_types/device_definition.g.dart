@@ -19,7 +19,7 @@ abstract class $DeviceDefinitionCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    FhirString? manufacturerX,
+    ManufacturerXDeviceDefinition? manufacturerX,
     List<DeviceDefinitionDeviceName>? deviceName,
     FhirString? modelNumber,
     CodeableConcept? type,
@@ -112,7 +112,7 @@ class _$DeviceDefinitionCopyWithImpl<T>
             : udiDeviceIdentifier as List<DeviceDefinitionUdiDeviceIdentifier>?,
         manufacturerX: identical(manufacturerX, fhirSentinel)
             ? _value.manufacturerX
-            : manufacturerX as FhirString?,
+            : manufacturerX as ManufacturerXDeviceDefinition?,
         deviceName: identical(deviceName, fhirSentinel)
             ? _value.deviceName
             : deviceName as List<DeviceDefinitionDeviceName>?,

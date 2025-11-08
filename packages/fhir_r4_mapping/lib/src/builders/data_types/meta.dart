@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart' show FhirMeta, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';

@@ -38,7 +38,7 @@ abstract class $ContractCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<FhirString>? alias,
     Reference? author,
     CodeableConcept? scope,
-    CodeableConcept? topicX,
+    TopicXContract? topicX,
     CodeableConcept? type,
     List<CodeableConcept>? subType,
     ContractContentDefinition? contentDefinition,
@@ -49,7 +49,7 @@ abstract class $ContractCopyWith<T> extends $DomainResourceCopyWith<T> {
     List<ContractFriendly>? friendly,
     List<ContractLegal>? legal,
     List<ContractRule>? rule,
-    Attachment? legallyBindingX,
+    LegallyBindingXContract? legallyBindingX,
     bool? disallowExtensions,
   });
 }
@@ -186,7 +186,7 @@ class _$ContractCopyWithImpl<T> implements $ContractCopyWith<T> {
             : scope as CodeableConcept?,
         topicX: identical(topicX, fhirSentinel)
             ? _value.topicX
-            : topicX as CodeableConcept?,
+            : topicX as TopicXContract?,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -219,7 +219,7 @@ class _$ContractCopyWithImpl<T> implements $ContractCopyWith<T> {
             : rule as List<ContractRule>?,
         legallyBindingX: identical(legallyBindingX, fhirSentinel)
             ? _value.legallyBindingX
-            : legallyBindingX as Attachment?,
+            : legallyBindingX as LegallyBindingXContract?,
       ),
     );
   }
@@ -323,7 +323,7 @@ abstract class $ContractTermCopyWith<T> extends $BackboneElementCopyWith<T> {
     Identifier? identifier,
     FhirDateTime? issued,
     Period? applies,
-    CodeableConcept? topicX,
+    TopicXContractTerm? topicX,
     CodeableConcept? type,
     CodeableConcept? subType,
     FhirString? text,
@@ -381,7 +381,7 @@ class _$ContractTermCopyWithImpl<T> implements $ContractTermCopyWith<T> {
             : applies as Period?,
         topicX: identical(topicX, fhirSentinel)
             ? _value.topicX
-            : topicX as CodeableConcept?,
+            : topicX as TopicXContractTerm?,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -649,7 +649,7 @@ abstract class $ContractAnswerCopyWith<T> extends $BackboneElementCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueX,
+    ValueXContractAnswer? valueX,
     bool? disallowExtensions,
   });
 }
@@ -679,7 +679,7 @@ class _$ContractAnswerCopyWithImpl<T> implements $ContractAnswerCopyWith<T> {
             : modifierExtension as List<FhirExtension>?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : (valueX as FhirBoolean?) ?? _value.valueX,
+            : (valueX as ValueXContractAnswer?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -885,7 +885,7 @@ abstract class $ContractValuedItemCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? entityX,
+    EntityXContractValuedItem? entityX,
     Identifier? identifier,
     FhirDateTime? effectiveTime,
     Quantity? quantity,
@@ -942,7 +942,7 @@ class _$ContractValuedItemCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         entityX: identical(entityX, fhirSentinel)
             ? _value.entityX
-            : entityX as CodeableConcept?,
+            : entityX as EntityXContractValuedItem?,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
@@ -1010,7 +1010,7 @@ abstract class $ContractActionCopyWith<T> extends $BackboneElementCopyWith<T> {
     CodeableConcept? status,
     Reference? context,
     List<FhirString>? contextLinkId,
-    FhirDateTime? occurrenceX,
+    OccurrenceXContractAction? occurrenceX,
     List<Reference>? requester,
     List<FhirString>? requesterLinkId,
     List<CodeableConcept>? performerType,
@@ -1096,7 +1096,7 @@ class _$ContractActionCopyWithImpl<T> implements $ContractActionCopyWith<T> {
             : contextLinkId as List<FhirString>?,
         occurrenceX: identical(occurrenceX, fhirSentinel)
             ? _value.occurrenceX
-            : occurrenceX as FhirDateTime?,
+            : occurrenceX as OccurrenceXContractAction?,
         requester: identical(requester, fhirSentinel)
             ? _value.requester
             : requester as List<Reference>?,
@@ -1277,7 +1277,7 @@ abstract class $ContractFriendlyCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentX,
+    ContentXContractFriendly? contentX,
     bool? disallowExtensions,
   });
 }
@@ -1308,7 +1308,7 @@ class _$ContractFriendlyCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         contentX: identical(contentX, fhirSentinel)
             ? _value.contentX
-            : (contentX as Attachment?) ?? _value.contentX,
+            : (contentX as ContentXContractFriendly?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1331,7 +1331,7 @@ abstract class $ContractLegalCopyWith<T> extends $BackboneElementCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentX,
+    ContentXContractLegal? contentX,
     bool? disallowExtensions,
   });
 }
@@ -1361,7 +1361,7 @@ class _$ContractLegalCopyWithImpl<T> implements $ContractLegalCopyWith<T> {
             : modifierExtension as List<FhirExtension>?,
         contentX: identical(contentX, fhirSentinel)
             ? _value.contentX
-            : (contentX as Attachment?) ?? _value.contentX,
+            : (contentX as ContentXContractLegal?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1384,7 +1384,7 @@ abstract class $ContractRuleCopyWith<T> extends $BackboneElementCopyWith<T> {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentX,
+    ContentXContractRule? contentX,
     bool? disallowExtensions,
   });
 }
@@ -1414,7 +1414,7 @@ class _$ContractRuleCopyWithImpl<T> implements $ContractRuleCopyWith<T> {
             : modifierExtension as List<FhirExtension>?,
         contentX: identical(contentX, fhirSentinel)
             ? _value.contentX
-            : (contentX as Attachment?) ?? _value.contentX,
+            : (contentX as ContentXContractRule?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

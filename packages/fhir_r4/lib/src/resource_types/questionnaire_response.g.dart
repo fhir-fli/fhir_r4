@@ -210,7 +210,7 @@ abstract class $QuestionnaireResponseAnswerCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueX,
+    ValueXQuestionnaireResponseAnswer? valueX,
     List<QuestionnaireResponseItem>? item,
     bool? disallowExtensions,
   });
@@ -243,7 +243,7 @@ class _$QuestionnaireResponseAnswerCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirBoolean?,
+            : valueX as ValueXQuestionnaireResponseAnswer?,
         item: identical(item, fhirSentinel)
             ? _value.item
             : item as List<QuestionnaireResponseItem>?,

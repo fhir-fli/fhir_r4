@@ -24,10 +24,10 @@ abstract class $MedicationStatementCopyWith<T>
     MedicationStatementStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    CodeableConcept? medicationX,
+    MedicationXMedicationStatement? medicationX,
     Reference? subject,
     Reference? context,
-    FhirDateTime? effectiveX,
+    EffectiveXMedicationStatement? effectiveX,
     FhirDateTime? dateAsserted,
     Reference? informationSource,
     List<Reference>? derivedFrom,
@@ -115,7 +115,8 @@ class _$MedicationStatementCopyWithImpl<T>
             : category as CodeableConcept?,
         medicationX: identical(medicationX, fhirSentinel)
             ? _value.medicationX
-            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+            : (medicationX as MedicationXMedicationStatement?) ??
+                _value.medicationX,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : (subject as Reference?) ?? _value.subject,
@@ -124,7 +125,7 @@ class _$MedicationStatementCopyWithImpl<T>
             : context as Reference?,
         effectiveX: identical(effectiveX, fhirSentinel)
             ? _value.effectiveX
-            : effectiveX as FhirDateTime?,
+            : effectiveX as EffectiveXMedicationStatement?,
         dateAsserted: identical(dateAsserted, fhirSentinel)
             ? _value.dateAsserted
             : dateAsserted as FhirDateTime?,

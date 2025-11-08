@@ -163,9 +163,7 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl<T>
   final T Function(PackagedProductDefinitionLegalStatusOfSupply) _then;
 
   _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -322,7 +320,7 @@ abstract class $PackagedProductDefinitionShelfLifeStorageCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirDuration? periodX,
+    PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
     List<CodeableConcept>? specialPrecautionsForStorage,
     bool? disallowExtensions,
   });
@@ -334,9 +332,7 @@ class _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<T>
   final T Function(PackagedProductDefinitionShelfLifeStorage) _then;
 
   _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -362,7 +358,7 @@ class _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<T>
             : type as CodeableConcept?,
         periodX: identical(periodX, fhirSentinel)
             ? _value.periodX
-            : periodX as FhirDuration?,
+            : periodX as PeriodXPackagedProductDefinitionShelfLifeStorage?,
         specialPrecautionsForStorage:
             identical(specialPrecautionsForStorage, fhirSentinel)
                 ? _value.specialPrecautionsForStorage
@@ -394,7 +390,7 @@ abstract class $PackagedProductDefinitionPropertyCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueX,
+    ValueXPackagedProductDefinitionProperty? valueX,
     bool? disallowExtensions,
   });
 }
@@ -429,7 +425,7 @@ class _$PackagedProductDefinitionPropertyCopyWithImpl<T>
             : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as CodeableConcept?,
+            : valueX as ValueXPackagedProductDefinitionProperty?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

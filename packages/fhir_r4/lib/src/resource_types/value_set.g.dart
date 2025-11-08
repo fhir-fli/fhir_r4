@@ -574,7 +574,7 @@ abstract class $ValueSetParameterCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    FhirString? valueX,
+    ValueXValueSetParameter? valueX,
     bool? disallowExtensions,
   });
 }
@@ -609,7 +609,7 @@ class _$ValueSetParameterCopyWithImpl<T>
             : (name as FhirString?) ?? _value.name,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirString?,
+            : valueX as ValueXValueSetParameter?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

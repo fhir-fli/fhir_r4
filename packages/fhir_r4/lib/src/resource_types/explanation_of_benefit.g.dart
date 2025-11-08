@@ -500,8 +500,8 @@ abstract class $ExplanationOfBenefitSupportingInfoCopyWith<T>
     FhirPositiveInt? sequence,
     CodeableConcept? category,
     CodeableConcept? code,
-    FhirDate? timingX,
-    FhirBoolean? valueX,
+    TimingXExplanationOfBenefitSupportingInfo? timingX,
+    ValueXExplanationOfBenefitSupportingInfo? valueX,
     Coding? reason,
     bool? disallowExtensions,
   });
@@ -547,10 +547,10 @@ class _$ExplanationOfBenefitSupportingInfoCopyWithImpl<T>
             : code as CodeableConcept?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX
-            : timingX as FhirDate?,
+            : timingX as TimingXExplanationOfBenefitSupportingInfo?,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
-            : valueX as FhirBoolean?,
+            : valueX as ValueXExplanationOfBenefitSupportingInfo?,
         reason:
             identical(reason, fhirSentinel) ? _value.reason : reason as Coding?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -580,7 +580,7 @@ abstract class $ExplanationOfBenefitDiagnosisCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    CodeableConcept? diagnosisX,
+    DiagnosisXExplanationOfBenefitDiagnosis? diagnosisX,
     List<CodeableConcept>? type,
     CodeableConcept? onAdmission,
     CodeableConcept? packageCode,
@@ -621,7 +621,8 @@ class _$ExplanationOfBenefitDiagnosisCopyWithImpl<T>
             : (sequence as FhirPositiveInt?) ?? _value.sequence,
         diagnosisX: identical(diagnosisX, fhirSentinel)
             ? _value.diagnosisX
-            : (diagnosisX as CodeableConcept?) ?? _value.diagnosisX,
+            : (diagnosisX as DiagnosisXExplanationOfBenefitDiagnosis?) ??
+                _value.diagnosisX,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
@@ -659,7 +660,7 @@ abstract class $ExplanationOfBenefitProcedureCopyWith<T>
     FhirPositiveInt? sequence,
     List<CodeableConcept>? type,
     FhirDateTime? date,
-    CodeableConcept? procedureX,
+    ProcedureXExplanationOfBenefitProcedure? procedureX,
     List<Reference>? udi,
     bool? disallowExtensions,
   });
@@ -703,7 +704,8 @@ class _$ExplanationOfBenefitProcedureCopyWithImpl<T>
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         procedureX: identical(procedureX, fhirSentinel)
             ? _value.procedureX
-            : (procedureX as CodeableConcept?) ?? _value.procedureX,
+            : (procedureX as ProcedureXExplanationOfBenefitProcedure?) ??
+                _value.procedureX,
         udi:
             identical(udi, fhirSentinel) ? _value.udi : udi as List<Reference>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -800,7 +802,7 @@ abstract class $ExplanationOfBenefitAccidentCopyWith<T>
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
     CodeableConcept? type,
-    Address? locationX,
+    LocationXExplanationOfBenefitAccident? locationX,
     bool? disallowExtensions,
   });
 }
@@ -837,7 +839,7 @@ class _$ExplanationOfBenefitAccidentCopyWithImpl<T>
             : type as CodeableConcept?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as Address?,
+            : locationX as LocationXExplanationOfBenefitAccident?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -873,8 +875,8 @@ abstract class $ExplanationOfBenefitItemCopyWith<T>
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedX,
-    CodeableConcept? locationX,
+    ServicedXExplanationOfBenefitItem? servicedX,
+    LocationXExplanationOfBenefitItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -968,10 +970,10 @@ class _$ExplanationOfBenefitItemCopyWithImpl<T>
             : programCode as List<CodeableConcept>?,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
-            : servicedX as FhirDate?,
+            : servicedX as ServicedXExplanationOfBenefitItem?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as CodeableConcept?,
+            : locationX as LocationXExplanationOfBenefitItem?,
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,
@@ -1337,8 +1339,8 @@ abstract class $ExplanationOfBenefitAddItemCopyWith<T>
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedX,
-    CodeableConcept? locationX,
+    ServicedXExplanationOfBenefitAddItem? servicedX,
+    LocationXExplanationOfBenefitAddItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1416,10 +1418,10 @@ class _$ExplanationOfBenefitAddItemCopyWithImpl<T>
             : programCode as List<CodeableConcept>?,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
-            : servicedX as FhirDate?,
+            : servicedX as ServicedXExplanationOfBenefitAddItem?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as CodeableConcept?,
+            : locationX as LocationXExplanationOfBenefitAddItem?,
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,
@@ -1955,8 +1957,8 @@ abstract class $ExplanationOfBenefitFinancialCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirUnsignedInt? allowedX,
-    FhirUnsignedInt? usedX,
+    AllowedXExplanationOfBenefitFinancial? allowedX,
+    UsedXExplanationOfBenefitFinancial? usedX,
     bool? disallowExtensions,
   });
 }
@@ -1992,10 +1994,10 @@ class _$ExplanationOfBenefitFinancialCopyWithImpl<T>
             : (type as CodeableConcept?) ?? _value.type,
         allowedX: identical(allowedX, fhirSentinel)
             ? _value.allowedX
-            : allowedX as FhirUnsignedInt?,
+            : allowedX as AllowedXExplanationOfBenefitFinancial?,
         usedX: identical(usedX, fhirSentinel)
             ? _value.usedX
-            : usedX as FhirUnsignedInt?,
+            : usedX as UsedXExplanationOfBenefitFinancial?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

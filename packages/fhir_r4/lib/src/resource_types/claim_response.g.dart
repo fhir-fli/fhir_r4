@@ -497,8 +497,8 @@ abstract class $ClaimResponseAddItemCopyWith<T>
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedX,
-    CodeableConcept? locationX,
+    ServicedXClaimResponseAddItem? servicedX,
+    LocationXClaimResponseAddItem? locationX,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -576,10 +576,10 @@ class _$ClaimResponseAddItemCopyWithImpl<T>
             : programCode as List<CodeableConcept>?,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
-            : servicedX as FhirDate?,
+            : servicedX as ServicedXClaimResponseAddItem?,
         locationX: identical(locationX, fhirSentinel)
             ? _value.locationX
-            : locationX as CodeableConcept?,
+            : locationX as LocationXClaimResponseAddItem?,
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Quantity?,

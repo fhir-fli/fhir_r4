@@ -452,7 +452,7 @@ abstract class $ImplementationGuideResourceCopyWith<T>
     List<FHIRVersion>? fhirVersion,
     FhirString? name,
     FhirString? description,
-    FhirBoolean? exampleX,
+    ExampleXImplementationGuideResource? exampleX,
     FhirId? groupingId,
     bool? disallowExtensions,
   });
@@ -499,7 +499,7 @@ class _$ImplementationGuideResourceCopyWithImpl<T>
             : description as FhirString?,
         exampleX: identical(exampleX, fhirSentinel)
             ? _value.exampleX
-            : exampleX as FhirBoolean?,
+            : exampleX as ExampleXImplementationGuideResource?,
         groupingId: identical(groupingId, fhirSentinel)
             ? _value.groupingId
             : groupingId as FhirId?,
@@ -528,7 +528,7 @@ abstract class $ImplementationGuidePageCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirUrl? nameX,
+    NameXImplementationGuidePage? nameX,
     FhirString? title,
     GuidePageGeneration? generation,
     List<ImplementationGuidePage>? page,
@@ -565,7 +565,7 @@ class _$ImplementationGuidePageCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         nameX: identical(nameX, fhirSentinel)
             ? _value.nameX
-            : (nameX as FhirUrl?) ?? _value.nameX,
+            : (nameX as NameXImplementationGuidePage?) ?? _value.nameX,
         title: identical(title, fhirSentinel)
             ? _value.title
             : (title as FhirString?) ?? _value.title,
@@ -806,7 +806,7 @@ abstract class $ImplementationGuideResource1CopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    FhirBoolean? exampleX,
+    ExampleXImplementationGuideResource1? exampleX,
     FhirUrl? relativePath,
     bool? disallowExtensions,
   });
@@ -843,7 +843,7 @@ class _$ImplementationGuideResource1CopyWithImpl<T>
             : (reference as Reference?) ?? _value.reference,
         exampleX: identical(exampleX, fhirSentinel)
             ? _value.exampleX
-            : exampleX as FhirBoolean?,
+            : exampleX as ExampleXImplementationGuideResource1?,
         relativePath: identical(relativePath, fhirSentinel)
             ? _value.relativePath
             : relativePath as FhirUrl?,

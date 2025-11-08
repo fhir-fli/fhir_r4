@@ -24,11 +24,11 @@ abstract class $MedicationAdministrationCopyWith<T>
     MedicationAdministrationStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    CodeableConcept? medicationX,
+    MedicationXMedicationAdministration? medicationX,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
-    FhirDateTime? effectiveX,
+    EffectiveXMedicationAdministration? effectiveX,
     List<MedicationAdministrationPerformer>? performer,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -119,7 +119,8 @@ class _$MedicationAdministrationCopyWithImpl<T>
             : category as CodeableConcept?,
         medicationX: identical(medicationX, fhirSentinel)
             ? _value.medicationX
-            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+            : (medicationX as MedicationXMedicationAdministration?) ??
+                _value.medicationX,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : (subject as Reference?) ?? _value.subject,
@@ -131,7 +132,8 @@ class _$MedicationAdministrationCopyWithImpl<T>
             : supportingInformation as List<Reference>?,
         effectiveX: identical(effectiveX, fhirSentinel)
             ? _value.effectiveX
-            : (effectiveX as FhirDateTime?) ?? _value.effectiveX,
+            : (effectiveX as EffectiveXMedicationAdministration?) ??
+                _value.effectiveX,
         performer: identical(performer, fhirSentinel)
             ? _value.performer
             : performer as List<MedicationAdministrationPerformer>?,
@@ -244,7 +246,7 @@ abstract class $MedicationAdministrationDosageCopyWith<T>
     CodeableConcept? route,
     CodeableConcept? method,
     Quantity? dose,
-    Ratio? rateX,
+    RateXMedicationAdministrationDosage? rateX,
     bool? disallowExtensions,
   });
 }
@@ -289,7 +291,9 @@ class _$MedicationAdministrationDosageCopyWithImpl<T>
             ? _value.method
             : method as CodeableConcept?,
         dose: identical(dose, fhirSentinel) ? _value.dose : dose as Quantity?,
-        rateX: identical(rateX, fhirSentinel) ? _value.rateX : rateX as Ratio?,
+        rateX: identical(rateX, fhirSentinel)
+            ? _value.rateX
+            : rateX as RateXMedicationAdministrationDosage?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

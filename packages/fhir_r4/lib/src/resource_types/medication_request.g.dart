@@ -25,8 +25,8 @@ abstract class $MedicationRequestCopyWith<T>
     List<CodeableConcept>? category,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    FhirBoolean? reportedX,
-    CodeableConcept? medicationX,
+    ReportedXMedicationRequest? reportedX,
+    MedicationXMedicationRequest? medicationX,
     Reference? subject,
     Reference? encounter,
     List<Reference>? supportingInformation,
@@ -148,10 +148,11 @@ class _$MedicationRequestCopyWithImpl<T>
             : doNotPerform as FhirBoolean?,
         reportedX: identical(reportedX, fhirSentinel)
             ? _value.reportedX
-            : reportedX as FhirBoolean?,
+            : reportedX as ReportedXMedicationRequest?,
         medicationX: identical(medicationX, fhirSentinel)
             ? _value.medicationX
-            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+            : (medicationX as MedicationXMedicationRequest?) ??
+                _value.medicationX,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : (subject as Reference?) ?? _value.subject,
@@ -390,7 +391,7 @@ abstract class $MedicationRequestSubstitutionCopyWith<T>
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? allowedX,
+    AllowedXMedicationRequestSubstitution? allowedX,
     CodeableConcept? reason,
     bool? disallowExtensions,
   });
@@ -423,7 +424,8 @@ class _$MedicationRequestSubstitutionCopyWithImpl<T>
             : modifierExtension as List<FhirExtension>?,
         allowedX: identical(allowedX, fhirSentinel)
             ? _value.allowedX
-            : (allowedX as FhirBoolean?) ?? _value.allowedX,
+            : (allowedX as AllowedXMedicationRequestSubstitution?) ??
+                _value.allowedX,
         reason: identical(reason, fhirSentinel)
             ? _value.reason
             : reason as CodeableConcept?,

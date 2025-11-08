@@ -178,7 +178,7 @@ abstract class $RequestGroupActionCopyWith<T>
     List<RelatedArtifact>? documentation,
     List<RequestGroupCondition>? condition,
     List<RequestGroupRelatedAction>? relatedAction,
-    FhirDateTime? timingX,
+    TimingXRequestGroupAction? timingX,
     List<Reference>? participant,
     CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
@@ -263,7 +263,7 @@ class _$RequestGroupActionCopyWithImpl<T>
             : relatedAction as List<RequestGroupRelatedAction>?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX
-            : timingX as FhirDateTime?,
+            : timingX as TimingXRequestGroupAction?,
         participant: identical(participant, fhirSentinel)
             ? _value.participant
             : participant as List<Reference>?,
@@ -376,7 +376,7 @@ abstract class $RequestGroupRelatedActionCopyWith<T>
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
     ActionRelationshipType? relationship,
-    FhirDuration? offsetX,
+    OffsetXRequestGroupRelatedAction? offsetX,
     bool? disallowExtensions,
   });
 }
@@ -415,7 +415,7 @@ class _$RequestGroupRelatedActionCopyWithImpl<T>
             : (relationship as ActionRelationshipType?) ?? _value.relationship,
         offsetX: identical(offsetX, fhirSentinel)
             ? _value.offsetX
-            : offsetX as FhirDuration?,
+            : offsetX as OffsetXRequestGroupRelatedAction?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

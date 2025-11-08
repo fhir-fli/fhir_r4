@@ -25,7 +25,7 @@ abstract class $ChargeItemCopyWith<T> extends $DomainResourceCopyWith<T> {
     CodeableConcept? code,
     Reference? subject,
     Reference? context,
-    FhirDateTime? occurrenceX,
+    OccurrenceXChargeItem? occurrenceX,
     List<ChargeItemPerformer>? performer,
     Reference? performingOrganization,
     Reference? requestingOrganization,
@@ -39,7 +39,7 @@ abstract class $ChargeItemCopyWith<T> extends $DomainResourceCopyWith<T> {
     FhirDateTime? enteredDate,
     List<CodeableConcept>? reason,
     List<Reference>? service,
-    Reference? productX,
+    ProductXChargeItem? productX,
     List<Reference>? account,
     List<Annotation>? note,
     List<Reference>? supportingInformation,
@@ -137,7 +137,7 @@ class _$ChargeItemCopyWithImpl<T> implements $ChargeItemCopyWith<T> {
             : context as Reference?,
         occurrenceX: identical(occurrenceX, fhirSentinel)
             ? _value.occurrenceX
-            : occurrenceX as FhirDateTime?,
+            : occurrenceX as OccurrenceXChargeItem?,
         performer: identical(performer, fhirSentinel)
             ? _value.performer
             : performer as List<ChargeItemPerformer>?,
@@ -179,7 +179,7 @@ class _$ChargeItemCopyWithImpl<T> implements $ChargeItemCopyWith<T> {
             : service as List<Reference>?,
         productX: identical(productX, fhirSentinel)
             ? _value.productX
-            : productX as Reference?,
+            : productX as ProductXChargeItem?,
         account: identical(account, fhirSentinel)
             ? _value.account
             : account as List<Reference>?,
