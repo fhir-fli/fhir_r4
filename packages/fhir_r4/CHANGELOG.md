@@ -2,8 +2,10 @@
 
 ## [0.4.3]
 
-* Added more flexible fromJson to primitives. NOTE, the OUTPUT is still what is required by FHIR to make it compliant with servers. Refernce [PR](https://github.com/fhir-fli/fhir_r4/pull/22) by [bartekwk2](https://github.com/bartekwk2)
-* Fixed copyWith generation error described in this [PR](https://github.com/fhir-fli/fhir_r4/pull/28) by [bartekwk2](https://github.com/bartekwk2)
+* Fixed issue about DateTimes not setting isUtc when timezone +00:00
+* Fixed issue about DateTime equalsDeep with different timezones [Issue 26](https://github.com/fhir-fli/fhir_r4/issues/26)
+* Added more flexible fromJson to primitives. NOTE, the OUTPUT is still what is required by FHIR to make it compliant with servers. Refernce [PR 22](https://github.com/fhir-fli/fhir_r4/pull/22) by [bartekwk2](https://github.com/bartekwk2)
+* Fixed copyWith generation error described in this [PR 28](https://github.com/fhir-fli/fhir_r4/pull/28) by [bartekwk2](https://github.com/bartekwk2)
 * Added ability to define type of Polymorphics for most fields (but not for required ones)
 * Changed some of the equality functions, moved from Utils into FhirBase
 * Changed some of the quality functions IN FhirBase to non-static

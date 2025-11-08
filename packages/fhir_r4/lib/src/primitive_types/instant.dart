@@ -210,7 +210,7 @@ class FhirInstant extends FhirDateTimeBase
   @override
   bool equalsDeep(FhirBase? other) =>
       other is FhirInstant &&
-      other.valueString == valueString &&
+      (_compare(Comparator.equal, other) ?? false) &&
       ((element == null && other.element == null) ||
           (element != null && element!.equalsDeep(other.element)));
 

@@ -207,7 +207,7 @@ class FhirDate extends FhirDateTimeBase
   @override
   bool equalsDeep(FhirBase? other) {
     return other is FhirDate &&
-        other.valueString == valueString &&
+      (_compare(Comparator.equal, other) ?? false) &&
         ((element == null && other.element == null) ||
             (element != null && element!.equalsDeep(other.element)));
   }

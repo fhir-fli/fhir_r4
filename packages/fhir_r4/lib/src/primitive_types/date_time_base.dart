@@ -839,7 +839,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
   @override
   bool equalsDeep(FhirBase? other) =>
       other is FhirDateTimeBase &&
-      other.valueString == valueString &&
+      (_compare(Comparator.equal, other) ?? false) &&
       ((element == null && other.element == null) ||
           (element != null && element!.equalsDeep(other.element)));
 
@@ -953,7 +953,10 @@ abstract class FhirDateTimeBase extends PrimitiveType
       'timeZoneOffset': T == FhirDate
           ? null
           : match.namedGroup('timezone')?.stringToTimeZoneOffset,
-      'isUtc': (match.namedGroup('timezone')?.contains('Z') ?? false) ? 0 : 1,
+      'isUtc': (match.namedGroup('timezone')?.contains('Z') ?? false) ||
+          (T != FhirDate && 
+           (match.namedGroup('timezone')?.stringToTimeZoneOffset ?? 0) == 0 &&
+           match.namedGroup('timezone') != null) ? 0 : 1,
     };
   }
 
