@@ -1,0 +1,17 @@
+name: standalone_demo
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  fhir_r4_auth: 
+    path: ../
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

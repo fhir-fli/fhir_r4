@@ -76,7 +76,7 @@ void main() {
 
         // Tamper with payload (change one character)
         final tamperedPayload =
-            parts[1].substring(0, parts[1].length - 1) + 'X';
+            '${parts[1].substring(0, parts[1].length - 1)}X';
         final tamperedJwt = '${parts[0]}.$tamperedPayload.${parts[2]}';
 
         // Signature validation should fail
@@ -94,7 +94,7 @@ void main() {
         final parts = jwt.split('.');
 
         // Tamper with header
-        final tamperedHeader = parts[0].substring(0, parts[0].length - 1) + 'X';
+        final tamperedHeader = '${parts[0].substring(0, parts[0].length - 1)}X';
         final tamperedJwt = '$tamperedHeader.${parts[1]}.${parts[2]}';
 
         expect(
@@ -112,7 +112,7 @@ void main() {
 
         // Tamper with signature
         final tamperedSignature =
-            parts[2].substring(0, parts[2].length - 1) + 'X';
+            '${parts[2].substring(0, parts[2].length - 1)}X';
         final tamperedJwt = '${parts[0]}.${parts[1]}.$tamperedSignature';
 
         expect(

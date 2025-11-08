@@ -17,7 +17,7 @@ void main() {
       intent: MedicationRequestIntent.plan,
       medicationX: Reference(reference: 'Medication/1'.toFhirString),
       subject: Reference(reference: 'Patient/1'.toFhirString),
-    )
+    ),
   ];
 
   group('Simple Equality Checker', () {
@@ -26,7 +26,9 @@ void main() {
     });
     test('2 MedicationRequests using "equalsDeep"', () {
       expect(
-          initialMedicationRequest.equalsDeep(medicationRequests.first), true);
+        initialMedicationRequest.equalsDeep(medicationRequests.first),
+        true,
+      );
     });
     // This is due to how Dart handles List equality
     test('2 Lists of MedicationRequests', () {

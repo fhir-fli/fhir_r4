@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# But include all .dart files
+!*.dart
+!**/*.dart
+
+# Optional: Also include important config files
+!pubspec.yaml
+!analysis_options.yaml
+!README.md
