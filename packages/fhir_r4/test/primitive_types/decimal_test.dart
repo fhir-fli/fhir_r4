@@ -40,7 +40,7 @@ void decimalTest() {
     test('FhirDecimal fromJson with invalid input throws FormatException', () {
       expect(
         () => FhirDecimal.fromJson({'value': 'invalid'}),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 

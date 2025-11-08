@@ -25,7 +25,7 @@ void unsignedIntTest() {
         () {
       expect(
         () => FhirUnsignedInt.fromJson({'value': 'invalid'}),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 

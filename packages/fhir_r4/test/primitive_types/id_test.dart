@@ -76,7 +76,8 @@ void idTest() {
     });
 
     test('FhirId fromJson with invalid type throws FormatException', () {
-      expect(() => FhirId.fromJson({'value': 123}), throwsA(isA<TypeError>()));
+      expect(
+          () => FhirId.fromJson({'value': 123}), throwsA(isA<ArgumentError>()));
     });
 
     test('FhirId fromYaml with valid YAML', () {

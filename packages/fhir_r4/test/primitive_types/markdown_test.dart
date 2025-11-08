@@ -67,7 +67,7 @@ void markdownTest() {
     test('FhirMarkdown fromJson with invalid type throws FormatException', () {
       expect(
         () => FhirMarkdown.fromJson({'value': 123}),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 

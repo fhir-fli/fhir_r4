@@ -46,7 +46,7 @@ void uuidTest() {
     test('FhirUuid fromJson with invalid input throws FormatException', () {
       expect(
         () => FhirUuid.fromJson({'value': 123}),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 

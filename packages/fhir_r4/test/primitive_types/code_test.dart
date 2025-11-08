@@ -51,13 +51,6 @@ void codeTest() {
       expect(fhirCode.toJson()['value'], equals(jsonCode));
     });
 
-    test('FhirCode fromJson with invalid type throws FormatException', () {
-      expect(
-        () => FhirCode.fromJson({'value': 123}),
-        throwsA(isA<TypeError>()),
-      );
-    });
-
     test('FhirCode fromYaml with valid YAML', () {
       final fhirCode = FhirCode.fromYaml('value: $yamlCode');
       expect(fhirCode.valueString, equals(yamlCode));

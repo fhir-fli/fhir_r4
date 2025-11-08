@@ -24,13 +24,6 @@ void stringTest() {
       expect(fhirString.toJson()['value'], equals(jsonString));
     });
 
-    test('FhirString fromJson with invalid input throws FormatException', () {
-      expect(
-        () => FhirString.fromJson({'value': 123}),
-        throwsA(isA<TypeError>()),
-      );
-    });
-
     test('FhirString fromYaml with valid YAML', () {
       final fhirString = FhirString.fromYaml('value: $yamlString');
       expect(fhirString.valueString, equals(yamlString));

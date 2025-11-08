@@ -146,7 +146,7 @@ void base64BinaryTest() {
     test('FromJson - invalid input', () {
       expect(
         () => FhirBase64Binary.fromJson({'value': 12345}),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
