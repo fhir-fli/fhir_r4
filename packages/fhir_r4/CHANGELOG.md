@@ -1,13 +1,12 @@
 # fhir_r4
 
-## [0.4.4]
+## [0.4.3]
 
+* Added more flexible fromJson to primitives. NOTE, the OUTPUT is still what is required by FHIR to make it compliant with servers. Refernce [PR](https://github.com/fhir-fli/fhir_r4/pull/22) by [bartekwk2](https://github.com/bartekwk2)
+* Fixed copyWith generation error described in this [PR](https://github.com/fhir-fli/fhir_r4/pull/28) by [bartekwk2](https://github.com/bartekwk2)
 * Added ability to define type of Polymorphics for most fields (but not for required ones)
 * Changed some of the equality functions, moved from Utils into FhirBase
 * Changed some of the quality functions IN FhirBase to non-static
-
-## [0.4.3]
-
 * Fixed addition and subtraction fo ExtendedDuration to FhirDateTimeBase
 * Fixed construction of String for FhirDateTimeBase where year is less than 4 digits
 * Fixed plus and subtract for FhirTime

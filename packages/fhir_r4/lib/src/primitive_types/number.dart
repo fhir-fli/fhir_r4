@@ -107,7 +107,7 @@ abstract class FhirNumber extends PrimitiveType
   ///
   /// Uses [fromNum] internally. Expects `'value'` to be a [num].
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
+    final value = json['value'];
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
 
@@ -116,7 +116,21 @@ abstract class FhirNumber extends PrimitiveType
         'FhirNumber cannot be created with a null value.',
       );
     }
-    return FhirNumber.fromNum(value: value, element: element);
+    final num numValue;
+    if (value is num) {
+      numValue = value;
+    } else if (value is String) {
+      final parsed = num.tryParse(value);
+      if (parsed == null) {
+        throw FormatException('FhirNumber cannot parse: $value');
+      }
+      numValue = parsed;
+    } else {
+      throw FormatException(
+        'FhirNumber requires num or String, got: ${value.runtimeType}',
+      );
+    }
+    return FhirNumber.fromNum(value: numValue, element: element);
   }
 
   /// Creates a [FhirNumber] from a YAML input ([String] or [YamlMap]).

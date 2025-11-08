@@ -165,4 +165,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Contact us
 
-You're always welcome to join the [FHIR-FLI Slack Channel](https://join.slack.com/t/fhir-fli/shared_invite/zt-337bi02s4-r5RYdLf8_CLXQxosRMdv9A), or to contact me directly, email me at grey@fhirfli.dev.
+You're always welcome to join the [FHIR-FLI Slack Channel](https://join.slack.com/t/fhir-fli/shared_invite/zt-337bi02s4-r5RYdLf8_CLXQxosRMdv9A), or to contact me directly, email me at grey.fhirfli@gmail.com.

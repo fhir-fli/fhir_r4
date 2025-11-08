@@ -1,6 +1,6 @@
 name: fhir_r4
 description: Library supporing the R4b Version of FHIR for Dart & Flutter.
-version: 0.4.4
+version: 0.4.3
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 

@@ -132,11 +132,11 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
 
   /// Creates a [FhirInteger64] from a JSON [Map].
   factory FhirInteger64.fromJson(Map<String, dynamic> json) {
-    final rawValue = json['value'] as String?;
+    final rawValue = json['value'];
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
-    return FhirInteger64.fromString(
-      rawValue ?? '',
+    return FhirInteger64(
+      rawValue != null ? (rawValue is num ? rawValue.toString() : rawValue) : null,
       element: parsedElement,
     );
   }
