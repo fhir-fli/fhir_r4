@@ -1601,5 +1601,24 @@ Future<void> testArgFxns() async {
     });
   });
 
-  // TODO(Dokotela): trace
+  test('trace', () async {
+    // Test trace with one parameter (logs name and focus)
+    final engine = await FHIRPathEngine.create(WorkerContext());
+    final result = await engine.evaluateFromPath(
+      patient1,
+      "Patient.name.family.trace('familyName')",
+    );
+    expect(result, isNotEmpty);
+    expect(engine.fpLog.toString(), contains('familyName'));
+
+    // Test trace with two parameters (logs name and value)
+    engine.fpLog.clear();
+    final result2 = await engine.evaluateFromPath(
+      patient1,
+      "Patient.name.family.trace('familyName', 'Doe')",
+    );
+    expect(result2, isNotEmpty);
+    expect(engine.fpLog.toString(), contains('familyName'));
+    expect(engine.fpLog.toString(), contains('Doe'));
+  });
 }

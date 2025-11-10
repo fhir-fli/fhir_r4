@@ -2,6 +2,10 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+class ElementDefinitionMatch {
+  ElementDefinitionMatch(this.definition, this.fixedType);
 
-// Re-export all logging-related classes from the logging directory
-export '../logging/logging.dart';
+  ElementDefinition? definition;
+  String? fixedType;
+}
+
