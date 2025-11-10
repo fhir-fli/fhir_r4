@@ -26,19 +26,18 @@ Future<void> main() async {
 
     // Initialize Hive & Clear Current Hive DB
     fhirDb = FhirDb();
-    await fhirDb.init(path: directory, pw: password1);
+    await fhirDb.init(path: directory);
     print('Database initialized');
   });
 
   group('Saving Things:', () {
     test('Saved A Patient, Found A Patient', () async {
       final patient1 = Patient(id: '1'.toFhirString);
-      saved1 = await fhirDb.save(resource: patient1, pw: password1) as Patient;
+      saved1 = await fhirDb.save(resource: patient1) as Patient;
 
       final search1 = await fhirDb.find(
         resourceType: R4ResourceType.Patient,
         id: '1',
-        pw: password1,
       );
 
       expect(saved1.toJson(), search1[0].toJson());
@@ -49,7 +48,6 @@ Future<void> main() async {
       final search2 = await fhirDb.find(
         resourceType: R4ResourceType.Patient,
         id: '1',
-        pw: password1,
       );
       expect(saved1.toJson(), search2[0].toJson());
     });
@@ -59,7 +57,6 @@ Future<void> main() async {
       final search4 = await fhirDb.find(
         resourceType: R4ResourceType.Patient,
         id: '1',
-        pw: password2,
       );
       expect(saved1.toJson(), search4[0].toJson());
     });
@@ -72,7 +69,7 @@ Future<void> main() async {
       );
       final patient =
           Patient(id: id.toFhirString, name: <HumanName>[humanName]);
-      final saved = await fhirDb.save(resource: patient, pw: password1);
+      final saved = await fhirDb.save(resource: patient);
 
       expect(saved.id?.toString(), id);
       expect((saved as Patient).name?[0].toJson(), humanName.toJson());
@@ -81,7 +78,7 @@ Future<void> main() async {
     test('Save Organization', () async {
       final organization =
           Organization(id: id.toFhirString, name: 'FhirFli'.toFhirString);
-      final saved = await fhirDb.save(resource: organization, pw: password1);
+      final saved = await fhirDb.save(resource: organization);
 
       expect(saved.id?.toString(), id);
       expect((saved as Organization).name?.toString(), 'FhirFli');
@@ -94,7 +91,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation1, pw: password1);
+      final saved = await fhirDb.save(resource: observation1);
 
       expect(saved.id?.toString(), 'obs1');
       expect((saved as Observation).code.text?.valueString, 'Observation #1');
@@ -106,7 +103,7 @@ Future<void> main() async {
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1 - Updated'.toFhirString),
       );
-      final saved = await fhirDb.save(resource: observation1, pw: password1);
+      final saved = await fhirDb.save(resource: observation1);
 
       expect(saved.id?.toString(), 'obs1');
       expect(
@@ -123,7 +120,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation2, pw: password1);
+      final saved = await fhirDb.save(resource: observation2);
 
       expect(saved.id?.toString(), 'obs2');
       expect((saved as Observation).code.text?.valueString, 'Observation #2');
@@ -136,7 +133,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation3, pw: password1);
+      final saved = await fhirDb.save(resource: observation3);
 
       expect(saved.id?.toString(), 'obs3');
       expect((saved as Observation).code.text?.valueString, 'Observation #3');
@@ -148,7 +145,6 @@ Future<void> main() async {
       final search = await fhirDb.find(
         resourceType: R4ResourceType.Patient,
         id: id,
-        pw: password1,
       );
       final humanName = HumanName(
         family: 'Atreides'.toFhirString,
@@ -163,7 +159,6 @@ Future<void> main() async {
       final search = await fhirDb.find(
         resourceType: R4ResourceType.Observation,
         id: 'obs3',
-        pw: password1,
       );
       expect(search.length, 1);
       expect(search[0].id?.toString(), 'obs3');
@@ -176,7 +171,6 @@ Future<void> main() async {
     test('Find All Observations', () async {
       final search = await fhirDb.getActiveResourcesOfType(
         resourceTypes: <R4ResourceType>[R4ResourceType.Observation],
-        pw: password1,
       );
       expect(search.length, 3);
 
@@ -220,12 +214,10 @@ Future<void> main() async {
       await fhirDb.delete(
         resourceType: R4ResourceType.Observation,
         id: 'obs2',
-        pw: password1,
       );
 
       final search = await fhirDb.getActiveResourcesOfType(
         resourceTypes: <R4ResourceType>[R4ResourceType.Observation],
-        pw: password1,
       );
 
       expect(search.length, 2);
@@ -243,7 +235,6 @@ Future<void> main() async {
     test('Delete All Observations', () async {
       await fhirDb.deleteSingleType(
         resourceType: R4ResourceType.Observation,
-        pw: password1,
       );
 
       final search = await fhirDb.getAllActiveResources(pw: password1);
@@ -281,7 +272,7 @@ Future<void> main() async {
       );
       final patient =
           Patient(id: id.toFhirString, name: <HumanName>[humanName]);
-      final saved = await fhirDb.save(resource: patient, pw: password2);
+      final saved = await fhirDb.save(resource: patient);
 
       expect(saved.id?.toString(), id);
       expect((saved as Patient).name?[0].toJson(), humanName.toJson());
@@ -290,7 +281,7 @@ Future<void> main() async {
     test('Save Organization', () async {
       final organization =
           Organization(id: id.toFhirString, name: 'FhirFli'.toFhirString);
-      final saved = await fhirDb.save(resource: organization, pw: password2);
+      final saved = await fhirDb.save(resource: organization);
 
       expect(saved.id?.toString(), id);
       expect((saved as Organization).name?.valueString, 'FhirFli');
@@ -303,7 +294,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation1, pw: password2);
+      final saved = await fhirDb.save(resource: observation1);
 
       expect(saved.id?.toString(), 'obs1');
       expect((saved as Observation).code.text?.valueString, 'Observation #1');
@@ -315,7 +306,7 @@ Future<void> main() async {
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1 - Updated'.toFhirString),
       );
-      final saved = await fhirDb.save(resource: observation1, pw: password2);
+      final saved = await fhirDb.save(resource: observation1);
 
       expect(saved.id?.toString(), 'obs1');
       expect(
@@ -332,7 +323,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation2, pw: password2);
+      final saved = await fhirDb.save(resource: observation2);
 
       expect(saved.id?.toString(), 'obs2');
       expect((saved as Observation).code.text?.valueString, 'Observation #2');
@@ -345,7 +336,7 @@ Future<void> main() async {
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveX: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
-      final saved = await fhirDb.save(resource: observation3, pw: password2);
+      final saved = await fhirDb.save(resource: observation3);
 
       expect(saved.id?.toString(), 'obs3');
       expect((saved as Observation).code.text?.valueString, 'Observation #3');
@@ -357,7 +348,6 @@ Future<void> main() async {
       final search = await fhirDb.find(
         resourceType: R4ResourceType.Patient,
         id: id,
-        pw: password2,
       );
       final humanName = HumanName(
         family: 'Atreides'.toFhirString,
@@ -372,7 +362,6 @@ Future<void> main() async {
       final search = await fhirDb.find(
         resourceType: R4ResourceType.Observation,
         id: 'obs3',
-        pw: password2,
       );
 
       expect(search.length, 1);
@@ -386,7 +375,6 @@ Future<void> main() async {
     test('Find All Observations', () async {
       final search = await fhirDb.getActiveResourcesOfType(
         resourceTypes: <R4ResourceType>[R4ResourceType.Observation],
-        pw: password2,
       );
 
       expect(search.length, 3);
@@ -430,12 +418,10 @@ Future<void> main() async {
       await fhirDb.delete(
         resourceType: R4ResourceType.Observation,
         id: 'obs2',
-        pw: password2,
       );
 
       final search = await fhirDb.getActiveResourcesOfType(
         resourceTypes: <R4ResourceType>[R4ResourceType.Observation],
-        pw: password2,
       );
 
       expect(search.length, 2);
@@ -453,7 +439,6 @@ Future<void> main() async {
     test('Delete All Observations', () async {
       await fhirDb.deleteSingleType(
         resourceType: R4ResourceType.Observation,
-        pw: password2,
       );
 
       final search = await fhirDb.getAllActiveResources(pw: password2);
@@ -581,7 +566,6 @@ Future<bool> compareTwoResources(
   String? pw,
 ) async {
   final dbResource = await fhirDb.get(
-    pw: pw,
     resourceType: originalResource.resourceType,
     id: originalResource.id!.valueString!,
   );
