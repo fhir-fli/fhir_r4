@@ -3,10 +3,8 @@
 import 'dart:collection';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
-import '../engine/collection_status.dart';
-import '../engine/worker_context.dart';
-import 'profiled_type.dart';
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {
     if (names != null) {
@@ -383,4 +381,3 @@ class TypeDetails {
     return null;
   }
 }
-

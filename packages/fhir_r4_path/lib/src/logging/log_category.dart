@@ -1,10 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:fhir_r4/fhir_r4.dart';
-
+/// LogCategory enum
 enum LogCategory {
   /// Initialization log category.
   init,

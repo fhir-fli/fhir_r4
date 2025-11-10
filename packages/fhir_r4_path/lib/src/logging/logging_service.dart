@@ -1,11 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
-import 'dart:io';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
-import 'package:fhir_r4/fhir_r4.dart';
-
-import 'log_category.dart';
+/// LoggingService
 class LoggingService {
   /// Constructor with optional [debug] parameter. Defaults to `false`.
   LoggingService({this.debug = false});

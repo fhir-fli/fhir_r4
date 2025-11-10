@@ -3,9 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fhir_r4/fhir_r4.dart';
-
-import 'logging_service.dart';
+/// Logging Class for Client
 class ClientLogger {
   /// Constructor
   ClientLogger({

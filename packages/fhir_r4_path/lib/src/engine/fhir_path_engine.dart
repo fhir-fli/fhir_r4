@@ -11,78 +11,28 @@ import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
   /// Constructor
-  FHIRPathEngine._(this.worker, [this.hostServices])
-      : terminologyServiceOptions = ValidationOptions.defaults();
+  FHIRPathEngine._(WorkerContext worker, [IEvaluationContext? hostServices])
+      : fpContext = FhirPathContext(worker, hostServices);
 
   static Future<FHIRPathEngine> create(
     WorkerContext worker, [
     IEvaluationContext? hostServices,
   ]) async {
     final engine = FHIRPathEngine._(worker, hostServices);
-    await engine._initFlags();
+    await engine.fpContext.initialize();
+    engine.utilities = FhirPathUtilities(engine.fpContext);
     return engine;
   }
 
-  /// Initialization helper
-  Future<void> _initFlags() async {
-    for (final sd in await worker.getStructures()) {
-      if (sd.derivation == TypeDerivationRule.specialization &&
-          sd.kind != StructureDefinitionKind.logical &&
-          sd.name.valueString != null) {
-        allTypes[sd.name.valueString!] = sd;
-      }
-      if (sd.derivation == TypeDerivationRule.specialization &&
-          sd.kind == StructureDefinitionKind.primitiveType &&
-          sd.name.valueString != null) {
-        primitiveTypes.add(sd.name.valueString!);
-      }
-    }
-    if (!VersionUtilities.isR5VerOrLater(worker.getVersion())) {
-      doNotEnforceAsCaseSensitive = true;
-      doNotEnforceAsSingletonRule = true;
-    }
-  }
-
   Future<StructureDefinition?> _fetchTypeDefinition(String? type) async {
-    return type == null ? null : await worker.fetchTypeDefinition(type);
+    return type == null
+        ? null
+        : await fpContext.worker.fetchTypeDefinition(type);
   }
 
-  /// Constants
-  // ignore: constant_identifier_names
-  static const NS_SYSTEM_TYPE = 'http://hl7.org/fhirpath/System.';
-  // ignore: constant_identifier_names
-  static const FHIR_TYPES_STRING = [
-    'string',
-    'uri',
-    'code',
-    'oid',
-    'id',
-    'uuid',
-    'sid',
-    'markdown',
-    'base64Binary',
-    'canonical',
-    'url',
-  ];
-
-  /// Fields
-  final WorkerContext worker;
-  final StringBuffer fpLog = StringBuffer();
-  final Set<String> primitiveTypes = {};
-  final Map<String, StructureDefinition> allTypes = {};
-  final ValidationOptions terminologyServiceOptions;
-
-  /// Flags
-  bool legacyMode = false;
-  bool allowPolymorphicNames = true;
-  bool doImplicitStringConversion = false;
-  bool liquidMode = false;
-  bool doNotEnforceAsSingletonRule = false;
-  bool doNotEnforceAsCaseSensitive = false;
-  bool allowDoubleQuotes = false;
-
-  String? location; // For error messages
-  IEvaluationContext? hostServices;
+  FhirPathContext fpContext;
+  late final FhirPathUtilities utilities;
+  StringBuffer get fpLog => fpContext.fpLog;
 
   ///
   /// ***************************************
@@ -104,7 +54,7 @@ class FHIRPathEngine {
     final lexer = FHIRLexer(
       source: path,
       name: name,
-      allowDoubleQuotes: allowDoubleQuotes,
+      allowDoubleQuotes: fpContext.allowDoubleQuotes,
     );
 
     if (lexer.done()) {
@@ -120,7 +70,7 @@ class FHIRPathEngine {
     final lexer = FHIRLexer(
       source: path,
       cursor: i,
-      allowDoubleQuotes: allowDoubleQuotes,
+      allowDoubleQuotes: fpContext.allowDoubleQuotes,
     );
     if (lexer.done()) {
       throw lexer.error('Path cannot be empty');
@@ -297,8 +247,9 @@ class FHIRPathEngine {
         var f = FpFunction.fromCode(result.name!);
         FunctionDetails? details;
         if (f == null) {
-          if (hostServices != null) {
-            details = hostServices!.resolveFunction(this, result.name!);
+          if (fpContext.hostServices != null) {
+            details =
+                fpContext.hostServices!.resolveFunction(this, result.name!);
           }
           if (details == null) {
             throw lexer
@@ -620,7 +571,7 @@ class FHIRPathEngine {
     FhirBase base,
     ExpressionNode node,
   ) async {
-    return convertListToString(
+    return utilities.convertListToString(
       await evaluateWithContext(
         appInfo,
         focusResource,
@@ -638,7 +589,7 @@ class FHIRPathEngine {
     FhirBase base,
     ExpressionNode node,
   ) async {
-    return convertToBoolean(
+    return utilities.convertToBoolean(
       await evaluateWithContext(
         appInfo,
         focusResource,
@@ -969,14 +920,14 @@ class FHIRPathEngine {
           [TypeDetails.FP_DateTime],
         );
       case FpFunction.Custom:
-        if (hostServices == null) {
+        if (fpContext.hostServices == null) {
           throw makeException(
             exp,
             'FHIRPATH_NO_HOST_SERVICES',
             ['Custom Function'],
           );
         }
-        return hostServices!.checkFunction(
+        return fpContext.hostServices!.checkFunction(
           this,
           context.appInfo,
           exp.name ?? 'custom',
@@ -1203,8 +1154,8 @@ class FHIRPathEngine {
   }) async {
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
-    if (atEntry && context.appInfo != null && hostServices != null) {
-      final temp = hostServices!
+    if (atEntry && context.appInfo != null && fpContext.hostServices != null) {
+      final temp = fpContext.hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
 
       if (temp.isNotEmpty) {
@@ -1244,7 +1195,7 @@ class FHIRPathEngine {
             result.add(item);
             break;
           }
-          current = await worker.fetchResource<StructureDefinition>(
+          current = await fpContext.worker.fetchResource<StructureDefinition>(
             uri: current.baseDefinition?.toString(),
           );
         }
@@ -1257,10 +1208,10 @@ class FHIRPathEngine {
     // Step 4: Fallback to resolve constants if result is empty
     if (atEntry &&
         context.appInfo != null &&
-        hostServices != null &&
+        fpContext.hostServices != null &&
         result.isEmpty) {
       result.addAll(
-        hostServices!
+        fpContext.hostServices!
             .resolveConstant(this, context.appInfo, exp.name, false, false),
       );
     }
@@ -1389,14 +1340,14 @@ class FHIRPathEngine {
     ExpressionNode expr,
     bool explicitConstant,
   ) {
-    if (hostServices == null) {
+    if (fpContext.hostServices == null) {
       throw makeException(
         expr,
         'FHIRPATH_NO_HOST_SERVICES',
         ['Context Reference'],
       );
     }
-    return hostServices!
+    return fpContext.hostServices!
         .resolveConstantType(this, context.appInfo, name, explicitConstant);
   }
 
@@ -1532,7 +1483,8 @@ class FHIRPathEngine {
               '${resourceType.substring(0, resourceType.lastIndexOf('/') + 1)}'
               '$ctxt';
         }
-        final sd = await worker.fetchResource<StructureDefinition>(uri: ctxt);
+        final sd = await fpContext.worker
+            .fetchResource<StructureDefinition>(uri: ctxt);
         if (sd == null) {
           throw makeException(expressionNode, 'Unknown context: $context', []);
         }
@@ -1672,8 +1624,8 @@ class FHIRPathEngine {
     final varName = s.substring(1);
     if (context.hasDefinedVariable(varName)) {
       return context.getDefinedVariable(varName)!;
-    } else if (hostServices != null) {
-      return hostServices!
+    } else if (fpContext.hostServices != null) {
+      return fpContext.hostServices!
           .resolveConstantType(this, context.appInfo, s, explicitConstant);
     } else {
       throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', [s]);
@@ -1693,7 +1645,7 @@ class FHIRPathEngine {
   }
 
   TypeDetails anything(CollectionStatus? status) {
-    return TypeDetails(status, allTypes.keys.toList());
+    return TypeDetails(status, fpContext.allTypes.keys.toList());
   }
 
   ///
@@ -1710,7 +1662,7 @@ class FHIRPathEngine {
       String? tn;
       var name = oldName;
 
-      if (allowPolymorphicNames) {
+      if (fpContext.allowPolymorphicNames) {
         // we'll look to see whether we have a polymorphic name
         for (final p in item.listChildrenNames()) {
           if (p.endsWith('X')) {
@@ -1763,7 +1715,8 @@ class FHIRPathEngine {
         url = type;
       }
       var tail = '';
-      final sd = await worker.fetchResource<StructureDefinition>(uri: url);
+      final sd =
+          await fpContext.worker.fetchResource<StructureDefinition>(uri: url);
       if (sd == null) {
         throw makeException(
           expr,
@@ -1783,32 +1736,37 @@ class FHIRPathEngine {
       }
       if (m?.definition != null && hasDataType(m!.definition!)) {
         if (m.fixedType != null) {
-          final dt = await worker.fetchResource<StructureDefinition>(
-            uri: m.fixedType!.sdNs(worker.getOverrideVersionNs()),
+          final dt = await fpContext.worker.fetchResource<StructureDefinition>(
+            uri: m.fixedType!.sdNs(fpContext.worker.getOverrideVersionNs()),
           );
           if (dt == null) {
             throw makeException(expr, 'FHIRPATH_NO_TYPE', [
-              m.fixedType!.sdNs(worker.getOverrideVersionNs()),
+              m.fixedType!.sdNs(fpContext.worker.getOverrideVersionNs()),
               'getChildTypesByName',
             ]);
           }
           sdl.add(dt);
         } else {
           for (final t in m.definition!.type ?? <ElementDefinitionType>[]) {
-            final dt = await worker.fetchResource<StructureDefinition>(
-              uri: t.code.toString().sdNs(worker.getOverrideVersionNs()),
+            final dt =
+                await fpContext.worker.fetchResource<StructureDefinition>(
+              uri: t.code
+                  .toString()
+                  .sdNs(fpContext.worker.getOverrideVersionNs()),
             );
             if (dt == null) {
               throw makeException(expr, 'FHIRPATH_NO_TYPE', [
-                t.code.toString().sdNs(worker.getOverrideVersionNs()),
+                t.code.toString().sdNs(fpContext.worker.getOverrideVersionNs()),
                 'getChildTypesByName',
               ]);
             }
-            addTypeAndDescendents(sdl, dt, await worker.allStructures());
+            utilities.addTypeAndDescendents(
+                sdl, dt, await fpContext.worker.allStructures());
           }
         }
       } else {
-        addTypeAndDescendents(sdl, sd, await worker.allStructures());
+        utilities.addTypeAndDescendents(
+            sdl, sd, await fpContext.worker.allStructures());
         if (type.contains('#')) {
           tail = type.substring(type.indexOf('#') + 1);
           tail = tail.substring(tail.indexOf('.'));
@@ -1834,8 +1792,10 @@ class FHIRPathEngine {
                     tn = t.code.toString();
                   }
                   if (t.code.toString() == 'Resource') {
-                    for (final rn in await worker.getResourceNames()) {
-                      if (!(await result.hasTypeFromWorker(worker, [rn]))) {
+                    for (final rn
+                        in await fpContext.worker.getResourceNames()) {
+                      if (!(await result
+                          .hasTypeFromWorker(fpContext.worker, [rn]))) {
                         await getChildTypesByName(
                           result.addType(rn),
                           '**',
@@ -1844,7 +1804,8 @@ class FHIRPathEngine {
                         );
                       }
                     }
-                  } else if (!(await result.hasTypeFromWorker(worker, [tn]))) {
+                  } else if (!(await result
+                      .hasTypeFromWorker(fpContext.worker, [tn]))) {
                     await getChildTypesByName(
                       result.addType(tn),
                       '**',
@@ -1872,7 +1833,7 @@ class FHIRPathEngine {
                     t.code.toString() == 'BackboneElement') {
                   result.addType('${sdi.type}#${ed.path}');
                 } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(await worker.getResourceNames());
+                  result.addTypes(await fpContext.worker.getResourceNames());
                 } else {
                   result.addType(t.code.toString());
                 }
@@ -1885,7 +1846,7 @@ class FHIRPathEngine {
           final ed = await getElementDefinition(
             sdi,
             path,
-            allowPolymorphicNames,
+            fpContext.allowPolymorphicNames,
             expr,
           );
           if (ed != null) {
@@ -1916,7 +1877,7 @@ class FHIRPathEngine {
                     t.code.toString() == 'BackboneElement') {
                   pt = ProfiledType('${sdi.url}#$path');
                 } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(await worker.getResourceNames());
+                  result.addTypes(await fpContext.worker.getResourceNames());
                 } else {
                   pt = ProfiledType(t.code.toString());
                 }
@@ -1969,7 +1930,8 @@ class FHIRPathEngine {
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
+        newContext.setDefinedVariable(
+            s, context.definedVariables![s], fpContext.worker);
       }
     }
     return newContext;
@@ -1999,7 +1961,8 @@ class FHIRPathEngine {
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
-        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
+        newContext.setDefinedVariable(
+            s, context.definedVariables![s], fpContext.worker);
       }
     }
     return newContext;
@@ -2061,7 +2024,7 @@ class FHIRPathEngine {
         final s = path
             .substring(ed.path.valueString!.length - 3)
             .uncapitalize(); // Assuming uncapitalize is implemented somewhere
-        if (primitiveTypes.contains(s)) {
+        if (fpContext.primitiveTypes.contains(s)) {
           return ElementDefinitionMatch(ed, s);
         } else {
           return ElementDefinitionMatch(
@@ -2080,8 +2043,10 @@ class FHIRPathEngine {
           throw StateError('Internal typing issue...');
         }
 
-        final nsd = await worker.fetchResource<StructureDefinition>(
-          uri: ed.type![0].code.toString().sdNs(worker.getOverrideVersionNs()),
+        final nsd = await fpContext.worker.fetchResource<StructureDefinition>(
+          uri: ed.type![0].code
+              .toString()
+              .sdNs(fpContext.worker.getOverrideVersionNs()),
         );
 
         if (nsd == null) {
@@ -2139,9 +2104,11 @@ class FHIRPathEngine {
     String constName,
     List<Object> args,
   ) {
-    var fmt = worker.formatMessage(constName, args);
-    if (location != null) {
-      fmt = '$fmt ${worker.formatMessage('FHIRPATH_LOCATION', [location])}';
+    var fmt = fpContext.worker.formatMessage(constName, args);
+    if (fpContext.location != null) {
+      fmt = '$fmt ${fpContext.worker.formatMessage('FHIRPATH_LOCATION', [
+            fpContext.location
+          ])}';
     }
     if (holder != null) {
       return PathEngineException(
@@ -2160,9 +2127,11 @@ class FHIRPathEngine {
     String constName,
     List<Object> args,
   ) {
-    var fmt = worker.formatMessagePlural(num, constName, args);
-    if (location != null) {
-      fmt = '$fmt ${worker.formatMessage('FHIRPATH_LOCATION', [location])}';
+    var fmt = fpContext.worker.formatMessagePlural(num, constName, args);
+    if (fpContext.location != null) {
+      fmt = '$fmt ${fpContext.worker.formatMessage('FHIRPATH_LOCATION', [
+            fpContext.location
+          ])}';
     }
     if (holder != null) {
       return PathEngineException(
@@ -2551,7 +2520,7 @@ class FHIRPathEngine {
       final actual = paramTypes[i];
       i++;
       for (final a in actual.getTypes()) {
-        if (!(await pt.hasTypeFromWorker(worker, [a]))) {
+        if (!(await pt.hasTypeFromWorker(fpContext.worker, [a]))) {
           throw makeException(
             expr,
             'FHIRPATH_WRONG_PARAM_TYPE',
@@ -2571,7 +2540,7 @@ class FHIRPathEngine {
   void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
     if (focus.collectionStatus != CollectionStatus.singleton) {
 // ignore: lines_longer_than_80_chars
-// typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
+// typeWarnings.add(new IssueMessage(fpContext.worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
     }
   }
 
@@ -2635,23 +2604,25 @@ class FHIRPathEngine {
         return left.union(right);
       case FpOperation.Times:
         final result = TypeDetails(CollectionStatus.singleton);
-        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer']))) {
+        if ((await left.hasTypeFromWorker(fpContext.worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
         } else if ((await left
-                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal'])) &&
+            (await right
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
       case FpOperation.DivideBy:
         final result = TypeDetails(CollectionStatus.singleton);
-        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer']))) {
+        if ((await left.hasTypeFromWorker(fpContext.worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['integer']))) {
           result.addType(TypeDetails.FP_Decimal);
         } else if ((await left
-                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal'])) &&
+            (await right
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
@@ -2659,23 +2630,24 @@ class FHIRPathEngine {
         return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
       case FpOperation.Plus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer']))) {
+        if ((await left.hasTypeFromWorker(fpContext.worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
         } else if ((await left
-                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal'])) &&
+            (await right
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         } else if ((await left.hasTypeFromWorker(
-              worker,
+              fpContext.worker,
               ['string', 'id', 'code', 'uri'],
             )) &&
-            (await right
-                .hasTypeFromWorker(worker, ['string', 'id', 'code', 'uri']))) {
+            (await right.hasTypeFromWorker(
+                fpContext.worker, ['string', 'id', 'code', 'uri']))) {
           result.addType(TypeDetails.FP_String);
-        } else if (await left
-            .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
-          if (await right.hasTypeFromWorker(worker, ['Quantity'])) {
+        } else if (await left.hasTypeFromWorker(
+            fpContext.worker, ['date', 'dateTime', 'instant'])) {
+          if (await right.hasTypeFromWorker(fpContext.worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
@@ -2687,19 +2659,21 @@ class FHIRPathEngine {
         return result;
       case FpOperation.Minus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer']))) {
+        if ((await left.hasTypeFromWorker(fpContext.worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
         } else if ((await left
-                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal'])) &&
+            (await right
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
-        } else if ((await left.hasTypeFromWorker(worker, ['Quantity'])) &&
-            (await right.hasTypeFromWorker(worker, ['Quantity']))) {
+        } else if ((await left
+                .hasTypeFromWorker(fpContext.worker, ['Quantity'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['Quantity']))) {
           result.addType(TypeDetails.FP_Quantity);
-        } else if (await left
-            .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
-          if (await right.hasTypeFromWorker(worker, ['Quantity'])) {
+        } else if (await left.hasTypeFromWorker(
+            fpContext.worker, ['date', 'dateTime', 'instant'])) {
+          if (await right.hasTypeFromWorker(fpContext.worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
@@ -2712,12 +2686,13 @@ class FHIRPathEngine {
       case FpOperation.Div:
       case FpOperation.Mod:
         final result = TypeDetails(CollectionStatus.singleton);
-        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer']))) {
+        if ((await left.hasTypeFromWorker(fpContext.worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(fpContext.worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
         } else if ((await left
-                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
-            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal'])) &&
+            (await right
+                .hasTypeFromWorker(fpContext.worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
@@ -2737,11 +2712,11 @@ class FHIRPathEngine {
     bool sing,
   ) async {
     if (!focus.hasNoTypes() &&
-        !(await focus.hasTypeFromWorker(worker, ['string'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['code'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['canonical'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['id']))) {
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['code'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['canonical'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['id']))) {
       throw makeException(
         expr,
         sing ? 'FHIRPATH_STRING_SING_ONLY' : 'FHIRPATH_STRING_ORD_ONLY',
@@ -2758,7 +2733,7 @@ class FHIRPathEngine {
   ) {
     if (!focus.hasNoTypes()) {
       if (canQty) {
-        if (!focus.hasTypes(primitiveTypes.toList()) &&
+        if (!focus.hasTypes(fpContext.primitiveTypes.toList()) &&
             !focus.hasType('Quantity')) {
           throw makeException(
             expr,
@@ -2766,15 +2741,15 @@ class FHIRPathEngine {
             [
               name,
               focus.describe(),
-              'Quantity, $primitiveTypes',
+              'Quantity, ${fpContext.primitiveTypes}',
             ],
           );
         }
-      } else if (!focus.hasTypes(primitiveTypes.toList())) {
+      } else if (!focus.hasTypes(fpContext.primitiveTypes.toList())) {
         throw makeException(
           expr,
           'FHIRPATH_PRIMITIVE_ONLY',
-          [name, focus.describe(), primitiveTypes.toString()],
+          [name, focus.describe(), fpContext.primitiveTypes.toString()],
         );
       }
     }
@@ -2785,11 +2760,12 @@ class FHIRPathEngine {
     String name,
     ExpressionNode expr,
   ) async {
-    if (!(await focus.hasTypeFromWorker(worker, ['string'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['code'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['Coding'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['CodeableConcept']))) {
+    if (!(await focus.hasTypeFromWorker(fpContext.worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['code'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['Coding'])) &&
+        !(await focus
+            .hasTypeFromWorker(fpContext.worker, ['CodeableConcept']))) {
       throw makeException(
         expr,
         'FHIRPATH_CODED_ONLY',
@@ -2803,10 +2779,10 @@ class FHIRPathEngine {
     String name,
     ExpressionNode expr,
   ) async {
-    if (!(await focus.hasTypeFromWorker(worker, ['string'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['Reference'])) &&
-        !(await focus.hasTypeFromWorker(worker, ['canonical']))) {
+    if (!(await focus.hasTypeFromWorker(fpContext.worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['Reference'])) &&
+        !(await focus.hasTypeFromWorker(fpContext.worker, ['canonical']))) {
       throw makeException(
         expr,
         'FHIRPATH_REFERENCE_ONLY',
@@ -2828,12 +2804,16 @@ class FHIRPathEngine {
     if (left.isEmpty) return null;
     switch (operation) {
       case FpOperation.And:
-        return isBoolean(left, false) ? makeBoolean(false) : null;
+        return utilities.isBoolean(left, false)
+            ? utilities.makeBoolean(false)
+            : null;
       case FpOperation.Or:
-        return isBoolean(left, true) ? makeBoolean(true) : null;
+        return utilities.isBoolean(left, true)
+            ? utilities.makeBoolean(true)
+            : null;
       case FpOperation.Implies:
-        final v = asBoolFromList(left, expr);
-        return v == FpEquality.false_ ? makeBoolean(true) : null;
+        final v = utilities.asBoolFromList(left, expr);
+        return v == FpEquality.false_ ? utilities.makeBoolean(true) : null;
       // ignore: no_default_cases
       default:
         return null;
@@ -2913,7 +2893,7 @@ class FHIRPathEngine {
     }
 
     if (left.length != right.length) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
 
     var res = true;
@@ -2931,11 +2911,11 @@ class FHIRPathEngine {
     }
 
     if (!res) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     } else if (nil) {
       return [];
     } else {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
   }
 
@@ -2945,7 +2925,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (left.length != right.length) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
 
     var res = true;
@@ -2964,7 +2944,7 @@ class FHIRPathEngine {
       }
     }
 
-    return makeBoolean(res);
+    return utilities.makeBoolean(res);
   }
 
   List<FhirBase> opNotEquals(
@@ -2972,12 +2952,12 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    if (!legacyMode && (left.isEmpty || right.isEmpty)) {
+    if (!fpContext.legacyMode && (left.isEmpty || right.isEmpty)) {
       return [];
     }
 
     if (left.length != right.length) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
 
     var res = true;
@@ -2993,11 +2973,11 @@ class FHIRPathEngine {
     }
 
     if (!res) {
-      return makeBoolean(res);
+      return utilities.makeBoolean(res);
     } else if (nil) {
       return [];
     } else {
-      return makeBoolean(res);
+      return utilities.makeBoolean(res);
     }
   }
 
@@ -3007,7 +2987,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (left.length != right.length) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
 
     var res = true;
@@ -3026,7 +3006,7 @@ class FHIRPathEngine {
       }
     }
 
-    return makeBoolean(!res);
+    return utilities.makeBoolean(!res);
   }
 
   List<FhirBase> opLessThan(
@@ -3043,17 +3023,22 @@ class FHIRPathEngine {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) < 0);
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return utilities
+              .makeBoolean(l.toString().compareTo(r.toString()) < 0);
         } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l < r);
+          return utilities.makeBoolean(l < r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l < r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
           final comparison = l < r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3102,18 +3087,23 @@ class FHIRPathEngine {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) > 0);
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return utilities
+              .makeBoolean(l.toString().compareTo(r.toString()) > 0);
         } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l > r);
+          return utilities.makeBoolean(l > r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l > r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
           final comparison = l > r;
 
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3162,17 +3152,22 @@ class FHIRPathEngine {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) <= 0);
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return utilities
+              .makeBoolean(l.toString().compareTo(r.toString()) <= 0);
         } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l <= r);
+          return utilities.makeBoolean(l <= r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l <= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
           final comparison = l <= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3221,17 +3216,22 @@ class FHIRPathEngine {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-            FHIR_TYPES_STRING.contains(r.fhirType)) {
-          return makeBoolean(l.toString().compareTo(r.toString()) >= 0);
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
+          return utilities
+              .makeBoolean(l.toString().compareTo(r.toString()) >= 0);
         } else if (l is FhirNumber && r is FhirNumber) {
-          return makeBoolean(l >= r);
+          return utilities.makeBoolean(l >= r);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l >= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else if (l is FhirTime && r is FhirTime) {
           final comparison = l >= r;
-          return comparison == null ? <FhirBase>[] : makeBoolean(comparison);
+          return comparison == null
+              ? <FhirBase>[]
+              : utilities.makeBoolean(comparison);
         } else {
           throw makeException(
             expr,
@@ -3294,7 +3294,7 @@ class FHIRPathEngine {
       return [];
     }
     if (right.isEmpty) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
 
     var ans = true;
@@ -3312,7 +3312,7 @@ class FHIRPathEngine {
         break;
       }
     }
-    return makeBoolean(ans);
+    return utilities.makeBoolean(ans);
   }
 
   Future<List<FhirBase>> opMemberOf(
@@ -3323,15 +3323,15 @@ class FHIRPathEngine {
   ) async {
     var ans = false;
     final url = right.first.primitiveValue.toString();
-    final vs = hostServices != null
-        ? hostServices!.resolveValueSet(this, context.appInfo, url)
-        : await worker.fetchResource<ValueSet>(uri: url);
+    final vs = fpContext.hostServices != null
+        ? fpContext.hostServices!.resolveValueSet(this, context.appInfo, url)
+        : await fpContext.worker.fetchResource<ValueSet>(uri: url);
 
     if (vs != null) {
       for (final l in left) {
         if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          final result = await worker.validateCodeWithCoding(
-            terminologyServiceOptions.withGuessSystem(),
+          final result = await fpContext.worker.validateCodeWithCoding(
+            fpContext.terminologyServiceOptions.withGuessSystem(),
             TypeConvertor.castToCoding(l)!,
             vs,
           );
@@ -3339,8 +3339,8 @@ class FHIRPathEngine {
             ans = true;
           }
         } else if (l.fhirType == 'Coding') {
-          final result = await worker.validateCodeWithCoding(
-            terminologyServiceOptions,
+          final result = await fpContext.worker.validateCodeWithCoding(
+            fpContext.terminologyServiceOptions,
             TypeConvertor.castToCoding(l)!,
             vs,
           );
@@ -3349,8 +3349,8 @@ class FHIRPathEngine {
           }
         } else if (l.fhirType == 'CodeableConcept') {
           final cc = TypeConvertor.castToCodeableConcept(l);
-          final vr = await worker.validateCodeWithCodeableConcept(
-            terminologyServiceOptions,
+          final vr = await fpContext.worker.validateCodeWithCodeableConcept(
+            fpContext.terminologyServiceOptions,
             cc!,
             vs,
           );
@@ -3361,7 +3361,7 @@ class FHIRPathEngine {
       }
     }
 
-    return makeBoolean(ans);
+    return utilities.makeBoolean(ans);
   }
 
   List<FhirBase> opContains(
@@ -3388,7 +3388,7 @@ class FHIRPathEngine {
         break;
       }
     }
-    return makeBoolean(ans);
+    return utilities.makeBoolean(ans);
   }
 
   List<FhirBase> opOr(
@@ -3396,21 +3396,21 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
+    final l = utilities.asBoolList(left, expr);
+    final r = utilities.asBoolList(right, expr);
     switch (l) {
       case FpEquality.true_:
-        return makeBoolean(true);
+        return utilities.makeBoolean(true);
       case FpEquality.null_:
-        return r == FpEquality.true_ ? makeBoolean(true) : makeNull();
+        return r == FpEquality.true_ ? utilities.makeBoolean(true) : makeNull();
       case FpEquality.false_:
         switch (r) {
           case FpEquality.false_:
-            return makeBoolean(false);
+            return utilities.makeBoolean(false);
           case FpEquality.null_:
             return makeNull();
           case FpEquality.true_:
-            return makeBoolean(true);
+            return utilities.makeBoolean(true);
         }
     }
   }
@@ -3420,21 +3420,23 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
+    final l = utilities.asBoolList(left, expr);
+    final r = utilities.asBoolList(right, expr);
     switch (l) {
       case FpEquality.false_:
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       case FpEquality.null_:
-        return r == FpEquality.false_ ? makeBoolean(false) : makeNull();
+        return r == FpEquality.false_
+            ? utilities.makeBoolean(false)
+            : makeNull();
       case FpEquality.true_:
         switch (r) {
           case FpEquality.false_:
-            return makeBoolean(false);
+            return utilities.makeBoolean(false);
           case FpEquality.null_:
             return makeNull();
           case FpEquality.true_:
-            return makeBoolean(true);
+            return utilities.makeBoolean(true);
         }
     }
   }
@@ -3444,15 +3446,15 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    final l = asBoolList(left, expr);
-    final r = asBoolList(right, expr);
+    final l = utilities.asBoolList(left, expr);
+    final r = utilities.asBoolList(right, expr);
     switch (l) {
       case FpEquality.true_:
         switch (r) {
           case FpEquality.false_:
-            return makeBoolean(true);
+            return utilities.makeBoolean(true);
           case FpEquality.true_:
-            return makeBoolean(false);
+            return utilities.makeBoolean(false);
           case FpEquality.null_:
             return makeNull();
         }
@@ -3461,9 +3463,9 @@ class FHIRPathEngine {
       case FpEquality.false_:
         switch (r) {
           case FpEquality.false_:
-            return makeBoolean(false);
+            return utilities.makeBoolean(false);
           case FpEquality.true_:
-            return makeBoolean(true);
+            return utilities.makeBoolean(true);
           case FpEquality.null_:
             return makeNull();
         }
@@ -3475,19 +3477,21 @@ class FHIRPathEngine {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    final eq = asBoolList(left, expr);
+    final eq = utilities.asBoolList(left, expr);
     if (eq == FpEquality.false_) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     } else if (right.isEmpty) {
       return makeNull();
     } else {
-      switch (asBoolList(right, expr)) {
+      switch (utilities.asBoolList(right, expr)) {
         case FpEquality.false_:
-          return eq == FpEquality.null_ ? makeNull() : makeBoolean(false);
+          return eq == FpEquality.null_
+              ? makeNull()
+              : utilities.makeBoolean(false);
         case FpEquality.null_:
           return makeNull();
         case FpEquality.true_:
-          return makeBoolean(true);
+          return utilities.makeBoolean(true);
       }
     }
   }
@@ -3537,8 +3541,8 @@ class FHIRPathEngine {
     final l = left.first;
     final r = right.first;
 
-    if (FHIR_TYPES_STRING.contains(l.fhirType) &&
-        FHIR_TYPES_STRING.contains(r.fhirType)) {
+    if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+        fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
       result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
     } else if (l is FhirNumber && r is FhirNumber) {
       result.add((l + r)!);
@@ -3605,7 +3609,7 @@ class FHIRPathEngine {
       final pr = qtyToPair(r);
       if (pl != null && pr != null) {
         try {
-          final p = worker.ucumService.multiply(pl, pr);
+          final p = fpContext.worker.ucumService.multiply(pl, pr);
           result.add(pairToQty(p));
         } catch (e) {
           throw PathEngineException(
@@ -3712,7 +3716,8 @@ class FHIRPathEngine {
         ['&'],
       );
     }
-    if (left.isNotEmpty && !FHIR_TYPES_STRING.contains(left.first.fhirType)) {
+    if (left.isNotEmpty &&
+        !fpContext.FHIR_TYPES_STRING.contains(left.first.fhirType)) {
       throw makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
@@ -3727,7 +3732,8 @@ class FHIRPathEngine {
         ['&'],
       );
     }
-    if (right.isNotEmpty && !FHIR_TYPES_STRING.contains(right.first.fhirType)) {
+    if (right.isNotEmpty &&
+        !fpContext.FHIR_TYPES_STRING.contains(right.first.fhirType)) {
       throw makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
@@ -3796,7 +3802,7 @@ class FHIRPathEngine {
       final pl = qtyToPair(l);
       final pr = qtyToPair(r);
       if (pl != null && pr != null) {
-        final p = worker.ucumService.divideBy(pl, pr);
+        final p = fpContext.worker.ucumService.divideBy(pl, pr);
 
         result.add(pairToQty(p));
       }
@@ -3945,7 +3951,7 @@ class FHIRPathEngine {
     } else if (left.length != 1 || right.length != 1) {
       result.add(FhirBoolean(false).noExtensions());
     } else {
-      final tn = convertListToString(right);
+      final tn = utilities.convertListToString(right);
 
       if (left.first is Element) {
         final element = left.first as Element;
@@ -3960,7 +3966,7 @@ class FHIRPathEngine {
         } else {
           final currentType = element.fhirType;
 
-          return makeBoolean(
+          return utilities.makeBoolean(
             currentType.toLowerCase() == tn.toLowerCase() ||
                 currentType == tn.replaceFirst('FHIR.', ''),
           );
@@ -3985,12 +3991,12 @@ class FHIRPathEngine {
       return result;
     }
 
-    final tn = convertListToString(right);
+    final tn = utilities.convertListToString(right);
 
     if (!(await isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
-    if (!doNotEnforceAsSingletonRule && left.length > 1) {
+    if (!fpContext.doNotEnforceAsSingletonRule && left.length > 1) {
       throw PathEngineException(
         'Attempt to use "as" on more than one item (${left.length}, "$expr")',
       );
@@ -4235,7 +4241,7 @@ class FHIRPathEngine {
           for (final p in exp.parameters) {
             params.add(await execute(context, focus, p, true));
           }
-          return hostServices?.executeFunction(
+          return fpContext.hostServices?.executeFunction(
                 this,
                 context.appInfo,
                 focus,
@@ -4264,7 +4270,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     final result = <FhirBase>[];
-    final v = asBoolList(focus, exp);
+    final v = utilities.asBoolList(focus, exp);
 
     if (v != FpEquality.null_) {
       result.add(FhirBoolean(v != FpEquality.true_));
@@ -4286,9 +4292,9 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(f);
-        final v = asBoolList(
+        final v = utilities.asBoolList(
           await execute(
-            context.changeThis(f, worker),
+            context.changeThis(f, fpContext.worker),
             pc,
             exp.parameters[0],
             true,
@@ -4341,10 +4347,10 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     if (focus.isEmpty) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
     if (focus.length == 1) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
 
     var distinct = true;
@@ -4359,7 +4365,7 @@ class FHIRPathEngine {
         }
       }
     }
-    return makeBoolean(distinct);
+    return utilities.makeBoolean(distinct);
   }
 
   List<FhirBase> funcDistinct(
@@ -4416,7 +4422,7 @@ class FHIRPathEngine {
           'Where function must have at least one parameter',
         );
       }
-      final v = asBoolList(
+      final v = utilities.asBoolList(
         await execute(
           changeThisExecutionContext(context, item),
           pc,
@@ -4447,7 +4453,7 @@ class FHIRPathEngine {
         ..add(item);
       result.addAll(
         await execute(
-          context.changeThis(item, worker)..index = i.toFhirInteger,
+          context.changeThis(item, fpContext.worker)..index = i.toFhirInteger,
           pc,
           exp.parameters[0],
           true,
@@ -4470,9 +4476,9 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final eq = asBoolList(
+        final eq = utilities.asBoolList(
           await execute(
-            context.changeThis(item, worker),
+            context.changeThis(item, fpContext.worker),
             pc,
             exp.parameters[0],
             true,
@@ -4488,7 +4494,7 @@ class FHIRPathEngine {
     } else {
       var all = true;
       for (final item in focus) {
-        final eq = asBool(item, true);
+        final eq = utilities.asBool(item, true);
         if (eq != FpEquality.true_) {
           all = false;
           break;
@@ -4520,7 +4526,7 @@ class FHIRPathEngine {
 
         try {
           final ex = await execute(
-            context.changeThis(item, worker),
+            context.changeThis(item, fpContext.worker),
             pc,
             exp.parameters.first,
             false,
@@ -4576,7 +4582,7 @@ class FHIRPathEngine {
 
     final pc = <FhirBase>[];
     for (final item in focus) {
-      final c = context.changeThis(item, worker)
+      final c = context.changeThis(item, fpContext.worker)
         ..total = total
         ..next();
       total = await execute(c, pc, exp.parameters[0], true);
@@ -4590,7 +4596,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) async {
     final result = <FhirBase>[];
-    final s = convertListToString(
+    final s = utilities.convertListToString(
       await execute(context, focus, exp.parameters[0], true),
     );
     if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
@@ -4618,7 +4624,7 @@ class FHIRPathEngine {
     //   throw PathEngineException('The type $tn is not valid');
     // }
 
-    // if (!doNotEnforceAsSingletonRule && focus.length > 1) {
+    // if (!fpContext.doNotEnforceAsSingletonRule && focus.length > 1) {
     //   throw PathEngineException(
     //     'Attempt to use as() on more than one item (${focus.length})',
     //   );
@@ -4644,7 +4650,7 @@ class FHIRPathEngine {
     //         }
     //         sd = sd.kind == StructureDefinitionKind.primitive_type
     //             ? null
-    //             : worker.fetchResource<StructureDefinition>(
+    //             : fpContext.worker.fetchResource<StructureDefinition>(
     //                 uri: sd.baseDefinition?.toString(),
     //                 canonicalForSource: sd,
     //               );
@@ -4685,7 +4691,7 @@ class FHIRPathEngine {
         if (b.fhirType == tnp) {
           result.add(b);
         } else {
-          var sd = await worker.fetchTypeDefinition(b.fhirType);
+          var sd = await fpContext.worker.fetchTypeDefinition(b.fhirType);
           while (sd != null) {
             if (tnp == sd.type.primitiveValue) {
               result.add(b);
@@ -4693,7 +4699,7 @@ class FHIRPathEngine {
             }
             sd = sd.kind == StructureDefinitionKind.primitiveType
                 ? null
-                : (await worker.fetchResource<StructureDefinition>(
+                : (await fpContext.worker.fetchResource<StructureDefinition>(
                     uri: sd.baseDefinition?.primitiveValue,
                     canonicalForSource: sd,
                   ))!;
@@ -4764,39 +4770,39 @@ class FHIRPathEngine {
 
     if (ns == 'System') {
       if (focus.first is Resource) {
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       }
 
       if (focus.first is! Element ||
           ((focus.first as Element).disallowExtensions ?? false)) {
         final t = focus.first.fhirType.capitalize();
         if (n == t) {
-          return makeBoolean(true);
+          return utilities.makeBoolean(true);
         }
         if (t == 'Date' && n == 'DateTime') {
-          return makeBoolean(true);
+          return utilities.makeBoolean(true);
         }
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       } else {
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       }
     } else if (ns == 'FHIR') {
       if (n == focus.first.fhirType) {
-        return makeBoolean(true);
+        return utilities.makeBoolean(true);
       } else {
         var sd = await _fetchTypeDefinition(focus.first.fhirType);
         while (sd != null) {
           if (n == sd.type.toString()) {
-            return makeBoolean(true);
+            return utilities.makeBoolean(true);
           }
-          sd = await worker.fetchResource<StructureDefinition>(
+          sd = await fpContext.worker.fetchResource<StructureDefinition>(
             uri: sd.baseDefinition?.toString(),
           );
         }
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       }
     } else {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
   }
 
@@ -4978,13 +4984,15 @@ class FHIRPathEngine {
     }
 
     final n1 = await execute(
-      focus.isEmpty ? context : context.changeThis(focus.first, worker),
+      focus.isEmpty
+          ? context
+          : context.changeThis(focus.first, fpContext.worker),
       focus,
       exp.parameters[0],
       true,
     );
 
-    final v = asBoolList(n1, exp);
+    final v = utilities.asBoolList(n1, exp);
     if (v == FpEquality.true_) {
       return execute(context, focus, exp.parameters[1], true);
     } else if (exp.parameters.length < 3) {
@@ -5001,9 +5009,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final s = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final s = utilities.convertToString(focus.first);
       if (s.isNotEmpty) {
         result.add(FhirString(s.toLowerCase()).noExtensions());
       }
@@ -5018,9 +5026,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final s = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final s = utilities.convertToString(focus.first);
       if (s.isNotEmpty) {
         result.add(FhirString(s.toUpperCase()).noExtensions());
       }
@@ -5035,9 +5043,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final s = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final s = utilities.convertToString(focus.first);
       for (final c in s.split('')) {
         result.add(FhirString(c).noExtensions());
       }
@@ -5052,13 +5060,13 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final swb = await execute(context, focus, exp.parameters[0], true);
-    final sw = convertListToString(swb);
+    final sw = utilities.convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
       result.add(FhirInteger(0).noExtensions());
-    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
-        doImplicitStringConversion) {
-      final s = convertToString(focus.first);
+    } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+        fpContext.doImplicitStringConversion) {
+      final s = utilities.convertToString(focus.first);
       result.add(FhirInteger(s.indexOf(sw)).noExtensions());
     }
     return result;
@@ -5085,9 +5093,9 @@ class FHIRPathEngine {
     }
 
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final sw = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final sw = utilities.convertToString(focus.first);
       if (i1 < 0 || i1 >= sw.length) {
         return [];
       }
@@ -5110,7 +5118,7 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final swb = await execute(context, focus, exp.parameters[0], true);
-    final sw = convertListToString(swb);
+    final sw = utilities.convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
@@ -5118,9 +5126,9 @@ class FHIRPathEngine {
 
     if (sw.isEmpty) {
       result.add(FhirBoolean(true).noExtensions());
-    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
-        doImplicitStringConversion) {
-      final s = convertToString(focus.first);
+    } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+        fpContext.doImplicitStringConversion) {
+      final s = utilities.convertToString(focus.first);
       result.add(FhirBoolean(s.startsWith(sw)).noExtensions());
     }
     return result;
@@ -5133,7 +5141,7 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final swb = await execute(context, focus, exp.parameters[0], true);
-    final sw = convertListToString(swb);
+    final sw = utilities.convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
@@ -5141,9 +5149,9 @@ class FHIRPathEngine {
 
     if (sw.isEmpty) {
       result.add(FhirBoolean(true).noExtensions());
-    } else if (focus.first.hasType(FHIR_TYPES_STRING) ||
-        doImplicitStringConversion) {
-      final s = convertToString(focus.first);
+    } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+        fpContext.doImplicitStringConversion) {
+      final s = utilities.convertToString(focus.first);
       result.add(FhirBoolean(s.endsWith(sw)).noExtensions());
     }
     return result;
@@ -5156,12 +5164,12 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final swb = await execute(context, focus, exp.parameters[0], true);
-    final sw = convertListToString(swb);
+    final sw = utilities.convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
       return result;
     } else if (focus.length == 1 && sw.isNotEmpty) {
-      final st = convertToString(focus.first);
+      final st = utilities.convertToString(focus.first);
       if (st.isEmpty) {
         result.add(FhirBoolean(false).noExtensions());
       } else {
@@ -5181,12 +5189,12 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) async {
     final result = <FhirBase>[];
-    final sw = convertListToString(
+    final sw = utilities.convertListToString(
       await execute(context, focus, exp.parameters[0], true),
     );
 
     if (focus.length == 1 && sw.isNotEmpty) {
-      final st = convertToString(focus.first);
+      final st = utilities.convertToString(focus.first);
       if (st.isEmpty) {
         result.add(FhirBoolean(false).noExtensions());
       } else {
@@ -5207,9 +5215,9 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final regexB = await execute(context, focus, exp.parameters[0], true);
-    final regex = convertListToString(regexB);
+    final regex = utilities.convertListToString(regexB);
     final replB = await execute(context, focus, exp.parameters[1], true);
-    final repl = convertListToString(replB);
+    final repl = utilities.convertListToString(replB);
 
     if (focus.isEmpty || regexB.isEmpty || replB.isEmpty) {
       return result;
@@ -5217,9 +5225,9 @@ class FHIRPathEngine {
 
     if (focus.length == 1 &&
         !Utilities.noString(regex) &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final s = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final s = utilities.convertToString(focus.first);
       result.add(
         FhirString(s.replaceAll(RegExp(regex), repl)).noExtensions(),
       );
@@ -5242,14 +5250,14 @@ class FHIRPathEngine {
       exp.parameters[0],
       true,
     );
-    final sw = convertListToString(swb);
+    final sw = utilities.convertListToString(swb);
 
     if (focus.length != 1 || swb.length != 1) {
       return result;
     } else if (sw.isEmpty) {
       result.add(FhirBoolean(true).noExtensions());
     } else if (focus.first is FhirString) {
-      final st = convertToString(focus.first);
+      final st = utilities.convertToString(focus.first);
       result.add(FhirBoolean(st.contains(sw)).noExtensions());
     }
     return result;
@@ -5262,18 +5270,18 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     final tB = await execute(context, focus, exp.parameters[0], true);
-    final t = convertListToString(tB);
+    final t = utilities.convertListToString(tB);
     final rB = await execute(context, focus, exp.parameters[1], true);
-    final r = convertListToString(rB);
+    final r = utilities.convertListToString(rB);
 
     if (focus.isEmpty || tB.isEmpty || rB.isEmpty) {
       return result;
     }
 
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final f = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final f = utilities.convertToString(focus.first);
       if (f.isEmpty) {
         result.add(FhirString('').noExtensions());
       } else {
@@ -5296,9 +5304,9 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     if (focus.length == 1 &&
-        (focus.first.hasType(FHIR_TYPES_STRING) ||
-            doImplicitStringConversion)) {
-      final s = convertToString(focus.first);
+        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+            fpContext.doImplicitStringConversion)) {
+      final s = utilities.convertToString(focus.first);
       result.add(FhirInteger(s.length).noExtensions());
     }
     return result;
@@ -5354,9 +5362,9 @@ class FHIRPathEngine {
     if (url == null) {
       return [];
     }
-    final vs = hostServices != null
-        ? hostServices!.resolveValueSet(this, context.appInfo, url)
-        : await worker.fetchResource<ValueSet>(uri: url);
+    final vs = fpContext.hostServices != null
+        ? fpContext.hostServices!.resolveValueSet(this, context.appInfo, url)
+        : await fpContext.worker.fetchResource<ValueSet>(uri: url);
 
     if (vs == null) {
       return [];
@@ -5364,30 +5372,30 @@ class FHIRPathEngine {
 
     final l = focus.first;
     if (['code', 'string', 'uri'].contains(l.fhirType)) {
-      final result = await worker.validateCodeWithCoding(
-        terminologyServiceOptions,
+      final result = await fpContext.worker.validateCodeWithCoding(
+        fpContext.terminologyServiceOptions,
         TypeConvertor.castToCoding(l)!,
         vs,
       );
-      return makeBoolean(
+      return utilities.makeBoolean(
         result.isOk,
       );
     } else if (l.fhirType == 'Coding') {
-      final result = await worker.validateCodeWithCoding(
-        terminologyServiceOptions,
+      final result = await fpContext.worker.validateCodeWithCoding(
+        fpContext.terminologyServiceOptions,
         TypeConvertor.castToCoding(l)!,
         vs,
       );
-      return makeBoolean(
+      return utilities.makeBoolean(
         result.isOk,
       );
     } else if (l.fhirType == 'CodeableConcept') {
-      final result = await worker.validateCodeWithCodeableConcept(
-        terminologyServiceOptions,
+      final result = await fpContext.worker.validateCodeWithCodeableConcept(
+        fpContext.terminologyServiceOptions,
         TypeConvertor.castToCodeableConcept(l)!,
         vs,
       );
-      return makeBoolean(result.isOk);
+      return utilities.makeBoolean(result.isOk);
     }
     return [];
   }
@@ -5420,7 +5428,7 @@ class FHIRPathEngine {
         ? execute(context, focus, exp.parameters[1], true)
         : focus;
 
-    context.setDefinedVariable(name, value, worker);
+    context.setDefinedVariable(name, value, fpContext.worker);
     return focus;
   }
 
@@ -5431,7 +5439,7 @@ class FHIRPathEngine {
   ) async {
     final n1 = await execute(context, focus, expr.parameters[0], true);
 
-    if (!convertToBoolean(n1)) {
+    if (!utilities.convertToBoolean(n1)) {
       final n2 = await execute(context, focus, expr.parameters[1], true);
       final name = n2.first.primitiveValue.toString();
       throw FhirPathException('Check failed for $name');
@@ -5486,7 +5494,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final res = await execute(context, pc, exp.parameters.first, true);
-        final v = asBoolList(res, exp);
+        final v = utilities.asBoolList(res, exp);
         if (v != FpEquality.false_) {
           // Assuming FpEquality.falseValue corresponds to `FpEquality.False`
           all = false;
@@ -5497,14 +5505,14 @@ class FHIRPathEngine {
     } else {
       var all = true;
       for (final item in focus) {
-        if (!canConvertToBoolean(item)) {
+        if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
             message:
-                "Unable to convert '${convertToString(item)}' to a boolean",
+                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
           );
         }
 
-        final v = asBool(item, true);
+        final v = utilities.asBool(item, true);
         if (v != FpEquality.false_) {
           all = false;
           break;
@@ -5529,7 +5537,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final res = await execute(context, pc, exp.parameters.first, true);
-        final v = asBoolList(res, exp);
+        final v = utilities.asBoolList(res, exp);
         if (v == FpEquality.false_) {
           any = true;
           break;
@@ -5539,14 +5547,14 @@ class FHIRPathEngine {
     } else {
       var any = false;
       for (final item in focus) {
-        if (!canConvertToBoolean(item)) {
+        if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
             message:
-                "Unable to convert '${convertToString(item)}' to a boolean",
+                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
           );
         }
 
-        final v = asBool(item, true);
+        final v = utilities.asBool(item, true);
         if (v == FpEquality.false_) {
           any = true;
           break;
@@ -5573,7 +5581,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final res = await execute(context, pc, exp.parameters[0], true);
-        final v = asBoolList(res, exp);
+        final v = utilities.asBoolList(res, exp);
         if (v == FpEquality.true_) {
           any = true;
           break;
@@ -5583,13 +5591,13 @@ class FHIRPathEngine {
     } else {
       var any = false;
       for (final item in focus) {
-        if (!canConvertToBoolean(item)) {
+        if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
             message:
-                "Unable to convert '${convertToString(item)}' to a boolean",
+                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
           );
         }
-        final v = asBool(item, true);
+        final v = utilities.asBool(item, true);
         if (v == FpEquality.true_) {
           any = true;
           break;
@@ -5616,7 +5624,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final res = await execute(context, pc, exp.parameters[0], true);
-        final v = asBoolList(res, exp);
+        final v = utilities.asBoolList(res, exp);
         if (v == FpEquality.true_) {
           any = true;
           break;
@@ -5626,13 +5634,13 @@ class FHIRPathEngine {
     } else {
       var any = false;
       for (final item in focus) {
-        if (!canConvertToBoolean(item)) {
+        if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
             message:
-                "Unable to convert '${convertToString(item)}' to a boolean",
+                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
           );
         }
-        final v = asBool(item, true);
+        final v = utilities.asBool(item, true);
         if (v == FpEquality.true_) {
           any = true;
           break;
@@ -5652,7 +5660,7 @@ class FHIRPathEngine {
     FhirBase? refContext;
 
     for (final item in focus) {
-      String? s = convertToString(item);
+      String? s = utilities.convertToString(item);
       if (item.fhirType == 'Reference') {
         refContext = item;
         final property = item.getChildByName('reference');
@@ -5692,9 +5700,9 @@ class FHIRPathEngine {
               }
             }
           }
-        } else if (hostServices != null && refContext != null) {
+        } else if (fpContext.hostServices != null && refContext != null) {
           try {
-            res = hostServices?.resolveReference(
+            res = fpContext.hostServices?.resolveReference(
               this,
               context.appInfo ?? '',
               s,
@@ -5738,7 +5746,7 @@ class FHIRPathEngine {
       for (final ex in ext) {
         final vl = <FhirBase>[];
         getChildrenByName(ex, 'url', vl);
-        if (convertListToString(vl) == url) {
+        if (utilities.convertListToString(vl) == url) {
           result.add(ex);
         }
       }
@@ -5753,7 +5761,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) {
     if (focus.length == 1) {
-      final s = convertToString(focus.first);
+      final s = utilities.convertToString(focus.first);
       return [FhirBoolean(!Utilities.noString(s))];
     } else {
       return [FhirBoolean(false)];
@@ -5957,12 +5965,12 @@ class FHIRPathEngine {
     ExpressionNode exp,
   ) async {
     if (focus.length != 1 || focus.first.fhirType != 'Quantity') {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
 
     final nl = await execute(context, focus, exp.parameters[0], true);
     if (nl.length != 1 || nl.first.fhirType != 'Quantity') {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
 
     final s1 = getNamedValue(focus.first, 'system');
@@ -5971,22 +5979,23 @@ class FHIRPathEngine {
     final u2 = getNamedValue(nl.first, 'code');
 
     if (s1 == null || s2 == null || s1 != s2) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
     if (u1 == null || u2 == null) {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
     if (u1 == u2) {
-      return makeBoolean(true);
+      return utilities.makeBoolean(true);
     }
     if (s1 == 'http://unitsofmeasure.org') {
       try {
-        return makeBoolean(worker.ucumService.isComparable(u1, u2));
+        return utilities
+            .makeBoolean(fpContext.worker.ucumService.isComparable(u1, u2));
       } catch (e) {
-        return makeBoolean(false);
+        return utilities.makeBoolean(false);
       }
     } else {
-      return makeBoolean(false);
+      return utilities.makeBoolean(false);
     }
   }
 
@@ -5995,7 +6004,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    final s = convertListToString(focus);
+    final s = utilities.convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isInteger(s)) {
       result.add(FhirInteger(int.parse(s)).noExtensions());
@@ -6014,7 +6023,7 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     for (final item in focus) {
-      final value = convertToString(item);
+      final value = utilities.convertToString(item);
       result.add(FhirString(value).noExtensions());
     }
 
@@ -6264,7 +6273,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    final s = convertListToString(focus);
+    final s = utilities.convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isDecimal(s)) {
       result
@@ -6365,7 +6374,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) async {
-    if (hostServices == null) {
+    if (fpContext.hostServices == null) {
       throw makeException(expr, 'FHIRPATH_HO_HOST_SERVICES', [
         'conformsTo',
       ]);
@@ -6374,12 +6383,12 @@ class FHIRPathEngine {
     if (focus.length != 1) {
       result.add(FhirBoolean(false).noExtensions());
     } else {
-      final url = convertListToString(
+      final url = utilities.convertListToString(
         await execute(context, focus, expr.parameters.first, true),
       );
       result.add(
         FhirBoolean(
-          hostServices!.conformsToProfile(
+          fpContext.hostServices!.conformsToProfile(
             this,
             context.appInfo ?? '',
             focus.first,
@@ -7182,155 +7191,6 @@ class FHIRPathEngine {
   /// UTILITIES
   /// ***************************************
   ///
-  List<FhirBase> makeBoolean(bool value) {
-    return <FhirBase>[FhirBoolean(value).noExtensions()];
-  }
-
-  bool isBoolean(List<FhirBase> list, bool value) {
-    return list.length == 1 &&
-        list.first is FhirBoolean &&
-        (list.first as FhirBoolean).valueBoolean == value;
-  }
-
-  FpEquality asBool(FhirBase item, [bool narrow = false]) {
-    if (item is FhirBoolean && item.valueBoolean != null) {
-      return item.valueBoolean! ? FpEquality.true_ : FpEquality.false_;
-    }
-
-    if (!narrow) {
-      if ((item is FhirInteger ||
-              item is FhirPositiveInt ||
-              item is FhirUnsignedInt) &&
-          (item as FhirNumber).valueString != null) {
-        return asBoolFromInt(item.valueString!);
-      } else if (item is FhirDecimal && item.valueString != null) {
-        return asBoolFromDec(item.valueString!);
-      } else if (item is FhirString) {
-        final lowerValue = (item.valueString ?? '').toLowerCase();
-        if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
-          return FpEquality.true_;
-        } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
-          return FpEquality.false_;
-        }
-      }
-    }
-    return FpEquality.null_;
-  }
-
-  FpEquality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
-    if (items.isEmpty) return FpEquality.null_;
-
-    if (items.length == 1) {
-      if (items.first is FhirBoolean) {
-        return asBool(items.first, true);
-      }
-      return FpEquality.true_;
-    }
-
-    throw makeException(
-      expr,
-      'FHIRPATH_UNABLE_BOOLEAN',
-      items.map((e) => e.toString()).toList(),
-    );
-  }
-
-  FpEquality asBoolFromInt(String value) {
-    final parsedValue = int.tryParse(value);
-
-    if (parsedValue == null) return FpEquality.null_;
-    if (parsedValue == 0) return FpEquality.false_;
-    if (parsedValue == 1) return FpEquality.true_;
-    return FpEquality.null_;
-  }
-
-  FpEquality asBoolFromDec(String value) {
-    try {
-      final parsedValue = BigInt.parse(value);
-      if (parsedValue == BigInt.zero) return FpEquality.false_;
-      if (parsedValue == BigInt.one) return FpEquality.true_;
-      return FpEquality.null_;
-    } catch (e) {
-      return FpEquality.null_;
-    }
-  }
-
-  bool canConvertToBoolean(FhirBase item) {
-    if (item is FhirBoolean) return true;
-
-    if (item is PrimitiveType) {
-      final value = item.toString().toLowerCase();
-      return [
-        'true',
-        't',
-        'yes',
-        'y',
-        '1',
-        '1.0',
-        'false',
-        'f',
-        'no',
-        'n',
-        '0',
-        '0.0',
-      ].contains(value);
-    }
-
-    return false;
-  }
-
-  bool convertToBoolean(List<FhirBase>? items) {
-    if (items == null || items.isEmpty) return false;
-
-    if (items.length == 1) {
-      final first = items.first;
-      if (first is FhirBoolean) {
-        return first.valueBoolean ?? false;
-      }
-
-      final lowerValue = first.toString().toLowerCase();
-      if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
-        return true;
-      } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
-        return false;
-      }
-    }
-
-    return items.isNotEmpty;
-  }
-
-  FpEquality asBoolList(List<FhirBase> items, ExpressionNode expr) {
-    if (items.isEmpty) {
-      return FpEquality.null_;
-    } else if (items.length == 1) {
-      final eqBool = asBool(items.first);
-      return eqBool == FpEquality.null_ ? FpEquality.true_ : eqBool;
-    } else {
-      throw makeException(
-        expr,
-        'FHIRPATH_UNABLE_BOOLEAN',
-        [convertListToString(items)],
-      );
-    }
-  }
-
-  FpEquality boolToTriState(bool b) {
-    return b ? FpEquality.true_ : FpEquality.false_;
-  }
-
-  void addTypeAndDescendents(
-    List<StructureDefinition> sdl,
-    StructureDefinition dt,
-    List<StructureDefinition> types,
-  ) {
-    sdl.add(dt);
-    for (final sd in types) {
-      if (sd.baseDefinition != null &&
-          sd.baseDefinition.toString() == dt.url.toString() &&
-          sd.derivation == TypeDerivationRule.specialization) {
-        addTypeAndDescendents(sdl, sd, types);
-      }
-    }
-  }
 
   List<FhirBase> resolveConstantWithBase(
     ExecutionContext context,
@@ -7424,10 +7284,10 @@ class FHIRPathEngine {
               'http://hl7.org/fhir/StructureDefinition/${s.substring(6, s.length - 1)}',
             )..noExtensions(),
           ];
-        } else if (hostServices == null) {
+        } else if (fpContext.hostServices == null) {
           throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', [s]);
         } else {
-          return hostServices!.resolveConstant(
+          return fpContext.hostServices!.resolveConstant(
             this,
             context.appInfo,
             s.substring(1),
@@ -7597,7 +7457,7 @@ class FHIRPathEngine {
         value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? ucum ?? '1',
       );
-      return worker.ucumService.getCanonicalForm(p);
+      return fpContext.worker.ucumService.getCanonicalForm(p);
     } catch (e) {
       return null;
     }
@@ -7612,7 +7472,7 @@ class FHIRPathEngine {
         value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? '1',
       );
-      final canonicalPair = worker.ucumService.getCanonicalForm(pair);
+      final canonicalPair = fpContext.worker.ucumService.getCanonicalForm(pair);
       return FhirDecimal(canonicalPair.value.asDouble);
     } catch (e) {
       return null;
@@ -7676,60 +7536,6 @@ class FHIRPathEngine {
     return doEquivalent(left.value!, right.value!);
   }
 
-  String convertListToString(List<FhirBase> items) {
-    final b = StringBuffer();
-    var first = true;
-    for (final item in items) {
-      if (first) {
-        first = false;
-      } else {
-        b.write(',');
-      }
-
-      b.write(convertToString(item));
-    }
-    return b.toString();
-  }
-
-  String convertToString(FhirBase item) {
-    if (item is PrimitiveType) {
-      return item.valueString ?? '';
-    } else if (item is Quantity) {
-      final q = item.copyWith();
-      if (q.unit != null &&
-          [
-            'year',
-            'years',
-            'month',
-            'months',
-            'week',
-            'weeks',
-            'day',
-            'days',
-            'hour',
-            'hours',
-            'minute',
-            'minutes',
-            'second',
-            'seconds',
-            'millisecond',
-            'milliseconds',
-          ].contains(q.unit?.valueString) &&
-          (q.system == null ||
-              q.system.toString() == 'http://unitsofmeasure.org')) {
-        return '${q.value} ${q.unit}';
-      }
-      if (q.system.toString() == 'http://unitsofmeasure.org') {
-        final u = "'${q.code}'";
-        return '${q.value} $u';
-      } else {
-        return item.toString();
-      }
-    } else {
-      return item.toString();
-    }
-  }
-
   List<FhirBase> makeNull() => <FhirBase>[];
 
   bool? doEquivalent(FhirBase left, FhirBase right) {
@@ -7755,11 +7561,11 @@ class FHIRPathEngine {
     if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return left.isEquivalent(right);
     }
-    if (FHIR_TYPES_STRING.contains(left.fhirType) &&
-        FHIR_TYPES_STRING.contains(right.fhirType)) {
+    if (fpContext.FHIR_TYPES_STRING.contains(left.fhirType) &&
+        fpContext.FHIR_TYPES_STRING.contains(right.fhirType)) {
       return equivalentString(
-        convertToString(left),
-        convertToString(right),
+        utilities.convertToString(left),
+        utilities.convertToString(right),
       );
     }
     if (left is PrimitiveType && right is PrimitiveType) {
@@ -7997,7 +7803,7 @@ class FHIRPathEngine {
   }
 
   bool compareTypeNames(String left, String right) {
-    if (doNotEnforceAsCaseSensitive) {
+    if (fpContext.doNotEnforceAsCaseSensitive) {
       return left.equalsIgnoreCase(right);
     } else {
       return left == right;
@@ -8018,7 +7824,8 @@ class FHIRPathEngine {
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
       for (final s in context.definedVariables?.keys ?? <String>[]) {
-        newContext.setDefinedVariable(s, context.definedVariables![s], worker);
+        newContext.setDefinedVariable(
+            s, context.definedVariables![s], fpContext.worker);
       }
     }
     return newContext;
@@ -8048,7 +7855,8 @@ class FHIRPathEngine {
   }
 
   void writeToLog(String name, List<FhirBase> contents) {
-    if (hostServices == null || !hostServices!.fpLog(name, contents)) {
+    if (fpContext.hostServices == null ||
+        !fpContext.hostServices!.fpLog(name, contents)) {
       if (fpLog.length > 0) {
         fpLog.write('; ');
       }
@@ -8062,14 +7870,14 @@ class FHIRPathEngine {
         } else {
           fpLog.write(',');
         }
-        fpLog.write(convertToString(b));
+        fpLog.write(utilities.convertToString(b));
       }
     }
   }
 
   String forLog() {
     if (fpLog.length > 0) {
-      return ' ($fpLog)';
+      return ' (${fpLog})';
     } else {
       return '';
     }

@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names, lines_longer_than_80_chars
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'type_details.dart';
-class ProfiledType {
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
+class ProfiledType {
   ProfiledType(String n) : uri = ns(n);
 
   final String uri;

@@ -6,7 +6,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 // Re-export all ValueSet-related classes from the valuesets directory
-export '../valuesets/valuesets.dart';
+export '../valuesets.dart';
 
 // TerminologyClient and BaseWorkerContext remain here as they are
 // infrastructure classes that extend/implement core functionality
