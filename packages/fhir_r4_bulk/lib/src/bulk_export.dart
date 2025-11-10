@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_bulk/fhir_r4_bulk.dart';
@@ -64,6 +65,9 @@ abstract class BulkRequest {
   /// Triggers the Bulk Export. Returns a list of **FHIR Resources** if
   /// successful, or a list containing one or more OperationOutcome(s) if
   /// there was an error.
+  ///
+  /// Throws [TimeoutException] if polling exceeds the default timeout
+  /// (1 hour) or max attempts (1000).
   Future<List<Resource?>> request() async {
     // Merge in the user’s custom headers
     final requestHeaders = <String, String>{
@@ -75,11 +79,12 @@ abstract class BulkRequest {
     }
 
     final httpClient = client ?? Client();
-
-    // If "useHttpPost" is true, we do a POST with `Parameters`.
-    // Otherwise, we do the older GET-based approach.
-    late Response initialResponse;
+    final shouldCloseClient = client == null;
     try {
+      // If "useHttpPost" is true, we do a POST with `Parameters`.
+      // Otherwise, we do the older GET-based approach.
+      late Response initialResponse;
+      try {
       if (useHttpPost) {
         initialResponse =
             await _initiateExportViaPost(httpClient, requestHeaders);
@@ -87,58 +92,63 @@ abstract class BulkRequest {
         initialResponse =
             await _initiateExportViaGet(httpClient, requestHeaders);
       }
-    } catch (e) {
+      } catch (e) {
       return _operationOutcome(
         'Failed to initiate bulk export request',
         diagnostics: e.toString(),
       );
-    }
+      }
 
-    // Check for immediate error
-    if (_errorCodes.containsKey(initialResponse.statusCode)) {
+      // Check for immediate error
+      if (_errorCodes.containsKey(initialResponse.statusCode)) {
       return _failedHttp(initialResponse.statusCode, initialResponse);
-    }
+      }
 
-    // Typically, we expect a 202 + Content-Location for async. Some servers
-    // might return 200 if the data is small/instant.
-    if (initialResponse.statusCode != 202 &&
+      // Typically, we expect a 202 + Content-Location for async. Some servers
+      // might return 200 if the data is small/instant.
+      if (initialResponse.statusCode != 202 &&
         initialResponse.statusCode != 200) {
       return _operationOutcome(
         'Unexpected HTTP ${initialResponse.statusCode} from server',
         diagnostics: initialResponse.body,
       );
-    }
+      }
 
-    if (initialResponse.statusCode == 200) {
+      if (initialResponse.statusCode == 200) {
       // Possibly an immediate final result
       return _parseFinalResponse(initialResponse);
-    }
+      }
 
-    // Otherwise, 202 -> we must poll
-    final pollUrl = initialResponse.headers['content-location'];
-    if (pollUrl == null) {
+      // Otherwise, 202 -> we must poll
+      final pollUrl = initialResponse.headers['content-location'];
+      if (pollUrl == null) {
       return _operationOutcome(
         'Server returned 202 Accepted but no Content-Location header to poll.',
       );
-    }
+      }
 
-    late Response pollResponse;
-    try {
+      late Response pollResponse;
+      try {
       pollResponse =
           await _pollForCompletion(httpClient, pollUrl, requestHeaders);
-    } catch (e) {
+      } catch (e) {
       return _operationOutcome(
         'Failed while polling bulk export status',
         diagnostics: e.toString(),
       );
-    }
+      }
 
-    if (pollResponse.statusCode ~/ 100 != 2) {
+      if (pollResponse.statusCode ~/ 100 != 2) {
       // 4xx or 5xx
       return _failedHttp(pollResponse.statusCode, pollResponse);
-    }
+      }
 
-    return _parseFinalResponse(pollResponse);
+      return _parseFinalResponse(pollResponse);
+    } finally {
+      if (shouldCloseClient) {
+        httpClient.close();
+      }
+    }
   }
 
   /// Build the GET URL if useHttpPost=false
@@ -265,12 +275,29 @@ abstract class BulkRequest {
   }
 
   /// Poll until 200 or error
+  ///
+  /// Throws [TimeoutException] if polling exceeds [timeout] duration
+  /// or [maxAttempts] number of attempts.
   Future<Response> _pollForCompletion(
     Client httpClient,
     String pollUrl,
-    Map<String, String> headers,
-  ) async {
-    while (true) {
+    Map<String, String> headers, {
+    Duration? timeout,
+    int? maxAttempts,
+  }) async {
+    final startTime = DateTime.now();
+    final timeoutDuration = timeout ?? const Duration(hours: 1);
+    int attempts = 0;
+    final max = maxAttempts ?? 1000;
+
+    while (attempts < max) {
+      if (DateTime.now().difference(startTime) > timeoutDuration) {
+        throw TimeoutException(
+          'Bulk export polling exceeded timeout of ${timeoutDuration.inHours} hours',
+          timeoutDuration,
+        );
+      }
+
       final resp = await httpClient.get(Uri.parse(pollUrl), headers: headers);
       if (resp.statusCode ~/ 100 == 2 && resp.statusCode != 202) {
         // 200 or 2xx => done
@@ -286,7 +313,12 @@ abstract class BulkRequest {
       final retryAfterStr = resp.headers['retry-after'] ?? '5';
       final retrySeconds = int.tryParse(retryAfterStr) ?? 5;
       await Future<void>.delayed(Duration(seconds: retrySeconds));
+      attempts++;
     }
+
+    throw TimeoutException(
+      'Bulk export polling exceeded max attempts of $max',
+    );
   }
 
   /// Parse the final 200 response for "output" array, fetch NDJSON
@@ -325,8 +357,8 @@ abstract class BulkRequest {
         continue;
       }
       final url = item['url'];
-      if (url == null) {
-        results.addAll(_operationOutcome('Missing "url" in output array.'));
+      if (url == null || url.toString().isEmpty) {
+        results.addAll(_operationOutcome('Missing or empty "url" in output array.'));
         continue;
       }
       final uri = Uri.tryParse(url.toString());
@@ -356,18 +388,23 @@ abstract class BulkRequest {
       final contentType =
           fileResponse.headers['content-type']?.toLowerCase() ?? '';
       List<Resource> fileResources;
-      if (contentType.contains('zip')) {
+      final normalizedType = contentType;
+      if (normalizedType.contains('zip') || 
+          normalizedType.contains('application/zip') ||
+          normalizedType.contains('application/x-zip-compressed')) {
         fileResources = await FhirBulk.fromCompressedData(
           'application/zip',
           fileResponse.bodyBytes,
         );
-      } else if (contentType.contains('gzip') ||
-          contentType.contains('x-gzip')) {
+      } else if (normalizedType.contains('gzip') ||
+          normalizedType.contains('x-gzip') ||
+          normalizedType.contains('application/gzip')) {
         fileResources = await FhirBulk.fromCompressedData(
           'application/gzip',
           fileResponse.bodyBytes,
         );
-      } else if (contentType.contains('tar')) {
+      } else if (normalizedType.contains('tar') ||
+          normalizedType.contains('application/x-tar')) {
         fileResources = await FhirBulk.fromCompressedData(
           'application/x-tar',
           fileResponse.bodyBytes,

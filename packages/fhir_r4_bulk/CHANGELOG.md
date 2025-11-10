@@ -3,6 +3,13 @@
 ## [0.4.1]
 
 * Updated dependencies
+* Fixed toNdJson() trailing newline bug
+* Added error handling to fromNdJson()
+* Added polling timeout and max attempts
+* Added input validation to BulkImportRequest
+* Fixed HTTP client cleanup
+* Fixed content-type header handling
+* Improved null safety checks
 
 ## [0.4.0]
 

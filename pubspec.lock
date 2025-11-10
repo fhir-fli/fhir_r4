@@ -95,7 +95,7 @@ packages:
       path: "packages/fhir_r4"
       relative: true
     source: path
-    version: "0.4.4"
+    version: "0.4.3"
   fhir_r4_at_rest:
     dependency: "direct overridden"
     description:

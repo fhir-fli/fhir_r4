@@ -10,29 +10,38 @@ import 'package:universal_io/io.dart';
 /// and handling compressed NDJSON files.
 abstract class FhirBulk {
   /// Accepts a list of resources and returns them as a single NDJSON string.
+  ///
+  /// Returns an empty string if [resources] is empty.
   static String toNdJson(List<Resource> resources) {
     final buffer = StringBuffer();
     for (final resource in resources) {
       buffer.writeln(jsonEncode(resource.toJson()));
     }
-    if (buffer.isNotEmpty) {
-      // Remove the trailing newline
-      return buffer.toString().substring(0, buffer.length - 1);
-    }
-    return '';
+    final result = buffer.toString();
+    // Remove trailing newline if present
+    return result.endsWith('\n') ? result.substring(0, result.length - 1) : result;
   }
 
   /// Accepts an NDJSON-formatted string and converts it into a list of
   /// resources.
+  ///
+  /// Throws [FormatException] if any line contains invalid JSON or
+  /// cannot be parsed as a FHIR Resource.
   static List<Resource> fromNdJson(String content) {
     final lines = content.split('\n');
     final resources = <Resource>[];
     for (final line in lines) {
       final trimmed = line.trim();
       if (trimmed.isNotEmpty) {
-        resources.add(
-          Resource.fromJson(jsonDecode(trimmed) as Map<String, dynamic>),
-        );
+        try {
+          final decoded = jsonDecode(trimmed) as Map<String, dynamic>;
+          resources.add(Resource.fromJson(decoded));
+        } catch (e) {
+          throw FormatException(
+            'Failed to parse NDJSON line: $trimmed',
+            e,
+          );
+        }
       }
     }
     return resources;
@@ -40,6 +49,9 @@ abstract class FhirBulk {
 
   /// Reads a file from [path] (which must be NDJSON) and decodes it into
   /// resources.
+  ///
+  /// Throws [FormatException] if the file contains invalid NDJSON.
+  /// Throws [FileSystemException] if the file cannot be read.
   static Future<List<Resource>> fromFile(String path) async {
     final file = await File(path).readAsString();
     return fromNdJson(file);
