@@ -58,15 +58,15 @@ class DefinitionResolver {
 
     final structure = map?.structure?.firstWhereOrNull(
           (s) =>
-              s.url.toString() == type ||
+              s.url.valueString == type ||
               s.alias?.valueString?.toLowerCase() == type.toLowerCase(),
         ) ??
         map?.structure?.firstWhereOrNull(
           (s) =>
-              s.url.toString().toLowerCase().endsWith('/${type.toLowerCase()}'),
+              s.url.valueString?.toLowerCase().endsWith('/${type.toLowerCase()}') ?? false,
         );
 
-    final resolved = await resolve(structure?.url.toString() ?? type);
+    final resolved = await resolve(structure?.url.valueString ?? type);
     if (resolved != null) {
       await _worker.resourceCache.saveCanonicalResource(resolved);
     }
@@ -213,13 +213,13 @@ class DefinitionResolver {
   Future<String?> _resolveType(StructureMap map, String? type) async {
     for (final structure in map.structure ?? <StructureMapStructure>[]) {
       if (structure.alias != null && structure.alias?.valueString == type) {
-        return (await resolve(structure.url.toString()))?.type.toString() ??
+        return (await resolve(structure.url.toString()))?.type.valueString ?? '' ??
             type;
       }
     }
     if ((type?.startsWith('http://') ?? false) ||
         (type?.startsWith('https://') ?? false)) {
-      return (await resolve(type!))?.type.toString() ?? type;
+      return (await resolve(type!))?.type.valueString ?? type;
     }
     return type;
   }
@@ -300,7 +300,7 @@ class StructureMapService {
   /// Retrieves a [StructureMap] by its canonical URL.
   StructureMapBuilder? getTransform(String canonicalUrl) {
     return _structureMaps
-        .firstWhereOrNull((map) => map.url.toString() == canonicalUrl)
+        .firstWhereOrNull((map) => map.url?.valueString == canonicalUrl)
         ?.toBuilder as StructureMapBuilder?;
   }
 
@@ -309,7 +309,7 @@ class StructureMapService {
   List<StructureMapBuilder> listTransforms(String canonicalUrlTemplate) {
     final pattern = RegExp('^${canonicalUrlTemplate.replaceAll('*', '.*')}\$');
     return _structureMaps
-        .where((map) => pattern.hasMatch(map.url.toString()))
+        .where((map) => pattern.hasMatch(map.url?.valueString ?? ''))
         .map((e) => e.toBuilder)
         .toList() as List<StructureMapBuilder>;
   }
