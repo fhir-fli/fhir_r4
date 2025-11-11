@@ -3,13 +3,10 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
-import 'package:fhir_r4_path/src/engine/fhir_path_engine.dart';
-
 /// Internal operations class for FHIRPath engine.
 ///
 /// Handles all FHIRPath operations (+, -, *, /, ==, !=, <, >, etc.)
 class FhirPathOperations {
-
   FhirPathOperations(this.context, this.utilities, this.engine);
 
   final FhirPathContext context;
@@ -547,7 +544,8 @@ class FhirPathOperations {
     var ans = false;
     final url = right.first.primitiveValue.toString();
     final vs = context.hostServices != null
-        ? context.hostServices!.resolveValueSet(engine, execContext.appInfo, url)
+        ? context.hostServices!
+            .resolveValueSet(engine, execContext.appInfo, url)
         : await context.worker.fetchResource<ValueSet>(uri: url);
 
     if (vs != null) {
