@@ -2121,29 +2121,6 @@ class FHIRPathEngine {
     }
   }
 
-  FHIRException makeExceptionPlural(
-    int num,
-    ExpressionNode? holder,
-    String constName,
-    List<Object> args,
-  ) {
-    var fmt = fpContext.worker.formatMessagePlural(num, constName, args);
-    if (fpContext.location != null) {
-      fmt = '$fmt ${fpContext.worker.formatMessage('FHIRPATH_LOCATION', [
-            fpContext.location
-          ])}';
-    }
-    if (holder != null) {
-      return PathEngineException(
-        fmt,
-        location: holder.start,
-        expression: holder.toString(),
-      );
-    } else {
-      return PathEngineException(fmt);
-    }
-  }
-
   ///
   /// ***************************************
   /// PROCESSING CONSTANTS
@@ -2900,7 +2877,7 @@ class FHIRPathEngine {
     var nil = false;
 
     for (var i = 0; i < left.length; i++) {
-      final eq = doEquals(left[i], right[i]);
+      final eq = utilities.doEquals(left[i], right[i]);
 
       if (eq == null) {
         nil = true;
@@ -2933,7 +2910,7 @@ class FHIRPathEngine {
     for (var i = 0; i < left.length; i++) {
       var found = false;
       for (var j = 0; j < right.length; j++) {
-        if (doEquivalent(left[i], right[j]) ?? false) {
+        if (utilities.doEquivalent(left[i], right[j]) ?? false) {
           found = true;
           break;
         }
@@ -2963,7 +2940,7 @@ class FHIRPathEngine {
     var res = true;
     var nil = false;
     for (var i = 0; i < left.length; i++) {
-      final eq = doEquals(left[i], right[i]);
+      final eq = utilities.doEquals(left[i], right[i]);
       if (eq == null) {
         nil = true;
       } else if (eq) {
@@ -2995,7 +2972,7 @@ class FHIRPathEngine {
     for (var i = 0; i < left.length; i++) {
       var found = false;
       for (var j = 0; j < right.length; j++) {
-        if (doEquivalent(left[i], right[j]) ?? false) {
+        if (utilities.doEquivalent(left[i], right[j]) ?? false) {
           found = true;
           break;
         }
@@ -3062,8 +3039,8 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
           final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
           final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
           return opLessThan(dl, dr, expr);
@@ -3127,8 +3104,8 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
           final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
           final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
           return opGreater(dl, dr, expr);
@@ -3191,8 +3168,8 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
           final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
           final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
           return opLessOrEqual(dl, dr, expr);
@@ -3255,8 +3232,8 @@ class FHIRPathEngine {
             expr,
           );
         } else {
-          final lQuantity = qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = qtyToCanonicalDecimal(r as Quantity);
+          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
           final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
           final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
           return opGreaterOrEqual(dl, dr, expr);
@@ -3273,12 +3250,12 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     for (final item in left) {
-      if (!doContains(result, item)) {
+      if (!utilities.doContains(result, item)) {
         result.add(item);
       }
     }
     for (final item in right) {
-      if (!doContains(result, item)) {
+      if (!utilities.doContains(result, item)) {
         result.add(item);
       }
     }
@@ -3301,7 +3278,7 @@ class FHIRPathEngine {
     for (final l in left) {
       var found = false;
       for (final r in right) {
-        final eq = doEquals(l, r);
+        final eq = utilities.doEquals(l, r);
         if (eq ?? false) {
           found = true;
           break;
@@ -3377,7 +3354,7 @@ class FHIRPathEngine {
     for (final r in right) {
       var found = false;
       for (final l in left) {
-        final eq = doEquals(l, r);
+        final eq = utilities.doEquals(l, r);
         if (eq ?? false) {
           found = true;
           break;
@@ -3402,13 +3379,15 @@ class FHIRPathEngine {
       case FpEquality.true_:
         return utilities.makeBoolean(true);
       case FpEquality.null_:
-        return r == FpEquality.true_ ? utilities.makeBoolean(true) : makeNull();
+        return r == FpEquality.true_
+            ? utilities.makeBoolean(true)
+            : utilities.makeNull();
       case FpEquality.false_:
         switch (r) {
           case FpEquality.false_:
             return utilities.makeBoolean(false);
           case FpEquality.null_:
-            return makeNull();
+            return utilities.makeNull();
           case FpEquality.true_:
             return utilities.makeBoolean(true);
         }
@@ -3428,13 +3407,13 @@ class FHIRPathEngine {
       case FpEquality.null_:
         return r == FpEquality.false_
             ? utilities.makeBoolean(false)
-            : makeNull();
+            : utilities.makeNull();
       case FpEquality.true_:
         switch (r) {
           case FpEquality.false_:
             return utilities.makeBoolean(false);
           case FpEquality.null_:
-            return makeNull();
+            return utilities.makeNull();
           case FpEquality.true_:
             return utilities.makeBoolean(true);
         }
@@ -3456,10 +3435,10 @@ class FHIRPathEngine {
           case FpEquality.true_:
             return utilities.makeBoolean(false);
           case FpEquality.null_:
-            return makeNull();
+            return utilities.makeNull();
         }
       case FpEquality.null_:
-        return makeNull();
+        return utilities.makeNull();
       case FpEquality.false_:
         switch (r) {
           case FpEquality.false_:
@@ -3467,7 +3446,7 @@ class FHIRPathEngine {
           case FpEquality.true_:
             return utilities.makeBoolean(true);
           case FpEquality.null_:
-            return makeNull();
+            return utilities.makeNull();
         }
     }
   }
@@ -3481,15 +3460,15 @@ class FHIRPathEngine {
     if (eq == FpEquality.false_) {
       return utilities.makeBoolean(true);
     } else if (right.isEmpty) {
-      return makeNull();
+      return utilities.makeNull();
     } else {
       switch (utilities.asBoolList(right, expr)) {
         case FpEquality.false_:
           return eq == FpEquality.null_
-              ? makeNull()
+              ? utilities.makeNull()
               : utilities.makeBoolean(false);
         case FpEquality.null_:
-          return makeNull();
+          return utilities.makeNull();
         case FpEquality.true_:
           return utilities.makeBoolean(true);
       }
@@ -3505,7 +3484,7 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -3520,7 +3499,7 @@ class FHIRPathEngine {
       );
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -3547,7 +3526,7 @@ class FHIRPathEngine {
     } else if (l is FhirNumber && r is FhirNumber) {
       result.add((l + r)!);
     } else if (l is FhirDateTimeBase && r is Quantity) {
-      result.add(dateAdd(l, r, false, expr));
+      result.add(utilities.dateAdd(l, r, false, expr));
     } else {
       throw makeException(
         expr,
@@ -3568,7 +3547,7 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -3583,7 +3562,7 @@ class FHIRPathEngine {
       );
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -3605,12 +3584,12 @@ class FHIRPathEngine {
     if (l is FhirNumber && r is FhirNumber) {
       result.add((l * r)!);
     } else if (l is Quantity && r is Quantity) {
-      final pl = qtyToPair(l);
-      final pr = qtyToPair(r);
+      final pl = utilities.qtyToPair(l);
+      final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {
         try {
           final p = fpContext.worker.ucumService.multiply(pl, pr);
-          result.add(pairToQty(p));
+          result.add(utilities.pairToQty(p));
         } catch (e) {
           throw PathEngineException(
             e.toString(),
@@ -3639,7 +3618,7 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -3654,7 +3633,7 @@ class FHIRPathEngine {
       );
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -3691,7 +3670,7 @@ class FHIRPathEngine {
         );
       }
     } else if (l is FhirDateTimeBase && r is Quantity) {
-      result.add(dateAdd(l, r, true, expr));
+      result.add(utilities.dateAdd(l, r, true, expr));
     } else {
       throw makeException(
         expr,
@@ -3709,7 +3688,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (left.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -3725,7 +3704,7 @@ class FHIRPathEngine {
       );
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -3758,7 +3737,7 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -3772,7 +3751,8 @@ class FHIRPathEngine {
       ]);
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+      throw fpContext
+          .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         '/',
       ]);
     }
@@ -3799,12 +3779,12 @@ class FHIRPathEngine {
         return <FhirBase>[];
       }
     } else if (l is Quantity && r is Quantity) {
-      final pl = qtyToPair(l);
-      final pr = qtyToPair(r);
+      final pl = utilities.qtyToPair(l);
+      final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {
         final p = fpContext.worker.ucumService.divideBy(pl, pr);
 
-        result.add(pairToQty(p));
+        result.add(utilities.pairToQty(p));
       }
     } else {
       throw makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
@@ -3826,7 +3806,8 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+      throw fpContext
+          .makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
         'div',
       ]);
     }
@@ -3837,7 +3818,8 @@ class FHIRPathEngine {
       ]);
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+      throw fpContext
+          .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         'div',
       ]);
     }
@@ -3885,7 +3867,8 @@ class FHIRPathEngine {
       return [];
     }
     if (left.length > 1) {
-      throw makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
+      throw fpContext
+          .makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
         'mod',
       ]);
     }
@@ -3896,7 +3879,8 @@ class FHIRPathEngine {
       ]);
     }
     if (right.length > 1) {
-      throw makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
+      throw fpContext
+          .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         'mod',
       ]);
     }
@@ -3993,7 +3977,7 @@ class FHIRPathEngine {
 
     final tn = utilities.convertListToString(right);
 
-    if (!(await isKnownType(tn))) {
+    if (!(await utilities.isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
     if (!fpContext.doNotEnforceAsSingletonRule && left.length > 1) {
@@ -4003,7 +3987,7 @@ class FHIRPathEngine {
     }
 
     for (final nextLeft in left) {
-      if (compareTypeNames(tn, nextLeft.fhirType)) {
+      if (utilities.compareTypeNames(tn, nextLeft.fhirType)) {
         result.add(nextLeft);
       }
     }
@@ -4356,7 +4340,7 @@ class FHIRPathEngine {
     var distinct = true;
     for (var i = 0; i < focus.length; i++) {
       for (var j = i + 1; j < focus.length; j++) {
-        final eq = doEquals(focus[j], focus[i]);
+        final eq = utilities.doEquals(focus[j], focus[i]);
         if (eq == null) {
           return [];
         } else if (eq) {
@@ -4383,7 +4367,7 @@ class FHIRPathEngine {
       var found = false;
 
       for (var j = i + 1; j < focus.length; j++) {
-        final eq = doEquals(focus[j], focus[i]);
+        final eq = utilities.doEquals(focus[j], focus[i]);
         if (eq == null) return <FhirBase>[];
         if (eq) {
           found = true;
@@ -4675,7 +4659,7 @@ class FHIRPathEngine {
       tn = 'FHIR.${expr.parameters.first.name}';
     }
 
-    if (!(await isKnownType(tn))) {
+    if (!(await utilities.isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
 
@@ -4717,7 +4701,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty || focus.length > 1) {
-      return makeNull();
+      return utilities.makeNull();
     }
 
     String? ns;
@@ -4884,7 +4868,7 @@ class FHIRPathEngine {
   ) async {
     final result = <FhirBase>[];
     for (final item in focus) {
-      if (!doContains(result, item)) {
+      if (!utilities.doContains(result, item)) {
         result.add(item);
       }
     }
@@ -4903,7 +4887,7 @@ class FHIRPathEngine {
           );
 
     for (final item in other) {
-      if (!doContains(result, item)) {
+      if (!utilities.doContains(result, item)) {
         result.add(item);
       }
     }
@@ -4942,7 +4926,8 @@ class FHIRPathEngine {
     final other = await execute(context, focus, exp.parameters[0], true);
 
     for (final item in focus) {
-      if (!doContains(result, item) && doContains(other, item)) {
+      if (!utilities.doContains(result, item) &&
+          utilities.doContains(other, item)) {
         result.add(item);
       }
     }
@@ -4963,7 +4948,7 @@ class FHIRPathEngine {
     );
 
     for (final item in focus) {
-      if (!doContains(other, item)) {
+      if (!utilities.doContains(other, item)) {
         result.add(item);
       }
     }
@@ -6455,7 +6440,8 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.length != 1) {
-      throw makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
+      throw fpContext
+          .makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
         'round',
         focus.length,
       ]);
@@ -6520,7 +6506,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6562,7 +6548,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6607,7 +6593,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6645,7 +6631,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6683,7 +6669,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6722,7 +6708,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6806,7 +6792,7 @@ class FHIRPathEngine {
       return [];
     }
     if (focus.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6844,7 +6830,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6893,7 +6879,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -6927,10 +6913,10 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
-      return makeNull();
+      return utilities.makeNull();
     }
     if (focus.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -7015,10 +7001,10 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
-      return makeNull();
+      return utilities.makeNull();
     }
     if (focus.length > 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -7103,7 +7089,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
-      throw makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
         'FHIRPATH_FOCUS',
@@ -7322,292 +7308,6 @@ class FHIRPathEngine {
     );
   }
 
-  String removeTrailingZeros(String s) {
-    if (s.noString()) {
-      return '';
-    }
-
-    var i = s.length - 1;
-    var done = false;
-    var dot = false;
-
-    // Traverse the string from the end
-    while (i > 0 && !done) {
-      if (s[i] == '.') {
-        dot = true;
-        i--;
-        done = true; // Stop if a dot is encountered
-      } else if (!dot && s[i] == '0') {
-        i--;
-      } else {
-        done = true;
-      }
-    }
-
-    // If no dot is encountered, return the original string
-    if (!dot) {
-      return s;
-    }
-
-    // Otherwise, return the processed substring
-    return s.substring(0, i + 1);
-  }
-
-  bool decEqual(String left, String right) {
-    return removeTrailingZeros(left) == removeTrailingZeros(right);
-  }
-
-  bool? datesEqual(FhirDateTimeBase left, FhirDateTimeBase right) {
-    return left.isEqual(right);
-  }
-
-  bool? doEquals(FhirBase left, FhirBase right) {
-    if (left is Quantity && right is Quantity) {
-      return qtyEqual(left, right);
-    } else if (left is Quantity &&
-        right is FhirNumber &&
-        right.valueNum != null) {
-      return qtyEqual(
-        left,
-        Quantity(
-          value: FhirDecimal(right.valueNum),
-          system: 'http://unitsofmeasure.org'.toFhirUri,
-          code: '1'.toFhirCode,
-        ),
-      );
-    } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
-      return datesEqual(left, right);
-    } else if (left is FhirDecimal || right is FhirDecimal) {
-      return decEqual(left.toString(), right.toString());
-    } else if (left.isPrimitive && right.isPrimitive) {
-      return left.primitiveValue == right.primitiveValue;
-    } else {
-      return left.compareDeep(left, right);
-    }
-  }
-
-  bool? qtyEqual(Quantity left, Quantity right) {
-    if (left.value == null && right.value == null) {
-      return true;
-    }
-    if (left.value == null || right.value == null) {
-      return null;
-    }
-    final dl = qtyToCanonicalPair(left);
-    final dr = qtyToCanonicalPair(right);
-
-    if (dl != null && dr != null) {
-      if (dl.unit == dr.unit) {
-        return doEquals(
-          FhirDecimal(dl.value.asDouble),
-          FhirDecimal(dr.value.asDouble),
-        );
-      } else {
-        return false;
-      }
-    }
-    if (left.code != null || right.code != null) {
-      if (!(left.code != null && right.code != null) ||
-          left.code != right.code) {
-        return null;
-      }
-    } else if (left.unit == null || right.unit == null) {
-      if (!(left.unit != null && right.unit != null) ||
-          left.unit != right.unit) {
-        return null;
-      }
-    }
-    return doEquals(left, right);
-  }
-
-  Pair? qtyToCanonicalPair(Quantity q) {
-    String? ucum;
-    switch (q.unit?.valueString) {
-      case 'year':
-      case 'years':
-        ucum = 'a';
-      case 'month':
-      case 'months':
-        ucum = 'mo';
-      case 'week':
-      case 'weeks':
-        ucum = 'wk';
-      case 'day':
-      case 'days':
-        ucum = 'd';
-      case 'hour':
-      case 'hours':
-        ucum = 'h';
-      case 'minute':
-      case 'minutes':
-        ucum = 'min';
-      case 'second':
-      case 'seconds':
-        ucum = 's';
-      case 'millisecond':
-      case 'milliseconds':
-        ucum = 'ms';
-    }
-
-    if (q.system?.toString() != 'http://unitsofmeasure.org' && ucum == null) {
-      return null;
-    }
-    try {
-      final p = Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? ucum ?? '1',
-      );
-      return fpContext.worker.ucumService.getCanonicalForm(p);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  FhirDecimal? qtyToCanonicalDecimal(Quantity q) {
-    if (q.system?.toString() != 'http://unitsofmeasure.org') {
-      return null;
-    }
-    try {
-      final pair = Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? '1',
-      );
-      final canonicalPair = fpContext.worker.ucumService.getCanonicalForm(pair);
-      return FhirDecimal(canonicalPair.value.asDouble);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  Quantity pairToQty(Pair pair) {
-    return Quantity(
-      value: FhirDecimal(pair.value.asDouble),
-      system: FhirUri('http://unitsofmeasure.org'),
-      code: pair.unit.isEmpty ? null : pair.unit.toFhirCode,
-      disallowExtensions: true,
-    );
-  }
-
-  Pair? qtyToPair(Quantity q) {
-    if (q.system?.toString() != 'http://unitsofmeasure.org') {
-      return null;
-    }
-    try {
-      return Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? '1',
-      );
-    } catch (e) {
-      return null;
-    }
-  }
-
-  bool? qtyEquivalent(Quantity left, Quantity right) {
-    if (left.value == null && right.value == null) {
-      return true;
-    }
-    if (left.value == null || right.value == null) {
-      return null;
-    }
-    final dl = qtyToCanonicalPair(left);
-    final dr = qtyToCanonicalPair(right);
-
-    if (dl != null && dr != null) {
-      if (dl.unit == dr.unit) {
-        return doEquivalent(
-          FhirDecimal(dl.value.asDouble),
-          FhirDecimal(dr.value.asDouble),
-        );
-      } else {
-        return false;
-      }
-    }
-    if (left.code != null || right.code != null) {
-      if (!(left.code != null && right.code != null) ||
-          left.code != right.code) {
-        return null;
-      }
-    } else if (left.unit == null || right.unit == null) {
-      if (!(left.unit != null && right.unit != null) ||
-          left.unit != right.unit) {
-        return null;
-      }
-    }
-    return doEquivalent(left.value!, right.value!);
-  }
-
-  List<FhirBase> makeNull() => <FhirBase>[];
-
-  bool? doEquivalent(FhirBase left, FhirBase right) {
-    if (left is Quantity && right is Quantity) {
-      return qtyEquivalent(left, right);
-    }
-    if (left is Quantity && right is FhirNumber) {
-      return qtyEquivalent(
-        left,
-        Quantity(
-          value: FhirDecimal(right.valueNum),
-          system: 'http://unitsofmeasure.org'.toFhirUri,
-          code: '1'.toFhirCode,
-        ),
-      );
-    }
-    if (left is FhirBoolean && right is FhirBoolean) {
-      return doEquals(left, right);
-    }
-    if (left is FhirNumber && right is FhirNumber) {
-      return equivalentNumber(left.valueNum, right.valueNum);
-    }
-    if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
-      return left.isEquivalent(right);
-    }
-    if (fpContext.FHIR_TYPES_STRING.contains(left.fhirType) &&
-        fpContext.FHIR_TYPES_STRING.contains(right.fhirType)) {
-      return equivalentString(
-        utilities.convertToString(left),
-        utilities.convertToString(right),
-      );
-    }
-    if (left is PrimitiveType && right is PrimitiveType) {
-      return equivalentString(
-        left.toString(),
-        right.toString(),
-      );
-    }
-    if (!left.isPrimitive && !right.isPrimitive) {
-      return left.equalsDeepWithNull(left, right);
-    } else {
-      return false;
-    }
-  }
-
-  bool equivalentNumber(num? lhsNum, num? rhsNum) {
-    if (lhsNum == null && rhsNum == null) {
-      return true;
-    } else if (lhsNum == null || rhsNum == null) {
-      return false;
-    }
-    final sigDigsLhs = lhsNum
-        .toStringAsExponential()
-        .split('e')
-        .first
-        .replaceAll('.', '')
-        .length;
-    final sigDigsRhs = rhsNum
-        .toStringAsExponential()
-        .split('e')
-        .first
-        .replaceAll('.', '')
-        .length;
-    if (sigDigsLhs < sigDigsRhs) {
-      return lhsNum.toStringAsPrecision(sigDigsLhs) ==
-          rhsNum.toStringAsPrecision(sigDigsLhs);
-    } else {
-      return lhsNum.toStringAsPrecision(sigDigsRhs) ==
-          rhsNum.toStringAsPrecision(sigDigsRhs);
-    }
-  }
-
   bool equivalentNumberAsString(String? l, String? r) {
     if ((l == null || l.isEmpty) && (r == null || r.isEmpty)) {
       return true;
@@ -7623,76 +7323,6 @@ class FHIRPathEngine {
     final dr = int.tryParse(r) ?? double.parse(r);
 
     return dl == dr;
-  }
-
-  bool equivalentString(String l, String r) {
-    if (Utilities.noString(l) && Utilities.noString(r)) return true;
-    if (Utilities.noString(l) || Utilities.noString(r)) return false;
-    return l.toLowerCase() == r.toLowerCase();
-  }
-
-  FhirDateTimeBase dateAdd(
-    FhirDateTimeBase d,
-    Quantity q,
-    bool negate,
-    ExpressionNode holder,
-  ) {
-    var result = d.copyWith() as FhirDateTimeBase;
-
-    final value =
-        negate ? -q.value!.valueNum!.toInt() : q.value!.valueNum!.toInt();
-    final unit = q.code?.valueString ?? q.unit?.valueString;
-
-    switch (unit) {
-      case 'years':
-      case 'year':
-        result = (result + ExtendedDuration(years: value))!;
-      case 'a':
-        throw PathEngineException(
-          'Error in date arithmetic: attempt to add a definite quantity '
-          'duration time unit $unit',
-        );
-      case 'months':
-      case 'month':
-        result = (result + ExtendedDuration(months: value))!;
-      case 'mo':
-        throw PathEngineException(
-          'Error in date arithmetic: attempt to add a definite quantity '
-          'duration time unit $unit',
-          location: holder.opStart,
-          expression: holder.toString(),
-        );
-      case 'weeks':
-      case 'week':
-      case 'wk':
-        result = (result + ExtendedDuration(weeks: value))!;
-      case 'days':
-      case 'day':
-      case 'd':
-        result = (result + ExtendedDuration(days: value))!;
-      case 'hours':
-      case 'hour':
-      case 'h':
-        result = (result + ExtendedDuration(hours: value))!;
-      case 'minutes':
-      case 'minute':
-      case 'min':
-        result = (result + ExtendedDuration(minutes: value))!;
-      case 'seconds':
-      case 'second':
-      case 's':
-        result = (result + ExtendedDuration(seconds: value))!;
-      case 'milliseconds':
-      case 'millisecond':
-      case 'ms':
-        result = (result + ExtendedDuration(milliseconds: value))!;
-      default:
-        throw PathEngineException(
-          'Error in date arithmetic: unrecognized time unit $unit',
-        );
-    }
-
-    return result;
   }
 
   int? compareDateTimeElements(
@@ -7725,89 +7355,6 @@ class FHIRPathEngine {
     }
 
     return left.compareTo(right);
-  }
-
-  bool doContains(List<FhirBase> list, FhirBase item) {
-    for (final test in list) {
-      final eq = doEquals(test, item);
-      if (eq != null && eq == true) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  Future<bool> isKnownType(String? tn) async {
-    if (tn == null) {
-      return false;
-    } else if (!tn.contains('.')) {
-      if ([
-            'SimpleTypeInfo',
-            'ClassInfo',
-          ].contains(tn) ||
-          tn.isFhirPrimitive ||
-          tn.isBackboneElement ||
-          tn.isFhirBackboneType ||
-          tn.isFhirDataType ||
-          tn.isFhirQuantity ||
-          tn.isFhirResourceType) {
-        return true;
-      }
-      try {
-        return ((await _fetchTypeDefinition(tn)) != null);
-      } catch (e) {
-        return false;
-      }
-    }
-    final t = tn.split('.');
-    if (t.length != 2) {
-      return false;
-    }
-    if ('System' == t[0]) {
-      return [
-        'String',
-        'Boolean',
-        'Integer',
-        'Decimal',
-        'Quantity',
-        'DateTime',
-        'Time',
-        'SimpleTypeInfo',
-        'ClassInfo',
-      ].contains(t[1]);
-    } else if ('FHIR' == t[0]) {
-      if (tn.startsWith('FHIR.')) {
-        final newTn = tn.substring(5);
-        if ([
-              'SimpleTypeInfo',
-              'ClassInfo',
-            ].contains(newTn) ||
-            newTn.isFhirPrimitive ||
-            newTn.isBackboneElement ||
-            newTn.isFhirBackboneType ||
-            newTn.isFhirDataType ||
-            newTn.isFhirQuantity ||
-            newTn.isFhirResourceType) {
-          return true;
-        }
-      }
-
-      try {
-        return ((await _fetchTypeDefinition(t[1])) != null);
-      } catch (e) {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  bool compareTypeNames(String left, String right) {
-    if (fpContext.doNotEnforceAsCaseSensitive) {
-      return left.equalsIgnoreCase(right);
-    } else {
-      return left == right;
-    }
   }
 
   ExecutionContext changeThisExecutionContext(

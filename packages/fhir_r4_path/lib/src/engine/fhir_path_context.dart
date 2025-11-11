@@ -128,4 +128,8 @@ class FhirPathContext {
       return PathEngineException(fmt);
     }
   }
+
+  Future<StructureDefinition?> fetchTypeDefinition(String? type) async {
+    return type == null ? null : await worker.fetchTypeDefinition(type);
+  }
 }
