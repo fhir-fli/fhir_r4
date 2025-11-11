@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'i_evaluation_context.dart';
 
 class ExecutionContext {
   ExecutionContext({

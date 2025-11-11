@@ -4,9 +4,6 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 // Import extracted enums
-import 'fp_function.dart';
-import 'fp_operation.dart';
-import 'collection_status.dart';
 
 enum ExpressionNodeKind { name, function, constant, group, unary }
 

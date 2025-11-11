@@ -6,6 +6,7 @@ export 'engine/expression_node_with_offset.dart';
 export 'engine/fhir_lexer.dart';
 export 'engine/fhir_path_context.dart';
 export 'engine/fhir_path_engine.dart';
+export 'engine/fhir_path_functions.dart';
 export 'engine/fhir_path_operations.dart';
 export 'engine/fhir_path_utilities.dart';
 export 'engine/fp_equality.dart';

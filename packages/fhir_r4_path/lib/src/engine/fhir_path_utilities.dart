@@ -10,9 +10,9 @@ import 'package:ucum/ucum.dart';
 /// This class contains helper methods used by operations, functions, and execution.
 /// It is not part of the public API - users should use [FHIRPathEngine] instead.
 class FhirPathUtilities {
-  FhirPathUtilities(this.context);
+  FhirPathUtilities(this.fpContext);
 
-  final FhirPathContext context;
+  final FhirPathContext fpContext;
 
   // String conversion helpers
   String convertToString(FhirBase item) {
@@ -114,7 +114,7 @@ class FhirPathUtilities {
       return FpEquality.true_;
     }
 
-    throw this.context.makeException(
+    throw this.fpContext.makeException(
           expr,
           'FHIRPATH_UNABLE_BOOLEAN',
           items.map((e) => e.toString()).toList(),
@@ -192,7 +192,7 @@ class FhirPathUtilities {
       final eqBool = asBool(items.first);
       return eqBool == FpEquality.null_ ? FpEquality.true_ : eqBool;
     } else {
-      throw this.context.makeException(
+      throw this.fpContext.makeException(
         expr,
         'FHIRPATH_UNABLE_BOOLEAN',
         [convertListToString(items)],
@@ -354,7 +354,7 @@ class FhirPathUtilities {
         value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? ucum ?? '1',
       );
-      return context.worker.ucumService.getCanonicalForm(p);
+      return fpContext.worker.ucumService.getCanonicalForm(p);
     } catch (e) {
       return null;
     }
@@ -377,7 +377,7 @@ class FhirPathUtilities {
         return true;
       }
       try {
-        return ((await context.fetchTypeDefinition(tn)) != null);
+        return ((await fpContext.fetchTypeDefinition(tn)) != null);
       } catch (e) {
         return false;
       }
@@ -416,7 +416,7 @@ class FhirPathUtilities {
       }
 
       try {
-        return ((await context.fetchTypeDefinition(t[1])) != null);
+        return ((await fpContext.fetchTypeDefinition(t[1])) != null);
       } catch (e) {
         return false;
       }
@@ -426,7 +426,7 @@ class FhirPathUtilities {
   }
 
   bool compareTypeNames(String left, String right) {
-    if (context.doNotEnforceAsCaseSensitive) {
+    if (fpContext.doNotEnforceAsCaseSensitive) {
       return left.equalsIgnoreCase(right);
     } else {
       return left == right;
@@ -456,8 +456,8 @@ class FhirPathUtilities {
     if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return left.isEquivalent(right);
     }
-    if (context.FHIR_TYPES_STRING.contains(left.fhirType) &&
-        context.FHIR_TYPES_STRING.contains(right.fhirType)) {
+    if (fpContext.FHIR_TYPES_STRING.contains(left.fhirType) &&
+        fpContext.FHIR_TYPES_STRING.contains(right.fhirType)) {
       return equivalentString(
         convertToString(left),
         convertToString(right),
@@ -562,7 +562,7 @@ class FhirPathUtilities {
         value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? '1',
       );
-      final canonicalPair = context.worker.ucumService.getCanonicalForm(pair);
+      final canonicalPair = fpContext.worker.ucumService.getCanonicalForm(pair);
       return FhirDecimal(canonicalPair.value.asDouble);
     } catch (e) {
       return null;

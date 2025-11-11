@@ -7,9 +7,9 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 ///
 /// Handles all FHIRPath operations (+, -, *, /, ==, !=, <, >, etc.)
 class FhirPathOperations {
-  FhirPathOperations(this.context, this.utilities, this.engine);
+  FhirPathOperations(this.fpContext, this.utilities, this.engine);
 
-  final FhirPathContext context;
+  final FhirPathContext fpContext;
   final FHIRPathEngine engine;
   final FhirPathUtilities utilities;
 
@@ -172,7 +172,7 @@ class FhirPathOperations {
     List<FhirBase> right,
     ExpressionNode expr,
   ) {
-    if (!context.legacyMode && (left.isEmpty || right.isEmpty)) {
+    if (!fpContext.legacyMode && (left.isEmpty || right.isEmpty)) {
       return [];
     }
 
@@ -243,8 +243,8 @@ class FhirPathOperations {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (context.FHIR_TYPES_STRING.contains(l.fhirType) &&
-            context.FHIR_TYPES_STRING.contains(r.fhirType)) {
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) < 0);
         } else if (l is FhirNumber && r is FhirNumber) {
@@ -260,7 +260,7 @@ class FhirPathOperations {
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
         } else {
-          throw context.makeException(
+          throw fpContext.makeException(
             expr,
             'FHIRPATH_CANT_COMPARE',
             [l.fhirType, r.fhirType],
@@ -307,8 +307,8 @@ class FhirPathOperations {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (context.FHIR_TYPES_STRING.contains(l.fhirType) &&
-            context.FHIR_TYPES_STRING.contains(r.fhirType)) {
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) > 0);
         } else if (l is FhirNumber && r is FhirNumber) {
@@ -325,7 +325,7 @@ class FhirPathOperations {
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
         } else {
-          throw context.makeException(
+          throw fpContext.makeException(
             expr,
             'FHIRPATH_CANT_COMPARE',
             [l.fhirType, r.fhirType],
@@ -372,8 +372,8 @@ class FhirPathOperations {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (context.FHIR_TYPES_STRING.contains(l.fhirType) &&
-            context.FHIR_TYPES_STRING.contains(r.fhirType)) {
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) <= 0);
         } else if (l is FhirNumber && r is FhirNumber) {
@@ -389,7 +389,7 @@ class FhirPathOperations {
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
         } else {
-          throw context.makeException(
+          throw fpContext.makeException(
             expr,
             'FHIRPATH_CANT_COMPARE',
             [l.fhirType, r.fhirType],
@@ -436,8 +436,8 @@ class FhirPathOperations {
       final r = right.first;
 
       if (l is PrimitiveType && r is PrimitiveType) {
-        if (context.FHIR_TYPES_STRING.contains(l.fhirType) &&
-            context.FHIR_TYPES_STRING.contains(r.fhirType)) {
+        if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+            fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) >= 0);
         } else if (l is FhirNumber && r is FhirNumber) {
@@ -453,7 +453,7 @@ class FhirPathOperations {
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
         } else {
-          throw context.makeException(
+          throw fpContext.makeException(
             expr,
             'FHIRPATH_CANT_COMPARE',
             [l.fhirType, r.fhirType],
@@ -543,16 +543,16 @@ class FhirPathOperations {
   ) async {
     var ans = false;
     final url = right.first.primitiveValue.toString();
-    final vs = context.hostServices != null
-        ? context.hostServices!
+    final vs = fpContext.hostServices != null
+        ? fpContext.hostServices!
             .resolveValueSet(engine, execContext.appInfo, url)
-        : await context.worker.fetchResource<ValueSet>(uri: url);
+        : await fpContext.worker.fetchResource<ValueSet>(uri: url);
 
     if (vs != null) {
       for (final l in left) {
         if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          final result = await context.worker.validateCodeWithCoding(
-            context.terminologyServiceOptions.withGuessSystem(),
+          final result = await fpContext.worker.validateCodeWithCoding(
+            fpContext.terminologyServiceOptions.withGuessSystem(),
             TypeConvertor.castToCoding(l)!,
             vs,
           );
@@ -560,8 +560,8 @@ class FhirPathOperations {
             ans = true;
           }
         } else if (l.fhirType == 'Coding') {
-          final result = await context.worker.validateCodeWithCoding(
-            context.terminologyServiceOptions,
+          final result = await fpContext.worker.validateCodeWithCoding(
+            fpContext.terminologyServiceOptions,
             TypeConvertor.castToCoding(l)!,
             vs,
           );
@@ -570,8 +570,8 @@ class FhirPathOperations {
           }
         } else if (l.fhirType == 'CodeableConcept') {
           final cc = TypeConvertor.castToCodeableConcept(l);
-          final vr = await context.worker.validateCodeWithCodeableConcept(
-            context.terminologyServiceOptions,
+          final vr = await fpContext.worker.validateCodeWithCodeableConcept(
+            fpContext.terminologyServiceOptions,
             cc!,
             vs,
           );
@@ -728,7 +728,7 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -736,14 +736,14 @@ class FhirPathOperations {
       );
     }
     if (!left.first.isPrimitive) {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
         ['+', left.first.fhirType],
       );
     }
     if (right.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -753,7 +753,7 @@ class FhirPathOperations {
     if (!right.first.isPrimitive &&
         !((left.first is Quantity && right.first is Quantity) ||
             (left.first is FhirDateTimeBase && right.first is Quantity))) {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
         ['+', right.first.fhirType],
@@ -764,15 +764,15 @@ class FhirPathOperations {
     final l = left.first;
     final r = right.first;
 
-    if (context.FHIR_TYPES_STRING.contains(l.fhirType) &&
-        context.FHIR_TYPES_STRING.contains(r.fhirType)) {
+    if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
+        fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
       result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
     } else if (l is FhirNumber && r is FhirNumber) {
       result.add((l + r)!);
     } else if (l is FhirDateTimeBase && r is Quantity) {
       result.add(utilities.dateAdd(l, r, false, expr));
     } else {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_OP_INCOMPATIBLE',
         ['+', l.fhirType, r.fhirType],
@@ -791,7 +791,7 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -799,14 +799,14 @@ class FhirPathOperations {
       );
     }
     if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
         ['*', left.first.fhirType],
       );
     }
     if (right.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -814,7 +814,7 @@ class FhirPathOperations {
       );
     }
     if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
         ['*', right.first.fhirType],
@@ -832,7 +832,7 @@ class FhirPathOperations {
       final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {
         try {
-          final p = context.worker.ucumService.multiply(pl, pr);
+          final p = fpContext.worker.ucumService.multiply(pl, pr);
           result.add(utilities.pairToQty(p));
         } catch (e) {
           throw PathEngineException(
@@ -843,7 +843,7 @@ class FhirPathOperations {
         }
       }
     } else {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_OP_INCOMPATIBLE',
         ['*', l.fhirType, r.fhirType],
@@ -862,7 +862,7 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -870,14 +870,14 @@ class FhirPathOperations {
       );
     }
     if (!left.first.isPrimitive && left.first is! Quantity) {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
         ['-', left.first.fhirType],
       );
     }
     if (right.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -889,7 +889,7 @@ class FhirPathOperations {
                 left.first.toString() == '0' ||
                 left.first is Quantity) &&
             right.first is Quantity)) {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
         ['-', right.first.fhirType],
@@ -916,7 +916,7 @@ class FhirPathOperations {
     } else if (l is FhirDateTimeBase && r is Quantity) {
       result.add(utilities.dateAdd(l, r, true, expr));
     } else {
-      throw context.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_OP_INCOMPATIBLE',
         ['-', l.fhirType, r.fhirType],
@@ -932,7 +932,7 @@ class FhirPathOperations {
     ExpressionNode expr,
   ) {
     if (left.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -940,15 +940,15 @@ class FhirPathOperations {
       );
     }
     if (left.isNotEmpty &&
-        !context.FHIR_TYPES_STRING.contains(left.first.fhirType)) {
-      throw context.makeException(
+        !fpContext.FHIR_TYPES_STRING.contains(left.first.fhirType)) {
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',
         ['&', left.first.fhirType],
       );
     }
     if (right.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         right.length,
         expr,
         'FHIRPATH_RIGHT_VALUE',
@@ -956,8 +956,8 @@ class FhirPathOperations {
       );
     }
     if (right.isNotEmpty &&
-        !context.FHIR_TYPES_STRING.contains(right.first.fhirType)) {
-      throw context.makeException(
+        !fpContext.FHIR_TYPES_STRING.contains(right.first.fhirType)) {
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
         ['&', right.first.fhirType],
@@ -981,7 +981,7 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context.makeExceptionPlural(
+      throw fpContext.makeExceptionPlural(
         left.length,
         expr,
         'FHIRPATH_LEFT_VALUE',
@@ -989,19 +989,19 @@ class FhirPathOperations {
       );
     }
     if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw context.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
         '/',
         left.first.fhirType,
       ]);
     }
     if (right.length > 1) {
-      throw context
+      throw fpContext
           .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         '/',
       ]);
     }
     if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw context.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
         '/',
         right.first.fhirType,
       ]);
@@ -1026,12 +1026,12 @@ class FhirPathOperations {
       final pl = utilities.qtyToPair(l);
       final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {
-        final p = context.worker.ucumService.divideBy(pl, pr);
+        final p = fpContext.worker.ucumService.divideBy(pl, pr);
 
         result.add(utilities.pairToQty(p));
       }
     } else {
-      throw context.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
         '/',
         l.fhirType,
         r.fhirType,
@@ -1050,25 +1050,25 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context
+      throw fpContext
           .makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
         'div',
       ]);
     }
     if (!left.first.isPrimitive && left.first.fhirType != 'Quantity') {
-      throw context.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
         'div',
         left.first.fhirType,
       ]);
     }
     if (right.length > 1) {
-      throw context
+      throw fpContext
           .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         'div',
       ]);
     }
     if (!right.first.isPrimitive && right.first.fhirType != 'Quantity') {
-      throw context.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
         'div',
         right.first.fhirType,
       ]);
@@ -1092,7 +1092,7 @@ class FhirPathOperations {
         result.add(((l as FhirNumber) ~/ r)!);
       }
     } else {
-      throw context.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
         'div',
         l.fhirType,
         r.fhirType,
@@ -1111,25 +1111,25 @@ class FhirPathOperations {
       return [];
     }
     if (left.length > 1) {
-      throw context
+      throw fpContext
           .makeExceptionPlural(left.length, expr, 'FHIRPATH_LEFT_VALUE', [
         'mod',
       ]);
     }
     if (!left.first.isPrimitive) {
-      throw context.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_LEFT_VALUE_WRONG_TYPE', [
         'mod',
         left.first.fhirType,
       ]);
     }
     if (right.length > 1) {
-      throw context
+      throw fpContext
           .makeExceptionPlural(right.length, expr, 'FHIRPATH_RIGHT_VALUE', [
         'mod',
       ]);
     }
     if (!right.first.isPrimitive) {
-      throw context.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_RIGHT_VALUE_WRONG_TYPE', [
         'mod',
         right.first.fhirType,
       ]);
@@ -1147,7 +1147,7 @@ class FhirPathOperations {
             result.add((d1 % d2)!);
           }
         } catch (e) {
-          throw context
+          throw fpContext
               .makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
         }
       } else {
@@ -1159,7 +1159,7 @@ class FhirPathOperations {
     } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
         (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
     } else {
-      throw context.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
+      throw fpContext.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
         'mod',
         l.fhirType,
         r.fhirType,
@@ -1225,7 +1225,7 @@ class FhirPathOperations {
     if (!(await utilities.isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
-    if (!context.doNotEnforceAsSingletonRule && left.length > 1) {
+    if (!fpContext.doNotEnforceAsSingletonRule && left.length > 1) {
       throw PathEngineException(
         'Attempt to use "as" on more than one item (${left.length}, "$expr")',
       );
