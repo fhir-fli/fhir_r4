@@ -30,12 +30,15 @@ void main() {
     });
 
     test('Reports missing fields in ObjectNode', () async {
-      final node = ObjectNode(path: 'Patient');
-      final element = ElementDefinition(
-        path: 'Patient.id'.toFhirString,
-        type: [ElementDefinitionType(code: 'string'.toFhirUri)],
-      );
-      final elements = {'Patient.id': element};
+      // Create a node with a property that's NOT in the StructureDefinition
+      final node = ObjectNode(path: 'Patient')
+        ..children.add(
+          PropertyNode(path: 'Patient.unknownField')
+            ..key = ValueNode('unknownField', 'unknownField')
+            ..value = LiteralNode('test', 'test', path: 'Patient.unknownField'),
+        );
+      // Elements map doesn't contain 'Patient.unknownField'
+      final elements = <String, ElementDefinition>{};
       final resourceCache = CanonicalResourceCache();
 
       final results = await validateStructure(
@@ -83,7 +86,33 @@ void main() {
         'Patient.name': elementName,
         'Patient.name.given': elementGiven,
       };
-      final resourceCache = CanonicalResourceCache();
+      // Create a minimal StructureDefinition for HumanName
+      final humanNameStructureDefinition = StructureDefinition(
+        id: 'HumanName'.toFhirString,
+        url: 'http://hl7.org/fhir/StructureDefinition/HumanName'.toFhirCanonical,
+        name: 'HumanName'.toFhirString,
+        type: 'HumanName'.toFhirUri,
+        kind: StructureDefinitionKind.complexType,
+        abstract_: false.toFhirBoolean,
+        status: PublicationStatus.active,
+        snapshot: StructureDefinitionSnapshot(
+          element: [
+            ElementDefinition(
+              path: 'HumanName'.toFhirString,
+              min: 0.toFhirUnsignedInt,
+              max: '1'.toFhirString,
+            ),
+            ElementDefinition(
+              path: 'HumanName.given'.toFhirString,
+              min: 0.toFhirUnsignedInt,
+              max: '*'.toFhirString,
+              type: [ElementDefinitionType(code: 'string'.toFhirUri)],
+            ),
+          ],
+        ),
+      );
+      // Create a resourceCache that can return the HumanName StructureDefinition
+      final resourceCache = _TestResourceCache(humanNameStructureDefinition);
 
       final results = await validateStructure(
         node: node,
@@ -131,4 +160,24 @@ void main() {
       );
     });
   });
+}
+
+// Test ResourceCache that provides StructureDefinitions
+class _TestResourceCache extends CanonicalResourceCache {
+  final Map<String, StructureDefinition> _cache = {};
+  
+  _TestResourceCache(StructureDefinition? humanName) {
+    if (humanName != null) {
+      _cache['HumanName'] = humanName;
+      _cache['http://hl7.org/fhir/StructureDefinition/HumanName'] = humanName;
+    }
+  }
+  
+  @override
+  Future<StructureDefinition?> getStructureDefinition(String? type) async {
+    if (type == null) return null;
+    final cached = _cache[type] ?? _cache['http://hl7.org/fhir/StructureDefinition/$type'];
+    if (cached != null) return cached;
+    return super.getStructureDefinition(type);
+  }
 }

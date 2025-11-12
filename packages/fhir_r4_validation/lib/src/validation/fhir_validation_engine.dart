@@ -26,13 +26,23 @@ class FhirValidationEngine {
     Client? client,
     StructureDefinition? structureDefinition,
   }) async {
-    final resourceMap =
-        json.decode(structureToValidate) as Map<String, dynamic>;
-    return validateFhirMap(
-      structureToValidate: resourceMap,
-      structureDefinition: structureDefinition,
-      client: client,
-    );
+    try {
+      final resourceMap =
+          json.decode(structureToValidate) as Map<String, dynamic>;
+      return validateFhirMap(
+        structureToValidate: resourceMap,
+        structureDefinition: structureDefinition,
+        client: client,
+      );
+    } catch (e) {
+      final results = ValidationResults();
+      return results
+        ..addResult(
+          null,
+          'Failed to parse resource JSON: $e',
+          Severity.error,
+        );
+    }
   }
 
   /// Validate a FHIR resource from a JSON map

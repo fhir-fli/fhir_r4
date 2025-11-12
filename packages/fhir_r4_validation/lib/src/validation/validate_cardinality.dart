@@ -92,17 +92,37 @@ Future<ValidationResults> _validateElementCardinality({
     // Check for too many occurrences of an element
     if (element.max != null && element.max!.valueString != '*') {
       final max = int.tryParse(element.max!.valueString!);
-      if (max != null &&
-          foundNode is ArrayNode &&
-          foundNode.children.length > max) {
-        newResults.addResult(
-          node,
-          withUrlIfExists(
-            'Too many elements for: $path. Maximum allowed is $max.',
-            url,
-          ),
-          Severity.error,
-        );
+      if (max != null) {
+        if (foundNode is PropertyNode) {
+          if (foundNode.value is ArrayNode) {}
+        }
+        // Handle ArrayNode directly
+        if (foundNode is ArrayNode && foundNode.children.length > max) {
+          newResults.addResult(
+            node,
+            withUrlIfExists(
+              'Too many elements for: $path. maximum allowed is $max.',
+              url,
+            ),
+            Severity.error,
+          );
+        }
+        // Handle PropertyNode containing an ArrayNode
+        if (foundNode is PropertyNode &&
+            foundNode.value != null &&
+            foundNode.value is ArrayNode) {
+          final arrayNode = foundNode.value! as ArrayNode;
+          if (arrayNode.children.length > max) {
+            newResults.addResult(
+              node,
+              withUrlIfExists(
+                'Too many elements for: $path. maximum allowed is $max.',
+                url,
+              ),
+              Severity.error,
+            );
+          }
+        }
       }
     }
 
