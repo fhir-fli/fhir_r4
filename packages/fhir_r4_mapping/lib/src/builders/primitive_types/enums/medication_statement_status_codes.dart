@@ -162,6 +162,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
       );
     } else if (value == null && element == null) {
       throw ArgumentError(
+        // ignore: lines_longer_than_80_chars
         'MedicationStatementStatusCodesBuilder cannot be constructed from JSON.',
       );
     }

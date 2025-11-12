@@ -47,7 +47,7 @@ class StructureMapParser {
       ..write('map "')
       ..write(map.url)
       ..write('" = "')
-      ..write(_escapeJson(map.name.toString()))
+      ..write(_escapeJson(map.name.valueString ?? ''))
       ..write('"\r\n\r\n');
     if (map.description?.valueString != null &&
         map.description!.valueString!.isNotEmpty) {

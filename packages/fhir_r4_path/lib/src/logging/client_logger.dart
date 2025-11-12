@@ -3,52 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-/// Enum to represent log categories.
-enum LogCategory {
-  /// Initialization log category.
-  init,
-
-  /// Progress log category.
-  progress,
-
-  /// Context log category.
-  tx,
-
-  /// Generate log category.
-  context,
-
-  /// Generate log category.
-  generate,
-
-  /// Validate log category.
-  html,
-}
-
-/// A logging service to log messages and debug information.
-class LoggingService {
-  /// Constructor with optional [debug] parameter. Defaults to `false`.
-  LoggingService({this.debug = false});
-
-  /// Whether debugging is enabled.
-  final bool debug;
-
-  /// Logs a standard message (always displayed).
-  void logMessage(String message) {
-    print(message);
-  }
-
-  /// Logs a debug message if debugging is enabled.
-  void logDebugMessage(LogCategory category, String message) {
-    if (debug) {
-      print(' -${category.name.toLowerCase()}: $message');
-    }
-  }
-
-  /// Checks if debugging is enabled.
-  bool isDebugLogging() => debug;
-}
-
-/// A logger class to handle client requests and responses in different formats.
+/// Logging Class for Client
 class ClientLogger {
   /// Constructor
   ClientLogger({

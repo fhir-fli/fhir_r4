@@ -1,5 +1,9 @@
 # fhir_r4_mapping
 
+## [0.4.1]
+
+* Dependencies updated
+
 ## [0.4.0]
 
 * First time publishing this. 

@@ -161,7 +161,9 @@ class _$ObservationDefinitionQuantitativeDetailsCopyWithImpl<T>
   final T Function(ObservationDefinitionQuantitativeDetails) _then;
 
   _$ObservationDefinitionQuantitativeDetailsCopyWithImpl(
-      this._value, this._then);
+    this._value,
+    this._then,
+  );
 
   @override
   T call({

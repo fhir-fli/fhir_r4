@@ -211,8 +211,8 @@ class FhirMapEngine {
     bool atRoot,
   ) async {
     // Resolve and execute extended group first if it exists
-    final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
-        ? _resolveGroupReference(map, group, group!.extends_!.toString())
+    final resolvedGroup = (group?.extends_?.valueString ?? '').isNotEmpty
+        ? _resolveGroupReference(map, group, group!.extends_!.valueString ?? '')
         : null;
     if (resolvedGroup != null) {
       await _executeGroup(
@@ -248,24 +248,24 @@ class FhirMapEngine {
 
     // Process rule sources and targets
     final source = await _processSource(
-      rule.name.toString(),
+      rule.name?.valueString ?? '',
       context,
       srcVars,
       rule.source!.first,
-      map?.url.toString(),
+      map?.url?.valueString ?? '',
       indent,
     );
 
     for (final MappingVariables v in source ?? <MappingVariables>[]) {
       for (final target in rule.target ?? <StructureMapTargetBuilder>[]) {
         await _processTarget(
-          rule.name.toString(),
+          rule.name?.valueString ?? '',
           context,
           v,
           map,
           group,
           target,
-          rule.source!.first.variable?.toString(),
+          rule.source!.first.variable?.valueString ?? '',
           atRoot,
           vars,
         );
@@ -379,7 +379,7 @@ class FhirMapEngine {
         );
       }
       if (input?.name != null) {
-        v.add(mode, input!.name.toString(), vv);
+        v.add(mode, input!.name?.valueString ?? '', vv);
       } else {
         throw FHIRException(
           message: "Rule '${dependent.name}' $mode variable '${input?.name}' "
@@ -488,7 +488,7 @@ class FhirMapEngine {
       }
     }
 
-    result.removeWhere((sm) => !seenUrls.add(sm.url.toString()));
+    result.removeWhere((sm) => !seenUrls.add(sm.url?.valueString ?? ''));
     return result;
   }
 
@@ -605,9 +605,9 @@ class FhirMapEngine {
       if (imp.alias != null && newStatedType == imp.alias!.valueString) {
         // If we can fetch the underlying StructureDefinition
         final StructureDefinition? sd = await resolver
-            .fetchResource<StructureDefinition>(imp.url.toString());
+            .fetchResource<StructureDefinition>(imp.url?.valueString ?? '');
         if (sd != null) {
-          newStatedType = sd.type.toString();
+          newStatedType = sd.type.valueString ?? '';
         }
         break;
       }
@@ -617,14 +617,14 @@ class FhirMapEngine {
       final StructureDefinition? sd =
           await resolver.fetchResource<StructureDefinition>(newActualType);
       if (sd != null) {
-        newActualType = sd.type.toString();
+        newActualType = sd.type.valueString ?? '';
       }
     }
     if (newStatedType.isAbsoluteUrl()) {
       final StructureDefinition? sd =
           await resolver.fetchResource<StructureDefinition>(newStatedType);
       if (sd != null) {
-        newStatedType = sd.type.toString();
+        newStatedType = sd.type.valueString ?? '';
       }
     }
     return newActualType == newStatedType;
@@ -638,7 +638,7 @@ class FhirMapEngine {
     for (final imp in map.structure ?? <StructureMapStructureBuilder>[]) {
       if (imp.alias != null && statedType == imp.alias?.valueString) {
         final sd = await resolver
-            .fetchResource<StructureDefinition>(imp.url.toString());
+            .fetchResource<StructureDefinition>(imp.url?.valueString ?? '');
         if (sd == null) {
           throw FHIRException(
             message: 'Unable to resolve structure ${imp.url}',
@@ -1106,7 +1106,7 @@ class FhirMapEngine {
                 if (uses.mode == StructureMapModelModeBuilder.target &&
                     uses.alias != null &&
                     tn == uses.alias!.valueString) {
-                  tn = uses.url.toString();
+                  tn = uses.url?.valueString ?? '';
                   break;
                 }
               }
@@ -1621,16 +1621,16 @@ class FhirMapEngine {
         for (final ValueSetContains t in expanded ?? <ValueSetContains>[]) {
           if (t.code?.valueString != null) {
             if (t.code!.valueString == code) {
-              system = t.system?.toString();
-              version = t.version?.toString();
-              display = t.display?.toString();
+              system = t.system?.valueString ?? '';
+              version = t.version?.valueString ?? '';
+              display = t.display?.valueString ?? '';
               found = true;
               break;
             } else if (code.toLowerCase() ==
                 (t.display?.valueString ?? '').toLowerCase()) {
-              system = t.system?.toString();
-              version = t.version?.toString();
-              display = t.display?.toString();
+              system = t.system?.valueString ?? '';
+              version = t.version?.valueString ?? '';
+              display = t.display?.valueString ?? '';
               found = true;
               break;
             }
@@ -1796,7 +1796,7 @@ class FhirMapEngine {
         outcome = _findMatchInGroup(
           group,
           sourceCoding.code?.valueString,
-          sourceCoding.system?.toString(),
+          sourceCoding.system?.valueString ?? '',
         );
       }
       if (outcome != null) break; // Stop if a match is found
@@ -1820,7 +1820,7 @@ class FhirMapEngine {
   ]) {
     for (final element in group.element ?? <ConceptMapElementBuilder>[]) {
       if ((system == null && element.code?.valueString == code) ||
-          (system == group.source?.toString() &&
+          (system == group.source?.valueString &&
               element.code?.valueString == code)) {
         final matchingTarget = element.target?.firstWhereOrNull(
           (target) => _isValidEquivalence(target.equivalence.toString()),

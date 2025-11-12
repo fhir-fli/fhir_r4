@@ -19,7 +19,10 @@ abstract class FhirBulk {
     }
     final result = buffer.toString();
     // Remove trailing newline if present
-    return result.endsWith('\n') ? result.substring(0, result.length - 1) : result;
+    // ignore: lines_longer_than_80_chars
+    return result.endsWith('\n')
+        ? result.substring(0, result.length - 1)
+        : result;
   }
 
   /// Accepts an NDJSON-formatted string and converts it into a list of

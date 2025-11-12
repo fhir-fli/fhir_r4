@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_dynamic_calls
+// ignore_for_file: avoid_dynamic_calls, lines_longer_than_80_chars
 
 import 'dart:async';
 import 'dart:convert';
@@ -85,62 +85,62 @@ abstract class BulkRequest {
       // Otherwise, we do the older GET-based approach.
       late Response initialResponse;
       try {
-      if (useHttpPost) {
-        initialResponse =
-            await _initiateExportViaPost(httpClient, requestHeaders);
-      } else {
-        initialResponse =
-            await _initiateExportViaGet(httpClient, requestHeaders);
-      }
+        if (useHttpPost) {
+          initialResponse =
+              await _initiateExportViaPost(httpClient, requestHeaders);
+        } else {
+          initialResponse =
+              await _initiateExportViaGet(httpClient, requestHeaders);
+        }
       } catch (e) {
-      return _operationOutcome(
-        'Failed to initiate bulk export request',
-        diagnostics: e.toString(),
-      );
+        return _operationOutcome(
+          'Failed to initiate bulk export request',
+          diagnostics: e.toString(),
+        );
       }
 
       // Check for immediate error
       if (_errorCodes.containsKey(initialResponse.statusCode)) {
-      return _failedHttp(initialResponse.statusCode, initialResponse);
+        return _failedHttp(initialResponse.statusCode, initialResponse);
       }
 
       // Typically, we expect a 202 + Content-Location for async. Some servers
       // might return 200 if the data is small/instant.
       if (initialResponse.statusCode != 202 &&
-        initialResponse.statusCode != 200) {
-      return _operationOutcome(
-        'Unexpected HTTP ${initialResponse.statusCode} from server',
-        diagnostics: initialResponse.body,
-      );
+          initialResponse.statusCode != 200) {
+        return _operationOutcome(
+          'Unexpected HTTP ${initialResponse.statusCode} from server',
+          diagnostics: initialResponse.body,
+        );
       }
 
       if (initialResponse.statusCode == 200) {
-      // Possibly an immediate final result
-      return _parseFinalResponse(initialResponse);
+        // Possibly an immediate final result
+        return _parseFinalResponse(initialResponse);
       }
 
       // Otherwise, 202 -> we must poll
       final pollUrl = initialResponse.headers['content-location'];
       if (pollUrl == null) {
-      return _operationOutcome(
-        'Server returned 202 Accepted but no Content-Location header to poll.',
-      );
+        return _operationOutcome(
+          'Server returned 202 Accepted but no Content-Location header to poll.',
+        );
       }
 
       late Response pollResponse;
       try {
-      pollResponse =
-          await _pollForCompletion(httpClient, pollUrl, requestHeaders);
+        pollResponse =
+            await _pollForCompletion(httpClient, pollUrl, requestHeaders);
       } catch (e) {
-      return _operationOutcome(
-        'Failed while polling bulk export status',
-        diagnostics: e.toString(),
-      );
+        return _operationOutcome(
+          'Failed while polling bulk export status',
+          diagnostics: e.toString(),
+        );
       }
 
       if (pollResponse.statusCode ~/ 100 != 2) {
-      // 4xx or 5xx
-      return _failedHttp(pollResponse.statusCode, pollResponse);
+        // 4xx or 5xx
+        return _failedHttp(pollResponse.statusCode, pollResponse);
       }
 
       return _parseFinalResponse(pollResponse);
@@ -287,7 +287,7 @@ abstract class BulkRequest {
   }) async {
     final startTime = DateTime.now();
     final timeoutDuration = timeout ?? const Duration(hours: 1);
-    int attempts = 0;
+    var attempts = 0;
     final max = maxAttempts ?? 1000;
 
     while (attempts < max) {
@@ -358,7 +358,9 @@ abstract class BulkRequest {
       }
       final url = item['url'];
       if (url == null || url.toString().isEmpty) {
-        results.addAll(_operationOutcome('Missing or empty "url" in output array.'));
+        results.addAll(
+          _operationOutcome('Missing or empty "url" in output array.'),
+        );
         continue;
       }
       final uri = Uri.tryParse(url.toString());
@@ -389,7 +391,7 @@ abstract class BulkRequest {
           fileResponse.headers['content-type']?.toLowerCase() ?? '';
       List<Resource> fileResources;
       final normalizedType = contentType;
-      if (normalizedType.contains('zip') || 
+      if (normalizedType.contains('zip') ||
           normalizedType.contains('application/zip') ||
           normalizedType.contains('application/x-zip-compressed')) {
         fileResources = await FhirBulk.fromCompressedData(

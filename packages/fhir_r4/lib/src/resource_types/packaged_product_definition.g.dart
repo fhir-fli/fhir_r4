@@ -163,7 +163,9 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl<T>
   final T Function(PackagedProductDefinitionLegalStatusOfSupply) _then;
 
   _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl(
-      this._value, this._then);
+    this._value,
+    this._then,
+  );
 
   @override
   T call({
@@ -332,7 +334,9 @@ class _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<T>
   final T Function(PackagedProductDefinitionShelfLifeStorage) _then;
 
   _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl(
-      this._value, this._then);
+    this._value,
+    this._then,
+  );
 
   @override
   T call({

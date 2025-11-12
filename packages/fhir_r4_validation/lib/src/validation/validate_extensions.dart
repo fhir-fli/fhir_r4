@@ -39,28 +39,36 @@ Future<ValidationResults> validateExtensions({
           .profile
           ?.first;
 
-      // Fetch the StructureDefinition for the extension.
-      final structureDefinition =
-          await resourceCache.getStructureDefinition(extensionUrl.toString());
+      // Locate the extension node within the parent node.
+      // Extract just the property name from the path (e.g., 'extension' from 'Patient.extension')
+      final pathParts = element.path.valueString!.split('.');
+      final propertyName = pathParts.last;
+      // Check both with underscore prefix (for primitive extensions) and without
+      final extensionNodeWithUnderscore =
+          node.getPropertyNode('_$propertyName');
+      final extensionNodeWithoutUnderscore =
+          node.getPropertyNode(propertyName);
+      final extensionNode = extensionNodeWithUnderscore ?? extensionNodeWithoutUnderscore;
 
-      if (structureDefinition != null) {
-        // Extract elements from the fetched StructureDefinition.
-        final extensionElements = extractElements(structureDefinition);
+// Validate the structure of the extension node.
+      if (extensionNode != null) {
+        if (extensionNode is! ObjectNode) {
+          // Add an error if the extension node is not an ObjectNode.
+          newResults.addResult(
+            node,
+            'Extension must be an ObjectNode: $extensionNode',
+            Severity.error,
+          );
+        } else {
+          // Fetch the StructureDefinition for the extension if profile URL exists.
+          final structureDefinition = extensionUrl != null
+              ? await resourceCache.getStructureDefinition(extensionUrl.toString())
+              : null;
 
-        // Locate the extension node within the parent node.
-        final extensionNode =
-            node.getPropertyNode('_${element.path.valueString!}');
+          if (structureDefinition != null) {
+            // Extract elements from the fetched StructureDefinition.
+            final extensionElements = extractElements(structureDefinition);
 
-        // Validate the structure of the extension node.
-        if (extensionNode != null) {
-          if (extensionNode is! ObjectNode) {
-            // Add an error if the extension node is not an ObjectNode.
-            results.addResult(
-              node,
-              'Extension must be an ObjectNode: $extensionNode',
-              Severity.error,
-            );
-          } else {
             // Recursively validate the structure of the extension node.
             newResults = await validateStructure(
               node: extensionNode,

@@ -3,6 +3,11 @@
 ## [0.4.4]
 
 * Updated dependencies
+* Fixed parser support for negative numbers at start of expressions (e.g., `-3 != 3`)
+* Uncommented and verified date timezone comparison tests (testDateNotEqualTimezoneOffsetBefore, testDateNotEqualTimezoneOffsetAfter, testDateNotEqualUTC)
+* Removed unused variables (operandOperation, operandOpNext) from execute function
+* Fixed compilation error by commenting out export for non-existent value_set_expansion_extensions.dart file
+* Refactored and broke FhirPathEngine into multiple files for ease of maintenance
 
 ## [0.4.3]
 

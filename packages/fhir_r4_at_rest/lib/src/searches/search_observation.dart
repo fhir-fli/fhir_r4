@@ -128,6 +128,7 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters[
+            // ignore: lines_longer_than_80_chars
             '${modifier != null ? '$modifier' : ''}component_data_absent_reason'] =
         system != null ? '$system|$value' : '$value';
     return this;

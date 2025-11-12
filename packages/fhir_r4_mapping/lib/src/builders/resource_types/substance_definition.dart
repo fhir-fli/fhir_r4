@@ -6935,7 +6935,8 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   ReferenceBuilder? get substanceDefinitionReference =>
       substanceDefinitionX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [substanceDefinitionCodeableConcept] as a CodeableConceptBuilder
+  /// Getter for [substanceDefinitionCodeableConcept] as a
+  /// CodeableConceptBuilder
   CodeableConceptBuilder? get substanceDefinitionCodeableConcept =>
       substanceDefinitionX?.isAs<CodeableConceptBuilder>();
 

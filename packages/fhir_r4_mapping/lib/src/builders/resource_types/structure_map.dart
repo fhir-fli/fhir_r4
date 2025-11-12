@@ -4575,7 +4575,8 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
   FhirExpressionBuilder? get defaultValueExpression =>
       defaultValueX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinitionBuilder
+  /// Getter for [defaultValueParameterDefinition] as a
+  /// ParameterDefinitionBuilder
   ParameterDefinitionBuilder? get defaultValueParameterDefinition =>
       defaultValueX?.isAs<ParameterDefinitionBuilder>();
 
