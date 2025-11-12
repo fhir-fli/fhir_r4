@@ -25,6 +25,7 @@ R4b Version of the FHIR Specification
     - [fhir_r4_db](https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_db)
     - [fhir_r4_bulk](https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_bulk)
     - [fhir_r4_path](https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_path)
+    - [fhir_r4_validation](https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_validation)
     - [fhir_r4_mapping](https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_mapping)
 
 - Follow the links for the individual README files.
