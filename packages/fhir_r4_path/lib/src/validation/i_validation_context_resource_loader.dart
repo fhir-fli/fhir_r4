@@ -2,6 +2,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
+
+/// IValidationContextResourceLoader
+// ignore: one_member_abstracts
 abstract class IValidationContextResourceLoader {
   /// Load a contained resource by its ID and type.
   Resource? loadContainedResource({

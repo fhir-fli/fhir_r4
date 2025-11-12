@@ -2,6 +2,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
+/// ValidationOptions
 class ValidationOptions {
   /// Constructs validation options with a default FHIR version.
   ValidationOptions({this.fhirVersion = FhirPublication.r4});

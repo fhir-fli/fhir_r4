@@ -2,6 +2,8 @@
 // ignore_for_file: avoid_print
 
 import 'dart:collection';
+
+/// ValidatorFetcher
 class ValidatorFetcher {
   /// Constructs a new instance of the validator fetcher.
   final HashMap<String, bool> urlCache = HashMap();

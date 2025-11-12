@@ -2,6 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
 abstract class IEvaluationContext {
   /// A constant reference - e.g. a reference to a name that must be resolved in
   /// context. The % will be removed from the constant name before this is
@@ -101,4 +102,3 @@ abstract class IEvaluationContext {
     String url,
   );
 }
-

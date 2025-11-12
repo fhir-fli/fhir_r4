@@ -7,8 +7,9 @@ import 'package:ucum/ucum.dart';
 
 /// Internal utilities class for FHIRPath engine.
 ///
-/// This class contains helper methods used by operations, functions, and execution.
-/// It is not part of the public API - users should use [FHIRPathEngine] instead.
+/// This class contains helper methods used by operations, functions, and
+/// execution. It is not part of the public API - users should use
+/// [FHIRPathEngine] instead.
 class FhirPathUtilities {
   FhirPathUtilities(this.fpContext);
 
@@ -114,11 +115,11 @@ class FhirPathUtilities {
       return FpEquality.true_;
     }
 
-    throw this.fpContext.makeException(
-          expr,
-          'FHIRPATH_UNABLE_BOOLEAN',
-          items.map((e) => e.toString()).toList(),
-        );
+    throw fpContext.makeException(
+      expr,
+      'FHIRPATH_UNABLE_BOOLEAN',
+      items.map((e) => e.toString()).toList(),
+    );
   }
 
   FpEquality asBoolFromInt(String value) {
@@ -192,7 +193,7 @@ class FhirPathUtilities {
       final eqBool = asBool(items.first);
       return eqBool == FpEquality.null_ ? FpEquality.true_ : eqBool;
     } else {
-      throw this.fpContext.makeException(
+      throw fpContext.makeException(
         expr,
         'FHIRPATH_UNABLE_BOOLEAN',
         [convertListToString(items)],

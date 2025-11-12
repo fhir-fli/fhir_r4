@@ -38,12 +38,15 @@ class BulkImportRequest {
     this.maxBatchResourceCount,
     this.client,
     this.additionalParameters,
-  }) : assert(files.isNotEmpty, 'At least one file must be provided'),
-       assert(
-         files.every((f) => f.url.hasScheme && 
-                          (f.url.scheme == 'http' || f.url.scheme == 'https')),
-         'All file URLs must be valid HTTP/HTTPS URLs',
-       );
+  })  : assert(files.isNotEmpty, 'At least one file must be provided'),
+        assert(
+          files.every(
+            (f) =>
+                f.url.hasScheme &&
+                (f.url.scheme == 'http' || f.url.scheme == 'https'),
+          ),
+          'All file URLs must be valid HTTP/HTTPS URLs',
+        );
 
   /// The server base URL, e.g. https://example.com/fhir
   final Uri base;

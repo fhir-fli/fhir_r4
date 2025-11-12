@@ -48,7 +48,8 @@ void main() async {
   print('All files processed and export files generated.');
 }
 
-// Function to process JSON files in the specified directory and generate Dart classes
+// Function to process JSON files in the specified directory and generate
+// Dart classes
 Future<void> processDirectory(
   Directory directory,
   String stepDirPath,
@@ -71,12 +72,14 @@ Future<void> processDirectory(
 
         // Generate the Dart class name based on type
         if (type == 'logical') {
-          // StructureDefinition: structureDefinitionTLeft1, structureDefinitionTRight1, etc.
+          // StructureDefinition: structureDefinitionTLeft1,
+          // structureDefinitionTRight1, etc.
           className =
               _generateStructureDefinitionClassName(jsonFile.path, stepNumber);
         } else if (type == 'map') {
           // StructureMap: structureMap3a or structureMap7b
           className =
+              // ignore: lines_longer_than_80_chars
               'structureMap${jsonFile.uri.pathSegments.last.replaceAll('.json', '')}';
         }
 
@@ -117,6 +120,7 @@ Future<void> processSourceDirectory(
         if (type == 'result') {
           // Result: resultFilenameWithoutDots
           className =
+              // ignore: lines_longer_than_80_chars
               'result${jsonFile.uri.pathSegments.last.replaceAll('.json', '').replaceAll('.', '')}';
         } else {
           // Source: same as filename without extension

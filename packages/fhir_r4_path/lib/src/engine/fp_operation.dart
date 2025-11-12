@@ -140,4 +140,3 @@ enum FpOperation {
     }
   }
 }
-

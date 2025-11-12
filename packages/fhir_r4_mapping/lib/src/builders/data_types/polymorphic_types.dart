@@ -777,6 +777,7 @@ abstract class StudyEffectiveXResearchElementDefinitionCharacteristicBuilder
     extends DataTypeBuilder implements PolymorphicTypeBuilder {}
 
 /// Indicates what effective period the study covers.
+// ignore: lines_longer_than_80_chars
 abstract class ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder
     extends DataTypeBuilder implements PolymorphicTypeBuilder {}
 

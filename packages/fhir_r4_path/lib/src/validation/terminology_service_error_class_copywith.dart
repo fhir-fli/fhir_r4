@@ -3,7 +3,9 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'terminology_service_error_class.dart';
+
+/// TerminologyServiceErrorClassCopyWithImpl - required for all FHIRBase classes
+/// to allow for immutable copying
 class TerminologyServiceErrorClassCopyWithImpl<T>
     extends $FhirCodeCopyWithImpl<T> {
   /// Constructor for the copyWith implementation.

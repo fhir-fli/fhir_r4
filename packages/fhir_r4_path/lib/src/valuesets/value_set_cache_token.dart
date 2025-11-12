@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-
+/// ValueSetCacheToken
 class ValueSetCacheToken {
   /// Create a new cache token
   const ValueSetCacheToken(
@@ -30,4 +30,3 @@ class ValueSetCacheToken {
   @override
   int get hashCode => Object.hash(valueSetUrl, valueSetVersion, hierarchical);
 }
-

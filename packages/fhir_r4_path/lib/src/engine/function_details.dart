@@ -19,4 +19,3 @@ class FunctionDetails {
     return maxParameters;
   }
 }
-

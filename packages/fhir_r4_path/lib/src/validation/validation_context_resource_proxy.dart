@@ -3,6 +3,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
+/// ValidationContextResourceProxy
 class ValidationContextResourceProxy {
   /// Constructor for a fully resolved resource.
   ValidationContextResourceProxy.resource(this.resource)

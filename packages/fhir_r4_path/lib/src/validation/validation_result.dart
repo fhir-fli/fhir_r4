@@ -3,6 +3,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
+/// ValidationResult
 class ValidationResult {
   /// Constructor for a generic [ValidationResult].
   ValidationResult({

@@ -3,6 +3,8 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
+/// TerminologyServiceErrorClass
 class TerminologyServiceErrorClass extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TerminologyServiceErrorClass._(

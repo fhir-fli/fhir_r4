@@ -2,6 +2,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+
+/// ValidationContextCarrier
 class ValidationContextCarrier {
   /// A list of proxies that provide context resources.
   final List<ValidationContextResourceProxy> resources = [];

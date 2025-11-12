@@ -63,7 +63,10 @@ class DefinitionResolver {
         ) ??
         map?.structure?.firstWhereOrNull(
           (s) =>
-              s.url.valueString?.toLowerCase().endsWith('/${type.toLowerCase()}') ?? false,
+              s.url.valueString
+                  ?.toLowerCase()
+                  .endsWith('/${type.toLowerCase()}') ??
+              false,
         );
 
     final resolved = await resolve(structure?.url.valueString ?? type);
@@ -213,8 +216,9 @@ class DefinitionResolver {
   Future<String?> _resolveType(StructureMap map, String? type) async {
     for (final structure in map.structure ?? <StructureMapStructure>[]) {
       if (structure.alias != null && structure.alias?.valueString == type) {
-        return (await resolve(structure.url.toString()))?.type.valueString ?? '' ??
-            type;
+        return (await resolve(structure.url.toString()))?.type.valueString ??
+            type ??
+            '';
       }
     }
     if ((type?.startsWith('http://') ?? false) ||
