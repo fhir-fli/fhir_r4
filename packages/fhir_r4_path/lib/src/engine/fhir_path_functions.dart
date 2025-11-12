@@ -13,7 +13,11 @@ import 'package:ucum/ucum.dart';
 /// select(), etc.)
 class FhirPathFunctions {
   FhirPathFunctions(
-      this.fpContext, this.utilities, this.operations, this.engine);
+    this.fpContext,
+    this.utilities,
+    this.operations,
+    this.engine,
+  );
 
   final FhirPathContext fpContext;
   final FhirPathUtilities utilities;
@@ -1539,8 +1543,8 @@ class FhirPathFunctions {
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
-            message:
-                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
+            message: "Unable to convert '${utilities.convertToString(item)}' "
+                'to a boolean',
           );
         }
 
@@ -1582,8 +1586,8 @@ class FhirPathFunctions {
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
-            message:
-                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
+            message: "Unable to convert '${utilities.convertToString(item)}' "
+                'to a boolean',
           );
         }
 
@@ -1627,8 +1631,8 @@ class FhirPathFunctions {
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
-            message:
-                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
+            message: "Unable to convert '${utilities.convertToString(item)}' "
+                'to a boolean',
           );
         }
         final v = utilities.asBool(item, true);
@@ -1671,8 +1675,8 @@ class FhirPathFunctions {
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
-            message:
-                "Unable to convert '${utilities.convertToString(item)}' to a boolean",
+            message: "Unable to convert '${utilities.convertToString(item)}' "
+                'to a boolean',
           );
         }
         final v = utilities.asBool(item, true);
@@ -3438,7 +3442,10 @@ class FhirPathFunctions {
     if (execContext.definedVariables != null) {
       for (final s in execContext.definedVariables?.keys ?? <String>[]) {
         newContext.setDefinedVariable(
-            s, execContext.definedVariables![s], fpContext.worker);
+          s,
+          execContext.definedVariables![s],
+          fpContext.worker,
+        );
       }
     }
     return newContext;

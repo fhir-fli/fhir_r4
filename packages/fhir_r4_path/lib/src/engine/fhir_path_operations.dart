@@ -1180,30 +1180,47 @@ class FhirPathOperations {
     } else if (left.length != 1 || right.length != 1) {
       result.add(FhirBoolean(false).noExtensions());
     } else {
-      final tn = utilities.convertListToString(right);
+      var tn = utilities.convertListToString(right);
+      // Handle .not() syntax: System.Quantity.not() means "not System.Quantity"
+      var negate = false;
+      if (tn.endsWith('.not()')) {
+        tn = tn.substring(0, tn.length - 6); // Remove '.not()'
+        negate = true;
+      }
 
-      if (left.first is Element) {
+      // Check if comparing to Quantity type
+      final isQuantityCheck = tn == 'Quantity' || tn == 'System.Quantity';
+      final isQuantity = left.first is Quantity;
+
+      if (isQuantityCheck) {
+        // Special handling for Quantity type check
+        result.add(
+          FhirBoolean(negate ? !isQuantity : isQuantity).noExtensions(),
+        );
+        return result;
+      } else if (left.first is Element) {
         final element = left.first as Element;
 
         if (element.disallowExtensions ?? false) {
+          final matches = element.fhirType.capitalize() == tn ||
+              'System.${element.fhirType.capitalize()}' == tn;
           result.add(
-            FhirBoolean(
-              element.fhirType.capitalize() == tn ||
-                  'System.${element.fhirType.capitalize()}' == tn,
-            ).noExtensions(),
+            FhirBoolean(negate ? !matches : matches).noExtensions(),
           );
         } else {
           final currentType = element.fhirType;
 
-          return utilities.makeBoolean(
-            currentType.toLowerCase() == tn.toLowerCase() ||
-                currentType == tn.replaceFirst('FHIR.', ''),
-          );
+          final matches = currentType.toLowerCase() == tn.toLowerCase() ||
+              currentType == tn.replaceFirst('FHIR.', '');
+          return utilities.makeBoolean(negate ? !matches : matches);
         }
       } else if (left.first.fhirType == tn) {
-        result.add(FhirBoolean(true).noExtensions());
+        result.add(FhirBoolean(!negate).noExtensions());
       } else if (left.first.fhirType == tn.replaceFirst('FHIR.', '')) {
-        result.add(FhirBoolean(true).noExtensions());
+        result.add(FhirBoolean(!negate).noExtensions());
+      } else {
+        // Type doesn't match - if negate is true, return true (not the type)
+        result.add(FhirBoolean(negate).noExtensions());
       }
     }
 

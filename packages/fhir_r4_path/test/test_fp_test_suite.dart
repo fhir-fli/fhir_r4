@@ -780,13 +780,12 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // TODO(Dokotela): Still doesn't like negative numbers to start
-    // test('testLiteralIntegerNotEqual', () async {
-    //   expect(
-    //     await walkFhirPath(context: patient1, pathExpression: '-3 != 3'),
-    //     [true.toFhirBoolean],
-    //   );
-    // });
+    test('testLiteralIntegerNotEqual', () async {
+      expect(
+        await walkFhirPath(context: patient1, pathExpression: '-3 != 3'),
+        [true.toFhirBoolean],
+      );
+    });
 
     test('testLiteralIntegerEqual', () async {
       expect(
@@ -798,7 +797,7 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // TODO(Dokotela): Again, starting with negative numbers is a problem
+    // TODO(Dokotela): fix polarity precedence
     // test('testPolarityPrecedence', () async {
     //   expect(
     //     await walkFhirPath(
@@ -850,13 +849,12 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // TODO(Dokotela): Still doesn't like negative numbers to start
-    // test('testLiteralIntegerLessThanPolarityFalse', () async {
-    //   expect(
-    //     await walkFhirPath(context: patient1, pathExpression: '-1 < 2'),
-    //     [true.toFhirBoolean],
-    //   );
-    // });
+    test('testLiteralIntegerLessThanPolarityFalse', () async {
+      expect(
+        await walkFhirPath(context: patient1, pathExpression: '-1 < 2'),
+        [true.toFhirBoolean],
+      );
+    });
 
     test('testLiteralDecimalGreaterThanNonZeroTrue', () async {
       expect(
@@ -937,38 +935,35 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // TODO(Dokotela): testDateNotEqualTimezoneOffsetBefore
-    // test('testDateNotEqualTimezoneOffsetBefore', () async {
-    //   expect(
-    //     await walkFhirPath(
-    //       context: patient1,
-    //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00-10:00',
-    //     ),
-    //     <FhirBase>[],
-    //   );
-    // });
+    test('testDateNotEqualTimezoneOffsetBefore', () async {
+      expect(
+        await walkFhirPath(
+          context: patient1,
+          pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00-10:00',
+        ),
+        <FhirBase>[],
+      );
+    });
 
-    // TODO(Dokotela): testDateNotEqualTimezoneOffsetAfter
-    // test('testDateNotEqualTimezoneOffsetAfter', () async {
-    //   expect(
-    //     await walkFhirPath(
-    //       context: patient1,
-    //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00+10:00',
-    //     ),
-    //     <FhirBase>[],
-    //   );
-    // });
+    test('testDateNotEqualTimezoneOffsetAfter', () async {
+      expect(
+        await walkFhirPath(
+          context: patient1,
+          pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00+10:00',
+        ),
+        <FhirBase>[],
+      );
+    });
 
-    // TODO(Dokotela): testDateNotEqualUTC
-    // test('testDateNotEqualUTC', () async {
-    //   expect(
-    //     await walkFhirPath(
-    //       context: patient1,
-    //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00Z',
-    //     ),
-    //     <FhirBase>[],
-    //   );
-    // });
+    test('testDateNotEqualUTC', () async {
+      expect(
+        await walkFhirPath(
+          context: patient1,
+          pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00Z',
+        ),
+        <FhirBase>[],
+      );
+    });
 
     test('testDateNotEqualTimeSecond', () async {
       expect(
@@ -1728,12 +1723,14 @@ Future<void> testFpTestSuite() async {
     });
 
     // TODO(Dokotela): testDecimalLiteralIsNotQuantity
-    // test("testDecimalLiteralIsNotQuantity", () async {
+    // test('testDecimalLiteralIsNotQuantity', () async {
     //   expect(
-    //       await walkFhirPath(
-    //           context: patient1,
-    //           pathExpression: r"1.0 is System.Quantity.not()"),
-    //       [true]);
+    //     await walkFhirPath(
+    //       context: patient1,
+    //       pathExpression: '1.0 is System.Quantity.not()',
+    //     ),
+    //     [true.toFhirBoolean],
+    //   );
     // });
 
     test('testStringIntegerLiteralConvertsToQuantity', () async {

@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 // ignore_for_file: avoid_print
 
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-
 
 class FHIRPathEngine {
   /// Constructor
@@ -22,7 +20,11 @@ class FHIRPathEngine {
       ..operations =
           FhirPathOperations(engine.fpContext, engine.utilities, engine)
       ..functions = FhirPathFunctions(
-          engine.fpContext, engine.utilities, engine.operations, engine);
+        engine.fpContext,
+        engine.utilities,
+        engine.operations,
+        engine,
+      );
     return engine;
   }
 
@@ -117,6 +119,7 @@ class FHIRPathEngine {
       final isString = lexer.isStringConstant();
 
       // Check if it's a unary sign embedded with the constant, e.g. '-123'
+      FhirBase? constantValue;
       if (!isString &&
           (lexer.current!.startsWith('-') || lexer.current!.startsWith('+'))) {
         wrapper = ExpressionNode(lexer.nextId().toString())
@@ -124,13 +127,25 @@ class FHIRPathEngine {
           ..operation = FpOperation.fromCode(lexer.current!.substring(0, 1))
           ..proximal = proximal
           ..start = lexer.currentLocation;
-        // Remove the sign from the string so _processConstant sees just digits
-        lexer.current = lexer.current!.substring(1);
+        // Take the token and strip the sign before parsing
+        // This preserves lexer state (cursor position) correctly
+        final token = lexer.take();
+        final numStr = token.substring(1);
+        if (numStr.isInteger) {
+          constantValue = FhirInteger(int.parse(numStr)).noExtensions();
+        } else if (numStr.isDecimal()) {
+          constantValue = FhirDecimal(double.parse(numStr)).noExtensions();
+        } else {
+          throw lexer
+              .error('Invalid numeric constant after unary sign: $token');
+        }
+      } else {
+        // Actually parse the constant normally
+        constantValue = _processConstant(lexer);
       }
 
-      // Actually parse the constant
       result
-        ..constant = _processConstant(lexer)
+        ..constant = constantValue
         ..kind = ExpressionNodeKind.constant;
 
       // Possibly parse a quantity (e.g., "5 years")
@@ -345,7 +360,12 @@ class FHIRPathEngine {
     // 8) If we built a unary wrapper for this expression, link it up
     if (wrapper != null) {
       wrapper.opNext = result;
-      result.proximal = false;
+      // Only set result.proximal = false if there are no operators attached
+      // If there are operators, we need to keep proximal = true so they get
+      // evaluated
+      if (result.operation == null) {
+        result.proximal = false;
+      }
       result = wrapper;
     }
 
@@ -1015,8 +1035,29 @@ class FHIRPathEngine {
         if (exp.opNext != null) {
           // Evaluate operand in non-proximal mode (the unary node is the
           // 'proximal' context)
-          final operandResult =
-              await execute(context, focus, exp.opNext!, false);
+          // If the operand has operators, we need to evaluate just the base
+          //expression first,
+          // then apply unary, then evaluate operators on the result
+          final operand = exp.opNext!;
+          final hadOperators = operand.proximal && operand.operation != null;
+
+          List<FhirBase> operandResult;
+          if (hadOperators) {
+            // Create a temporary node without operators to evaluate just the
+            //base expression
+            final baseNode = ExpressionNode('${operand.uniqueId}_base')
+              ..kind = operand.kind
+              ..name = operand.name
+              ..constant = operand.constant
+              ..function = operand.function
+              ..parameters = operand.parameters
+              ..inner = operand.inner
+              ..group = operand.group
+              ..proximal = false;
+            operandResult = await execute(context, focus, baseNode, false);
+          } else {
+            operandResult = await execute(context, focus, operand, false);
+          }
 
           // Now apply the unary operation
           if (exp.operation == FpOperation.Minus) {
@@ -1047,6 +1088,34 @@ class FHIRPathEngine {
             throw PathEngineException(
               'Unsupported unary operator: ${exp.operation}',
             );
+          }
+
+          // If the operand had operators, we need to evaluate them on the
+          // result
+          if (hadOperators) {
+            // Evaluate the operators on the result of the unary operation
+            // The operators are on the operand, so we need to evaluate them
+            // with work as focus
+            var opNode = operand;
+            while (opNode.operation != null && opNode.opNext != null) {
+              // Get the right-hand side
+              final rhs = await execute(context, focus, opNode.opNext!, false);
+              // Apply the operation
+              work = await operations.operate(
+                context,
+                work,
+                opNode.operation,
+                rhs,
+                opNode,
+              );
+              // Move to next operation
+              opNode = opNode.opNext!;
+              // Skip unary nodes
+              while (opNode.kind == ExpressionNodeKind.unary &&
+                  opNode.opNext != null) {
+                opNode = opNode.opNext!;
+              }
+            }
           }
         } else {
           // If no operand, decide how to handle (e.g. 0, or throw an error)
@@ -1080,7 +1149,12 @@ class FHIRPathEngine {
       case ExpressionNodeKind.constant:
         // Evaluate a literal constant
         final constants = functions.resolveConstantWithBase(
-            context, exp.constant, false, exp, true);
+          context,
+          exp.constant,
+          false,
+          exp,
+          true,
+        );
 
         work.addAll(constants);
 
@@ -1134,13 +1208,23 @@ class FHIRPathEngine {
           // Evaluate a type check or cast
           work2 = await executeContextTypeName(context, focus, next, false);
           work = await operations.operate(
-              context, work, last.operation, work2, last);
+            context,
+            work,
+            last.operation,
+            work2,
+            last,
+          );
         } else {
           // Evaluate the 'next' node, then apply the operation
 
           work2 = await execute(context, focus, next, true);
           work = await operations.operate(
-              context, work, last.operation, work2, last);
+            context,
+            work,
+            last.operation,
+            work2,
+            last,
+          );
         }
 
         // Move on to the next operation
@@ -1769,12 +1853,18 @@ class FHIRPathEngine {
               ]);
             }
             utilities.addTypeAndDescendents(
-                sdl, dt, await fpContext.worker.allStructures());
+              sdl,
+              dt,
+              await fpContext.worker.allStructures(),
+            );
           }
         }
       } else {
         utilities.addTypeAndDescendents(
-            sdl, sd, await fpContext.worker.allStructures());
+          sdl,
+          sd,
+          await fpContext.worker.allStructures(),
+        );
         if (type.contains('#')) {
           tail = type.substring(type.indexOf('#') + 1);
           tail = tail.substring(tail.indexOf('.'));
@@ -1939,7 +2029,10 @@ class FHIRPathEngine {
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
         newContext.setDefinedVariable(
-            s, context.definedVariables![s], fpContext.worker);
+          s,
+          context.definedVariables![s],
+          fpContext.worker,
+        );
       }
     }
     return newContext;
@@ -1970,7 +2063,10 @@ class FHIRPathEngine {
     if (context.definedVariables != null) {
       for (final s in context.definedVariables!.keys) {
         newContext.setDefinedVariable(
-            s, context.definedVariables![s], fpContext.worker);
+          s,
+          context.definedVariables![s],
+          fpContext.worker,
+        );
       }
     }
     return newContext;
@@ -2601,10 +2697,14 @@ class FHIRPathEngine {
               ['string', 'id', 'code', 'uri'],
             )) &&
             (await right.hasTypeFromWorker(
-                fpContext.worker, ['string', 'id', 'code', 'uri']))) {
+              fpContext.worker,
+              ['string', 'id', 'code', 'uri'],
+            ))) {
           result.addType(TypeDetails.FP_String);
         } else if (await left.hasTypeFromWorker(
-            fpContext.worker, ['date', 'dateTime', 'instant'])) {
+          fpContext.worker,
+          ['date', 'dateTime', 'instant'],
+        )) {
           if (await right.hasTypeFromWorker(fpContext.worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
@@ -2630,7 +2730,9 @@ class FHIRPathEngine {
             (await right.hasTypeFromWorker(fpContext.worker, ['Quantity']))) {
           result.addType(TypeDetails.FP_Quantity);
         } else if (await left.hasTypeFromWorker(
-            fpContext.worker, ['date', 'dateTime', 'instant'])) {
+          fpContext.worker,
+          ['date', 'dateTime', 'instant'],
+        )) {
           if (await right.hasTypeFromWorker(fpContext.worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
