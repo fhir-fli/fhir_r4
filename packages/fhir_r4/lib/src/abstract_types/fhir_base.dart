@@ -136,7 +136,7 @@ abstract class FhirBase {
   /// Deeply compares two FhirBase objects, either of which can be null.
   /// This is a convenience method that handles null checking before
   /// calling equalsDeep.
-  bool equalsDeepWithNull(FhirBase? obj1, FhirBase? obj2) {
+  static bool equalsDeepWithNull(FhirBase? obj1, FhirBase? obj2) {
     if (obj1 == null && obj2 == null) {
       return true;
     } else if (obj1 == null || obj2 == null) {
@@ -149,7 +149,7 @@ abstract class FhirBase {
   /// Compares two lists of FhirBase objects for equality.
   /// Returns true if both lists are null, or if they have the same length
   /// and all corresponding elements are deeply equal.
-  bool listEquals<T extends FhirBase>(List<T>? list1, List<T>? list2) {
+  static bool listEquals<T extends FhirBase>(List<T>? list1, List<T>? list2) {
     if (list1 == null && list2 == null) return true;
     if (list1 == null || list2 == null) return false;
     if (list1.length != list2.length) return false;
