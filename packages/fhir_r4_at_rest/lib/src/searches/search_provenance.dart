@@ -15,8 +15,9 @@ class SearchProvenance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['${modifier != null ? '$modifier' : ''}agent_role'] =
-        system != null ? '$system|$value' : '$value';
+    parameters['agent_role'] = system != null
+        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier:$value' : value.toString());
     return this;
   }
 
@@ -27,8 +28,9 @@ class SearchProvenance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['${modifier != null ? '$modifier' : ''}agent_type'] =
-        system != null ? '$system|$value' : '$value';
+    parameters['agent_type'] = system != null
+        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier:$value' : value.toString());
     return this;
   }
 
@@ -38,8 +40,8 @@ class SearchProvenance extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['${modifier != null ? '$modifier' : ''}recorded'] =
-        value.toString();
+    parameters['recorded'] =
+        (modifier != null ? '$modifier:$value' : value.toString());
     return this;
   }
 
@@ -50,8 +52,9 @@ class SearchProvenance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['${modifier != null ? '$modifier' : ''}signature_type'] =
-        system != null ? '$system|$value' : '$value';
+    parameters['signature_type'] = system != null
+        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier:$value' : value.toString());
     return this;
   }
 
@@ -61,7 +64,8 @@ class SearchProvenance extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['${modifier != null ? '$modifier' : ''}when'] = value.toString();
+    parameters['when'] =
+        (modifier != null ? '$modifier:$value' : value.toString());
     return this;
   }
 }
