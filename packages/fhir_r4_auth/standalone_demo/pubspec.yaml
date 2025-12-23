@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  fhir_r4: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

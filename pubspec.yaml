@@ -14,5 +14,5 @@ dependency_overrides:
     path: packages/fhir_r4_path
 
 dev_dependencies:
-  melos: ^6.3.2
-  very_good_analysis: ^7.0.0
+  melos: ^7.3.0
+  very_good_analysis: ^10.0.0
