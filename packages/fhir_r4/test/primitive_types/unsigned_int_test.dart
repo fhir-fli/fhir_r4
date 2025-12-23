@@ -131,3 +131,6 @@ void unsignedIntTest() {
     });
   });
 }
+void main() {
+  unsignedIntTest();
+}

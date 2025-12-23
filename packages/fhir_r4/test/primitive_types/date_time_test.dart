@@ -542,3 +542,6 @@ void dateTimeTest() {
     });
   });
 }
+void main() {
+  dateTimeTest();
+}

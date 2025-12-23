@@ -204,3 +204,6 @@ void canonicalTest() {
     });
   });
 }
+void main() {
+  canonicalTest();
+}

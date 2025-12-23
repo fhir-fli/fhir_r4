@@ -100,3 +100,6 @@ void codeTest() {
     });
   });
 }
+void main() {
+  codeTest();
+}

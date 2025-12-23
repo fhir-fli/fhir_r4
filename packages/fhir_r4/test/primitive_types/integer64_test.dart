@@ -185,3 +185,6 @@ void integer64Test() {
     });
   });
 }
+void main() {
+  integer64Test();
+}

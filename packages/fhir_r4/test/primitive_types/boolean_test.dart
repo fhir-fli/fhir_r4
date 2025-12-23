@@ -146,3 +146,6 @@ void booleanTest() {
     });
   });
 }
+void main() {
+  booleanTest();
+}

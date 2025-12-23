@@ -122,3 +122,6 @@ void oidTest() {
     });
   });
 }
+void main() {
+  oidTest();
+}

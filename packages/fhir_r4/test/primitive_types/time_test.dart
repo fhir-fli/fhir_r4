@@ -36,3 +36,6 @@ void timeTest() {
     });
   });
 }
+void main() {
+  timeTest();
+}

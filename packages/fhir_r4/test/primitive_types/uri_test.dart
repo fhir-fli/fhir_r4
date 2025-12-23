@@ -250,3 +250,6 @@ void uriTest() {
     });
   });
 }
+void main() {
+  uriTest();
+}

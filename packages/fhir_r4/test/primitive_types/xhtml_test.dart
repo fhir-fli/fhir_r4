@@ -190,3 +190,6 @@ void xhtmlTest() {
     });
   });
 }
+void main() {
+  xhtmlTest();
+}

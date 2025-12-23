@@ -130,3 +130,6 @@ void dateTest() {
     });
   });
 }
+void main() {
+  dateTest();
+}

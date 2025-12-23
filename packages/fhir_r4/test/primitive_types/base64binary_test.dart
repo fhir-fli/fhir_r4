@@ -213,7 +213,6 @@ void base64BinaryTest() {
       final original = FhirBase64Binary('SGVsbG8gV29ybGQ=');
       expect(original.valueString, isNotNull);
 
-      // ignore: avoid_redundant_argument_values
       final cleared = original.copyWith(
         newValue: null,
         element: const Element(),
@@ -245,4 +244,8 @@ void base64BinaryTest() {
       expect(copied.element, equals(newElement));
     });
   });
+}
+
+void main() {
+  base64BinaryTest();
 }

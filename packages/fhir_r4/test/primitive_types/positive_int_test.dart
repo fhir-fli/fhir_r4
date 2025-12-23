@@ -131,3 +131,6 @@ void positiveIntTest() {
     });
   });
 }
+void main() {
+  positiveIntTest();
+}
