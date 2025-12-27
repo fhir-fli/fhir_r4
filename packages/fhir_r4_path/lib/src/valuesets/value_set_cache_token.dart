@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 /// ValueSetCacheToken
 class ValueSetCacheToken {
   /// Create a new cache token

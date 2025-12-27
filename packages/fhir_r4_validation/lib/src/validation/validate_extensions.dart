@@ -46,9 +46,9 @@ Future<ValidationResults> validateExtensions({
       // Check both with underscore prefix (for primitive extensions) and without
       final extensionNodeWithUnderscore =
           node.getPropertyNode('_$propertyName');
-      final extensionNodeWithoutUnderscore =
-          node.getPropertyNode(propertyName);
-      final extensionNode = extensionNodeWithUnderscore ?? extensionNodeWithoutUnderscore;
+      final extensionNodeWithoutUnderscore = node.getPropertyNode(propertyName);
+      final extensionNode =
+          extensionNodeWithUnderscore ?? extensionNodeWithoutUnderscore;
 
 // Validate the structure of the extension node.
       if (extensionNode != null) {
@@ -62,7 +62,8 @@ Future<ValidationResults> validateExtensions({
         } else {
           // Fetch the StructureDefinition for the extension if profile URL exists.
           final structureDefinition = extensionUrl != null
-              ? await resourceCache.getStructureDefinition(extensionUrl.toString())
+              ? await resourceCache
+                  .getStructureDefinition(extensionUrl.toString())
               : null;
 
           if (structureDefinition != null) {

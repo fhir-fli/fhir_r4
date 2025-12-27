@@ -1,6 +1,4 @@
 // ignore_for_file: avoid_positional_boolean_parameters
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes,
-// ignore_for_file: constant_identifier_names
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -56,7 +54,6 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       var expansion = ValueSet.fromJson(result);
 
       // Clear any existing expansion
-      // ignore: avoid_redundant_argument_values
       expansion = expansion.copyWith(expansion: null);
 
       // Extract parameters

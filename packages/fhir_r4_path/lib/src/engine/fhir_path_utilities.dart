@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
-// ignore_for_file: avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
@@ -547,7 +546,7 @@ class FhirPathUtilities {
   bool doContains(List<FhirBase> list, FhirBase item) {
     for (final test in list) {
       final eq = doEquals(test, item);
-      if (eq != null && eq == true) {
+      if (eq != null && eq) {
         return true;
       }
     }

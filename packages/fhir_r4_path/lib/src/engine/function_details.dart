@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
+// ignore_for_file: public_member_api_docs
 
 class FunctionDetails {
   FunctionDetails(this.description, this.minParameters, this.maxParameters);

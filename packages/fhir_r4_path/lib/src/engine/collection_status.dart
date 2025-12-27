@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, constant_identifier_names,
-// ignore_for_file: lines_longer_than_80_chars
-
+// ignore_for_file: public_member_api_docs,
 
 enum CollectionStatus {
   singleton,

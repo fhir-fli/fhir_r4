@@ -1,4 +1,4 @@
-final sdTLeft1 = {
+final Map<String, Object> sdTLeft1 = {
   'resourceType': 'StructureDefinition',
   'id': 'TLeft',
   'extension': [

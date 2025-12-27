@@ -3,11 +3,8 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_validation/fhir_r4_validation.dart';
 import 'package:test/test.dart';
 
-
 // Test ResourceCache that provides ValueSets
 class _TestResourceCache extends CanonicalResourceCache {
-  final Map<String, ValueSet> _valueSets = {};
-  
   _TestResourceCache() {
     // Create a mock ValueSet for observation-status from JSON
     final valueSetJson = {
@@ -35,8 +32,9 @@ class _TestResourceCache extends CanonicalResourceCache {
       },
     };
     final observationStatusValueSet = ValueSet.fromJson(valueSetJson);
-    _valueSets['http://hl7.org/fhir/ValueSet/observation-status'] = observationStatusValueSet;
-    
+    _valueSets['http://hl7.org/fhir/ValueSet/observation-status'] =
+        observationStatusValueSet;
+
     // Add test ValueSet for preferred strength test
     final testValueSetJson = {
       'resourceType': 'ValueSet',
@@ -58,7 +56,7 @@ class _TestResourceCache extends CanonicalResourceCache {
     };
     final testValueSet = ValueSet.fromJson(testValueSetJson);
     _valueSets['http://example.org/ValueSet/test'] = testValueSet;
-    
+
     // Add observation-category ValueSet for nested binding test
     final observationCategoryValueSetJson = {
       'resourceType': 'ValueSet',
@@ -69,7 +67,8 @@ class _TestResourceCache extends CanonicalResourceCache {
       'compose': {
         'include': [
           {
-            'system': 'http://terminology.hl7.org/CodeSystem/observation-category',
+            'system':
+                'http://terminology.hl7.org/CodeSystem/observation-category',
             'concept': [
               {'code': 'social-history'},
               {'code': 'vital-signs'},
@@ -84,12 +83,18 @@ class _TestResourceCache extends CanonicalResourceCache {
         ],
       },
     };
-    final observationCategoryValueSet = ValueSet.fromJson(observationCategoryValueSetJson);
-    _valueSets['http://hl7.org/fhir/ValueSet/observation-category'] = observationCategoryValueSet;
+    final observationCategoryValueSet =
+        ValueSet.fromJson(observationCategoryValueSetJson);
+    _valueSets['http://hl7.org/fhir/ValueSet/observation-category'] =
+        observationCategoryValueSet;
   }
-  
+  final Map<String, ValueSet> _valueSets = {};
+
   @override
-  Future<T?> getCanonicalResource<T extends CanonicalResource>(String url, [String? version]) async {
+  Future<T?> getCanonicalResource<T extends CanonicalResource>(
+    String url, [
+    String? version,
+  ]) async {
     final cached = _valueSets[url];
     if (cached != null) {
       // Check if T is ValueSet or a supertype
@@ -100,7 +105,6 @@ class _TestResourceCache extends CanonicalResourceCache {
     return super.getCanonicalResource<T>(url, version);
   }
 }
-
 
 void main() {
   group('validateBindings', () {

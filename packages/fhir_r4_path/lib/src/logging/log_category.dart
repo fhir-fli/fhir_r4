@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 /// LogCategory enum
 enum LogCategory {
   /// Initialization log category.

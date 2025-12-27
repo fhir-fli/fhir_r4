@@ -239,7 +239,10 @@ void main() {
 
       expect(operationOutcome, isA<OperationOutcome>());
       expect(operationOutcome.resourceType, isNotNull);
-      expect(operationOutcome.resourceType.toString(), contains('OperationOutcome'));
+      expect(
+        operationOutcome.resourceType.toString(),
+        contains('OperationOutcome'),
+      );
       expect(operationOutcome.issue, isA<List<OperationOutcomeIssue>>());
     });
 

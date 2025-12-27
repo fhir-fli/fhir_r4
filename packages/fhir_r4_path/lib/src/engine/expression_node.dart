@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, constant_identifier_names,
+// ignore_for_file: public_member_api_docs,
 // ignore_for_file: lines_longer_than_80_chars, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';

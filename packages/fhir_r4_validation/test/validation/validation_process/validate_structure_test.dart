@@ -89,7 +89,8 @@ void main() {
       // Create a minimal StructureDefinition for HumanName
       final humanNameStructureDefinition = StructureDefinition(
         id: 'HumanName'.toFhirString,
-        url: 'http://hl7.org/fhir/StructureDefinition/HumanName'.toFhirCanonical,
+        url:
+            'http://hl7.org/fhir/StructureDefinition/HumanName'.toFhirCanonical,
         name: 'HumanName'.toFhirString,
         type: 'HumanName'.toFhirUri,
         kind: StructureDefinitionKind.complexType,
@@ -164,19 +165,19 @@ void main() {
 
 // Test ResourceCache that provides StructureDefinitions
 class _TestResourceCache extends CanonicalResourceCache {
-  final Map<String, StructureDefinition> _cache = {};
-  
   _TestResourceCache(StructureDefinition? humanName) {
     if (humanName != null) {
       _cache['HumanName'] = humanName;
       _cache['http://hl7.org/fhir/StructureDefinition/HumanName'] = humanName;
     }
   }
-  
+  final Map<String, StructureDefinition> _cache = {};
+
   @override
   Future<StructureDefinition?> getStructureDefinition(String? type) async {
     if (type == null) return null;
-    final cached = _cache[type] ?? _cache['http://hl7.org/fhir/StructureDefinition/$type'];
+    final cached =
+        _cache[type] ?? _cache['http://hl7.org/fhir/StructureDefinition/$type'];
     if (cached != null) return cached;
     return super.getStructureDefinition(type);
   }

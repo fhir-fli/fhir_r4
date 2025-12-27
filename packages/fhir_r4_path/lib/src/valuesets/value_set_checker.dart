@@ -1,7 +1,3 @@
-// ignore_for_file: avoid_positional_boolean_parameters
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes,
-// ignore_for_file: constant_identifier_names
-
 import 'dart:collection';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -81,7 +77,7 @@ class ValueSetChecker {
           res = validateCodeAgainstCodeSystem(coding, cs);
         }
 
-        if (res.isOk != true) {
+        if (!res.isOk) {
           errors.add(res.message ?? 'Unknown error');
         } else if (res.message != null) {
           warnings.add(res.message!);

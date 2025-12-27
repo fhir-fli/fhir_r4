@@ -125,7 +125,8 @@ void main() {
     test('toOperationOutcome includes line and column information', () {
       final results = ValidationResults();
       final node = LiteralNode('test', 'test', path: 'Patient.id')
-        ..loc = ValidationLocation(Segment(5, 10, 0), Segment(5, 10, 0));
+        ..loc = ValidationLocation(
+            const Segment(5, 10, 0), const Segment(5, 10, 0));
 
       results.addResult(node, 'Error message', Severity.error);
 
@@ -181,7 +182,8 @@ void main() {
 
     test('create factory method extracts location from node', () {
       final node = LiteralNode('test', 'test', path: 'Patient.id')
-        ..loc = ValidationLocation(Segment(3, 7, 0), Segment(3, 7, 0));
+        ..loc =
+            ValidationLocation(const Segment(3, 7, 0), const Segment(3, 7, 0));
 
       final diagnostics = ValidationDiagnostics.create(
         node,
