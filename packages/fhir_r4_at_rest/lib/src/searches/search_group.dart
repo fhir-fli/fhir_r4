@@ -15,9 +15,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['actual'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('actual', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['characteristic'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('characteristic', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['code'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('code', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['exclude'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('exclude', paramValue);
     return this;
   }
 
@@ -67,9 +71,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -80,9 +85,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -93,9 +99,10 @@ class SearchGroup extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['value'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('value', paramValue);
     return this;
   }
 }

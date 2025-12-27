@@ -15,9 +15,10 @@ class SearchAccount extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -30,8 +31,9 @@ class SearchAccount extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['name'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name', paramValue);
     return this;
   }
 
@@ -41,8 +43,9 @@ class SearchAccount extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['period'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('period', paramValue);
     return this;
   }
 
@@ -53,9 +56,10 @@ class SearchAccount extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -66,9 +70,10 @@ class SearchAccount extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 }

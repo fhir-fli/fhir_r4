@@ -15,9 +15,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['contraindication'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('contraindication', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['effect'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('effect', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['indication'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('indication', paramValue);
     return this;
   }
 
@@ -67,9 +71,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['interaction'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('interaction', paramValue);
     return this;
   }
 
@@ -80,9 +85,10 @@ class SearchClinicalUseDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 }

@@ -14,8 +14,9 @@ class SearchInvoice extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -26,9 +27,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -39,9 +41,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['participant_role'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('participant_role', paramValue);
     return this;
   }
 
@@ -52,9 +55,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -70,9 +74,10 @@ class SearchInvoice extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
-    parameters['totalgross'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('totalgross', paramValue);
     return this;
   }
 
@@ -88,9 +93,10 @@ class SearchInvoice extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
-    parameters['totalnet'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('totalnet', paramValue);
     return this;
   }
 
@@ -101,9 +107,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 }

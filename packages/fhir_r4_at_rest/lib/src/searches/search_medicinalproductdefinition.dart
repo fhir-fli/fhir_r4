@@ -15,9 +15,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['characteristic'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('characteristic', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['characteristic_type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('characteristic_type', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['domain'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('domain', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -67,9 +71,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['ingredient'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('ingredient', paramValue);
     return this;
   }
 
@@ -82,8 +87,9 @@ class SearchMedicinalProductDefinition extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['name'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name', paramValue);
     return this;
   }
 
@@ -94,9 +100,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['name_language'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name_language', paramValue);
     return this;
   }
 
@@ -107,9 +114,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['product_classification'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('product_classification', paramValue);
     return this;
   }
 
@@ -120,9 +128,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -133,9 +142,10 @@ class SearchMedicinalProductDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 }

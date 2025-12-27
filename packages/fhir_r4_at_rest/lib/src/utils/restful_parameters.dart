@@ -7,11 +7,24 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests.
 class RestfulParameters {
   /// The parameters to be added to the query.
-  final Map<String, String> parameters = <String, String>{};
+  /// Values can be String or List<String> to support multiple values for the same key.
+  final Map<String, dynamic> parameters = <String, dynamic>{};
+
+  /// Helper method to add a value, converting to list if key already exists.
+  void addParameterValue(String parameter, String value) {
+    final existing = parameters[parameter];
+    if (existing == null) {
+      parameters[parameter] = value;
+    } else if (existing is String) {
+      parameters[parameter] = [existing, value];
+    } else if (existing is List<String>) {
+      existing.add(value);
+    }
+  }
 
   /// Add a parameter to the query.
   RestfulParameters add(String parameter, String value) {
-    parameters[parameter] = value;
+    addParameterValue(parameter, value);
     return this;
   }
 
@@ -46,7 +59,17 @@ class RestfulParameters {
   }
 
   /// Add a parameter to the query.
-  String buildQuery() => parameters.entries
-      .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-      .join('&');
+  String buildQuery() {
+    final queryParts = <String>[];
+    for (final entry in parameters.entries) {
+      if (entry.value is String) {
+        queryParts.add('${entry.key}=${entry.value}');
+      } else if (entry.value is List<String>) {
+        for (final value in entry.value as List<String>) {
+          queryParts.add('${entry.key}=$value');
+        }
+      }
+    }
+    return queryParts.join('&');
+  }
 }

@@ -14,8 +14,9 @@ class SearchComposition extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -26,9 +27,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -39,9 +41,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -52,9 +55,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('category', paramValue);
     return this;
   }
 
@@ -65,9 +69,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['confidentiality'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('confidentiality', paramValue);
     return this;
   }
 
@@ -78,9 +83,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['context'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('context', paramValue);
     return this;
   }
 
@@ -90,8 +96,9 @@ class SearchComposition extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['period'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('period', paramValue);
     return this;
   }
 
@@ -102,9 +109,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['related_id'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('related_id', paramValue);
     return this;
   }
 
@@ -115,9 +123,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['section'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('section', paramValue);
     return this;
   }
 
@@ -128,9 +137,10 @@ class SearchComposition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -143,8 +153,9 @@ class SearchComposition extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['title'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('title', paramValue);
     return this;
   }
 }

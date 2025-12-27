@@ -15,9 +15,10 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['code'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('code', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -40,8 +42,9 @@ class SearchDeviceRequest extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['authored_on'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('authored_on', paramValue);
     return this;
   }
 
@@ -51,8 +54,9 @@ class SearchDeviceRequest extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['event_date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('event_date', paramValue);
     return this;
   }
 
@@ -63,9 +67,10 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['group_identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('group_identifier', paramValue);
     return this;
   }
 
@@ -75,8 +80,9 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['instantiates_uri'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('instantiates_uri', paramValue);
     return this;
   }
 
@@ -87,9 +93,10 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['intent'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('intent', paramValue);
     return this;
   }
 
@@ -100,9 +107,10 @@ class SearchDeviceRequest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 }

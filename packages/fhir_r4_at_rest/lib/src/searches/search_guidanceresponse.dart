@@ -15,9 +15,10 @@ class SearchGuidanceResponse extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchGuidanceResponse extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['request'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('request', paramValue);
     return this;
   }
 }

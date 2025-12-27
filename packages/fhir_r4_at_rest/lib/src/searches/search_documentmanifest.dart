@@ -15,9 +15,10 @@ class SearchDocumentManifest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchDocumentManifest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -40,8 +42,9 @@ class SearchDocumentManifest extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['created'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('created', paramValue);
     return this;
   }
 
@@ -54,8 +57,9 @@ class SearchDocumentManifest extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['description'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('description', paramValue);
     return this;
   }
 
@@ -66,9 +70,10 @@ class SearchDocumentManifest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['related_id'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('related_id', paramValue);
     return this;
   }
 
@@ -78,8 +83,9 @@ class SearchDocumentManifest extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['source'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('source', paramValue);
     return this;
   }
 
@@ -90,9 +96,10 @@ class SearchDocumentManifest extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 }

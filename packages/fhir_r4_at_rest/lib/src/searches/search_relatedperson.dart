@@ -17,8 +17,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['address'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address', paramValue);
     return this;
   }
 
@@ -31,8 +32,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['address_city'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address_city', paramValue);
     return this;
   }
 
@@ -45,8 +47,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['address_country'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address_country', paramValue);
     return this;
   }
 
@@ -59,8 +62,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['address_postalcode'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address_postalcode', paramValue);
     return this;
   }
 
@@ -73,8 +77,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['address_state'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address_state', paramValue);
     return this;
   }
 
@@ -85,9 +90,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['address_use'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('address_use', paramValue);
     return this;
   }
 
@@ -97,8 +103,9 @@ class SearchRelatedPerson extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['birthdate'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('birthdate', paramValue);
     return this;
   }
 
@@ -109,9 +116,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['email'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('email', paramValue);
     return this;
   }
 
@@ -122,9 +130,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['gender'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('gender', paramValue);
     return this;
   }
 
@@ -135,9 +144,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['phone'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('phone', paramValue);
     return this;
   }
 
@@ -150,8 +160,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['phonetic'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('phonetic', paramValue);
     return this;
   }
 
@@ -162,9 +173,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['telecom'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('telecom', paramValue);
     return this;
   }
 
@@ -175,9 +187,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['active'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('active', paramValue);
     return this;
   }
 
@@ -188,9 +201,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -203,8 +217,9 @@ class SearchRelatedPerson extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['name'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name', paramValue);
     return this;
   }
 
@@ -215,9 +230,10 @@ class SearchRelatedPerson extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['relationship'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('relationship', paramValue);
     return this;
   }
 }

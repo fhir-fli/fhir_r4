@@ -15,9 +15,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['code'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('code', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -46,9 +48,10 @@ class SearchCondition extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
-    parameters['abatement_age'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('abatement_age', paramValue);
     return this;
   }
 
@@ -58,8 +61,9 @@ class SearchCondition extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['abatement_date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('abatement_date', paramValue);
     return this;
   }
 
@@ -72,8 +76,9 @@ class SearchCondition extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['abatement_string'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('abatement_string', paramValue);
     return this;
   }
 
@@ -84,9 +89,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['body_site'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('body_site', paramValue);
     return this;
   }
 
@@ -97,9 +103,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('category', paramValue);
     return this;
   }
 
@@ -110,9 +117,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['clinical_status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('clinical_status', paramValue);
     return this;
   }
 
@@ -123,9 +131,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['evidence'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('evidence', paramValue);
     return this;
   }
 
@@ -141,9 +150,10 @@ class SearchCondition extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
-    parameters['onset_age'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('onset_age', paramValue);
     return this;
   }
 
@@ -153,8 +163,9 @@ class SearchCondition extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['onset_date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('onset_date', paramValue);
     return this;
   }
 
@@ -167,8 +178,9 @@ class SearchCondition extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['onset_info'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('onset_info', paramValue);
     return this;
   }
 
@@ -178,8 +190,9 @@ class SearchCondition extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['recorded_date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('recorded_date', paramValue);
     return this;
   }
 
@@ -190,9 +203,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['severity'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('severity', paramValue);
     return this;
   }
 
@@ -203,9 +217,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['stage'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('stage', paramValue);
     return this;
   }
 
@@ -216,9 +231,10 @@ class SearchCondition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['verification_status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('verification_status', paramValue);
     return this;
   }
 }

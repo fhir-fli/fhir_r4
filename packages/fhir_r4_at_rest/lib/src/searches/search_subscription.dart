@@ -15,9 +15,10 @@ class SearchSubscription extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['contact'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('contact', paramValue);
     return this;
   }
 
@@ -30,8 +31,9 @@ class SearchSubscription extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['criteria'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('criteria', paramValue);
     return this;
   }
 
@@ -42,9 +44,10 @@ class SearchSubscription extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['payload'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('payload', paramValue);
     return this;
   }
 
@@ -55,9 +58,10 @@ class SearchSubscription extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -68,9 +72,10 @@ class SearchSubscription extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -80,8 +85,9 @@ class SearchSubscription extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['url'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('url', paramValue);
     return this;
   }
 }

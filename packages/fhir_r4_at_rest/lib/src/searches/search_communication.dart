@@ -15,9 +15,10 @@ class SearchCommunication extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('category', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchCommunication extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -40,8 +42,9 @@ class SearchCommunication extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['instantiates_uri'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('instantiates_uri', paramValue);
     return this;
   }
 
@@ -52,9 +55,10 @@ class SearchCommunication extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['medium'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('medium', paramValue);
     return this;
   }
 
@@ -64,8 +68,9 @@ class SearchCommunication extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['received'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('received', paramValue);
     return this;
   }
 
@@ -75,8 +80,9 @@ class SearchCommunication extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['sent'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('sent', paramValue);
     return this;
   }
 
@@ -87,9 +93,10 @@ class SearchCommunication extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 }

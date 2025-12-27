@@ -15,9 +15,10 @@ class SearchTestReport extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -27,8 +28,9 @@ class SearchTestReport extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['issued'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('issued', paramValue);
     return this;
   }
 
@@ -38,8 +40,9 @@ class SearchTestReport extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['participant'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('participant', paramValue);
     return this;
   }
 
@@ -50,9 +53,10 @@ class SearchTestReport extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['result'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('result', paramValue);
     return this;
   }
 
@@ -65,8 +69,9 @@ class SearchTestReport extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['tester'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('tester', paramValue);
     return this;
   }
 }

@@ -15,9 +15,10 @@ class SearchMolecularSequence extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['chromosome'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('chromosome', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchMolecularSequence extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchMolecularSequence extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['referenceseqid'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('referenceseqid', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchMolecularSequence extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -72,9 +76,10 @@ class SearchMolecularSequence extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
-    parameters['variant_end'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('variant_end', paramValue);
     return this;
   }
 
@@ -90,9 +95,10 @@ class SearchMolecularSequence extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
-    parameters['variant_start'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('variant_start', paramValue);
     return this;
   }
 
@@ -108,9 +114,10 @@ class SearchMolecularSequence extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
-    parameters['window_end'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('window_end', paramValue);
     return this;
   }
 
@@ -126,9 +133,10 @@ class SearchMolecularSequence extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
-    parameters['window_start'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('window_start', paramValue);
     return this;
   }
 }

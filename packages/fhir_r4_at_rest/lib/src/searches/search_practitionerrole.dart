@@ -15,9 +15,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['email'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('email', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['phone'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('phone', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['telecom'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('telecom', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['active'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('active', paramValue);
     return this;
   }
 
@@ -66,8 +70,9 @@ class SearchPractitionerRole extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -78,9 +83,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -91,9 +97,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['role'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('role', paramValue);
     return this;
   }
 
@@ -104,9 +111,10 @@ class SearchPractitionerRole extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['specialty'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('specialty', paramValue);
     return this;
   }
 }

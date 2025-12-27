@@ -14,8 +14,9 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -25,8 +26,9 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['derived_or_self'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('derived_or_self', paramValue);
     return this;
   }
 
@@ -37,9 +39,10 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -49,8 +52,9 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['resource'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('resource', paramValue);
     return this;
   }
 
@@ -61,9 +65,10 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -76,8 +81,9 @@ class SearchSubscriptionTopic extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['title'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('title', paramValue);
     return this;
   }
 
@@ -90,8 +96,9 @@ class SearchSubscriptionTopic extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['trigger_description'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('trigger_description', paramValue);
     return this;
   }
 
@@ -101,8 +108,9 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['url'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('url', paramValue);
     return this;
   }
 
@@ -113,9 +121,10 @@ class SearchSubscriptionTopic extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['version'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('version', paramValue);
     return this;
   }
 }

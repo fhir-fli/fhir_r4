@@ -15,9 +15,10 @@ class SearchAdverseEvent extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['actuality'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('actuality', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchAdverseEvent extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('category', paramValue);
     return this;
   }
 
@@ -40,8 +42,9 @@ class SearchAdverseEvent extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -52,9 +55,10 @@ class SearchAdverseEvent extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['event'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('event', paramValue);
     return this;
   }
 
@@ -65,9 +69,10 @@ class SearchAdverseEvent extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['seriousness'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('seriousness', paramValue);
     return this;
   }
 
@@ -78,9 +83,10 @@ class SearchAdverseEvent extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['severity'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('severity', paramValue);
     return this;
   }
 }

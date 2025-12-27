@@ -15,9 +15,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['context'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('context', paramValue);
     return this;
   }
 
@@ -33,9 +34,10 @@ class SearchExampleScenario extends SearchResource {
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
-    parameters['context_quantity'] = (modifier != null
+    final paramValue = (modifier != null
         ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
+    addParameterValue('context_quantity', paramValue);
     return this;
   }
 
@@ -46,9 +48,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['context_type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('context_type', paramValue);
     return this;
   }
 
@@ -58,8 +61,9 @@ class SearchExampleScenario extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -70,9 +74,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -83,9 +88,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['jurisdiction'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
@@ -98,8 +104,9 @@ class SearchExampleScenario extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['name'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name', paramValue);
     return this;
   }
 
@@ -112,8 +119,9 @@ class SearchExampleScenario extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['publisher'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('publisher', paramValue);
     return this;
   }
 
@@ -124,9 +132,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -136,8 +145,9 @@ class SearchExampleScenario extends SearchResource {
     FhirUri value, {
     SearchModifier? modifier,
   }) {
-    parameters['url'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('url', paramValue);
     return this;
   }
 
@@ -148,9 +158,10 @@ class SearchExampleScenario extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['version'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('version', paramValue);
     return this;
   }
 }

@@ -15,9 +15,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['active'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('active', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['characteristic'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('characteristic', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -56,8 +59,9 @@ class SearchHealthcareService extends SearchResource {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
-    parameters['name'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('name', paramValue);
     return this;
   }
 
@@ -68,9 +72,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['program'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('program', paramValue);
     return this;
   }
 
@@ -81,9 +86,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['service_category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('service_category', paramValue);
     return this;
   }
 
@@ -94,9 +100,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['service_type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('service_type', paramValue);
     return this;
   }
 
@@ -107,9 +114,10 @@ class SearchHealthcareService extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['specialty'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('specialty', paramValue);
     return this;
   }
 }

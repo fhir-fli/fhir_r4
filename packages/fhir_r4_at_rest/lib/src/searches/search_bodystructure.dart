@@ -15,9 +15,10 @@ class SearchBodyStructure extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchBodyStructure extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['location'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('location', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchBodyStructure extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['morphology'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('morphology', paramValue);
     return this;
   }
 }

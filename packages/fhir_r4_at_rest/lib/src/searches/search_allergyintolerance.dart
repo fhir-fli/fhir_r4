@@ -15,9 +15,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['category'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('category', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['clinical_status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('clinical_status', paramValue);
     return this;
   }
 
@@ -41,9 +43,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['code'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('code', paramValue);
     return this;
   }
 
@@ -54,9 +57,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['criticality'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('criticality', paramValue);
     return this;
   }
 
@@ -66,8 +70,9 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('date', paramValue);
     return this;
   }
 
@@ -78,9 +83,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -90,8 +96,9 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['last_date'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('last_date', paramValue);
     return this;
   }
 
@@ -102,9 +109,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['manifestation'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('manifestation', paramValue);
     return this;
   }
 
@@ -114,8 +122,9 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['onset'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('onset', paramValue);
     return this;
   }
 
@@ -126,9 +135,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['route'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('route', paramValue);
     return this;
   }
 
@@ -139,9 +149,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['severity'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('severity', paramValue);
     return this;
   }
 
@@ -152,9 +163,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 
@@ -165,9 +177,10 @@ class SearchAllergyIntolerance extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['verification_status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('verification_status', paramValue);
     return this;
   }
 }

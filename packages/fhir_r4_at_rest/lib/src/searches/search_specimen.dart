@@ -15,9 +15,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['accession'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('accession', paramValue);
     return this;
   }
 
@@ -28,9 +29,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['bodysite'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('bodysite', paramValue);
     return this;
   }
 
@@ -40,8 +42,9 @@ class SearchSpecimen extends SearchResource {
     FhirDateTime value, {
     SearchModifier? modifier,
   }) {
-    parameters['collected'] =
+    final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('collected', paramValue);
     return this;
   }
 
@@ -52,9 +55,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['container'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('container', paramValue);
     return this;
   }
 
@@ -65,9 +69,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['container_id'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('container_id', paramValue);
     return this;
   }
 
@@ -78,9 +83,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['identifier'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('identifier', paramValue);
     return this;
   }
 
@@ -91,9 +97,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['status'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('status', paramValue);
     return this;
   }
 
@@ -104,9 +111,10 @@ class SearchSpecimen extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    parameters['type'] = system != null
+    final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
+    addParameterValue('type', paramValue);
     return this;
   }
 }
