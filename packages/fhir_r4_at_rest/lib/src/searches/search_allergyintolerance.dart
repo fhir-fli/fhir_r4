@@ -16,8 +16,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['category'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -29,8 +29,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['clinical_status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -42,8 +42,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -55,8 +55,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['criticality'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -67,7 +67,7 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -79,8 +79,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -91,7 +91,7 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['last_date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -103,8 +103,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['manifestation'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -115,7 +115,7 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['onset'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -127,8 +127,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['route'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -140,8 +140,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['severity'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -153,8 +153,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -166,8 +166,8 @@ class SearchAllergyIntolerance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['verification_status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

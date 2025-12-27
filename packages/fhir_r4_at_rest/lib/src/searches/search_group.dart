@@ -16,8 +16,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['actual'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -29,8 +29,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['characteristic'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -42,8 +42,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -55,8 +55,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['exclude'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -68,8 +68,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -81,8 +81,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -94,8 +94,8 @@ class SearchGroup extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['value'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

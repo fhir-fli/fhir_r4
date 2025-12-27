@@ -16,8 +16,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -29,8 +29,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['additive'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -41,7 +41,7 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['datetime'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -53,8 +53,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['formula'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -65,7 +65,7 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['instantiates_uri'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -77,8 +77,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['oraldiet'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -90,8 +90,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -103,8 +103,8 @@ class SearchNutritionOrder extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['supplement'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

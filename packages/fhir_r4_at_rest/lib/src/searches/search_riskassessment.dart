@@ -15,7 +15,7 @@ class SearchRiskAssessment extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -27,8 +27,8 @@ class SearchRiskAssessment extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -40,8 +40,8 @@ class SearchRiskAssessment extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['method'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -58,7 +58,7 @@ class SearchRiskAssessment extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
     parameters['probability'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -71,8 +71,8 @@ class SearchRiskAssessment extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['risk'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

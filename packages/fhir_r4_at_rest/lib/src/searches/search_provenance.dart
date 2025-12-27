@@ -16,8 +16,8 @@ class SearchProvenance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['agent_role'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -29,8 +29,8 @@ class SearchProvenance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['agent_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -41,7 +41,7 @@ class SearchProvenance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['recorded'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -53,8 +53,8 @@ class SearchProvenance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['signature_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -65,7 +65,7 @@ class SearchProvenance extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['when'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

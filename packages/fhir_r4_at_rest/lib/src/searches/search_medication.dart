@@ -16,8 +16,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -28,7 +28,7 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['expiration_date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -40,8 +40,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['form'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -53,8 +53,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -66,8 +66,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['ingredient_code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -79,8 +79,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['lot_number'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -92,8 +92,8 @@ class SearchMedication extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

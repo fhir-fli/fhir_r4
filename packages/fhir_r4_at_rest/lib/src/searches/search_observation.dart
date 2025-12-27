@@ -16,8 +16,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -28,7 +28,7 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -40,8 +40,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -53,8 +53,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['category'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -66,8 +66,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['combo_code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -79,8 +79,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['combo_data_absent_reason'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -92,8 +92,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['combo_value_concept'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -110,7 +110,7 @@ class SearchObservation extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['combo_value_quantity'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -123,8 +123,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['component_code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -136,8 +136,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['component_data_absent_reason'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -149,8 +149,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['component_value_concept'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -167,7 +167,7 @@ class SearchObservation extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['component_value_quantity'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -180,8 +180,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['data_absent_reason'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -193,8 +193,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['method'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -206,8 +206,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -219,8 +219,8 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['value_concept'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -231,7 +231,7 @@ class SearchObservation extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['value_date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -248,7 +248,7 @@ class SearchObservation extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['value_quantity'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -263,7 +263,7 @@ class SearchObservation extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['value_string'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

@@ -16,8 +16,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['context'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -34,7 +34,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['context_quantity'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -47,8 +47,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['context_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -59,7 +59,7 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -73,7 +73,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['description'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -85,8 +85,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['jurisdiction'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -100,7 +100,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['name'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -114,7 +114,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['publisher'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -126,8 +126,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -141,7 +141,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['contact'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -153,8 +153,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['id_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -166,8 +166,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['kind'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -178,7 +178,7 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['period'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -192,7 +192,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['responsible'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -204,8 +204,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['telecom'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -217,8 +217,8 @@ class SearchNamingSystem extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -232,7 +232,7 @@ class SearchNamingSystem extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['value'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

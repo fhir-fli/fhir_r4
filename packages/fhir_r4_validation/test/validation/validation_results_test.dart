@@ -126,7 +126,9 @@ void main() {
       final results = ValidationResults();
       final node = LiteralNode('test', 'test', path: 'Patient.id')
         ..loc = ValidationLocation(
-            const Segment(5, 10, 0), const Segment(5, 10, 0));
+          const Segment(5, 10, 0),
+          const Segment(5, 10, 0),
+        );
 
       results.addResult(node, 'Error message', Severity.error);
 

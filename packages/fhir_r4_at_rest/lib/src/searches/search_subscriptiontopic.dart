@@ -15,7 +15,7 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -26,7 +26,7 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['derived_or_self'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -38,8 +38,8 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -50,7 +50,7 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['resource'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -62,8 +62,8 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -77,7 +77,7 @@ class SearchSubscriptionTopic extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['title'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -91,7 +91,7 @@ class SearchSubscriptionTopic extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['trigger_description'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -102,7 +102,7 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['url'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -114,8 +114,8 @@ class SearchSubscriptionTopic extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['version'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

@@ -2,5 +2,5 @@
 
 final Map<String, Object> resultStep6dSource6b = {
   "resourceType": "TRight",
-  "a23": 67890
+  "a23": 67890,
 };

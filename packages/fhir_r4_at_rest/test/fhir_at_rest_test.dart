@@ -920,7 +920,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        'http://hapi.fhir.org/baseR4/Patient?birthdate=ge2010-01-01&lebirthdate=2011-12-31&_format=json',
+        'http://hapi.fhir.org/baseR4/Patient?birthdate=ge2010-01-01&birthdate=le2011-12-31&_format=json',
       );
 
       expect(

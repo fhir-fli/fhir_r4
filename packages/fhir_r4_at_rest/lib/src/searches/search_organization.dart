@@ -16,8 +16,8 @@ class SearchOrganization extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['active'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -31,7 +31,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['address'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -45,7 +45,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['address_city'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -59,7 +59,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['address_country'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -73,7 +73,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['address_postalcode'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -87,7 +87,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['address_state'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -99,8 +99,8 @@ class SearchOrganization extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['address_use'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -112,8 +112,8 @@ class SearchOrganization extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -127,7 +127,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['name'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -141,7 +141,7 @@ class SearchOrganization extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['phonetic'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -153,8 +153,8 @@ class SearchOrganization extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

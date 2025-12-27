@@ -18,7 +18,7 @@ class SearchDevice extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['device_name'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -30,8 +30,8 @@ class SearchDevice extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['identifier'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -45,7 +45,7 @@ class SearchDevice extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['manufacturer'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -59,7 +59,7 @@ class SearchDevice extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['model'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -71,8 +71,8 @@ class SearchDevice extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -84,8 +84,8 @@ class SearchDevice extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -99,7 +99,7 @@ class SearchDevice extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['udi_carrier'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -113,7 +113,7 @@ class SearchDevice extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['udi_di'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -124,7 +124,7 @@ class SearchDevice extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['url'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

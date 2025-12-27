@@ -16,8 +16,8 @@ class SearchMessageHeader extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['code'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -31,7 +31,7 @@ class SearchMessageHeader extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['destination'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -42,7 +42,7 @@ class SearchMessageHeader extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['destination_uri'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -54,8 +54,8 @@ class SearchMessageHeader extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['event'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -67,8 +67,8 @@ class SearchMessageHeader extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['response_id'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -82,7 +82,7 @@ class SearchMessageHeader extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['source'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -93,7 +93,7 @@ class SearchMessageHeader extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['source_uri'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

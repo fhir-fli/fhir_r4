@@ -18,7 +18,7 @@ class SearchResource extends RestfulParameters {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['_content'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -30,8 +30,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_filter'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -45,7 +45,7 @@ class SearchResource extends RestfulParameters {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['_has'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -57,8 +57,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_id'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -69,7 +69,7 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_lastUpdated'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -83,7 +83,7 @@ class SearchResource extends RestfulParameters {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['_list'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -94,7 +94,7 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_profile'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -106,8 +106,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_query'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -119,8 +119,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_security'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -131,7 +131,7 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_source'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -143,8 +143,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_tag'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -158,7 +158,7 @@ class SearchResource extends RestfulParameters {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['_text'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -170,8 +170,8 @@ class SearchResource extends RestfulParameters {
     SearchModifier? modifier,
   }) {
     parameters['_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }

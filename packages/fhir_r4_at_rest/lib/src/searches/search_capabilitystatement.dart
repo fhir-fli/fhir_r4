@@ -16,8 +16,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['context'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -34,7 +34,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['context_quantity'] = (modifier != null
-        ? '$modifier:$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
+        ? '$modifier$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}');
     return this;
   }
@@ -47,8 +47,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['context_type'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -59,7 +59,7 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['date'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -73,7 +73,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['description'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -85,8 +85,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['fhirversion'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -98,8 +98,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['format'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -111,8 +111,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['jurisdiction'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -124,8 +124,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['mode'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -139,7 +139,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['name'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -153,7 +153,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['publisher'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -165,8 +165,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['resource'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -178,8 +178,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['security_service'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -193,7 +193,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['software'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -205,8 +205,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['status'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -220,7 +220,7 @@ class SearchCapabilityStatement extends SearchResource {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['title'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -231,7 +231,7 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['url'] =
-        (modifier != null ? '$modifier:$value' : value.toString());
+        (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 
@@ -243,8 +243,8 @@ class SearchCapabilityStatement extends SearchResource {
     SearchModifier? modifier,
   }) {
     parameters['version'] = system != null
-        ? (modifier != null ? '$modifier:$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier:$value' : value.toString());
+        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
+        : (modifier != null ? '$modifier$value' : value.toString());
     return this;
   }
 }
