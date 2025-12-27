@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_dynamic_calls, lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:async';
 import 'dart:convert';

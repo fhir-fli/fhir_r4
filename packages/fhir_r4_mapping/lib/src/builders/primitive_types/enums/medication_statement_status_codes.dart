@@ -1,4 +1,3 @@
-// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for MedicationStatementStatusCodes
@@ -162,7 +161,6 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
       );
     } else if (value == null && element == null) {
       throw ArgumentError(
-        // ignore: lines_longer_than_80_chars
         'MedicationStatementStatusCodesBuilder cannot be constructed from JSON.',
       );
     }

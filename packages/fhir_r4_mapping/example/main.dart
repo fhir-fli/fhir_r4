@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types
-// ignore_for_file: avoid_escaping_inner_quotes, file_names
+// ignore_for_file: prefer_single_quotes
+// ignore_for_file: avoid_escaping_inner_quotes
 // ignore_for_file: require_trailing_commas, unused_local_variable
 
 import 'package:fhir_r4/fhir_r4.dart';

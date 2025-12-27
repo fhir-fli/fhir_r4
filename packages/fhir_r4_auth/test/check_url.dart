@@ -8,8 +8,8 @@ void main() {
     print('Epic base URL: ${TestServers.epicBaseUrl}');
     final uri = TestServers.epicBaseUrl.toFhirUri;
     print('FhirUri: $uri');
-    print('Metadata URL: ${uri}/metadata');
-    final parsed = Uri.parse('${uri}/metadata');
+    print('Metadata URL: $uri/metadata');
+    final parsed = Uri.parse('$uri/metadata');
     print('Parsed: $parsed');
   });
 }

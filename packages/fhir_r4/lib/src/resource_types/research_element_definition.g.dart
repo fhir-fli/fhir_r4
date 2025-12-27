@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: public_member_api_docs, sort_constructors_first, lines_longer_than_80_chars
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: one_member_abstracts
 
 part of 'research_element_definition.dart';
@@ -267,9 +267,7 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
   final T Function(ResearchElementDefinitionCharacteristic) _then;
 
   _$ResearchElementDefinitionCharacteristicCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({

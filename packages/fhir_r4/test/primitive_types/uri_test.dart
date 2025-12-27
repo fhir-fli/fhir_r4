@@ -229,7 +229,6 @@ void uriTest() {
       final original = FhirUri('http://example.org/fhir');
       expect(original.valueString, isNotNull);
 
-      // ignore: avoid_redundant_argument_values
       final cleared = original.copyWith(
         newValue: null,
         element: const Element(),
@@ -250,6 +249,7 @@ void uriTest() {
     });
   });
 }
+
 void main() {
   uriTest();
 }

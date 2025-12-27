@@ -1,5 +1,3 @@
-// ignore_for_file: always_specify_types, prefer_const_declarations
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -36,6 +34,7 @@ void timeTest() {
     });
   });
 }
+
 void main() {
   timeTest();
 }

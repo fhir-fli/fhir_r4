@@ -1,20 +1,19 @@
 /// Integration tests against real SMART on FHIR servers
-/// 
+///
 /// These tests verify the complete authentication flow against actual
 /// FHIR servers including Epic, Cerner, and generic SMART servers.
-/// 
+///
 /// To run these tests:
 /// 1. Set up test credentials in environment variables or test_data.dart
 /// 2. Ensure you have network access to the test servers
 /// 3. Run: flutter test test/integration/real_server_integration_test.dart
-/// 
+///
 /// Note: These tests require actual server access and may take longer to run.
 library;
 
 import 'dart:io';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../test_helpers/test_data.dart';
 import 'test_helpers/integration_test_helpers.dart';
 
 /// Test configuration for real server integration tests
@@ -99,16 +98,20 @@ void _testPatientStandaloneLaunch() {
 
         // Verify authentication
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'Client should be authenticated after login');
+        expect(isAuth, isTrue,
+            reason: 'Client should be authenticated after login');
 
         // Verify patient context
         final patientContext = client.patientContext;
-        expect(patientContext, isNotNull, reason: 'Patient context should be present');
-        expect(patientContext, isNotEmpty, reason: 'Patient context should not be empty');
+        expect(patientContext, isNotNull,
+            reason: 'Patient context should be present');
+        expect(patientContext, isNotEmpty,
+            reason: 'Patient context should not be empty');
 
         // Verify access token
         final accessToken = await client.getAccessToken();
-        expect(accessToken, isNotNull, reason: 'Access token should be present');
+        expect(accessToken, isNotNull,
+            reason: 'Access token should be present');
 
         // Test token refresh if refresh token is available
         final tokens = await client.tokenStorage.loadTokens();
@@ -121,8 +124,7 @@ void _testPatientStandaloneLaunch() {
         // Log error but don't fail if it's a network/credential issue
         print('Epic patient standalone launch test failed: $e');
         // Re-throw if it's a configuration issue
-        if (e is ConfigurationException) {
-        }
+        if (e is ConfigurationException) {}
         // Otherwise, skip this test
         return;
       } finally {
@@ -131,7 +133,7 @@ void _testPatientStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runEpicTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -166,7 +168,7 @@ void _testPatientStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runCernerTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -201,7 +203,7 @@ void _testPatientStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runGenericTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 }
 
@@ -217,7 +219,8 @@ void _testPatientEhrLaunch() {
       // EHR launch requires a launch token from Epic
       // This would typically come from the EHR system launching the app
       // For testing, you may need to generate a launch token or use a test launcher
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPatientEhrClient(
         serverBaseUrl: IntegrationTestServers.epic.baseUrl,
@@ -245,7 +248,7 @@ void _testPatientEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runEpicTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -255,7 +258,8 @@ void _testPatientEhrLaunch() {
         return;
       }
 
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPatientEhrClient(
         serverBaseUrl: IntegrationTestServers.cerner.baseUrl,
@@ -282,7 +286,7 @@ void _testPatientEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runCernerTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -292,7 +296,8 @@ void _testPatientEhrLaunch() {
         return;
       }
 
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPatientEhrClient(
         serverBaseUrl: IntegrationTestServers.generic.baseUrl,
@@ -319,7 +324,7 @@ void _testPatientEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runGenericTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 }
 
@@ -364,7 +369,7 @@ void _testPractitionerStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runEpicTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -402,7 +407,7 @@ void _testPractitionerStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runCernerTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -436,7 +441,7 @@ void _testPractitionerStandaloneLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runGenericTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 }
 
@@ -449,7 +454,8 @@ void _testPractitionerEhrLaunch() {
         return;
       }
 
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPractitionerEhrClient(
         serverBaseUrl: IntegrationTestServers.epic.baseUrl,
@@ -480,7 +486,7 @@ void _testPractitionerEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runEpicTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -490,7 +496,8 @@ void _testPractitionerEhrLaunch() {
         return;
       }
 
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPractitionerEhrClient(
         serverBaseUrl: IntegrationTestServers.cerner.baseUrl,
@@ -517,7 +524,7 @@ void _testPractitionerEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runCernerTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -527,7 +534,8 @@ void _testPractitionerEhrLaunch() {
         return;
       }
 
-      const launchToken = 'test-launch-token'; // Replace with actual launch token
+      const launchToken =
+          'test-launch-token'; // Replace with actual launch token
 
       final client = IntegrationTestHelpers.createPractitionerEhrClient(
         serverBaseUrl: IntegrationTestServers.generic.baseUrl,
@@ -554,7 +562,7 @@ void _testPractitionerEhrLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runGenericTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 }
 
@@ -597,7 +605,7 @@ void _testBackendServiceLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runEpicTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -632,7 +640,7 @@ void _testBackendServiceLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runCernerTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 
   test(
@@ -667,6 +675,6 @@ void _testBackendServiceLaunch() {
     },
     skip: IntegrationTestConfig.skipRealServerTests ||
         !IntegrationTestConfig.runGenericTests,
-    timeout: Timeout(IntegrationTestConfig.testTimeout),
+    timeout: const Timeout(IntegrationTestConfig.testTimeout),
   );
 }

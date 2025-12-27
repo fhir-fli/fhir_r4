@@ -1,5 +1,6 @@
 /// Helper functions for integration tests
 library;
+
 import 'package:http/http.dart' as http;
 
 import 'package:fhir_r4/fhir_r4.dart';
@@ -141,7 +142,8 @@ class IntegrationTestHelpers {
       config: SmartConfig(
         clientId: clientId,
         fhirBaseUrl: serverBaseUrl.toFhirUri,
-        redirectUri: Uri.parse('urn:ietf:wg:oauth:2.0:oob'), // Not used for backend
+        redirectUri:
+            Uri.parse('urn:ietf:wg:oauth:2.0:oob'), // Not used for backend
         scopes: scopes ?? ['system/*.read'],
         launchType: LaunchType.backend,
         authMethod: clientSecret != null
@@ -155,7 +157,8 @@ class IntegrationTestHelpers {
   }
 
   /// Verify that authentication was successful
-  static Future<void> verifyAuthenticationSuccess(SmartFhirClient client) async {
+  static Future<void> verifyAuthenticationSuccess(
+      SmartFhirClient client) async {
     final isAuth = await client.isAuthenticated();
     expect(isAuth, isTrue, reason: 'Client should be authenticated');
     final accessToken = await client.getAccessToken();
@@ -165,8 +168,10 @@ class IntegrationTestHelpers {
 
   /// Verify patient context
   static void verifyPatientContext(SmartFhirClient client) {
-    expect(client.patientContext, isNotNull, reason: 'Patient context should be present');
-    expect(client.patientContext, isNotEmpty, reason: 'Patient context should not be empty');
+    expect(client.patientContext, isNotNull,
+        reason: 'Patient context should be present');
+    expect(client.patientContext, isNotEmpty,
+        reason: 'Patient context should not be empty');
   }
 
   /// Verify practitioner context
@@ -198,7 +203,8 @@ class IntegrationTestHelpers {
   /// Verify server capabilities discovery
   static Future<void> verifyServerCapabilities(SmartFhirClient client) async {
     final capabilities = await client.getServerCapabilities();
-    expect(capabilities, isNotEmpty, reason: 'Should discover server capabilities');
+    expect(capabilities, isNotEmpty,
+        reason: 'Should discover server capabilities');
   }
 
   /// Clean up test client
@@ -239,7 +245,8 @@ class _EpicServer {
 class _CernerServer {
   const _CernerServer();
 
-  String get baseUrl => 'https://fhir-ehr.cerner.com/r4'; // Example - update with actual
+  String get baseUrl =>
+      'https://fhir-ehr.cerner.com/r4'; // Example - update with actual
   String get clientId => 'test-client-id'; // Update with actual
   String get patientUsername => TestServers.cernerPatientUsername;
   String get patientPassword => TestServers.cernerPatientPassword;

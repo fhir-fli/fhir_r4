@@ -166,9 +166,7 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<T>
   final T Function(CoverageEligibilityRequestSupportingInfo) _then;
 
   _$CoverageEligibilityRequestSupportingInfoCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({

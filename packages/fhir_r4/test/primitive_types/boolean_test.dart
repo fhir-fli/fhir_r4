@@ -122,7 +122,6 @@ void booleanTest() {
       final original = FhirBoolean(true);
       expect(original.valueBoolean, isNotNull);
 
-      // ignore: avoid_redundant_argument_values
       final cleared = original.copyWith(
         newValue: null,
         element: const Element(),
@@ -146,6 +145,7 @@ void booleanTest() {
     });
   });
 }
+
 void main() {
   booleanTest();
 }

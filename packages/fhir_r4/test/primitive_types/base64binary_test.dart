@@ -83,7 +83,6 @@ void base64BinaryTest() {
     test('Equality with String', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);
-      // ignore: unrelated_type_equality_checks
       expect(base64Binary.valueString == validBase64String, isTrue);
     });
 

@@ -91,7 +91,7 @@ void _testAndroidPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -128,7 +128,7 @@ void _testAndroidPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }
 
@@ -168,7 +168,7 @@ void _testIOSPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -205,7 +205,7 @@ void _testIOSPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }
 
@@ -245,7 +245,7 @@ void _testWebPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true' || !kIsWeb,
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -282,7 +282,7 @@ void _testWebPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true' || !kIsWeb,
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }
 
@@ -321,7 +321,7 @@ void _testLinuxPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -358,7 +358,7 @@ void _testLinuxPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }
 
@@ -397,7 +397,7 @@ void _testMacOSPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -434,7 +434,7 @@ void _testMacOSPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }
 
@@ -473,7 +473,7 @@ void _testWindowsPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   test(
@@ -510,6 +510,6 @@ void _testWindowsPlatform() {
       }
     },
     skip: Platform.environment['SKIP_PLATFORM_TESTS'] == 'true',
-    timeout: Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 }

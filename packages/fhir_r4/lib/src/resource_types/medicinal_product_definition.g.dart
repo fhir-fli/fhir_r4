@@ -436,9 +436,7 @@ class _$MedicinalProductDefinitionCountryLanguageCopyWithImpl<T>
   final T Function(MedicinalProductDefinitionCountryLanguage) _then;
 
   _$MedicinalProductDefinitionCountryLanguageCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -506,9 +504,7 @@ class _$MedicinalProductDefinitionCrossReferenceCopyWithImpl<T>
   final T Function(MedicinalProductDefinitionCrossReference) _then;
 
   _$MedicinalProductDefinitionCrossReferenceCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({
@@ -646,9 +642,7 @@ class _$MedicinalProductDefinitionCharacteristicCopyWithImpl<T>
   final T Function(MedicinalProductDefinitionCharacteristic) _then;
 
   _$MedicinalProductDefinitionCharacteristicCopyWithImpl(
-    this._value,
-    this._then,
-  );
+      this._value, this._then);
 
   @override
   T call({

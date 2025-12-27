@@ -1,5 +1,3 @@
-// ignore_for_file: unintended_html_in_doc_comment
-
 import 'dart:convert';
 import 'package:archive/archive.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -19,7 +17,6 @@ abstract class FhirBulk {
     }
     final result = buffer.toString();
     // Remove trailing newline if present
-    // ignore: lines_longer_than_80_chars
     return result.endsWith('\n')
         ? result.substring(0, result.length - 1)
         : result;
