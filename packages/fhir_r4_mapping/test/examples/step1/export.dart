@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, directives_ordering
+// ignore_for_file: directives_ordering
 
 export 'logical/structuredefinition-tright.dart';
 export 'logical/structuredefinition-tleft.dart';

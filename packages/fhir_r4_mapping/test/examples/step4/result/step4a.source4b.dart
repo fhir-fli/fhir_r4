@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types,
 // ignore_for_file: avoid_escaping_inner_quotes
 
-final resultStep4aSource4b = {
+final Map<String, Object> resultStep4aSource4b = {
   'resourceType': 'OperationOutcome',
   'issue': [
     {

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, public_member_api_docs
+// ignore_for_file: public_member_api_docs
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';

@@ -2015,7 +2015,6 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   /// [package]
   /// Allows containers (and parts of containers) parwithin containers, still
   /// a single packaged product. See also
-  // ignore: lines_longer_than_80_chars
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
   List<PackagedProductDefinitionPackageBuilder>? package;
 

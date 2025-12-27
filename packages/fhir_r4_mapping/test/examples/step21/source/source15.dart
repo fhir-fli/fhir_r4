@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_single_quotes always_specify_types
 // ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: avoid_escaping_inner_quotes
 
-final source14 = {
+final Map<String, Object> source14 = {
   "resourceType": "QuestionnaireResponse",
   "id": "SDOHCC-QuestionnaireResponsePRAPAREExample",
   "meta": {

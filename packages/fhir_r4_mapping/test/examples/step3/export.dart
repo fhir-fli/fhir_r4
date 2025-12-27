@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, directives_ordering
+// ignore_for_file: directives_ordering
 
 export 'source/source3min.dart';
 export 'source/source3.dart';

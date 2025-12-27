@@ -6475,7 +6475,6 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
   /// An absolute URI that is a formal reference to where this parameter was
   /// first defined, so that a client can be confident of the meaning of the
   /// search parameter (a reference to
-  // ignore: lines_longer_than_80_chars
   /// [SearchParameter.url](searchparameter-definitions.html#SearchParameter.url)).
   /// This element SHALL be populated if the search parameter refers to a
   /// SearchParameter defined by the FHIR core specification or externally

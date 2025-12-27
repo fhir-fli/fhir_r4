@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, avoid_print, lines_longer_than_80_chars
+// ignore_for_file: public_member_api_docs, lines_longer_than_80_chars
 // ignore_for_file: omit_local_variable_types, constant_identifier_names
 
 import 'dart:convert';
