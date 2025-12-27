@@ -8,14 +8,14 @@ import 'test_parser.dart';
 import 'test_paths.dart';
 import 'test_questionnaire.dart';
 
-void main() {
-  testBasicTypes();
-  testParser();
-  testPaths();
-  testBasicOperators();
-  testDateTimes();
-  testNoArgFxns();
-  testArgFxns();
-  testQuestionnaire();
-  testFpTestSuite();
+Future<void> main() async {
+  await testBasicTypes();
+  await testParser();
+  await testPaths();
+  await testBasicOperators();
+  await testDateTimes();
+  await testNoArgFxns();
+  await testArgFxns();
+  await testQuestionnaire();
+  await testFpTestSuite();
 }

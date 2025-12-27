@@ -101,7 +101,7 @@ class FhirDb {
       try {
         for (final type in [...types, 'sync', 'history']) {
           final oldBox = type == 'history'
-              ? await Hive.openBox<Map<String, dynamic>>(
+              ? await Hive.openBox<Map<dynamic, dynamic>>(
                   type,
                   encryptionCipher: await cipherFromKey(
                     key: oldPw,
@@ -336,8 +336,8 @@ class FhirDb {
   }) async {
     try {
       final box = Hive.isBoxOpen('history')
-          ? Hive.box<Map<String, dynamic>>('history')
-          : await Hive.openBox<Map<String, dynamic>>(
+          ? Hive.box<Map<dynamic, dynamic>>('history')
+          : await Hive.openBox<Map<dynamic, dynamic>>(
               'history',
               encryptionCipher: _cipher,
             );
@@ -373,7 +373,7 @@ class FhirDb {
   }) {
     final subject = BehaviorSubject<Resource?>();
 
-    _getBox(resourceType: resourceType).then((box) {
+    final future = _getBox(resourceType: resourceType).then((box) {
       final stream = (id == null) ? box.watch() : box.watch(key: id);
       final subscription = stream.listen(
         (event) {
@@ -393,10 +393,10 @@ class FhirDb {
       // Ensure the subscription is cancelled when the BehaviorSubject is closed
       subject.onCancel = subscription.cancel;
     }).catchError((Object e) {
-      subject
-        ..addError(e) // Handle errors from _getBox.
-        ..close();
+      subject.addError(e); // Handle errors from _getBox.
+      unawaited(subject.close());
     });
+    unawaited(future);
 
     return subject;
   }
@@ -789,9 +789,9 @@ class FhirDb {
   Future<bool> containsCanonicalKey({required String key, String? pw}) async {
     await _ensureInit();
     try {
-      final Box<Map<String, dynamic>> box;
+      final Box<Map<dynamic, dynamic>> box;
       if (!Hive.isBoxOpen('canonical_resources')) {
-        box = await Hive.openBox<Map<String, dynamic>>(
+        box = await Hive.openBox<Map<dynamic, dynamic>>(
           'canonical_resources',
           encryptionCipher: _cipher,
         );
@@ -809,9 +809,9 @@ class FhirDb {
   Future<List<String>> listCanonicalKeys({String? pw}) async {
     await _ensureInit();
     try {
-      final Box<Map<String, dynamic>> box;
+      final Box<Map<dynamic, dynamic>> box;
       if (!Hive.isBoxOpen('canonical_resources')) {
-        box = await Hive.openBox<Map<String, dynamic>>(
+        box = await Hive.openBox<Map<dynamic, dynamic>>(
           'canonical_resources',
           encryptionCipher: _cipher,
         );
@@ -831,9 +831,9 @@ class FhirDb {
   }) async {
     await _ensureInit();
     try {
-      final Box<Map<String, dynamic>> box;
+      final Box<Map<dynamic, dynamic>> box;
       if (!Hive.isBoxOpen('canonical_resources')) {
-        box = await Hive.openBox<Map<String, dynamic>>(
+        box = await Hive.openBox<Map<dynamic, dynamic>>(
           'canonical_resources',
           encryptionCipher: _cipher,
         );
@@ -845,7 +845,9 @@ class FhirDb {
           .where((value) => value['resourceType'] == type.toString())
           .toList();
       resourceList.addAll(
-        newResources.map(CanonicalResource.fromJson) as Iterable<T>,
+        newResources.map(
+          (e) => CanonicalResource.fromJson(e as Map<String, dynamic>),
+        ) as Iterable<T>,
       );
       return resourceList;
     } catch (e) {
@@ -860,9 +862,9 @@ class FhirDb {
   }) async {
     await _ensureInit();
     try {
-      final Box<Map<String, dynamic>> box;
+      final Box<Map<dynamic, dynamic>> box;
       if (!Hive.isBoxOpen('canonical_resources')) {
-        box = await Hive.openBox<Map<String, dynamic>>(
+        box = await Hive.openBox<Map<dynamic, dynamic>>(
           'canonical_resources',
           encryptionCipher: _cipher,
         );
@@ -885,9 +887,9 @@ class FhirDb {
   }) async {
     await _ensureInit();
     try {
-      final Box<Map<String, dynamic>> box;
+      final Box<Map<dynamic, dynamic>> box;
       if (!Hive.isBoxOpen('canonical_resources')) {
-        box = await Hive.openBox<Map<String, dynamic>>(
+        box = await Hive.openBox<Map<dynamic, dynamic>>(
           'canonical_resources',
           encryptionCipher: _cipher,
         );
@@ -899,8 +901,9 @@ class FhirDb {
               ? box.get('http://hl7.org/fhir/StructureDefinition/$url')
               : null);
 
-      final resource =
-          canonicalMap == null ? null : Resource.fromJson(canonicalMap);
+      final resource = canonicalMap == null
+          ? null
+          : Resource.fromJson(canonicalMap as Map<String, dynamic>);
       if (resource is CanonicalResource) {
         return resource;
       }
@@ -1034,8 +1037,10 @@ class FhirDb {
     String? pw,
   }) {
     final subject = BehaviorSubject<dynamic>();
-    _ensureInit().then((_) {
-      Hive.openBox<dynamic>('general', encryptionCipher: _cipher).then((box) {
+    final future = _ensureInit().then((_) {
+      final innerFuture =
+          Hive.openBox<dynamic>('general', encryptionCipher: _cipher)
+              .then((box) {
         final stream = box.watch();
         final subscription = stream.listen(
           (event) {
@@ -1056,11 +1061,12 @@ class FhirDb {
         //is closed.
         subject.onCancel = subscription.cancel;
       }).catchError((Object e) {
-        subject
-          ..addError(e)
-          ..close();
+        subject.addError(e);
+        unawaited(subject.close());
       });
+      unawaited(innerFuture);
     });
+    unawaited(future);
     return subject;
   }
 

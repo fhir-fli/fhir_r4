@@ -30,6 +30,14 @@ Future<void> main() async {
     print('Database initialized');
   });
 
+  // Clean up after all tests
+  tearDownAll(() async {
+    await Hive.close();
+    if (Directory(directory).existsSync()) {
+      await Directory(directory).delete(recursive: true);
+    }
+  });
+
   group('Saving Things:', () {
     test('Saved A Patient, Found A Patient', () async {
       final patient1 = Patient(id: '1'.toFhirString);
@@ -472,7 +480,8 @@ Future<void> main() async {
     test(
       '(& Resources)',
       () async {
-        final dir = Directory('test/assets');
+        final testFile = File(Platform.script.toFilePath());
+        final dir = Directory('${testFile.parent.path}/test/assets');
         final subscription =
             fhirDb.subject(resourceType: R4ResourceType.Observation).listen(
           (Resource? resource) {
