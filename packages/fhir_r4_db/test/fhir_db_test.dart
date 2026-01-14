@@ -480,8 +480,10 @@ Future<void> main() async {
     test(
       '(& Resources)',
       () async {
-        final testFile = File(Platform.script.toFilePath());
-        final dir = Directory('${testFile.parent.path}/test/assets');
+        // Use current working directory to find assets
+        // When run from package directory: ./test/assets
+        // When script runs: already in package directory, so same path
+        final dir = Directory('test/assets');
         final subscription =
             fhirDb.subject(resourceType: R4ResourceType.Observation).listen(
           (Resource? resource) {
