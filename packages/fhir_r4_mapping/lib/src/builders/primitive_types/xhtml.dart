@@ -183,9 +183,7 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder {
       }
     }
 
-    for (final child in element.children.whereType<XmlElement>()) {
-      _validateElement(child);
-    }
+    element.children.whereType<XmlElement>().forEach(_validateElement);
   }
 
   /// Set of allowed root/child element names.
@@ -244,8 +242,11 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder {
     'style',
     'class',
     'src',
+    'id',
     'xml:id',
     'lang',
+    'xml:lang',
+    'dir',
     'href',
     'name',
     'alt',

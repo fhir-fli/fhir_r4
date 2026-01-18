@@ -196,7 +196,8 @@ class FhirDb {
     }
 
     await _ensureInit();
-    final box = await Hive.openBox<List<String>>('types');
+    final box =
+        await Hive.openBox<List<String>>('types', encryptionCipher: _cipher);
 
     try {
       final currentTypes = box.get('types', defaultValue: <String>[])!
