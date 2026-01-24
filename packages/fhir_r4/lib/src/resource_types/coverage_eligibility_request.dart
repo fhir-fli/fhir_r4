@@ -534,9 +534,13 @@ class CoverageEligibilityRequest extends DomainResource {
       case 'patient':
         fields.add(patient);
       case 'serviced':
-        fields.add(servicedX!);
+        if (servicedX != null) {
+          fields.add(servicedX!);
+        }
       case 'servicedX':
-        fields.add(servicedX!);
+        if (servicedX != null) {
+          fields.add(servicedX!);
+        }
       case 'servicedDate':
         if (servicedX is FhirDate) {
           fields.add(servicedX!);
@@ -2145,9 +2149,13 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'diagnosis':
-        fields.add(diagnosisX!);
+        if (diagnosisX != null) {
+          fields.add(diagnosisX!);
+        }
       case 'diagnosisX':
-        fields.add(diagnosisX!);
+        if (diagnosisX != null) {
+          fields.add(diagnosisX!);
+        }
       case 'diagnosisCodeableConcept':
         if (diagnosisX is CodeableConcept) {
           fields.add(diagnosisX!);

@@ -267,9 +267,13 @@ class Population extends BackboneType {
           fields.addAll(modifierExtension!);
         }
       case 'age':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageX':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageRange':
         if (ageX is Range) {
           fields.add(ageX!);

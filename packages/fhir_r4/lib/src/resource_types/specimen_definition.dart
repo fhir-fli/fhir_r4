@@ -1327,9 +1327,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
           fields.add(capacity!);
         }
       case 'minimumVolume':
-        fields.add(minimumVolumeX!);
+        if (minimumVolumeX != null) {
+          fields.add(minimumVolumeX!);
+        }
       case 'minimumVolumeX':
-        fields.add(minimumVolumeX!);
+        if (minimumVolumeX != null) {
+          fields.add(minimumVolumeX!);
+        }
       case 'minimumVolumeQuantity':
         if (minimumVolumeX is Quantity) {
           fields.add(minimumVolumeX!);

@@ -1048,9 +1048,13 @@ class SpecimenCollection extends BackboneElement {
           fields.add(collector!);
         }
       case 'collected':
-        fields.add(collectedX!);
+        if (collectedX != null) {
+          fields.add(collectedX!);
+        }
       case 'collectedX':
-        fields.add(collectedX!);
+        if (collectedX != null) {
+          fields.add(collectedX!);
+        }
       case 'collectedDateTime':
         if (collectedX is FhirDateTime) {
           fields.add(collectedX!);
@@ -1076,9 +1080,13 @@ class SpecimenCollection extends BackboneElement {
           fields.add(bodySite!);
         }
       case 'fastingStatus':
-        fields.add(fastingStatusX!);
+        if (fastingStatusX != null) {
+          fields.add(fastingStatusX!);
+        }
       case 'fastingStatusX':
-        fields.add(fastingStatusX!);
+        if (fastingStatusX != null) {
+          fields.add(fastingStatusX!);
+        }
       case 'fastingStatusCodeableConcept':
         if (fastingStatusX is CodeableConcept) {
           fields.add(fastingStatusX!);
@@ -1471,9 +1479,13 @@ class SpecimenProcessing extends BackboneElement {
           fields.addAll(additive!);
         }
       case 'time':
-        fields.add(timeX!);
+        if (timeX != null) {
+          fields.add(timeX!);
+        }
       case 'timeX':
-        fields.add(timeX!);
+        if (timeX != null) {
+          fields.add(timeX!);
+        }
       case 'timeDateTime':
         if (timeX is FhirDateTime) {
           fields.add(timeX!);
@@ -1891,9 +1903,13 @@ class SpecimenContainer extends BackboneElement {
           fields.add(specimenQuantity!);
         }
       case 'additive':
-        fields.add(additiveX!);
+        if (additiveX != null) {
+          fields.add(additiveX!);
+        }
       case 'additiveX':
-        fields.add(additiveX!);
+        if (additiveX != null) {
+          fields.add(additiveX!);
+        }
       case 'additiveCodeableConcept':
         if (additiveX is CodeableConcept) {
           fields.add(additiveX!);

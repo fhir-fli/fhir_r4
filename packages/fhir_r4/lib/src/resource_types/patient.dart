@@ -597,9 +597,13 @@ class Patient extends DomainResource {
           fields.add(birthDate!);
         }
       case 'deceased':
-        fields.add(deceasedX!);
+        if (deceasedX != null) {
+          fields.add(deceasedX!);
+        }
       case 'deceasedX':
-        fields.add(deceasedX!);
+        if (deceasedX != null) {
+          fields.add(deceasedX!);
+        }
       case 'deceasedBoolean':
         if (deceasedX is FhirBoolean) {
           fields.add(deceasedX!);
@@ -617,9 +621,13 @@ class Patient extends DomainResource {
           fields.add(maritalStatus!);
         }
       case 'multipleBirth':
-        fields.add(multipleBirthX!);
+        if (multipleBirthX != null) {
+          fields.add(multipleBirthX!);
+        }
       case 'multipleBirthX':
-        fields.add(multipleBirthX!);
+        if (multipleBirthX != null) {
+          fields.add(multipleBirthX!);
+        }
       case 'multipleBirthBoolean':
         if (multipleBirthX is FhirBoolean) {
           fields.add(multipleBirthX!);

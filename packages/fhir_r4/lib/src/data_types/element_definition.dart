@@ -1952,9 +1952,13 @@ class ElementDefinition extends BackboneType {
           fields.addAll(type!);
         }
       case 'defaultValue':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueX':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueBase64Binary':
         if (defaultValueX is FhirBase64Binary) {
           fields.add(defaultValueX!);
@@ -2168,9 +2172,13 @@ class ElementDefinition extends BackboneType {
           fields.add(orderMeaning!);
         }
       case 'fixed':
-        fields.add(fixedX!);
+        if (fixedX != null) {
+          fields.add(fixedX!);
+        }
       case 'fixedX':
-        fields.add(fixedX!);
+        if (fixedX != null) {
+          fields.add(fixedX!);
+        }
       case 'fixedBase64Binary':
         if (fixedX is FhirBase64Binary) {
           fields.add(fixedX!);
@@ -2376,9 +2384,13 @@ class ElementDefinition extends BackboneType {
           fields.add(fixedX!);
         }
       case 'pattern':
-        fields.add(patternX!);
+        if (patternX != null) {
+          fields.add(patternX!);
+        }
       case 'patternX':
-        fields.add(patternX!);
+        if (patternX != null) {
+          fields.add(patternX!);
+        }
       case 'patternBase64Binary':
         if (patternX is FhirBase64Binary) {
           fields.add(patternX!);
@@ -2588,9 +2600,13 @@ class ElementDefinition extends BackboneType {
           fields.addAll(example!);
         }
       case 'minValue':
-        fields.add(minValueX!);
+        if (minValueX != null) {
+          fields.add(minValueX!);
+        }
       case 'minValueX':
-        fields.add(minValueX!);
+        if (minValueX != null) {
+          fields.add(minValueX!);
+        }
       case 'minValueDate':
         if (minValueX is FhirDate) {
           fields.add(minValueX!);
@@ -2628,9 +2644,13 @@ class ElementDefinition extends BackboneType {
           fields.add(minValueX!);
         }
       case 'maxValue':
-        fields.add(maxValueX!);
+        if (maxValueX != null) {
+          fields.add(maxValueX!);
+        }
       case 'maxValueX':
-        fields.add(maxValueX!);
+        if (maxValueX != null) {
+          fields.add(maxValueX!);
+        }
       case 'maxValueDate':
         if (maxValueX is FhirDate) {
           fields.add(maxValueX!);

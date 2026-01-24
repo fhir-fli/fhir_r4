@@ -1928,9 +1928,13 @@ class CarePlanDetail extends BackboneElement {
           fields.add(doNotPerform!);
         }
       case 'scheduled':
-        fields.add(scheduledX!);
+        if (scheduledX != null) {
+          fields.add(scheduledX!);
+        }
       case 'scheduledX':
-        fields.add(scheduledX!);
+        if (scheduledX != null) {
+          fields.add(scheduledX!);
+        }
       case 'scheduledTiming':
         if (scheduledX is Timing) {
           fields.add(scheduledX!);
@@ -1952,9 +1956,13 @@ class CarePlanDetail extends BackboneElement {
           fields.addAll(performer!);
         }
       case 'product':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productX':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productCodeableConcept':
         if (productX is CodeableConcept) {
           fields.add(productX!);

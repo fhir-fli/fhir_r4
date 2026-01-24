@@ -2479,9 +2479,13 @@ class ImplementationGuideResource extends BackboneElement {
           fields.add(description!);
         }
       case 'example':
-        fields.add(exampleX!);
+        if (exampleX != null) {
+          fields.add(exampleX!);
+        }
       case 'exampleX':
-        fields.add(exampleX!);
+        if (exampleX != null) {
+          fields.add(exampleX!);
+        }
       case 'exampleBoolean':
         if (exampleX is FhirBoolean) {
           fields.add(exampleX!);
@@ -4224,9 +4228,13 @@ class ImplementationGuideResource1 extends BackboneElement {
       case 'reference':
         fields.add(reference);
       case 'example':
-        fields.add(exampleX!);
+        if (exampleX != null) {
+          fields.add(exampleX!);
+        }
       case 'exampleX':
-        fields.add(exampleX!);
+        if (exampleX != null) {
+          fields.add(exampleX!);
+        }
       case 'exampleBoolean':
         if (exampleX is FhirBoolean) {
           fields.add(exampleX!);

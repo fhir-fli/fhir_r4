@@ -537,9 +537,13 @@ class Consent extends DomainResource {
           fields.addAll(organization!);
         }
       case 'source':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceX':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceAttachment':
         if (sourceX is Attachment) {
           fields.add(sourceX!);

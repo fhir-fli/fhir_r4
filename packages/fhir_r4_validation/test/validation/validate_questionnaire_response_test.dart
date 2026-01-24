@@ -7,18 +7,6 @@ void main() {
   group('validateQuestionnaireResponse', () {
     test('validates QuestionnaireResponse with valid Questionnaire reference',
         () async {
-      final questionnaire = Questionnaire(
-        id: 'example'.toFhirString,
-        status: PublicationStatus.active,
-        item: [
-          QuestionnaireItem(
-            linkId: 'q1'.toFhirString,
-            type: QuestionnaireItemType.string,
-            text: 'What is your name?'.toFhirString,
-          ),
-        ],
-      );
-
       final questionnaireResponse = QuestionnaireResponse(
         id: 'example'.toFhirString,
         status: QuestionnaireResponseStatus.completed,
@@ -74,19 +62,6 @@ void main() {
     });
 
     test('validates required response items', () async {
-      final questionnaire = Questionnaire(
-        id: 'example'.toFhirString,
-        status: PublicationStatus.active,
-        item: [
-          QuestionnaireItem(
-            linkId: 'q1'.toFhirString,
-            type: QuestionnaireItemType.string,
-            text: 'Required question'.toFhirString,
-            required_: true.toFhirBoolean,
-          ),
-        ],
-      );
-
       final questionnaireResponse = QuestionnaireResponse(
         id: 'example'.toFhirString,
         status: QuestionnaireResponseStatus.completed,
@@ -107,24 +82,6 @@ void main() {
     });
 
     test('validates nested response items', () async {
-      final questionnaire = Questionnaire(
-        id: 'example'.toFhirString,
-        status: PublicationStatus.active,
-        item: [
-          QuestionnaireItem(
-            linkId: 'group1'.toFhirString,
-            type: QuestionnaireItemType.group,
-            item: [
-              QuestionnaireItem(
-                linkId: 'q1'.toFhirString,
-                type: QuestionnaireItemType.string,
-                text: 'Nested question'.toFhirString,
-              ),
-            ],
-          ),
-        ],
-      );
-
       final questionnaireResponse = QuestionnaireResponse(
         id: 'example'.toFhirString,
         status: QuestionnaireResponseStatus.completed,
@@ -159,18 +116,6 @@ void main() {
 
     test('reports error for response item not found in Questionnaire',
         () async {
-      final questionnaire = Questionnaire(
-        id: 'example'.toFhirString,
-        status: PublicationStatus.active,
-        item: [
-          QuestionnaireItem(
-            linkId: 'q1'.toFhirString,
-            type: QuestionnaireItemType.string,
-            text: 'Question 1'.toFhirString,
-          ),
-        ],
-      );
-
       final questionnaireResponse = QuestionnaireResponse(
         id: 'example'.toFhirString,
         status: QuestionnaireResponseStatus.completed,

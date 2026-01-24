@@ -612,9 +612,13 @@ class ConceptMap extends CanonicalResource {
           fields.add(copyright!);
         }
       case 'source':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceX':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceUri':
         if (sourceX is FhirUri) {
           fields.add(sourceX!);
@@ -624,9 +628,13 @@ class ConceptMap extends CanonicalResource {
           fields.add(sourceX!);
         }
       case 'target':
-        fields.add(targetX!);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetX':
-        fields.add(targetX!);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetUri':
         if (targetX is FhirUri) {
           fields.add(targetX!);

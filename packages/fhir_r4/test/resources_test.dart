@@ -117,7 +117,7 @@ void main() {
     },
   );
 
-  print('\n' + '=' * 80);
+  print('\n${'=' * 80}');
   print('Asset loading and test registration complete!');
   print('=' * 80 + '\n');
 }

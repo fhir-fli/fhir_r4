@@ -660,9 +660,13 @@ class Condition extends DomainResource {
           fields.add(encounter!);
         }
       case 'onset':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetX':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetDateTime':
         if (onsetX is FhirDateTime) {
           fields.add(onsetX!);
@@ -684,9 +688,13 @@ class Condition extends DomainResource {
           fields.add(onsetX!);
         }
       case 'abatement':
-        fields.add(abatementX!);
+        if (abatementX != null) {
+          fields.add(abatementX!);
+        }
       case 'abatementX':
-        fields.add(abatementX!);
+        if (abatementX != null) {
+          fields.add(abatementX!);
+        }
       case 'abatementDateTime':
         if (abatementX is FhirDateTime) {
           fields.add(abatementX!);

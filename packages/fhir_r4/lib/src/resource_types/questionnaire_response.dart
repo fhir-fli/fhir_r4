@@ -1336,9 +1336,13 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueBoolean':
         if (valueX is FhirBoolean) {
           fields.add(valueX!);

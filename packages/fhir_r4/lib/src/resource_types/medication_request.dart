@@ -877,9 +877,13 @@ class MedicationRequest extends DomainResource {
           fields.add(doNotPerform!);
         }
       case 'reported':
-        fields.add(reportedX!);
+        if (reportedX != null) {
+          fields.add(reportedX!);
+        }
       case 'reportedX':
-        fields.add(reportedX!);
+        if (reportedX != null) {
+          fields.add(reportedX!);
+        }
       case 'reportedBoolean':
         if (reportedX is FhirBoolean) {
           fields.add(reportedX!);

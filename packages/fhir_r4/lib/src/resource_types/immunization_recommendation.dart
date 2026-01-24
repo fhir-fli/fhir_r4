@@ -944,9 +944,13 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           fields.add(series!);
         }
       case 'doseNumber':
-        fields.add(doseNumberX!);
+        if (doseNumberX != null) {
+          fields.add(doseNumberX!);
+        }
       case 'doseNumberX':
-        fields.add(doseNumberX!);
+        if (doseNumberX != null) {
+          fields.add(doseNumberX!);
+        }
       case 'doseNumberPositiveInt':
         if (doseNumberX is FhirPositiveInt) {
           fields.add(doseNumberX!);
@@ -956,9 +960,13 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           fields.add(doseNumberX!);
         }
       case 'seriesDoses':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesX':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesPositiveInt':
         if (seriesDosesX is FhirPositiveInt) {
           fields.add(seriesDosesX!);

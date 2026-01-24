@@ -760,9 +760,13 @@ class ChargeItem extends DomainResource {
           fields.add(context!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -828,9 +832,13 @@ class ChargeItem extends DomainResource {
           fields.addAll(service!);
         }
       case 'product':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productX':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productReference':
         if (productX is Reference) {
           fields.add(productX!);

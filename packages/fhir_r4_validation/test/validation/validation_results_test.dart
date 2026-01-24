@@ -100,9 +100,9 @@ void main() {
       final json = results.toJson();
 
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['error'], isA<List>());
-      expect(json['warning'], isA<List>());
-      expect(json['information'], isA<List>());
+      expect(json['error'], isA<List<dynamic>>());
+      expect(json['warning'], isA<List<dynamic>>());
+      expect(json['information'], isA<List<dynamic>>());
       expect(json['error'], hasLength(1));
       expect(json['warning'], hasLength(1));
       expect(json['information'], hasLength(1));

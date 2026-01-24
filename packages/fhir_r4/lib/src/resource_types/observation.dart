@@ -826,9 +826,13 @@ class Observation extends DomainResource {
           fields.add(encounter!);
         }
       case 'effective':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveX':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveDateTime':
         if (effectiveX is FhirDateTime) {
           fields.add(effectiveX!);
@@ -854,9 +858,13 @@ class Observation extends DomainResource {
           fields.addAll(performer!);
         }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueQuantity':
         if (valueX is Quantity) {
           fields.add(valueX!);
@@ -1952,9 +1960,13 @@ class ObservationComponent extends BackboneElement {
       case 'code':
         fields.add(code);
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueQuantity':
         if (valueX is Quantity) {
           fields.add(valueX!);

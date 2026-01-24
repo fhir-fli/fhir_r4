@@ -1125,9 +1125,13 @@ class ActivityDefinition extends CanonicalResource {
           fields.add(experimental!);
         }
       case 'subject':
-        fields.add(subjectX!);
+        if (subjectX != null) {
+          fields.add(subjectX!);
+        }
       case 'subjectX':
-        fields.add(subjectX!);
+        if (subjectX != null) {
+          fields.add(subjectX!);
+        }
       case 'subjectCodeableConcept':
         if (subjectX is CodeableConcept) {
           fields.add(subjectX!);
@@ -1241,9 +1245,13 @@ class ActivityDefinition extends CanonicalResource {
           fields.add(doNotPerform!);
         }
       case 'timing':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingX':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingTiming':
         if (timingX is Timing) {
           fields.add(timingX!);
@@ -1277,9 +1285,13 @@ class ActivityDefinition extends CanonicalResource {
           fields.addAll(participant!);
         }
       case 'product':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productX':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productReference':
         if (productX is Reference) {
           fields.add(productX!);

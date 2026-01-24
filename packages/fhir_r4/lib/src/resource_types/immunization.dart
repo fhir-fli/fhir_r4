@@ -2412,9 +2412,13 @@ class ImmunizationProtocolApplied extends BackboneElement {
           fields.add(doseNumberX);
         }
       case 'seriesDoses':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesX':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesPositiveInt':
         if (seriesDosesX is FhirPositiveInt) {
           fields.add(seriesDosesX!);

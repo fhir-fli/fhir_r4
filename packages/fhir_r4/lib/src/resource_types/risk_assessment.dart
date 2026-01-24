@@ -587,9 +587,13 @@ class RiskAssessment extends DomainResource {
           fields.add(encounter!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
         if (occurrenceX is FhirDateTime) {
           fields.add(occurrenceX!);
@@ -1144,9 +1148,13 @@ class RiskAssessmentPrediction extends BackboneElement {
           fields.add(outcome!);
         }
       case 'probability':
-        fields.add(probabilityX!);
+        if (probabilityX != null) {
+          fields.add(probabilityX!);
+        }
       case 'probabilityX':
-        fields.add(probabilityX!);
+        if (probabilityX != null) {
+          fields.add(probabilityX!);
+        }
       case 'probabilityDecimal':
         if (probabilityX is FhirDecimal) {
           fields.add(probabilityX!);
@@ -1164,9 +1172,13 @@ class RiskAssessmentPrediction extends BackboneElement {
           fields.add(relativeRisk!);
         }
       case 'when':
-        fields.add(whenX!);
+        if (whenX != null) {
+          fields.add(whenX!);
+        }
       case 'whenX':
-        fields.add(whenX!);
+        if (whenX != null) {
+          fields.add(whenX!);
+        }
       case 'whenPeriod':
         if (whenX is Period) {
           fields.add(whenX!);

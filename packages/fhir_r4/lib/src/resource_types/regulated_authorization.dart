@@ -1043,9 +1043,13 @@ class RegulatedAuthorizationCase extends BackboneElement {
           fields.add(status!);
         }
       case 'date':
-        fields.add(dateX!);
+        if (dateX != null) {
+          fields.add(dateX!);
+        }
       case 'dateX':
-        fields.add(dateX!);
+        if (dateX != null) {
+          fields.add(dateX!);
+        }
       case 'datePeriod':
         if (dateX is Period) {
           fields.add(dateX!);

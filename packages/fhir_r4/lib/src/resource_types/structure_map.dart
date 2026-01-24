@@ -2985,9 +2985,13 @@ class StructureMapSource extends BackboneElement {
           fields.add(type!);
         }
       case 'defaultValue':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueX':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueBase64Binary':
         if (defaultValueX is FhirBase64Binary) {
           fields.add(defaultValueX!);

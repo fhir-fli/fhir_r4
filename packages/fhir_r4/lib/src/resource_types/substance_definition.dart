@@ -1225,9 +1225,13 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           fields.add(molecularFormula!);
         }
       case 'amount':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountX':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountQuantity':
         if (amountX is Quantity) {
           fields.add(amountX!);
@@ -1606,9 +1610,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
       case 'type':
         fields.add(type);
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);
@@ -4444,9 +4452,13 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'substanceDefinition':
-        fields.add(substanceDefinitionX!);
+        if (substanceDefinitionX != null) {
+          fields.add(substanceDefinitionX!);
+        }
       case 'substanceDefinitionX':
-        fields.add(substanceDefinitionX!);
+        if (substanceDefinitionX != null) {
+          fields.add(substanceDefinitionX!);
+        }
       case 'substanceDefinitionReference':
         if (substanceDefinitionX is Reference) {
           fields.add(substanceDefinitionX!);
@@ -4462,9 +4474,13 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           fields.add(isDefining!);
         }
       case 'amount':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountX':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountQuantity':
         if (amountX is Quantity) {
           fields.add(amountX!);

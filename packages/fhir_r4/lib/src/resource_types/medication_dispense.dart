@@ -723,9 +723,13 @@ class MedicationDispense extends DomainResource {
       case 'status':
         fields.add(status);
       case 'statusReason':
-        fields.add(statusReasonX!);
+        if (statusReasonX != null) {
+          fields.add(statusReasonX!);
+        }
       case 'statusReasonX':
-        fields.add(statusReasonX!);
+        if (statusReasonX != null) {
+          fields.add(statusReasonX!);
+        }
       case 'statusReasonCodeableConcept':
         if (statusReasonX is CodeableConcept) {
           fields.add(statusReasonX!);

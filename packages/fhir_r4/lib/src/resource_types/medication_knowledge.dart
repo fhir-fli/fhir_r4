@@ -2804,9 +2804,13 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
           fields.addAll(dosage!);
         }
       case 'indication':
-        fields.add(indicationX!);
+        if (indicationX != null) {
+          fields.add(indicationX!);
+        }
       case 'indicationX':
-        fields.add(indicationX!);
+        if (indicationX != null) {
+          fields.add(indicationX!);
+        }
       case 'indicationCodeableConcept':
         if (indicationX is CodeableConcept) {
           fields.add(indicationX!);
@@ -4387,9 +4391,13 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
           fields.add(type!);
         }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
         if (valueX is CodeableConcept) {
           fields.add(valueX!);
