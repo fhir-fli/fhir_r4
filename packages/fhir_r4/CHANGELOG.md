@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.4.4]
+
+* Fixed getChildrenByName null checks for polymorphic fields
+* Added id to xhtml _allowedAttributes
+
 ## [0.4.3]
 
 * Fixed issue about DateTimes not setting isUtc when timezone +00:00

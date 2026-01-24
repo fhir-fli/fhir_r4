@@ -1,10 +1,15 @@
 # fhir_r4_db
 
+## [0.4.2]
+
+* Added id to xhtml _allowedAttributes
+* Updated dependencies
+
 ## [0.4.1]
 
 * Updated dependencies
 * Simplified password handling: only required in `init()`
-* Enhanced key derivation: Replaced static salt with PBKDF2-HMAC-SHA256 key derivation using per-instance salt (100,000 iterations). 
+* Enhanced key derivation: Replaced static salt with PBKDF2-HMAC-SHA256 key derivation using per-instance salt (100,000 iterations).
 * Per-instance salt: each db instance now has a unique salt stored in `.fhir_db_salt` file, provides significantly stronger security against brute-force attacks.
 * Improved error handling
 

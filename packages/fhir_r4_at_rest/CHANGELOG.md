@@ -1,5 +1,10 @@
 # fhir_r4_at_rest
 
+## [0.4.2]
+
+* Fixed search parameter generation issues
+* Updated dependencies
+
 ## [0.4.1]
 
 * Updated dependencies

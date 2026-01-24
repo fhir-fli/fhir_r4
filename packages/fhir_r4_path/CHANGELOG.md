@@ -1,5 +1,10 @@
 # fhir_r4_path
 
+## [0.4.5]
+
+* Updated dependencies
+* Minor lexing fixes
+
 ## [0.4.4]
 
 * Updated dependencies

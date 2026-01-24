@@ -1,5 +1,15 @@
 # fhir_r4
 
+## [0.4.4]
+
+* **fhir_r4**: Fixed getChildrenByName null checks for polymorphic fields, added id to xhtml _allowedAttributes
+* **fhir_r4_at_rest**: Fixed search parameter generation issues
+* **fhir_r4_path**: Minor lexing fixes
+* **fhir_r4_mapping**: Added id to xhtml _allowedAttributes
+* **fhir_r4_db**: Added id to xhtml _allowedAttributes
+* **fhir_r4_bulk**: Updated dependencies
+* **fhir_r4_validation**: Updated dependencies, improved validation tests
+
 ## [0.3.0-1]
 
 * Lots and Lots of changes.

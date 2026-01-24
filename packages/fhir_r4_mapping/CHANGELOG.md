@@ -1,5 +1,10 @@
 # fhir_r4_mapping
 
+## [0.4.2]
+
+* Added id to xhtml _allowedAttributes
+* Updated dependencies
+
 ## [0.4.1]
 
 * Dependencies updated
