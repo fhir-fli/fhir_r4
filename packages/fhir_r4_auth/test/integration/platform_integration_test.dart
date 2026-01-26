@@ -52,7 +52,7 @@ void main() {
 void _testAndroidPlatform() {
   test(
     'Android - Patient standalone launch with deep linking',
-    ( {
+    () async {
       if (!Platform.isAndroid && !kIsWeb) {
         // Skip if not running on Android
         return;
@@ -96,7 +96,7 @@ void _testAndroidPlatform() {
 
   test(
     'Android - EHR launch with launch token',
-    ( {
+    () async {
       if (!Platform.isAndroid && !kIsWeb) {
         return;
       }
@@ -136,7 +136,7 @@ void _testAndroidPlatform() {
 void _testIOSPlatform() {
   test(
     'iOS - Patient standalone launch with custom URL scheme',
-    ( {
+    () async {
       if (!Platform.isIOS && !kIsWeb) {
         return;
       }
@@ -173,7 +173,7 @@ void _testIOSPlatform() {
 
   test(
     'iOS - EHR launch with launch token',
-    ( {
+    () async {
       if (!Platform.isIOS && !kIsWeb) {
         return;
       }
@@ -213,7 +213,7 @@ void _testIOSPlatform() {
 void _testWebPlatform() {
   test(
     'Web - Patient standalone launch with redirect',
-    ( {
+    () async {
       if (!kIsWeb) {
         return;
       }
@@ -250,7 +250,7 @@ void _testWebPlatform() {
 
   test(
     'Web - EHR launch with launch token',
-    ( {
+    () async {
       if (!kIsWeb) {
         return;
       }
@@ -290,7 +290,7 @@ void _testWebPlatform() {
 void _testLinuxPlatform() {
   test(
     'Linux - Patient standalone launch',
-    ( {
+    () async {
       if (!Platform.isLinux && !kIsWeb) {
         return;
       }
@@ -326,7 +326,7 @@ void _testLinuxPlatform() {
 
   test(
     'Linux - EHR launch',
-    ( {
+    () async {
       if (!Platform.isLinux && !kIsWeb) {
         return;
       }
@@ -366,7 +366,7 @@ void _testLinuxPlatform() {
 void _testMacOSPlatform() {
   test(
     'macOS - Patient standalone launch',
-    ( {
+    () async {
       if (!Platform.isMacOS && !kIsWeb) {
         return;
       }
@@ -402,7 +402,7 @@ void _testMacOSPlatform() {
 
   test(
     'macOS - EHR launch',
-    ( {
+    () async {
       if (!Platform.isMacOS && !kIsWeb) {
         return;
       }
@@ -442,7 +442,7 @@ void _testMacOSPlatform() {
 void _testWindowsPlatform() {
   test(
     'Windows - Patient standalone launch',
-    ( {
+    () async {
       if (!Platform.isWindows && !kIsWeb) {
         return;
       }
@@ -478,7 +478,7 @@ void _testWindowsPlatform() {
 
   test(
     'Windows - EHR launch',
-    ( {
+    () async {
       if (!Platform.isWindows && !kIsWeb) {
         return;
       }
