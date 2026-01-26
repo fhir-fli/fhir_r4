@@ -13,6 +13,3 @@ build/
 
 ./packages/fhir_r4/*ndjson
 *ndjson
-
-# Dart support files
-*pubspec.lock
