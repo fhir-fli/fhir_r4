@@ -1,6 +1,6 @@
 name: fhir_r4_mapping
 description: Utility Library that Peforms Validation and Mapping Functionality.
-version: 0.4.1
+version: 0.4.2
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
@@ -19,8 +19,8 @@ environment:
 dependencies:
   collection: ^1.19.1
   crypto: ^3.0.7
-  fhir_r4: ^0.4.3
-  fhir_r4_path: ^0.4.4
+  fhir_r4: ^0.4.4
+  fhir_r4_path: ^0.4.5
   # fhir_r4_path:
   #   path: ../fhir_r4_path
   http: ^1.6.0
