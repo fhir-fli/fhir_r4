@@ -13,9 +13,9 @@ PACKAGES=(
   "packages/fhir_r4"
   "packages/fhir_r4_at_rest"
   "packages/fhir_r4_db"
-  "packages/fhir_r4_mapping"
-  "packages/fhir_r4_path"
   "packages/fhir_r4_bulk"
+  "packages/fhir_r4_path"
+  "packages/fhir_r4_mapping"
   "packages/fhir_r4_validation"
 )
 
