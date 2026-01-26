@@ -13,6 +13,7 @@ class TestServers {
   /// Epic sandbox
   static const epicBaseUrl = 'https://fhir.epic.com/interconnect-fhir-oauth/';
   static const epicClientId = '5a13c447-56c0-4ebf-9788-7dd5374c9813';
+  static const epicPatientClientId = '5a13c447-56c0-4ebf-9788-7dd5374c9813';
 
   /// Epic test credentials
   static const epicPatientUsername = 'fhircamila';

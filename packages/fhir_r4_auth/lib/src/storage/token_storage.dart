@@ -42,9 +42,9 @@ class SecureTokenStorage implements TokenStorage {
   final Logger _logger;
 
   /// Android-specific options for secure storage
-  static const AndroidOptions _androidOptions = AndroidOptions(
-    encryptedSharedPreferences: true,
-  );
+  /// Note: encryptedSharedPreferences is deprecated in flutter_secure_storage v10+
+  /// Data is automatically migrated to custom ciphers
+  static const AndroidOptions _androidOptions = AndroidOptions();
 
   /// iOS-specific options for secure storage
   static const IOSOptions _iosOptions = IOSOptions(
