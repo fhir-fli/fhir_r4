@@ -21,7 +21,7 @@
 
 | Demo | Status | Notes |
 |------|--------|-------|
-| standalone_demo | 95% Ready | Epic Patient mode works, needs more client IDs |
+| standalone_demo | ✅ Complete | Multi-vendor (Epic/Cerner), 3 launch modes |
 | ehr_launch_demo | ✅ Complete | EHR launch flow with simulation mode |
 | CDS Hooks | Not Started | Not implemented |
 
