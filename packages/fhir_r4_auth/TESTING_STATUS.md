@@ -22,7 +22,7 @@
 | Demo | Status | Notes |
 |------|--------|-------|
 | standalone_demo | 95% Ready | Epic Patient mode works, needs more client IDs |
-| ehr_launch_demo | Not Started | Placeholder only |
+| ehr_launch_demo | ✅ Complete | EHR launch flow with simulation mode |
 | CDS Hooks | Not Started | Not implemented |
 
 ---
@@ -158,14 +158,17 @@ LaunchMode.system: 'YOUR-CERNER-SYSTEM-CLIENT-ID'
 - Uses `launch/patient` scope
 
 ### 2. EHR Launch (From Within EHR)
-**Status:** Not implemented (`ehr_launch_demo` is placeholder)
+**Status:** Implemented in `ehr_launch_demo`
 - App receives `iss` and `launch` parameters from EHR
 - Patient/encounter context provided by EHR
 - Uses `launch` scope
+- Simulation mode when no launch params detected
+- Supports Epic and Cerner vendors
 
 **To Test EHR Launch:**
 - Epic Launch Simulator: https://fhir.epic.com/test-tool/
 - Cerner Launch Simulator: Available in Cerner Code Console
+- SMART App Launcher: https://launch.smarthealthit.org/
 
 ### 3. CDS Hooks Launch
 **Status:** Not implemented
@@ -184,10 +187,7 @@ LaunchMode.system: 'YOUR-CERNER-SYSTEM-CLIENT-ID'
 4. [ ] Test all modes with real sandboxes
 
 ### Medium Priority
-5. [ ] Implement `ehr_launch_demo`:
-   - Parse `iss` and `launch` URL parameters
-   - Handle EHR context
-   - Test with Epic/Cerner launch simulators
+5. [x] ~~Implement `ehr_launch_demo`~~ (Done)
 
 ### Lower Priority
 6. [ ] Implement CDS Hooks support in library
@@ -206,7 +206,8 @@ LaunchMode.system: 'YOUR-CERNER-SYSTEM-CLIENT-ID'
 | `test/test_helpers/test_data.dart` | Test credentials and server configs |
 | `standalone_demo/lib/main.dart` | Standalone launch demo (Epic/Cerner) |
 | `standalone_demo/web/callback.html` | OAuth redirect handler |
-| `ehr_launch_demo/` | EHR launch demo (not implemented) |
+| `ehr_launch_demo/lib/main.dart` | EHR launch demo (Epic/Cerner) |
+| `ehr_launch_demo/web/callback.html` | OAuth redirect handler |
 
 ---
 
