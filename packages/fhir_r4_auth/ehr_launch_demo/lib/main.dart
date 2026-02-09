@@ -120,14 +120,14 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
     EhrVendor.epic: EhrVendorConfig(
       fhirBaseUrl: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4',
       // Register at: https://fhir.epic.com/
-      // App type: "EHR Launch" (Clinicians or Patients audience)
-      clientId: 'a1ea50fd-fb23-4822-96c7-ada7267325d2',
-      scopes: ['launch', 'patient/*.read', 'openid', 'fhirUser'],
+      // Non-Production Client ID for fhir_r4_auth_test_clinician app
+      clientId: '2a12e18b-6dd7-4383-8faf-5ba904a072c3',
+      scopes: ['launch'],
       testCredentials: TestCredentials(
         username: 'fhircamila',
         password: 'epicepic1',
         note:
-            'Use the Epic Launch Simulator at https://fhir.epic.com/test-tool/',
+            'Use the Epic Launch Simulator at https://fhir.epic.com/Documentation?docId=launching',
       ),
     ),
 
@@ -220,8 +220,8 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         launchToken: launchToken,
         iss: iss,
         scopes: config.scopes,
-        enablePkce: true,
-        enableOpenId: true,
+        enablePkce: false,
+        enableOpenId: false,
       ),
     );
 
@@ -287,10 +287,15 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       });
 
       print('\n\u2705 EHR launch demo completed successfully!');
-    } on AuthenticationException catch (e) {
+    } on AuthenticationException catch (e, stackTrace) {
       print('\u274c Authentication error: ${e.message}');
+      print('  Details: ${e.details}');
+      print('  Inner exception: ${e.innerException}');
+      print('  Stack trace:\n$stackTrace');
       setState(() {
-        _error = 'Authentication failed: ${e.message}';
+        _error = 'Authentication failed: ${e.message}'
+            '${e.details != null ? '\nDetails: ${e.details}' : ''}'
+            '${e.innerException != null ? '\nInner: ${e.innerException}' : ''}';
         _isLoading = false;
       });
     } on NetworkException catch (e) {
@@ -790,7 +795,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
             ),
             const SizedBox(height: 12),
             _buildBullet(
-              'Epic Launch Simulator: https://fhir.epic.com/test-tool/',
+              'Epic Launch Simulator: https://fhir.epic.com/Documentation?docId=launching',
             ),
             _buildBullet('Cerner Code Console: https://code.cerner.com/'),
             _buildBullet(

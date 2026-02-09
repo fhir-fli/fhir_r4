@@ -34,27 +34,10 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        .success {
-            color: #28a745;
-        }
-        .error {
-            color: #dc3545;
-        }
-        code {
-            background: #f5f5f5;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            word-break: break-all;
-        }
+        h2 { color: #333; margin-bottom: 10px; }
+        p { color: #666; margin-bottom: 20px; }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -75,20 +58,14 @@
     </div>
 
     <script>
-        // Parse the URL for OAuth callback parameters
         function handleCallback() {
-            const url = new URL(window.location.href);
+            const currentUrl = window.location.href;
+            const url = new URL(currentUrl);
             const params = new URLSearchParams(url.search);
-            const hash = new URLSearchParams(url.hash.substring(1));
 
-            // Check for authorization code (authorization code flow)
             const code = params.get('code');
-            const state = params.get('state');
             const error = params.get('error');
             const errorDescription = params.get('error_description');
-
-            // Check for tokens in hash (implicit flow - less common now)
-            const accessToken = hash.get('access_token');
 
             if (error) {
                 showError(errorDescription || error);
@@ -96,36 +73,28 @@
             }
 
             if (code) {
-                // Authorization code flow - most common for SMART on FHIR
-                console.log('Authorization code received:', code);
-                console.log('State:', state);
+                // Store the full callback URL for flutter_web_auth_2 to pick up
+                window.localStorage.setItem('flutter-web-auth-2', currentUrl);
 
-                // For Flutter web, the flutter_web_auth_2 package handles this
-                // by checking for the code in the URL when the window is opened
+                // Also try postMessage for flutter_web_auth_2
+                if (window.opener) {
+                    window.opener.postMessage(
+                        {'flutter-web-auth-2': currentUrl},
+                        window.location.origin
+                    );
+                }
+
                 showSuccess();
 
-                // The parent window or opener should handle the code exchange
-                // This page just needs to show success and let flutter_web_auth_2
-                // capture the URL parameters
-
-                // If opened in a popup, try to close after a delay
+                // Close the window after a short delay
                 setTimeout(() => {
-                    if (window.opener) {
-                        window.close();
-                    }
-                }, 2000);
+                    window.close();
+                }, 1000);
 
                 return;
             }
 
-            if (accessToken) {
-                // Implicit flow (less secure, not recommended)
-                console.log('Access token received (implicit flow)');
-                showSuccess();
-                return;
-            }
-
-            // No auth parameters found - might be direct navigation
+            // No auth parameters found
             showError('No authorization parameters found in URL');
         }
 
@@ -140,7 +109,6 @@
             document.getElementById('error-message').textContent = message;
         }
 
-        // Run on page load
         handleCallback();
     </script>
 </body>
