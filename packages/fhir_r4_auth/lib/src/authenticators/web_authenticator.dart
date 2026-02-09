@@ -41,18 +41,17 @@ class WebAuthenticator implements Authenticator {
       _logger.fine('Redirect URI: $redirectUri');
       _logger.fine('Callback scheme: $callbackUrlScheme');
 
-      // Extract callback URL scheme from redirect URI if not provided
-      callbackUrlScheme ??= redirectUri.scheme;
-
-      // Validate callback URL scheme
-      if (callbackUrlScheme.isEmpty ||
-          callbackUrlScheme == 'http' ||
-          callbackUrlScheme == 'https') {
-        // For web platform, we might need special handling
-        if (identical(0, 0.0)) {
-          // This is a trick to detect web platform
-          _logger.warning(
-              'HTTP(S) redirect URIs may not work properly on web platform');
+      // On Linux/Windows, flutter_web_auth_2 starts a local HTTP server
+      // and needs the full origin (http://localhost:PORT) as callbackUrlScheme.
+      // On web, it uses localStorage polling and just needs any string.
+      // On mobile, it uses custom URL schemes.
+      if (callbackUrlScheme == null || callbackUrlScheme == redirectUri.scheme) {
+        if (redirectUri.scheme == 'http' || redirectUri.scheme == 'https') {
+          // Pass full origin for desktop platforms (Linux/Windows)
+          callbackUrlScheme =
+              '${redirectUri.scheme}://${redirectUri.host}:${redirectUri.port}';
+        } else {
+          callbackUrlScheme = redirectUri.scheme;
         }
       }
 

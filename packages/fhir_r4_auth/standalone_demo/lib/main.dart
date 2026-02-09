@@ -315,10 +315,15 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       });
 
       print('\n\u2705 Demo completed successfully!');
-    } on AuthenticationException catch (e) {
+    } on AuthenticationException catch (e, stackTrace) {
       print('\u274c Authentication error: ${e.message}');
+      print('  Details: ${e.details}');
+      print('  Inner exception: ${e.innerException}');
+      print('  Stack trace:\n$stackTrace');
       setState(() {
-        _error = 'Authentication failed: ${e.message}';
+        _error = 'Authentication failed: ${e.message}'
+            '${e.details != null ? '\nDetails: ${e.details}' : ''}'
+            '${e.innerException != null ? '\nInner: ${e.innerException}' : ''}';
         _isLoading = false;
       });
     } on NetworkException catch (e) {
