@@ -121,10 +121,10 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       baseUrl: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4',
       clientIds: {
         // Register at: https://fhir.epic.com/
-        // Patient app (Patients audience)
-        LaunchMode.patient: 'a1ea50fd-fb23-4822-96c7-ada7267325d2',
-        // Clinician app (Clinicians audience) - TODO: Replace with your ID
-        LaunchMode.clinician: 'YOUR-EPIC-CLINICIAN-CLIENT-ID',
+        // Non-Production Client ID for fhir_r4_auth_test_patient app
+        LaunchMode.patient: '31a05c77-c602-4bf3-be24-1a7692802b3c',
+        // Non-Production Client ID for fhir_r4_auth_test_clinician app
+        LaunchMode.clinician: '2a12e18b-6dd7-4383-8faf-5ba904a072c3',
         // System app (Backend Systems audience) - TODO: Replace with your ID
         LaunchMode.system: 'YOUR-EPIC-SYSTEM-CLIENT-ID',
       },
@@ -262,8 +262,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           redirectUri: Uri.parse(redirectUri),
           launchType: LaunchType.standalone,
           scopes: config.scopes[_selectedMode]!,
-          enablePkce: true,
-          enableOpenId: true,
+          enablePkce: false,
+          enableOpenId: false,
         ),
       );
     }
