@@ -100,6 +100,8 @@ class SmartFhirClient extends FhirAuthClient {
       clientSecret: smartConfig.clientSecret,
       scopes: smartConfig.buildScopes(),
       additionalParameters: smartConfig.buildAuthorizationParameters(),
+      enablePkce: smartConfig.enablePkce,
+      enableOpenId: smartConfig.enableOpenId,
       httpClient: _httpClient,
     );
 

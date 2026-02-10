@@ -28,7 +28,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        manifestPlaceholders["appAuthRedirectScheme"] = "com.example.standalone_demo"
+        manifestPlaceholders["appAuthRedirectScheme"] = "com.example.standalone-demo"
     }
 
     buildTypes {

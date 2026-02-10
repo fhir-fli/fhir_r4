@@ -25,6 +25,7 @@
 
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -108,8 +109,15 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
   String? _error;
   String _statusMessage = '';
 
-  // Redirect URI for all vendors
-  static const String redirectUri = 'http://localhost:8080/callback.html';
+  // Redirect URI - platform-aware
+  // Android uses a custom URL scheme (registered via appAuthRedirectScheme in build.gradle.kts)
+  // Web and desktop use http://localhost:8080 (registered with the OAuth provider)
+  static String get redirectUri {
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      return 'com.example.ehr-launch-demo://callback';
+    }
+    return 'http://localhost:8080/callback.html';
+  }
 
   // ============================================================
   // VENDOR CONFIGURATIONS
