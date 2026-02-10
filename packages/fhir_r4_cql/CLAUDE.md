@@ -4,30 +4,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Package Overview
 
-**fhir_r4_cql** is a Clinical Quality Language (CQL) implementation in Dart/Flutter. It parses CQL source into an Expression Logic Model (ELM) representation and provides an execution engine to evaluate CQL expressions against FHIR data. Part of the FHIR FLI monorepo.
+**fhir_r4_cql** is a Clinical Quality Language (CQL) implementation in Dart. It parses CQL source into an Expression Logic Model (ELM) representation and provides an execution engine to evaluate CQL expressions against FHIR data. Part of the FHIR FLI monorepo.
 
-Status: Early development (`0.0.0-dev1`). Uses Flutter SDK (not pure Dart).
+Status: Early development (`0.0.0-dev1`). Pure Dart package.
 
 ## Commands
 
 ```bash
 # Install dependencies
-flutter pub get
+dart pub get
 
 # Run all tests
-flutter test
+dart test
 
 # Run a single test file
-flutter test test/engine/expression/aggregate_expressions/count_test.dart
+dart test test/engine/cql_aggregate_test.dart
+
+# Run integration tests
+dart test test/integration/cql_exercises_test.dart
 
 # Analyze code
-flutter analyze
+dart analyze
 
 # Format code
-dart format lib/ test/
+dart format lib/ test/ bin/
 
 # CLI: Convert CQL files to ELM JSON (requires local translation service on :8080)
-dart run lib/cli.dart
+dart run bin/cql_to_json.dart
 ```
 
 ## Architecture
@@ -49,7 +52,9 @@ Evaluates CQL expressions at runtime:
 - `retrieve/` — `RetrieveProvider` interface for data source abstraction
 
 ### `model/` — Model Information
-- `serializing/model_info/` — Pre-generated Dart files containing type metadata for FHIR (multiple versions: 1.0.2 through 4.0.1), QDM (4.2 through 5.6), and QUICK (1.4 through 1.8)
+- `serializing/model_info/` — Pre-generated Dart files containing type metadata for FHIR (multiple versions: 1.0.2 through 4.0.1)
+- `qdm/` — QDM model definitions (versions 4.2 through 5.6)
+- `quick/` — QUICK model definitions (versions 1.4 through 1.8)
 - `StandardModelInfoProvider` loads the appropriate model definitions at runtime
 
 ### `exceptions/` — Error Handling
@@ -62,7 +67,24 @@ Evaluates CQL expressions at runtime:
 - `ucum` — Units of measure conversion
 - `xml` / `xml2json` — Model info serialization
 
-## Test Patterns
+## Test Structure
+
+```
+test/
+├── test_data/           # Expected results for CQL exercise execution
+├── test_helpers/        # Parsing & comparison utilities
+├── integration/
+│   └── cql_exercises_test.dart   # End-to-end CQL parse + execute tests
+└── engine/
+    ├── cql_aggregate_test.dart   # Count, Sum, Avg, Min, Max, Median, Mode, etc.
+    ├── cql_arithmetic_test.dart  # Abs, Ceiling, Floor, Truncate, Negate, Round, etc.
+    ├── cql_comparison_test.dart  # Greater, Less, GreaterOrEqual, LessOrEqual, Equivalent
+    ├── cql_datetime_test.dart    # After, Before, SameAs, SameOrAfter, SameOrBefore, etc.
+    ├── cql_interval_test.dart    # Contains, In, Includes, Meets, Overlaps, Starts, Ends, etc.
+    ├── cql_list_test.dart        # Union, Intersect, Except, Distinct, Flatten, etc.
+    ├── cql_string_test.dart      # Combine, Split, IndexOf, PositionOf, Matches, etc.
+    └── cql_type_test.dart        # As (placeholder)
+```
 
 Tests are async, operate on expression objects directly, and compare results to FHIR types:
 ```dart
@@ -72,13 +94,11 @@ final result = await count.execute({});
 expect(result, equals(fhir.FhirInteger(5)));
 ```
 
-Tests live in `test/engine/expression/` mirroring the source structure.
-
 ## File Access Warnings
 
 - **Do not hand-edit** `lib/cql_to_elm/antlr/cql_lexer.dart`, `cql_parser.dart`, or `visitor/cql_base_visitor.dart` — these are generated from the CQL grammar
-- `qdm/` and `quick/` directories contain versioned model definitions — read selectively
-- `cql/` and `json/` are bundled Flutter assets containing CQL exercises and their expected ELM JSON outputs
+- `lib/model/qdm/` and `lib/model/quick/` directories contain versioned model definitions — read selectively
+- `cql/` and `json/` contain CQL exercises and their expected ELM JSON outputs
 
 ## Code Generation
 
@@ -88,4 +108,4 @@ Utility scripts in `utils/` generate model info and other derived code:
 
 ## Linting
 
-Uses `flutter_lints/flutter.yaml` with default rules (no custom overrides).
+Uses `lints/recommended.yaml` with default rules (no custom overrides).
