@@ -115,8 +115,10 @@ class Divide extends BinaryExpression {
       return null;
     } else if ((left is FhirNumber || left is FhirInteger64) &&
         (right is FhirNumber || right is FhirInteger64)) {
-      final leftDecimal = UcumDecimal.fromString(left.valueString);
-      final rightDecimal = UcumDecimal.fromString(right.valueString);
+      final leftDecimal =
+          UcumDecimal.fromString(_ensureDecimalPrecision(left.valueString));
+      final rightDecimal =
+          UcumDecimal.fromString(_ensureDecimalPrecision(right.valueString));
       final result = leftDecimal / rightDecimal;
       return FhirDecimal(double.parse(result.asUcumDecimal()));
     } else if ((left is ValidatedQuantity || left is FhirDecimal) &&
@@ -131,5 +133,17 @@ class Divide extends BinaryExpression {
       return result;
     }
     throw ArgumentError('Invalid arguments for divide operation');
+  }
+
+  /// CQL Decimal has minimum scale of 8 digits. UcumDecimal preserves input
+  /// precision, so we pad to at least 8 decimal places before dividing.
+  static String _ensureDecimalPrecision(String value) {
+    final dotIndex = value.indexOf('.');
+    if (dotIndex == -1) {
+      return '$value.${'0' * 8}';
+    }
+    final currentScale = value.length - dotIndex - 1;
+    if (currentScale >= 8) return value;
+    return '$value${'0' * (8 - currentScale)}';
   }
 }

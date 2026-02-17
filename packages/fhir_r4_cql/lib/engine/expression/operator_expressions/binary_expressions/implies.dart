@@ -98,17 +98,19 @@ class Implies extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
 
-    /// TRUE implies TRUE and FALSE implies anything is TRUE
-    if ((left is FhirBoolean &&
-            left.valueBoolean == true &&
-            right is FhirBoolean &&
-            right.valueBoolean == true) ||
-        (left is FhirBoolean && left.valueBoolean == false) ||
-        (left == null)) {
+    // Per CQL spec truth table for implies:
+    // false implies X = true (for any X)
+    if (left is FhirBoolean && left.valueBoolean == false) {
       return FhirBoolean(true);
     }
 
-    /// TRUE implies FALSE
+    // null implies true = true
+    // true implies true = true
+    if (right is FhirBoolean && right.valueBoolean == true) {
+      return FhirBoolean(true);
+    }
+
+    // true implies false = false
     if (left is FhirBoolean &&
         left.valueBoolean == true &&
         right is FhirBoolean &&
@@ -116,13 +118,10 @@ class Implies extends BinaryExpression {
       return FhirBoolean(false);
     }
 
-    /// TRUE implies NULL
-    if (left is FhirBoolean && left.valueBoolean == true && right == null) {
-      return null;
-    }
-
-    /// NULL implies NULL
-    if (left == null && right == null) {
+    // true implies null = null
+    // null implies false = null
+    // null implies null = null
+    if (left == null || right == null) {
       return null;
     }
 
