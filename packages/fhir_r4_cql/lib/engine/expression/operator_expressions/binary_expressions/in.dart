@@ -223,37 +223,25 @@ class In extends BinaryExpression {
   }
 
   FhirBoolean? in_(dynamic left, dynamic right, Map<String, dynamic> context) {
-    final rightReturnTypes = right == null
-        ? operand[1].getReturnTypes(context['library'] as CqlLibrary)
-        : null;
-    if (right is CqlInterval ||
-        (rightReturnTypes != null &&
-            rightReturnTypes.isNotEmpty &&
-            rightReturnTypes.first == 'CqlInterval')) {
+    // Per CQL spec: if the second argument is null, the result is false.
+    if (right == null) {
+      return FhirBoolean(false);
+    }
+    if (right is CqlInterval) {
       if (left == null) {
         return null;
-      } else if (right == null) {
-        return FhirBoolean(false);
-      } else {
-        return FhirBoolean(right.contains(left));
       }
-    } else if (right is List ||
-        (rightReturnTypes != null &&
-            rightReturnTypes.isNotEmpty &&
-            rightReturnTypes.first.contains('List'))) {
-      if (right == null) {
-        return FhirBoolean(false);
-      } else {
-        return FhirBoolean(right.contains(left));
-      }
+      return FhirBoolean(right.contains(left));
+    } else if (right is List) {
+      return FhirBoolean(right.contains(left));
     } else if (right is CqlValueSet) {
       // final String url = right.id;
       // ignore: unused_local_variable
       // final response = get(Uri.parse(url));
+      return null;
     } else {
       throw ArgumentError(
           'In: Right operand must be of type Interval, List, or include Codes and ValueSets');
     }
-    return null;
   }
 }

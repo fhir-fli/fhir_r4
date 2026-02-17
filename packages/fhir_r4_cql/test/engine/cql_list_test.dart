@@ -310,7 +310,7 @@ void main() {
         cql.LiteralInteger(5)
       ]);
       final singletonFrom = cql.SingletonFrom(operand: list);
-      expect(() => singletonFrom.execute({}), throwsA(isA<ArgumentError>()));
+      expect(() => singletonFrom.execute({}), throwsA(isA<cql.CqlException>()));
     });
     test('define "SingletonFromIsNull": singleton from (null as List<Integer>)',
         () async {

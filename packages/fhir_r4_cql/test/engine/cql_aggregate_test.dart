@@ -440,7 +440,7 @@ void main() {
         LiteralNull(),
       ]);
       final result = await PopulationVariance(source: list).execute({});
-      expect(result, equals(FhirDecimal(0.6666666666666666)));
+      expect(result, equals(FhirDecimal(0.66666667)));
     });
     test('PopulationStdDev({ 1, 2, 3, null }) = 0.816496580927726', () async {
       final list = ListExpression(element: [
@@ -450,7 +450,7 @@ void main() {
         LiteralNull(),
       ]);
       final result = await PopulationStdDev(source: list).execute({});
-      expect(result, equals(FhirDecimal(0.816496580927726)));
+      expect(result, equals(FhirDecimal(0.81649658)));
     });
   });
 
@@ -469,7 +469,7 @@ void main() {
       );
       final stddev = StdDev(source: list);
       final result = await stddev.execute({});
-      expect(result, equals(FhirDecimal(1.4142135623730951)));
+      expect(result, equals(FhirDecimal(1.41421356)));
     });
     test(
         """define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'""",
@@ -523,7 +523,7 @@ void main() {
         LiteralDecimal(5.0)
       ]);
       final result = await PopulationStdDev(source: list).execute({});
-      expect(result, equals(FhirDecimal(1.4142135623730951)));
+      expect(result, equals(FhirDecimal(1.41421356)));
     });
     test(
         """define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'""",
