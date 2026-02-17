@@ -103,9 +103,37 @@ class Property extends CqlExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    final sourceResult = await source?.execute(context);
+    // Resolve source: either from explicit source expression or from scope
+    final dynamic sourceResult;
+    if (source != null) {
+      sourceResult = await source!.execute(context);
+    } else if (scope != null && context.containsKey(scope)) {
+      sourceResult = context[scope];
+    } else {
+      sourceResult = null;
+    }
+    // List projection: if sourceResult is a list with multiple elements,
+    // map the property access over each element.
+    if (sourceResult is List && sourceResult.length > 1) {
+      final projected = <dynamic>[];
+      for (final element in sourceResult) {
+        final value = await _resolveProperty(element, context);
+        if (value is List) {
+          projected.addAll(value);
+        } else if (value != null) {
+          projected.add(value);
+        }
+      }
+      return projected;
+    }
+
+    return _resolveProperty(sourceResult, context);
+  }
+
+  Future<dynamic> _resolveProperty(
+      dynamic sourceResult, Map<String, dynamic> context) async {
     try {
-      final context = sourceResult is fhir.FhirBase
+      final fhirContext = sourceResult is fhir.FhirBase
           ? sourceResult
           : sourceResult is Map<String, dynamic>
               ? fhir.Resource.fromJson(sourceResult)
@@ -120,14 +148,22 @@ class Property extends CqlExpression {
                           unit: fhir.FhirString(sourceResult.unit),
                         )
                       : null;
-      final result = await walkFhirPath(context: context, pathExpression: path);
+      var result =
+          await walkFhirPath(context: fhirContext, pathExpression: path);
+      // Fallback for choice types (e.g., value[x]) where walkFhirPath may
+      // not resolve the polymorphic property name.
+      if (result.isEmpty && fhirContext is fhir.FhirBase) {
+        final child = fhirContext.getChildByName(path);
+        if (child != null) {
+          result = [child];
+        }
+      }
       if (result.length == 1) {
         return result.first;
       } else {
         return result;
       }
     } catch (e) {
-      print('Error executing Property: $e');
       return null;
     }
   }

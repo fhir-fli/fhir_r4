@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' hide Quantity, SortDirection;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The Query operator represents a clause-based query.
@@ -101,17 +103,19 @@ class Query extends CqlExpression {
   Future<dynamic> execute(Map<String, dynamic> context) async {
     // 1) Build the Cartesian product of all sources
     List<Map<String, dynamic>> rows = [{}]; // ← start with a single, empty map
+    // Track if source was originally a singleton (non-list) value
+    bool singletonSource = false;
     for (final src in source) {
-      final dynamic listValue = await src.expression.execute(context);
-      if (listValue == null) return null;
-      if (listValue is! Iterable) {
-        throw ArgumentError('Query source ${src.alias} must be a List');
-      }
+      final dynamic rawValue = await src.expression.execute(context);
+      if (rawValue == null) return null;
+      if (rawValue is! Iterable) singletonSource = true;
+      final Iterable listValue =
+          rawValue is Iterable ? rawValue : [rawValue];
 
       final List<Map<String, dynamic>> newRows = [];
       for (final row in rows) {
         for (final element in listValue) {
-          // clone the existing row and add this source’s alias → element
+          // clone the existing row and add this source's alias → element
           final newRow = Map<String, dynamic>.from(row)..[src.alias] = element;
           newRows.add(newRow);
         }
@@ -132,7 +136,49 @@ class Query extends CqlExpression {
       }
     }
 
-    // 3) WHERE filter
+    // 3) RELATIONSHIP clauses (With/Without)
+    if (relationship != null) {
+      for (final rel in relationship!) {
+        final relList = await rel.expression.execute(context);
+        if (relList == null || relList is! Iterable) {
+          if (rel is With) {
+            rows = [];
+          }
+          continue;
+        }
+
+        final List<Map<String, dynamic>> filtered = [];
+        for (final row in rows) {
+          bool hasMatch = false;
+          for (final relElement in relList) {
+            if (rel.suchThat != null) {
+              final execCtx = <String, dynamic>{}
+                ..addAll(context)
+                ..addAll(row)
+                ..[rel.alias] = relElement;
+              final cond = await rel.suchThat!.execute(execCtx);
+              if (cond == true ||
+                  (cond is FhirBoolean && cond.valueBoolean == true)) {
+                hasMatch = true;
+                break;
+              }
+            } else {
+              hasMatch = true;
+              break;
+            }
+          }
+
+          if (rel is With && hasMatch) {
+            filtered.add(row);
+          } else if (rel is Without && !hasMatch) {
+            filtered.add(row);
+          }
+        }
+        rows = filtered;
+      }
+    }
+
+    // 4) WHERE filter
     if (where != null) {
       final List<Map<String, dynamic>> filtered = [];
       for (final row in rows) {
@@ -140,14 +186,15 @@ class Query extends CqlExpression {
           ..addAll(context)
           ..addAll(row);
         final dynamic cond = await where!.execute(execCtx);
-        if (cond == true) {
+        if (cond == true ||
+            (cond is FhirBoolean && cond.valueBoolean == true)) {
           filtered.add(row);
         }
       }
       rows = filtered;
     }
 
-    // 4) SORT
+    // 5) SORT
     if (sort != null && sort!.by.isNotEmpty) {
       // Precompute sort keys for each row
       final List<List<Comparable?>> keyLists = [];
@@ -216,14 +263,25 @@ class Query extends CqlExpression {
       if (returnClause!.distinct ?? false) {
         return result.toSet().toList();
       }
+    } else if (source.length == 1) {
+      // No return clause with single source: return the source elements directly
+      final alias = source.first.alias;
+      for (final row in rows) {
+        result.add(row[alias]);
+      }
     } else {
-      // No return clause: return the row-maps themselves
+      // No return clause with multiple sources: return the row-maps
       return rows;
     }
 
     // 6) AGGREGATE is not yet supported
     if (aggregate != null) {
       throw UnimplementedError('Query.aggregate is not supported yet');
+    }
+
+    // For singleton sources, return the scalar result
+    if (singletonSource && result.length == 1) {
+      return result.first;
     }
 
     return result;

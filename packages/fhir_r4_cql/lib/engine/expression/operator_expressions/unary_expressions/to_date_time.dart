@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert the value of its argument to a DateTime value.
@@ -33,6 +35,19 @@ class ToDateTime extends UnaryExpression {
 
   @override
   String get type => 'ToDateTime';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is FhirDateTime) return value;
+    if (value is FhirDate) {
+      return FhirDateTime.fromString(value.valueString ?? '');
+    }
+    if (value is String) return FhirDateTime.fromString(value);
+    return null;
+  }
+
   @override
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{

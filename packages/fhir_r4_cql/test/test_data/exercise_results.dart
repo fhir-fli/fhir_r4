@@ -3,6 +3,10 @@ import 'exercises_02.dart';
 import 'exercises_03.dart';
 import 'exercises_04.dart';
 import 'exercises_05.dart';
+import 'exercises_06.dart';
+import 'exercises_07.dart';
+import 'exercises_08.dart';
+import 'exercises_09.dart';
 import 'simple.dart';
 
 final results = <String, dynamic>{
@@ -12,6 +16,10 @@ final results = <String, dynamic>{
   'Exercises03.cql': exercises03,
   'Exercises04.cql': exercises04,
   'Exercises05.cql': exercises05,
+  'Exercises06.cql': exercises06,
+  'Exercises07.cql': exercises07,
+  'Exercises08.cql': exercises08,
+  'Exercises09.cql': exercises09,
 };
 
 final contexts = <String, dynamic>{
@@ -21,4 +29,8 @@ final contexts = <String, dynamic>{
   'Exercises03.cql': {},
   'Exercises04.cql': {},
   'Exercises05.cql': context05,
+  'Exercises06.cql': context06,
+  'Exercises07.cql': context07,
+  'Exercises08.cql': context08,
+  'Exercises09.cql': context09,
 };

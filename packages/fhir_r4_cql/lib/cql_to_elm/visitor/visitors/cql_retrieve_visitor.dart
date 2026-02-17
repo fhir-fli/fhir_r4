@@ -59,11 +59,21 @@ class CqlRetrieveVisitor extends CqlBaseVisitor<Retrieve> {
           }
         }
       }
+      // When the code comparator is '~' (equivalent), a single code reference
+      // must be wrapped in a ToList to match the ELM specification.
+      final wrappedCodes =
+          codes != null && codeComparator == '~' && codes is! ToList
+              ? ToList(operand: codes)
+              : codes;
+      // Default codeProperty to 'code' when codes are present
+      if (codes != null) {
+        codeProperty ??= 'code';
+      }
       return Retrieve(
         dataType: name.namespace,
-        codes: codes,
+        codes: wrappedCodes,
         context: context,
-        codeComparator: codes == null ? null : (codeComparator ?? 'in'),
+        codeComparator: codes == null ? null : (codeComparator ?? '~'),
         templateId: templateId,
         codeProperty: codeProperty,
       );

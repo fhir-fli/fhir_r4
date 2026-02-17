@@ -10,10 +10,8 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
     if (ctx.childCount == 3) {
       // Parse left and right operands
-      final CqlExpression left =
-          visitTermExpression(ctx.children![0] as TermExpressionContext);
-      final CqlExpression right =
-          visitTermExpression(ctx.children![2] as TermExpressionContext);
+      final CqlExpression left = byContext(ctx.children![0]) as CqlExpression;
+      final CqlExpression right = byContext(ctx.children![2]) as CqlExpression;
 
       // Parse the interval operator phrase
       final intervalOperatorPhrase = ctx.children![1];

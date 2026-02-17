@@ -119,13 +119,25 @@ class InValueSet extends OperatorExpression {
     if (valueSetRef == null) {
       throw ArgumentError('ValueSet not found in context');
     }
-    final resourceCache = context['resourceCache'] ?? OnlineResourceCache();
 
+    final codeValue = await code.execute(context);
+
+    // Check context['_valueSets'] first for local value set expansions
+    final valueSets = context['_valueSets'];
+    if (valueSets is Map<String, dynamic>) {
+      final expansion = valueSets[valueSetRef.id];
+      if (expansion is List) {
+        return _checkCodeInExpansion(codeValue, expansion);
+      }
+    }
+
+    // Fallback to canonical resource cache (may involve network)
+    final resourceCache = context['resourceCache'] ?? OnlineResourceCache();
     final valueSet = await (resourceCache as CanonicalResourceCache)
         .getCanonicalResource<ValueSet>(valueSetRef.id, valueSetRef.version);
 
     if (valueSet == null) {
-      throw ArgumentError('ValueSet not found in context');
+      throw ArgumentError('ValueSet ${valueSetRef.id} not found');
     }
 
     final workerContext = WorkerContext(resourceCache: resourceCache);
@@ -135,7 +147,6 @@ class InValueSet extends OperatorExpression {
       options: ValidationOptions(),
       valueSet: valueSet,
     );
-    final codeValue = await code.execute(context);
 
     switch (codeValue) {
       case String _:
@@ -147,7 +158,8 @@ class InValueSet extends OperatorExpression {
             false);
       case FhirCode _:
         return FhirBoolean(
-            (await checker.codeInValueSet(null, codeValue.valueString, null)) ??
+            (await checker.codeInValueSet(
+                    null, codeValue.valueString, null)) ??
                 false);
       case CqlConcept _:
         if (codeValue.codes.isEmpty) {
@@ -179,6 +191,47 @@ class InValueSet extends OperatorExpression {
         return FhirBoolean(false);
       default:
         throw ArgumentError('Invalid code type');
+    }
+  }
+
+  /// Checks if a code value is in a local value set expansion list.
+  static FhirBoolean? _checkCodeInExpansion(
+      dynamic codeValue, List<dynamic> expansion) {
+    bool matches(String? system, String? code) {
+      for (final ec in expansion) {
+        if (ec is Map<String, dynamic> &&
+            code == ec['code']?.toString() &&
+            system == ec['system']?.toString()) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    switch (codeValue) {
+      case String _:
+        return FhirBoolean(matches(null, codeValue));
+      case CqlCode _:
+        return FhirBoolean(matches(codeValue.system, codeValue.code));
+      case FhirCode _:
+        return FhirBoolean(matches(null, codeValue.valueString));
+      case CqlConcept _:
+        if (codeValue.codes.isEmpty) return null;
+        for (final c in codeValue.codes) {
+          if (matches(c.system, c.code)) return FhirBoolean(true);
+        }
+        return FhirBoolean(false);
+      case CodeableConcept _:
+        if (codeValue.coding == null || codeValue.coding!.isEmpty) return null;
+        for (final coding in codeValue.coding!) {
+          if (matches(
+              coding.system?.valueString, coding.code?.valueString)) {
+            return FhirBoolean(true);
+          }
+        }
+        return FhirBoolean(false);
+      default:
+        return FhirBoolean(false);
     }
   }
 }

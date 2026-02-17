@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Exists operator returns true if the list contains any elements.
@@ -29,6 +31,15 @@ class Exists extends UnaryExpression {
 
   @override
   String get type => 'Exists';
+
+  @override
+  Future<FhirBoolean> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
+    if (result == null) return FhirBoolean(false);
+    if (result is List) return FhirBoolean(result.isNotEmpty);
+    return FhirBoolean(true);
+  }
+
   @override
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{

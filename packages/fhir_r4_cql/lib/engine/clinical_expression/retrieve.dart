@@ -369,96 +369,168 @@ class Retrieve extends CqlExpression {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> execute(
-      Map<String, dynamic> context) async {
-    // Step 1: Build Query
-    Map<String, dynamic> query = <String, dynamic>{};
+  Future<List<dynamic>> execute(Map<String, dynamic> context) async {
+    final resourceType = dataType.localPart;
 
-    // Add dataType to query
-    query['type'] = dataType.localPart;
-
-    // Add code filter to query
-    if (codes != null) {
-      query['codes'] = await codes!.execute(context);
-    } else if (codeFilter != null) {
-      query['codeFilter'] = codeFilter!.map((e) => e.toJson()).toList();
+    // Step 1: Get all resources of this type from context
+    var resources = _getResourcesFromContext(resourceType, context);
+    if (resources.isEmpty) {
+      return resources;
     }
 
-    // Add date filter to query
-    if (dateRange != null) {
-      query['dateRange'] = await dateRange!.execute(context);
-    } else if (dateFilter != null) {
-      query['dateFilter'] = dateFilter!.map((e) => e.toJson()).toList();
+    // Step 2: Apply code filtering if present
+    if (codes != null && codeProperty != null && codeComparator != null) {
+      final codesResult = await codes!.execute(context);
+      resources = _filterByCode(resources, codesResult, context);
     }
 
-    // Add other filters to query
-    if (otherFilter != null) {
-      query['otherFilter'] = otherFilter!.map((e) => e.toJson()).toList();
-    }
-
-    // Add context to query
-    if (this.context != null) {
-      query['context'] = await this.context!.execute(context);
-    }
-
-    // Add includes to query
-    if (include != null) {
-      query['include'] = include!.map((e) => e.toJson()).toList();
-    }
-
-    // Add templateId to query
-    if (templateId != null) {
-      query['templateId'] = templateId;
-    }
-
-    // Add other properties to query
-    writeNotNullToQuery(query, 'idProperty', idProperty);
-    writeNotNullToQuery(query, 'idSearch', idSearch);
-    writeNotNullToQuery(query, 'contextProperty', contextProperty);
-    writeNotNullToQuery(query, 'contextSearch', contextSearch);
-    writeNotNullToQuery(query, 'codeProperty', codeProperty);
-    writeNotNullToQuery(query, 'codeSearch', codeSearch);
-    writeNotNullToQuery(query, 'valueSetProperty', valueSetProperty);
-    writeNotNullToQuery(query, 'dateProperty', dateProperty);
-    writeNotNullToQuery(query, 'dateLowProperty', dateLowProperty);
-    writeNotNullToQuery(query, 'dateHighProperty', dateHighProperty);
-    writeNotNullToQuery(query, 'dateSearch', dateSearch);
-
-    // Step 2: Check Context for Data
-    var result = checkContextForData(query, context);
-
-    // Step 3: If not found in context, execute external query
-    result ??= retrieve(query, context);
-
-    // Step 4: Return Results
-    return result;
+    return resources;
   }
 
-  static List<Map<String, dynamic>> retrieve(
-      Map<String, dynamic> query, Map<String, dynamic> executionContext) {
-    var result = <Map<String, dynamic>>[];
-
-    // Dynamically determine the resource type
-    var resourceType = query['type'];
-
-    // Check if the data type exists in the execution context
-    if (executionContext.containsKey(resourceType)) {
-      result.add(executionContext[resourceType] as Map<String, dynamic>);
+  /// Gets resources from the execution context. Handles both single resources
+  /// (wrapped in a list) and lists of resources.
+  static List<dynamic> _getResourcesFromContext(
+      String resourceType, Map<String, dynamic> context) {
+    if (!context.containsKey(resourceType)) {
+      return <dynamic>[];
     }
-
-    // Example: Here you would implement the actual data retrieval logic
-    // from an external source (e.g., a FHIR server).
-
-    return result;
+    final value = context[resourceType];
+    if (value is List) {
+      return List<dynamic>.from(value);
+    }
+    if (value != null) {
+      return <dynamic>[value];
+    }
+    return <dynamic>[];
   }
 
-  List<Map<String, dynamic>>? checkContextForData(
-      Map<String, dynamic> query, Map<String, dynamic> context) {
-    // Check if the data is available in the context
-    var resourceType = query['type'];
-    if (context.containsKey(resourceType)) {
-      return [context[resourceType]];
+  /// Filters resources by code property using the given comparator.
+  List<dynamic> _filterByCode(
+      List<dynamic> resources, dynamic codesResult, Map<String, dynamic> context) {
+    return resources.where((resource) {
+      final resourceCodes = _extractCodes(resource, codeProperty!);
+      if (resourceCodes.isEmpty) return false;
+
+      if (codeComparator == '~' || codeComparator == '=') {
+        // codesResult should be a list of CqlCode (from ToList(CodeRef(...)))
+        final filterCodes = codesResult is List ? codesResult : [codesResult];
+        return _matchesCodes(resourceCodes, filterCodes);
+      } else if (codeComparator == 'in') {
+        // codesResult should be a CqlValueSet (from ValueSetRef)
+        if (codesResult is CqlValueSet) {
+          return _matchesValueSet(resourceCodes, codesResult, context);
+        }
+        // Could also be a list of codes
+        if (codesResult is List) {
+          return _matchesCodes(resourceCodes, codesResult);
+        }
+      }
+      return false;
+    }).toList();
+  }
+
+  /// Extracts coding values from a resource's property. Returns a list of
+  /// {system, code} maps for comparison.
+  static List<Map<String, String?>> _extractCodes(
+      dynamic resource, String property) {
+    if (resource is! Map<String, dynamic>) return [];
+
+    final value = resource[property];
+    if (value == null) return [];
+
+    // Single Coding (e.g., Encounter.class)
+    if (value is Map<String, dynamic> &&
+        value.containsKey('code') &&
+        !value.containsKey('coding')) {
+      return [
+        {'system': value['system']?.toString(), 'code': value['code']?.toString()}
+      ];
     }
-    return null;
+
+    // Single CodeableConcept (has 'coding' list)
+    if (value is Map<String, dynamic> && value.containsKey('coding')) {
+      return _codingsFromCodeableConcept(value);
+    }
+
+    // List of CodeableConcepts (e.g., MedicationRequest.category)
+    if (value is List) {
+      final result = <Map<String, String?>>[];
+      for (final item in value) {
+        if (item is Map<String, dynamic>) {
+          if (item.containsKey('coding')) {
+            result.addAll(_codingsFromCodeableConcept(item));
+          } else if (item.containsKey('code')) {
+            result.add({
+              'system': item['system']?.toString(),
+              'code': item['code']?.toString(),
+            });
+          }
+        }
+      }
+      return result;
+    }
+
+    // Plain code string
+    if (value is String) {
+      return [{'system': null, 'code': value}];
+    }
+
+    return [];
+  }
+
+  static List<Map<String, String?>> _codingsFromCodeableConcept(
+      Map<String, dynamic> concept) {
+    final codings = concept['coding'];
+    if (codings is! List) return [];
+    return codings
+        .whereType<Map<String, dynamic>>()
+        .map((c) => <String, String?>{
+              'system': c['system']?.toString(),
+              'code': c['code']?.toString(),
+            })
+        .toList();
+  }
+
+  /// Checks if any of the resource codes are equivalent to any filter codes.
+  static bool _matchesCodes(
+      List<Map<String, String?>> resourceCodes, List<dynamic> filterCodes) {
+    for (final rc in resourceCodes) {
+      for (final fc in filterCodes) {
+        if (fc is CqlCode) {
+          if (rc['code'] == fc.code && rc['system'] == fc.system) {
+            return true;
+          }
+        } else if (fc is Map<String, dynamic>) {
+          if (rc['code'] == fc['code']?.toString() &&
+              rc['system'] == fc['system']?.toString()) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  /// Checks if any of the resource codes are in the given value set.
+  /// Looks up value set expansion in context['_valueSets'].
+  static bool _matchesValueSet(List<Map<String, String?>> resourceCodes,
+      CqlValueSet valueSet, Map<String, dynamic> context) {
+    // Look up the expansion from context
+    final valueSets = context['_valueSets'];
+    if (valueSets is Map<String, dynamic>) {
+      final expansion = valueSets[valueSet.id];
+      if (expansion is List) {
+        for (final rc in resourceCodes) {
+          for (final ec in expansion) {
+            if (ec is Map<String, dynamic> &&
+                rc['code'] == ec['code']?.toString() &&
+                rc['system'] == ec['system']?.toString()) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
   }
 }

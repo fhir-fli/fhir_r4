@@ -1,11 +1,9 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The AliasRef expression allows for the reference of a specific source within the scope of a query.
-class AliasRef extends CqlExpression {
-  final String name;
-
+class AliasRef extends Ref {
   AliasRef({
-    required this.name,
+    required super.name,
     super.annotation,
     super.localId,
     super.locator,

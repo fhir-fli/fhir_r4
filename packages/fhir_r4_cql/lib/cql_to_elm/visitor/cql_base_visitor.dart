@@ -3,7 +3,7 @@
 import 'dart:developer';
 
 import 'package:antlr4/antlr4.dart';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' hide SortDirection;
 import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
@@ -21,6 +21,47 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   final modelInfoProvider = StandardModelInfoProvider();
   int nodeNumber = 0;
   final shouldPrint = false;
+
+  /// Stack of active query alias scopes. Each set contains the aliases
+  /// defined in that query level (source aliases + relationship aliases).
+  static final List<Set<String>> _queryScopes = [];
+
+  /// Stack of let identifier scopes. Each set contains the let identifiers
+  /// defined in that query level.
+  static final List<Set<String>> _letScopes = [];
+
+  /// Push a set of aliases for a new query scope.
+  static void pushQueryScope(Set<String> aliases) {
+    _queryScopes.add(aliases);
+    _letScopes.add(<String>{});
+  }
+
+  /// Pop the most recent query scope.
+  static void popQueryScope() {
+    if (_queryScopes.isNotEmpty) _queryScopes.removeLast();
+    if (_letScopes.isNotEmpty) _letScopes.removeLast();
+  }
+
+  /// Register a let identifier in the current query scope.
+  static void addLetIdentifier(String name) {
+    if (_letScopes.isNotEmpty) _letScopes.last.add(name);
+  }
+
+  /// Check if an identifier is a known query alias in any active scope.
+  static bool isQueryAlias(String name) =>
+      _queryScopes.any((scope) => scope.contains(name));
+
+  /// Add an alias to the current (topmost) query scope.
+  static void addAliasToCurrentScope(String alias) {
+    if (_queryScopes.isNotEmpty) _queryScopes.last.add(alias);
+  }
+
+  /// Check if an identifier is a let-introduced name in any active scope.
+  static bool isLetIdentifier(String name) =>
+      _letScopes.any((scope) => scope.contains(name));
+
+  /// Whether we're currently inside a sort clause (suppresses FHIRHelpers wrapping).
+  static bool _inSortClause = false;
 
   @override
   AccessModifier visitAccessModifier(AccessModifierContext ctx) =>
@@ -308,7 +349,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlIncludeDefinitionVisitor(library).visitIncludeDefinition(ctx);
 
   @override
-  IncludedIn visitIncludedInIntervalOperatorPhrase(
+  CqlExpression visitIncludedInIntervalOperatorPhrase(
           IncludedInIntervalOperatorPhraseContext ctx,
           [CqlExpression? left,
           CqlExpression? right]) =>
@@ -369,7 +410,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlIntervalTypeSpecifierVisitor(library).visitIntervalTypeSpecifier(ctx);
 
   @override
-  Property visitInvocationExpressionTerm(InvocationExpressionTermContext ctx) =>
+  CqlExpression visitInvocationExpressionTerm(
+          InvocationExpressionTermContext ctx) =>
       CqlInvocationExpressionTermVisitor(library)
           .visitInvocationExpressionTerm(ctx);
 
@@ -395,19 +437,40 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   /// The default implementation returns the result of calling
   /// [visitChildren] on [ctx].
   @override
-  dynamic visitLetClause(LetClauseContext ctx) {
+  List<LetClause> visitLetClause(LetClauseContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    List<LetClause> items = [];
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is LetClauseItemContext) {
+        final item = visitLetClauseItem(child);
+        items.add(item);
+        // Register each let identifier immediately so subsequent let items
+        // can reference it (e.g. race.extension where race is a prior let).
+        addAliasToCurrentScope(item.identifier);
+        addLetIdentifier(item.identifier);
+      }
+    }
+    return items;
   }
 
   /// The default implementation returns the result of calling
   /// [visitChildren] on [ctx].
   @override
-  dynamic visitLetClauseItem(LetClauseItemContext ctx) {
+  LetClause visitLetClauseItem(LetClauseItemContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    String? identifier;
+    CqlExpression? expression;
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is IdentifierContext) {
+        identifier = visitIdentifier(child);
+      } else if (child is ExpressionContext) {
+        expression = byContext(child) as CqlExpression?;
+      }
+    }
+    if (identifier != null && expression != null) {
+      return LetClause(identifier: identifier, expression: expression);
+    }
+    throw ArgumentError('Invalid LetClauseItem');
   }
 
   /// library: libraryDefinition? definition* statement* EOF;
@@ -564,18 +627,33 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           .visitPredecessorExpressionTerm(ctx);
 
   @override
-  dynamic visitQualifiedFunction(QualifiedFunctionContext ctx) {
+  FunctionRef visitQualifiedFunction(QualifiedFunctionContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    String? name;
+    List<CqlExpression> operand = [];
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is IdentifierOrFunctionIdentifierContext) {
+        name = visitIdentifierOrFunctionIdentifier(child);
+      } else if (child is ParamListContext) {
+        operand.addAll(visitParamList(child));
+      }
+    }
+    if (name != null) {
+      return FunctionRef(name: name, operand: operand.isEmpty ? null : operand);
+    }
+    throw ArgumentError('Invalid QualifiedFunction');
   }
 
   @override
-  dynamic visitQualifiedFunctionInvocation(
+  FunctionRef visitQualifiedFunctionInvocation(
       QualifiedFunctionInvocationContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is QualifiedFunctionContext) {
+        return visitQualifiedFunction(child);
+      }
+    }
+    throw ArgumentError('Invalid QualifiedFunctionInvocation');
   }
 
   @override
@@ -590,7 +668,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
 
   @override
   Ref visitQualifiedMemberInvocation(QualifiedMemberInvocationContext ctx) =>
-      returnRef(ctx.text, null);
+      returnRef(noQuoteString(ctx.text), null);
 
   @override
   String visitQualifier(QualifierContext ctx) =>
@@ -675,10 +753,25 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlRetrieveExpressionVisitor(library).visitRetrieveExpression(ctx);
 
   @override
-  dynamic visitReturnClause(ReturnClauseContext ctx) {
+  ReturnClause visitReturnClause(ReturnClauseContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    CqlExpression? expression;
+    bool? distinct;
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is TerminalNode) {
+        if (child.text == 'distinct') {
+          distinct = true;
+        } else if (child.text == 'all') {
+          distinct = false;
+        }
+      } else if (child is ExpressionContext) {
+        expression = byContext(child) as CqlExpression?;
+      }
+    }
+    if (expression != null) {
+      return ReturnClause(expression: expression, distinct: distinct);
+    }
+    throw ArgumentError('Invalid ReturnClause');
   }
 
   @override
@@ -731,24 +824,50 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   }
 
   @override
-  dynamic visitSortByItem(SortByItemContext ctx) {
+  ByExpression visitSortByItem(SortByItemContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    CqlExpression? expression;
+    SortDirection direction = SortDirection.asc;
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is SortDirectionContext) {
+        direction = visitSortDirection(child);
+      } else if (child is ExpressionTermContext) {
+        expression = byContext(child) as CqlExpression;
+      }
+    }
+    return ByExpression(
+      direction: direction,
+      expression: expression ?? LiteralNull(),
+    );
   }
 
   @override
-  dynamic visitSortClause(SortClauseContext ctx) {
+  SortClause visitSortClause(SortClauseContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    _inSortClause = true;
+    try {
+      List<SortByItem> byItems = [];
+      SortDirection? bareDirection;
+      for (final child in ctx.children ?? <ParseTree>[]) {
+        if (child is SortByItemContext) {
+          byItems.add(visitSortByItem(child));
+        } else if (child is SortDirectionContext) {
+          bareDirection = visitSortDirection(child);
+        }
+      }
+      if (byItems.isEmpty && bareDirection != null) {
+        byItems.add(ByDirection(direction: bareDirection));
+      }
+      return SortClause(by: byItems);
+    } finally {
+      _inSortClause = false;
+    }
   }
 
   @override
-  dynamic visitSortDirection(SortDirectionContext ctx) {
+  SortDirection visitSortDirection(SortDirectionContext ctx) {
     printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
+    return SortDirectionExtension.fromJson(ctx.text);
   }
 
   @override
@@ -859,7 +978,163 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   dynamic visitTypeExpression(TypeExpressionContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    visitChildren(ctx);
+    CqlExpression? operand;
+    TypeSpecifierExpression? typeSpecifier;
+    bool isIs = false;
+    bool isAs = false;
+    for (final child in ctx.children ?? <ParseTree>[]) {
+      if (child is ExpressionContext) {
+        operand = byContext(child);
+      } else if (child is TypeSpecifierContext) {
+        typeSpecifier = visitTypeSpecifier(child);
+      } else if (child is TerminalNode) {
+        if (child.text == 'is') {
+          isIs = true;
+        } else if (child.text == 'as') {
+          isAs = true;
+        }
+      }
+    }
+    if (operand != null && typeSpecifier != null) {
+      if (isIs) {
+        final nts = typeSpecifier is NamedTypeSpecifier ? typeSpecifier : null;
+        if (nts != null) _ensureFhirNamespace(nts);
+        return Is(
+          operand: operand,
+          isTypeSpecifier: nts,
+        );
+      } else if (isAs) {
+        // For `as` in FHIR context, ensure the type uses FHIR namespace
+        // and wrap with the appropriate FHIRHelpers conversion function
+        // (unless we're in a sort clause context).
+        final nts = typeSpecifier is NamedTypeSpecifier ? typeSpecifier : null;
+        if (nts != null) {
+          _ensureFhirNamespace(nts);
+        }
+        final asExpr = As(
+          operand: operand,
+          asTypeSpecifier: nts,
+        )..strict = false;
+        if (_inSortClause) return asExpr;
+        return _wrapWithFhirHelper(asExpr, nts);
+      }
+    }
+    throw ArgumentError('$thisNode Invalid TypeExpression');
+  }
+
+  /// For `as` type expressions targeting ambiguous types like Quantity,
+  /// ensure the type specifier uses the FHIR namespace (not ELM system).
+  void _ensureFhirNamespace(NamedTypeSpecifier nts) {
+    final qn = nts.namespace;
+    if (qn.namespaceURI == 'urn:hl7-org:elm-types:r1') {
+      // Types like Quantity in `as` expressions should use FHIR namespace
+      final fhirNs = 'http://hl7.org/fhir';
+      nts.namespace = QName(namespaceURI: fhirNs, localPart: qn.localPart);
+    }
+  }
+
+  /// Map a FHIR type name to its FHIRHelpers conversion function name.
+  static String? _fhirHelperForType(String typeName) {
+    switch (typeName.toLowerCase()) {
+      case 'datetime':
+      case 'instant':
+        return 'ToDateTime';
+      case 'date':
+        return 'ToDate';
+      case 'quantity':
+        return 'ToQuantity';
+      case 'period':
+        return 'ToInterval';
+      case 'codeableconcept':
+        return 'ToConcept';
+      case 'code':
+      case 'string':
+      case 'id':
+      case 'uri':
+      case 'markdown':
+        return 'ToString';
+      case 'boolean':
+        return 'ToBoolean';
+      case 'integer':
+      case 'positiveint':
+      case 'unsignedint':
+        return 'ToInteger';
+      case 'decimal':
+        return 'ToDecimal';
+      default:
+        return null;
+    }
+  }
+
+  /// Wrap a CQL expression with a FHIRHelpers function call if the
+  /// type specifier indicates a FHIR type that needs conversion.
+  static CqlExpression _wrapWithFhirHelper(
+      CqlExpression expr, NamedTypeSpecifier? typeSpec) {
+    if (typeSpec == null) return expr;
+    final qn = typeSpec.namespace;
+    if (qn.namespaceURI != 'http://hl7.org/fhir') return expr;
+    final helperName = _fhirHelperForType(qn.localPart);
+    if (helperName == null) return expr;
+    return FunctionRef(
+      name: helperName,
+      libraryName: 'FHIRHelpers',
+      operand: [expr],
+    );
+  }
+
+  /// Wrap a Property access with a FHIRHelpers function call based on
+  /// the known FHIR type of the property path.
+  static CqlExpression wrapPropertyWithFhirHelper(
+      CqlExpression property, String path) {
+    final helperName = _fhirHelperForPropertyPath(path);
+    if (helperName == null) return property;
+    return FunctionRef(
+      name: helperName,
+      libraryName: 'FHIRHelpers',
+      operand: [property],
+    );
+  }
+
+  /// Map known FHIR property paths to their FHIRHelpers conversion functions.
+  /// This is a simplified lookup — a full implementation would use model info.
+  static String? _fhirHelperForPropertyPath(String path) {
+    switch (path) {
+      // Code/string properties
+      case 'status':
+      case 'intent':
+      case 'priority':
+      case 'gender':
+      case 'language':
+      case 'use':
+      case 'system':
+      case 'version':
+      case 'display':
+      case 'text':
+      case 'url':
+        return 'ToString';
+      // Period properties
+      case 'period':
+      case 'performedPeriod':
+        return 'ToInterval';
+      // CodeableConcept properties — handled by equality visitor for comparisons
+      // case 'code':
+      // case 'category':
+      // case 'type':
+      // case 'medicationCodeableConcept':
+      // case 'vaccineCode':
+      //   return 'ToConcept';
+      // DateTime properties
+      case 'authoredOn':
+      case 'issued':
+      case 'effectiveDateTime':
+      case 'recordedDate':
+        return 'ToDateTime';
+      // Quantity properties
+      case 'valueQuantity':
+        return 'ToQuantity';
+      default:
+        return null;
+    }
   }
 
   @override
@@ -1423,6 +1698,9 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
                   resultTypeName: typeName == 'Unknown' ? null : typeName,
                 );
               } else {
+                if (isQueryAlias(name)) {
+                  return AliasRef(name: name);
+                }
                 return IdentifierRef(name: name, libraryName: libraryName);
               }
             }

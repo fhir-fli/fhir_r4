@@ -309,6 +309,46 @@ class Equivalent extends BinaryExpression {
       case CqlInterval _:
         result = right is CqlInterval ? left.equivalent(right) : false;
         break;
+      case CodeableConcept _:
+        {
+          // Convert FHIR CodeableConcept to CqlConcept for comparison
+          final codes = <CqlCode>[];
+          for (final coding in left.coding ?? []) {
+            codes.add(CqlCode(
+              code: coding.code?.valueString,
+              system: coding.system?.valueString,
+              display: coding.display?.valueString,
+            ));
+          }
+          final concept = CqlConcept(
+            codes: codes,
+            display: left.text?.valueString,
+          );
+          if (right is CqlConcept) {
+            result = concept.equivalent(right);
+          } else if (right is CqlCode) {
+            result =
+                CqlConcept(codes: [right]).equivalent(concept);
+          } else {
+            result = equivalent(concept, right).valueBoolean ?? false;
+          }
+        }
+        break;
+      case Coding _:
+        {
+          // Convert FHIR Coding to CqlCode for comparison
+          final code = CqlCode(
+            code: left.code?.valueString,
+            system: left.system?.valueString,
+            display: left.display?.valueString,
+          );
+          if (right is CqlCode) {
+            result = code.equivalent(right);
+          } else {
+            result = equivalent(code, right).valueBoolean ?? false;
+          }
+        }
+        break;
       default:
         result = left == right;
     }

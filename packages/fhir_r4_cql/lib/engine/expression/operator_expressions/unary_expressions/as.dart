@@ -1,4 +1,5 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' hide Quantity;
+import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity;
 import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
@@ -99,10 +100,7 @@ class As extends UnaryExpression {
       'type': type,
       'operand': operand.toJson(),
     };
-    if (operand is! NullExpression &&
-        operand is! Property &&
-        operand is! LiteralNull &&
-        strict != null) {
+    if (strict != null) {
       data['strict'] = strict;
     }
 
@@ -169,25 +167,38 @@ class As extends UnaryExpression {
     if (asType != null) {
       switch (asType!.localPart) {
         case 'Integer':
+        case 'integer':
           return value is FhirInteger ? value : null;
         case 'Decimal':
+        case 'decimal':
           return value is FhirDecimal ? value : null;
         case 'String':
           return value is String ? value : null;
+        case 'string':
+          // FHIR string: accept FhirString and subtypes (FhirCode, etc.)
+          return (value is String || value is FhirString) ? value : null;
         case 'Boolean':
+        case 'boolean':
           return value is FhirBoolean ? value : null;
         case 'Quantity':
-          return value is ValidatedQuantity ? value : null;
+          if (value is ValidatedQuantity) return value;
+          if (value is fhir.Quantity) return _fhirQuantityToValidated(value);
+          return null;
         case 'Ratio':
           return value is ValidatedRatio ? value : null;
         case 'DateTime':
+        case 'dateTime':
           return value is FhirDateTime ? value : null;
         case 'Date':
+        case 'date':
           return value is FhirDate ? value : null;
         case 'Time':
+        case 'time':
           return value is FhirTime ? value : null;
         case 'Code':
           return value is Code ? value : null;
+        case 'code':
+          return value is FhirCode ? value : null;
         case 'Concept':
           return value is Concept ? value : null;
         case 'Interval':
@@ -208,6 +219,16 @@ class As extends UnaryExpression {
           return value is CqlInterval<ValidatedQuantity> ? value : null;
         case 'ValueSet':
           return value is ValueSet ? value : null;
+        case 'uri':
+          return value is FhirUri ? value : null;
+        case 'base64Binary':
+          return value is FhirBase64Binary ? value : null;
+        case 'Coding':
+        case 'coding':
+          return value is Coding ? value : null;
+        case 'CodeableConcept':
+        case 'codeableConcept':
+          return value is CodeableConcept ? value : null;
         default:
           return null;
       }
@@ -239,25 +260,37 @@ class As extends UnaryExpression {
       final name = spec.namespace.localPart;
       switch (name) {
         case 'Integer':
+        case 'integer':
           return element is FhirInteger ? element : null;
         case 'Decimal':
+        case 'decimal':
           return element is FhirDecimal ? element : null;
         case 'String':
           return element is String ? element : null;
+        case 'string':
+          return (element is String || element is FhirString) ? element : null;
         case 'Boolean':
+        case 'boolean':
           return element is FhirBoolean ? element : null;
         case 'Quantity':
-          return element is ValidatedQuantity ? element : null;
+          if (element is ValidatedQuantity) return element;
+          if (element is fhir.Quantity) return _fhirQuantityToValidated(element);
+          return null;
         case 'Ratio':
           return element is ValidatedRatio ? element : null;
         case 'DateTime':
+        case 'dateTime':
           return element is FhirDateTime ? element : null;
         case 'Date':
+        case 'date':
           return element is FhirDate ? element : null;
         case 'Time':
+        case 'time':
           return element is FhirTime ? element : null;
         case 'Code':
           return element is Code ? element : null;
+        case 'code':
+          return element is FhirCode ? element : null;
         case 'Concept':
           return element is Concept ? element : null;
         case 'Interval':
@@ -278,12 +311,32 @@ class As extends UnaryExpression {
           return element is CqlInterval<ValidatedQuantity> ? element : null;
         case 'ValueSet':
           return element is ValueSet ? element : null;
+        case 'uri':
+          return element is FhirUri ? element : null;
+        case 'base64Binary':
+          return element is FhirBase64Binary ? element : null;
+        case 'Coding':
+        case 'coding':
+          return element is Coding ? element : null;
+        case 'CodeableConcept':
+        case 'codeableConcept':
+          return element is CodeableConcept ? element : null;
         default:
           return null;
       }
     }
 
     // Unknown specifier type → null
+    return null;
+  }
+
+  /// Converts a FHIR Quantity to a CQL ValidatedQuantity.
+  static ValidatedQuantity? _fhirQuantityToValidated(fhir.Quantity fhirQty) {
+    final num? value = fhirQty.value?.valueNum;
+    final unit = fhirQty.unit?.valueString ?? fhirQty.code?.valueString ?? '1';
+    if (value != null) {
+      return ValidatedQuantity.fromNumber(value, unit: unit);
+    }
     return null;
   }
 

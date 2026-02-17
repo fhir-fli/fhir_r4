@@ -32,6 +32,16 @@ class ToList extends UnaryExpression {
 
   @override
   String get type => 'ToList';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final result = await operand.execute(context);
+    if (result == null) {
+      return <dynamic>[];
+    }
+    return <dynamic>[result];
+  }
+
   @override
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{

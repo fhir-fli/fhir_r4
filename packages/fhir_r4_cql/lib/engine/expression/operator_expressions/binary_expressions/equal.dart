@@ -326,6 +326,15 @@ class Equal extends BinaryExpression {
       case CqlInterval _:
         result = right is CqlInterval && left == right;
         break;
+      case PrimitiveType _:
+        if (right is String) {
+          result = left.valueString == right;
+        } else if (right is PrimitiveType) {
+          result = left.valueString == right.valueString;
+        } else {
+          result = left == right;
+        }
+        break;
       default:
         result = left == right;
     }

@@ -144,8 +144,13 @@ class Contains extends BinaryExpression {
       final result = FhirBoolean(left.contains(right));
       return result;
     } else if (left is List) {
-      final result = FhirBoolean(left.contains(right));
-      return result;
+      // Use CQL equivalence semantics for list membership testing
+      for (final element in left) {
+        if (Equivalent.equivalent(element, right).valueBoolean ?? false) {
+          return FhirBoolean(true);
+        }
+      }
+      return FhirBoolean(false);
     } else {
       throw ArgumentError(
           'Constains: Left operand must be of type Interval or List');

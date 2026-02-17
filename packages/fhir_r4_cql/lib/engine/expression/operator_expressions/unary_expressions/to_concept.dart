@@ -121,6 +121,36 @@ class ToConcept extends UnaryExpression {
       );
     }
 
+    // Handle List input by unwrapping single-element lists
+    if (value is List) {
+      if (value.isEmpty) return null;
+      if (value.length == 1) {
+        // Recursively process the single element by creating a temporary
+        // ToConcept with a LiteralNull operand and calling execute logic
+        final single = value.first;
+        if (single is CqlCode) {
+          return CqlConcept(codes: [single], display: single.display);
+        } else if (single is Coding) {
+          final code = CqlCode(
+            code: single.code?.valueString,
+            system: single.system?.valueString,
+            display: single.display?.valueString,
+          );
+          return CqlConcept(codes: [code], display: single.display?.valueString);
+        } else if (single is CodeableConcept) {
+          final codes = <CqlCode>[];
+          for (final coding in single.coding ?? []) {
+            codes.add(CqlCode(
+              code: coding.code?.valueString,
+              system: coding.system?.valueString,
+              display: coding.display?.valueString,
+            ));
+          }
+          return CqlConcept(codes: codes, display: single.text?.valueString);
+        }
+      }
+    }
+
     // If not a recognized type, return null or throw an exception
     throw ArgumentError(
         'Cannot convert value of type ${value.runtimeType} to Concept');

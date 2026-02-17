@@ -14,6 +14,14 @@ class CqlQualifiedIdentifierExpressionVisitor extends CqlBaseVisitor<Ref> {
     for (final child in ctx.children ?? <ParseTree>[]) {
       if (child is QualifierContext) {
         libraryName = visitQualifier(child);
+      } else if (child is QualifierExpressionContext) {
+        // qualifiedIdentifierExpression uses qualifierExpression (not qualifier)
+        // Extract the identifier text from the qualifierExpression child.
+        for (final qChild in child.children ?? <ParseTree>[]) {
+          if (qChild is ReferentialIdentifierContext) {
+            libraryName = visitReferentialIdentifier(qChild);
+          }
+        }
       } else if (child is ReferentialIdentifierContext) {
         name = visitReferentialIdentifier(child);
       }

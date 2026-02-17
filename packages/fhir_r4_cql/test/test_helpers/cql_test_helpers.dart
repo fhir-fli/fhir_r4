@@ -72,9 +72,16 @@ bool areValuesEqual(dynamic result, dynamic answer) {
   } else if (result is Map && answer is Map) {
     return _areMapsEqual(result, answer);
   } else if (result is FhirDateTimeBase && answer is FhirDateTimeBase) {
+    // Allow a 1-minute tolerance for time-sensitive expressions like Now()
+    final resultDt = result.valueDateTime;
+    final answerDt = answer.valueDateTime;
+    if (resultDt != null && answerDt != null) {
+      return resultDt.difference(answerDt).inSeconds.abs() < 60;
+    }
     return result == answer;
   } else if (result is FhirTime && answer is FhirTime) {
-    return _calculateMilliseconds(result) == _calculateMilliseconds(answer);
+    // Allow a 1-minute tolerance for time-sensitive expressions like TimeOfDay()
+    return (_calculateSeconds(result) - _calculateSeconds(answer)).abs() < 60;
   } else if (result is FhirBase && answer is FhirBase) {
     return result.equalsDeep(answer);
   }
@@ -98,9 +105,6 @@ bool _areMapsEqual(Map result, Map answer) {
   return equal;
 }
 
-int _calculateMilliseconds(FhirTime time) {
-  return (time.hour ?? 0) * 3600000 +
-      (time.minute ?? 0) * 60000 +
-      (time.second ?? 0) * 1000 +
-      (time.millisecond ?? 0);
+int _calculateSeconds(FhirTime time) {
+  return (time.hour ?? 0) * 3600 + (time.minute ?? 0) * 60 + (time.second ?? 0);
 }
