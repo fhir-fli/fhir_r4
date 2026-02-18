@@ -7,6 +7,8 @@ import 'exercises_06.dart';
 import 'exercises_07.dart';
 import 'exercises_08.dart';
 import 'exercises_09.dart';
+import 'exercises_10.dart';
+import 'exercises_11.dart';
 import 'simple.dart';
 
 final results = <String, dynamic>{
@@ -20,6 +22,8 @@ final results = <String, dynamic>{
   'Exercises07.cql': exercises07,
   'Exercises08.cql': exercises08,
   'Exercises09.cql': exercises09,
+  'Exercises10.cql': exercises10,
+  'Exercises11.cql': exercises11,
 };
 
 final contexts = <String, dynamic>{
@@ -33,4 +37,6 @@ final contexts = <String, dynamic>{
   'Exercises07.cql': context07,
   'Exercises08.cql': context08,
   'Exercises09.cql': context09,
+  'Exercises10.cql': context10,
+  'Exercises11.cql': context11,
 };

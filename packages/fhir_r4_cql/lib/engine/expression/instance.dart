@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:ucum/ucum.dart' show ValidatedQuantity;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -258,11 +259,41 @@ class Instance extends CqlExpression {
           }
         }
 
+      case 'Quantity':
+        {
+          if (element == null) {
+            throw ArgumentError(
+                'Instance of type Quantity must have at least one element');
+          }
+          num? value;
+          String unit = '1';
+          for (final e in element!) {
+            final result = await e.value.execute(context);
+            if (e.name == 'value') {
+              if (result is FhirDecimal) {
+                value = result.valueNum;
+              } else if (result is FhirInteger) {
+                value = result.valueNum;
+              } else if (result is num) {
+                value = result;
+              }
+            } else if (e.name == 'unit') {
+              if (result is String) {
+                unit = result;
+              } else if (result is PrimitiveType) {
+                unit = result.valueString ?? '1';
+              }
+            }
+          }
+          if (value != null) {
+            return ValidatedQuantity.fromNumber(value, unit: unit);
+          }
+          return null;
+        }
       // TODO(Dokotela): implement
       // case 'ValueSet': return ValueSet;
       // case 'CodeSystem': return CodeSystem;
       // case 'Interval': return IntervalType
-      // case 'Quantity':
       // case 'Ratio':
       default:
         return null;

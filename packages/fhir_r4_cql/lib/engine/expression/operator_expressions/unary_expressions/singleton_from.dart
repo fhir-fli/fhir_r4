@@ -104,11 +104,9 @@ class SingletonFrom extends UnaryExpression {
         );
       }
     } else {
-      throw CqlException(
-        message: 'SingletonFrom can only be applied to a list',
-        severity: Severity.error,
-        sourceLocator: SourceLocator.fromNode(this, context['library']),
-      );
+      // Non-list value is already a singleton — return as-is.
+      // This can happen when Property.execute() unwraps single-element lists.
+      return list;
     }
   }
 

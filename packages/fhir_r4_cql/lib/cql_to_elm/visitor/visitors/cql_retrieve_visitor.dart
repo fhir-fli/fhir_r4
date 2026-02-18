@@ -73,7 +73,10 @@ class CqlRetrieveVisitor extends CqlBaseVisitor<Retrieve> {
         dataType: name.namespace,
         codes: wrappedCodes,
         context: context,
-        codeComparator: codes == null ? null : (codeComparator ?? '~'),
+        codeComparator: codes == null
+            ? null
+            : (codeComparator ??
+                (codes is ValueSetRef ? 'in' : '~')),
         templateId: templateId,
         codeProperty: codeProperty,
       );

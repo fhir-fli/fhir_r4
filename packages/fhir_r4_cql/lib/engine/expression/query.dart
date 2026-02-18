@@ -279,9 +279,14 @@ class Query extends CqlExpression {
       throw UnimplementedError('Query.aggregate is not supported yet');
     }
 
-    // For singleton sources, return the scalar result
-    if (singletonSource && result.length == 1) {
-      return result.first;
+    // For singleton sources, return the scalar result or null if filtered out
+    if (singletonSource) {
+      if (result.length == 1) {
+        return result.first;
+      }
+      if (result.isEmpty) {
+        return null;
+      }
     }
 
     return result;

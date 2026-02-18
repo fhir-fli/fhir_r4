@@ -1711,14 +1711,9 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   }
 
   CqlExpression startsorEnds(CqlExpression expression, String? value) {
-    final returnTypes = expression.getReturnTypes(library);
-    if (returnTypes.isEmpty) {
-      return expression;
-    }
-    if (!LiteralType.literalTypes.contains(returnTypes.first) &&
-        !returnTypes.first.contains('CqlInterval')) {
-      return expression;
-    }
+    // If the CQL explicitly says 'starts' or 'ends', always wrap with Start/End
+    // regardless of inferred return types — the expression may return an interval
+    // at runtime even if type inference doesn't detect it (e.g. FunctionRef).
     switch (value) {
       case 'starts':
         return Start(operand: expression);

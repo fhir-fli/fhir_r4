@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to return the ending point of an interval.
@@ -93,14 +94,24 @@ class End extends UnaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    final interval = await operand.execute(context);
-    if (interval == null) {
+    final value = await operand.execute(context);
+    if (value == null) {
       return null;
-    } else if (interval is CqlInterval) {
-      return interval.getEnd();
+    } else if (value is CqlInterval) {
+      return value.getEnd();
+    } else if (value is Period) {
+      if (value.end != null) {
+        return FhirDateTime.fromString(value.end.toString());
+      }
+      return null;
+    } else if (value is FhirDateTime ||
+        value is FhirDate ||
+        value is FhirInstant) {
+      // Point value — start and end are the same
+      return value;
     } else {
       throw Exception(
-          "Cannot perform end operator with argument of type '${interval.runtimeType}'.");
+          "Cannot perform end operator with argument of type '${value.runtimeType}'.");
     }
   }
 }

@@ -61,7 +61,22 @@ class ExpressionRef extends Ref {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    return context[name];
+    if (context.containsKey(name)) {
+      return context[name];
+    }
+    // Lazy evaluation: if the expression hasn't been evaluated yet,
+    // find it in the library and evaluate it now.
+    final library = context['library'];
+    if (library is CqlLibrary && library.statements != null) {
+      for (final def in library.statements!.def) {
+        if (def.name == name) {
+          final result = await def.expression?.execute(context);
+          context[name] = result;
+          return result;
+        }
+      }
+    }
+    return null;
   }
 
   @override

@@ -106,8 +106,12 @@ class FunctionRef extends ExpressionRef {
       throw ArgumentError('Library name cannot be null for FunctionRef');
     }
 
-    if (libraryName!.toLowerCase() == 'fhirhelpers') {
+    final libLower = libraryName!.toLowerCase();
+    if (libLower == 'fhirhelpers') {
       return await _fhirHelpers(context);
+    }
+    if (libLower == 'fc' || libLower == 'fhircommon') {
+      return await _fhirCommon(context);
     }
 
     final functionDef = await library.resolveFunctionRef(name, libraryName!);
@@ -179,6 +183,32 @@ class FunctionRef extends ExpressionRef {
     }
   }
 
+  Future<dynamic> _fhirCommon(Map<String, dynamic> context) async {
+    switch (name) {
+      case 'ToInterval':
+        if (operand == null || operand!.isEmpty) return null;
+        final value = await operand![0].execute(context);
+        return _toInterval(value);
+      case 'ToString':
+        return _helperToString(context);
+      case 'ToConcept':
+        return _helperToConcept(context);
+      case 'ToCode':
+        return _helperToCode(context);
+      case 'ToQuantity':
+        return _helperToQuantity(context);
+      case 'ToDateTime':
+        return _helperToDateTime(context);
+      case 'ToDate':
+        return _helperToDate(context);
+      case 'ToBoolean':
+        return _helperToBoolean(context);
+      default:
+        // Fall through to FHIRHelpers for unrecognized functions
+        return await _fhirHelpers(context);
+    }
+  }
+
   Future<dynamic> _helperToString(Map<String, dynamic> context) async {
     if (operand == null || operand!.isEmpty) {
       return null;
@@ -213,23 +243,13 @@ class FunctionRef extends ExpressionRef {
   Future<dynamic> _helperToInterval(Map<String, dynamic> context) async {
     if (operand == null || operand!.isEmpty) return null;
     final value = await operand![0].execute(context);
+    return _toInterval(value);
+  }
+
+  dynamic _toInterval(dynamic value) {
     if (value == null) return null;
     if (value is CqlInterval) return value;
     // FHIR Period → CQL Interval<DateTime>
-    if (value is Map<String, dynamic>) {
-      final start = value['start'];
-      final end = value['end'];
-      return CqlInterval(
-        low: start != null
-            ? FhirDateTime.fromString(start.toString())
-            : null,
-        high: end != null
-            ? FhirDateTime.fromString(end.toString())
-            : null,
-        lowClosed: true,
-        highClosed: true,
-      );
-    }
     if (value is Period) {
       return CqlInterval(
         low: value.start != null
@@ -241,6 +261,48 @@ class FunctionRef extends ExpressionRef {
         lowClosed: true,
         highClosed: true,
       );
+    }
+    // FHIR Range → CQL Interval<Quantity>
+    if (value is Range) {
+      ValidatedQuantity? low;
+      ValidatedQuantity? high;
+      if (value.low != null) {
+        final numVal = value.low!.value?.valueNum;
+        final unit = value.low!.unit?.valueString ?? value.low!.code?.valueString ?? '1';
+        if (numVal != null) low = ValidatedQuantity.fromNumber(numVal, unit: unit);
+      }
+      if (value.high != null) {
+        final numVal = value.high!.value?.valueNum;
+        final unit = value.high!.unit?.valueString ?? value.high!.code?.valueString ?? '1';
+        if (numVal != null) high = ValidatedQuantity.fromNumber(numVal, unit: unit);
+      }
+      return CqlInterval(low: low, high: high, lowClosed: true, highClosed: true);
+    }
+    // FHIR dateTime or instant → point interval
+    if (value is FhirDateTime || value is FhirInstant) {
+      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+    }
+    if (value is FhirDate) {
+      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+    }
+    // Map with start/end (e.g. from walkFhirPath)
+    if (value is Map<String, dynamic>) {
+      final start = value['start'];
+      final end = value['end'];
+      if (start != null || end != null) {
+        return CqlInterval(
+          low: start != null ? FhirDateTime.fromString(start.toString()) : null,
+          high: end != null ? FhirDateTime.fromString(end.toString()) : null,
+          lowClosed: true,
+          highClosed: true,
+        );
+      }
+      // Map with low/high (Range-like from walkFhirPath)
+      final low = value['low'];
+      final high = value['high'];
+      if (low != null || high != null) {
+        return _toInterval(Range.fromJson(value));
+      }
     }
     return null;
   }
