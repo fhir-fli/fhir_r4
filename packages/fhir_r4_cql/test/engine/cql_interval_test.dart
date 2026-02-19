@@ -735,4 +735,270 @@ void main() {
       expect(result, equals(null));
     });
   });
+
+  group('PointFrom', () {
+    test("""define "PointFromUnit": point from Interval[5, 5] // 5""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(5),
+        high: LiteralInteger(5),
+      );
+      final pointFrom = PointFrom(operand: interval);
+      final result = await pointFrom.execute({});
+      expect(result, FhirInteger(5));
+    });
+    test(
+        """define "PointFromNonUnit": point from Interval[1, 5] // throws""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final pointFrom = PointFrom(operand: interval);
+      expect(() async => await pointFrom.execute({}), throwsArgumentError);
+    });
+    test("""define "PointFromIsNull": point from null // null""", () async {
+      final pointFrom = PointFrom(
+          operand:
+              As(operand: LiteralNull(), asType: QName.fromElmType('Interval')));
+      final result = await pointFrom.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  group('ProperContains', () {
+    test(
+        """define "ProperContainsTrue": Interval[1, 5] properly contains 3""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properContains = ProperContains(
+        operand: [interval, LiteralInteger(3)],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        """define "ProperContainsAtLow": Interval[1, 5] properly contains 1 // false""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properContains = ProperContains(
+        operand: [interval, LiteralInteger(1)],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        """define "ProperContainsAtHigh": Interval[1, 5] properly contains 5 // false""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properContains = ProperContains(
+        operand: [interval, LiteralInteger(5)],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        """define "ProperContainsUnitPoint": Interval[5, 5] properly contains 5 // false""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(5),
+        high: LiteralInteger(5),
+      );
+      final properContains = ProperContains(
+        operand: [interval, LiteralInteger(5)],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        """define "ProperContainsIsNull": Interval[1, 5] properly contains null // null""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properContains = ProperContains(
+        operand: [interval, LiteralNull()],
+      );
+      final result = await properContains.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  group('ProperIn', () {
+    test("""define "ProperInTrue": 3 properly in Interval[1, 5]""", () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIn = ProperIn(
+        operand: [LiteralInteger(3), interval],
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        """define "ProperInBoundary": 1 properly in Interval[1, 5] // false""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIn = ProperIn(
+        operand: [LiteralInteger(1), interval],
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test("""define "ProperInIsNull": null properly in Interval[1, 5]""",
+        () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIn = ProperIn(
+        operand: [LiteralNull(), interval],
+      );
+      final result = await properIn.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  group('ProperIncludes', () {
+    test(
+        'define "ProperIncludesTrue": Interval[0, 5] properly includes Interval[1, 4]',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(0),
+        high: LiteralInteger(5),
+      );
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(4),
+      );
+      final properIncludes = ProperIncludes(operand: [left, right]);
+      final result = await properIncludes.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        'define "ProperIncludesEqualFalse": Interval[1, 5] properly includes Interval[1, 5] // false',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludes = ProperIncludes(operand: [left, right]);
+      final result = await properIncludes.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        'define "ProperIncludesListTrue": { 1, 3, 5, 7 } properly includes { 1, 3 }',
+        () async {
+      final left = ListExpression(element: [
+        LiteralInteger(1),
+        LiteralInteger(3),
+        LiteralInteger(5),
+        LiteralInteger(7),
+      ]);
+      final right = ListExpression(element: [
+        LiteralInteger(1),
+        LiteralInteger(3),
+      ]);
+      final properIncludes = ProperIncludes(operand: [left, right]);
+      final result = await properIncludes.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        'define "ProperIncludesIsNull": Interval[1, 5] properly includes null',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludes = ProperIncludes(operand: [left, LiteralNull()]);
+      final result = await properIncludes.execute({});
+      expect(result, isNull);
+    });
+    test(
+        'define "ProperIncludesNullLeft": null properly includes Interval[1, 5]',
+        () async {
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludes = ProperIncludes(operand: [LiteralNull(), right]);
+      final result = await properIncludes.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  group('ProperIncludedIn', () {
+    test(
+        'define "ProperIncludedInTrue": Interval[1, 4] properly included in Interval[0, 5]',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(4),
+      );
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(0),
+        high: LiteralInteger(5),
+      );
+      final properIncludedIn = ProperIncludedIn(operand: [left, right]);
+      final result = await properIncludedIn.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        'define "ProperIncludedInEqualFalse": Interval[1, 5] properly included in Interval[1, 5] // false',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludedIn = ProperIncludedIn(operand: [left, right]);
+      final result = await properIncludedIn.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        'define "ProperIncludedInIsNull": null properly included in Interval[1, 5]',
+        () async {
+      final right = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludedIn =
+          ProperIncludedIn(operand: [LiteralNull(), right]);
+      final result = await properIncludedIn.execute({});
+      expect(result, isNull);
+    });
+    test(
+        'define "ProperIncludedInNullRight": Interval[1, 5] properly included in null',
+        () async {
+      final left = LiteralIntegerInterval(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final properIncludedIn =
+          ProperIncludedIn(operand: [left, LiteralNull()]);
+      final result = await properIncludedIn.execute({});
+      expect(result, isNull);
+    });
+  });
 }

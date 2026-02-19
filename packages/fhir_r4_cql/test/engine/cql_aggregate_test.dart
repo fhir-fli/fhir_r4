@@ -636,4 +636,92 @@ void main() {
       expect(result, FhirBoolean(false));
     });
   });
+
+  group('product', () {
+    test('define "IntegerProduct": Product({ 2, 3, 4 }) // 24', () async {
+      final list = ListExpression(element: [
+        LiteralInteger(2),
+        LiteralInteger(3),
+        LiteralInteger(4),
+      ]);
+      final product = Product(source: list);
+      final result = await product.execute({});
+      expect(result, equals(FhirInteger(24)));
+    });
+    test('define "DecimalProduct": Product({ 2.0, 3.0, 4.0 }) // 24.0',
+        () async {
+      final list = ListExpression(element: [
+        LiteralDecimal(2.0),
+        LiteralDecimal(3.0),
+        LiteralDecimal(4.0),
+      ]);
+      final product = Product(source: list);
+      final result = await product.execute({});
+      expect(result, equals(FhirDecimal(24.0)));
+    });
+    test('define "ProductEmpty": Product({ }) // null', () async {
+      final list = ListExpression(element: []);
+      final product = Product(source: list);
+      final result = await product.execute({});
+      expect(result, isNull);
+    });
+    test('define "ProductIsNull": Product(null) // null', () async {
+      final product = Product(source: LiteralNull());
+      final result = await product.execute({});
+      expect(result, isNull);
+    });
+    test('define "ProductSingle": Product({ 7 }) // 7', () async {
+      final list = ListExpression(element: [
+        LiteralInteger(7),
+      ]);
+      final product = Product(source: list);
+      final result = await product.execute({});
+      expect(result, equals(FhirInteger(7)));
+    });
+  });
+
+  group('geometricMean', () {
+    test(
+        'define "GeometricMeanTwo": GeometricMean({ 2.0, 8.0 }) // 4.0',
+        () async {
+      final list = ListExpression(element: [
+        LiteralDecimal(2.0),
+        LiteralDecimal(8.0),
+      ]);
+      final gm = GeometricMean(source: list);
+      final result = await gm.execute({});
+      expect(result, equals(FhirDecimal(4.0)));
+    });
+    test(
+        'define "GeometricMeanFourNine": GeometricMean({ 4.0, 9.0 }) // 6.0',
+        () async {
+      final list = ListExpression(element: [
+        LiteralDecimal(4.0),
+        LiteralDecimal(9.0),
+      ]);
+      final gm = GeometricMean(source: list);
+      final result = await gm.execute({});
+      expect(result, equals(FhirDecimal(6.0)));
+    });
+    test('define "GeometricMeanSingle": GeometricMean({ 5.0 }) // 5.0',
+        () async {
+      final list = ListExpression(element: [
+        LiteralDecimal(5.0),
+      ]);
+      final gm = GeometricMean(source: list);
+      final result = await gm.execute({});
+      expect(result, equals(FhirDecimal(5.0)));
+    });
+    test('define "GeometricMeanIsNull": GeometricMean(null) // null', () async {
+      final gm = GeometricMean(source: LiteralNull());
+      final result = await gm.execute({});
+      expect(result, isNull);
+    });
+    test('define "GeometricMeanEmpty": GeometricMean({ }) // null', () async {
+      final list = ListExpression(element: []);
+      final gm = GeometricMean(source: list);
+      final result = await gm.execute({});
+      expect(result, isNull);
+    });
+  });
 }

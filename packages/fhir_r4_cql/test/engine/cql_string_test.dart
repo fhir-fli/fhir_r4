@@ -275,4 +275,155 @@ void main() {
       expect(await output.execute({}), equals(null));
     });
   });
+
+  group('Lower', () {
+    test("""define "LowerHello": Lower('HELLO') // 'hello'""", () async {
+      final lower = Lower(operand: LiteralString('HELLO'));
+      final result = await lower.execute({});
+      expect(result, FhirString('hello'));
+    });
+    test("""define "LowerIsNull": Lower(null) // null""", () async {
+      final lower = Lower(operand: LiteralNull());
+      final result = await lower.execute({});
+      expect(result, isNull);
+    });
+    test("""define "LowerMixed": Lower('Hello123World') // 'hello123world'""",
+        () async {
+      final lower = Lower(operand: LiteralString('Hello123World'));
+      final result = await lower.execute({});
+      expect(result, FhirString('hello123world'));
+    });
+  });
+
+  group('Upper', () {
+    test("""define "UpperHello": Upper('hello') // 'HELLO'""", () async {
+      final upper = Upper(operand: LiteralString('hello'));
+      final result = await upper.execute({});
+      expect(result, FhirString('HELLO'));
+    });
+    test("""define "UpperIsNull": Upper(null) // null""", () async {
+      final upper = Upper(operand: LiteralNull());
+      final result = await upper.execute({});
+      expect(result, isNull);
+    });
+    test("""define "UpperMixed": Upper('Hello123World') // 'HELLO123WORLD'""",
+        () async {
+      final upper = Upper(operand: LiteralString('Hello123World'));
+      final result = await upper.execute({});
+      expect(result, FhirString('HELLO123WORLD'));
+    });
+  });
+
+  group('ToChars', () {
+    test("""define "ToCharsABC": ToChars('ABC') // { 'A', 'B', 'C' }""",
+        () async {
+      final toChars = ToChars(operand: LiteralString('ABC'));
+      final result = await toChars.execute({});
+      expect(result, [FhirString('A'), FhirString('B'), FhirString('C')]);
+    });
+    test("""define "ToCharsIsNull": ToChars(null) // null""", () async {
+      final toChars = ToChars(operand: LiteralNull());
+      final result = await toChars.execute({});
+      expect(result, isNull);
+    });
+    test("""define "ToCharsTwo": ToChars('AB') // { 'A', 'B' }""", () async {
+      final toChars = ToChars(operand: LiteralString('AB'));
+      final result = await toChars.execute({});
+      expect(result, [FhirString('A'), FhirString('B')]);
+    });
+    test("""define "ToCharsSingle": ToChars('X') // { 'X' }""", () async {
+      final toChars = ToChars(operand: LiteralString('X'));
+      final result = await toChars.execute({});
+      expect(result, [FhirString('X')]);
+    });
+  });
+
+  group('Substring', () {
+    test(
+        """define "SubstringNoLength": Substring('ABCDE', 2) // 'CDE'""",
+        () async {
+      final substring = Substring(
+        stringToSub: LiteralString('ABCDE'),
+        startIndex: LiteralInteger(2),
+      );
+      final result = await substring.execute({});
+      expect(result, FhirString('CDE'));
+    });
+    test(
+        """define "SubstringWithLength": Substring('ABCDE', 2, 3) // 'CDE'""",
+        () async {
+      final substring = Substring(
+        stringToSub: LiteralString('ABCDE'),
+        startIndex: LiteralInteger(2),
+        length: LiteralInteger(3),
+      );
+      final result = await substring.execute({});
+      expect(result, FhirString('CDE'));
+    });
+    test("""define "SubstringIsNull": Substring(null, 2) // null""", () async {
+      final substring = Substring(
+        stringToSub: LiteralNull(),
+        startIndex: LiteralInteger(2),
+      );
+      final result = await substring.execute({});
+      expect(result, isNull);
+    });
+    test("""define "SubstringOutOfRange": Substring('ABC', 10) // null""",
+        () async {
+      final substring = Substring(
+        stringToSub: LiteralString('ABC'),
+        startIndex: LiteralInteger(10),
+      );
+      final result = await substring.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  group('SplitOnMatches', () {
+    test(
+        """define "SplitOnMatchesRegex": SplitOnMatches('A1B2C3', '\\d') // { 'A', 'B', 'C', '' }""",
+        () async {
+      final splitOnMatches = SplitOnMatches(
+        stringToSplit: LiteralString('A1B2C3'),
+        separatorPattern: LiteralString('\\d'),
+      );
+      final result = await splitOnMatches.execute({});
+      expect(result, [
+        FhirString('A'),
+        FhirString('B'),
+        FhirString('C'),
+        FhirString(''),
+      ]);
+    });
+    test(
+        """define "SplitOnMatchesIsNull": SplitOnMatches(null, '\\d') // null""",
+        () async {
+      final splitOnMatches = SplitOnMatches(
+        stringToSplit: LiteralNull(),
+        separatorPattern: LiteralString('\\d'),
+      );
+      final result = await splitOnMatches.execute({});
+      expect(result, isNull);
+    });
+    test(
+        """define "SplitOnMatchesNoMatch": SplitOnMatches('ABC', '\\d') // { 'ABC' }""",
+        () async {
+      final splitOnMatches = SplitOnMatches(
+        stringToSplit: LiteralString('ABC'),
+        separatorPattern: LiteralString('\\d'),
+      );
+      final result = await splitOnMatches.execute({});
+      expect(result, [FhirString('ABC')]);
+    });
+    test(
+        """define "SplitOnMatchesNullPattern": SplitOnMatches('ABC', null) // null""",
+        () async {
+      final splitOnMatches = SplitOnMatches(
+        stringToSplit: LiteralString('ABC'),
+        separatorPattern: LiteralNull(),
+      );
+      final result = await splitOnMatches.execute({});
+      expect(result, isNull);
+    });
+  });
 }
