@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
-import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:fhir_r4_cql/fhir_r4_cql.dart' hide Quantity;
 
 /// Operator to check if the first argument is less than the second argument.
 /// Returns true if the first argument is less than the second argument.
@@ -165,6 +165,23 @@ class Less extends BinaryExpression {
     } else if (left is ValidatedQuantity && right is ValidatedQuantity) {
       try {
         return FhirBoolean(left < right);
+      } catch (e) {
+        return null;
+      }
+    } else if (left is Quantity && right is ValidatedQuantity) {
+      // Convert FHIR Quantity to ValidatedQuantity for comparison
+      final leftQty = ValidatedQuantity.fromString(
+          '${left.value?.valueNum ?? 0} \'${left.unit?.valueString ?? '1'}\'');
+      try {
+        return FhirBoolean(leftQty < right);
+      } catch (e) {
+        return null;
+      }
+    } else if (left is ValidatedQuantity && right is Quantity) {
+      final rightQty = ValidatedQuantity.fromString(
+          '${right.value?.valueNum ?? 0} \'${right.unit?.valueString ?? '1'}\'');
+      try {
+        return FhirBoolean(left < rightQty);
       } catch (e) {
         return null;
       }

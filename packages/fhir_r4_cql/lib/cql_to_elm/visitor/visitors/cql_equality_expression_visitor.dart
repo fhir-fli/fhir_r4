@@ -169,8 +169,37 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         }
       }
 
-      // 2) For *any* concept comparison (both =/!= and ~/!~), wrap *both* sides
-      if (leftIsConcept || rightIsConcept) {
+      // 2) Check FHIR concept properties compared with Code-type operands.
+      //    When a FHIR property like .code is compared with a CodeRef,
+      //    wrap the FHIR side with FHIRHelpers.ToConcept and the Code with ToConcept.
+      //    When both sides are FHIR concept properties, no wrapping needed.
+      final leftIsFhirConceptProp = _isFhirConceptProperty(left);
+      final rightIsFhirConceptProp = _isFhirConceptProperty(right);
+      bool conceptHandled = false;
+
+      if (leftIsFhirConceptProp && !rightIsFhirConceptProp &&
+          _isCodeType(right)) {
+        operands[0] = FunctionRef(
+          name: 'ToConcept',
+          libraryName: 'FHIRHelpers',
+          operand: [operands[0]],
+        );
+        operands[1] = ToConcept(operand: operands[1]);
+        conceptHandled = true;
+      } else if (rightIsFhirConceptProp && !leftIsFhirConceptProp &&
+          _isCodeType(left)) {
+        operands[1] = FunctionRef(
+          name: 'ToConcept',
+          libraryName: 'FHIRHelpers',
+          operand: [operands[1]],
+        );
+        operands[0] = ToConcept(operand: operands[0]);
+        conceptHandled = true;
+      }
+
+      // 3) For *any* concept comparison (both =/!= and ~/!~), wrap *both* sides
+      //    (only if not already handled by the FHIR property check above)
+      if (!conceptHandled && (leftIsConcept || rightIsConcept)) {
         if (leftIsConcept) {
           operands[0] = FunctionRef(
             name: 'ToConcept',
@@ -200,14 +229,29 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         case '!=':
           return Not(operand: Equal(operand: translateOperand(operands)));
         case '~':
-          return Equivalent(operand: translateOperand(operands));
+          return Equivalent(
+              operand: translateOperand(_wrapCodeRefsAsConcept(operands)));
         case '!~':
-          return Not(operand: Equivalent(operand: translateOperand(operands)));
+          return Not(
+              operand: Equivalent(
+                  operand:
+                      translateOperand(_wrapCodeRefsAsConcept(operands))));
       }
     }
 
     throw ArgumentError(
         '$thisNode Invalid EqualityExpression: operands=${operands.length}, operator=$equalityOperator');
+  }
+
+  /// Wrap any CodeRef operands in ToConcept for equivalence comparisons.
+  /// The reference translator promotes Code to Concept when used in ~.
+  List<CqlExpression> _wrapCodeRefsAsConcept(List<CqlExpression> operands) {
+    return operands.map((op) {
+      if (op is CodeRef) {
+        return ToConcept(operand: op);
+      }
+      return op;
+    }).toList();
   }
 
   bool _requiresDecimalPromotion(CqlExpression expression) {
@@ -266,6 +310,27 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       return choiceTypeSpecifier;
     }
     throw ArgumentError('Expected a ListExpression for ChoiceTypeSpecifier.');
+  }
+
+  /// Checks if an expression is a scoped Property accessing a known FHIR
+  /// CodeableConcept field (code, category, type, etc.).
+  bool _isFhirConceptProperty(CqlExpression expr) {
+    if (expr is Property && expr.scope != null) {
+      return const [
+        'code',
+        'category',
+        'type',
+        'medicationCodeableConcept',
+        'vaccineCode',
+        'maritalStatus',
+      ].contains(expr.path);
+    }
+    return false;
+  }
+
+  /// Checks if an expression is a CQL Code type (CodeRef or ConceptRef).
+  bool _isCodeType(CqlExpression expr) {
+    return expr is CodeRef || expr is ConceptRef;
   }
 
   void _addDemoteWarning(ParserRuleContext ctx) {

@@ -55,4 +55,9 @@ class QueryLetRef extends CqlExpression {
 
   @override
   String get type => 'QueryLetRef';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return context[name];
+  }
 }

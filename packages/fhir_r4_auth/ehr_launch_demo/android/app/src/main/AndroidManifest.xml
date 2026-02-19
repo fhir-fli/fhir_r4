@@ -1,8 +1,13 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <application
         android:label="ehr_launch_demo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Disable AppAuth's RedirectUriReceiverActivity since we use flutter_web_auth_2 -->
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            tools:node="remove" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

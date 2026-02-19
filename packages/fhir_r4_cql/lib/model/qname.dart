@@ -31,8 +31,25 @@ class QName {
     'Null',
   };
 
-  static final fhirTypes =
-      fhirFieldMap.keys.map((key) => key.toLowerCase()).toList();
+  /// Known FHIR primitive and complex type names (lowercase for matching).
+  /// Includes both resource field names from fhirFieldMap and FHIR primitive
+  /// type names that appear in type specifiers (e.g., `as dateTime`).
+  static final fhirTypes = {
+    ...fhirFieldMap.keys.map((key) => key.toLowerCase()),
+    // FHIR primitive types
+    'base64binary', 'boolean', 'canonical', 'code', 'date', 'datetime',
+    'decimal', 'id', 'instant', 'integer', 'markdown', 'oid',
+    'positiveint', 'string', 'time', 'unsignedint', 'uri', 'url', 'uuid',
+    'xhtml',
+    // FHIR complex types commonly used in type specifiers
+    'address', 'age', 'annotation', 'attachment', 'codeableconcept',
+    'coding', 'contactpoint', 'count', 'distance', 'dosage', 'duration',
+    'humanname', 'identifier', 'money', 'period', 'quantity', 'range',
+    'ratio', 'reference', 'sampleddata', 'signature', 'timing',
+    'contactdetail', 'contributor', 'datarequirement', 'expression',
+    'parameterdefinition', 'relatedartifact', 'triggerdefinition',
+    'usagecontext', 'meta', 'narrative',
+  }.toList();
 
   /// FHIR primitives & resources → FHIR namespace
   static const _fhirNs = 'http://hl7.org/fhir';

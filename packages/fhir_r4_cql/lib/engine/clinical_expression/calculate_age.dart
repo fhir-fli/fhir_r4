@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Calculates the age in the specified precision of a person born on the given
@@ -78,4 +80,35 @@ class CalculateAge extends UnaryExpression {
 
   @override
   String get type => 'CalculateAge';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    // The operand should resolve to the patient's birth date
+    final birthDateValue = await operand.execute(context);
+    if (birthDateValue == null) return null;
+
+    // Convert to FhirDate if needed
+    FhirDateTimeBase birthDate;
+    if (birthDateValue is FhirDate) {
+      birthDate = birthDateValue;
+    } else if (birthDateValue is FhirDateTime) {
+      birthDate = birthDateValue;
+    } else if (birthDateValue is String) {
+      birthDate = FhirDate.fromString(birthDateValue);
+    } else {
+      return null;
+    }
+
+    // Use Today() for Date-based calculation
+    final today = await Today().execute(context);
+    if (today == null) return null;
+
+    return await DurationBetween(
+      precision: precision,
+      operand: [
+        LiteralDate(birthDate.toIso8601String()!),
+        LiteralDate(today.toIso8601String()!),
+      ],
+    ).execute(context);
+  }
 }

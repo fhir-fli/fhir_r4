@@ -1,53 +1,57 @@
-// Epic Sandbox Standalone Launch Demo
+// SMART on FHIR Standalone Launch Demo
 //
-// This example demonstrates standalone launch with multiple audience types:
+// This example demonstrates standalone launch with multiple EHR vendors
+// and audience types:
 // - Patient: Patient-facing app with patient/*.read scopes
 // - Clinician: Provider-facing app with user/*.read scopes
 // - System: Backend service with system/*.read scopes
 //
+// Supported EHR Vendors:
+// - Epic (https://fhir.epic.com/)
+// - Cerner (https://code.cerner.com/)
+//
 // Setup:
-// 1. Register THREE separate apps at https://fhir.epic.com/:
-//    a) Patient app (Patients audience) → get client ID
-//    b) Clinician app (Clinicians audience) → get client ID
-//    c) System app (Backend Systems audience) → get client ID + secret
-//
-// 2. For each app, add redirect URI: http://localhost:8080/callback.html
-//
-// 3. Patient app scopes: patient/*.read, launch/patient, openid, fhirUser
-//    Clinician app scopes: user/*.read, launch, openid, fhirUser
-//    System app scopes: system/*.read
-//
-// Test Credentials:
-// - Patient: fhircamila / epicepic1
-// - Clinician: fhirjason / epicepic1
-// - System: Uses client credentials (no user login)
+// 1. Register apps at the respective vendor portal
+// 2. Add redirect URI: http://localhost:8080/callback.html
+// 3. Configure appropriate scopes for your audience type
 //
 // ignore_for_file: avoid_print
 
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 void main() {
-  runApp(const EpicStandaloneDemoApp());
+  runApp(const SmartStandaloneDemoApp());
 }
 
-class EpicStandaloneDemoApp extends StatelessWidget {
-  const EpicStandaloneDemoApp({super.key});
+class SmartStandaloneDemoApp extends StatelessWidget {
+  const SmartStandaloneDemoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Epic SMART Standalone Demo',
+      title: 'SMART on FHIR Standalone Demo',
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-      home: const EpicStandaloneHomePage(),
+      home: const SmartStandaloneHomePage(),
     );
   }
 }
 
-/// Launch modes corresponding to Epic's audience types
+/// Supported EHR vendors
+enum EhrVendor {
+  epic('Epic', 'https://fhir.epic.com/'),
+  cerner('Cerner', 'https://code.cerner.com/');
+
+  const EhrVendor(this.label, this.portalUrl);
+  final String label;
+  final String portalUrl;
+}
+
+/// Launch modes corresponding to audience types
 enum LaunchMode {
   patient('Patient', 'Patient-facing app', Icons.person),
   clinician('Clinician', 'Provider-facing app', Icons.medical_services),
@@ -59,15 +63,41 @@ enum LaunchMode {
   final IconData icon;
 }
 
-class EpicStandaloneHomePage extends StatefulWidget {
-  const EpicStandaloneHomePage({super.key});
+/// Vendor-specific configuration
+class VendorConfig {
+  const VendorConfig({
+    required this.baseUrl,
+    required this.clientIds,
+    required this.scopes,
+    required this.testCredentials,
+    this.systemClientSecret,
+  });
 
-  @override
-  State<EpicStandaloneHomePage> createState() => _EpicStandaloneHomePageState();
+  final String baseUrl;
+  final Map<LaunchMode, String> clientIds;
+  final Map<LaunchMode, List<String>> scopes;
+  final Map<LaunchMode, TestCredentials> testCredentials;
+  final String? systemClientSecret;
 }
 
-class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
+class TestCredentials {
+  const TestCredentials({this.username, this.password, this.note});
+  final String? username;
+  final String? password;
+  final String? note;
+}
+
+class SmartStandaloneHomePage extends StatefulWidget {
+  const SmartStandaloneHomePage({super.key});
+
+  @override
+  State<SmartStandaloneHomePage> createState() =>
+      _SmartStandaloneHomePageState();
+}
+
+class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   SmartFhirClient? _client;
+  EhrVendor _selectedVendor = EhrVendor.epic;
   LaunchMode _selectedMode = LaunchMode.patient;
 
   // Data state
@@ -77,40 +107,123 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
   Map<String, dynamic>? _systemData;
   bool _isLoading = false;
   String? _error;
-  String? _contextId; // patientId, practitionerId, etc.
+  String? _contextId;
 
-  // Epic Sandbox Configuration
-  static const String epicBaseUrl =
-      'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4';
-  static const String redirectUri = 'http://localhost:8080/callback.html';
+  // Redirect URI - platform-aware
+  // Android uses a custom URL scheme (registered via appAuthRedirectScheme in build.gradle.kts)
+  // Web and desktop use http://localhost:8080 (registered with the OAuth provider)
+  static String get redirectUri {
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      return 'com.example.standalone-demo://callback';
+    }
+    return 'http://localhost:8080/callback.html';
+  }
 
-  // TODO: Replace with your actual client IDs from Epic sandbox registration
-  static const Map<LaunchMode, String> clientIds = {
-    LaunchMode.patient: 'a1ea50fd-fb23-4822-96c7-ada7267325d2',
-    LaunchMode.clinician: 'YOUR-CLINICIAN-CLIENT-ID-HERE',
-    LaunchMode.system: 'YOUR-SYSTEM-CLIENT-ID-HERE',
+  // ============================================================
+  // VENDOR CONFIGURATIONS
+  // ============================================================
+
+  static const Map<EhrVendor, VendorConfig> vendorConfigs = {
+    // ========== EPIC CONFIGURATION ==========
+    EhrVendor.epic: VendorConfig(
+      baseUrl: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4',
+      clientIds: {
+        // Register at: https://fhir.epic.com/
+        // Non-Production Client ID for fhir_r4_auth_test_patient app
+        LaunchMode.patient: '31a05c77-c602-4bf3-be24-1a7692802b3c',
+        // Non-Production Client ID for fhir_r4_auth_test_clinician app
+        LaunchMode.clinician: '2a12e18b-6dd7-4383-8faf-5ba904a072c3',
+        // System app (Backend Systems audience) - TODO: Replace with your ID
+        LaunchMode.system: 'YOUR-EPIC-SYSTEM-CLIENT-ID',
+      },
+      scopes: {
+        LaunchMode.patient: [
+          'patient/*.read',
+          'launch/patient',
+          'openid',
+          'fhirUser',
+          'offline_access',
+        ],
+        LaunchMode.clinician: [
+          'user/*.read',
+          'launch',
+          'openid',
+          'fhirUser',
+          'online_access',
+        ],
+        LaunchMode.system: ['system/*.read'],
+      },
+      testCredentials: {
+        LaunchMode.patient: TestCredentials(
+          username: 'fhircamila',
+          password: 'epicepic1',
+        ),
+        LaunchMode.clinician: TestCredentials(
+          username: 'fhirjason',
+          password: 'epicepic1',
+        ),
+        LaunchMode.system: TestCredentials(
+          note: 'Uses client credentials - no user login required',
+        ),
+      },
+      // TODO: Add your Epic system client secret
+      systemClientSecret: 'YOUR-EPIC-SYSTEM-CLIENT-SECRET',
+    ),
+
+    // ========== CERNER CONFIGURATION ==========
+    EhrVendor.cerner: VendorConfig(
+      baseUrl: 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
+      clientIds: {
+        // Register at: https://code.cerner.com/
+        // Patient app - TODO: Replace with your ID
+        LaunchMode.patient: 'YOUR-CERNER-PATIENT-CLIENT-ID',
+        // Clinician app - TODO: Replace with your ID
+        LaunchMode.clinician: 'YOUR-CERNER-CLINICIAN-CLIENT-ID',
+        // System app - TODO: Replace with your ID
+        LaunchMode.system: 'YOUR-CERNER-SYSTEM-CLIENT-ID',
+      },
+      scopes: {
+        LaunchMode.patient: [
+          'patient/Patient.read',
+          'patient/Observation.read',
+          'launch/patient',
+          'openid',
+          'fhirUser',
+          'offline_access',
+        ],
+        LaunchMode.clinician: [
+          'user/Patient.read',
+          'user/Observation.read',
+          'user/Practitioner.read',
+          'launch',
+          'openid',
+          'fhirUser',
+          'online_access',
+        ],
+        LaunchMode.system: [
+          'system/Patient.read',
+          'system/Observation.read',
+        ],
+      },
+      testCredentials: {
+        LaunchMode.patient: TestCredentials(
+          username: 'nancysmart',
+          password: 'Cerner01',
+        ),
+        LaunchMode.clinician: TestCredentials(
+          username: 'portal',
+          password: 'Portal1!',
+          note: 'Clinician test account',
+        ),
+        LaunchMode.system: TestCredentials(
+          note: 'Uses client credentials - no user login required',
+        ),
+      },
+      systemClientSecret: 'YOUR-CERNER-SYSTEM-CLIENT-SECRET',
+    ),
   };
 
-  // TODO: For system mode, add your client secret
-  static const String systemClientSecret = 'YOUR-CLIENT-SECRET-HERE';
-
-  static const Map<LaunchMode, List<String>> scopes = {
-    LaunchMode.patient: [
-      'patient/*.read',
-      'launch/patient',
-      'openid',
-      'fhirUser',
-      'offline_access', // For refresh tokens
-    ],
-    LaunchMode.clinician: [
-      'user/*.read',
-      'launch',
-      'openid',
-      'fhirUser',
-      'online_access', // For EHR launch sessions
-    ],
-    LaunchMode.system: ['system/*.read'],
-  };
+  VendorConfig get _currentConfig => vendorConfigs[_selectedVendor]!;
 
   @override
   void initState() {
@@ -119,11 +232,16 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
   }
 
   void _initializeClient() {
-    final clientId = clientIds[_selectedMode];
+    final config = _currentConfig;
+    final clientId = config.clientIds[_selectedMode];
 
-    if (clientId == null || clientId.contains('YOUR-')) {
-      print('⚠️  Client ID not configured for ${_selectedMode.label} mode');
-      print('   Please register an app at https://fhir.epic.com/');
+    if (clientId == null || clientId.startsWith('YOUR-')) {
+      print(
+        '\u26a0\ufe0f  Client ID not configured for '
+        '${_selectedVendor.label} ${_selectedMode.label} mode',
+      );
+      print('   Please register an app at ${_selectedVendor.portalUrl}');
+      _client = null;
       return;
     }
 
@@ -132,16 +250,15 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
       _client = SmartFhirClient(
         config: SmartConfig(
           clientId: clientId,
-          clientSecret: systemClientSecret.contains('YOUR-')
+          clientSecret: config.systemClientSecret?.startsWith('YOUR-') ?? true
               ? null
-              : systemClientSecret,
-          fhirBaseUrl: epicBaseUrl.toFhirUri,
+              : config.systemClientSecret,
+          fhirBaseUrl: config.baseUrl.toFhirUri,
+          redirectUri: Uri.parse(redirectUri), // Required but not used for backend
           launchType: LaunchType.backend,
-          scopes: scopes[_selectedMode]!,
-          enablePkce: false, // Backend services don't use PKCE
+          scopes: config.scopes[_selectedMode]!,
+          enablePkce: false,
           enableOpenId: false,
-          // Backend services typically use JWT assertion or client secret
-          // for production, use JWT assertion with private key
         ),
       );
     } else {
@@ -149,18 +266,21 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
       _client = SmartFhirClient(
         config: SmartConfig(
           clientId: clientId,
-          fhirBaseUrl: epicBaseUrl.toFhirUri,
+          fhirBaseUrl: config.baseUrl.toFhirUri,
           redirectUri: Uri.parse(redirectUri),
           launchType: LaunchType.standalone,
-          scopes: scopes[_selectedMode]!,
-          enablePkce: true,
-          enableOpenId: true,
+          scopes: config.scopes[_selectedMode]!,
+          enablePkce: false,
+          enableOpenId: false,
         ),
       );
     }
 
-    print('✓ Epic FHIR Client initialized (${_selectedMode.label} mode)');
-    print('  Base URL: $epicBaseUrl');
+    print(
+      '\u2713 FHIR Client initialized '
+      '(${_selectedVendor.label} - ${_selectedMode.label})',
+    );
+    print('  Base URL: ${config.baseUrl}');
     print('  Client ID: $clientId');
     if (_selectedMode != LaunchMode.system) {
       print('  Redirect: $redirectUri');
@@ -170,7 +290,9 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
   Future<void> _login() async {
     if (_client == null) {
       setState(() {
-        _error = 'Client not configured. Please add your client ID.';
+        _error =
+            'Client not configured. Please add your client ID for '
+            '${_selectedVendor.label} ${_selectedMode.label} mode.';
       });
       return;
     }
@@ -186,34 +308,39 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
     });
 
     try {
-      print('\n🔐 Starting Epic authentication (${_selectedMode.label})...');
-
-      // Step 1: Authenticate
+      print(
+        '\n\ud83d\udd10 Starting ${_selectedVendor.label} authentication '
+        '(${_selectedMode.label})...',
+      );
       await _client!.login();
-      print('✓ Authentication successful!');
+      print('\u2713 Authentication successful!');
 
-      // Step 2: Fetch data based on mode
       await _fetchModeSpecificData();
 
       setState(() {
         _isLoading = false;
       });
 
-      print('\n✅ Demo completed successfully!');
-    } on AuthenticationException catch (e) {
-      print('❌ Authentication error: ${e.message}');
+      print('\n\u2705 Demo completed successfully!');
+    } on AuthenticationException catch (e, stackTrace) {
+      print('\u274c Authentication error: ${e.message}');
+      print('  Details: ${e.details}');
+      print('  Inner exception: ${e.innerException}');
+      print('  Stack trace:\n$stackTrace');
       setState(() {
-        _error = 'Authentication failed: ${e.message}';
+        _error = 'Authentication failed: ${e.message}'
+            '${e.details != null ? '\nDetails: ${e.details}' : ''}'
+            '${e.innerException != null ? '\nInner: ${e.innerException}' : ''}';
         _isLoading = false;
       });
     } on NetworkException catch (e) {
-      print('❌ Network error: ${e.statusCode} - ${e.message}');
+      print('\u274c Network error: ${e.statusCode} - ${e.message}');
       setState(() {
         _error = 'Network error: ${e.message}';
         _isLoading = false;
       });
     } catch (e, stackTrace) {
-      print('❌ Unexpected error: $e');
+      print('\u274c Unexpected error: $e');
       print('Stack trace:\n$stackTrace');
       setState(() {
         _error = 'Error: $e';
@@ -223,46 +350,42 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
   }
 
   Future<void> _fetchModeSpecificData() async {
+    final baseUrl = _currentConfig.baseUrl;
+
     switch (_selectedMode) {
       case LaunchMode.patient:
-        await _fetchPatientData();
-        break;
+        await _fetchPatientData(baseUrl);
       case LaunchMode.clinician:
-        await _fetchClinicianData();
-        break;
+        await _fetchClinicianData(baseUrl);
       case LaunchMode.system:
-        await _fetchSystemData();
-        break;
+        await _fetchSystemData(baseUrl);
     }
   }
 
-  Future<void> _fetchPatientData() async {
-    // Get patient ID from token context
+  Future<void> _fetchPatientData(String baseUrl) async {
     _contextId = _client!.patientContext;
-    print('✓ Patient ID from token: $_contextId');
+    print('\u2713 Patient ID from token: $_contextId');
 
     if (_contextId == null) {
       throw Exception('No patient ID in token response');
     }
 
-    // Fetch patient demographics
-    print('\n📊 Fetching patient data...');
+    print('\n\ud83d\udcca Fetching patient data...');
     final patientResponse = await _client!.get(
-      Uri.parse('$epicBaseUrl/Patient/$_contextId'),
+      Uri.parse('$baseUrl/Patient/$_contextId'),
     );
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      print('✓ Patient loaded: ${_patient!.name?.first.text?.valueString}');
+      print('\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}');
     } else {
       throw Exception('Failed to load patient: ${patientResponse.statusCode}');
     }
 
-    // Fetch observations
-    print('\n🩺 Fetching observations...');
+    print('\n\ud83e\ude7a Fetching observations...');
     final obsResponse = await _client!.get(
       Uri.parse(
-        '$epicBaseUrl/Observation?'
+        '$baseUrl/Observation?'
         'patient=$_contextId&'
         'category=vital-signs&'
         '_count=10&'
@@ -278,50 +401,39 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
               .whereType<Observation>()
               .toList() ??
           [];
-      print('✓ Loaded ${_observations!.length} observations');
+      print('\u2713 Loaded ${_observations!.length} observations');
     }
   }
 
-  Future<void> _fetchClinicianData() async {
-    // Get practitioner/user ID from token context
-    _contextId = _client!.userContext ?? _client!.practitionerContext;
-    print('✓ User ID from token: $_contextId');
+  Future<void> _fetchClinicianData(String baseUrl) async {
+    // Get practitioner/user ID from fhirUser claim
+    final fhirUser = _client!.fhirUser;
+    print('\u2713 FHIR User from token: $fhirUser');
 
-    if (_contextId == null) {
-      // Some EHRs provide this in fhirUser claim
-      final fhirUser = _client!.fhirUser;
-      if (fhirUser != null) {
-        print('✓ FHIR User: $fhirUser');
-        // Extract ID from reference like "Practitioner/123"
-        if (fhirUser.contains('/')) {
-          _contextId = fhirUser.split('/').last;
-        }
-      }
+    if (fhirUser != null && fhirUser.contains('/')) {
+      // Extract ID from reference like "Practitioner/123"
+      _contextId = fhirUser.split('/').last;
+      print('\u2713 Practitioner ID: $_contextId');
     }
 
     if (_contextId != null) {
-      // Fetch practitioner info
-      print('\n👨‍⚕️ Fetching practitioner data...');
+      print('\n\ud83d\udc68\u200d\u2695\ufe0f Fetching practitioner data...');
       final practResponse = await _client!.get(
-        Uri.parse('$epicBaseUrl/Practitioner/$_contextId'),
+        Uri.parse('$baseUrl/Practitioner/$_contextId'),
       );
 
       if (practResponse.statusCode == 200) {
         _practitioner = Practitioner.fromJsonString(practResponse.body);
         print(
-          '✓ Practitioner loaded: ${_practitioner!.name?.first.text?.valueString}',
+          '\u2713 Practitioner loaded: '
+          '${_practitioner!.name?.first.text?.valueString}',
         );
       }
     }
 
-    // Clinician can search for patients (demonstrate user-level access)
-    print('\n📋 Fetching recent patients (user-level access)...');
+    print('\n\ud83d\udccb Fetching recent patients (user-level access)...');
     final patientResponse = await _client!.get(
-      Uri.parse(
-        '$epicBaseUrl/Patient?'
-        '_count=5&'
-        '_sort=-_lastUpdated',
-      ),
+      Uri.parse('$baseUrl/Patient?_count=5&_sort=-_lastUpdated'),
     );
 
     if (patientResponse.statusCode == 200) {
@@ -329,41 +441,33 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
       final patients =
           bundle.entry?.map((e) => e.resource).whereType<Patient>().toList() ??
           [];
-      print('✓ Loaded ${patients.length} recent patients');
+      print('\u2713 Loaded ${patients.length} recent patients');
 
-      // Store first patient for display
       if (patients.isNotEmpty) {
         _patient = patients.first;
       }
     }
   }
 
-  Future<void> _fetchSystemData() async {
-    // Backend service has system-level access
-    print('\n🖥️  Fetching system-level data...');
+  Future<void> _fetchSystemData(String baseUrl) async {
+    print('\n\ud83d\udda5\ufe0f  Fetching system-level data...');
 
-    // Example: Get capability statement
     final capabilityResponse = await _client!.get(
-      Uri.parse('$epicBaseUrl/metadata'),
+      Uri.parse('$baseUrl/metadata'),
     );
 
     if (capabilityResponse.statusCode == 200) {
-      print('✓ CapabilityStatement loaded');
+      print('\u2713 CapabilityStatement loaded');
     }
 
-    // Example: Search across all patients (within permissions)
     final patientResponse = await _client!.get(
-      Uri.parse(
-        '$epicBaseUrl/Patient?'
-        '_count=10&'
-        '_sort=-_lastUpdated',
-      ),
+      Uri.parse('$baseUrl/Patient?_count=10&_sort=-_lastUpdated'),
     );
 
     if (patientResponse.statusCode == 200) {
       final bundle = Bundle.fromJsonString(patientResponse.body);
-      final totalPatients = bundle.total?.value;
-      print('✓ System can access $totalPatients patients');
+      final totalPatients = bundle.total?.valueNum;
+      print('\u2713 System can access $totalPatients patients');
 
       _systemData = {
         'totalPatients': totalPatients,
@@ -371,19 +475,15 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
       };
     }
 
-    // Get statistics
-    print('\n📊 System-level statistics...');
+    print('\n\ud83d\udcca System-level statistics...');
     final obsResponse = await _client!.get(
-      Uri.parse(
-        '$epicBaseUrl/Observation?'
-        '_summary=count',
-      ),
+      Uri.parse('$baseUrl/Observation?_summary=count'),
     );
 
     if (obsResponse.statusCode == 200) {
       final bundle = Bundle.fromJsonString(obsResponse.body);
-      final totalObs = bundle.total?.value;
-      print('✓ Total observations in system: $totalObs');
+      final totalObs = bundle.total?.valueNum;
+      print('\u2713 Total observations in system: $totalObs');
 
       _systemData?['totalObservations'] = totalObs;
     }
@@ -391,9 +491,9 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
 
   Future<void> _logout() async {
     try {
-      print('\n👋 Logging out...');
+      print('\n\ud83d\udc4b Logging out...');
       await _client?.logout();
-      print('✓ Logged out successfully');
+      print('\u2713 Logged out successfully');
 
       setState(() {
         _patient = null;
@@ -403,28 +503,40 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
         _contextId = null;
       });
     } catch (e) {
-      print('❌ Logout error: $e');
+      print('\u274c Logout error: $e');
     }
+  }
+
+  void _changeVendor(EhrVendor newVendor) {
+    setState(() {
+      _selectedVendor = newVendor;
+      _clearState();
+      _initializeClient();
+    });
   }
 
   void _changeMode(LaunchMode newMode) {
     setState(() {
       _selectedMode = newMode;
-      _patient = null;
-      _practitioner = null;
-      _observations = null;
-      _systemData = null;
-      _contextId = null;
-      _error = null;
+      _clearState();
       _initializeClient();
     });
+  }
+
+  void _clearState() {
+    _patient = null;
+    _practitioner = null;
+    _observations = null;
+    _systemData = null;
+    _contextId = null;
+    _error = null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Epic SMART Standalone Demo'),
+        title: const Text('SMART on FHIR Standalone Demo'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: _isAuthenticated
             ? [
@@ -451,7 +563,10 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
           children: [
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
-            Text('Authenticating with Epic (${_selectedMode.label})...'),
+            Text(
+              'Authenticating with ${_selectedVendor.label} '
+              '(${_selectedMode.label})...',
+            ),
           ],
         ),
       );
@@ -469,42 +584,63 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
   }
 
   Widget _buildLoginScreen() {
+    final config = _currentConfig;
+    final clientId = config.clientIds[_selectedMode];
+    final needsSetup = clientId == null || clientId.startsWith('YOUR-');
+
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Epic Logo
-            Image.network(
-              'https://fhir.epic.com/Content/Images/epic-logo.svg',
-              height: 80,
-              errorBuilder: (context, error, stackTrace) =>
-                  const Icon(Icons.local_hospital, size: 80),
-            ),
+            // Vendor Logo
+            _buildVendorLogo(),
             const SizedBox(height: 32),
 
             // Title
             const Text(
-              'Epic SMART Standalone Demo',
+              'SMART on FHIR Standalone Demo',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             const Text(
-              'Test standalone launch with different audience types',
+              'Test standalone launch with different EHR vendors',
               style: TextStyle(fontSize: 16, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 48),
+            const SizedBox(height: 32),
+
+            // Vendor Selection
+            const Text(
+              'Select EHR Vendor:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+
+            SegmentedButton<EhrVendor>(
+              segments: EhrVendor.values.map((vendor) {
+                return ButtonSegment(
+                  value: vendor,
+                  label: Text(vendor.label),
+                );
+              }).toList(),
+              selected: {_selectedVendor},
+              onSelectionChanged: (Set<EhrVendor> newSelection) {
+                _changeVendor(newSelection.first);
+              },
+            ),
+
+            const SizedBox(height: 24),
 
             // Mode Selection
             const Text(
               'Select Launch Mode:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             SegmentedButton<LaunchMode>(
               segments: LaunchMode.values.map((mode) {
@@ -523,48 +659,22 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
             const SizedBox(height: 16),
 
             // Mode description
-            Card(
-              color: Colors.blue.shade50,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(_selectedMode.icon, color: Colors.blue),
-                        const SizedBox(width: 8),
-                        Text(
-                          _selectedMode.label,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(_selectedMode.description),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Scopes: ${scopes[_selectedMode]!.join(", ")}',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            _buildModeDescription(),
 
-            const SizedBox(height: 32),
+            const SizedBox(height: 24),
+
+            // Setup warning if needed
+            if (needsSetup) _buildSetupInstructions(),
+
+            const SizedBox(height: 24),
 
             // Login button
             ElevatedButton.icon(
-              onPressed: _login,
+              onPressed: needsSetup ? null : _login,
               icon: const Icon(Icons.login),
-              label: Text('Connect as ${_selectedMode.label}'),
+              label: Text(
+                'Connect to ${_selectedVendor.label} as ${_selectedMode.label}',
+              ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
@@ -579,69 +689,114 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
 
             // Test credentials
             _buildTestCredentials(),
-
-            const SizedBox(height: 24),
-
-            // Setup instructions
-            _buildSetupInstructions(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTestCredentials() {
-    switch (_selectedMode) {
-      case LaunchMode.patient:
-        return const Column(
-          children: [
-            Text(
-              'Test Patient Credentials:',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text('Username: fhircamila'),
-            Text('Password: epicepic1'),
-          ],
+  Widget _buildVendorLogo() {
+    switch (_selectedVendor) {
+      case EhrVendor.epic:
+        return Image.network(
+          'https://fhir.epic.com/Content/Images/epic-logo.svg',
+          height: 60,
+          errorBuilder: (context, error, stackTrace) => const Icon(
+            Icons.local_hospital,
+            size: 60,
+            color: Colors.deepPurple,
+          ),
         );
-      case LaunchMode.clinician:
-        return const Column(
-          children: [
-            Text(
-              'Test Clinician Credentials:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+      case EhrVendor.cerner:
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.red.shade50,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Text(
+            'Cerner',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
             ),
-            SizedBox(height: 8),
-            Text('Username: fhirjason'),
-            Text('Password: epicepic1'),
-          ],
-        );
-      case LaunchMode.system:
-        return const Column(
-          children: [
-            Text('System Mode:', style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
-            Text(
-              'Uses client credentials flow',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
-            Text(
-              'No user login required',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
-          ],
+          ),
         );
     }
   }
 
-  Widget _buildSetupInstructions() {
-    final clientId = clientIds[_selectedMode];
-    final needsSetup = clientId == null || clientId.contains('YOUR-');
+  Widget _buildModeDescription() {
+    final scopes = _currentConfig.scopes[_selectedMode]!;
 
-    if (!needsSetup) {
-      return const SizedBox.shrink();
+    return Card(
+      color: _getVendorColor().withValues(alpha: 0.1),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(_selectedMode.icon, color: _getVendorColor()),
+                const SizedBox(width: 8),
+                Text(
+                  '${_selectedVendor.label} - ${_selectedMode.label}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(_selectedMode.description),
+            const SizedBox(height: 8),
+            Text(
+              'Scopes: ${scopes.join(", ")}',
+              style: const TextStyle(
+                fontSize: 12,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Color _getVendorColor() {
+    switch (_selectedVendor) {
+      case EhrVendor.epic:
+        return Colors.deepPurple;
+      case EhrVendor.cerner:
+        return Colors.red;
     }
+  }
 
+  Widget _buildTestCredentials() {
+    final creds = _currentConfig.testCredentials[_selectedMode];
+    if (creds == null) return const SizedBox.shrink();
+
+    return Column(
+      children: [
+        Text(
+          '${_selectedVendor.label} Test Credentials (${_selectedMode.label}):',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        if (creds.username != null) Text('Username: ${creds.username}'),
+        if (creds.password != null) Text('Password: ${creds.password}'),
+        if (creds.note != null)
+          Text(
+            creds.note!,
+            style: const TextStyle(fontStyle: FontStyle.italic),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildSetupInstructions() {
     return Card(
       color: Colors.orange.shade50,
       child: Padding(
@@ -661,15 +816,16 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
             ),
             const SizedBox(height: 8),
             Text(
-              'To test ${_selectedMode.label} mode:',
+              'To test ${_selectedVendor.label} ${_selectedMode.label} mode:',
               style: const TextStyle(fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 8),
-            const Text('1. Register at https://fhir.epic.com/'),
+            Text('1. Register at ${_selectedVendor.portalUrl}'),
             Text('2. Create a "${_selectedMode.label}" audience app'),
-            const Text('3. Add your client ID to the code'),
+            const Text('3. Add redirect URI: http://localhost:8080/callback.html'),
+            const Text('4. Add your client ID to the code (main.dart)'),
             if (_selectedMode == LaunchMode.system)
-              const Text('4. Add your client secret'),
+              const Text('5. Add your client secret'),
           ],
         ),
       ),
@@ -726,7 +882,7 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        // Mode indicator
+        // Success indicator
         Card(
           color: Colors.green.shade50,
           child: Padding(
@@ -740,15 +896,16 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${_selectedMode.label} Mode Active',
+                        '${_selectedVendor.label} - ${_selectedMode.label} Mode Active',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
-                      const Text(
-                        'Successfully authenticated with Epic FHIR API',
-                        style: TextStyle(color: Colors.green),
+                      Text(
+                        'Successfully authenticated with '
+                        '${_selectedVendor.label} FHIR API',
+                        style: const TextStyle(color: Colors.green),
                       ),
                     ],
                   ),
@@ -772,7 +929,6 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
 
   List<Widget> _buildPatientCards() {
     return [
-      // Patient Demographics Card
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -818,10 +974,7 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
           ),
         ),
       ),
-
       const SizedBox(height: 16),
-
-      // Observations Card
       if (_observations != null && _observations!.isNotEmpty)
         Card(
           child: Padding(
@@ -882,10 +1035,10 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
                         ),
                         Text(
                           '$value $unit',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color: _getVendorColor(),
                           ),
                         ),
                       ],
@@ -901,7 +1054,6 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
 
   List<Widget> _buildClinicianCards() {
     return [
-      // Practitioner Info Card
       if (_practitioner != null)
         Card(
           child: Padding(
@@ -938,21 +1090,18 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
             ),
           ),
         ),
-
       const SizedBox(height: 16),
-
-      // User-level access demo
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.people, size: 32, color: Colors.blue),
-                  SizedBox(width: 16),
-                  Text(
+                  Icon(Icons.people, size: 32, color: _getVendorColor()),
+                  const SizedBox(width: 16),
+                  const Text(
                     'User-Level Access',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -983,18 +1132,17 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
 
   List<Widget> _buildSystemCards() {
     return [
-      // System-level access card
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.computer, size: 32, color: Colors.purple),
-                  SizedBox(width: 16),
-                  Text(
+                  Icon(Icons.computer, size: 32, color: _getVendorColor()),
+                  const SizedBox(width: 16),
+                  const Text(
                     'System-Level Access',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -1014,21 +1162,18 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
           ),
         ),
       ),
-
       const SizedBox(height: 16),
-
-      // System statistics
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.analytics, size: 32, color: Colors.green),
-                  SizedBox(width: 16),
-                  Text(
+                  const Icon(Icons.analytics, size: 32, color: Colors.green),
+                  const SizedBox(width: 16),
+                  const Text(
                     'System Statistics',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -1076,7 +1221,7 @@ class _EpicStandaloneHomePageState extends State<EpicStandaloneHomePage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('• ', style: TextStyle(fontSize: 16)),
+          const Text('\u2022 ', style: TextStyle(fontSize: 16)),
           Expanded(child: Text(text)),
         ],
       ),

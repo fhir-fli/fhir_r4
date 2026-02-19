@@ -40,8 +40,8 @@ class With extends RelationshipClause {
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> map = {
-      'alias': alias,
       if (type.isNotEmpty) 'type': type,
+      'alias': alias,
       'expression': expression.toJson(),
     };
     if (suchThat != null) {

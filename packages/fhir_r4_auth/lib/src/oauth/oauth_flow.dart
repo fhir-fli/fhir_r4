@@ -32,6 +32,8 @@ class OAuthFlow {
     this.scopes = const <String>[],
     this.additionalParameters = const <String, String>{},
     this.useBasicAuth = true,
+    this.enablePkce = true,
+    this.enableOpenId = true,
     http.Client? httpClient,
     PkceManager? pkceManager,
     StateManager? stateManager,
@@ -70,6 +72,12 @@ class OAuthFlow {
   /// Use HTTP Basic auth for client credentials
   final bool useBasicAuth;
 
+  /// Whether to include PKCE parameters in authorization request
+  final bool enablePkce;
+
+  /// Whether to include OpenID Connect nonce in authorization request
+  final bool enableOpenId;
+
   final http.Client _httpClient;
   final PkceManager _pkceManager;
   final StateManager _stateManager;
@@ -94,7 +102,8 @@ class OAuthFlow {
 
     // Generate security parameters
     _currentState = state ?? _stateManager.generateState();
-    _currentNonce = nonce ?? _stateManager.generateNonce();
+    _currentNonce =
+        enableOpenId ? (nonce ?? _stateManager.generateNonce()) : null;
 
     // Build query parameters
     final parameters = <String, String>{
@@ -104,8 +113,8 @@ class OAuthFlow {
       if (scopes.isNotEmpty) OAuthParameters.scope: scopes.join(' '),
       OAuthParameters.state: _currentState!,
       if (_currentNonce != null) OAuthParameters.nonce: _currentNonce!,
-      // Add PKCE parameters
-      ..._pkceManager.toAuthorizationParameters(),
+      // Add PKCE parameters (only if enabled)
+      if (enablePkce) ..._pkceManager.toAuthorizationParameters(),
       // Add any additional parameters
       ...additionalParameters,
       if (extraParameters != null) ...extraParameters,
@@ -183,8 +192,8 @@ class OAuthFlow {
       OAuthParameters.grantType: GrantType.authorizationCode.value,
       OAuthParameters.code: code,
       OAuthParameters.redirectUri: redirectUri.toString(),
-      // Add PKCE verifier
-      ..._pkceManager.toTokenParameters(),
+      // Add PKCE verifier (only if enabled)
+      if (enablePkce) ..._pkceManager.toTokenParameters(),
     };
 
     // Add client credentials

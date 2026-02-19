@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth Callback</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 { color: #333; margin-bottom: 10px; }
+        p { color: #666; margin-bottom: 20px; }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="loading">
+            <div class="spinner"></div>
+            <h2>Processing Authentication...</h2>
+            <p>Please wait while we complete the authorization.</p>
+        </div>
+        <div id="success" style="display: none;">
+            <h2 class="success">Authentication Successful!</h2>
+            <p>You can close this window and return to the app.</p>
+        </div>
+        <div id="error" style="display: none;">
+            <h2 class="error">Authentication Failed</h2>
+            <p id="error-message"></p>
+        </div>
+    </div>
+
+    <script>
+        function handleCallback() {
+            const currentUrl = window.location.href;
+            const url = new URL(currentUrl);
+            const params = new URLSearchParams(url.search);
+
+            const code = params.get('code');
+            const error = params.get('error');
+            const errorDescription = params.get('error_description');
+
+            if (error) {
+                showError(errorDescription || error);
+                return;
+            }
+
+            if (code) {
+                // Store the full callback URL for flutter_web_auth_2 to pick up
+                window.localStorage.setItem('flutter-web-auth-2', currentUrl);
+
+                // Also try postMessage for flutter_web_auth_2
+                if (window.opener) {
+                    window.opener.postMessage(
+                        {'flutter-web-auth-2': currentUrl},
+                        window.location.origin
+                    );
+                }
+
+                showSuccess();
+
+                // Close the window after a short delay
+                setTimeout(() => {
+                    window.close();
+                }, 1000);
+
+                return;
+            }
+
+            // No auth parameters found
+            showError('No authorization parameters found in URL');
+        }
+
+        function showSuccess() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+        }
+
+        handleCallback();
+    </script>
+</body>
+</html>

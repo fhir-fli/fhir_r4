@@ -2,11 +2,11 @@ import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 class CqlIncludedInIntervalOperatorPhraseVisitor
-    extends CqlBaseVisitor<IncludedIn> {
+    extends CqlBaseVisitor<CqlExpression> {
   CqlIncludedInIntervalOperatorPhraseVisitor(super.library);
 
   @override
-  IncludedIn visitIncludedInIntervalOperatorPhrase(
+  CqlExpression visitIncludedInIntervalOperatorPhrase(
       IncludedInIntervalOperatorPhraseContext ctx,
       [CqlExpression? left,
       CqlExpression? right]) {
@@ -33,6 +33,13 @@ class CqlIncludedInIntervalOperatorPhraseVisitor
       }
     }
     if (duringIncludedIn != null && left != null && right != null) {
+      // CQL `during` maps to ELM `In`, while `included in` maps to `IncludedIn`
+      if (duringIncludedIn == 'during') {
+        return In(
+          precision: dateTimePrecisionSpecifier,
+          operand: [left, right],
+        );
+      }
       return IncludedIn(
         precision: dateTimePrecisionSpecifier,
         operand: [left, right],

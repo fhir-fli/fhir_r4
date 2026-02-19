@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Calculates the age in the specified precision of a person born on a given
@@ -80,4 +82,48 @@ class CalculateAgeAt extends BinaryExpression {
 
   @override
   String get type => 'CalculateAgeAt';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    if (operand.length != 2) {
+      throw ArgumentError('CalculateAgeAt requires exactly 2 operands');
+    }
+
+    final birthDateValue = await operand[0].execute(context);
+    final asOfValue = await operand[1].execute(context);
+
+    if (birthDateValue == null || asOfValue == null) return null;
+
+    // Convert birthDate to a date string
+    String birthDateStr;
+    if (birthDateValue is FhirDateTimeBase) {
+      birthDateStr = birthDateValue.toIso8601String()!;
+    } else if (birthDateValue is String) {
+      birthDateStr = birthDateValue;
+    } else {
+      return null;
+    }
+
+    // Convert asOf to a date string
+    String asOfStr;
+    if (asOfValue is FhirDateTimeBase) {
+      asOfStr = asOfValue.toIso8601String()!;
+    } else if (asOfValue is String) {
+      asOfStr = asOfValue;
+    } else {
+      return null;
+    }
+
+    return await DurationBetween(
+      precision: precision,
+      operand: [
+        LiteralDate(birthDateStr.length > 10
+            ? birthDateStr.substring(0, 10)
+            : birthDateStr),
+        LiteralDate(asOfStr.length > 10
+            ? asOfStr.substring(0, 10)
+            : asOfStr),
+      ],
+    ).execute(context);
+  }
 }

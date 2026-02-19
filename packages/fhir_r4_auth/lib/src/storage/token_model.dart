@@ -4,6 +4,14 @@ library;
 import 'dart:convert';
 import '../core/auth_types.dart';
 
+/// Parse a value that may be bool or String to bool?
+bool? _parseBool(dynamic value) {
+  if (value == null) return null;
+  if (value is bool) return value;
+  if (value is String) return value.toLowerCase() == 'true';
+  return null;
+}
+
 /// Represents OAuth 2.0 tokens and associated SMART on FHIR metadata
 class SmartTokenResponse {
   SmartTokenResponse({
@@ -114,7 +122,7 @@ class SmartTokenResponse {
       patientContext: json[OAuthParameters.patient] as String?,
       encounterContext: json[OAuthParameters.encounter] as String?,
       fhirUser: json['fhirUser'] as String?,
-      needPatientBanner: json[OAuthParameters.needPatientBanner] as bool?,
+      needPatientBanner: _parseBool(json[OAuthParameters.needPatientBanner]),
       smartStyleUrl: json[OAuthParameters.smartStyleUrl] as String?,
       intent: json[OAuthParameters.intent] as String?,
       tenant: json[OAuthParameters.tenant] as String?,

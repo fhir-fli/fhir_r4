@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert the value of its argument to an Integer value.
@@ -60,5 +61,42 @@ class ToInteger extends UnaryExpression {
     }
 
     return data;
+  }
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => const ['Integer'];
+
+  @override
+  Future<fhir.FhirInteger?> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    switch (value) {
+      case fhir.FhirInteger _:
+        return value;
+      case int _:
+        return fhir.FhirInteger(value);
+      case fhir.FhirBoolean _:
+        return fhir.FhirInteger(value.valueBoolean == true ? 1 : 0);
+      case bool _:
+        return fhir.FhirInteger(value ? 1 : 0);
+      case fhir.FhirInteger64 _:
+        final bigVal = value.valueBigInt;
+        if (bigVal == null) return null;
+        return fhir.FhirInteger(bigVal.toInt());
+      case fhir.FhirDecimal _:
+        final numVal = value.valueNum;
+        if (numVal == null) return null;
+        return fhir.FhirInteger(numVal.truncate());
+      case fhir.FhirString _:
+        final parsed = int.tryParse(value.primitiveValue ?? '');
+        if (parsed == null) return null;
+        return fhir.FhirInteger(parsed);
+      case String _:
+        final parsed = int.tryParse(value);
+        if (parsed == null) return null;
+        return fhir.FhirInteger(parsed);
+      default:
+        return null;
+    }
   }
 }

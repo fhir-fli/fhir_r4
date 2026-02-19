@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if its arguments are not the same value.
@@ -58,4 +60,19 @@ class NotEqual extends BinaryExpression {
 
   @override
   String get type => 'NotEqual';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    if (operand.length != 2) {
+      throw ArgumentError('NotEqual expression must have 2 operands');
+    }
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    final equalResult = Equal.equal(left, right);
+    if (equalResult == null) return null;
+    return FhirBoolean(equalResult.valueBoolean == false);
+  }
 }

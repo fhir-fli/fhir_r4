@@ -1,4 +1,5 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' hide Quantity;
+import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity;
 import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
@@ -99,10 +100,27 @@ class Multiply extends BinaryExpression {
   @override
   String get type => 'Multiply';
 
+  /// Convert FHIR Quantity to ValidatedQuantity for arithmetic
+  static dynamic _convertFhirQuantity(dynamic value) {
+    if (value is fhir.Quantity) {
+      final num? numVal = value.value?.valueNum;
+      final unit =
+          value.unit?.valueString ?? value.code?.valueString ?? '1';
+      if (numVal != null) {
+        return ValidatedQuantity.fromNumber(numVal, unit: unit);
+      }
+    }
+    return value;
+  }
+
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
-    final left = await operand[0].execute(context);
-    final right = await operand[1].execute(context);
+    var left = await operand[0].execute(context);
+    var right = await operand[1].execute(context);
+
+    // Convert FHIR Quantity to ValidatedQuantity
+    left = _convertFhirQuantity(left);
+    right = _convertFhirQuantity(right);
 
     if (left == null || right == null) {
       return null;
@@ -148,12 +166,22 @@ class Multiply extends BinaryExpression {
                         UcumDecimal.fromString(right.valueString!))
                     .asUcumDecimal()));
           } else if (right is ValidatedQuantity) {
-            return ValidatedQuantity.fromString(left.valueString!) * right;
+            // Scale value, keep units (avoid UCUM canonicalization)
+            final numVal = right.value *
+                UcumDecimal.fromString(left.valueString!);
+            return ValidatedQuantity(value: numVal, unit: right.unit);
           }
           break;
         case ValidatedQuantity _:
           if (right is FhirDecimal && left.isValid()) {
-            return left * ValidatedQuantity.fromString(right.valueString!);
+            // Scale value, keep units (avoid UCUM canonicalization)
+            final numVal = left.value *
+                UcumDecimal.fromString(right.valueString!);
+            return ValidatedQuantity(value: numVal, unit: left.unit);
+          } else if (right is FhirInteger && left.isValid()) {
+            final numVal = left.value *
+                UcumDecimal.fromString(right.valueString!);
+            return ValidatedQuantity(value: numVal, unit: left.unit);
           } else if (right is ValidatedQuantity) {
             return left * right;
           }
