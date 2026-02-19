@@ -59,4 +59,21 @@ class PointFrom extends UnaryExpression {
 
     return data;
   }
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is CqlInterval) {
+      final start = value.getStart();
+      final end = value.getEnd();
+      if (Equivalent.equivalent(start, end).valueBoolean == true) {
+        return start;
+      }
+      throw ArgumentError(
+          'PointFrom requires a unit interval (same start and end), '
+          'but got start=$start, end=$end');
+    }
+    return null;
+  }
 }

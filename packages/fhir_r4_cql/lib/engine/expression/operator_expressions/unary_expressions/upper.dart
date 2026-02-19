@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert the given string with all characters converted to their upper case equivalents.
@@ -57,5 +58,18 @@ class Upper extends UnaryExpression {
     }
 
     return data;
+  }
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is fhir.FhirString) {
+      return fhir.FhirString(value.primitiveValue?.toUpperCase());
+    }
+    if (value is String) {
+      return fhir.FhirString(value.toUpperCase());
+    }
+    return null;
   }
 }

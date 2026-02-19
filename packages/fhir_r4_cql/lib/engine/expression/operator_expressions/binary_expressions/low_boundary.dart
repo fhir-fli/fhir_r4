@@ -58,4 +58,15 @@ class LowBoundary extends BinaryExpression {
 
   @override
   String get type => 'LowBoundary';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand[0].execute(context);
+    // precision operand evaluated but not yet used in this stub
+    await operand[1].execute(context);
+    if (value == null) return null;
+    // Stub: return the value itself for now
+    // Full implementation would fill unspecified components with minimum values
+    return value;
+  }
 }

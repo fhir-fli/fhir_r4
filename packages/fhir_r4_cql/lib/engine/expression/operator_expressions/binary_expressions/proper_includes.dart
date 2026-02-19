@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if the first operand includes the second and is strictly larger.
@@ -71,4 +72,26 @@ class ProperIncludes extends BinaryExpression {
 
   @override
   String get type => 'ProperIncludes';
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    if (operand.length != 2) {
+      throw ArgumentError('ProperIncludes expression must have 2 operands');
+    }
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    return properIncludes(left, right);
+  }
+
+  static FhirBoolean? properIncludes(dynamic left, dynamic right) {
+    if (left == null || right == null) return null;
+    // First check includes (right is included in left)
+    final included = IncludedIn.includedIn(right, left, null);
+    if (included == null) return null;
+    if (included.valueBoolean != true) return FhirBoolean(false);
+    // Then check not equal (proper means strictly larger)
+    final eq = Equivalent.equivalent(left, right);
+    if (eq.valueBoolean == true) return FhirBoolean(false);
+    return FhirBoolean(true);
+  }
 }

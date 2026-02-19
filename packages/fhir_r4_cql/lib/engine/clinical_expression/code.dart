@@ -77,4 +77,14 @@ class Code extends CqlExpression {
 
   @override
   String get type => 'Code';
+
+  @override
+  Future<CqlCode?> execute(Map<String, dynamic> context) async {
+    final codeSystem = await system.execute(context);
+    return CqlCode(
+      code: code,
+      display: display,
+      system: codeSystem?.id,
+    );
+  }
 }

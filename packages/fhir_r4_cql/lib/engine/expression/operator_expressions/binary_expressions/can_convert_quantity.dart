@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show FhirBoolean;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if the Quantity can be converted to an equivalent Quantity with the given Unit.
@@ -59,4 +61,18 @@ class CanConvertQuantity extends BinaryExpression {
 
   @override
   String get type => 'CanConvertQuantity';
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    if (left == null || right == null) return null;
+    try {
+      final result =
+          await ConvertQuantity(operand: operand).execute(context);
+      return FhirBoolean(result != null);
+    } catch (_) {
+      return FhirBoolean(false);
+    }
+  }
 }

@@ -88,4 +88,35 @@ class Convert extends UnaryExpression {
 
   @override
   String get type => 'Convert';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    final targetType = toType?.localPart.toLowerCase() ?? '';
+    switch (targetType) {
+      case 'boolean':
+        return await ToBoolean(operand: operand).execute(context);
+      case 'integer':
+        return await ToInteger(operand: operand).execute(context);
+      case 'long':
+        return await ToLong(operand: operand).execute(context);
+      case 'decimal':
+        return await ToDecimal(operand: operand).execute(context);
+      case 'string':
+        return await ToString(operand: operand).execute(context);
+      case 'quantity':
+        return await ToQuantity(operand: operand).execute(context);
+      case 'ratio':
+        return await ToRatio(operand: operand).execute(context);
+      case 'date':
+        return await ToDate(operand: operand).execute(context);
+      case 'datetime':
+        return await ToDateTime(operand: operand).execute(context);
+      case 'time':
+        return await ToTime(operand: operand).execute(context);
+      default:
+        return null;
+    }
+  }
 }

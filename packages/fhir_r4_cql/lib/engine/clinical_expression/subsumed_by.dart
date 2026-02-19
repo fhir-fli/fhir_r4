@@ -65,4 +65,13 @@ class SubsumedBy extends BinaryExpression {
 
   @override
   String get type => 'SubsumedBy';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    if (left == null || right == null) return null;
+    // Subsumption requires a terminology server; stub returns null
+    return null;
+  }
 }

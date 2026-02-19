@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if the first operand properly contains the second operand.
@@ -69,4 +70,38 @@ class ProperContains extends BinaryExpression {
 
   @override
   String get type => 'ProperContains';
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    if (operand.length != 2) {
+      throw ArgumentError('ProperContains expression must have 2 operands');
+    }
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    return properContains(left, right);
+  }
+
+  static FhirBoolean? properContains(dynamic left, dynamic right) {
+    if (left == null || right == null) return null;
+    if (left is CqlInterval) {
+      final contains = left.contains(right);
+      if (!contains) return FhirBoolean(false);
+      // Check it's not equal to both start and end (unit interval)
+      final start = left.getStart();
+      final end = left.getEnd();
+      final eqStart = Equivalent.equivalent(right, start);
+      final eqEnd = Equivalent.equivalent(right, end);
+      if (eqStart.valueBoolean == true && eqEnd.valueBoolean == true) {
+        return FhirBoolean(false);
+      }
+      // Point must be strictly inside (not at boundaries)
+      if (eqStart.valueBoolean == true || eqEnd.valueBoolean == true) {
+        return FhirBoolean(false);
+      }
+      return FhirBoolean(true);
+    } else if (left is List) {
+      return Contains.contains(left, right);
+    }
+    return null;
+  }
 }

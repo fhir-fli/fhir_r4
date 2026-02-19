@@ -1,3 +1,6 @@
+import 'package:fhir_r4/fhir_r4.dart'
+    show CodeableConcept, FhirBoolean, FhirCode;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The AnyInValueSet operator returns true if any of the given codes are in the
@@ -89,4 +92,69 @@ class AnyInValueSet extends OperatorExpression {
 
   @override
   String get type => 'AnyInValueSet';
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final codesValue = await codes.execute(context);
+    if (codesValue == null) return null;
+    final codesList = codesValue is List ? codesValue : [codesValue];
+
+    CqlValueSet? valueSetRef = await valueset?.execute(context);
+    valueSetRef ??= await valuesetExpression?.execute(context);
+    if (valueSetRef == null) return null;
+
+    // Check context['_valueSets'] first for local value set expansions
+    final valueSetsMap = context['_valueSets'];
+    if (valueSetsMap is Map<String, dynamic>) {
+      final expansion = valueSetsMap[valueSetRef.id];
+      if (expansion is List) {
+        for (final codeItem in codesList) {
+          if (codeItem == null) continue;
+          if (_codeInExpansion(codeItem, expansion)) {
+            return FhirBoolean(true);
+          }
+        }
+        return FhirBoolean(false);
+      }
+    }
+    return null;
+  }
+
+  static bool _codeInExpansion(dynamic codeValue, List<dynamic> expansion) {
+    bool matches(String? system, String? code) {
+      for (final ec in expansion) {
+        if (ec is Map<String, dynamic> &&
+            code == ec['code']?.toString() &&
+            system == ec['system']?.toString()) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    switch (codeValue) {
+      case String _:
+        return matches(null, codeValue);
+      case CqlCode _:
+        return matches(codeValue.system, codeValue.code);
+      case FhirCode _:
+        return matches(null, codeValue.valueString);
+      case CqlConcept _:
+        for (final c in codeValue.codes) {
+          if (matches(c.system, c.code)) return true;
+        }
+        return false;
+      case CodeableConcept _:
+        if (codeValue.coding == null) return false;
+        for (final coding in codeValue.coding!) {
+          if (matches(
+              coding.system?.valueString, coding.code?.valueString)) {
+            return true;
+          }
+        }
+        return false;
+      default:
+        return false;
+    }
+  }
 }

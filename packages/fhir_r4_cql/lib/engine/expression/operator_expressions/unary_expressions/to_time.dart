@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert the value of its argument to a Time value.
@@ -64,4 +65,23 @@ class ToTime extends UnaryExpression {
 
   @override
   String get type => 'ToTime';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is fhir.FhirTime) return value;
+    if (value is String) {
+      // Remove leading 'T' if present
+      final str = value.startsWith('T') ? value.substring(1) : value;
+      return fhir.FhirTime(str);
+    }
+    if (value is fhir.FhirString) {
+      final str = value.primitiveValue;
+      if (str == null) return null;
+      final cleaned = str.startsWith('T') ? str.substring(1) : str;
+      return fhir.FhirTime(cleaned);
+    }
+    return null;
+  }
 }

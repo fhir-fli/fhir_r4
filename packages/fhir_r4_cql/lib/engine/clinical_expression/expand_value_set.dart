@@ -66,4 +66,30 @@ class ExpandValueSet extends UnaryExpression {
 
   @override
   String get type => 'ExpandValueSet';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is CqlValueSet) {
+      // Check local value set expansions
+      final valueSets = context['_valueSets'];
+      if (valueSets is Map<String, dynamic>) {
+        final expansion = valueSets[value.id];
+        if (expansion is List) {
+          return expansion.map((ec) {
+            if (ec is Map<String, dynamic>) {
+              return CqlCode(
+                code: ec['code']?.toString() ?? '',
+                system: ec['system']?.toString(),
+                display: ec['display']?.toString(),
+              );
+            }
+            return ec;
+          }).toList();
+        }
+      }
+    }
+    return null;
+  }
 }

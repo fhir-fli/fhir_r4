@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to construct a date value from the given components.
@@ -78,4 +79,45 @@ class DateExpression extends OperatorExpression {
 
   @override
   String get type => 'Date';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final yearVal = await year.execute(context);
+    if (yearVal == null) return null;
+
+    int? y;
+    if (yearVal is fhir.FhirInteger) {
+      y = yearVal.valueInt;
+    } else if (yearVal is int) {
+      y = yearVal;
+    }
+    if (y == null) return null;
+
+    int? m;
+    if (month != null) {
+      final monthVal = await month!.execute(context);
+      if (monthVal is fhir.FhirInteger) {
+        m = monthVal.valueInt;
+      } else if (monthVal is int) {
+        m = monthVal;
+      }
+    }
+
+    int? d;
+    if (day != null) {
+      final dayVal = await day!.execute(context);
+      if (dayVal is fhir.FhirInteger) {
+        d = dayVal.valueInt;
+      } else if (dayVal is int) {
+        d = dayVal;
+      }
+    }
+
+    final yStr = y.toString().padLeft(4, '0');
+    if (m == null) return fhir.FhirDate.fromString(yStr);
+    final mStr = m.toString().padLeft(2, '0');
+    if (d == null) return fhir.FhirDate.fromString('$yStr-$mStr');
+    final dStr = d.toString().padLeft(2, '0');
+    return fhir.FhirDate.fromString('$yStr-$mStr-$dStr');
+  }
 }

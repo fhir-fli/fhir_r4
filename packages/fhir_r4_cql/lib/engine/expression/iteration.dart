@@ -53,4 +53,9 @@ class Iteration extends CqlExpression {
 
   @override
   String get type => 'Iteration';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return context[scope.isEmpty ? '\$iteration' : scope];
+  }
 }

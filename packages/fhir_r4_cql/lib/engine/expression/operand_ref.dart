@@ -63,4 +63,9 @@ class OperandRef extends CqlExpression {
 
   @override
   String get type => 'OperandRef';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return context[name];
+  }
 }

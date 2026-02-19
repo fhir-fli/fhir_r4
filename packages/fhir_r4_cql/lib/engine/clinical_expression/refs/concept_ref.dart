@@ -56,4 +56,29 @@ class ConceptRef extends Ref {
     }
     return ['CodeableConcept'];
   }
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final library = context['library'];
+    if (library is! CqlLibrary) return null;
+    final conceptDefs = library.concepts?.def;
+    if (conceptDefs == null) return null;
+    for (final conceptDef in conceptDefs) {
+      if (conceptDef.name == name) {
+        // Resolve each CodeRef in the ConceptDef
+        final codes = <CqlCode>[];
+        for (final codeRef in conceptDef.code) {
+          final resolved = await codeRef.execute(context);
+          if (resolved is CqlCode) {
+            codes.add(resolved);
+          }
+        }
+        return CqlConcept(
+          codes: codes,
+          display: conceptDef.display,
+        );
+      }
+    }
+    return null;
+  }
 }

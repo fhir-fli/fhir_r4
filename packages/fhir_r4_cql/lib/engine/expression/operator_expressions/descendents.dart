@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show Resource;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// For structured types, the Descendents operator returns a list of all the values of the elements of the type, recursively.
@@ -61,4 +63,41 @@ class Descendents extends OperatorExpression {
 
   @override
   String get type => 'Descendents';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await source.execute(context);
+    if (value == null) return null;
+    final results = <dynamic>[];
+    _collectDescendants(value, results);
+    return results;
+  }
+
+  static void _collectDescendants(dynamic value, List<dynamic> results) {
+    if (value == null) return;
+    if (value is List) {
+      for (final item in value) {
+        _collectDescendants(item, results);
+      }
+      return;
+    }
+    if (value is Resource) {
+      final json = value.toJson();
+      for (final v in json.values) {
+        if (v != null) {
+          results.add(v);
+          _collectDescendants(v, results);
+        }
+      }
+    } else if (value is Map<String, dynamic>) {
+      for (final v in value.values) {
+        if (v != null) {
+          results.add(v);
+          _collectDescendants(v, results);
+        }
+      }
+    } else {
+      results.add(value);
+    }
+  }
 }

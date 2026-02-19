@@ -64,4 +64,9 @@ class Current extends CqlExpression {
 
   @override
   String get type => 'Current';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return context[scope.isEmpty ? '\$current' : scope];
+  }
 }

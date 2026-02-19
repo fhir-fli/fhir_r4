@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if the value of its argument can be converted to an Integer value.
@@ -62,5 +63,17 @@ class ConvertsToInteger extends UnaryExpression {
     }
 
     return data;
+  }
+
+  @override
+  Future<fhir.FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    try {
+      final result = await ToInteger(operand: operand).execute(context);
+      return fhir.FhirBoolean(result != null);
+    } catch (_) {
+      return fhir.FhirBoolean(false);
+    }
   }
 }
