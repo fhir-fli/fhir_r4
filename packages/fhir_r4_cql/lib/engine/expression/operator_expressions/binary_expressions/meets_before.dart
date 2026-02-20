@@ -117,7 +117,6 @@ class MeetsBefore extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): with precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
@@ -132,7 +131,12 @@ class MeetsBefore extends BinaryExpression {
     } else if (left is CqlInterval && right is CqlInterval) {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
-      return Equal.equal(leftEnd, Predecessor.predecessor(rightStart));
+      final pred = Predecessor.predecessor(rightStart);
+      if (precision != null &&
+          (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)) {
+        return SameAs.sameAs(leftEnd, pred, precision);
+      }
+      return Equal.equal(leftEnd, pred);
     } else {
       return null;
     }

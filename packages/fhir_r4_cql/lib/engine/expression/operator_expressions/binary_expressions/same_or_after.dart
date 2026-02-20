@@ -202,6 +202,20 @@ class SameOrAfter extends BinaryExpression {
     return null;
   }
 
+  static FhirBoolean? sameOrAfter(
+      dynamic left, dynamic right, CqlDateTimePrecision? precision) {
+    if (left == null || right == null) {
+      return null;
+    } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
+      return sameOrAfterDateTime(left, right, precision);
+    } else if (left is FhirTime && right is FhirTime) {
+      return sameOrAfterTime(left, right, precision);
+    } else if (left is Comparable && right is Comparable) {
+      return FhirBoolean(left.compareTo(right) >= 0);
+    }
+    return null;
+  }
+
   static FhirBoolean? sameOrAfterTime(
     FhirTime left,
     FhirTime right, [

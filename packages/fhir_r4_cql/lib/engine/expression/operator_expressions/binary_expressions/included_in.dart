@@ -140,11 +140,10 @@ class IncludedIn extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): Implement precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
-      throw ArgumentError('After expression must have 2 operands');
+      throw ArgumentError('IncludedIn expression must have 2 operands');
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
@@ -178,6 +177,23 @@ class IncludedIn extends BinaryExpression {
         return null;
       }
     } else if (right is CqlInterval) {
+      if (precision != null) {
+        final rightStart = right.getStart();
+        final rightEnd = right.getEnd();
+        if (left is CqlInterval) {
+          final leftStart = left.getStart();
+          final leftEnd = left.getEnd();
+          return And.and(
+            SameOrAfter.sameOrAfter(leftStart, rightStart, precision),
+            SameOrBefore.sameOrBefore(leftEnd, rightEnd, precision),
+          );
+        } else {
+          return And.and(
+            SameOrAfter.sameOrAfter(left, rightStart, precision),
+            SameOrBefore.sameOrBefore(left, rightEnd, precision),
+          );
+        }
+      }
       try {
         final result = FhirBoolean(right.contains(left));
         return result;

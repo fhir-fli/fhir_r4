@@ -171,6 +171,19 @@ class SameAs extends BinaryExpression {
     }
   }
 
+  static FhirBoolean? sameAs(
+      dynamic left, dynamic right, CqlDateTimePrecision? precision) {
+    if (left == null || right == null) {
+      return null;
+    }
+    if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
+      return _sameAsDateTime(left, right, precision);
+    } else if (left is FhirTime && right is FhirTime) {
+      return _sameAsTime(left, right, precision);
+    }
+    return Equal.equal(left, right);
+  }
+
   static FhirBoolean? _sameAsTime(
     FhirTime left,
     FhirTime right, [

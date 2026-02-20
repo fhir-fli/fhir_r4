@@ -1,4 +1,6 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/ucum.dart';
 
 /// Operator to get the unique set of intervals that completely cover the ranges
 /// present in the given list of intervals.
@@ -136,11 +138,55 @@ class Collapse extends BinaryExpression {
     }
 
     final source = await operand[0].execute(context);
-    final per = operand.length > 1 ? operand[1].execute(context) : null;
+    final per =
+        operand.length > 1 ? await operand[1].execute(context) : null;
     return collapse(source, per);
   }
 
-  // TODO(Dokotela): with precision
+  static CqlDateTimePrecision? _precisionFromQuantity(dynamic per) {
+    if (per is ValidatedQuantity) {
+      final unit = per.unit;
+      if (unit != '1') {
+        return CqlDateTimePrecisionExtension.fromJson(unit);
+      }
+    }
+    return null;
+  }
+
+  static CqlDateTimePrecision? _coarsestPrecision(List source) {
+    CqlDateTimePrecision? coarsest;
+    for (final interval in source) {
+      if (interval is CqlInterval) {
+        final start = interval.getStart();
+        final end = interval.getEnd();
+        for (final boundary in [start, end]) {
+          if (boundary is FhirDateTimeBase) {
+            CqlDateTimePrecision p;
+            if (!boundary.hasMonth) {
+              p = CqlDateTimePrecision.year;
+            } else if (!boundary.hasDay) {
+              p = CqlDateTimePrecision.month;
+            } else if (!boundary.hasHours) {
+              p = CqlDateTimePrecision.day;
+            } else if (!boundary.hasMinutes) {
+              p = CqlDateTimePrecision.hour;
+            } else if (!boundary.hasSeconds) {
+              p = CqlDateTimePrecision.minute;
+            } else if (!boundary.hasMilliseconds) {
+              p = CqlDateTimePrecision.second;
+            } else {
+              p = CqlDateTimePrecision.millisecond;
+            }
+            if (coarsest == null || p.index < coarsest.index) {
+              coarsest = p;
+            }
+          }
+        }
+      }
+    }
+    return coarsest;
+  }
+
   List<CqlInterval>? collapse(dynamic source, dynamic per) {
     if (source == null) {
       return null;
@@ -155,6 +201,9 @@ class Collapse extends BinaryExpression {
         return source as List<CqlInterval>;
       }
 
+      final precision =
+          _precisionFromQuantity(per) ?? _coarsestPrecision(source);
+
       // Sort the source by their start points
       source.sort((a, b) => a.compareTo(b));
 
@@ -165,11 +214,14 @@ class Collapse extends BinaryExpression {
         final nextInterval = source[i];
 
         // Check if current and next source overlap or meet
-        final overlaps =
-            Overlaps.overlaps(currentInterval, nextInterval)?.valueBoolean ??
-                false;
+        final overlaps = Overlaps.overlaps(
+                    currentInterval, nextInterval, precision)
+                ?.valueBoolean ??
+            false;
         final meets =
-            Meets.meets(currentInterval, nextInterval)?.valueBoolean ?? false;
+            Meets.meets(currentInterval, nextInterval, precision)
+                    ?.valueBoolean ??
+                false;
 
         if (overlaps || meets) {
           // Merge the source

@@ -119,7 +119,6 @@ class Meets extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): with precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
@@ -128,10 +127,11 @@ class Meets extends BinaryExpression {
 
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    return meets(left, right);
+    return meets(left, right, precision);
   }
 
-  static FhirBoolean? meets(dynamic left, dynamic right) {
+  static FhirBoolean? meets(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
@@ -139,12 +139,19 @@ class Meets extends BinaryExpression {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
       final rightEnd = right.getEnd();
-      final leftMeetsRight =
-          Equal.equal(leftEnd, Predecessor.predecessor(rightStart));
+      final pred = Predecessor.predecessor(rightStart);
+      final leftMeetsRight = precision != null &&
+              (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
+          ? SameAs.sameAs(leftEnd, pred, precision)
+          : Equal.equal(leftEnd, pred);
       if (leftMeetsRight?.valueBoolean == true) {
         return leftMeetsRight;
       }
-      return Equal.equal(leftStart, Successor.successor(rightEnd));
+      final succ = Successor.successor(rightEnd);
+      return precision != null &&
+              (leftStart is FhirDateTimeBase || leftStart is FhirTime)
+          ? SameAs.sameAs(leftStart, succ, precision)
+          : Equal.equal(leftStart, succ);
     } else {
       return null;
     }
