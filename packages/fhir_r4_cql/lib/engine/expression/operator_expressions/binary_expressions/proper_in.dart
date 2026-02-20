@@ -79,6 +79,6 @@ class ProperIn extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
     // ProperIn(point, interval) = ProperContains(interval, point)
-    return ProperContains.properContains(right, left);
+    return ProperContains.properContains(right, left, precision);
   }
 }

@@ -81,6 +81,6 @@ class ProperIncludedIn extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
     // ProperIncludedIn(a, b) = ProperIncludes(b, a)
-    return ProperIncludes.properIncludes(right, left);
+    return ProperIncludes.properIncludes(right, left, precision);
   }
 }

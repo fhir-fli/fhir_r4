@@ -309,4 +309,268 @@ void main() {
       expect(result, [CqlInterval(low: FhirInteger(1), high: FhirInteger(9))]);
     });
   });
+
+  group('Contains with precision', () {
+    test('Interval contains point at day precision', () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-01-15');
+      final contains = Contains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await contains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Interval does not contain point at day precision', () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-02-15');
+      final contains = Contains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await contains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+
+    test('Interval contains point at year precision', () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2020-01-01'),
+        high: LiteralDate('2025-12-31'),
+      );
+      final point = LiteralDate('2024-06-15');
+      final contains = Contains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.year,
+      );
+      final result = await contains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Contains at boundary with day precision', () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-01-01');
+      final contains = Contains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await contains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Integer interval without precision (existing behavior)', () async {
+      final interval = IntervalExpression(
+        low: LiteralInteger(1),
+        high: LiteralInteger(5),
+      );
+      final point = LiteralInteger(4);
+      final contains = Contains(operand: [interval, point]);
+      final result = await contains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+  });
+
+  group('In with precision', () {
+    test('Point in interval at day precision', () async {
+      final point = LiteralDate('2024-01-15');
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final inOp = In(
+        operand: [point, interval],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await inOp.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Point not in interval at day precision', () async {
+      final point = LiteralDate('2024-02-15');
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final inOp = In(
+        operand: [point, interval],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await inOp.execute({});
+      expect(result, FhirBoolean(false));
+    });
+
+    test('Point in interval at month precision', () async {
+      final point = LiteralDate('2024-06');
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final inOp = In(
+        operand: [point, interval],
+        precision: CqlDateTimePrecision.month,
+      );
+      final result = await inOp.execute({});
+      expect(result, FhirBoolean(true));
+    });
+  });
+
+  group('ProperContains with precision', () {
+    test('Interval properly contains point at day precision', () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-01-15');
+      final properContains = ProperContains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Interval does not properly contain boundary point at day precision',
+        () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-01-01');
+      final properContains = ProperContains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+
+    test('Interval does not properly contain end boundary at day precision',
+        () async {
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final point = LiteralDate('2024-01-31');
+      final properContains = ProperContains(
+        operand: [interval, point],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+  });
+
+  group('ProperIn with precision', () {
+    test('Point properly in interval at day precision', () async {
+      final point = LiteralDate('2024-01-15');
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final properIn = ProperIn(
+        operand: [point, interval],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Boundary point not properly in interval at day precision', () async {
+      final point = LiteralDate('2024-01-01');
+      final interval = LiteralDateInterval(
+        low: LiteralDate('2024-01-01'),
+        high: LiteralDate('2024-01-31'),
+      );
+      final properIn = ProperIn(
+        operand: [point, interval],
+        precision: CqlDateTimePrecision.day,
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(false));
+    });
+  });
+
+  group('ProperIncludes with precision', () {
+    test('Interval properly includes smaller interval at month precision',
+        () async {
+      final outer = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final inner = LiteralDateInterval(
+        low: LiteralDate('2024-03'),
+        high: LiteralDate('2024-06'),
+      );
+      final properIncludes = ProperIncludes(
+        operand: [outer, inner],
+        precision: CqlDateTimePrecision.month,
+      );
+      final result = await properIncludes.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Equal intervals not properly included at month precision', () async {
+      final outer = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final inner = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final properIncludes = ProperIncludes(
+        operand: [outer, inner],
+        precision: CqlDateTimePrecision.month,
+      );
+      final result = await properIncludes.execute({});
+      expect(result, FhirBoolean(false));
+    });
+  });
+
+  group('ProperIncludedIn with precision', () {
+    test('Interval properly included in larger interval at month precision',
+        () async {
+      final inner = LiteralDateInterval(
+        low: LiteralDate('2024-03'),
+        high: LiteralDate('2024-06'),
+      );
+      final outer = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final properIncludedIn = ProperIncludedIn(
+        operand: [inner, outer],
+        precision: CqlDateTimePrecision.month,
+      );
+      final result = await properIncludedIn.execute({});
+      expect(result, FhirBoolean(true));
+    });
+
+    test('Equal intervals not properly included in at month precision',
+        () async {
+      final inner = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final outer = LiteralDateInterval(
+        low: LiteralDate('2024-01'),
+        high: LiteralDate('2024-12'),
+      );
+      final properIncludedIn = ProperIncludedIn(
+        operand: [inner, outer],
+        precision: CqlDateTimePrecision.month,
+      );
+      final result = await properIncludedIn.execute({});
+      expect(result, FhirBoolean(false));
+    });
+  });
 }

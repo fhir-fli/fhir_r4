@@ -215,7 +215,7 @@ class In extends BinaryExpression {
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
-      throw ArgumentError('After expression must have 2 operands');
+      throw ArgumentError('In expression must have 2 operands');
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
@@ -231,13 +231,10 @@ class In extends BinaryExpression {
       if (left == null) {
         return null;
       }
-      return FhirBoolean(right.contains(left));
+      return Contains.contains(right, left, precision);
     } else if (right is List) {
       return FhirBoolean(right.contains(left));
     } else if (right is CqlValueSet) {
-      // final String url = right.id;
-      // ignore: unused_local_variable
-      // final response = get(Uri.parse(url));
       return null;
     } else {
       throw ArgumentError(

@@ -131,18 +131,26 @@ class Contains extends BinaryExpression {
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    return contains(left, right);
+    return contains(left, right, precision);
   }
 
-  static FhirBoolean? contains(dynamic left, dynamic right) {
+  static FhirBoolean? contains(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null) {
       return FhirBoolean(false);
     } else if (left is CqlInterval) {
       if (right == null) {
         return null;
       }
-      final result = FhirBoolean(left.contains(right));
-      return result;
+      if (precision != null) {
+        final start = left.getStart();
+        final end = left.getEnd();
+        return And.and(
+          SameOrAfter.sameOrAfter(right, start, precision),
+          SameOrBefore.sameOrBefore(right, end, precision),
+        );
+      }
+      return FhirBoolean(left.contains(right));
     } else if (left is List) {
       // Use CQL equivalence semantics for list membership testing
       for (final element in left) {
@@ -153,7 +161,7 @@ class Contains extends BinaryExpression {
       return FhirBoolean(false);
     } else {
       throw ArgumentError(
-          'Constains: Left operand must be of type Interval or List');
+          'Contains: Left operand must be of type Interval or List');
     }
   }
 }

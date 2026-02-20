@@ -78,12 +78,21 @@ class ProperContains extends BinaryExpression {
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    return properContains(left, right);
+    return properContains(left, right, precision);
   }
 
-  static FhirBoolean? properContains(dynamic left, dynamic right) {
+  static FhirBoolean? properContains(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) return null;
     if (left is CqlInterval) {
+      if (precision != null) {
+        final start = left.getStart();
+        final end = left.getEnd();
+        return And.and(
+          After.after(right, start, precision),
+          Before.before(right, end, precision),
+        );
+      }
       final contains = left.contains(right);
       if (!contains) return FhirBoolean(false);
       // Check it's not equal to both start and end (unit interval)

@@ -80,13 +80,14 @@ class ProperIncludes extends BinaryExpression {
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    return properIncludes(left, right);
+    return properIncludes(left, right, precision);
   }
 
-  static FhirBoolean? properIncludes(dynamic left, dynamic right) {
+  static FhirBoolean? properIncludes(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) return null;
     // First check includes (right is included in left)
-    final included = IncludedIn.includedIn(right, left, null);
+    final included = IncludedIn.includedIn(right, left, precision);
     if (included == null) return null;
     if (included.valueBoolean != true) return FhirBoolean(false);
     // Then check not equal (proper means strictly larger)
