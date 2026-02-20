@@ -250,7 +250,32 @@ class Query extends CqlExpression {
       rows = [for (final idx in indices) rows[idx]];
     }
 
-    // 5) RETURN projection + DISTINCT
+    // 5a) AGGREGATE fold (mutually exclusive with return clause)
+    if (aggregate != null) {
+      // Optional distinct on source rows
+      if (aggregate!.distinct) {
+        final alias = source.first.alias;
+        final seen = <dynamic>{};
+        rows = rows.where((row) => seen.add(row[alias])).toList();
+      }
+
+      // Initialize accumulator
+      dynamic accumulator = aggregate!.starting != null
+          ? await aggregate!.starting!.execute(context)
+          : null;
+
+      // Fold over rows
+      for (final row in rows) {
+        final execCtx = <String, dynamic>{}
+          ..addAll(context)
+          ..addAll(row)
+          ..[aggregate!.identifier] = accumulator;
+        accumulator = await aggregate!.expression.execute(execCtx);
+      }
+      return accumulator;
+    }
+
+    // 5b) RETURN projection + DISTINCT
     final List<dynamic> result = [];
     if (returnClause != null) {
       for (final row in rows) {
@@ -272,11 +297,6 @@ class Query extends CqlExpression {
     } else {
       // No return clause with multiple sources: return the row-maps
       return rows;
-    }
-
-    // 6) AGGREGATE is not yet supported
-    if (aggregate != null) {
-      throw UnimplementedError('Query.aggregate is not supported yet');
     }
 
     // For singleton sources, return the scalar result or null if filtered out
