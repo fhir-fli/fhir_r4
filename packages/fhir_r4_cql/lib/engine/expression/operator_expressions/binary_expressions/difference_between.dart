@@ -115,7 +115,75 @@ class DifferenceBetween extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) =>
       const ['FhirInteger', 'CqlInterval'];
 
-  // TODO(Dokotela): uncertainties
+  /// Returns true when the date lacks the precision requested.
+  static bool _needsUncertainty(
+      FhirDateTimeBase date, CqlDateTimePrecision precision) {
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        return !date.hasYear;
+      case CqlDateTimePrecision.month:
+      case CqlDateTimePrecision.week:
+        return !date.hasMonth;
+      case CqlDateTimePrecision.day:
+        return !date.hasDay;
+      case CqlDateTimePrecision.hour:
+        return !date.hasHours;
+      case CqlDateTimePrecision.minute:
+        return !date.hasMinutes;
+      case CqlDateTimePrecision.second:
+        return !date.hasSeconds;
+      case CqlDateTimePrecision.millisecond:
+        return !date.hasMilliseconds;
+    }
+  }
+
+  /// Returns (min, max) DateTime bounds for a partial date by filling missing
+  /// fields with floor/ceiling values.
+  static (DateTime, DateTime) _dateBounds(FhirDateTimeBase date) {
+    final int year = date.year!;
+    final int minMonth = date.month ?? 1;
+    final int maxMonth = date.month ?? 12;
+    final int minDay = date.day ?? 1;
+    final int maxDay =
+        date.day ?? DateTime(year, maxMonth + 1, 0).day; // last day of month
+    final int minHour = date.hour ?? 0;
+    final int maxHour = date.hour ?? 23;
+    final int minMinute = date.minute ?? 0;
+    final int maxMinute = date.minute ?? 59;
+    final int minSecond = date.second ?? 0;
+    final int maxSecond = date.second ?? 59;
+    final int minMs = date.millisecond ?? 0;
+    final int maxMs = date.millisecond ?? 999;
+
+    return (
+      DateTime(year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
+      DateTime(year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
+    );
+  }
+
+  /// Compute the number of boundaries crossed for the given precision.
+  static int _differenceBetween(
+      DateTime low, DateTime high, CqlDateTimePrecision precision) {
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        return high.year - low.year;
+      case CqlDateTimePrecision.month:
+        return (high.year - low.year) * 12 + high.month - low.month;
+      case CqlDateTimePrecision.week:
+        return high.difference(low).inDays ~/ 7;
+      case CqlDateTimePrecision.day:
+        return high.difference(low).inDays;
+      case CqlDateTimePrecision.hour:
+        return high.difference(low).inHours;
+      case CqlDateTimePrecision.minute:
+        return high.difference(low).inMinutes;
+      case CqlDateTimePrecision.second:
+        return high.difference(low).inSeconds;
+      case CqlDateTimePrecision.millisecond:
+        return high.difference(low).inMilliseconds;
+    }
+  }
+
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
@@ -127,31 +195,27 @@ class DifferenceBetween extends BinaryExpression {
       return null;
     } else if (low is FhirDateTimeBase) {
       if (high is FhirDateTimeBase) {
-        final result = low.valueDateTime == null
-            ? null
-            : high.valueDateTime?.difference(low.valueDateTime!);
-        if (result == null) {
+        if (low.year == null || high.year == null) {
           return null;
         }
-        switch (precision) {
-          case CqlDateTimePrecision.year:
-            return FhirInteger(high.year! - low.year!);
-          case CqlDateTimePrecision.month:
-            return FhirInteger(
-                (high.year! - low.year!) * 12 + high.month! - low.month!);
-          case CqlDateTimePrecision.week:
-            return FhirInteger(result.inDays ~/ 7);
-          case CqlDateTimePrecision.day:
-            return FhirInteger(result.inDays);
-          case CqlDateTimePrecision.hour:
-            return FhirInteger(result.inHours);
-          case CqlDateTimePrecision.minute:
-            return FhirInteger(result.inMinutes);
-          case CqlDateTimePrecision.second:
-            return FhirInteger(result.inSeconds);
-          case CqlDateTimePrecision.millisecond:
-            return FhirInteger(result.inMilliseconds);
+
+        if (_needsUncertainty(low, precision) ||
+            _needsUncertainty(high, precision)) {
+          final (lowMin, lowMax) = _dateBounds(low);
+          final (highMin, highMax) = _dateBounds(high);
+          final minResult =
+              _differenceBetween(lowMax, highMin, precision);
+          final maxResult =
+              _differenceBetween(lowMin, highMax, precision);
+          return CqlInterval(
+            low: FhirInteger(minResult),
+            high: FhirInteger(maxResult),
+          ).setUncertain(true);
         }
+
+        final lowDt = low.valueDateTime!;
+        final highDt = high.valueDateTime!;
+        return FhirInteger(_differenceBetween(lowDt, highDt, precision));
       } else {
         throw CqlException(
             message:

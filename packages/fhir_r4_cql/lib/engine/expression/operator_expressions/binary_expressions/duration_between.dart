@@ -106,7 +106,135 @@ class DurationBetween extends BinaryExpression {
 
   @override
   List<String> getReturnTypes(CqlLibrary library) =>
-      ['FhirInteger', 'List<FhirInteger>'];
+      ['FhirInteger', 'CqlInterval'];
+
+  /// Returns true when the date lacks the precision requested.
+  static bool _needsUncertainty(
+      FhirDateTimeBase date, CqlDateTimePrecision precision) {
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        return !date.hasYear;
+      case CqlDateTimePrecision.month:
+      case CqlDateTimePrecision.week:
+        return !date.hasMonth;
+      case CqlDateTimePrecision.day:
+        return !date.hasDay;
+      case CqlDateTimePrecision.hour:
+        return !date.hasHours;
+      case CqlDateTimePrecision.minute:
+        return !date.hasMinutes;
+      case CqlDateTimePrecision.second:
+        return !date.hasSeconds;
+      case CqlDateTimePrecision.millisecond:
+        return !date.hasMilliseconds;
+    }
+  }
+
+  /// Returns (min, max) DateTime bounds for a partial date.
+  ///
+  /// For DurationBetween, only uncertain fields at or above the requested
+  /// [precision] are expanded to their extremes in the max bound. Fields
+  /// below the precision stay at minimum, because the "whole period" check
+  /// depends on those sub-fields and we cannot guarantee a complete period
+  /// when they are unknown.
+  static (DateTime, DateTime) _dateBounds(
+      FhirDateTimeBase date, CqlDateTimePrecision precision) {
+    final int year = date.year!;
+    final int pi = _precisionLevel(precision);
+
+    final int minMonth = date.month ?? 1;
+    final int maxMonth = date.month ?? (pi >= 1 ? 12 : 1);
+    final int minDay = date.day ?? 1;
+    final int maxDay =
+        date.day ?? (pi >= 2 ? DateTime(year, maxMonth + 1, 0).day : 1);
+    final int minHour = date.hour ?? 0;
+    final int maxHour = date.hour ?? (pi >= 3 ? 23 : 0);
+    final int minMinute = date.minute ?? 0;
+    final int maxMinute = date.minute ?? (pi >= 4 ? 59 : 0);
+    final int minSecond = date.second ?? 0;
+    final int maxSecond = date.second ?? (pi >= 5 ? 59 : 0);
+    final int minMs = date.millisecond ?? 0;
+    final int maxMs = date.millisecond ?? (pi >= 6 ? 999 : 0);
+
+    return (
+      DateTime(year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
+      DateTime(year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
+    );
+  }
+
+  /// Maps precision to a numeric level for comparison.
+  /// month=1, day/week=2, hour=3, minute=4, second=5, millisecond=6.
+  static int _precisionLevel(CqlDateTimePrecision precision) {
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        return 0;
+      case CqlDateTimePrecision.month:
+        return 1;
+      case CqlDateTimePrecision.week:
+      case CqlDateTimePrecision.day:
+        return 2;
+      case CqlDateTimePrecision.hour:
+        return 3;
+      case CqlDateTimePrecision.minute:
+        return 4;
+      case CqlDateTimePrecision.second:
+        return 5;
+      case CqlDateTimePrecision.millisecond:
+        return 6;
+    }
+  }
+
+  /// Compute the number of whole calendar periods for the given precision.
+  /// Unlike DifferenceBetween which counts boundary crossings, DurationBetween
+  /// counts complete periods — so incomplete periods are dropped.
+  static int _durationBetween(
+      DateTime low, DateTime high, CqlDateTimePrecision precision) {
+    final bool negative = high.isBefore(low);
+    if (negative) {
+      final temp = low;
+      low = high;
+      high = temp;
+    }
+
+    int result;
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        result = high.year - low.year;
+        // Check if the anniversary hasn't been reached yet
+        if (high.month < low.month ||
+            (high.month == low.month && high.day < low.day) ||
+            (high.month == low.month &&
+                high.day == low.day &&
+                _timeOfDay(high) < _timeOfDay(low))) {
+          result--;
+        }
+      case CqlDateTimePrecision.month:
+        result = (high.year - low.year) * 12 + (high.month - low.month);
+        // Check if the monthly anniversary hasn't been reached yet
+        if (high.day < low.day ||
+            (high.day == low.day && _timeOfDay(high) < _timeOfDay(low))) {
+          result--;
+        }
+      case CqlDateTimePrecision.week:
+        result = high.difference(low).inDays ~/ 7;
+      case CqlDateTimePrecision.day:
+        result = high.difference(low).inDays;
+      case CqlDateTimePrecision.hour:
+        result = high.difference(low).inHours;
+      case CqlDateTimePrecision.minute:
+        result = high.difference(low).inMinutes;
+      case CqlDateTimePrecision.second:
+        result = high.difference(low).inSeconds;
+      case CqlDateTimePrecision.millisecond:
+        result = high.difference(low).inMilliseconds;
+    }
+
+    return negative ? -result : result;
+  }
+
+  /// Returns the time-of-day portion in milliseconds for sub-day comparison.
+  static int _timeOfDay(DateTime dt) =>
+      dt.hour * 3600000 + dt.minute * 60000 + dt.second * 1000 + dt.millisecond;
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
@@ -119,30 +247,27 @@ class DurationBetween extends BinaryExpression {
       return null;
     } else if (low is FhirDateTimeBase) {
       if (high is FhirDateTimeBase) {
-        final result = low.valueDateTime == null
-            ? null
-            : high.valueDateTime?.difference(low.valueDateTime!);
-        if (result == null) {
+        if (low.year == null || high.year == null) {
           return null;
         }
-        switch (precision) {
-          case CqlDateTimePrecision.year:
-            return FhirInteger(result.inDays ~/ 365);
-          case CqlDateTimePrecision.month:
-            return FhirInteger(result.inDays ~/ 30);
-          case CqlDateTimePrecision.week:
-            return FhirInteger(result.inDays ~/ 7);
-          case CqlDateTimePrecision.day:
-            return FhirInteger(result.inDays);
-          case CqlDateTimePrecision.hour:
-            return FhirInteger(result.inHours);
-          case CqlDateTimePrecision.minute:
-            return FhirInteger(result.inMinutes);
-          case CqlDateTimePrecision.second:
-            return FhirInteger(result.inSeconds);
-          case CqlDateTimePrecision.millisecond:
-            return FhirInteger(result.inMilliseconds);
+
+        if (_needsUncertainty(low, precision) ||
+            _needsUncertainty(high, precision)) {
+          final (lowMin, lowMax) = _dateBounds(low, precision);
+          final (highMin, highMax) = _dateBounds(high, precision);
+          final minResult =
+              _durationBetween(lowMax, highMin, precision);
+          final maxResult =
+              _durationBetween(lowMin, highMax, precision);
+          return CqlInterval(
+            low: FhirInteger(minResult),
+            high: FhirInteger(maxResult),
+          ).setUncertain(true);
         }
+
+        final lowDt = low.valueDateTime!;
+        final highDt = high.valueDateTime!;
+        return FhirInteger(_durationBetween(lowDt, highDt, precision));
       } else {
         throw CqlException(
             message: 'DurationBetween must be passed two Dates, DateTimes, or '

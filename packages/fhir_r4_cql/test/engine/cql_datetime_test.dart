@@ -368,7 +368,18 @@ void main() {
     });
     test(
         """define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 10]""",
-        () async {});
+        () async {
+      final low = LiteralDate('2012-01-02');
+      final high = LiteralDate('2012');
+      final duration = DurationBetween(
+          precision: CqlDateTimePrecision.month, operand: [low, high]);
+      final result = await duration.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.isUncertain(), isTrue);
+      expect(interval.low, equals(FhirInteger(0)));
+      expect(interval.high, equals(FhirInteger(10)));
+    });
     test("""define "DurationIsNull": months between @2012-01-01 and null""",
         () async {
       final low = LiteralDate('2012-01-01');
@@ -376,6 +387,41 @@ void main() {
       final duration = DurationBetween(
           precision: CqlDateTimePrecision.month, operand: [low, high]);
       expect(await duration.execute({}), null);
+    });
+    test(
+        """define "UncertainDurationInDays": days between @2024-01 and @2024-03""",
+        () async {
+      final low = LiteralDate('2024-01');
+      final high = LiteralDate('2024-03');
+      final duration = DurationBetween(
+          precision: CqlDateTimePrecision.day, operand: [low, high]);
+      final result = await duration.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.isUncertain(), isTrue);
+      // min: from Jan 31 to Mar 1 = 30 days; max: from Jan 1 to Mar 31 = 90 days
+      expect((interval.low as FhirInteger).valueInt! > 0, isTrue);
+      expect((interval.high as FhirInteger).valueInt! > 0, isTrue);
+      expect((interval.low as FhirInteger).valueInt!,
+          lessThanOrEqualTo((interval.high as FhirInteger).valueInt!));
+    });
+    test(
+        """define "DurationInYears": years between @2012-01-01 and @2014-01-01 // 2""",
+        () async {
+      final low = LiteralDate('2012-01-01');
+      final high = LiteralDate('2014-01-01');
+      final duration = DurationBetween(
+          precision: CqlDateTimePrecision.year, operand: [low, high]);
+      expect(await duration.execute({}), FhirInteger(2));
+    });
+    test(
+        """define "DurationInMonthsCalendar": months between @2012-01-01 and @2012-04-01 // 3""",
+        () async {
+      final low = LiteralDate('2012-01-01');
+      final high = LiteralDate('2012-04-01');
+      final duration = DurationBetween(
+          precision: CqlDateTimePrecision.month, operand: [low, high]);
+      expect(await duration.execute({}), FhirInteger(3));
     });
   });
 
@@ -396,6 +442,43 @@ void main() {
       final duration = DifferenceBetween(
           precision: CqlDateTimePrecision.month, operand: [low, high]);
       expect(await duration.execute({}), null);
+    });
+    test(
+        """define "UncertainDifferenceInMonths": difference in months between @2012-01-02 and @2012 // [0, 11]""",
+        () async {
+      final low = LiteralDate('2012-01-02');
+      final high = LiteralDate('2012');
+      final diff = DifferenceBetween(
+          precision: CqlDateTimePrecision.month, operand: [low, high]);
+      final result = await diff.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.isUncertain(), isTrue);
+      expect(interval.low, equals(FhirInteger(0)));
+      expect(interval.high, equals(FhirInteger(11)));
+    });
+    test(
+        """define "UncertainDifferenceInDays": difference in days between @2024-01 and @2024-03""",
+        () async {
+      final low = LiteralDate('2024-01');
+      final high = LiteralDate('2024-03');
+      final diff = DifferenceBetween(
+          precision: CqlDateTimePrecision.day, operand: [low, high]);
+      final result = await diff.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.isUncertain(), isTrue);
+      expect((interval.low as FhirInteger).valueInt!,
+          lessThanOrEqualTo((interval.high as FhirInteger).valueInt!));
+    });
+    test(
+        """define "DifferenceInYearsNoUncertainty": difference in years between @2012-01-02 and @2012 // 0""",
+        () async {
+      final low = LiteralDate('2012-01-02');
+      final high = LiteralDate('2012');
+      final diff = DifferenceBetween(
+          precision: CqlDateTimePrecision.year, operand: [low, high]);
+      expect(await diff.execute({}), FhirInteger(0));
     });
   });
 }
