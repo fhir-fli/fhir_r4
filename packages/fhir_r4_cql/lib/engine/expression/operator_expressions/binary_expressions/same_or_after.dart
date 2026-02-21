@@ -146,6 +146,11 @@ class SameOrAfter extends BinaryExpression {
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
+    return sameOrAfter(left, right, precision);
+  }
+
+  static FhirBoolean? sameOrAfter(
+      dynamic left, dynamic right, CqlDateTimePrecision? precision) {
     if (left == null || right == null) {
       return null;
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
@@ -164,12 +169,11 @@ class SameOrAfter extends BinaryExpression {
         return sameOrAfterTime(leftStart, rightEnd, precision);
       } else if (leftStart is Comparable && rightEnd is Comparable) {
         return FhirBoolean(leftStart.compareTo(rightEnd) >= 0);
-      } else {
-        return null;
       }
+      return null;
     } else if (left is CqlInterval) {
       final leftStart = left.getStart();
-      if (leftStart == null || right == null) {
+      if (leftStart == null) {
         return null;
       } else if (leftStart is FhirDateTimeBase && right is FhirDateTimeBase) {
         return sameOrAfterDateTime(leftStart, right, precision);
@@ -177,12 +181,11 @@ class SameOrAfter extends BinaryExpression {
         return sameOrAfterTime(leftStart, right, precision);
       } else if (leftStart is Comparable && right is Comparable) {
         return FhirBoolean(leftStart.compareTo(right) >= 0);
-      } else {
-        return null;
       }
+      return null;
     } else if (right is CqlInterval) {
       final rightEnd = right.getEnd();
-      if (left == null || rightEnd == null) {
+      if (rightEnd == null) {
         return null;
       } else if (left is FhirDateTimeBase && rightEnd is FhirDateTimeBase) {
         return sameOrAfterDateTime(left, rightEnd, precision);
@@ -190,26 +193,8 @@ class SameOrAfter extends BinaryExpression {
         return sameOrAfterTime(left, rightEnd, precision);
       } else if (left is Comparable && rightEnd is Comparable) {
         return FhirBoolean(left.compareTo(rightEnd) >= 0);
-      } else {
-        try {
-          final result = left >= rightEnd;
-          return result == null ? null : FhirBoolean(result);
-        } catch (e) {
-          return null;
-        }
       }
-    }
-    return null;
-  }
-
-  static FhirBoolean? sameOrAfter(
-      dynamic left, dynamic right, CqlDateTimePrecision? precision) {
-    if (left == null || right == null) {
       return null;
-    } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
-      return sameOrAfterDateTime(left, right, precision);
-    } else if (left is FhirTime && right is FhirTime) {
-      return sameOrAfterTime(left, right, precision);
     } else if (left is Comparable && right is Comparable) {
       return FhirBoolean(left.compareTo(right) >= 0);
     }
@@ -266,7 +251,7 @@ class SameOrAfter extends BinaryExpression {
       /// If they're not equal, or we're only comparing to the second,
       /// return the result
       if (!secondsEqual || precision == CqlDateTimePrecision.second) {
-        return FhirBoolean(false);
+        return FhirBoolean(secondsEqual);
       }
 
       /// if we're supposed to continue to compare, but either one doesn't
@@ -308,7 +293,7 @@ class SameOrAfter extends BinaryExpression {
 
       /// if we're supposed to continue to compare, but either one doesn't
       /// have a month, then there isn't enough precision, and we return null
-      else if (!left.hasMonth ^ !right.hasMonth) {
+      else if (!left.hasMonth || !right.hasMonth) {
         return null;
       }
 
@@ -379,7 +364,7 @@ class SameOrAfter extends BinaryExpression {
       /// If they're not equal, or we're only comparing to the second,
       /// return the result
       if (!secondsEqual || precision == CqlDateTimePrecision.second) {
-        return FhirBoolean(false);
+        return FhirBoolean(secondsEqual);
       }
 
       /// if we're supposed to continue to compare, but either one doesn't

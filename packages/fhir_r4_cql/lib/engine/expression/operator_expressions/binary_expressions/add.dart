@@ -171,36 +171,32 @@ class Add extends BinaryExpression {
             : null;
       case FhirDateTimeBase _:
         {
-          if (right is ValidatedQuantity) {
-            num? value = double.tryParse(right.value.asUcumDecimal());
-            if (value != null) {
-              value = value == value.toInt() ? value.toInt() : null;
-            }
-
-            return right.isValid() && right.isDuration && value != null
-                ? left +
-                    ExtendedDuration(
-                      years:
-                          isYears(right.unit.toLowerCase()) ? value as int : 0,
-                      months:
-                          isMonths(right.unit.toLowerCase()) ? value as int : 0,
-                      weeks:
-                          isWeeks(right.unit.toLowerCase()) ? value as int : 0,
-                      days: isDays(right.unit.toLowerCase()) ? value as int : 0,
-                      hours:
-                          isHours(right.unit.toLowerCase()) ? value as int : 0,
-                      minutes: isMinutes(right.unit.toLowerCase())
-                          ? value as int
-                          : 0,
-                      seconds: isSeconds(right.unit.toLowerCase())
-                          ? value as int
-                          : 0,
-                      milliseconds: isMilliseconds(right.unit.toLowerCase())
-                          ? value as int
-                          : 0,
-                    )
-                : null;
+          if (right is ValidatedQuantity && right.isDuration) {
+            return left +
+                ExtendedDuration(
+                  years: right.years?.toInt() ?? 0,
+                  months: right.months?.toInt() ?? 0,
+                  weeks: right.weeks?.toInt() ?? 0,
+                  days: right.days?.toInt() ?? 0,
+                  hours: right.hours?.toInt() ?? 0,
+                  minutes: right.minutes?.toInt() ?? 0,
+                  seconds: right.seconds?.toInt() ?? 0,
+                  milliseconds: right.milliseconds?.toInt() ?? 0,
+                );
           }
+          return null;
+        }
+      case FhirTime _:
+        {
+          if (right is ValidatedQuantity && right.isDuration) {
+            return left.plus(
+              hours: right.hours?.toInt() ?? 0,
+              minutes: right.minutes?.toInt() ?? 0,
+              seconds: right.seconds?.toInt() ?? 0,
+              milliseconds: right.milliseconds?.toInt() ?? 0,
+            );
+          }
+          return null;
         }
       default:
         return null;

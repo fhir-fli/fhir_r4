@@ -128,9 +128,14 @@ class Variance extends AggregateExpression {
       return null;
     }
 
+    // Sample variance requires at least 2 values (denominator is N-1)
+    if (sourceResult.length < 2) {
+      return null;
+    }
+
     var mean = Avg.avg(sourceResult);
 
-    // For FhirDecimal
+    // For FhirDecimal — sample variance uses (N-1) denominator
     if (mean is FhirDecimal) {
       FhirDecimal sumOfSquaredDiffs = FhirDecimal(0.0);
       for (final val in sourceResult as List<dynamic>) {
@@ -141,11 +146,12 @@ class Variance extends AggregateExpression {
               FhirDecimal(sumOfSquaredDiffs.valueNum! + squaredDiff.valueNum!);
         }
       }
-      var variance = sumOfSquaredDiffs.valueNum! / sourceResult.length;
+      var variance =
+          sumOfSquaredDiffs.valueNum! / (sourceResult.length - 1);
       return FhirDecimal(variance);
     }
 
-    // For ValidatedQuantity
+    // For ValidatedQuantity — sample variance uses (N-1) denominator
     else if (mean is ValidatedQuantity) {
       UcumDecimal? sumOfSquaredValues;
       for (final val in sourceResult as List<dynamic>) {
@@ -160,8 +166,11 @@ class Variance extends AggregateExpression {
         }
       }
       if (sumOfSquaredValues != null) {
+        // Re-parse to ensure adequate precision for division (UcumDecimal
+        // precision from chained add() can be too low, causing truncation).
+        final sum = UcumDecimal.fromString(sumOfSquaredValues.asUcumDecimal());
         var varianceValue =
-            sumOfSquaredValues / UcumDecimal.fromNum(sourceResult.length);
+            sum / UcumDecimal.fromNum(sourceResult.length - 1);
         return ValidatedQuantity(value: varianceValue, unit: mean.unit);
       }
     }

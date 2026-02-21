@@ -158,7 +158,10 @@ class Log extends BinaryExpression {
         second is! FhirDecimal) {
       return null;
     }
-    return FhirDecimal(log(first.valueNum!) / log(second.valueNum!));
+    final result = log(first.valueNum!) / log(second.valueNum!);
+    // If the result cannot be represented (NaN, Infinity), return null
+    if (result.isNaN || result.isInfinite) return null;
+    return FhirDecimal(result);
   }
 
   @override

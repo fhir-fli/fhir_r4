@@ -125,34 +125,38 @@ class OverlapsAfter extends BinaryExpression {
     }
 
     if (left is CqlInterval && right is CqlInterval) {
-      var leftEnd = left.getEnd();
-      var rightEnd = right.getEnd();
+      try {
+        var leftEnd = left.getEnd();
+        var rightEnd = right.getEnd();
 
-      bool after = false;
-      bool overlaps = false;
+        bool after = false;
+        bool overlaps = false;
 
-      if (leftEnd is FhirDateTimeBase &&
-          rightEnd is FhirDateTimeBase &&
-          precision != null) {
-        after =
-            After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
-        overlaps =
-            Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
-      } else if (leftEnd is FhirTime &&
-          rightEnd is FhirTime &&
-          precision != null) {
-        after =
-            After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
-        overlaps =
-            Overlaps.overlaps(left, right, precision)?.valueBoolean ?? overlaps;
-      } else if (leftEnd is Comparable && rightEnd is Comparable) {
-        after = leftEnd.compareTo(rightEnd) > 0;
-        overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? overlaps;
+        if (leftEnd is FhirDateTimeBase &&
+            rightEnd is FhirDateTimeBase &&
+            precision != null) {
+          after =
+              After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
+          overlaps = Overlaps.overlaps(left, right, precision)?.valueBoolean ??
+              overlaps;
+        } else if (leftEnd is FhirTime &&
+            rightEnd is FhirTime &&
+            precision != null) {
+          after =
+              After.after(leftEnd, rightEnd, precision)?.valueBoolean ?? after;
+          overlaps = Overlaps.overlaps(left, right, precision)?.valueBoolean ??
+              overlaps;
+        } else if (leftEnd is Comparable && rightEnd is Comparable) {
+          after = leftEnd.compareTo(rightEnd) > 0;
+          overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? overlaps;
+        }
+
+        return FhirBoolean(after && overlaps);
+      } catch (_) {
+        return null;
       }
-
-      return FhirBoolean(after && overlaps);
     }
 
-    throw Exception("OverlapsAfter requires CqlInterval arguments.");
+    return null;
   }
 }

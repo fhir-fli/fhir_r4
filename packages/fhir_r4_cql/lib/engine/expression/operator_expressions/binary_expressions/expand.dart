@@ -182,7 +182,7 @@ class Expand extends BinaryExpression {
     }
 
     final source = await operand[0].execute(context);
-    final per = operand.length > 1 ? operand[1].execute(context) : null;
+    final per = operand.length > 1 ? await operand[1].execute(context) : null;
     return expand(source, per);
   }
 

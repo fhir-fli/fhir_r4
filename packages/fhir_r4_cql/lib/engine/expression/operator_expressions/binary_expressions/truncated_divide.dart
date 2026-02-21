@@ -103,57 +103,67 @@ class TruncatedDivide extends BinaryExpression {
       return null;
     }
 
-    switch (left) {
-      case FhirInteger _:
-        {
-          if (right is FhirInteger) {
-            return FhirInteger(left.valueNum! ~/ right.valueNum!);
-          } else if (right is FhirInteger64) {
-            return FhirInteger64(
-                BigInt.from(left.valueNum!) ~/ right.valueBigInt!);
-          } else if (right is FhirDecimal) {
-            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
+    // Division by zero returns null per the CQL spec
+    if (right is FhirNumber && right.valueNum == 0) return null;
+    if (right is FhirInteger64 && right.valueBigInt == BigInt.zero) return null;
+
+    try {
+      switch (left) {
+        case FhirInteger _:
+          {
+            if (right is FhirInteger) {
+              return FhirInteger(left.valueNum! ~/ right.valueNum!);
+            } else if (right is FhirInteger64) {
+              return FhirInteger64(
+                  BigInt.from(left.valueNum!) ~/ right.valueBigInt!);
+            } else if (right is FhirDecimal) {
+              return FhirDecimal(left.valueNum! ~/ right.valueNum!);
+            }
           }
-        }
-        break;
-      case FhirInteger64 _:
-        {
-          if (right is FhirInteger) {
-            return FhirInteger64(
-                left.valueBigInt! ~/ BigInt.from(right.valueNum!));
-          } else if (right is FhirInteger64) {
-            return FhirInteger64(left.valueBigInt! ~/ right.valueBigInt!);
-          } else if (right is FhirDecimal) {
-            return FhirDecimal(left.valueBigInt!.toDouble() ~/ right.valueNum!);
+          break;
+        case FhirInteger64 _:
+          {
+            if (right is FhirInteger) {
+              return FhirInteger64(
+                  left.valueBigInt! ~/ BigInt.from(right.valueNum!));
+            } else if (right is FhirInteger64) {
+              return FhirInteger64(left.valueBigInt! ~/ right.valueBigInt!);
+            } else if (right is FhirDecimal) {
+              return FhirDecimal(
+                  left.valueBigInt!.toDouble() ~/ right.valueNum!);
+            }
           }
-        }
-        break;
-      case FhirDecimal _:
-        {
-          if (right is FhirInteger) {
-            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
-          } else if (right is FhirInteger64) {
-            return FhirDecimal(left.valueNum! ~/ right.valueBigInt!.toDouble());
-          } else if (right is FhirDecimal) {
-            return FhirDecimal(left.valueNum! ~/ right.valueNum!);
-          } else if (right is ValidatedQuantity && right.isValid()) {
-            return ValidatedQuantity.fromNumber(left.valueNum!) ~/ right;
+          break;
+        case FhirDecimal _:
+          {
+            if (right is FhirInteger) {
+              return FhirDecimal(left.valueNum! ~/ right.valueNum!);
+            } else if (right is FhirInteger64) {
+              return FhirDecimal(
+                  left.valueNum! ~/ right.valueBigInt!.toDouble());
+            } else if (right is FhirDecimal) {
+              return FhirDecimal(left.valueNum! ~/ right.valueNum!);
+            } else if (right is ValidatedQuantity && right.isValid()) {
+              return ValidatedQuantity.fromNumber(left.valueNum!) ~/ right;
+            }
           }
-        }
-        break;
-      case ValidatedQuantity _:
-        {
-          if (right is FhirDecimal && left.isValid()) {
-            return left ~/ ValidatedQuantity.fromNumber(right.valueNum!);
-          } else if (right is ValidatedQuantity &&
-              left.isValid() &&
-              right.isValid()) {
-            return left ~/ right;
+          break;
+        case ValidatedQuantity _:
+          {
+            if (right is FhirDecimal && left.isValid()) {
+              return left ~/ ValidatedQuantity.fromNumber(right.valueNum!);
+            } else if (right is ValidatedQuantity &&
+                left.isValid() &&
+                right.isValid()) {
+              return left ~/ right;
+            }
           }
-        }
-        break;
+          break;
+      }
+    } catch (_) {
+      return null;
     }
 
-    throw ArgumentError('Invalid arguments for divide operation');
+    return null;
   }
 }

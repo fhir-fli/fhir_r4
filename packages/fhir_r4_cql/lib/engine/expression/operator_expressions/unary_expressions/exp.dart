@@ -67,9 +67,8 @@ class Exp extends UnaryExpression {
       }
     }
 
-    if (operand == null) {
-      throw ArgumentError('The argument of Ln cannot be null');
-    }
+    // Fallback: use the operand as-is and let execution handle it
+    operand ??= first;
 
     return Exp(
       operand: operand,

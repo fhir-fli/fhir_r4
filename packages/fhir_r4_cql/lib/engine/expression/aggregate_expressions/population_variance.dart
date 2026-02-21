@@ -134,8 +134,10 @@ class PopulationVariance extends AggregateExpression {
         }
       }
       if (sumOfSquaredValues != null) {
-        var varianceValue = sumOfSquaredValues /
-            UcumDecimal.fromNum(sourceResult.length); // N instead of N-1
+        // Re-parse to ensure adequate precision for division
+        final sum = UcumDecimal.fromString(sumOfSquaredValues.asUcumDecimal());
+        var varianceValue =
+            sum / UcumDecimal.fromNum(sourceResult.length); // N instead of N-1
         return ValidatedQuantity(value: varianceValue, unit: mean.unit);
       }
     }

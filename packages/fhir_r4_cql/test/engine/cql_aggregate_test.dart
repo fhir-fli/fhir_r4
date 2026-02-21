@@ -344,10 +344,10 @@ void main() {
       );
       final variance = Variance(source: list);
       final result = await variance.execute({});
-      expect(result, equals(FhirDecimal(2.0)));
+      expect(result, equals(FhirDecimal(2.5)));
     });
     test(
-        """define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'""",
+        """define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'""",
         () async {
       final list = ListExpression(
         element: [
@@ -360,7 +360,7 @@ void main() {
       );
       final variance = Variance(source: list);
       final result = await variance.execute({});
-      expect(result, equals(ValidatedQuantity.fromNumber(2.0, unit: 'mg')));
+      expect(result, equals(ValidatedQuantity.fromNumber(2.5, unit: 'mg')));
     });
     test(
         'define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })',
@@ -469,10 +469,10 @@ void main() {
       );
       final stddev = StdDev(source: list);
       final result = await stddev.execute({});
-      expect(result, equals(FhirDecimal(1.41421356)));
+      expect(result, equals(FhirDecimal(1.58113883)));
     });
     test(
-        """define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'""",
+        """define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.5811388300841898 'mg'""",
         () async {
       final list = ListExpression(
         element: [
@@ -488,7 +488,7 @@ void main() {
       expect(
           result,
           equals(ValidatedQuantity(
-              value: UcumDecimal.fromNum(1.4142135623730951), unit: 'mg')));
+              value: UcumDecimal.fromNum(1.5811388300841898), unit: 'mg')));
     });
     test(
         'define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })',

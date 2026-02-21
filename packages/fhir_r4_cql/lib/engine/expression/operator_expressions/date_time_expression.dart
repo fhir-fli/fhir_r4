@@ -180,6 +180,10 @@ class DateTimeExpression extends OperatorExpression {
         minute: minuteValue?.valueNum,
         second: secondValue?.valueNum,
         millisecond: millisecondValue?.valueNum,
-        timeZoneOffset: timezoneOffsetValue?.stringToTimeZoneOffset);
+        timeZoneOffset: timezoneOffsetValue is FhirNumber
+            ? timezoneOffsetValue.valueNum?.toDouble()
+            : timezoneOffsetValue is String
+                ? timezoneOffsetValue.stringToTimeZoneOffset
+                : null);
   }
 }

@@ -115,24 +115,37 @@ class Divide extends BinaryExpression {
       return null;
     } else if ((left is FhirNumber || left is FhirInteger64) &&
         (right is FhirNumber || right is FhirInteger64)) {
-      final leftDecimal =
-          UcumDecimal.fromString(_ensureDecimalPrecision(left.valueString));
-      final rightDecimal =
-          UcumDecimal.fromString(_ensureDecimalPrecision(right.valueString));
-      final result = leftDecimal / rightDecimal;
-      return FhirDecimal(double.parse(result.asUcumDecimal()));
+      // Division by zero returns null per the CQL spec
+      if (right is FhirNumber && right.valueNum == 0) return null;
+      if (right is FhirInteger64 && right.valueBigInt == BigInt.zero) {
+        return null;
+      }
+      try {
+        final leftDecimal =
+            UcumDecimal.fromString(_ensureDecimalPrecision(left.valueString));
+        final rightDecimal =
+            UcumDecimal.fromString(_ensureDecimalPrecision(right.valueString));
+        final result = leftDecimal / rightDecimal;
+        return FhirDecimal(double.parse(result.asUcumDecimal()));
+      } catch (_) {
+        return null;
+      }
     } else if ((left is ValidatedQuantity || left is FhirDecimal) &&
         (right is ValidatedQuantity || right is FhirDecimal)) {
-      final leftQuantity = left is ValidatedQuantity
-          ? left
-          : ValidatedQuantity(value: left.value, unit: '1');
-      final rightQuantity = right is ValidatedQuantity
-          ? right
-          : ValidatedQuantity(value: right.value, unit: '1');
-      final result = leftQuantity / rightQuantity;
-      return result;
+      try {
+        final leftQuantity = left is ValidatedQuantity
+            ? left
+            : ValidatedQuantity(value: left.value, unit: '1');
+        final rightQuantity = right is ValidatedQuantity
+            ? right
+            : ValidatedQuantity(value: right.value, unit: '1');
+        final result = leftQuantity / rightQuantity;
+        return result;
+      } catch (_) {
+        return null;
+      }
     }
-    throw ArgumentError('Invalid arguments for divide operation');
+    return null;
   }
 
   /// CQL Decimal has minimum scale of 8 digits. UcumDecimal preserves input

@@ -1846,7 +1846,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Multiply(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for multiplication');
+    // Fallback: let execution handle type checking and null propagation
+    return Multiply(operand: [left, right]);
   }
 
   CqlExpression handleDivide(CqlExpression left, CqlExpression right) {
@@ -1947,7 +1948,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Divide(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for division');
+    // Fallback: let execution handle type checking and null propagation
+    return Divide(operand: [left, right]);
   }
 
   TruncatedDivide handleTruncatedDivide(
@@ -2060,7 +2062,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return TruncatedDivide(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for truncated division');
+    // Fallback: let execution handle type checking and null propagation
+    return TruncatedDivide(operand: [left, right]);
   }
 
   Modulo handleModulo(CqlExpression left, CqlExpression right) {
@@ -2174,6 +2177,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Modulo(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for modulo');
+    // Fallback: let execution handle type checking and null propagation
+    return Modulo(operand: [left, right]);
   }
 }

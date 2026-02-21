@@ -101,8 +101,16 @@ class Power extends BinaryExpression {
         }
         break;
       default:
-        throw ArgumentError(
-            'First argument must be an Integer, Long, or Decimal');
+        // Non-literal operand — let execution handle type checking
+        operand.add(first);
+        operand.add(second);
+    }
+
+    if (operand.length != 2) {
+      // Literal case didn't match the right operand type — use raw operands
+      operand.clear();
+      operand.add(first);
+      operand.add(second);
     }
 
     return Power(

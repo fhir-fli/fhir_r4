@@ -259,7 +259,7 @@ class SameOrBefore extends BinaryExpression {
       /// If they're not equal, or we're only comparing to the second,
       /// return the result
       if (!secondsEqual || precision == CqlDateTimePrecision.second) {
-        return FhirBoolean(false);
+        return FhirBoolean(secondsEqual);
       }
 
       /// if we're supposed to continue to compare, but either one doesn't
@@ -372,7 +372,7 @@ class SameOrBefore extends BinaryExpression {
       /// If they're not equal, or we're only comparing to the second,
       /// return the result
       if (!secondsEqual || precision == CqlDateTimePrecision.second) {
-        return FhirBoolean(false);
+        return FhirBoolean(secondsEqual);
       }
 
       /// if we're supposed to continue to compare, but either one doesn't

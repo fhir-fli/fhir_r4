@@ -121,6 +121,8 @@ class OverlapsBefore extends BinaryExpression {
     return overlapsBefore(left, right, precision);
   }
 
+  /// OverlapsBefore returns true if the first interval overlaps the second and
+  /// starts before it: Start(left) < Start(right) AND End(left) >= Start(right)
   static FhirBoolean? overlapsBefore(dynamic left, dynamic right,
       [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
@@ -128,26 +130,42 @@ class OverlapsBefore extends BinaryExpression {
     }
 
     if (left is CqlInterval && right is CqlInterval) {
-      var leftStart = left.getStart();
-      var leftEnd = left.getEnd();
-      var rightStart = right.getStart();
-      var rightEnd = right.getEnd();
+      try {
+        var leftStart = left.getStart();
+        var rightStart = right.getStart();
 
-      if (leftStart is FhirDateTimeBase &&
-          rightStart is FhirDateTimeBase &&
-          precision != null) {
-        return And.and(
-          SameOrBefore.sameOrBefore(leftStart, rightEnd, precision),
-          SameOrBefore.sameOrBefore(rightStart, leftEnd, precision),
-        );
-      } else {
-        return And.and(
-          LessOrEqual.lessOrEqual(leftStart, rightEnd),
-          LessOrEqual.lessOrEqual(rightStart, leftEnd),
-        );
+        bool before = false;
+        bool overlaps = false;
+
+        if (leftStart is FhirDateTimeBase &&
+            rightStart is FhirDateTimeBase &&
+            precision != null) {
+          before =
+              Before.before(leftStart, rightStart, precision)?.valueBoolean ??
+                  before;
+          overlaps =
+              Overlaps.overlaps(left, right, precision)?.valueBoolean ??
+                  overlaps;
+        } else if (leftStart is FhirTime &&
+            rightStart is FhirTime &&
+            precision != null) {
+          before =
+              Before.before(leftStart, rightStart, precision)?.valueBoolean ??
+                  before;
+          overlaps =
+              Overlaps.overlaps(left, right, precision)?.valueBoolean ??
+                  overlaps;
+        } else if (leftStart is Comparable && rightStart is Comparable) {
+          before = leftStart.compareTo(rightStart) < 0;
+          overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? overlaps;
+        }
+
+        return FhirBoolean(before && overlaps);
+      } catch (_) {
+        return null;
       }
     }
 
-    throw Exception("Overlaps requires CqlInterval arguments.");
+    return null;
   }
 }
