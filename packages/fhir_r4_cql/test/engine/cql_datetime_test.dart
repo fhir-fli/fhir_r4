@@ -367,7 +367,7 @@ void main() {
       expect(await duration.execute({}), FhirInteger(3));
     });
     test(
-        """define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 10]""",
+        """define "UncertainDurationInMonths": months between @2012-01-02 and @2012 // [0, 11]""",
         () async {
       final low = LiteralDate('2012-01-02');
       final high = LiteralDate('2012');
