@@ -248,15 +248,52 @@ class SameAs extends BinaryExpression {
     }
   }
 
+  /// Normalize a FhirDateTimeBase to UTC while preserving its precision level.
+  /// Used by Before, SameOrAfter, SameOrBefore for timezone normalization.
+  static FhirDateTime normalizeToUtc(FhirDateTimeBase dt) {
+    final offset = dt.timeZoneOffset;
+    final offsetHours = (offset ?? 0).truncate();
+    final offsetMinutes = (((offset ?? 0) - offsetHours) * 60).truncate();
+    final utc = DateTime.utc(
+        dt.year!, dt.month ?? 1, dt.day ?? 1,
+        (dt.hour ?? 0) - offsetHours, (dt.minute ?? 0) - offsetMinutes,
+        dt.second ?? 0, dt.millisecond ?? 0);
+    return FhirDateTime.fromUnits(
+      year: utc.year,
+      month: dt.hasMonth ? utc.month : null,
+      day: dt.hasDay ? utc.day : null,
+      hour: dt.hasHours ? utc.hour : null,
+      minute: dt.hasMinutes ? utc.minute : null,
+      second: dt.hasSeconds ? utc.second : null,
+      millisecond: dt.hasMilliseconds ? utc.millisecond : null,
+    );
+  }
+
+  /// Returns true for hour, minute, second, or millisecond precision.
+  /// Used by Before, SameOrAfter, SameOrBefore for timezone normalization.
+  static bool isHourOrFiner(CqlDateTimePrecision precision) =>
+      precision == CqlDateTimePrecision.hour ||
+      precision == CqlDateTimePrecision.minute ||
+      precision == CqlDateTimePrecision.second ||
+      precision == CqlDateTimePrecision.millisecond;
+
   static FhirBoolean? _sameAsDateTime(
       FhirDateTimeBase left, FhirDateTimeBase right,
       [CqlDateTimePrecision? precision]) {
     if (precision == null) {
       final result = left.isEqual(right);
       return result == null ? null : FhirBoolean(result);
-    } else {
-      /// Check if years are equal
-      final yearsEqual = left.year == right.year;
+    }
+
+    // Normalize to UTC when timezone offsets present and precision is hour+
+    if (isHourOrFiner(precision) &&
+        (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+      left = normalizeToUtc(left);
+      right = normalizeToUtc(right);
+    }
+
+    /// Check if years are equal
+    final yearsEqual = left.year == right.year;
 
       /// If they're not equal, or we're only comparing to the year,
       /// return the result
@@ -352,6 +389,5 @@ class SameAs extends BinaryExpression {
         /// We've reached the end of the precision, return the result
         return FhirBoolean(millisecondsEqual);
       }
-    }
   }
 }

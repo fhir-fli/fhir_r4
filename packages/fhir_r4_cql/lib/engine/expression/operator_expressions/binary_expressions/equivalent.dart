@@ -219,8 +219,14 @@ class Equivalent extends BinaryExpression {
           result = UcumDecimal.fromString(left.valueString!)
               .equivalent(UcumDecimal.fromString(right.toString()));
         } else if ((right is FhirNumber) || (right is FhirInteger64)) {
-          result = UcumDecimal.fromString(left.valueString!)
-              .equivalent(UcumDecimal.fromString(right.toString()));
+          // CQL spec: for decimals, equivalent rounds to precision of least
+          // precise operand. Use numeric comparison which handles this naturally.
+          if (left is FhirNumber && right is FhirNumber) {
+            result = left.valueNum == right.valueNum;
+          } else {
+            result = UcumDecimal.fromString(left.valueString!)
+                .equivalent(UcumDecimal.fromString(right.valueString!));
+          }
         } else if (right is ValidatedQuantity && left is FhirDecimal) {
           result =
               ValidatedQuantity.fromString(left.valueString!).equivalent(right);

@@ -79,7 +79,14 @@ class ProperIncludedIn extends BinaryExpression {
       throw ArgumentError('ProperIncludedIn expression must have 2 operands');
     }
     final left = await operand[0].execute(context);
-    final right = await operand[1].execute(context);
+    var right = await operand[1].execute(context);
+    // Handle Interval[null, null] with closed bounds — unbounded interval
+    if (right == null && operand[1] is IntervalExpression) {
+      final ie = operand[1] as IntervalExpression;
+      if (ie.lowClosed && ie.highClosed) {
+        right = CqlInterval(low: null, lowClosed: true, high: null, highClosed: true);
+      }
+    }
     // ProperIncludedIn(a, b) = ProperIncludes(b, a)
     return ProperIncludes.properIncludes(right, left, precision);
   }

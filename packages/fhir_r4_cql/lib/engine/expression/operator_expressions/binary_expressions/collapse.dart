@@ -196,10 +196,25 @@ class Collapse extends BinaryExpression {
       return [];
     }
 
+    // Filter out null elements (e.g., from Interval(null, null) evaluating to null)
+    if (source is List) {
+      source = source.where((e) => e != null).toList();
+    }
+    if (source.isEmpty) {
+      return [];
+    }
     if (source is List && source.every((element) => element is CqlInterval)) {
-      if (source.length == 1) {
-        return source as List<CqlInterval>;
+      // Filter out null intervals (both boundaries null)
+      final intervals = source.cast<CqlInterval>();
+      final filtered =
+          intervals.where((i) => i.low != null || i.high != null).toList();
+      if (filtered.isEmpty) {
+        return [];
       }
+      if (filtered.length == 1) {
+        return filtered;
+      }
+      source = filtered;
 
       final precision =
           _precisionFromQuantity(per) ?? _coarsestPrecision(source);

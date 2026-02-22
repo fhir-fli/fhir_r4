@@ -71,7 +71,9 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
           // ───── Compute the three “needs Query” flags ─────
 
           // 1) flattenNeeded: list-of-lists + scalars
-          final flattenNeeded = (expr.element?.first is ListExpression) &&
+          final flattenNeeded =
+              (expr.element?.isNotEmpty == true) &&
+              (expr.element?.first is ListExpression) &&
               expr.element!.skip(1).any((e) => e is! ListExpression);
 
           // 2) setOpCast: sibling is a UNION that truly mixes element types

@@ -139,19 +139,54 @@ class Meets extends BinaryExpression {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
       final rightEnd = right.getEnd();
-      final pred = Predecessor.predecessor(rightStart);
-      final leftMeetsRight = precision != null &&
-              (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
-          ? SameAs.sameAs(leftEnd, pred, precision)
-          : Equal.equal(leftEnd, pred);
-      if (leftMeetsRight?.valueBoolean == true) {
-        return leftMeetsRight;
+      // Check meets before: leftEnd = predecessor(rightStart)
+      bool hasNull = false;
+      if (leftEnd != null && rightStart != null) {
+        final pred = Predecessor.predecessor(rightStart);
+        if (pred != null) {
+          final leftMeetsRight = precision != null &&
+                  (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
+              ? SameAs.sameAs(leftEnd, pred, precision)
+              : Equal.equal(leftEnd, pred);
+          if (leftMeetsRight?.valueBoolean == true) {
+            return leftMeetsRight;
+          }
+        }
+      } else {
+        // A required boundary is null → indeterminate for this direction
+        hasNull = true;
       }
-      final succ = Successor.successor(rightEnd);
-      return precision != null &&
-              (leftStart is FhirDateTimeBase || leftStart is FhirTime)
-          ? SameAs.sameAs(leftStart, succ, precision)
-          : Equal.equal(leftStart, succ);
+      // Check meets after: leftStart = successor(rightEnd)
+      if (leftStart != null && rightEnd != null) {
+        final succ = Successor.successor(rightEnd);
+        if (succ != null) {
+          final rightMeetsLeft = precision != null &&
+                  (leftStart is FhirDateTimeBase || leftStart is FhirTime)
+              ? SameAs.sameAs(leftStart, succ, precision)
+              : Equal.equal(leftStart, succ);
+          if (rightMeetsLeft?.valueBoolean == true) {
+            return rightMeetsLeft;
+          }
+        }
+      } else {
+        hasNull = true;
+      }
+      // If any required boundary was null, check if we can determine
+      // the result from the known boundaries
+      if (hasNull) {
+        // If leftEnd < rightStart (with gap > 1), intervals are disjoint
+        // and can't meet in either direction
+        if (leftEnd != null && rightStart != null) {
+          final lt = Less.less(leftEnd, Predecessor.predecessor(rightStart));
+          if (lt?.valueBoolean == true) return FhirBoolean(false);
+        }
+        if (rightEnd != null && leftStart != null) {
+          final lt = Less.less(rightEnd, Predecessor.predecessor(leftStart));
+          if (lt?.valueBoolean == true) return FhirBoolean(false);
+        }
+        return null;
+      }
+      return FhirBoolean(false);
     } else {
       return null;
     }

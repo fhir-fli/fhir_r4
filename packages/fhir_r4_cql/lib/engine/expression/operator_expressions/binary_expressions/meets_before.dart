@@ -131,6 +131,8 @@ class MeetsBefore extends BinaryExpression {
     } else if (left is CqlInterval && right is CqlInterval) {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
+      // If either required boundary is null, result is indeterminate
+      if (leftEnd == null || rightStart == null) return null;
       final pred = Predecessor.predecessor(rightStart);
       if (precision != null &&
           (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)) {

@@ -131,6 +131,18 @@ class MeetsAfter extends BinaryExpression {
     } else if (left is CqlInterval && right is CqlInterval) {
       final leftStart = left.getStart();
       final rightEnd = right.getEnd();
+      // If either boundary needed for the comparison is null (unknown),
+      // check if we can definitively determine the result from known boundaries
+      if (leftStart == null || rightEnd == null) {
+        // If leftEnd < rightStart, the intervals are disjoint and can't meet
+        final leftEnd = left.getEnd();
+        final rightStart = right.getStart();
+        if (leftEnd != null && rightStart != null) {
+          final lt = Less.less(leftEnd, rightStart);
+          if (lt?.valueBoolean == true) return FhirBoolean(false);
+        }
+        return null;
+      }
       final succ = Successor.successor(rightEnd);
       if (precision != null &&
           (leftStart is FhirDateTimeBase || leftStart is FhirTime)) {

@@ -68,10 +68,16 @@ class CqlConversionExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
     TypeSpecifierExpression typeSpecifier,
     CqlExpression expression,
   ) {
-    // Determine the appropriate conversion function based on the typeSpecifier
-    print(
-        '[DEBUG] Determining conversion function for typeSpecifier: $typeSpecifier');
-    switch (typeSpecifier.type) {
+    // Get the type name — handle NamedTypeSpecifier by extracting the
+    // local part of the namespace QName
+    String typeName;
+    if (typeSpecifier is NamedTypeSpecifier) {
+      typeName = typeSpecifier.namespace.localPart;
+    } else {
+      typeName = typeSpecifier.type;
+    }
+
+    switch (typeName) {
       case 'Integer':
         return ToInteger(operand: expression);
       case 'Decimal':
@@ -88,11 +94,10 @@ class CqlConversionExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
         return ToDate(operand: expression);
       case 'Time':
         return ToTime(operand: expression);
+      case 'Concept':
+        return ToConcept(operand: expression);
       default:
-        final errorMessage =
-            'Unsupported conversion type: ${typeSpecifier.type}';
-        print('[ERROR] $errorMessage');
-        throw ArgumentError(errorMessage);
+        throw ArgumentError('Unsupported conversion type: $typeName');
     }
   }
 }

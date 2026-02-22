@@ -12,18 +12,13 @@ class CqlIncludedInIntervalOperatorPhraseVisitor
       CqlExpression? right]) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    // String? startsEndsOccurs;
-    // String? properly;
+    bool properly = false;
     String? duringIncludedIn;
     CqlDateTimePrecision? dateTimePrecisionSpecifier;
     for (final child in ctx.children ?? <ParseTree>[]) {
       if (child is TerminalNodeImpl) {
-        if (child.text == 'starts' ||
-            child.text == 'ends' ||
-            child.text == 'occurs') {
-          // startsEndsOccurs = child.text;
-        } else if (child.text == 'properly') {
-          // properly = child.text;
+        if (child.text == 'properly') {
+          properly = true;
         } else if (child.text == 'during' || child.text == 'included in') {
           duringIncludedIn = child.text;
         }
@@ -36,6 +31,12 @@ class CqlIncludedInIntervalOperatorPhraseVisitor
       // CQL `during` maps to ELM `In`, while `included in` maps to `IncludedIn`
       if (duringIncludedIn == 'during') {
         return In(
+          precision: dateTimePrecisionSpecifier,
+          operand: [left, right],
+        );
+      }
+      if (properly) {
+        return ProperIncludedIn(
           precision: dateTimePrecisionSpecifier,
           operand: [left, right],
         );

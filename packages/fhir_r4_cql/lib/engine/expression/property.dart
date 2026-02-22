@@ -132,6 +132,12 @@ class Property extends CqlExpression {
 
   Future<dynamic> _resolveProperty(
       dynamic sourceResult, Map<String, dynamic> context) async {
+    // For plain Maps (CQL tuples), directly access the property
+    if (sourceResult is Map<String, dynamic> &&
+        sourceResult.containsKey(path) &&
+        !sourceResult.containsKey('resourceType')) {
+      return sourceResult[path];
+    }
     try {
       final fhirContext = sourceResult is fhir.FhirBase
           ? sourceResult

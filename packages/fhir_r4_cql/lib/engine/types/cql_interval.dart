@@ -157,37 +157,86 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
     var rightStart = right.getStart();
     var rightEnd = right.getEnd();
 
-    // Ensure no start or end point is null
-    if (leftStart == null ||
-        leftEnd == null ||
-        rightStart == null ||
-        rightEnd == null) {
-      return null;
+    // Handle null boundaries as extending to infinity
+    // Both start AND end null means empty/invalid — return null
+    if (leftStart == null && leftEnd == null) return null;
+    if (rightStart == null && rightEnd == null) return null;
+
+    // Check overlap: if we have all four endpoints, check properly;
+    // if some are null (unbounded), check what we can
+    if (leftStart != null &&
+        leftEnd != null &&
+        rightStart != null &&
+        rightEnd != null) {
+      bool overlaps = Overlaps.overlaps(this, right)?.valueBoolean ?? false;
+      if (!overlaps) return null;
+    } else {
+      // Partial null check: if left ends before right starts, no overlap
+      if (leftEnd != null &&
+          rightStart != null &&
+          (Less.less(leftEnd, rightStart)?.valueBoolean ?? false)) {
+        return null;
+      }
+      if (rightEnd != null &&
+          leftStart != null &&
+          (Less.less(rightEnd, leftStart)?.valueBoolean ?? false)) {
+        return null;
+      }
     }
 
-    // Determine if intervals overlap
-    bool overlaps = Overlaps.overlaps(this, right)?.valueBoolean ?? false;
-    if (!overlaps) {
-      return null;
+    // Find the maximum start point (null start = unknown → result unknown)
+    Object? maxStart;
+    bool resultLowClosed;
+    if (leftStart == null && rightStart == null) {
+      maxStart = null;
+      resultLowClosed = false;
+    } else if (leftStart == null) {
+      // Left start unknown: max(unknown, rightStart) = unknown
+      maxStart = null;
+      resultLowClosed = false;
+    } else if (rightStart == null) {
+      // Right start unknown: max(leftStart, unknown) = unknown
+      maxStart = null;
+      resultLowClosed = false;
+    } else {
+      maxStart = (Greater.greater(leftStart, rightStart)?.valueBoolean ?? false)
+          ? leftStart
+          : rightStart;
+      resultLowClosed = true;
     }
 
-    // Find the maximum start point and minimum end point for the intersection
-    var maxStart =
-        (Greater.greater(leftStart, rightStart)?.valueBoolean ?? false)
-            ? leftStart
-            : rightStart;
-    var minEnd = (Less.less(leftEnd, rightEnd)?.valueBoolean ?? false)
-        ? leftEnd
-        : rightEnd;
+    // Find the minimum end point (null end = unknown → result unknown)
+    Object? minEnd;
+    bool resultHighClosed;
+    if (leftEnd == null && rightEnd == null) {
+      minEnd = null;
+      resultHighClosed = false;
+    } else if (leftEnd == null) {
+      // Left end unknown: min(unknown, rightEnd) = unknown
+      minEnd = null;
+      resultHighClosed = false;
+    } else if (rightEnd == null) {
+      // Right end unknown: min(leftEnd, unknown) = unknown
+      minEnd = null;
+      resultHighClosed = false;
+    } else {
+      minEnd = (Less.less(leftEnd, rightEnd)?.valueBoolean ?? false)
+          ? leftEnd
+          : rightEnd;
+      resultHighClosed = true;
+    }
 
     // Ensure the intersection is valid (start is before end)
-    if (!(Greater.greater(minEnd, maxStart)?.valueBoolean ?? false)) {
+    if (maxStart != null &&
+        minEnd != null &&
+        !(GreaterOrEqual.greaterOrEqual(minEnd, maxStart)?.valueBoolean ??
+            false)) {
       return null;
     }
 
     // Return the new interval representing the intersection
     return CqlInterval(
-        low: maxStart, lowClosed: true, high: minEnd, highClosed: true);
+        low: maxStart, lowClosed: resultLowClosed, high: minEnd, highClosed: resultHighClosed);
   }
 
   CqlInterval? except(CqlInterval right) {
@@ -212,6 +261,30 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
     }
     final doesContain = contains(right);
     if (doesContain) {
+      // If right shares left's end, return the portion before right
+      final endsEqual = Equal.equal(rightEnd, leftEnd)?.valueBoolean ?? false;
+      if (endsEqual) {
+        final newEnd = Predecessor.predecessor(rightStart);
+        if ((GreaterOrEqual.greaterOrEqual(newEnd, leftStart)?.valueBoolean ??
+            false)) {
+          return CqlInterval(
+              low: leftStart, lowClosed: true, high: newEnd, highClosed: true);
+        }
+        return null;
+      }
+      // If right shares left's start, return the portion after right
+      final startsEqual =
+          Equal.equal(rightStart, leftStart)?.valueBoolean ?? false;
+      if (startsEqual) {
+        final newStart = Successor.successor(rightEnd);
+        if ((LessOrEqual.lessOrEqual(newStart, leftEnd)?.valueBoolean ??
+            false)) {
+          return CqlInterval(
+              low: newStart, lowClosed: true, high: leftEnd, highClosed: true);
+        }
+        return null;
+      }
+      // Right is strictly interior — result would be disjoint
       return null;
     }
 
@@ -225,12 +298,11 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
       end = leftEnd;
     }
 
-    // Ensure the intersection is valid (start is before end)
-    if (!(Greater.greater(end, start)?.valueBoolean ?? false)) {
+    // Ensure the result is valid (start is before or equal to end)
+    if (!(GreaterOrEqual.greaterOrEqual(end, start)?.valueBoolean ?? false)) {
       return null;
     }
 
-    // Return the new interval representing the intersection
     return CqlInterval(
         low: start, lowClosed: true, high: end, highClosed: true);
   }

@@ -36,7 +36,7 @@ class Exists extends UnaryExpression {
   Future<FhirBoolean> execute(Map<String, dynamic> context) async {
     final result = await operand.execute(context);
     if (result == null) return FhirBoolean(false);
-    if (result is List) return FhirBoolean(result.isNotEmpty);
+    if (result is List) return FhirBoolean(result.any((e) => e != null));
     return FhirBoolean(true);
   }
 

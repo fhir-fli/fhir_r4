@@ -131,14 +131,17 @@ class Divide extends BinaryExpression {
         return null;
       }
     } else if ((left is ValidatedQuantity || left is FhirDecimal) &&
-        (right is ValidatedQuantity || right is FhirDecimal)) {
+        (right is ValidatedQuantity || right is FhirDecimal ||
+            right is FhirNumber)) {
       try {
         final leftQuantity = left is ValidatedQuantity
             ? left
-            : ValidatedQuantity(value: left.value, unit: '1');
+            : ValidatedQuantity(
+                value: UcumDecimal.fromString(left.valueString!), unit: '1');
         final rightQuantity = right is ValidatedQuantity
             ? right
-            : ValidatedQuantity(value: right.value, unit: '1');
+            : ValidatedQuantity(
+                value: UcumDecimal.fromString(right.valueString!), unit: '1');
         final result = leftQuantity / rightQuantity;
         return result;
       } catch (_) {

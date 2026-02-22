@@ -71,25 +71,25 @@ void main() {
       expect(result, equals(fhir.FhirInteger(2)));
     });
 
-    test('FhirTime with HH:MM:SS returns 3 (second precision)', () async {
+    test('FhirTime with HH:MM:SS returns 6 (total digits)', () async {
       final precision =
           Precision(operand: _ConstExpr(fhir.FhirTime('10:30:45')));
       final result = await precision.execute({});
-      expect(result, equals(fhir.FhirInteger(3)));
+      expect(result, equals(fhir.FhirInteger(6)));
     });
 
-    test('FhirDate with YYYY-MM-DD returns 3 (day precision)', () async {
+    test('FhirDate with YYYY-MM-DD returns 8 (total digits)', () async {
       final precision = Precision(
           operand: _ConstExpr(fhir.FhirDate.fromString('2024-03-15')));
       final result = await precision.execute({});
-      expect(result, equals(fhir.FhirInteger(3)));
+      expect(result, equals(fhir.FhirInteger(8)));
     });
 
-    test('FhirDate with YYYY-MM returns 2 (month precision)', () async {
+    test('FhirDate with YYYY-MM returns 6 (total digits)', () async {
       final precision =
           Precision(operand: _ConstExpr(fhir.FhirDate.fromString('2024-03')));
       final result = await precision.execute({});
-      expect(result, equals(fhir.FhirInteger(2)));
+      expect(result, equals(fhir.FhirInteger(6)));
     });
 
     test('null operand returns null', () async {
@@ -100,14 +100,13 @@ void main() {
   });
 
   group('HighBoundary', () {
-    test('returns value passthrough (stub implementation)', () async {
+    test('FhirDecimal pads with 9s to target precision', () async {
       final highBoundary = HighBoundary(operand: [
         _ConstExpr(fhir.FhirDecimal(1.5)),
         LiteralInteger(8),
       ]);
       final result = await highBoundary.execute({});
-      // Stub implementation returns the value itself
-      expect(result, equals(fhir.FhirDecimal(1.5)));
+      expect(result, equals(fhir.FhirDecimal(1.59999999)));
     });
 
     test('null value returns null', () async {

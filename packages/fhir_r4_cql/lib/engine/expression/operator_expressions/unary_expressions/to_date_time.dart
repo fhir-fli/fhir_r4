@@ -44,7 +44,17 @@ class ToDateTime extends UnaryExpression {
     if (value is FhirDate) {
       return FhirDateTime.fromString(value.valueString ?? '');
     }
-    if (value is String) return FhirDateTime.fromString(value);
+    if (value is String) {
+      // Validate against ISO-8601 datetime format: YYYY[-MM[-DD[Thh[:mm[:ss[.fff]]]]]][+/-hh:mm|Z]
+      final dateTimeRegex = RegExp(
+          r'^\d{4}(-\d{2}(-\d{2}(T\d{2}(:\d{2}(:\d{2}(\.\d+)?)?)?(Z|[+-]\d{2}:\d{2})?)?)?)?$');
+      if (!dateTimeRegex.hasMatch(value)) return null;
+      try {
+        return FhirDateTime.fromString(value);
+      } catch (_) {
+        return null;
+      }
+    }
     return null;
   }
 

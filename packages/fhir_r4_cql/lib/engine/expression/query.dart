@@ -220,7 +220,8 @@ class Query extends CqlExpression {
                       curr is Map<String, dynamic> ? curr[key] : null,
                 );
           } else if (spec is ByDirection) {
-            rawKey = null;
+            // For ByDirection on simple lists, sort by the element value itself
+            rawKey = row[source.first.alias];
           } else {
             throw ArgumentError('Unknown SortByItem type: ${spec.type}');
           }
@@ -252,11 +253,14 @@ class Query extends CqlExpression {
 
     // 5a) AGGREGATE fold (mutually exclusive with return clause)
     if (aggregate != null) {
-      // Optional distinct on source rows
+      // Optional distinct on source rows — deduplicate on all source aliases
       if (aggregate!.distinct) {
-        final alias = source.first.alias;
-        final seen = <dynamic>{};
-        rows = rows.where((row) => seen.add(row[alias])).toList();
+        final aliases = source.map((s) => s.alias).toList();
+        final seen = <String>{};
+        rows = rows.where((row) {
+          final key = aliases.map((a) => '${row[a]}').join('\x00');
+          return seen.add(key);
+        }).toList();
       }
 
       // Initialize accumulator

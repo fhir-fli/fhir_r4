@@ -669,8 +669,8 @@ class CqlExpression extends Element {
         return ExpandValueSet(operand: operand.first);
       case 'DateTime':
         return DateTimeExpression.fromOperandList(operand: operand);
-      // case 'Date':
-      //   return DateExpression(operand: operand);
+      case 'Date':
+        return DateExpression.fromOperandList(operand: operand);
       // case 'Expression':
       //   return CqlExpression(operand: operand);
       // case 'ExpressionRef':
@@ -956,6 +956,11 @@ class CqlExpression extends Element {
           if (operand.length == 2) {
             return Substring(
                 stringToSub: operand.first, startIndex: operand.last);
+          } else if (operand.length == 3) {
+            return Substring(
+                stringToSub: operand[0],
+                startIndex: operand[1],
+                length: operand[2]);
           }
         }
       case 'SubsumedBy':

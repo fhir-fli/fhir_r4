@@ -128,6 +128,25 @@ class LessOrEqual extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     }
+    // Uncertainty interval: [a,b] <= v is true if b <= v, false if a > v, else null
+    if (left is CqlInterval) {
+      final low = left.getStart();
+      final high = left.getEnd();
+      final highLe = lessOrEqual(high, right);
+      if (highLe?.valueBoolean == true) return FhirBoolean(true);
+      final lowGt = Greater.greater(low, right);
+      if (lowGt?.valueBoolean == true) return FhirBoolean(false);
+      return null;
+    }
+    if (right is CqlInterval) {
+      final low = right.getStart();
+      final high = right.getEnd();
+      final leLow = lessOrEqual(left, low);
+      if (leLow?.valueBoolean == true) return FhirBoolean(true);
+      final gtHigh = Greater.greater(left, high);
+      if (gtHigh?.valueBoolean == true) return FhirBoolean(false);
+      return null;
+    }
     if (left is FhirInteger && right is FhirInteger) {
       return FhirBoolean(left <= right);
     } else if (left is FhirDecimal && right is FhirDecimal) {
@@ -150,6 +169,12 @@ class LessOrEqual extends BinaryExpression {
       } catch (e) {
         return null;
       }
+    } else if (left is FhirDecimal && right is FhirInteger) {
+      return FhirBoolean(
+          left <= FhirDecimal(right.valueNum!.toDouble()));
+    } else if (left is FhirInteger && right is FhirDecimal) {
+      return FhirBoolean(
+          FhirDecimal(left.valueNum!.toDouble()) <= right);
     }
     throw ArgumentError('Invalid operand types for LessOrEqual operation: \n'
         'Left: $left (${left.runtimeType})\n'

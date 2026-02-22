@@ -187,9 +187,13 @@ Future<dynamic> _parseExpectedOutput(String output) async {
   }
 
   // Complex types: Interval, List, Tuple, Quantity
+  // Normalize whitespace (multi-line XML outputs have tabs/newlines)
+  var normalized = output.replaceAll(RegExp(r'\s+'), ' ');
   // Normalize quantity format — ensure space between number and unit quote
-  var normalized = output.replaceAllMapped(
-    RegExp(r"(\d)'"),
+  // Only match when the quote starts a UCUM unit (followed by a letter),
+  // not when it's the closing quote of a string literal like '8480-6'.
+  normalized = normalized.replaceAllMapped(
+    RegExp(r"(\d)'(?=[a-zA-Z%/])"),
     (m) => "${m.group(1)} '",
   );
 
@@ -291,6 +295,38 @@ bool _valuesEqual(dynamic actual, dynamic expected) {
   // FhirTime
   if (actual is fhir.FhirTime && expected is fhir.FhirTime) {
     return actual == expected;
+  }
+
+  // String vs FhirString — CQL engine uses raw strings internally
+  if (actual is String && expected is fhir.FhirString) {
+    return actual == expected.valueString;
+  }
+  if (actual is fhir.FhirString && expected is String) {
+    return actual.valueString == expected;
+  }
+
+  // CqlConcept — compare codes and display
+  if (actual is CqlConcept && expected is CqlConcept) {
+    if (actual.codes.length != expected.codes.length) return false;
+    for (var i = 0; i < actual.codes.length; i++) {
+      if (!actual.codes[i].equivalent(expected.codes[i])) return false;
+    }
+    return actual.display == expected.display;
+  }
+
+  // CqlCode — use equivalent
+  if (actual is CqlCode && expected is CqlCode) {
+    return actual.equivalent(expected);
+  }
+
+  // Maps (CQL tuples) — deep comparison
+  if (actual is Map && expected is Map) {
+    if (actual.length != expected.length) return false;
+    for (final key in expected.keys) {
+      if (!actual.containsKey(key)) return false;
+      if (!_valuesEqual(actual[key], expected[key])) return false;
+    }
+    return true;
   }
 
   // ValidatedQuantity / FhirBase

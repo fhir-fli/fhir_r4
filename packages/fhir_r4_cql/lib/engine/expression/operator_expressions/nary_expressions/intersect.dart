@@ -140,7 +140,13 @@ class Intersect extends NaryExpression {
     if (left is CqlInterval && right is CqlInterval) {
       return left.intersect(right);
     } else if (left is List && right is List) {
-      return List.from(left)..retainWhere((e) => right.contains(e));
+      // Use CQL equivalence semantics for comparison
+      return List.from(left)
+        ..retainWhere((e) => right.any((r) =>
+            (e == null && r == null) ||
+            (e != null &&
+                r != null &&
+                (Equivalent.equivalent(e, r).valueBoolean ?? false))));
     } else {
       return null;
     }

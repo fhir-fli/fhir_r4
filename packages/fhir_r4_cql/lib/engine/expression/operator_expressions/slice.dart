@@ -111,6 +111,10 @@ class Slice extends OperatorExpression {
         throw ArgumentError(
             'Slices must have a start argument that is an integer');
       }
+      // Clamp startIndex to list bounds to avoid RangeError
+      if (startIndex >= src.length) {
+        return [];
+      }
       final endIndex = end is int
           ? end
           : end is FhirNumber && end.valueNum is int

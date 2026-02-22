@@ -9,9 +9,11 @@ class CqlConcept implements CqlType {
 
   factory CqlConcept.fromJson(Map<String, dynamic> json) {
     return CqlConcept(
-      display: json['display'],
+      display: json['display']?.toString(),
       codes: json['codes'] != null
-          ? (json['codes'] as List).map((e) => CqlCode.fromJson(e)).toList()
+          ? (json['codes'] as List)
+              .map((e) => e is CqlCode ? e : CqlCode.fromJson(e))
+              .toList()
           : null,
     );
   }

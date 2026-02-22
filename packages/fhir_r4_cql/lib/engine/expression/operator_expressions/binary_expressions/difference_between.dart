@@ -156,12 +156,16 @@ class DifferenceBetween extends BinaryExpression {
     final int maxMs = date.millisecond ?? 999;
 
     return (
-      DateTime(year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
-      DateTime(year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
+      DateTime.utc(
+          year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
+      DateTime.utc(
+          year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
     );
   }
 
   /// Compute the number of boundaries crossed for the given precision.
+  /// For day/week: truncate to calendar day boundaries (not 24h periods).
+  /// For sub-day: use actual time difference (caller should normalize timezone).
   static int _differenceBetween(
       DateTime low, DateTime high, CqlDateTimePrecision precision) {
     switch (precision) {
@@ -170,9 +174,15 @@ class DifferenceBetween extends BinaryExpression {
       case CqlDateTimePrecision.month:
         return (high.year - low.year) * 12 + high.month - low.month;
       case CqlDateTimePrecision.week:
-        return high.difference(low).inDays ~/ 7;
+        // Truncate to day boundaries using UTC to avoid DST issues
+        final lowDay = DateTime.utc(low.year, low.month, low.day);
+        final highDay = DateTime.utc(high.year, high.month, high.day);
+        return highDay.difference(lowDay).inDays ~/ 7;
       case CqlDateTimePrecision.day:
-        return high.difference(low).inDays;
+        // Truncate to day boundaries using UTC to avoid DST issues
+        final lowDay = DateTime.utc(low.year, low.month, low.day);
+        final highDay = DateTime.utc(high.year, high.month, high.day);
+        return highDay.difference(lowDay).inDays;
       case CqlDateTimePrecision.hour:
         return high.difference(low).inHours;
       case CqlDateTimePrecision.minute:
@@ -207,14 +217,25 @@ class DifferenceBetween extends BinaryExpression {
               _differenceBetween(lowMax, highMin, precision);
           final maxResult =
               _differenceBetween(lowMin, highMax, precision);
+          // Collapse point intervals to scalar
+          if (minResult == maxResult) {
+            return FhirInteger(minResult);
+          }
           return CqlInterval(
             low: FhirInteger(minResult),
             high: FhirInteger(maxResult),
           ).setUncertain(true);
         }
 
-        final lowDt = low.valueDateTime!;
-        final highDt = high.valueDateTime!;
+        var lowDt = low.valueDateTime!;
+        var highDt = high.valueDateTime!;
+        // Normalize to UTC when timezone offsets are present
+        if (_isSubDayPrecision(precision) ||
+            low.timeZoneOffset != null ||
+            high.timeZoneOffset != null) {
+          lowDt = _toUtc(low, lowDt);
+          highDt = _toUtc(high, highDt);
+        }
         return FhirInteger(_differenceBetween(lowDt, highDt, precision));
       } else {
         throw CqlException(
@@ -267,5 +288,27 @@ class DifferenceBetween extends BinaryExpression {
               'but was instead passed low (${low.runtimeType}) and '
               'high (${high.runtimeType}).');
     }
+  }
+
+  static bool _isSubDayPrecision(CqlDateTimePrecision precision) =>
+      precision == CqlDateTimePrecision.hour ||
+      precision == CqlDateTimePrecision.minute ||
+      precision == CqlDateTimePrecision.second ||
+      precision == CqlDateTimePrecision.millisecond;
+
+  /// Convert a FhirDateTimeBase to UTC DateTime using its timezone offset.
+  /// Uses DateTime.utc() to avoid DST issues with local DateTime arithmetic.
+  static DateTime _toUtc(FhirDateTimeBase fdt, DateTime local) {
+    final offset = fdt.timeZoneOffset;
+    if (offset == null || fdt.isUtc) {
+      return DateTime.utc(local.year, local.month, local.day, local.hour,
+          local.minute, local.second, local.millisecond);
+    }
+    // timeZoneOffset is signed: -6.0 means UTC-6, so UTC = local + 6h
+    final offsetHours = offset.truncate();
+    final offsetMinutes = ((offset - offsetHours) * 60).truncate();
+    return DateTime.utc(local.year, local.month, local.day,
+        local.hour - offsetHours, local.minute - offsetMinutes,
+        local.second, local.millisecond);
   }
 }

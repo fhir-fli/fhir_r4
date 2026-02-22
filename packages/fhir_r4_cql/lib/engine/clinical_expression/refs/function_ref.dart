@@ -103,6 +103,9 @@ class FunctionRef extends ExpressionRef {
     }
 
     if (libraryName == null) {
+      // Handle well-known CQL system functions that may be parsed as FunctionRef
+      final result = await _trySystemFunction(context);
+      if (result != _notHandled) return result;
       throw ArgumentError('Library name cannot be null for FunctionRef');
     }
 
@@ -136,6 +139,25 @@ class FunctionRef extends ExpressionRef {
 
     // Execute the function with the prepared context
     return await functionDef.execute(functionContext);
+  }
+
+  static const _notHandled = Object();
+
+  Future<dynamic> _trySystemFunction(Map<String, dynamic> context) async {
+    switch (name.toLowerCase()) {
+      case 'descendents':
+      case 'descendants':
+        if (operand != null && operand!.isNotEmpty) {
+          final value = await operand![0].execute(context);
+          if (value == null) return null;
+          final results = <dynamic>[];
+          Descendents.collectDescendants(value, results);
+          return results;
+        }
+        return null;
+      default:
+        return _notHandled;
+    }
   }
 
   Future<dynamic> _fhirHelpers(Map<String, dynamic> context) async {

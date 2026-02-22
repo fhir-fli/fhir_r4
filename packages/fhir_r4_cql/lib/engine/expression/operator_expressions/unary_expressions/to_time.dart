@@ -72,16 +72,30 @@ class ToTime extends UnaryExpression {
     if (value == null) return null;
     if (value is fhir.FhirTime) return value;
     if (value is String) {
-      // Remove leading 'T' if present
-      final str = value.startsWith('T') ? value.substring(1) : value;
-      return fhir.FhirTime(str);
+      return _parseTime(value);
     }
     if (value is fhir.FhirString) {
       final str = value.primitiveValue;
       if (str == null) return null;
-      final cleaned = str.startsWith('T') ? str.substring(1) : str;
-      return fhir.FhirTime(cleaned);
+      return _parseTime(str);
     }
     return null;
+  }
+
+  static fhir.FhirTime? _parseTime(String input) {
+    // Remove leading 'T' if present
+    var str = input.startsWith('T') ? input.substring(1) : input;
+    // Validate basic format: must start with digits (time portion)
+    if (!RegExp(r'^\d').hasMatch(str)) return null;
+    // Strip timezone suffix FIRST (CQL Time values are timezone-independent)
+    str = str.replaceAll(RegExp(r'[Zz]$'), '');
+    str = str.replaceFirst(RegExp(r'[+-]\d{2}:\d{2}$'), '');
+    // Reject malformed separators (e.g. '14-30-00' instead of '14:30:00')
+    if (str.contains('-') || str.contains('+')) return null;
+    try {
+      return fhir.FhirTime(str);
+    } catch (_) {
+      return null;
+    }
   }
 }

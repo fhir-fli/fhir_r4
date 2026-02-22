@@ -168,7 +168,7 @@ class SameOrBefore extends BinaryExpression {
       } else if (leftEnd is FhirTime && rightStart is FhirTime) {
         return sameOrBeforeTime(leftEnd, rightStart, precision);
       } else if (leftEnd is Comparable && rightStart is Comparable) {
-        return FhirBoolean(leftEnd.compareTo(rightStart) < 0);
+        return FhirBoolean(leftEnd.compareTo(rightStart) <= 0);
       } else {
         return null;
       }
@@ -181,7 +181,7 @@ class SameOrBefore extends BinaryExpression {
       } else if (leftEnd is FhirTime && right is FhirTime) {
         return sameOrBeforeTime(leftEnd, right, precision);
       } else if (leftEnd is Comparable && right is Comparable) {
-        return FhirBoolean(leftEnd.compareTo(right) < 0);
+        return FhirBoolean(leftEnd.compareTo(right) <= 0);
       } else {
         return null;
       }
@@ -194,7 +194,7 @@ class SameOrBefore extends BinaryExpression {
       } else if (left is FhirTime && rightStart is FhirTime) {
         return sameOrBeforeTime(left, rightStart, precision);
       } else if (left is Comparable && rightStart is Comparable) {
-        return FhirBoolean(left.compareTo(rightStart) < 0);
+        return FhirBoolean(left.compareTo(rightStart) <= 0);
       } else {
         try {
           final result = left < rightStart;
@@ -283,10 +283,17 @@ class SameOrBefore extends BinaryExpression {
     CqlDateTimePrecision? precision,
   ]) {
     if (precision == null) {
-      final result = left.isSameOrBefore(right);
-      return result == null ? null : FhirBoolean(result);
-    } else {
-      if (!left.hasYear || !right.hasYear) {
+      return SameOrAfter.compareNoPrecision(left, right, isAfter: false);
+    }
+
+    // Normalize to UTC when timezone offsets present and precision is hour+
+    if (SameAs.isHourOrFiner(precision) &&
+        (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+      left = SameAs.normalizeToUtc(left);
+      right = SameAs.normalizeToUtc(right);
+    }
+
+    if (!left.hasYear || !right.hasYear) {
         return null;
       }
 
@@ -387,6 +394,5 @@ class SameOrBefore extends BinaryExpression {
         /// We've reached the end of the precision, return the result
         return FhirBoolean(millisecondsEqual);
       }
-    }
   }
 }

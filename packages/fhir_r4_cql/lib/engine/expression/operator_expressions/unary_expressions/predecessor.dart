@@ -165,6 +165,15 @@ class Predecessor extends UnaryExpression {
         return value.subtract(hours: 1);
       }
     } else if (value is ValidatedQuantity && value.isValid()) {
+      // For integer quantities, subtract 1; for decimal quantities,
+      // subtract the minimum precision value (10^-8)
+      final valueStr = value.value.asUcumDecimal();
+      final isDecimal = valueStr.contains('.');
+      if (isDecimal) {
+        final newValue = value.value.subtract(UcumDecimal.fromString('0.00000001'));
+        return ValidatedQuantity.fromString(
+            '${newValue.asUcumDecimal()} \'${value.unit}\'');
+      }
       return value - 1;
     }
     throw ArgumentError('Invalid type for Successor: ${value.runtimeType}');

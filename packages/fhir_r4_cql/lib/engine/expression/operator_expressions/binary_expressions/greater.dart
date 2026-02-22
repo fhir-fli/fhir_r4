@@ -147,6 +147,25 @@ class Greater extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     }
+    // Uncertainty interval: [a,b] > v is true if a > v, false if b <= v, else null
+    if (left is CqlInterval) {
+      final low = left.getStart();
+      final high = left.getEnd();
+      final lowGt = greater(low, right);
+      if (lowGt?.valueBoolean == true) return FhirBoolean(true);
+      final highGt = greater(high, right);
+      if (highGt?.valueBoolean != true) return FhirBoolean(false);
+      return null;
+    }
+    if (right is CqlInterval) {
+      final low = right.getStart();
+      final high = right.getEnd();
+      final gtHigh = greater(left, high);
+      if (gtHigh?.valueBoolean == true) return FhirBoolean(true);
+      final gtLow = greater(left, low);
+      if (gtLow?.valueBoolean != true) return FhirBoolean(false);
+      return null;
+    }
     if (left is FhirInteger && right is FhirInteger) {
       return FhirBoolean(left > right);
     } else if (left is FhirDecimal && right is FhirDecimal) {
@@ -169,6 +188,12 @@ class Greater extends BinaryExpression {
       } catch (e) {
         return null;
       }
+    } else if (left is FhirDecimal && right is FhirInteger) {
+      return FhirBoolean(
+          left > FhirDecimal(right.valueNum!.toDouble()));
+    } else if (left is FhirInteger && right is FhirDecimal) {
+      return FhirBoolean(
+          FhirDecimal(left.valueNum!.toDouble()) > right);
     }
     throw ArgumentError('Invalid operand types for Greater operation: \n'
         'Left: $left (${left.runtimeType})\n'

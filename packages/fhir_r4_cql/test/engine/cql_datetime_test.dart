@@ -378,7 +378,7 @@ void main() {
       final interval = result as CqlInterval;
       expect(interval.isUncertain(), isTrue);
       expect(interval.low, equals(FhirInteger(0)));
-      expect(interval.high, equals(FhirInteger(10)));
+      expect(interval.high, equals(FhirInteger(11)));
     });
     test("""define "DurationIsNull": months between @2012-01-01 and null""",
         () async {

@@ -832,6 +832,55 @@ void main() {
       final result = await properContains.execute({});
       expect(result, isNull);
     });
+    test(
+        """define "ProperContainsNullRightFalse": {'s', 'u', 'n'} properly contains null // false""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralString('s'),
+          LiteralString('u'),
+          LiteralString('n'),
+        ],
+      );
+      final properContains = ProperContains(
+        operand: [list, LiteralNull()],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        """define "ProperContainsNullRightTrue": {'s', 'u', 'n', null} properly contains null // true""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralString('s'),
+          LiteralString('u'),
+          LiteralString('n'),
+          LiteralNull(),
+        ],
+      );
+      final properContains = ProperContains(
+        operand: [list, LiteralNull()],
+      );
+      final result = await properContains.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        """define "ProperContainsTimeNull": { @T15:59:59.999, @T20:59:59.999, @T20:59:49.999 } properly contains @T15:59:59 // null""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralTime('@T15:59:59.999'),
+          LiteralTime('@T20:59:59.999'),
+          LiteralTime('@T20:59:49.999'),
+        ],
+      );
+      final properContains = ProperContains(
+        operand: [list, LiteralTime('@T15:59:59')],
+      );
+      final result = await properContains.execute({});
+      expect(result, isNull);
+    });
   });
 
   group('ProperIn', () {
@@ -867,6 +916,55 @@ void main() {
       );
       final properIn = ProperIn(
         operand: [LiteralNull(), interval],
+      );
+      final result = await properIn.execute({});
+      expect(result, isNull);
+    });
+    test(
+        """define "ProperInNullRightFalse": null properly in {'s', 'u', 'n'} // false""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralString('s'),
+          LiteralString('u'),
+          LiteralString('n'),
+        ],
+      );
+      final properIn = ProperIn(
+        operand: [LiteralNull(), list],
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(false));
+    });
+    test(
+        """define "ProperInNullRightTrue": null properly in {'s', 'u', 'n', null} // true""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralString('s'),
+          LiteralString('u'),
+          LiteralString('n'),
+          LiteralNull(),
+        ],
+      );
+      final properIn = ProperIn(
+        operand: [LiteralNull(), list],
+      );
+      final result = await properIn.execute({});
+      expect(result, FhirBoolean(true));
+    });
+    test(
+        """define "ProperInTimeNull": @T15:59:59 properly in { @T15:59:59.999, @T20:59:59.999, @T20:59:49.999 } // null""",
+        () async {
+      final list = ListExpression(
+        element: [
+          LiteralTime('@T15:59:59.999'),
+          LiteralTime('@T20:59:59.999'),
+          LiteralTime('@T20:59:49.999'),
+        ],
+      );
+      final properIn = ProperIn(
+        operand: [LiteralTime('@T15:59:59'), list],
       );
       final result = await properIn.execute({});
       expect(result, isNull);

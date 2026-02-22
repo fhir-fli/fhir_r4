@@ -231,6 +231,20 @@ class After extends BinaryExpression {
     CqlDateTimePrecision? precision,
   ]) {
     if (precision == null) {
+      // Check for precision mismatch (e.g., seconds vs milliseconds)
+      final leftHasMs = left.millisecond != null;
+      final rightHasMs = right.millisecond != null;
+      if (leftHasMs != rightHasMs) {
+        // Compare at lower precision (seconds)
+        final leftSecStr = left.valueString?.split('.').first;
+        final rightSecStr = right.valueString?.split('.').first;
+        if (leftSecStr == null || rightSecStr == null) return null;
+        final cmp = leftSecStr.compareTo(rightSecStr);
+        if (cmp > 0) return FhirBoolean(true);
+        if (cmp < 0) return FhirBoolean(false);
+        // Equal at seconds level but different ms precision → indeterminate
+        return null;
+      }
       final result = left.isAfter(right);
       return result == null ? null : FhirBoolean(result);
     } else {

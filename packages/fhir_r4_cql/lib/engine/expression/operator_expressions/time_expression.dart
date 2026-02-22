@@ -125,6 +125,9 @@ class TimeExpression extends OperatorExpression {
   String get type => 'TimeExpression';
 
   @override
+  List<String> getReturnTypes(CqlLibrary library) => ['Time'];
+
+  @override
   Future<FhirTime> execute(Map<String, dynamic> context) async {
     final hourValue = await hour.execute(context);
     final minuteValue = await minute?.execute(context);

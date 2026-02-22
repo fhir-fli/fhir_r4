@@ -155,7 +155,15 @@ class TruncatedDivide extends BinaryExpression {
             } else if (right is ValidatedQuantity &&
                 left.isValid() &&
                 right.isValid()) {
-              return left ~/ right;
+              final leftNum = left.value.asDouble;
+              final rightNum = right.value.asDouble;
+              if (rightNum == 0) {
+                return null;
+              }
+              final truncated = (leftNum / rightNum).truncateToDouble();
+              return ValidatedQuantity(
+                  value: UcumDecimal.fromDouble(truncated),
+                  unit: left.unit);
             }
           }
           break;

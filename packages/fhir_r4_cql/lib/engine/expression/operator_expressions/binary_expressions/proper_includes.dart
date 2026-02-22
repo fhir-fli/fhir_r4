@@ -85,7 +85,28 @@ class ProperIncludes extends BinaryExpression {
 
   static FhirBoolean? properIncludes(dynamic left, dynamic right,
       [CqlDateTimePrecision? precision]) {
-    if (left == null || right == null) return null;
+    if (left == null) return null;
+    // When left is a List/Interval and right is a point (not a List or Interval),
+    // delegate to ProperContains (point containment). This handles cases like:
+    //   {'s', 'u', 'n'} properly includes null → false
+    //   Interval[@T12:00:00.000, @T21:59:59.999] properly includes @T12:00:00.000 → false
+    if ((left is List || left is CqlInterval) &&
+        right is! List &&
+        right is! CqlInterval) {
+      return ProperContains.properContains(left, right, precision);
+    }
+    if (right == null) return null;
+    // Handle null-boundary intervals: Interval[null, null] properly includes
+    // any finite interval (it represents an unbounded range)
+    if (left is CqlInterval && right is CqlInterval) {
+      if (left.low == null && left.high == null) {
+        // Left is unbounded — it properly includes right unless right is also unbounded
+        if (right.low == null && right.high == null) {
+          return FhirBoolean(false); // same unbounded range, not proper
+        }
+        return FhirBoolean(true);
+      }
+    }
     // First check includes (right is included in left)
     final included = IncludedIn.includedIn(right, left, precision);
     if (included == null) return null;

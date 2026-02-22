@@ -225,17 +225,7 @@ class Subtract extends BinaryExpression {
       case FhirDateTimeBase _:
         {
           if (right is ValidatedQuantity && right.isDuration) {
-            return left -
-                ExtendedDuration(
-                  years: right.years?.toInt() ?? 0,
-                  months: right.months?.toInt() ?? 0,
-                  weeks: right.weeks?.toInt() ?? 0,
-                  days: right.days?.toInt() ?? 0,
-                  hours: right.hours?.toInt() ?? 0,
-                  minutes: right.minutes?.toInt() ?? 0,
-                  seconds: right.seconds?.toInt() ?? 0,
-                  milliseconds: right.milliseconds?.toInt() ?? 0,
-                );
+            return Add.addToDateTime(left, right, subtract: true);
           }
           return null;
         }
@@ -254,10 +244,11 @@ class Subtract extends BinaryExpression {
       case CqlInterval _:
         {
           if (right is CqlInterval) {
-            CqlInterval(
-                low: subtract(left.getStart(), right.getStart()),
+            // [a,b] - [c,d] = [a-d, b-c]
+            return CqlInterval(
+                low: subtract(left.getStart(), right.getEnd()),
                 lowClosed: true,
-                high: subtract(left.getEnd(), right.getEnd()),
+                high: subtract(left.getEnd(), right.getStart()),
                 highClosed: true);
           } else {
             return null;

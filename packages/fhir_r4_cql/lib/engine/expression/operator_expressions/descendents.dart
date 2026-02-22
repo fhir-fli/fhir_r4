@@ -69,15 +69,15 @@ class Descendents extends OperatorExpression {
     final value = await source.execute(context);
     if (value == null) return null;
     final results = <dynamic>[];
-    _collectDescendants(value, results);
+    collectDescendants(value, results);
     return results;
   }
 
-  static void _collectDescendants(dynamic value, List<dynamic> results) {
+  static void collectDescendants(dynamic value, List<dynamic> results) {
     if (value == null) return;
     if (value is List) {
       for (final item in value) {
-        _collectDescendants(item, results);
+        collectDescendants(item, results);
       }
       return;
     }
@@ -86,14 +86,14 @@ class Descendents extends OperatorExpression {
       for (final v in json.values) {
         if (v != null) {
           results.add(v);
-          _collectDescendants(v, results);
+          collectDescendants(v, results);
         }
       }
     } else if (value is Map<String, dynamic>) {
       for (final v in value.values) {
         if (v != null) {
           results.add(v);
-          _collectDescendants(v, results);
+          collectDescendants(v, results);
         }
       }
     } else {

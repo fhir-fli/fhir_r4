@@ -127,6 +127,12 @@ class Is extends UnaryExpression {
         return value is Concept || value is CqlConcept;
       case 'Interval':
         return value is CqlInterval;
+      case 'Vocabulary':
+        return value is CqlValueSet || value is CqlCodeSystem;
+      case 'ValueSet':
+        return value is CqlValueSet;
+      case 'CodeSystem':
+        return value is CqlCodeSystem;
       default:
         return false;
     }
@@ -222,6 +228,9 @@ class Is extends UnaryExpression {
       case 'Reference':
         return value is Reference;
       default:
+        // Try CQL type matching (for types like Vocabulary, ValueSet, CodeSystem
+        // that don't exist in FHIR but may have FHIR namespace forced by visitor)
+        if (_matchesType(value, name)) return true;
         // Fallback: compare runtime type name
         if (value is FhirBase) {
           return value.runtimeType.toString() == name;

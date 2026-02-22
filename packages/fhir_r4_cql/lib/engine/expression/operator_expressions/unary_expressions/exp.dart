@@ -131,10 +131,20 @@ class Exp extends UnaryExpression {
   @override
   Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
     final first = await operand.execute(context);
-    if (first == null || first is! FhirDecimal) {
+    if (first == null) return null;
+    // Implicitly convert Integer/Long to Decimal per spec
+    final num? value;
+    if (first is FhirDecimal) {
+      value = first.valueNum;
+    } else if (first is FhirInteger) {
+      value = first.valueNum?.toDouble();
+    } else if (first is FhirInteger64) {
+      value = first.valueBigInt?.toDouble();
+    } else {
       return null;
     }
-    return FhirDecimal(exp(first.valueNum!));
+    if (value == null) return null;
+    return FhirDecimal(exp(value));
   }
 
   @override

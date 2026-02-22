@@ -146,6 +146,25 @@ class Less extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     }
+    // Uncertainty interval: [a,b] < v is true if b < v, false if a >= v, else null
+    if (left is CqlInterval) {
+      final low = left.getStart();
+      final high = left.getEnd();
+      final highLt = less(high, right);
+      if (highLt?.valueBoolean == true) return FhirBoolean(true);
+      final lowLt = less(low, right);
+      if (lowLt?.valueBoolean != true) return FhirBoolean(false);
+      return null;
+    }
+    if (right is CqlInterval) {
+      final low = right.getStart();
+      final high = right.getEnd();
+      final ltLow = less(left, low);
+      if (ltLow?.valueBoolean == true) return FhirBoolean(true);
+      final ltHigh = less(left, high);
+      if (ltHigh?.valueBoolean != true) return FhirBoolean(false);
+      return null;
+    }
     if (left is FhirInteger && right is FhirInteger) {
       return FhirBoolean(left < right);
     } else if (left is FhirDecimal && right is FhirDecimal) {
@@ -168,6 +187,12 @@ class Less extends BinaryExpression {
       } catch (e) {
         return null;
       }
+    } else if (left is FhirDecimal && right is FhirInteger) {
+      return FhirBoolean(
+          left < FhirDecimal(right.valueNum!.toDouble()));
+    } else if (left is FhirInteger && right is FhirDecimal) {
+      return FhirBoolean(
+          FhirDecimal(left.valueNum!.toDouble()) < right);
     } else if (left is Quantity && right is ValidatedQuantity) {
       // Convert FHIR Quantity to ValidatedQuantity for comparison
       final leftQty = ValidatedQuantity.fromString(

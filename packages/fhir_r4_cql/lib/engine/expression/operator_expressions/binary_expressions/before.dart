@@ -238,6 +238,20 @@ class Before extends BinaryExpression {
     CqlDateTimePrecision? precision,
   ]) {
     if (precision == null) {
+      // Check for precision mismatch (e.g., seconds vs milliseconds)
+      final leftHasMs = left.millisecond != null;
+      final rightHasMs = right.millisecond != null;
+      if (leftHasMs != rightHasMs) {
+        // Compare at lower precision (seconds)
+        final leftSecStr = left.valueString?.split('.').first;
+        final rightSecStr = right.valueString?.split('.').first;
+        if (leftSecStr == null || rightSecStr == null) return null;
+        final cmp = leftSecStr.compareTo(rightSecStr);
+        if (cmp < 0) return FhirBoolean(true);
+        if (cmp > 0) return FhirBoolean(false);
+        // Equal at seconds level but different ms precision → indeterminate
+        return null;
+      }
       final result = right.isAfter(left);
       return result == null ? null : FhirBoolean(result);
     } else {
@@ -301,9 +315,17 @@ class Before extends BinaryExpression {
     if (precision == null) {
       final result = left.isBefore(right);
       return result == null ? null : FhirBoolean(result);
-    } else {
-      // Start from the highest precision and go down to the specified one.
-      if (!left.hasYear || !right.hasYear) {
+    }
+
+    // Normalize to UTC when timezone offsets present and precision is hour+
+    if (SameAs.isHourOrFiner(precision) &&
+        (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+      left = SameAs.normalizeToUtc(left);
+      right = SameAs.normalizeToUtc(right);
+    }
+
+    // Start from the highest precision and go down to the specified one.
+    if (!left.hasYear || !right.hasYear) {
         return null;
       } else if (left.year! < right.year!) {
         return FhirBoolean(true);
@@ -386,8 +408,7 @@ class Before extends BinaryExpression {
         return FhirBoolean(false);
       }
 
-      return FhirBoolean(
-          false); // If only comparing milliseconds, they are equal at this point.
-    }
+    return FhirBoolean(
+        false); // If only comparing milliseconds, they are equal at this point.
   }
 }

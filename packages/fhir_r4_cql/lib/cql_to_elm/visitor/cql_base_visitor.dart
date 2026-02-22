@@ -607,7 +607,14 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       PointExtractorExpressionTermContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    visitChildren(ctx);
+    final exprTerm = ctx.expressionTerm();
+    if (exprTerm != null) {
+      final operand = byContext(exprTerm);
+      if (operand is CqlExpression) {
+        return PointFrom(operand: operand);
+      }
+    }
+    throw ArgumentError('$thisNode Invalid PointExtractorExpressionTerm');
   }
 
   @override
@@ -878,7 +885,31 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   dynamic visitStartingClause(StartingClauseContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    visitChildren(ctx);
+    if (ctx.expression() != null) {
+      return byContext(ctx.expression()!);
+    } else if (ctx.quantity() != null) {
+      return visitQuantity(ctx.quantity()!);
+    } else if (ctx.simpleLiteral() != null) {
+      final lit = ctx.simpleLiteral()!;
+      if (lit is SimpleNumberLiteralContext) {
+        final text = lit.text;
+        if (text.contains('.')) {
+          return LiteralDecimal(double.parse(text));
+        }
+        return LiteralInteger(int.parse(text));
+      } else if (lit is SimpleStringLiteralContext) {
+        // Strip surrounding quotes
+        var text = lit.text;
+        if (text.length >= 2 &&
+            ((text.startsWith("'") && text.endsWith("'")) ||
+             (text.startsWith('"') && text.endsWith('"')))) {
+          text = text.substring(1, text.length - 1);
+        }
+        return LiteralString(text);
+      }
+      return byContext(lit);
+    }
+    return visitChildren(ctx);
   }
 
   @override
@@ -1011,9 +1042,11 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
         if (nts != null) {
           _ensureFhirNamespace(nts);
         }
+        // Use the full type specifier (which may be a ListTypeSpecifier,
+        // IntervalTypeSpecifier, etc.) not just the NamedTypeSpecifier.
         final asExpr = As(
           operand: operand,
-          asTypeSpecifier: nts,
+          asTypeSpecifier: nts ?? typeSpecifier,
         )..strict = false;
         if (_inSortClause) return asExpr;
         return _wrapWithFhirHelper(asExpr, nts);
@@ -1151,7 +1184,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlTypeSpecifierVisitor(library).visitTypeSpecifier(ctx);
 
   @override
-  String visitUnit(UnitContext ctx) => noQuoteString(ctx.text);
+  String visitUnit(UnitContext ctx) => noQuoteString(ctx.text).trim();
 
   @override
   dynamic visitUsingDefinition(UsingDefinitionContext ctx) =>
@@ -1636,14 +1669,11 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   }
 
   String noQuoteString(String string) {
-    if (string.isNotEmpty) {
-      if (string[0] == '"' || string[0] == "'") {
+    if (string.length >= 2) {
+      final first = string[0];
+      final last = string[string.length - 1];
+      if ((first == '"' || first == "'") && (last == '"' || last == "'")) {
         string = string.substring(1, string.length - 1);
-      }
-      if (string.isNotEmpty &&
-          (string[string.length - 1] == '"' ||
-              string[string.length - 1] == "'")) {
-        string = string.substring(0, string.length - 2);
       }
     }
     return string;

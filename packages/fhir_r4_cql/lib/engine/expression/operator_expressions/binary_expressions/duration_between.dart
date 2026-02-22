@@ -108,15 +108,17 @@ class DurationBetween extends BinaryExpression {
   List<String> getReturnTypes(CqlLibrary library) =>
       ['FhirInteger', 'CqlInterval'];
 
-  /// Returns true when the date lacks the precision requested.
+  /// For DurationBetween, uncertainty exists when any sub-precision field is
+  /// missing, because sub-fields determine whether a complete period elapsed.
   static bool _needsUncertainty(
       FhirDateTimeBase date, CqlDateTimePrecision precision) {
     switch (precision) {
       case CqlDateTimePrecision.year:
-        return !date.hasYear;
+        // Sub-year fields affect whether a full year has elapsed
+        return !date.hasYear || !date.hasMonth || !date.hasDay;
       case CqlDateTimePrecision.month:
+        return !date.hasMonth || !date.hasDay;
       case CqlDateTimePrecision.week:
-        return !date.hasMonth;
       case CqlDateTimePrecision.day:
         return !date.hasDay;
       case CqlDateTimePrecision.hour:
@@ -131,57 +133,30 @@ class DurationBetween extends BinaryExpression {
   }
 
   /// Returns (min, max) DateTime bounds for a partial date.
-  ///
-  /// For DurationBetween, only uncertain fields at or above the requested
-  /// [precision] are expanded to their extremes in the max bound. Fields
-  /// below the precision stay at minimum, because the "whole period" check
-  /// depends on those sub-fields and we cannot guarantee a complete period
-  /// when they are unknown.
-  static (DateTime, DateTime) _dateBounds(
-      FhirDateTimeBase date, CqlDateTimePrecision precision) {
+  /// Expands ALL unknown fields to their extremes so that sub-precision fields
+  /// correctly influence whether a complete period has elapsed.
+  static (DateTime, DateTime) _dateBounds(FhirDateTimeBase date) {
     final int year = date.year!;
-    final int pi = _precisionLevel(precision);
-
     final int minMonth = date.month ?? 1;
-    final int maxMonth = date.month ?? (pi >= 1 ? 12 : 1);
+    final int maxMonth = date.month ?? 12;
     final int minDay = date.day ?? 1;
     final int maxDay =
-        date.day ?? (pi >= 2 ? DateTime(year, maxMonth + 1, 0).day : 1);
+        date.day ?? DateTime(year, maxMonth + 1, 0).day; // last day of month
     final int minHour = date.hour ?? 0;
-    final int maxHour = date.hour ?? (pi >= 3 ? 23 : 0);
+    final int maxHour = date.hour ?? 23;
     final int minMinute = date.minute ?? 0;
-    final int maxMinute = date.minute ?? (pi >= 4 ? 59 : 0);
+    final int maxMinute = date.minute ?? 59;
     final int minSecond = date.second ?? 0;
-    final int maxSecond = date.second ?? (pi >= 5 ? 59 : 0);
+    final int maxSecond = date.second ?? 59;
     final int minMs = date.millisecond ?? 0;
-    final int maxMs = date.millisecond ?? (pi >= 6 ? 999 : 0);
+    final int maxMs = date.millisecond ?? 999;
 
     return (
-      DateTime(year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
-      DateTime(year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
+      DateTime.utc(
+          year, minMonth, minDay, minHour, minMinute, minSecond, minMs),
+      DateTime.utc(
+          year, maxMonth, maxDay, maxHour, maxMinute, maxSecond, maxMs),
     );
-  }
-
-  /// Maps precision to a numeric level for comparison.
-  /// month=1, day/week=2, hour=3, minute=4, second=5, millisecond=6.
-  static int _precisionLevel(CqlDateTimePrecision precision) {
-    switch (precision) {
-      case CqlDateTimePrecision.year:
-        return 0;
-      case CqlDateTimePrecision.month:
-        return 1;
-      case CqlDateTimePrecision.week:
-      case CqlDateTimePrecision.day:
-        return 2;
-      case CqlDateTimePrecision.hour:
-        return 3;
-      case CqlDateTimePrecision.minute:
-        return 4;
-      case CqlDateTimePrecision.second:
-        return 5;
-      case CqlDateTimePrecision.millisecond:
-        return 6;
-    }
   }
 
   /// Compute the number of whole calendar periods for the given precision.
@@ -253,20 +228,27 @@ class DurationBetween extends BinaryExpression {
 
         if (_needsUncertainty(low, precision) ||
             _needsUncertainty(high, precision)) {
-          final (lowMin, lowMax) = _dateBounds(low, precision);
-          final (highMin, highMax) = _dateBounds(high, precision);
+          final (lowMin, lowMax) = _dateBounds(low);
+          final (highMin, highMax) = _dateBounds(high);
           final minResult =
               _durationBetween(lowMax, highMin, precision);
           final maxResult =
               _durationBetween(lowMin, highMax, precision);
+          // Collapse point intervals to scalar
+          if (minResult == maxResult) {
+            return FhirInteger(minResult);
+          }
           return CqlInterval(
             low: FhirInteger(minResult),
             high: FhirInteger(maxResult),
           ).setUncertain(true);
         }
 
-        final lowDt = low.valueDateTime!;
-        final highDt = high.valueDateTime!;
+        var lowDt = low.valueDateTime!;
+        var highDt = high.valueDateTime!;
+        // Always normalize to UTC to avoid DST-related day-count errors
+        lowDt = _toUtc(low, lowDt);
+        highDt = _toUtc(high, highDt);
         return FhirInteger(_durationBetween(lowDt, highDt, precision));
       } else {
         throw CqlException(
@@ -316,5 +298,26 @@ class DurationBetween extends BinaryExpression {
               'but was instead passed low (${low.runtimeType}) and '
               'high (${high.runtimeType}).');
     }
+  }
+
+  static bool _isSubDayPrecision(CqlDateTimePrecision precision) =>
+      precision == CqlDateTimePrecision.hour ||
+      precision == CqlDateTimePrecision.minute ||
+      precision == CqlDateTimePrecision.second ||
+      precision == CqlDateTimePrecision.millisecond;
+
+  /// Convert a FhirDateTimeBase to UTC DateTime using its timezone offset.
+  /// Uses DateTime.utc() to avoid DST issues with local DateTime arithmetic.
+  static DateTime _toUtc(FhirDateTimeBase fdt, DateTime local) {
+    final offset = fdt.timeZoneOffset;
+    if (offset == null || fdt.isUtc) {
+      return DateTime.utc(local.year, local.month, local.day, local.hour,
+          local.minute, local.second, local.millisecond);
+    }
+    final offsetHours = offset.truncate();
+    final offsetMinutes = ((offset - offsetHours) * 60).truncate();
+    return DateTime.utc(local.year, local.month, local.day,
+        local.hour - offsetHours, local.minute - offsetMinutes,
+        local.second, local.millisecond);
   }
 }

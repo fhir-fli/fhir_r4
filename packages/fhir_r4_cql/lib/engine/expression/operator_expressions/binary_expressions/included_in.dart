@@ -177,9 +177,15 @@ class IncludedIn extends BinaryExpression {
         return null;
       }
     } else if (right is CqlInterval) {
-      if (precision != null) {
-        final rightStart = right.getStart();
-        final rightEnd = right.getEnd();
+      // For datetime/time types, always use SameOrAfter/SameOrBefore
+      // to properly handle precision differences (returns null for mismatched precisions)
+      final rightStart = right.getStart();
+      final rightEnd = right.getEnd();
+      final isDt = rightStart is FhirDateTimeBase ||
+          rightStart is FhirTime ||
+          rightEnd is FhirDateTimeBase ||
+          rightEnd is FhirTime;
+      if (precision != null || isDt) {
         if (left is CqlInterval) {
           final leftStart = left.getStart();
           final leftEnd = left.getEnd();

@@ -127,8 +127,16 @@ class Union extends NaryExpression {
       if (left == null || right == null) {
         return null;
       } else if (left is! CqlInterval || right is! CqlInterval) {
-        throw ArgumentError(
-            'Union operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
+        return null;
+      }
+      // CQL spec: if intervals do not overlap or meet, return null
+      final overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? false;
+      if (!overlaps) {
+        // Check if they meet (adjacent)
+        final meets = Meets.meets(left, right)?.valueBoolean ?? false;
+        if (!meets) {
+          return null;
+        }
       }
       final leftStart = left.getStart();
       final rightStart = right.getStart();
@@ -153,19 +161,41 @@ class Union extends NaryExpression {
       }
       return CqlInterval(low: finalStart, high: finalEnd);
     } else if (left is List || right is List) {
-      if (left == null) {
-        return (right as List).toSet().toList();
-      } else if (right == null) {
-        return (left as List).toSet().toList();
-      } else if (left is! List || right is! List) {
-        throw ArgumentError(
-            'Union operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
+      final leftList = left == null
+          ? <dynamic>[]
+          : left is List
+              ? left
+              : <dynamic>[];
+      final rightList = right == null
+          ? <dynamic>[]
+          : right is List
+              ? right
+              : <dynamic>[];
+      // Use equivalence-based deduplication to handle nulls and FHIR types
+      final result = <dynamic>[];
+      for (final item in [...leftList, ...rightList]) {
+        bool found = false;
+        for (final existing in result) {
+          if (item == null && existing == null) {
+            found = true;
+            break;
+          }
+          if (item != null &&
+              existing != null &&
+              (Equivalent.equivalent(item, existing).valueBoolean ?? false)) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          result.add(item);
+        }
       }
-      final result = left.toSet().union(right.toSet()).toList();
       return result;
+    } else if (left == null && right == null) {
+      return null;
     } else {
-      throw ArgumentError(
-          'Union operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
+      return null;
     }
   }
 

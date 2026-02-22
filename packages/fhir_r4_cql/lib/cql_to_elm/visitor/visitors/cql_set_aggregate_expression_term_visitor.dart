@@ -10,12 +10,12 @@ class CqlSetAggregateExpressionTermVisitor
       SetAggregateExpressionTermContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    bool expandOrCollapse = true;
+    bool? expandOrCollapse;
     CqlExpression? expression;
     CqlExpression? perExpression;
     for (final child in ctx.children ?? <ParseTree>[]) {
       if (child is TerminalNodeImpl) {
-        expandOrCollapse = child.text == 'expand';
+        expandOrCollapse ??= child.text == 'expand';
       } else if (child is ExpressionContext) {
         if (expression == null) {
           expression = byContext(child);
@@ -30,7 +30,7 @@ class CqlSetAggregateExpressionTermVisitor
     if (expression != null) {
       final expressionList =
           perExpression == null ? [expression] : [expression, perExpression];
-      if (expandOrCollapse) {
+      if (expandOrCollapse ?? true) {
         return Expand(operand: expressionList);
       } else {
         return Collapse(operand: expressionList);

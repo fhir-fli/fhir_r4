@@ -623,14 +623,23 @@ class LiteralString extends LiteralType {
   final String value;
 
   LiteralString(String value)
-      : value = value
-            .replaceAll(r'\n', '\n')
-            .replaceAll(r'\t', '\t')
-            .replaceAll(r'\b', '\b')
-            .replaceAll(r'\r', '\r')
-            .replaceAll(r'\\', '\\')
-            .replaceAll(r"\'", "'")
-            .replaceAll(r'\"', '"');
+      : value = _unescape(value);
+
+  static String _unescape(String s) {
+    // Process Unicode escapes first (\uXXXX)
+    s = s.replaceAllMapped(
+      RegExp(r'\\u([0-9a-fA-F]{4})'),
+      (m) => String.fromCharCode(int.parse(m.group(1)!, radix: 16)),
+    );
+    return s
+        .replaceAll(r'\n', '\n')
+        .replaceAll(r'\t', '\t')
+        .replaceAll(r'\b', '\b')
+        .replaceAll(r'\r', '\r')
+        .replaceAll(r'\\', '\\')
+        .replaceAll(r"\'", "'")
+        .replaceAll(r'\"', '"');
+  }
 
   factory LiteralString.fromJson(dynamic json) {
     if (json is String) {

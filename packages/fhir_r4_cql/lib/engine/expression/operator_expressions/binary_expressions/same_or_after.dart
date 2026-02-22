@@ -269,16 +269,79 @@ class SameOrAfter extends BinaryExpression {
     }
   }
 
+  /// Compare two DateTimes without an explicit precision, per CQL spec:
+  /// "proceed to the finest precision specified in either input."
+  /// Returns null when one operand lacks a precision level that the other has
+  /// and values are equal at all coarser levels.
+  static FhirBoolean? compareNoPrecision(
+    FhirDateTimeBase left,
+    FhirDateTimeBase right, {
+    required bool isAfter,
+  }) {
+    // Normalize timezone offsets
+    if (left.timeZoneOffset != null || right.timeZoneOffset != null) {
+      left = SameAs.normalizeToUtc(left);
+      right = SameAs.normalizeToUtc(right);
+    }
+
+    if (left.year == null || right.year == null) return null;
+    if (left.year! != right.year!) {
+      return FhirBoolean(isAfter ? left.year! > right.year! : left.year! < right.year!);
+    }
+
+    if (!left.hasMonth && !right.hasMonth) return FhirBoolean(true);
+    if (!left.hasMonth || !right.hasMonth) return null;
+    if (left.month! != right.month!) {
+      return FhirBoolean(isAfter ? left.month! > right.month! : left.month! < right.month!);
+    }
+
+    if (!left.hasDay && !right.hasDay) return FhirBoolean(true);
+    if (!left.hasDay || !right.hasDay) return null;
+    if (left.day! != right.day!) {
+      return FhirBoolean(isAfter ? left.day! > right.day! : left.day! < right.day!);
+    }
+
+    if (!left.hasHours && !right.hasHours) return FhirBoolean(true);
+    if (!left.hasHours || !right.hasHours) return null;
+    if (left.hour! != right.hour!) {
+      return FhirBoolean(isAfter ? left.hour! > right.hour! : left.hour! < right.hour!);
+    }
+
+    if (!left.hasMinutes && !right.hasMinutes) return FhirBoolean(true);
+    if (!left.hasMinutes || !right.hasMinutes) return null;
+    if (left.minute! != right.minute!) {
+      return FhirBoolean(isAfter ? left.minute! > right.minute! : left.minute! < right.minute!);
+    }
+
+    if (!left.hasSeconds && !right.hasSeconds) return FhirBoolean(true);
+    if (!left.hasSeconds || !right.hasSeconds) return null;
+    if (left.second! != right.second!) {
+      return FhirBoolean(isAfter ? left.second! > right.second! : left.second! < right.second!);
+    }
+
+    if (!left.hasMilliseconds && !right.hasMilliseconds) return FhirBoolean(true);
+    if (!left.hasMilliseconds || !right.hasMilliseconds) return null;
+    return FhirBoolean(
+        isAfter ? left.millisecond! >= right.millisecond! : left.millisecond! <= right.millisecond!);
+  }
+
   static FhirBoolean? sameOrAfterDateTime(
     FhirDateTimeBase left,
     FhirDateTimeBase right, [
     CqlDateTimePrecision? precision,
   ]) {
     if (precision == null) {
-      final result = left.isSameOrAfter(right);
-      return result == null ? null : FhirBoolean(result);
-    } else {
-      if (left.year == null || right.year == null) {
+      return compareNoPrecision(left, right, isAfter: true);
+    }
+
+    // Normalize to UTC when timezone offsets present and precision is hour+
+    if (SameAs.isHourOrFiner(precision) &&
+        (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+      left = SameAs.normalizeToUtc(left);
+      right = SameAs.normalizeToUtc(right);
+    }
+
+    if (left.year == null || right.year == null) {
         return null;
       }
 
@@ -379,6 +442,5 @@ class SameOrAfter extends BinaryExpression {
         /// We've reached the end of the precision, return the result
         return FhirBoolean(millisecondsEqual);
       }
-    }
   }
 }

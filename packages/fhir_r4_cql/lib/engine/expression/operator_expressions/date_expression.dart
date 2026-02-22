@@ -20,6 +20,18 @@ class DateExpression extends OperatorExpression {
     super.resultTypeSpecifier,
   });
 
+  factory DateExpression.fromOperandList(
+      {required List<CqlExpression> operand}) {
+    if (operand.isEmpty) {
+      throw ArgumentError('DateExpression must have at least one operand');
+    }
+    return DateExpression(
+      year: operand[0],
+      month: operand.length > 1 ? operand[1] : null,
+      day: operand.length > 2 ? operand[2] : null,
+    );
+  }
+
   factory DateExpression.fromJson(Map<String, dynamic> json) => DateExpression(
         year: CqlExpression.fromJson(json['year']),
         month: json['month'] == null
@@ -79,6 +91,9 @@ class DateExpression extends OperatorExpression {
 
   @override
   String get type => 'Date';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => ['Date'];
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {

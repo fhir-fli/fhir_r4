@@ -189,7 +189,40 @@ class Multiply extends BinaryExpression {
       }
     }
 
+    // CqlInterval multiplication: [a,b] * [c,d] = [min(ac,ad,bc,bd), max(ac,ad,bc,bd)]
+    if (left is CqlInterval && right is CqlInterval) {
+      final a = left.getStart();
+      final b = left.getEnd();
+      final c = right.getStart();
+      final d = right.getEnd();
+      final products = [
+        Multiply._multiply(a, c),
+        Multiply._multiply(a, d),
+        Multiply._multiply(b, c),
+        Multiply._multiply(b, d),
+      ].whereType<FhirInteger>().toList();
+      if (products.isEmpty) return null;
+      products.sort((x, y) => x.valueNum!.compareTo(y.valueNum!));
+      return CqlInterval(
+        low: products.first,
+        lowClosed: true,
+        high: products.last,
+        highClosed: true,
+      );
+    }
+    if (left is CqlInterval || right is CqlInterval) {
+      return null;
+    }
+
     throw ArgumentError('Invalid arguments for multiply operation\n'
         '1. $left ${left.runtimeType}\n2. $right ${right.runtimeType}');
+  }
+
+  static FhirInteger? _multiply(dynamic a, dynamic b) {
+    if (a == null || b == null) return null;
+    if (a is FhirInteger && b is FhirInteger) {
+      return FhirInteger(a.valueNum!.toInt() * b.valueNum!.toInt());
+    }
+    return null;
   }
 }

@@ -81,35 +81,121 @@ class ProperContains extends BinaryExpression {
     return properContains(left, right, precision);
   }
 
+  /// CQL-aware equality for list membership testing.
+  ///
+  /// Uses [Equal.equal] but adds proper precision handling for [FhirTime]
+  /// and [FhirDateTimeBase] values. When two temporal values have different
+  /// precisions (e.g. seconds vs milliseconds), the result is `null` per the
+  /// CQL spec, even though [FhirTime._compare] may return `false`.
+  static FhirBoolean? _cqlEqual(dynamic a, dynamic b) {
+    if (a == null || b == null) return null;
+    // Handle FhirTime precision differences
+    if (a is FhirTime && b is FhirTime) {
+      final aHasMs = a.millisecond != null;
+      final bHasMs = b.millisecond != null;
+      if (aHasMs != bHasMs) {
+        // Different precisions: compare at the lower precision (seconds)
+        // If they match at seconds, the result is null (indeterminate)
+        // If they differ at seconds, the result is false (definitely not equal)
+        final aSecStr = a.valueString?.split('.').first;
+        final bSecStr = b.valueString?.split('.').first;
+        if (aSecStr == bSecStr) return null;
+        return FhirBoolean(false);
+      }
+    }
+    // Handle FhirDateTimeBase precision differences
+    // Equal.equal already delegates to FhirDateTimeBase.isEqual which
+    // properly returns null for different precisions.
+    return Equal.equal(a, b);
+  }
+
   static FhirBoolean? properContains(dynamic left, dynamic right,
       [CqlDateTimePrecision? precision]) {
-    if (left == null || right == null) return null;
     if (left is CqlInterval) {
-      if (precision != null) {
-        final start = left.getStart();
-        final end = left.getEnd();
-        return And.and(
-          After.after(right, start, precision),
-          Before.before(right, end, precision),
-        );
-      }
-      final contains = left.contains(right);
-      if (!contains) return FhirBoolean(false);
-      // Check it's not equal to both start and end (unit interval)
+      if (right == null) return null;
+      // Per CQL spec: properly contains means point is strictly between
+      // start and end (greater than start AND less than end)
       final start = left.getStart();
       final end = left.getEnd();
-      final eqStart = Equivalent.equivalent(right, start);
-      final eqEnd = Equivalent.equivalent(right, end);
-      if (eqStart.valueBoolean == true && eqEnd.valueBoolean == true) {
-        return FhirBoolean(false);
+      if (start == null || end == null) return null;
+      // Use After/Before for date/time types, Greater/Less for numerics
+      final FhirBoolean? afterStart;
+      final FhirBoolean? beforeEnd;
+      if (right is FhirDateTimeBase || right is FhirTime) {
+        afterStart = After.after(right, start, precision);
+        beforeEnd = Before.before(right, end, precision);
+      } else {
+        afterStart = Greater.greater(right, start);
+        beforeEnd = Less.less(right, end);
       }
-      // Point must be strictly inside (not at boundaries)
-      if (eqStart.valueBoolean == true || eqEnd.valueBoolean == true) {
-        return FhirBoolean(false);
-      }
-      return FhirBoolean(true);
+      return And.and(afterStart, beforeEnd);
+    } else if (left == null) {
+      return null;
     } else if (left is List) {
-      return Contains.contains(left, right);
+      // For lists, "properly contains" means:
+      // 1. The element is in the list (using equality semantics, with null == null)
+      // 2. The list has at least one other distinct element
+      //
+      // Use equality semantics (which can return null for precision mismatches)
+      // with the exception that null elements are considered equal to null.
+      bool found = false;
+      bool hasNull = false;
+
+      // First check if the element is in the list
+      if (right == null) {
+        // Searching for null: check if list contains any null element
+        found = left.any((e) => e == null);
+      } else {
+        // Searching for a non-null value: use equality semantics
+        for (final element in left) {
+          if (element == null) {
+            continue;
+          }
+          final eq = _cqlEqual(element, right);
+          if (eq?.valueBoolean == true) {
+            found = true;
+            break;
+          }
+          if (eq == null) {
+            hasNull = true;
+          }
+        }
+      }
+
+      if (!found && hasNull) {
+        // Indeterminate: some comparison returned null (e.g. precision mismatch)
+        return null;
+      }
+      if (!found) {
+        return FhirBoolean(false);
+      }
+
+      // Element found; now check that the list has at least one other
+      // distinct element (i.e., the list is not solely composed of the
+      // searched element).
+      bool hasOther = false;
+      for (final element in left) {
+        if (right == null) {
+          if (element != null) {
+            hasOther = true;
+            break;
+          }
+        } else {
+          if (element == null) {
+            hasOther = true;
+            break;
+          }
+          final eq = _cqlEqual(element, right);
+          if (eq?.valueBoolean == false) {
+            hasOther = true;
+            break;
+          }
+          // If eq is null (indeterminate), it might be a different element,
+          // but we can't be sure — don't count it as "other".
+        }
+      }
+
+      return FhirBoolean(hasOther);
     }
     return null;
   }

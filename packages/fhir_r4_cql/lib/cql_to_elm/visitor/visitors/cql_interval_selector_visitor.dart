@@ -7,11 +7,10 @@ class CqlIntervalSelectorVisitor extends CqlBaseVisitor<IntervalExpression> {
   IntervalExpression visitIntervalSelector(IntervalSelectorContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    LiteralType? low;
-    LiteralType? high;
+    CqlExpression? low;
+    CqlExpression? high;
     bool lowClosed = true;
     bool highClosed = true;
-    // bool recordHigh = false;
 
     if (ctx.childCount == 6) {
       lowClosed = ctx.getChild(1)?.text == '(' ? false : true;
@@ -19,20 +18,23 @@ class CqlIntervalSelectorVisitor extends CqlBaseVisitor<IntervalExpression> {
       final child2 = ctx.getChild(2);
       final child5 = ctx.getChild(4);
       if (child2 != null) {
-        low = byContext(child2);
+        final result = byContext(child2);
+        if (result is CqlExpression) {
+          low = result;
+        }
       }
       if (child5 != null) {
-        high = byContext(child5);
+        final result = byContext(child5);
+        if (result is CqlExpression) {
+          high = result;
+        }
       }
-      if (low.runtimeType == high.runtimeType) {
-        return IntervalExpression(
-          low: low,
-          high: high,
-          lowClosed: lowClosed,
-          highClosed: highClosed,
-        );
-      }
-      throw ArgumentError('$thisNode Invalid IntervalSelector');
+      return IntervalExpression(
+        low: low,
+        high: high,
+        lowClosed: lowClosed,
+        highClosed: highClosed,
+      );
     } else {
       throw ArgumentError('$thisNode Invalid IntervalSelector');
     }

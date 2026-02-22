@@ -162,8 +162,12 @@ class DateTimeExpression extends OperatorExpression {
   String get type => 'DateTime';
 
   @override
-  Future<FhirDateTime> execute(Map<String, dynamic> context) async {
+  List<String> getReturnTypes(CqlLibrary library) => ['DateTime'];
+
+  @override
+  Future<FhirDateTime?> execute(Map<String, dynamic> context) async {
     final yearValue = await year.execute(context);
+    if (yearValue == null) return null;
     final monthValue = await month?.execute(context);
     final dayValue = await day?.execute(context);
     final hourValue = await hour?.execute(context);

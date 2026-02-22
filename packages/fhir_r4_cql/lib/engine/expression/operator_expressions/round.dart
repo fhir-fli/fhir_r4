@@ -110,18 +110,27 @@ class Round extends OperatorExpression {
     final value = await operand.execute(context);
     if (value == null) {
       return null;
-    } else if (value is FhirDecimal) {
-      final precisionValue = await precision?.execute(context);
-      if (precisionValue == null) {
-        return FhirDecimal(value.valueNum!.round());
-      } else if (precisionValue is FhirInteger) {
-        num mod = pow(10.0, precisionValue.valueNum!.toDouble());
-        return FhirDecimal((value.valueNum! * mod).round().toDouble() / mod);
-      } else {
-        return null;
-      }
-    } else {
-      return null;
     }
+
+    double? numValue;
+    if (value is FhirDecimal) {
+      numValue = value.valueNum?.toDouble();
+    } else if (value is FhirInteger) {
+      numValue = value.valueNum?.toDouble();
+    }
+
+    if (numValue == null) return null;
+
+    final precisionValue = await precision?.execute(context);
+    int precisionInt = 0;
+    if (precisionValue is FhirInteger && precisionValue.valueInt != null) {
+      precisionInt = precisionValue.valueInt!;
+    }
+
+    final double mod = pow(10.0, precisionInt).toDouble();
+    final double scaled = numValue * mod;
+    // CQL rounding: round half up (toward positive infinity)
+    final int rounded = scaled.floor() + (scaled - scaled.floor() >= 0.5 ? 1 : 0);
+    return FhirDecimal(rounded.toDouble() / mod);
   }
 }

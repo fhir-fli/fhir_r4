@@ -254,12 +254,16 @@ class Equal extends BinaryExpression {
         if (right is List && left.length == right.length) {
           result = true;
           for (int i = 0; i < left.length; i++) {
+            // CQL spec: null elements are considered equal in list equality
+            if (left[i] == null && right[i] == null) continue;
             final tempResult = equal(left[i], right[i])?.valueBoolean;
             if (tempResult == false || tempResult == null) {
               result = tempResult;
               break;
             }
           }
+        } else if (right is! List) {
+          result = null;
         } else {
           result = false;
         }
@@ -274,6 +278,7 @@ class Equal extends BinaryExpression {
 
             if (!const DeepCollectionEquality()
                 .equals(left.elements, right.elements)) {
+              bool hasNull = false;
               for (var key in left.elements!.keys) {
                 // Check for key presence and value equality.
                 final tempResult = right.elements!.containsKey(key)
@@ -281,15 +286,16 @@ class Equal extends BinaryExpression {
                         ?.valueBoolean
                     : false;
 
-                // If a mismatch is found, or comparison is indeterminate,
-                //update result accordingly.
                 if (tempResult == false) {
                   result = false;
                   break;
                 } else if (tempResult == null) {
-                  result = null;
-                  break;
+                  hasNull = true;
                 }
+              }
+              // Only set result to null if no definite false was found
+              if (result != false && hasNull) {
+                result = null;
               }
             }
           }
@@ -302,21 +308,23 @@ class Equal extends BinaryExpression {
           result = true;
 
           if (!const DeepCollectionEquality().equals(left, right)) {
+            bool hasNull = false;
             for (var key in left.keys) {
               // Check for key presence and value equality.
               final tempResult = right.containsKey(key)
                   ? equal(left[key], right[key])?.valueBoolean
                   : false;
 
-              // If a mismatch is found, or comparison is indeterminate,
-              //update result accordingly.
               if (tempResult == false) {
                 result = false;
                 break;
               } else if (tempResult == null) {
-                result = null;
-                break;
+                hasNull = true;
               }
+            }
+            // Only set result to null if no definite false was found
+            if (result != false && hasNull) {
+              result = null;
             }
           }
         } else {

@@ -146,10 +146,31 @@ class Except extends NaryExpression {
       } else if (right == null) {
         return (left as List).toSet().toList();
       } else if (left is List && right is List) {
-        return left.toSet().difference(right.toSet()).toList();
+        // Use CQL equivalence semantics for comparison
+        final result = <dynamic>[];
+        for (final item in left) {
+          final inRight = right.any((r) =>
+              (item == null && r == null) ||
+              (item != null &&
+                  r != null &&
+                  (Equivalent.equivalent(item, r).valueBoolean ?? false)));
+          if (!inRight) {
+            // Also deduplicate within the result (set semantics)
+            final inResult = result.any((r) =>
+                (item == null && r == null) ||
+                (item != null &&
+                    r != null &&
+                    (Equivalent.equivalent(item, r).valueBoolean ?? false)));
+            if (!inResult) {
+              result.add(item);
+            }
+          }
+        }
+        return result;
       }
     }
-    throw ArgumentError(
-        'Except operator is not defined for ${left.runtimeType} and ${right.runtimeType}');
+    if (left == null) return null;
+    if (right == null) return left;
+    return null;
   }
 }

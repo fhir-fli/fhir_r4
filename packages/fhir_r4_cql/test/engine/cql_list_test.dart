@@ -515,4 +515,192 @@ void main() {
       expect(result, equals(null));
     });
   });
+
+  group('ExceptDateTimeList', () {
+    test(
+        'define "ExceptDateTimeList": { DateTime(2012, 5, 10), DateTime(2014, 12, 10), DateTime(2010, 1, 1)} except {DateTime(2014, 12, 10), DateTime(2010, 1, 1) }',
+        () async {
+      final left = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2012),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2010),
+            month: cql.LiteralInteger(1),
+            day: cql.LiteralInteger(1)),
+      ]);
+      final right = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2010),
+            month: cql.LiteralInteger(1),
+            day: cql.LiteralInteger(1)),
+      ]);
+      final except = cql.Except(operand: [left, right]);
+      final result = await except.execute({});
+      expect(result, isA<List>());
+      expect((result as List).length, equals(1));
+      expect(
+          result[0],
+          equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
+    });
+  });
+
+  group('IntersectDateTime', () {
+    test(
+        'define "IntersectDateTime": { DateTime(2001, 9, 11), DateTime(2012, 5, 10), DateTime(2014, 12, 10) } intersect { DateTime(2012, 5, 10), DateTime(2014, 12, 10), DateTime(2000, 5, 5) }',
+        () async {
+      final left = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2001),
+            month: cql.LiteralInteger(9),
+            day: cql.LiteralInteger(11)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2012),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+      ]);
+      final right = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2012),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2000),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(5)),
+      ]);
+      final intersect = cql.Intersect(operand: [left, right]);
+      final result = await intersect.execute({});
+      expect(result, isA<List>());
+      expect((result as List).length, equals(2));
+      expect(
+          result[0],
+          equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
+      expect(
+          result[1],
+          equals(FhirDateTime.fromUnits(year: 2014, month: 12, day: 10)));
+    });
+  });
+
+  group('UnionDateTime', () {
+    test(
+        'define "UnionDateTime": { DateTime(2001, 9, 11)} union {DateTime(2012, 5, 10), DateTime(2014, 12, 10) }',
+        () async {
+      final left = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2001),
+            month: cql.LiteralInteger(9),
+            day: cql.LiteralInteger(11)),
+      ]);
+      final right = cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2012),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+      ]);
+      final union = cql.Union(operand: [left, right]);
+      final result = await union.execute({});
+      expect(result, isA<List>());
+      expect((result as List).length, equals(3));
+      expect(
+          result[0],
+          equals(FhirDateTime.fromUnits(year: 2001, month: 9, day: 11)));
+      expect(
+          result[1],
+          equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
+      expect(
+          result[2],
+          equals(FhirDateTime.fromUnits(year: 2014, month: 12, day: 10)));
+    });
+  });
+
+  group('UnionListNullAndListNull', () {
+    test(
+        'define "UnionListNullAndListNull": { null } union { null } // { null }',
+        () async {
+      final left = cql.ListExpression(element: [cql.LiteralNull()]);
+      final right = cql.ListExpression(element: [cql.LiteralNull()]);
+      final union = cql.Union(operand: [left, right]);
+      final result = await union.execute({});
+      expect(result, isA<List>());
+      expect((result as List).length, equals(1));
+      expect(result[0], isNull);
+    });
+  });
+
+  group('Length', () {
+    test(
+        'define "LengthNullList": Length(null as List<Any>) // 0',
+        () async {
+      final lengthExpr = cql.Length(
+          operand: cql.As(
+              operand: cql.LiteralNull(),
+              resultTypeName: 'List<Any>'));
+      final result = await lengthExpr.execute({});
+      expect(result, equals(FhirInteger(0)));
+    });
+
+    test(
+        'define "LengthIsNull": Length(null as String) // null',
+        () async {
+      final lengthExpr = cql.Length(
+          operand: cql.As(
+              operand: cql.LiteralNull(),
+              resultTypeName: 'String'));
+      final result = await lengthExpr.execute({});
+      expect(result, isNull);
+    });
+
+    test(
+        'define "LengthEmptyList": Length({}) // 0',
+        () async {
+      final lengthExpr = cql.Length(
+          operand: cql.ListExpression(element: []));
+      final result = await lengthExpr.execute({});
+      expect(result, equals(FhirInteger(0)));
+    });
+
+    test(
+        'define "LengthDateTime": Length({DateTime(2001, 9, 11), DateTime(2012, 5, 10), DateTime(2014, 12, 10)}) // 3',
+        () async {
+      final lengthExpr = cql.Length(
+          operand: cql.ListExpression(element: [
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2001),
+            month: cql.LiteralInteger(9),
+            day: cql.LiteralInteger(11)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2012),
+            month: cql.LiteralInteger(5),
+            day: cql.LiteralInteger(10)),
+        cql.DateTimeExpression(
+            year: cql.LiteralInteger(2014),
+            month: cql.LiteralInteger(12),
+            day: cql.LiteralInteger(10)),
+      ]));
+      final result = await lengthExpr.execute({});
+      expect(result, equals(FhirInteger(3)));
+    });
+  });
 }

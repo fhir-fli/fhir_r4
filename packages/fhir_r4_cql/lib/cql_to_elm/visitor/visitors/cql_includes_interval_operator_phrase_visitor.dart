@@ -12,13 +12,13 @@ class CqlIncludesIntervalOperatorPhraseVisitor
       CqlExpression? right]) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    // String? properly;
+    bool properly = false;
     CqlDateTimePrecision? dateTimePrecisionSpecifier;
     String? startEnd;
     for (final child in ctx.children ?? <ParseTree>[]) {
       if (child is TerminalNodeImpl) {
         if (child.text == 'properly') {
-          // properly = child.text;
+          properly = true;
         } else if (child.text == 'start' || child.text == 'end') {
           startEnd = child.text;
         }
@@ -42,6 +42,11 @@ class CqlIncludesIntervalOperatorPhraseVisitor
             operand: [left, right],
           );
         }
+      } else if (properly) {
+        return ProperIncludes(
+          precision: dateTimePrecisionSpecifier,
+          operand: [left, right],
+        );
       } else {
         return Includes(
           precision: dateTimePrecisionSpecifier,
