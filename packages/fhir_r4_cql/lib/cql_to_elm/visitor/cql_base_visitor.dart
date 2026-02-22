@@ -510,8 +510,14 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       noQuoteString(ctx.text);
 
   @override
-  LiteralLong visitLongNumberLiteral(LongNumberLiteralContext ctx) =>
-      LiteralLong(BigInt.parse(ctx.text));
+  LiteralLong visitLongNumberLiteral(LongNumberLiteralContext ctx) {
+    var text = ctx.text;
+    // Strip trailing 'L' suffix from Long literals (e.g., '5L' → '5')
+    if (text.endsWith('L') || text.endsWith('l')) {
+      text = text.substring(0, text.length - 1);
+    }
+    return LiteralLong(BigInt.parse(text));
+  }
 
   @override
   dynamic visitMeetsIntervalOperatorPhrase(

@@ -107,6 +107,9 @@ class Product extends AggregateExpression {
       } else if (sourceResult.every((e) => e is FhirInteger)) {
         return sourceResult.cast<FhirInteger>().reduce((a, b) =>
             FhirInteger((a.valueInt ?? 0) * (b.valueInt ?? 0)));
+      } else if (sourceResult.every((e) => e is FhirInteger64)) {
+        return sourceResult.cast<FhirInteger64>().reduce((a, b) =>
+            FhirInteger64((a.valueBigInt ?? BigInt.zero) * (b.valueBigInt ?? BigInt.zero)));
       } else if (sourceResult.every((e) => e is FhirDecimal)) {
         return sourceResult.cast<FhirDecimal>().reduce((a, b) =>
             FhirDecimal((a.valueNum ?? 0) * (b.valueNum ?? 0)));

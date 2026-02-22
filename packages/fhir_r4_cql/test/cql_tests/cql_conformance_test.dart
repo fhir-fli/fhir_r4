@@ -19,9 +19,7 @@ import '../test_helpers/cql_test_helpers.dart';
 
 /// Capabilities we know we don't support yet — tests requiring these
 /// are skipped rather than expected to fail.
-const _unsupportedCapabilities = <String>{
-  'system.long', // Long integer type not implemented
-};
+const _unsupportedCapabilities = <String>{};
 
 void main() {
   final testDir =
@@ -176,7 +174,12 @@ Future<dynamic> _parseExpectedOutput(String output) async {
     return fhir.FhirString(_unescapeCqlString(inner));
   }
 
-  // Integer: -?digits (but not if followed by L for Long)
+  // Long: -?digits followed by L
+  if (RegExp(r'^-?\d+L$').hasMatch(output)) {
+    return fhir.FhirInteger64(BigInt.parse(output.substring(0, output.length - 1)));
+  }
+
+  // Integer: -?digits
   if (RegExp(r'^-?\d+$').hasMatch(output)) {
     return fhir.FhirInteger(int.parse(output));
   }
@@ -295,6 +298,14 @@ bool _valuesEqual(dynamic actual, dynamic expected) {
   // FhirTime
   if (actual is fhir.FhirTime && expected is fhir.FhirTime) {
     return actual == expected;
+  }
+
+  // FhirInteger vs FhirInteger64 — cross-type integer comparison
+  if (actual is fhir.FhirInteger && expected is fhir.FhirInteger64) {
+    return BigInt.from(actual.valueNum!) == expected.valueBigInt;
+  }
+  if (actual is fhir.FhirInteger64 && expected is fhir.FhirInteger) {
+    return actual.valueBigInt == BigInt.from(expected.valueNum!);
   }
 
   // String vs FhirString — CQL engine uses raw strings internally
