@@ -85,18 +85,17 @@ packages:
     dependency: "direct main"
     description:
       name: fhir_r4
-      sha256: e37bd2f79fa9a23617739220741aec862d1e20f3ac8850243828a4d559c98d8f
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.3"
-  fhir_r4_path:
-    dependency: "direct main"
-    description:
-      name: fhir_r4_path
-      sha256: "194ee53533ac53cfd5a2826891e313d0b26cfa5a231c01147195db27c845744d"
+      sha256: "0ebdfe2212a45f2214fedc0f9ac1095c9dd64aed3caf3258a73c624fa1d479d9"
       url: "https://pub.dev"
     source: hosted
     version: "0.4.4"
+  fhir_r4_path:
+    dependency: "direct main"
+    description:
+      path: "../fhir_r4_path"
+      relative: true
+    source: path
+    version: "0.4.6"
   file:
     dependency: transitive
     description:
@@ -365,18 +364,18 @@ packages:
     dependency: transitive
     description:
       name: ucum
-      sha256: e92bcd575e1ac33f0eb68d9f371625365f362083d0d20873b7a6850ee81cfb8b
+      sha256: "96a5d7081c92f5fa81a0fe13a8f4240c18888539ca0f653930de13083e447ae5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.7.0"
   universal_io:
     dependency: transitive
     description:
       name: universal_io
-      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
+      sha256: f63cbc48103236abf48e345e07a03ce5757ea86285ed313a6a032596ed9301e2
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.2"
+    version: "2.3.1"
   uuid:
     dependency: "direct main"
     description:
