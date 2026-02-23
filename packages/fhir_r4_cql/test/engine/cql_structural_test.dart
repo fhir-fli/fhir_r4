@@ -65,6 +65,11 @@ void main() {
       final result = await tuple.execute({});
       expect(result['sum'], equals(fhir.FhirInteger(5)));
     });
+
+    test('Tuple() with no element arg throws on execute', () async {
+      final tuple = Tuple();
+      expect(() => tuple.execute({}), throwsA(isA<TypeError>()));
+    });
   });
 
   // ───────────────────────────────────────────────────────────────────────────
@@ -117,6 +122,27 @@ void main() {
             fhir.FhirInteger(1),
             fhir.FhirInteger(2),
           ]));
+    });
+
+    test('condition=false still passes source through', () async {
+      final message = Message(
+        source: LiteralInteger(99),
+        condition: LiteralBoolean(false),
+        code: LiteralString('WARN'),
+        severity: LiteralString('Warning'),
+        message: LiteralString('This warning is not triggered'),
+      );
+      final result = await message.execute({});
+      expect(result, equals(fhir.FhirInteger(99)));
+    });
+
+    test('boolean source returned unchanged', () async {
+      final message = Message(
+        source: LiteralBoolean(true),
+        message: LiteralString('Bool check'),
+      );
+      final result = await message.execute({});
+      expect(result, equals(fhir.FhirBoolean(true)));
     });
   });
 
@@ -195,6 +221,36 @@ void main() {
         source: source,
         startIndex: LiteralInteger(10),
         endIndex: LiteralInteger(20),
+      );
+      final result = await slice.execute({});
+      expect(result, equals([]));
+    });
+
+    test('negative startIndex returns empty list', () async {
+      final source = ListExpression(element: [
+        LiteralInteger(1),
+        LiteralInteger(2),
+        LiteralInteger(3),
+      ]);
+      final slice = Slice(
+        source: source,
+        startIndex: LiteralInteger(-1),
+        endIndex: LiteralInteger(2),
+      );
+      final result = await slice.execute({});
+      expect(result, equals([]));
+    });
+
+    test('null startIndex returns empty list', () async {
+      final source = ListExpression(element: [
+        LiteralInteger(1),
+        LiteralInteger(2),
+        LiteralInteger(3),
+      ]);
+      final slice = Slice(
+        source: source,
+        startIndex: LiteralNull(),
+        endIndex: LiteralInteger(2),
       );
       final result = await slice.execute({});
       expect(result, equals([]));

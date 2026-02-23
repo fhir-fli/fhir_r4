@@ -2,7 +2,7 @@
 
 > Last updated: 2026-02-22
 > Conformance tests: 1706/1706 (100% pass)
-> Full suite: 2540 pass, 0 fail
+> Full suite: 2562 pass, 0 fail
 > Integration tests: All 12 exercises (Simple + Exercises01-11) fully passing
 
 ---
@@ -294,34 +294,21 @@ All 11 exercises parse and execute correctly:
 
 ---
 
-## 6. Test Coverage Gaps
+## 6. Test Coverage
 
-### Expression Types with NO Dedicated Unit Tests
-These expressions work (conformance tests pass) but have no focused unit tests:
-
-| Expression | Category |
-|-----------|----------|
-| ToChars | Type conversion |
-| ToLong | Type conversion |
-| Time() constructor | DateTime |
-| DateTime() constructor | DateTime |
-| TimeOfDay | DateTime |
-| DateFrom | DateTime |
-| TimeFrom | DateTime |
-| TimezoneOffsetFrom | DateTime |
-| DateTimeComponentFrom | DateTime |
-| Slice | List |
-| CalculateAge | Clinical |
-| CalculateAgeAt | Clinical |
-| Message | Structural |
-| Tuple | Structural |
+All expression types now have dedicated unit tests. Coverage was augmented for:
+TimeExpression, DateTimeExpression, TimeOfDay, DateFrom, TimezoneOffsetFrom,
+DateTimeComponentFrom (in `cql_math_test.dart`); Slice, Message, Tuple
+(in `cql_structural_test.dart`); ToChars (`cql_type_test.dart`);
+ToLong (`cql_type_test.dart`); CalculateAge, CalculateAgeAt
+(`cql_structural_test.dart`); TimeFrom (`cql_math_test.dart`).
 
 ---
 
 ## 7. Prioritized Remaining Work Items
 
-### P1 — Medium Priority
-1. **Unit tests for 14 untested expressions** — See Section 6
+### P1 — (Completed)
+All previously untested expressions now have dedicated unit tests.
 
 ### P2 — Low Priority
 2. **Mode tie-breaking** — `mode.dart`

@@ -231,6 +231,38 @@ void main() {
       expect(result, isA<fhir.FhirTime>());
       expect(result, equals(fhir.FhirTime('23')));
     });
+
+    test('midnight (hour=0)', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(0),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('00')));
+    });
+
+    test('end-of-day 23:59:59.999', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(23),
+        minute: LiteralInteger(59),
+        second: LiteralInteger(59),
+        millisecond: LiteralInteger(999),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('23:59:59.999')));
+    });
+
+    test('hour, minute, second without millisecond', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(10),
+        minute: LiteralInteger(30),
+        second: LiteralInteger(45),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('10:30:45')));
+    });
   });
 
   // ───────────────────────────────────────────────────────────────────────────
@@ -276,6 +308,56 @@ void main() {
       final result = await dtExpr.execute({});
       expect(result, isNull);
     });
+
+    test('full precision with millisecond produces correct string', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+        month: LiteralInteger(3),
+        day: LiteralInteger(15),
+        hour: LiteralInteger(10),
+        minute: LiteralInteger(30),
+        second: LiteralInteger(0),
+        millisecond: LiteralInteger(500),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+      final dt = result as fhir.FhirDateTime;
+      expect(dt.year, equals(2024));
+      expect(dt.month, equals(3));
+      expect(dt.day, equals(15));
+      expect(dt.hour, equals(10));
+      expect(dt.minute, equals(30));
+      expect(dt.millisecond, equals(500));
+    });
+
+    test('with timezone offset', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+        month: LiteralInteger(1),
+        day: LiteralInteger(1),
+        hour: LiteralInteger(12),
+        minute: LiteralInteger(0),
+        second: LiteralInteger(0),
+        timezoneOffset: _ConstExpr(fhir.FhirDecimal(-7.0)),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+      final dt = result as fhir.FhirDateTime;
+      expect(dt.timeZoneOffset, equals(-7.0));
+    });
+
+    test('year and month only', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+        month: LiteralInteger(6),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+      final dt = result as fhir.FhirDateTime;
+      expect(dt.year, equals(2024));
+      expect(dt.month, equals(6));
+      expect(dt.day, isNull);
+    });
   });
 
   // ───────────────────────────────────────────────────────────────────────────
@@ -294,6 +376,33 @@ void main() {
       // Verify hour is reasonable
       final time = result as fhir.FhirTime;
       expect(time.hour, isNotNull);
+    });
+
+    test('deterministic extraction from fixed timestamp', () async {
+      final context = <String, dynamic>{
+        'startTimestamp':
+            fhir.FhirDateTime.fromString('2024-06-15T14:30:45.123Z'),
+      };
+      final timeOfDay = TimeOfDay();
+      final result = await timeOfDay.execute(context);
+      expect(result, isA<fhir.FhirTime>());
+      final time = result as fhir.FhirTime;
+      expect(time.hour, equals(14));
+      expect(time.minute, equals(30));
+      expect(time.second, equals(45));
+    });
+
+    test('midnight timestamp returns hour 0', () async {
+      final context = <String, dynamic>{
+        'startTimestamp':
+            fhir.FhirDateTime.fromString('2024-01-01T00:00:00.000Z'),
+      };
+      final timeOfDay = TimeOfDay();
+      final result = await timeOfDay.execute(context);
+      expect(result, isA<fhir.FhirTime>());
+      final time = result as fhir.FhirTime;
+      expect(time.hour, equals(0));
+      expect(time.minute, equals(0));
     });
   });
 
@@ -324,6 +433,26 @@ void main() {
       final dateFrom = DateFrom(operand: LiteralNull());
       final result = await dateFrom.execute({});
       expect(result, isNull);
+    });
+
+    test('year-only DateTime returns year-only date', () async {
+      final dateFrom = DateFrom(
+        operand: _ConstExpr(fhir.FhirDateTime.fromString('2024')),
+      );
+      final result = await dateFrom.execute({});
+      expect(result, isA<fhir.FhirDate>());
+      final date = result as fhir.FhirDate;
+      expect(date.year, equals(2024));
+      expect(date.month, isNull);
+    });
+
+    test('FhirDate passthrough returns equivalent FhirDate', () async {
+      final dateFrom = DateFrom(
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-07-04')),
+      );
+      final result = await dateFrom.execute({});
+      expect(result, isA<fhir.FhirDate>());
+      expect(result, equals(fhir.FhirDate.fromString('2024-07-04')));
     });
   });
 
@@ -363,20 +492,46 @@ void main() {
   // TimezoneOffsetFrom
   // ───────────────────────────────────────────────────────────────────────────
   group('TimezoneOffsetFrom', () {
-    test('extracts timezone offset from FhirDateTime with offset', () async {
+    test('extracts positive timezone offset', () async {
       final tzFrom = TimezoneOffsetFrom(
         operand: _ConstExpr(
             fhir.FhirDateTime.fromString('2024-03-15T10:30:00+05:00')),
       );
       final result = await tzFrom.execute({});
-      // Should return the timezone offset as a FhirDecimal
-      if (result != null) {
-        expect(result, isA<fhir.FhirDecimal>());
-      }
+      expect(result, isA<fhir.FhirDecimal>());
+      expect(result, equals(fhir.FhirDecimal(5.0)));
+    });
+
+    test('extracts negative timezone offset', () async {
+      final tzFrom = TimezoneOffsetFrom(
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-01-01T12:30:00-07:00')),
+      );
+      final result = await tzFrom.execute({});
+      expect(result, isA<fhir.FhirDecimal>());
+      expect(result, equals(fhir.FhirDecimal(-7.0)));
+    });
+
+    test('explicit +00:00 offset returns 0', () async {
+      final tzFrom = TimezoneOffsetFrom(
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00+00:00')),
+      );
+      final result = await tzFrom.execute({});
+      expect(result, isA<fhir.FhirDecimal>());
+      expect(result, equals(fhir.FhirDecimal(0.0)));
     });
 
     test('null operand returns null', () async {
       final tzFrom = TimezoneOffsetFrom(operand: LiteralNull());
+      final result = await tzFrom.execute({});
+      expect(result, isNull);
+    });
+
+    test('non-DateTime (FhirDate) returns null', () async {
+      final tzFrom = TimezoneOffsetFrom(
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-03-15')),
+      );
       final result = await tzFrom.execute({});
       expect(result, isNull);
     });
@@ -480,6 +635,44 @@ void main() {
       );
       final result = await comp.execute({});
       expect(result, isNull);
+    });
+
+    test('extracts second from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.second,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(45)));
+    });
+
+    test('extracts millisecond from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.millisecond,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:45.123Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(123)));
+    });
+
+    test('extracts minute from FhirTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.minute,
+        operand: _ConstExpr(fhir.FhirTime('14:30:15')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(30)));
+    });
+
+    test('extracts day from FhirDate', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.day,
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-06-15')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(15)));
     });
   });
 
