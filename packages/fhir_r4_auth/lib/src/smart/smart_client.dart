@@ -11,8 +11,10 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         AuditSeverity,
         Authenticator,
         AuthenticationException,
+        BackendServiceConfig,
         ConfigurationException,
         FhirAuthClient,
+        JwtValidator,
         NetworkException,
         OAuthFlow,
         Session,
@@ -29,7 +31,7 @@ import 'package:logging/logging.dart';
 /// SMART on FHIR client for OAuth authentication
 class SmartFhirClient extends FhirAuthClient {
   SmartFhirClient({
-    required SmartConfig config,
+    required super.config,
     Authenticator? authenticator,
     OAuthFlow? oauthFlow,
     http.Client? httpClient,
@@ -43,10 +45,18 @@ class SmartFhirClient extends FhirAuthClient {
         _auditLogger = auditLogger,
         _sessionManager = sessionManager,
         _logger = logger ?? Logger('SmartFhirClient'),
-        super(config: config, innerClient: httpClient);
+        super(innerClient: httpClient);
 
-  /// Get SMART configuration
-  SmartConfig get smartConfig => config as SmartConfig;
+  /// Get SMART configuration (null if using BackendServiceConfig)
+  SmartConfig? get smartConfig =>
+      config is SmartConfig ? config as SmartConfig : null;
+
+  /// Get backend service configuration (null if using SmartConfig)
+  BackendServiceConfig? get backendConfig =>
+      config is BackendServiceConfig ? config as BackendServiceConfig : null;
+
+  /// Whether this client is configured for backend service auth
+  bool get isBackendService => config is BackendServiceConfig;
 
   final Authenticator _authenticator;
   final http.Client _httpClient;
@@ -82,9 +92,27 @@ class SmartFhirClient extends FhirAuthClient {
   Future<OAuthFlow> _getOAuthFlow() async {
     if (_oauthFlow != null) return _oauthFlow!;
 
+    // Backend services: token URL is in config, no authorization endpoint
+    if (isBackendService) {
+      final bc = backendConfig!;
+      _oauthFlow = OAuthFlow(
+        clientId: bc.clientId,
+        authorizationEndpoint: bc.tokenUrl, // Not used for backend services
+        tokenEndpoint: bc.tokenUrl,
+        redirectUri: bc.redirectUri,
+        scopes: bc.scopes,
+        enablePkce: false,
+        enableOpenId: false,
+        httpClient: _httpClient,
+      );
+      return _oauthFlow!;
+    }
+
+    final sc = smartConfig!;
+
     // Get endpoints if not configured
-    Uri? authEndpoint = smartConfig.authorizeUrl;
-    Uri? tokenEndpoint = smartConfig.tokenUrl;
+    Uri? authEndpoint = sc.authorizeUrl;
+    Uri? tokenEndpoint = sc.tokenUrl;
 
     if (authEndpoint == null || tokenEndpoint == null) {
       final endpoints = await _discoverEndpoints();
@@ -93,15 +121,15 @@ class SmartFhirClient extends FhirAuthClient {
     }
 
     _oauthFlow = OAuthFlow(
-      clientId: smartConfig.clientId,
+      clientId: sc.clientId,
       authorizationEndpoint: authEndpoint,
       tokenEndpoint: tokenEndpoint,
-      redirectUri: smartConfig.redirectUri,
-      clientSecret: smartConfig.clientSecret,
-      scopes: smartConfig.buildScopes(),
-      additionalParameters: smartConfig.buildAuthorizationParameters(),
-      enablePkce: smartConfig.enablePkce,
-      enableOpenId: smartConfig.enableOpenId,
+      redirectUri: sc.redirectUri,
+      clientSecret: sc.clientSecret,
+      scopes: sc.buildScopes(),
+      additionalParameters: sc.buildAuthorizationParameters(),
+      enablePkce: sc.enablePkce,
+      enableOpenId: sc.enableOpenId,
       httpClient: _httpClient,
     );
 
@@ -116,12 +144,20 @@ class SmartFhirClient extends FhirAuthClient {
     await _auditLogger?.logAuthenticationAttempt(userId: 'unknown');
 
     try {
+      // Backend service flow: JWT client assertion, no browser
+      if (isBackendService) {
+        await _performBackendServiceLogin();
+        return;
+      }
+
+      final sc = smartConfig!;
+
       // Get OAuth flow
       final oauthFlow = await _getOAuthFlow();
 
       // Build authorization URL
       final authUrl = oauthFlow.buildAuthorizationUrl(
-        extraParameters: smartConfig.customParameters,
+        extraParameters: sc.customParameters,
       );
 
       _logger.fine('Launching authorization URL');
@@ -129,8 +165,8 @@ class SmartFhirClient extends FhirAuthClient {
       // Launch authentication
       final responseUrl = await _authenticator.authenticate(
         authorizationUrl: authUrl,
-        redirectUri: smartConfig.redirectUri,
-        callbackUrlScheme: smartConfig.redirectUri.scheme,
+        redirectUri: sc.redirectUri,
+        callbackUrlScheme: sc.redirectUri.scheme,
       );
 
       // Handle authorization response
@@ -198,8 +234,59 @@ class SmartFhirClient extends FhirAuthClient {
     }
   }
 
+  /// Perform backend service login using JWT client assertion
+  Future<void> _performBackendServiceLogin() async {
+    final bc = backendConfig!;
+    _logger.fine('Starting backend service authentication');
+
+    // Create signed JWT for client assertion
+    final clientAssertion = await JwtValidator.createSignedJwt(
+      clientId: bc.clientId,
+      audience: bc.tokenUrl.toString(),
+      privateKeyPem: bc.privateKey,
+      validity: bc.tokenLifetime,
+      keyId: bc.keyId,
+    );
+
+    // Get OAuth flow
+    final oauthFlow = await _getOAuthFlow();
+
+    // Perform client credentials grant
+    final tokens = await oauthFlow.performClientCredentialsGrant(
+      clientAssertion: clientAssertion,
+      scopes: bc.scopes,
+    );
+
+    // Store tokens
+    await storeTokens(tokens);
+
+    _logger.fine('Backend service authentication successful');
+
+    // Audit: log successful authentication
+    await _auditLogger?.logAuthenticationSuccess(
+      userId: 'system:${bc.clientId}',
+      details: <String, dynamic>{
+        'scopes': tokens.scopesList,
+        'auth_type': 'backend_service',
+      },
+    );
+
+    // Audit: log token issued
+    await _auditLogger?.logTokenIssued(
+      userId: 'system:${bc.clientId}',
+      scopes: tokens.scopesList,
+    );
+  }
+
   @override
   Future<SmartTokenResponse> performTokenRefresh(String refreshToken) async {
+    // Backend services don't use refresh tokens — re-authenticate
+    if (isBackendService) {
+      _logger.fine('Backend service re-authenticating (no refresh tokens)');
+      await _performBackendServiceLogin();
+      return _cachedSmartTokens!;
+    }
+
     _logger.fine('Performing SMART token refresh');
 
     try {
@@ -254,7 +341,7 @@ class SmartFhirClient extends FhirAuthClient {
         severity: AuditSeverity.info,
         message: 'User logged out',
         userId: userId,
-        clientId: smartConfig.clientId,
+        clientId: config.clientId,
         outcome: true,
       ),
     );
@@ -289,7 +376,7 @@ class SmartFhirClient extends FhirAuthClient {
 
     // Try .well-known/smart-configuration first
     Uri metadataUrl =
-        Uri.parse('${smartConfig.fhirBaseUrl}/.well-known/smart-configuration');
+        Uri.parse('${config.fhirBaseUrl}/.well-known/smart-configuration');
 
     try {
       final response = await _httpClient.get(metadataUrl);
@@ -343,7 +430,7 @@ class SmartFhirClient extends FhirAuthClient {
     _logger.fine('Fetching CapabilityStatement for endpoint discovery');
 
     final response = await _httpClient.get(
-      Uri.parse('${smartConfig.fhirBaseUrl}/metadata'),
+      Uri.parse('${config.fhirBaseUrl}/metadata'),
       headers: <String, String>{'Accept': 'application/fhir+json'},
     );
 
@@ -536,8 +623,8 @@ class SmartFhirClient extends FhirAuthClient {
 
     return _tokenIntrospector ??= TokenIntrospector(
       introspectionEndpoint: _introspectionEndpoint!,
-      clientId: smartConfig.clientId,
-      clientSecret: smartConfig.clientSecret,
+      clientId: config.clientId,
+      clientSecret: config.clientSecret,
       httpClient: _httpClient,
       logger: _logger,
     );

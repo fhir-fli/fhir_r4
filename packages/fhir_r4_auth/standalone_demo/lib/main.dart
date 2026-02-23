@@ -44,7 +44,8 @@ class SmartStandaloneDemoApp extends StatelessWidget {
 /// Supported EHR vendors
 enum EhrVendor {
   epic('Epic', 'https://fhir.epic.com/'),
-  cerner('Cerner', 'https://code.cerner.com/');
+  cerner('Cerner', 'https://code.cerner.com/'),
+  smartSandbox('SMART Sandbox', 'https://launch.smarthealthit.org/');
 
   const EhrVendor(this.label, this.portalUrl);
   final String label;
@@ -99,6 +100,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   SmartFhirClient? _client;
   EhrVendor _selectedVendor = EhrVendor.epic;
   LaunchMode _selectedMode = LaunchMode.patient;
+
+  // Backend service private key input
+  final _privateKeyController = TextEditingController();
 
   // Data state
   Patient? _patient;
@@ -166,7 +170,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           note: 'Uses client credentials - no user login required',
         ),
       },
-      // TODO: Add your Epic system client secret
+      // System app requires Epic registration with Backend Systems audience
       systemClientSecret: 'YOUR-EPIC-SYSTEM-CLIENT-SECRET',
     ),
 
@@ -221,9 +225,73 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       },
       systemClientSecret: 'YOUR-CERNER-SYSTEM-CLIENT-SECRET',
     ),
+
+    // ========== SMART HEALTH IT SANDBOX ==========
+    EhrVendor.smartSandbox: VendorConfig(
+      baseUrl: 'https://launch.smarthealthit.org/v/r4/fhir',
+      clientIds: {
+        // SMART Sandbox auto-generates client IDs — use any non-empty value
+        // The sandbox does not require pre-registration
+        LaunchMode.patient: 'fhir_r4_auth_demo',
+        LaunchMode.clinician: 'fhir_r4_auth_demo',
+        LaunchMode.system: 'fhir_r4_auth_demo',
+      },
+      scopes: {
+        LaunchMode.patient: [
+          'patient/*.read',
+          'launch/patient',
+          'openid',
+          'fhirUser',
+          'offline_access',
+        ],
+        LaunchMode.clinician: [
+          'user/*.read',
+          'launch',
+          'openid',
+          'fhirUser',
+          'online_access',
+        ],
+        LaunchMode.system: ['system/*.read'],
+      },
+      testCredentials: {
+        LaunchMode.patient: TestCredentials(
+          note:
+              'SMART Sandbox lets you pick any patient - no login required. '
+              'Configure the sandbox at https://launch.smarthealthit.org/',
+        ),
+        LaunchMode.clinician: TestCredentials(
+          note:
+              'SMART Sandbox lets you pick any practitioner - no login required',
+        ),
+        LaunchMode.system: TestCredentials(
+          note:
+              'Backend service mode. '
+              'Uses client credentials with JWT assertion.',
+        ),
+      },
+    ),
   };
 
   VendorConfig get _currentConfig => vendorConfigs[_selectedVendor]!;
+
+  /// Resolve token URL from base URL (for backend services that need it)
+  Uri _resolveTokenUrl(String baseUrl) {
+    // Known token endpoints per vendor
+    switch (_selectedVendor) {
+      case EhrVendor.epic:
+        return Uri.parse(
+          'https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token',
+        );
+      case EhrVendor.cerner:
+        return Uri.parse(
+          'https://authorization.cerner.com/tenants/'
+          'ec2458f2-1e24-41c8-b71b-0e701af7583d/protocols/oauth2/profiles/'
+          'smart-v1/token',
+        );
+      case EhrVendor.smartSandbox:
+        return Uri.parse('$baseUrl/auth/token');
+    }
+  }
 
   @override
   void initState() {
@@ -246,23 +314,22 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
     }
 
     if (_selectedMode == LaunchMode.system) {
-      // Backend service uses client credentials flow
+      // Backend service uses client credentials flow with JWT assertion
+      final tokenUrl = _resolveTokenUrl(config.baseUrl);
       _client = SmartFhirClient(
-        config: SmartConfig(
+        config: BackendServiceConfig(
           clientId: clientId,
-          clientSecret: config.systemClientSecret?.startsWith('YOUR-') ?? true
-              ? null
-              : config.systemClientSecret,
           fhirBaseUrl: config.baseUrl.toFhirUri,
-          redirectUri: Uri.parse(redirectUri), // Required but not used for backend
-          launchType: LaunchType.backend,
+          privateKey: _privateKeyController.text.isNotEmpty
+              ? _privateKeyController.text
+              : 'NOT_CONFIGURED',
+          tokenUrl: tokenUrl,
           scopes: config.scopes[_selectedMode]!,
-          enablePkce: false,
-          enableOpenId: false,
         ),
       );
     } else {
       // Patient and Clinician use authorization code flow
+      final isSmartSandbox = _selectedVendor == EhrVendor.smartSandbox;
       _client = SmartFhirClient(
         config: SmartConfig(
           clientId: clientId,
@@ -270,8 +337,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           redirectUri: Uri.parse(redirectUri),
           launchType: LaunchType.standalone,
           scopes: config.scopes[_selectedMode]!,
-          enablePkce: false,
-          enableOpenId: false,
+          // SMART Sandbox supports PKCE and OpenID; Epic does not
+          enablePkce: isSmartSandbox,
+          enableOpenId: isSmartSandbox,
         ),
       );
     }
@@ -663,6 +731,12 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
             const SizedBox(height: 24),
 
+            // Private key input for system mode
+            if (_selectedMode == LaunchMode.system) ...[
+              _buildPrivateKeyInput(),
+              const SizedBox(height: 24),
+            ],
+
             // Setup warning if needed
             if (needsSetup) _buildSetupInstructions(),
 
@@ -723,6 +797,22 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             ),
           ),
         );
+      case EhrVendor.smartSandbox:
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.teal.shade50,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Text(
+            'SMART Health IT',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.teal,
+            ),
+          ),
+        );
     }
   }
 
@@ -771,7 +861,52 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         return Colors.deepPurple;
       case EhrVendor.cerner:
         return Colors.red;
+      case EhrVendor.smartSandbox:
+        return Colors.teal;
     }
+  }
+
+  Widget _buildPrivateKeyInput() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.key, color: Colors.orange),
+                SizedBox(width: 8),
+                Text(
+                  'Private Key (PEM)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Paste your RSA or EC private key in PEM format for JWT signing:',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _privateKeyController,
+              maxLines: 6,
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+              decoration: const InputDecoration(
+                hintText: '-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (_) {
+                // Re-initialize client when key changes
+                _initializeClient();
+                setState(() {});
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildTestCredentials() {
@@ -1230,6 +1365,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
   @override
   void dispose() {
+    _privateKeyController.dispose();
     _client?.close();
     super.dispose();
   }

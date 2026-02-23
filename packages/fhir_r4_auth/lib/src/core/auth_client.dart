@@ -10,7 +10,6 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         TokenStorage,
         SecureTokenStorage,
         AuthState,
-        TokenException,
         HttpHeaders,
         UserAgent;
 import 'package:http/http.dart' as http;
@@ -104,15 +103,11 @@ abstract class FhirAuthClient extends http.BaseClient {
       logger.fine('Refreshing access token');
 
       final current = _currentTokens ?? await tokenStorage.loadTokens();
-      if (current?.refreshToken == null) {
-        throw const TokenException(
-          'No refresh token available',
-          details: 'Cannot refresh without a refresh token',
-        );
-      }
 
-      // Perform refresh - implemented by subclass
-      final newTokens = await performTokenRefresh(current!.refreshToken!);
+      // Perform refresh - subclass handles the strategy
+      // (backend services re-authenticate; SMART uses refresh token)
+      final refreshTokenValue = current?.refreshToken;
+      final newTokens = await performTokenRefresh(refreshTokenValue ?? '');
 
       // Update tokens
       _currentTokens = newTokens;
@@ -144,16 +139,12 @@ abstract class FhirAuthClient extends http.BaseClient {
       return null;
     }
 
-    // Check if expired and try to refresh
+    // Check if expired and try to refresh/re-authenticate
     if (_currentTokens!.isExpired) {
-      if (_currentTokens!.refreshToken != null) {
-        try {
-          await refreshToken();
-        } catch (e) {
-          logger.warning('Failed to refresh expired token', e);
-          return null;
-        }
-      } else {
+      try {
+        await refreshToken();
+      } catch (e) {
+        logger.warning('Failed to refresh expired token', e);
         return null;
       }
     }
@@ -180,8 +171,8 @@ abstract class FhirAuthClient extends http.BaseClient {
     // Send request
     var response = await innerClient.send(request);
 
-    // Handle 401 Unauthorized - try to refresh and retry once
-    if (response.statusCode == 401 && _currentTokens?.refreshToken != null) {
+    // Handle 401 Unauthorized - try to refresh/re-authenticate and retry once
+    if (response.statusCode == 401 && _currentTokens != null) {
       logger.fine('Got 401, attempting token refresh');
 
       try {

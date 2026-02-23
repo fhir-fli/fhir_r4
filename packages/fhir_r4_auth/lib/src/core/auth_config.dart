@@ -355,4 +355,21 @@ class BackendServiceConfig extends AuthConfig {
       'tokenLifetime': tokenLifetime.inSeconds,
     };
   }
+
+  /// Create from JSON
+  factory BackendServiceConfig.fromJson(Map<String, dynamic> json) {
+    return BackendServiceConfig(
+      fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
+      clientId: json['clientId'] as String,
+      privateKey: json['privateKey'] as String,
+      tokenUrl: Uri.parse(json['tokenUrl'] as String),
+      scopes:
+          (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+      algorithm: json['algorithm'] as String? ?? 'RS384',
+      keyId: json['keyId'] as String?,
+      tokenLifetime: json['tokenLifetime'] != null
+          ? Duration(seconds: json['tokenLifetime'] as int)
+          : const Duration(minutes: 5),
+    );
+  }
 }

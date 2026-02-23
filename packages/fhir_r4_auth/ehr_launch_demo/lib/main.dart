@@ -50,7 +50,8 @@ class SmartEhrLaunchDemoApp extends StatelessWidget {
 /// Supported EHR vendors for simulation mode
 enum EhrVendor {
   epic('Epic', 'https://fhir.epic.com/'),
-  cerner('Cerner', 'https://code.cerner.com/');
+  cerner('Cerner', 'https://code.cerner.com/'),
+  smartSandbox('SMART Sandbox', 'https://launch.smarthealthit.org/');
 
   const EhrVendor(this.label, this.portalUrl);
   final String label;
@@ -159,6 +160,25 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         note: 'Use the Cerner Code Console to simulate an EHR launch',
       ),
     ),
+
+    // ========== SMART HEALTH IT SANDBOX ==========
+    EhrVendor.smartSandbox: EhrVendorConfig(
+      fhirBaseUrl: 'https://launch.smarthealthit.org/v/r4/fhir',
+      // SMART Sandbox auto-generates client IDs — use any non-empty value
+      clientId: 'fhir_r4_auth_demo',
+      scopes: [
+        'launch',
+        'patient/Patient.read',
+        'patient/Observation.read',
+        'openid',
+        'fhirUser',
+      ],
+      testCredentials: TestCredentials(
+        note:
+            'Use the SMART App Launcher at https://launch.smarthealthit.org/ '
+            'to simulate an EHR launch. Point it to http://localhost:8080',
+      ),
+    ),
   };
 
   EhrVendorConfig get _currentConfig => vendorConfigs[_selectedVendor]!;
@@ -219,6 +239,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       return;
     }
 
+    final isSmartSandbox = _selectedVendor == EhrVendor.smartSandbox;
     _client = SmartFhirClient(
       config: SmartConfig(
         clientId: clientId,
@@ -228,8 +249,9 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         launchToken: launchToken,
         iss: iss,
         scopes: config.scopes,
-        enablePkce: false,
-        enableOpenId: false,
+        // SMART Sandbox supports PKCE and OpenID; Epic does not
+        enablePkce: isSmartSandbox,
+        enableOpenId: isSmartSandbox,
       ),
     );
 
