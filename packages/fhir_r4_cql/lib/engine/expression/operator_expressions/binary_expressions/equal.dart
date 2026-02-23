@@ -221,7 +221,9 @@ class Equal extends BinaryExpression {
           } else if (right is BigInt) {
             result = left.valueNum == right.toDouble();
           } else if (right is FhirNumber) {
-            result = left == right;
+            // Compare by numeric value to handle implicit Integer→Decimal
+            // promotion (e.g. FhirDecimal(1.0) = FhirInteger(1) → true)
+            result = left.valueNum == right.valueNum;
           } else if (right is FhirInteger64) {
             result = left.valueString == right.valueString;
           } else {
