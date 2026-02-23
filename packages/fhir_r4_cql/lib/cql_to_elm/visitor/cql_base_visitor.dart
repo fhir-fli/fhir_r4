@@ -1156,6 +1156,12 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       // case 'medicationCodeableConcept':
       // case 'vaccineCode':
       //   return 'ToConcept';
+      // Boolean properties
+      case 'active':
+        return 'ToBoolean';
+      // Date properties
+      case 'birthDate':
+        return 'ToDate';
       // DateTime properties
       case 'authoredOn':
       case 'issued':
@@ -1168,6 +1174,128 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       default:
         return null;
     }
+  }
+
+  /// Look up the [ClassInfoElement] for a given FHIR class and property path
+  /// using the model info loaded for the current library's FHIR using.
+  ClassInfoElement? getElementInfo(String className, String propertyPath) {
+    for (final model in library.usings?.def ?? <UsingDef>[]) {
+      if (model.localIdentifier == null) continue;
+      final modelInfo = modelInfoProvider.load(ModelIdentifier(
+          id: model.localIdentifier!, version: model.version));
+      if (modelInfo == null) continue;
+      for (final ti in modelInfo.typeInfo) {
+        if (ti is ClassInfo &&
+            (ti.name == className || ti.label == className)) {
+          for (final el in ti.element ?? <ClassInfoElement>[]) {
+            if (el.name == propertyPath) return el;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  /// Check if a [ClassInfoElement] represents a FHIR choice type
+  /// (i.e. its elementTypeSpecifier is a ChoiceTypeSpecifierModel).
+  static bool isChoiceType(ClassInfoElement element) =>
+      element.elementTypeSpecifier is ChoiceTypeSpecifierModel;
+
+  /// Get the list of choice type names from a [ClassInfoElement] that has a
+  /// ChoiceTypeSpecifierModel. Returns the FHIR type names
+  /// (e.g. ['boolean', 'dateTime'] for Patient.deceased).
+  static List<String> getChoiceTypes(ClassInfoElement element) {
+    final spec = element.elementTypeSpecifier;
+    if (spec is! ChoiceTypeSpecifierModel || spec.choice == null) return [];
+    return spec.choice!
+        .whereType<NamedTypeSpecifierModel>()
+        .map((c) => c.name)
+        .toList();
+  }
+
+  /// Returns the FHIR base type name for a given FHIR type name.
+  /// E.g. 'canonical' → 'uri', 'code' → 'string', 'markdown' → 'string'.
+  /// Returns the name itself if it's already a base type.
+  static String fhirBaseType(String fhirType) {
+    switch (fhirType) {
+      // subtypes of string
+      case 'code':
+      case 'id':
+      case 'markdown':
+        return 'string';
+      // subtypes of uri
+      case 'canonical':
+      case 'oid':
+      case 'url':
+      case 'uuid':
+        return 'uri';
+      default:
+        return fhirType;
+    }
+  }
+
+  /// Returns the FHIRHelpers function name for converting a FHIR base type
+  /// to a CQL type in the context of choice type narrowing.
+  static String? fhirHelperForChoiceType(String fhirBaseTypeName) {
+    switch (fhirBaseTypeName) {
+      case 'boolean':
+        return 'ToBoolean';
+      case 'integer':
+      case 'positiveInt':
+      case 'unsignedInt':
+        return 'ToInteger';
+      case 'decimal':
+        return 'ToDecimal';
+      case 'date':
+        return 'ToDate';
+      case 'dateTime':
+      case 'instant':
+        return 'ToDateTime';
+      case 'time':
+        return 'ToTime';
+      case 'string':
+      case 'uri':
+      case 'code':
+      case 'id':
+      case 'markdown':
+      case 'base64Binary':
+      case 'canonical':
+      case 'oid':
+      case 'url':
+      case 'uuid':
+        return 'ToString';
+      case 'Quantity':
+        return 'ToQuantity';
+      case 'Coding':
+        return 'ToCode';
+      case 'CodeableConcept':
+        return 'ToConcept';
+      case 'Period':
+        return 'ToInterval';
+      default:
+        return null;
+    }
+  }
+
+  /// Given a Property expression and a target FHIR type name (e.g. 'boolean'),
+  /// wrap the property in As(asType: {fhir}targetType) then FHIRHelpers.ToXxx().
+  static CqlExpression wrapChoiceProperty(
+      CqlExpression property, String fhirTypeName) {
+    final baseType = fhirBaseType(fhirTypeName);
+    final asExpr = As(
+      operand: property,
+      asType: QName(
+        namespaceURI: 'http://hl7.org/fhir',
+        localPart: baseType,
+      ),
+    );
+    final helperName = fhirHelperForChoiceType(baseType);
+    if (helperName == null) return asExpr;
+    return FunctionRef(
+      name: helperName,
+      libraryName: 'FHIRHelpers',
+      operand: [asExpr],
+    );
   }
 
   @override

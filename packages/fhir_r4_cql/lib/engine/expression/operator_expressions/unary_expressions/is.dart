@@ -44,10 +44,12 @@ class Is extends UnaryExpression {
 
   @override
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{
-      'type': type,
-      'operand': operand.toJson(),
-    };
+    final data = <String, dynamic>{};
+    if (isType != null) {
+      data['isType'] = isType!.toJson();
+    }
+    data['type'] = type;
+    data['operand'] = operand.toJson();
     if (isTypeSpecifier != null) {
       data['isTypeSpecifier'] = isTypeSpecifier!.toJson();
     }
@@ -91,6 +93,11 @@ class Is extends UnaryExpression {
     }
 
     if (isType != null) {
+      // Use FHIR type matching for FHIR-namespaced types (lowercase primitives
+      // like 'string', 'code', 'uri' etc.), CQL type matching otherwise.
+      if (isType!.namespaceURI == 'http://hl7.org/fhir') {
+        return FhirBoolean(_matchesFhirType(value, isType!.localPart));
+      }
       return FhirBoolean(_matchesType(value, isType!.localPart));
     }
 

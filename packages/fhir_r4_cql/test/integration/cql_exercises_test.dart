@@ -29,11 +29,9 @@ void main() {
   for (final name in exerciseFiles) {
     group(name, () {
       test('parses CQL and produces correct ELM', () {
-        if (name == 'Exercises09' ||
-            name == 'Exercises10' ||
+        if (name == 'Exercises10' ||
             name == 'Exercises11') {
-          // Skip ELM comparison — Exercises09 uses complex Case expressions
-          // we don't generate, and Exercises10/11 have empty reference JSON.
+          // Skip ELM comparison — Exercises10/11 have empty reference JSON.
           return;
         }
         final cqlSource = loadCqlFile('$name.cql');

@@ -10,8 +10,19 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
 
     if (ctx.childCount == 3) {
       // Parse left and right operands
-      final CqlExpression left = byContext(ctx.children![0]) as CqlExpression;
-      final CqlExpression right = byContext(ctx.children![2]) as CqlExpression;
+      CqlExpression left = byContext(ctx.children![0]) as CqlExpression;
+      CqlExpression right = byContext(ctx.children![2]) as CqlExpression;
+
+      // Wrap choice-type properties for timing context (dateTime narrowing)
+      left = _wrapChoiceForTiming(left);
+      right = _wrapChoiceForTiming(right);
+
+      // If left is a DateTime (not Date), and right is Today(),
+      // wrap right in ToDateTime for type compatibility.
+      // But NOT if left is a Date type (ToDate) — Today() already returns Date.
+      if (right is Today && _isDateTimeNotDateWrapped(left)) {
+        right = ToDateTime(operand: right);
+      }
 
       // Parse the interval operator phrase
       final intervalOperatorPhrase = ctx.children![1];
@@ -75,5 +86,85 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     }
 
     throw ArgumentError('$thisNode Invalid TimingExpression');
+  }
+
+  /// If the expression is a Property on a FHIR choice field that includes
+  /// 'dateTime', wrap it with As({fhir}dateTime) then FHIRHelpers.ToDateTime().
+  /// For non-choice date/dateTime properties, apply standard FHIRHelpers wrapping.
+  CqlExpression _wrapChoiceForTiming(CqlExpression expr) {
+    if (expr is Property) {
+      final String? className = _resolveClassName(expr);
+      if (className != null) {
+        final element = getElementInfo(className, expr.path);
+        if (element != null && CqlBaseVisitor.isChoiceType(element)) {
+          final choices = CqlBaseVisitor.getChoiceTypes(element);
+          if (choices.any((c) => c == 'dateTime' || c == 'FHIR.dateTime')) {
+            return CqlBaseVisitor.wrapChoiceProperty(expr, 'dateTime');
+          }
+        }
+      }
+      // For non-choice date/dateTime properties, apply FHIRHelpers wrapping
+      return CqlBaseVisitor.wrapPropertyWithFhirHelper(expr, expr.path);
+    }
+    return expr;
+  }
+
+  /// Check if an expression is wrapped with a DateTime-producing
+  /// FHIRHelpers function (ToDateTime), but NOT a Date-producing one (ToDate).
+  bool _isDateTimeNotDateWrapped(CqlExpression expr) {
+    if (expr is FunctionRef) {
+      return expr.name == 'ToDateTime';
+    }
+    return false;
+  }
+
+  /// Try to resolve the FHIR class name for a Property expression.
+  String? _resolveClassName(Property property) {
+    if (property.scope != null) {
+      return _classNameFromScope(property.scope!);
+    }
+    if (property.source != null) {
+      return _classNameFromExpression(property.source!);
+    }
+    return null;
+  }
+
+  String? _classNameFromScope(String alias) {
+    for (final def in library.statements?.def ?? <ExpressionDef>[]) {
+      final expr = def.expression;
+      if (expr is Query) {
+        for (final src in expr.source ?? <RelationshipClause>[]) {
+          if (src.alias == alias) {
+            return _classNameFromExpression(src.expression);
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  String? _classNameFromExpression(CqlExpression expr) {
+    if (expr is ExpressionRef) {
+      ExpressionDef? refDef;
+      for (final d in library.statements?.def ?? <ExpressionDef>[]) {
+        if (d.name == expr.name) {
+          refDef = d;
+          break;
+        }
+      }
+      if (refDef?.expression is SingletonFrom) {
+        final sf = refDef!.expression as SingletonFrom;
+        if (sf.operand is Retrieve) {
+          return (sf.operand as Retrieve).dataType.localPart;
+        }
+      }
+    }
+    if (expr is Retrieve) {
+      return expr.dataType.localPart;
+    }
+    if (expr is SingletonFrom && expr.operand is Retrieve) {
+      return (expr.operand as Retrieve).dataType.localPart;
+    }
+    return null;
   }
 }

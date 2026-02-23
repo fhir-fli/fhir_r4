@@ -713,4 +713,80 @@ void main() {
       expect(interval.highClosed, false);
     });
   });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // ToChars
+  // ───────────────────────────────────────────────────────────────────────────
+  group('ToChars', () {
+    test('splits string into list of single-character FhirStrings', () async {
+      final toChars = ToChars(operand: LiteralString('ABC'));
+      final result = await toChars.execute({});
+      expect(result, isA<List>());
+      final list = result as List;
+      expect(list.length, equals(3));
+      expect(list[0], equals(FhirString('A')));
+      expect(list[1], equals(FhirString('B')));
+      expect(list[2], equals(FhirString('C')));
+    });
+
+    test('empty string returns empty list', () async {
+      final toChars = ToChars(operand: LiteralString(''));
+      final result = await toChars.execute({});
+      expect(result, isA<List>());
+      expect((result as List), isEmpty);
+    });
+
+    test('null operand returns null', () async {
+      final toChars = ToChars(operand: LiteralNull());
+      final result = await toChars.execute({});
+      expect(result, isNull);
+    });
+
+    test('single character string returns single-element list', () async {
+      final toChars = ToChars(operand: LiteralString('X'));
+      final result = await toChars.execute({});
+      expect(result, equals([FhirString('X')]));
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // ToLong
+  // ───────────────────────────────────────────────────────────────────────────
+  group('ToLong', () {
+    test('converts FhirInteger to FhirInteger64', () async {
+      final toLong = ToLong(operand: LiteralInteger(42));
+      final result = await toLong.execute({});
+      expect(result, equals(FhirInteger64.fromNum(42)));
+    });
+
+    test('converts string to FhirInteger64', () async {
+      final toLong = ToLong(operand: LiteralString('9999999999'));
+      final result = await toLong.execute({});
+      expect(result, equals(FhirInteger64.fromString('9999999999')));
+    });
+
+    test('null operand returns null', () async {
+      final toLong = ToLong(operand: LiteralNull());
+      final result = await toLong.execute({});
+      expect(result, isNull);
+    });
+
+    test('invalid string returns null', () async {
+      final toLong = ToLong(operand: LiteralString('not_a_number'));
+      final result = await toLong.execute({});
+      expect(result, isNull);
+    });
+
+    test('converts FhirBoolean true to 1', () async {
+      final toLong = ToLong(operand: LiteralBoolean(true));
+      final result = await toLong.execute({});
+      expect(result, equals(FhirInteger64.fromNum(1)));
+    });
+
+    test('converts FhirBoolean false to 0', () async {
+      final toLong = ToLong(operand: LiteralBoolean(false));
+      final result = await toLong.execute({});
+      expect(result, equals(FhirInteger64.fromNum(0)));
+    });
+  });
 }

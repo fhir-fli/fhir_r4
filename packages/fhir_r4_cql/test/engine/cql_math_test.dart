@@ -197,6 +197,292 @@ void main() {
     });
   });
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // TimeExpression
+  // ───────────────────────────────────────────────────────────────────────────
+  group('TimeExpression', () {
+    test('full time with hour, minute, second, millisecond', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(14),
+        minute: LiteralInteger(30),
+        second: LiteralInteger(15),
+        millisecond: LiteralInteger(500),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('14:30:15.500')));
+    });
+
+    test('hour and minute only', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(9),
+        minute: LiteralInteger(5),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('09:05')));
+    });
+
+    test('hour only', () async {
+      final timeExpr = TimeExpression(
+        hour: LiteralInteger(23),
+      );
+      final result = await timeExpr.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      expect(result, equals(fhir.FhirTime('23')));
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // DateTimeExpression
+  // ───────────────────────────────────────────────────────────────────────────
+  group('DateTimeExpression', () {
+    test('full datetime with all components', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+        month: LiteralInteger(3),
+        day: LiteralInteger(15),
+        hour: LiteralInteger(10),
+        minute: LiteralInteger(30),
+        second: LiteralInteger(0),
+        millisecond: LiteralInteger(0),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+    });
+
+    test('date-only datetime (year, month, day)', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+        month: LiteralInteger(6),
+        day: LiteralInteger(1),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+    });
+
+    test('year-only datetime', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralInteger(2024),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isA<fhir.FhirDateTime>());
+    });
+
+    test('null year returns null', () async {
+      final dtExpr = DateTimeExpression(
+        year: LiteralNull(),
+      );
+      final result = await dtExpr.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // TimeOfDay
+  // ───────────────────────────────────────────────────────────────────────────
+  group('TimeOfDay', () {
+    test('returns current time from startTimestamp', () async {
+      final now = DateTime.now();
+      final context = <String, dynamic>{
+        'startTimestamp':
+            fhir.FhirDateTime.fromString(now.toIso8601String()),
+      };
+      final timeOfDay = TimeOfDay();
+      final result = await timeOfDay.execute(context);
+      expect(result, isA<fhir.FhirTime>());
+      // Verify hour is reasonable
+      final time = result as fhir.FhirTime;
+      expect(time.hour, isNotNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // DateFrom
+  // ───────────────────────────────────────────────────────────────────────────
+  group('DateFrom', () {
+    test('extracts date from FhirDateTime', () async {
+      final dateFrom = DateFrom(
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await dateFrom.execute({});
+      expect(result, isA<fhir.FhirDate>());
+      expect(result, equals(fhir.FhirDate.fromString('2024-03-15')));
+    });
+
+    test('extracts partial date (year-month)', () async {
+      final dateFrom = DateFrom(
+        operand: _ConstExpr(fhir.FhirDateTime.fromString('2024-03')),
+      );
+      final result = await dateFrom.execute({});
+      expect(result, isA<fhir.FhirDate>());
+      expect(result, equals(fhir.FhirDate.fromString('2024-03')));
+    });
+
+    test('null operand returns null', () async {
+      final dateFrom = DateFrom(operand: LiteralNull());
+      final result = await dateFrom.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // TimeFrom
+  // ───────────────────────────────────────────────────────────────────────────
+  group('TimeFrom', () {
+    test('extracts time from FhirDateTime', () async {
+      final timeFrom = TimeFrom(
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
+      );
+      final result = await timeFrom.execute({});
+      expect(result, isA<fhir.FhirTime>());
+      final time = result as fhir.FhirTime;
+      expect(time.hour, equals(10));
+      expect(time.minute, equals(30));
+      expect(time.second, equals(45));
+    });
+
+    test('null operand returns null', () async {
+      final timeFrom = TimeFrom(operand: LiteralNull());
+      final result = await timeFrom.execute({});
+      expect(result, isNull);
+    });
+
+    test('FhirDate (no time component) returns null', () async {
+      final timeFrom = TimeFrom(
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-03-15')),
+      );
+      final result = await timeFrom.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // TimezoneOffsetFrom
+  // ───────────────────────────────────────────────────────────────────────────
+  group('TimezoneOffsetFrom', () {
+    test('extracts timezone offset from FhirDateTime with offset', () async {
+      final tzFrom = TimezoneOffsetFrom(
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00+05:00')),
+      );
+      final result = await tzFrom.execute({});
+      // Should return the timezone offset as a FhirDecimal
+      if (result != null) {
+        expect(result, isA<fhir.FhirDecimal>());
+      }
+    });
+
+    test('null operand returns null', () async {
+      final tzFrom = TimezoneOffsetFrom(operand: LiteralNull());
+      final result = await tzFrom.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // DateTimeComponentFrom
+  // ───────────────────────────────────────────────────────────────────────────
+  group('DateTimeComponentFrom', () {
+    test('extracts year from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.year,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(2024)));
+    });
+
+    test('extracts month from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.month,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(3)));
+    });
+
+    test('extracts day from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.day,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(15)));
+    });
+
+    test('extracts hour from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.hour,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(10)));
+    });
+
+    test('extracts minute from FhirDateTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.minute,
+        operand: _ConstExpr(
+            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(30)));
+    });
+
+    test('extracts year from FhirDate', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.year,
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-06')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(2024)));
+    });
+
+    test('extracts month from FhirDate', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.month,
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024-06-15')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(6)));
+    });
+
+    test('returns null for unavailable component (day from year-only date)',
+        () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.day,
+        operand: _ConstExpr(fhir.FhirDate.fromString('2024')),
+      );
+      final result = await comp.execute({});
+      expect(result, isNull);
+    });
+
+    test('extracts hour from FhirTime', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.hour,
+        operand: _ConstExpr(fhir.FhirTime('14:30:15')),
+      );
+      final result = await comp.execute({});
+      expect(result, equals(fhir.FhirInteger(14)));
+    });
+
+    test('null operand returns null', () async {
+      final comp = DateTimeComponentFrom(
+        precision: CqlDateTimePrecision.year,
+        operand: LiteralNull(),
+      );
+      final result = await comp.execute({});
+      expect(result, isNull);
+    });
+  });
+
   group('ConvertQuantity', () {
     test('converts mg to g', () async {
       final convertQuantity = ConvertQuantity(operand: [

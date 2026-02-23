@@ -2,7 +2,8 @@
 
 > Last updated: 2026-02-22
 > Conformance tests: 1706/1706 (100% pass)
-> Full suite: 2475 pass, 1 fail (Exercises04 Aggregate Variance — blocked on ucum)
+> Full suite: 2484 pass, 0 fail
+> Integration tests: All 11 exercises (Simple + Exercises01-11) parse and execute correctly
 
 ---
 
@@ -12,22 +13,25 @@
 - **CQL-to-ELM translation**: ANTLR4 lexer/parser → visitor → CqlExpression tree
 - **Execution engine**: 232 expression types registered, ~165 fully implemented
 - **Conformance tests**: 1706/1706 passing (all CQL operator categories)
-- **Integration tests**: Exercises01-09 parse and execute correctly
+- **Integration tests**: All exercises (Simple, Exercises01-11) parse and execute correctly
+- **Cross-library resolution**: `include` statements auto-resolve via LibraryManager with FileSystemLibrarySourceProvider
 - **Long integer (Integer64)**: Full support via FhirInteger64
 - **Uncertainty intervals**: DifferenceBetween/DurationBetween return CqlInterval for partial dates
 - **Precision handling**: All temporal operators + interval operators support precision parameters
-- **FHIRHelpers**: ToString, ToBoolean, ToInteger, ToDecimal, ToDateTime, ToDate, ToTime, ToQuantity, ToConcept, ToCode conversions
+- **FHIRHelpers**: Full suite of conversions (ToString, ToBoolean, ToInteger, ToDecimal, ToDateTime, ToDate, ToTime, ToQuantity, ToConcept, ToCode, ToRatio, ToInterval, ToValue, ToValueSet, ToCalendarUnit, ToQuantityIgnoringComparator)
+- **FHIRCommon**: Cross-library resolution for `FC.ToInterval()` and other functions
+- **Instance construction**: All types (Code, Concept, Quantity, Ratio, Interval, ValueSet, CodeSystem, primitives)
+- **Ratio literals**: Full CQL parsing and execution via LiteralRatio
 
-### What's Blocked
-- **Exercises04 Aggregate Variance**: Division precision issue in ucum package (waiting on ucum update)
-- **Exercises10-11**: Require FHIRCommon library resolution (see Section 5)
+### Nothing Blocked
+All previously blocked items have been resolved.
 
 ---
 
 ## 2. CQL Specification — Complete Operator Inventory
 
 All operators below are from the CQL 1.5.2 specification (Appendix B / Section 9).
-Status key: DONE = implemented + conformance tests pass, PARTIAL = implemented with known gaps, TODO = not implemented.
+Status key: DONE = implemented + conformance tests pass.
 
 ### 2.1 Comparison Operators (7) — ALL DONE
 | Operator | Signature | Status |
@@ -171,11 +175,11 @@ Status key: DONE = implemented + conformance tests pass, PARTIAL = implemented w
 | Min | DONE | |
 | Max | DONE | |
 | Median | DONE | |
-| Mode | DONE | TODO: tie-breaking for multiple modes |
-| Variance | DONE | Precision issue blocked on ucum update |
-| PopulationVariance | DONE | Same |
-| StdDev | DONE | Same |
-| PopulationStdDev | DONE | Same |
+| Mode | DONE | Tie-breaking for multiple modes not yet spec-defined |
+| Variance | DONE | |
+| PopulationVariance | DONE | |
+| StdDev | DONE | |
+| PopulationStdDev | DONE | |
 | AllTrue | DONE | |
 | AnyTrue | DONE | |
 | GeometricMean | DONE | |
@@ -187,7 +191,7 @@ Status key: DONE = implemented + conformance tests pass, PARTIAL = implemented w
 |----------|--------|
 | As, Is, Convert, CanConvert | DONE |
 | ToBoolean, ToDate, ToDateTime, ToDecimal, ToInteger, ToLong | DONE |
-| ToQuantity | DONE (TODO: Ratio case) |
+| ToQuantity | DONE |
 | ToRatio, ToString, ToTime, ToList, ToConcept, ToChars | DONE |
 | ConvertsToBoolean, ConvertsToDate, ConvertsToDateTime | DONE |
 | ConvertsToDecimal, ConvertsToInteger, ConvertsToLong | DONE |
@@ -215,8 +219,8 @@ Status key: DONE = implemented + conformance tests pass, PARTIAL = implemented w
 | If/Then/Else | DONE |
 | Case (selected + conditional) | DONE |
 | Message | DONE |
-| Null, Literal (all types) | DONE |
-| Tuple, Instance | DONE (Instance partial — see Section 4) |
+| Null, Literal (all types including Ratio) | DONE |
+| Tuple, Instance (all types) | DONE |
 | Property, Query, Retrieve | DONE |
 | ExpressionRef, FunctionRef, ParameterRef | DONE |
 | CodeRef, ConceptRef, ValueSetRef, CodeSystemRef | DONE |
@@ -231,14 +235,13 @@ Status key: DONE = implemented + conformance tests pass, PARTIAL = implemented w
 **Total grammar rules:** 178 visit methods in CqlBaseVisitor
 **Dedicated visitor files:** 116
 **Handled by base visitor or parent rules:** ~57
-**Actual gaps:** ~5
+**Actual gaps:** ~2
 
 ### Visitor Gaps (Need Implementation)
 
 | Visitor | Issue | Priority |
 |---------|-------|----------|
 | `visitSimplePathIndexer` | Empty file, throws ArgumentError | LOW (rare usage) |
-| `visitRatio` / `visitRatioLiteral` | Only calls visitChildren — Ratio literals not parsed | MEDIUM |
 | `visitNullLiteral` | Only calls visitChildren — should return NullExpression | LOW (works via parent) |
 
 ### Visitors with Default Handling (OK as-is)
@@ -252,20 +255,17 @@ These are handled transitively by parent grammar rules and work correctly:
 
 ## 4. Known Implementation Gaps (Engine)
 
-### Stub/Incomplete Execute Methods
+### Minor Gaps
 
 | Expression | File | Issue | Priority |
 |-----------|------|-------|----------|
-| Instance | `instance.dart:261` | Only handles Code/Concept; TODO for ValueSet, CodeSystem, Interval, Quantity, Ratio | MEDIUM |
-| ToQuantity | `to_quantity.dart:149` | TODO: Ratio-to-Quantity conversion | LOW |
-| Mode | `mode.dart:112` | TODO: handle multiple modes (tie-breaking) | LOW |
+| Mode | `mode.dart` | Tie-breaking for multiple modes undefined in spec | LOW |
 | MinValue/MaxValue | `min_value.dart`, `max_value.dart` | throws UnimplementedError for unrecognized types | LOW |
 
 ### Missing CQL Language Features
 
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Ratio literals | `visitRatio`/`visitRatioLiteral` are stubs — Ratio type not parseable from CQL source | MEDIUM |
 | Fluent functions | Parsed but `fluent` flag is commented out in visitor | LOW |
 | Library versioning | Version conflict resolution not implemented | LOW |
 | Access modifiers | On included libraries, not enforced | LOW |
@@ -282,31 +282,15 @@ These are handled transitively by parent grammar rules and work correctly:
 
 ---
 
-## 5. Integration Test Gaps
+## 5. Integration Tests
 
-### Exercises10 (Lung Cancer Screening — Decision Support)
-**Blockers:**
-1. **FHIRCommon library resolution** — `include FHIRCommon` requires parsing FHIRCommon.cql and resolving `FC.ToInterval()` calls
-2. **Instance construction for System.Quantity** — `System.Quantity { value: ..., unit: ... }`
-3. **Test data** — patient bundles for Former-Smoker, Heavy-Smoker, Never-Smoker scenarios
-4. **Expected results** — need to create test/test_data/exercises_10.dart
-
-**CQL features used:**
-- `AgeInYears()`, `exists`, complex boolean logic
-- Timing: `O.effective ends 15 years or less before Today()`
-- Component filtering: `singleton from (O.component C where C.code ~ "PACKS A DAY").value`
-- Duration: `duration in days of O.effective`
-- External library call: `FC.ToInterval(P.performed)`
-
-### Exercises11 (Cervical Cancer Screening — Quality Measure)
-**Blockers:** Same as Exercises10 plus:
-1. **Cross-resource-type union** — `[Procedure: "Hysterectomy"] union [Condition: "Congenital absence"]`
-2. **Complex timing phrases** — `ends 3 years or less on or before end of "Measurement Period"`
-3. **Parameter with default interval** — `parameter "Measurement Period" Interval<DateTime> default Interval[...]`
-
-### Exercises09 (ELM comparison only)
-- Execution works correctly
-- ELM JSON comparison skipped: "reference ELM uses complex Case expressions for choice types that we don't generate yet"
+All 11 exercises parse and execute correctly:
+- **Simple**: Basic CQL expressions
+- **Exercises01-04**: Arithmetic, types, aggregates, variance/stddev
+- **Exercises05-08**: FHIR data queries with Patient bundles
+- **Exercises09**: Complex CQL patterns (ELM comparison skipped — reference uses Case expressions for choice types)
+- **Exercises10**: Lung Cancer Screening Decision Support (uses FHIRCommon `FC.ToInterval()`)
+- **Exercises11**: Cervical Cancer Screening Quality Measure (uses FHIRCommon, Union, timing phrases)
 
 ---
 
@@ -315,159 +299,56 @@ These are handled transitively by parent grammar rules and work correctly:
 ### Expression Types with NO Dedicated Unit Tests
 These expressions work (conformance tests pass) but have no focused unit tests:
 
-**Type Operators:**
-- ConvertsToBoolean, ConvertsToDate, ConvertsToDateTime, ConvertsToDecimal
-- ConvertsToInteger, ConvertsToLong, ConvertsToQuantity, ConvertsToRatio
-- ConvertsToString, ConvertsToTime
-- CanConvert, CanConvertQuantity, ConvertQuantity
-- ToChars, ToLong, ToRatio
-
-**DateTime Constructors & Extractors:**
-- Date(), Time(), DateTime() constructors
-- TimeOfDay
-- DateFrom, TimeFrom, TimezoneOffsetFrom
-- DateTimeComponentFrom
-
-**Interval/List:**
-- Slice, Filter, ForEach, Repeat, Times
-
-**Clinical:**
-- CalculateAge, CalculateAgeAt (all AgeIn* variants)
-- Subsumes, SubsumedBy
-- ExpandValueSet, AnyInValueSet, AnyInCodeSystem
-
-**Structural:**
-- Instance (beyond Code/Concept)
-- Tuple construction
-- Children, Descendents
-- Message
-
-### Integration Test Expected Results Missing
-- Exercises10: No expected results file
-- Exercises11: No expected results file
+| Expression | Category |
+|-----------|----------|
+| ToChars | Type conversion |
+| ToLong | Type conversion |
+| Time() constructor | DateTime |
+| DateTime() constructor | DateTime |
+| TimeOfDay | DateTime |
+| DateFrom | DateTime |
+| TimeFrom | DateTime |
+| TimezoneOffsetFrom | DateTime |
+| DateTimeComponentFrom | DateTime |
+| Slice | List |
+| CalculateAge | Clinical |
+| CalculateAgeAt | Clinical |
+| Message | Structural |
+| Tuple | Structural |
 
 ---
 
-## 7. CQL Spec Examples & Behavioral Rules
+## 7. Prioritized Remaining Work Items
 
-### Key Behavioral Rules (from CQL 1.5.2 spec)
+### P1 — Medium Priority
+1. **Unit tests for 14 untested expressions** — See Section 6
+2. **Exercises09 ELM comparison** — Generate complex Case expressions for choice types
 
-**Three-Valued Logic:**
-- `false and null` → `false` (short-circuit)
-- `true or null` → `true` (short-circuit)
-- `null implies null` → `null`
-- `false implies null` → `true`
-
-**Equality vs Equivalence:**
-- `=` returns null if either operand is null; case-sensitive for strings; compares ALL fields for codes
-- `~` never returns null; case-insensitive for strings; `null ~ null` → `true`; codes compare only code+system
-
-**Duration vs Difference:**
-- DurationBetween counts whole calendar periods: `months between @2014-01-31 and @2014-02-01` = `0`
-- DifferenceBetween counts boundary crossings: `difference in months between @2014-01-31 and @2014-02-01` = `1`
-- Both return uncertainty intervals for partial dates
-
-**Calendar vs UCUM Durations:**
-- Calendar years equivalent to UCUM annum (`'a'`)
-- Calendar months equivalent to UCUM months (`'mo'`)
-- Calendar weeks and below are equal to UCUM counterparts
-- Calendar durations are context-dependent (months vary in length)
-
-**Timing Phrases:**
-- `X starts before start Y` — start of X is before start of Y
-- `X starts 3 days before start Y` — exactly 3 days before
-- `X starts 3 days or more before start Y` — offset comparison
-- `X starts within 3 days of start Y` — absolute difference <= 3 days
-- `X ends N years or less on or before end Y` — complex timing used in quality measures
-
-**Null Propagation:**
-- Arithmetic: `2 + null` → `null`
-- Comparison: `null > 5` → `null`
-- Equality: `4 = null` → `null`, `null = null` → `null`
-- Aggregates ignore nulls: `Count({1, 2, null})` = `2`, `Sum({1, 2, null})` = `3`
-
-### Reference Implementations
-1. **cqframework/clinical_quality_language** (Java) — Primary reference: CQL-to-ELM translator + engine
-2. **cqframework/cql-execution** (JavaScript/TypeScript) — JS execution engine
-3. **cqframework/cql-tests** (XML) — Official conformance test suite (already imported: 1706/1706 passing)
-4. **Cooking with CQL** — 80+ sessions of real-world examples at cqframework/CQL-Formatting-and-Usage-Wiki
-
-### Cooking with CQL Session Topics (Selected)
-- Sessions 01-10: CQL basics, types, operators, queries
-- Sessions 11-20: Timing expressions, interval operations, terminology
-- Sessions 21-30: Advanced queries, multi-source, let, aggregate
-- Sessions 31-40: FHIR patterns (choice types, extensions, slicing, negation)
-- Sessions 41-50: Quality measure patterns (populations, stratification)
-- Sessions 51-60: Decision support patterns (recommendations, evidence)
-- Sessions 61-70: Ratio calculations, composite measures, risk scores
-- Sessions 71-80+: QI-Core patterns, CPG patterns, FHIR R4 patterns
-
-### FHIRPath-to-CQL Translation Mappings
-| FHIRPath | CQL |
-|----------|-----|
-| `.where()` | Filter |
-| `.select()` | ForEach |
-| `.all()` | AllTrue + ForEach |
-| `.exists()` | Exists |
-| `.empty()` | not Exists |
-| `.count()` | Count |
-| `.first()` | First |
-| `.last()` | Last |
-| `.tail()` | Tail |
-| `.single()` | SingletonFrom |
-| `.ofType()` | OfType |
-| `.children()` | Children |
-| `.descendants()` | Descendents |
-| String functions | StartsWith, EndsWith, Matches, ReplaceMatches, PositionOf, Substring, Length, Upper, Lower, ToChars |
-| Type conversions | ToInteger, ToDecimal, ToString, ToDateTime, ToDate, ToTime, ToBoolean, ToQuantity |
-| ConvertsTo* | ConvertsToInteger, ConvertsToDecimal, etc. |
-| `.iif()` | If |
-| `.repeat()` | Repeat |
+### P2 — Low Priority
+3. **Mode tie-breaking** — `mode.dart`
+4. **SimplePathIndexer** — Empty visitor file
+5. **Fluent functions** — Parsed but flag commented out
+6. **Library versioning** — Version conflict resolution
+7. **Terminology service integration** — Real Subsumes/SubsumedBy for production
+8. **ValueSet expansion** — Against live terminology server
 
 ---
 
-## 8. Prioritized Work Items
-
-### P0 — Blocked (Waiting)
-1. **Exercises04 Aggregate Variance** — ucum division precision (waiting on ucum package update)
-
-### P1 — High Priority
-2. **FHIRCommon library resolution** — Unblocks Exercises10-11; requires parsing FHIRCommon.cql and resolving cross-library function calls like `FC.ToInterval()`
-3. **Instance construction** — Implement for Quantity, ValueSet, CodeSystem, Interval, Ratio types (`instance.dart:261`)
-4. **Ratio literal parsing** — `visitRatio`/`visitRatioLiteral` are stubs
-
-### P2 — Medium Priority
-5. **Exercises10 & 11 end-to-end** — Create test data (patient bundles), expected results, wire into integration tests
-6. **Exercises09 ELM comparison** — Generate complex Case expressions for choice types
-7. **Unit tests for untested expressions** — ~30 expression types have no dedicated tests (see Section 6)
-8. **ToQuantity Ratio case** — `to_quantity.dart:149`
-
-### P3 — Low Priority
-9. **Mode tie-breaking** — `mode.dart:112`
-10. **SimplePathIndexer** — Empty visitor file
-11. **Fluent functions** — Parsed but flag commented out
-12. **Library versioning** — Version conflict resolution
-13. **Terminology service integration** — Real Subsumes/SubsumedBy for production
-14. **ValueSet expansion** — Against live terminology server
-
----
-
-## 9. File Reference
+## 8. File Reference
 
 ### Key Source Directories
 - `lib/cql_to_elm/visitor/` — 116 visitor files + base visitor
 - `lib/engine/expression/` — 150+ expression types
 - `lib/engine/clinical_expression/` — Healthcare-specific operations
 - `lib/engine/types/` — CqlCode, CqlConcept, CqlInterval, CqlValueSet, etc.
-- `lib/engine/library/` — CqlLibrary container
+- `lib/engine/library/` — CqlLibrary container + LibraryManager
 
 ### Test Files
 - `test/cql_tests/` — 1706 conformance tests (XML format from cqframework/cql-tests)
-- `test/engine/` — Unit tests by category (aggregate, arithmetic, comparison, datetime, interval, list, string, type, etc.)
-- `test/integration/` — Exercises01-09 end-to-end tests
+- `test/engine/` — Unit tests by category (16 test files)
+- `test/integration/` — Exercises01-11 end-to-end tests
 - `test/test_data/` — Expected results for exercises
 - `test/test_helpers/` — Parsing & comparison utilities
 
 ### Configuration
-- `AUDIT.md` — Original audit (partially outdated — compilation errors fixed, many TODOs resolved)
 - `CLAUDE.md` — Claude Code instructions for this package
