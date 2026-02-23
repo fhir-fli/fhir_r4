@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
@@ -48,6 +49,31 @@ class IdentifierRef extends Ref {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
+    // Cross-library resolution: if libraryName is set, resolve from included lib
+    if (libraryName != null) {
+      final cacheKey = '$libraryName.$name';
+      if (context.containsKey(cacheKey)) {
+        return context[cacheKey];
+      }
+      final library = context['library'];
+      if (library is CqlLibrary) {
+        final includedLib = await library.resolveIncludedLibrary(libraryName!);
+        if (includedLib != null) {
+          final def = includedLib.statements?.def
+              .firstWhereOrNull((d) => d.name == name);
+          if (def != null) {
+            final savedLibrary = context['library'];
+            context['library'] = includedLib;
+            final result = await def.expression?.execute(context);
+            context['library'] = savedLibrary;
+            context[cacheKey] = result;
+            return result;
+          }
+        }
+      }
+      return null;
+    }
+
     // Direct lookup in context
     if (context.containsKey(name)) {
       return context[name];

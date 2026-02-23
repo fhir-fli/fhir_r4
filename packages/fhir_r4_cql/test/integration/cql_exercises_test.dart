@@ -20,6 +20,12 @@ void main() {
     'Exercises11',
   ];
 
+  // Shared LibraryManager with auto-loading for included libraries
+  final libraryManager = LibraryManager(
+    sourceProvider: FileSystemLibrarySourceProvider(basePath: 'cql'),
+    parseLibrary: parseAndBuildLibrary,
+  );
+
   for (final name in exerciseFiles) {
     group(name, () {
       test('parses CQL and produces correct ELM', () {
@@ -43,7 +49,8 @@ void main() {
         final cqlSource = loadCqlFile('$name.cql');
         final expectedResults = results['$name.cql'];
         final context = contexts['$name.cql'];
-        final library = parseAndBuildLibrary(cqlSource);
+        final library = parseAndBuildLibrary(cqlSource,
+            libraryManager: libraryManager);
         final executionResults = await library
             .execute(context is Map<String, dynamic> ? context : null);
 

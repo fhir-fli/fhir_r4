@@ -33,7 +33,8 @@ Map<String, dynamic> loadJsonFile(String filename) {
   return jsonDecode(content) as Map<String, dynamic>;
 }
 
-CqlLibrary parseAndBuildLibrary(String cqlSource) {
+CqlLibrary parseAndBuildLibrary(String cqlSource,
+    {LibraryManager? libraryManager}) {
   final parserAndErrors = parseCql(cqlSource);
   final parser = parserAndErrors.parser;
 
@@ -49,6 +50,10 @@ CqlLibrary parseAndBuildLibrary(String cqlSource) {
 
   visitor.library.annotation ??= [];
   visitor.library.annotation!.addAll(errors);
+
+  if (libraryManager != null) {
+    visitor.library.libraryManager = libraryManager;
+  }
 
   return visitor.library;
 }

@@ -105,26 +105,39 @@ class FunctionRef extends ExpressionRef {
     if (libraryName == null) {
       // Handle well-known CQL system functions that may be parsed as FunctionRef
       final result = await _trySystemFunction(context);
-      if (result != _notHandled) return result;
+      if (!identical(result, _notHandled)) return result;
       throw ArgumentError('Library name cannot be null for FunctionRef');
     }
 
+    // Try hardcoded fast paths for well-known libraries
     final libLower = libraryName!.toLowerCase();
     if (libLower == 'fhirhelpers') {
-      return await _fhirHelpers(context);
-    }
-    if (libLower == 'fc' || libLower == 'fhircommon') {
-      return await _fhirCommon(context);
+      final result = await _fhirHelpers(context);
+      if (!identical(result, _notHandled)) return result;
+    } else if (libLower == 'fc' || libLower == 'fhircommon') {
+      final result = await _fhirCommon(context);
+      if (!identical(result, _notHandled)) return result;
     }
 
+    // Generic resolution: resolve function from included library
     final functionDef = await library.resolveFunctionRef(name, libraryName!);
 
     if (functionDef == null) {
+      // For FHIRHelpers, many functions are external stubs — return null
+      if (libLower == 'fhirhelpers') return null;
       throw ArgumentError('Function definition not found for $name');
     }
 
+    // Get the included library for setting context correctly
+    final includedLib = await library.resolveIncludedLibrary(libraryName!);
+
     // Create a new context for function execution
     final functionContext = Map<String, dynamic>.from(context);
+
+    // Set the included library as the active library for the function scope
+    if (includedLib != null) {
+      functionContext['library'] = includedLib;
+    }
 
     // Evaluate operands and add them to the function context with parameter names
     if (operand != null && functionDef.operand != null) {
@@ -138,7 +151,12 @@ class FunctionRef extends ExpressionRef {
     }
 
     // Execute the function with the prepared context
-    return await functionDef.execute(functionContext);
+    final result = await functionDef.execute(functionContext);
+
+    // Restore the original library in context
+    context['library'] = library;
+
+    return result;
   }
 
   static const _notHandled = Object();
@@ -214,7 +232,7 @@ class FunctionRef extends ExpressionRef {
       case 'htmlChecks':
         return null;
       default:
-        return null;
+        return _notHandled;
     }
   }
 

@@ -83,6 +83,11 @@ class ValueSetRef extends Ref {
       throw ArgumentError('CqlLibrary not found in context');
     }
 
+    // Cross-library resolution
+    if (libraryName != null) {
+      return library.resolveValueSetRefFromLibrary(name, libraryName!);
+    }
+
     final CqlValueSet? valueSet = library.resolveValueSetRef(name);
 
     return valueSet;

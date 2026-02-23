@@ -40,8 +40,8 @@ class CqlLibrary extends Element {
   /// The value sets defined within this library.
   ValueSetDefs? valueSets;
 
-  /// Internal list of librarires referenced by this library, or available.
-  final _libraryManager = LibraryManager();
+  /// Internal list of libraries referenced by this library, or available.
+  LibraryManager libraryManager = LibraryManager();
 
   CqlLibrary({
     this.type,
@@ -202,26 +202,71 @@ class CqlLibrary extends Element {
         : CqlCodeSystem.fromCodeSystemDef(codeSystemDef);
   }
 
+  /// Find the IncludeDef matching a local alias (e.g. "FC" → FHIRCommon).
+  IncludeDef? _findInclude(String libraryId) {
+    return includes?.def
+        .firstWhereOrNull((inc) => inc.localIdentifier == libraryId);
+  }
+
+  /// Resolve the CqlLibrary for an included library by local alias.
+  Future<CqlLibrary?> resolveIncludedLibrary(String libraryId) async {
+    final include = _findInclude(libraryId);
+    if (include?.path == null) return null;
+    return libraryManager.resolveLibrary(include!.path!, include.version ?? '');
+  }
+
   Future<FunctionDef?> resolveFunctionRef(String name, String libraryId) async {
-    List<IncludeDef>? libraries = includes?.def
-        .where((include) => include.localIdentifier == libraryId)
-        .toList();
-
-    if (libraries == null || libraries.isEmpty) {
-      return null;
-    }
-
-    final libraryRef = await _libraryManager.resolveLibrary(
-        libraryId, libraries.first.version);
-    if (libraryRef == null) {
-      return null;
-    }
-
-    print('LibraryRef: ${libraryRef.identifier?.id}');
+    final libraryRef = await resolveIncludedLibrary(libraryId);
+    if (libraryRef == null) return null;
 
     return libraryRef.statements?.def
         .whereType<FunctionDef>()
         .firstWhereOrNull((e) => e.name == name);
+  }
+
+  /// Resolve an ExpressionDef (define statement) from an included library.
+  Future<ExpressionDef?> resolveExpressionRef(
+      String name, String libraryId) async {
+    final libraryRef = await resolveIncludedLibrary(libraryId);
+    if (libraryRef == null) return null;
+
+    return libraryRef.statements?.def.firstWhereOrNull((e) => e.name == name);
+  }
+
+  /// Resolve a CodeRef from an included library.
+  Future<CqlCode?> resolveCodeRefFromLibrary(
+      String name, String libraryId) async {
+    final libraryRef = await resolveIncludedLibrary(libraryId);
+    if (libraryRef == null) return null;
+    try {
+      return libraryRef.resolveCodeRef(name);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Resolve a ValueSetRef from an included library.
+  Future<CqlValueSet?> resolveValueSetRefFromLibrary(
+      String name, String libraryId) async {
+    final libraryRef = await resolveIncludedLibrary(libraryId);
+    if (libraryRef == null) return null;
+    try {
+      return libraryRef.resolveValueSetRef(name);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Resolve a CodeSystemRef from an included library.
+  Future<CqlCodeSystem?> resolveCodeSystemRefFromLibrary(
+      String name, String libraryId) async {
+    final libraryRef = await resolveIncludedLibrary(libraryId);
+    if (libraryRef == null) return null;
+    try {
+      return libraryRef.resolveCodeSystemRef(name);
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<dynamic> execute([Map<String, dynamic>? executionContext]) async {
