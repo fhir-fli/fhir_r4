@@ -41,31 +41,11 @@ class InMemoryTokenStorage implements TokenStorage {
 
 void main() {
   group('SmartFhirClient with BackendServiceConfig', () {
-    // A sample RSA private key for testing (NOT a real production key)
-    // Generated for test purposes only
-    const testPrivateKey = '''
------BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA4f5wg5l2hKsTeNem/V41fGnJm6gOdrj8ym3rFkEU/wT8RDtn
-SgFEZOQpHEgQ7JL38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0i
-cqabvJOMvQtzD6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqF
-Xf2p5yljMwWfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvE
-ZtLXiqMJqLv5ELbGLj3Qzt7KGJhExL/VPwFG7zLLCYnYzvXlDjrj9aLXTuqCNs1h
-TWXt6RpHsWVV6ERZDsxC6GEwVw5fYcK7Hb4pQQIDAQABAoIBAC2/d0WOD0WOD0kl
-Zi2sKLODvUKPpT+e3O7SCj/Gj7H3E6sJR56VJiFOFsBz6Q6A1DF0mPAWH3cWJSSJ
-vqOIp/+a8HX2i3A0c7CqfYzj91Ey+wfZh3mBVzf1ZJb9HpvLmLXV0R9ljMUfLdd
-ORfgq4EuBVJHMWtg4y8SgQpuPcRqfcJxnZJGGz1Hpv1SvLPvlV3Q1gKhIZxV03p
-QQRJ8LmHUYDaQ6G7GhI7H4v4Ob+78e6vL5K9rJ6jRnQb5C1U5C1U5C1U5C1UQvQ
-hRBjzNyT0lkV0/tz2MpKLS0jP9J5dC3k8IMiN3ZkX9mG0/Y7X9KfX/Q+nV8Y3oVd
-Y0BFzAECgYEA8yFEh7/4oQJPH3ih+kXe51bLXtFmwFJ/tA3t7hN/sQ7K6Rft5D3v
-cmJ8kXGxHFSBK6IG5TjPz/qK3R6Nh6L1rNitMfF6wXE0jkNx+i3hw8+oL6F2HFd
-GxO4Y7JZ0/U+FR1TYqsGDkaBr1Ct2sA4L8/wtpoV0GPy8R0gYG/n5EECgYEA7Hia
-X8qlIT/jD6CVMqmIxF8KJB3w/WsPF1hGBq98UjJ0W4t3C8LHWh0RR8aGnKxI9mK+
-CrN7j5vMCdOB3Z0WX2Sxyz5OMBF5s6IWt3bQ8P9zhGLHNjT9G3NfBz8T5HN2mQyJ
-gkKYbwG5Y2UB4L3a5s2K1F2tJ0Y0Q3ZL9MK+y0ECgYEAxi7Y7Y7Y7Y7Y7Y7Y7Y7Y
-7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y
-7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y7Y
------END RSA PRIVATE KEY-----
-''';
+    // A dummy PEM-like string for testing (not a real key — intentionally
+    // missing the PEM header to avoid secret-scanning false positives).
+    // Tests that use this expect an AuthenticationException because the key
+    // is invalid, which validates the error-handling path.
+    const testPrivateKey = 'not-a-real-private-key-just-for-unit-tests';
 
     test('isBackendService returns true for BackendServiceConfig', () {
       final mockClient = MockClient((request) async {

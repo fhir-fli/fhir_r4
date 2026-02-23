@@ -894,7 +894,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
               maxLines: 6,
               style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
               decoration: const InputDecoration(
-                hintText: '-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----',
+                hintText: 'Paste PEM-encoded private key here',
                 border: OutlineInputBorder(),
               ),
               onChanged: (_) {
