@@ -1,3 +1,4 @@
+import 'package:antlr4/antlr4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
@@ -13,9 +14,17 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       CqlExpression left = byContext(ctx.children![0]) as CqlExpression;
       CqlExpression right = byContext(ctx.children![2]) as CqlExpression;
 
-      // Wrap choice-type properties for timing context (dateTime narrowing)
-      left = _wrapChoiceForTiming(left);
-      right = _wrapChoiceForTiming(right);
+      // Parse the interval operator phrase (needed before wrapping to check
+      // for starts/ends keywords)
+      final intervalOperatorPhrase = ctx.children![1];
+
+      // When 'starts' or 'ends' is used, the Start/End operators will extract
+      // a point from the interval. Skip dateTime choice narrowing so the raw
+      // FHIR value (e.g. Period) flows through to Start/End which handle it.
+      if (!_hasStartsOrEnds(intervalOperatorPhrase)) {
+        left = _wrapChoiceForTiming(left);
+        right = _wrapChoiceForTiming(right);
+      }
 
       // If left is a DateTime (not Date), and right is Today(),
       // wrap right in ToDateTime for type compatibility.
@@ -23,9 +32,6 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       if (right is Today && _isDateTimeNotDateWrapped(left)) {
         right = ToDateTime(operand: right);
       }
-
-      // Parse the interval operator phrase
-      final intervalOperatorPhrase = ctx.children![1];
 
       CqlExpression primaryExpression;
       switch (intervalOperatorPhrase) {
@@ -86,6 +92,20 @@ class CqlTimingExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     }
 
     throw ArgumentError('$thisNode Invalid TimingExpression');
+  }
+
+  /// Check if the interval operator phrase contains a 'starts' or 'ends'
+  /// keyword, indicating the Start/End operator will be applied.
+  bool _hasStartsOrEnds(ParseTree phrase) {
+    if (phrase is ParserRuleContext) {
+      for (final child in phrase.children ?? <ParseTree>[]) {
+        if (child is TerminalNode &&
+            (child.text == 'starts' || child.text == 'ends')) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   /// If the expression is a Property on a FHIR choice field that includes
