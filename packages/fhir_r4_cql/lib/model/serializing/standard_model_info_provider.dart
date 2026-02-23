@@ -135,8 +135,8 @@ class StandardModelInfoProvider implements ModelInfoProvider, NamespaceAware {
           // case "null":
           //   return testmodelinfowithgenericshappy;
         }
-      } catch (e, s) {
-        print(s);
+      } catch (e) {
+        // Do not throw, allow other providers to resolve
       }
     } else if (isSimpleModelIdentifier(modelIdentifier)) {
       final localVersion = modelIdentifier.version ?? "";

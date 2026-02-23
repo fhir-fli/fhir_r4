@@ -12,8 +12,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// which can be extended to create a visitor which only needs to handle
 /// a subset of the available methods.
 ///
-/// [T] is the print(ctx.runtimeType); return type of the visit operation. Use
-/// `void` for operations with no print(ctx.runtimeType); return type.
+/// [T] is the return type of the visit operation. Use
+/// `void` for operations with no return type.
 class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   CqlBaseVisitor([CqlLibrary? library]) : library = library ?? CqlLibrary();
 

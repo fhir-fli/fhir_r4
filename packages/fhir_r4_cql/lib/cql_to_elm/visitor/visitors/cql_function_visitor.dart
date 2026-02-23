@@ -65,9 +65,17 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
     }
 
     //
-    // STEP 3: Delegate to the standard factory
+    // STEP 3: Delegate to the standard factory; fall back to FunctionRef
+    // for user-defined (local or included) functions
     //
-    return CqlExpression.byName(ref, operand, library);
+    try {
+      return CqlExpression.byName(ref, operand, library);
+    } on ArgumentError {
+      return FunctionRef(
+        name: ref,
+        operand: operand.isNotEmpty ? operand : null,
+      );
+    }
   }
 
   /// Wraps any `Null` elements in the list with `As(…, <aggType>)`.

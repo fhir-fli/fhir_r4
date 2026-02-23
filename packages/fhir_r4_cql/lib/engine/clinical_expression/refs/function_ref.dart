@@ -106,7 +106,24 @@ class FunctionRef extends ExpressionRef {
       // Handle well-known CQL system functions that may be parsed as FunctionRef
       final result = await _trySystemFunction(context);
       if (!identical(result, _notHandled)) return result;
-      throw ArgumentError('Library name cannot be null for FunctionRef');
+
+      // Try resolving as a local (same-library) function, including fluent functions
+      final localFuncDef = library.resolveLocalFunctionDef(name);
+      if (localFuncDef != null) {
+        final functionContext = Map<String, dynamic>.from(context);
+        if (operand != null && localFuncDef.operand != null) {
+          for (int i = 0;
+              i < operand!.length && i < localFuncDef.operand!.length;
+              i++) {
+            final paramName = localFuncDef.operand![i].name;
+            final operandValue = await operand![i].execute(context);
+            functionContext[paramName] = operandValue;
+          }
+        }
+        return await localFuncDef.execute(functionContext);
+      }
+
+      throw ArgumentError('Function not found: $name');
     }
 
     // Try hardcoded fast paths for well-known libraries

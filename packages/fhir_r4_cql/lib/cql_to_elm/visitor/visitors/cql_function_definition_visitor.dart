@@ -10,7 +10,7 @@ class CqlFunctionDefinitionVisitor extends CqlBaseVisitor<FunctionDef> {
     final int thisNode = getNextNode();
     AccessModifier accessLevel = AccessModifier.public;
     String? name;
-    // bool fluent = false;
+    bool fluent = false;
     List<OperandDef>? operand;
     TypeSpecifierExpression? returnType;
     CqlExpression? expression;
@@ -18,7 +18,7 @@ class CqlFunctionDefinitionVisitor extends CqlBaseVisitor<FunctionDef> {
       if (child is AccessModifierContext) {
         accessLevel = visitAccessModifier(child);
       } else if (child is TerminalNodeImpl && child.text == 'fluent') {
-        // fluent = true;
+        fluent = true;
       } else if (child is IdentifierOrFunctionIdentifierContext) {
         name = visitIdentifierOrFunctionIdentifier(child);
       } else if (child is OperandDefinitionContext) {
@@ -47,6 +47,7 @@ class CqlFunctionDefinitionVisitor extends CqlBaseVisitor<FunctionDef> {
             : 'Unfiltered',
         expression: expression,
         accessLevel: accessLevel,
+        fluent: fluent ? true : null,
       );
     }
     throw ArgumentError('$thisNode Invalid FunctionDefinition');

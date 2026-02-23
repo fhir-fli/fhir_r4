@@ -18,6 +18,7 @@ class FunctionDef extends ExpressionDef {
     super.expression,
     this.operand,
     this.external,
+    this.fluent,
     super.annotation,
     super.localId,
     super.locator,
@@ -43,6 +44,7 @@ class FunctionDef extends ExpressionDef {
               .toList()
           : null,
       external: json['external'] as bool?,
+      fluent: json['fluent'] as bool?,
     );
   }
 
@@ -59,6 +61,9 @@ class FunctionDef extends ExpressionDef {
     data['type'] = type;
     if (external != null) {
       data['external'] = external;
+    }
+    if (fluent == true) {
+      data['fluent'] = fluent;
     }
     if (expression != null) {
       data['expression'] = expression!.toJson();

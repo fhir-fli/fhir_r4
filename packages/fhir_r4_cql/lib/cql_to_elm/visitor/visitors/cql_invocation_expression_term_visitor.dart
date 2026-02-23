@@ -25,17 +25,33 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
       }
     }
 
-    // Qualified function call: FHIRHelpers.ToDateTime(...)
+    // Qualified function call: FHIRHelpers.ToDateTime(...) or fluent: 5.double()
     if (qualifiedInvocation is FunctionRef) {
-      String? libraryName;
+      String? leftName;
       if (expressionTerm is ExpressionRef) {
-        libraryName = expressionTerm.name;
+        leftName = expressionTerm.name;
       } else if (expressionTerm is IdentifierRef) {
-        libraryName = expressionTerm.name;
+        leftName = expressionTerm.name;
       } else if (expressionTerm is Property) {
-        libraryName = expressionTerm.path;
+        leftName = expressionTerm.path;
       }
-      qualifiedInvocation.libraryName = libraryName;
+
+      // Check if the left-side name is a library include alias
+      final isLibraryQualified = leftName != null &&
+          library.includes?.def
+                  .any((inc) => inc.localIdentifier == leftName) ==
+              true;
+
+      if (isLibraryQualified) {
+        // Library-qualified call: set libraryName (existing behavior)
+        qualifiedInvocation.libraryName = leftName;
+      } else {
+        // Fluent or local call: prepend expressionTerm as first operand
+        qualifiedInvocation.operand = [
+          if (expressionTerm is CqlExpression) expressionTerm,
+          ...?qualifiedInvocation.operand,
+        ];
+      }
       return qualifiedInvocation;
     }
 

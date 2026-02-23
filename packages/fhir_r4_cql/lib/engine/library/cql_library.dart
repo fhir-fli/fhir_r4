@@ -215,6 +215,12 @@ class CqlLibrary extends Element {
     return libraryManager.resolveLibrary(include!.path!, include.version ?? '');
   }
 
+  FunctionDef? resolveLocalFunctionDef(String name) {
+    return statements?.def
+        .whereType<FunctionDef>()
+        .firstWhereOrNull((e) => e.name == name);
+  }
+
   Future<FunctionDef?> resolveFunctionRef(String name, String libraryId) async {
     final libraryRef = await resolveIncludedLibrary(libraryId);
     if (libraryRef == null) return null;

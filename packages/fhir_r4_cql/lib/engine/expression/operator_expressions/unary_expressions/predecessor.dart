@@ -138,7 +138,6 @@ class Predecessor extends UnaryExpression {
         return value - ExtendedDuration(months: 1);
       }
       if (value.daysPrecision) {
-        print('result: ${value - ExtendedDuration(days: 1)}');
         return value - ExtendedDuration(days: 1);
       }
 
