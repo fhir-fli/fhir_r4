@@ -101,4 +101,57 @@ define fluent function myFunc(x Integer): x + 1
       expect(json['fluent'], isTrue);
     });
   });
+
+  group('function overload resolution by arity', () {
+    test('overloaded functions resolve by operand count', () async {
+      const cql = '''
+library TestOverload version '1.0.0'
+
+using FHIR version '4.0.1'
+
+define function Greet(name String): 'Hello ' + name
+define function Greet(first String, last String): 'Hello ' + first + ' ' + last
+
+define TestOne: Greet('World')
+define TestTwo: Greet('John', 'Doe')
+''';
+      final library = parseAndBuildLibrary(cql);
+      final result = await library.execute();
+      expect(result['TestOne'], equals('Hello World'));
+      expect(result['TestTwo'], equals('Hello John Doe'));
+    });
+
+    test('overloaded fluent functions resolve by arity', () async {
+      const cql = '''
+library TestFluentOverload version '1.0.0'
+
+using FHIR version '4.0.1'
+
+define fluent function describe(x Integer): 'Number: ' + ToString(x)
+define fluent function describe(x Integer, label String): label + ': ' + ToString(x)
+
+define TestOne: (42).describe()
+define TestTwo: (42).describe('Value')
+''';
+      final library = parseAndBuildLibrary(cql);
+      final result = await library.execute();
+      expect(result['TestOne'], equals('Number: 42'));
+      expect(result['TestTwo'], equals('Value: 42'));
+    });
+
+    test('single function with unique name still resolves', () async {
+      const cql = '''
+library TestSingleFunc version '1.0.0'
+
+using FHIR version '4.0.1'
+
+define function AddOne(x Integer): x + 1
+
+define TestResult: AddOne(10)
+''';
+      final library = parseAndBuildLibrary(cql);
+      final result = await library.execute();
+      expect(result['TestResult'], equals(FhirInteger(11)));
+    });
+  });
 }

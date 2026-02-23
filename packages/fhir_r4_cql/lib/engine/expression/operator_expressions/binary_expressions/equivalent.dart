@@ -181,9 +181,18 @@ class Equivalent extends BinaryExpression {
         result = right == null;
         break;
       case String _:
-        result = right is String
-            ? left.toLowerCase().trim() == right.toLowerCase().trim()
-            : false;
+        {
+          String? rightStr;
+          if (right is String) {
+            rightStr = right;
+          } else if (right is FhirString) {
+            rightStr = right.valueString;
+          } else if (right is PrimitiveType) {
+            rightStr = right.valueString;
+          }
+          result = rightStr != null &&
+              left.toLowerCase().trim() == rightStr.toLowerCase().trim();
+        }
         break;
       case FhirDateTimeBase _:
         result = right is FhirDateTimeBase

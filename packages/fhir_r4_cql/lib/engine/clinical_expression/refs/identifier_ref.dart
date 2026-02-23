@@ -59,6 +59,7 @@ class IdentifierRef extends Ref {
       if (library is CqlLibrary) {
         final includedLib = await library.resolveIncludedLibrary(libraryName!);
         if (includedLib != null) {
+          // Check statements first
           final def = includedLib.statements?.def
               .firstWhereOrNull((d) => d.name == name);
           if (def != null) {
@@ -69,6 +70,22 @@ class IdentifierRef extends Ref {
             context[cacheKey] = result;
             return result;
           }
+          // Check valueset definitions
+          final vsDef = includedLib.valueSets?.def
+              .firstWhereOrNull((d) => d.name == name);
+          if (vsDef != null) {
+            final result = CqlValueSet.fromValueSetDef(vsDef);
+            context[cacheKey] = result;
+            return result;
+          }
+          // Check code definitions
+          try {
+            final codeDef = includedLib.resolveCodeRef(name);
+            if (codeDef != null) {
+              context[cacheKey] = codeDef;
+              return codeDef;
+            }
+          } catch (_) {}
         }
       }
       return null;

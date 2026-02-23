@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show PrimitiveType;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to perform string concatenation of its arguments.
@@ -134,28 +136,29 @@ class Concatenate extends NaryExpression {
     return data;
   }
 
+  /// Coerces a value to a plain Dart [String], handling [FhirString] and
+  /// other [PrimitiveType]s that carry string values.
+  static String? _coerceToString(dynamic value) {
+    if (value is String) return value;
+    if (value is PrimitiveType) return value.valueString;
+    return null;
+  }
+
   String? concatenatePlus(dynamic left, dynamic right) {
-    // For '+', if either argument is null or not a string, the result is null.
-    if (left == null || right == null || left is! String || right is! String) {
-      return null;
-    } else {
-      return left + right;
-    }
+    // For '+', if either argument is null, the result is null.
+    if (left == null || right == null) return null;
+    final l = _coerceToString(left);
+    final r = _coerceToString(right);
+    if (l == null || r == null) return null;
+    return l + r;
   }
 
   String? concatenateAnd(dynamic left, dynamic right) {
-    // Convert non-null and non-string types to strings, or treat null as an empty string.
-    final leftStr = left is String
-        ? left
-        : left == null
-            ? ''
-            : null;
-    final rightStr = right is String
-        ? right
-        : right == null
-            ? ''
-            : null;
-    return leftStr == null || rightStr == null ? null : leftStr + rightStr;
+    // For '&', null is treated as empty string.
+    final l = left == null ? '' : _coerceToString(left);
+    final r = right == null ? '' : _coerceToString(right);
+    if (l == null || r == null) return null;
+    return l + r;
   }
 
 // Assuming you want to integrate this into your existing method with a 'plus' flag

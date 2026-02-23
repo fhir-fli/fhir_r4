@@ -127,7 +127,7 @@ class InValueSet extends OperatorExpression {
     if (valueSets is Map<String, dynamic>) {
       final expansion = valueSets[valueSetRef.id];
       if (expansion is List) {
-        return _checkCodeInExpansion(codeValue, expansion);
+        return checkCodeInExpansion(codeValue, expansion);
       }
     }
 
@@ -195,7 +195,7 @@ class InValueSet extends OperatorExpression {
   }
 
   /// Checks if a code value is in a local value set expansion list.
-  static FhirBoolean? _checkCodeInExpansion(
+  static FhirBoolean? checkCodeInExpansion(
       dynamic codeValue, List<dynamic> expansion) {
     bool matches(String? system, String? code) {
       for (final ec in expansion) {

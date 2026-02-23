@@ -108,7 +108,8 @@ class FunctionRef extends ExpressionRef {
       if (!identical(result, _notHandled)) return result;
 
       // Try resolving as a local (same-library) function, including fluent functions
-      final localFuncDef = library.resolveLocalFunctionDef(name);
+      final localFuncDef = library.resolveLocalFunctionDef(name,
+          operandCount: operand?.length ?? 0);
       if (localFuncDef != null) {
         final functionContext = Map<String, dynamic>.from(context);
         if (operand != null && localFuncDef.operand != null) {
@@ -121,6 +122,27 @@ class FunctionRef extends ExpressionRef {
           }
         }
         return await localFuncDef.execute(functionContext);
+      }
+
+      // Search included libraries for fluent function definitions
+      final fluentResult = await library.resolveFluentFunction(name,
+          operandCount: operand?.length ?? 0);
+      if (fluentResult != null) {
+        final (funcDef, funcLib) = fluentResult;
+        final functionContext = Map<String, dynamic>.from(context);
+        functionContext['library'] = funcLib;
+        if (operand != null && funcDef.operand != null) {
+          for (int i = 0;
+              i < operand!.length && i < funcDef.operand!.length;
+              i++) {
+            final paramName = funcDef.operand![i].name;
+            final operandValue = await operand![i].execute(context);
+            functionContext[paramName] = operandValue;
+          }
+        }
+        final result = await funcDef.execute(functionContext);
+        context['library'] = library;
+        return result;
       }
 
       throw ArgumentError('Function not found: $name');
@@ -137,7 +159,8 @@ class FunctionRef extends ExpressionRef {
     }
 
     // Generic resolution: resolve function from included library
-    final functionDef = await library.resolveFunctionRef(name, libraryName!);
+    final functionDef = await library.resolveFunctionRef(name, libraryName!,
+        operandCount: operand?.length ?? 0);
 
     if (functionDef == null) {
       // For FHIRHelpers, many functions are external stubs — return null

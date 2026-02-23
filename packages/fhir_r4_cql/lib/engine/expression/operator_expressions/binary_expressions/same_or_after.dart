@@ -341,106 +341,39 @@ class SameOrAfter extends BinaryExpression {
       right = SameAs.normalizeToUtc(right);
     }
 
-    if (left.year == null || right.year == null) {
-        return null;
-      }
+    // Compare field by field: if strictly greater → true, strictly less → false,
+    // equal → continue to next precision or return true at target precision.
+    if (left.year == null || right.year == null) return null;
+    if (left.year! > right.year!) return FhirBoolean(true);
+    if (left.year! < right.year!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.year) return FhirBoolean(true);
 
-      /// Check if years are equal
-      final yearsEqual = left.year! >= right.year!;
+    if (!left.hasMonth || !right.hasMonth) return null;
+    if (left.month! > right.month!) return FhirBoolean(true);
+    if (left.month! < right.month!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.month) return FhirBoolean(true);
 
-      /// If they're not equal, or we're only comparing to the year,
-      /// return the result
-      if (!yearsEqual || precision == CqlDateTimePrecision.year) {
-        return FhirBoolean(yearsEqual);
-      }
+    if (!left.hasDay || !right.hasDay) return null;
+    if (left.day! > right.day!) return FhirBoolean(true);
+    if (left.day! < right.day!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.day) return FhirBoolean(true);
 
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have a month, then there isn't enough precision, and we return null
-      else if (!left.hasMonth || !right.hasMonth) {
-        return null;
-      }
+    if (!left.hasHours || !right.hasHours) return null;
+    if (left.hour! > right.hour!) return FhirBoolean(true);
+    if (left.hour! < right.hour!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.hour) return FhirBoolean(true);
 
-      /// Check if months are equal
-      final monthsEqual = left.month! >= right.month!;
+    if (!left.hasMinutes || !right.hasMinutes) return null;
+    if (left.minute! > right.minute!) return FhirBoolean(true);
+    if (left.minute! < right.minute!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.minute) return FhirBoolean(true);
 
-      /// If they're not equal, or we're only comparing to the month,
-      /// return the result
-      if (!monthsEqual || precision == CqlDateTimePrecision.month) {
-        return FhirBoolean(monthsEqual);
-      }
+    if (!left.hasSeconds || !right.hasSeconds) return null;
+    if (left.second! > right.second!) return FhirBoolean(true);
+    if (left.second! < right.second!) return FhirBoolean(false);
+    if (precision == CqlDateTimePrecision.second) return FhirBoolean(true);
 
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have a day, then there isn't enough precision, and we return null
-      else if (!left.hasDay || !right.hasDay) {
-        return null;
-      }
-
-      /// Check if days are equal
-      final daysEqual = left.day! >= right.day!;
-
-      /// If they're not equal, or we're only comparing to the day,
-      /// return the result
-      if (!daysEqual || precision == CqlDateTimePrecision.day) {
-        return FhirBoolean(daysEqual);
-      }
-
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have an hour, then there isn't enough precision, and we return null
-      else if (!left.hasHours || !right.hasHours) {
-        return null;
-      }
-
-      /// Check if hours are equal
-      final hoursEqual = left.hour! >= right.hour!;
-
-      /// If they're not equal, or we're only comparing to the hour,
-      /// return the result
-      if (!hoursEqual || precision == CqlDateTimePrecision.hour) {
-        return FhirBoolean(hoursEqual);
-      }
-
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have a minute, then there isn't enough precision, and we return null
-
-      else if (!left.hasMinutes || !right.hasMinutes) {
-        return null;
-      }
-
-      /// Check if minutes are equal
-      final minutesEqual = left.minute! >= right.minute!;
-
-      /// If they're not equal, or we're only comparing to the minute,
-      /// return the result
-      if (!minutesEqual || precision == CqlDateTimePrecision.minute) {
-        return FhirBoolean(minutesEqual);
-      }
-
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have a second, then there isn't enough precision, and we return null
-      else if (!left.hasSeconds || !right.hasSeconds) {
-        return null;
-      }
-
-      /// Check if seconds are equal
-      final secondsEqual = left.second! >= right.second!;
-
-      /// If they're not equal, or we're only comparing to the second,
-      /// return the result
-      if (!secondsEqual || precision == CqlDateTimePrecision.second) {
-        return FhirBoolean(secondsEqual);
-      }
-
-      /// if we're supposed to continue to compare, but either one doesn't
-      /// have a millisecond, then there isn't enough precision, and we return
-      /// null
-      else if (!left.hasMilliseconds || !right.hasMilliseconds) {
-        return null;
-      } else {
-        /// Check if milliseconds are equal
-        final millisecondsEqual = left.millisecond! >= right.millisecond!;
-
-        /// We've reached the end of the precision, return the result
-        return FhirBoolean(millisecondsEqual);
-      }
+    if (!left.hasMilliseconds || !right.hasMilliseconds) return null;
+    return FhirBoolean(left.millisecond! >= right.millisecond!);
   }
 }

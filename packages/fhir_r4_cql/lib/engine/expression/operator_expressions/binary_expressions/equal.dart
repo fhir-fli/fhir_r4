@@ -164,7 +164,15 @@ class Equal extends BinaryExpression {
     bool? result;
     switch (left) {
       case String _:
-        result = right is String && left == right;
+        if (right is String) {
+          result = left == right;
+        } else if (right is FhirString) {
+          result = left == right.valueString;
+        } else if (right is PrimitiveType) {
+          result = left == right.valueString;
+        } else {
+          result = false;
+        }
         break;
       case FhirDateTime _:
         result = right is FhirDateTime ? left.isEqual(right) : false;

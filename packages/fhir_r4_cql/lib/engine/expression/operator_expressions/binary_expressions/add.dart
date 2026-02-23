@@ -201,6 +201,26 @@ class Add extends BinaryExpression {
           }
           return null;
         }
+      case String _:
+        {
+          final r = right is String
+              ? right
+              : right is PrimitiveType
+                  ? right.valueString
+                  : null;
+          return r != null ? left + r : null;
+        }
+      case FhirString _:
+        {
+          final l = left.valueString;
+          if (l == null) return null;
+          final r = right is String
+              ? right
+              : right is PrimitiveType
+                  ? right.valueString
+                  : null;
+          return r != null ? l + r : null;
+        }
       default:
         return null;
     }

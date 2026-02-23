@@ -1,0 +1,28 @@
+{
+  "resourceType": "ValueSet",
+  "id": "IMMZ.Z.DE9",
+  "url": "http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE9",
+  "name": "IMMZ_Z_DE9",
+  "title": "Measles-containing vaccines",
+  "status": "active",
+  "expansion": {
+    "timestamp": "2025-06-25T16:39:07.092Z",
+    "contains": [
+      {"system": "http://smart.who.int/immunizations/CodeSystem/IMMZ.Z", "code": "DE9", "display": "Measles-containing vaccines"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM28X5", "display": "Measles vaccines"},
+      {"system": "http://snomed.info/sct", "code": "836382004", "display": "Measles morbillivirus antigen-containing vaccine product"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD", "display": "Measles vaccines"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM8L15", "display": "Measles, live attenuated"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD01", "display": "Measles, live attenuated"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM8TF3", "display": "Measles, combinations with mumps and rubella, live attenuated"},
+      {"system": "http://loinc.org", "code": "30940-1", "display": "Measles virus + Mumps virus + Rubella virus dose count in combination vaccine"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD52", "display": "Measles, combinations with mumps and rubella, live attenuated"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM21H2", "display": "Measles, combinations with rubella, live attenuated"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD53", "display": "Measles, combinations with rubella, live attenuated"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM4AJ8", "display": "Measles, combinations with mumps, rubella and varicella, live attenuated"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD54", "display": "Measles, combinations with mumps, rubella and varicella, live attenuated"},
+      {"system": "http://id.who.int/icd/release/11/mms", "code": "XM9439", "display": "Measles, combinations with mumps, live attenuated"},
+      {"system": "http://www.whocc.no/atc", "code": "J07BD51", "display": "Measles, combinations with mumps, live attenuated"}
+    ]
+  }
+}

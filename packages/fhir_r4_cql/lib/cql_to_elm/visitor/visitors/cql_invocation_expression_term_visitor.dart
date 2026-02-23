@@ -59,8 +59,17 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
     if (qualifiedInvocation is Ref && qualifiedInvocation.name != null) {
       final memberName = qualifiedInvocation.name!;
 
-      // Check if the left side is a query alias or let identifier
+      // Check if the left side is a library include alias
+      // (e.g. Encounter."Client's age is less than 12 months")
       String? scopeName = _extractScopeName(expressionTerm);
+      if (scopeName != null &&
+          library.includes?.def
+                  .any((inc) => inc.localIdentifier == scopeName) ==
+              true) {
+        return returnRef(memberName, scopeName);
+      }
+
+      // Check if the left side is a query alias or let identifier
       if (scopeName != null && CqlBaseVisitor.isQueryAlias(scopeName)) {
         CqlExpression prop;
         // Let-introduced identifiers use QueryLetRef as source

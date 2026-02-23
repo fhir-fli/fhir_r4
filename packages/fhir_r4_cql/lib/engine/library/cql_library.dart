@@ -215,19 +215,60 @@ class CqlLibrary extends Element {
     return libraryManager.resolveLibrary(include!.path!, include.version ?? '');
   }
 
-  FunctionDef? resolveLocalFunctionDef(String name) {
-    return statements?.def
+  FunctionDef? resolveLocalFunctionDef(String name, {int? operandCount}) {
+    final candidates = statements?.def
         .whereType<FunctionDef>()
-        .firstWhereOrNull((e) => e.name == name);
+        .where((e) => e.name == name)
+        .toList() ?? [];
+    if (candidates.isEmpty) return null;
+    if (candidates.length == 1 || operandCount == null) return candidates.first;
+    return candidates.firstWhereOrNull(
+      (e) => (e.operand?.length ?? 0) == operandCount,
+    ) ?? candidates.first;
   }
 
-  Future<FunctionDef?> resolveFunctionRef(String name, String libraryId) async {
+  Future<FunctionDef?> resolveFunctionRef(String name, String libraryId,
+      {int? operandCount}) async {
     final libraryRef = await resolveIncludedLibrary(libraryId);
     if (libraryRef == null) return null;
 
-    return libraryRef.statements?.def
-        .whereType<FunctionDef>()
-        .firstWhereOrNull((e) => e.name == name);
+    return libraryRef.resolveLocalFunctionDef(name,
+        operandCount: operandCount);
+  }
+
+  /// Search all included libraries for a fluent function definition.
+  /// Returns the (FunctionDef, CqlLibrary) pair if found, null otherwise.
+  Future<(FunctionDef, CqlLibrary)?> resolveFluentFunction(String name,
+      {int? operandCount, Set<String>? visited}) async {
+    final includeDefs = includes?.def;
+    if (includeDefs == null) return null;
+
+    // Guard against circular includes
+    final myId = identifier?.id ?? '';
+    visited ??= <String>{};
+    if (visited.contains(myId)) return null;
+    visited.add(myId);
+
+    for (final inc in includeDefs) {
+      if (inc.localIdentifier == null) continue;
+      final lib = await resolveIncludedLibrary(inc.localIdentifier!);
+      if (lib == null) continue;
+      final funcDef =
+          lib.resolveLocalFunctionDef(name, operandCount: operandCount);
+      if (funcDef != null) {
+        return (funcDef, lib);
+      }
+    }
+    // Also search transitively: included libraries' includes
+    for (final inc in includeDefs) {
+      if (inc.localIdentifier == null) continue;
+      final lib = await resolveIncludedLibrary(inc.localIdentifier!);
+      if (lib == null) continue;
+      final result = await lib.resolveFluentFunction(name,
+          operandCount: operandCount, visited: visited);
+      if (result != null) return result;
+    }
+    return null;
   }
 
   /// Resolve an ExpressionDef (define statement) from an included library.
@@ -279,7 +320,7 @@ class CqlLibrary extends Element {
     final Map<String, dynamic> context =
         executionContext ?? <String, dynamic>{};
     context['library'] = this;
-    context['startTimestamp'] = fhir.FhirDateTime.fromDateTime(DateTime.now());
+    context['startTimestamp'] ??= fhir.FhirDateTime.fromDateTime(DateTime.now());
     final statementsExecuted = await statements?.execute(context);
     return statementsExecuted;
   }

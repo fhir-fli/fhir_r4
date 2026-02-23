@@ -235,10 +235,54 @@ class In extends BinaryExpression {
     } else if (right is List) {
       return FhirBoolean(right.contains(left));
     } else if (right is CqlValueSet) {
-      return null;
+      if (left == null) return FhirBoolean(false);
+      // Check context['_valueSets'] for expansion
+      final valueSets = context['_valueSets'];
+      if (valueSets is Map<String, dynamic>) {
+        final expansion = valueSets[right.id];
+        if (expansion is List) {
+          // Convert Map-based FHIR types to CQL types for matching
+          final codeValue = _toCqlCodeValue(left);
+          return InValueSet.checkCodeInExpansion(codeValue, expansion);
+        }
+      }
+      return FhirBoolean(false);
     } else {
       throw ArgumentError(
           'In: Right operand must be of type Interval, List, or include Codes and ValueSets');
     }
+  }
+
+  /// Convert FHIR Map-based types to CQL types for ValueSet membership checking.
+  static dynamic _toCqlCodeValue(dynamic value) {
+    if (value is CqlCode || value is CqlConcept || value is CodeableConcept ||
+        value is String || value is FhirCode) {
+      return value;
+    }
+    // Handle Map-based CodeableConcept from FHIR data
+    if (value is Map<String, dynamic>) {
+      final coding = value['coding'];
+      if (coding is List && coding.isNotEmpty) {
+        final codes = coding
+            .whereType<Map<String, dynamic>>()
+            .map((c) => CqlCode(
+                  code: c['code']?.toString() ?? '',
+                  system: c['system']?.toString() ?? '',
+                  display: c['display']?.toString(),
+                ))
+            .toList();
+        if (codes.length == 1) return codes.first;
+        return CqlConcept(codes: codes);
+      }
+      // Might be a single code
+      if (value.containsKey('code')) {
+        return CqlCode(
+          code: value['code']?.toString() ?? '',
+          system: value['system']?.toString() ?? '',
+          display: value['display']?.toString(),
+        );
+      }
+    }
+    return value;
   }
 }

@@ -1,9 +1,9 @@
 # fhir_r4_cql — Comprehensive Roadmap
 
-> Last updated: 2026-02-22
+> Last updated: 2026-02-23
 > Conformance tests: 1706/1706 (100% pass)
-> Full suite: 2562 pass, 0 fail
-> Integration tests: All 12 exercises (Simple + Exercises01-11) fully passing
+> Full suite: 2578 pass, 0 fail
+> Integration tests: All 12 exercises (Simple + Exercises01-11) + 7 WHO immunization tests passing
 
 ---
 
@@ -266,7 +266,7 @@ These are handled transitively by parent grammar rules and work correctly:
 
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Fluent functions | Parsed but `fluent` flag is commented out in visitor | LOW |
+| Fluent functions | DONE — parse, translate, and execute `define fluent function` | DONE |
 | Library versioning | Version conflict resolution not implemented | LOW |
 | Access modifiers | On included libraries, not enforced | LOW |
 | External functions | Body-less function definitions for external implementation | LOW |
@@ -284,13 +284,19 @@ These are handled transitively by parent grammar rules and work correctly:
 
 ## 5. Integration Tests
 
-All 11 exercises parse and execute correctly:
+All 12 exercises parse and execute correctly:
 - **Simple**: Basic CQL expressions
 - **Exercises01-04**: Arithmetic, types, aggregates, variance/stddev
 - **Exercises05-08**: FHIR data queries with Patient bundles
 - **Exercises09**: Complex CQL patterns — choice types, extensions, slices
 - **Exercises10**: Lung Cancer Screening Decision Support (uses FHIRCommon `FC.ToInterval()`, timing phrases with `starts`/`ends`)
 - **Exercises11**: Cervical Cancer Screening Quality Measure (uses FHIRCommon, Union, timing phrases)
+
+### WHO SMART Immunizations (7 tests)
+- **Measles Low Transmission**: 4 decision logic tests (22.1, 23.3, 25.2, 28.1) + 3 CQL self-validation tests
+- Uses real WHO CQL content from smart-immunizations IG (14 CQL files, 4 test bundles)
+- Exercises cross-library fluent functions, ValueSet membership, arity-based overload resolution
+- CQL files in `cql/who/`, test bundles in `cql/who/tests/`, vocabulary in `cql/who/vocabulary/`
 
 ---
 
@@ -313,7 +319,7 @@ All previously untested expressions now have dedicated unit tests.
 ### P2 — Low Priority
 2. **Mode tie-breaking** — `mode.dart`
 3. **SimplePathIndexer** — Empty visitor file
-4. **Fluent functions** — Parsed but flag commented out
+4. ~~**Fluent functions**~~ — DONE
 5. **Library versioning** — Version conflict resolution
 6. **Terminology service integration** — Real Subsumes/SubsumedBy for production
 7. **ValueSet expansion** — Against live terminology server
@@ -331,10 +337,16 @@ All previously untested expressions now have dedicated unit tests.
 
 ### Test Files
 - `test/cql_tests/` — 1706 conformance tests (XML format from cqframework/cql-tests)
-- `test/engine/` — Unit tests by category (16 test files)
-- `test/integration/` — Exercises01-11 end-to-end tests
+- `test/engine/` — Unit tests by category (18 test files)
+- `test/integration/` — Exercises01-11 end-to-end tests + WHO immunization tests
 - `test/test_data/` — Expected results for exercises
-- `test/test_helpers/` — Parsing & comparison utilities
+- `test/test_helpers/` — Parsing & comparison utilities (incl. WHO test helpers)
+
+### WHO CQL Content
+- `cql/who/` — WHO SMART immunizations CQL files
+- `cql/who/tests/` — FHIR test bundles for Measles decision logic
+- `cql/who/vocabulary/` — ValueSet JSON files for code membership checks
+- `utils/download_who_cql.sh` — Script to fetch WHO content from GitHub
 
 ### Configuration
 - `CLAUDE.md` — Claude Code instructions for this package

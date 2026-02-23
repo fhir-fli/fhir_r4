@@ -3,6 +3,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Expression that references a previously defined NamedExpression.
 class ExpressionRef extends Ref {
+  /// Guard against infinite recursion in [getReturnTypes].
+  static final Set<String> _resolvingTypes = {};
   ExpressionRef({
     required super.name,
     super.libraryName,
@@ -82,6 +84,22 @@ class ExpressionRef extends Ref {
             context[cacheKey] = result;
             return result;
           }
+          // Check valueset definitions
+          final vsDef = includedLib.valueSets?.def
+              .firstWhereOrNull((d) => d.name == name);
+          if (vsDef != null) {
+            final result = CqlValueSet.fromValueSetDef(vsDef);
+            context[cacheKey] = result;
+            return result;
+          }
+          // Check code definitions
+          try {
+            final codeDef = includedLib.resolveCodeRef(name);
+            if (codeDef != null) {
+              context[cacheKey] = codeDef;
+              return codeDef;
+            }
+          } catch (_) {}
         }
       }
       return null;
@@ -118,12 +136,20 @@ class ExpressionRef extends Ref {
     }
 
     // 3) Otherwise, look up the named define and delegate to its expression.
-    final defs = library.statements?.def;
-    if (defs != null) {
-      final idx = defs.indexWhere((d) => d.name == name);
-      if (idx != -1) {
-        return defs[idx].expression?.getReturnTypes(library) ?? [];
+    //    Use a recursion guard to avoid infinite loops when defines reference
+    //    each other (e.g., Case items referencing other defines).
+    if (_resolvingTypes.contains(name)) return [];
+    _resolvingTypes.add(name);
+    try {
+      final defs = library.statements?.def;
+      if (defs != null) {
+        final idx = defs.indexWhere((d) => d.name == name);
+        if (idx != -1) {
+          return defs[idx].expression?.getReturnTypes(library) ?? [];
+        }
       }
+    } finally {
+      _resolvingTypes.remove(name);
     }
 
     // 4) Last‐ditch fallback
