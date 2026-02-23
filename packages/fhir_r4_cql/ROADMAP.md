@@ -2,8 +2,8 @@
 
 > Last updated: 2026-02-22
 > Conformance tests: 1706/1706 (100% pass)
-> Full suite: 2484 pass, 0 fail
-> Integration tests: All 11 exercises (Simple + Exercises01-11) parse and execute correctly
+> Full suite: 2540 pass, 0 fail
+> Integration tests: All 12 exercises (Simple + Exercises01-11) fully passing
 
 ---
 
@@ -288,8 +288,8 @@ All 11 exercises parse and execute correctly:
 - **Simple**: Basic CQL expressions
 - **Exercises01-04**: Arithmetic, types, aggregates, variance/stddev
 - **Exercises05-08**: FHIR data queries with Patient bundles
-- **Exercises09**: Complex CQL patterns (ELM comparison skipped — reference uses Case expressions for choice types)
-- **Exercises10**: Lung Cancer Screening Decision Support (uses FHIRCommon `FC.ToInterval()`)
+- **Exercises09**: Complex CQL patterns — choice types, extensions, slices
+- **Exercises10**: Lung Cancer Screening Decision Support (uses FHIRCommon `FC.ToInterval()`, timing phrases with `starts`/`ends`)
 - **Exercises11**: Cervical Cancer Screening Quality Measure (uses FHIRCommon, Union, timing phrases)
 
 ---
@@ -322,15 +322,14 @@ These expressions work (conformance tests pass) but have no focused unit tests:
 
 ### P1 — Medium Priority
 1. **Unit tests for 14 untested expressions** — See Section 6
-2. **Exercises09 ELM comparison** — Generate complex Case expressions for choice types
 
 ### P2 — Low Priority
-3. **Mode tie-breaking** — `mode.dart`
-4. **SimplePathIndexer** — Empty visitor file
-5. **Fluent functions** — Parsed but flag commented out
-6. **Library versioning** — Version conflict resolution
-7. **Terminology service integration** — Real Subsumes/SubsumedBy for production
-8. **ValueSet expansion** — Against live terminology server
+2. **Mode tie-breaking** — `mode.dart`
+3. **SimplePathIndexer** — Empty visitor file
+4. **Fluent functions** — Parsed but flag commented out
+5. **Library versioning** — Version conflict resolution
+6. **Terminology service integration** — Real Subsumes/SubsumedBy for production
+7. **ValueSet expansion** — Against live terminology server
 
 ---
 
