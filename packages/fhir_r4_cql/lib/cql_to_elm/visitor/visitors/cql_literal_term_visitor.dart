@@ -27,7 +27,9 @@ class CqlLiteralTermVisitor extends CqlBaseVisitor<LiteralType> {
         return visitTimeLiteral(child);
       } else if (child is QuantityLiteralContext) {
         return visitQuantityLiteral(child);
-      } else if (child is RatioLiteralContext) {}
+      } else if (child is RatioLiteralContext) {
+        return visitRatioLiteral(child);
+      }
     }
     throw ArgumentError('$thisNode Invalid LiteralTerm');
   }

@@ -616,7 +616,20 @@ class LiteralRatio extends LiteralType {
   }
 
   @override
+  Future<ValidatedRatio> execute(Map<String, dynamic> context) async =>
+      ValidatedRatio(
+        numerator: await numerator.execute(context),
+        denominator: await denominator.execute(context),
+      );
+
+  @override
   String get type => 'Ratio';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => ['Ratio'];
+
+  @override
+  String toString() => 'LiteralRatio: $numerator : $denominator';
 }
 
 class LiteralString extends LiteralType {

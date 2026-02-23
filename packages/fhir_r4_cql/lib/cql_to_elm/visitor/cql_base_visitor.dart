@@ -723,18 +723,12 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlQuerySourceVisitor(library).visitQuerySource(ctx);
 
   @override
-  dynamic visitRatio(RatioContext ctx) {
-    printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
-  }
+  LiteralRatio visitRatio(RatioContext ctx) =>
+      CqlRatioVisitor(library).visitRatio(ctx);
 
   @override
-  dynamic visitRatioLiteral(RatioLiteralContext ctx) {
-    printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
-  }
+  LiteralRatio visitRatioLiteral(RatioLiteralContext ctx) =>
+      CqlRatioLiteralVisitor(library).visitRatioLiteral(ctx);
 
   @override
   String visitReferentialIdentifier(ReferentialIdentifierContext ctx) =>

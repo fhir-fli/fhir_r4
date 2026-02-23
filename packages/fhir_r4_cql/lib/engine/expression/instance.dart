@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:ucum/ucum.dart' show ValidatedQuantity;
+import 'package:ucum/ucum.dart' show ValidatedQuantity, ValidatedRatio;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -297,6 +297,68 @@ class Instance extends CqlExpression {
             return ValidatedQuantity.fromNumber(value, unit: unit);
           }
           return null;
+        }
+      case 'Ratio':
+        {
+          if (element == null) {
+            throw ArgumentError(
+                'Instance of type Ratio must have at least one element');
+          }
+          ValidatedQuantity? numerator;
+          ValidatedQuantity? denominator;
+          for (final e in element!) {
+            final result = await e.value.execute(context);
+            if (e.name == 'numerator') {
+              if (result is ValidatedQuantity) {
+                numerator = result;
+              }
+            } else if (e.name == 'denominator') {
+              if (result is ValidatedQuantity) {
+                denominator = result;
+              }
+            }
+          }
+          if (numerator != null && denominator != null) {
+            return ValidatedRatio(
+                numerator: numerator, denominator: denominator);
+          }
+          return null;
+        }
+      case 'Interval':
+        {
+          dynamic low;
+          dynamic high;
+          bool lowClosed = true;
+          bool highClosed = true;
+          if (element != null) {
+            for (final e in element!) {
+              final result = await e.value.execute(context);
+              switch (e.name) {
+                case 'low':
+                  low = result;
+                case 'high':
+                  high = result;
+                case 'lowClosed':
+                  if (result is FhirBoolean) {
+                    lowClosed = result.valueBoolean ?? true;
+                  } else if (result is bool) {
+                    lowClosed = result;
+                  }
+                case 'highClosed':
+                  if (result is FhirBoolean) {
+                    highClosed = result.valueBoolean ?? true;
+                  } else if (result is bool) {
+                    highClosed = result;
+                  }
+              }
+            }
+          }
+          return CqlInterval(
+            low: low,
+            high: high,
+            lowClosed: lowClosed,
+            highClosed: highClosed,
+          );
         }
       case 'ValueSet':
         {

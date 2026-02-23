@@ -1,6 +1,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
+import 'package:ucum/ucum.dart';
+
+import '../test_helpers/cql_test_helpers.dart';
 
 void main() {
   // ───────────────────────────────────────────────────────────────────────────
@@ -589,6 +592,125 @@ void main() {
     test('define "ConvertsToTimeNull": ConvertsToTime(null) // null', () async {
       final op = ConvertsToTime(operand: LiteralNull());
       expect(await op.execute({}), isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // LiteralRatio
+  // ───────────────────────────────────────────────────────────────────────────
+  group('LiteralRatio', () {
+    test('LiteralRatio.execute() returns ValidatedRatio', () async {
+      final ratio = LiteralRatio(
+        LiteralQuantity(LiteralDecimal(1), unit: 'mg'),
+        LiteralQuantity(LiteralDecimal(2), unit: 'mg'),
+      );
+      final result = await ratio.execute({});
+      expect(result, isA<ValidatedRatio>());
+      final vr = result as ValidatedRatio;
+      expect(vr.numerator, ValidatedQuantity.fromNumber(1, unit: 'mg'));
+      expect(vr.denominator, ValidatedQuantity.fromNumber(2, unit: 'mg'));
+    });
+
+    test('Ratio literal parsing via CQL: 1 \'mg\':2 \'mg\'', () async {
+      final lib = parseAndBuildLibrary(
+        "library TestRatio\ndefine \"Ratio\": 1 'mg':2 'mg'",
+      );
+      final result = await lib.execute();
+      expect(result['Ratio'], isA<ValidatedRatio>());
+    });
+
+    test('Ratio equivalence via CQL: 1:8 ~ 2:16', () async {
+      final lib = parseAndBuildLibrary(
+        'library TestRatioEquiv\ndefine "Result": 1 \'mg\':8 \'mg\' ~ 2 \'mg\':16 \'mg\'',
+      );
+      final result = await lib.execute();
+      expect(result['Result'], FhirBoolean(true));
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // ToQuantity from Ratio
+  // ───────────────────────────────────────────────────────────────────────────
+  group('ToQuantity from Ratio', () {
+    test('ToQuantity from Ratio: 1 mg / 2 mg', () async {
+      final ratio = LiteralRatio(
+        LiteralQuantity(LiteralDecimal(1), unit: 'mg'),
+        LiteralQuantity(LiteralDecimal(2), unit: 'mg'),
+      );
+      final toQuantity = ToQuantity(operand: ratio);
+      final result = await toQuantity.execute({});
+      expect(result, isA<ValidatedQuantity>());
+      // mg/mg produces dimensionless '1' unit with value 0.50
+      final vq = result as ValidatedQuantity;
+      expect(vq.value.asDouble, closeTo(0.5, 0.001));
+    });
+
+    test('ToQuantity from Ratio: null operand returns null', () async {
+      final toQuantity = ToQuantity(operand: LiteralNull());
+      final result = await toQuantity.execute({});
+      expect(result, isNull);
+    });
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Instance: Ratio and Interval
+  // ───────────────────────────────────────────────────────────────────────────
+  group('Instance', () {
+    test('Instance Ratio with numerator and denominator', () async {
+      final instance = Instance(
+        classType: QName(localPart: 'Ratio'),
+        element: [
+          InstanceElement(
+            name: 'numerator',
+            value: LiteralQuantity(LiteralDecimal(5), unit: 'mg'),
+          ),
+          InstanceElement(
+            name: 'denominator',
+            value: LiteralQuantity(LiteralDecimal(10), unit: 'mL'),
+          ),
+        ],
+      );
+      final result = await instance.execute({});
+      expect(result, isA<ValidatedRatio>());
+      final vr = result as ValidatedRatio;
+      expect(vr.numerator, ValidatedQuantity.fromNumber(5, unit: 'mg'));
+      expect(vr.denominator, ValidatedQuantity.fromNumber(10, unit: 'mL'));
+    });
+
+    test('Instance Interval with low/high', () async {
+      final instance = Instance(
+        classType: QName(localPart: 'Interval'),
+        element: [
+          InstanceElement(name: 'low', value: LiteralInteger(1)),
+          InstanceElement(name: 'high', value: LiteralInteger(10)),
+        ],
+      );
+      final result = await instance.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.low, FhirInteger(1));
+      expect(interval.high, FhirInteger(10));
+      expect(interval.lowClosed, true);
+      expect(interval.highClosed, true);
+    });
+
+    test('Instance Interval with closed boundaries', () async {
+      final instance = Instance(
+        classType: QName(localPart: 'Interval'),
+        element: [
+          InstanceElement(name: 'low', value: LiteralInteger(1)),
+          InstanceElement(name: 'high', value: LiteralInteger(10)),
+          InstanceElement(
+              name: 'lowClosed', value: LiteralBoolean(false)),
+          InstanceElement(
+              name: 'highClosed', value: LiteralBoolean(false)),
+        ],
+      );
+      final result = await instance.execute({});
+      expect(result, isA<CqlInterval>());
+      final interval = result as CqlInterval;
+      expect(interval.lowClosed, false);
+      expect(interval.highClosed, false);
     });
   });
 }

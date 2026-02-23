@@ -146,8 +146,8 @@ class ToQuantity extends UnaryExpression {
         return ValidatedQuantity.fromString(result);
       case ValidatedQuantity _:
         return result;
-      // TODO(Dokotela): Implement the Ratio case
-      // case Ratio _;
+      case ValidatedRatio _:
+        return result.numerator / result.denominator;
       default:
         return null;
     }
