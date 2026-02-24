@@ -126,14 +126,39 @@ class MeetsBefore extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
 
+    return meetsBefore(left, right, precision);
+  }
+
+  static FhirBoolean? meetsBefore(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
-      // If either required boundary is null, result is indeterminate
-      if (leftEnd == null || rightStart == null) return null;
-      final pred = Predecessor.predecessor(rightStart);
+
+      // If intervals overlap, they cannot meet
+      // Use getStart/getEnd for known boundaries, null for unknown ones
+      final effectiveLeftStart = left.low != null ? left.getStart() : null;
+      final effectiveRightEnd = right.high != null ? right.getEnd() : null;
+      if (Meets.intervalsOverlap(effectiveLeftStart, leftEnd, rightStart,
+          effectiveRightEnd, precision)) {
+        return FhirBoolean(false);
+      }
+
+      if (leftEnd == null || rightStart == null) {
+        // Can we prove they don't meet from known boundaries?
+        final leftStart = left.getStart();
+        final rightEnd = right.getEnd();
+        // If leftStart > rightEnd, intervals are completely disjoint (left after right)
+        if (leftStart != null && rightEnd != null) {
+          final gt = Greater.greater(leftStart, rightEnd);
+          if (gt?.valueBoolean == true) return FhirBoolean(false);
+        }
+        return null;
+      }
+      final pred = Meets.safePredecessor(rightStart);
+      if (pred == null) return null;
       if (precision != null &&
           (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)) {
         return SameAs.sameAs(leftEnd, pred, precision);

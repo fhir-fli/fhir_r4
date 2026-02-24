@@ -139,10 +139,23 @@ class Meets extends BinaryExpression {
       final leftEnd = left.getEnd();
       final rightStart = right.getStart();
       final rightEnd = right.getEnd();
+
+      // If intervals overlap, they cannot meet — return false.
+      // Use getStart/getEnd for known boundaries, but null for unknown ones
+      // (null low/high means "unknown", not "min/max value").
+      final effectiveLeftStart = left.low != null ? leftStart : null;
+      final effectiveLeftEnd = left.high != null ? leftEnd : null;
+      final effectiveRightStart = right.low != null ? rightStart : null;
+      final effectiveRightEnd = right.high != null ? rightEnd : null;
+      if (intervalsOverlap(effectiveLeftStart, effectiveLeftEnd,
+          effectiveRightStart, effectiveRightEnd, precision)) {
+        return FhirBoolean(false);
+      }
+
       // Check meets before: leftEnd = predecessor(rightStart)
       bool hasNull = false;
       if (leftEnd != null && rightStart != null) {
-        final pred = Predecessor.predecessor(rightStart);
+        final pred = safePredecessor(rightStart);
         if (pred != null) {
           final leftMeetsRight = precision != null &&
                   (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
@@ -153,12 +166,11 @@ class Meets extends BinaryExpression {
           }
         }
       } else {
-        // A required boundary is null → indeterminate for this direction
         hasNull = true;
       }
       // Check meets after: leftStart = successor(rightEnd)
       if (leftStart != null && rightEnd != null) {
-        final succ = Successor.successor(rightEnd);
+        final succ = safeSuccessor(rightEnd);
         if (succ != null) {
           final rightMeetsLeft = precision != null &&
                   (leftStart is FhirDateTimeBase || leftStart is FhirTime)
@@ -171,23 +183,81 @@ class Meets extends BinaryExpression {
       } else {
         hasNull = true;
       }
-      // If any required boundary was null, check if we can determine
-      // the result from the known boundaries
       if (hasNull) {
         // If leftEnd < rightStart (with gap > 1), intervals are disjoint
         // and can't meet in either direction
         if (leftEnd != null && rightStart != null) {
-          final lt = Less.less(leftEnd, Predecessor.predecessor(rightStart));
-          if (lt?.valueBoolean == true) return FhirBoolean(false);
+          final pred = safePredecessor(rightStart);
+          if (pred != null) {
+            final lt = Less.less(leftEnd, pred);
+            if (lt?.valueBoolean == true) return FhirBoolean(false);
+          }
         }
         if (rightEnd != null && leftStart != null) {
-          final lt = Less.less(rightEnd, Predecessor.predecessor(leftStart));
-          if (lt?.valueBoolean == true) return FhirBoolean(false);
+          final pred = safePredecessor(leftStart);
+          if (pred != null) {
+            final lt = Less.less(rightEnd, pred);
+            if (lt?.valueBoolean == true) return FhirBoolean(false);
+          }
         }
         return null;
       }
       return FhirBoolean(false);
     } else {
+      return null;
+    }
+  }
+
+  /// Check if two intervals provably overlap using known boundaries.
+  /// If any needed boundary is null, we can't prove overlap → return false.
+  static bool intervalsOverlap(dynamic leftStart, dynamic leftEnd,
+      dynamic rightStart, dynamic rightEnd,
+      [CqlDateTimePrecision? precision]) {
+    // Overlap: leftStart <= rightEnd AND rightStart <= leftEnd
+    if (leftStart != null && rightEnd != null && leftEnd != null &&
+        rightStart != null) {
+      final leftBeforeRight = precision != null
+          ? SameOrBefore.sameOrBefore(leftStart, rightEnd, precision)
+          : LessOrEqual.lessOrEqual(leftStart, rightEnd);
+      final rightBeforeLeft = precision != null
+          ? SameOrBefore.sameOrBefore(rightStart, leftEnd, precision)
+          : LessOrEqual.lessOrEqual(rightStart, leftEnd);
+      if (leftBeforeRight?.valueBoolean == true &&
+          rightBeforeLeft?.valueBoolean == true) {
+        return true;
+      }
+    }
+    // Partial check: only if ALL four boundaries are known
+    // If any boundary is null (unknown), we can't prove overlap.
+    if (leftEnd != null && rightStart != null &&
+        leftStart != null && rightEnd != null) {
+      final leGe = precision != null
+          ? SameOrAfter.sameOrAfter(leftEnd, rightStart, precision)
+          : GreaterOrEqual.greaterOrEqual(leftEnd, rightStart);
+      if (leGe?.valueBoolean == true) {
+        final reGe = precision != null
+            ? SameOrAfter.sameOrAfter(rightEnd, leftStart, precision)
+            : GreaterOrEqual.greaterOrEqual(rightEnd, leftStart);
+        if (reGe?.valueBoolean == true) return true;
+      }
+    }
+    return false;
+  }
+
+  /// Safe predecessor that catches assertion errors (e.g., year < 1).
+  static dynamic safePredecessor(dynamic value) {
+    try {
+      return Predecessor.predecessor(value);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Safe successor that catches assertion errors (e.g., year > 9999).
+  static dynamic safeSuccessor(dynamic value) {
+    try {
+      return Successor.successor(value);
+    } catch (_) {
       return null;
     }
   }

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
+import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -215,31 +216,185 @@ class CqlLibrary extends Element {
     return libraryManager.resolveLibrary(include!.path!, include.version ?? '');
   }
 
-  FunctionDef? resolveLocalFunctionDef(String name, {int? operandCount}) {
+  FunctionDef? resolveLocalFunctionDef(String name,
+      {int? operandCount,
+      List<TypeSpecifierExpression>? signature,
+      List<dynamic>? operandValues}) {
     final candidates = statements?.def
-        .whereType<FunctionDef>()
-        .where((e) => e.name == name)
-        .toList() ?? [];
+            .whereType<FunctionDef>()
+            .where((e) => e.name == name)
+            .toList() ??
+        [];
     if (candidates.isEmpty) return null;
-    if (candidates.length == 1 || operandCount == null) return candidates.first;
-    return candidates.firstWhereOrNull(
-      (e) => (e.operand?.length ?? 0) == operandCount,
-    ) ?? candidates.first;
+    if (candidates.length == 1) return candidates.first;
+
+    // Filter by arity first
+    final byArity = operandCount != null
+        ? candidates
+            .where((e) => (e.operand?.length ?? 0) == operandCount)
+            .toList()
+        : candidates;
+    if (byArity.isEmpty) return candidates.first;
+    if (byArity.length == 1) return byArity.first;
+
+    // Match by signature type specifiers if available
+    if (signature != null && signature.isNotEmpty) {
+      final match = byArity.firstWhereOrNull(
+        (funcDef) => _signatureMatches(funcDef, signature),
+      );
+      if (match != null) return match;
+    }
+
+    // Match by runtime operand values if available
+    if (operandValues != null && operandValues.isNotEmpty) {
+      final match = byArity.firstWhereOrNull(
+        (funcDef) => _runtimeTypeMatches(funcDef, operandValues),
+      );
+      if (match != null) return match;
+    }
+
+    return byArity.first;
+  }
+
+  /// Check if a FunctionDef's declared operand types match runtime values.
+  static bool _runtimeTypeMatches(
+      FunctionDef funcDef, List<dynamic> operandValues) {
+    final operands = funcDef.operand;
+    if (operands == null || operands.length != operandValues.length) {
+      return false;
+    }
+    for (var i = 0; i < operandValues.length; i++) {
+      final declared = operands[i].operandTypeSpecifier;
+      if (declared == null) continue; // No type info — can't filter
+      if (!_valueMatchesTypeSpecifier(operandValues[i], declared)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// Check if a runtime value matches a declared TypeSpecifierExpression.
+  static bool _valueMatchesTypeSpecifier(
+      dynamic value, TypeSpecifierExpression typeSpec) {
+    if (value == null) return true; // null matches any type
+
+    if (typeSpec is NamedTypeSpecifier) {
+      final typeName = typeSpec.namespace.localPart;
+      return _valueMatchesTypeName(value, typeName);
+    }
+    if (typeSpec is ListTypeSpecifier) {
+      if (value is! List) return false;
+      if (typeSpec.elementType == null || value.isEmpty) return true;
+      // Check element type of first non-null element
+      final firstNonNull = value.firstWhereOrNull((e) => e != null);
+      if (firstNonNull == null) return true;
+      return _valueMatchesTypeSpecifier(firstNonNull, typeSpec.elementType!);
+    }
+    if (typeSpec is IntervalTypeSpecifier) {
+      if (value is! CqlInterval) return false;
+      if (typeSpec.pointType == null) return true;
+      final point = value.low ?? value.high;
+      if (point == null) return true;
+      return _valueMatchesTypeSpecifier(point, typeSpec.pointType!);
+    }
+    if (typeSpec is TupleTypeSpecifier) {
+      return value is Map || value is CqlTuple;
+    }
+    return true; // Unknown type specifier — assume match
+  }
+
+  /// Check if a runtime value matches a CQL type name.
+  static bool _valueMatchesTypeName(dynamic value, String typeName) {
+    switch (typeName) {
+      case 'Boolean':
+        return value is fhir.FhirBoolean || value is bool;
+      case 'Integer':
+        return value is fhir.FhirInteger || value is int;
+      case 'Decimal':
+        return value is fhir.FhirDecimal || value is double;
+      case 'String':
+        return value is String || value is fhir.FhirString;
+      case 'DateTime':
+        return value is fhir.FhirDateTime;
+      case 'Date':
+        return value is fhir.FhirDate;
+      case 'Time':
+        return value is fhir.FhirTime;
+      case 'Quantity':
+        return value is ValidatedQuantity || value is fhir.Quantity;
+      case 'Code':
+        return value is CqlCode;
+      case 'Concept':
+        return value is CqlConcept;
+      case 'Any':
+        return true;
+      default:
+        return true; // Unknown type — assume match
+    }
+  }
+
+  /// Check if a FunctionDef's operand types match the given signature.
+  static bool _signatureMatches(
+      FunctionDef funcDef, List<TypeSpecifierExpression> signature) {
+    final operands = funcDef.operand;
+    if (operands == null || operands.length != signature.length) return false;
+    for (var i = 0; i < signature.length; i++) {
+      if (!_typeSpecifierMatches(
+          operands[i].operandTypeSpecifier, signature[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// Compare two TypeSpecifierExpressions for structural equality.
+  static bool _typeSpecifierMatches(
+      TypeSpecifierExpression? declared, TypeSpecifierExpression? callSite) {
+    if (declared == null || callSite == null) return false;
+    if (declared.runtimeType != callSite.runtimeType) return false;
+
+    if (declared is NamedTypeSpecifier && callSite is NamedTypeSpecifier) {
+      return declared.namespace.localPart == callSite.namespace.localPart &&
+          (declared.namespace.namespaceURI == callSite.namespace.namespaceURI ||
+              declared.namespace.namespaceURI.isEmpty ||
+              callSite.namespace.namespaceURI.isEmpty);
+    }
+    if (declared is ListTypeSpecifier && callSite is ListTypeSpecifier) {
+      return _typeSpecifierMatches(declared.elementType, callSite.elementType);
+    }
+    if (declared is IntervalTypeSpecifier &&
+        callSite is IntervalTypeSpecifier) {
+      return _typeSpecifierMatches(declared.pointType, callSite.pointType);
+    }
+    if (declared is TupleTypeSpecifier && callSite is TupleTypeSpecifier) {
+      return true; // Tuple matching is structural, good enough for overloads
+    }
+    if (declared is ChoiceTypeSpecifier && callSite is ChoiceTypeSpecifier) {
+      return true;
+    }
+    return true; // Unknown type specifier subtypes — assume match
   }
 
   Future<FunctionDef?> resolveFunctionRef(String name, String libraryId,
-      {int? operandCount}) async {
+      {int? operandCount,
+      List<TypeSpecifierExpression>? signature,
+      List<dynamic>? operandValues}) async {
     final libraryRef = await resolveIncludedLibrary(libraryId);
     if (libraryRef == null) return null;
 
     return libraryRef.resolveLocalFunctionDef(name,
-        operandCount: operandCount);
+        operandCount: operandCount,
+        signature: signature,
+        operandValues: operandValues);
   }
 
   /// Search all included libraries for a fluent function definition.
   /// Returns the (FunctionDef, CqlLibrary) pair if found, null otherwise.
   Future<(FunctionDef, CqlLibrary)?> resolveFluentFunction(String name,
-      {int? operandCount, Set<String>? visited}) async {
+      {int? operandCount,
+      List<TypeSpecifierExpression>? signature,
+      List<dynamic>? operandValues,
+      Set<String>? visited}) async {
     final includeDefs = includes?.def;
     if (includeDefs == null) return null;
 
@@ -253,8 +408,10 @@ class CqlLibrary extends Element {
       if (inc.localIdentifier == null) continue;
       final lib = await resolveIncludedLibrary(inc.localIdentifier!);
       if (lib == null) continue;
-      final funcDef =
-          lib.resolveLocalFunctionDef(name, operandCount: operandCount);
+      final funcDef = lib.resolveLocalFunctionDef(name,
+          operandCount: operandCount,
+          signature: signature,
+          operandValues: operandValues);
       if (funcDef != null) {
         return (funcDef, lib);
       }
@@ -265,7 +422,10 @@ class CqlLibrary extends Element {
       final lib = await resolveIncludedLibrary(inc.localIdentifier!);
       if (lib == null) continue;
       final result = await lib.resolveFluentFunction(name,
-          operandCount: operandCount, visited: visited);
+          operandCount: operandCount,
+          signature: signature,
+          operandValues: operandValues,
+          visited: visited);
       if (result != null) return result;
     }
     return null;

@@ -225,6 +225,11 @@ class Collapse extends BinaryExpression {
       final List<CqlInterval> collapsedSource = [];
       CqlInterval? currentInterval = source.first;
 
+      // Normalize per for gap tolerance calculation
+      final normalizedPer = per is ValidatedQuantity
+          ? Expand.normalizePer(per, source.first.getStart())
+          : per;
+
       for (var i = 1; i < source.length; i++) {
         final nextInterval = source[i];
 
@@ -238,19 +243,36 @@ class Collapse extends BinaryExpression {
                     ?.valueBoolean ??
                 false;
 
-        if (overlaps || meets) {
-          // Merge the source
+        // Check per-based gap tolerance: merge if gap ≤ per
+        bool withinPer = false;
+        if (!overlaps && !meets && normalizedPer != null) {
+          final curEnd = currentInterval?.getEnd();
+          final nextStart = nextInterval.getStart();
+          if (curEnd != null && nextStart != null) {
+            final gap = Subtract.subtract(nextStart, curEnd);
+            if (gap != null) {
+              final gapLePer =
+                  LessOrEqual.lessOrEqual(gap, normalizedPer);
+              if (gapLePer?.valueBoolean == true) withinPer = true;
+            }
+          }
+        }
+
+        if (overlaps || meets || withinPer) {
+          // Merge the intervals
+          final currentEndGreater =
+              Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
+                      ?.valueBoolean ??
+                  false;
           final newEnd =
-              (Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
-                          ?.valueBoolean ??
-                      false)
-                  ? currentInterval?.getEnd()
-                  : nextInterval.getEnd();
+              currentEndGreater ? currentInterval?.getEnd() : nextInterval.getEnd();
+          final newHighClosed =
+              currentEndGreater ? currentInterval?.highClosed : nextInterval.highClosed;
           currentInterval = CqlInterval(
             low: currentInterval?.low,
             lowClosed: currentInterval?.lowClosed,
             high: newEnd,
-            highClosed: nextInterval.highClosed,
+            highClosed: newHighClosed,
           );
         } else if (currentInterval != null) {
           collapsedSource.add(currentInterval);

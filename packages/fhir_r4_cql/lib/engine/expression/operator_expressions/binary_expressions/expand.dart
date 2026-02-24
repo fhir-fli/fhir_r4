@@ -90,6 +90,7 @@ class Expand extends BinaryExpression {
     if (source is CqlInterval) {
       // Single interval overload: compute sub-intervals then return starts
       final intervals = _computeSubIntervals(source, per);
+      if (intervals == null) return null;
       return intervals.map((iv) => iv.low).toList();
     } else if (source is List) {
       // Filter out nulls per spec
@@ -102,17 +103,88 @@ class Expand extends BinaryExpression {
   }
 
   /// Expand a list of intervals into a list of sub-intervals of size per.
-  List<CqlInterval> _expandList(List<CqlInterval> intervals, dynamic per) {
+  /// Overlapping intervals are collapsed first, then each is expanded.
+  dynamic _expandList(List<CqlInterval> intervals, dynamic per) {
+    if (intervals.isEmpty) return <CqlInterval>[];
+    // Collapse overlapping intervals first to avoid duplicates
+    final collapsed = Collapse(operand: []).collapse(intervals, null);
+    if (collapsed == null) return null;
     final List<CqlInterval> result = [];
-    for (final interval in intervals) {
-      result.addAll(_computeSubIntervals(interval, per));
+    for (final interval in collapsed) {
+      final sub = _computeSubIntervals(interval, per);
+      // null return from _computeSubIntervals means incompatible per
+      if (sub == null) return null;
+      result.addAll(sub);
     }
     return result;
   }
 
+  static const _temporalUnits = {
+    'year', 'years', 'a', 'month', 'months', 'mo',
+    'week', 'weeks', 'wk', 'day', 'days', 'd',
+    'hour', 'hours', 'h', 'minute', 'minutes', 'min',
+    'second', 'seconds', 's', 'millisecond', 'milliseconds', 'ms',
+  };
+
+  /// Normalize per to a type compatible with start for arithmetic.
+  /// Returns null if per is incompatible with start type.
+  static dynamic normalizePer(dynamic per, dynamic start) {
+    if (per is! ValidatedQuantity) return per;
+    final unit = per.unit;
+    final num? numVal = num.tryParse(per.value.asUcumDecimal());
+    if (numVal == null) return per;
+
+    // Numeric intervals: per with unit '1' or no unit → convert to matching type
+    if (unit == '1' || unit == '' || unit == null) {
+      final isIntVal = numVal == numVal.truncateToDouble();
+      if (start is FhirInteger) {
+        if (isIntVal) return FhirInteger(numVal.toInt());
+        // Decimal per with integer start: return decimal (triggers int→dec conversion)
+        return FhirDecimal(numVal.toDouble());
+      }
+      if (start is FhirInteger64) return FhirInteger64.fromNum(numVal.toInt());
+      if (start is FhirDecimal) {
+        // Integer per with decimal start: keep as FhirInteger for ceiling alignment
+        if (isIntVal) return FhirInteger(numVal.toInt());
+        return FhirDecimal(numVal.toDouble());
+      }
+      if (start is ValidatedQuantity) return FhirDecimal(numVal.toDouble());
+      // Temporal start + unitless per → incompatible
+      if (start is FhirDateTimeBase || start is FhirTime) return null;
+    }
+
+    // Temporal per with numeric interval → incompatible
+    if (start is FhirInteger || start is FhirDecimal ||
+        start is FhirInteger64) {
+      if (_temporalUnits.contains(unit)) return null;
+    }
+
+    // Non-temporal, non-unitless per with temporal interval → incompatible
+    if (start is FhirDateTimeBase || start is FhirTime) {
+      if (!_temporalUnits.contains(unit)) return null;
+    }
+
+    // Quantity intervals: keep as ValidatedQuantity for same-unit or convert
+    if (start is ValidatedQuantity) {
+      if (!_temporalUnits.contains(unit)) {
+        // Quantity per with quantity start — keep as ValidatedQuantity
+        return per;
+      }
+      // Temporal per with quantity start → incompatible
+      return null;
+    }
+
+    return per; // Keep as ValidatedQuantity for temporal intervals
+  }
+
   /// Compute the sub-intervals for a single interval.
-  List<CqlInterval> _computeSubIntervals(CqlInterval interval, dynamic per) {
+  /// Returns null if per is incompatible with the interval type.
+  List<CqlInterval>? _computeSubIntervals(CqlInterval interval, dynamic per) {
     final List<CqlInterval> result = [];
+    // Check original boundaries for null (not getStart/getEnd which substitute min/max)
+    if (interval.low == null || interval.high == null) {
+      return result; // Null boundary → empty result
+    }
     dynamic start = interval.getStart();
     dynamic end = interval.getEnd();
 
@@ -122,6 +194,10 @@ class Expand extends BinaryExpression {
 
     per ??= _defaultPer(start);
 
+    // Normalize per to match start type
+    per = normalizePer(per, start);
+    if (per == null) return null; // Incompatible per → null result
+
     // Apply precision adjustments to boundaries
     final adjusted = _adjustBoundaries(start, end, per);
     if (adjusted == null) return [];
@@ -130,6 +206,7 @@ class Expand extends BinaryExpression {
 
     // Compute the step size for high boundary calculation
     final isDecimalPer = per is FhirDecimal;
+    final isQuantityPer = per is ValidatedQuantity && !_temporalUnits.contains(per.unit);
 
     // For decimal per, track decimal places for rounding
     final int decPlaces = isDecimalPer ? _decimalPlaces(per as FhirDecimal) : 0;
@@ -148,9 +225,14 @@ class Expand extends BinaryExpression {
       }
 
       // High boundary: predecessor of next start at per's precision
-      final high = isDecimalPer
-          ? _decimalPredecessor(nextStart, per as FhirDecimal)
-          : Predecessor.predecessor(nextStart);
+      dynamic high;
+      if (isDecimalPer) {
+        high = _decimalPredecessor(nextStart, per as FhirDecimal);
+      } else if (isQuantityPer) {
+        high = _quantityPredecessor(nextStart, per as ValidatedQuantity);
+      } else {
+        high = Predecessor.predecessor(nextStart);
+      }
       if (high == null) break;
 
       // Only include if the entire sub-interval fits within [start, end]
@@ -168,6 +250,39 @@ class Expand extends BinaryExpression {
     return result;
   }
 
+  /// For quantity per, compute the predecessor at the per's precision.
+  static dynamic _quantityPredecessor(
+      dynamic value, ValidatedQuantity per) {
+    if (value is! ValidatedQuantity) return Predecessor.predecessor(value);
+    final perNum =
+        num.tryParse(per.value.asUcumDecimal())?.toDouble() ?? 1.0;
+    final valNum =
+        num.tryParse(value.value.asUcumDecimal())?.toDouble();
+    if (valNum == null) return null;
+    // If per is integer-valued, step is 1; otherwise use decimal precision
+    final isIntPer = perNum == perNum.truncateToDouble();
+    if (isIntPer) {
+      return ValidatedQuantity.fromNumber(valNum - 1, unit: value.unit);
+    }
+    final places = _quantityDecimalPlaces(perNum);
+    final step = math.pow(10, -places).toDouble();
+    final factor = math.pow(10, places);
+    final rounded = ((valNum - step) * factor).roundToDouble() / factor;
+    return ValidatedQuantity.fromNumber(rounded, unit: value.unit);
+  }
+
+  static int _quantityDecimalPlaces(double value) {
+    final s = value.toString();
+    final dotIdx = s.indexOf('.');
+    if (dotIdx < 0) return 0;
+    // Trim trailing zeros
+    var end = s.length;
+    while (end > dotIdx + 1 && s[end - 1] == '0') {
+      end--;
+    }
+    return end - dotIdx - 1;
+  }
+
   /// For decimal per, compute the predecessor at the per's decimal precision
   /// rather than using the default decimal predecessor (which subtracts 10^-8).
   static dynamic _decimalPredecessor(dynamic value, FhirDecimal per) {
@@ -179,6 +294,57 @@ class Expand extends BinaryExpression {
     final factor = math.pow(10, places);
     final rounded = (raw * factor).roundToDouble() / factor;
     return FhirDecimal(rounded);
+  }
+
+  /// Check if ceiling alignment is needed: returns true if the original
+  /// date/time has sub-per-precision fields that aren't at their minimum.
+  static bool _needsCeilingAlignment(
+      FhirDateTimeBase original, ValidatedQuantity per) {
+    final unit = per.unit;
+    // Fields to check and their minimums:
+    // month→1, day→1, hour→0, minute→0, second→0, millisecond→0
+    switch (unit) {
+      case 'year' || 'years' || 'a':
+        if (original.month != null && original.month! > 1) return true;
+        if (original.day != null && original.day! > 1) return true;
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'month' || 'months' || 'mo':
+        if (original.day != null && original.day! > 1) return true;
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'week' || 'weeks' || 'wk' || 'day' || 'days' || 'd':
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'hour' || 'hours' || 'h':
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'minute' || 'minutes' || 'min':
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'second' || 'seconds' || 's':
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+    }
+    return false;
   }
 
   /// Get the step size (minimum unit) at the per's decimal precision.
@@ -209,18 +375,25 @@ class Expand extends BinaryExpression {
     if (start is FhirInteger && per is FhirDecimal) {
       final step = _decimalStepSize(per);
       final startDec = FhirDecimal(start.valueNum!.toDouble());
-      // Integer end expands to maximum decimal at per precision:
-      // integer 10 at tenths precision → 10.9
-      final endDec =
-          FhirDecimal(end.valueNum!.toDouble() + 1.0 - step);
+      // Only expand integer ends; decimal ends stay as-is
+      final endVal = end.valueNum!.toDouble();
+      final endDec = end is FhirInteger
+          ? FhirDecimal(endVal + 1.0 - step)
+          : FhirDecimal(endVal);
       return (startDec, endDec);
     }
 
-    // Decimal interval with integer per: truncate boundaries to integers
+    // Decimal interval with integer per: convert to integers
     if (start is FhirDecimal && per is FhirInteger) {
+      final startVal = start.valueNum!.toDouble();
+      // Ceiling alignment: if start has fractional part, advance to next int
+      final ceilStart = startVal == startVal.truncateToDouble()
+          ? startVal.toInt()
+          : startVal.ceil();
+      final endVal = end.valueNum!.toDouble();
       return (
-        FhirInteger(start.valueNum!.truncate()),
-        FhirInteger(end.valueNum!.truncate()),
+        FhirInteger(ceilStart),
+        FhirInteger(endVal.truncate()),
       );
     }
 
@@ -234,9 +407,15 @@ class Expand extends BinaryExpression {
 
     // DateTime/Date truncation based on quantity unit
     if (start is FhirDateTimeBase && per is ValidatedQuantity) {
-      final s = _truncateDateTimeToPer(start, per);
+      var s = _truncateDateTimeToPer(start, per);
       final e = _truncateDateTimeToPer(end, per);
       if (s == null || e == null) return null;
+      // Ceiling alignment: if truncation dropped non-minimum fields, advance
+      if (s is FhirDateTimeBase &&
+          _needsCeilingAlignment(start, per)) {
+        s = Add.add(s, per);
+        if (s == null) return null;
+      }
       return (s, e);
     }
 
@@ -350,9 +529,14 @@ class Expand extends BinaryExpression {
 
   /// Default per based on the coarsest precision of the point type.
   dynamic _defaultPer(dynamic start) {
+    if (start is ValidatedQuantity) {
+      return ValidatedQuantity.fromNumber(1, unit: start.unit);
+    }
     if (start is FhirInteger) return FhirInteger(1);
     if (start is FhirInteger64) return FhirInteger64.fromNum(1);
-    if (start is FhirDecimal) return FhirDecimal(0.00000001);
+    if (start is FhirDecimal) {
+      return FhirDecimal(1.0);
+    }
     if (start is FhirDate) {
       if (start.day != null) {
         return ValidatedQuantity.fromNumber(1, unit: 'day');

@@ -107,9 +107,20 @@ class FunctionRef extends ExpressionRef {
       final result = await _trySystemFunction(context);
       if (!identical(result, _notHandled)) return result;
 
+      // Pre-evaluate operands for runtime type matching when signature is absent
+      List<dynamic>? evaluatedOperands;
+      if (signature == null && operand != null && operand!.isNotEmpty) {
+        evaluatedOperands = <dynamic>[];
+        for (final op in operand!) {
+          evaluatedOperands.add(await op.execute(context));
+        }
+      }
+
       // Try resolving as a local (same-library) function, including fluent functions
       final localFuncDef = library.resolveLocalFunctionDef(name,
-          operandCount: operand?.length ?? 0);
+          operandCount: operand?.length ?? 0,
+          signature: signature,
+          operandValues: evaluatedOperands);
       if (localFuncDef != null) {
         final functionContext = Map<String, dynamic>.from(context);
         if (operand != null && localFuncDef.operand != null) {
@@ -117,7 +128,9 @@ class FunctionRef extends ExpressionRef {
               i < operand!.length && i < localFuncDef.operand!.length;
               i++) {
             final paramName = localFuncDef.operand![i].name;
-            final operandValue = await operand![i].execute(context);
+            final operandValue = evaluatedOperands != null
+                ? evaluatedOperands[i]
+                : await operand![i].execute(context);
             functionContext[paramName] = operandValue;
           }
         }
@@ -126,7 +139,9 @@ class FunctionRef extends ExpressionRef {
 
       // Search included libraries for fluent function definitions
       final fluentResult = await library.resolveFluentFunction(name,
-          operandCount: operand?.length ?? 0);
+          operandCount: operand?.length ?? 0,
+          signature: signature,
+          operandValues: evaluatedOperands);
       if (fluentResult != null) {
         final (funcDef, funcLib) = fluentResult;
         final functionContext = Map<String, dynamic>.from(context);
@@ -136,7 +151,9 @@ class FunctionRef extends ExpressionRef {
               i < operand!.length && i < funcDef.operand!.length;
               i++) {
             final paramName = funcDef.operand![i].name;
-            final operandValue = await operand![i].execute(context);
+            final operandValue = evaluatedOperands != null
+                ? evaluatedOperands[i]
+                : await operand![i].execute(context);
             functionContext[paramName] = operandValue;
           }
         }
@@ -160,7 +177,7 @@ class FunctionRef extends ExpressionRef {
 
     // Generic resolution: resolve function from included library
     final functionDef = await library.resolveFunctionRef(name, libraryName!,
-        operandCount: operand?.length ?? 0);
+        operandCount: operand?.length ?? 0, signature: signature);
 
     if (functionDef == null) {
       // For FHIRHelpers, many functions are external stubs — return null
