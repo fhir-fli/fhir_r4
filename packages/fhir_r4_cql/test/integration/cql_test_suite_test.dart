@@ -70,7 +70,7 @@ void main() {
 }
 
 /// Known failures with skip reasons, categorized by root cause.
-/// Total: 161 failures out of 1800 uncommented tests (1639 passing = 91.1%).
+/// Total: 143 failures out of 1800 uncommented tests (1657 passing = 92.1%).
 ///
 /// Note: ~148 test defines are commented out in CqlTestSuite.cql (inside
 /// /* ... */ block comments or // line comments). These are not counted.
@@ -95,19 +95,9 @@ const _knownFailures = <String, String>{
   'test_DifferenceBetween_Date_FortyDaysEqualToDaysBetween': 'DifferenceBetween edge cases',
   'test_DifferenceBetween_Date_WeeksBetweenUncertainty': 'DifferenceBetween edge cases',
   'test_DifferenceBetween_WeeksBetweenUncertainty': 'DifferenceBetween edge cases',
-  // Equality edge cases (14 tests)
-  'test_Equal_DateAndDateTimeEqual': 'Equality edge cases',
-  'test_Equal_DateAndDateTimeUncertainEqual': 'Equality edge cases',
-  'test_Equal_DateTimeAndDateEqual': 'Equality edge cases',
-  'test_Equal_DateTimeAndDateUncertainEqual': 'Equality edge cases',
+  // Equality edge cases (4 tests)
   'test_Equal_DifferingPrecision': 'Equality edge cases',
   'test_Equal_EqualQuantityOpenClosed': 'Equality edge cases',
-  'test_Equal_FirstListHasNull': 'Equality edge cases',
-  'test_Equal_SecondListHasNull': 'Equality edge cases',
-  'test_NotEqual_DateAndDateTimeEqual': 'Equality edge cases',
-  'test_NotEqual_DateAndDateTimeUncertainEqual': 'Equality edge cases',
-  'test_NotEqual_DateTimeAndDateEqual': 'Equality edge cases',
-  'test_NotEqual_DateTimeAndDateUncertainEqual': 'Equality edge cases',
   'test_NotEqual_DifferingPrecision': 'Equality edge cases',
   'test_NotEqual_EqualQuantityOpenClosed': 'Equality edge cases',
   // Equivalence edge cases (1 test)
@@ -213,15 +203,7 @@ const _knownFailures = <String, String>{
   'test_Variance_q2': 'Quantity arithmetic edge cases',
   'test_Variance_q_diff_units': 'Quantity arithmetic edge cases',
   'test_Variance_v_q': 'Quantity arithmetic edge cases',
-  // SameAs interval edge cases (12 tests)
-  'test_SameAsIvl_DateTimeAndDateComparisonEqual': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeDayPrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeHourPrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeMinutePrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeMonthPrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeSecondPrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateTimeYearPrecisionSame': 'SameAs interval edge cases',
-  'test_SameAsIvl_DateYearPrecisionSame': 'SameAs interval edge cases',
+  // SameAs interval edge cases (4 tests)
   'test_SameAsIvl_TimeIntervalComparisonNotSame': 'SameAs interval edge cases',
   'test_SameAsIvl_TimeIntervalComparisonSame': 'SameAs interval edge cases',
   'test_SameAsIvl_TimeOpenAndClosed': 'SameAs interval edge cases',

@@ -174,11 +174,10 @@ class Equal extends BinaryExpression {
           result = false;
         }
         break;
-      case FhirDateTime _:
-        result = right is FhirDateTime ? left.isEqual(right) : false;
-        break;
-      case FhirDate _:
-        result = right is FhirDate ? left.isEqual(right) : false;
+      case FhirDateTimeBase _:
+        // CQL spec: Date and DateTime are cross-comparable using precision
+        // semantics. Date is implicitly promoted to DateTime.
+        result = right is FhirDateTimeBase ? left.isEqual(right) : false;
         break;
       case FhirTime _:
         result = right is FhirTime ? left.isEqual(right) : false;
@@ -275,7 +274,12 @@ class Equal extends BinaryExpression {
         } else if (right is! List) {
           result = null;
         } else {
-          result = false;
+          // Different lengths: if either list has null elements, the result
+          // is uncertain (null) because we can't definitively say they're
+          // unequal when nulls are involved.
+          final hasNulls = (left as List).any((e) => e == null) ||
+              (right as List).any((e) => e == null);
+          result = hasNulls ? null : false;
         }
         break;
       case CqlTuple _:

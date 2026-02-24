@@ -148,8 +148,7 @@ class SameAs extends BinaryExpression {
     } else if (left is FhirTime && right is FhirTime) {
       return _sameAsTime(left, right, precision);
     } else if (left is CqlInterval && right is CqlInterval) {
-      final result = left.equal(right);
-      return result == null ? null : FhirBoolean(result);
+      return _sameAsInterval(left, right, precision);
     } else if (left is CqlInterval) {
       try {
         final rightInterval = CqlInterval(low: right, high: right);
@@ -276,6 +275,30 @@ class SameAs extends BinaryExpression {
       precision == CqlDateTimePrecision.minute ||
       precision == CqlDateTimePrecision.second ||
       precision == CqlDateTimePrecision.millisecond;
+
+  static FhirBoolean? _sameAsInterval(
+    CqlInterval left,
+    CqlInterval right,
+    CqlDateTimePrecision? precision,
+  ) {
+    final leftStart = left.getStart();
+    final leftEnd = left.getEnd();
+    final rightStart = right.getStart();
+    final rightEnd = right.getEnd();
+
+    // Compare starts using precision-aware sameAs
+    final startResult = sameAs(leftStart, rightStart, precision);
+    if (startResult?.valueBoolean == false) return FhirBoolean(false);
+
+    // Compare ends using precision-aware sameAs
+    final endResult = sameAs(leftEnd, rightEnd, precision);
+    if (endResult?.valueBoolean == false) return FhirBoolean(false);
+
+    // If either is null (uncertain), result is null
+    if (startResult == null || endResult == null) return null;
+
+    return FhirBoolean(true);
+  }
 
   static FhirBoolean? _sameAsDateTime(
       FhirDateTimeBase left, FhirDateTimeBase right,
