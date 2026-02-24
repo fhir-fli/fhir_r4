@@ -73,6 +73,11 @@ class CqlConversionExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
         return ToTime(operand: expression);
       case 'Concept':
         return ToConcept(operand: expression);
+      case 'Code':
+        // Identity conversion — Code to Code
+        return expression;
+      case 'Long':
+        return ToLong(operand: expression);
       default:
         throw ArgumentError('Unsupported conversion type: $typeName');
     }
