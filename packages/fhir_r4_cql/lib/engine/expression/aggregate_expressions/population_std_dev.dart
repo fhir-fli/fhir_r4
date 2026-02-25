@@ -125,27 +125,55 @@ class PopulationStdDev extends AggregateExpression {
   }
 
   static dynamic populationStdDev(dynamic sourceResult) {
-    var popVarianceResult = PopulationVariance.populationVariance(sourceResult);
-    if (popVarianceResult == null) {
+    if (sourceResult == null || sourceResult is! List || sourceResult.isEmpty) {
       return null;
     }
+    final filtered = List.from(sourceResult)
+      ..removeWhere((e) => e == null);
+    if (filtered.isEmpty) return null;
 
-    if (popVarianceResult is FhirDecimal) {
-      double stdDevValue = math.sqrt(popVarianceResult.valueNum!);
-      return FhirDecimal(stdDevValue.toStringAsFixed(8));
-    } else if (popVarianceResult is ValidatedQuantity) {
-      final String varianceString = popVarianceResult.value.asUcumDecimal();
-      final double? varianceDouble = double.tryParse(varianceString);
-      if (varianceDouble != null) {
-        UcumDecimal stdDevValue =
-            UcumDecimal.fromNum(math.sqrt(varianceDouble));
-        return ValidatedQuantity(
-            value: stdDevValue, unit: popVarianceResult.unit);
+    final mean = Avg.avg(List.from(filtered));
+    if (mean == null) return null;
+
+    /// For FhirDecimal — use PopulationVariance, then sqrt
+    if (mean is FhirDecimal) {
+      var popVarianceResult =
+          PopulationVariance.populationVariance(sourceResult);
+      if (popVarianceResult == null) return null;
+      if (popVarianceResult is FhirDecimal) {
+        double stdDevValue = math.sqrt(popVarianceResult.valueNum!);
+        return FhirDecimal(stdDevValue.toStringAsFixed(8));
       }
     }
 
+    /// For ValidatedQuantity — compute numeric population variance in the
+    /// mean's unit, then sqrt, keeping the original unit.
+    else if (mean is ValidatedQuantity) {
+      final svc = UcumService();
+      final meanUnit = mean.unit;
+      double sumOfSquaredDiffs = 0.0;
+      for (final val in filtered) {
+        if (val is! ValidatedQuantity) continue;
+        final converted = val.unit == meanUnit
+            ? val
+            : ValidatedQuantity(
+                value: svc.convert(val.value, val.unit, meanUnit),
+                unit: meanUnit);
+        final diff = converted - mean;
+        if (diff != null) {
+          final d = double.tryParse(diff.value.asUcumDecimal()) ?? 0.0;
+          sumOfSquaredDiffs += d * d;
+        }
+      }
+      final variance = sumOfSquaredDiffs / filtered.length; // N not N-1
+      // Truncate to 8 decimal places to match CQF reference precision
+      final truncated = math.sqrt(variance).toStringAsFixed(8);
+      final stdDevValue = UcumDecimal.fromString(truncated);
+      return ValidatedQuantity(value: stdDevValue, unit: mean.unit);
+    }
+
     throw ArgumentError(
-        'Unsupported type for Population Standard Deviation: ${popVarianceResult.runtimeType}');
+        'Unsupported type for Population Standard Deviation: ${sourceResult.runtimeType}');
   }
 
   @override

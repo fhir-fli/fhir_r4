@@ -460,10 +460,9 @@ packages:
   ucum:
     dependency: "direct main"
     description:
-      name: ucum
-      sha256: "96a5d7081c92f5fa81a0fe13a8f4240c18888539ca0f653930de13083e447ae5"
-      url: "https://pub.dev"
-    source: hosted
+      path: "/home/grey/dev/fhir/ucum"
+      relative: false
+    source: path
     version: "0.7.0"
   universal_io:
     dependency: transitive

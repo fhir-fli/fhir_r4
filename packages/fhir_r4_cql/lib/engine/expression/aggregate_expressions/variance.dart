@@ -151,27 +151,42 @@ class Variance extends AggregateExpression {
       return FhirDecimal(variance);
     }
 
-    // For ValidatedQuantity — sample variance uses (N-1) denominator
+    // For ValidatedQuantity — sample variance uses (N-1) denominator.
+    // Converts all values to the mean's unit first, then uses UCUM quantity
+    // multiplication for squaring (which canonicalizes units, e.g., ml² → m⁶).
     else if (mean is ValidatedQuantity) {
-      UcumDecimal? sumOfSquaredValues;
+      final svc = UcumService();
+      final meanUnit = mean.unit;
+      ValidatedQuantity? sumOfSquaredValues;
       for (final val in sourceResult as List<dynamic>) {
-        ValidatedQuantity? diffValue = val - mean;
+        if (val is! ValidatedQuantity) continue;
+        // Convert to mean's unit to avoid cross-unit subtraction bugs
+        final converted = val.unit == meanUnit
+            ? val
+            : ValidatedQuantity(
+                value: svc.convert(val.value, val.unit, meanUnit),
+                unit: meanUnit);
+        ValidatedQuantity? diffValue = converted - mean;
         if (diffValue != null) {
-          UcumDecimal squaredDiffValue = diffValue.value * diffValue.value;
-          if (sumOfSquaredValues == null) {
-            sumOfSquaredValues = squaredDiffValue;
-          } else {
-            sumOfSquaredValues = sumOfSquaredValues.add(squaredDiffValue);
-          }
+          ValidatedQuantity squaredDiff = diffValue * diffValue;
+          sumOfSquaredValues = sumOfSquaredValues == null
+              ? squaredDiff
+              : sumOfSquaredValues + squaredDiff;
         }
       }
       if (sumOfSquaredValues != null) {
-        // Re-parse to ensure adequate precision for division (UcumDecimal
-        // precision from chained add() can be too low, causing truncation).
-        final sum = UcumDecimal.fromString(sumOfSquaredValues.asUcumDecimal());
+        final sum = UcumDecimal.fromString(
+            sumOfSquaredValues.value.asUcumDecimal());
         var varianceValue =
             sum / UcumDecimal.fromNum(sourceResult.length - 1);
-        return ValidatedQuantity(value: varianceValue, unit: mean.unit);
+        // Truncate to 8 decimal places to match CQF reference precision
+        final truncated = double.tryParse(varianceValue.asUcumDecimal());
+        if (truncated != null) {
+          varianceValue = UcumDecimal.fromString(
+              truncated.toStringAsFixed(8));
+        }
+        return ValidatedQuantity(
+            value: varianceValue, unit: sumOfSquaredValues.unit);
       }
     }
 

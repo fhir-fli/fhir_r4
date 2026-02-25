@@ -70,32 +70,16 @@ void main() {
 }
 
 /// Known failures with skip reasons, categorized by root cause.
-/// Total: 27 failures out of 1800 uncommented tests (1773 passing = 98.5%).
 ///
 /// Note: ~148 test defines are commented out in CqlTestSuite.cql (inside
 /// /* ... */ block comments or // line comments). These are not counted.
 // ignore_for_file: lines_longer_than_80_chars
 const _knownFailures = <String, String>{
-  // Interval Expand cross-unit edge cases (2 tests) — require UCUM unit conversion in expand
+  // Interval Expand cross-unit edge cases (2 tests) — require matching CQF precision during unit conversion
   'test_QtyIvlExpand_ClosedSingleGPerMG': 'Interval Expand cross-unit edge cases',
   'test_QtyIvlExpand_ClosedSingleMGPerGTrunc': 'Interval Expand cross-unit edge cases',
-  // Quantity arithmetic edge cases (16 tests) — require UCUM unit conversion
-  'test_Avg_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_PopulationStd_q': 'Quantity arithmetic edge cases',
-  'test_PopulationStd_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_PopulationVariance_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_PopulationVariance_v_q': 'Quantity arithmetic edge cases',
-  'test_Quantity_AddUcum': 'Quantity arithmetic edge cases',
-  'test_Quantity_SubtractUcum': 'Quantity arithmetic edge cases',
-  'test_Quantity_mul_d_q': 'Quantity arithmetic edge cases',
-  'test_Quantity_mul_q_q_diff': 'Quantity arithmetic edge cases',
-  'test_Std_q': 'Quantity arithmetic edge cases',
-  'test_Std_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_Sum_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_Sum_unmatched_units_q': 'Quantity arithmetic edge cases',
-  'test_Variance_q2': 'Quantity arithmetic edge cases',
-  'test_Variance_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_Variance_v_q': 'Quantity arithmetic edge cases',
+  // UCUM multiplication precision (1 test) — UCUM produces more digits than CQF reference truncates
+  'test_Quantity_mul_q_q_diff': 'UCUM multiplication precision',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
   'test_ToList_LengthOfNull': 'Type conversion edge cases',
   // Null list inclusion semantics (8 tests) — CQF returns false, CQL spec says null;

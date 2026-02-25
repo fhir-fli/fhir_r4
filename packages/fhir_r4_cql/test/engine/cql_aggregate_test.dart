@@ -347,8 +347,9 @@ void main() {
       expect(result, equals(FhirDecimal(2.5)));
     });
     test(
-        """define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'""",
+        """define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' })""",
         () async {
+      // UCUM multiplication canonicalizes mg*mg → g2 (gram-squared)
       final list = ListExpression(
         element: [
           LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
@@ -360,7 +361,10 @@ void main() {
       );
       final variance = Variance(source: list);
       final result = await variance.execute({});
-      expect(result, equals(ValidatedQuantity.fromNumber(2.5, unit: 'mg')));
+      expect(
+          result,
+          equals(ValidatedQuantity(
+              value: UcumDecimal.fromString('0.00000250'), unit: 'g2')));
     });
     test(
         'define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })',
@@ -399,8 +403,9 @@ void main() {
       expect(result, equals(FhirDecimal(2.0)));
     });
     test(
-        """define "QuantityPopulationVariance": PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.0 'mg'""",
+        """define "QuantityPopulationVariance": PopulationVariance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' })""",
         () async {
+      // UCUM multiplication canonicalizes mg*mg → g2 (gram-squared)
       final list = ListExpression(element: [
         LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
         LiteralQuantity(LiteralDecimal(2.0), unit: 'mg'),
@@ -411,8 +416,8 @@ void main() {
       final result = await PopulationVariance(source: list).execute({});
       expect(
           result,
-          equals(
-              ValidatedQuantity(value: UcumDecimal.fromNum(2.0), unit: 'mg')));
+          equals(ValidatedQuantity(
+              value: UcumDecimal.fromString('0.00000200'), unit: 'g2')));
     });
     test(
         'define "PopulationVarianceIsNull": PopulationVariance({ null as Quantity, null as Quantity, null as Quantity })',
@@ -472,8 +477,9 @@ void main() {
       expect(result, equals(FhirDecimal(1.58113883)));
     });
     test(
-        """define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.5811388300841898 'mg'""",
+        """define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'""",
         () async {
+      // Truncated to 8 decimal places to match CQF reference precision
       final list = ListExpression(
         element: [
           LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
@@ -488,7 +494,7 @@ void main() {
       expect(
           result,
           equals(ValidatedQuantity(
-              value: UcumDecimal.fromNum(1.5811388300841898), unit: 'mg')));
+              value: UcumDecimal.fromString('1.58113883'), unit: 'mg')));
     });
     test(
         'define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })',
@@ -526,8 +532,9 @@ void main() {
       expect(result, equals(FhirDecimal(1.41421356)));
     });
     test(
-        """define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'""",
+        """define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.41421356 'mg'""",
         () async {
+      // Truncated to 8 decimal places to match CQF reference precision
       final list = ListExpression(element: [
         LiteralQuantity(LiteralDecimal(1.0), unit: 'mg'),
         LiteralQuantity(LiteralDecimal(2.0), unit: 'mg'),
@@ -539,7 +546,7 @@ void main() {
       expect(
           result,
           equals(ValidatedQuantity(
-              value: UcumDecimal.fromNum(1.4142135623730951), unit: 'mg')));
+              value: UcumDecimal.fromString('1.41421356'), unit: 'mg')));
     });
     test(
         'define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })',

@@ -205,6 +205,10 @@ class Expand extends BinaryExpression {
     per = normalizePer(per, start);
     if (per == null) return null; // Incompatible per → null result
 
+    // TODO: Cross-unit quantity expand (e.g., per 1 'mg' on 'g' intervals)
+    // requires matching CQF's precision behavior during unit conversion.
+    // Skipped for now — these 2 tests remain as known failures.
+
     // For open boundaries, apply per-precision successor/predecessor
     // instead of the default type successor/predecessor.
     if (interval.lowClosed == false && interval.low != null) {

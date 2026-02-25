@@ -125,32 +125,57 @@ class StdDev extends AggregateExpression {
   }
 
   static dynamic stddev(dynamic sourceResult) {
-    var varianceResult = Variance.variance(sourceResult);
-    if (varianceResult == null) {
+    if (sourceResult == null || sourceResult is! List || sourceResult.isEmpty) {
       return null;
     }
+    final filtered = List.from(sourceResult)
+      ..removeWhere((e) => e == null);
+    if (filtered.length < 2) return null;
 
-    /// For FhirDecimal
-    if (varianceResult is FhirDecimal) {
-      double stdDevValue = math.sqrt(varianceResult.valueNum!);
-      return FhirDecimal(stdDevValue.toStringAsFixed(8));
-    }
+    final mean = Avg.avg(List.from(filtered));
+    if (mean == null) return null;
 
-    /// For ValidatedQuantity
-    else if (varianceResult is ValidatedQuantity) {
-      /// Assuming UcumDecimal supports a sqrt method or using math.sqrt if
-      /// UcumDecimal is a wrapper around a primitive type.
-      final String varianceString = varianceResult.value.asUcumDecimal();
-      final double? varianceDouble = double.tryParse(varianceString);
-      if (varianceDouble != null) {
-        UcumDecimal stdDevValue =
-            UcumDecimal.fromNum(math.sqrt(varianceDouble));
-        return ValidatedQuantity(value: stdDevValue, unit: varianceResult.unit);
+    /// For FhirDecimal — use Variance, then sqrt
+    if (mean is FhirDecimal) {
+      var varianceResult = Variance.variance(sourceResult);
+      if (varianceResult == null) return null;
+      if (varianceResult is FhirDecimal) {
+        double stdDevValue = math.sqrt(varianceResult.valueNum!);
+        return FhirDecimal(stdDevValue.toStringAsFixed(8));
       }
     }
 
+    /// For ValidatedQuantity — compute numeric variance in the mean's unit,
+    /// then sqrt, keeping the original unit. This avoids UCUM unit
+    /// canonicalization that Variance uses (which changes units, e.g., ml² → m⁶
+    /// and scales values to near-zero).
+    else if (mean is ValidatedQuantity) {
+      final svc = UcumService();
+      final meanUnit = mean.unit;
+      double sumOfSquaredDiffs = 0.0;
+      for (final val in filtered) {
+        if (val is! ValidatedQuantity) continue;
+        // Convert to mean's unit to avoid cross-unit subtraction bugs
+        final converted = val.unit == meanUnit
+            ? val
+            : ValidatedQuantity(
+                value: svc.convert(val.value, val.unit, meanUnit),
+                unit: meanUnit);
+        final diff = converted - mean;
+        if (diff != null) {
+          final d = double.tryParse(diff.value.asUcumDecimal()) ?? 0.0;
+          sumOfSquaredDiffs += d * d;
+        }
+      }
+      final variance = sumOfSquaredDiffs / (filtered.length - 1);
+      // Truncate to 8 decimal places to match CQF reference precision
+      final truncated = math.sqrt(variance).toStringAsFixed(8);
+      final stdDevValue = UcumDecimal.fromString(truncated);
+      return ValidatedQuantity(value: stdDevValue, unit: mean.unit);
+    }
+
     throw ArgumentError(
-        'Unsupported type for Standard Deviation: ${varianceResult.runtimeType}');
+        'Unsupported type for Standard Deviation: ${sourceResult.runtimeType}');
   }
 
   @override
