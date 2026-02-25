@@ -17,7 +17,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  archive: ^4.0.7
+  archive: ^4.0.9
   fhir_r4: ^0.4.4
   http: ^1.6.0
   mime: ^2.0.0

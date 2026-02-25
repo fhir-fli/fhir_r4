@@ -22,7 +22,7 @@ dependencies:
   fhir_r4: ^0.4.4
   fhir_r4_path: ^0.4.6
   http: ^1.6.0
-  uuid: ^4.5.2
+  uuid: ^4.5.3
   xml: ^6.6.1
   yaml: ^3.1.3
 
