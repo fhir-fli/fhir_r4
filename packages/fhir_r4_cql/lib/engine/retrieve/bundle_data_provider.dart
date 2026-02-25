@@ -28,7 +28,8 @@ class BundleDataProvider {
         // CQL `context Patient` expects a single resource
         context['Patient'] = resource;
       } else {
-        final list = context.putIfAbsent(resourceType, () => <dynamic>[]) as List;
+        final list =
+            context.putIfAbsent(resourceType, () => <dynamic>[]) as List;
         list.add(resource);
       }
     }

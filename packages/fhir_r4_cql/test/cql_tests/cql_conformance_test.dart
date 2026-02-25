@@ -8,6 +8,8 @@
 /// 1. Wraps each expression in a minimal CQL library
 /// 2. Parses and executes it through our engine
 /// 3. Compares the result against the expected output
+library;
+
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
@@ -22,8 +24,7 @@ import '../test_helpers/cql_test_helpers.dart';
 const _unsupportedCapabilities = <String>{};
 
 void main() {
-  final testDir =
-      Directory('test/cql_tests');
+  final testDir = Directory('test/cql_tests');
   final xmlFiles = testDir
       .listSync()
       .whereType<File>()
@@ -73,8 +74,7 @@ bool _hasUnsupportedCapability(XmlElement el) {
 
 void _createTest(XmlElement testElement) {
   final testName = testElement.getAttribute('name') ?? 'Unknown';
-  final expressionElement =
-      testElement.findElements('expression').firstOrNull;
+  final expressionElement = testElement.findElements('expression').firstOrNull;
   if (expressionElement == null) return;
 
   final expression = expressionElement.innerText.trim();
@@ -176,7 +176,8 @@ Future<dynamic> _parseExpectedOutput(String output) async {
 
   // Long: -?digits followed by L
   if (RegExp(r'^-?\d+L$').hasMatch(output)) {
-    return fhir.FhirInteger64(BigInt.parse(output.substring(0, output.length - 1)));
+    return fhir.FhirInteger64(
+        BigInt.parse(output.substring(0, output.length - 1)));
   }
 
   // Integer: -?digits

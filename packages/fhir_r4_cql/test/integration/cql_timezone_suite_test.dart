@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 
 import '../test_helpers/cql_test_helpers.dart';
@@ -30,7 +29,8 @@ void main() {
     setUpAll(() async {
       final library = parseAndBuildLibrary(source);
       final context = <String, dynamic>{
-        'startTimestamp': FhirDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        'startTimestamp':
+            FhirDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
       };
       results = (await library.execute(context)) as Map<String, dynamic>;
     });

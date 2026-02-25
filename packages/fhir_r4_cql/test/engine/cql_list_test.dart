@@ -548,8 +548,7 @@ void main() {
       final result = await except.execute({});
       expect(result, isA<List>());
       expect((result as List).length, equals(1));
-      expect(
-          result[0],
+      expect(result[0],
           equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
     });
   });
@@ -590,11 +589,9 @@ void main() {
       final result = await intersect.execute({});
       expect(result, isA<List>());
       expect((result as List).length, equals(2));
-      expect(
-          result[0],
+      expect(result[0],
           equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
-      expect(
-          result[1],
+      expect(result[1],
           equals(FhirDateTime.fromUnits(year: 2014, month: 12, day: 10)));
     });
   });
@@ -623,14 +620,11 @@ void main() {
       final result = await union.execute({});
       expect(result, isA<List>());
       expect((result as List).length, equals(3));
-      expect(
-          result[0],
+      expect(result[0],
           equals(FhirDateTime.fromUnits(year: 2001, month: 9, day: 11)));
-      expect(
-          result[1],
+      expect(result[1],
           equals(FhirDateTime.fromUnits(year: 2012, month: 5, day: 10)));
-      expect(
-          result[2],
+      expect(result[2],
           equals(FhirDateTime.fromUnits(year: 2014, month: 12, day: 10)));
     });
   });
@@ -650,33 +644,24 @@ void main() {
   });
 
   group('Length', () {
-    test(
-        'define "LengthNullList": Length(null as List<Any>) // 0',
-        () async {
+    test('define "LengthNullList": Length(null as List<Any>) // 0', () async {
       final lengthExpr = cql.Length(
-          operand: cql.As(
-              operand: cql.LiteralNull(),
-              resultTypeName: 'List<Any>'));
+          operand:
+              cql.As(operand: cql.LiteralNull(), resultTypeName: 'List<Any>'));
       final result = await lengthExpr.execute({});
       expect(result, equals(FhirInteger(0)));
     });
 
-    test(
-        'define "LengthIsNull": Length(null as String) // null',
-        () async {
+    test('define "LengthIsNull": Length(null as String) // null', () async {
       final lengthExpr = cql.Length(
-          operand: cql.As(
-              operand: cql.LiteralNull(),
-              resultTypeName: 'String'));
+          operand:
+              cql.As(operand: cql.LiteralNull(), resultTypeName: 'String'));
       final result = await lengthExpr.execute({});
       expect(result, isNull);
     });
 
-    test(
-        'define "LengthEmptyList": Length({}) // 0',
-        () async {
-      final lengthExpr = cql.Length(
-          operand: cql.ListExpression(element: []));
+    test('define "LengthEmptyList": Length({}) // 0', () async {
+      final lengthExpr = cql.Length(operand: cql.ListExpression(element: []));
       final result = await lengthExpr.execute({});
       expect(result, equals(FhirInteger(0)));
     });

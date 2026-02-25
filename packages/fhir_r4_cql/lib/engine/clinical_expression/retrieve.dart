@@ -405,8 +405,8 @@ class Retrieve extends CqlExpression {
   }
 
   /// Filters resources by code property using the given comparator.
-  List<dynamic> _filterByCode(
-      List<dynamic> resources, dynamic codesResult, Map<String, dynamic> context) {
+  List<dynamic> _filterByCode(List<dynamic> resources, dynamic codesResult,
+      Map<String, dynamic> context) {
     return resources.where((resource) {
       final resourceCodes = _extractCodes(resource, codeProperty!);
       if (resourceCodes.isEmpty) return false;
@@ -443,7 +443,10 @@ class Retrieve extends CqlExpression {
         value.containsKey('code') &&
         !value.containsKey('coding')) {
       return [
-        {'system': value['system']?.toString(), 'code': value['code']?.toString()}
+        {
+          'system': value['system']?.toString(),
+          'code': value['code']?.toString()
+        }
       ];
     }
 
@@ -472,7 +475,9 @@ class Retrieve extends CqlExpression {
 
     // Plain code string
     if (value is String) {
-      return [{'system': null, 'code': value}];
+      return [
+        {'system': null, 'code': value}
+      ];
     }
 
     return [];

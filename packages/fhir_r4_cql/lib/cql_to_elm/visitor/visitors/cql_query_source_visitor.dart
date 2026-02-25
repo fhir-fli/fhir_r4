@@ -22,10 +22,10 @@ class CqlQuerySourceVisitor extends CqlBaseVisitor<CqlExpression> {
           // because visitLetClause adds to both scopes but should use QueryLetRef.
           if (CqlBaseVisitor.isLetIdentifier(qualifier)) {
             return Property(
-                source: QueryLetRef(name: qualifier), path: ref.name!);
+                source: QueryLetRef(name: qualifier), path: ref.name);
           }
           if (CqlBaseVisitor.isQueryAlias(qualifier)) {
-            return Property(scope: qualifier, path: ref.name!);
+            return Property(scope: qualifier, path: ref.name);
           }
         }
         return ref;

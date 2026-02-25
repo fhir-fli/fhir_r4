@@ -214,15 +214,13 @@ final context06 = <String, dynamic>{
     ],
     'http://example.org/fhir/ValueSet/vital-sign': [
       {
-        'system':
-            'http://terminology.hl7.org/CodeSystem/observation-category',
+        'system': 'http://terminology.hl7.org/CodeSystem/observation-category',
         'code': 'vital-signs',
       }
     ],
     'http://example.org/fhir/ValueSet/laboratory': [
       {
-        'system':
-            'http://terminology.hl7.org/CodeSystem/observation-category',
+        'system': 'http://terminology.hl7.org/CodeSystem/observation-category',
         'code': 'laboratory',
       }
     ],

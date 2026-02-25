@@ -238,9 +238,7 @@ void main() {
       final ref = FunctionRef(
         name: 'ToDate',
         libraryName: 'FHIRHelpers',
-        operand: [
-          _Literal(FhirDateTime.fromString('2024-06-15T10:30:00'))
-        ],
+        operand: [_Literal(FhirDateTime.fromString('2024-06-15T10:30:00'))],
       );
       final result = await ref.execute(ctx());
       expect(result, isA<FhirDate>());
@@ -890,8 +888,7 @@ void main() {
           operand: [_Literal(FhirDateTime.fromString('2024-01-01'))],
         );
         final result = await ref.execute(ctx());
-        expect(result, isNull,
-            reason: '$funcName should return null');
+        expect(result, isNull, reason: '$funcName should return null');
       });
     }
   });

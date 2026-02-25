@@ -230,10 +230,8 @@ class DurationBetween extends BinaryExpression {
             _needsUncertainty(high, precision)) {
           final (lowMin, lowMax) = _dateBounds(low);
           final (highMin, highMax) = _dateBounds(high);
-          final minResult =
-              _durationBetween(lowMax, highMin, precision);
-          final maxResult =
-              _durationBetween(lowMin, highMax, precision);
+          final minResult = _durationBetween(lowMax, highMin, precision);
+          final maxResult = _durationBetween(lowMin, highMax, precision);
           // Collapse point intervals to scalar
           if (minResult == maxResult) {
             return FhirInteger(minResult);
@@ -316,8 +314,13 @@ class DurationBetween extends BinaryExpression {
     }
     final offsetHours = offset.truncate();
     final offsetMinutes = ((offset - offsetHours) * 60).truncate();
-    return DateTime.utc(local.year, local.month, local.day,
-        local.hour - offsetHours, local.minute - offsetMinutes,
-        local.second, local.millisecond);
+    return DateTime.utc(
+        local.year,
+        local.month,
+        local.day,
+        local.hour - offsetHours,
+        local.minute - offsetMinutes,
+        local.second,
+        local.millisecond);
   }
 }

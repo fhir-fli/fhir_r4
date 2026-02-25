@@ -274,8 +274,7 @@ void main() {
         precision: CqlDateTimePrecision.year,
         operand: _ConstExpr(fhir.FhirDate.fromString(birthDateStr)),
       );
-      final result =
-          await calcAge.execute({'startTimestamp': startTimestamp});
+      final result = await calcAge.execute({'startTimestamp': startTimestamp});
       expect(result, equals(fhir.FhirInteger(30)));
     });
 
@@ -284,8 +283,7 @@ void main() {
         precision: CqlDateTimePrecision.year,
         operand: LiteralNull(),
       );
-      final result =
-          await calcAge.execute({'startTimestamp': startTimestamp});
+      final result = await calcAge.execute({'startTimestamp': startTimestamp});
       expect(result, isNull);
     });
 
@@ -304,8 +302,7 @@ void main() {
         precision: CqlDateTimePrecision.month,
         operand: _ConstExpr(fhir.FhirDate.fromString(birthDateStr)),
       );
-      final result =
-          await calcAge.execute({'startTimestamp': startTimestamp});
+      final result = await calcAge.execute({'startTimestamp': startTimestamp});
       expect(result, isA<fhir.FhirInteger>());
       // Should be approximately 6 months (may vary by ±1)
       final months = (result as fhir.FhirInteger).valueNum!.toInt();

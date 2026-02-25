@@ -262,8 +262,10 @@ class IncludedIn extends BinaryExpression {
     // If result is null due to an unknown boundary, check if the left interval
     // is entirely at the known boundary of the right interval.
     if (result == null) {
-      if (rightStart == null && endCheck?.valueBoolean == true &&
-          rightEnd != null && leftStart != null) {
+      if (rightStart == null &&
+          endCheck?.valueBoolean == true &&
+          rightEnd != null &&
+          leftStart != null) {
         // Unknown start in container. If leftStart >= rightEnd, then since
         // rightStart < rightEnd (valid interval), rightStart < leftStart.
         final ge = precision != null ||
@@ -273,8 +275,10 @@ class IncludedIn extends BinaryExpression {
             : GreaterOrEqual.greaterOrEqual(leftStart, rightEnd);
         if (ge?.valueBoolean == true) return FhirBoolean(true);
       }
-      if (rightEnd == null && startCheck?.valueBoolean == true &&
-          rightStart != null && leftEnd != null) {
+      if (rightEnd == null &&
+          startCheck?.valueBoolean == true &&
+          rightStart != null &&
+          leftEnd != null) {
         // Unknown end in container. If leftEnd <= rightStart, then since
         // rightEnd > rightStart (valid interval), leftEnd < rightEnd.
         final le = precision != null ||

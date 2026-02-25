@@ -98,8 +98,7 @@ final _patient09 = <String, dynamic>{
       ]
     },
     {
-      'url':
-          'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+      'url': 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
       'valueCode': 'M'
     }
   ],

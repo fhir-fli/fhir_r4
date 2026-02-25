@@ -8,42 +8,31 @@ void main() {
   // ───────────────────────────────────────────────────────────────────────────
   group('And', () {
     test('define "IsTrue": true and true', () async {
-      final and = And(
-          operand: [LiteralBoolean(true), LiteralBoolean(true)]);
+      final and = And(operand: [LiteralBoolean(true), LiteralBoolean(true)]);
       expect(await and.execute({}), FhirBoolean(true));
     });
     test('define "IsFalse": true and false', () async {
-      final and = And(operand: [
-        LiteralBoolean(true),
-        LiteralBoolean(false)
-      ]);
+      final and = And(operand: [LiteralBoolean(true), LiteralBoolean(false)]);
       expect(await and.execute({}), FhirBoolean(false));
     });
     test('define "IsAlsoFalse": false and false', () async {
-      final and = And(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(false)
-      ]);
+      final and = And(operand: [LiteralBoolean(false), LiteralBoolean(false)]);
       expect(await and.execute({}), FhirBoolean(false));
     });
     test('define "FalseAndNull": false and null', () async {
-      final and =
-          And(operand: [LiteralBoolean(false), LiteralNull()]);
+      final and = And(operand: [LiteralBoolean(false), LiteralNull()]);
       expect(await and.execute({}), FhirBoolean(false));
     });
     test('define "NullAndFalse": null and false', () async {
-      final and =
-          And(operand: [LiteralNull(), LiteralBoolean(false)]);
+      final and = And(operand: [LiteralNull(), LiteralBoolean(false)]);
       expect(await and.execute({}), FhirBoolean(false));
     });
     test('define "TrueAndNull": true and null', () async {
-      final and =
-          And(operand: [LiteralBoolean(true), LiteralNull()]);
+      final and = And(operand: [LiteralBoolean(true), LiteralNull()]);
       expect(await and.execute({}), isNull);
     });
     test('define "NullAndTrue": null and true', () async {
-      final and =
-          And(operand: [LiteralNull(), LiteralBoolean(true)]);
+      final and = And(operand: [LiteralNull(), LiteralBoolean(true)]);
       expect(await and.execute({}), isNull);
     });
     test('define "NullAndNull": null and null', () async {
@@ -57,37 +46,27 @@ void main() {
   // ───────────────────────────────────────────────────────────────────────────
   group('Or', () {
     test('define "IsTrue": true or false', () async {
-      final or = Or(operand: [
-        LiteralBoolean(true),
-        LiteralBoolean(false)
-      ]);
+      final or = Or(operand: [LiteralBoolean(true), LiteralBoolean(false)]);
       expect(await or.execute({}), FhirBoolean(true));
     });
     test('define "IsAlsoTrue": true or null', () async {
-      final or =
-          Or(operand: [LiteralBoolean(true), LiteralNull()]);
+      final or = Or(operand: [LiteralBoolean(true), LiteralNull()]);
       expect(await or.execute({}), FhirBoolean(true));
     });
     test('define "NullOrTrue": null or true', () async {
-      final or =
-          Or(operand: [LiteralNull(), LiteralBoolean(true)]);
+      final or = Or(operand: [LiteralNull(), LiteralBoolean(true)]);
       expect(await or.execute({}), FhirBoolean(true));
     });
     test('define "IsFalse": false or false', () async {
-      final or = Or(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(false)
-      ]);
+      final or = Or(operand: [LiteralBoolean(false), LiteralBoolean(false)]);
       expect(await or.execute({}), FhirBoolean(false));
     });
     test('define "FalseOrNull": false or null', () async {
-      final or =
-          Or(operand: [LiteralBoolean(false), LiteralNull()]);
+      final or = Or(operand: [LiteralBoolean(false), LiteralNull()]);
       expect(await or.execute({}), isNull);
     });
     test('define "NullOrFalse": null or false', () async {
-      final or =
-          Or(operand: [LiteralNull(), LiteralBoolean(false)]);
+      final or = Or(operand: [LiteralNull(), LiteralBoolean(false)]);
       expect(await or.execute({}), isNull);
     });
     test('define "NullOrNull": null or null', () async {
@@ -95,8 +74,7 @@ void main() {
       expect(await or.execute({}), isNull);
     });
     test('define "TrueOrTrue": true or true', () async {
-      final or = Or(
-          operand: [LiteralBoolean(true), LiteralBoolean(true)]);
+      final or = Or(operand: [LiteralBoolean(true), LiteralBoolean(true)]);
       expect(await or.execute({}), FhirBoolean(true));
     });
   });
@@ -124,34 +102,23 @@ void main() {
   // ───────────────────────────────────────────────────────────────────────────
   group('Xor', () {
     test('define "IsTrue": true xor false', () async {
-      final xor = Xor(operand: [
-        LiteralBoolean(true),
-        LiteralBoolean(false)
-      ]);
+      final xor = Xor(operand: [LiteralBoolean(true), LiteralBoolean(false)]);
       expect(await xor.execute({}), FhirBoolean(true));
     });
     test('define "IsAlsoTrue": false xor true', () async {
-      final xor = Xor(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(true)
-      ]);
+      final xor = Xor(operand: [LiteralBoolean(false), LiteralBoolean(true)]);
       expect(await xor.execute({}), FhirBoolean(true));
     });
     test('define "IsFalse": true xor true', () async {
-      final xor = Xor(
-          operand: [LiteralBoolean(true), LiteralBoolean(true)]);
+      final xor = Xor(operand: [LiteralBoolean(true), LiteralBoolean(true)]);
       expect(await xor.execute({}), FhirBoolean(false));
     });
     test('define "IsAlsoFalse": false xor false', () async {
-      final xor = Xor(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(false)
-      ]);
+      final xor = Xor(operand: [LiteralBoolean(false), LiteralBoolean(false)]);
       expect(await xor.execute({}), FhirBoolean(false));
     });
     test('define "TrueXorNull": true xor null', () async {
-      final xor =
-          Xor(operand: [LiteralBoolean(true), LiteralNull()]);
+      final xor = Xor(operand: [LiteralBoolean(true), LiteralNull()]);
       expect(await xor.execute({}), isNull);
     });
     test('define "NullXorNull": null xor null', () async {
@@ -165,44 +132,35 @@ void main() {
   // ───────────────────────────────────────────────────────────────────────────
   group('Implies', () {
     test('define "TrueImpliesTrue": true implies true', () async {
-      final implies = Implies(
-          operand: [LiteralBoolean(true), LiteralBoolean(true)]);
+      final implies =
+          Implies(operand: [LiteralBoolean(true), LiteralBoolean(true)]);
       expect(await implies.execute({}), FhirBoolean(true));
     });
     test('define "TrueImpliesFalse": true implies false', () async {
-      final implies = Implies(operand: [
-        LiteralBoolean(true),
-        LiteralBoolean(false)
-      ]);
+      final implies =
+          Implies(operand: [LiteralBoolean(true), LiteralBoolean(false)]);
       expect(await implies.execute({}), FhirBoolean(false));
     });
     test('define "FalseImpliesTrue": false implies true', () async {
-      final implies = Implies(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(true)
-      ]);
+      final implies =
+          Implies(operand: [LiteralBoolean(false), LiteralBoolean(true)]);
       expect(await implies.execute({}), FhirBoolean(true));
     });
     test('define "FalseImpliesFalse": false implies false', () async {
-      final implies = Implies(operand: [
-        LiteralBoolean(false),
-        LiteralBoolean(false)
-      ]);
+      final implies =
+          Implies(operand: [LiteralBoolean(false), LiteralBoolean(false)]);
       expect(await implies.execute({}), FhirBoolean(true));
     });
     test('define "TrueImpliesNull": true implies null', () async {
-      final implies = Implies(
-          operand: [LiteralBoolean(true), LiteralNull()]);
+      final implies = Implies(operand: [LiteralBoolean(true), LiteralNull()]);
       expect(await implies.execute({}), isNull);
     });
     test('define "FalseImpliesNull": false implies null', () async {
-      final implies = Implies(
-          operand: [LiteralBoolean(false), LiteralNull()]);
+      final implies = Implies(operand: [LiteralBoolean(false), LiteralNull()]);
       expect(await implies.execute({}), FhirBoolean(true));
     });
     test('define "NullImpliesTrue": null implies true', () async {
-      final implies = Implies(
-          operand: [LiteralNull(), LiteralBoolean(true)]);
+      final implies = Implies(operand: [LiteralNull(), LiteralBoolean(true)]);
       expect(await implies.execute({}), FhirBoolean(true));
     });
     test('define "NullImpliesNull": null implies null', () async {

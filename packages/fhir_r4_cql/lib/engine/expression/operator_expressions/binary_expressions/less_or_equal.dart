@@ -170,11 +170,9 @@ class LessOrEqual extends BinaryExpression {
         return null;
       }
     } else if (left is FhirDecimal && right is FhirInteger) {
-      return FhirBoolean(
-          left <= FhirDecimal(right.valueNum!.toDouble()));
+      return FhirBoolean(left <= FhirDecimal(right.valueNum!.toDouble()));
     } else if (left is FhirInteger && right is FhirDecimal) {
-      return FhirBoolean(
-          FhirDecimal(left.valueNum!.toDouble()) <= right);
+      return FhirBoolean(FhirDecimal(left.valueNum!.toDouble()) <= right);
     }
     throw ArgumentError('Invalid operand types for LessOrEqual operation: \n'
         'Left: $left (${left.runtimeType})\n'

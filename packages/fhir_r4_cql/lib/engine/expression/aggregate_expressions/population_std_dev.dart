@@ -128,8 +128,7 @@ class PopulationStdDev extends AggregateExpression {
     if (sourceResult == null || sourceResult is! List || sourceResult.isEmpty) {
       return null;
     }
-    final filtered = List.from(sourceResult)
-      ..removeWhere((e) => e == null);
+    final filtered = List.from(sourceResult)..removeWhere((e) => e == null);
     if (filtered.isEmpty) return null;
 
     final mean = Avg.avg(List.from(filtered));

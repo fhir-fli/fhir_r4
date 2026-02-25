@@ -147,8 +147,7 @@ class AnyInValueSet extends OperatorExpression {
       case CodeableConcept _:
         if (codeValue.coding == null) return false;
         for (final coding in codeValue.coding!) {
-          if (matches(
-              coding.system?.valueString, coding.code?.valueString)) {
+          if (matches(coding.system?.valueString, coding.code?.valueString)) {
             return true;
           }
         }

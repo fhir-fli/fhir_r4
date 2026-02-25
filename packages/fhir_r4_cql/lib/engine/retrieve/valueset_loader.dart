@@ -8,8 +8,7 @@ class ValueSetLoader {
   ///
   /// Checks `expansion.contains` first, then falls back to
   /// `compose.include[].concept[]`.
-  static List<Map<String, String>> extractCodes(
-      Map<String, dynamic> valueSet) {
+  static List<Map<String, String>> extractCodes(Map<String, dynamic> valueSet) {
     final codes = <Map<String, String>>[];
 
     // Prefer expansion if available

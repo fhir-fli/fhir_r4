@@ -902,7 +902,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
         var text = lit.text;
         if (text.length >= 2 &&
             ((text.startsWith("'") && text.endsWith("'")) ||
-             (text.startsWith('"') && text.endsWith('"')))) {
+                (text.startsWith('"') && text.endsWith('"')))) {
           text = text.substring(1, text.length - 1);
         }
         return LiteralString(text);
@@ -1181,8 +1181,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   ClassInfoElement? getElementInfo(String className, String propertyPath) {
     for (final model in library.usings?.def ?? <UsingDef>[]) {
       if (model.localIdentifier == null) continue;
-      final modelInfo = modelInfoProvider.load(ModelIdentifier(
-          id: model.localIdentifier!, version: model.version));
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
       if (modelInfo == null) continue;
       for (final ti in modelInfo.typeInfo) {
         if (ti is ClassInfo &&

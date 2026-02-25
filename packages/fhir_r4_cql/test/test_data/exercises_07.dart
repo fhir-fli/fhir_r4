@@ -1,4 +1,3 @@
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart' show ValidatedQuantity;
 
 // -- Sample FHIR resources for Exercise 07 (Queries) --
@@ -222,15 +221,13 @@ final context07 = <String, dynamic>{
     ],
     'http://example.org/fhir/ValueSet/vital-sign': [
       {
-        'system':
-            'http://terminology.hl7.org/CodeSystem/observation-category',
+        'system': 'http://terminology.hl7.org/CodeSystem/observation-category',
         'code': 'vital-signs',
       }
     ],
     'http://example.org/fhir/ValueSet/laboratory': [
       {
-        'system':
-            'http://terminology.hl7.org/CodeSystem/observation-category',
+        'system': 'http://terminology.hl7.org/CodeSystem/observation-category',
         'code': 'laboratory',
       }
     ],

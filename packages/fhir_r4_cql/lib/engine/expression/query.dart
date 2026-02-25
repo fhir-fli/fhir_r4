@@ -109,8 +109,7 @@ class Query extends CqlExpression {
       final dynamic rawValue = await src.expression.execute(context);
       if (rawValue == null) return null;
       if (rawValue is! Iterable) singletonSource = true;
-      final Iterable listValue =
-          rawValue is Iterable ? rawValue : [rawValue];
+      final Iterable listValue = rawValue is Iterable ? rawValue : [rawValue];
 
       final List<Map<String, dynamic>> newRows = [];
       for (final row in rows) {

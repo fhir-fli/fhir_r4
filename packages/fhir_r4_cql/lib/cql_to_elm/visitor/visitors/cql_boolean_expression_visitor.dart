@@ -67,8 +67,7 @@ class CqlBooleanExpressionVisitor extends CqlBaseVisitor<dynamic> {
         final element = getElementInfo(className, expr.path);
         if (element != null && CqlBaseVisitor.isChoiceType(element)) {
           final choices = CqlBaseVisitor.getChoiceTypes(element);
-          if (choices.any((c) =>
-              c == 'boolean' || c == 'FHIR.boolean')) {
+          if (choices.any((c) => c == 'boolean' || c == 'FHIR.boolean')) {
             return CqlBaseVisitor.wrapChoiceProperty(expr, 'boolean');
           }
         }

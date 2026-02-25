@@ -339,8 +339,7 @@ void main() {
   });
 
   group('Substring', () {
-    test(
-        """define "SubstringNoLength": Substring('ABCDE', 2) // 'CDE'""",
+    test("""define "SubstringNoLength": Substring('ABCDE', 2) // 'CDE'""",
         () async {
       final substring = Substring(
         stringToSub: LiteralString('ABCDE'),
@@ -349,8 +348,7 @@ void main() {
       final result = await substring.execute({});
       expect(result, FhirString('CDE'));
     });
-    test(
-        """define "SubstringWithLength": Substring('ABCDE', 2, 3) // 'CDE'""",
+    test("""define "SubstringWithLength": Substring('ABCDE', 2, 3) // 'CDE'""",
         () async {
       final substring = Substring(
         stringToSub: LiteralString('ABCDE'),

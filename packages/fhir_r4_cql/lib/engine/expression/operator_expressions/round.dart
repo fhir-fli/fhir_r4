@@ -130,7 +130,8 @@ class Round extends OperatorExpression {
     final double mod = pow(10.0, precisionInt).toDouble();
     final double scaled = numValue * mod;
     // CQL rounding: round half up (toward positive infinity)
-    final int rounded = scaled.floor() + (scaled - scaled.floor() >= 0.5 ? 1 : 0);
+    final int rounded =
+        scaled.floor() + (scaled - scaled.floor() >= 0.5 ? 1 : 0);
     return FhirDecimal(rounded.toDouble() / mod);
   }
 }

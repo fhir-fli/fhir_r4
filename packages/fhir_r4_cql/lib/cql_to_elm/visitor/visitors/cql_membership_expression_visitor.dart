@@ -28,8 +28,8 @@ class CqlMembershipExpressionVisitor extends CqlBaseVisitor<dynamic> {
       if (!inContains) {
         // For `list.value contains CodeRef` where value is a choice type,
         // transform the collection operand into a Query with type narrowing.
-        final containsResult = _handleContainsWithChoiceType(
-            operand, dateTimePrecisionSpecifier);
+        final containsResult =
+            _handleContainsWithChoiceType(operand, dateTimePrecisionSpecifier);
         if (containsResult != null) return containsResult;
         return Contains(
             operand: operand, precision: dateTimePrecisionSpecifier);
@@ -159,17 +159,15 @@ class CqlMembershipExpressionVisitor extends CqlBaseVisitor<dynamic> {
         choiceElement = el;
       }
     }
-    if (choiceElement == null) {
-      choiceElement = _findChoiceElementByPath(collection.path);
-    }
+    choiceElement ??= _findChoiceElementByPath(collection.path);
     if (choiceElement == null || !CqlBaseVisitor.isChoiceType(choiceElement)) {
       return null;
     }
 
     // Check if the choice types include Coding (needed for Code comparison)
     final choiceTypes = CqlBaseVisitor.getChoiceTypes(choiceElement);
-    final hasCoding = choiceTypes.any((c) =>
-        c == 'Coding' || c == 'FHIR.Coding');
+    final hasCoding =
+        choiceTypes.any((c) => c == 'Coding' || c == 'FHIR.Coding');
     if (!hasCoding) return null;
 
     // Build the inner Query: $this from source, where $this.value is not null
@@ -248,8 +246,8 @@ class CqlMembershipExpressionVisitor extends CqlBaseVisitor<dynamic> {
     int bestCount = 0;
     for (final model in library.usings?.def ?? <UsingDef>[]) {
       if (model.localIdentifier == null) continue;
-      final modelInfo = modelInfoProvider.load(ModelIdentifier(
-          id: model.localIdentifier!, version: model.version));
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
       if (modelInfo == null) continue;
       for (final ti in modelInfo.typeInfo) {
         if (ti is ClassInfo) {

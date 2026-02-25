@@ -29,8 +29,7 @@ void main() {
   for (final name in exerciseFiles) {
     group(name, () {
       test('parses CQL and produces correct ELM', () {
-        if (name == 'Exercises10' ||
-            name == 'Exercises11') {
+        if (name == 'Exercises10' || name == 'Exercises11') {
           // Skip ELM comparison — Exercises10/11 have empty reference JSON.
           return;
         }
@@ -47,8 +46,8 @@ void main() {
         final cqlSource = loadCqlFile('$name.cql');
         final expectedResults = results['$name.cql'];
         final context = contexts['$name.cql'];
-        final library = parseAndBuildLibrary(cqlSource,
-            libraryManager: libraryManager);
+        final library =
+            parseAndBuildLibrary(cqlSource, libraryManager: libraryManager);
         final executionResults = await library
             .execute(context is Map<String, dynamic> ? context : null);
 

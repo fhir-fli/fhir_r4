@@ -139,7 +139,8 @@ class ToConcept extends UnaryExpression {
             system: single.system?.valueString,
             display: single.display?.valueString,
           );
-          return CqlConcept(codes: [code], display: single.display?.valueString);
+          return CqlConcept(
+              codes: [code], display: single.display?.valueString);
         } else if (single is CodeableConcept) {
           final codes = <CqlCode>[];
           for (final coding in single.coding ?? []) {

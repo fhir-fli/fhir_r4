@@ -342,8 +342,7 @@ class Equivalent extends BinaryExpression {
           if (right is CqlConcept) {
             result = concept.equivalent(right);
           } else if (right is CqlCode) {
-            result =
-                CqlConcept(codes: [right]).equivalent(concept);
+            result = CqlConcept(codes: [right]).equivalent(concept);
           } else {
             result = equivalent(concept, right).valueBoolean ?? false;
           }

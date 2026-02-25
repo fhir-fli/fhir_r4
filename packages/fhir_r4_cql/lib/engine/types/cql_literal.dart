@@ -635,8 +635,7 @@ class LiteralRatio extends LiteralType {
 class LiteralString extends LiteralType {
   final String value;
 
-  LiteralString(String value)
-      : value = _unescape(value);
+  LiteralString(String value) : value = _unescape(value);
 
   static String _unescape(String s) {
     // Process Unicode escapes first (\uXXXX)

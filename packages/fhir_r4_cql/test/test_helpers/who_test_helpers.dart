@@ -29,8 +29,7 @@ Map<String, dynamic> buildContext(
   final context = Map<String, dynamic>.from(bundleContext);
   context['_valueSets'] = valueSets;
   if (evaluationDate != null) {
-    context['startTimestamp'] =
-        FhirDateTime.fromString(evaluationDate);
+    context['startTimestamp'] = FhirDateTime.fromString(evaluationDate);
   }
   return context;
 }

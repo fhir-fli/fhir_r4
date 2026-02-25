@@ -158,8 +158,7 @@ class InValueSet extends OperatorExpression {
             false);
       case FhirCode _:
         return FhirBoolean(
-            (await checker.codeInValueSet(
-                    null, codeValue.valueString, null)) ??
+            (await checker.codeInValueSet(null, codeValue.valueString, null)) ??
                 false);
       case CqlConcept _:
         if (codeValue.codes.isEmpty) {
@@ -224,8 +223,7 @@ class InValueSet extends OperatorExpression {
       case CodeableConcept _:
         if (codeValue.coding == null || codeValue.coding!.isEmpty) return null;
         for (final coding in codeValue.coding!) {
-          if (matches(
-              coding.system?.valueString, coding.code?.valueString)) {
+          if (matches(coding.system?.valueString, coding.code?.valueString)) {
             return FhirBoolean(true);
           }
         }

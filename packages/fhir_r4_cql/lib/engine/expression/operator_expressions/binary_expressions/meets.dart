@@ -226,11 +226,13 @@ class Meets extends BinaryExpression {
   /// Handles partial information — if a known boundary of one interval
   /// falls within the other interval (whose boundaries are both known),
   /// overlap is proven.
-  static bool intervalsOverlap(dynamic leftStart, dynamic leftEnd,
-      dynamic rightStart, dynamic rightEnd,
+  static bool intervalsOverlap(
+      dynamic leftStart, dynamic leftEnd, dynamic rightStart, dynamic rightEnd,
       [CqlDateTimePrecision? precision]) {
     // Full check: all 4 known — leftStart <= rightEnd AND rightStart <= leftEnd
-    if (leftStart != null && rightEnd != null && leftEnd != null &&
+    if (leftStart != null &&
+        rightEnd != null &&
+        leftEnd != null &&
         rightStart != null) {
       final a = precision != null
           ? SameOrBefore.sameOrBefore(leftStart, rightEnd, precision)
@@ -292,7 +294,8 @@ class Meets extends BinaryExpression {
       dynamic value, CqlDateTimePrecision precision) {
     try {
       final unit = _precisionToUnit(precision);
-      final qty = ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
+      final qty =
+          ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
       if (value is FhirDateTimeBase) {
         return Add.addToDateTime(value, qty);
       } else if (value is FhirTime) {
@@ -309,7 +312,8 @@ class Meets extends BinaryExpression {
       dynamic value, CqlDateTimePrecision precision) {
     try {
       final unit = _precisionToUnit(precision);
-      final qty = ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
+      final qty =
+          ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
       if (value is FhirDateTimeBase) {
         return Add.addToDateTime(value, qty, subtract: true);
       } else if (value is FhirTime) {

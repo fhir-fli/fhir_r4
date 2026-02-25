@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 
@@ -37,7 +36,8 @@ void main() {
 
     // Test case 22.1: Patient under 12 months - not due for MCV1
     test('Measles22.1 - Client under 12 months, not due for MCV1', () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
       final context = buildContext(bundleContext, valueSets);
       final result = await measlesLogic.execute(context);
 
@@ -49,7 +49,8 @@ void main() {
 
     // Test case 23.3: Patient >= 12 months, no doses, no recent live vaccine - due for MCV1
     test('Measles23.3 - Client due for MCV1', () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
       final context = buildContext(bundleContext, valueSets);
       final result = await measlesLogic.execute(context);
 
@@ -62,13 +63,15 @@ void main() {
     // (patient is ~14 months, < 15 months threshold).
     test('Measles25.2 - MCV1 given, client under 15 months, not due for MCV2',
         () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: '2025-12-01');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
+      final context =
+          buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
       final result = await measlesLogic.execute(context);
 
       expect(result['Client is not due for MCV2 Case 1'], isTrue,
-          reason: 'Patient with MCV1 and < 15 months should trigger not-due case 1');
+          reason:
+              'Patient with MCV1 and < 15 months should trigger not-due case 1');
       expect(result['Client is not due for MCV2'], isTrue,
           reason: 'Patient should not be due for MCV2');
     });
@@ -91,7 +94,8 @@ void main() {
     // Self-validation: The CQL itself contains a "Test Validation" define
     // that checks results against expected values per Patient.id
     test('Measles22.1 - Test Validation', () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
       final context = buildContext(bundleContext, valueSets);
       final result = await measlesLogic.execute(context);
 
@@ -100,7 +104,8 @@ void main() {
     });
 
     test('Measles23.3 - Test Validation', () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
       final context = buildContext(bundleContext, valueSets);
       final result = await measlesLogic.execute(context);
 
@@ -109,9 +114,10 @@ void main() {
     });
 
     test('Measles25.2 - Test Validation', () async {
-      final bundleContext = loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: '2025-12-01');
+      final bundleContext =
+          loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
+      final context =
+          buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
       final result = await measlesLogic.execute(context);
 
       expect(result['Test Validation'], isTrue,

@@ -38,8 +38,7 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
 
       // Check if the left-side name is a library include alias
       final isLibraryQualified = leftName != null &&
-          library.includes?.def
-                  .any((inc) => inc.localIdentifier == leftName) ==
+          library.includes?.def.any((inc) => inc.localIdentifier == leftName) ==
               true;
 
       if (isLibraryQualified) {
@@ -56,8 +55,8 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
     }
 
     // Member access: O.status, E.period, etc.
-    if (qualifiedInvocation is Ref && qualifiedInvocation.name != null) {
-      final memberName = qualifiedInvocation.name!;
+    if (qualifiedInvocation is Ref) {
+      final memberName = qualifiedInvocation.name;
 
       // Check if the left side is a library include alias
       // (e.g. Encounter."Client's age is less than 12 months")
@@ -74,8 +73,8 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
         CqlExpression prop;
         // Let-introduced identifiers use QueryLetRef as source
         if (CqlBaseVisitor.isLetIdentifier(scopeName)) {
-          prop = Property(
-              source: QueryLetRef(name: scopeName), path: memberName);
+          prop =
+              Property(source: QueryLetRef(name: scopeName), path: memberName);
         } else {
           // Source/relationship aliases use scope
           prop = Property(scope: scopeName, path: memberName);

@@ -90,8 +90,8 @@ class CqlInequalityExpressionVisitor extends CqlBaseVisitor<dynamic> {
     int bestCount = 0;
     for (final model in library.usings?.def ?? <UsingDef>[]) {
       if (model.localIdentifier == null) continue;
-      final modelInfo = modelInfoProvider.load(ModelIdentifier(
-          id: model.localIdentifier!, version: model.version));
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
       if (modelInfo == null) continue;
       for (final ti in modelInfo.typeInfo) {
         if (ti is ClassInfo) {
@@ -118,7 +118,9 @@ class CqlInequalityExpressionVisitor extends CqlBaseVisitor<dynamic> {
     if (expr is LiteralDecimal) return 'decimal';
     if (expr is LiteralString) return 'string';
     if (expr is LiteralDate || expr is DateExpression) return 'date';
-    if (expr is LiteralDateTime || expr is DateTimeExpression) return 'dateTime';
+    if (expr is LiteralDateTime || expr is DateTimeExpression) {
+      return 'dateTime';
+    }
     if (expr is Today) return 'date';
     if (expr is Now) return 'dateTime';
     return null;

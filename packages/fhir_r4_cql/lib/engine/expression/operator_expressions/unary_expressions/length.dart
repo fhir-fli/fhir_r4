@@ -112,8 +112,10 @@ class Length extends UnaryExpression {
     // Check resultTypeName on the operand
     final rtn = op.resultTypeName;
     if (rtn != null &&
-        (rtn.startsWith('List') || rtn.startsWith('list') ||
-         rtn.contains('List<') || rtn.contains('list<'))) {
+        (rtn.startsWith('List') ||
+            rtn.startsWith('list') ||
+            rtn.contains('List<') ||
+            rtn.contains('list<'))) {
       return true;
     }
     // Check resultTypeSpecifier on the operand

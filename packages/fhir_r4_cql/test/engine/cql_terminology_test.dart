@@ -31,8 +31,7 @@ Map<String, dynamic> _buildContext({
     valueSets:
         valueSetDefs != null ? (ValueSetDefs()..def = valueSetDefs) : null,
     codes: codeDefs != null ? (CodeDefs()..def = codeDefs) : null,
-    concepts:
-        conceptDefs != null ? (ConceptDefs()..def = conceptDefs) : null,
+    concepts: conceptDefs != null ? (ConceptDefs()..def = conceptDefs) : null,
   );
   final context = <String, dynamic>{
     'library': library,
@@ -104,8 +103,7 @@ void main() {
 
   group('Concept', () {
     test('creates CqlConcept from multiple codes', () async {
-      final context =
-          _buildContext(codeSystemDefs: [loincDef, snomedDef]);
+      final context = _buildContext(codeSystemDefs: [loincDef, snomedDef]);
       final conceptExpr = Concept(
         code: [
           Code(
@@ -337,8 +335,7 @@ void main() {
       );
       final anyInVS = AnyInValueSet(
         codes: _ConstExpr([
-          CqlCode(
-              code: 'E11.9', system: 'http://hl7.org/fhir/sid/icd-10'),
+          CqlCode(code: 'E11.9', system: 'http://hl7.org/fhir/sid/icd-10'),
         ]),
         valueset: ValueSetRef(name: 'Diabetes'),
       );

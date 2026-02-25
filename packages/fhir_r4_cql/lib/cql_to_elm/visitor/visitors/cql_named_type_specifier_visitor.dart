@@ -44,8 +44,7 @@ class CqlNamedTypeSpecifierVisitor extends CqlBaseVisitor<NamedTypeSpecifier> {
       }
       // If qualifier is "FHIR", use FHIR namespace directly
       if (qualifier == 'FHIR') {
-        return QName(
-            namespaceURI: 'http://hl7.org/fhir', localPart: typeName);
+        return QName(namespaceURI: 'http://hl7.org/fhir', localPart: typeName);
       }
       if (qualifier == 'System') {
         return QName(

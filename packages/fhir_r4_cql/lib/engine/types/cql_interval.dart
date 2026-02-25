@@ -236,7 +236,10 @@ class CqlInterval<T> implements CqlType, Comparable<CqlInterval> {
 
     // Return the new interval representing the intersection
     return CqlInterval(
-        low: maxStart, lowClosed: resultLowClosed, high: minEnd, highClosed: resultHighClosed);
+        low: maxStart,
+        lowClosed: resultLowClosed,
+        high: minEnd,
+        highClosed: resultHighClosed);
   }
 
   CqlInterval? except(CqlInterval right) {

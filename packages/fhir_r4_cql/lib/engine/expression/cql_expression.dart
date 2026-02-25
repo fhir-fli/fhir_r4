@@ -503,37 +503,44 @@ class CqlExpression extends Element {
       case 'AgeInYears':
         return CalculateAge(
           precision: CqlDateTimePrecision.year,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInMonths':
         return CalculateAge(
           precision: CqlDateTimePrecision.month,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInWeeks':
         return CalculateAge(
           precision: CqlDateTimePrecision.week,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInDays':
         return CalculateAge(
           precision: CqlDateTimePrecision.day,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInHours':
         return CalculateAge(
           precision: CqlDateTimePrecision.hour,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInMinutes':
         return CalculateAge(
           precision: CqlDateTimePrecision.minute,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInSeconds':
         return CalculateAge(
           precision: CqlDateTimePrecision.second,
-          operand: Property(path: 'birthDate', source: ExpressionRef(name: 'Patient')),
+          operand: Property(
+              path: 'birthDate', source: ExpressionRef(name: 'Patient')),
         );
       case 'AgeInYearsAt':
         return CalculateAgeAt(

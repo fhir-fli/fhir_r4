@@ -145,10 +145,11 @@ class ToQuantity extends UnaryExpression {
       case String _:
         try {
           final q = ValidatedQuantity.fromString(result);
-          if (q == null || !q.isValid()) return null;
+          if (!q.isValid()) return null;
           // CQL Decimal values support at least 28 digits of precision.
           // Reject quantities whose numeric part exceeds this.
-          final numStr = q.value.asUcumDecimal().replaceAll(RegExp(r'[^0-9]'), '');
+          final numStr =
+              q.value.asUcumDecimal().replaceAll(RegExp(r'[^0-9]'), '');
           if (numStr.length > 28) return null;
           return q;
         } catch (e) {

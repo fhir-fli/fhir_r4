@@ -105,8 +105,7 @@ class HighBoundary extends BinaryExpression {
 
   /// Precision mapping for DateTime:
   /// 4=year, 6=month, 8=day, 10=hour, 12=minute, 14=second, 17=millisecond
-  static FhirDateTime _highBoundaryDateTime(
-      FhirDateTime value, int precision) {
+  static FhirDateTime _highBoundaryDateTime(FhirDateTime value, int precision) {
     final year = value.year;
     if (year == null) return value;
     final month = value.month ?? (precision >= 6 ? 12 : null);

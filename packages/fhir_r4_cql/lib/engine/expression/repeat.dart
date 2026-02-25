@@ -67,7 +67,9 @@ class Repeat extends CqlExpression {
   Future<dynamic> execute(Map<String, dynamic> context) async {
     final sourceResult = await source.execute(context);
     if (sourceResult == null) return null;
-    var current = sourceResult is List ? List<dynamic>.from(sourceResult) : [sourceResult];
+    var current = sourceResult is List
+        ? List<dynamic>.from(sourceResult)
+        : [sourceResult];
     final allResults = <dynamic>{};
 
     // Keep iterating until no new elements are produced

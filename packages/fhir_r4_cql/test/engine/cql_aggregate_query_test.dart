@@ -70,8 +70,7 @@ void main() {
         elements: [LiteralInteger(10), LiteralInteger(20), LiteralInteger(30)],
         identifier: 'c',
         starting: LiteralInteger(0),
-        expression:
-            Add(operand: [AliasRef(name: 'c'), LiteralInteger(1)]),
+        expression: Add(operand: [AliasRef(name: 'c'), LiteralInteger(1)]),
       );
       final result = await query.execute({});
       expect(result, equals(FhirInteger(3)));
@@ -86,8 +85,8 @@ void main() {
         ],
         identifier: 'acc',
         starting: LiteralString(''),
-        expression: Concatenate(
-            operand: [AliasRef(name: 'acc'), AliasRef(name: 'N')]),
+        expression:
+            Concatenate(operand: [AliasRef(name: 'acc'), AliasRef(name: 'N')]),
       );
       final result = await query.execute({});
       expect(result, equals(FhirString('abc')));
@@ -102,7 +101,8 @@ void main() {
         elements: [LiteralInteger(5)],
         identifier: 'acc',
         // no starting
-        expression: Coalesce(operand: [AliasRef(name: 'acc'), AliasRef(name: 'N')]),
+        expression:
+            Coalesce(operand: [AliasRef(name: 'acc'), AliasRef(name: 'N')]),
       );
       final result = await query.execute({});
       // First (and only) iteration: Coalesce(null, 5) = 5
@@ -124,8 +124,7 @@ void main() {
         identifier: 's',
         starting: LiteralInteger(0),
         expression: Add(operand: [AliasRef(name: 's'), AliasRef(name: 'N')]),
-        where: Greater(
-            operand: [AliasRef(name: 'N'), LiteralInteger(3)]),
+        where: Greater(operand: [AliasRef(name: 'N'), LiteralInteger(3)]),
       );
       final result = await query.execute({});
       expect(result, equals(FhirInteger(9)));
@@ -160,8 +159,7 @@ void main() {
         identifier: 's',
         starting: LiteralInteger(42),
         expression: Add(operand: [AliasRef(name: 's'), AliasRef(name: 'N')]),
-        where: Greater(
-            operand: [AliasRef(name: 'N'), LiteralInteger(10)]),
+        where: Greater(operand: [AliasRef(name: 'N'), LiteralInteger(10)]),
       );
       final result = await query.execute({});
       expect(result, equals(FhirInteger(42)));
@@ -180,8 +178,7 @@ void main() {
           identifier: 's',
           distinct: false,
           starting: LiteralInteger(0),
-          expression:
-              Add(operand: [AliasRef(name: 's'), AliasRef(name: 'N')]),
+          expression: Add(operand: [AliasRef(name: 's'), AliasRef(name: 'N')]),
         ),
       );
       final result = await query.execute({});

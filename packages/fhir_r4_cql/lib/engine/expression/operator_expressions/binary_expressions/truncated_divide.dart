@@ -162,8 +162,7 @@ class TruncatedDivide extends BinaryExpression {
               }
               final truncated = (leftNum / rightNum).truncateToDouble();
               return ValidatedQuantity(
-                  value: UcumDecimal.fromDouble(truncated),
-                  unit: left.unit);
+                  value: UcumDecimal.fromDouble(truncated), unit: left.unit);
             }
           }
           break;

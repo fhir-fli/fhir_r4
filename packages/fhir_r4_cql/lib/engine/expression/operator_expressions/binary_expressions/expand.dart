@@ -120,10 +120,30 @@ class Expand extends BinaryExpression {
   }
 
   static const _temporalUnits = {
-    'year', 'years', 'a', 'month', 'months', 'mo',
-    'week', 'weeks', 'wk', 'day', 'days', 'd',
-    'hour', 'hours', 'h', 'minute', 'minutes', 'min',
-    'second', 'seconds', 's', 'millisecond', 'milliseconds', 'ms',
+    'year',
+    'years',
+    'a',
+    'month',
+    'months',
+    'mo',
+    'week',
+    'weeks',
+    'wk',
+    'day',
+    'days',
+    'd',
+    'hour',
+    'hours',
+    'h',
+    'minute',
+    'minutes',
+    'min',
+    'second',
+    'seconds',
+    's',
+    'millisecond',
+    'milliseconds',
+    'ms',
   };
 
   /// Normalize per to a type compatible with start for arithmetic.
@@ -135,7 +155,7 @@ class Expand extends BinaryExpression {
     if (numVal == null) return per;
 
     // Numeric intervals: per with unit '1' or no unit → convert to matching type
-    if (unit == '1' || unit == '' || unit == null) {
+    if (unit == '1' || unit == '') {
       final isIntVal = numVal == numVal.truncateToDouble();
       if (start is FhirInteger) {
         if (isIntVal) return FhirInteger(numVal.toInt());
@@ -154,7 +174,8 @@ class Expand extends BinaryExpression {
     }
 
     // Temporal per with numeric interval → incompatible
-    if (start is FhirInteger || start is FhirDecimal ||
+    if (start is FhirInteger ||
+        start is FhirDecimal ||
         start is FhirInteger64) {
       if (_temporalUnits.contains(unit)) return null;
     }
@@ -188,12 +209,10 @@ class Expand extends BinaryExpression {
     // Use raw low/high for open boundaries (we'll apply per-precision
     // successor/predecessor after normalization). For closed boundaries,
     // use getStart/getEnd which handles null→min/max substitution.
-    dynamic start = interval.lowClosed == false
-        ? interval.low
-        : interval.getStart();
-    dynamic end = interval.highClosed == false
-        ? interval.high
-        : interval.getEnd();
+    dynamic start =
+        interval.lowClosed == false ? interval.low : interval.getStart();
+    dynamic end =
+        interval.highClosed == false ? interval.high : interval.getEnd();
 
     if (start == null || end == null) {
       return result;
@@ -228,10 +247,11 @@ class Expand extends BinaryExpression {
 
     // Compute the step size for high boundary calculation
     final isDecimalPer = per is FhirDecimal;
-    final isQuantityPer = per is ValidatedQuantity && !_temporalUnits.contains(per.unit);
+    final isQuantityPer =
+        per is ValidatedQuantity && !_temporalUnits.contains(per.unit);
 
     // For decimal per, track decimal places for rounding
-    final int decPlaces = isDecimalPer ? _decimalPlaces(per as FhirDecimal) : 0;
+    final int decPlaces = isDecimalPer ? _decimalPlaces(per) : 0;
 
     // Safety limit to prevent infinite loops
     for (var i = 0; i < 100000; i++) {
@@ -249,9 +269,9 @@ class Expand extends BinaryExpression {
       // High boundary: predecessor of next start at per's precision
       dynamic high;
       if (isDecimalPer) {
-        high = _decimalPredecessor(nextStart, per as FhirDecimal);
+        high = _decimalPredecessor(nextStart, per);
       } else if (isQuantityPer) {
-        high = _quantityPredecessor(nextStart, per as ValidatedQuantity);
+        high = _quantityPredecessor(nextStart, per);
       } else {
         high = Predecessor.predecessor(nextStart);
       }
@@ -273,13 +293,10 @@ class Expand extends BinaryExpression {
   }
 
   /// For quantity per, compute the predecessor at the per's precision.
-  static dynamic _quantityPredecessor(
-      dynamic value, ValidatedQuantity per) {
+  static dynamic _quantityPredecessor(dynamic value, ValidatedQuantity per) {
     if (value is! ValidatedQuantity) return Predecessor.predecessor(value);
-    final perNum =
-        num.tryParse(per.value.asUcumDecimal())?.toDouble() ?? 1.0;
-    final valNum =
-        num.tryParse(value.value.asUcumDecimal())?.toDouble();
+    final perNum = num.tryParse(per.value.asUcumDecimal())?.toDouble() ?? 1.0;
+    final valNum = num.tryParse(value.value.asUcumDecimal())?.toDouble();
     if (valNum == null) return null;
     // If per is integer-valued, step is 1; otherwise use decimal precision
     final isIntPer = perNum == perNum.truncateToDouble();
@@ -374,8 +391,7 @@ class Expand extends BinaryExpression {
     if (per is FhirDecimal && value is FhirNumber) {
       final step = _decimalStepSize(per);
       final places = _decimalPlaces(per);
-      return FhirDecimal(
-          _roundTo(value.valueNum!.toDouble() + step, places));
+      return FhirDecimal(_roundTo(value.valueNum!.toDouble() + step, places));
     }
     // Default: use standard successor
     return Successor.successor(value);
@@ -386,8 +402,7 @@ class Expand extends BinaryExpression {
     if (per is FhirDecimal && value is FhirNumber) {
       final step = _decimalStepSize(per);
       final places = _decimalPlaces(per);
-      return FhirDecimal(
-          _roundTo(value.valueNum!.toDouble() - step, places));
+      return FhirDecimal(_roundTo(value.valueNum!.toDouble() - step, places));
     }
     // Default: use standard predecessor
     return Predecessor.predecessor(value);
@@ -457,8 +472,7 @@ class Expand extends BinaryExpression {
       final e = _truncateDateTimeToPer(end, per);
       if (s == null || e == null) return null;
       // Ceiling alignment: if truncation dropped non-minimum fields, advance
-      if (s is FhirDateTimeBase &&
-          _needsCeilingAlignment(start, per)) {
+      if (s is FhirDateTimeBase && _needsCeilingAlignment(start, per)) {
         s = Add.add(s, per);
         if (s == null) return null;
       }
@@ -467,14 +481,11 @@ class Expand extends BinaryExpression {
 
     // Quantity interval with integer per: ceiling-align start, floor-align end
     if (start is ValidatedQuantity && per is ValidatedQuantity) {
-      final perNum =
-          num.tryParse(per.value.asUcumDecimal())?.toDouble();
+      final perNum = num.tryParse(per.value.asUcumDecimal())?.toDouble();
       if (perNum != null && perNum == perNum.truncateToDouble()) {
-        final startNum =
-            num.tryParse(start.value.asUcumDecimal())?.toDouble();
+        final startNum = num.tryParse(start.value.asUcumDecimal())?.toDouble();
         final endNum = end is ValidatedQuantity
-            ? num.tryParse((end as ValidatedQuantity).value.asUcumDecimal())
-                ?.toDouble()
+            ? num.tryParse((end).value.asUcumDecimal())?.toDouble()
             : null;
         if (startNum != null && endNum != null) {
           final ceilStart = startNum == startNum.truncateToDouble()
@@ -482,8 +493,7 @@ class Expand extends BinaryExpression {
               : startNum.ceilToDouble();
           final floorEnd = endNum.truncateToDouble();
           return (
-            ValidatedQuantity.fromNumber(ceilStart,
-                unit: start.unit),
+            ValidatedQuantity.fromNumber(ceilStart, unit: start.unit),
             ValidatedQuantity.fromNumber(floorEnd,
                 unit: (end as ValidatedQuantity).unit),
           );

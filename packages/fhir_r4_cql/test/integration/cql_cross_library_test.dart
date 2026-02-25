@@ -29,8 +29,7 @@ void main() {
           File('cql/cqf-engine/IncludedCodeRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       final includedCode = results['IncludedCode'];
       expect(includedCode, isNotNull,
@@ -38,21 +37,23 @@ void main() {
       expect(includedCode, isA<CqlCode>());
       if (includedCode is CqlCode) {
         expect(includedCode.code, equals('community'));
-        expect(includedCode.system,
-            equals('http://terminology.hl7.org/CodeSystem/medicationrequest-category'));
+        expect(
+            includedCode.system,
+            equals(
+                'http://terminology.hl7.org/CodeSystem/medicationrequest-category'));
       }
     });
   });
 
   // ── IncludedConceptRefTest ──
   group('IncludedConceptRefTest', () {
-    test('resolves concept from included library', skip: 'Cross-library concept resolution returns null', () async {
+    test('resolves concept from included library',
+        skip: 'Cross-library concept resolution returns null', () async {
       final source =
           File('cql/cqf-engine/IncludedConceptRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       final concept = results['testIncludedConceptRef'];
       expect(concept, isNotNull,
@@ -76,8 +77,7 @@ void main() {
       final context = <String, dynamic>{
         'Measurement Period': FhirInteger(42),
       };
-      final results =
-          (await library.execute(context)) as Map<String, dynamic>;
+      final results = (await library.execute(context)) as Map<String, dynamic>;
 
       expect(results['Local Parameter'], equals(FhirInteger(42)));
       // Included parameter from IncludedParameterTestCommon — should be null
@@ -93,8 +93,7 @@ void main() {
           File('cql/cqf-engine/IncludedValueSetRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       final vs = results['IncludedValueSet'];
       expect(vs, isNotNull,
@@ -109,13 +108,11 @@ void main() {
   // ── IncludedSignatureOutputTests ──
   group('IncludedSignatureOutputTests', () {
     test('resolves overloaded functions from included library', () async {
-      final source =
-          File('cql/cqf-engine/IncludedSignatureOutputTests.cql')
-              .readAsStringSync();
+      final source = File('cql/cqf-engine/IncludedSignatureOutputTests.cql')
+          .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['TestOverload'], equals(FhirInteger(5)));
       expect(results['TestOverloadOneInt'], equals(FhirInteger(1)));
@@ -130,8 +127,7 @@ void main() {
               .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['TestOverload'], equals(FhirInteger(5)));
       expect(results['TestOverloadOneInt'], equals(FhirInteger(1)));
@@ -155,8 +151,7 @@ void main() {
           File('cql/cqf-engine/CoverageTest/Tests.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: coverageManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       // CoverageTest/Tests.cql uses assertEquals which returns the message
       // source (first arg to Message). If assertion passes, condition is false
@@ -190,12 +185,11 @@ void main() {
     });
 
     test('MultiLibrary1 evaluates correctly', () async {
-      final source = File('cql/cqf-engine/multilib/MultiLibrary1.cql')
-          .readAsStringSync();
+      final source =
+          File('cql/cqf-engine/multilib/MultiLibrary1.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Number'], equals(FhirInteger(1)));
       expect(results['Name'], equals('Uno'));
@@ -204,24 +198,22 @@ void main() {
     });
 
     test('MultiLibrary2 evaluates correctly', () async {
-      final source = File('cql/cqf-engine/multilib/MultiLibrary2.cql')
-          .readAsStringSync();
+      final source =
+          File('cql/cqf-engine/multilib/MultiLibrary2.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Number'], equals(FhirInteger(2)));
       expect(results['Name'], equals('Dos'));
     });
 
     test('MultiLibrary3 evaluates correctly', () async {
-      final source = File('cql/cqf-engine/multilib/MultiLibrary3.cql')
-          .readAsStringSync();
+      final source =
+          File('cql/cqf-engine/multilib/MultiLibrary3.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Number'], equals(FhirInteger(3)));
       expect(results['Name'], equals('Tres'));
@@ -229,13 +221,11 @@ void main() {
 
     test('CqlFileWithLibOtherName evaluates correctly', () async {
       // File is named CqlFileWithLibOtherName.cql but library is OtherName
-      final source =
-          File('cql/cqf-engine/multilib/CqlFileWithLibOtherName.cql')
-              .readAsStringSync();
+      final source = File('cql/cqf-engine/multilib/CqlFileWithLibOtherName.cql')
+          .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Number'], equals(FhirInteger(1)));
     });
@@ -245,8 +235,7 @@ void main() {
           .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Number'], equals(FhirInteger(5)));
     });

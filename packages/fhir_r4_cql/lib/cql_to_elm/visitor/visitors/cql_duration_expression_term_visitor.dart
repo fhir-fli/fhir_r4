@@ -24,7 +24,8 @@ class CqlDurationExpressionTermVisitor extends CqlBaseVisitor<DurationBetween> {
 
     // Ensure that precision and expression are assigned, as per the ANTLR rule
     if (precision == null || expression == null) {
-      throw ArgumentError('$thisNode Invalid DurationExpressionTerm: missing components');
+      throw ArgumentError(
+          '$thisNode Invalid DurationExpressionTerm: missing components');
     }
 
     // "duration in <precision> of <expression>" means

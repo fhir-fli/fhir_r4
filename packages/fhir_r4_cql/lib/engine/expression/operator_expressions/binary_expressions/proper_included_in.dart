@@ -84,7 +84,8 @@ class ProperIncludedIn extends BinaryExpression {
     if (right == null && operand[1] is IntervalExpression) {
       final ie = operand[1] as IntervalExpression;
       if (ie.lowClosed && ie.highClosed) {
-        right = CqlInterval(low: null, lowClosed: true, high: null, highClosed: true);
+        right = CqlInterval(
+            low: null, lowClosed: true, high: null, highClosed: true);
       }
     }
     // ProperIncludedIn(a, b) = ProperIncludes(b, a)

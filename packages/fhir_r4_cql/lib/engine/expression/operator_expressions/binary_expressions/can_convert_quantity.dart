@@ -68,8 +68,7 @@ class CanConvertQuantity extends BinaryExpression {
     final right = await operand[1].execute(context);
     if (left == null || right == null) return null;
     try {
-      final result =
-          await ConvertQuantity(operand: operand).execute(context);
+      final result = await ConvertQuantity(operand: operand).execute(context);
       return FhirBoolean(result != null);
     } catch (_) {
       return FhirBoolean(false);

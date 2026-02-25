@@ -113,8 +113,7 @@ final context10 = <String, dynamic>{
     // Condition Clinical Status Active
     'http://example.org/fhir/ValueSet/conditionclinicalstatusactive': [
       {
-        'system':
-            'http://terminology.hl7.org/CodeSystem/condition-clinical',
+        'system': 'http://terminology.hl7.org/CodeSystem/condition-clinical',
         'code': 'active',
       },
     ],

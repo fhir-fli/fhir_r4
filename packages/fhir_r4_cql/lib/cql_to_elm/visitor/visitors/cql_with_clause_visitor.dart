@@ -11,9 +11,7 @@ class CqlWithClauseVisitor extends CqlBaseVisitor<With> {
       final RelationshipClause source =
           visitAliasedQuerySource(ctx.getChild(1) as AliasedQuerySourceContext);
       // Add the With alias to the current query scope so suchThat can see it
-      if (source.alias != null) {
-        CqlBaseVisitor.addAliasToCurrentScope(source.alias!);
-      }
+      CqlBaseVisitor.addAliasToCurrentScope(source.alias);
       final suchThat =
           ctx.getChild(3) == null ? null : byContext(ctx.getChild(3)!);
       return With(

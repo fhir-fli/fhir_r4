@@ -71,8 +71,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
           // ───── Compute the three “needs Query” flags ─────
 
           // 1) flattenNeeded: list-of-lists + scalars
-          final flattenNeeded =
-              (expr.element?.isNotEmpty == true) &&
+          final flattenNeeded = (expr.element?.isNotEmpty == true) &&
               (expr.element?.first is ListExpression) &&
               expr.element!.skip(1).any((e) => e is! ListExpression);
 
@@ -143,8 +142,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       for (int i = 0; i < 2; i++) {
         final other = operands[1 - i];
         if (other is LiteralString && operands[i] is Property) {
-          final caseExpr =
-              _buildChoiceCaseForString(operands[i] as Property);
+          final caseExpr = _buildChoiceCaseForString(operands[i] as Property);
           if (caseExpr != null) {
             operands[i] = caseExpr;
           }
@@ -197,7 +195,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       final rightIsFhirConceptProp = _isFhirConceptProperty(right);
       bool conceptHandled = false;
 
-      if (leftIsFhirConceptProp && !rightIsFhirConceptProp &&
+      if (leftIsFhirConceptProp &&
+          !rightIsFhirConceptProp &&
           _isCodeType(right)) {
         operands[0] = FunctionRef(
           name: 'ToConcept',
@@ -206,7 +205,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         );
         operands[1] = ToConcept(operand: operands[1]);
         conceptHandled = true;
-      } else if (rightIsFhirConceptProp && !leftIsFhirConceptProp &&
+      } else if (rightIsFhirConceptProp &&
+          !leftIsFhirConceptProp &&
           _isCodeType(left)) {
         operands[1] = FunctionRef(
           name: 'ToConcept',
@@ -254,8 +254,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         case '!~':
           return Not(
               operand: Equivalent(
-                  operand:
-                      translateOperand(_wrapCodeRefsAsConcept(operands))));
+                  operand: translateOperand(_wrapCodeRefsAsConcept(operands))));
       }
     }
 
@@ -520,8 +519,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
     int bestCount = 0;
     for (final model in library.usings?.def ?? <UsingDef>[]) {
       if (model.localIdentifier == null) continue;
-      final modelInfo = modelInfoProvider.load(ModelIdentifier(
-          id: model.localIdentifier!, version: model.version));
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
       if (modelInfo == null) continue;
       for (final ti in modelInfo.typeInfo) {
         if (ti is ClassInfo) {

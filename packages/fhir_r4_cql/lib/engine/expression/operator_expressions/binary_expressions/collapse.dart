@@ -138,8 +138,7 @@ class Collapse extends BinaryExpression {
     }
 
     final source = await operand[0].execute(context);
-    final per =
-        operand.length > 1 ? await operand[1].execute(context) : null;
+    final per = operand.length > 1 ? await operand[1].execute(context) : null;
     return collapse(source, per);
   }
 
@@ -249,14 +248,13 @@ class Collapse extends BinaryExpression {
         final nextInterval = source[i];
 
         // Check if current and next source overlap or meet
-        final overlaps = Overlaps.overlaps(
-                    currentInterval, nextInterval, precision)
-                ?.valueBoolean ??
-            false;
-        final meets =
-            Meets.meets(currentInterval, nextInterval, precision)
+        final overlaps =
+            Overlaps.overlaps(currentInterval, nextInterval, precision)
                     ?.valueBoolean ??
                 false;
+        final meets = Meets.meets(currentInterval, nextInterval, precision)
+                ?.valueBoolean ??
+            false;
 
         // Check per-based gap tolerance: merge if gap ≤ per.
         // For DateTime intervals, Subtract(DateTime, DateTime) returns null,
@@ -268,7 +266,8 @@ class Collapse extends BinaryExpression {
           if (curEnd != null && nextStart != null) {
             final endPlusPer = Add.add(curEnd, effectivePer);
             if (endPlusPer != null) {
-              final check = SameOrAfter.sameOrAfter(endPlusPer, nextStart, precision);
+              final check =
+                  SameOrAfter.sameOrAfter(endPlusPer, nextStart, precision);
               if (check?.valueBoolean == true) withinPer = true;
             }
           }
@@ -280,10 +279,12 @@ class Collapse extends BinaryExpression {
               Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
                       ?.valueBoolean ??
                   false;
-          final newEnd =
-              currentEndGreater ? currentInterval?.getEnd() : nextInterval.getEnd();
-          final newHighClosed =
-              currentEndGreater ? currentInterval?.highClosed : nextInterval.highClosed;
+          final newEnd = currentEndGreater
+              ? currentInterval?.getEnd()
+              : nextInterval.getEnd();
+          final newHighClosed = currentEndGreater
+              ? currentInterval?.highClosed
+              : nextInterval.highClosed;
           currentInterval = CqlInterval(
             low: currentInterval?.low,
             lowClosed: currentInterval?.lowClosed,

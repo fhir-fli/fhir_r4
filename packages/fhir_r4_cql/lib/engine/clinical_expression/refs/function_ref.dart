@@ -378,22 +378,32 @@ class FunctionRef extends ExpressionRef {
       ValidatedQuantity? high;
       if (value.low != null) {
         final numVal = value.low!.value?.valueNum;
-        final unit = value.low!.unit?.valueString ?? value.low!.code?.valueString ?? '1';
-        if (numVal != null) low = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        final unit =
+            value.low!.unit?.valueString ?? value.low!.code?.valueString ?? '1';
+        if (numVal != null) {
+          low = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        }
       }
       if (value.high != null) {
         final numVal = value.high!.value?.valueNum;
-        final unit = value.high!.unit?.valueString ?? value.high!.code?.valueString ?? '1';
-        if (numVal != null) high = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        final unit = value.high!.unit?.valueString ??
+            value.high!.code?.valueString ??
+            '1';
+        if (numVal != null) {
+          high = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        }
       }
-      return CqlInterval(low: low, high: high, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: low, high: high, lowClosed: true, highClosed: true);
     }
     // FHIR dateTime or instant → point interval
     if (value is FhirDateTime || value is FhirInstant) {
-      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: value, high: value, lowClosed: true, highClosed: true);
     }
     if (value is FhirDate) {
-      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: value, high: value, lowClosed: true, highClosed: true);
     }
     // Map with start/end (e.g. from walkFhirPath)
     if (value is Map<String, dynamic>) {

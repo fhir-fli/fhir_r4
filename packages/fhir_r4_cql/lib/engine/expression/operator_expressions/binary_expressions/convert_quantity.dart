@@ -75,8 +75,7 @@ class ConvertQuantity extends BinaryExpression {
     // Convert FHIR Quantity to ValidatedQuantity if needed
     if (left is fhir.Quantity) {
       final num? numVal = left.value?.valueNum;
-      final unit =
-          left.unit?.valueString ?? left.code?.valueString ?? '1';
+      final unit = left.unit?.valueString ?? left.code?.valueString ?? '1';
       if (numVal != null) {
         left = ValidatedQuantity.fromNumber(numVal, unit: unit);
       } else {

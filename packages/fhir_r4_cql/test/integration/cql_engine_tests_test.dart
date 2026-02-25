@@ -39,8 +39,10 @@ void main() {
       'FunctionTestNullQuantityArg': null,
     },
     knownFailures: {
-      'FunctionTestOverload': 'ToString(0.000) produces wrong result for 3-arg overload',
-      'FunctionTestNullQuantityArg': 'Null quantity dispatches to wrong overload, returns empty list',
+      'FunctionTestOverload':
+          'ToString(0.000) produces wrong result for 3-arg overload',
+      'FunctionTestNullQuantityArg':
+          'Null quantity dispatches to wrong overload, returns empty list',
     },
   );
 
@@ -130,11 +132,12 @@ void main() {
   _testFile(
     'DateOrDateTimeInNullIntervalTest',
     libraryManager,
-    {
-    },
+    {},
     knownFailures: {
-      'Date in Null Interval Test': 'Null interval containment returns false instead of null',
-      'DateTime in Null Interval Test': 'Null interval containment returns false instead of null',
+      'Date in Null Interval Test':
+          'Null interval containment returns false instead of null',
+      'DateTime in Null Interval Test':
+          'Null interval containment returns false instead of null',
     },
   );
 
@@ -143,8 +146,18 @@ void main() {
     'LetClauseOutsideQueryContextTest',
     libraryManager,
     {
-      'First Position of list': [FhirInteger(1), FhirInteger(1), FhirInteger(1), FhirInteger(1)],
-      'Third Position of list With Same Name of Let As First': [FhirInteger(3), FhirInteger(3), FhirInteger(3), FhirInteger(3)],
+      'First Position of list': [
+        FhirInteger(1),
+        FhirInteger(1),
+        FhirInteger(1),
+        FhirInteger(1)
+      ],
+      'Third Position of list With Same Name of Let As First': [
+        FhirInteger(3),
+        FhirInteger(3),
+        FhirInteger(3),
+        FhirInteger(3)
+      ],
     },
   );
 
@@ -223,12 +236,11 @@ void main() {
   // ── ResolveParameterDefaultTest ──
   group('ResolveParameterDefaultTest', () {
     test('resolves parameter defaults', () async {
-      final source =
-          File('cql/cqf-engine/ResolveParameterDefaultTest.cql').readAsStringSync();
+      final source = File('cql/cqf-engine/ResolveParameterDefaultTest.cql')
+          .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results =
-          (await library.execute(null)) as Map<String, dynamic>;
+      final results = (await library.execute(null)) as Map<String, dynamic>;
 
       expect(results['Simple Expression'], equals(FhirInteger(42)));
     });
@@ -315,7 +327,8 @@ void _testFile(
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
       final context = <String, dynamic>{
-        'startTimestamp': FhirDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        'startTimestamp':
+            FhirDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
       };
       results = (await library.execute(context)) as Map<String, dynamic>;
     });

@@ -131,7 +131,8 @@ class Divide extends BinaryExpression {
         return null;
       }
     } else if ((left is ValidatedQuantity || left is FhirDecimal) &&
-        (right is ValidatedQuantity || right is FhirDecimal ||
+        (right is ValidatedQuantity ||
+            right is FhirDecimal ||
             right is FhirNumber)) {
       try {
         final leftQuantity = left is ValidatedQuantity

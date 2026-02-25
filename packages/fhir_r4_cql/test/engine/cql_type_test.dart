@@ -21,7 +21,8 @@ void main() {
       final result = await asOp.execute({});
       expect(result, FhirInteger(5));
     });
-    test('define "IntegerAsString": 5 as String // null (wrong type)', () async {
+    test('define "IntegerAsString": 5 as String // null (wrong type)',
+        () async {
       final asOp =
           As(asType: QName.fromElmType('String'), operand: LiteralInteger(5));
       final result = await asOp.execute({});
@@ -30,8 +31,7 @@ void main() {
     });
     test('define "StringAsString": \'hello\' as String // \'hello\'', () async {
       final asOp = As(
-          asType: QName.fromElmType('String'),
-          operand: LiteralString('hello'));
+          asType: QName.fromElmType('String'), operand: LiteralString('hello'));
       final result = await asOp.execute({});
       expect(result, 'hello');
     });
@@ -53,8 +53,7 @@ void main() {
     });
     test('define "StringIsString": \'hello\' is String // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('String'),
-          operand: LiteralString('hello'));
+          isType: QName.fromElmType('String'), operand: LiteralString('hello'));
       expect(await isOp.execute({}), FhirBoolean(true));
     });
     test('define "NullIsAnything": null is Integer // false', () async {
@@ -64,13 +63,12 @@ void main() {
     });
     test('define "BooleanIsBoolean": true is Boolean // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('Boolean'),
-          operand: LiteralBoolean(true));
+          isType: QName.fromElmType('Boolean'), operand: LiteralBoolean(true));
       expect(await isOp.execute({}), FhirBoolean(true));
     });
     test('define "DecimalIsDecimal": 3.5 is Decimal // true', () async {
-      final isOp =
-          Is(isType: QName.fromElmType('Decimal'), operand: LiteralDecimal(3.5));
+      final isOp = Is(
+          isType: QName.fromElmType('Decimal'), operand: LiteralDecimal(3.5));
       expect(await isOp.execute({}), FhirBoolean(true));
     });
   });
@@ -88,8 +86,7 @@ void main() {
       expect(await toBoolean.execute({}), FhirBoolean(false));
     });
     test('define "TrueFromBoolean": ToBoolean(true) // true', () async {
-      final toBoolean =
-          ToBoolean(operand: LiteralBoolean(true));
+      final toBoolean = ToBoolean(operand: LiteralBoolean(true));
       expect(await toBoolean.execute({}), FhirBoolean(true));
     });
     test('define "ToBooleanIsNull": ToBoolean(null)', () async {
@@ -107,8 +104,7 @@ void main() {
       expect(await toString.execute({}), FhirString('5'));
     });
     test('define "BooleanToString": ToString(true) // \'true\'', () async {
-      final toString =
-          ToString(operand: LiteralBoolean(true));
+      final toString = ToString(operand: LiteralBoolean(true));
       expect(await toString.execute({}), FhirString('true'));
     });
     test('define "DecimalToString": ToString(3.5) // \'3.5\'', () async {
@@ -219,8 +215,7 @@ void main() {
       final result = await toDate.execute({});
       expect(result, FhirDate.fromString('2023-06-15'));
     });
-    test(
-        'define "DateTimeToDate": ToDate(@2023-06-15T10:30:00) // @2023-06-15',
+    test('define "DateTimeToDate": ToDate(@2023-06-15T10:30:00) // @2023-06-15',
         () async {
       final toDate = ToDate(operand: LiteralDateTime('2023-06-15T10:30:00'));
       final result = await toDate.execute({});
@@ -236,8 +231,7 @@ void main() {
   // ToTime
   // ───────────────────────────────────────────────────────────────────────────
   group('ToTime', () {
-    test('define "StringToTime": ToTime(\'14:30:00\') // @T14:30:00',
-        () async {
+    test('define "StringToTime": ToTime(\'14:30:00\') // @T14:30:00', () async {
       final toTime = ToTime(operand: LiteralString('14:30:00'));
       final result = await toTime.execute({});
       expect(result, FhirTime('14:30:00'));
@@ -263,8 +257,7 @@ void main() {
   // ToRatio
   // ───────────────────────────────────────────────────────────────────────────
   group('ToRatio', () {
-    test(
-        'define "StringToRatio": ToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\')',
+    test('define "StringToRatio": ToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\')',
         () async {
       final toRatio = ToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
       final result = await toRatio.execute({});
@@ -284,8 +277,7 @@ void main() {
   // Convert
   // ───────────────────────────────────────────────────────────────────────────
   group('Convert', () {
-    test('define "ConvertStringToInt": Convert(\'5\', Integer) // 5',
-        () async {
+    test('define "ConvertStringToInt": Convert(\'5\', Integer) // 5', () async {
       final convert = Convert(
         operand: LiteralString('5'),
         toType: QName(localPart: 'Integer'),
@@ -301,8 +293,7 @@ void main() {
       final result = await convert.execute({});
       expect(result, FhirString('5'));
     });
-    test(
-        'define "ConvertStringToBool": Convert(\'true\', Boolean) // true',
+    test('define "ConvertStringToBool": Convert(\'true\', Boolean) // true',
         () async {
       final convert = Convert(
         operand: LiteralString('true'),
@@ -311,8 +302,7 @@ void main() {
       final result = await convert.execute({});
       expect(result, FhirBoolean(true));
     });
-    test(
-        'define "ConvertStringToDecimal": Convert(\'3.5\', Decimal) // 3.5',
+    test('define "ConvertStringToDecimal": Convert(\'3.5\', Decimal) // 3.5',
         () async {
       final convert = Convert(
         operand: LiteralString('3.5'),
@@ -334,8 +324,7 @@ void main() {
   // CanConvert
   // ───────────────────────────────────────────────────────────────────────────
   group('CanConvert', () {
-    test(
-        'define "CanConvertTrue": CanConvert(\'5\', Integer) // true',
+    test('define "CanConvertTrue": CanConvert(\'5\', Integer) // true',
         () async {
       final canConvert = CanConvert(
         operand: LiteralString('5'),
@@ -344,8 +333,7 @@ void main() {
       final result = await canConvert.execute({});
       expect(result, FhirBoolean(true));
     });
-    test(
-        'define "CanConvertFalse": CanConvert(\'hello\', Integer) // false',
+    test('define "CanConvertFalse": CanConvert(\'hello\', Integer) // false',
         () async {
       final canConvert = CanConvert(
         operand: LiteralString('hello'),
@@ -398,15 +386,12 @@ void main() {
   // ConvertsToDate
   // ───────────────────────────────────────────────────────────────────────────
   group('ConvertsToDate', () {
-    test(
-        'define "ConvertsToDateTrue": ConvertsToDate(\'2023-01-15\') // true',
+    test('define "ConvertsToDateTrue": ConvertsToDate(\'2023-01-15\') // true',
         () async {
       final op = ConvertsToDate(operand: LiteralString('2023-01-15'));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToDateFalse": ConvertsToDate(5) // false',
-        () async {
+    test('define "ConvertsToDateFalse": ConvertsToDate(5) // false', () async {
       final op = ConvertsToDate(operand: LiteralInteger(5));
       expect(await op.execute({}), FhirBoolean(false));
     });
@@ -427,8 +412,7 @@ void main() {
           ConvertsToDateTime(operand: LiteralString('2023-01-15T10:30:00'));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToDateTimeFalse": ConvertsToDateTime(5) // false',
+    test('define "ConvertsToDateTimeFalse": ConvertsToDateTime(5) // false',
         () async {
       final op = ConvertsToDateTime(operand: LiteralInteger(5));
       expect(await op.execute({}), FhirBoolean(false));
@@ -449,8 +433,7 @@ void main() {
       final op = ConvertsToDecimal(operand: LiteralString('3.5'));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToDecimalFalse": ConvertsToDecimal(\'abc\') // false',
+    test('define "ConvertsToDecimalFalse": ConvertsToDecimal(\'abc\') // false',
         () async {
       final op = ConvertsToDecimal(operand: LiteralString('abc'));
       expect(await op.execute({}), FhirBoolean(false));
@@ -471,8 +454,7 @@ void main() {
       final op = ConvertsToInteger(operand: LiteralString('42'));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToIntegerFalse": ConvertsToInteger(\'abc\') // false',
+    test('define "ConvertsToIntegerFalse": ConvertsToInteger(\'abc\') // false',
         () async {
       final op = ConvertsToInteger(operand: LiteralString('abc'));
       expect(await op.execute({}), FhirBoolean(false));
@@ -508,14 +490,12 @@ void main() {
   // ConvertsToQuantity
   // ───────────────────────────────────────────────────────────────────────────
   group('ConvertsToQuantity', () {
-    test(
-        'define "ConvertsToQuantityTrue": ConvertsToQuantity(5) // true',
+    test('define "ConvertsToQuantityTrue": ConvertsToQuantity(5) // true',
         () async {
       final op = ConvertsToQuantity(operand: LiteralInteger(5));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToQuantityFalse": ConvertsToQuantity(true) // false',
+    test('define "ConvertsToQuantityFalse": ConvertsToQuantity(true) // false',
         () async {
       final op = ConvertsToQuantity(operand: LiteralBoolean(true));
       expect(await op.execute({}), FhirBoolean(false));
@@ -538,8 +518,7 @@ void main() {
           ConvertsToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToRatioFalse": ConvertsToRatio(\'abc\') // false',
+    test('define "ConvertsToRatioFalse": ConvertsToRatio(\'abc\') // false',
         () async {
       final op = ConvertsToRatio(operand: LiteralString('abc'));
       expect(await op.execute({}), FhirBoolean(false));
@@ -560,8 +539,7 @@ void main() {
       final op = ConvertsToString(operand: LiteralInteger(5));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToStringAlsoTrue": ConvertsToString(true) // true',
+    test('define "ConvertsToStringAlsoTrue": ConvertsToString(true) // true',
         () async {
       final op = ConvertsToString(operand: LiteralBoolean(true));
       expect(await op.execute({}), FhirBoolean(true));
@@ -577,15 +555,12 @@ void main() {
   // ConvertsToTime
   // ───────────────────────────────────────────────────────────────────────────
   group('ConvertsToTime', () {
-    test(
-        'define "ConvertsToTimeTrue": ConvertsToTime(\'14:30:00\') // true',
+    test('define "ConvertsToTimeTrue": ConvertsToTime(\'14:30:00\') // true',
         () async {
       final op = ConvertsToTime(operand: LiteralString('14:30:00'));
       expect(await op.execute({}), FhirBoolean(true));
     });
-    test(
-        'define "ConvertsToTimeFalse": ConvertsToTime(5) // false',
-        () async {
+    test('define "ConvertsToTimeFalse": ConvertsToTime(5) // false', () async {
       final op = ConvertsToTime(operand: LiteralInteger(5));
       expect(await op.execute({}), FhirBoolean(false));
     });
@@ -606,7 +581,7 @@ void main() {
       );
       final result = await ratio.execute({});
       expect(result, isA<ValidatedRatio>());
-      final vr = result as ValidatedRatio;
+      final vr = result;
       expect(vr.numerator, ValidatedQuantity.fromNumber(1, unit: 'mg'));
       expect(vr.denominator, ValidatedQuantity.fromNumber(2, unit: 'mg'));
     });
@@ -700,10 +675,8 @@ void main() {
         element: [
           InstanceElement(name: 'low', value: LiteralInteger(1)),
           InstanceElement(name: 'high', value: LiteralInteger(10)),
-          InstanceElement(
-              name: 'lowClosed', value: LiteralBoolean(false)),
-          InstanceElement(
-              name: 'highClosed', value: LiteralBoolean(false)),
+          InstanceElement(name: 'lowClosed', value: LiteralBoolean(false)),
+          InstanceElement(name: 'highClosed', value: LiteralBoolean(false)),
         ],
       );
       final result = await instance.execute({});

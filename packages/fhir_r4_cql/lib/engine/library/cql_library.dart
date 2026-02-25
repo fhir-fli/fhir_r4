@@ -480,7 +480,8 @@ class CqlLibrary extends Element {
     final Map<String, dynamic> context =
         executionContext ?? <String, dynamic>{};
     context['library'] = this;
-    context['startTimestamp'] ??= fhir.FhirDateTime.fromDateTime(DateTime.now());
+    context['startTimestamp'] ??=
+        fhir.FhirDateTime.fromDateTime(DateTime.now());
     final statementsExecuted = await statements?.execute(context);
     return statementsExecuted;
   }

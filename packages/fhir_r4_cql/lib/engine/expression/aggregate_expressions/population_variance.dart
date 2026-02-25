@@ -142,15 +142,14 @@ class PopulationVariance extends AggregateExpression {
         }
       }
       if (sumOfSquaredValues != null) {
-        final sum = UcumDecimal.fromString(
-            sumOfSquaredValues.value.asUcumDecimal());
+        final sum =
+            UcumDecimal.fromString(sumOfSquaredValues.value.asUcumDecimal());
         var varianceValue =
             sum / UcumDecimal.fromNum(sourceResult.length); // N instead of N-1
         // Truncate to 8 decimal places to match CQF reference precision
         final truncated = double.tryParse(varianceValue.asUcumDecimal());
         if (truncated != null) {
-          varianceValue = UcumDecimal.fromString(
-              truncated.toStringAsFixed(8));
+          varianceValue = UcumDecimal.fromString(truncated.toStringAsFixed(8));
         }
         return ValidatedQuantity(
             value: varianceValue, unit: sumOfSquaredValues.unit);

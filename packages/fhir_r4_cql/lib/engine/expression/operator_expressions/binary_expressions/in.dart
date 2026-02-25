@@ -263,8 +263,11 @@ class In extends BinaryExpression {
 
   /// Convert FHIR Map-based types to CQL types for ValueSet membership checking.
   static dynamic _toCqlCodeValue(dynamic value) {
-    if (value is CqlCode || value is CqlConcept || value is CodeableConcept ||
-        value is String || value is FhirCode) {
+    if (value is CqlCode ||
+        value is CqlConcept ||
+        value is CodeableConcept ||
+        value is String ||
+        value is FhirCode) {
       return value;
     }
     // Handle Map-based CodeableConcept from FHIR data

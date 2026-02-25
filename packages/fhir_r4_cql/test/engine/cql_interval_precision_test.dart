@@ -302,8 +302,7 @@ void main() {
         highClosed: true,
         high: LiteralInteger(9),
       );
-      final list =
-          ListExpression(element: [interval1, interval2, interval3]);
+      final list = ListExpression(element: [interval1, interval2, interval3]);
       final collapse = Collapse(operand: [list]);
       final result = await collapse.execute({});
       expect(result, [CqlInterval(low: FhirInteger(1), high: FhirInteger(9))]);

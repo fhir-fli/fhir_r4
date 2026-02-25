@@ -188,11 +188,9 @@ class Less extends BinaryExpression {
         return null;
       }
     } else if (left is FhirDecimal && right is FhirInteger) {
-      return FhirBoolean(
-          left < FhirDecimal(right.valueNum!.toDouble()));
+      return FhirBoolean(left < FhirDecimal(right.valueNum!.toDouble()));
     } else if (left is FhirInteger && right is FhirDecimal) {
-      return FhirBoolean(
-          FhirDecimal(left.valueNum!.toDouble()) < right);
+      return FhirBoolean(FhirDecimal(left.valueNum!.toDouble()) < right);
     } else if (left is Quantity && right is ValidatedQuantity) {
       // Convert FHIR Quantity to ValidatedQuantity for comparison
       final leftQty = ValidatedQuantity.fromString(

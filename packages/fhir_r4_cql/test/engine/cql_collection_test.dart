@@ -105,13 +105,16 @@ void main() {
       ]);
       // The element expression reads the current scope variable
       final element = Current(scope: '\$this');
-      final forEach = ForEach(source: source, element: element, scope: '\$this');
+      final forEach =
+          ForEach(source: source, element: element, scope: '\$this');
       final result = await forEach.execute({});
-      expect(result, equals([
-        fhir.FhirInteger(1),
-        fhir.FhirInteger(2),
-        fhir.FhirInteger(3),
-      ]));
+      expect(
+          result,
+          equals([
+            fhir.FhirInteger(1),
+            fhir.FhirInteger(2),
+            fhir.FhirInteger(3),
+          ]));
     });
 
     test('null source returns null', () async {
@@ -142,7 +145,8 @@ void main() {
       ]);
       // Element expression always returns a fixed value
       final element = LiteralString('mapped');
-      final forEach = ForEach(source: source, element: element, scope: '\$this');
+      final forEach =
+          ForEach(source: source, element: element, scope: '\$this');
       final result = await forEach.execute({});
       expect(result, equals(['mapped', 'mapped']));
     });
@@ -171,11 +175,13 @@ void main() {
       final filter =
           Filter(source: source, condition: condition, scope: '\$this');
       final result = await filter.execute({});
-      expect(result, equals([
-        fhir.FhirInteger(1),
-        fhir.FhirInteger(2),
-        fhir.FhirInteger(3),
-      ]));
+      expect(
+          result,
+          equals([
+            fhir.FhirInteger(1),
+            fhir.FhirInteger(2),
+            fhir.FhirInteger(3),
+          ]));
     });
 
     test('null source returns null', () async {
@@ -294,11 +300,22 @@ void main() {
 
   group('Descendents', () {
     test('recursively collects descendants of a map', () async {
-      final source = _ConstExpr({'a': 1, 'b': {'c': 2}});
+      final source = _ConstExpr({
+        'a': 1,
+        'b': {'c': 2}
+      });
       final descendents = Descendents(source: source);
       final result = await descendents.execute({});
       // Map values added then recursed: 1 added + recurse(1)→1, {'c':2} added + recurse→2 added + recurse(2)→2
-      expect(result, equals([1, 1, {'c': 2}, 2, 2]));
+      expect(
+          result,
+          equals([
+            1,
+            1,
+            {'c': 2},
+            2,
+            2
+          ]));
     });
 
     test('null source returns null', () async {

@@ -185,8 +185,7 @@ class Equal extends BinaryExpression {
           // assuming same timezone on both sides).
           if (left.hasHours &&
               right.hasHours &&
-              (left.timeZoneOffset == null) !=
-                  (right.timeZoneOffset == null)) {
+              (left.timeZoneOffset == null) != (right.timeZoneOffset == null)) {
             result = _componentEqualDateTime(left, right);
           } else {
             result = left.isEqual(right);
@@ -295,8 +294,8 @@ class Equal extends BinaryExpression {
           // Different lengths: if either list has null elements, the result
           // is uncertain (null) because we can't definitively say they're
           // unequal when nulls are involved.
-          final hasNulls = (left as List).any((e) => e == null) ||
-              (right as List).any((e) => e == null);
+          final hasNulls =
+              (left).any((e) => e == null) || (right).any((e) => e == null);
           result = hasNulls ? null : false;
         }
         break;

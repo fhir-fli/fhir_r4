@@ -214,10 +214,8 @@ class DifferenceBetween extends BinaryExpression {
             _needsUncertainty(high, precision)) {
           final (lowMin, lowMax) = _dateBounds(low);
           final (highMin, highMax) = _dateBounds(high);
-          final minResult =
-              _differenceBetween(lowMax, highMin, precision);
-          final maxResult =
-              _differenceBetween(lowMin, highMax, precision);
+          final minResult = _differenceBetween(lowMax, highMin, precision);
+          final maxResult = _differenceBetween(lowMin, highMax, precision);
           // Collapse point intervals to scalar
           if (minResult == maxResult) {
             return FhirInteger(minResult);
@@ -308,8 +306,13 @@ class DifferenceBetween extends BinaryExpression {
     // timeZoneOffset is signed: -6.0 means UTC-6, so UTC = local + 6h
     final offsetHours = offset.truncate();
     final offsetMinutes = ((offset - offsetHours) * 60).truncate();
-    return DateTime.utc(local.year, local.month, local.day,
-        local.hour - offsetHours, local.minute - offsetMinutes,
-        local.second, local.millisecond);
+    return DateTime.utc(
+        local.year,
+        local.month,
+        local.day,
+        local.hour - offsetHours,
+        local.minute - offsetMinutes,
+        local.second,
+        local.millisecond);
   }
 }

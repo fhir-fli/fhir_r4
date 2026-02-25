@@ -367,14 +367,13 @@ void main() {
     test('returns current time from startTimestamp', () async {
       final now = DateTime.now();
       final context = <String, dynamic>{
-        'startTimestamp':
-            fhir.FhirDateTime.fromString(now.toIso8601String()),
+        'startTimestamp': fhir.FhirDateTime.fromString(now.toIso8601String()),
       };
       final timeOfDay = TimeOfDay();
       final result = await timeOfDay.execute(context);
       expect(result, isA<fhir.FhirTime>());
       // Verify hour is reasonable
-      final time = result as fhir.FhirTime;
+      final time = result;
       expect(time.hour, isNotNull);
     });
 
@@ -386,7 +385,7 @@ void main() {
       final timeOfDay = TimeOfDay();
       final result = await timeOfDay.execute(context);
       expect(result, isA<fhir.FhirTime>());
-      final time = result as fhir.FhirTime;
+      final time = result;
       expect(time.hour, equals(14));
       expect(time.minute, equals(30));
       expect(time.second, equals(45));
@@ -400,7 +399,7 @@ void main() {
       final timeOfDay = TimeOfDay();
       final result = await timeOfDay.execute(context);
       expect(result, isA<fhir.FhirTime>());
-      final time = result as fhir.FhirTime;
+      final time = result;
       expect(time.hour, equals(0));
       expect(time.minute, equals(0));
     });
@@ -412,8 +411,8 @@ void main() {
   group('DateFrom', () {
     test('extracts date from FhirDateTime', () async {
       final dateFrom = DateFrom(
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await dateFrom.execute({});
       expect(result, isA<fhir.FhirDate>());
@@ -462,8 +461,8 @@ void main() {
   group('TimeFrom', () {
     test('extracts time from FhirDateTime', () async {
       final timeFrom = TimeFrom(
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
       );
       final result = await timeFrom.execute({});
       expect(result, isA<fhir.FhirTime>());
@@ -544,8 +543,8 @@ void main() {
     test('extracts year from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.year,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(2024)));
@@ -554,8 +553,8 @@ void main() {
     test('extracts month from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.month,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(3)));
@@ -564,8 +563,8 @@ void main() {
     test('extracts day from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.day,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(15)));
@@ -574,8 +573,8 @@ void main() {
     test('extracts hour from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.hour,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(10)));
@@ -584,8 +583,8 @@ void main() {
     test('extracts minute from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.minute,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:00Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(30)));
@@ -640,8 +639,8 @@ void main() {
     test('extracts second from FhirDateTime', () async {
       final comp = DateTimeComponentFrom(
         precision: CqlDateTimePrecision.second,
-        operand: _ConstExpr(
-            fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
+        operand:
+            _ConstExpr(fhir.FhirDateTime.fromString('2024-03-15T10:30:45Z')),
       );
       final result = await comp.execute({});
       expect(result, equals(fhir.FhirInteger(45)));

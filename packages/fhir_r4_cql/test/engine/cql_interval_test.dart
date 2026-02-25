@@ -747,8 +747,7 @@ void main() {
       final result = await pointFrom.execute({});
       expect(result, FhirInteger(5));
     });
-    test(
-        """define "PointFromNonUnit": point from Interval[1, 5] // throws""",
+    test("""define "PointFromNonUnit": point from Interval[1, 5] // throws""",
         () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
@@ -759,16 +758,15 @@ void main() {
     });
     test("""define "PointFromIsNull": point from null // null""", () async {
       final pointFrom = PointFrom(
-          operand:
-              As(operand: LiteralNull(), asType: QName.fromElmType('Interval')));
+          operand: As(
+              operand: LiteralNull(), asType: QName.fromElmType('Interval')));
       final result = await pointFrom.execute({});
       expect(result, isNull);
     });
   });
 
   group('ProperContains', () {
-    test(
-        """define "ProperContainsTrue": Interval[1, 5] properly contains 3""",
+    test("""define "ProperContainsTrue": Interval[1, 5] properly contains 3""",
         () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
@@ -895,8 +893,7 @@ void main() {
       final result = await properIn.execute({});
       expect(result, FhirBoolean(true));
     });
-    test(
-        """define "ProperInBoundary": 1 properly in Interval[1, 5] // false""",
+    test("""define "ProperInBoundary": 1 properly in Interval[1, 5] // false""",
         () async {
       final interval = IntervalExpression(
         low: LiteralInteger(1),
@@ -1019,8 +1016,7 @@ void main() {
       final result = await properIncludes.execute({});
       expect(result, FhirBoolean(true));
     });
-    test(
-        'define "ProperIncludesIsNull": Interval[1, 5] properly includes null',
+    test('define "ProperIncludesIsNull": Interval[1, 5] properly includes null',
         () async {
       final left = LiteralIntegerInterval(
         low: LiteralInteger(1),
@@ -1093,8 +1089,7 @@ void main() {
         low: LiteralInteger(1),
         high: LiteralInteger(5),
       );
-      final properIncludedIn =
-          ProperIncludedIn(operand: [left, LiteralNull()]);
+      final properIncludedIn = ProperIncludedIn(operand: [left, LiteralNull()]);
       final result = await properIncludedIn.execute({});
       expect(result, isNull);
     });

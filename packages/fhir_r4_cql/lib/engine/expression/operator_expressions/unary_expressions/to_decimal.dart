@@ -123,8 +123,11 @@ class ToDecimal extends UnaryExpression {
           // and 8 digits of scale. Values outside representable range return null.
           final dotIndex = result.indexOf('.');
           final intPart = dotIndex >= 0
-              ? result.substring(result.startsWith('-') || result.startsWith('+') ? 1 : 0, dotIndex)
-              : result.substring(result.startsWith('-') || result.startsWith('+') ? 1 : 0);
+              ? result.substring(
+                  result.startsWith('-') || result.startsWith('+') ? 1 : 0,
+                  dotIndex)
+              : result.substring(
+                  result.startsWith('-') || result.startsWith('+') ? 1 : 0);
           if (intPart.length > 28) return null;
           final value = double.tryParse(result);
           if (value == null || value.isInfinite || value.isNaN) return null;

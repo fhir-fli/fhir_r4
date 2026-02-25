@@ -688,8 +688,7 @@ void main() {
   });
 
   group('geometricMean', () {
-    test(
-        'define "GeometricMeanTwo": GeometricMean({ 2.0, 8.0 }) // 4.0',
+    test('define "GeometricMeanTwo": GeometricMean({ 2.0, 8.0 }) // 4.0',
         () async {
       final list = ListExpression(element: [
         LiteralDecimal(2.0),
@@ -699,8 +698,7 @@ void main() {
       final result = await gm.execute({});
       expect(result, equals(FhirDecimal(4.0)));
     });
-    test(
-        'define "GeometricMeanFourNine": GeometricMean({ 4.0, 9.0 }) // 6.0',
+    test('define "GeometricMeanFourNine": GeometricMean({ 4.0, 9.0 }) // 6.0',
         () async {
       final list = ListExpression(element: [
         LiteralDecimal(4.0),

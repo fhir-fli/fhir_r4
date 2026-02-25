@@ -137,8 +137,7 @@ class OverlapsBefore extends BinaryExpression {
         FhirBoolean? beforeResult;
         FhirBoolean? overlapsResult;
 
-        if ((leftStart is FhirDateTimeBase &&
-                rightStart is FhirDateTimeBase) ||
+        if ((leftStart is FhirDateTimeBase && rightStart is FhirDateTimeBase) ||
             (leftStart is FhirTime && rightStart is FhirTime)) {
           beforeResult = Before.before(leftStart, rightStart, precision);
           overlapsResult = Overlaps.overlaps(left, right, precision);

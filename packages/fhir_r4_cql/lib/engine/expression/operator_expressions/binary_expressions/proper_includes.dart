@@ -115,16 +115,17 @@ class ProperIncludes extends BinaryExpression {
     // If either interval has an unknown boundary (null getStart/getEnd),
     // the equivalence check is uncertain → return null.
     if (left is CqlInterval && right is CqlInterval) {
-      if (left.getStart() == null || left.getEnd() == null ||
-          right.getStart() == null || right.getEnd() == null) {
+      if (left.getStart() == null ||
+          left.getEnd() == null ||
+          right.getStart() == null ||
+          right.getEnd() == null) {
         return null;
       }
       // Use precision-aware comparison when precision is specified
       if (precision != null) {
         final startSame =
             SameAs.sameAs(left.getStart(), right.getStart(), precision);
-        final endSame =
-            SameAs.sameAs(left.getEnd(), right.getEnd(), precision);
+        final endSame = SameAs.sameAs(left.getEnd(), right.getEnd(), precision);
         if (startSame?.valueBoolean == true && endSame?.valueBoolean == true) {
           return FhirBoolean(false); // same at given precision, not proper
         }

@@ -171,7 +171,8 @@ class Predecessor extends UnaryExpression {
     } else if (value is ValidatedQuantity && value.isValid()) {
       // Always use minimum decimal step (10^-8) for quantities, matching
       // the CQF reference implementation behavior.
-      final newValue = value.value.subtract(UcumDecimal.fromString('0.00000001'));
+      final newValue =
+          value.value.subtract(UcumDecimal.fromString('0.00000001'));
       return ValidatedQuantity.fromString(
           '${newValue.asUcumDecimal()} \'${value.unit}\'');
     }

@@ -146,8 +146,7 @@ class Variance extends AggregateExpression {
               FhirDecimal(sumOfSquaredDiffs.valueNum! + squaredDiff.valueNum!);
         }
       }
-      var variance =
-          sumOfSquaredDiffs.valueNum! / (sourceResult.length - 1);
+      var variance = sumOfSquaredDiffs.valueNum! / (sourceResult.length - 1);
       return FhirDecimal(variance);
     }
 
@@ -175,15 +174,13 @@ class Variance extends AggregateExpression {
         }
       }
       if (sumOfSquaredValues != null) {
-        final sum = UcumDecimal.fromString(
-            sumOfSquaredValues.value.asUcumDecimal());
-        var varianceValue =
-            sum / UcumDecimal.fromNum(sourceResult.length - 1);
+        final sum =
+            UcumDecimal.fromString(sumOfSquaredValues.value.asUcumDecimal());
+        var varianceValue = sum / UcumDecimal.fromNum(sourceResult.length - 1);
         // Truncate to 8 decimal places to match CQF reference precision
         final truncated = double.tryParse(varianceValue.asUcumDecimal());
         if (truncated != null) {
-          varianceValue = UcumDecimal.fromString(
-              truncated.toStringAsFixed(8));
+          varianceValue = UcumDecimal.fromString(truncated.toStringAsFixed(8));
         }
         return ValidatedQuantity(
             value: varianceValue, unit: sumOfSquaredValues.unit);
