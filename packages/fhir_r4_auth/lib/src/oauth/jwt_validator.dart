@@ -399,10 +399,15 @@ class JwtValidator {
     });
 
     // Create key from PEM
+    // Generate a kid from key data if not provided (SMART spec requires kid)
     final jwk = JsonWebKey.fromPem(privateKeyPem, keyId: keyId);
+    final effectiveKeyId = keyId ?? jwk.keyId ?? _generateKeyId(jwk);
 
     // Create and sign JWT
+    // kid must be in the protected header for compact serialization
     final builder = JsonWebSignatureBuilder()
+      ..setProtectedHeader('typ', 'JWT')
+      ..setProtectedHeader('kid', effectiveKeyId)
       ..jsonContent = claimsSet.toJson()
       ..addRecipient(jwk, algorithm: algorithm.value);
 
@@ -430,5 +435,25 @@ class JwtValidator {
       'cached_jwks_count': _jwksCache.length,
       'cache_entries': _jwksCacheExpiry.length,
     };
+  }
+
+  /// Generate a key ID from a JWK by hashing its JSON representation.
+  /// Falls back to a timestamp-based ID if hashing fails.
+  static String _generateKeyId(JsonWebKey jwk) {
+    try {
+      final json = jwk.toJson();
+      // Remove private key material — only hash public components
+      final publicFields = <String, dynamic>{};
+      for (final entry in json.entries) {
+        if (entry.value != null) {
+          publicFields[entry.key] = entry.value;
+        }
+      }
+      return base64Url
+          .encode(sha256.convert(utf8.encode(jsonEncode(publicFields))).bytes)
+          .replaceAll('=', '');
+    } catch (_) {
+      return DateTime.now().millisecondsSinceEpoch.toString();
+    }
   }
 }

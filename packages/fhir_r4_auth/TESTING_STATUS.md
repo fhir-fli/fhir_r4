@@ -22,11 +22,11 @@
 
 | Flow | Code | Epic Tested | SMART Sandbox |
 |------|------|-------------|---------------|
-| Patient Standalone | ✅ Done | ✅ Yes | Pending |
-| Clinician Standalone | ✅ Done | Pending | Pending |
-| Patient EHR Launch | ✅ Done | ✅ Yes | Pending |
-| Clinician EHR Launch | ✅ Done | Pending | Pending |
-| System/Backend Service | ✅ Done | Pending | Pending |
+| Patient Standalone | ✅ Done | ✅ Yes | ✅ Yes |
+| Clinician Standalone | ✅ Done | ✅ Yes | ✅ Yes |
+| Patient EHR Launch | ✅ Done | ✅ Yes | ✅ Yes |
+| Clinician EHR Launch | ✅ Done | ✅ Yes | ✅ Yes |
+| System/Backend Service | ✅ Done | ✅ Yes | ✅ Yes |
 
 ### Demo Apps Status
 

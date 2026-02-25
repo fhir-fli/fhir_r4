@@ -214,8 +214,12 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _detectedIss = iss;
         _detectedLaunch = launch;
         _ehrLaunchDetected = true;
-        _statusMessage = 'EHR launch parameters detected';
+        _statusMessage = 'EHR launch parameters detected — auto-connecting...';
       });
+
+      // Auto-connect immediately to avoid launch token expiry
+      // Epic launch tokens are short-lived
+      Future.microtask(() => _startEhrLaunch(iss: iss, launchToken: launch));
     } else {
       print('No EHR launch parameters detected - showing simulation mode');
       // Pre-fill simulation fields with Epic defaults

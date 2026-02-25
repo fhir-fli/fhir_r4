@@ -1,6 +1,7 @@
 /// Web platform authenticator using flutter_web_auth_2
 library;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:logging/logging.dart';
 
@@ -41,13 +42,19 @@ class WebAuthenticator implements Authenticator {
       _logger.fine('Redirect URI: $redirectUri');
       _logger.fine('Callback scheme: $callbackUrlScheme');
 
-      // On Linux/Windows, flutter_web_auth_2 starts a local HTTP server
-      // and needs the full origin (http://localhost:PORT) as callbackUrlScheme.
-      // On web, it uses localStorage polling and just needs any string.
-      // On mobile, it uses custom URL schemes.
+      // Platform-specific callbackUrlScheme handling:
+      // - Web: uses localStorage polling, just needs the URI scheme (e.g. "http")
+      // - Linux/Windows: starts a local HTTP server, needs full origin
+      //   (e.g. "http://localhost:8080")
+      // - Mobile: uses custom URL schemes (e.g. "com.example.app")
       if (callbackUrlScheme == null || callbackUrlScheme == redirectUri.scheme) {
-        if (redirectUri.scheme == 'http' || redirectUri.scheme == 'https') {
-          // Pass full origin for desktop platforms (Linux/Windows)
+        if (kIsWeb) {
+          // On web, pass just the scheme — flutter_web_auth_2 validates it
+          // as a URI scheme and rejects full URLs like "http://localhost:8080"
+          callbackUrlScheme = redirectUri.scheme;
+        } else if (redirectUri.scheme == 'http' ||
+            redirectUri.scheme == 'https') {
+          // Desktop (Linux/Windows) needs the full origin
           callbackUrlScheme =
               '${redirectUri.scheme}://${redirectUri.host}:${redirectUri.port}';
         } else {
