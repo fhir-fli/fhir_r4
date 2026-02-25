@@ -137,6 +137,11 @@ class Multiply extends BinaryExpression {
           } else if (right is FhirInteger64) {
             return FhirInteger64(BigInt.from(left.valueInt as int) *
                 (right.valueBigInt as BigInt));
+          } else if (right is ValidatedQuantity && right.isValid()) {
+            // Integer * Quantity: scale value, keep unit
+            final numVal = right.value *
+                UcumDecimal.fromString(left.valueString!);
+            return ValidatedQuantity(value: numVal, unit: right.unit);
           }
           break;
         case FhirInteger64 _:

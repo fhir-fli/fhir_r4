@@ -139,11 +139,15 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
       ),
     );
 
-    // Always return ToDecimal(X) so that the aggregate (Avg/Median/etc)
-    // sees a Decimal even if all inputs were integer-like
+    // For Quantity lists, pass elements through unchanged — ToDecimal would
+    // destroy the quantity values (it returns null for ValidatedQuantity).
+    // For Integer/Decimal lists, promote to Decimal for aggregate accuracy.
+    final CqlExpression returnExpr = wrapType == 'Quantity'
+        ? AliasRef(name: aliasName)
+        : ToDecimal(operand: AliasRef(name: aliasName));
     final returnClause = ReturnClause(
       distinct: false,
-      expression: ToDecimal(operand: AliasRef(name: aliasName)),
+      expression: returnExpr,
     );
 
     return Query(source: [aliasedSource], returnClause: returnClause);

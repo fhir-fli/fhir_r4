@@ -70,7 +70,7 @@ void main() {
 }
 
 /// Known failures with skip reasons, categorized by root cause.
-/// Total: 143 failures out of 1800 uncommented tests (1657 passing = 92.1%).
+/// Total: 135 failures out of 1800 uncommented tests (1665 passing = 92.5%).
 ///
 /// Note: ~148 test defines are commented out in CqlTestSuite.cql (inside
 /// /* ... */ block comments or // line comments). These are not counted.
@@ -176,16 +176,8 @@ const _knownFailures = <String, String>{
   'test_ProperlyIncludes_NotProperlyIncludesDayOfIvlSameEdges': 'Other',
   // Predecessor/Successor edge cases (1 test)
   'test_Predecessor_Rs': 'Predecessor/Successor edge cases',
-  // Quantity arithmetic edge cases (26 tests)
-  'test_Avg_has_null_q': 'Quantity arithmetic edge cases',
-  'test_Avg_not_null_q': 'Quantity arithmetic edge cases',
+  // Quantity arithmetic edge cases (18 tests)
   'test_Avg_q_diff_units': 'Quantity arithmetic edge cases',
-  'test_Median_dup_vals_even_q': 'Quantity arithmetic edge cases',
-  'test_Median_dup_vals_odd_q': 'Quantity arithmetic edge cases',
-  'test_Median_even_q': 'Quantity arithmetic edge cases',
-  'test_Median_has_null_q': 'Quantity arithmetic edge cases',
-  'test_Median_odd_q': 'Quantity arithmetic edge cases',
-  'test_Median_q_diff_units': 'Quantity arithmetic edge cases',
   'test_PopulationStd_q': 'Quantity arithmetic edge cases',
   'test_PopulationStd_q_diff_units': 'Quantity arithmetic edge cases',
   'test_PopulationVariance_q_diff_units': 'Quantity arithmetic edge cases',

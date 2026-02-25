@@ -69,6 +69,9 @@ class Quantity extends CqlExpression {
   @override
   String get type => 'Quantity';
 
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => const ['Quantity'];
+
   ValidatedQuantity get validatedQuantity => ValidatedQuantity(
       value: UcumDecimal.fromString(value.toString()), unit: unit);
 
