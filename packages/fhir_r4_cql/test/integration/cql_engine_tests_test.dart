@@ -32,13 +32,15 @@ void main() {
       'FunctionTestMultipleArgs': 'hell0',
       'FunctionTestTupleArg': FhirInteger(3),
       'FunctionTestNullTupleArg': null,
+      'FunctionTestNullMultipleArgs': null,
+      'FunctionTestOverload': 'hell00.000',
+      'FunctionTestNullOverload': null,
+      'FunctionTestQuantityArg': 'cm',
+      'FunctionTestNullQuantityArg': null,
     },
     knownFailures: {
-      'FunctionTestNullMultipleArgs': 'Type-based overload resolution needed',
-      'FunctionTestOverload': 'Type-based overload resolution needed',
-      'FunctionTestNullOverload': 'Type-based overload resolution needed',
-      'FunctionTestQuantityArg': 'Type-based overload resolution needed',
-      'FunctionTestNullQuantityArg': 'Type-based overload resolution needed',
+      'FunctionTestOverload': 'ToString(0.000) produces wrong result for 3-arg overload',
+      'FunctionTestNullQuantityArg': 'Null quantity dispatches to wrong overload, returns empty list',
     },
   );
 
@@ -240,7 +242,7 @@ void main() {
       'Test': '1, 2, 3, 4, 5',
     },
     knownFailures: {
-      'Test': 'Type-based overload resolution for List<T> not yet implemented',
+      'Test': 'Combine operator fails with List<FhirInteger> argument',
     },
   );
 
