@@ -92,6 +92,22 @@ class ToTime extends UnaryExpression {
     str = str.replaceFirst(RegExp(r'[+-]\d{2}:\d{2}$'), '');
     // Reject malformed separators (e.g. '14-30-00' instead of '14:30:00')
     if (str.contains('-') || str.contains('+')) return null;
+    // Validate component ranges: hours 0-23, minutes 0-59, seconds 0-59
+    final parts = str.split(':');
+    if (parts.isNotEmpty) {
+      final hour = int.tryParse(parts[0]);
+      if (hour == null || hour < 0 || hour > 23) return null;
+      if (parts.length > 1) {
+        final minute = int.tryParse(parts[1]);
+        if (minute == null || minute < 0 || minute > 59) return null;
+      }
+      if (parts.length > 2) {
+        // Second part may include fractional seconds (e.g. '59.999')
+        final secStr = parts[2].split('.')[0];
+        final second = int.tryParse(secStr);
+        if (second == null || second < 0 || second > 59) return null;
+      }
+    }
     try {
       return fhir.FhirTime(str);
     } catch (_) {

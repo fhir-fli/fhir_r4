@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -135,113 +136,136 @@ class Meets extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
-      final leftStart = left.getStart();
-      final leftEnd = left.getEnd();
-      final rightStart = right.getStart();
-      final rightEnd = right.getEnd();
+      // getStart()/getEnd() return null for unknown boundaries (open null),
+      // but return MinValue/MaxValue for closed null (infinity endpoints).
+      final eLS = left.getStart();
+      final eLE = left.getEnd();
+      final eRS = right.getStart();
+      final eRE = right.getEnd();
 
-      // If intervals overlap, they cannot meet — return false.
-      // Use getStart/getEnd for known boundaries, but null for unknown ones
-      // (null low/high means "unknown", not "min/max value").
-      final effectiveLeftStart = left.low != null ? leftStart : null;
-      final effectiveLeftEnd = left.high != null ? leftEnd : null;
-      final effectiveRightStart = right.low != null ? rightStart : null;
-      final effectiveRightEnd = right.high != null ? rightEnd : null;
-      if (intervalsOverlap(effectiveLeftStart, effectiveLeftEnd,
-          effectiveRightStart, effectiveRightEnd, precision)) {
+      // If intervals provably overlap, they cannot meet
+      if (intervalsOverlap(eLS, eLE, eRS, eRE, precision)) {
         return FhirBoolean(false);
       }
 
       // Check meets before: leftEnd = predecessor(rightStart)
-      bool hasNull = false;
-      if (leftEnd != null && rightStart != null) {
-        final pred = safePredecessor(rightStart);
-        if (pred != null) {
-          final leftMeetsRight = precision != null &&
-                  (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
-              ? SameAs.sameAs(leftEnd, pred, precision)
-              : Equal.equal(leftEnd, pred);
-          if (leftMeetsRight?.valueBoolean == true) {
-            return leftMeetsRight;
-          }
-        }
-      } else {
-        hasNull = true;
-      }
+      final mb = checkMeetsBefore(eLE, eRS, precision);
+      if (mb?.valueBoolean == true) return FhirBoolean(true);
+
       // Check meets after: leftStart = successor(rightEnd)
-      if (leftStart != null && rightEnd != null) {
-        final succ = safeSuccessor(rightEnd);
-        if (succ != null) {
-          final rightMeetsLeft = precision != null &&
-                  (leftStart is FhirDateTimeBase || leftStart is FhirTime)
-              ? SameAs.sameAs(leftStart, succ, precision)
-              : Equal.equal(leftStart, succ);
-          if (rightMeetsLeft?.valueBoolean == true) {
-            return rightMeetsLeft;
-          }
-        }
-      } else {
-        hasNull = true;
+      final ma = checkMeetsAfter(eLS, eRE, precision);
+      if (ma?.valueBoolean == true) return FhirBoolean(true);
+
+      // Three-valued Or: if both false → false; if either null → null
+      if (mb?.valueBoolean == false && ma?.valueBoolean == false) {
+        return FhirBoolean(false);
       }
-      if (hasNull) {
-        // If leftEnd < rightStart (with gap > 1), intervals are disjoint
-        // and can't meet in either direction
-        if (leftEnd != null && rightStart != null) {
-          final pred = safePredecessor(rightStart);
-          if (pred != null) {
-            final lt = Less.less(leftEnd, pred);
-            if (lt?.valueBoolean == true) return FhirBoolean(false);
-          }
-        }
-        if (rightEnd != null && leftStart != null) {
-          final pred = safePredecessor(leftStart);
-          if (pred != null) {
-            final lt = Less.less(rightEnd, pred);
-            if (lt?.valueBoolean == true) return FhirBoolean(false);
-          }
-        }
-        return null;
+
+      // Try to refine null results using interval bounds:
+      // If mb is null but leftStart ≥ rightStart → leftEnd > pred(rightStart) → mb = false
+      var refinedMb = mb;
+      if (refinedMb == null && eLS != null && eRS != null) {
+        final ge = precision != null
+            ? SameOrAfter.sameOrAfter(eLS, eRS, precision)
+            : GreaterOrEqual.greaterOrEqual(eLS, eRS);
+        if (ge?.valueBoolean == true) refinedMb = FhirBoolean(false);
       }
-      return FhirBoolean(false);
+      // If ma is null but leftEnd ≤ rightEnd → leftStart < succ(rightEnd) → ma = false
+      var refinedMa = ma;
+      if (refinedMa == null && eLE != null && eRE != null) {
+        final le = precision != null
+            ? SameOrBefore.sameOrBefore(eLE, eRE, precision)
+            : LessOrEqual.lessOrEqual(eLE, eRE);
+        if (le?.valueBoolean == true) refinedMa = FhirBoolean(false);
+      }
+      if (refinedMb?.valueBoolean == false &&
+          refinedMa?.valueBoolean == false) {
+        return FhirBoolean(false);
+      }
+      return null;
     } else {
       return null;
     }
   }
 
+  /// Check if leftEnd = predecessor(rightStart).
+  /// Returns true/false/null. Null if either input is null or comparison is
+  /// uncertain.
+  static FhirBoolean? checkMeetsBefore(
+      dynamic leftEnd, dynamic rightStart, CqlDateTimePrecision? precision) {
+    if (leftEnd == null || rightStart == null) return null;
+    final pred = precision != null &&
+            (rightStart is FhirDateTimeBase || rightStart is FhirTime)
+        ? safePrecisionPredecessor(rightStart, precision)
+        : safePredecessor(rightStart);
+    if (pred == null) return null;
+    return precision != null &&
+            (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)
+        ? SameAs.sameAs(leftEnd, pred, precision)
+        : Equal.equal(leftEnd, pred);
+  }
+
+  /// Check if leftStart = successor(rightEnd).
+  /// Returns true/false/null. Null if either input is null or comparison is
+  /// uncertain.
+  static FhirBoolean? checkMeetsAfter(
+      dynamic leftStart, dynamic rightEnd, CqlDateTimePrecision? precision) {
+    if (leftStart == null || rightEnd == null) return null;
+    final succ = precision != null &&
+            (rightEnd is FhirDateTimeBase || rightEnd is FhirTime)
+        ? safePrecisionSuccessor(rightEnd, precision)
+        : safeSuccessor(rightEnd);
+    if (succ == null) return null;
+    return precision != null &&
+            (leftStart is FhirDateTimeBase || leftStart is FhirTime)
+        ? SameAs.sameAs(leftStart, succ, precision)
+        : Equal.equal(leftStart, succ);
+  }
+
   /// Check if two intervals provably overlap using known boundaries.
-  /// If any needed boundary is null, we can't prove overlap → return false.
+  /// Handles partial information — if a known boundary of one interval
+  /// falls within the other interval (whose boundaries are both known),
+  /// overlap is proven.
   static bool intervalsOverlap(dynamic leftStart, dynamic leftEnd,
       dynamic rightStart, dynamic rightEnd,
       [CqlDateTimePrecision? precision]) {
-    // Overlap: leftStart <= rightEnd AND rightStart <= leftEnd
+    // Full check: all 4 known — leftStart <= rightEnd AND rightStart <= leftEnd
     if (leftStart != null && rightEnd != null && leftEnd != null &&
         rightStart != null) {
-      final leftBeforeRight = precision != null
+      final a = precision != null
           ? SameOrBefore.sameOrBefore(leftStart, rightEnd, precision)
           : LessOrEqual.lessOrEqual(leftStart, rightEnd);
-      final rightBeforeLeft = precision != null
+      final b = precision != null
           ? SameOrBefore.sameOrBefore(rightStart, leftEnd, precision)
           : LessOrEqual.lessOrEqual(rightStart, leftEnd);
-      if (leftBeforeRight?.valueBoolean == true &&
-          rightBeforeLeft?.valueBoolean == true) {
+      if (a?.valueBoolean == true && b?.valueBoolean == true) {
         return true;
       }
     }
-    // Partial check: only if ALL four boundaries are known
-    // If any boundary is null (unknown), we can't prove overlap.
-    if (leftEnd != null && rightStart != null &&
-        leftStart != null && rightEnd != null) {
-      final leGe = precision != null
-          ? SameOrAfter.sameOrAfter(leftEnd, rightStart, precision)
-          : GreaterOrEqual.greaterOrEqual(leftEnd, rightStart);
-      if (leGe?.valueBoolean == true) {
-        final reGe = precision != null
-            ? SameOrAfter.sameOrAfter(rightEnd, leftStart, precision)
-            : GreaterOrEqual.greaterOrEqual(rightEnd, leftStart);
-        if (reGe?.valueBoolean == true) return true;
-      }
+    // Partial checks: a known point of one interval inside the other
+    if (_pointInInterval(leftEnd, rightStart, rightEnd, precision)) return true;
+    if (_pointInInterval(leftStart, rightStart, rightEnd, precision)) {
+      return true;
+    }
+    if (_pointInInterval(rightEnd, leftStart, leftEnd, precision)) return true;
+    if (_pointInInterval(rightStart, leftStart, leftEnd, precision)) {
+      return true;
     }
     return false;
+  }
+
+  /// Check if point ∈ [ivlStart, ivlEnd]. All three must be non-null.
+  static bool _pointInInterval(dynamic point, dynamic ivlStart, dynamic ivlEnd,
+      [CqlDateTimePrecision? precision]) {
+    if (point == null || ivlStart == null || ivlEnd == null) return false;
+    final ge = precision != null
+        ? SameOrAfter.sameOrAfter(point, ivlStart, precision)
+        : GreaterOrEqual.greaterOrEqual(point, ivlStart);
+    if (ge?.valueBoolean != true) return false;
+    final le = precision != null
+        ? SameOrBefore.sameOrBefore(point, ivlEnd, precision)
+        : LessOrEqual.lessOrEqual(point, ivlEnd);
+    return le?.valueBoolean == true;
   }
 
   /// Safe predecessor that catches assertion errors (e.g., year < 1).
@@ -259,6 +283,62 @@ class Meets extends BinaryExpression {
       return Successor.successor(value);
     } catch (_) {
       return null;
+    }
+  }
+
+  /// Precision-based successor: add 1 unit at the specified precision.
+  /// E.g., successor at day of 2012-03-01 = 2012-03-02 (not 2012-03-01.001).
+  static dynamic safePrecisionSuccessor(
+      dynamic value, CqlDateTimePrecision precision) {
+    try {
+      final unit = _precisionToUnit(precision);
+      final qty = ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
+      if (value is FhirDateTimeBase) {
+        return Add.addToDateTime(value, qty);
+      } else if (value is FhirTime) {
+        return Add.add(value, qty);
+      }
+      return Successor.successor(value);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Precision-based predecessor: subtract 1 unit at the specified precision.
+  static dynamic safePrecisionPredecessor(
+      dynamic value, CqlDateTimePrecision precision) {
+    try {
+      final unit = _precisionToUnit(precision);
+      final qty = ValidatedQuantity(value: UcumDecimal.fromString('1'), unit: unit);
+      if (value is FhirDateTimeBase) {
+        return Add.addToDateTime(value, qty, subtract: true);
+      } else if (value is FhirTime) {
+        return Subtract.subtract(value, qty);
+      }
+      return Predecessor.predecessor(value);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  static String _precisionToUnit(CqlDateTimePrecision precision) {
+    switch (precision) {
+      case CqlDateTimePrecision.year:
+        return 'year';
+      case CqlDateTimePrecision.month:
+        return 'month';
+      case CqlDateTimePrecision.week:
+        return 'week';
+      case CqlDateTimePrecision.day:
+        return 'day';
+      case CqlDateTimePrecision.hour:
+        return 'hour';
+      case CqlDateTimePrecision.minute:
+        return 'minute';
+      case CqlDateTimePrecision.second:
+        return 'second';
+      case CqlDateTimePrecision.millisecond:
+        return 'millisecond';
     }
   }
 }

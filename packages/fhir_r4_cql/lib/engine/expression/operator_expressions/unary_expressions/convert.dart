@@ -115,6 +115,8 @@ class Convert extends UnaryExpression {
         return await ToDateTime(operand: operand).execute(context);
       case 'time':
         return await ToTime(operand: operand).execute(context);
+      case 'concept':
+        return await ToConcept(operand: operand).execute(context);
       default:
         return null;
     }

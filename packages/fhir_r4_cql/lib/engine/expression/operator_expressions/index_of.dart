@@ -105,7 +105,11 @@ class IndexOf extends OperatorExpression {
     }
 
     if (left is List) {
-      return FhirInteger(left.indexOf(right));
+      for (int i = 0; i < left.length; i++) {
+        final eq = Equal.equal(left[i], right);
+        if (eq?.valueBoolean == true) return FhirInteger(i);
+      }
+      return FhirInteger(-1);
     }
 
     return null;

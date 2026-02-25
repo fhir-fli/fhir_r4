@@ -187,9 +187,9 @@ class Equivalent extends BinaryExpression {
             rightStr = right;
           } else if (right is FhirString) {
             rightStr = right.valueString;
-          } else if (right is PrimitiveType) {
-            rightStr = right.valueString;
           }
+          // Don't compare String with non-string PrimitiveTypes (Integer,
+          // Boolean, etc.) — different types are not equivalent per CQL spec.
           result = rightStr != null &&
               left.toLowerCase().trim() == rightStr.toLowerCase().trim();
         }

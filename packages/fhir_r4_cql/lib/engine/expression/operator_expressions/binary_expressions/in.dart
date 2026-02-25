@@ -233,7 +233,11 @@ class In extends BinaryExpression {
       }
       return Contains.contains(right, left, precision);
     } else if (right is List) {
-      return FhirBoolean(right.contains(left));
+      // CQL spec: null elements are considered equal for 'in' operator
+      if (left == null) {
+        return FhirBoolean(right.any((e) => e == null));
+      }
+      return FhirBoolean(IncludedIn.listContains(right, left));
     } else if (right is CqlValueSet) {
       if (left == null) return FhirBoolean(false);
       // Check context['_valueSets'] for expansion
@@ -248,8 +252,12 @@ class In extends BinaryExpression {
       }
       return FhirBoolean(false);
     } else {
-      throw ArgumentError(
-          'In: Right operand must be of type Interval, List, or include Codes and ValueSets');
+      // CQL spec: scalar right operand is implicitly promoted to a
+      // single-element list via ToList. E.g., 5 in 5 → 5 in {5} → true.
+      if (left == null) {
+        return FhirBoolean(false);
+      }
+      return FhirBoolean(IncludedIn.listContains([right], left));
     }
   }
 

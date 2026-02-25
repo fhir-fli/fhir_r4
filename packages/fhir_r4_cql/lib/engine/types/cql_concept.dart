@@ -44,18 +44,42 @@ class CqlConcept implements CqlType {
   }
 
   @override
-  bool equal(Object other) {
+  bool? equal(Object other) {
     if (other is CqlConcept) {
+      // Check codes using three-valued code equality
+      bool? codeResult = true;
       final otherCodes = other.codes.toList();
       for (CqlCode code in codes) {
-        final index = otherCodes.indexWhere((element) => element.equal(code));
-        if (index == -1) {
-          return false;
+        // Find matching code using three-valued equal
+        int matchIdx = -1;
+        bool hasNull = false;
+        for (int i = 0; i < otherCodes.length; i++) {
+          final eq = otherCodes[i].equal(code);
+          if (eq == true) {
+            matchIdx = i;
+            break;
+          } else if (eq == null) {
+            hasNull = true;
+          }
+        }
+        if (matchIdx != -1) {
+          otherCodes.removeAt(matchIdx);
+        } else if (hasNull) {
+          codeResult = null;
         } else {
-          otherCodes.removeAt(index);
+          return false; // definite mismatch
         }
       }
-      return otherCodes.isEmpty;
+      if (otherCodes.isNotEmpty) return false;
+      // Check display field
+      if (display == null && other.display == null) {
+        // both null → same
+      } else if (display == null || other.display == null) {
+        codeResult = null; // one null → uncertain
+      } else if (display != other.display) {
+        return false; // definite mismatch
+      }
+      return codeResult;
     } else {
       return false;
     }

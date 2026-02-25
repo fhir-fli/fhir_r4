@@ -72,7 +72,10 @@ class ToConcept extends UnaryExpression {
     }
 
     // Handle different input types
-    if (value is CqlCode) {
+    if (value is CqlConcept) {
+      // Already a Concept — return as-is
+      return value;
+    } else if (value is CqlCode) {
       // If already a CqlCode, create a CqlConcept with this code
       return CqlConcept(
         codes: [value],

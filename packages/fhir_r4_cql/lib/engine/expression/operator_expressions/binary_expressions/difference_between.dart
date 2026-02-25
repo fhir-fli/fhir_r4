@@ -122,8 +122,9 @@ class DifferenceBetween extends BinaryExpression {
       case CqlDateTimePrecision.year:
         return !date.hasYear;
       case CqlDateTimePrecision.month:
-      case CqlDateTimePrecision.week:
         return !date.hasMonth;
+      case CqlDateTimePrecision.week:
+        return !date.hasDay;
       case CqlDateTimePrecision.day:
         return !date.hasDay;
       case CqlDateTimePrecision.hour:

@@ -114,16 +114,31 @@ class ToDecimal extends UnaryExpression {
         }
       case String _:
         {
-          if (RegExp(r'(\+|-)?\d+(\.\d+)?').hasMatch(result)) {
-            final value = double.tryParse(result);
-            if (value == null) {
-              return null;
-            } else {
-              return FhirDecimal(value);
-            }
-          } else {
+          // CQL format: (+|-)?#0(.0#)? — must have at least one digit before
+          // optional decimal point. Full string match required.
+          if (!RegExp(r'^[+-]?\d+(\.\d+)?$').hasMatch(result)) {
             return null;
           }
+          // Check bounds: CQL Decimal supports at least 28 digits of precision
+          // and 8 digits of scale. Values outside representable range return null.
+          final dotIndex = result.indexOf('.');
+          final intPart = dotIndex >= 0
+              ? result.substring(result.startsWith('-') || result.startsWith('+') ? 1 : 0, dotIndex)
+              : result.substring(result.startsWith('-') || result.startsWith('+') ? 1 : 0);
+          if (intPart.length > 28) return null;
+          final value = double.tryParse(result);
+          if (value == null || value.isInfinite || value.isNaN) return null;
+          // Truncate to 8 decimal places
+          if (dotIndex >= 0) {
+            final fracPart = result.substring(dotIndex + 1);
+            if (fracPart.length > 8) {
+              final truncated = result.substring(0, dotIndex + 9);
+              final truncVal = double.tryParse(truncated);
+              if (truncVal == null) return null;
+              return FhirDecimal(truncVal);
+            }
+          }
+          return FhirDecimal(value);
         }
       case FhirInteger _:
         {

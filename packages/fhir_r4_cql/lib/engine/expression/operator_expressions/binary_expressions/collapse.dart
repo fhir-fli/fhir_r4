@@ -225,10 +225,25 @@ class Collapse extends BinaryExpression {
       final List<CqlInterval> collapsedSource = [];
       CqlInterval? currentInterval = source.first;
 
-      // Normalize per for gap tolerance calculation
-      final normalizedPer = per is ValidatedQuantity
-          ? Expand.normalizePer(per, source.first.getStart())
-          : per;
+      // Normalize per for gap tolerance calculation.
+      // When per is a ValidatedQuantity and endpoints are numeric FHIR types,
+      // normalizePer converts to matching FHIR type.
+      // When per is a FhirInteger/FhirDecimal and endpoints are ValidatedQuantity,
+      // we need to convert per to ValidatedQuantity with unit '1'.
+      dynamic effectivePer = per;
+      if (per is ValidatedQuantity) {
+        effectivePer = Expand.normalizePer(per, source.first.getStart());
+      } else if (per != null && source.first.getStart() is ValidatedQuantity) {
+        // Endpoints are ValidatedQuantity — convert per to ValidatedQuantity
+        if (per is FhirInteger) {
+          effectivePer = ValidatedQuantity(
+              value: UcumDecimal.fromString(per.valueInt.toString()),
+              unit: '1');
+        } else if (per is FhirDecimal) {
+          effectivePer = ValidatedQuantity(
+              value: UcumDecimal.fromString(per.valueString!), unit: '1');
+        }
+      }
 
       for (var i = 1; i < source.length; i++) {
         final nextInterval = source[i];
@@ -243,17 +258,18 @@ class Collapse extends BinaryExpression {
                     ?.valueBoolean ??
                 false;
 
-        // Check per-based gap tolerance: merge if gap ≤ per
+        // Check per-based gap tolerance: merge if gap ≤ per.
+        // For DateTime intervals, Subtract(DateTime, DateTime) returns null,
+        // so instead check if curEnd + per >= nextStart.
         bool withinPer = false;
-        if (!overlaps && !meets && normalizedPer != null) {
+        if (!overlaps && !meets && effectivePer != null) {
           final curEnd = currentInterval?.getEnd();
           final nextStart = nextInterval.getStart();
           if (curEnd != null && nextStart != null) {
-            final gap = Subtract.subtract(nextStart, curEnd);
-            if (gap != null) {
-              final gapLePer =
-                  LessOrEqual.lessOrEqual(gap, normalizedPer);
-              if (gapLePer?.valueBoolean == true) withinPer = true;
+            final endPlusPer = Add.add(curEnd, effectivePer);
+            if (endPlusPer != null) {
+              final check = SameOrAfter.sameOrAfter(endPlusPer, nextStart, precision);
+              if (check?.valueBoolean == true) withinPer = true;
             }
           }
         }

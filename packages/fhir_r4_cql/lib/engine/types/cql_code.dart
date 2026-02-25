@@ -27,12 +27,29 @@ class CqlCode implements CqlType {
   }
 
   @override
-  bool equal(Object other) {
+  bool? equal(Object other) {
     if (other is CqlCode) {
-      return code == other.code &&
-          display == other.display &&
-          system == other.system &&
-          version == other.version;
+      // CQL three-valued equality: if a field is null on one side but not
+      // the other, the result is null (uncertain). If a field differs (both
+      // non-null), the result is false.
+      bool? result = true;
+      for (final pair in [
+        [code, other.code],
+        [display, other.display],
+        [system, other.system],
+        [version, other.version],
+      ]) {
+        final l = pair[0];
+        final r = pair[1];
+        if (l == null && r == null) {
+          continue; // both null → same
+        } else if (l == null || r == null) {
+          result = null; // one null → uncertain
+        } else if (l != r) {
+          return false; // definite mismatch
+        }
+      }
+      return result;
     } else {
       return false;
     }

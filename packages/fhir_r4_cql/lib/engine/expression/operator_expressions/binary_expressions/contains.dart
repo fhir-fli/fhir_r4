@@ -142,15 +142,7 @@ class Contains extends BinaryExpression {
       if (right == null) {
         return null;
       }
-      if (precision != null) {
-        final start = left.getStart();
-        final end = left.getEnd();
-        return And.and(
-          SameOrAfter.sameOrAfter(right, start, precision),
-          SameOrBefore.sameOrBefore(right, end, precision),
-        );
-      }
-      return FhirBoolean(left.contains(right));
+      return _intervalContains(left, right, precision);
     } else if (left is List) {
       // Use CQL equivalence semantics for list membership testing
       for (final element in left) {
@@ -163,5 +155,61 @@ class Contains extends BinaryExpression {
       throw ArgumentError(
           'Contains: Left operand must be of type Interval or List');
     }
+  }
+
+  /// Interval contains point with three-valued logic.
+  /// Handles unknown boundaries (null getStart/getEnd) and imprecise
+  /// comparisons by returning null when the result is uncertain.
+  /// Special case: if the point equals the known boundary of an interval
+  /// with one unknown boundary, the result is true (the interval must be
+  /// valid, so the point is definitely contained).
+  static FhirBoolean? _intervalContains(
+      CqlInterval interval, dynamic point, CqlDateTimePrecision? precision) {
+    final start = interval.getStart();
+    final end = interval.getEnd();
+
+    // Compute lower bound check: point >= start
+    FhirBoolean? lowerCheck;
+    if (start == null) {
+      lowerCheck = null; // unknown boundary → uncertain
+    } else if (precision != null) {
+      lowerCheck = SameOrAfter.sameOrAfter(point, start, precision);
+    } else {
+      lowerCheck = GreaterOrEqual.greaterOrEqual(point, start);
+    }
+
+    // Compute upper bound check: point <= end
+    FhirBoolean? upperCheck;
+    if (end == null) {
+      upperCheck = null; // unknown boundary → uncertain
+    } else if (precision != null) {
+      upperCheck = SameOrBefore.sameOrBefore(point, end, precision);
+    } else {
+      upperCheck = LessOrEqual.lessOrEqual(point, end);
+    }
+
+    final result = And.and(lowerCheck, upperCheck);
+
+    // Special case for unknown boundaries: if the point equals the known
+    // boundary, it's definitely contained (the interval is valid, so the
+    // unknown boundary must be on the other side of the known boundary).
+    if (result == null) {
+      if (start == null && end != null && upperCheck?.valueBoolean == true) {
+        // Unknown start, known end. If point == end, it must be in.
+        final eq = precision != null
+            ? SameAs.sameAs(point, end, precision)
+            : Equal.equal(point, end);
+        if (eq?.valueBoolean == true) return FhirBoolean(true);
+      }
+      if (end == null && start != null && lowerCheck?.valueBoolean == true) {
+        // Known start, unknown end. If point == start, it must be in.
+        final eq = precision != null
+            ? SameAs.sameAs(point, start, precision)
+            : Equal.equal(point, start);
+        if (eq?.valueBoolean == true) return FhirBoolean(true);
+      }
+    }
+
+    return result;
   }
 }

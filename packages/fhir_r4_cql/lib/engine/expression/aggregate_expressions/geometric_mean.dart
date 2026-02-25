@@ -106,7 +106,8 @@ class GeometricMean extends AggregateExpression {
 
     final product = values.reduce((a, b) => a * b);
     final result = math.pow(product, 1.0 / values.length);
-    return FhirDecimal(result.toDouble());
+    // CQL Decimal: at most 8 digits of scale
+    return FhirDecimal(double.parse(result.toStringAsFixed(8)));
   }
 
   @override

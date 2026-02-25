@@ -694,13 +694,16 @@ class LiteralTime extends LiteralType {
   factory LiteralTime.fromOperandList({required List<CqlExpression> operand}) {
     String value = '';
     if (operand.isNotEmpty) {
-      value = (operand[0] as LiteralInteger).value.toString();
+      value = (operand[0] as LiteralInteger).value.toString().padLeft(2, '0');
       if (operand.length > 1) {
-        value += ':${(operand[1] as LiteralInteger).value.toString()}';
+        value +=
+            ':${(operand[1] as LiteralInteger).value.toString().padLeft(2, '0')}';
         if (operand.length > 2) {
-          value += ':${(operand[2] as LiteralInteger).value.toString()}';
+          value +=
+              ':${(operand[2] as LiteralInteger).value.toString().padLeft(2, '0')}';
           if (operand.length > 3) {
-            value += '.${(operand[3] as LiteralInteger).value.toString()}';
+            value +=
+                '.${(operand[3] as LiteralInteger).value.toString().padLeft(3, '0')}';
           }
         }
       }

@@ -134,35 +134,38 @@ class MeetsAfter extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
-      final leftStart = left.getStart();
-      final rightEnd = right.getEnd();
+      // getStart()/getEnd() return null for unknown boundaries (open null),
+      // but return MinValue/MaxValue for closed null (infinity endpoints).
+      final eLS = left.getStart();
+      final eLE = left.getEnd();
+      final eRS = right.getStart();
+      final eRE = right.getEnd();
 
-      // If intervals overlap, they cannot meet
-      // Use getStart/getEnd for known boundaries, null for unknown ones
-      final effectiveLeftStart = left.low != null ? leftStart : null;
-      final effectiveRightEnd = right.high != null ? rightEnd : null;
-      if (Meets.intervalsOverlap(effectiveLeftStart, left.getEnd(),
-          right.getStart(), effectiveRightEnd, precision)) {
+      // If intervals provably overlap, they cannot meet
+      if (Meets.intervalsOverlap(eLS, eLE, eRS, eRE, precision)) {
         return FhirBoolean(false);
       }
 
-      if (leftStart == null || rightEnd == null) {
-        // Can we prove they don't meet from known boundaries?
-        final leftEnd = left.getEnd();
-        final rightStart = right.getStart();
-        if (leftEnd != null && rightStart != null) {
-          final lt = Less.less(leftEnd, rightStart);
-          if (lt?.valueBoolean == true) return FhirBoolean(false);
-        }
-        return null;
+      // Check meets after: leftStart = successor(rightEnd)
+      final result = Meets.checkMeetsAfter(eLS, eRE, precision);
+      if (result != null) return result;
+
+      // If leftEnd ≤ rightEnd, then leftStart ≤ leftEnd ≤ rightEnd < succ(rightEnd)
+      // so leftStart ≠ succ(rightEnd) → false
+      if (eLE != null && eRE != null) {
+        final le = precision != null
+            ? SameOrBefore.sameOrBefore(eLE, eRE, precision)
+            : LessOrEqual.lessOrEqual(eLE, eRE);
+        if (le?.valueBoolean == true) return FhirBoolean(false);
       }
-      final succ = Meets.safeSuccessor(rightEnd);
-      if (succ == null) return null;
-      if (precision != null &&
-          (leftStart is FhirDateTimeBase || leftStart is FhirTime)) {
-        return SameAs.sameAs(leftStart, succ, precision);
+      // If leftEnd < rightStart, left is entirely before right → can't meet after
+      if (eLE != null && eRS != null) {
+        final lt = precision != null
+            ? Before.before(eLE, eRS, precision)
+            : Less.less(eLE, eRS);
+        if (lt?.valueBoolean == true) return FhirBoolean(false);
       }
-      return Equal.equal(leftStart, succ);
+      return null;
     } else {
       return null;
     }

@@ -309,6 +309,13 @@ class After extends BinaryExpression {
       final result = left.isAfter(right);
       return result == null ? null : FhirBoolean(result);
     } else {
+      // Normalize to UTC when timezone offsets present and precision is hour+
+      if (SameAs.isHourOrFiner(precision) &&
+          (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+        left = SameAs.normalizeToUtc(left);
+        right = SameAs.normalizeToUtc(right);
+      }
+
       // Start from the highest precision and go down to the specified one.
       if (left.year == null || right.year == null) {
         return null;

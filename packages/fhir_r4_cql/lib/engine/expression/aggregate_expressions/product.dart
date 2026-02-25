@@ -94,8 +94,8 @@ class Product extends AggregateExpression {
       if (sourceResult.isEmpty) {
         return null;
       }
-      sourceResult.removeWhere((e) => e == null);
-      if (sourceResult.isEmpty) {
+      // Per CQL spec: if any element is null, result is null
+      if (sourceResult.any((e) => e == null)) {
         return null;
       }
       if (sourceResult.every((e) => e is int)) {
@@ -114,9 +114,15 @@ class Product extends AggregateExpression {
         return sourceResult.cast<FhirDecimal>().reduce((a, b) =>
             FhirDecimal((a.valueNum ?? 0) * (b.valueNum ?? 0)));
       } else if (sourceResult.every((e) => e is ValidatedQuantity)) {
-        return sourceResult
-            .cast<ValidatedQuantity>()
-            .reduce((a, b) => a * b);
+        // Multiply values only, keep the unit from the first element
+        // (don't compound units like g*g*g)
+        final quantities = sourceResult.cast<ValidatedQuantity>();
+        final unit = quantities.first.unit;
+        var productValue = quantities.first.value;
+        for (int i = 1; i < quantities.length; i++) {
+          productValue = productValue * quantities[i].value;
+        }
+        return ValidatedQuantity(value: productValue, unit: unit);
       } else {
         throw ArgumentError(
             'Product operator: unsupported element type '

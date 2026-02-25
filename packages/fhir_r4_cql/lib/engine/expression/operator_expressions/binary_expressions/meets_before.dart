@@ -134,36 +134,38 @@ class MeetsBefore extends BinaryExpression {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
-      final leftEnd = left.getEnd();
-      final rightStart = right.getStart();
+      // getStart()/getEnd() return null for unknown boundaries (open null),
+      // but return MinValue/MaxValue for closed null (infinity endpoints).
+      final eLS = left.getStart();
+      final eLE = left.getEnd();
+      final eRS = right.getStart();
+      final eRE = right.getEnd();
 
-      // If intervals overlap, they cannot meet
-      // Use getStart/getEnd for known boundaries, null for unknown ones
-      final effectiveLeftStart = left.low != null ? left.getStart() : null;
-      final effectiveRightEnd = right.high != null ? right.getEnd() : null;
-      if (Meets.intervalsOverlap(effectiveLeftStart, leftEnd, rightStart,
-          effectiveRightEnd, precision)) {
+      // If intervals provably overlap, they cannot meet
+      if (Meets.intervalsOverlap(eLS, eLE, eRS, eRE, precision)) {
         return FhirBoolean(false);
       }
 
-      if (leftEnd == null || rightStart == null) {
-        // Can we prove they don't meet from known boundaries?
-        final leftStart = left.getStart();
-        final rightEnd = right.getEnd();
-        // If leftStart > rightEnd, intervals are completely disjoint (left after right)
-        if (leftStart != null && rightEnd != null) {
-          final gt = Greater.greater(leftStart, rightEnd);
-          if (gt?.valueBoolean == true) return FhirBoolean(false);
-        }
-        return null;
+      // Check meets before: leftEnd = predecessor(rightStart)
+      final result = Meets.checkMeetsBefore(eLE, eRS, precision);
+      if (result != null) return result;
+
+      // If leftStart ≥ rightStart, then leftEnd ≥ leftStart ≥ rightStart > pred(rightStart)
+      // so leftEnd ≠ pred(rightStart) → false
+      if (eLS != null && eRS != null) {
+        final ge = precision != null
+            ? SameOrAfter.sameOrAfter(eLS, eRS, precision)
+            : GreaterOrEqual.greaterOrEqual(eLS, eRS);
+        if (ge?.valueBoolean == true) return FhirBoolean(false);
       }
-      final pred = Meets.safePredecessor(rightStart);
-      if (pred == null) return null;
-      if (precision != null &&
-          (leftEnd is FhirDateTimeBase || leftEnd is FhirTime)) {
-        return SameAs.sameAs(leftEnd, pred, precision);
+      // If rightEnd < leftStart, right is entirely before left → can't meet before
+      if (eRE != null && eLS != null) {
+        final gt = precision != null
+            ? After.after(eLS, eRE, precision)
+            : Greater.greater(eLS, eRE);
+        if (gt?.valueBoolean == true) return FhirBoolean(false);
       }
-      return Equal.equal(leftEnd, pred);
+      return null;
     } else {
       return null;
     }

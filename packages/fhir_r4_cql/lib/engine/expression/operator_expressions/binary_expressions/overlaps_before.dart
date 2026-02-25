@@ -131,36 +131,23 @@ class OverlapsBefore extends BinaryExpression {
 
     if (left is CqlInterval && right is CqlInterval) {
       try {
-        var leftStart = left.getStart();
-        var rightStart = right.getStart();
+        final leftStart = left.getStart();
+        final rightStart = right.getStart();
 
-        bool before = false;
-        bool overlaps = false;
+        FhirBoolean? beforeResult;
+        FhirBoolean? overlapsResult;
 
-        if (leftStart is FhirDateTimeBase &&
-            rightStart is FhirDateTimeBase &&
-            precision != null) {
-          before =
-              Before.before(leftStart, rightStart, precision)?.valueBoolean ??
-                  before;
-          overlaps =
-              Overlaps.overlaps(left, right, precision)?.valueBoolean ??
-                  overlaps;
-        } else if (leftStart is FhirTime &&
-            rightStart is FhirTime &&
-            precision != null) {
-          before =
-              Before.before(leftStart, rightStart, precision)?.valueBoolean ??
-                  before;
-          overlaps =
-              Overlaps.overlaps(left, right, precision)?.valueBoolean ??
-                  overlaps;
+        if ((leftStart is FhirDateTimeBase &&
+                rightStart is FhirDateTimeBase) ||
+            (leftStart is FhirTime && rightStart is FhirTime)) {
+          beforeResult = Before.before(leftStart, rightStart, precision);
+          overlapsResult = Overlaps.overlaps(left, right, precision);
         } else if (leftStart is Comparable && rightStart is Comparable) {
-          before = leftStart.compareTo(rightStart) < 0;
-          overlaps = Overlaps.overlaps(left, right)?.valueBoolean ?? overlaps;
+          beforeResult = FhirBoolean(leftStart.compareTo(rightStart) < 0);
+          overlapsResult = Overlaps.overlaps(left, right);
         }
 
-        return FhirBoolean(before && overlaps);
+        return And.and(beforeResult, overlapsResult);
       } catch (_) {
         return null;
       }

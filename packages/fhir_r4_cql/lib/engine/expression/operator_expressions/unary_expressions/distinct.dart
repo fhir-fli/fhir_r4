@@ -101,7 +101,19 @@ class Distinct extends UnaryExpression {
     if (operandValue == null) {
       return null;
     } else if (operandValue is List) {
-      return operandValue.toSet().toList();
+      final result = <dynamic>[];
+      for (final item in operandValue) {
+        bool found = false;
+        for (final existing in result) {
+          final eq = Equivalent.equivalent(existing, item);
+          if (eq.valueBoolean == true) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) result.add(item);
+      }
+      return result;
     }
     throw ArgumentError('Invalid argument for Combine operator');
   }

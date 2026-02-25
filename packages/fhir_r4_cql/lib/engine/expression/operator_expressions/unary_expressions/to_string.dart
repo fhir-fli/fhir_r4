@@ -113,6 +113,16 @@ class ToString extends UnaryExpression {
       case ValidatedQuantity _:
         return fhir.FhirString(
             '${value.value.asUcumDecimal()} \'${value.unit}\'');
+      case CqlCode _:
+        return fhir.FhirString(
+            'Code { code: ${value.code} system: ${value.system} version: ${value.version} display: ${value.display} }');
+      case CqlConcept _:
+        final codesStr = value.codes
+            .map((c) =>
+                'Code { code: ${c.code} system: ${c.system} version: ${c.version} display: ${c.display} }')
+            .join(', ');
+        return fhir.FhirString(
+            'Concept { $codesStr display: ${value.display} }');
       default:
         throw Exception('Unsupported type for ToString: ${value.runtimeType}');
     }

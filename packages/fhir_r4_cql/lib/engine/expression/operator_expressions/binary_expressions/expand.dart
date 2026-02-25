@@ -185,8 +185,15 @@ class Expand extends BinaryExpression {
     if (interval.low == null || interval.high == null) {
       return result; // Null boundary → empty result
     }
-    dynamic start = interval.getStart();
-    dynamic end = interval.getEnd();
+    // Use raw low/high for open boundaries (we'll apply per-precision
+    // successor/predecessor after normalization). For closed boundaries,
+    // use getStart/getEnd which handles null→min/max substitution.
+    dynamic start = interval.lowClosed == false
+        ? interval.low
+        : interval.getStart();
+    dynamic end = interval.highClosed == false
+        ? interval.high
+        : interval.getEnd();
 
     if (start == null || end == null) {
       return result;
@@ -197,6 +204,17 @@ class Expand extends BinaryExpression {
     // Normalize per to match start type
     per = normalizePer(per, start);
     if (per == null) return null; // Incompatible per → null result
+
+    // For open boundaries, apply per-precision successor/predecessor
+    // instead of the default type successor/predecessor.
+    if (interval.lowClosed == false && interval.low != null) {
+      start = _perSuccessor(interval.low!, per);
+      if (start == null) return [];
+    }
+    if (interval.highClosed == false && interval.high != null) {
+      end = _perPredecessor(interval.high!, per);
+      if (end == null) return [];
+    }
 
     // Apply precision adjustments to boundaries
     final adjusted = _adjustBoundaries(start, end, per);
@@ -347,6 +365,30 @@ class Expand extends BinaryExpression {
     return false;
   }
 
+  /// Successor at per's precision for open boundary handling.
+  static dynamic _perSuccessor(dynamic value, dynamic per) {
+    if (per is FhirDecimal && value is FhirNumber) {
+      final step = _decimalStepSize(per);
+      final places = _decimalPlaces(per);
+      return FhirDecimal(
+          _roundTo(value.valueNum!.toDouble() + step, places));
+    }
+    // Default: use standard successor
+    return Successor.successor(value);
+  }
+
+  /// Predecessor at per's precision for open boundary handling.
+  static dynamic _perPredecessor(dynamic value, dynamic per) {
+    if (per is FhirDecimal && value is FhirNumber) {
+      final step = _decimalStepSize(per);
+      final places = _decimalPlaces(per);
+      return FhirDecimal(
+          _roundTo(value.valueNum!.toDouble() - step, places));
+    }
+    // Default: use standard predecessor
+    return Predecessor.predecessor(value);
+  }
+
   /// Get the step size (minimum unit) at the per's decimal precision.
   /// For per=0.1 → step=0.1, for per=0.01 → step=0.01, etc.
   static double _decimalStepSize(FhirDecimal per) {
@@ -417,6 +459,32 @@ class Expand extends BinaryExpression {
         if (s == null) return null;
       }
       return (s, e);
+    }
+
+    // Quantity interval with integer per: ceiling-align start, floor-align end
+    if (start is ValidatedQuantity && per is ValidatedQuantity) {
+      final perNum =
+          num.tryParse(per.value.asUcumDecimal())?.toDouble();
+      if (perNum != null && perNum == perNum.truncateToDouble()) {
+        final startNum =
+            num.tryParse(start.value.asUcumDecimal())?.toDouble();
+        final endNum = end is ValidatedQuantity
+            ? num.tryParse((end as ValidatedQuantity).value.asUcumDecimal())
+                ?.toDouble()
+            : null;
+        if (startNum != null && endNum != null) {
+          final ceilStart = startNum == startNum.truncateToDouble()
+              ? startNum
+              : startNum.ceilToDouble();
+          final floorEnd = endNum.truncateToDouble();
+          return (
+            ValidatedQuantity.fromNumber(ceilStart,
+                unit: start.unit),
+            ValidatedQuantity.fromNumber(floorEnd,
+                unit: (end as ValidatedQuantity).unit),
+          );
+        }
+      }
     }
 
     return (start, end);
