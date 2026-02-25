@@ -265,7 +265,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     // ========== CERNER CONFIGURATION ==========
     EhrVendor.cerner: VendorConfig(
-      baseUrl: 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
+      baseUrl:
+          'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
       clientIds: {
         // Register at: https://code.cerner.com/
         // Patient app - TODO: Replace with your ID
@@ -293,10 +294,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           'fhirUser',
           'online_access',
         ],
-        LaunchMode.system: [
-          'system/Patient.read',
-          'system/Observation.read',
-        ],
+        LaunchMode.system: ['system/Patient.read', 'system/Observation.read'],
       },
       testCredentials: {
         LaunchMode.patient: TestCredentials(
@@ -599,7 +597,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      print('\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}');
+      print(
+        '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
+      );
     } else {
       throw Exception('Failed to load patient: ${patientResponse.statusCode}');
     }
@@ -879,10 +879,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
             SegmentedButton<EhrVendor>(
               segments: EhrVendor.values.map((vendor) {
-                return ButtonSegment(
-                  value: vendor,
-                  label: Text(vendor.label),
-                );
+                return ButtonSegment(value: vendor, label: Text(vendor.label));
               }).toList(),
               selected: {_selectedVendor},
               onSelectionChanged: (Set<EhrVendor> newSelection) {
@@ -1033,10 +1030,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             const SizedBox(height: 8),
             Text(
               'Scopes: ${scopes.join(", ")}',
-              style: const TextStyle(
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
-              ),
+              style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
             ),
           ],
         ),
@@ -1146,7 +1140,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             const SizedBox(height: 8),
             Text('1. Register at ${_selectedVendor.portalUrl}'),
             Text('2. Create a "${_selectedMode.label}" audience app'),
-            const Text('3. Add redirect URI: http://localhost:8080/callback.html'),
+            const Text(
+              '3. Add redirect URI: http://localhost:8080/callback.html',
+            ),
             const Text('4. Add your client ID to the code (main.dart)'),
             if (_selectedMode == LaunchMode.system)
               const Text('5. Add your client secret'),

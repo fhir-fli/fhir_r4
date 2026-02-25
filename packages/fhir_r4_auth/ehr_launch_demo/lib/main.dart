@@ -327,7 +327,8 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       print('  Inner exception: ${e.innerException}');
       print('  Stack trace:\n$stackTrace');
       setState(() {
-        _error = 'Authentication failed: ${e.message}'
+        _error =
+            'Authentication failed: ${e.message}'
             '${e.details != null ? '\nDetails: ${e.details}' : ''}'
             '${e.innerException != null ? '\nInner: ${e.innerException}' : ''}';
         _isLoading = false;

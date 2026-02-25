@@ -363,8 +363,7 @@ class BackendServiceConfig extends AuthConfig {
       clientId: json['clientId'] as String,
       privateKey: json['privateKey'] as String,
       tokenUrl: Uri.parse(json['tokenUrl'] as String),
-      scopes:
-          (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
       algorithm: json['algorithm'] as String? ?? 'RS384',
       keyId: json['keyId'] as String?,
       tokenLifetime: json['tokenLifetime'] != null

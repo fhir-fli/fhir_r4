@@ -494,8 +494,7 @@ void main() {
         // Time difference should be negligible
         // Using higher tolerance for CI/CD and varying system loads
         final timeDiff = (median1 - median2).abs();
-        expect(timeDiff,
-            lessThan(50000)); // 50ms tolerance for system variance
+        expect(timeDiff, lessThan(50000)); // 50ms tolerance for system variance
       });
     });
   });

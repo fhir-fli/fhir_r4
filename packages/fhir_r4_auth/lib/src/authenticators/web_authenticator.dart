@@ -47,7 +47,8 @@ class WebAuthenticator implements Authenticator {
       // - Linux/Windows: starts a local HTTP server, needs full origin
       //   (e.g. "http://localhost:8080")
       // - Mobile: uses custom URL schemes (e.g. "com.example.app")
-      if (callbackUrlScheme == null || callbackUrlScheme == redirectUri.scheme) {
+      if (callbackUrlScheme == null ||
+          callbackUrlScheme == redirectUri.scheme) {
         if (kIsWeb) {
           // On web, pass just the scheme — flutter_web_auth_2 validates it
           // as a URI scheme and rejects full URLs like "http://localhost:8080"

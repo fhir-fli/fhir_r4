@@ -106,10 +106,12 @@ void main() {
       final json = original.toJson();
       final restored = BackendServiceConfig.fromJson(json);
 
-      expect(restored.fhirBaseUrl.toString(), equals('https://fhir.example.com/r4'));
+      expect(restored.fhirBaseUrl.toString(),
+          equals('https://fhir.example.com/r4'));
       expect(restored.clientId, equals('test-client'));
       expect(restored.privateKey, equals('test-key-pem'));
-      expect(restored.tokenUrl.toString(), equals('https://fhir.example.com/auth/token'));
+      expect(restored.tokenUrl.toString(),
+          equals('https://fhir.example.com/auth/token'));
       expect(restored.scopes, equals(<String>['system/*.read']));
       expect(restored.algorithm, equals('ES384'));
       expect(restored.keyId, equals('key-123'));

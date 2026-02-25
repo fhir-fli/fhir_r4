@@ -1,5 +1,5 @@
 /// Platform-specific integration tests
-/// 
+///
 /// Tests authentication flows on different platforms:
 /// - Android
 /// - iOS
@@ -7,7 +7,7 @@
 /// - Linux
 /// - macOS
 /// - Windows
-/// 
+///
 /// These tests verify that platform-specific authentication mechanisms
 /// (deep linking, custom URL schemes, etc.) work correctly.
 library;
@@ -78,7 +78,8 @@ void _testAndroidPlatform() {
 
         // Verify deep linking worked (client should have received redirect)
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'Android deep linking should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'Android deep linking should complete authentication');
       } catch (e) {
         print('Android patient standalone launch test failed: $e');
         // Don't fail on network/credential issues
@@ -156,7 +157,8 @@ void _testIOSPlatform() {
 
         // Verify custom URL scheme worked
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'iOS custom URL scheme should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'iOS custom URL scheme should complete authentication');
       } catch (e) {
         print('iOS patient standalone launch test failed: $e');
         if (e is ConfigurationException) {
@@ -233,7 +235,8 @@ void _testWebPlatform() {
 
         // Verify redirect handling worked
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'Web redirect should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'Web redirect should complete authentication');
       } catch (e) {
         print('Web patient standalone launch test failed: $e');
         if (e is ConfigurationException) {
@@ -309,7 +312,8 @@ void _testLinuxPlatform() {
         IntegrationTestHelpers.verifyPatientContext(client);
 
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'Linux protocol handler should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'Linux protocol handler should complete authentication');
       } catch (e) {
         print('Linux patient standalone launch test failed: $e');
         if (e is ConfigurationException) {
@@ -385,7 +389,8 @@ void _testMacOSPlatform() {
         IntegrationTestHelpers.verifyPatientContext(client);
 
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'macOS custom URL scheme should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'macOS custom URL scheme should complete authentication');
       } catch (e) {
         print('macOS patient standalone launch test failed: $e');
         if (e is ConfigurationException) {
@@ -461,7 +466,8 @@ void _testWindowsPlatform() {
         IntegrationTestHelpers.verifyPatientContext(client);
 
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue, reason: 'Windows protocol handler should complete authentication');
+        expect(isAuth, isTrue,
+            reason: 'Windows protocol handler should complete authentication');
       } catch (e) {
         print('Windows patient standalone launch test failed: $e');
         if (e is ConfigurationException) {
