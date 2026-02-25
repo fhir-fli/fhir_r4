@@ -78,8 +78,6 @@ const _knownFailures = <String, String>{
   // Interval Expand cross-unit edge cases (2 tests) — require matching CQF precision during unit conversion
   'test_QtyIvlExpand_ClosedSingleGPerMG': 'Interval Expand cross-unit edge cases',
   'test_QtyIvlExpand_ClosedSingleMGPerGTrunc': 'Interval Expand cross-unit edge cases',
-  // UCUM multiplication precision (1 test) — UCUM produces more digits than CQF reference truncates
-  'test_Quantity_mul_q_q_diff': 'UCUM multiplication precision',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
   'test_ToList_LengthOfNull': 'Type conversion edge cases',
   // Null list inclusion semantics (8 tests) — CQF returns false, CQL spec says null;

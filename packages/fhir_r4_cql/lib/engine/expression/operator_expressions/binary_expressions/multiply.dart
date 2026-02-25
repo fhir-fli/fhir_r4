@@ -188,7 +188,20 @@ class Multiply extends BinaryExpression {
                 UcumDecimal.fromString(right.valueString!);
             return ValidatedQuantity(value: numVal, unit: left.unit);
           } else if (right is ValidatedQuantity) {
-            return left * right;
+            final result = left * right;
+            if (result is ValidatedQuantity) {
+              // Truncate to 8 decimal places to match CQF reference precision
+              final truncated =
+                  double.tryParse(result.value.asUcumDecimal());
+              if (truncated != null) {
+                return ValidatedQuantity(
+                  value: UcumDecimal.fromString(
+                      truncated.toStringAsFixed(8)),
+                  unit: result.unit,
+                );
+              }
+            }
+            return result;
           }
           break;
       }
