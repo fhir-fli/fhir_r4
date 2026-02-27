@@ -1562,6 +1562,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           whereCondition = whereCondition &
               numberSearchParameters.numberValue
                   .isSmallerOrEqualValue(numValue);
+        case 'ap':
+          final range = numValue.abs() * 0.1;
+          whereCondition = whereCondition &
+              numberSearchParameters.numberValue
+                  .isBiggerOrEqualValue(numValue - range) &
+              numberSearchParameters.numberValue
+                  .isSmallerOrEqualValue(numValue + range);
         default:
           whereCondition = whereCondition &
               numberSearchParameters.numberValue.equals(numValue);
@@ -1677,13 +1684,37 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   ) async {
     final matchingIds = <String>{};
     for (final value in values) {
+      // Detect :above / :below modifiers (suffix-based)
+      String searchValue = value;
+      String? modifier;
+      for (final mod in ['above', 'below']) {
+        if (value.endsWith(':$mod')) {
+          searchValue = value.substring(0, value.length - mod.length - 1);
+          modifier = mod;
+          break;
+        }
+      }
+
+      final pathCondition =
+          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
+              uriSearchParameters.searchPath
+                  .like('$resourceType.%.$searchPath');
+
+      Expression<bool> valueCondition;
+      if (modifier == 'above') {
+        // :above means match URIs where the stored value starts with the search prefix
+        valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
+      } else if (modifier == 'below') {
+        // :below means match URIs where the stored value starts with the search prefix
+        valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
+      } else {
+        valueCondition = uriSearchParameters.uriValue.equals(searchValue);
+      }
+
       final query = select(uriSearchParameters);
       query.where(
         (tbl) =>
-            tbl.resourceType.equals(resourceType) &
-            (tbl.searchPath.like('$resourceType.$searchPath') |
-                tbl.searchPath.like('$resourceType.%.$searchPath')) &
-            tbl.uriValue.equals(value),
+            tbl.resourceType.equals(resourceType) & pathCondition & valueCondition,
       );
       final rows = await query.get();
       for (final row in rows) {
