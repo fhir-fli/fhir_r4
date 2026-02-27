@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:sqlite3/sqlite3.dart';
 
 /// Number of iterations for PBKDF2 (adjust based on performance needs).
 const int pbkdf2Iterations = 100000;
@@ -89,4 +90,19 @@ Future<String?> deriveDbKey({
 
   // Convert to hex string for PRAGMA key
   return derivedKey.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+}
+
+/// Creates a database setup callback that enables SQLCipher encryption.
+///
+/// Returns null if [hexKey] is null or empty (no encryption).
+/// Use with: `NativeDatabase(File(path), setup: cipherSetup(hexKey))`
+void Function(Database)? cipherSetup(String? hexKey) {
+  if (hexKey == null || hexKey.isEmpty) {
+    return null;
+  }
+  return (Database db) {
+    db.execute("PRAGMA cipher = 'sqlcipher';");
+    db.execute('PRAGMA legacy = 4;');
+    db.execute("PRAGMA key = \"x'$hexKey'\";");
+  };
 }

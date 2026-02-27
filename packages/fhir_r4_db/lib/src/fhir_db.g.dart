@@ -99,9 +99,16 @@ class $ResourcesTable extends Resources
 }
 
 class Resource extends DataClass implements Insertable<Resource> {
+  /// FHIR resource type name (e.g. 'Patient')
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// Full JSON-encoded FHIR resource
   final String resource;
+
+  /// When this version was last updated
   final DateTime lastUpdated;
   const Resource(
       {required this.resourceType,
@@ -380,9 +387,16 @@ class $ResourcesHistoryTable extends ResourcesHistory
 
 class ResourcesHistoryData extends DataClass
     implements Insertable<ResourcesHistoryData> {
+  /// FHIR resource type name (e.g. 'Patient')
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// Full JSON-encoded FHIR resource
   final String resource;
+
+  /// When this version was last updated
   final DateTime lastUpdated;
   const ResourcesHistoryData(
       {required this.resourceType,
@@ -696,10 +710,19 @@ class $StringSearchParametersTable extends StringSearchParameters
 
 class StringSearchParameter extends DataClass
     implements Insertable<StringSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// Normalized string value for case- and accent-insensitive searches
@@ -1102,10 +1125,19 @@ class $TokenSearchParametersTable extends TokenSearchParameters
 
 class TokenSearchParameter extends DataClass
     implements Insertable<TokenSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// The system part of the token; may be null if not provided
@@ -1629,23 +1661,40 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
 
 class ReferenceSearchParameter extends DataClass
     implements Insertable<ReferenceSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// Original reference string as it appears in the resource
   final String referenceValue;
 
-  /// Parsed reference components
+  /// Parsed target resource type (e.g. 'Patient')
   final String? referenceResourceType;
+
+  /// Parsed target resource id
   final String? referenceIdPart;
+
+  /// Parsed version from versioned references
   final String? referenceVersion;
+
+  /// Parsed base URL for absolute references
   final String? referenceBaseUrl;
 
-  /// For identifier-based references (only applies to `fhir.Reference`)
+  /// Identifier system for identifier-based references
   final String? identifierSystem;
+
+  /// Identifier value for identifier-based references
   final String? identifierValue;
   const ReferenceSearchParameter(
       {required this.resourceType,
@@ -2221,12 +2270,25 @@ class $DateSearchParametersTable extends DateSearchParameters
 
 class DateSearchParameter extends DataClass
     implements Insertable<DateSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
+
+  /// Original date/dateTime/instant string from the resource
   final String dateString;
+
+  /// Parsed DateTime value for range comparisons
   final DateTime dateValue;
   const DateSearchParameter(
       {required this.resourceType,
@@ -2611,10 +2673,19 @@ class $NumberSearchParametersTable extends NumberSearchParameters
 
 class NumberSearchParameter extends DataClass
     implements Insertable<NumberSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// The numeric value extracted from the resource
@@ -3033,10 +3104,19 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
 
 class QuantitySearchParameter extends DataClass
     implements Insertable<QuantitySearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// The numeric value part of the quantity
@@ -3494,10 +3574,19 @@ class $UriSearchParametersTable extends UriSearchParameters
 
 class UriSearchParameter extends DataClass
     implements Insertable<UriSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// The URI value, stored as text
@@ -3885,10 +3974,19 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
 
 class CompositeSearchParameter extends DataClass
     implements Insertable<CompositeSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// First component of the composite value
@@ -4281,10 +4379,19 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
 
 class SpecialSearchParameter extends DataClass
     implements Insertable<SpecialSearchParameter> {
+  /// FHIR resource type name
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// When the resource was last updated
   final DateTime lastUpdated;
+
+  /// FHIRPath expression identifying the source field
   final String searchPath;
+
+  /// Index for multiple values from the same path
   final int paramIndex;
 
   /// A generic storage column for special search parameters
@@ -4629,10 +4736,19 @@ class $SyncResourcesTable extends SyncResources
 }
 
 class SyncResource extends DataClass implements Insertable<SyncResource> {
+  /// FHIR resource type name (e.g. 'Patient')
   final String resourceType;
+
+  /// Resource logical id
   final String id;
+
+  /// Full JSON-encoded FHIR resource
   final String resource;
+
+  /// When this version was last updated
   final DateTime lastUpdated;
+
+  /// Version identifier for this snapshot
   final String versionId;
   const SyncResource(
       {required this.resourceType,
@@ -4919,6 +5035,8 @@ class CanonicalResource extends DataClass
     implements Insertable<CanonicalResource> {
   /// Canonical URL as key
   final String url;
+
+  /// FHIR resource type name (e.g. 'StructureDefinition')
   final String resourceType;
 
   /// JSON blob of the resource
@@ -5151,7 +5269,10 @@ class $GeneralStorageTable extends GeneralStorage
 
 class GeneralStorageData extends DataClass
     implements Insertable<GeneralStorageData> {
+  /// Auto-incrementing primary key
   final int id;
+
+  /// Optional lookup key for named entries
   final String? key;
 
   /// JSON-encoded value

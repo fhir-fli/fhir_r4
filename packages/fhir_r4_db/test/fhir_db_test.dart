@@ -241,6 +241,69 @@ Future<void> main() async {
     });
   });
 
+  group('Encrypted Database:', () {
+    test('CRUD with cipherSetup()', () async {
+      final hexKey = 'a' * 64; // 32-byte key as hex
+      final setup = cipherSetup(hexKey);
+      expect(setup, isNotNull);
+
+      final dbFile = File('${Directory.systemTemp.path}/fhir_r4_enc_test.db');
+      if (dbFile.existsSync()) {
+        dbFile.deleteSync();
+      }
+
+      final encDb = FhirDb(NativeDatabase(dbFile, setup: setup!));
+      final encDao = encDb.fhirDao;
+
+      try {
+        // Create
+        final patient = Patient(
+          id: 'enc1'.toFhirString,
+          name: <HumanName>[
+            HumanName(family: 'Encrypted'.toFhirString),
+          ],
+        );
+        final saved = await encDao.saveResource(patient);
+        expect(saved.id?.toString(), 'enc1');
+
+        // Read
+        final found =
+            await encDao.getResource(R4ResourceType.Patient, 'enc1');
+        expect(found, isNotNull);
+        expect(
+          (found! as Patient).name?[0].family?.valueString,
+          'Encrypted',
+        );
+
+        // Update
+        final updated = Patient(
+          id: 'enc1'.toFhirString,
+          name: <HumanName>[
+            HumanName(family: 'Updated'.toFhirString),
+          ],
+        );
+        final savedUpdated = await encDao.saveResource(updated);
+        expect((savedUpdated as Patient).meta?.versionId, FhirId('2'));
+
+        // Delete
+        await encDao.deleteResource(R4ResourceType.Patient, 'enc1');
+        final deleted =
+            await encDao.getResource(R4ResourceType.Patient, 'enc1');
+        expect(deleted, isNull);
+      } finally {
+        await encDb.close();
+        if (dbFile.existsSync()) {
+          dbFile.deleteSync();
+        }
+      }
+    });
+
+    test('cipherSetup() returns null for null/empty key', () {
+      expect(cipherSetup(null), isNull);
+      expect(cipherSetup(''), isNull);
+    });
+  });
+
   group('More Complicated Searching', () {
     test(
       '(& Resources)',

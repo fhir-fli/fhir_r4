@@ -19,12 +19,20 @@ environment:
 dependencies:
   collection: ^1.19.1
   crypto: ^3.0.7
-  drift: ^2.29.0
+  drift: ^2.31.0
   fhir_r4:
     path: ../fhir_r4
   sqlite3: ^2.4.6
 
 dev_dependencies:
   build_runner: ^2.4.0
-  drift_dev: ^2.29.0
+  drift_dev: ^2.31.0
   test: ^1.29.0
+
+dependency_overrides:
+  sqlite3: ^3.1.5
+
+hooks:
+  user_defines:
+    sqlite3:
+      source: sqlite3mc
