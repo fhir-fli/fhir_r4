@@ -980,8 +980,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         matchingIds.addAll(allResourceIds.difference(resourcesWithParam));
         continue;
       } else {
+        // Default string search is "starts with" per FHIR spec
         whereCondition = whereCondition &
-            stringSearchParameters.stringValue.like('%$normalizedValue%');
+            stringSearchParameters.stringValue.like('$normalizedValue%');
       }
 
       query.where((tbl) => whereCondition);
@@ -1700,25 +1701,40 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               uriSearchParameters.searchPath
                   .like('$resourceType.%.$searchPath');
 
-      Expression<bool> valueCondition;
       if (modifier == 'above') {
-        // :above means match URIs where the stored value starts with the search prefix
-        valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
-      } else if (modifier == 'below') {
-        // :below means match URIs where the stored value starts with the search prefix
-        valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
+        // :above means stored URI is a parent/prefix of the search value
+        // i.e., searchValue.startsWith(storedUri)
+        // Can't express this directly in Drift's query builder, so fetch and
+        // filter in Dart.
+        final query = select(uriSearchParameters);
+        query.where(
+          (tbl) =>
+              tbl.resourceType.equals(resourceType) & pathCondition,
+        );
+        final rows = await query.get();
+        for (final row in rows) {
+          if (row.uriValue != null && searchValue.startsWith(row.uriValue!)) {
+            matchingIds.add(row.id);
+          }
+        }
       } else {
-        valueCondition = uriSearchParameters.uriValue.equals(searchValue);
-      }
+        Expression<bool> valueCondition;
+        if (modifier == 'below') {
+          // :below means stored URI starts with the search value (stored is more specific)
+          valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
+        } else {
+          valueCondition = uriSearchParameters.uriValue.equals(searchValue);
+        }
 
-      final query = select(uriSearchParameters);
-      query.where(
-        (tbl) =>
-            tbl.resourceType.equals(resourceType) & pathCondition & valueCondition,
-      );
-      final rows = await query.get();
-      for (final row in rows) {
-        matchingIds.add(row.id);
+        final query = select(uriSearchParameters);
+        query.where(
+          (tbl) =>
+              tbl.resourceType.equals(resourceType) & pathCondition & valueCondition,
+        );
+        final rows = await query.get();
+        for (final row in rows) {
+          matchingIds.add(row.id);
+        }
       }
     }
     return matchingIds;
