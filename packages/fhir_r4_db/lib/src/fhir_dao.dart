@@ -769,6 +769,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     // Check for reference chaining (paramName contains '.')
+    // Supports type-constrained chaining: subject:Patient.name=Smith
     final isChainedReference = paramName.contains('.');
 
     // Check if value looks like a reference
@@ -1005,13 +1006,52 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     for (final value in values) {
       String? modifier;
       var searchValue = value;
-      const knownTokenModifiers = ['missing', 'not', 'text'];
+      const knownTokenModifiers = [
+        'missing', 'not', 'text', 'of-type', 'in', 'not-in',
+      ];
       for (final mod in knownTokenModifiers) {
         if (value.endsWith(':$mod')) {
           modifier = mod;
           searchValue = value.substring(0, value.length - mod.length - 1);
           break;
         }
+      }
+
+      if (modifier == 'in') {
+        // :in modifier — value is a ValueSet URL; match tokens in that ValueSet
+        final codes = await _getCodesFromValueSet(searchValue);
+        if (codes.isNotEmpty) {
+          for (final entry in codes) {
+            final queryValue = entry.system != null
+                ? '${entry.system}|${entry.code}'
+                : entry.code;
+            final matched = await _executeTokenQuery(
+                resourceType, searchPath, queryValue);
+            matchingIds.addAll(matched);
+          }
+        }
+        continue;
+      }
+
+      if (modifier == 'not-in') {
+        // :not-in modifier — value is a ValueSet URL; exclude tokens in that VS
+        final codes = await _getCodesFromValueSet(searchValue);
+        final allResourceIds = (await (select(resources)
+                  ..where((tbl) => tbl.resourceType.equals(resourceType)))
+                .get())
+            .map((r) => r.id)
+            .toSet();
+        final excludedIds = <String>{};
+        for (final entry in codes) {
+          final queryValue = entry.system != null
+              ? '${entry.system}|${entry.code}'
+              : entry.code;
+          final matched = await _executeTokenQuery(
+              resourceType, searchPath, queryValue);
+          excludedIds.addAll(matched);
+        }
+        matchingIds.addAll(allResourceIds.difference(excludedIds));
+        continue;
       }
 
       if (modifier == 'not') {
@@ -1038,6 +1078,43 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final rows = await query.get();
         for (final row in rows) {
           matchingIds.add(row.id);
+        }
+        continue;
+      }
+
+      if (modifier == 'of-type') {
+        // :of-type modifier for Identifier: typeSystem|typeCode|value
+        // Searches identifiers where type.coding matches and value matches.
+        // Since identifier.type is not indexed, we search by value first,
+        // then filter by type in Dart.
+        final pipeParts = searchValue.split('|');
+        if (pipeParts.length == 3) {
+          final typeSystem = pipeParts[0];
+          final typeCode = pipeParts[1];
+          final identifierValue = pipeParts[2];
+
+          // Phase 1: Find candidate resources by identifier value
+          final candidates = await _executeTokenQuery(
+            resourceType,
+            searchPath,
+            identifierValue,
+          );
+
+          // Phase 2: Filter by identifier.type in Dart
+          for (final candidateId in candidates) {
+            final resourceType_ =
+                fhir.R4ResourceType.fromString(resourceType);
+            if (resourceType_ == null) continue;
+            final resource =
+                await getResource(resourceType_, candidateId);
+            if (resource == null) continue;
+
+            final json = resource.toJson();
+            if (_matchesOfType(
+                json, searchPath, typeSystem, typeCode, identifierValue)) {
+              matchingIds.add(candidateId);
+            }
+          }
         }
         continue;
       }
@@ -1094,6 +1171,173 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     return matchingIds;
+  }
+
+  /// Extract all codes from a ValueSet (by URL) for :in/:not-in modifiers.
+  ///
+  /// Looks up the ValueSet by URL, then extracts codes from either
+  /// the pre-computed expansion or the compose.include rules.
+  Future<List<({String? system, String code})>> _getCodesFromValueSet(
+    String valueSetUrl,
+  ) async {
+    // Look up the ValueSet by URL
+    final results = await search(
+      resourceType: fhir.R4ResourceType.ValueSet,
+      searchParameters: {'url': [valueSetUrl]},
+      count: 1,
+    );
+    if (results.isEmpty) return [];
+    final valueSet = results.first as fhir.ValueSet;
+
+    final codes = <({String? system, String code})>[];
+
+    // 1. Check pre-computed expansion first
+    if (valueSet.expansion?.contains != null) {
+      _extractFromContains(valueSet.expansion!.contains!, codes);
+      return codes;
+    }
+
+    // 2. Expand from compose.include
+    if (valueSet.compose?.include != null) {
+      for (final include in valueSet.compose!.include) {
+        final includeSystem = include.system?.valueString;
+
+        if (include.concept != null && include.concept!.isNotEmpty) {
+          for (final c in include.concept!) {
+            final code = c.code.valueString;
+            if (code != null) {
+              codes.add((system: includeSystem, code: code));
+            }
+          }
+        } else if (includeSystem != null) {
+          // Include all codes from the CodeSystem
+          final csResults = await search(
+            resourceType: fhir.R4ResourceType.CodeSystem,
+            searchParameters: {'url': [includeSystem]},
+            count: 1,
+          );
+          if (csResults.isNotEmpty) {
+            final cs = csResults.first as fhir.CodeSystem;
+            if (cs.concept != null) {
+              _flattenCodeSystemConcepts(
+                  cs.concept!, includeSystem, codes);
+            }
+          }
+        }
+      }
+    }
+
+    return codes;
+  }
+
+  /// Recursively extract codes from ValueSet expansion contains.
+  void _extractFromContains(
+    List<fhir.ValueSetContains> contains,
+    List<({String? system, String code})> out,
+  ) {
+    for (final entry in contains) {
+      final code = entry.code?.valueString;
+      if (code != null) {
+        out.add((system: entry.system?.valueString, code: code));
+      }
+      if (entry.contains != null) {
+        _extractFromContains(entry.contains!, out);
+      }
+    }
+  }
+
+  /// Recursively flatten CodeSystem concepts into (system, code) pairs.
+  void _flattenCodeSystemConcepts(
+    List<fhir.CodeSystemConcept> concepts,
+    String system,
+    List<({String? system, String code})> out,
+  ) {
+    for (final c in concepts) {
+      final code = c.code.valueString;
+      if (code != null) {
+        out.add((system: system, code: code));
+      }
+      if (c.concept != null) {
+        _flattenCodeSystemConcepts(c.concept!, system, out);
+      }
+    }
+  }
+
+  /// Check if a resource's identifier field matches the :of-type criteria.
+  ///
+  /// Walks through the resource JSON to find identifier fields at the
+  /// given search path that have a matching type coding and value.
+  bool _matchesOfType(
+    Map<String, dynamic> json,
+    String searchPath,
+    String typeSystem,
+    String typeCode,
+    String identifierValue,
+  ) {
+    // The searchPath is the FHIR search parameter name (e.g., "identifier").
+    // We need to find all Identifier elements in the resource and check
+    // if any match both the type coding and the value.
+
+    // Try common field names for identifiers
+    final fieldsToCheck = <String>['identifier'];
+
+    // Also check the searchPath itself as a field name
+    if (!fieldsToCheck.contains(searchPath)) {
+      fieldsToCheck.add(searchPath);
+    }
+
+    for (final field in fieldsToCheck) {
+      final fieldValue = json[field];
+      if (fieldValue is List) {
+        for (final item in fieldValue) {
+          if (item is Map<String, dynamic>) {
+            if (_identifierMatchesOfType(
+                item, typeSystem, typeCode, identifierValue)) {
+              return true;
+            }
+          }
+        }
+      } else if (fieldValue is Map<String, dynamic>) {
+        if (_identifierMatchesOfType(
+            fieldValue, typeSystem, typeCode, identifierValue)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /// Check if a single Identifier JSON object matches the :of-type criteria.
+  bool _identifierMatchesOfType(
+    Map<String, dynamic> identifier,
+    String typeSystem,
+    String typeCode,
+    String identifierValue,
+  ) {
+    // Check value
+    final value = identifier['value'];
+    if (value?.toString() != identifierValue) return false;
+
+    // Check type.coding
+    final type = identifier['type'];
+    if (type is! Map<String, dynamic>) return false;
+
+    final coding = type['coding'];
+    if (coding is! List) return false;
+
+    for (final c in coding) {
+      if (c is Map<String, dynamic>) {
+        final system = c['system']?.toString() ?? '';
+        final code = c['code']?.toString() ?? '';
+        if ((typeSystem.isEmpty || system == typeSystem) &&
+            (typeCode.isEmpty || code == typeCode)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   Future<Set<String>> _searchDateParameter(
@@ -1750,9 +1994,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     if (isChained) {
       // Reference chaining: paramName = "organization.name"
+      // Also supports type-constrained chaining: "subject:Patient.name"
       final dotIndex = searchPath.indexOf('.');
-      final refParam = searchPath.substring(0, dotIndex);
+      var refParam = searchPath.substring(0, dotIndex);
       final chainedParam = searchPath.substring(dotIndex + 1);
+
+      // Parse type constraint from refParam (e.g., "subject:Patient")
+      String? typeConstraint;
+      if (refParam.contains(':')) {
+        final colonIndex = refParam.indexOf(':');
+        typeConstraint = refParam.substring(colonIndex + 1);
+        refParam = refParam.substring(0, colonIndex);
+      }
 
       // Get all reference entries for this param
       final refQuery = select(referenceSearchParameters)
@@ -1767,6 +2020,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       for (final refRow in refRows) {
         if (refRow.referenceResourceType != null &&
             refRow.referenceIdPart != null) {
+          // If type constraint specified, skip references to other types
+          if (typeConstraint != null &&
+              refRow.referenceResourceType != typeConstraint) {
+            continue;
+          }
           final targetType =
               fhir.R4ResourceType.fromString(refRow.referenceResourceType!);
           if (targetType == null) continue;
