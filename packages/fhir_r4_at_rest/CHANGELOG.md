@@ -1,5 +1,12 @@
 # fhir_r4_at_rest
 
+## [0.5.0]
+
+* Unified versioning across all fhir_r4 packages
+* Fixed repeated query parameters (_include, _revinclude) - multiple values no longer overwrite each other
+* Added token :in and :not-in search modifiers with ValueSet expansion
+* Updated dependencies
+
 ## [0.4.2]
 
 * Fixed search parameter generation issues

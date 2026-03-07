@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' show FhirBoolean;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Filter operator returns a list with only those elements in the source list for which the condition element evaluates to true.
@@ -69,4 +70,27 @@ class Filter extends CqlExpression {
 
   @override
   String get type => 'Filter';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
+    if (sourceResult == null) return null;
+    final items = sourceResult is List ? sourceResult : [sourceResult];
+    final results = [];
+    for (final item in items) {
+      context[scope] = item;
+      final condResult = await condition.execute(context);
+      bool keep = false;
+      if (condResult == true) {
+        keep = true;
+      } else if (condResult is FhirBoolean && condResult.valueBoolean == true) {
+        keep = true;
+      }
+      if (keep) {
+        results.add(item);
+      }
+    }
+    context.remove(scope);
+    return results;
+  }
 }

@@ -1,117 +1,13 @@
+import 'dart:math' as math;
+
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator returns the set of intervals of size per for all the ranges present
-/// in the given list of intervals.
-/// Adjacent intervals within a sorted list are merged if they either overlap
-/// or meet.
-/// The operation combines successive intervals in the input that either overlap
-/// or meet.
-/// If the per argument is null, it's constructed based on the coarsest
-/// precision of the boundaries of the intervals in the input set.
-/// If the list of intervals is empty, the result is empty. If the list
-/// contains a single interval, the result is a list with that interval.
-/// If the list contains nulls, they will be excluded from the resulting list.
-/// If the source argument is null, the result is null.
-/// Signature:
-///
-/// expand(argument List<Interval<T>>, per Quantity) List<Interval<T>>
-/// expand(argument Interval<T>, per Quantity) List<T>
-/// The Interval<T> overload for expand is a new feature being introduced in
-/// CQL 1.5, and has trial-use status.
-///
-/// Description:
-///
-/// The expand operator returns the set of intervals of size per for all the
-/// intervals in the input, or the list of points covering the range of the
-/// given interval, if invoked on a single interval.
-///
-/// The per argument determines the size of the resulting intervals and must be
-/// a quantity-valued expression compatible with the interval point type. For
-/// numeric intervals, this means a quantity with the default unit '1' (not to
-/// be confused with the quantity value, which may be any valid positive
-/// decimal). For Date-, DateTime-, and Time-valued intervals, this means a
-/// quantity with a temporal unit (e.g., 'year', 'month', etc).
-///
-/// Conceptually, the per argument to the expand operator partitions the
-/// value-space for the operation into units of size 'per', and the intervals
-/// will be expanded aligning with those partitions. Note that the 'per'
-/// partitions start from the starting boundary of the first input interval,
-/// ordered.
-///
-/// If the per argument is null, a per value will be constructed based on the
-/// coarsest precision of the boundaries of the intervals in the input set. For
-/// example, a list of DateTime-based intervals where the boundaries are a
-/// mixture of hours and minutes will expand at the hour precision.
-///
-/// More precisely, for each interval in the input, contribute all the intervals
-/// of size per that start on or after the lower boundary and end on or before
-/// the upper boundary, where the lower boundary for each interval contributed
-/// is obtained by successively adding the per to the lower boundary of the
-/// input interval.
-///
-/// For example:
-///
-/// expand { Interval[@2018-01-01, @2018-01-04] } per day
-/// expand { Interval[@2018-01-01, @2018-01-04] } per 2 days
-/// The following are the results of these examples:
-///
-/// { Interval[@2018-01-01, @2018-01-01], Interval[@2018-01-02, @2018-01-02], Interval[@2018-01-03, @2018-01-03], Interval[@2018-01-04, @2018-01-04] }
-/// { Interval[@2018-01-01, @2018-01-02], Interval[@2018-01-03, @2018-01-04] }
-/// If the interval boundaries are more precise than the per quantity, the more
-/// precise values will be truncated to the precision specified by the per
-/// quantity. In these cases, the resulting list of intervals may be more
-/// broad than the input range due to this truncation. For example:
-///
-/// expand { Interval[@T10:00, @T12:30] } per hour
-/// expand { Interval[10.0, 12.5] } per 1
-/// The above examples would result in:
-///
-/// { Interval[@T10, @T10], Interval[@T11, @T11], Interval[@T12, @T12] }
-/// { Interval[10, 10], Interval[11, 11], Interval[12, 12] }
-/// If the interval boundaries are less precise than the per quantity, for
-/// dates and times where the lack of precision indicates uncertainty, the
-/// interval will not contribute any results to the output, because adding the
-/// per to the lower boundary of the input interval results in null. For numeric
-/// intervals, adding the per to the lower boundary produces a more precise
-/// value for the output intervals. For example:
-///
-/// expand { Interval[@T10, @T10] } per minute
-/// expand { Interval[10, 10] } per 0.1
-/// The above examples would result in:
-///
-/// { }
-/// { Interval[10.0, 10.0], Interval[10.1, 10.1], ..., Interval[10.9, 10.9] }
-/// For intervals of quantities, the semantics of quantity arithmetic and
-/// comparison apply, including unit conversion and compatible unit conversion.
-/// As with all unit operations, implementations are required to respect units,
-/// but are not required to support unit conversion.
-///
-/// If the input argument is an interval, rather than a list of intervals, the
-/// result is a list of points, rather than a list of intervals. In this case,
-/// the calculation is performed the same way, but the starting point of each
-/// resulting interval is returned, rather than the interval. For example:
-///
-/// expand Interval[1, 10]
-/// expand Interval[1, 10] per 2
-/// The above examples would result in:
-///
-/// { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
-/// { 1, 3, 5, 7, 9 }
-/// If the list of intervals is empty, the result is empty. If the list of
-/// intervals contains nulls, they will be excluded from the resulting list.
-///
-/// If the list argument is null, the result is null.
-///
-/// For intervals with null boundaries (intervals with an undefined start or
-/// end date), if the boundary is open (e.g., Interval[0, null)), the interval
-/// will not contribute any results to the output. If the boundary is closed
-/// (e.g., Interval[0, null]), in theory the interval would contribute all
-/// intervals to the beginning or ending of the domain. In practice, because
-/// such an expansion is potentially too expensive to compute, and
-/// implementations are allowed to not return results for such an interval.
+/// in the given list of intervals, or a list of points covering the range
+/// of a single interval.
 class Expand extends BinaryExpression {
   Expand({
     required super.operand,
@@ -182,7 +78,7 @@ class Expand extends BinaryExpression {
     }
 
     final source = await operand[0].execute(context);
-    final per = operand.length > 1 ? operand[1].execute(context) : null;
+    final per = operand.length > 1 ? await operand[1].execute(context) : null;
     return expand(source, per);
   }
 
@@ -192,79 +88,579 @@ class Expand extends BinaryExpression {
     }
 
     if (source is CqlInterval) {
-      return expandSingleInterval(source, per);
-    } else if (source is List &&
-        source.every((element) => element is CqlInterval)) {
-      return expandList(source, per);
+      // Single interval overload: compute sub-intervals then return starts
+      final intervals = _computeSubIntervals(source, per);
+      if (intervals == null) return null;
+      return intervals.map((iv) => iv.low).toList();
+    } else if (source is List) {
+      // Filter out nulls per spec
+      final intervals = source.whereType<CqlInterval>().toList();
+      return _expandList(intervals, per);
     } else {
       throw ArgumentError(
           'Expand expression must have a single interval or a list of intervals');
     }
   }
 
-  List<dynamic> expandSingleInterval(CqlInterval interval, dynamic per) {
-    final List<dynamic> expandedInterval = [];
-    dynamic start = interval.getStart();
-    dynamic end = interval.getEnd();
-    per ??= perUnit(start);
-
-    if (start == null || end == null) {
-      return expandedInterval;
+  /// Expand a list of intervals into a list of sub-intervals of size per.
+  /// Overlapping intervals are collapsed first, then each is expanded.
+  dynamic _expandList(List<CqlInterval> intervals, dynamic per) {
+    if (intervals.isEmpty) return <CqlInterval>[];
+    // Collapse overlapping intervals first to avoid duplicates
+    final collapsed = Collapse(operand: []).collapse(intervals, null);
+    if (collapsed == null) return null;
+    final List<CqlInterval> result = [];
+    for (final interval in collapsed) {
+      final sub = _computeSubIntervals(interval, per);
+      // null return from _computeSubIntervals means incompatible per
+      if (sub == null) return null;
+      result.addAll(sub);
     }
-
-    while ((LessOrEqual.lessOrEqual(start, end)?.valueBoolean ?? false)) {
-      expandedInterval.add(start);
-      start = Add.add(start, per);
-    }
-
-    return expandedInterval;
+    return result;
   }
 
-  List<CqlInterval> expandList(List<dynamic> intervals, dynamic per) {
-    final List<CqlInterval> expandedIntervals = [];
-    for (final interval in intervals) {
-      expandedIntervals.addAll(expandInterval(interval, per));
+  static const _temporalUnits = {
+    'year',
+    'years',
+    'a',
+    'month',
+    'months',
+    'mo',
+    'week',
+    'weeks',
+    'wk',
+    'day',
+    'days',
+    'd',
+    'hour',
+    'hours',
+    'h',
+    'minute',
+    'minutes',
+    'min',
+    'second',
+    'seconds',
+    's',
+    'millisecond',
+    'milliseconds',
+    'ms',
+  };
+
+  /// Normalize per to a type compatible with start for arithmetic.
+  /// Returns null if per is incompatible with start type.
+  static dynamic normalizePer(dynamic per, dynamic start) {
+    if (per is! ValidatedQuantity) return per;
+    final unit = per.unit;
+    final num? numVal = num.tryParse(per.value.asUcumDecimal());
+    if (numVal == null) return per;
+
+    // Numeric intervals: per with unit '1' or no unit → convert to matching type
+    if (unit == '1' || unit == '') {
+      final isIntVal = numVal == numVal.truncateToDouble();
+      if (start is FhirInteger) {
+        if (isIntVal) return FhirInteger(numVal.toInt());
+        // Decimal per with integer start: return decimal (triggers int→dec conversion)
+        return FhirDecimal(numVal.toDouble());
+      }
+      if (start is FhirInteger64) return FhirInteger64.fromNum(numVal.toInt());
+      if (start is FhirDecimal) {
+        // Integer per with decimal start: keep as FhirInteger for ceiling alignment
+        if (isIntVal) return FhirInteger(numVal.toInt());
+        return FhirDecimal(numVal.toDouble());
+      }
+      if (start is ValidatedQuantity) return FhirDecimal(numVal.toDouble());
+      // Temporal start + unitless per → incompatible
+      if (start is FhirDateTimeBase || start is FhirTime) return null;
     }
-    return expandedIntervals;
+
+    // Temporal per with numeric interval → incompatible
+    if (start is FhirInteger ||
+        start is FhirDecimal ||
+        start is FhirInteger64) {
+      if (_temporalUnits.contains(unit)) return null;
+    }
+
+    // Non-temporal, non-unitless per with temporal interval → incompatible
+    if (start is FhirDateTimeBase || start is FhirTime) {
+      if (!_temporalUnits.contains(unit)) return null;
+    }
+
+    // Quantity intervals: keep as ValidatedQuantity for same-unit or convert
+    if (start is ValidatedQuantity) {
+      if (!_temporalUnits.contains(unit)) {
+        // Quantity per with quantity start — keep as ValidatedQuantity
+        return per;
+      }
+      // Temporal per with quantity start → incompatible
+      return null;
+    }
+
+    return per; // Keep as ValidatedQuantity for temporal intervals
   }
 
-  List<CqlInterval> expandInterval(CqlInterval interval, dynamic per) {
-    final List<CqlInterval> expandedIntervals = [];
-    dynamic start = interval.getStart();
-    dynamic end = interval.getEnd();
-    per ??= perUnit(start);
+  /// Compute the sub-intervals for a single interval.
+  /// Returns null if per is incompatible with the interval type.
+  List<CqlInterval>? _computeSubIntervals(CqlInterval interval, dynamic per) {
+    final List<CqlInterval> result = [];
+    // Check original boundaries for null (not getStart/getEnd which substitute min/max)
+    if (interval.low == null || interval.high == null) {
+      return result; // Null boundary → empty result
+    }
+    // Use raw low/high for open boundaries (we'll apply per-precision
+    // successor/predecessor after normalization). For closed boundaries,
+    // use getStart/getEnd which handles null→min/max substitution.
+    dynamic start =
+        interval.lowClosed == false ? interval.low : interval.getStart();
+    dynamic end =
+        interval.highClosed == false ? interval.high : interval.getEnd();
 
     if (start == null || end == null) {
-      return expandedIntervals;
+      return result;
     }
 
-    while ((LessOrEqual.lessOrEqual(start, end)?.valueBoolean ?? false)) {
-      expandedIntervals.add(CqlInterval(
+    per ??= _defaultPer(start);
+
+    // Normalize per to match start type
+    per = normalizePer(per, start);
+    if (per == null) return null; // Incompatible per → null result
+
+    // TODO: Cross-unit quantity expand (e.g., per 1 'mg' on 'g' intervals)
+    // requires matching CQF's precision behavior during unit conversion.
+    // Skipped for now — these 2 tests remain as known failures.
+
+    // For open boundaries, apply per-precision successor/predecessor
+    // instead of the default type successor/predecessor.
+    if (interval.lowClosed == false && interval.low != null) {
+      start = _perSuccessor(interval.low!, per);
+      if (start == null) return [];
+    }
+    if (interval.highClosed == false && interval.high != null) {
+      end = _perPredecessor(interval.high!, per);
+      if (end == null) return [];
+    }
+
+    // Apply precision adjustments to boundaries
+    final adjusted = _adjustBoundaries(start, end, per);
+    if (adjusted == null) return [];
+    start = adjusted.$1;
+    end = adjusted.$2;
+
+    // Compute the step size for high boundary calculation
+    final isDecimalPer = per is FhirDecimal;
+    final isQuantityPer =
+        per is ValidatedQuantity && !_temporalUnits.contains(per.unit);
+
+    // For decimal per, track decimal places for rounding
+    final int decPlaces = isDecimalPer ? _decimalPlaces(per) : 0;
+
+    // Safety limit to prevent infinite loops
+    for (var i = 0; i < 100000; i++) {
+      if (!(LessOrEqual.lessOrEqual(start, end)?.valueBoolean ?? false)) break;
+      var nextStart = Add.add(start, per);
+      // If adding per returns null, per is more precise than boundary
+      if (nextStart == null) return [];
+
+      // Round to avoid floating-point drift for decimal per
+      if (isDecimalPer && nextStart is FhirDecimal) {
+        nextStart =
+            FhirDecimal(_roundTo(nextStart.valueNum!.toDouble(), decPlaces));
+      }
+
+      // High boundary: predecessor of next start at per's precision
+      dynamic high;
+      if (isDecimalPer) {
+        high = _decimalPredecessor(nextStart, per);
+      } else if (isQuantityPer) {
+        high = _quantityPredecessor(nextStart, per);
+      } else {
+        high = Predecessor.predecessor(nextStart);
+      }
+      if (high == null) break;
+
+      // Only include if the entire sub-interval fits within [start, end]
+      if (!(LessOrEqual.lessOrEqual(high, end)?.valueBoolean ?? false)) break;
+
+      result.add(CqlInterval(
         low: start,
         lowClosed: true,
-        high: start,
+        high: high,
         highClosed: true,
       ));
-      start = Add.add(start, per);
+      start = nextStart;
     }
 
-    return expandedIntervals;
+    return result;
   }
 
-  dynamic perUnit(dynamic source) {
-    switch (source) {
-      case FhirInteger _:
-        return FhirInteger(1);
-      case FhirDecimal _:
-        return FhirDecimal(.00000001);
-      case FhirInteger64 _:
-        return FhirInteger64.fromNum(1);
-      case FhirDate _:
-        return ValidatedQuantity.fromNumber(1, unit: 'day');
-      case FhirDateTime _:
-        return ValidatedQuantity.fromNumber(1, unit: 'millisecond');
-      case FhirTime _:
-        return ValidatedQuantity.fromNumber(1, unit: 'millisecond');
+  /// For quantity per, compute the predecessor at the per's precision.
+  static dynamic _quantityPredecessor(dynamic value, ValidatedQuantity per) {
+    if (value is! ValidatedQuantity) return Predecessor.predecessor(value);
+    final perNum = num.tryParse(per.value.asUcumDecimal())?.toDouble() ?? 1.0;
+    final valNum = num.tryParse(value.value.asUcumDecimal())?.toDouble();
+    if (valNum == null) return null;
+    // If per is integer-valued, step is 1; otherwise use decimal precision
+    final isIntPer = perNum == perNum.truncateToDouble();
+    if (isIntPer) {
+      return ValidatedQuantity.fromNumber(valNum - 1, unit: value.unit);
     }
+    final places = _quantityDecimalPlaces(perNum);
+    final step = math.pow(10, -places).toDouble();
+    final factor = math.pow(10, places);
+    final rounded = ((valNum - step) * factor).roundToDouble() / factor;
+    return ValidatedQuantity.fromNumber(rounded, unit: value.unit);
+  }
+
+  static int _quantityDecimalPlaces(double value) {
+    final s = value.toString();
+    final dotIdx = s.indexOf('.');
+    if (dotIdx < 0) return 0;
+    // Trim trailing zeros
+    var end = s.length;
+    while (end > dotIdx + 1 && s[end - 1] == '0') {
+      end--;
+    }
+    return end - dotIdx - 1;
+  }
+
+  /// For decimal per, compute the predecessor at the per's decimal precision
+  /// rather than using the default decimal predecessor (which subtracts 10^-8).
+  static dynamic _decimalPredecessor(dynamic value, FhirDecimal per) {
+    if (value is! FhirDecimal) return Predecessor.predecessor(value);
+    final step = _decimalStepSize(per);
+    final places = _decimalPlaces(per);
+    // Round to avoid floating-point drift
+    final raw = value.valueNum! - step;
+    final factor = math.pow(10, places);
+    final rounded = (raw * factor).roundToDouble() / factor;
+    return FhirDecimal(rounded);
+  }
+
+  /// Check if ceiling alignment is needed: returns true if the original
+  /// date/time has sub-per-precision fields that aren't at their minimum.
+  static bool _needsCeilingAlignment(
+      FhirDateTimeBase original, ValidatedQuantity per) {
+    final unit = per.unit;
+    // Fields to check and their minimums:
+    // month→1, day→1, hour→0, minute→0, second→0, millisecond→0
+    switch (unit) {
+      case 'year' || 'years' || 'a':
+        if (original.month != null && original.month! > 1) return true;
+        if (original.day != null && original.day! > 1) return true;
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'month' || 'months' || 'mo':
+        if (original.day != null && original.day! > 1) return true;
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'week' || 'weeks' || 'wk' || 'day' || 'days' || 'd':
+        if (original.hour != null && original.hour! > 0) return true;
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'hour' || 'hours' || 'h':
+        if (original.minute != null && original.minute! > 0) return true;
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'minute' || 'minutes' || 'min':
+        if (original.second != null && original.second! > 0) return true;
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+      case 'second' || 'seconds' || 's':
+        if (original.millisecond != null && original.millisecond! > 0) {
+          return true;
+        }
+    }
+    return false;
+  }
+
+  /// Successor at per's precision for open boundary handling.
+  static dynamic _perSuccessor(dynamic value, dynamic per) {
+    if (per is FhirDecimal && value is FhirNumber) {
+      final step = _decimalStepSize(per);
+      final places = _decimalPlaces(per);
+      return FhirDecimal(_roundTo(value.valueNum!.toDouble() + step, places));
+    }
+    // Default: use standard successor
+    return Successor.successor(value);
+  }
+
+  /// Predecessor at per's precision for open boundary handling.
+  static dynamic _perPredecessor(dynamic value, dynamic per) {
+    if (per is FhirDecimal && value is FhirNumber) {
+      final step = _decimalStepSize(per);
+      final places = _decimalPlaces(per);
+      return FhirDecimal(_roundTo(value.valueNum!.toDouble() - step, places));
+    }
+    // Default: use standard predecessor
+    return Predecessor.predecessor(value);
+  }
+
+  /// Get the step size (minimum unit) at the per's decimal precision.
+  /// For per=0.1 → step=0.1, for per=0.01 → step=0.01, etc.
+  static double _decimalStepSize(FhirDecimal per) {
+    return math.pow(10, -_decimalPlaces(per)).toDouble();
+  }
+
+  /// Count decimal places in a FhirDecimal value.
+  static int _decimalPlaces(FhirDecimal per) {
+    final s = per.valueString ?? per.valueNum.toString();
+    final dotIndex = s.indexOf('.');
+    if (dotIndex < 0) return 0;
+    return s.length - dotIndex - 1;
+  }
+
+  /// Round a double to the given number of decimal places.
+  static double _roundTo(double value, int places) {
+    final factor = math.pow(10, places);
+    return (value * factor).roundToDouble() / factor;
+  }
+
+  /// Adjust start/end boundaries based on per type and precision.
+  /// Returns null if per is more precise than boundaries (for dates/times).
+  static (dynamic, dynamic)? _adjustBoundaries(
+      dynamic start, dynamic end, dynamic per) {
+    // Integer interval with decimal per: expand integer range to decimal
+    if (start is FhirInteger && per is FhirDecimal) {
+      final step = _decimalStepSize(per);
+      final startDec = FhirDecimal(start.valueNum!.toDouble());
+      // Only expand integer ends; decimal ends stay as-is
+      final endVal = end.valueNum!.toDouble();
+      final endDec = end is FhirInteger
+          ? FhirDecimal(endVal + 1.0 - step)
+          : FhirDecimal(endVal);
+      return (startDec, endDec);
+    }
+
+    // Decimal interval with integer per: convert to integers
+    if (start is FhirDecimal && per is FhirInteger) {
+      final startVal = start.valueNum!.toDouble();
+      // Ceiling alignment: if start has fractional part, advance to next int
+      final ceilStart = startVal == startVal.truncateToDouble()
+          ? startVal.toInt()
+          : startVal.ceil();
+      final endVal = end.valueNum!.toDouble();
+      return (
+        FhirInteger(ceilStart),
+        FhirInteger(endVal.truncate()),
+      );
+    }
+
+    // Time truncation based on quantity unit
+    if (start is FhirTime && per is ValidatedQuantity) {
+      final s = _truncateTimeToPer(start, per);
+      final e = _truncateTimeToPer(end, per);
+      if (s == null || e == null) return null;
+      return (s, e);
+    }
+
+    // DateTime/Date truncation based on quantity unit
+    if (start is FhirDateTimeBase && per is ValidatedQuantity) {
+      var s = _truncateDateTimeToPer(start, per);
+      final e = _truncateDateTimeToPer(end, per);
+      if (s == null || e == null) return null;
+      // Ceiling alignment: if truncation dropped non-minimum fields, advance
+      if (s is FhirDateTimeBase && _needsCeilingAlignment(start, per)) {
+        s = Add.add(s, per);
+        if (s == null) return null;
+      }
+      return (s, e);
+    }
+
+    // Quantity interval with integer per: ceiling-align start, floor-align end
+    if (start is ValidatedQuantity && per is ValidatedQuantity) {
+      final perNum = num.tryParse(per.value.asUcumDecimal())?.toDouble();
+      if (perNum != null && perNum == perNum.truncateToDouble()) {
+        final startNum = num.tryParse(start.value.asUcumDecimal())?.toDouble();
+        final endNum = end is ValidatedQuantity
+            ? num.tryParse((end).value.asUcumDecimal())?.toDouble()
+            : null;
+        if (startNum != null && endNum != null) {
+          final ceilStart = startNum == startNum.truncateToDouble()
+              ? startNum
+              : startNum.ceilToDouble();
+          final floorEnd = endNum.truncateToDouble();
+          return (
+            ValidatedQuantity.fromNumber(ceilStart, unit: start.unit),
+            ValidatedQuantity.fromNumber(floorEnd,
+                unit: (end as ValidatedQuantity).unit),
+          );
+        }
+      }
+    }
+
+    return (start, end);
+  }
+
+  /// Truncate FhirTime to per precision. Returns null if per is finer.
+  static FhirTime? _truncateTimeToPer(FhirTime value, ValidatedQuantity per) {
+    final unit = per.unit;
+    final int perPrecision;
+    switch (unit) {
+      case 'hour' || 'hours' || 'h':
+        perPrecision = 0;
+      case 'minute' || 'minutes' || 'min':
+        perPrecision = 1;
+      case 'second' || 'seconds' || 's':
+        perPrecision = 2;
+      case 'millisecond' || 'milliseconds' || 'ms':
+        perPrecision = 3;
+      default:
+        return value;
+    }
+
+    final int valuePrecision;
+    if (value.millisecond != null) {
+      valuePrecision = 3;
+    } else if (value.second != null) {
+      valuePrecision = 2;
+    } else if (value.minute != null) {
+      valuePrecision = 1;
+    } else {
+      valuePrecision = 0;
+    }
+
+    // Per more precise than boundary → return null (empty result for times)
+    if (perPrecision > valuePrecision) return null;
+
+    // Truncate to per precision
+    return FhirTime.fromUnits(
+      hour: value.hour!,
+      minute: perPrecision >= 1 ? value.minute : null,
+      second: perPrecision >= 2 ? value.second : null,
+      millisecond: perPrecision >= 3 ? value.millisecond : null,
+    );
+  }
+
+  /// Truncate FhirDateTimeBase to per precision. Returns null if per is finer.
+  static dynamic _truncateDateTimeToPer(
+      FhirDateTimeBase value, ValidatedQuantity per) {
+    final unit = per.unit;
+    final int perPrecision;
+    switch (unit) {
+      case 'year' || 'years' || 'a':
+        perPrecision = 0;
+      case 'month' || 'months' || 'mo':
+        perPrecision = 1;
+      case 'week' || 'weeks' || 'wk' || 'day' || 'days' || 'd':
+        perPrecision = 2;
+      case 'hour' || 'hours' || 'h':
+        perPrecision = 3;
+      case 'minute' || 'minutes' || 'min':
+        perPrecision = 4;
+      case 'second' || 'seconds' || 's':
+        perPrecision = 5;
+      case 'millisecond' || 'milliseconds' || 'ms':
+        perPrecision = 6;
+      default:
+        return value;
+    }
+
+    final int valuePrecision;
+    if (value.millisecond != null) {
+      valuePrecision = 6;
+    } else if (value.second != null) {
+      valuePrecision = 5;
+    } else if (value.minute != null) {
+      valuePrecision = 4;
+    } else if (value.hour != null) {
+      valuePrecision = 3;
+    } else if (value.day != null) {
+      valuePrecision = 2;
+    } else if (value.month != null) {
+      valuePrecision = 1;
+    } else {
+      valuePrecision = 0;
+    }
+
+    // Per more precise than boundary → return null (empty for dates/times)
+    if (perPrecision > valuePrecision) return null;
+
+    if (value is FhirDate) {
+      return FhirDateTimeBase.fromUnits<FhirDate>(
+        year: value.year!,
+        month: perPrecision >= 1 ? value.month : null,
+        day: perPrecision >= 2 ? value.day : null,
+        isUtc: false,
+      );
+    }
+    return FhirDateTimeBase.fromUnits<FhirDateTime>(
+      year: value.year!,
+      month: perPrecision >= 1 ? value.month : null,
+      day: perPrecision >= 2 ? value.day : null,
+      hour: perPrecision >= 3 ? value.hour : null,
+      minute: perPrecision >= 4 ? value.minute : null,
+      second: perPrecision >= 5 ? value.second : null,
+      millisecond: perPrecision >= 6 ? value.millisecond : null,
+      timeZoneOffset: value.timeZoneOffset,
+      isUtc: value.isUtc,
+    );
+  }
+
+  /// Default per based on the coarsest precision of the point type.
+  dynamic _defaultPer(dynamic start) {
+    if (start is ValidatedQuantity) {
+      return ValidatedQuantity.fromNumber(1, unit: start.unit);
+    }
+    if (start is FhirInteger) return FhirInteger(1);
+    if (start is FhirInteger64) return FhirInteger64.fromNum(1);
+    if (start is FhirDecimal) {
+      return FhirDecimal(1.0);
+    }
+    if (start is FhirDate) {
+      if (start.day != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'day');
+      }
+      if (start.month != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'month');
+      }
+      return ValidatedQuantity.fromNumber(1, unit: 'year');
+    }
+    if (start is FhirDateTime) {
+      if (start.millisecond != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'millisecond');
+      }
+      if (start.second != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'second');
+      }
+      if (start.minute != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'minute');
+      }
+      if (start.hour != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'hour');
+      }
+      if (start.day != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'day');
+      }
+      if (start.month != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'month');
+      }
+      return ValidatedQuantity.fromNumber(1, unit: 'year');
+    }
+    if (start is FhirTime) {
+      if (start.millisecond != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'millisecond');
+      }
+      if (start.second != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'second');
+      }
+      if (start.minute != null) {
+        return ValidatedQuantity.fromNumber(1, unit: 'minute');
+      }
+      return ValidatedQuantity.fromNumber(1, unit: 'hour');
+    }
+    return FhirInteger(1);
   }
 }

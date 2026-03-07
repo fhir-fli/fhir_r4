@@ -123,20 +123,36 @@ class PopulationVariance extends AggregateExpression {
           sumOfSquaredDiffs.valueNum! / sourceResult.length; // N instead of N-1
       return FhirDecimal(variance.toStringAsFixed(8));
     } else if (mean is ValidatedQuantity) {
-      UcumDecimal? sumOfSquaredValues;
+      final svc = UcumService();
+      final meanUnit = mean.unit;
+      ValidatedQuantity? sumOfSquaredValues;
       for (final val in sourceResult) {
-        ValidatedQuantity? diffValue = val - mean;
+        if (val is! ValidatedQuantity) continue;
+        final converted = val.unit == meanUnit
+            ? val
+            : ValidatedQuantity(
+                value: svc.convert(val.value, val.unit, meanUnit),
+                unit: meanUnit);
+        ValidatedQuantity? diffValue = converted - mean;
         if (diffValue != null) {
-          UcumDecimal squaredDiffValue = diffValue.value * diffValue.value;
+          ValidatedQuantity squaredDiff = diffValue * diffValue;
           sumOfSquaredValues = sumOfSquaredValues == null
-              ? squaredDiffValue
-              : sumOfSquaredValues.add(squaredDiffValue);
+              ? squaredDiff
+              : sumOfSquaredValues + squaredDiff;
         }
       }
       if (sumOfSquaredValues != null) {
-        var varianceValue = sumOfSquaredValues /
-            UcumDecimal.fromNum(sourceResult.length); // N instead of N-1
-        return ValidatedQuantity(value: varianceValue, unit: mean.unit);
+        final sum =
+            UcumDecimal.fromString(sumOfSquaredValues.value.asUcumDecimal());
+        var varianceValue =
+            sum / UcumDecimal.fromNum(sourceResult.length); // N instead of N-1
+        // Truncate to 8 decimal places to match CQF reference precision
+        final truncated = double.tryParse(varianceValue.asUcumDecimal());
+        if (truncated != null) {
+          varianceValue = UcumDecimal.fromString(truncated.toStringAsFixed(8));
+        }
+        return ValidatedQuantity(
+            value: varianceValue, unit: sumOfSquaredValues.unit);
       }
     }
 

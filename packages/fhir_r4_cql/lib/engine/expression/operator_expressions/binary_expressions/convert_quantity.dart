@@ -1,3 +1,7 @@
+import 'package:fhir_r4/fhir_r4.dart' hide Quantity;
+import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity;
+import 'package:ucum/ucum.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert a Quantity to an equivalent Quantity with the given unit.
@@ -61,4 +65,45 @@ class ConvertQuantity extends BinaryExpression {
 
   @override
   String get type => 'ConvertQuantity';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    var left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    if (left == null || right == null) return null;
+
+    // Convert FHIR Quantity to ValidatedQuantity if needed
+    if (left is fhir.Quantity) {
+      final num? numVal = left.value?.valueNum;
+      final unit = left.unit?.valueString ?? left.code?.valueString ?? '1';
+      if (numVal != null) {
+        left = ValidatedQuantity.fromNumber(numVal, unit: unit);
+      } else {
+        return null;
+      }
+    }
+
+    String? targetUnit;
+    if (right is FhirString) {
+      targetUnit = right.primitiveValue;
+    } else if (right is String) {
+      targetUnit = right;
+    } else if (right is ValidatedQuantity) {
+      targetUnit = right.unit.toString();
+    }
+    if (targetUnit == null) return null;
+
+    if (left is ValidatedQuantity) {
+      try {
+        final converted = left.convertTo(targetUnit);
+        if (converted.isValid()) {
+          return converted;
+        }
+        return null;
+      } catch (_) {
+        return null;
+      }
+    }
+    return null;
+  }
 }

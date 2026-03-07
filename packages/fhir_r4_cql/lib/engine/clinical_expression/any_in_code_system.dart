@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show FhirBoolean;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The AnyInCodeSystem operator returns true if any of the given codes are in
@@ -77,4 +79,21 @@ class AnyInCodeSystem extends OperatorExpression {
 
   @override
   String get type => 'AnyInCodeSystem';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final codesValue = await codes.execute(context);
+    if (codesValue == null) return null;
+    final codeSystemValue = await codesystem.execute(context);
+    if (codeSystemValue == null) return null;
+    if (codesValue is! List) return null;
+    for (final code in codesValue) {
+      if (code is CqlCode) {
+        if (code.system == codeSystemValue.id) {
+          return FhirBoolean(true);
+        }
+      }
+    }
+    return FhirBoolean(false);
+  }
 }

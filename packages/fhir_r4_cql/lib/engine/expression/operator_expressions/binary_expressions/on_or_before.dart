@@ -146,9 +146,11 @@ class OnOrBefore extends BinaryExpression {
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
-    return sameOrBefore(left, right, precision);
+    // OnOrBefore is semantically equivalent to SameOrBefore
+    return SameOrBefore.sameOrBefore(left, right, precision);
   }
 
+  @Deprecated('Use SameOrBefore.sameOrBefore instead')
   static FhirBoolean? sameOrBefore(
       dynamic left, dynamic right, CqlDateTimePrecision? precision) {
     if (left == null || right == null) {

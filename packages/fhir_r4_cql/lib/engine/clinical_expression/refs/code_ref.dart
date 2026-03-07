@@ -65,6 +65,11 @@ class CodeRef extends Ref {
       throw ArgumentError('CqlLibrary not found in context');
     }
 
+    // Cross-library resolution
+    if (libraryName != null) {
+      return library.resolveCodeRefFromLibrary(name, libraryName!);
+    }
+
     final CqlCode? code = library.resolveCodeRef(name);
 
     return code;

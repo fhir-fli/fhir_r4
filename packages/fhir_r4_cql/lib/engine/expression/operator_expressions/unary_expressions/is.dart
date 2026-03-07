@@ -44,10 +44,12 @@ class Is extends UnaryExpression {
 
   @override
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{
-      'type': type,
-      'operand': operand.toJson(),
-    };
+    final data = <String, dynamic>{};
+    if (isType != null) {
+      data['isType'] = isType!.toJson();
+    }
+    data['type'] = type;
+    data['operand'] = operand.toJson();
     if (isTypeSpecifier != null) {
       data['isTypeSpecifier'] = isTypeSpecifier!.toJson();
     }
@@ -91,6 +93,11 @@ class Is extends UnaryExpression {
     }
 
     if (isType != null) {
+      // Use FHIR type matching for FHIR-namespaced types (lowercase primitives
+      // like 'string', 'code', 'uri' etc.), CQL type matching otherwise.
+      if (isType!.namespaceURI == 'http://hl7.org/fhir') {
+        return FhirBoolean(_matchesFhirType(value, isType!.localPart));
+      }
       return FhirBoolean(_matchesType(value, isType!.localPart));
     }
 
@@ -127,6 +134,12 @@ class Is extends UnaryExpression {
         return value is Concept || value is CqlConcept;
       case 'Interval':
         return value is CqlInterval;
+      case 'Vocabulary':
+        return value is CqlValueSet || value is CqlCodeSystem;
+      case 'ValueSet':
+        return value is CqlValueSet;
+      case 'CodeSystem':
+        return value is CqlCodeSystem;
       default:
         return false;
     }
@@ -222,6 +235,9 @@ class Is extends UnaryExpression {
       case 'Reference':
         return value is Reference;
       default:
+        // Try CQL type matching (for types like Vocabulary, ValueSet, CodeSystem
+        // that don't exist in FHIR but may have FHIR namespace forced by visitor)
+        if (_matchesType(value, name)) return true;
         // Fallback: compare runtime type name
         if (value is FhirBase) {
           return value.runtimeType.toString() == name;

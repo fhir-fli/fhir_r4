@@ -1,6 +1,6 @@
-import 'package:fhir_r4/fhir_r4.dart' hide Quantity;
-import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity;
-import 'package:ucum/ucum.dart' show ValidatedQuantity;
+import 'package:fhir_r4/fhir_r4.dart' hide Quantity, Ratio;
+import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity, Ratio;
+import 'package:ucum/ucum.dart' show ValidatedQuantity, ValidatedRatio;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -103,25 +103,98 @@ class FunctionRef extends ExpressionRef {
     }
 
     if (libraryName == null) {
-      throw ArgumentError('Library name cannot be null for FunctionRef');
+      // Handle well-known CQL system functions that may be parsed as FunctionRef
+      final result = await _trySystemFunction(context);
+      if (!identical(result, _notHandled)) return result;
+
+      // Pre-evaluate operands for runtime type matching when signature is absent
+      List<dynamic>? evaluatedOperands;
+      if (signature == null && operand != null && operand!.isNotEmpty) {
+        evaluatedOperands = <dynamic>[];
+        for (final op in operand!) {
+          evaluatedOperands.add(await op.execute(context));
+        }
+      }
+
+      // Try resolving as a local (same-library) function, including fluent functions
+      final localFuncDef = library.resolveLocalFunctionDef(name,
+          operandCount: operand?.length ?? 0,
+          signature: signature,
+          operandValues: evaluatedOperands);
+      if (localFuncDef != null) {
+        final functionContext = Map<String, dynamic>.from(context);
+        if (operand != null && localFuncDef.operand != null) {
+          for (int i = 0;
+              i < operand!.length && i < localFuncDef.operand!.length;
+              i++) {
+            final paramName = localFuncDef.operand![i].name;
+            final operandValue = evaluatedOperands != null
+                ? evaluatedOperands[i]
+                : await operand![i].execute(context);
+            functionContext[paramName] = operandValue;
+          }
+        }
+        return await localFuncDef.execute(functionContext);
+      }
+
+      // Search included libraries for fluent function definitions
+      final fluentResult = await library.resolveFluentFunction(name,
+          operandCount: operand?.length ?? 0,
+          signature: signature,
+          operandValues: evaluatedOperands);
+      if (fluentResult != null) {
+        final (funcDef, funcLib) = fluentResult;
+        final functionContext = Map<String, dynamic>.from(context);
+        functionContext['library'] = funcLib;
+        if (operand != null && funcDef.operand != null) {
+          for (int i = 0;
+              i < operand!.length && i < funcDef.operand!.length;
+              i++) {
+            final paramName = funcDef.operand![i].name;
+            final operandValue = evaluatedOperands != null
+                ? evaluatedOperands[i]
+                : await operand![i].execute(context);
+            functionContext[paramName] = operandValue;
+          }
+        }
+        final result = await funcDef.execute(functionContext);
+        context['library'] = library;
+        return result;
+      }
+
+      throw ArgumentError('Function not found: $name');
     }
 
+    // Try hardcoded fast paths for well-known libraries
     final libLower = libraryName!.toLowerCase();
     if (libLower == 'fhirhelpers') {
-      return await _fhirHelpers(context);
-    }
-    if (libLower == 'fc' || libLower == 'fhircommon') {
-      return await _fhirCommon(context);
+      final result = await _fhirHelpers(context);
+      if (!identical(result, _notHandled)) return result;
+    } else if (libLower == 'fc' || libLower == 'fhircommon') {
+      final result = await _fhirCommon(context);
+      if (!identical(result, _notHandled)) return result;
     }
 
-    final functionDef = await library.resolveFunctionRef(name, libraryName!);
+    // Generic resolution: resolve function from included library
+    final functionDef = await library.resolveFunctionRef(name, libraryName!,
+        operandCount: operand?.length ?? 0, signature: signature);
 
     if (functionDef == null) {
+      // For FHIRHelpers, many functions are external stubs — return null
+      if (libLower == 'fhirhelpers') return null;
       throw ArgumentError('Function definition not found for $name');
     }
 
+    // Get the included library for setting context correctly
+    final includedLib = await library.resolveIncludedLibrary(libraryName!);
+
     // Create a new context for function execution
     final functionContext = Map<String, dynamic>.from(context);
+
+    // Set the included library as the active library for the function scope
+    if (includedLib != null) {
+      functionContext['library'] = includedLib;
+    }
 
     // Evaluate operands and add them to the function context with parameter names
     if (operand != null && functionDef.operand != null) {
@@ -135,7 +208,31 @@ class FunctionRef extends ExpressionRef {
     }
 
     // Execute the function with the prepared context
-    return await functionDef.execute(functionContext);
+    final result = await functionDef.execute(functionContext);
+
+    // Restore the original library in context
+    context['library'] = library;
+
+    return result;
+  }
+
+  static const _notHandled = Object();
+
+  Future<dynamic> _trySystemFunction(Map<String, dynamic> context) async {
+    switch (name.toLowerCase()) {
+      case 'descendents':
+      case 'descendants':
+        if (operand != null && operand!.isNotEmpty) {
+          final value = await operand![0].execute(context);
+          if (value == null) return null;
+          final results = <dynamic>[];
+          Descendents.collectDescendants(value, results);
+          return results;
+        }
+        return null;
+      default:
+        return _notHandled;
+    }
   }
 
   Future<dynamic> _fhirHelpers(Map<String, dynamic> context) async {
@@ -148,8 +245,31 @@ class FunctionRef extends ExpressionRef {
         return _helperToBoolean(context);
       case 'ToDate':
         return _helperToDate(context);
+      case 'ToDateTime':
+        return _helperToDateTime(context);
       case 'ToCode':
         return _helperToCode(context);
+      case 'ToInteger':
+        return _helperToInteger(context);
+      case 'ToDecimal':
+        return _helperToDecimal(context);
+      case 'ToTime':
+        return _helperToTime(context);
+      case 'ToInterval':
+        return _helperToInterval(context);
+      case 'ToQuantity':
+        return _helperToQuantity(context);
+      case 'ToRatio':
+        return _helperToRatio(context);
+      case 'ToCalendarUnit':
+        return _helperToCalendarUnit(context);
+      case 'ToValue':
+        return _helperToValue(context);
+      case 'ToValueSet':
+        return _helperToValueSet(context);
+      case 'ToQuantityIgnoringComparator':
+        return _helperToQuantity(context);
+      // External FHIR functions – not implemented as CQL helpers
       case 'resolve':
       case 'reference':
       case 'extension':
@@ -167,19 +287,9 @@ class FunctionRef extends ExpressionRef {
       case 'subsumes':
       case 'subsumedBy':
       case 'htmlChecks':
-      case 'ToDateTime':
-        return _helperToDateTime(context);
-      case 'ToInterval':
-        return _helperToInterval(context);
-      case 'ToQuantity':
-        return _helperToQuantity(context);
-      case 'ToValue':
-      case 'ToValueSet':
-      case 'ToRatio':
-      case 'ToCalendarUnit':
-      default:
-        // Handle other FHIR helpers as needed
         return null;
+      default:
+        return _notHandled;
     }
   }
 
@@ -268,22 +378,32 @@ class FunctionRef extends ExpressionRef {
       ValidatedQuantity? high;
       if (value.low != null) {
         final numVal = value.low!.value?.valueNum;
-        final unit = value.low!.unit?.valueString ?? value.low!.code?.valueString ?? '1';
-        if (numVal != null) low = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        final unit =
+            value.low!.unit?.valueString ?? value.low!.code?.valueString ?? '1';
+        if (numVal != null) {
+          low = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        }
       }
       if (value.high != null) {
         final numVal = value.high!.value?.valueNum;
-        final unit = value.high!.unit?.valueString ?? value.high!.code?.valueString ?? '1';
-        if (numVal != null) high = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        final unit = value.high!.unit?.valueString ??
+            value.high!.code?.valueString ??
+            '1';
+        if (numVal != null) {
+          high = ValidatedQuantity.fromNumber(numVal, unit: unit);
+        }
       }
-      return CqlInterval(low: low, high: high, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: low, high: high, lowClosed: true, highClosed: true);
     }
     // FHIR dateTime or instant → point interval
     if (value is FhirDateTime || value is FhirInstant) {
-      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: value, high: value, lowClosed: true, highClosed: true);
     }
     if (value is FhirDate) {
-      return CqlInterval(low: value, high: value, lowClosed: true, highClosed: true);
+      return CqlInterval(
+          low: value, high: value, lowClosed: true, highClosed: true);
     }
     // Map with start/end (e.g. from walkFhirPath)
     if (value is Map<String, dynamic>) {
@@ -312,13 +432,16 @@ class FunctionRef extends ExpressionRef {
     final value = await operand![0].execute(context);
     if (value == null) return null;
     if (value is ValidatedQuantity) return value;
-    if (value is fhir.Quantity) {
-      final num? numVal = value.value?.valueNum;
-      final unit =
-          value.unit?.valueString ?? value.code?.valueString ?? '1';
-      if (numVal != null) {
-        return ValidatedQuantity.fromNumber(numVal, unit: unit);
-      }
+    if (value is fhir.Quantity) return _fhirQuantityToValidated(value);
+    return null;
+  }
+
+  ValidatedQuantity? _fhirQuantityToValidated(fhir.Quantity? q) {
+    if (q == null) return null;
+    final num? numVal = q.value?.valueNum;
+    final unit = q.unit?.valueString ?? q.code?.valueString ?? '1';
+    if (numVal != null) {
+      return ValidatedQuantity.fromNumber(numVal, unit: unit);
     }
     return null;
   }
@@ -367,6 +490,133 @@ class FunctionRef extends ExpressionRef {
       );
     }
     return null;
+  }
+
+  Future<dynamic> _helperToInteger(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    if (value is FhirInteger) return value;
+    if (value is FhirPositiveInt) {
+      return FhirInteger(value.valueInt);
+    }
+    if (value is FhirUnsignedInt) {
+      return FhirInteger(value.valueInt);
+    }
+    if (value is int) return FhirInteger(value);
+    return null;
+  }
+
+  Future<dynamic> _helperToDecimal(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    if (value is FhirDecimal) return value;
+    if (value is double) return FhirDecimal(value);
+    if (value is num) return FhirDecimal(value.toDouble());
+    return null;
+  }
+
+  Future<dynamic> _helperToTime(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    if (value is FhirTime) return value;
+    if (value is String) return FhirTime(value);
+    return null;
+  }
+
+  Future<dynamic> _helperToCalendarUnit(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    final str = value is String
+        ? value
+        : value is PrimitiveType
+            ? value.valueString
+            : value.toString();
+    if (str == null) return null;
+    const ucumToCql = {
+      'ms': 'millisecond',
+      's': 'second',
+      'min': 'minute',
+      'h': 'hour',
+      'd': 'day',
+      'wk': 'week',
+      'mo': 'month',
+      'a': 'year',
+    };
+    return ucumToCql[str] ?? str;
+  }
+
+  Future<dynamic> _helperToRatio(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    if (value is ValidatedRatio) return value;
+    if (value is fhir.Ratio) {
+      final num = _fhirQuantityToValidated(value.numerator);
+      final den = _fhirQuantityToValidated(value.denominator);
+      if (num != null && den != null) {
+        return ValidatedRatio(numerator: num, denominator: den);
+      }
+    }
+    return null;
+  }
+
+  Future<dynamic> _helperToValueSet(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    String? uri;
+    if (value is String) {
+      uri = value;
+    } else if (value is PrimitiveType) {
+      uri = value.valueString;
+    }
+    if (uri != null) {
+      return CqlValueSet(id: uri, version: null, name: '');
+    }
+    return null;
+  }
+
+  Future<dynamic> _helperToValue(Map<String, dynamic> context) async {
+    if (operand == null || operand!.isEmpty) return null;
+    final value = await operand![0].execute(context);
+    if (value == null) return null;
+    // Primitive unwrapping
+    if (value is FhirBoolean) return value;
+    if (value is FhirInteger) return value;
+    if (value is FhirDecimal) return value;
+    if (value is FhirString) return value.valueString;
+    if (value is FhirDate) return value;
+    if (value is FhirDateTime) return value;
+    if (value is FhirTime) return value;
+    if (value is FhirUri) return value.valueString;
+    if (value is FhirId) return value.valueString;
+    if (value is FhirPositiveInt) return FhirInteger(value.valueInt);
+    if (value is FhirUnsignedInt) return FhirInteger(value.valueInt);
+    // Complex types
+    if (value is CodeableConcept) {
+      return await _helperToConcept(context);
+    }
+    if (value is Coding) {
+      return await _helperToCode(context);
+    }
+    if (value is fhir.Quantity) {
+      return _fhirQuantityToValidated(value);
+    }
+    if (value is Period) return _toInterval(value);
+    if (value is Range) return _toInterval(value);
+    if (value is fhir.Ratio) {
+      final num = _fhirQuantityToValidated(value.numerator);
+      final den = _fhirQuantityToValidated(value.denominator);
+      if (num != null && den != null) {
+        return ValidatedRatio(numerator: num, denominator: den);
+      }
+    }
+    // Everything else passthrough
+    return value;
   }
 
   Future<dynamic> _helperToConcept(context) async {

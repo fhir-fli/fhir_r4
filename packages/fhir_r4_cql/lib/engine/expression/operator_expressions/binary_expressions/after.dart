@@ -231,6 +231,20 @@ class After extends BinaryExpression {
     CqlDateTimePrecision? precision,
   ]) {
     if (precision == null) {
+      // Check for precision mismatch (e.g., seconds vs milliseconds)
+      final leftHasMs = left.millisecond != null;
+      final rightHasMs = right.millisecond != null;
+      if (leftHasMs != rightHasMs) {
+        // Compare at lower precision (seconds)
+        final leftSecStr = left.valueString?.split('.').first;
+        final rightSecStr = right.valueString?.split('.').first;
+        if (leftSecStr == null || rightSecStr == null) return null;
+        final cmp = leftSecStr.compareTo(rightSecStr);
+        if (cmp > 0) return FhirBoolean(true);
+        if (cmp < 0) return FhirBoolean(false);
+        // Equal at seconds level but different ms precision → indeterminate
+        return null;
+      }
       final result = left.isAfter(right);
       return result == null ? null : FhirBoolean(result);
     } else {
@@ -295,6 +309,13 @@ class After extends BinaryExpression {
       final result = left.isAfter(right);
       return result == null ? null : FhirBoolean(result);
     } else {
+      // Normalize to UTC when timezone offsets present and precision is hour+
+      if (SameAs.isHourOrFiner(precision) &&
+          (left.timeZoneOffset != null || right.timeZoneOffset != null)) {
+        left = SameAs.normalizeToUtc(left);
+        right = SameAs.normalizeToUtc(right);
+      }
+
       // Start from the highest precision and go down to the specified one.
       if (left.year == null || right.year == null) {
         return null;

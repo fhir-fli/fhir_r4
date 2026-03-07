@@ -83,6 +83,13 @@ class Length extends UnaryExpression {
   Future<FhirInteger?> execute(Map<String, dynamic> context) async {
     final operand = await this.operand.execute(context);
     if (operand == null) {
+      // CQL spec: Length has two overloads:
+      //   Length(argument String) Integer - returns null if argument is null
+      //   Length(argument List<T>) Integer - returns 0 if argument is null
+      // Determine which overload by inspecting the operand's type information.
+      if (_operandIsList()) {
+        return FhirInteger(0);
+      }
       return null;
     }
     if (operand is String) {
@@ -92,5 +99,41 @@ class Length extends UnaryExpression {
       return FhirInteger(operand.length);
     }
     return null;
+  }
+
+  /// Determines whether the operand is typed as a list by checking various
+  /// type indicators on the operand expression.
+  bool _operandIsList() {
+    final op = operand;
+    // Check if the operand is a ListExpression
+    if (op is ListExpression) {
+      return true;
+    }
+    // Check resultTypeName on the operand
+    final rtn = op.resultTypeName;
+    if (rtn != null &&
+        (rtn.startsWith('List') ||
+            rtn.startsWith('list') ||
+            rtn.contains('List<') ||
+            rtn.contains('list<'))) {
+      return true;
+    }
+    // Check resultTypeSpecifier on the operand
+    final rts = op.resultTypeSpecifier;
+    if (rts is ListTypeSpecifier) {
+      return true;
+    }
+    // Check if the operand is an As expression with a list type
+    if (op is As) {
+      final asTypeName = op.asType?.localPart;
+      if (asTypeName != null &&
+          (asTypeName.startsWith('List') || asTypeName.startsWith('list'))) {
+        return true;
+      }
+      if (op.asTypeSpecifier is ListTypeSpecifier) {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -156,11 +156,12 @@ class As extends UnaryExpression {
       if (value is List) {
         return value
             .map((e) => _applySpecifier(e, asTypeSpecifier!))
-            .where((e) => e != null)
+            .where((e) => e != _notMatched)
             .toList();
       }
       // 2) Otherwise, cast the single value
-      return _applySpecifier(value, asTypeSpecifier!);
+      final result = _applySpecifier(value, asTypeSpecifier!);
+      return result == _notMatched ? null : result;
     }
 
     // 4) If there's a simple asType, run your atomic‐cast logic
@@ -202,21 +203,32 @@ class As extends UnaryExpression {
         case 'Concept':
           return value is Concept ? value : null;
         case 'Interval':
+        case 'CqlInterval':
           return value is CqlInterval ? value : null;
         case 'Interval<Integer>':
-          return value is CqlInterval<FhirInteger> ? value : null;
+        case 'CqlInterval<Integer>':
+          return value is CqlInterval ? value : null;
         case 'Interval<Long>':
+        case 'CqlInterval<Long>':
           return value is CqlInterval<FhirInteger64> ? value : null;
         case 'Interval<Decimal>':
-          return value is CqlInterval<FhirDecimal> ? value : null;
+        case 'CqlInterval<Decimal>':
+          return value is CqlInterval ? value : null;
         case 'Interval<FhirDate>':
-          return value is CqlInterval<FhirDate> ? value : null;
+        case 'CqlInterval<FhirDate>':
+        case 'CqlInterval<Date>':
+          return value is CqlInterval ? value : null;
         case 'Interval<FhirDateTime>':
-          return value is CqlInterval<FhirDateTime> ? value : null;
+        case 'CqlInterval<FhirDateTime>':
+        case 'CqlInterval<DateTime>':
+          return value is CqlInterval ? value : null;
         case 'Interval<FhirTime>':
-          return value is CqlInterval<FhirTime> ? value : null;
+        case 'CqlInterval<FhirTime>':
+        case 'CqlInterval<Time>':
+          return value is CqlInterval ? value : null;
         case 'Interval<Quantity>':
-          return value is CqlInterval<ValidatedQuantity> ? value : null;
+        case 'CqlInterval<Quantity>':
+          return value is CqlInterval ? value : null;
         case 'ValueSet':
           return value is ValueSet ? value : null;
         case 'uri':
@@ -238,8 +250,14 @@ class As extends UnaryExpression {
     return value;
   }
 
+  /// Sentinel value used to distinguish "element does not match the type"
+  /// from a legitimate null element value. Uses a unique object rather than
+  /// a String to avoid triggering type coercion in FHIR type == operators.
+  static final Object _notMatched = Object();
+
   /// Recursively applies a TypeSpecifierExpression to a single element,
-  /// returning the element if it matches, or null if it doesn't.
+  /// returning the element if it matches, or [_notMatched] if it doesn't.
+  /// A null element that passes through validly will remain null.
   dynamic _applySpecifier(dynamic element, TypeSpecifierExpression spec) {
     // 1) ListTypeSpecifier: unwrap and reapply to the same element
     if (spec is ListTypeSpecifier && spec.elementType != null) {
@@ -250,84 +268,106 @@ class As extends UnaryExpression {
     if (spec is ChoiceTypeSpecifier) {
       for (final choice in spec.choice ?? <TypeSpecifierExpression>[]) {
         final matched = _applySpecifier(element, choice);
-        if (matched != null) return matched;
+        if (matched != _notMatched) return matched;
       }
-      return null;
+      return _notMatched;
     }
 
     // 3) NamedTypeSpecifier: atomic check
     if (spec is NamedTypeSpecifier) {
       final name = spec.namespace.localPart;
       switch (name) {
+        // Null type: only match null elements
+        case 'Null':
+          return element == null ? null : _notMatched;
+        // Any/Unknown: match any element (pass through)
+        case 'Any':
+        case 'Unknown':
+          return element;
         case 'Integer':
         case 'integer':
-          return element is FhirInteger ? element : null;
+          return element is FhirInteger ? element : _notMatched;
         case 'Decimal':
         case 'decimal':
-          return element is FhirDecimal ? element : null;
+          return element is FhirDecimal ? element : _notMatched;
         case 'String':
-          return element is String ? element : null;
+          return element is String ? element : _notMatched;
         case 'string':
-          return (element is String || element is FhirString) ? element : null;
+          return (element is String || element is FhirString)
+              ? element
+              : _notMatched;
         case 'Boolean':
         case 'boolean':
-          return element is FhirBoolean ? element : null;
+          return element is FhirBoolean ? element : _notMatched;
         case 'Quantity':
           if (element is ValidatedQuantity) return element;
-          if (element is fhir.Quantity) return _fhirQuantityToValidated(element);
-          return null;
+          if (element is fhir.Quantity) {
+            return _fhirQuantityToValidated(element) ?? _notMatched;
+          }
+          return _notMatched;
         case 'Ratio':
-          return element is ValidatedRatio ? element : null;
+          return element is ValidatedRatio ? element : _notMatched;
         case 'DateTime':
         case 'dateTime':
-          return element is FhirDateTime ? element : null;
+          return element is FhirDateTime ? element : _notMatched;
         case 'Date':
         case 'date':
-          return element is FhirDate ? element : null;
+          return element is FhirDate ? element : _notMatched;
         case 'Time':
         case 'time':
-          return element is FhirTime ? element : null;
+          return element is FhirTime ? element : _notMatched;
         case 'Code':
-          return element is Code ? element : null;
+          return element is Code ? element : _notMatched;
         case 'code':
-          return element is FhirCode ? element : null;
+          return element is FhirCode ? element : _notMatched;
         case 'Concept':
-          return element is Concept ? element : null;
+          return element is Concept ? element : _notMatched;
         case 'Interval':
-          return element is CqlInterval ? element : null;
+        case 'CqlInterval':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<Integer>':
-          return element is CqlInterval<FhirInteger> ? element : null;
+        case 'CqlInterval<Integer>':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<Long>':
-          return element is CqlInterval<FhirInteger64> ? element : null;
+        case 'CqlInterval<Long>':
+          return element is CqlInterval<FhirInteger64> ? element : _notMatched;
         case 'Interval<Decimal>':
-          return element is CqlInterval<FhirDecimal> ? element : null;
+        case 'CqlInterval<Decimal>':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<FhirDate>':
-          return element is CqlInterval<FhirDate> ? element : null;
+        case 'CqlInterval<FhirDate>':
+        case 'CqlInterval<Date>':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<FhirDateTime>':
-          return element is CqlInterval<FhirDateTime> ? element : null;
+        case 'CqlInterval<FhirDateTime>':
+        case 'CqlInterval<DateTime>':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<FhirTime>':
-          return element is CqlInterval<FhirTime> ? element : null;
+        case 'CqlInterval<FhirTime>':
+        case 'CqlInterval<Time>':
+          return element is CqlInterval ? element : _notMatched;
         case 'Interval<Quantity>':
-          return element is CqlInterval<ValidatedQuantity> ? element : null;
+        case 'CqlInterval<Quantity>':
+          return element is CqlInterval ? element : _notMatched;
         case 'ValueSet':
-          return element is ValueSet ? element : null;
+          return element is ValueSet ? element : _notMatched;
         case 'uri':
-          return element is FhirUri ? element : null;
+          return element is FhirUri ? element : _notMatched;
         case 'base64Binary':
-          return element is FhirBase64Binary ? element : null;
+          return element is FhirBase64Binary ? element : _notMatched;
         case 'Coding':
         case 'coding':
-          return element is Coding ? element : null;
+          return element is Coding ? element : _notMatched;
         case 'CodeableConcept':
         case 'codeableConcept':
-          return element is CodeableConcept ? element : null;
+          return element is CodeableConcept ? element : _notMatched;
         default:
-          return null;
+          return _notMatched;
       }
     }
 
-    // Unknown specifier type → null
-    return null;
+    // Unknown specifier type → not matched
+    return _notMatched;
   }
 
   /// Converts a FHIR Quantity to a CQL ValidatedQuantity.

@@ -18,12 +18,14 @@ class CqlQuerySourceVisitor extends CqlBaseVisitor<CqlExpression> {
         // convert it to a Property(scope, path).
         if (ref is IdentifierRef && ref.libraryName != null) {
           final qualifier = ref.libraryName!;
-          if (CqlBaseVisitor.isQueryAlias(qualifier)) {
-            return Property(scope: qualifier, path: ref.name!);
-          }
+          // Check let identifiers first — they take precedence over query aliases
+          // because visitLetClause adds to both scopes but should use QueryLetRef.
           if (CqlBaseVisitor.isLetIdentifier(qualifier)) {
             return Property(
-                source: QueryLetRef(name: qualifier), path: ref.name!);
+                source: QueryLetRef(name: qualifier), path: ref.name);
+          }
+          if (CqlBaseVisitor.isQueryAlias(qualifier)) {
+            return Property(scope: qualifier, path: ref.name);
           }
         }
         return ref;

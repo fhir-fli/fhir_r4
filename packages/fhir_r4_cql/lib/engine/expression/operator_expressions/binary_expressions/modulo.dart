@@ -108,7 +108,13 @@ class Modulo extends BinaryExpression {
 
     if (left == null || right == null) {
       return null;
-    } else {
+    }
+
+    // Modulo by zero returns null per the CQL spec
+    if (right is FhirNumber && right.valueNum == 0) return null;
+    if (right is FhirInteger64 && right.valueBigInt == BigInt.zero) return null;
+
+    try {
       switch (left) {
         case FhirInteger _:
           if (right is FhirInteger) {
@@ -164,9 +170,10 @@ class Modulo extends BinaryExpression {
           }
           break;
       }
+    } catch (_) {
+      return null;
     }
 
-    throw ArgumentError('Invalid arguments for modulo operation'
-        '1. $left ${left.runtimeType}\n2. $right ${right.runtimeType}');
+    return null;
   }
 }

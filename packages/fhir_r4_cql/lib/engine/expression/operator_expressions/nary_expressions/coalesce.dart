@@ -176,6 +176,22 @@ class Coalesce extends NaryExpression {
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async {
+    // Single-operand list form: Coalesce<T>(arguments List<T>) T
+    // Iterate through list elements to find the first non-null value.
+    if (operand!.length == 1) {
+      final result = await operand!.first.execute(context);
+      if (result is List) {
+        for (final element in result) {
+          if (element != null) {
+            return element;
+          }
+        }
+        return null;
+      }
+      return result;
+    }
+
+    // Multi-argument form: Coalesce<T>(arg1 T, arg2 T, ...) T
     for (final op in operand!) {
       final result = await op.execute(context);
       if (result != null) {

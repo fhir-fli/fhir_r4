@@ -101,8 +101,16 @@ class Power extends BinaryExpression {
         }
         break;
       default:
-        throw ArgumentError(
-            'First argument must be an Integer, Long, or Decimal');
+        // Non-literal operand — let execution handle type checking
+        operand.add(first);
+        operand.add(second);
+    }
+
+    if (operand.length != 2) {
+      // Literal case didn't match the right operand type — use raw operands
+      operand.clear();
+      operand.add(first);
+      operand.add(second);
     }
 
     return Power(
@@ -171,8 +179,18 @@ class Power extends BinaryExpression {
       if (first == null || second == null) {
         return null;
       } else if (first is FhirInteger && second is FhirInteger) {
-        return FhirInteger.tryParse(pow(first.valueNum!, second.valueNum!));
+        final result = pow(first.valueNum!, second.valueNum!);
+        // Negative exponents produce non-integer results
+        if (result is double && result != result.roundToDouble()) {
+          return FhirDecimal(result);
+        }
+        return FhirInteger.tryParse(result) ?? FhirDecimal(result.toDouble());
       } else if (first is FhirInteger64 && second is FhirInteger64) {
+        if (second.valueBigInt! < BigInt.zero) {
+          return FhirDecimal(
+              pow(first.valueBigInt!.toDouble(), second.valueBigInt!.toDouble())
+                  .toDouble());
+        }
         return FhirInteger64(
             first.valueBigInt!.pow(second.valueBigInt!.toInt()));
       } else if (first is FhirDecimal && second is FhirDecimal) {

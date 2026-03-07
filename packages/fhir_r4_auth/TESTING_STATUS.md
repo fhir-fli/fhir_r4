@@ -1,6 +1,6 @@
 # fhir_r4_auth Testing Status & Setup Guide
 
-**Last Updated:** February 9, 2026
+**Last Updated:** February 23, 2026
 
 ## Current Status
 
@@ -9,20 +9,31 @@
 | Component | Status | Notes |
 |-----------|--------|-------|
 | Core Authentication | ✅ Pass | OAuth 2.0, PKCE, JWT validation |
+| Backend Service Auth | ✅ Pass | client_credentials grant with JWT assertion |
 | Token Storage | ✅ Pass | Secure storage with platform encryption |
 | Session Management | ✅ Pass | Idle/absolute timeouts, warnings |
 | Audit Logging | ✅ Pass | HIPAA-compliant event logging |
 | Rate Limiting | ✅ Pass | Token endpoint protection |
 | Security Tests | ✅ Pass | Algorithm confusion, tampering, replay attacks |
-| Unit Tests | ✅ 411 pass | 2 skipped (platform-specific) |
+| Unit Tests | ✅ 396 pass | 2 skipped (platform-specific) |
 | Integration Tests | ✅ Pass | Real server tests handle network gracefully |
+
+### Auth Flow Status
+
+| Flow | Code | Epic Tested | SMART Sandbox |
+|------|------|-------------|---------------|
+| Patient Standalone | ✅ Done | ✅ Yes | ✅ Yes |
+| Clinician Standalone | ✅ Done | ✅ Yes | ✅ Yes |
+| Patient EHR Launch | ✅ Done | ✅ Yes | ✅ Yes |
+| Clinician EHR Launch | ✅ Done | ✅ Yes | ✅ Yes |
+| System/Backend Service | ✅ Done | ✅ Yes | ✅ Yes |
 
 ### Demo Apps Status
 
 | Demo | Status | Notes |
 |------|--------|-------|
-| standalone_demo | ✅ Tested | Verified against Epic sandbox (Patient mode) |
-| ehr_launch_demo | ✅ Tested | Verified against Epic sandbox via Launch Simulator |
+| standalone_demo | ✅ Tested | Epic (Patient mode); SMART Sandbox vendor added |
+| ehr_launch_demo | ✅ Tested | Epic (EHR Launch); SMART Sandbox vendor added |
 | CDS Hooks | Not Started | Not implemented |
 
 ### Platform Testing
@@ -64,6 +75,28 @@
 ---
 
 ## Fixes Applied
+
+### February 23, 2026
+
+#### 1. Backend Service Auth Flow (client_credentials grant)
+**Files:** `lib/src/oauth/oauth_flow.dart`, `lib/src/smart/smart_client.dart`, `lib/src/core/auth_client.dart`, `lib/src/core/auth_config.dart`
+- Added `performClientCredentialsGrant()` to `OAuthFlow` — POSTs with `grant_type=client_credentials`, `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer`, `client_assertion=<signed JWT>`
+- Updated `SmartFhirClient` to accept both `SmartConfig` and `BackendServiceConfig` via base `AuthConfig` type
+- Added `_performBackendServiceLogin()` — creates JWT via `JwtValidator.createSignedJwt()`, calls client credentials grant
+- Backend services re-authenticate on token expiry (no refresh tokens)
+- Updated `FhirAuthClient` base class to support re-authentication pattern alongside refresh tokens
+- Added `BackendServiceConfig.fromJson()` factory constructor
+
+#### 2. SMART Health IT Sandbox Vendor
+**Files:** `standalone_demo/lib/main.dart`, `ehr_launch_demo/lib/main.dart`
+- Added SMART Health IT Sandbox (https://launch.smarthealthit.org/) as a vendor option
+- PKCE and OpenID enabled for SMART Sandbox (unlike Epic)
+- Standalone demo wired up for system/backend service mode with private key input
+
+#### 3. Backend Service Unit Tests
+**Files:** `test/unit/oauth/backend_service_test.dart` (new), `test/unit/smart/backend_service_client_test.dart` (new)
+- 9 tests for `performClientCredentialsGrant()` (correct POST body, no Basic auth, error handling, rate limiting)
+- 8 tests for `SmartFhirClient` with `BackendServiceConfig` (config getters, fromJson, login flow, logout)
 
 ### February 9, 2026
 
@@ -151,6 +184,24 @@ flutter pub run build_runner build --delete-conflicting-outputs
 5. Enter launch URL: `http://localhost:8080`
 6. Launch
 
+### SMART Health IT Sandbox
+
+**Portal:** https://launch.smarthealthit.org/
+
+**Features:**
+- No pre-registration needed — sandbox generates client IDs dynamically
+- Supports PKCE and OpenID Connect
+- Supports all SMART launch modes (standalone, EHR launch, backend services)
+- Configurable patient/practitioner selection
+
+**Base URL:** Configurable via launcher (e.g., `https://launch.smarthealthit.org/v/r4/fhir`)
+
+**Usage:**
+1. Go to https://launch.smarthealthit.org/
+2. Select launch type (Provider Standalone, Patient Standalone, Provider EHR Launch, etc.)
+3. Configure patient/practitioner selection
+4. Copy the Launch URL or FHIR Server URL into the demo app
+
 ### Cerner Sandbox
 
 **Portal:** https://code.cerner.com/
@@ -221,7 +272,16 @@ flutter run -d <device-id>
 - Simulation mode when no launch params detected
 - Demo: `ehr_launch_demo`
 
-### 3. CDS Hooks Launch
+### 3. Backend Service / System Launch
+**Status:** ✅ Implemented (unit tested, manual testing pending)
+- App authenticates as a system (no user interaction)
+- Uses `client_credentials` grant with signed JWT assertion
+- Requires pre-registered public key (JWKS) with the FHIR server
+- No browser redirect — direct token endpoint call
+- Tokens expire and are re-obtained automatically (no refresh tokens)
+- Demo: `standalone_demo` (System mode)
+
+### 4. CDS Hooks Launch
 **Status:** Not implemented
 - App is invoked as a CDS Hook service
 - Receives `fhirAuthorization` in hook request
@@ -232,18 +292,20 @@ flutter run -d <device-id>
 ## Remaining Work
 
 ### High Priority
-1. [ ] Investigate re-enabling PKCE for non-Epic vendors (or when Epic adds support)
-2. [ ] Register Cerner apps and test against Cerner sandbox
-3. [ ] Test on macOS and iOS platforms
+1. [ ] Manual web testing: all 5 flows against SMART Health IT Sandbox
+2. [ ] Manual web testing: clinician standalone + clinician EHR launch against Epic
+3. [ ] Register Cerner apps and test against Cerner sandbox
+4. [ ] Test on macOS and iOS platforms
 
 ### Medium Priority
-4. [ ] Add wider scopes back once Epic compatibility is confirmed (patient/*.read, openid, fhirUser)
-5. [ ] Register Epic System app for backend service flow testing
+5. [ ] Register Epic System app for backend service flow testing against Epic
+6. [ ] Investigate re-enabling PKCE for non-Epic vendors (or when Epic adds support)
+7. [ ] Add wider scopes back once Epic compatibility is confirmed (patient/*.read, openid, fhirUser)
 
 ### Lower Priority
-6. [ ] Implement CDS Hooks support in library
-7. [ ] Create CDS Hooks demo service
-8. [ ] Add more EHR vendors (Allscripts, athenahealth, etc.)
+8. [ ] Implement CDS Hooks support in library
+9. [ ] Create CDS Hooks demo service
+10. [ ] Add more EHR vendors (Allscripts, athenahealth, etc.)
 
 ---
 
@@ -253,11 +315,13 @@ flutter run -d <device-id>
 |------|---------|
 | `lib/src/` | Core authentication library |
 | `test/unit/` | Unit tests (storage, oauth, security, core) |
+| `test/unit/oauth/backend_service_test.dart` | Backend service client_credentials grant tests |
+| `test/unit/smart/backend_service_client_test.dart` | SmartFhirClient + BackendServiceConfig tests |
 | `test/integration/` | Integration tests with real servers |
 | `test/test_helpers/test_data.dart` | Test credentials and server configs |
-| `standalone_demo/lib/main.dart` | Standalone launch demo (Epic/Cerner) |
+| `standalone_demo/lib/main.dart` | Standalone launch demo (Epic/Cerner/SMART Sandbox) |
 | `standalone_demo/web/callback.html` | OAuth redirect handler |
-| `ehr_launch_demo/lib/main.dart` | EHR launch demo (Epic/Cerner) |
+| `ehr_launch_demo/lib/main.dart` | EHR launch demo (Epic/Cerner/SMART Sandbox) |
 | `ehr_launch_demo/web/callback.html` | OAuth redirect handler |
 
 ---
@@ -331,6 +395,8 @@ These failures are handled gracefully and don't indicate library issues.
 
 - **PKCE** (RFC 7636) - Proof Key for Code Exchange
 - **JWT Validation** - Signature verification, claims validation
+- **JWT Client Assertion** - Signed JWT for backend service authentication
+- **Client Credentials Grant** - SMART Backend Services (system-to-system auth)
 - **State/Nonce** - CSRF and replay attack prevention
 - **Secure Storage** - Platform-specific encryption (Keychain, KeyStore, etc.)
 - **Token Introspection** - RFC 7662 support
@@ -344,6 +410,8 @@ These failures are handled gracefully and don't indicate library issues.
 ## References
 
 - [SMART App Launch IG](https://hl7.org/fhir/smart-app-launch/)
+- [SMART Backend Services](https://hl7.org/fhir/smart-app-launch/backend-services.html)
+- [SMART Health IT Sandbox](https://launch.smarthealthit.org/)
 - [Epic FHIR Documentation](https://fhir.epic.com/)
 - [Epic Launch Simulator](https://fhir.epic.com/Documentation?docId=launching)
 - [Cerner FHIR Documentation](https://fhir.cerner.com/)

@@ -120,9 +120,7 @@ class CalculateAgeAt extends BinaryExpression {
         LiteralDate(birthDateStr.length > 10
             ? birthDateStr.substring(0, 10)
             : birthDateStr),
-        LiteralDate(asOfStr.length > 10
-            ? asOfStr.substring(0, 10)
-            : asOfStr),
+        LiteralDate(asOfStr.length > 10 ? asOfStr.substring(0, 10) : asOfStr),
       ],
     ).execute(context);
   }

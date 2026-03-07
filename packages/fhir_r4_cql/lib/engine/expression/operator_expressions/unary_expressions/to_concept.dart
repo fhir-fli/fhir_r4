@@ -72,7 +72,10 @@ class ToConcept extends UnaryExpression {
     }
 
     // Handle different input types
-    if (value is CqlCode) {
+    if (value is CqlConcept) {
+      // Already a Concept — return as-is
+      return value;
+    } else if (value is CqlCode) {
       // If already a CqlCode, create a CqlConcept with this code
       return CqlConcept(
         codes: [value],
@@ -136,7 +139,8 @@ class ToConcept extends UnaryExpression {
             system: single.system?.valueString,
             display: single.display?.valueString,
           );
-          return CqlConcept(codes: [code], display: single.display?.valueString);
+          return CqlConcept(
+              codes: [code], display: single.display?.valueString);
         } else if (single is CodeableConcept) {
           final codes = <CqlCode>[];
           for (final coding in single.coding ?? []) {

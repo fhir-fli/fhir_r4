@@ -1,6 +1,6 @@
 name: fhir_r4_path
 description: Dart Library supporting (almost) all Functionality for FHIRPath.
-version: 0.4.5
+version: 0.5.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
@@ -18,11 +18,9 @@ environment:
 
 dependencies:
   collection: ^1.19.1
-  fhir_r4: ^0.4.4
-  # fhir_r4:
-  #   path: ../fhir_r4
+  fhir_r4: ^0.5.0
   http: ^1.6.0
-  ucum: ^0.6.0
+  ucum: ^0.8.0
   universal_io: ^2.3.1
 
 dev_dependencies:

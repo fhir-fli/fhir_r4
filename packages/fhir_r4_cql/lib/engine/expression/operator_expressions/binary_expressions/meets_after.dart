@@ -117,7 +117,6 @@ class MeetsAfter extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): with precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
@@ -127,12 +126,46 @@ class MeetsAfter extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
 
+    return meetsAfter(left, right, precision);
+  }
+
+  static FhirBoolean? meetsAfter(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
-      final leftStart = left.getStart();
-      final rightEnd = right.getEnd();
-      return Equal.equal(leftStart, Successor.successor(rightEnd));
+      // getStart()/getEnd() return null for unknown boundaries (open null),
+      // but return MinValue/MaxValue for closed null (infinity endpoints).
+      final eLS = left.getStart();
+      final eLE = left.getEnd();
+      final eRS = right.getStart();
+      final eRE = right.getEnd();
+
+      // If intervals provably overlap, they cannot meet
+      if (Meets.intervalsOverlap(eLS, eLE, eRS, eRE, precision)) {
+        return FhirBoolean(false);
+      }
+
+      // Check meets after: leftStart = successor(rightEnd)
+      final result = Meets.checkMeetsAfter(eLS, eRE, precision);
+      if (result != null) return result;
+
+      // If leftEnd ≤ rightEnd, then leftStart ≤ leftEnd ≤ rightEnd < succ(rightEnd)
+      // so leftStart ≠ succ(rightEnd) → false
+      if (eLE != null && eRE != null) {
+        final le = precision != null
+            ? SameOrBefore.sameOrBefore(eLE, eRE, precision)
+            : LessOrEqual.lessOrEqual(eLE, eRE);
+        if (le?.valueBoolean == true) return FhirBoolean(false);
+      }
+      // If leftEnd < rightStart, left is entirely before right → can't meet after
+      if (eLE != null && eRS != null) {
+        final lt = precision != null
+            ? Before.before(eLE, eRS, precision)
+            : Less.less(eLE, eRS);
+        if (lt?.valueBoolean == true) return FhirBoolean(false);
+      }
+      return null;
     } else {
       return null;
     }

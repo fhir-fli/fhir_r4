@@ -61,4 +61,19 @@ class ForEach extends CqlExpression {
 
   @override
   String get type => 'ForEach';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
+    if (sourceResult == null) return null;
+    final items = sourceResult is List ? sourceResult : [sourceResult];
+    final results = [];
+    for (final item in items) {
+      context[scope] = item;
+      final result = await element.execute(context);
+      results.add(result);
+    }
+    context.remove(scope);
+    return results;
+  }
 }

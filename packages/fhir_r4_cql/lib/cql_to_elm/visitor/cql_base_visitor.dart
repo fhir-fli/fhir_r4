@@ -12,8 +12,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// which can be extended to create a visitor which only needs to handle
 /// a subset of the available methods.
 ///
-/// [T] is the print(ctx.runtimeType); return type of the visit operation. Use
-/// `void` for operations with no print(ctx.runtimeType); return type.
+/// [T] is the return type of the visit operation. Use
+/// `void` for operations with no return type.
 class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   CqlBaseVisitor([CqlLibrary? library]) : library = library ?? CqlLibrary();
 
@@ -510,8 +510,14 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       noQuoteString(ctx.text);
 
   @override
-  LiteralLong visitLongNumberLiteral(LongNumberLiteralContext ctx) =>
-      LiteralLong(BigInt.parse(ctx.text));
+  LiteralLong visitLongNumberLiteral(LongNumberLiteralContext ctx) {
+    var text = ctx.text;
+    // Strip trailing 'L' suffix from Long literals (e.g., '5L' → '5')
+    if (text.endsWith('L') || text.endsWith('l')) {
+      text = text.substring(0, text.length - 1);
+    }
+    return LiteralLong(BigInt.parse(text));
+  }
 
   @override
   dynamic visitMeetsIntervalOperatorPhrase(
@@ -607,7 +613,14 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       PointExtractorExpressionTermContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    visitChildren(ctx);
+    final exprTerm = ctx.expressionTerm();
+    if (exprTerm != null) {
+      final operand = byContext(exprTerm);
+      if (operand is CqlExpression) {
+        return PointFrom(operand: operand);
+      }
+    }
+    throw ArgumentError('$thisNode Invalid PointExtractorExpressionTerm');
   }
 
   @override
@@ -710,18 +723,12 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlQuerySourceVisitor(library).visitQuerySource(ctx);
 
   @override
-  dynamic visitRatio(RatioContext ctx) {
-    printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
-  }
+  LiteralRatio visitRatio(RatioContext ctx) =>
+      CqlRatioVisitor(library).visitRatio(ctx);
 
   @override
-  dynamic visitRatioLiteral(RatioLiteralContext ctx) {
-    printIf(ctx);
-    final int thisNode = getNextNode();
-    visitChildren(ctx);
-  }
+  LiteralRatio visitRatioLiteral(RatioLiteralContext ctx) =>
+      CqlRatioLiteralVisitor(library).visitRatioLiteral(ctx);
 
   @override
   String visitReferentialIdentifier(ReferentialIdentifierContext ctx) =>
@@ -878,7 +885,31 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   dynamic visitStartingClause(StartingClauseContext ctx) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    visitChildren(ctx);
+    if (ctx.expression() != null) {
+      return byContext(ctx.expression()!);
+    } else if (ctx.quantity() != null) {
+      return visitQuantity(ctx.quantity()!);
+    } else if (ctx.simpleLiteral() != null) {
+      final lit = ctx.simpleLiteral()!;
+      if (lit is SimpleNumberLiteralContext) {
+        final text = lit.text;
+        if (text.contains('.')) {
+          return LiteralDecimal(double.parse(text));
+        }
+        return LiteralInteger(int.parse(text));
+      } else if (lit is SimpleStringLiteralContext) {
+        // Strip surrounding quotes
+        var text = lit.text;
+        if (text.length >= 2 &&
+            ((text.startsWith("'") && text.endsWith("'")) ||
+                (text.startsWith('"') && text.endsWith('"')))) {
+          text = text.substring(1, text.length - 1);
+        }
+        return LiteralString(text);
+      }
+      return byContext(lit);
+    }
+    return visitChildren(ctx);
   }
 
   @override
@@ -1011,9 +1042,11 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
         if (nts != null) {
           _ensureFhirNamespace(nts);
         }
+        // Use the full type specifier (which may be a ListTypeSpecifier,
+        // IntervalTypeSpecifier, etc.) not just the NamedTypeSpecifier.
         final asExpr = As(
           operand: operand,
-          asTypeSpecifier: nts,
+          asTypeSpecifier: nts ?? typeSpecifier,
         )..strict = false;
         if (_inSortClause) return asExpr;
         return _wrapWithFhirHelper(asExpr, nts);
@@ -1123,6 +1156,12 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       // case 'medicationCodeableConcept':
       // case 'vaccineCode':
       //   return 'ToConcept';
+      // Boolean properties
+      case 'active':
+        return 'ToBoolean';
+      // Date properties
+      case 'birthDate':
+        return 'ToDate';
       // DateTime properties
       case 'authoredOn':
       case 'issued':
@@ -1135,6 +1174,128 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       default:
         return null;
     }
+  }
+
+  /// Look up the [ClassInfoElement] for a given FHIR class and property path
+  /// using the model info loaded for the current library's FHIR using.
+  ClassInfoElement? getElementInfo(String className, String propertyPath) {
+    for (final model in library.usings?.def ?? <UsingDef>[]) {
+      if (model.localIdentifier == null) continue;
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
+      if (modelInfo == null) continue;
+      for (final ti in modelInfo.typeInfo) {
+        if (ti is ClassInfo &&
+            (ti.name == className || ti.label == className)) {
+          for (final el in ti.element ?? <ClassInfoElement>[]) {
+            if (el.name == propertyPath) return el;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  /// Check if a [ClassInfoElement] represents a FHIR choice type
+  /// (i.e. its elementTypeSpecifier is a ChoiceTypeSpecifierModel).
+  static bool isChoiceType(ClassInfoElement element) =>
+      element.elementTypeSpecifier is ChoiceTypeSpecifierModel;
+
+  /// Get the list of choice type names from a [ClassInfoElement] that has a
+  /// ChoiceTypeSpecifierModel. Returns the FHIR type names
+  /// (e.g. ['boolean', 'dateTime'] for Patient.deceased).
+  static List<String> getChoiceTypes(ClassInfoElement element) {
+    final spec = element.elementTypeSpecifier;
+    if (spec is! ChoiceTypeSpecifierModel || spec.choice == null) return [];
+    return spec.choice!
+        .whereType<NamedTypeSpecifierModel>()
+        .map((c) => c.name)
+        .toList();
+  }
+
+  /// Returns the FHIR base type name for a given FHIR type name.
+  /// E.g. 'canonical' → 'uri', 'code' → 'string', 'markdown' → 'string'.
+  /// Returns the name itself if it's already a base type.
+  static String fhirBaseType(String fhirType) {
+    switch (fhirType) {
+      // subtypes of string
+      case 'code':
+      case 'id':
+      case 'markdown':
+        return 'string';
+      // subtypes of uri
+      case 'canonical':
+      case 'oid':
+      case 'url':
+      case 'uuid':
+        return 'uri';
+      default:
+        return fhirType;
+    }
+  }
+
+  /// Returns the FHIRHelpers function name for converting a FHIR base type
+  /// to a CQL type in the context of choice type narrowing.
+  static String? fhirHelperForChoiceType(String fhirBaseTypeName) {
+    switch (fhirBaseTypeName) {
+      case 'boolean':
+        return 'ToBoolean';
+      case 'integer':
+      case 'positiveInt':
+      case 'unsignedInt':
+        return 'ToInteger';
+      case 'decimal':
+        return 'ToDecimal';
+      case 'date':
+        return 'ToDate';
+      case 'dateTime':
+      case 'instant':
+        return 'ToDateTime';
+      case 'time':
+        return 'ToTime';
+      case 'string':
+      case 'uri':
+      case 'code':
+      case 'id':
+      case 'markdown':
+      case 'base64Binary':
+      case 'canonical':
+      case 'oid':
+      case 'url':
+      case 'uuid':
+        return 'ToString';
+      case 'Quantity':
+        return 'ToQuantity';
+      case 'Coding':
+        return 'ToCode';
+      case 'CodeableConcept':
+        return 'ToConcept';
+      case 'Period':
+        return 'ToInterval';
+      default:
+        return null;
+    }
+  }
+
+  /// Given a Property expression and a target FHIR type name (e.g. 'boolean'),
+  /// wrap the property in As(asType: {fhir}targetType) then FHIRHelpers.ToXxx().
+  static CqlExpression wrapChoiceProperty(
+      CqlExpression property, String fhirTypeName) {
+    final baseType = fhirBaseType(fhirTypeName);
+    final asExpr = As(
+      operand: property,
+      asType: QName(
+        namespaceURI: 'http://hl7.org/fhir',
+        localPart: baseType,
+      ),
+    );
+    final helperName = fhirHelperForChoiceType(baseType);
+    if (helperName == null) return asExpr;
+    return FunctionRef(
+      name: helperName,
+      libraryName: 'FHIRHelpers',
+      operand: [asExpr],
+    );
   }
 
   @override
@@ -1151,7 +1312,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
       CqlTypeSpecifierVisitor(library).visitTypeSpecifier(ctx);
 
   @override
-  String visitUnit(UnitContext ctx) => noQuoteString(ctx.text);
+  String visitUnit(UnitContext ctx) => noQuoteString(ctx.text).trim();
 
   @override
   dynamic visitUsingDefinition(UsingDefinitionContext ctx) =>
@@ -1636,14 +1797,11 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
   }
 
   String noQuoteString(String string) {
-    if (string.isNotEmpty) {
-      if (string[0] == '"' || string[0] == "'") {
+    if (string.length >= 2) {
+      final first = string[0];
+      final last = string[string.length - 1];
+      if ((first == '"' || first == "'") && (last == '"' || last == "'")) {
         string = string.substring(1, string.length - 1);
-      }
-      if (string.isNotEmpty &&
-          (string[string.length - 1] == '"' ||
-              string[string.length - 1] == "'")) {
-        string = string.substring(0, string.length - 2);
       }
     }
     return string;
@@ -1846,7 +2004,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Multiply(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for multiplication');
+    // Fallback: let execution handle type checking and null propagation
+    return Multiply(operand: [left, right]);
   }
 
   CqlExpression handleDivide(CqlExpression left, CqlExpression right) {
@@ -1947,7 +2106,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Divide(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for division');
+    // Fallback: let execution handle type checking and null propagation
+    return Divide(operand: [left, right]);
   }
 
   TruncatedDivide handleTruncatedDivide(
@@ -2060,7 +2220,8 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return TruncatedDivide(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for truncated division');
+    // Fallback: let execution handle type checking and null propagation
+    return TruncatedDivide(operand: [left, right]);
   }
 
   Modulo handleModulo(CqlExpression left, CqlExpression right) {
@@ -2174,6 +2335,7 @@ class CqlBaseVisitor<T> extends ParseTreeVisitor<T> implements CqlVisitor<T> {
           return Modulo(operand: [left, right]);
         }
     }
-    throw ArgumentError('Invalid type for modulo');
+    // Fallback: let execution handle type checking and null propagation
+    return Modulo(operand: [left, right]);
   }
 }

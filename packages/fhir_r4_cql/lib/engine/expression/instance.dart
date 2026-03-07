@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:ucum/ucum.dart' show ValidatedQuantity;
+import 'package:ucum/ucum.dart' show ValidatedQuantity, ValidatedRatio;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
@@ -153,6 +153,9 @@ class Instance extends CqlExpression {
                 'Instance of type DateTime must have exactly one element');
           }
           final result = await element!.first.value.execute(context);
+          if (result == null) {
+            return null;
+          }
           if (result is String) {
             return FhirDateTime.fromString(result);
           } else if (result is FhirDateTime) {
@@ -253,7 +256,12 @@ class Instance extends CqlExpression {
           } else {
             final Map<String, dynamic> json = {};
             for (final e in element!) {
-              json[e.name] = await e.value.execute(context);
+              var result = await e.value.execute(context);
+              // Wrap single Code in a list for the 'codes' field
+              if (e.name == 'codes' && result is CqlCode) {
+                result = [result];
+              }
+              json[e.name] = result;
             }
             return CqlConcept.fromJson(json);
           }
@@ -290,11 +298,96 @@ class Instance extends CqlExpression {
           }
           return null;
         }
-      // TODO(Dokotela): implement
-      // case 'ValueSet': return ValueSet;
-      // case 'CodeSystem': return CodeSystem;
-      // case 'Interval': return IntervalType
-      // case 'Ratio':
+      case 'Ratio':
+        {
+          if (element == null) {
+            throw ArgumentError(
+                'Instance of type Ratio must have at least one element');
+          }
+          ValidatedQuantity? numerator;
+          ValidatedQuantity? denominator;
+          for (final e in element!) {
+            final result = await e.value.execute(context);
+            if (e.name == 'numerator') {
+              if (result is ValidatedQuantity) {
+                numerator = result;
+              }
+            } else if (e.name == 'denominator') {
+              if (result is ValidatedQuantity) {
+                denominator = result;
+              }
+            }
+          }
+          if (numerator != null && denominator != null) {
+            return ValidatedRatio(
+                numerator: numerator, denominator: denominator);
+          }
+          return null;
+        }
+      case 'Interval':
+        {
+          dynamic low;
+          dynamic high;
+          bool lowClosed = true;
+          bool highClosed = true;
+          if (element != null) {
+            for (final e in element!) {
+              final result = await e.value.execute(context);
+              switch (e.name) {
+                case 'low':
+                  low = result;
+                case 'high':
+                  high = result;
+                case 'lowClosed':
+                  if (result is FhirBoolean) {
+                    lowClosed = result.valueBoolean ?? true;
+                  } else if (result is bool) {
+                    lowClosed = result;
+                  }
+                case 'highClosed':
+                  if (result is FhirBoolean) {
+                    highClosed = result.valueBoolean ?? true;
+                  } else if (result is bool) {
+                    highClosed = result;
+                  }
+              }
+            }
+          }
+          return CqlInterval(
+            low: low,
+            high: high,
+            lowClosed: lowClosed,
+            highClosed: highClosed,
+          );
+        }
+      case 'ValueSet':
+        {
+          final Map<String, dynamic> json = {};
+          if (element != null) {
+            for (final e in element!) {
+              json[e.name] = await e.value.execute(context);
+            }
+          }
+          return CqlValueSet(
+            id: json['id']?.toString() ?? '',
+            version: json['version']?.toString() ?? '',
+            name: json['name']?.toString() ?? '',
+          );
+        }
+      case 'CodeSystem':
+        {
+          final Map<String, dynamic> json = {};
+          if (element != null) {
+            for (final e in element!) {
+              json[e.name] = await e.value.execute(context);
+            }
+          }
+          return CqlCodeSystem(
+            id: json['id']?.toString() ?? '',
+            version: json['version']?.toString() ?? '',
+            name: json['name']?.toString() ?? '',
+          );
+        }
       default:
         return null;
     }

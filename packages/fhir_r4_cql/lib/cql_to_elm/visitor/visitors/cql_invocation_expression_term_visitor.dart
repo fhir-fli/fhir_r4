@@ -25,32 +25,56 @@ class CqlInvocationExpressionTermVisitor extends CqlBaseVisitor<CqlExpression> {
       }
     }
 
-    // Qualified function call: FHIRHelpers.ToDateTime(...)
+    // Qualified function call: FHIRHelpers.ToDateTime(...) or fluent: 5.double()
     if (qualifiedInvocation is FunctionRef) {
-      String? libraryName;
+      String? leftName;
       if (expressionTerm is ExpressionRef) {
-        libraryName = expressionTerm.name;
+        leftName = expressionTerm.name;
       } else if (expressionTerm is IdentifierRef) {
-        libraryName = expressionTerm.name;
+        leftName = expressionTerm.name;
       } else if (expressionTerm is Property) {
-        libraryName = expressionTerm.path;
+        leftName = expressionTerm.path;
       }
-      qualifiedInvocation.libraryName = libraryName;
+
+      // Check if the left-side name is a library include alias
+      final isLibraryQualified = leftName != null &&
+          library.includes?.def.any((inc) => inc.localIdentifier == leftName) ==
+              true;
+
+      if (isLibraryQualified) {
+        // Library-qualified call: set libraryName (existing behavior)
+        qualifiedInvocation.libraryName = leftName;
+      } else {
+        // Fluent or local call: prepend expressionTerm as first operand
+        qualifiedInvocation.operand = [
+          if (expressionTerm is CqlExpression) expressionTerm,
+          ...?qualifiedInvocation.operand,
+        ];
+      }
       return qualifiedInvocation;
     }
 
     // Member access: O.status, E.period, etc.
-    if (qualifiedInvocation is Ref && qualifiedInvocation.name != null) {
-      final memberName = qualifiedInvocation.name!;
+    if (qualifiedInvocation is Ref) {
+      final memberName = qualifiedInvocation.name;
+
+      // Check if the left side is a library include alias
+      // (e.g. Encounter."Client's age is less than 12 months")
+      String? scopeName = _extractScopeName(expressionTerm);
+      if (scopeName != null &&
+          library.includes?.def
+                  .any((inc) => inc.localIdentifier == scopeName) ==
+              true) {
+        return returnRef(memberName, scopeName);
+      }
 
       // Check if the left side is a query alias or let identifier
-      String? scopeName = _extractScopeName(expressionTerm);
       if (scopeName != null && CqlBaseVisitor.isQueryAlias(scopeName)) {
         CqlExpression prop;
         // Let-introduced identifiers use QueryLetRef as source
         if (CqlBaseVisitor.isLetIdentifier(scopeName)) {
-          prop = Property(
-              source: QueryLetRef(name: scopeName), path: memberName);
+          prop =
+              Property(source: QueryLetRef(name: scopeName), path: memberName);
         } else {
           // Source/relationship aliases use scope
           prop = Property(scope: scopeName, path: memberName);

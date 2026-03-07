@@ -129,7 +129,12 @@ class Predecessor extends UnaryExpression {
     } else if (value is FhirInteger64) {
       return FhirInteger64(value.valueBigInt! - BigInt.from(1));
     } else if (value is FhirDecimal) {
-      return FhirDecimal(value.valueNum! - 0.00000001);
+      // Use string-based arithmetic to avoid floating-point precision errors.
+      // E.g., 2.2 - 0.00000001 in doubles = 2.1999999900000002, not 2.19999999.
+      final ud = UcumDecimal.fromString(value.valueString!);
+      final step = UcumDecimal.fromString('0.00000001');
+      final result = ud.subtract(step);
+      return FhirDecimal(double.parse(result.asUcumDecimal()));
     } else if (value is FhirDateTimeBase) {
       if (value.yearsPrecision) {
         return value - ExtendedDuration(years: 1);
@@ -138,7 +143,6 @@ class Predecessor extends UnaryExpression {
         return value - ExtendedDuration(months: 1);
       }
       if (value.daysPrecision) {
-        print('result: ${value - ExtendedDuration(days: 1)}');
         return value - ExtendedDuration(days: 1);
       }
 
@@ -165,7 +169,12 @@ class Predecessor extends UnaryExpression {
         return value.subtract(hours: 1);
       }
     } else if (value is ValidatedQuantity && value.isValid()) {
-      return value - 1;
+      // Always use minimum decimal step (10^-8) for quantities, matching
+      // the CQF reference implementation behavior.
+      final newValue =
+          value.value.subtract(UcumDecimal.fromString('0.00000001'));
+      return ValidatedQuantity.fromString(
+          '${newValue.asUcumDecimal()} \'${value.unit}\'');
     }
     throw ArgumentError('Invalid type for Successor: ${value.runtimeType}');
   }

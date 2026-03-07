@@ -164,13 +164,35 @@ class Equal extends BinaryExpression {
     bool? result;
     switch (left) {
       case String _:
-        result = right is String && left == right;
+        if (right is String) {
+          result = left == right;
+        } else if (right is FhirString) {
+          result = left == right.valueString;
+        } else if (right is PrimitiveType) {
+          result = left == right.valueString;
+        } else {
+          result = false;
+        }
         break;
-      case FhirDateTime _:
-        result = right is FhirDateTime ? left.isEqual(right) : false;
-        break;
-      case FhirDate _:
-        result = right is FhirDate ? left.isEqual(right) : false;
+      case FhirDateTimeBase _:
+        // CQL spec: Date and DateTime are cross-comparable using precision
+        // semantics. Date is implicitly promoted to DateTime.
+        if (right is FhirDateTimeBase) {
+          // CQL timezone normalization: when one DateTime has a timezone and
+          // the other doesn't, assume the no-TZ value is in the same timezone.
+          // isEqual() normalizes to UTC treating no-TZ as offset 0, which is
+          // wrong for CQL. Instead, compare raw components (equivalent to
+          // assuming same timezone on both sides).
+          if (left.hasHours &&
+              right.hasHours &&
+              (left.timeZoneOffset == null) != (right.timeZoneOffset == null)) {
+            result = _componentEqualDateTime(left, right);
+          } else {
+            result = left.isEqual(right);
+          }
+        } else {
+          result = false;
+        }
         break;
       case FhirTime _:
         result = right is FhirTime ? left.isEqual(right) : false;
@@ -216,12 +238,16 @@ class Equal extends BinaryExpression {
         break;
       case FhirNumber _:
         {
-          if (right is num) {
+          if (right is CqlInterval) {
+            return equal(right, left);
+          } else if (right is num) {
             result = left.valueNum == right;
           } else if (right is BigInt) {
             result = left.valueNum == right.toDouble();
           } else if (right is FhirNumber) {
-            result = left == right;
+            // Compare by numeric value to handle implicit Integer→Decimal
+            // promotion (e.g. FhirDecimal(1.0) = FhirInteger(1) → true)
+            result = left.valueNum == right.valueNum;
           } else if (right is FhirInteger64) {
             result = left.valueString == right.valueString;
           } else {
@@ -254,14 +280,23 @@ class Equal extends BinaryExpression {
         if (right is List && left.length == right.length) {
           result = true;
           for (int i = 0; i < left.length; i++) {
+            // CQL spec: null elements are considered equal in list equality
+            if (left[i] == null && right[i] == null) continue;
             final tempResult = equal(left[i], right[i])?.valueBoolean;
             if (tempResult == false || tempResult == null) {
               result = tempResult;
               break;
             }
           }
+        } else if (right is! List) {
+          result = null;
         } else {
-          result = false;
+          // Different lengths: if either list has null elements, the result
+          // is uncertain (null) because we can't definitively say they're
+          // unequal when nulls are involved.
+          final hasNulls =
+              (left).any((e) => e == null) || (right).any((e) => e == null);
+          result = hasNulls ? null : false;
         }
         break;
       case CqlTuple _:
@@ -274,6 +309,7 @@ class Equal extends BinaryExpression {
 
             if (!const DeepCollectionEquality()
                 .equals(left.elements, right.elements)) {
+              bool hasNull = false;
               for (var key in left.elements!.keys) {
                 // Check for key presence and value equality.
                 final tempResult = right.elements!.containsKey(key)
@@ -281,15 +317,16 @@ class Equal extends BinaryExpression {
                         ?.valueBoolean
                     : false;
 
-                // If a mismatch is found, or comparison is indeterminate,
-                //update result accordingly.
                 if (tempResult == false) {
                   result = false;
                   break;
                 } else if (tempResult == null) {
-                  result = null;
-                  break;
+                  hasNull = true;
                 }
+              }
+              // Only set result to null if no definite false was found
+              if (result != false && hasNull) {
+                result = null;
               }
             }
           }
@@ -302,21 +339,23 @@ class Equal extends BinaryExpression {
           result = true;
 
           if (!const DeepCollectionEquality().equals(left, right)) {
+            bool hasNull = false;
             for (var key in left.keys) {
               // Check for key presence and value equality.
               final tempResult = right.containsKey(key)
                   ? equal(left[key], right[key])?.valueBoolean
                   : false;
 
-              // If a mismatch is found, or comparison is indeterminate,
-              //update result accordingly.
               if (tempResult == false) {
                 result = false;
                 break;
               } else if (tempResult == null) {
-                result = null;
-                break;
+                hasNull = true;
               }
+            }
+            // Only set result to null if no definite false was found
+            if (result != false && hasNull) {
+              result = null;
             }
           }
         } else {
@@ -324,7 +363,35 @@ class Equal extends BinaryExpression {
         }
         break;
       case CqlInterval _:
-        result = right is CqlInterval && left == right;
+        if (right is CqlInterval) {
+          // Use CQL's three-valued equal (not Dart's == which uses equivalence)
+          // so that imprecise DateTime boundaries propagate null correctly.
+          result = left.equal(right);
+        } else {
+          // Interval-to-scalar: uncertain interval from DifferenceBetween etc.
+          // If interval is a single point equal to the scalar → true
+          // If scalar is outside the interval → false
+          // Otherwise → null (uncertain)
+          final low = left.getStart();
+          final high = left.getEnd();
+          final eqLow = equal(low, right);
+          final eqHigh = equal(high, right);
+          if (eqLow?.valueBoolean == true && eqHigh?.valueBoolean == true) {
+            result = true;
+          } else {
+            // Use Contains to check if scalar is within the interval.
+            // If contained and interval is not a point → null (uncertain).
+            // If not contained → false.
+            final contained = Contains.contains(left, right);
+            if (contained?.valueBoolean == true) {
+              result = null; // scalar within range but range is not a point
+            } else if (contained?.valueBoolean == false) {
+              result = false;
+            } else {
+              result = null; // uncertain containment
+            }
+          }
+        }
         break;
       case PrimitiveType _:
         if (right is String) {
@@ -336,8 +403,48 @@ class Equal extends BinaryExpression {
         }
         break;
       default:
+        // Handle scalar == CqlInterval (reverse of interval-to-scalar)
+        if (right is CqlInterval) {
+          return equal(right, left);
+        }
         result = left == right;
     }
     return result == null ? null : FhirBoolean(result);
+  }
+
+  /// Compare two FhirDateTimeBase values component by component without
+  /// UTC normalization. Used when one has a timezone offset and the other
+  /// doesn't — CQL assumes the no-TZ value is in the evaluation request's
+  /// timezone, which equals raw component comparison.
+  static bool? _componentEqualDateTime(
+      FhirDateTimeBase left, FhirDateTimeBase right) {
+    // Year
+    if (left.year == null || right.year == null) return null;
+    if (left.year != right.year) return false;
+    // Month
+    if (!left.hasMonth && !right.hasMonth) return true;
+    if (!left.hasMonth || !right.hasMonth) return null;
+    if (left.month != right.month) return false;
+    // Day
+    if (!left.hasDay && !right.hasDay) return true;
+    if (!left.hasDay || !right.hasDay) return null;
+    if (left.day != right.day) return false;
+    // Hour
+    if (!left.hasHours && !right.hasHours) return true;
+    if (!left.hasHours || !right.hasHours) return null;
+    if (left.hour != right.hour) return false;
+    // Minute
+    if (!left.hasMinutes && !right.hasMinutes) return true;
+    if (!left.hasMinutes || !right.hasMinutes) return null;
+    if (left.minute != right.minute) return false;
+    // Second
+    if (!left.hasSeconds && !right.hasSeconds) return true;
+    if (!left.hasSeconds || !right.hasSeconds) return null;
+    if (left.second != right.second) return false;
+    // Millisecond
+    if (!left.hasMilliseconds && !right.hasMilliseconds) return true;
+    if (!left.hasMilliseconds || !right.hasMilliseconds) return null;
+    if (left.millisecond != right.millisecond) return false;
+    return true;
   }
 }

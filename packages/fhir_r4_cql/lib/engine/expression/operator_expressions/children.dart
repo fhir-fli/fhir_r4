@@ -1,3 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart' show Resource;
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// For structured types, the Children operator returns a list of all the values of the elements of the type.
@@ -61,4 +63,30 @@ class Children extends OperatorExpression {
 
   @override
   String get type => 'Children';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await source.execute(context);
+    if (value == null) return null;
+    if (value is List) {
+      final results = [];
+      for (final item in value) {
+        final children = _getChildren(item);
+        results.addAll(children);
+      }
+      return results;
+    }
+    return _getChildren(value);
+  }
+
+  static List<dynamic> _getChildren(dynamic value) {
+    if (value == null) return [];
+    if (value is Resource) {
+      return value.toJson().values.where((v) => v != null).toList();
+    }
+    if (value is Map<String, dynamic>) {
+      return value.values.where((v) => v != null).toList();
+    }
+    return [value];
+  }
 }

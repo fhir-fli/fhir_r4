@@ -140,11 +140,10 @@ class IncludedIn extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): Implement precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
-      throw ArgumentError('After expression must have 2 operands');
+      throw ArgumentError('IncludedIn expression must have 2 operands');
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
@@ -178,23 +177,22 @@ class IncludedIn extends BinaryExpression {
         return null;
       }
     } else if (right is CqlInterval) {
-      try {
-        final result = FhirBoolean(right.contains(left));
-        return result;
-      } catch (e) {
-        return null;
+      if (left is CqlInterval) {
+        return _intervalIncludedIn(left, right, precision);
       }
+      // Point included in interval — delegate to Contains
+      return Contains.contains(right, left, precision);
     } else if (right is List) {
       try {
         if (left is List) {
           for (final element in left) {
-            if (!right.contains(element)) {
+            if (!listContains(right, element)) {
               return FhirBoolean(false);
             }
           }
           return FhirBoolean(true);
         } else {
-          return FhirBoolean(right.contains(left));
+          return FhirBoolean(listContains(right, left));
         }
       } catch (e) {
         return null;
@@ -202,5 +200,96 @@ class IncludedIn extends BinaryExpression {
     } else {
       return null;
     }
+  }
+
+  /// Check if a list contains an element using CQL equality semantics.
+  /// This handles CqlTuple and other types that don't override Dart ==.
+  /// Null elements are considered equal (per CQL spec for list membership).
+  static bool listContains(List list, dynamic element) {
+    if (element == null) {
+      return list.any((e) => e == null);
+    }
+    for (final item in list) {
+      final eq = Equal.equal(item, element);
+      if (eq?.valueBoolean == true) return true;
+    }
+    return false;
+  }
+
+  /// Interval included in interval with three-valued logic.
+  /// left included in right ↔ left.start >= right.start AND left.end <= right.end
+  /// Handles unknown boundaries (null getStart/getEnd) by returning null for
+  /// uncertain cases. When the left interval is entirely at the known boundary
+  /// of the right interval, the result is true.
+  static FhirBoolean? _intervalIncludedIn(
+      CqlInterval left, CqlInterval right, CqlDateTimePrecision? precision) {
+    final leftStart = left.getStart();
+    final leftEnd = left.getEnd();
+    final rightStart = right.getStart();
+    final rightEnd = right.getEnd();
+
+    // Compute start check: left.start >= right.start
+    FhirBoolean? startCheck;
+    if (rightStart == null) {
+      startCheck = null; // unknown boundary → uncertain
+    } else if (leftStart == null) {
+      startCheck = null; // unknown boundary → uncertain
+    } else if (precision != null ||
+        leftStart is FhirDateTimeBase ||
+        leftStart is FhirTime) {
+      startCheck = SameOrAfter.sameOrAfter(leftStart, rightStart, precision);
+    } else {
+      startCheck = GreaterOrEqual.greaterOrEqual(leftStart, rightStart);
+    }
+
+    // Compute end check: left.end <= right.end
+    FhirBoolean? endCheck;
+    if (rightEnd == null) {
+      endCheck = null; // unknown boundary → uncertain
+    } else if (leftEnd == null) {
+      endCheck = null; // unknown boundary → uncertain
+    } else if (precision != null ||
+        leftEnd is FhirDateTimeBase ||
+        leftEnd is FhirTime) {
+      endCheck = SameOrBefore.sameOrBefore(leftEnd, rightEnd, precision);
+    } else {
+      endCheck = LessOrEqual.lessOrEqual(leftEnd, rightEnd);
+    }
+
+    final result = And.and(startCheck, endCheck);
+
+    // Special case for unknown boundaries in the container (right):
+    // If result is null due to an unknown boundary, check if the left interval
+    // is entirely at the known boundary of the right interval.
+    if (result == null) {
+      if (rightStart == null &&
+          endCheck?.valueBoolean == true &&
+          rightEnd != null &&
+          leftStart != null) {
+        // Unknown start in container. If leftStart >= rightEnd, then since
+        // rightStart < rightEnd (valid interval), rightStart < leftStart.
+        final ge = precision != null ||
+                leftStart is FhirDateTimeBase ||
+                leftStart is FhirTime
+            ? SameOrAfter.sameOrAfter(leftStart, rightEnd, precision)
+            : GreaterOrEqual.greaterOrEqual(leftStart, rightEnd);
+        if (ge?.valueBoolean == true) return FhirBoolean(true);
+      }
+      if (rightEnd == null &&
+          startCheck?.valueBoolean == true &&
+          rightStart != null &&
+          leftEnd != null) {
+        // Unknown end in container. If leftEnd <= rightStart, then since
+        // rightEnd > rightStart (valid interval), leftEnd < rightEnd.
+        final le = precision != null ||
+                leftEnd is FhirDateTimeBase ||
+                leftEnd is FhirTime
+            ? SameOrBefore.sameOrBefore(leftEnd, rightStart, precision)
+            : LessOrEqual.lessOrEqual(leftEnd, rightStart);
+        if (le?.valueBoolean == true) return FhirBoolean(true);
+      }
+    }
+
+    return result;
   }
 }

@@ -156,8 +156,6 @@ class Overlaps extends BinaryExpression {
       }
     }
 
-    throw Exception('Overlaps requires CqlInterval arguments.\n'
-        'Left: (${left.runtimeType}) $left'
-        'Right: (${right.runtimeType}) $right');
+    return null;
   }
 }

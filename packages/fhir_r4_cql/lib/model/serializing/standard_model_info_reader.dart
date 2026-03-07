@@ -61,11 +61,9 @@ class StandardModelInfoReader implements ModelInfoReader {
         final modelInfo = ModelInfo.fromJson(properMap);
         return modelInfo;
       } catch (e) {
-        print(e);
         rethrow;
       }
     }
-    print(newMap['modelInfo']);
     throw Exception('Invalid modelInfo');
   }
 }

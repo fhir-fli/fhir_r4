@@ -57,4 +57,27 @@ class Times extends BinaryExpression {
 
   @override
   String get type => 'Times';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    if (left == null || right == null) return null;
+    final leftList = left is List ? left : [left];
+    final rightList = right is List ? right : [right];
+    final results = <Map<String, dynamic>>[];
+    for (final l in leftList) {
+      for (final r in rightList) {
+        final merged = <String, dynamic>{};
+        if (l is Map<String, dynamic>) {
+          merged.addAll(l);
+        }
+        if (r is Map<String, dynamic>) {
+          merged.addAll(r);
+        }
+        results.add(merged);
+      }
+    }
+    return results;
+  }
 }

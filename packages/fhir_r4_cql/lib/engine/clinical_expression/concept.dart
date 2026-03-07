@@ -72,4 +72,19 @@ class Concept extends CqlExpression {
 
   @override
   String get type => 'Concept';
+
+  @override
+  Future<CqlConcept?> execute(Map<String, dynamic> context) async {
+    final codes = <CqlCode>[];
+    for (final c in code) {
+      final cqlCode = await c.execute(context);
+      if (cqlCode is CqlCode) {
+        codes.add(cqlCode);
+      }
+    }
+    return CqlConcept(
+      codes: codes,
+      display: display,
+    );
+  }
 }

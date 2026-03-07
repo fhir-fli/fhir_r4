@@ -104,8 +104,7 @@ class Multiply extends BinaryExpression {
   static dynamic _convertFhirQuantity(dynamic value) {
     if (value is fhir.Quantity) {
       final num? numVal = value.value?.valueNum;
-      final unit =
-          value.unit?.valueString ?? value.code?.valueString ?? '1';
+      final unit = value.unit?.valueString ?? value.code?.valueString ?? '1';
       if (numVal != null) {
         return ValidatedQuantity.fromNumber(numVal, unit: unit);
       }
@@ -137,6 +136,11 @@ class Multiply extends BinaryExpression {
           } else if (right is FhirInteger64) {
             return FhirInteger64(BigInt.from(left.valueInt as int) *
                 (right.valueBigInt as BigInt));
+          } else if (right is ValidatedQuantity && right.isValid()) {
+            // Integer * Quantity: scale value, keep unit
+            final numVal =
+                right.value * UcumDecimal.fromString(left.valueString!);
+            return ValidatedQuantity(value: numVal, unit: right.unit);
           }
           break;
         case FhirInteger64 _:
@@ -167,29 +171,71 @@ class Multiply extends BinaryExpression {
                     .asUcumDecimal()));
           } else if (right is ValidatedQuantity) {
             // Scale value, keep units (avoid UCUM canonicalization)
-            final numVal = right.value *
-                UcumDecimal.fromString(left.valueString!);
+            final numVal =
+                right.value * UcumDecimal.fromString(left.valueString!);
             return ValidatedQuantity(value: numVal, unit: right.unit);
           }
           break;
         case ValidatedQuantity _:
           if (right is FhirDecimal && left.isValid()) {
             // Scale value, keep units (avoid UCUM canonicalization)
-            final numVal = left.value *
-                UcumDecimal.fromString(right.valueString!);
+            final numVal =
+                left.value * UcumDecimal.fromString(right.valueString!);
             return ValidatedQuantity(value: numVal, unit: left.unit);
           } else if (right is FhirInteger && left.isValid()) {
-            final numVal = left.value *
-                UcumDecimal.fromString(right.valueString!);
+            final numVal =
+                left.value * UcumDecimal.fromString(right.valueString!);
             return ValidatedQuantity(value: numVal, unit: left.unit);
           } else if (right is ValidatedQuantity) {
-            return left * right;
+            final result = left * right;
+            // Truncate to 8 decimal places to match CQF reference precision
+            final truncated = double.tryParse(result.value.asUcumDecimal());
+            if (truncated != null) {
+              return ValidatedQuantity(
+                value: UcumDecimal.fromString(truncated.toStringAsFixed(8)),
+                unit: result.unit,
+              );
+            }
+            return result;
           }
           break;
       }
     }
 
+    // CqlInterval multiplication: [a,b] * [c,d] = [min(ac,ad,bc,bd), max(ac,ad,bc,bd)]
+    if (left is CqlInterval && right is CqlInterval) {
+      final a = left.getStart();
+      final b = left.getEnd();
+      final c = right.getStart();
+      final d = right.getEnd();
+      final products = [
+        Multiply._multiply(a, c),
+        Multiply._multiply(a, d),
+        Multiply._multiply(b, c),
+        Multiply._multiply(b, d),
+      ].whereType<FhirInteger>().toList();
+      if (products.isEmpty) return null;
+      products.sort((x, y) => x.valueNum!.compareTo(y.valueNum!));
+      return CqlInterval(
+        low: products.first,
+        lowClosed: true,
+        high: products.last,
+        highClosed: true,
+      );
+    }
+    if (left is CqlInterval || right is CqlInterval) {
+      return null;
+    }
+
     throw ArgumentError('Invalid arguments for multiply operation\n'
         '1. $left ${left.runtimeType}\n2. $right ${right.runtimeType}');
+  }
+
+  static FhirInteger? _multiply(dynamic a, dynamic b) {
+    if (a == null || b == null) return null;
+    if (a is FhirInteger && b is FhirInteger) {
+      return FhirInteger(a.valueNum!.toInt() * b.valueNum!.toInt());
+    }
+    return null;
   }
 }

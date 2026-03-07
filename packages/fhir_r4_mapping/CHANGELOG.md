@@ -1,5 +1,10 @@
 # fhir_r4_mapping
 
+## [0.5.0]
+
+* Unified versioning across all fhir_r4 packages
+* Updated dependencies
+
 ## [0.4.2]
 
 * Added id to xhtml _allowedAttributes

@@ -12,12 +12,12 @@ class CqlOverlapsIntervalOperatorPhraseVisitor
       CqlExpression? right]) {
     printIf(ctx);
     final int thisNode = getNextNode();
-    // String? beforeAfter;
+    String? beforeAfter;
     CqlDateTimePrecision? dateTimePrecisionSpecifier;
     for (final child in ctx.children ?? <ParseTree>[]) {
       if (child is TerminalNodeImpl) {
         if (child.text == 'before' || child.text == 'after') {
-          // beforeAfter = child.text;
+          beforeAfter = child.text;
         }
       } else if (child is DateTimePrecisionSpecifierContext) {
         dateTimePrecisionSpecifier = CqlDateTimePrecisionExtension.fromJson(
@@ -25,6 +25,17 @@ class CqlOverlapsIntervalOperatorPhraseVisitor
       }
     }
     if (left != null && right != null) {
+      if (beforeAfter == 'before') {
+        return OverlapsBefore(
+          precision: dateTimePrecisionSpecifier,
+          operand: [left, right],
+        );
+      } else if (beforeAfter == 'after') {
+        return OverlapsAfter(
+          precision: dateTimePrecisionSpecifier,
+          operand: [left, right],
+        );
+      }
       return Overlaps(
         precision: dateTimePrecisionSpecifier,
         operand: [left, right],

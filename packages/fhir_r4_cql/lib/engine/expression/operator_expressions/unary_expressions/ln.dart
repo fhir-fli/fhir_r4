@@ -67,9 +67,8 @@ class Ln extends UnaryExpression {
       }
     }
 
-    if (operand == null) {
-      throw ArgumentError('The argument of Ln cannot be null');
-    }
+    // Fallback: use the operand as-is and let execution handle it
+    operand ??= first;
 
     return Ln(
       operand: operand,
@@ -132,10 +131,18 @@ class Ln extends UnaryExpression {
   @override
   Future<FhirDecimal?> execute(Map<String, dynamic> context) async {
     final first = await operand.execute(context);
-    if (first == null || first is! FhirDecimal) {
-      return null;
+    if (first == null) return null;
+    double? val;
+    if (first is FhirDecimal) {
+      val = first.valueNum?.toDouble();
+    } else if (first is FhirInteger) {
+      val = first.valueNum?.toDouble();
     }
-    return FhirDecimal(log(first.valueNum!));
+    if (val == null || val <= 0) return null;
+    final result = log(val);
+    if (result.isNaN || result.isInfinite) return null;
+    // CQL Decimal: at most 8 digits of scale
+    return FhirDecimal(double.parse(result.toStringAsFixed(8)));
   }
 
   @override

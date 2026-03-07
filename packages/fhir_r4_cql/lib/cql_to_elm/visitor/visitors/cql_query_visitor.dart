@@ -22,7 +22,7 @@ class CqlQueryVisitor extends CqlBaseVisitor<Query> {
       if (child is SourceClauseContext) {
         source.addAll(visitSourceClause(child));
         for (final s in source) {
-          if (s.alias != null) aliases.add(s.alias!);
+          aliases.add(s.alias);
         }
       }
     }

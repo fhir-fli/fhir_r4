@@ -109,8 +109,7 @@ class Query extends CqlExpression {
       final dynamic rawValue = await src.expression.execute(context);
       if (rawValue == null) return null;
       if (rawValue is! Iterable) singletonSource = true;
-      final Iterable listValue =
-          rawValue is Iterable ? rawValue : [rawValue];
+      final Iterable listValue = rawValue is Iterable ? rawValue : [rawValue];
 
       final List<Map<String, dynamic>> newRows = [];
       for (final row in rows) {
@@ -220,7 +219,8 @@ class Query extends CqlExpression {
                       curr is Map<String, dynamic> ? curr[key] : null,
                 );
           } else if (spec is ByDirection) {
-            rawKey = null;
+            // For ByDirection on simple lists, sort by the element value itself
+            rawKey = row[source.first.alias];
           } else {
             throw ArgumentError('Unknown SortByItem type: ${spec.type}');
           }
@@ -250,7 +250,35 @@ class Query extends CqlExpression {
       rows = [for (final idx in indices) rows[idx]];
     }
 
-    // 5) RETURN projection + DISTINCT
+    // 5a) AGGREGATE fold (mutually exclusive with return clause)
+    if (aggregate != null) {
+      // Optional distinct on source rows — deduplicate on all source aliases
+      if (aggregate!.distinct) {
+        final aliases = source.map((s) => s.alias).toList();
+        final seen = <String>{};
+        rows = rows.where((row) {
+          final key = aliases.map((a) => '${row[a]}').join('\x00');
+          return seen.add(key);
+        }).toList();
+      }
+
+      // Initialize accumulator
+      dynamic accumulator = aggregate!.starting != null
+          ? await aggregate!.starting!.execute(context)
+          : null;
+
+      // Fold over rows
+      for (final row in rows) {
+        final execCtx = <String, dynamic>{}
+          ..addAll(context)
+          ..addAll(row)
+          ..[aggregate!.identifier] = accumulator;
+        accumulator = await aggregate!.expression.execute(execCtx);
+      }
+      return accumulator;
+    }
+
+    // 5b) RETURN projection + DISTINCT
     final List<dynamic> result = [];
     if (returnClause != null) {
       for (final row in rows) {
@@ -272,11 +300,6 @@ class Query extends CqlExpression {
     } else {
       // No return clause with multiple sources: return the row-maps
       return rows;
-    }
-
-    // 6) AGGREGATE is not yet supported
-    if (aggregate != null) {
-      throw UnimplementedError('Query.aggregate is not supported yet');
     }
 
     // For singleton sources, return the scalar result or null if filtered out

@@ -143,11 +143,22 @@ class ToQuantity extends UnaryExpression {
             ? null
             : ValidatedQuantity.fromNumber(result.valueDouble!, unit: '1');
       case String _:
-        return ValidatedQuantity.fromString(result);
+        try {
+          final q = ValidatedQuantity.fromString(result);
+          if (!q.isValid()) return null;
+          // CQL Decimal values support at least 28 digits of precision.
+          // Reject quantities whose numeric part exceeds this.
+          final numStr =
+              q.value.asUcumDecimal().replaceAll(RegExp(r'[^0-9]'), '');
+          if (numStr.length > 28) return null;
+          return q;
+        } catch (e) {
+          return null;
+        }
       case ValidatedQuantity _:
         return result;
-      // TODO(Dokotela): Implement the Ratio case
-      // case Ratio _;
+      case ValidatedRatio _:
+        return result.numerator / result.denominator;
       default:
         return null;
     }

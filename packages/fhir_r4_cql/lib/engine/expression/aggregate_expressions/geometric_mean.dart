@@ -1,3 +1,7 @@
+import 'dart:math' as math;
+
+import 'package:fhir_r4/fhir_r4.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The GeometricMean operator returns the geometric mean of the non-null elements in source.
@@ -78,6 +82,33 @@ class GeometricMean extends AggregateExpression {
 
   @override
   String get type => 'GeometricMean';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
+    if (sourceResult == null) return null;
+    if (sourceResult is! List) {
+      throw ArgumentError('GeometricMean operator requires a List');
+    }
+    if (sourceResult.isEmpty) return null;
+    final nonNull = sourceResult.where((e) => e != null).toList();
+    if (nonNull.isEmpty) return null;
+
+    // Convert all to double, compute product, take nth root
+    final values = nonNull.map((e) {
+      if (e is FhirDecimal) return e.valueNum?.toDouble() ?? 0.0;
+      if (e is FhirInteger) return (e.valueInt ?? 0).toDouble();
+      if (e is int) return e.toDouble();
+      if (e is double) return e;
+      if (e is num) return e.toDouble();
+      throw ArgumentError('GeometricMean: unsupported type ${e.runtimeType}');
+    }).toList();
+
+    final product = values.reduce((a, b) => a * b);
+    final result = math.pow(product, 1.0 / values.length);
+    // CQL Decimal: at most 8 digits of scale
+    return FhirDecimal(double.parse(result.toStringAsFixed(8)));
+  }
 
   @override
   String toString() => 'GeometricMean: $source';

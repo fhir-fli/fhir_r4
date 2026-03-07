@@ -65,9 +65,17 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
     }
 
     //
-    // STEP 3: Delegate to the standard factory
+    // STEP 3: Delegate to the standard factory; fall back to FunctionRef
+    // for user-defined (local or included) functions
     //
-    return CqlExpression.byName(ref, operand, library);
+    try {
+      return CqlExpression.byName(ref, operand, library);
+    } on ArgumentError {
+      return FunctionRef(
+        name: ref,
+        operand: operand.isNotEmpty ? operand : null,
+      );
+    }
   }
 
   /// Wraps any `Null` elements in the list with `As(…, <aggType>)`.
@@ -131,11 +139,15 @@ class CqlFunctionVisitor extends CqlBaseVisitor<dynamic> {
       ),
     );
 
-    // Always return ToDecimal(X) so that the aggregate (Avg/Median/etc)
-    // sees a Decimal even if all inputs were integer-like
+    // For Quantity lists, pass elements through unchanged — ToDecimal would
+    // destroy the quantity values (it returns null for ValidatedQuantity).
+    // For Integer/Decimal lists, promote to Decimal for aggregate accuracy.
+    final CqlExpression returnExpr = wrapType == 'Quantity'
+        ? AliasRef(name: aliasName)
+        : ToDecimal(operand: AliasRef(name: aliasName));
     final returnClause = ReturnClause(
       distinct: false,
-      expression: ToDecimal(operand: AliasRef(name: aliasName)),
+      expression: returnExpr,
     );
 
     return Query(source: [aliasedSource], returnClause: returnClause);

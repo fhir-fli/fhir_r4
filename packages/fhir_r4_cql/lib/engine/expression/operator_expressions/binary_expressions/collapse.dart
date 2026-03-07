@@ -1,4 +1,6 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/ucum.dart';
 
 /// Operator to get the unique set of intervals that completely cover the ranges
 /// present in the given list of intervals.
@@ -136,11 +138,54 @@ class Collapse extends BinaryExpression {
     }
 
     final source = await operand[0].execute(context);
-    final per = operand.length > 1 ? operand[1].execute(context) : null;
+    final per = operand.length > 1 ? await operand[1].execute(context) : null;
     return collapse(source, per);
   }
 
-  // TODO(Dokotela): with precision
+  static CqlDateTimePrecision? _precisionFromQuantity(dynamic per) {
+    if (per is ValidatedQuantity) {
+      final unit = per.unit;
+      if (unit != '1') {
+        return CqlDateTimePrecisionExtension.fromJson(unit);
+      }
+    }
+    return null;
+  }
+
+  static CqlDateTimePrecision? _coarsestPrecision(List source) {
+    CqlDateTimePrecision? coarsest;
+    for (final interval in source) {
+      if (interval is CqlInterval) {
+        final start = interval.getStart();
+        final end = interval.getEnd();
+        for (final boundary in [start, end]) {
+          if (boundary is FhirDateTimeBase) {
+            CqlDateTimePrecision p;
+            if (!boundary.hasMonth) {
+              p = CqlDateTimePrecision.year;
+            } else if (!boundary.hasDay) {
+              p = CqlDateTimePrecision.month;
+            } else if (!boundary.hasHours) {
+              p = CqlDateTimePrecision.day;
+            } else if (!boundary.hasMinutes) {
+              p = CqlDateTimePrecision.hour;
+            } else if (!boundary.hasSeconds) {
+              p = CqlDateTimePrecision.minute;
+            } else if (!boundary.hasMilliseconds) {
+              p = CqlDateTimePrecision.second;
+            } else {
+              p = CqlDateTimePrecision.millisecond;
+            }
+            if (coarsest == null || p.index < coarsest.index) {
+              coarsest = p;
+            }
+          }
+        }
+      }
+    }
+    return coarsest;
+  }
+
   List<CqlInterval>? collapse(dynamic source, dynamic per) {
     if (source == null) {
       return null;
@@ -150,10 +195,28 @@ class Collapse extends BinaryExpression {
       return [];
     }
 
+    // Filter out null elements (e.g., from Interval(null, null) evaluating to null)
+    if (source is List) {
+      source = source.where((e) => e != null).toList();
+    }
+    if (source.isEmpty) {
+      return [];
+    }
     if (source is List && source.every((element) => element is CqlInterval)) {
-      if (source.length == 1) {
-        return source as List<CqlInterval>;
+      // Filter out null intervals (both boundaries null)
+      final intervals = source.cast<CqlInterval>();
+      final filtered =
+          intervals.where((i) => i.low != null || i.high != null).toList();
+      if (filtered.isEmpty) {
+        return [];
       }
+      if (filtered.length == 1) {
+        return filtered;
+      }
+      source = filtered;
+
+      final precision =
+          _precisionFromQuantity(per) ?? _coarsestPrecision(source);
 
       // Sort the source by their start points
       source.sort((a, b) => a.compareTo(b));
@@ -161,29 +224,72 @@ class Collapse extends BinaryExpression {
       final List<CqlInterval> collapsedSource = [];
       CqlInterval? currentInterval = source.first;
 
+      // Normalize per for gap tolerance calculation.
+      // When per is a ValidatedQuantity and endpoints are numeric FHIR types,
+      // normalizePer converts to matching FHIR type.
+      // When per is a FhirInteger/FhirDecimal and endpoints are ValidatedQuantity,
+      // we need to convert per to ValidatedQuantity with unit '1'.
+      dynamic effectivePer = per;
+      if (per is ValidatedQuantity) {
+        effectivePer = Expand.normalizePer(per, source.first.getStart());
+      } else if (per != null && source.first.getStart() is ValidatedQuantity) {
+        // Endpoints are ValidatedQuantity — convert per to ValidatedQuantity
+        if (per is FhirInteger) {
+          effectivePer = ValidatedQuantity(
+              value: UcumDecimal.fromString(per.valueInt.toString()),
+              unit: '1');
+        } else if (per is FhirDecimal) {
+          effectivePer = ValidatedQuantity(
+              value: UcumDecimal.fromString(per.valueString!), unit: '1');
+        }
+      }
+
       for (var i = 1; i < source.length; i++) {
         final nextInterval = source[i];
 
         // Check if current and next source overlap or meet
         final overlaps =
-            Overlaps.overlaps(currentInterval, nextInterval)?.valueBoolean ??
+            Overlaps.overlaps(currentInterval, nextInterval, precision)
+                    ?.valueBoolean ??
                 false;
-        final meets =
-            Meets.meets(currentInterval, nextInterval)?.valueBoolean ?? false;
+        final meets = Meets.meets(currentInterval, nextInterval, precision)
+                ?.valueBoolean ??
+            false;
 
-        if (overlaps || meets) {
-          // Merge the source
-          final newEnd =
-              (Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
-                          ?.valueBoolean ??
-                      false)
-                  ? currentInterval?.getEnd()
-                  : nextInterval.getEnd();
+        // Check per-based gap tolerance: merge if gap ≤ per.
+        // For DateTime intervals, Subtract(DateTime, DateTime) returns null,
+        // so instead check if curEnd + per >= nextStart.
+        bool withinPer = false;
+        if (!overlaps && !meets && effectivePer != null) {
+          final curEnd = currentInterval?.getEnd();
+          final nextStart = nextInterval.getStart();
+          if (curEnd != null && nextStart != null) {
+            final endPlusPer = Add.add(curEnd, effectivePer);
+            if (endPlusPer != null) {
+              final check =
+                  SameOrAfter.sameOrAfter(endPlusPer, nextStart, precision);
+              if (check?.valueBoolean == true) withinPer = true;
+            }
+          }
+        }
+
+        if (overlaps || meets || withinPer) {
+          // Merge the intervals
+          final currentEndGreater =
+              Greater.greater(currentInterval?.getEnd(), nextInterval.getEnd())
+                      ?.valueBoolean ??
+                  false;
+          final newEnd = currentEndGreater
+              ? currentInterval?.getEnd()
+              : nextInterval.getEnd();
+          final newHighClosed = currentEndGreater
+              ? currentInterval?.highClosed
+              : nextInterval.highClosed;
           currentInterval = CqlInterval(
             low: currentInterval?.low,
             lowClosed: currentInterval?.lowClosed,
             high: newEnd,
-            highClosed: nextInterval.highClosed,
+            highClosed: newHighClosed,
           );
         } else if (currentInterval != null) {
           collapsedSource.add(currentInterval);

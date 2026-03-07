@@ -117,7 +117,6 @@ class MeetsBefore extends BinaryExpression {
   @override
   List<String> getReturnTypes(CqlLibrary library) => const ['Boolean'];
 
-  // TODO(Dokotela): with precision
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
@@ -127,12 +126,46 @@ class MeetsBefore extends BinaryExpression {
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
 
+    return meetsBefore(left, right, precision);
+  }
+
+  static FhirBoolean? meetsBefore(dynamic left, dynamic right,
+      [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
       return null;
     } else if (left is CqlInterval && right is CqlInterval) {
-      final leftEnd = left.getEnd();
-      final rightStart = right.getStart();
-      return Equal.equal(leftEnd, Predecessor.predecessor(rightStart));
+      // getStart()/getEnd() return null for unknown boundaries (open null),
+      // but return MinValue/MaxValue for closed null (infinity endpoints).
+      final eLS = left.getStart();
+      final eLE = left.getEnd();
+      final eRS = right.getStart();
+      final eRE = right.getEnd();
+
+      // If intervals provably overlap, they cannot meet
+      if (Meets.intervalsOverlap(eLS, eLE, eRS, eRE, precision)) {
+        return FhirBoolean(false);
+      }
+
+      // Check meets before: leftEnd = predecessor(rightStart)
+      final result = Meets.checkMeetsBefore(eLE, eRS, precision);
+      if (result != null) return result;
+
+      // If leftStart ≥ rightStart, then leftEnd ≥ leftStart ≥ rightStart > pred(rightStart)
+      // so leftEnd ≠ pred(rightStart) → false
+      if (eLS != null && eRS != null) {
+        final ge = precision != null
+            ? SameOrAfter.sameOrAfter(eLS, eRS, precision)
+            : GreaterOrEqual.greaterOrEqual(eLS, eRS);
+        if (ge?.valueBoolean == true) return FhirBoolean(false);
+      }
+      // If rightEnd < leftStart, right is entirely before left → can't meet before
+      if (eRE != null && eLS != null) {
+        final gt = precision != null
+            ? After.after(eLS, eRE, precision)
+            : Greater.greater(eLS, eRE);
+        if (gt?.valueBoolean == true) return FhirBoolean(false);
+      }
+      return null;
     } else {
       return null;
     }

@@ -1,3 +1,6 @@
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:ucum/ucum.dart';
+
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// The Product operator returns the geometric product of non-null elements in the source.
@@ -77,6 +80,59 @@ class Product extends AggregateExpression {
 
   @override
   String get type => 'Product';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
+    return product(sourceResult);
+  }
+
+  static dynamic product(dynamic sourceResult) {
+    if (sourceResult == null) {
+      return null;
+    } else if (sourceResult is List) {
+      if (sourceResult.isEmpty) {
+        return null;
+      }
+      // Per CQL spec: if any element is null, result is null
+      if (sourceResult.any((e) => e == null)) {
+        return null;
+      }
+      if (sourceResult.every((e) => e is int)) {
+        return sourceResult.cast<int>().reduce((a, b) => a * b);
+      } else if (sourceResult.every((e) => e is double)) {
+        return sourceResult.cast<double>().reduce((a, b) => a * b);
+      } else if (sourceResult.every((e) => e is BigInt)) {
+        return sourceResult.cast<BigInt>().reduce((a, b) => a * b);
+      } else if (sourceResult.every((e) => e is FhirInteger)) {
+        return sourceResult.cast<FhirInteger>().reduce(
+            (a, b) => FhirInteger((a.valueInt ?? 0) * (b.valueInt ?? 0)));
+      } else if (sourceResult.every((e) => e is FhirInteger64)) {
+        return sourceResult.cast<FhirInteger64>().reduce((a, b) =>
+            FhirInteger64((a.valueBigInt ?? BigInt.zero) *
+                (b.valueBigInt ?? BigInt.zero)));
+      } else if (sourceResult.every((e) => e is FhirDecimal)) {
+        return sourceResult.cast<FhirDecimal>().reduce(
+            (a, b) => FhirDecimal((a.valueNum ?? 0) * (b.valueNum ?? 0)));
+      } else if (sourceResult.every((e) => e is ValidatedQuantity)) {
+        // Multiply values only, keep the unit from the first element
+        // (don't compound units like g*g*g)
+        final quantities = sourceResult.cast<ValidatedQuantity>();
+        final unit = quantities.first.unit;
+        var productValue = quantities.first.value;
+        for (int i = 1; i < quantities.length; i++) {
+          productValue = productValue * quantities[i].value;
+        }
+        return ValidatedQuantity(value: productValue, unit: unit);
+      } else {
+        throw ArgumentError('Product operator: unsupported element type '
+            '${sourceResult.first.runtimeType}');
+      }
+    } else {
+      throw ArgumentError('Product operator requires a List, '
+          'but found ${sourceResult.runtimeType}');
+    }
+  }
 
   @override
   String toString() => 'Product { source: $source }';

@@ -340,6 +340,78 @@ class OAuthFlow {
     return tokenResponse;
   }
 
+  /// Perform client credentials grant (for backend services)
+  ///
+  /// Uses JWT client assertion per SMART Backend Services spec.
+  /// No PKCE, no redirect_uri, no Basic auth header.
+  Future<SmartTokenResponse> performClientCredentialsGrant({
+    required String clientAssertion,
+    List<String>? scopes,
+  }) async {
+    _logger.fine('Performing client credentials grant');
+
+    return _rateLimiter.execute(
+      'client_credentials:$clientId',
+      () => _performClientCredentialsExchange(
+        clientAssertion: clientAssertion,
+        scopes: scopes,
+      ),
+    );
+  }
+
+  /// Perform the actual client credentials exchange
+  Future<SmartTokenResponse> _performClientCredentialsExchange({
+    required String clientAssertion,
+    List<String>? scopes,
+  }) async {
+    final body = <String, String>{
+      OAuthParameters.grantType: GrantType.clientCredentials.value,
+      OAuthParameters.clientAssertionType: OAuthParameters.jwtBearerUrn,
+      OAuthParameters.clientAssertion: clientAssertion,
+      if (scopes != null && scopes.isNotEmpty)
+        OAuthParameters.scope: scopes.join(' '),
+    };
+
+    final headers = <String, String>{
+      HttpHeaders.contentType: 'application/x-www-form-urlencoded',
+      HttpHeaders.accept: 'application/json',
+    };
+
+    final response = await _httpClient.post(
+      tokenEndpoint,
+      headers: headers,
+      body: body,
+    );
+
+    if (response.statusCode != 200) {
+      _logger.severe('Client credentials grant failed: ${response.statusCode}');
+
+      try {
+        final error = jsonDecode(response.body) as Map<String, dynamic>;
+        throw AuthorizationException(
+          'Client credentials grant failed',
+          statusCode: response.statusCode,
+          errorCode: error[OAuthParameters.error] as String?,
+          errorDescription: error[OAuthParameters.errorDescription] as String?,
+          details: response.body,
+        );
+      } catch (e) {
+        if (e is AuthorizationException) rethrow;
+        throw NetworkException(
+          'Client credentials grant failed',
+          statusCode: response.statusCode,
+          details: response.body,
+        );
+      }
+    }
+
+    final responseData = jsonDecode(response.body) as Map<String, dynamic>;
+    final tokenResponse = SmartTokenResponse.fromJson(responseData);
+
+    _logger.fine('Client credentials grant successful');
+    return tokenResponse;
+  }
+
   /// Revoke a token
   Future<void> revokeToken(
     String token, {

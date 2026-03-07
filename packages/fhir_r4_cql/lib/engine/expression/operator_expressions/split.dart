@@ -103,7 +103,10 @@ class Split extends OperatorExpression {
     }
     if (sourceValue is String &&
         (separatorValue is String || separatorValue == null)) {
-      return sourceValue.split(separatorValue ?? '');
+      if (separatorValue == null) {
+        return [sourceValue];
+      }
+      return sourceValue.split(separatorValue);
     }
     throw ArgumentError('Invalid argument for Combine operator');
   }

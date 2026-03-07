@@ -181,9 +181,18 @@ class Equivalent extends BinaryExpression {
         result = right == null;
         break;
       case String _:
-        result = right is String
-            ? left.toLowerCase().trim() == right.toLowerCase().trim()
-            : false;
+        {
+          String? rightStr;
+          if (right is String) {
+            rightStr = right;
+          } else if (right is FhirString) {
+            rightStr = right.valueString;
+          }
+          // Don't compare String with non-string PrimitiveTypes (Integer,
+          // Boolean, etc.) — different types are not equivalent per CQL spec.
+          result = rightStr != null &&
+              left.toLowerCase().trim() == rightStr.toLowerCase().trim();
+        }
         break;
       case FhirDateTimeBase _:
         result = right is FhirDateTimeBase
@@ -219,8 +228,14 @@ class Equivalent extends BinaryExpression {
           result = UcumDecimal.fromString(left.valueString!)
               .equivalent(UcumDecimal.fromString(right.toString()));
         } else if ((right is FhirNumber) || (right is FhirInteger64)) {
-          result = UcumDecimal.fromString(left.valueString!)
-              .equivalent(UcumDecimal.fromString(right.toString()));
+          // CQL spec: for decimals, equivalent rounds to precision of least
+          // precise operand. Use numeric comparison which handles this naturally.
+          if (left is FhirNumber && right is FhirNumber) {
+            result = left.valueNum == right.valueNum;
+          } else {
+            result = UcumDecimal.fromString(left.valueString!)
+                .equivalent(UcumDecimal.fromString(right.valueString!));
+          }
         } else if (right is ValidatedQuantity && left is FhirDecimal) {
           result =
               ValidatedQuantity.fromString(left.valueString!).equivalent(right);
@@ -327,8 +342,7 @@ class Equivalent extends BinaryExpression {
           if (right is CqlConcept) {
             result = concept.equivalent(right);
           } else if (right is CqlCode) {
-            result =
-                CqlConcept(codes: [right]).equivalent(concept);
+            result = CqlConcept(codes: [right]).equivalent(concept);
           } else {
             result = equivalent(concept, right).valueBoolean ?? false;
           }

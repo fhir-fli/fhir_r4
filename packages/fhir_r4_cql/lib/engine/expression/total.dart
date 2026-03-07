@@ -54,4 +54,9 @@ class Total extends CqlExpression {
 
   @override
   String get type => 'Total';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    return context[scope.isEmpty ? '\$total' : scope];
+  }
 }

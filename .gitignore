@@ -13,3 +13,10 @@ build/
 
 ./packages/fhir_r4/*ndjson
 *ndjson
+
+# Dart support files
+*.pubspec.lock
+
+# Test output logs
+test_output.log
+test_results_*.txt

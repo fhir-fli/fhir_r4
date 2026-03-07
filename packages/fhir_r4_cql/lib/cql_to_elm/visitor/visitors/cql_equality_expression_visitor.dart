@@ -71,7 +71,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
           // ───── Compute the three “needs Query” flags ─────
 
           // 1) flattenNeeded: list-of-lists + scalars
-          final flattenNeeded = (expr.element?.first is ListExpression) &&
+          final flattenNeeded = (expr.element?.isNotEmpty == true) &&
+              (expr.element?.first is ListExpression) &&
               expr.element!.skip(1).any((e) => e is! ListExpression);
 
           // 2) setOpCast: sibling is a UNION that truly mixes element types
@@ -132,6 +133,23 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       }
     }
 
+    // ───── Choice type Case expression generation ─────
+    // When a choice-typed property (e.g. Extension.value) is compared to a
+    // string literal, generate a Case expression with branches for each
+    // string-convertible choice alternative.
+    if (operands.length == 2 &&
+        (equalityOperator == '=' || equalityOperator == '!=')) {
+      for (int i = 0; i < 2; i++) {
+        final other = operands[1 - i];
+        if (other is LiteralString && operands[i] is Property) {
+          final caseExpr = _buildChoiceCaseForString(operands[i] as Property);
+          if (caseExpr != null) {
+            operands[i] = caseExpr;
+          }
+        }
+      }
+    }
+
     // ───── Inject FHIRHelpers wrappers ─────
     if (operands.length == 2 && equalityOperator != null) {
       final left = operands[0];
@@ -177,7 +195,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
       final rightIsFhirConceptProp = _isFhirConceptProperty(right);
       bool conceptHandled = false;
 
-      if (leftIsFhirConceptProp && !rightIsFhirConceptProp &&
+      if (leftIsFhirConceptProp &&
+          !rightIsFhirConceptProp &&
           _isCodeType(right)) {
         operands[0] = FunctionRef(
           name: 'ToConcept',
@@ -186,7 +205,8 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         );
         operands[1] = ToConcept(operand: operands[1]);
         conceptHandled = true;
-      } else if (rightIsFhirConceptProp && !leftIsFhirConceptProp &&
+      } else if (rightIsFhirConceptProp &&
+          !leftIsFhirConceptProp &&
           _isCodeType(left)) {
         operands[1] = FunctionRef(
           name: 'ToConcept',
@@ -234,8 +254,7 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         case '!~':
           return Not(
               operand: Equivalent(
-                  operand:
-                      translateOperand(_wrapCodeRefsAsConcept(operands))));
+                  operand: translateOperand(_wrapCodeRefsAsConcept(operands))));
       }
     }
 
@@ -347,5 +366,176 @@ class CqlEqualityExpressionVisitor extends CqlBaseVisitor<CqlExpression> {
         errorSeverity: ErrorSeverity.warning,
       ),
     );
+  }
+
+  /// The FHIR types whose values can be converted to string via ToString.
+  /// Each entry is (choiceTypeName, fhirBaseType). The base type is used for
+  /// Is/As checks because FHIR subtypes like 'code' extend 'string'.
+  static const _stringConvertibleTypes = [
+    ('base64Binary', 'base64Binary'),
+    ('canonical', 'uri'),
+    ('code', 'string'),
+    ('id', 'string'),
+    ('markdown', 'string'),
+    ('oid', 'uri'),
+    ('string', 'string'),
+    ('uri', 'uri'),
+    ('url', 'uri'),
+    ('uuid', 'uri'),
+  ];
+
+  /// Build a Case expression for a choice-typed Property compared to a string.
+  /// Returns null if the property is not on a choice field.
+  ///
+  /// For Extension.value[x] compared to 'M', generates:
+  /// ```
+  /// Case {
+  ///   when Is({fhir}base64Binary, value) then ToString(As({fhir}base64Binary, value))
+  ///   when Is({fhir}uri, value) then ToString(As({fhir}uri, value))  // for canonical
+  ///   when Is({fhir}string, value) then ToString(As({fhir}string, value))  // for code
+  ///   ...
+  ///   else null
+  /// }
+  /// ```
+  CqlExpression? _buildChoiceCaseForString(Property property) {
+    // Try to find the choice type element info
+    ClassInfoElement? element;
+
+    // First try to resolve the class from the property
+    final className = _resolvePropertyClassName(property);
+    if (className != null) {
+      element = getElementInfo(className, property.path);
+    }
+
+    // Fallback: search all FHIR types for a choice-typed element with this path
+    if (element == null || !CqlBaseVisitor.isChoiceType(element)) {
+      element = _findChoiceElementByPath(property.path);
+    }
+
+    if (element == null || !CqlBaseVisitor.isChoiceType(element)) return null;
+
+    // Get the choice alternatives
+    final choiceTypes = CqlBaseVisitor.getChoiceTypes(element);
+
+    // Filter to string-convertible types that exist in the choice alternatives
+    final matchingTypes = <(String, String)>[];
+    for (final (choiceName, baseType) in _stringConvertibleTypes) {
+      // Check if this choice type or its FHIR-prefixed version exists
+      if (choiceTypes.any((c) =>
+          c == choiceName ||
+          c == 'FHIR.$choiceName' ||
+          c == '{http://hl7.org/fhir}$choiceName')) {
+        matchingTypes.add((choiceName, baseType));
+      }
+    }
+
+    if (matchingTypes.isEmpty) return null;
+
+    // Build Case items
+    final caseItems = <CaseItem>[];
+    for (final (_, baseType) in matchingTypes) {
+      final fhirQName = QName(
+        namespaceURI: 'http://hl7.org/fhir',
+        localPart: baseType,
+      );
+
+      caseItems.add(CaseItem(
+        when_: Is(
+          isType: fhirQName,
+          operand: property,
+        ),
+        then: FunctionRef(
+          name: 'ToString',
+          libraryName: 'FHIRHelpers',
+          operand: [
+            As(
+              asType: fhirQName,
+              operand: property,
+            ),
+          ],
+        ),
+      ));
+    }
+
+    return Case(
+      caseItem: caseItems,
+      elseExpr: LiteralNull(),
+    );
+  }
+
+  /// Try to resolve the FHIR class name for a Property expression.
+  String? _resolvePropertyClassName(Property property) {
+    if (property.scope != null) {
+      return _classNameFromScope(property.scope!);
+    }
+    if (property.source != null) {
+      return _classNameFromSource(property.source!);
+    }
+    return null;
+  }
+
+  String? _classNameFromScope(String alias) {
+    for (final def in library.statements?.def ?? const <ExpressionDef>[]) {
+      final expr = def.expression;
+      if (expr is Query) {
+        for (final src in expr.source ?? <RelationshipClause>[]) {
+          if (src.alias == alias) {
+            return _classNameFromSource(src.expression);
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  String? _classNameFromSource(CqlExpression expr) {
+    if (expr is Retrieve) return expr.dataType.localPart;
+    if (expr is SingletonFrom && expr.operand is Retrieve) {
+      return (expr.operand as Retrieve).dataType.localPart;
+    }
+    if (expr is ExpressionRef) {
+      ExpressionDef? refDef;
+      for (final d in library.statements?.def ?? const <ExpressionDef>[]) {
+        if (d.name == expr.name) {
+          refDef = d;
+          break;
+        }
+      }
+      if (refDef?.expression is SingletonFrom) {
+        final sf = refDef!.expression as SingletonFrom;
+        if (sf.operand is Retrieve) {
+          return (sf.operand as Retrieve).dataType.localPart;
+        }
+      }
+    }
+    return null;
+  }
+
+  /// Search all FHIR types in model info for a choice-typed element
+  /// with the given property path name. Returns the element with the most
+  /// choice alternatives (to prefer Extension over narrower types).
+  ClassInfoElement? _findChoiceElementByPath(String path) {
+    ClassInfoElement? best;
+    int bestCount = 0;
+    for (final model in library.usings?.def ?? <UsingDef>[]) {
+      if (model.localIdentifier == null) continue;
+      final modelInfo = modelInfoProvider.load(
+          ModelIdentifier(id: model.localIdentifier!, version: model.version));
+      if (modelInfo == null) continue;
+      for (final ti in modelInfo.typeInfo) {
+        if (ti is ClassInfo) {
+          for (final el in ti.element ?? <ClassInfoElement>[]) {
+            if (el.name == path && CqlBaseVisitor.isChoiceType(el)) {
+              final count = CqlBaseVisitor.getChoiceTypes(el).length;
+              if (count > bestCount) {
+                best = el;
+                bestCount = count;
+              }
+            }
+          }
+        }
+      }
+    }
+    return best;
   }
 }

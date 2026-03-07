@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to check if a value can be converted to a specific type.
@@ -84,4 +85,41 @@ class CanConvert extends UnaryExpression {
 
   @override
   String get type => 'CanConvert';
+
+  @override
+  Future<fhir.FhirBoolean?> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    final targetType = toType?.localPart.toLowerCase() ?? '';
+    try {
+      dynamic result;
+      switch (targetType) {
+        case 'boolean':
+          result = await ToBoolean(operand: operand).execute(context);
+        case 'integer':
+          result = await ToInteger(operand: operand).execute(context);
+        case 'long':
+          result = await ToLong(operand: operand).execute(context);
+        case 'decimal':
+          result = await ToDecimal(operand: operand).execute(context);
+        case 'string':
+          result = await ToString(operand: operand).execute(context);
+        case 'quantity':
+          result = await ToQuantity(operand: operand).execute(context);
+        case 'ratio':
+          result = await ToRatio(operand: operand).execute(context);
+        case 'date':
+          result = await ToDate(operand: operand).execute(context);
+        case 'datetime':
+          result = await ToDateTime(operand: operand).execute(context);
+        case 'time':
+          result = await ToTime(operand: operand).execute(context);
+        default:
+          return fhir.FhirBoolean(false);
+      }
+      return fhir.FhirBoolean(result != null);
+    } catch (_) {
+      return fhir.FhirBoolean(false);
+    }
+  }
 }

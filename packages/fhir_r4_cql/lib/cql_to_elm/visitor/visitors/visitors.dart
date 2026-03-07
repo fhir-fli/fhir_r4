@@ -85,6 +85,8 @@ export 'cql_qualifier_visitor.dart';
 export 'cql_quantity_literal_visitor.dart';
 export 'cql_quantity_offset_visitor.dart';
 export 'cql_quantity_visitor.dart';
+export 'cql_ratio_literal_visitor.dart';
+export 'cql_ratio_visitor.dart';
 export 'cql_query_expression_visitor.dart';
 export 'cql_query_inclusion_clause_visitor.dart';
 export 'cql_query_source_visitor.dart';

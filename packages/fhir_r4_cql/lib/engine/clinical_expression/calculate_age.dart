@@ -101,7 +101,6 @@ class CalculateAge extends UnaryExpression {
 
     // Use Today() for Date-based calculation
     final today = await Today().execute(context);
-    if (today == null) return null;
 
     return await DurationBetween(
       precision: precision,

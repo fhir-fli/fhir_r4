@@ -121,6 +121,8 @@ class OverlapsBefore extends BinaryExpression {
     return overlapsBefore(left, right, precision);
   }
 
+  /// OverlapsBefore returns true if the first interval overlaps the second and
+  /// starts before it: Start(left) < Start(right) AND End(left) >= Start(right)
   static FhirBoolean? overlapsBefore(dynamic left, dynamic right,
       [CqlDateTimePrecision? precision]) {
     if (left == null || right == null) {
@@ -128,26 +130,28 @@ class OverlapsBefore extends BinaryExpression {
     }
 
     if (left is CqlInterval && right is CqlInterval) {
-      var leftStart = left.getStart();
-      var leftEnd = left.getEnd();
-      var rightStart = right.getStart();
-      var rightEnd = right.getEnd();
+      try {
+        final leftStart = left.getStart();
+        final rightStart = right.getStart();
 
-      if (leftStart is FhirDateTimeBase &&
-          rightStart is FhirDateTimeBase &&
-          precision != null) {
-        return And.and(
-          SameOrBefore.sameOrBefore(leftStart, rightEnd, precision),
-          SameOrBefore.sameOrBefore(rightStart, leftEnd, precision),
-        );
-      } else {
-        return And.and(
-          LessOrEqual.lessOrEqual(leftStart, rightEnd),
-          LessOrEqual.lessOrEqual(rightStart, leftEnd),
-        );
+        FhirBoolean? beforeResult;
+        FhirBoolean? overlapsResult;
+
+        if ((leftStart is FhirDateTimeBase && rightStart is FhirDateTimeBase) ||
+            (leftStart is FhirTime && rightStart is FhirTime)) {
+          beforeResult = Before.before(leftStart, rightStart, precision);
+          overlapsResult = Overlaps.overlaps(left, right, precision);
+        } else if (leftStart is Comparable && rightStart is Comparable) {
+          beforeResult = FhirBoolean(leftStart.compareTo(rightStart) < 0);
+          overlapsResult = Overlaps.overlaps(left, right);
+        }
+
+        return And.and(beforeResult, overlapsResult);
+      } catch (_) {
+        return null;
       }
     }
 
-    throw Exception("Overlaps requires CqlInterval arguments.");
+    return null;
   }
 }

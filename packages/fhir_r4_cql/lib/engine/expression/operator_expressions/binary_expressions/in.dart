@@ -215,7 +215,7 @@ class In extends BinaryExpression {
   @override
   Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
     if (operand.length != 2) {
-      throw ArgumentError('After expression must have 2 operands');
+      throw ArgumentError('In expression must have 2 operands');
     }
     final left = await operand[0].execute(context);
     final right = await operand[1].execute(context);
@@ -231,17 +231,69 @@ class In extends BinaryExpression {
       if (left == null) {
         return null;
       }
-      return FhirBoolean(right.contains(left));
+      return Contains.contains(right, left, precision);
     } else if (right is List) {
-      return FhirBoolean(right.contains(left));
+      // CQL spec: null elements are considered equal for 'in' operator
+      if (left == null) {
+        return FhirBoolean(right.any((e) => e == null));
+      }
+      return FhirBoolean(IncludedIn.listContains(right, left));
     } else if (right is CqlValueSet) {
-      // final String url = right.id;
-      // ignore: unused_local_variable
-      // final response = get(Uri.parse(url));
-      return null;
+      if (left == null) return FhirBoolean(false);
+      // Check context['_valueSets'] for expansion
+      final valueSets = context['_valueSets'];
+      if (valueSets is Map<String, dynamic>) {
+        final expansion = valueSets[right.id];
+        if (expansion is List) {
+          // Convert Map-based FHIR types to CQL types for matching
+          final codeValue = _toCqlCodeValue(left);
+          return InValueSet.checkCodeInExpansion(codeValue, expansion);
+        }
+      }
+      return FhirBoolean(false);
     } else {
-      throw ArgumentError(
-          'In: Right operand must be of type Interval, List, or include Codes and ValueSets');
+      // CQL spec: scalar right operand is implicitly promoted to a
+      // single-element list via ToList. E.g., 5 in 5 → 5 in {5} → true.
+      if (left == null) {
+        return FhirBoolean(false);
+      }
+      return FhirBoolean(IncludedIn.listContains([right], left));
     }
+  }
+
+  /// Convert FHIR Map-based types to CQL types for ValueSet membership checking.
+  static dynamic _toCqlCodeValue(dynamic value) {
+    if (value is CqlCode ||
+        value is CqlConcept ||
+        value is CodeableConcept ||
+        value is String ||
+        value is FhirCode) {
+      return value;
+    }
+    // Handle Map-based CodeableConcept from FHIR data
+    if (value is Map<String, dynamic>) {
+      final coding = value['coding'];
+      if (coding is List && coding.isNotEmpty) {
+        final codes = coding
+            .whereType<Map<String, dynamic>>()
+            .map((c) => CqlCode(
+                  code: c['code']?.toString() ?? '',
+                  system: c['system']?.toString() ?? '',
+                  display: c['display']?.toString(),
+                ))
+            .toList();
+        if (codes.length == 1) return codes.first;
+        return CqlConcept(codes: codes);
+      }
+      // Might be a single code
+      if (value.containsKey('code')) {
+        return CqlCode(
+          code: value['code']?.toString() ?? '',
+          system: value['system']?.toString() ?? '',
+          display: value['display']?.toString(),
+        );
+      }
+    }
+    return value;
   }
 }

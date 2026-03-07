@@ -164,7 +164,11 @@ class Successor extends UnaryExpression {
         return value.plus(hours: 1);
       }
     } else if (value is ValidatedQuantity && value.isValid()) {
-      return value + 1;
+      // Always use minimum decimal step (10^-8) for quantities, matching
+      // the CQF reference implementation behavior.
+      final newValue = value.value.add(UcumDecimal.fromString('0.00000001'));
+      return ValidatedQuantity.fromString(
+          '${newValue.asUcumDecimal()} \'${value.unit}\'');
     }
     throw ArgumentError('Invalid type for Successor: ${value.runtimeType}');
   }

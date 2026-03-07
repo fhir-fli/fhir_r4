@@ -115,6 +115,10 @@ class ReplaceMatches extends TernaryExpression {
       throw ArgumentError('Both operands must be of type String');
     }
 
-    return argument.replaceAllMapped(RegExp(pattern), (match) => substitution);
+    // Process Java-style regex substitution escapes:
+    // \$ → literal $, \\ → literal \
+    final processed =
+        substitution.replaceAll(r'\$', '\$').replaceAll(r'\\', r'\');
+    return argument.replaceAllMapped(RegExp(pattern), (match) => processed);
   }
 }

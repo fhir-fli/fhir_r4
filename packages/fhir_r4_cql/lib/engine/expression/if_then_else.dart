@@ -89,12 +89,19 @@ class IfThenElse extends CqlExpression {
     if (const DeepCollectionEquality()
         .equals(elseReturnTypes, thenReturnTypes)) {
       return elseReturnTypes;
-    } else {
-      throw CqlException(
-          message: 'In If..Then..Else statements, the return '
-              'types for then and Else must be the same. In this case it was: '
-              'then ($thenReturnTypes) and else ($elseReturnTypes)');
     }
+    // In CQL, null is compatible with any type. If one branch returns Null,
+    // use the other branch's type.
+    final thenIsNull =
+        thenReturnTypes.isEmpty || thenReturnTypes.every((t) => t == 'Null');
+    final elseIsNull =
+        elseReturnTypes.isEmpty || elseReturnTypes.every((t) => t == 'Null');
+    if (thenIsNull && !elseIsNull) return elseReturnTypes;
+    if (elseIsNull && !thenIsNull) return thenReturnTypes;
+    if (thenIsNull && elseIsNull) return thenReturnTypes;
+    // For other mismatches, return the union rather than throwing—
+    // the CQL spec allows subtype compatibility.
+    return thenReturnTypes.toSet().union(elseReturnTypes.toSet()).toList();
   }
 
   @override

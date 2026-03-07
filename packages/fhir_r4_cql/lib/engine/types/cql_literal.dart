@@ -616,21 +616,42 @@ class LiteralRatio extends LiteralType {
   }
 
   @override
+  Future<ValidatedRatio> execute(Map<String, dynamic> context) async =>
+      ValidatedRatio(
+        numerator: await numerator.execute(context),
+        denominator: await denominator.execute(context),
+      );
+
+  @override
   String get type => 'Ratio';
+
+  @override
+  List<String> getReturnTypes(CqlLibrary library) => ['Ratio'];
+
+  @override
+  String toString() => 'LiteralRatio: $numerator : $denominator';
 }
 
 class LiteralString extends LiteralType {
   final String value;
 
-  LiteralString(String value)
-      : value = value
-            .replaceAll(r'\n', '\n')
-            .replaceAll(r'\t', '\t')
-            .replaceAll(r'\b', '\b')
-            .replaceAll(r'\r', '\r')
-            .replaceAll(r'\\', '\\')
-            .replaceAll(r"\'", "'")
-            .replaceAll(r'\"', '"');
+  LiteralString(String value) : value = _unescape(value);
+
+  static String _unescape(String s) {
+    // Process Unicode escapes first (\uXXXX)
+    s = s.replaceAllMapped(
+      RegExp(r'\\u([0-9a-fA-F]{4})'),
+      (m) => String.fromCharCode(int.parse(m.group(1)!, radix: 16)),
+    );
+    return s
+        .replaceAll(r'\n', '\n')
+        .replaceAll(r'\t', '\t')
+        .replaceAll(r'\b', '\b')
+        .replaceAll(r'\r', '\r')
+        .replaceAll(r'\\', '\\')
+        .replaceAll(r"\'", "'")
+        .replaceAll(r'\"', '"');
+  }
 
   factory LiteralString.fromJson(dynamic json) {
     if (json is String) {
@@ -672,13 +693,16 @@ class LiteralTime extends LiteralType {
   factory LiteralTime.fromOperandList({required List<CqlExpression> operand}) {
     String value = '';
     if (operand.isNotEmpty) {
-      value = (operand[0] as LiteralInteger).value.toString();
+      value = (operand[0] as LiteralInteger).value.toString().padLeft(2, '0');
       if (operand.length > 1) {
-        value += ':${(operand[1] as LiteralInteger).value.toString()}';
+        value +=
+            ':${(operand[1] as LiteralInteger).value.toString().padLeft(2, '0')}';
         if (operand.length > 2) {
-          value += ':${(operand[2] as LiteralInteger).value.toString()}';
+          value +=
+              ':${(operand[2] as LiteralInteger).value.toString().padLeft(2, '0')}';
           if (operand.length > 3) {
-            value += '.${(operand[3] as LiteralInteger).value.toString()}';
+            value +=
+                '.${(operand[3] as LiteralInteger).value.toString().padLeft(3, '0')}';
           }
         }
       }

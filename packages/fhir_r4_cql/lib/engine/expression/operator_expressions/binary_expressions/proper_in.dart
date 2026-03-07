@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to test for proper membership in an interval or list.
@@ -69,4 +70,15 @@ class ProperIn extends BinaryExpression {
 
   @override
   String get type => 'ProperIn';
+
+  @override
+  Future<FhirBoolean?> execute(Map<String, dynamic> context) async {
+    if (operand.length != 2) {
+      throw ArgumentError('ProperIn expression must have 2 operands');
+    }
+    final left = await operand[0].execute(context);
+    final right = await operand[1].execute(context);
+    // ProperIn(point, interval) = ProperContains(interval, point)
+    return ProperContains.properContains(right, left, precision);
+  }
 }

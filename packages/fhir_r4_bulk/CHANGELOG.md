@@ -1,5 +1,10 @@
 # fhir_r4_bulk
 
+## [0.5.0]
+
+* Unified versioning across all fhir_r4 packages
+* Updated dependencies
+
 ## [0.4.2]
 
 * Updated dependencies

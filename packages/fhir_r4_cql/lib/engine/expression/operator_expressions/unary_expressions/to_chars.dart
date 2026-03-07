@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to take a string and returns a list with one string for each character in the input.
@@ -60,5 +61,19 @@ class ToChars extends UnaryExpression {
     }
 
     return data;
+  }
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    String? str;
+    if (value is fhir.FhirString) {
+      str = value.primitiveValue;
+    } else if (value is String) {
+      str = value;
+    }
+    if (str == null) return null;
+    return str.split('').map((c) => fhir.FhirString(c)).toList();
   }
 }

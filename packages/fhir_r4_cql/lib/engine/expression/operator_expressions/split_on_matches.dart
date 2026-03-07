@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to split a string into a list of strings using matches of a regex pattern.
@@ -67,4 +68,30 @@ class SplitOnMatches extends OperatorExpression {
 
   @override
   String get type => 'SplitOnMatches';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final str = await stringToSplit.execute(context);
+    final pattern = await separatorPattern.execute(context);
+    if (str == null) return null;
+    if (pattern == null) return null;
+
+    String? s;
+    if (str is fhir.FhirString) {
+      s = str.primitiveValue;
+    } else if (str is String) {
+      s = str;
+    }
+    if (s == null) return null;
+
+    String? p;
+    if (pattern is fhir.FhirString) {
+      p = pattern.primitiveValue;
+    } else if (pattern is String) {
+      p = pattern;
+    }
+    if (p == null) return null;
+
+    return s.split(RegExp(p)).map((e) => fhir.FhirString(e)).toList();
+  }
 }

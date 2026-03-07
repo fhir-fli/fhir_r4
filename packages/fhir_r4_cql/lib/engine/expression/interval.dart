@@ -122,6 +122,16 @@ class IntervalExpression extends CqlExpression {
   Future<CqlInterval?> execute(Map<String, dynamic> context) async {
     final low = await this.low?.execute(context);
     final high = await this.high?.execute(context);
+    if (low == null && high == null) {
+      // Distinguish "null interval" from "interval with null (unknown) boundaries":
+      // - Interval[null, null] with LiteralNull expressions → null interval
+      // - Interval[null as Integer, null as Integer] with typed expressions → unbounded interval
+      final lowIsLiteralNull = this.low == null || this.low is LiteralNull;
+      final highIsLiteralNull = this.high == null || this.high is LiteralNull;
+      if (lowIsLiteralNull && highIsLiteralNull) {
+        return null;
+      }
+    }
     return CqlInterval(
       low: low,
       lowClosed: lowClosed,

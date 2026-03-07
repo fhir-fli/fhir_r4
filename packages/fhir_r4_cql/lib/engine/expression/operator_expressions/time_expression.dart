@@ -125,11 +125,21 @@ class TimeExpression extends OperatorExpression {
   String get type => 'TimeExpression';
 
   @override
+  List<String> getReturnTypes(CqlLibrary library) => ['Time'];
+
+  int? _toInt(dynamic val) {
+    if (val is FhirInteger) return val.valueInt;
+    if (val is int) return val;
+    if (val is FhirNumber) return val.valueNum?.toInt();
+    return null;
+  }
+
+  @override
   Future<FhirTime> execute(Map<String, dynamic> context) async {
-    final hourValue = await hour.execute(context);
-    final minuteValue = await minute?.execute(context);
-    final secondValue = await second?.execute(context);
-    final millisecondValue = await millisecond?.execute(context);
+    final hourValue = _toInt(await hour.execute(context));
+    final minuteValue = _toInt(await minute?.execute(context));
+    final secondValue = _toInt(await second?.execute(context));
+    final millisecondValue = _toInt(await millisecond?.execute(context));
 
     return FhirTime.fromUnits(
       hour: hourValue,

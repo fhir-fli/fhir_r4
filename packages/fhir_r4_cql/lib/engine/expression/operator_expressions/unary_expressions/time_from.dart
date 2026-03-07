@@ -102,6 +102,8 @@ class TimeFrom extends UnaryExpression {
   Future<FhirTime?> execute(Map<String, dynamic> context) async {
     final operandValue = await operand.execute(context);
     if (operandValue is FhirDateTime) {
+      // If the DateTime is not specified to the level of hours, return null
+      if (!operandValue.hasHours) return null;
       return FhirTime.fromUnits(
         hour: operandValue.hour,
         minute: operandValue.minute,

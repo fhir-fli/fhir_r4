@@ -19,10 +19,100 @@
 
 library;
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+
+/// Encode SMART Health IT Sandbox launch configuration into a base64url string.
+///
+/// The SMART Sandbox expects a URL of the form:
+///   https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir
+///
+/// The encoded segment is a base64url-encoded JSON array with 17 positions.
+/// See https://github.com/smart-on-fhir/smart-launcher-v2 for the codec spec.
+String encodeSandboxLaunchConfig({
+  required int launchType,
+  String patient = '',
+  String provider = '',
+  String encounter = 'AUTO',
+  bool skipLogin = true,
+  bool skipAuth = true,
+  bool simEhr = false,
+  String scope = '',
+  String redirectUris = '',
+  String clientId = '',
+  String clientSecret = '',
+  String authError = '',
+  String jwksUrl = '',
+  String jwks = '',
+  int clientType = 0,
+  int pkce = 1,
+  String fhirServer = '',
+}) {
+  // Launch types: 0=provider-ehr, 1=patient-portal, 2=provider-standalone,
+  //               3=patient-standalone, 4=backend-service
+  // Client types: 0=public, 1=confidential-symmetric, 2=confidential-asymmetric,
+  //               3=backend-service
+  // PKCE: 0=none, 1=auto, 2=always
+  final params = <dynamic>[
+    launchType,
+    patient,
+    provider,
+    encounter,
+    skipLogin ? 1 : 0,
+    skipAuth ? 1 : 0,
+    simEhr ? 1 : 0,
+    scope,
+    redirectUris,
+    clientId,
+    clientSecret,
+    authError,
+    jwksUrl,
+    jwks,
+    clientType,
+    pkce,
+    fhirServer,
+  ];
+  final jsonStr = jsonEncode(params);
+  // base64url encode without padding
+  return base64Url.encode(utf8.encode(jsonStr)).replaceAll('=', '');
+}
+
+/// Test RSA private key for SMART Sandbox backend service testing.
+/// This key is only used against the open sandbox and has no access to real data.
+const _sandboxTestKey = '''
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCukwaeYYKrgWDE
+ZQRXtz/RbUag3wRhajM0sjEIDh5GWtQ37cBkTIpclIGLZmToYdIGNwp6quiLP8ob
+VFyxWJ9yFcXzFLXrOx/GaY4xiLCAV2P+fgLsW1LywfnWdxjqyZvMRDpz4gbUhYLW
+SVsRmQXalBmvaouoRsS8aieZtJlxLED5XeRk2UhHj1XUpr/sPQOxi2cVTi51jHxb
+cPG3EBvonl6H9rBJBotjccSOdH24gNe7VchduoK2eJ5f6lGpGvqibhHAny2wlqFT
+tSOPwgv7WedfpH2b2lK5SL2e28E0Yj3nFwJGrwtl+0GuvdNqemvm+2871E3ptx7/
+bP+oXiZjAgMBAAECggEALs61I5o5kwqpi38aXvp/XgPSwCeL4SK8gBCXHPXMIEkS
+Rby1rS7omlInOd1GiRhRW+E+Kg3RNCTyZ8mC4PpGJiy4Wqje7id4KZb7zUQ9Luw/
+n2jiF8WUxApGlr5wK+PKpkZU9eVQt4Lkxdf9VwaUjzrOeD41G/V9opdD7u6BhdpK
+MWeTvSFRHPxbXhHr6ZtFFuCu9uglX0GFpJgZIN1mrPefgmjpMcd963tdjevq0SF6
+ZzVbiGDVfn6aadskaX4cTlgbxhXDTfk7Z0/94YYBpBxVJ6AAKH349lR+ebcVyOcS
+268mwRQHlhV6kXYtbuvLiJ3iNzeyrmGBkXRIiWWPIQKBgQDgQW+T6s6VJmw6rzhR
+8yJC4MsadiECEuDM3Ekv7pxjSgop1smJJpu2ym8+PP0cElV+CmV3ZxNjXfE7nfO1
+NbgvjI32mpyckMZNKmFlWWRbnJjW6FhRj8v/pbqT2w2U7+n88utMzk/MdHkeKsuy
+KQQ1B/Z0ErTZZ0s/+YwtglM03wKBgQDHST3mlOQW3KSlKch+PRCED+UaGo583wtq
+4HLKGiyiCF86MtTBlL3vL5KQcHJq11lHCIdh1nrdY4qT4FwmjVbv93M353WFtNBd
+8ZE0i71jTOS1u7HsK8jXEFQ5/cQKWhO70IklS7F2KCeDKMspDGn/y7W+p9eTMJno
+p0WMbYPa/QKBgHnn2GnGWOqHaoo0Oh+CVfuZC4+k66ie7okurrJZubXXx9Kaqg/e
+ZwNk5DgnG0ipRsQvjpzr8YQwyzQnVxYIz8k5VOrbfYs2wDWudieMApwycntQ7sHX
+s4OTaet6RtXR3Zbdzr9/3607G6Qki3qcBWd2nqjWim0sU6HBXExY7jZtAoGASwXn
+p8all3W5BfSU5fFXJmBVf15ABgJx6epVTIBODTHZp687KSU127WtF3M9n7sygOtV
+DCASYQX4RXNRPbI36F7foUwhkhRf3P30DDQPODLaZxAiCybwlQYwryQ5iSwgAbSf
+7MpyJGk5dscEtI9X2FR4Ny44mdDSICPYquUPnoECgYEAjn+tW7c+l4LAKeEwxAIE
+vfWsVFus1swpsxRcmC+Po43XT1tnPiIbVj+pmiv+NRprQu/5rOLnma6bb3c9Puq2
+WVzs5xcPeGUBm2IB7uRNlpP/MJ1YcTg8vEXNHuxDN9TuNTI45CiBX35ciWHptKOA
+fJvPmE+1Ypa2tJymz49ZzvA=
+-----END PRIVATE KEY-----
+''';
 
 void main() {
   runApp(const SmartStandaloneDemoApp());
@@ -44,7 +134,8 @@ class SmartStandaloneDemoApp extends StatelessWidget {
 /// Supported EHR vendors
 enum EhrVendor {
   epic('Epic', 'https://fhir.epic.com/'),
-  cerner('Cerner', 'https://code.cerner.com/');
+  cerner('Cerner', 'https://code.cerner.com/'),
+  smartSandbox('SMART Sandbox', 'https://launch.smarthealthit.org/');
 
   const EhrVendor(this.label, this.portalUrl);
   final String label;
@@ -100,6 +191,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   EhrVendor _selectedVendor = EhrVendor.epic;
   LaunchMode _selectedMode = LaunchMode.patient;
 
+  // Backend service private key input
+  final _privateKeyController = TextEditingController();
+
   // Data state
   Patient? _patient;
   List<Observation>? _observations;
@@ -133,8 +227,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         LaunchMode.patient: '31a05c77-c602-4bf3-be24-1a7692802b3c',
         // Non-Production Client ID for fhir_r4_auth_test_clinician app
         LaunchMode.clinician: '2a12e18b-6dd7-4383-8faf-5ba904a072c3',
-        // System app (Backend Systems audience) - TODO: Replace with your ID
-        LaunchMode.system: 'YOUR-EPIC-SYSTEM-CLIENT-ID',
+        // Non-Production Client ID for fhir_r4_auth_test_system app
+        LaunchMode.system: '8a68b1bb-49ff-4c3e-aa44-d6a21cbaa55c',
       },
       scopes: {
         LaunchMode.patient: [
@@ -151,7 +245,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           'fhirUser',
           'online_access',
         ],
-        LaunchMode.system: ['system/*.read'],
+        LaunchMode.system: ['system/Patient.read'],
       },
       testCredentials: {
         LaunchMode.patient: TestCredentials(
@@ -159,20 +253,20 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           password: 'epicepic1',
         ),
         LaunchMode.clinician: TestCredentials(
-          username: 'fhirjason',
-          password: 'epicepic1',
+          username: 'FHIRTWO',
+          password: 'EpicFhir11!',
         ),
         LaunchMode.system: TestCredentials(
           note: 'Uses client credentials - no user login required',
         ),
       },
-      // TODO: Add your Epic system client secret
-      systemClientSecret: 'YOUR-EPIC-SYSTEM-CLIENT-SECRET',
+      // JWKS URL: https://gist.githubusercontent.com/Dokotela/a2d902a2036a4030e68b0d76549147f4/raw/jwks.json
     ),
 
     // ========== CERNER CONFIGURATION ==========
     EhrVendor.cerner: VendorConfig(
-      baseUrl: 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
+      baseUrl:
+          'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
       clientIds: {
         // Register at: https://code.cerner.com/
         // Patient app - TODO: Replace with your ID
@@ -200,10 +294,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           'fhirUser',
           'online_access',
         ],
-        LaunchMode.system: [
-          'system/Patient.read',
-          'system/Observation.read',
-        ],
+        LaunchMode.system: ['system/Patient.read', 'system/Observation.read'],
       },
       testCredentials: {
         LaunchMode.patient: TestCredentials(
@@ -221,14 +312,119 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       },
       systemClientSecret: 'YOUR-CERNER-SYSTEM-CLIENT-SECRET',
     ),
+
+    // ========== SMART HEALTH IT SANDBOX ==========
+    EhrVendor.smartSandbox: VendorConfig(
+      baseUrl: 'https://launch.smarthealthit.org/v/r4/fhir',
+      clientIds: {
+        // SMART Sandbox auto-generates client IDs — use any non-empty value
+        // The sandbox does not require pre-registration
+        LaunchMode.patient: 'fhir_r4_auth_demo',
+        LaunchMode.clinician: 'fhir_r4_auth_demo',
+        LaunchMode.system: 'fhir_r4_auth_demo',
+      },
+      scopes: {
+        LaunchMode.patient: [
+          'patient/*.read',
+          'launch/patient',
+          'openid',
+          'fhirUser',
+          'offline_access',
+        ],
+        LaunchMode.clinician: [
+          'user/*.read',
+          'launch',
+          'openid',
+          'fhirUser',
+          'online_access',
+        ],
+        LaunchMode.system: ['system/*.read'],
+      },
+      testCredentials: {
+        LaunchMode.patient: TestCredentials(
+          note:
+              'SMART Sandbox lets you pick any patient - no login required. '
+              'Configure the sandbox at https://launch.smarthealthit.org/',
+        ),
+        LaunchMode.clinician: TestCredentials(
+          note:
+              'SMART Sandbox lets you pick any practitioner - no login required',
+        ),
+        LaunchMode.system: TestCredentials(
+          note:
+              'Backend service mode. '
+              'Uses client credentials with JWT assertion.',
+        ),
+      },
+    ),
   };
 
   VendorConfig get _currentConfig => vendorConfigs[_selectedVendor]!;
+
+  /// Resolve token URL from base URL (for backend services that need it)
+  Uri _resolveTokenUrl(String baseUrl) {
+    // Known token endpoints per vendor
+    switch (_selectedVendor) {
+      case EhrVendor.epic:
+        return Uri.parse(
+          'https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token',
+        );
+      case EhrVendor.cerner:
+        return Uri.parse(
+          'https://authorization.cerner.com/tenants/'
+          'ec2458f2-1e24-41c8-b71b-0e701af7583d/protocols/oauth2/profiles/'
+          'smart-v1/token',
+        );
+      case EhrVendor.smartSandbox:
+        // The baseUrl already contains the /sim/<encoded>/fhir path;
+        // replace the trailing /fhir with /auth/token
+        final base = baseUrl.endsWith('/fhir')
+            ? baseUrl.substring(0, baseUrl.length - 5)
+            : baseUrl;
+        return Uri.parse('$base/auth/token');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     _initializeClient();
+  }
+
+  /// Compute the effective FHIR base URL.
+  ///
+  /// For the SMART Health IT Sandbox the launch configuration must be encoded
+  /// as a base64url segment in the URL path:
+  ///   https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir
+  String _effectiveBaseUrl() {
+    final config = _currentConfig;
+    if (_selectedVendor != EhrVendor.smartSandbox) {
+      return config.baseUrl;
+    }
+
+    // Map LaunchMode → sandbox launch type index
+    // 0=provider-ehr, 1=patient-portal, 2=provider-standalone,
+    // 3=patient-standalone, 4=backend-service
+    final int launchType;
+    switch (_selectedMode) {
+      case LaunchMode.patient:
+        launchType = 3; // patient-standalone
+      case LaunchMode.clinician:
+        launchType = 2; // provider-standalone
+      case LaunchMode.system:
+        launchType = 4; // backend-service
+    }
+
+    final encoded = encodeSandboxLaunchConfig(
+      launchType: launchType,
+      // skip_login: false lets the sandbox show the patient/provider picker
+      skipLogin: _selectedMode == LaunchMode.system,
+      skipAuth: _selectedMode == LaunchMode.system,
+      // Backend services need clientType=3 (backend-service)
+      clientType: _selectedMode == LaunchMode.system ? 3 : 0,
+    );
+
+    return 'https://launch.smarthealthit.org/v/r4/sim/$encoded/fhir';
   }
 
   void _initializeClient() {
@@ -245,33 +441,46 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       return;
     }
 
+    final baseUrl = _effectiveBaseUrl();
+
     if (_selectedMode == LaunchMode.system) {
-      // Backend service uses client credentials flow
+      // Backend service uses client credentials flow with JWT assertion
+      final tokenUrl = _resolveTokenUrl(baseUrl);
+      var privateKey = _privateKeyController.text.isNotEmpty
+          ? _privateKeyController.text
+          : 'NOT_CONFIGURED';
+      // Use built-in test key for SMART Sandbox and Epic if no key was entered
+      // (the JWKS public key is registered at both sandboxes)
+      if (privateKey == 'NOT_CONFIGURED' &&
+          (_selectedVendor == EhrVendor.smartSandbox ||
+              _selectedVendor == EhrVendor.epic)) {
+        privateKey = _sandboxTestKey;
+      }
       _client = SmartFhirClient(
-        config: SmartConfig(
+        config: BackendServiceConfig(
           clientId: clientId,
-          clientSecret: config.systemClientSecret?.startsWith('YOUR-') ?? true
-              ? null
-              : config.systemClientSecret,
-          fhirBaseUrl: config.baseUrl.toFhirUri,
-          redirectUri: Uri.parse(redirectUri), // Required but not used for backend
-          launchType: LaunchType.backend,
+          fhirBaseUrl: baseUrl.toFhirUri,
+          privateKey: privateKey,
+          tokenUrl: tokenUrl,
           scopes: config.scopes[_selectedMode]!,
-          enablePkce: false,
-          enableOpenId: false,
+          keyId: 'fhir-r4-auth-test-key-1',
         ),
       );
+      print('  Token URL: $tokenUrl');
+      print('  Private key length: ${privateKey.length}');
     } else {
       // Patient and Clinician use authorization code flow
+      final isSmartSandbox = _selectedVendor == EhrVendor.smartSandbox;
       _client = SmartFhirClient(
         config: SmartConfig(
           clientId: clientId,
-          fhirBaseUrl: config.baseUrl.toFhirUri,
+          fhirBaseUrl: baseUrl.toFhirUri,
           redirectUri: Uri.parse(redirectUri),
           launchType: LaunchType.standalone,
           scopes: config.scopes[_selectedMode]!,
-          enablePkce: false,
-          enableOpenId: false,
+          // SMART Sandbox supports PKCE and OpenID; Epic does not
+          enablePkce: isSmartSandbox,
+          enableOpenId: isSmartSandbox,
         ),
       );
     }
@@ -280,7 +489,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       '\u2713 FHIR Client initialized '
       '(${_selectedVendor.label} - ${_selectedMode.label})',
     );
-    print('  Base URL: ${config.baseUrl}');
+    print('  Base URL: $baseUrl');
     print('  Client ID: $clientId');
     if (_selectedMode != LaunchMode.system) {
       print('  Redirect: $redirectUri');
@@ -328,9 +537,20 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       print('  Inner exception: ${e.innerException}');
       print('  Stack trace:\n$stackTrace');
       setState(() {
-        _error = 'Authentication failed: ${e.message}'
-            '${e.details != null ? '\nDetails: ${e.details}' : ''}'
-            '${e.innerException != null ? '\nInner: ${e.innerException}' : ''}';
+        final buf = StringBuffer('Authentication failed: ${e.message}');
+        if (e.details != null) buf.write('\n\nDetails: ${e.details}');
+        if (e.innerException != null) {
+          buf.write('\n\nInner: ${e.innerException}');
+          // If inner exception has its own details, show those too
+          final inner = e.innerException;
+          if (inner is AuthorizationException) {
+            buf.write('\nStatus: ${inner.statusCode}');
+            buf.write('\nError: ${inner.errorCode}');
+            buf.write('\nDescription: ${inner.errorDescription}');
+            buf.write('\nBody: ${inner.details}');
+          }
+        }
+        _error = buf.toString();
         _isLoading = false;
       });
     } on NetworkException catch (e) {
@@ -377,7 +597,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      print('\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}');
+      print(
+        '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
+      );
     } else {
       throw Exception('Failed to load patient: ${patientResponse.statusCode}');
     }
@@ -431,61 +653,96 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       }
     }
 
-    print('\n\ud83d\udccb Fetching recent patients (user-level access)...');
-    final patientResponse = await _client!.get(
-      Uri.parse('$baseUrl/Patient?_count=5&_sort=-_lastUpdated'),
-    );
+    // If a patient was selected during authorization, fetch that patient
+    final patientId = _client!.patientContext;
+    if (patientId != null) {
+      print('\n\ud83d\udccb Fetching selected patient: $patientId');
+      final patientResponse = await _client!.get(
+        Uri.parse('$baseUrl/Patient/$patientId'),
+      );
+      if (patientResponse.statusCode == 200) {
+        _patient = Patient.fromJsonString(patientResponse.body);
+        print(
+          '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
+        );
+      }
+    } else {
+      // No patient context — fetch recent patients as a sample
+      print('\n\ud83d\udccb Fetching recent patients (user-level access)...');
+      final patientResponse = await _client!.get(
+        Uri.parse('$baseUrl/Patient?_count=5&_sort=-_lastUpdated'),
+      );
 
-    if (patientResponse.statusCode == 200) {
-      final bundle = Bundle.fromJsonString(patientResponse.body);
-      final patients =
-          bundle.entry?.map((e) => e.resource).whereType<Patient>().toList() ??
-          [];
-      print('\u2713 Loaded ${patients.length} recent patients');
+      if (patientResponse.statusCode == 200) {
+        final bundle = Bundle.fromJsonString(patientResponse.body);
+        final patients =
+            bundle.entry
+                ?.map((e) => e.resource)
+                .whereType<Patient>()
+                .toList() ??
+            [];
+        print('\u2713 Loaded ${patients.length} recent patients');
 
-      if (patients.isNotEmpty) {
-        _patient = patients.first;
+        if (patients.isNotEmpty) {
+          _patient = patients.first;
+        }
       }
     }
   }
 
   Future<void> _fetchSystemData(String baseUrl) async {
     print('\n\ud83d\udda5\ufe0f  Fetching system-level data...');
+    _systemData = {};
 
-    final capabilityResponse = await _client!.get(
-      Uri.parse('$baseUrl/metadata'),
-    );
+    try {
+      final capabilityResponse = await _client!.get(
+        Uri.parse('$baseUrl/metadata'),
+      );
 
-    if (capabilityResponse.statusCode == 200) {
-      print('\u2713 CapabilityStatement loaded');
+      if (capabilityResponse.statusCode == 200) {
+        print('\u2713 CapabilityStatement loaded');
+        _systemData!['capabilityStatement'] = true;
+      }
+    } catch (e) {
+      print('  CapabilityStatement fetch failed: $e');
     }
 
-    final patientResponse = await _client!.get(
-      Uri.parse('$baseUrl/Patient?_count=10&_sort=-_lastUpdated'),
-    );
+    try {
+      final patientResponse = await _client!.get(
+        Uri.parse('$baseUrl/Patient?_count=10&_sort=-_lastUpdated'),
+      );
 
-    if (patientResponse.statusCode == 200) {
-      final bundle = Bundle.fromJsonString(patientResponse.body);
-      final totalPatients = bundle.total?.valueNum;
-      print('\u2713 System can access $totalPatients patients');
+      if (patientResponse.statusCode == 200) {
+        final bundle = Bundle.fromJsonString(patientResponse.body);
+        final totalPatients = bundle.total?.valueNum;
+        print('\u2713 System can access $totalPatients patients');
 
-      _systemData = {
-        'totalPatients': totalPatients,
-        'searchResults': bundle.entry?.length ?? 0,
-      };
+        _systemData!['totalPatients'] = totalPatients;
+        _systemData!['searchResults'] = bundle.entry?.length ?? 0;
+      } else {
+        print('  Patient search returned ${patientResponse.statusCode}');
+      }
+    } catch (e) {
+      print('  Patient search failed: $e');
     }
 
     print('\n\ud83d\udcca System-level statistics...');
-    final obsResponse = await _client!.get(
-      Uri.parse('$baseUrl/Observation?_summary=count'),
-    );
+    try {
+      final obsResponse = await _client!.get(
+        Uri.parse('$baseUrl/Observation?_summary=count'),
+      );
 
-    if (obsResponse.statusCode == 200) {
-      final bundle = Bundle.fromJsonString(obsResponse.body);
-      final totalObs = bundle.total?.valueNum;
-      print('\u2713 Total observations in system: $totalObs');
+      if (obsResponse.statusCode == 200) {
+        final bundle = Bundle.fromJsonString(obsResponse.body);
+        final totalObs = bundle.total?.valueNum;
+        print('\u2713 Total observations in system: $totalObs');
 
-      _systemData?['totalObservations'] = totalObs;
+        _systemData?['totalObservations'] = totalObs;
+      } else {
+        print('  Observation query returned ${obsResponse.statusCode}');
+      }
+    } catch (e) {
+      print('  Observation query failed: $e');
     }
   }
 
@@ -622,10 +879,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
             SegmentedButton<EhrVendor>(
               segments: EhrVendor.values.map((vendor) {
-                return ButtonSegment(
-                  value: vendor,
-                  label: Text(vendor.label),
-                );
+                return ButtonSegment(value: vendor, label: Text(vendor.label));
               }).toList(),
               selected: {_selectedVendor},
               onSelectionChanged: (Set<EhrVendor> newSelection) {
@@ -662,6 +916,12 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             _buildModeDescription(),
 
             const SizedBox(height: 24),
+
+            // Private key input for system mode
+            if (_selectedMode == LaunchMode.system) ...[
+              _buildPrivateKeyInput(),
+              const SizedBox(height: 24),
+            ],
 
             // Setup warning if needed
             if (needsSetup) _buildSetupInstructions(),
@@ -723,6 +983,22 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             ),
           ),
         );
+      case EhrVendor.smartSandbox:
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.teal.shade50,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Text(
+            'SMART Health IT',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.teal,
+            ),
+          ),
+        );
     }
   }
 
@@ -754,10 +1030,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             const SizedBox(height: 8),
             Text(
               'Scopes: ${scopes.join(", ")}',
-              style: const TextStyle(
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
-              ),
+              style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
             ),
           ],
         ),
@@ -771,7 +1044,52 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         return Colors.deepPurple;
       case EhrVendor.cerner:
         return Colors.red;
+      case EhrVendor.smartSandbox:
+        return Colors.teal;
     }
+  }
+
+  Widget _buildPrivateKeyInput() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.key, color: Colors.orange),
+                SizedBox(width: 8),
+                Text(
+                  'Private Key (PEM)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Paste your RSA or EC private key in PEM format for JWT signing:',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _privateKeyController,
+              maxLines: 6,
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+              decoration: const InputDecoration(
+                hintText: 'Paste PEM-encoded private key here',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (_) {
+                // Re-initialize client when key changes
+                _initializeClient();
+                setState(() {});
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildTestCredentials() {
@@ -822,7 +1140,9 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
             const SizedBox(height: 8),
             Text('1. Register at ${_selectedVendor.portalUrl}'),
             Text('2. Create a "${_selectedMode.label}" audience app'),
-            const Text('3. Add redirect URI: http://localhost:8080/callback.html'),
+            const Text(
+              '3. Add redirect URI: http://localhost:8080/callback.html',
+            ),
             const Text('4. Add your client ID to the code (main.dart)'),
             if (_selectedMode == LaunchMode.system)
               const Text('5. Add your client secret'),
@@ -1230,6 +1550,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
   @override
   void dispose() {
+    _privateKeyController.dispose();
     _client?.close();
     super.dispose();
   }

@@ -1,3 +1,4 @@
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 /// Operator to convert the value of its argument to a Time value.
@@ -64,4 +65,53 @@ class ToTime extends UnaryExpression {
 
   @override
   String get type => 'ToTime';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final value = await operand.execute(context);
+    if (value == null) return null;
+    if (value is fhir.FhirTime) return value;
+    if (value is String) {
+      return _parseTime(value);
+    }
+    if (value is fhir.FhirString) {
+      final str = value.primitiveValue;
+      if (str == null) return null;
+      return _parseTime(str);
+    }
+    return null;
+  }
+
+  static fhir.FhirTime? _parseTime(String input) {
+    // Remove leading 'T' if present
+    var str = input.startsWith('T') ? input.substring(1) : input;
+    // Validate basic format: must start with digits (time portion)
+    if (!RegExp(r'^\d').hasMatch(str)) return null;
+    // Strip timezone suffix FIRST (CQL Time values are timezone-independent)
+    str = str.replaceAll(RegExp(r'[Zz]$'), '');
+    str = str.replaceFirst(RegExp(r'[+-]\d{2}:\d{2}$'), '');
+    // Reject malformed separators (e.g. '14-30-00' instead of '14:30:00')
+    if (str.contains('-') || str.contains('+')) return null;
+    // Validate component ranges: hours 0-23, minutes 0-59, seconds 0-59
+    final parts = str.split(':');
+    if (parts.isNotEmpty) {
+      final hour = int.tryParse(parts[0]);
+      if (hour == null || hour < 0 || hour > 23) return null;
+      if (parts.length > 1) {
+        final minute = int.tryParse(parts[1]);
+        if (minute == null || minute < 0 || minute > 59) return null;
+      }
+      if (parts.length > 2) {
+        // Second part may include fractional seconds (e.g. '59.999')
+        final secStr = parts[2].split('.')[0];
+        final second = int.tryParse(secStr);
+        if (second == null || second < 0 || second > 59) return null;
+      }
+    }
+    try {
+      return fhir.FhirTime(str);
+    } catch (_) {
+      return null;
+    }
+  }
 }

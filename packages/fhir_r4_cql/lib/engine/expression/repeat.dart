@@ -62,4 +62,35 @@ class Repeat extends CqlExpression {
 
   @override
   String get type => 'Repeat';
+
+  @override
+  Future<dynamic> execute(Map<String, dynamic> context) async {
+    final sourceResult = await source.execute(context);
+    if (sourceResult == null) return null;
+    var current = sourceResult is List
+        ? List<dynamic>.from(sourceResult)
+        : [sourceResult];
+    final allResults = <dynamic>{};
+
+    // Keep iterating until no new elements are produced
+    while (current.isNotEmpty) {
+      final newElements = <dynamic>[];
+      for (final item in current) {
+        context[scope] = item;
+        final result = await element.execute(context);
+        if (result is List) {
+          for (final r in result) {
+            if (r != null && allResults.add(r)) {
+              newElements.add(r);
+            }
+          }
+        } else if (result != null && allResults.add(result)) {
+          newElements.add(result);
+        }
+      }
+      current = newElements;
+    }
+    context.remove(scope);
+    return allResults.toList();
+  }
 }
