@@ -60,3 +60,7 @@ dev_dependencies:
   http_mock_adapter: ^0.6.1
   integration_test:
     sdk: flutter
+
+false_secrets:
+  - standalone_demo/lib/main.dart
+  - ehr_launch_demo/lib/main.dart

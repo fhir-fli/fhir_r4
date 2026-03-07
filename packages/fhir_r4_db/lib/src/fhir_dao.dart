@@ -1957,7 +1957,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         );
         final rows = await query.get();
         for (final row in rows) {
-          if (row.uriValue != null && searchValue.startsWith(row.uriValue!)) {
+          if (searchValue.startsWith(row.uriValue)) {
             matchingIds.add(row.id);
           }
         }
