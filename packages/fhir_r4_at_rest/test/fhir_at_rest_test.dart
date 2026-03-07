@@ -1633,4 +1633,93 @@ void main() {
       );
     });
   });
+
+  group('RestfulParameters - repeated keys:', () {
+    test('single _include produces single parameter', () {
+      final params = RestfulParameters()
+        ..add('_include', 'PractitionerRole:practitioner');
+
+      expect(
+        params.buildQuery(),
+        '_include=PractitionerRole:practitioner',
+      );
+    });
+
+    test('multiple _include values produce repeated parameters', () {
+      final params = RestfulParameters()
+        ..add('_include', 'PractitionerRole:practitioner')
+        ..add('_include', 'PractitionerRole:organization');
+
+      expect(
+        params.buildQuery(),
+        '_include=PractitionerRole:practitioner&_include=PractitionerRole:organization',
+      );
+    });
+
+    test('three _include values all appear in query', () {
+      final params = RestfulParameters()
+        ..add('_include', 'PractitionerRole:practitioner')
+        ..add('_include', 'PractitionerRole:organization')
+        ..add('_include', 'PractitionerRole:location');
+
+      expect(
+        params.buildQuery(),
+        '_include=PractitionerRole:practitioner'
+        '&_include=PractitionerRole:organization'
+        '&_include=PractitionerRole:location',
+      );
+    });
+
+    test('mixed repeated and single parameters', () {
+      final params = RestfulParameters()
+        ..add('_include', 'PractitionerRole:practitioner')
+        ..add('_include', 'PractitionerRole:organization')
+        ..add('_count', '10');
+
+      final query = params.buildQuery();
+      expect(query, contains('_include=PractitionerRole:practitioner'));
+      expect(query, contains('_include=PractitionerRole:organization'));
+      expect(query, contains('_count=10'));
+    });
+
+    test('multiple _revinclude values produce repeated parameters', () {
+      final params = RestfulParameters()
+        ..add('_revinclude', 'Observation:patient')
+        ..add('_revinclude', 'Condition:patient');
+
+      expect(
+        params.buildQuery(),
+        '_revinclude=Observation:patient&_revinclude=Condition:patient',
+      );
+    });
+
+    test('search request with multiple _include parameters', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'PractitionerRole',
+        parameters: RestfulParameters()
+          ..add('_include', 'PractitionerRole:practitioner')
+          ..add('_include', 'PractitionerRole:organization'),
+        headers: {'test': 'headers'},
+      );
+
+      final uri = request.buildUri().toString();
+      expect(uri, contains('_include=PractitionerRole:practitioner'));
+      expect(uri, contains('_include=PractitionerRole:organization'));
+      // Ensure they are separate parameters, not comma-joined
+      expect(uri, isNot(contains('practitioner,PractitionerRole')));
+    });
+
+    test('addParameterValue accumulates into list', () {
+      final params = RestfulParameters();
+      params.addParameterValue('key', 'a');
+      expect(params.parameters['key'], 'a');
+
+      params.addParameterValue('key', 'b');
+      expect(params.parameters['key'], ['a', 'b']);
+
+      params.addParameterValue('key', 'c');
+      expect(params.parameters['key'], ['a', 'b', 'c']);
+    });
+  });
 }

@@ -1,6 +1,6 @@
 name: fhir_r4_cql
 description: Attempt to Support the CQL Library in Dart.
-version: 0.0.0-dev1
+version: 0.5.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/cql
 
@@ -10,12 +10,12 @@ environment:
 dependencies:
   antlr4: ^4.13.2
   collection: ^1.19.1
-  fhir_r4: ^0.4.4
-  # fhir_r4:
-  #   path: ../fhir_r4
-  fhir_r4_path: ^0.4.6
-  # fhir_r4_path:
-  #   path: ../fhir_r4_path
+  # fhir_r4: ^0.5.0
+  fhir_r4:
+    path: ../fhir_r4
+  # fhir_r4_path: ^0.5.0
+  fhir_r4_path:
+    path: ../fhir_r4_path
   http: ^1.6.0
   path: ^1.9.1
   ucum: ^0.8.0
