@@ -1,6 +1,6 @@
 name: fhir_r4_at_rest
 description: A Dart package providing type-safe, fluent RESTful operations for FHIR R4 resources. 
-version: 0.5.0
+version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 

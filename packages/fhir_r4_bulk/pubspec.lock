@@ -101,10 +101,10 @@ packages:
     dependency: "direct main"
     description:
       name: fhir_r4
-      sha256: "0ebdfe2212a45f2214fedc0f9ac1095c9dd64aed3caf3258a73c624fa1d479d9"
+      sha256: "9525c4f0d661ebf99e57e876b7810de1683af0f22b1b27de57f31fd5cd04a47f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.4"
+    version: "0.5.0"
   file:
     dependency: transitive
     description:

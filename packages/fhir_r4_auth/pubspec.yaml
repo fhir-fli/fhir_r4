@@ -1,6 +1,6 @@
 name: fhir_r4_auth
 description: Secure authentication and authorization package for FHIR R4 applications implementing SMART on FHIR
-version: 0.5.0
+version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhirfli/fhir_r4_auth
 issue_tracker: https://github.com/fhirfli/fhir_r4_auth/issues
