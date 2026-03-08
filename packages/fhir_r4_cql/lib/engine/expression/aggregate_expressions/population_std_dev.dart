@@ -13,8 +13,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// PopulationStdDev(argument List<Decimal>) Decimal
-/// PopulationStdDev(argument List<Quantity>) Quantity
+/// PopulationStdDev(argument `List<Decimal>`) Decimal
+/// PopulationStdDev(argument `List<Quantity>`) Quantity
 /// Description:
 ///
 /// The PopulationStdDev operator returns the statistical standard deviation of
@@ -30,7 +30,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalPopulationStdDev": PopulationStdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.4142135623730951
 /// define "QuantityPopulationStdDev": PopulationStdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.4142135623730951 'mg'
 /// define "PopulationStdDevIsNull": PopulationStdDev({ null as Quantity, null as Quantity, null as Quantity })
-/// define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as List<Decimal>)
+/// define "PopulationStdDevIsAlsoNull": PopulationStdDev(null as `List<Decimal>`)
 class PopulationStdDev extends AggregateExpression {
   PopulationStdDev({
     required super.source,

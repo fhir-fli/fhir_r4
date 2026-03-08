@@ -2,13 +2,13 @@ import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-/// Skip<T>
+/// `Skip<T>`
 ///
 /// The Skip operator returns the elements in a list, skipping the first N elements.
 /// If the source list is null, the result is null.
 ///
 /// Signature:
-///   Skip(argument List<T>, number Integer) List<T>
+///   Skip(argument `List<T>`, number Integer) `List<T>`
 ///
 /// Description:
 ///   The Skip operator returns the elements in the list starting at index N

@@ -10,8 +10,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// Median(argument List<Decimal>) Decimal
-/// Median(argument List<Quantity>) Quantity
+/// Median(argument `List<Decimal>`) Decimal
+/// Median(argument `List<Quantity>`) Quantity
 /// Description:
 ///
 /// The Median operator returns the median of the elements in source.
@@ -25,7 +25,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalMedian": Median({ 2.0, 4.0, 8.0, 6.0 }) // 5.0
 /// define "QuantityMedian": Median({ 1.0 'mg', 2.0 'mg', 3.0 'mg' }) // 2.0 'mg'
 /// define "MedianIsNull": Median({ null as Quantity, null as Quantity, null as Quantity })
-/// define "MedianIsAlsoNull": Median(null as List<Decimal>)
+/// define "MedianIsAlsoNull": Median(null as `List<Decimal>`)
 class Median extends AggregateExpression {
   Median({
     required super.source,

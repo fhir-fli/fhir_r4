@@ -7,7 +7,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// Mode(argument List<T>) T
+/// Mode(argument `List<T>`) T
 /// Description:
 ///
 /// The Mode operator returns the statistical mode of the elements in source.
@@ -21,7 +21,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalMode": Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 }) // 8.0
 /// define "QuantityMode": Mode({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 2.0 'mg' }) // 2.0 'mg'
 /// define "ModeIsNull": Mode({ null as Quantity, null as Quantity, null as Quantity })
-/// define "ModeIsAlsoNull": Mode(null as List<Decimal>)
+/// define "ModeIsAlsoNull": Mode(null as `List<Decimal>`)
 class Mode extends AggregateExpression {
   Mode({
     required super.source,

@@ -298,12 +298,6 @@ class DurationBetween extends BinaryExpression {
     }
   }
 
-  static bool _isSubDayPrecision(CqlDateTimePrecision precision) =>
-      precision == CqlDateTimePrecision.hour ||
-      precision == CqlDateTimePrecision.minute ||
-      precision == CqlDateTimePrecision.second ||
-      precision == CqlDateTimePrecision.millisecond;
-
   /// Convert a FhirDateTimeBase to UTC DateTime using its timezone offset.
   /// Uses DateTime.utc() to avoid DST issues with local DateTime arithmetic.
   static DateTime _toUtc(FhirDateTimeBase fdt, DateTime local) {

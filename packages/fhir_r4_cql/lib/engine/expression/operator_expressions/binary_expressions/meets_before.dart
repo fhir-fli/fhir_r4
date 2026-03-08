@@ -10,9 +10,9 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If either argument is null, the result is null.
 /// Signature:
 ///
-/// meets _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// meets before _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// meets after _precision_ (left Interval<T>, right Interval<T>) Boolean
+/// meets _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// meets before _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// meets after _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
 /// Description:
 ///
 /// The meets operator returns true if the first interval ends immediately
@@ -50,7 +50,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "MeetsIsTrue": Interval[6, 10] meets Interval[0, 5]
 /// define "MeetsBeforeIsTrue": Interval[-5, -1] meets before Interval[0, 5]
 /// define "MeetsAfterIsFalse": Interval[6, 10] meets after Interval[0, 7]
-/// define "MeetsIsNull": Interval[6, 10] meets (null as Interval<Integer>)
+/// define "MeetsIsNull": Interval[6, 10] meets (null as `Interval<Integer>`)
 class MeetsBefore extends BinaryExpression {
   final CqlDateTimePrecision? precision;
 

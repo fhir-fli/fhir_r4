@@ -16,7 +16,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// Signature:
 ///
-/// contains _precision_ (argument Interval<T>, point T) Boolean
+/// contains _precision_ (argument `Interval<T>`, point T) Boolean
 /// Description:
 ///
 /// The contains operator for intervals returns true if the given point is
@@ -41,7 +41,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// Signature:
 ///
-/// contains(argument List<T>, element T) Boolean
+/// contains(argument `List<T>`, element T) Boolean
 /// Description:
 ///
 /// The contains operator for lists returns true if the given element is in the

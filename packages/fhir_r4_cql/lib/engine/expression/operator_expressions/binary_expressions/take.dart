@@ -2,13 +2,13 @@ import 'package:fhir_r4/fhir_r4.dart' show FhirInteger;
 
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
-/// Take<T>
+/// `Take<T>`
 ///
 /// The Take operator returns the first N elements of a list.
 /// If the source list is null, the result is null.
 ///
 /// Signature:
-///   Take(argument List<T>, number Integer) List<T>
+///   Take(argument `List<T>`, number Integer) `List<T>`
 ///
 /// Description:
 ///   The Take operator returns the elements in the list from index 0 up to,

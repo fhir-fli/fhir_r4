@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the argument is null, the result is null.
 /// Signature:
 ///
-/// end of(argument Interval<T>) T
+/// end of(argument `Interval<T>`) T
 /// Description:
 ///
 /// The End operator returns the ending point of an interval.
@@ -28,7 +28,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// The following examples illustrate the behavior of the End operator:
 ///
 /// define "EndOfInterval": end of Interval[1, 5] // 5
-/// define "EndIsNull": end of (null as Interval<Integer>)
+/// define "EndIsNull": end of (null as `Interval<Integer>`)
 class End extends UnaryExpression {
   End({
     required super.operand,

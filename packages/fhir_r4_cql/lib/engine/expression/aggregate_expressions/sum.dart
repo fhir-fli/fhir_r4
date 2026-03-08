@@ -10,10 +10,10 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the list is null, the result is null.
 /// Signature:
 ///
-/// Sum(argument List<Integer>) Integer
-/// Sum(argument List<Long>) Long
-/// Sum(argument List<Decimal>) Decimal
-/// Sum(argument List<Quantity>) Quantity
+/// Sum(argument `List<Integer>`) Integer
+/// Sum(argument `List<Long>`) Long
+/// Sum(argument `List<Decimal>`) Decimal
+/// Sum(argument `List<Quantity>`) Quantity
 /// The Long type is a new feature being introduced in CQL 1.5, and has
 /// trial-use status.
 ///
@@ -30,7 +30,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalSum": Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 15.0
 /// define "QuantitySum": Sum({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 15.0 'mg'
 /// define "SumIsNull": Sum({ null as Quantity, null as Quantity, null as Quantity })
-/// define "SumIsAlsoNull": Sum(null as List<Decimal>)
+/// define "SumIsAlsoNull": Sum(null as `List<Decimal>`)
 class Sum extends AggregateExpression {
   Sum({
     required super.source,

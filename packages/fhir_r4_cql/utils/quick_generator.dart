@@ -11,7 +11,6 @@ Future<void> main(List<String> args) async {
       final dirFiles = (directory).listSync();
       for (final file in dirFiles) {
         if (file.path.endsWith('.xsd') && !file.path.endsWith('types.xsd')) {
-          final newPath = file.path.replaceAll('.xsd', '');
           await generateClasses(file.path);
           //     String fileNameString = '';
           //     fileNames.sort((a, b) => a.compareTo(b));

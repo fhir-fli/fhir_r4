@@ -9,7 +9,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If either argument is null, the result is null.
 /// Signature:
 ///
-///starts _precision_ (left Interval<T>, right Interval<T>) Boolean
+///starts _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
 ///Description:
 ///
 ///The starts operator returns true if the first interval starts the second.

@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If either argument is null, the result is null.
 /// Signature:
 ///
-/// intersect(left List<T>, right List<T>) List<T>
+/// intersect(left `List<T>`, right `List<T>`) `List<T>`
 /// Description:
 ///
 /// The intersect operator for lists returns the intersection of two lists.
@@ -35,7 +35,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// Signature:
 ///
-/// intersect(left Interval<T>, right Interval<T>) Interval<T>
+/// intersect(left `Interval<T>`, right `Interval<T>`) `Interval<T>`
 /// Description:
 ///
 /// The intersect operator for intervals returns the intersection of two
@@ -48,7 +48,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// The following examples illustrate the behavior of the intersect operator:
 ///
 /// define "Intersect": Interval[1, 5] intersect Interval[3, 7] // Interval[3, 5]
-/// define "IntersectIsNull": Interval[3, 5] intersect (null as Interval<Integer>)
+/// define "IntersectIsNull": Interval[3, 5] intersect (null as `Interval<Integer>`)
 class Intersect extends NaryExpression {
   Intersect({
     super.operand,

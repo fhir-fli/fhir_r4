@@ -10,8 +10,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// Avg(argument List<Decimal>) Decimal
-/// Avg(argument List<Quantity>) Quantity
+/// Avg(argument `List<Decimal>`) Decimal
+/// Avg(argument `List<Quantity>`) Quantity
 /// Description:
 ///
 /// The Avg operator returns the average of the non-null elements in the source.
@@ -24,7 +24,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// define "DecimalAvg": Avg({ 5.5, 4.7, 4.8 }) // 5.0
 /// define "QuantityAvg": Avg({ 5.5 'cm', 4.7 'cm', 4.8 'cm' }) // 5.0 'cm'
-/// define "AvgIsNull": Avg(null as List<Decimal>)
+/// define "AvgIsNull": Avg(null as `List<Decimal>`)
 class Avg extends AggregateExpression {
   Avg({
     required super.source,

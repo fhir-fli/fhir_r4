@@ -8,11 +8,11 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// Boolean: true|false
 /// Integer: (-)?#0
 /// Decimal: (-)?#0.0#
-/// Quantity: (-)?#0.0# '<unit>'
+/// Quantity: (-)?#0.0# '`<unit>`'
 /// Date: YYYY-MM-DD
 /// DateTime: YYYY-MM-DDThh:mm:ss.fff(+|-)hh:mm
 /// Time: hh:mm:ss.fff
-/// Ratio: <quantity>:<quantity>
+/// Ratio: `<quantity>`:`<quantity>`
 /// If the argument is null, the result is null.
 class ToString extends UnaryExpression {
   ToString({

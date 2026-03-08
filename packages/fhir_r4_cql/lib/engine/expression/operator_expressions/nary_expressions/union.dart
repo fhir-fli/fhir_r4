@@ -11,7 +11,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// operation is performed as though the argument was an empty list.
 /// Signature:
 ///
-/// union(left Interval<T>, right Interval<T>) Interval<T>
+/// union(left `Interval<T>`, right `Interval<T>`) `Interval<T>`
 /// Description:
 ///
 /// The union operator for intervals returns the union of the intervals. More
@@ -25,10 +25,10 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// The following examples illustrate the behavior of the union operator:
 ///
 /// define "Union": Interval[1, 5] union Interval[3, 7] // Interval[1, 7]
-/// define "UnionIsNull": Interval[3, 5] union (null as Interval<Integer>)
+/// define "UnionIsNull": Interval[3, 5] union (null as `Interval<Integer>`)
 /// Signature:
 ///
-/// union(left List<T>, right List<T>) List<T>
+/// union(left `List<T>`, right `List<T>`) `List<T>`
 /// Description:
 ///
 /// The union operator for lists returns a list with all unique elements from

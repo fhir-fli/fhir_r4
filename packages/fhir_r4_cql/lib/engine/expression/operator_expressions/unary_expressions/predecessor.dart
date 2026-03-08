@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the result of the operation cannot be represented, the result is null.
 /// Signature:
 ///
-/// predecessor of<T>(argument T) T
+/// predecessor `of<T>`(argument T) T
 /// Description:
 ///
 /// The predecessor operator returns the predecessor of the argument. For

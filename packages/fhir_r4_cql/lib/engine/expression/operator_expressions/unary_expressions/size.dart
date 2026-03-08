@@ -7,7 +7,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the argument is null, the result is null.
 /// Signature:
 ///
-/// Size(argument Interval<T>) T
+/// Size(argument `Interval<T>`) T
 /// Description:
 ///
 /// The Size operator returns the size of an interval. The result of this
@@ -26,7 +26,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// 5 points
 /// define "SizeTestEquivalent": Size(Interval[3, 8)) // 5, i.e. the interval
 /// contains 5 points
-/// define "SizeIsNull": Size(null as Interval<Integer>) // null
+/// define "SizeIsNull": Size(null as `Interval<Integer>`) // null
 class Size extends UnaryExpression {
   Size({
     required super.operand,

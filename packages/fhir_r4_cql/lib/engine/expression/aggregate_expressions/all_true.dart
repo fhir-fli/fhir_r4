@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is true.
 /// Signature:
 ///
-/// AllTrue(argument List<Boolean>) Boolean
+/// AllTrue(argument `List<Boolean>`) Boolean
 /// Description:
 ///
 /// The AllTrue operator returns true if all the non-null elements in the source

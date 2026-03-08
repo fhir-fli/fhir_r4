@@ -9,7 +9,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the list is null, the result is 0.
 /// Signature:
 ///
-/// Count(argument List<T>) Integer
+/// Count(argument `List<T>`) Integer
 /// Description:
 ///
 /// The Count operator returns the number of non-null elements in the source.
@@ -20,7 +20,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// define "Count5": Count({ 1, 2, 3, 4, 5 }) // 5
 /// define "Count0": Count({ null, null, null }) // 0
-/// define "CountNull0": Count(null as List<Decimal>) // 0
+/// define "CountNull0": Count(null as `List<Decimal>`) // 0
 class Count extends AggregateExpression {
   Count({
     required super.source,

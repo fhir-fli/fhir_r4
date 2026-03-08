@@ -16,8 +16,8 @@ import 'package:ucum/ucum.dart';
 /// If the source argument is null, the result is null.
 /// Signature:
 ///
-/// collapse(argument List<Interval<T>>) List<Interval<T>>
-/// collapse(argument List<Interval<T>>, per Quantity) List<Interval<T>>
+/// collapse(argument List<`Interval<T>`>) List<`Interval<T>`>
+/// collapse(argument List<`Interval<T>`>, per Quantity) List<`Interval<T>`>
 /// Description:
 ///
 /// The collapse operator returns the unique set of intervals that completely

@@ -6,7 +6,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// Operator to convert the value of its argument to a Quantity value.
 /// The operator may be used with Integer, Decimal, Ratio, or String values.
 /// For String values, the operator accepts strings using the following format:
-/// (+|-)?#0(.0#)?('<unit>')?, where it's an optional polarity indicator,
+/// (+|-)?#0(.0#)?('`<unit>`')?, where it's an optional polarity indicator,
 /// followed by any number of digits (including none), optionally followed by
 /// a decimal point,
 /// at least one digit, and any number of additional digits, all optionally
@@ -33,7 +33,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// For the String overload, the operator accepts strings using the following
 /// format:
 ///
-/// (+|-)?#0(.0#)?('<unit>')?
+/// (+|-)?#0(.0#)?('`<unit>`')?
 ///
 /// Meaning an optional polarity indicator, followed by any number of digits
 /// (including none) followed by at least one digit, optionally followed by a

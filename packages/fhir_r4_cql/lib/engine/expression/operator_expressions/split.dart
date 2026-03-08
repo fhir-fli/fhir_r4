@@ -7,7 +7,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// the value of the stringToSplit argument.
 /// Signature:
 ///
-/// Split(stringToSplit String, separator String) List<String>
+/// Split(stringToSplit String, separator String) `List<String>`
 /// Description:
 ///
 /// The Split operator splits a string into a list of strings using a separator.

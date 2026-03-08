@@ -12,14 +12,14 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// Min(argument List<Integer>) Integer
-/// Min(argument List<Long>) Long
-/// Min(argument List<Decimal>) Decimal
-/// Min(argument List<Quantity>) Quantity
-/// Min(argument List<Date>) Date
-/// Min(argument List<DateTime>) DateTime
+/// Min(argument `List<Integer>`) Integer
+/// Min(argument `List<Long>`) Long
+/// Min(argument `List<Decimal>`) Decimal
+/// Min(argument `List<Quantity>`) Quantity
+/// Min(argument `List<Date>`) Date
+/// Min(argument `List<DateTime>`) DateTime
 /// Min(argument List<Time>) Time
-/// Min(argument List<String>) String
+/// Min(argument `List<String>`) String
 /// Description:
 ///
 /// The Min operator returns the minimum element in the source. Comparison
@@ -36,7 +36,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "LongMin": Min({ 2L, 4L, 8L, 6L }) // 2L
 /// define "DateMin": Min({ @2012-12-31, @2013-01-01, @2012-01-01 }) // @2012-01-01
 /// define "MinIsNull": Min({ null as Quantity, null as Quantity, null as Quantity })
-/// define "MinIsAlsoNull": Min(null as List<Decimal>)
+/// define "MinIsAlsoNull": Min(null as `List<Decimal>`)
 class Min extends AggregateExpression {
   Min({
     required super.source,

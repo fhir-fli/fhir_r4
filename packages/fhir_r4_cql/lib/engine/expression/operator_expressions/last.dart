@@ -6,7 +6,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the argument is null, the result is null.
 /// Signature:
 ///
-/// Last(argument List<T>) T
+/// Last(argument `List<T>`) T
 /// Description:
 ///
 /// The Last operator returns the last element in a list. In a list of length

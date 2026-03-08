@@ -11,8 +11,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source is null, the result is null.
 /// Signature:
 ///
-/// Variance(argument List<Decimal>) Decimal
-/// Variance(argument List<Quantity>) Quantity
+/// Variance(argument `List<Decimal>`) Decimal
+/// Variance(argument `List<Quantity>`) Quantity
 /// Description:
 ///
 /// The Variance operator returns the statistical variance of the elements in source.
@@ -26,7 +26,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalVariance": Variance({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 2.5
 /// define "QuantityVariance": Variance({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 2.5 'mg'
 /// define "VarianceIsNull": Variance({ null as Quantity, null as Quantity, null as Quantity })
-/// define "VarianceIsAlsoNull": Variance(null as List<Decimal>)
+/// define "VarianceIsAlsoNull": Variance(null as `List<Decimal>`)
 class Variance extends AggregateExpression {
   Variance({
     required super.source,

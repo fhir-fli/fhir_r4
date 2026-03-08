@@ -97,7 +97,7 @@ class CqlMembershipExpressionVisitor extends CqlBaseVisitor<dynamic> {
     for (final def in library.statements?.def ?? const <ExpressionDef>[]) {
       final expr = def.expression;
       if (expr is Query) {
-        for (final src in expr.source ?? <RelationshipClause>[]) {
+        for (final src in expr.source) {
           if (src.alias == alias) {
             return _classNameFromExpression(src.expression);
           }

@@ -11,8 +11,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// comparisons used in the operation are performed at the specified precision.
 /// If either argument is null, the result is null.
 /// Signature:
-/// includes _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// includes _precision_ (left Interval<T>, right T) Boolean
+/// includes _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// includes _precision_ (left `Interval<T>`, right T) Boolean
 /// Description:
 ///
 /// The includes operator for intervals returns true if the first interval
@@ -39,8 +39,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "IncludesIsNull": Interval[-1, 5] includes null
 /// Signature:
 ///
-/// includes(left List<T>, right List<T>) Boolean
-/// includes(left List<T>, right T) Boolean
+/// includes(left `List<T>`, right `List<T>`) Boolean
+/// includes(left `List<T>`, right T) Boolean
 /// Description:
 ///
 /// The includes operator for lists returns true if the first list contains

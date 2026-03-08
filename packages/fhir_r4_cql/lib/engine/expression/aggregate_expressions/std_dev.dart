@@ -13,8 +13,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the list is null, the result is null.
 /// Signature:
 ///
-/// StdDev(argument List<Decimal>) Decimal
-/// StdDev(argument List<Quantity>) Quantity
+/// StdDev(argument `List<Decimal>`) Decimal
+/// StdDev(argument `List<Quantity>`) Quantity
 /// Description:
 ///
 /// The StdDev operator returns the statistical standard deviation of the
@@ -29,7 +29,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "DecimalStdDev": StdDev({ 1.0, 2.0, 3.0, 4.0, 5.0 }) // 1.58113883
 /// define "QuantityStdDev": StdDev({ 1.0 'mg', 2.0 'mg', 3.0 'mg', 4.0 'mg', 5.0 'mg' }) // 1.58113883 'mg'
 /// define "StdDevIsNull": StdDev({ null as Quantity, null as Quantity, null as Quantity })
-/// define "StdDevIsAlsoNull": StdDev(null as List<Decimal>)
+/// define "StdDevIsAlsoNull": StdDev(null as `List<Decimal>`)
 class StdDev extends AggregateExpression {
   StdDev({
     required super.source,

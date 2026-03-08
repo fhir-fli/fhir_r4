@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If either argument is null, the result is null.
 /// Signature:
 ///
-/// IndexOf(argument List<T>, element T) Integer
+/// IndexOf(argument `List<T>`, element T) Integer
 /// Description:
 ///
 /// The IndexOf operator returns the 0-based index of the given element in the

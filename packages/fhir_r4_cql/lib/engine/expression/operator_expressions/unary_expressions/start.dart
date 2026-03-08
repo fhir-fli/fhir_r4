@@ -10,7 +10,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the argument is null, the result is null.
 /// Signature:
 ///
-/// start of(argument Interval<T>) T
+/// start of(argument `Interval<T>`) T
 /// Description:
 ///
 /// The Start operator returns the starting point of an interval.
@@ -28,7 +28,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// The following examples illustrate the behavior of the Start operator:
 ///
 /// define "StartOfInterval": start of Interval[1, 5] // 1
-/// define "StartIsNull": start of (null as Interval<Integer>)
+/// define "StartIsNull": start of (null as `Interval<Integer>`)
 class Start extends UnaryExpression {
   Start({
     required super.operand,

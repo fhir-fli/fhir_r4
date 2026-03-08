@@ -6,7 +6,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the argument is null, the result is null.
 /// Signature:
 ///
-/// width of(argument Interval<T>) T
+/// width of(argument `Interval<T>`) T
 /// Description:
 ///
 /// The width operator returns the width of an interval. The result of this
@@ -21,7 +21,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// The following examples illustrate the behavior of the width operator:
 ///
 /// define "Width": width of Interval[3, 7] // 4
-/// define "WidthIsNull": width of (null as Interval<Integer>) // null
+/// define "WidthIsNull": width of (null as `Interval<Integer>`) // null
 /// define "NullInterval": width of Interval[0, null) //null
 class Width extends UnaryExpression {
   Width({

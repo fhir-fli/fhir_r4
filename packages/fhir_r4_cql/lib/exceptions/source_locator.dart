@@ -71,4 +71,7 @@ class SourceLocator {
         nodeType == other.nodeType &&
         sourceLocation == other.sourceLocation;
   }
+
+  @override
+  int get hashCode => Object.hash(librarySystemId, libraryName, libraryVersion, nodeId, nodeType, sourceLocation);
 }

@@ -64,9 +64,9 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// operator for more information.
 /// Signature:
 ///
-/// before _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// before _precision_ (left T, right Interval<T>) Boolean
-/// before _precision_ (left interval<T>, right T) Boolean
+/// before _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// before _precision_ (left T, right `Interval<T>`) Boolean
+/// before _precision_ (left `interval<T>`, right T) Boolean
 /// Description:
 ///
 /// The before operator for intervals returns true if the first interval ends

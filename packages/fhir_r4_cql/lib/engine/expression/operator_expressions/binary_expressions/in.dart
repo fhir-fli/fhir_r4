@@ -15,7 +15,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// is null, the result is false.
 /// Signature:
 ///
-/// in _precision_ (point T, argument Interval<T>) Boolean
+/// in _precision_ (point T, argument `Interval<T>`) Boolean
 /// Description:
 ///
 /// The in operator for intervals returns true if the given point is equal to
@@ -36,11 +36,11 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// define "InIsTrue": 3 in Interval[0, 5]
 /// define "InIsFalse": -1 in Interval[0, 7]
-/// define "InIsAlsoFalse": 3 in (null as Interval<Integer>)
+/// define "InIsAlsoFalse": 3 in (null as `Interval<Integer>`)
 ///
 /// Signature:
 ///
-/// in(element T, argument List<T>) Boolean
+/// in(element T, argument `List<T>`) Boolean
 /// Description:
 ///
 /// The in operator for lists returns true if the given element is in the given
@@ -64,8 +64,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// in(code Code, codesystem CodeSystemRef) Boolean
 /// in(concept Concept, codesystem CodeSystemRef) Boolean
 /// in(codes List<Code>, codeSystem CodeSystemRef) Boolean
-/// in(List<string>, CodeSystem)
-/// in(List<Concept>, CodeSystem)
+/// in(`List<string>`, CodeSystem)
+/// in(`List<Concept>`, CodeSystem)
 /// Description:
 ///
 /// The in (Codesystem) operators determine whether or not a given code, or any
@@ -105,8 +105,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// in(code Code, valueset ValueSetRef) Boolean
 /// in(concept Concept, valueset ValueSetRef) Boolean
 /// in(codes List<Code>, valueset ValueSetRef) Boolean
-/// in(List<string>, ValueSet)
-/// in(List<Concept>, ValueSet)
+/// in(`List<string>`, ValueSet)
+/// in(`List<Concept>`, ValueSet)
 /// Description:
 ///
 /// The in (Valueset) operators determine whether or not a given code, or any

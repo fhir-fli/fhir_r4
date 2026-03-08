@@ -56,6 +56,9 @@ class CqlException implements Exception {
   }
 
   @override
+  int get hashCode => Object.hash(message, cause, sourceLocator, severity);
+
+  @override
   String toString() {
     var result = 'CqlException';
     if (message != null) {

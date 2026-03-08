@@ -8,7 +8,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source list is null, the result is null.
 /// Signature:
 ///
-/// singleton from(argument List<T>) T
+/// singleton from(argument `List<T>`) T
 /// Description:
 ///
 /// The singleton from operator extracts a single element from the source list.
@@ -22,7 +22,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 ///
 /// define "SingletonFrom": singleton from { 1 } // 1
 /// define "SingletonFromError": singleton from { 1, 3, 5 }
-/// define "SingletonFromIsNull": singleton from (null as List<Integer>)
+/// define "SingletonFromIsNull": singleton from (null as `List<Integer>`)
 class SingletonFrom extends UnaryExpression {
   SingletonFrom({
     required super.operand,

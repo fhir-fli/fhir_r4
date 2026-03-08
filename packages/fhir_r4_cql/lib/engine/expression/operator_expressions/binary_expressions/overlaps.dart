@@ -9,9 +9,9 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If either argument is null, the result is null.
 /// Signature:
 ///
-/// overlaps _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// overlaps before _precision_ (left Interval<T>, right Interval<T>) Boolean
-/// overlaps after _precision_ (left Interval<T>, right Interval<T>) Boolean
+/// overlaps _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// overlaps before _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
+/// overlaps after _precision_ (left `Interval<T>`, right `Interval<T>`) Boolean
 /// Description:
 ///
 /// The overlaps operator returns true if the first interval overlaps the
@@ -40,7 +40,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// define "OverlapsIsTrue": Interval[0, 4] overlaps Interval[1, 4]
 /// define "OverlapsBeforeIsTrue": Interval[0, 4] overlaps before Interval[1, 4]
 /// define "OverlapsAfterIsFalse": Interval[0, 4] overlaps after Interval[1, 4]
-/// define "OverlapsIsNull": Interval[6, 10] overlaps (null as Interval<Integer>)
+/// define "OverlapsIsNull": Interval[6, 10] overlaps (null as `Interval<Integer>`)
 class Overlaps extends BinaryExpression {
   final CqlDateTimePrecision? precision;
 

@@ -8,7 +8,7 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 /// If the source argument is null, the result is null.
 /// Signature:
 ///
-/// distinct(argument List<T>) List<T>
+/// distinct(argument `List<T>`) `List<T>`
 /// Description:
 ///
 /// The distinct operator returns the given list with duplicates eliminated
