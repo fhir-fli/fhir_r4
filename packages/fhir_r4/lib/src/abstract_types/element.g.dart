@@ -38,7 +38,7 @@ class $ElementCopyWithImpl<T> implements $ElementCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        disallowExtensions: identical(id, disallowExtensions)
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
       ),

@@ -1,0 +1,43 @@
+import 'data_types/address_test.dart';
+import 'data_types/annotation_test.dart';
+import 'data_types/attachment_test.dart';
+import 'data_types/codeable_concept_test.dart';
+import 'data_types/coding_test.dart';
+import 'data_types/contact_detail_test.dart';
+import 'data_types/contact_point_test.dart';
+import 'data_types/dosage_test.dart';
+import 'data_types/extension_test.dart';
+import 'data_types/human_name_test.dart';
+import 'data_types/identifier_test.dart';
+import 'data_types/meta_test.dart';
+import 'data_types/narrative_test.dart';
+import 'data_types/period_test.dart';
+import 'data_types/quantity_test.dart';
+import 'data_types/range_test.dart';
+import 'data_types/ratio_test.dart';
+import 'data_types/reference_test.dart';
+import 'data_types/timing_test.dart';
+import 'data_types/usage_context_test.dart';
+
+void main() {
+  addressTest();
+  annotationTest();
+  attachmentTest();
+  codeableConceptTest();
+  codingTest();
+  contactDetailTest();
+  contactPointTest();
+  dosageTest();
+  extensionTest();
+  humanNameTest();
+  identifierTest();
+  metaTest();
+  narrativeTest();
+  periodTest();
+  quantityTest();
+  rangeTest();
+  ratioTest();
+  referenceTest();
+  timingTest();
+  usageContextTest();
+}

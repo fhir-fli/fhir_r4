@@ -90,14 +90,16 @@ class Element extends FhirBase {
   /// Getter for the first extension by url.
   List<FhirExtension> getExtensionsByUrl(String url) {
     return extension_
-            ?.where((FhirExtension ext) => ext.url.equals(url))
+            ?.where((FhirExtension ext) => ext.url.equals(url.toFhirUri))
             .toList() ??
         <FhirExtension>[];
   }
 
   /// Method to check if an extension exists by url.
   bool hasExtensionByUrl(String url) {
-    return extension_?.any((FhirExtension ext) => ext.url.equals(url)) ?? false;
+    return extension_
+            ?.any((FhirExtension ext) => ext.url.equals(url.toFhirUri)) ??
+        false;
   }
 
   /// Method to add an extension.
