@@ -1,0 +1,634 @@
+{
+    "resourceType": "StructureMap",
+    "id": "C-CDAAllergyIntolerance",
+    "url": "http://hl7.org/fhir/cda/mapping/cdaAllergyIntolerance",
+    "name": "C-CDA AllergyIntolerance",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "target",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "source",
+            "alias": "Patient"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Act",
+            "mode": "source",
+            "alias": "Act"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+            "mode": "source",
+            "alias": "AllergyIntolerance"
+        }
+    ],
+    "import": [
+        "http://hl7.org/fhir/cda/mapping/cdaToFhirTypes",
+        "http://hl7.org/fhir/cda/mapping/ClinicalDocumentToFHIR"
+    ],
+    "group": [
+        {
+            "name": "AllergySection",
+            "extends": "ClinicalDocumentSection",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "source",
+                    "type": "Section",
+                    "mode": "source"
+                },
+                {
+                    "name": "patient",
+                    "type": "Patient",
+                    "mode": "source"
+                },
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "target"
+                },
+                {
+                    "name": "target",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "entry",
+                            "variable": "allergyEntry"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "bundle",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "e"
+                        },
+                        {
+                            "context": "e",
+                            "contextType": "variable",
+                            "element": "resource",
+                            "variable": "allergy",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "AllergyIntolerance"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "transform": "reference",
+                            "parameter": [
+                                {
+                                    "valueId": "allergy"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "act",
+                            "source": [
+                                {
+                                    "context": "allergyEntry",
+                                    "element": "act",
+                                    "variable": "allergyAct"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "AllergyIntolerance",
+                                    "variable": [
+                                        "allergyAct",
+                                        "patient",
+                                        "bundle",
+                                        "allergy"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AllergyIntolerance",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "source",
+                    "type": "Act",
+                    "mode": "source"
+                },
+                {
+                    "name": "patient",
+                    "type": "Patient",
+                    "mode": "source"
+                },
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "target"
+                },
+                {
+                    "name": "allergy",
+                    "type": "AllergyIntolerance",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "templateID",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "templateId",
+                            "variable": "template"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "TemplateID",
+                            "variable": [
+                                "template",
+                                "allergy"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "id",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "allergy",
+                            "contextType": "variable",
+                            "element": "identifier",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "statusCode",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "statusCode",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "allergy",
+                            "contextType": "variable",
+                            "element": "clinicalStatus",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "effectiveTime",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "effectiveTime",
+                            "variable": "effectiveTime"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "allergy",
+                            "contextType": "variable",
+                            "element": "onset"
+                        }
+                    ]
+                },
+                {
+                    "name": "patient",
+                    "source": [
+                        {
+                            "context": "patient"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "allergy",
+                            "contextType": "variable",
+                            "element": "patient",
+                            "transform": "reference",
+                            "parameter": [
+                                {
+                                    "valueId": "patient"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "author",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "author",
+                            "variable": "author"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "time",
+                            "source": [
+                                {
+                                    "context": "author",
+                                    "element": "time",
+                                    "variable": "vvv"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "allergy",
+                                    "contextType": "variable",
+                                    "element": "assertedDate",
+                                    "variable": "vvv",
+                                    "transform": "create"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "recorder",
+                            "source": [
+                                {
+                                    "context": "author",
+                                    "element": "assignedAuthor",
+                                    "variable": "assignedAuthor"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "bundle",
+                                    "contextType": "variable",
+                                    "element": "entry",
+                                    "variable": "e"
+                                },
+                                {
+                                    "context": "e",
+                                    "contextType": "variable",
+                                    "element": "resource",
+                                    "variable": "practitioner",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Practitioner"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "allergy",
+                                    "contextType": "variable",
+                                    "element": "recorder",
+                                    "transform": "reference",
+                                    "parameter": [
+                                        {
+                                            "valueId": "practitioner"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "ClinicalDocumentAuthorPractitioner",
+                                    "variable": [
+                                        "author",
+                                        "practitioner"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "entryRelationship",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "observation",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "observation",
+                                    "variable": "observation"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "negationInd",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "negationInd",
+                                            "variable": "negation"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "Negation",
+                                            "variable": [
+                                                "negation",
+                                                "allergy"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "templateID",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "templateId",
+                                            "variable": "template"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "TemplateID",
+                                            "variable": [
+                                                "template",
+                                                "allergy"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "value",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "value",
+                                            "variable": "vvv"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "allergy",
+                                            "contextType": "variable",
+                                            "element": "code",
+                                            "variable": "vvv",
+                                            "transform": "create"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "consumable",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "participant",
+                                            "variable": "participant"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "role",
+                                            "source": [
+                                                {
+                                                    "context": "participant",
+                                                    "element": "participantRole",
+                                                    "variable": "role"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "entity",
+                                                    "source": [
+                                                        {
+                                                            "context": "role",
+                                                            "element": "playingEntity",
+                                                            "variable": "entity"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "allergy",
+                                                            "contextType": "variable",
+                                                            "element": "reaction",
+                                                            "variable": "reaction"
+                                                        }
+                                                    ],
+                                                    "rule": [
+                                                        {
+                                                            "name": "code",
+                                                            "source": [
+                                                                {
+                                                                    "context": "entity",
+                                                                    "element": "code",
+                                                                    "variable": "vvv"
+                                                                }
+                                                            ],
+                                                            "target": [
+                                                                {
+                                                                    "context": "reaction",
+                                                                    "contextType": "variable",
+                                                                    "element": "substance",
+                                                                    "variable": "vvv",
+                                                                    "transform": "create"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "reaction",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "entryRelationship",
+                                            "variable": "entry",
+                                            "condition": "typeCode = 'MFST'"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "allergy",
+                                            "contextType": "variable",
+                                            "element": "reaction",
+                                            "variable": "reaction"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "reaction",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "observation",
+                                                    "variable": "reactionObs"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "effectiveTime",
+                                                    "source": [
+                                                        {
+                                                            "context": "reactionObs",
+                                                            "element": "effectiveTime",
+                                                            "variable": "vvv"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "reaction",
+                                                            "contextType": "variable",
+                                                            "element": "onset",
+                                                            "variable": "vvv",
+                                                            "transform": "create"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "value",
+                                                    "source": [
+                                                        {
+                                                            "context": "reactionObs",
+                                                            "element": "value",
+                                                            "variable": "vvv"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "reaction",
+                                                            "contextType": "variable",
+                                                            "element": "manifestation",
+                                                            "variable": "vvv",
+                                                            "transform": "create"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "severity",
+                                                    "source": [
+                                                        {
+                                                            "context": "reactionObs",
+                                                            "element": "entryRelationship",
+                                                            "variable": "sevEntry",
+                                                            "condition": "typeCode = 'SUBJ'"
+                                                        }
+                                                    ],
+                                                    "rule": [
+                                                        {
+                                                            "name": "observation",
+                                                            "source": [
+                                                                {
+                                                                    "context": "sevEntry",
+                                                                    "element": "observation",
+                                                                    "variable": "severity"
+                                                                }
+                                                            ],
+                                                            "rule": [
+                                                                {
+                                                                    "name": "severity",
+                                                                    "source": [
+                                                                        {
+                                                                            "context": "severity",
+                                                                            "element": "value",
+                                                                            "variable": "vvv"
+                                                                        }
+                                                                    ],
+                                                                    "target": [
+                                                                        {
+                                                                            "context": "reaction",
+                                                                            "contextType": "variable",
+                                                                            "element": "severity",
+                                                                            "variable": "vvv",
+                                                                            "transform": "create"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "criticality",
+                                    "source": [
+                                        {
+                                            "context": "observation",
+                                            "element": "entryRelationship",
+                                            "variable": "criticalityEntry",
+                                            "condition": "typeCode = 'SUBJ'"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "observation",
+                                            "source": [
+                                                {
+                                                    "context": "criticalityEntry",
+                                                    "element": "observation",
+                                                    "variable": "criticalityObservation"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "code",
+                                                    "source": [
+                                                        {
+                                                            "context": "criticalityObservation",
+                                                            "element": "value",
+                                                            "variable": "vvv"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "allergy",
+                                                            "contextType": "variable",
+                                                            "element": "criticality",
+                                                            "variable": "vvv",
+                                                            "transform": "create"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

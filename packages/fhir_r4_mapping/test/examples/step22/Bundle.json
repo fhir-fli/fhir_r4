@@ -1,0 +1,461 @@
+{
+    "resourceType": "StructureMap",
+    "id": "FHIRBundletoCDA",
+    "url": "http://hl7.org/fhir/cda/mapping/BundleToCDA",
+    "name": "FHIR Bundle to CDA",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+            "mode": "target",
+            "alias": "ClinicalDocument"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "source",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Composition",
+            "mode": "source",
+            "alias": "Composition"
+        }
+    ],
+    "import": [
+        "http://hl7.org/fhir/cda/mapping/fhirToCDATypes"
+    ],
+    "group": [
+        {
+            "name": "BundleClinicalDocument",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "source",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "target",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "identifier",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "resource",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "resource",
+                                    "condition": "resource.ofType(FHIR.Composition)"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CompositionClinicalDocument",
+                                    "variable": [
+                                        "source",
+                                        "resource",
+                                        "target"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CompositionClinicalDocument",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "source",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "target",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "languageCode",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "language",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "languageCode",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "templateID",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "extension",
+                            "variable": "extension",
+                            "condition": "extension.url = 'http://hl7.org/fhir/cda/StructureDefinition/templateID'"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "identifier",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "valueIdentifier",
+                                    "variable": "vvv"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "target",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "vvv",
+                                    "transform": "create"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "setID",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "identifier",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "setId",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "type",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "code",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "effectiveTime",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "date",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "effectiveTime",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "title",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "title",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "title",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "confidentialityCode",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "confidentiality",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "confidentialityCode",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "event",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "event",
+                            "variable": "srcEvent"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "documentationOf",
+                            "variable": "doc"
+                        },
+                        {
+                            "context": "doc",
+                            "contextType": "variable",
+                            "element": "serviceEvent",
+                            "variable": "event"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "period",
+                            "source": [
+                                {
+                                    "context": "srcEvent",
+                                    "element": "period",
+                                    "variable": "vvv"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "event",
+                                    "contextType": "variable",
+                                    "element": "effectiveTime",
+                                    "variable": "vvv",
+                                    "transform": "create"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "sections",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "section",
+                            "variable": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "comp"
+                        },
+                        {
+                            "context": "comp",
+                            "contextType": "variable",
+                            "element": "structuredBody",
+                            "variable": "body"
+                        },
+                        {
+                            "context": "body",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "secComp"
+                        },
+                        {
+                            "context": "secComp",
+                            "contextType": "variable",
+                            "element": "section",
+                            "variable": "tgtSection"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "templateID",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "element": "extension",
+                                    "variable": "extension",
+                                    "condition": "extension.url = 'http://hl7.org/fhir/cda/StructureDefinition/templateID'"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "identifier",
+                                    "source": [
+                                        {
+                                            "context": "extension",
+                                            "element": "valueIdentifier",
+                                            "variable": "vvv"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "tgtSection",
+                                            "contextType": "variable",
+                                            "element": "templateId",
+                                            "variable": "vvv",
+                                            "transform": "create"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "code",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "element": "code",
+                                    "variable": "vvv"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "section",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "variable": "vvv",
+                                    "transform": "create"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "title",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "element": "title",
+                                    "variable": "vvv"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgtSection",
+                                    "contextType": "variable",
+                                    "element": "title",
+                                    "variable": "vvv",
+                                    "transform": "create"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "text",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "element": "text",
+                                    "variable": "srcText"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgtSection",
+                                    "contextType": "variable",
+                                    "element": "text",
+                                    "variable": "tgtText"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "div",
+                                    "source": [
+                                        {
+                                            "context": "srcText",
+                                            "element": "div"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "contextType": "variable",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "tgtText"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

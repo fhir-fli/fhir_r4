@@ -1,0 +1,180 @@
+{
+    "resourceType": "StructureMap",
+    "id": "TestObservation",
+    "url": "http://salute.gov.it/ig/cda-fhir-maps/StructureMap/TestObservation",
+    "name": "TestObservation",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/cda/stds/core/StructureDefinition/Observation",
+            "mode": "source",
+            "alias": "CdaObservation"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+            "mode": "target",
+            "alias": "FhirObservation"
+        },
+        {
+            "url": "http://hl7.org/cda/stds/core/StructureDefinition/ST",
+            "mode": "source",
+            "alias": "ST"
+        },
+        {
+            "url": "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS",
+            "mode": "source",
+            "alias": "IVL_TS"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Period",
+            "mode": "target",
+            "alias": "Period"
+        }
+    ],
+    "import": [
+        "http://salute.gov.it/ig/cda-fhir-maps/StructureMap/CdaToFhirDataTypes",
+        "http://salute.gov.it/ig/cda-fhir-maps/StructureMap/FULLHEADER"
+    ],
+    "group": [
+        {
+            "name": "CdaToFHIR",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "cda",
+                    "type": "CdaObservation",
+                    "mode": "source"
+                },
+                {
+                    "name": "obs",
+                    "type": "Observation",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "final",
+                    "source": [
+                        {
+                            "context": "cda"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "obs",
+                            "contextType": "variable",
+                            "element": "status",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "final"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "high",
+                    "source": [
+                        {
+                            "context": "cda",
+                            "type": "IVL_TS",
+                            "element": "value",
+                            "variable": "value"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "obs",
+                            "contextType": "variable",
+                            "element": "value",
+                            "variable": "period",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Period"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "high",
+                            "source": [
+                                {
+                                    "context": "value",
+                                    "element": "high",
+                                    "variable": "high"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "highvalue",
+                                    "source": [
+                                        {
+                                            "context": "high",
+                                            "element": "value",
+                                            "variable": "value"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "period",
+                                            "contextType": "variable",
+                                            "element": "end",
+                                            "transform": "truncate",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "value"
+                                                },
+                                                {
+                                                    "valueInteger": 10
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "st",
+                    "source": [
+                        {
+                            "context": "cda",
+                            "type": "ST",
+                            "element": "value",
+                            "variable": "value"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "value",
+                            "source": [
+                                {
+                                    "context": "value",
+                                    "element": "xmlText",
+                                    "variable": "data"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "obs",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "data"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

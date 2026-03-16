@@ -1,0 +1,574 @@
+{
+    "resourceType": "StructureMap",
+    "id": "R3toR4conversionforCareConnectMedicationRequestStatusReasonextension",
+    "url": "http://fhir.nhs.uk/StructureMap/MedicationRequestStatusReason-Extension-3to4",
+    "name": "R3 to R4 conversion for CareConnect MedicationRequest StatusReason extension",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+            "mode": "source",
+            "alias": "MedicationRequest"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+            "mode": "target",
+            "alias": "MedicationRequest"
+        }
+    ],
+    "group": [
+        {
+            "name": "MedicationRequest",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "MedicationRequest",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "MedicationRequest",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "($this.url = 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationStatusReason-1') or ($this.url = 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatusReason-1')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "statusReason",
+                            "variable": "vt"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "extension",
+                                    "variable": "vs",
+                                    "condition": "$this.url = 'statusReason'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "statusReason",
+                                    "variable": "vt1"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueCodeableConcept",
+                                    "source": [
+                                        {
+                                            "context": "vs",
+                                            "type": "CodeableConcept",
+                                            "element": "value",
+                                            "variable": "vs1"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "tgt",
+                                            "contextType": "variable",
+                                            "element": "statusReason",
+                                            "variable": "vt2"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "CodeableConceptStatusReason",
+                                            "variable": [
+                                                "vs1",
+                                                "vt2"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "documentation": "Using convention detailed here https://build.fhir.org/versions.html#extensions"
+                        },
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "extension",
+                                    "variable": "vs",
+                                    "condition": "$this.url = 'statusChangeDate'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "vt",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Extension"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "http://fhir.nhs.uk/fhir/3.0/StructureDefinition/extension-statusChangeDate"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueDateTime",
+                                    "source": [
+                                        {
+                                            "context": "vs",
+                                            "type": "dateTime",
+                                            "element": "value",
+                                            "variable": "vs1"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "vt",
+                                            "contextType": "variable",
+                                            "element": "extension",
+                                            "variable": "vt1",
+                                            "transform": "create",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Extension"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "vt1",
+                                            "contextType": "variable",
+                                            "element": "url",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "statusChangeDate"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "valueDateTime",
+                                            "source": [
+                                                {
+                                                    "context": "vs",
+                                                    "type": "dateTime",
+                                                    "element": "value",
+                                                    "variable": "vs2"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "vt1",
+                                                    "contextType": "variable",
+                                                    "element": "value",
+                                                    "variable": "vt2",
+                                                    "transform": "create",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "dateTime"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "context": "vt2",
+                                                    "contextType": "variable",
+                                                    "element": "value",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueId": "vs2"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CodeableConceptStatusReason",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "CodeableConcept",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CodeableConcept",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "coding",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "coding",
+                            "variable": "vvv"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "coding",
+                            "variable": "vvv",
+                            "transform": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "text",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "text",
+                            "variable": "text"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "text",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coding",
+            "typeMode": "type-and-types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Coding",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Coding",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "system",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "system"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "version",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "version",
+                            "variable": "version"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "version",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "version"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "code",
+                            "variable": "code"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "display",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "display",
+                            "variable": "display"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "display",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "display"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "userSelected",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "userSelected",
+                            "variable": "userSelected"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "userSelected",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "userSelected"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "vs",
+                            "condition": "($this.url = 'https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid') or ($this.url = 'https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "extension",
+                            "variable": "vt",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Extension"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "vt",
+                            "contextType": "variable",
+                            "element": "url",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-CodingSCTDescId"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "vs",
+                                    "element": "extension",
+                                    "variable": "vsx",
+                                    "condition": "$this.url = 'descriptionId'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "vtx",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Extension"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vtx",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "descriptionId"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueId",
+                                    "source": [
+                                        {
+                                            "context": "vsx",
+                                            "type": "id",
+                                            "element": "value",
+                                            "variable": "vsv"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "vtx",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "variable": "vtv",
+                                            "transform": "create",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "Identifier"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "vtv",
+                                            "contextType": "variable",
+                                            "element": "system",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "http://snomed.info/sct"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "vtv",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "vsv"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "vs",
+                                    "element": "extension",
+                                    "variable": "vsx",
+                                    "condition": "$this.url = 'descriptionDisplay'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "vtx",
+                                    "transform": "create",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Extension"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "vsx"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

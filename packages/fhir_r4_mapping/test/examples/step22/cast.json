@@ -1,0 +1,257 @@
+{
+    "resourceType": "StructureMap",
+    "id": "cast",
+    "url": "http://ahdis.ch/matchbox/fml/cast",
+    "name": "cast",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+            "mode": "source",
+            "alias": "QuestionnaireResponse"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Observation",
+            "mode": "target",
+            "alias": "Observation"
+        }
+    ],
+    "group": [
+        {
+            "name": "qrtocobs",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "QuestionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Observation",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "implictstring",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "(url = 'urn:implicitstring')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "item",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "value",
+                                    "variable": "value"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "ext"
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "urn:implicitstring"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "value"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "implictstring",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "(url = 'urn:explicitstring')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "item",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "value",
+                                    "variable": "value"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "ext"
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "urn:explicitstring"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "cast",
+                                    "parameter": [
+                                        {
+                                            "valueId": "value"
+                                        },
+                                        {
+                                            "valueString": "string"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "positiveInt",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "(url = 'urn:positiveInt')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "item",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "value",
+                                    "variable": "value"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "ext"
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "urn:positiveInt"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "value"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "positiveInt",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "(url = 'urn:positiveIntString')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "item",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "value",
+                                    "variable": "value"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "variable": "ext"
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "url",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "urn:positiveIntString"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "ext",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "cast",
+                                    "parameter": [
+                                        {
+                                            "valueId": "value"
+                                        },
+                                        {
+                                            "valueString": "positiveInt"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

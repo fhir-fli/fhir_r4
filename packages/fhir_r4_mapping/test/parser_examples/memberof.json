@@ -1,0 +1,62 @@
+{
+    "resourceType": "StructureMap",
+    "id": "memberof",
+    "url": "http://ahdis.ch/matchbox/fml/memberof",
+    "name": "memberof",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "source",
+            "alias": "Patient"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "target",
+            "alias": "Patient"
+        }
+    ],
+    "group": [
+        {
+            "name": "MemberOf",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Patient",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Patient",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "memberof",
+                    "source": [
+                        {
+                            "context": "src",
+                            "condition": "maritalStatus.memberOf('http://hl7.org/fhir/ValueSet/marital-status')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "gender",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "male"
+                                }
+                            ]
+                        }
+                    ],
+                    "documentation": "src where gender.memberOf(\"http://hl7.org/fhir/ValueSet/administrative-gender\") -> tgt.gender = 'male' \"memberof\";"
+                }
+            ]
+        }
+    ]
+}

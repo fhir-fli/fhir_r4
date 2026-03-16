@@ -1,0 +1,66 @@
+{
+    "resourceType": "StructureMap",
+    "id": "DischargeSummaryDocumentfromCDAtoFHIR",
+    "url": "http://hl7.org/fhir/cda/mapping/dischargeSummaryDocumentToCDA",
+    "name": "DischargeSummaryDocument from CDA to FHIR",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "source",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+            "mode": "target",
+            "alias": "ClinicalDocument"
+        }
+    ],
+    "import": [
+        "http://hl7.org/fhir/cda/mapping/BundleToCDA"
+    ],
+    "group": [
+        {
+            "name": "DischargeSummaryDocument",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "source",
+                    "type": "Bundle",
+                    "mode": "source"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "start",
+                    "source": [
+                        {
+                            "context": "source"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "contextType": "variable",
+                            "variable": "target",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "ClinicalDocument"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "BundleClinicalDocument",
+                            "variable": [
+                                "source",
+                                "target"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

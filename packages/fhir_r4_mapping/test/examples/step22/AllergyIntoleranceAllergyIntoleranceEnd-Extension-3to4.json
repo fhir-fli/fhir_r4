@@ -1,0 +1,110 @@
+{
+    "resourceType": "StructureMap",
+    "id": "R3toR4conversionforCareConnectAllergyIntoleranceAllergyIntoleranceEndextension",
+    "url": "http://fhir.nhs.uk/StructureMap/AllergyIntoleranceAllergyIntoleranceEnd-Extension-3to4",
+    "name": "R3 to R4 conversion for CareConnect AllergyIntolerance AllergyIntoleranceEnd extension",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+            "mode": "source",
+            "alias": "AllergyIntolerance"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+            "mode": "target",
+            "alias": "AllergyIntolerance"
+        }
+    ],
+    "group": [
+        {
+            "name": "AllergyIntolerance",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "AllergyIntolerance",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "AllergyIntolerance",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "$this.url='https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-AllergyIntoleranceEnd-1'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "extension",
+                            "variable": "tgtext",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Extension"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "tgtext",
+                            "contextType": "variable",
+                            "element": "url",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-AllergyIntoleranceEnd"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "extension",
+                                    "variable": "vs"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "contextType": "variable",
+                                    "variable": "vt",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "tgtext"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "vt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "vs"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

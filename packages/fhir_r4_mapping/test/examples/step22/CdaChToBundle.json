@@ -1,0 +1,10 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Error @10, 6: Found 'queried' expecting 'source' or 'target'"
+        }
+    ]
+}

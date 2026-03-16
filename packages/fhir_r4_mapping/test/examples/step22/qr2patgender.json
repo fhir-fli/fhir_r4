@@ -1,0 +1,112 @@
+{
+    "resourceType": "StructureMap",
+    "id": "qr2patgender",
+    "url": "http://ahdis.ch/matchbox/fml/qr2patgender",
+    "name": "qr2patgender",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+            "mode": "source",
+            "alias": "QuestionnaireResponse"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "target",
+            "alias": "Patient"
+        }
+    ],
+    "group": [
+        {
+            "name": "QuestionnaireResponse",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "QuestionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Patient",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "item"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "contextType": "variable",
+                            "variable": "patient",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "tgt"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "item",
+                            "variable": [
+                                "item",
+                                "patient"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "item",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Patient",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "item",
+                            "condition": "linkId in ('patient.sex')",
+                            "logMessage": "(src.item.linkId)"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "gender",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "%item.answer.value"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

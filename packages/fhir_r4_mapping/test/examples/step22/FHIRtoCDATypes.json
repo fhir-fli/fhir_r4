@@ -1,0 +1,1634 @@
+{
+    "resourceType": "StructureMap",
+    "id": "FhirToCdaTypes",
+    "contained": [
+        {
+            "resourceType": "ConceptMap",
+            "id": "uri2oid",
+            "status": "draft",
+            "group": [
+                {
+                    "source": "http://hl7.org/fhir",
+                    "target": "http://hl7.org/cda",
+                    "element": [
+                        {
+                            "code": "http://snomed.info/sct",
+                            "target": [
+                                {
+                                    "code": "2.16.840.1.113883.6.96",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://loinc.org",
+                            "target": [
+                                {
+                                    "code": "2.16.840.1.113883.6.1",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://hl7.org/fhir/sid/atc",
+                            "target": [
+                                {
+                                    "code": "2.16.840.1.113883.6.73",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://www.whocc.no/atc",
+                            "target": [
+                                {
+                                    "code": "2.16.840.1.113883.6.73",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution",
+                            "target": [
+                                {
+                                    "code": "2.16.840.1.113883.5.1070",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "resourceType": "ConceptMap",
+            "id": "uri2system",
+            "status": "draft",
+            "group": [
+                {
+                    "source": "http://hl7.org/fhir",
+                    "target": "http://hl7.org/cda",
+                    "element": [
+                        {
+                            "code": "http://snomed.info/sct",
+                            "target": [
+                                {
+                                    "code": "SNOMED CT",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://loinc.org",
+                            "target": [
+                                {
+                                    "code": "LOINC",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://hl7.org/fhir/sid/atc",
+                            "target": [
+                                {
+                                    "code": "ATC WHO",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://www.whocc.no/atc",
+                            "target": [
+                                {
+                                    "code": "ATC WHO",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution",
+                            "target": [
+                                {
+                                    "code": "HL7 Substance Admin Substitution",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "resourceType": "ConceptMap",
+            "id": "oid2system",
+            "status": "draft",
+            "group": [
+                {
+                    "source": "http://hl7.org/fhir",
+                    "target": "http://hl7.org/cda",
+                    "element": [
+                        {
+                            "code": "urn:oid:2.51.1.1",
+                            "target": [
+                                {
+                                    "code": "GTIN",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "urn:oid:1.3.6.1.4.1.19376.1.9.2.1",
+                            "target": [
+                                {
+                                    "code": "IHE Pharmaceutical Advice Status List",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "resourceType": "ConceptMap",
+            "id": "addressUse",
+            "status": "draft",
+            "group": [
+                {
+                    "source": "http://hl7.org/fhir/valueset-address-use.html",
+                    "target": "http://terminology.hl7.org/ValueSet/v3-AddressUse",
+                    "element": [
+                        {
+                            "code": "home",
+                            "target": [
+                                {
+                                    "code": "H",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "work",
+                            "target": [
+                                {
+                                    "code": "WP",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "temp",
+                            "target": [
+                                {
+                                    "code": "TMP",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        },
+                        {
+                            "code": "old",
+                            "target": [
+                                {
+                                    "code": "OLD",
+                                    "equivalence": "equivalent"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "url": "http://fhir.ch/ig/cda-fhir-maps/StructureMap/FhirToCdaTypes",
+    "name": "FhirToCdaTypes",
+    "status": "draft",
+    "description": "Adapted from https://github.com/HL7/ccda-to-fhir/tree/master/mappings\r\nCDA:  http://build.fhir.org/ig/ahdis/cda-core-2.0/branches/master/index.html\r\nFHIR: http://hl7.org/fhir/r4/",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Identifier",
+            "mode": "source"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/II",
+            "mode": "target"
+        }
+    ],
+    "group": [
+        {
+            "name": "Any",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extension",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "extension",
+                            "variable": "extension",
+                            "condition": "$this.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "nullFlavor",
+                            "variable": "nullFlavor"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "nullFlavor",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "valueCode",
+                                    "variable": "valueCode"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "value",
+                                    "source": [
+                                        {
+                                            "context": "valueCode",
+                                            "element": "value",
+                                            "variable": "v"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "nullFlavor",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "cast",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "v"
+                                                },
+                                                {
+                                                    "valueString": "string"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "IdentifierII",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Identifier",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "II",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "idAsUuid",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "value",
+                            "condition": "src.system.empty() and src.value.startsWith('urn:uuid:')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "value.substring(9).upper()"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "idAsUuid",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "value",
+                            "condition": "src.system = 'urn:ietf:rfc:3986'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "value.substring(9).upper()"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "value",
+                            "condition": "src.system.startsWith('urn:oid:')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "oidident",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "system",
+                                    "variable": "system"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "evaluate",
+                                    "parameter": [
+                                        {
+                                            "valueString": "system.substring(8)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "value"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "IntegerINT",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "integer",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "INT",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "integer",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "value",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "InstantTS",
+            "extends": "Any",
+            "typeMode": "types",
+            "documentation": "group Identifier(source src : Identifier, target tgt : II) extends Any <<types>> {\r\nsrc.system as system then {\r\nsrc.value as value then {\r\nvalue.value as v where system.value = 'urn:ietf:rfc:3986' -> tgt.root = cast(v, 'string') \"noExtension\";\r\nsystem.value as v where system.value != 'urn:ietf:rfc:3986' -> tgt.root = v then {\r\nvalue.value as val -> tgt.extension = cast(val, 'string') \"extension\";\r\n} \"withExtension\";\r\n} \"rootValue\";\r\n} \"root\";\r\nsrc.value as value -> tgt.root = '123' \"test\";\r\nsrc -> tgt.root = '123' \"test\";\r\nsrc.assigner as a then {\r\na.display as display then {\r\ndisplay.value as val -> tgt.assigningAuthorityName = cast(val, 'string');\r\n} \"display\";\r\n} \"assigner\";\r\nsrc.extension as ext where ext.url = 'http://hl7.org/fhir/cdaStructureDefinition/extension-displayable' -> tgt.displayable as displayable then {\r\next.value as v -> displayable.value = cast(v, 'string');\r\n} \"displayable\";\r\n}",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "instant",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "TS",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "copy",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "value",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DateTimeTS",
+            "extends": "InstantTS",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "dateTime",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "TS",
+                    "mode": "target"
+                }
+            ]
+        },
+        {
+            "name": "DateTS",
+            "extends": "InstantTS",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "date",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "TS",
+                    "mode": "target"
+                }
+            ]
+        },
+        {
+            "name": "CodeCS",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "code",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CS",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "code",
+                            "variable": "c"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "value",
+                            "transform": "cast",
+                            "parameter": [
+                                {
+                                    "valueId": "c"
+                                },
+                                {
+                                    "valueString": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CodeCE",
+            "extends": "CodeCS",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "code",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CE",
+                    "mode": "target"
+                }
+            ]
+        },
+        {
+            "name": "CodeCD",
+            "extends": "CodeCS",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "code",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CD",
+                    "mode": "target"
+                }
+            ]
+        },
+        {
+            "name": "CodingCE",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Coding",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CE",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "code",
+                            "variable": "code"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "$this.startsWith('http:')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "codeSystem",
+                            "transform": "translate",
+                            "parameter": [
+                                {
+                                    "valueId": "system"
+                                },
+                                {
+                                    "valueString": "#uri2oid"
+                                },
+                                {
+                                    "valueString": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "system",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "$this.startsWith('urn:oid:')"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "oidident",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "system",
+                                    "variable": "system"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "codeSystem",
+                                    "transform": "evaluate",
+                                    "parameter": [
+                                        {
+                                            "valueString": "system.substring(8)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "systemName1",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "$this.startsWith('http:')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "codeSystemName",
+                            "transform": "translate",
+                            "parameter": [
+                                {
+                                    "valueId": "system"
+                                },
+                                {
+                                    "valueString": "#uri2system"
+                                },
+                                {
+                                    "valueString": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "systemName2",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "system",
+                            "variable": "system",
+                            "condition": "$this.startsWith('urn:oid:')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "codeSystemName",
+                            "transform": "translate",
+                            "parameter": [
+                                {
+                                    "valueId": "system"
+                                },
+                                {
+                                    "valueString": "#oid2system"
+                                },
+                                {
+                                    "valueString": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "display",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "display",
+                            "variable": "display"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "displayName",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "display"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CodeableConceptCE",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "CodeableConcept",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CE",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "text",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "text",
+                            "variable": "text"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "orginialText",
+                            "variable": "originalText"
+                        },
+                        {
+                            "context": "originalText",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "first",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "coding",
+                            "listMode": "first",
+                            "variable": "coding"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "CodingCE",
+                            "variable": [
+                                "coding",
+                                "tgt"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "translation",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "coding",
+                            "listMode": "not_first",
+                            "variable": "coding"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "translation",
+                            "variable": "translation"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "CodingCE",
+                            "variable": [
+                                "coding",
+                                "translation"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AddressAD",
+            "extends": "Any",
+            "typeMode": "types",
+            "documentation": "group CECodeableConcept(source src : CE, target tgt : CodeableConcept) extends Any <<types>> {\r\nsrc.originalText -> tgt.text;\r\nsrc -> tgt.coding as coding then {\r\nsrc.code as code -> coding.code = cast(code, 'string');\r\nsrc.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');\r\nsrc.displayName as display -> coding.display = cast(display, 'string');\r\n} \"code\";\r\nsrc.translation as translation -> tgt.coding as coding then {\r\ntranslation.code as code -> coding.code = cast(code, 'string');\r\ntranslation.codeSystem as system -> coding.system = translate(system, 'http://hl7.org/fhir/ConceptMap/special-oid2uri', 'uri');\r\ntranslation.displayName as display -> coding.display = cast(display, 'string');\r\n} \"translation\";\r\n}",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Address",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "AD",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "streetAddress",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "line",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "streetAddressLine",
+                            "variable": "line"
+                        },
+                        {
+                            "context": "line",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "postalCode",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "postalCode",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "postalCode",
+                            "variable": "postalCode"
+                        },
+                        {
+                            "context": "postalCode",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "nullFlavor",
+                    "source": [
+                        {
+                            "context": "src",
+                            "condition": "$this.postalCode.exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "postalCode",
+                            "variable": "postalCode"
+                        },
+                        {
+                            "context": "postalCode",
+                            "contextType": "variable",
+                            "element": "nullFlavor",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "NI"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "city",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "city",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "city",
+                            "variable": "city"
+                        },
+                        {
+                            "context": "city",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "nullFlavor",
+                    "source": [
+                        {
+                            "context": "src",
+                            "condition": "$this.city.exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "city",
+                            "variable": "city"
+                        },
+                        {
+                            "context": "city",
+                            "contextType": "variable",
+                            "element": "nullFlavor",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "NI"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "state",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "state",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "state",
+                            "variable": "state"
+                        },
+                        {
+                            "context": "state",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "district",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "district",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "county",
+                            "variable": "county"
+                        },
+                        {
+                            "context": "county",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "country",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "country",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "country",
+                            "variable": "country"
+                        },
+                        {
+                            "context": "country",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "nullFlavor",
+                    "source": [
+                        {
+                            "context": "src",
+                            "condition": "$this.country.exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "country",
+                            "variable": "country"
+                        },
+                        {
+                            "context": "country",
+                            "contextType": "variable",
+                            "element": "nullFlavor",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "NI"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "addressUse",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "c"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "translate",
+                            "parameter": [
+                                {
+                                    "valueId": "c"
+                                },
+                                {
+                                    "valueString": "#addressUse"
+                                },
+                                {
+                                    "valueString": "code"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ContactPointTEL",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "ContactPoint",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "TEL",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "value",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "value"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "value",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "iif(%src.system = 'phone', 'tel:', '') + iif(%src.system = 'fax', 'fax:', '') + iif(%src.system = 'email', 'mailto:', '') + iif(%src.system = 'url', 'http:', '') + value"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "use",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "use",
+                            "condition": "$this = 'home'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "HP"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "use",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "use",
+                            "condition": "$this = 'work'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "WP"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "use",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "use",
+                            "condition": "$this = 'old'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "BAD"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "use",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "use",
+                            "condition": "$this = 'temp'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "TMP"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "use",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "use",
+                            "variable": "use",
+                            "condition": "$this = 'mobile'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "use",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "MC"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HumanNameEN",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "HumanName",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "EN",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "family",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "family",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "family",
+                            "variable": "family"
+                        },
+                        {
+                            "context": "family",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "given",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "given",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "given",
+                            "variable": "given"
+                        },
+                        {
+                            "context": "given",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "prefix",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "prefix",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "prefix",
+                            "variable": "prefix"
+                        },
+                        {
+                            "context": "prefix",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "suffix",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "suffix",
+                            "variable": "v"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "suffix",
+                            "variable": "suffix"
+                        },
+                        {
+                            "context": "suffix",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "v"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "QuantityPQ",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Quantity",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "PQ",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "code",
+                            "variable": "code"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "unit",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "code"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "value",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "value",
+                            "variable": "value"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "value",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "value"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "RatioRTOPQPQ",
+            "extends": "Any",
+            "typeMode": "types",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Ratio",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "RTO_PQ_PQ",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "numerator",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "numerator",
+                            "variable": "numerator"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "numerator",
+                            "variable": "targetNumerator"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "QuantityPQ",
+                            "variable": [
+                                "numerator",
+                                "targetNumerator"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "denominator",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "denominator",
+                            "variable": "denominator"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "denominator",
+                            "variable": "targetDenominator"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "QuantityPQ",
+                            "variable": [
+                                "denominator",
+                                "targetDenominator"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

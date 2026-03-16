@@ -1,0 +1,270 @@
+{
+    "resourceType": "StructureMap",
+    "id": "csv10320",
+    "url": "http://ahdis.ch/matchbox/fml/csv10320",
+    "name": "csv10320",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/CSV",
+            "mode": "source",
+            "alias": "CVS"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "target",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Organization",
+            "mode": "target",
+            "alias": "Organization"
+        }
+    ],
+    "group": [
+        {
+            "name": "CSVtoBundle",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "CVS",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Bundle",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "record",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "record",
+                            "variable": "record"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "entry"
+                        },
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "resource",
+                            "variable": "org",
+                            "transform": "create",
+                            "parameter": [
+                                {
+                                    "valueString": "Organization"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "firma",
+                            "source": [
+                                {
+                                    "context": "record",
+                                    "element": "firma",
+                                    "variable": "firma"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "org",
+                                    "contextType": "variable",
+                                    "element": "name",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "firma"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "adresse",
+                            "source": [
+                                {
+                                    "context": "record"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "org",
+                                    "contextType": "variable",
+                                    "element": "address",
+                                    "variable": "address"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "adresse",
+                                    "source": [
+                                        {
+                                            "context": "record",
+                                            "element": "adresse",
+                                            "variable": "strasse"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "address",
+                                            "contextType": "variable",
+                                            "element": "line",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "strasse"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "plz",
+                                    "source": [
+                                        {
+                                            "context": "record",
+                                            "element": "plz",
+                                            "variable": "plz"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "address",
+                                            "contextType": "variable",
+                                            "element": "postalCode",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "plz"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "ort",
+                                    "source": [
+                                        {
+                                            "context": "record",
+                                            "element": "ort",
+                                            "variable": "ort"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "address",
+                                            "contextType": "variable",
+                                            "element": "city",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueId": "ort"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "contact",
+                            "source": [
+                                {
+                                    "context": "record",
+                                    "element": "vorname_name"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "org",
+                                    "contextType": "variable",
+                                    "element": "contact",
+                                    "variable": "contact"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "given",
+                                    "source": [
+                                        {
+                                            "context": "record",
+                                            "element": "vorname_name"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "contact",
+                                            "contextType": "variable",
+                                            "element": "name",
+                                            "variable": "name"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "given",
+                                            "source": [
+                                                {
+                                                    "context": "record",
+                                                    "element": "vorname_name",
+                                                    "variable": "vornamename"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "name",
+                                                    "contextType": "variable",
+                                                    "element": "given",
+                                                    "transform": "evaluate",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "%vornamename.substring(0, %vornamename.indexOf(' '))"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "family",
+                                            "source": [
+                                                {
+                                                    "context": "record",
+                                                    "element": "vorname_name",
+                                                    "variable": "vornamename"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "name",
+                                                    "contextType": "variable",
+                                                    "element": "family",
+                                                    "transform": "evaluate",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "%vornamename.substring(%vornamename.indexOf(' ') + 1)"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

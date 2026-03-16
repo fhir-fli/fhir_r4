@@ -1,0 +1,2346 @@
+{
+    "resourceType": "StructureMap",
+    "id": "BundleToCda",
+    "url": "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCda",
+    "name": "BundleToCda",
+    "status": "draft",
+    "description": "CDA document\r\n2020-01-16 Oliver Egger, copyright ahdis ag, Apache License\r\nCDA:  http://build.fhir.org/ig/ahdis/cda-core-2.0/branches/master/index.html\r\nFHIR: http://hl7.org/fhir/r4/",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+            "mode": "target",
+            "alias": "ClinicalDocument"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Author",
+            "mode": "target",
+            "alias": "Author"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget",
+            "mode": "target",
+            "alias": "RecordTarget"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Custodian",
+            "mode": "target",
+            "alias": "Custodian"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Organization",
+            "mode": "target",
+            "alias": "CdaOrganization"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/LegalAuthenticator",
+            "mode": "target",
+            "alias": "LegalAuthenticator"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Section",
+            "mode": "target",
+            "alias": "CdaSection"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "source",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Composition",
+            "mode": "source",
+            "alias": "Composition"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+            "mode": "source",
+            "alias": "Practitioner"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "source",
+            "alias": "Patient"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Organization",
+            "mode": "source",
+            "alias": "Organization"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/BackboneElement",
+            "mode": "source",
+            "alias": "BackboneElement"
+        }
+    ],
+    "import": [
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/FhirToCdaTypes"
+    ],
+    "group": [
+        {
+            "name": "BundleToCda",
+            "typeMode": "none",
+            "documentation": "_________________________ Document Level Template  _________________________",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "bundle",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "recordTarget",
+                            "variable": "recordTarget"
+                        },
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "author",
+                            "variable": "author"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "BundleToClinicalDocument",
+                            "variable": [
+                                "bundle",
+                                "recordTarget",
+                                "author",
+                                "cda"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BundleToClinicalDocument",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "recordTarget",
+                    "type": "RecordTarget",
+                    "mode": "target"
+                },
+                {
+                    "name": "author",
+                    "type": "Author",
+                    "mode": "target"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "typeId",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "typeId",
+                            "variable": "typeId"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "root",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "typeId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.1.3"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "typeId",
+                                    "contextType": "variable",
+                                    "element": "extension",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "POCD_HD000040"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "identifier",
+                            "variable": "identifier"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "IdentifierII",
+                            "variable": [
+                                "identifier",
+                                "id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "effectiveTime",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "timestamp",
+                            "variable": "timestamp"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "effectiveTime",
+                            "variable": "effectiveTime"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "InstantTS",
+                            "variable": [
+                                "timestamp",
+                                "effectiveTime"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "resource",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "resource",
+                                    "condition": "$this.ofType(FHIR.Composition)"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CompositionClinicalDocument",
+                                    "variable": [
+                                        "bundle",
+                                        "resource",
+                                        "recordTarget",
+                                        "author",
+                                        "cda"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SectionCdaSection",
+            "typeMode": "none",
+            "documentation": "_________________________ Section Level Templates _________________________",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "section",
+                    "type": "BackboneElement",
+                    "mode": "source"
+                },
+                {
+                    "name": "cdasection",
+                    "type": "CdaSection",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "valueIdentifier",
+                    "source": [
+                        {
+                            "context": "section",
+                            "element": "extension",
+                            "variable": "extension",
+                            "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-sectionid'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "IdentifierII",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "valueIdentifier",
+                                    "variable": "valueIdentifier"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "valueIdentifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "sectionid",
+                    "source": [
+                        {
+                            "context": "section",
+                            "variable": "section",
+                            "condition": "$this.extension.where(url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-sectionid').exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "setId",
+                            "source": [
+                                {
+                                    "context": "bundle",
+                                    "element": "identifier",
+                                    "variable": "identifier"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "id",
+                                    "variable": "id"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "identifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "code",
+                    "source": [
+                        {
+                            "context": "section",
+                            "element": "code",
+                            "variable": "code"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "codingsection",
+                            "source": [
+                                {
+                                    "context": "code",
+                                    "element": "coding",
+                                    "variable": "coding",
+                                    "condition": "$this.system = 'http://loinc.org'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "variable": "cdacode"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CodingCE",
+                                    "variable": [
+                                        "coding",
+                                        "cdacode"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "title",
+                    "source": [
+                        {
+                            "context": "section",
+                            "element": "title",
+                            "variable": "title"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "title",
+                            "variable": "cdatitle"
+                        },
+                        {
+                            "context": "cdatitle",
+                            "contextType": "variable",
+                            "element": "data",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "title"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "text",
+                    "source": [
+                        {
+                            "context": "section",
+                            "element": "text",
+                            "variable": "text"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "div",
+                            "source": [
+                                {
+                                    "context": "text",
+                                    "element": "div",
+                                    "variable": "div"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "text",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "div"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CompositionClinicalDocument",
+            "typeMode": "none",
+            "documentation": "_________________________ Entry Level Templates   ________________________\r\n_________________________ Header Level Templates _________________________",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "composition",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "recordTarget",
+                    "type": "RecordTarget",
+                    "mode": "target"
+                },
+                {
+                    "name": "author",
+                    "type": "Author",
+                    "mode": "target"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "type",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "type",
+                            "variable": "type"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "code",
+                            "source": [
+                                {
+                                    "context": "type",
+                                    "element": "coding",
+                                    "variable": "coding",
+                                    "condition": "$this.system = 'http://loinc.org'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cda",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "variable": "code",
+                                    "listMode": [
+                                        "share"
+                                    ],
+                                    "listRuleId": "docCode"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CodingCE",
+                                    "variable": [
+                                        "coding",
+                                        "code"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "title",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "title",
+                            "variable": "title"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "title",
+                            "variable": "t"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "titleInner",
+                            "source": [
+                                {
+                                    "context": "title"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "t",
+                                    "contextType": "variable",
+                                    "element": "data",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "title"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "confidentialityCode",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "confidentiality",
+                            "variable": "conf"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "confidentialityCode",
+                            "variable": "cdaconf"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "conf",
+                            "source": [
+                                {
+                                    "context": "conf"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdaconf",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueId": "conf"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "codeSystem",
+                            "source": [
+                                {
+                                    "context": "conf"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdaconf",
+                                    "contextType": "variable",
+                                    "element": "codeSystem",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.5.25"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "languageCode",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "language",
+                            "variable": "language"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "languageCode",
+                            "variable": "languageCode"
+                        },
+                        {
+                            "context": "languageCode",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "language"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "patient",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "uuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %composition.subject.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "patient",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "type": "Patient",
+                                            "element": "resource",
+                                            "variable": "patient"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "PatientRecordTarget",
+                                            "variable": [
+                                                "patient",
+                                                "bundle",
+                                                "recordTarget"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "patient",
+                                    "condition": "('Patient' + '/' + $this.id) in %composition.subject.reference"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "PatientRecordTarget",
+                                    "variable": [
+                                        "patient",
+                                        "bundle",
+                                        "recordTarget"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "uuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %composition.custodian.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "custodian",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "type": "Organization",
+                                            "element": "resource",
+                                            "variable": "organization"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "cda",
+                                            "contextType": "variable",
+                                            "element": "custodian",
+                                            "variable": "custodian"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "OrganizationCustodian",
+                                            "variable": [
+                                                "organization",
+                                                "custodian"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "custodian",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "organization",
+                                    "condition": "('Organization' + '/' + $this.id) in %composition.custodian.reference"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cda",
+                                    "contextType": "variable",
+                                    "element": "custodian",
+                                    "variable": "custodian"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "OrganizationCustodian",
+                                    "variable": [
+                                        "organization",
+                                        "custodian"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "uuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %composition.author.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "author",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "type": "Practitioner",
+                                            "element": "resource",
+                                            "variable": "practitioner"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "PractitionerAuthor",
+                                            "variable": [
+                                                "bundle",
+                                                "composition",
+                                                "practitioner",
+                                                "author"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "author",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "practitioner",
+                                    "condition": "('Practitioner' + '/' + $this.id) in %composition.author.reference"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "PractitionerAuthor",
+                                    "variable": [
+                                        "bundle",
+                                        "composition",
+                                        "practitioner",
+                                        "author"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "uuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %composition.attester.party.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "legalAuthenticator",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "type": "Practitioner",
+                                            "element": "resource",
+                                            "variable": "practitioner"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "cda",
+                                            "contextType": "variable",
+                                            "element": "legalAuthenticator",
+                                            "variable": "legalAuthenticator"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "PractitionerLegalAuthenticator",
+                                            "variable": [
+                                                "bundle",
+                                                "composition",
+                                                "practitioner",
+                                                "legalAuthenticator"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "legalAuthenticator",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "practitioner",
+                                    "condition": "('Practitioner' + '/' + $this.id) in %composition.attester.party.reference"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cda",
+                                    "contextType": "variable",
+                                    "element": "legalAuthenticator",
+                                    "variable": "legalAuthenticator"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "PractitionerLegalAuthenticator",
+                                    "variable": [
+                                        "bundle",
+                                        "composition",
+                                        "practitioner",
+                                        "legalAuthenticator"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "section",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "section",
+                            "variable": "section",
+                            "condition": "$this.code.exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "component",
+                            "variable": "component"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "contextConductionInd",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "contextConductionInd",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "cdasection",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "structuredBody",
+                                    "variable": "structuredBody"
+                                },
+                                {
+                                    "context": "structuredBody",
+                                    "contextType": "variable",
+                                    "element": "component",
+                                    "variable": "component"
+                                },
+                                {
+                                    "context": "component",
+                                    "contextType": "variable",
+                                    "element": "section",
+                                    "variable": "cdasection"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "SectionCdaSection",
+                                    "variable": [
+                                        "bundle",
+                                        "section",
+                                        "cdasection"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PatientRecordTarget",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Patient",
+                    "mode": "source"
+                },
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "RecordTarget",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "patientRole",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "patientRole",
+                            "variable": "patientRole"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "identifier",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "identifier",
+                                    "variable": "identifier"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "patientRole",
+                                    "contextType": "variable",
+                                    "element": "id",
+                                    "variable": "id"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "identifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "address",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "address",
+                                    "variable": "address"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "patientRole",
+                                    "contextType": "variable",
+                                    "element": "addr",
+                                    "variable": "ad"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "AddressAD",
+                                    "variable": [
+                                        "address",
+                                        "ad"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "patientRole",
+                                    "contextType": "variable",
+                                    "element": "patient",
+                                    "variable": "patient"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "name",
+                                    "source": [
+                                        {
+                                            "context": "src",
+                                            "element": "name",
+                                            "variable": "humanname"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "patient",
+                                            "contextType": "variable",
+                                            "element": "name",
+                                            "variable": "en"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "HumanNameEN",
+                                            "variable": [
+                                                "humanname",
+                                                "en"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "birthDate",
+                                    "source": [
+                                        {
+                                            "context": "src",
+                                            "element": "birthDate",
+                                            "variable": "birthDate"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "patient",
+                                            "contextType": "variable",
+                                            "element": "birthTime",
+                                            "variable": "birthTime"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "DateTS",
+                                            "variable": [
+                                                "birthDate",
+                                                "birthTime"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "gender",
+                                    "source": [
+                                        {
+                                            "context": "src",
+                                            "element": "gender",
+                                            "variable": "v",
+                                            "logMessage": "$this"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "patient",
+                                            "contextType": "variable",
+                                            "element": "administrativeGenderCode",
+                                            "variable": "adminGender"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "gender",
+                                            "source": [
+                                                {
+                                                    "context": "v"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "code",
+                                                    "transform": "translate",
+                                                    "parameter": [
+                                                        {
+                                                            "valueId": "v"
+                                                        },
+                                                        {
+                                                            "valueString": "http://hl7.org/fhir/ConceptMap/cm-administrative-gender-v3"
+                                                        },
+                                                        {
+                                                            "valueString": "code"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "codeSytem",
+                                            "source": [
+                                                {
+                                                    "context": "v"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "codeSystem",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "2.16.840.1.113883.5.1"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "codeSystemName",
+                                            "source": [
+                                                {
+                                                    "context": "v"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "codeSystemName",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "HL7 AdministrativeGender"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "male",
+                                            "source": [
+                                                {
+                                                    "context": "v",
+                                                    "variable": "v",
+                                                    "condition": "$this = 'male'"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "displayName",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "Male"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "female",
+                                            "source": [
+                                                {
+                                                    "context": "v",
+                                                    "variable": "v",
+                                                    "condition": "$this = 'female'"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "displayName",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "Female"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "other",
+                                            "source": [
+                                                {
+                                                    "context": "v",
+                                                    "variable": "v",
+                                                    "condition": "$this = 'other'"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "adminGender",
+                                                    "contextType": "variable",
+                                                    "element": "displayName",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "Undifferentiated"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "telecom",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "telecom",
+                                    "variable": "telecom"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "patientRole",
+                                    "contextType": "variable",
+                                    "element": "telecom",
+                                    "variable": "tel"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "ContactPointTEL",
+                                    "variable": [
+                                        "telecom",
+                                        "tel"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "managingOrganization",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "managingOrganization",
+                                    "variable": "managingOrganization"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "entry",
+                                    "source": [
+                                        {
+                                            "context": "bundle",
+                                            "element": "entry",
+                                            "variable": "entry"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "providerOrganization",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "fullUrl",
+                                                    "condition": "($this in %managingOrganization.reference) and $this.startsWith('urn:uuid')"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "patientRole",
+                                                    "contextType": "variable",
+                                                    "element": "providerOrganization",
+                                                    "variable": "providerOrganization"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "Organization2CdaOrganization",
+                                                    "variable": [
+                                                        "managingOrganization",
+                                                        "providerOrganization"
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "providerOrganization",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "resource",
+                                                    "variable": "organization",
+                                                    "condition": "('Organization' + '/' + $this.id) in %managingOrganization.reference"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "patientRole",
+                                                    "contextType": "variable",
+                                                    "element": "providerOrganization",
+                                                    "variable": "providerOrganization"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "Organization2CdaOrganization",
+                                                    "variable": [
+                                                        "managingOrganization",
+                                                        "providerOrganization"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PractitionerAuthor",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "composition",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "src",
+                    "type": "Practitioner",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Author",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "srcAuthor",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "author",
+                            "variable": "srcauthor"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "extensionTime",
+                            "source": [
+                                {
+                                    "context": "srcauthor",
+                                    "element": "extension",
+                                    "variable": "extensionTime",
+                                    "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-time'"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "DateTime",
+                                    "source": [
+                                        {
+                                            "context": "extensionTime",
+                                            "element": "valueDateTime",
+                                            "variable": "valueDateTime"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "tgt",
+                                            "contextType": "variable",
+                                            "element": "time",
+                                            "variable": "time"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "DateTimeTS",
+                                            "variable": [
+                                                "valueDateTime",
+                                                "time"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "DateTimeBundle",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "timestamp",
+                            "variable": "valueDateTime",
+                            "condition": "composition.author.extension.where(url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-time').empty()"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "time",
+                            "variable": "time"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "DateTimeTS",
+                            "variable": [
+                                "valueDateTime",
+                                "time"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "assignedAuthor",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "assignedAuthor",
+                            "variable": "assignedAuthor"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "id",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "identifier",
+                                    "variable": "identifier"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedAuthor",
+                                    "contextType": "variable",
+                                    "element": "id",
+                                    "variable": "id"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "identifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "telecom",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "telecom",
+                                    "listMode": "first",
+                                    "variable": "telecom"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedAuthor",
+                                    "contextType": "variable",
+                                    "element": "telecom",
+                                    "variable": "tel"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "ContactPointTEL",
+                                    "variable": [
+                                        "telecom",
+                                        "tel"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "address",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "address",
+                                    "variable": "address"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedAuthor",
+                                    "contextType": "variable",
+                                    "element": "addr",
+                                    "variable": "ad"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "AddressAD",
+                                    "variable": [
+                                        "address",
+                                        "ad"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "name",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "name",
+                                    "variable": "name"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedAuthor",
+                                    "contextType": "variable",
+                                    "element": "assignedPerson",
+                                    "variable": "assignedPerson"
+                                },
+                                {
+                                    "context": "assignedPerson",
+                                    "contextType": "variable",
+                                    "element": "name",
+                                    "variable": "en"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "HumanNameEN",
+                                    "variable": [
+                                        "name",
+                                        "en"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient",
+                            "source": [
+                                {
+                                    "context": "bundle",
+                                    "element": "entry",
+                                    "variable": "entry"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "uuid",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "element": "fullUrl",
+                                            "condition": "($this in %composition.author.reference) and $this.startsWith('urn:uuid')"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "organization",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "type": "Organization",
+                                                    "element": "resource",
+                                                    "variable": "organization"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "assignedAuthor",
+                                                    "contextType": "variable",
+                                                    "element": "representedOrganization",
+                                                    "variable": "cdaorganization"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "Organization2CdaOrganization",
+                                                    "variable": [
+                                                        "organization",
+                                                        "cdaorganization"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "organization",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "element": "resource",
+                                            "variable": "organization",
+                                            "condition": "('Organization' + '/' + $this.id) in %composition.author.reference"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "assignedAuthor",
+                                            "contextType": "variable",
+                                            "element": "representedOrganization",
+                                            "variable": "cdaorganization"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "Organization2CdaOrganization",
+                                            "variable": [
+                                                "organization",
+                                                "cdaorganization"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "OrganizationCustodian",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Organization",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Custodian",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "assignedCustodian",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "assignedCustodian",
+                            "variable": "assignedCustodian"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "representedCustodianOrganization",
+                            "source": [
+                                {
+                                    "context": "src"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedCustodian",
+                                    "contextType": "variable",
+                                    "element": "representedCustodianOrganization",
+                                    "variable": "representedCustodianOrganization"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "Organization2CdaOrganizationCustodian",
+                                    "variable": [
+                                        "src",
+                                        "representedCustodianOrganization"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Organization2CdaOrganizationCustodian",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Organization",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CdaOrganization",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "identifier",
+                            "variable": "identifier"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "IdentifierII",
+                            "variable": [
+                                "identifier",
+                                "id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "name",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "name",
+                            "variable": "name"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "name",
+                            "variable": "orgname"
+                        },
+                        {
+                            "context": "orgname",
+                            "contextType": "variable",
+                            "element": "other",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "name"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "address",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "address",
+                            "variable": "address"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "addr",
+                            "variable": "ad"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "AddressAD",
+                            "variable": [
+                                "address",
+                                "ad"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "telecom",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "telecom",
+                            "listMode": "first",
+                            "variable": "telecom"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "telecom",
+                            "variable": "tel"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "ContactPointTEL",
+                            "variable": [
+                                "telecom",
+                                "tel"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Organization2CdaOrganization",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Organization",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "CdaOrganization",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "id",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "identifier",
+                            "variable": "identifier"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "IdentifierII",
+                            "variable": [
+                                "identifier",
+                                "id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "name",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "name",
+                            "variable": "name"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "name",
+                            "variable": "orgname"
+                        },
+                        {
+                            "context": "orgname",
+                            "contextType": "variable",
+                            "element": "other",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "name"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "address",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "address",
+                            "variable": "address"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "addr",
+                            "variable": "ad"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "AddressAD",
+                            "variable": [
+                                "address",
+                                "ad"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "telecom",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "telecom",
+                            "variable": "telecom"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "telecom",
+                            "variable": "tel"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "ContactPointTEL",
+                            "variable": [
+                                "telecom",
+                                "tel"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PractitionerLegalAuthenticator",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "composition",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "src",
+                    "type": "Practitioner",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "LegalAuthenticator",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "templateId",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.2.5"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "time",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "attester",
+                            "variable": "attester"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "timestamp",
+                            "source": [
+                                {
+                                    "context": "attester",
+                                    "element": "time",
+                                    "variable": "srcTime"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "tgt",
+                                    "contextType": "variable",
+                                    "element": "time",
+                                    "variable": "time"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "InstantTS",
+                                    "variable": [
+                                        "srcTime",
+                                        "time"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "signature",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "signatureCode",
+                            "variable": "signatureCode"
+                        },
+                        {
+                            "context": "signatureCode",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "S"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "assignedEntity",
+                    "source": [
+                        {
+                            "context": "src"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "assignedEntity",
+                            "variable": "assignedEntity"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "identifier",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "identifier",
+                                    "variable": "identifier"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedEntity",
+                                    "contextType": "variable",
+                                    "element": "id",
+                                    "variable": "id"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "identifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "name",
+                            "source": [
+                                {
+                                    "context": "src",
+                                    "element": "name",
+                                    "variable": "name"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "assignedEntity",
+                                    "contextType": "variable",
+                                    "element": "assignedPerson",
+                                    "variable": "assignedPerson"
+                                },
+                                {
+                                    "context": "assignedPerson",
+                                    "contextType": "variable",
+                                    "element": "name",
+                                    "variable": "en"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "HumanNameEN",
+                                    "variable": [
+                                        "name",
+                                        "en"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

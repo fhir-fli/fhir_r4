@@ -1362,6 +1362,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         'missing',
       ];
       for (final mod in dateModifiers) {
+        if (value.startsWith(mod) && mod != 'missing') {
+          modifier = mod;
+          searchValue = value.substring(mod.length);
+          break;
+        }
         if (value.endsWith(':$mod')) {
           modifier = mod;
           searchValue = value.substring(0, value.length - mod.length - 1);
@@ -1476,6 +1481,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
       const lastUpdatedModifiers = ['gt', 'lt', 'ge', 'le', 'ap', 'sa', 'eb'];
       for (final mod in lastUpdatedModifiers) {
+        // Support both FHIR prefix format (gt2026-01-01) and legacy
+        // suffix format (2026-01-01:gt)
+        if (value.startsWith(mod)) {
+          modifier = mod;
+          dateValue = value.substring(mod.length);
+          break;
+        }
         if (value.endsWith(':$mod')) {
           modifier = mod;
           dateValue = value.substring(0, value.length - mod.length - 1);
