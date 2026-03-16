@@ -17,6 +17,9 @@ class StringSearchParameters extends Table {
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
 
+  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  TextColumn get searchName => text().withDefault(const Constant(''))();
+
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
@@ -34,8 +37,9 @@ extension StringSearchParametersExtension on fhir.FhirBase {
     String id,
     DateTime lastUpdated,
     String searchPath,
-    int? paramIndex,
-  ) {
+    int? paramIndex, {
+    String searchName = '',
+  }) {
     final results = <StringSearchParametersCompanion>[];
 
     switch (this) {
@@ -47,6 +51,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue: Value(_normalizeString(stringValue.valueString!)),
@@ -97,6 +102,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
               stringValue: Value(_normalizeString(nameParts[i])),
             ),
@@ -146,6 +152,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
               stringValue: Value(_normalizeString(addressParts[i])),
             ),
@@ -161,6 +168,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue:

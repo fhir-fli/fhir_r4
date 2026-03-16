@@ -16,6 +16,9 @@ class TokenSearchParameters extends Table {
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
 
+  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  TextColumn get searchName => text().withDefault(const Constant(''))();
+
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
@@ -39,8 +42,9 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
     String id,
     DateTime lastUpdated,
     String searchPath,
-    int? paramIndex,
-  ) {
+    int? paramIndex, {
+    String searchName = '',
+  }) {
     final results = <TokenSearchParametersCompanion>[];
 
     switch (this) {
@@ -52,6 +56,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: enumCode.system?.toString() != null
@@ -74,6 +79,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: const Value.absent(),
@@ -92,6 +98,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: coding.system?.valueString == null
@@ -119,6 +126,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   id: Value(id),
                   lastUpdated: Value(lastUpdated),
                   searchPath: Value(searchPath),
+              searchName: Value(searchName),
                   paramIndex:
                       Value(paramIndex == null ? i : paramIndex * 100 + i),
                   tokenSystem: coding.system?.valueString == null
@@ -142,6 +150,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex: Value(
                 paramIndex == null ? textIndex : paramIndex * 100 + textIndex,
               ),
@@ -162,6 +171,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: identifier.system?.valueString == null
@@ -182,10 +192,30 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               id: Value(id),
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
+              searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: const Value.absent(),
               tokenValue: Value(boolean.valueString.toString()),
+              tokenDisplay: const Value.absent(),
+            ),
+          );
+        }
+        return results;
+
+      case final fhir.FhirString str:
+        if (str.valueString != null) {
+          results.add(
+            TokenSearchParametersCompanion(
+              resourceType: Value(resourceType),
+              id: Value(id),
+              lastUpdated: Value(lastUpdated),
+              searchPath: Value(searchPath),
+              searchName: Value(searchName),
+              paramIndex:
+                  paramIndex == null ? const Value.absent() : Value(paramIndex),
+              tokenSystem: const Value.absent(),
+              tokenValue: Value(str.valueString!),
               tokenDisplay: const Value.absent(),
             ),
           );

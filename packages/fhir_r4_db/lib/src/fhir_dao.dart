@@ -752,6 +752,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String paramName,
     List<String> paramValues,
   ) async {
+    // searchPath is the original HTTP param name (e.g., "monitoring-program-name")
+    // The search tables store this in the searchName column alongside the
+    // FHIR expression path in searchPath. Queries match on either.
+    final searchPath = paramName;
+
     var isDateParam = false;
     var isTokenParam = false;
     var isNumberParam = false;
@@ -894,17 +899,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     if (isDateParam) {
-      return _searchDateParameter(resourceType, paramName, paramValues);
+      return _searchDateParameter(resourceType, searchPath, paramValues);
     } else if (isQuantityParam) {
-      return _searchQuantityParameter(resourceType, paramName, paramValues);
+      return _searchQuantityParameter(resourceType, searchPath, paramValues);
     } else if (isNumberParam) {
-      return _searchNumberParameter(resourceType, paramName, paramValues);
+      return _searchNumberParameter(resourceType, searchPath, paramValues);
     } else if (isUriParam) {
-      return _searchUriParameter(resourceType, paramName, paramValues);
+      return _searchUriParameter(resourceType, searchPath, paramValues);
     } else if (isTokenParam) {
-      return _searchTokenParameter(resourceType, paramName, paramValues);
+      return _searchTokenParameter(resourceType, searchPath, paramValues);
     } else if (isCompositeParam) {
-      return _searchCompositeParameter(resourceType, paramName, paramValues);
+      return _searchCompositeParameter(resourceType, searchPath, paramValues);
     } else if (isReferenceParam || isChainedReference) {
       return _searchReferenceParameter(
         resourceType,
@@ -915,9 +920,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     } else {
       // Default: try string and token search tables
       final stringIds =
-          await _searchStringParameter(resourceType, paramName, paramValues);
+          await _searchStringParameter(resourceType, searchPath, paramValues);
       final tokenIds =
-          await _searchTokenParameter(resourceType, paramName, paramValues);
+          await _searchTokenParameter(resourceType, searchPath, paramValues);
       return stringIds.union(tokenIds);
     }
   }
@@ -950,7 +955,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final query = select(stringSearchParameters);
       Expression<bool> whereCondition = stringSearchParameters.resourceType
               .equals(resourceType) &
-          (stringSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          (stringSearchParameters.searchName.equals(searchPath) |
+              stringSearchParameters.searchPath
+                  .like('$resourceType.$searchPath') |
               stringSearchParameters.searchPath
                   .like('$resourceType.%.$searchPath'));
 
@@ -1148,7 +1155,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final query = select(tokenSearchParameters);
     Expression<bool> whereCondition = tokenSearchParameters.resourceType
             .equals(resourceType) &
-        (tokenSearchParameters.searchPath.like('$resourceType.$searchPath') |
+        (tokenSearchParameters.searchName.equals(searchPath) |
+            tokenSearchParameters.searchPath
+                .like('$resourceType.$searchPath') |
             tokenSearchParameters.searchPath
                 .like('$resourceType.%.$searchPath'));
 
@@ -1424,7 +1433,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final query = select(dateSearchParameters);
       Expression<bool> whereCondition = dateSearchParameters.resourceType
               .equals(resourceType) &
-          (dateSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          (dateSearchParameters.searchName.equals(searchPath) |
+              dateSearchParameters.searchPath
+                  .like('$resourceType.$searchPath') |
               dateSearchParameters.searchPath
                   .like('$resourceType.%.$searchPath'));
 
@@ -1801,7 +1812,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final query = select(numberSearchParameters);
       Expression<bool> whereCondition = numberSearchParameters.resourceType
               .equals(resourceType) &
-          (numberSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          (numberSearchParameters.searchName.equals(searchPath) |
+              numberSearchParameters.searchPath
+                  .like('$resourceType.$searchPath') |
               numberSearchParameters.searchPath
                   .like('$resourceType.%.$searchPath'));
 
@@ -1953,7 +1966,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       final pathCondition =
-          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          uriSearchParameters.searchName.equals(searchPath) |
+              uriSearchParameters.searchPath
+                  .like('$resourceType.$searchPath') |
               uriSearchParameters.searchPath
                   .like('$resourceType.%.$searchPath');
 
@@ -2024,7 +2039,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         ..where(
           (tbl) =>
               tbl.resourceType.equals(resourceType) &
-              (tbl.searchPath.like('$resourceType.$refParam') |
+              (tbl.searchName.equals(refParam) |
+                  tbl.searchPath.like('$resourceType.$refParam') |
                   tbl.searchPath.like('$resourceType.%.$refParam')),
         );
       final refRows = await refQuery.get();
@@ -2054,7 +2070,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final query = select(referenceSearchParameters);
         Expression<bool> whereCondition =
             referenceSearchParameters.resourceType.equals(resourceType) &
-                (referenceSearchParameters.searchPath
+                (referenceSearchParameters.searchName.equals(searchPath) |
+                    referenceSearchParameters.searchPath
                         .like('$resourceType.$searchPath') |
                     referenceSearchParameters.searchPath
                         .like('$resourceType.%.$searchPath'));

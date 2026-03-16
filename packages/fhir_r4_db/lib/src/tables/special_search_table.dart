@@ -17,6 +17,9 @@ class SpecialSearchParameters extends Table {
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
 
+  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  TextColumn get searchName => text().withDefault(const Constant(''))();
+
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
@@ -34,8 +37,9 @@ extension SpecialSearchParametersExtension on fhir.FhirBase {
     String id,
     DateTime lastUpdated,
     String searchPath,
-    int? paramIndex,
-  ) {
+    int? paramIndex, {
+    String searchName = '',
+  }) {
     return <SpecialSearchParametersCompanion>[];
   }
 }

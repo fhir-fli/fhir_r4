@@ -17,6 +17,9 @@ class QuantitySearchParameters extends Table {
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
 
+  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  TextColumn get searchName => text().withDefault(const Constant(''))();
+
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
@@ -43,8 +46,9 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
     String id,
     DateTime lastUpdated,
     String searchPath,
-    int? paramIndex,
-  ) {
+    int? paramIndex, {
+    String searchName = '',
+  }) {
     final fhirObject = this;
     final searchParameters = <QuantitySearchParametersCompanion>[];
     if (fhirObject is fhir.Quantity) {
@@ -54,6 +58,7 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
           id: Value(id),
           lastUpdated: Value(lastUpdated),
           searchPath: Value(searchPath),
+          searchName: Value(searchName),
           paramIndex:
               paramIndex == null ? const Value.absent() : Value(paramIndex),
           quantityValue: fhirObject.value?.valueNum != null

@@ -17,6 +17,9 @@ class NumberSearchParameters extends Table {
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
 
+  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  TextColumn get searchName => text().withDefault(const Constant(''))();
+
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
@@ -34,8 +37,9 @@ extension NumberSearchParametersExtension on fhir.FhirBase {
     String id,
     DateTime lastUpdated,
     String searchPath,
-    int? paramIndex,
-  ) {
+    int? paramIndex, {
+    String searchName = '',
+  }) {
     final fhirObject = this;
     final searchParameters = <NumberSearchParametersCompanion>[];
     if (fhirObject is fhir.FhirNumber && fhirObject.valueNum != null) {
@@ -45,6 +49,7 @@ extension NumberSearchParametersExtension on fhir.FhirBase {
           id: Value(id),
           lastUpdated: Value(lastUpdated),
           searchPath: Value(searchPath),
+          searchName: Value(searchName),
           paramIndex:
               paramIndex == null ? const Value.absent() : Value(paramIndex),
           numberValue: Value(fhirObject.valueNum!.toDouble()),
