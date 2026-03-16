@@ -33,7 +33,7 @@ class SearchParameterLists {
 }
 
 SearchParameterLists updateSearchParameters(fhir.Resource resource) {
-  final resourceType = resource.runtimeType.toString();
+  final resourceType = resource.resourceTypeString;
   final id = resource.id.toString();
   final lastUpdated = resource.meta!.lastUpdated!.valueDateTime!;
   var i = 0;
