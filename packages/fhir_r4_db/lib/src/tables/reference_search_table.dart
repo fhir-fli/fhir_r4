@@ -78,9 +78,9 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
             searchName: Value(searchName),
             paramIndex:
                 paramIndex == null ? const Value.absent() : Value(paramIndex),
-            referenceValue: ref.reference?.valueString == null
-                ? const Value.absent()
-                : Value(ref.reference!.valueString!),
+            referenceValue: ref.reference?.valueString != null
+                ? Value(ref.reference!.valueString!)
+                : Value(''),
             referenceResourceType: referenceComponents.resourceType == null
                 ? const Value.absent()
                 : Value(referenceComponents.resourceType!),
