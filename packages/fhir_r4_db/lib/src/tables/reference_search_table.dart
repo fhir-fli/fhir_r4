@@ -23,8 +23,9 @@ class ReferenceSearchParameters extends Table {
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
-  /// Original reference string as it appears in the resource
-  TextColumn get referenceValue => text()();
+  /// Original reference string as it appears in the resource.
+  /// Nullable for identifier-only references (no URL, just identifier).
+  TextColumn get referenceValue => text().nullable()();
 
   /// Parsed target resource type (e.g. 'Patient')
   TextColumn get referenceResourceType => text().nullable()();
@@ -78,9 +79,9 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
             searchName: Value(searchName),
             paramIndex:
                 paramIndex == null ? const Value.absent() : Value(paramIndex),
-            referenceValue: ref.reference?.valueString != null
-                ? Value(ref.reference!.valueString!)
-                : Value(''),
+            referenceValue: ref.reference?.valueString == null
+                ? const Value.absent()
+                : Value(ref.reference!.valueString!),
             referenceResourceType: referenceComponents.resourceType == null
                 ? const Value.absent()
                 : Value(referenceComponents.resourceType!),

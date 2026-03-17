@@ -1567,8 +1567,8 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
       const VerificationMeta('referenceValue');
   @override
   late final GeneratedColumn<String> referenceValue = GeneratedColumn<String>(
-      'reference_value', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+      'reference_value', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _referenceResourceTypeMeta =
       const VerificationMeta('referenceResourceType');
   @override
@@ -1680,8 +1680,6 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
           _referenceValueMeta,
           referenceValue.isAcceptableOrUnknown(
               data['reference_value']!, _referenceValueMeta));
-    } else if (isInserting) {
-      context.missing(_referenceValueMeta);
     }
     if (data.containsKey('reference_resource_type')) {
       context.handle(
@@ -1742,8 +1740,8 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
-      referenceValue: attachedDatabase.typeMapping.read(
-          DriftSqlType.string, data['${effectivePrefix}reference_value'])!,
+      referenceValue: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}reference_value']),
       referenceResourceType: attachedDatabase.typeMapping.read(
           DriftSqlType.string,
           data['${effectivePrefix}reference_resource_type']),
@@ -1786,8 +1784,9 @@ class ReferenceSearchParameter extends DataClass
   /// Index for multiple values from the same path
   final int paramIndex;
 
-  /// Original reference string as it appears in the resource
-  final String referenceValue;
+  /// Original reference string as it appears in the resource.
+  /// Nullable for identifier-only references (no URL, just identifier).
+  final String? referenceValue;
 
   /// Parsed target resource type (e.g. 'Patient')
   final String? referenceResourceType;
@@ -1813,7 +1812,7 @@ class ReferenceSearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.referenceValue,
+      this.referenceValue,
       this.referenceResourceType,
       this.referenceIdPart,
       this.referenceVersion,
@@ -1829,7 +1828,9 @@ class ReferenceSearchParameter extends DataClass
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
-    map['reference_value'] = Variable<String>(referenceValue);
+    if (!nullToAbsent || referenceValue != null) {
+      map['reference_value'] = Variable<String>(referenceValue);
+    }
     if (!nullToAbsent || referenceResourceType != null) {
       map['reference_resource_type'] = Variable<String>(referenceResourceType);
     }
@@ -1859,7 +1860,9 @@ class ReferenceSearchParameter extends DataClass
       searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
-      referenceValue: Value(referenceValue),
+      referenceValue: referenceValue == null && nullToAbsent
+          ? const Value.absent()
+          : Value(referenceValue),
       referenceResourceType: referenceResourceType == null && nullToAbsent
           ? const Value.absent()
           : Value(referenceResourceType),
@@ -1891,7 +1894,7 @@ class ReferenceSearchParameter extends DataClass
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
-      referenceValue: serializer.fromJson<String>(json['referenceValue']),
+      referenceValue: serializer.fromJson<String?>(json['referenceValue']),
       referenceResourceType:
           serializer.fromJson<String?>(json['referenceResourceType']),
       referenceIdPart: serializer.fromJson<String?>(json['referenceIdPart']),
@@ -1911,7 +1914,7 @@ class ReferenceSearchParameter extends DataClass
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
-      'referenceValue': serializer.toJson<String>(referenceValue),
+      'referenceValue': serializer.toJson<String?>(referenceValue),
       'referenceResourceType':
           serializer.toJson<String?>(referenceResourceType),
       'referenceIdPart': serializer.toJson<String?>(referenceIdPart),
@@ -1929,7 +1932,7 @@ class ReferenceSearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          String? referenceValue,
+          Value<String?> referenceValue = const Value.absent(),
           Value<String?> referenceResourceType = const Value.absent(),
           Value<String?> referenceIdPart = const Value.absent(),
           Value<String?> referenceVersion = const Value.absent(),
@@ -1943,7 +1946,8 @@ class ReferenceSearchParameter extends DataClass
         searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
-        referenceValue: referenceValue ?? this.referenceValue,
+        referenceValue:
+            referenceValue.present ? referenceValue.value : this.referenceValue,
         referenceResourceType: referenceResourceType.present
             ? referenceResourceType.value
             : this.referenceResourceType,
@@ -2064,7 +2068,7 @@ class ReferenceSearchParametersCompanion
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
-  final Value<String> referenceValue;
+  final Value<String?> referenceValue;
   final Value<String?> referenceResourceType;
   final Value<String?> referenceIdPart;
   final Value<String?> referenceVersion;
@@ -2095,7 +2099,7 @@ class ReferenceSearchParametersCompanion
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
-    required String referenceValue,
+    this.referenceValue = const Value.absent(),
     this.referenceResourceType = const Value.absent(),
     this.referenceIdPart = const Value.absent(),
     this.referenceVersion = const Value.absent(),
@@ -2107,8 +2111,7 @@ class ReferenceSearchParametersCompanion
         id = Value(id),
         lastUpdated = Value(lastUpdated),
         searchPath = Value(searchPath),
-        paramIndex = Value(paramIndex),
-        referenceValue = Value(referenceValue);
+        paramIndex = Value(paramIndex);
   static Insertable<ReferenceSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
@@ -2151,7 +2154,7 @@ class ReferenceSearchParametersCompanion
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
-      Value<String>? referenceValue,
+      Value<String?>? referenceValue,
       Value<String?>? referenceResourceType,
       Value<String?>? referenceIdPart,
       Value<String?>? referenceVersion,
@@ -6649,7 +6652,7 @@ typedef $$ReferenceSearchParametersTableCreateCompanionBuilder
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
-  required String referenceValue,
+  Value<String?> referenceValue,
   Value<String?> referenceResourceType,
   Value<String?> referenceIdPart,
   Value<String?> referenceVersion,
@@ -6666,7 +6669,7 @@ typedef $$ReferenceSearchParametersTableUpdateCompanionBuilder
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
-  Value<String> referenceValue,
+  Value<String?> referenceValue,
   Value<String?> referenceResourceType,
   Value<String?> referenceIdPart,
   Value<String?> referenceVersion,
@@ -6875,7 +6878,7 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
-            Value<String> referenceValue = const Value.absent(),
+            Value<String?> referenceValue = const Value.absent(),
             Value<String?> referenceResourceType = const Value.absent(),
             Value<String?> referenceIdPart = const Value.absent(),
             Value<String?> referenceVersion = const Value.absent(),
@@ -6907,7 +6910,7 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
-            required String referenceValue,
+            Value<String?> referenceValue = const Value.absent(),
             Value<String?> referenceResourceType = const Value.absent(),
             Value<String?> referenceIdPart = const Value.absent(),
             Value<String?> referenceVersion = const Value.absent(),
