@@ -62,6 +62,11 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
 
     switch (this) {
       case final fhir.Reference ref:
+        // Skip display-only references (no reference string and no identifier)
+        if (ref.reference?.valueString == null &&
+            ref.identifier?.value?.valueString == null) {
+          return results;
+        }
         final referenceComponents = _parseReference(ref.reference?.valueString);
 
         results.add(
