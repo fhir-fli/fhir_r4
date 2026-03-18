@@ -11,7 +11,7 @@ class TokenSearchParameters extends Table {
   TextColumn get id => text()();
 
   /// When the resource was last updated
-  DateTimeColumn get lastUpdated => dateTime()();
+  IntColumn get lastUpdated => integer()();
 
   /// FHIRPath expression identifying the source field
   TextColumn get searchPath => text()();
@@ -40,7 +40,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
   List<TokenSearchParametersCompanion> toTokenSearchParameter(
     String resourceType,
     String id,
-    DateTime lastUpdated,
+    int lastUpdated,
     String searchPath,
     int? paramIndex, {
     String searchName = '',

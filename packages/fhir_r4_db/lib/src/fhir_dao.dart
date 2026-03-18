@@ -89,7 +89,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         resourceType: Value(resource.resourceType.toString()),
         id: Value(newResource.id!.valueString!),
         resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!),
+        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
       ),
     );
 
@@ -97,8 +97,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       ResourcesHistoryCompanion(
         resourceType: Value(resource.resourceType.toString()),
         id: Value(newResource.id!.valueString!),
+        versionId:
+            Value(newResource.meta?.versionId?.toString() ?? '1'),
         resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!),
+        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
       ),
     );
 
@@ -129,15 +131,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               resourceType: Value(resource.resourceType.toString()),
               id: Value(newResource.id!.valueString!),
               resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!),
+              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
             ),
           );
           historyCompanions.add(
             ResourcesHistoryCompanion(
               resourceType: Value(resource.resourceType.toString()),
               id: Value(newResource.id!.valueString!),
+              versionId:
+                  Value(newResource.meta?.versionId?.toString() ?? '1'),
               resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!),
+              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
             ),
           );
         }
@@ -247,7 +251,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         (tbl) =>
             tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id),
       )
-      ..orderBy([(tbl) => OrderingTerm.desc(tbl.lastUpdated)]);
+      ..orderBy([
+        (tbl) => OrderingTerm.desc(tbl.lastUpdated),
+        (tbl) => OrderingTerm.desc(tbl.versionId),
+      ]);
     final rows = await query.get();
     return rows
         .map((row) => fhir.Resource.fromJsonString(row.resource))
@@ -474,7 +481,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         resourceType: Value(resource.resourceType.toString()),
         id: Value(resource.id!.valueString!),
         resource: Value(resource.toJsonString()),
-        lastUpdated: Value(resource.meta!.lastUpdated!.valueDateTime!),
+        lastUpdated: Value(resource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
         versionId: Value(resource.meta!.versionId!.valueString!),
       ),
     );
@@ -1529,6 +1536,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         continue;
       }
 
+      final searchMillis = searchDate.millisecondsSinceEpoch;
+
       final query = select(resources);
       Expression<bool> whereCondition =
           resources.resourceType.equals(resourceType);
@@ -1539,36 +1548,36 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               DateTime(searchDate.year, searchDate.month, searchDate.day);
           final endOfDay = startOfDay.add(const Duration(days: 1));
           whereCondition = whereCondition &
-              (resources.lastUpdated.isBiggerOrEqualValue(startOfDay) &
-                  resources.lastUpdated.isSmallerThanValue(endOfDay));
+              (resources.lastUpdated.isBiggerOrEqualValue(startOfDay.millisecondsSinceEpoch) &
+                  resources.lastUpdated.isSmallerThanValue(endOfDay.millisecondsSinceEpoch));
         } else {
           whereCondition =
-              whereCondition & resources.lastUpdated.equals(searchDate);
+              whereCondition & resources.lastUpdated.equals(searchMillis);
         }
       } else if (modifier == 'gt') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerThanValue(searchDate);
+            resources.lastUpdated.isBiggerThanValue(searchMillis);
       } else if (modifier == 'lt') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerThanValue(searchDate);
+            resources.lastUpdated.isSmallerThanValue(searchMillis);
       } else if (modifier == 'ge') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerOrEqualValue(searchDate);
+            resources.lastUpdated.isBiggerOrEqualValue(searchMillis);
       } else if (modifier == 'le') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerOrEqualValue(searchDate);
+            resources.lastUpdated.isSmallerOrEqualValue(searchMillis);
       } else if (modifier == 'ap') {
-        final startDate = searchDate.subtract(const Duration(days: 1));
-        final endDate = searchDate.add(const Duration(days: 1));
+        final startMillis = searchDate.subtract(const Duration(days: 1)).millisecondsSinceEpoch;
+        final endMillis = searchDate.add(const Duration(days: 1)).millisecondsSinceEpoch;
         whereCondition = whereCondition &
-            (resources.lastUpdated.isBiggerOrEqualValue(startDate) &
-                resources.lastUpdated.isSmallerOrEqualValue(endDate));
+            (resources.lastUpdated.isBiggerOrEqualValue(startMillis) &
+                resources.lastUpdated.isSmallerOrEqualValue(endMillis));
       } else if (modifier == 'sa') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerThanValue(searchDate);
+            resources.lastUpdated.isBiggerThanValue(searchMillis);
       } else if (modifier == 'eb') {
         whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerThanValue(searchDate);
+            resources.lastUpdated.isSmallerThanValue(searchMillis);
       } else {
         continue;
       }

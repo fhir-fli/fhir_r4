@@ -29,9 +29,9 @@ class $ResourcesTable extends Resources
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
       [resourceType, id, resource, lastUpdated];
@@ -88,7 +88,7 @@ class $ResourcesTable extends Resources
       resource: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}resource'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
     );
   }
 
@@ -109,7 +109,7 @@ class Resource extends DataClass implements Insertable<Resource> {
   final String resource;
 
   /// When this version was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
   const Resource(
       {required this.resourceType,
       required this.id,
@@ -121,7 +121,7 @@ class Resource extends DataClass implements Insertable<Resource> {
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['resource'] = Variable<String>(resource);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     return map;
   }
 
@@ -141,7 +141,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       resource: serializer.fromJson<String>(json['resource']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
     );
   }
   @override
@@ -151,7 +151,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'resource': serializer.toJson<String>(resource),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
     };
   }
 
@@ -159,7 +159,7 @@ class Resource extends DataClass implements Insertable<Resource> {
           {String? resourceType,
           String? id,
           String? resource,
-          DateTime? lastUpdated}) =>
+          int? lastUpdated}) =>
       Resource(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -205,7 +205,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
   final Value<String> resourceType;
   final Value<String> id;
   final Value<String> resource;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<int> rowid;
   const ResourcesCompanion({
     this.resourceType = const Value.absent(),
@@ -218,7 +218,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
     required String resourceType,
     required String id,
     required String resource,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
@@ -228,7 +228,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<String>? resource,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -244,7 +244,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
       {Value<String>? resourceType,
       Value<String>? id,
       Value<String>? resource,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<int>? rowid}) {
     return ResourcesCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -268,7 +268,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
       map['resource'] = Variable<String>(resource.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -306,6 +306,12 @@ class $ResourcesHistoryTable extends ResourcesHistory
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _versionIdMeta =
+      const VerificationMeta('versionId');
+  @override
+  late final GeneratedColumn<String> versionId = GeneratedColumn<String>(
+      'version_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _resourceMeta =
       const VerificationMeta('resource');
   @override
@@ -315,12 +321,12 @@ class $ResourcesHistoryTable extends ResourcesHistory
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [resourceType, id, resource, lastUpdated];
+      [resourceType, id, versionId, resource, lastUpdated];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -345,6 +351,12 @@ class $ResourcesHistoryTable extends ResourcesHistory
     } else if (isInserting) {
       context.missing(_idMeta);
     }
+    if (data.containsKey('version_id')) {
+      context.handle(_versionIdMeta,
+          versionId.isAcceptableOrUnknown(data['version_id']!, _versionIdMeta));
+    } else if (isInserting) {
+      context.missing(_versionIdMeta);
+    }
     if (data.containsKey('resource')) {
       context.handle(_resourceMeta,
           resource.isAcceptableOrUnknown(data['resource']!, _resourceMeta));
@@ -363,7 +375,7 @@ class $ResourcesHistoryTable extends ResourcesHistory
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {resourceType, id, lastUpdated};
+  Set<GeneratedColumn> get $primaryKey => {resourceType, id, versionId};
   @override
   ResourcesHistoryData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -372,10 +384,12 @@ class $ResourcesHistoryTable extends ResourcesHistory
           .read(DriftSqlType.string, data['${effectivePrefix}resource_type'])!,
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      versionId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}version_id'])!,
       resource: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}resource'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
     );
   }
 
@@ -393,14 +407,18 @@ class ResourcesHistoryData extends DataClass
   /// Resource logical id
   final String id;
 
+  /// Version identifier (e.g. '1', '2', or timestamp-based)
+  final String versionId;
+
   /// Full JSON-encoded FHIR resource
   final String resource;
 
   /// When this version was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
   const ResourcesHistoryData(
       {required this.resourceType,
       required this.id,
+      required this.versionId,
       required this.resource,
       required this.lastUpdated});
   @override
@@ -408,8 +426,9 @@ class ResourcesHistoryData extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
+    map['version_id'] = Variable<String>(versionId);
     map['resource'] = Variable<String>(resource);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     return map;
   }
 
@@ -417,6 +436,7 @@ class ResourcesHistoryData extends DataClass
     return ResourcesHistoryCompanion(
       resourceType: Value(resourceType),
       id: Value(id),
+      versionId: Value(versionId),
       resource: Value(resource),
       lastUpdated: Value(lastUpdated),
     );
@@ -428,8 +448,9 @@ class ResourcesHistoryData extends DataClass
     return ResourcesHistoryData(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
+      versionId: serializer.fromJson<String>(json['versionId']),
       resource: serializer.fromJson<String>(json['resource']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
     );
   }
   @override
@@ -438,19 +459,22 @@ class ResourcesHistoryData extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
+      'versionId': serializer.toJson<String>(versionId),
       'resource': serializer.toJson<String>(resource),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
     };
   }
 
   ResourcesHistoryData copyWith(
           {String? resourceType,
           String? id,
+          String? versionId,
           String? resource,
-          DateTime? lastUpdated}) =>
+          int? lastUpdated}) =>
       ResourcesHistoryData(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
+        versionId: versionId ?? this.versionId,
         resource: resource ?? this.resource,
         lastUpdated: lastUpdated ?? this.lastUpdated,
       );
@@ -460,6 +484,7 @@ class ResourcesHistoryData extends DataClass
           ? data.resourceType.value
           : this.resourceType,
       id: data.id.present ? data.id.value : this.id,
+      versionId: data.versionId.present ? data.versionId.value : this.versionId,
       resource: data.resource.present ? data.resource.value : this.resource,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
@@ -471,6 +496,7 @@ class ResourcesHistoryData extends DataClass
     return (StringBuffer('ResourcesHistoryData(')
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
+          ..write('versionId: $versionId, ')
           ..write('resource: $resource, ')
           ..write('lastUpdated: $lastUpdated')
           ..write(')'))
@@ -478,13 +504,15 @@ class ResourcesHistoryData extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, resource, lastUpdated);
+  int get hashCode =>
+      Object.hash(resourceType, id, versionId, resource, lastUpdated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ResourcesHistoryData &&
           other.resourceType == this.resourceType &&
           other.id == this.id &&
+          other.versionId == this.versionId &&
           other.resource == this.resource &&
           other.lastUpdated == this.lastUpdated);
 }
@@ -492,12 +520,14 @@ class ResourcesHistoryData extends DataClass
 class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
   final Value<String> resourceType;
   final Value<String> id;
+  final Value<String> versionId;
   final Value<String> resource;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<int> rowid;
   const ResourcesHistoryCompanion({
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
+    this.versionId = const Value.absent(),
     this.resource = const Value.absent(),
     this.lastUpdated = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -505,23 +535,27 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
   ResourcesHistoryCompanion.insert({
     required String resourceType,
     required String id,
+    required String versionId,
     required String resource,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
+        versionId = Value(versionId),
         resource = Value(resource),
         lastUpdated = Value(lastUpdated);
   static Insertable<ResourcesHistoryData> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
+    Expression<String>? versionId,
     Expression<String>? resource,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
+      if (versionId != null) 'version_id': versionId,
       if (resource != null) 'resource': resource,
       if (lastUpdated != null) 'last_updated': lastUpdated,
       if (rowid != null) 'rowid': rowid,
@@ -531,12 +565,14 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
   ResourcesHistoryCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
+      Value<String>? versionId,
       Value<String>? resource,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<int>? rowid}) {
     return ResourcesHistoryCompanion(
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
+      versionId: versionId ?? this.versionId,
       resource: resource ?? this.resource,
       lastUpdated: lastUpdated ?? this.lastUpdated,
       rowid: rowid ?? this.rowid,
@@ -552,11 +588,14 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
+    if (versionId.present) {
+      map['version_id'] = Variable<String>(versionId.value);
+    }
     if (resource.present) {
       map['resource'] = Variable<String>(resource.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -569,6 +608,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     return (StringBuffer('ResourcesHistoryCompanion(')
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
+          ..write('versionId: $versionId, ')
           ..write('resource: $resource, ')
           ..write('lastUpdated: $lastUpdated, ')
           ..write('rowid: $rowid')
@@ -597,9 +637,9 @@ class $StringSearchParametersTable extends StringSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -713,7 +753,7 @@ class $StringSearchParametersTable extends StringSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -740,7 +780,7 @@ class StringSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -766,7 +806,7 @@ class StringSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -792,7 +832,7 @@ class StringSearchParameter extends DataClass
     return StringSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -805,7 +845,7 @@ class StringSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -816,7 +856,7 @@ class StringSearchParameter extends DataClass
   StringSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -884,7 +924,7 @@ class StringSearchParametersCompanion
     extends UpdateCompanion<StringSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -903,7 +943,7 @@ class StringSearchParametersCompanion
   StringSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -918,7 +958,7 @@ class StringSearchParametersCompanion
   static Insertable<StringSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -940,7 +980,7 @@ class StringSearchParametersCompanion
   StringSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -968,7 +1008,7 @@ class StringSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -1024,9 +1064,9 @@ class $TokenSearchParametersTable extends TokenSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -1166,7 +1206,7 @@ class $TokenSearchParametersTable extends TokenSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -1197,7 +1237,7 @@ class TokenSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -1231,7 +1271,7 @@ class TokenSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -1269,7 +1309,7 @@ class TokenSearchParameter extends DataClass
     return TokenSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -1284,7 +1324,7 @@ class TokenSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -1297,7 +1337,7 @@ class TokenSearchParameter extends DataClass
   TokenSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -1378,7 +1418,7 @@ class TokenSearchParametersCompanion
     extends UpdateCompanion<TokenSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -1401,7 +1441,7 @@ class TokenSearchParametersCompanion
   TokenSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -1418,7 +1458,7 @@ class TokenSearchParametersCompanion
   static Insertable<TokenSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -1444,7 +1484,7 @@ class TokenSearchParametersCompanion
   TokenSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -1476,7 +1516,7 @@ class TokenSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -1540,9 +1580,9 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -1733,7 +1773,7 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -1773,7 +1813,7 @@ class ReferenceSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -1824,7 +1864,7 @@ class ReferenceSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -1890,7 +1930,7 @@ class ReferenceSearchParameter extends DataClass
     return ReferenceSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -1910,7 +1950,7 @@ class ReferenceSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -1928,7 +1968,7 @@ class ReferenceSearchParameter extends DataClass
   ReferenceSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -2064,7 +2104,7 @@ class ReferenceSearchParametersCompanion
     extends UpdateCompanion<ReferenceSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -2095,7 +2135,7 @@ class ReferenceSearchParametersCompanion
   ReferenceSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -2115,7 +2155,7 @@ class ReferenceSearchParametersCompanion
   static Insertable<ReferenceSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -2150,7 +2190,7 @@ class ReferenceSearchParametersCompanion
   ReferenceSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -2191,7 +2231,7 @@ class ReferenceSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -2272,9 +2312,9 @@ class $DateSearchParametersTable extends DateSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -2401,7 +2441,7 @@ class $DateSearchParametersTable extends DateSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -2430,7 +2470,7 @@ class DateSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -2460,7 +2500,7 @@ class DateSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -2488,7 +2528,7 @@ class DateSearchParameter extends DataClass
     return DateSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -2502,7 +2542,7 @@ class DateSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -2514,7 +2554,7 @@ class DateSearchParameter extends DataClass
   DateSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -2586,7 +2626,7 @@ class DateSearchParametersCompanion
     extends UpdateCompanion<DateSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -2607,7 +2647,7 @@ class DateSearchParametersCompanion
   DateSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -2624,7 +2664,7 @@ class DateSearchParametersCompanion
   static Insertable<DateSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -2648,7 +2688,7 @@ class DateSearchParametersCompanion
   DateSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -2678,7 +2718,7 @@ class DateSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -2738,9 +2778,9 @@ class $NumberSearchParametersTable extends NumberSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -2854,7 +2894,7 @@ class $NumberSearchParametersTable extends NumberSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -2881,7 +2921,7 @@ class NumberSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -2907,7 +2947,7 @@ class NumberSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -2933,7 +2973,7 @@ class NumberSearchParameter extends DataClass
     return NumberSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -2946,7 +2986,7 @@ class NumberSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -2957,7 +2997,7 @@ class NumberSearchParameter extends DataClass
   NumberSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -3025,7 +3065,7 @@ class NumberSearchParametersCompanion
     extends UpdateCompanion<NumberSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -3044,7 +3084,7 @@ class NumberSearchParametersCompanion
   NumberSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -3059,7 +3099,7 @@ class NumberSearchParametersCompanion
   static Insertable<NumberSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -3081,7 +3121,7 @@ class NumberSearchParametersCompanion
   NumberSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -3109,7 +3149,7 @@ class NumberSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -3165,9 +3205,9 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -3321,7 +3361,7 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -3354,7 +3394,7 @@ class QuantitySearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -3392,7 +3432,7 @@ class QuantitySearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -3436,7 +3476,7 @@ class QuantitySearchParameter extends DataClass
     return QuantitySearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -3452,7 +3492,7 @@ class QuantitySearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -3466,7 +3506,7 @@ class QuantitySearchParameter extends DataClass
   QuantitySearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -3568,7 +3608,7 @@ class QuantitySearchParametersCompanion
     extends UpdateCompanion<QuantitySearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -3593,7 +3633,7 @@ class QuantitySearchParametersCompanion
   QuantitySearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -3611,7 +3651,7 @@ class QuantitySearchParametersCompanion
   static Insertable<QuantitySearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -3639,7 +3679,7 @@ class QuantitySearchParametersCompanion
   QuantitySearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -3673,7 +3713,7 @@ class QuantitySearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -3741,9 +3781,9 @@ class $UriSearchParametersTable extends UriSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -3854,7 +3894,7 @@ class $UriSearchParametersTable extends UriSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -3881,7 +3921,7 @@ class UriSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -3907,7 +3947,7 @@ class UriSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -3933,7 +3973,7 @@ class UriSearchParameter extends DataClass
     return UriSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -3946,7 +3986,7 @@ class UriSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -3957,7 +3997,7 @@ class UriSearchParameter extends DataClass
   UriSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -4022,7 +4062,7 @@ class UriSearchParameter extends DataClass
 class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -4041,7 +4081,7 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   UriSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -4056,7 +4096,7 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   static Insertable<UriSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -4078,7 +4118,7 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   UriSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -4106,7 +4146,7 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -4162,9 +4202,9 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -4294,7 +4334,7 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -4323,7 +4363,7 @@ class CompositeSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -4353,7 +4393,7 @@ class CompositeSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -4381,7 +4421,7 @@ class CompositeSearchParameter extends DataClass
     return CompositeSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -4395,7 +4435,7 @@ class CompositeSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -4407,7 +4447,7 @@ class CompositeSearchParameter extends DataClass
   CompositeSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -4481,7 +4521,7 @@ class CompositeSearchParametersCompanion
     extends UpdateCompanion<CompositeSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -4502,7 +4542,7 @@ class CompositeSearchParametersCompanion
   CompositeSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -4519,7 +4559,7 @@ class CompositeSearchParametersCompanion
   static Insertable<CompositeSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -4543,7 +4583,7 @@ class CompositeSearchParametersCompanion
   CompositeSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -4573,7 +4613,7 @@ class CompositeSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -4633,9 +4673,9 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _searchPathMeta =
       const VerificationMeta('searchPath');
   @override
@@ -4749,7 +4789,7 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       searchPath: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
@@ -4776,7 +4816,7 @@ class SpecialSearchParameter extends DataClass
   final String id;
 
   /// When the resource was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// FHIRPath expression identifying the source field
   final String searchPath;
@@ -4802,7 +4842,7 @@ class SpecialSearchParameter extends DataClass
     final map = <String, Expression>{};
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
@@ -4828,7 +4868,7 @@ class SpecialSearchParameter extends DataClass
     return SpecialSearchParameter(
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
@@ -4841,7 +4881,7 @@ class SpecialSearchParameter extends DataClass
     return <String, dynamic>{
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
@@ -4852,7 +4892,7 @@ class SpecialSearchParameter extends DataClass
   SpecialSearchParameter copyWith(
           {String? resourceType,
           String? id,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? searchPath,
           String? searchName,
           int? paramIndex,
@@ -4921,7 +4961,7 @@ class SpecialSearchParametersCompanion
     extends UpdateCompanion<SpecialSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
@@ -4940,7 +4980,7 @@ class SpecialSearchParametersCompanion
   SpecialSearchParametersCompanion.insert({
     required String resourceType,
     required String id,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
@@ -4955,7 +4995,7 @@ class SpecialSearchParametersCompanion
   static Insertable<SpecialSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
@@ -4977,7 +5017,7 @@ class SpecialSearchParametersCompanion
   SpecialSearchParametersCompanion copyWith(
       {Value<String>? resourceType,
       Value<String>? id,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
@@ -5005,7 +5045,7 @@ class SpecialSearchParametersCompanion
       map['id'] = Variable<String>(id.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (searchPath.present) {
       map['search_path'] = Variable<String>(searchPath.value);
@@ -5067,9 +5107,9 @@ class $SyncResourcesTable extends SyncResources
   static const VerificationMeta _lastUpdatedMeta =
       const VerificationMeta('lastUpdated');
   @override
-  late final GeneratedColumn<DateTime> lastUpdated = GeneratedColumn<DateTime>(
+  late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _versionIdMeta =
       const VerificationMeta('versionId');
   @override
@@ -5138,7 +5178,7 @@ class $SyncResourcesTable extends SyncResources
       resource: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}resource'])!,
       lastUpdated: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_updated'])!,
+          .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
       versionId: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}version_id'])!,
     );
@@ -5161,7 +5201,7 @@ class SyncResource extends DataClass implements Insertable<SyncResource> {
   final String resource;
 
   /// When this version was last updated
-  final DateTime lastUpdated;
+  final int lastUpdated;
 
   /// Version identifier for this snapshot
   final String versionId;
@@ -5177,7 +5217,7 @@ class SyncResource extends DataClass implements Insertable<SyncResource> {
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['resource'] = Variable<String>(resource);
-    map['last_updated'] = Variable<DateTime>(lastUpdated);
+    map['last_updated'] = Variable<int>(lastUpdated);
     map['version_id'] = Variable<String>(versionId);
     return map;
   }
@@ -5199,7 +5239,7 @@ class SyncResource extends DataClass implements Insertable<SyncResource> {
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       resource: serializer.fromJson<String>(json['resource']),
-      lastUpdated: serializer.fromJson<DateTime>(json['lastUpdated']),
+      lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
       versionId: serializer.fromJson<String>(json['versionId']),
     );
   }
@@ -5210,7 +5250,7 @@ class SyncResource extends DataClass implements Insertable<SyncResource> {
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'resource': serializer.toJson<String>(resource),
-      'lastUpdated': serializer.toJson<DateTime>(lastUpdated),
+      'lastUpdated': serializer.toJson<int>(lastUpdated),
       'versionId': serializer.toJson<String>(versionId),
     };
   }
@@ -5219,7 +5259,7 @@ class SyncResource extends DataClass implements Insertable<SyncResource> {
           {String? resourceType,
           String? id,
           String? resource,
-          DateTime? lastUpdated,
+          int? lastUpdated,
           String? versionId}) =>
       SyncResource(
         resourceType: resourceType ?? this.resourceType,
@@ -5271,7 +5311,7 @@ class SyncResourcesCompanion extends UpdateCompanion<SyncResource> {
   final Value<String> resourceType;
   final Value<String> id;
   final Value<String> resource;
-  final Value<DateTime> lastUpdated;
+  final Value<int> lastUpdated;
   final Value<String> versionId;
   final Value<int> rowid;
   const SyncResourcesCompanion({
@@ -5286,7 +5326,7 @@ class SyncResourcesCompanion extends UpdateCompanion<SyncResource> {
     required String resourceType,
     required String id,
     required String resource,
-    required DateTime lastUpdated,
+    required int lastUpdated,
     required String versionId,
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
@@ -5298,7 +5338,7 @@ class SyncResourcesCompanion extends UpdateCompanion<SyncResource> {
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<String>? resource,
-    Expression<DateTime>? lastUpdated,
+    Expression<int>? lastUpdated,
     Expression<String>? versionId,
     Expression<int>? rowid,
   }) {
@@ -5316,7 +5356,7 @@ class SyncResourcesCompanion extends UpdateCompanion<SyncResource> {
       {Value<String>? resourceType,
       Value<String>? id,
       Value<String>? resource,
-      Value<DateTime>? lastUpdated,
+      Value<int>? lastUpdated,
       Value<String>? versionId,
       Value<int>? rowid}) {
     return SyncResourcesCompanion(
@@ -5342,7 +5382,7 @@ class SyncResourcesCompanion extends UpdateCompanion<SyncResource> {
       map['resource'] = Variable<String>(resource.value);
     }
     if (lastUpdated.present) {
-      map['last_updated'] = Variable<DateTime>(lastUpdated.value);
+      map['last_updated'] = Variable<int>(lastUpdated.value);
     }
     if (versionId.present) {
       map['version_id'] = Variable<String>(versionId.value);
@@ -5885,14 +5925,14 @@ typedef $$ResourcesTableCreateCompanionBuilder = ResourcesCompanion Function({
   required String resourceType,
   required String id,
   required String resource,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   Value<int> rowid,
 });
 typedef $$ResourcesTableUpdateCompanionBuilder = ResourcesCompanion Function({
   Value<String> resourceType,
   Value<String> id,
   Value<String> resource,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<int> rowid,
 });
 
@@ -5914,7 +5954,7 @@ class $$ResourcesTableFilterComposer
   ColumnFilters<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 }
 
@@ -5937,7 +5977,7 @@ class $$ResourcesTableOrderingComposer
   ColumnOrderings<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 }
 
@@ -5959,7 +5999,7 @@ class $$ResourcesTableAnnotationComposer
   GeneratedColumn<String> get resource =>
       $composableBuilder(column: $table.resource, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 }
 
@@ -5989,7 +6029,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<String> resource = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesCompanion(
@@ -6003,7 +6043,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required String resource,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesCompanion.insert(
@@ -6036,16 +6076,18 @@ typedef $$ResourcesHistoryTableCreateCompanionBuilder
     = ResourcesHistoryCompanion Function({
   required String resourceType,
   required String id,
+  required String versionId,
   required String resource,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   Value<int> rowid,
 });
 typedef $$ResourcesHistoryTableUpdateCompanionBuilder
     = ResourcesHistoryCompanion Function({
   Value<String> resourceType,
   Value<String> id,
+  Value<String> versionId,
   Value<String> resource,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<int> rowid,
 });
 
@@ -6064,10 +6106,13 @@ class $$ResourcesHistoryTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
+  ColumnFilters<String> get versionId => $composableBuilder(
+      column: $table.versionId, builder: (column) => ColumnFilters(column));
+
   ColumnFilters<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 }
 
@@ -6087,10 +6132,13 @@ class $$ResourcesHistoryTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get versionId => $composableBuilder(
+      column: $table.versionId, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 }
 
@@ -6109,10 +6157,13 @@ class $$ResourcesHistoryTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get versionId =>
+      $composableBuilder(column: $table.versionId, builder: (column) => column);
+
   GeneratedColumn<String> get resource =>
       $composableBuilder(column: $table.resource, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 }
 
@@ -6144,13 +6195,15 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
+            Value<String> versionId = const Value.absent(),
             Value<String> resource = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesHistoryCompanion(
             resourceType: resourceType,
             id: id,
+            versionId: versionId,
             resource: resource,
             lastUpdated: lastUpdated,
             rowid: rowid,
@@ -6158,13 +6211,15 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
+            required String versionId,
             required String resource,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesHistoryCompanion.insert(
             resourceType: resourceType,
             id: id,
+            versionId: versionId,
             resource: resource,
             lastUpdated: lastUpdated,
             rowid: rowid,
@@ -6195,7 +6250,7 @@ typedef $$StringSearchParametersTableCreateCompanionBuilder
     = StringSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -6206,7 +6261,7 @@ typedef $$StringSearchParametersTableUpdateCompanionBuilder
     = StringSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -6229,7 +6284,7 @@ class $$StringSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -6261,7 +6316,7 @@ class $$StringSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -6292,7 +6347,7 @@ class $$StringSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -6341,7 +6396,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -6361,7 +6416,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -6406,7 +6461,7 @@ typedef $$TokenSearchParametersTableCreateCompanionBuilder
     = TokenSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -6419,7 +6474,7 @@ typedef $$TokenSearchParametersTableUpdateCompanionBuilder
     = TokenSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -6444,7 +6499,7 @@ class $$TokenSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -6482,7 +6537,7 @@ class $$TokenSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -6520,7 +6575,7 @@ class $$TokenSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -6575,7 +6630,7 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -6599,7 +6654,7 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -6648,7 +6703,7 @@ typedef $$ReferenceSearchParametersTableCreateCompanionBuilder
     = ReferenceSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -6665,7 +6720,7 @@ typedef $$ReferenceSearchParametersTableUpdateCompanionBuilder
     = ReferenceSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -6694,7 +6749,7 @@ class $$ReferenceSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -6751,7 +6806,7 @@ class $$ReferenceSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -6807,7 +6862,7 @@ class $$ReferenceSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -6874,7 +6929,7 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -6906,7 +6961,7 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -6963,7 +7018,7 @@ typedef $$DateSearchParametersTableCreateCompanionBuilder
     = DateSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -6975,7 +7030,7 @@ typedef $$DateSearchParametersTableUpdateCompanionBuilder
     = DateSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -6999,7 +7054,7 @@ class $$DateSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -7034,7 +7089,7 @@ class $$DateSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -7068,7 +7123,7 @@ class $$DateSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -7118,7 +7173,7 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -7140,7 +7195,7 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -7187,7 +7242,7 @@ typedef $$NumberSearchParametersTableCreateCompanionBuilder
     = NumberSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -7198,7 +7253,7 @@ typedef $$NumberSearchParametersTableUpdateCompanionBuilder
     = NumberSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -7221,7 +7276,7 @@ class $$NumberSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -7253,7 +7308,7 @@ class $$NumberSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -7284,7 +7339,7 @@ class $$NumberSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -7333,7 +7388,7 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -7353,7 +7408,7 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -7398,7 +7453,7 @@ typedef $$QuantitySearchParametersTableCreateCompanionBuilder
     = QuantitySearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -7412,7 +7467,7 @@ typedef $$QuantitySearchParametersTableUpdateCompanionBuilder
     = QuantitySearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -7438,7 +7493,7 @@ class $$QuantitySearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -7480,7 +7535,7 @@ class $$QuantitySearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -7524,7 +7579,7 @@ class $$QuantitySearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -7582,7 +7637,7 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -7608,7 +7663,7 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -7659,7 +7714,7 @@ typedef $$UriSearchParametersTableCreateCompanionBuilder
     = UriSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -7670,7 +7725,7 @@ typedef $$UriSearchParametersTableUpdateCompanionBuilder
     = UriSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -7693,7 +7748,7 @@ class $$UriSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -7725,7 +7780,7 @@ class $$UriSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -7756,7 +7811,7 @@ class $$UriSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -7803,7 +7858,7 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -7823,7 +7878,7 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -7866,7 +7921,7 @@ typedef $$CompositeSearchParametersTableCreateCompanionBuilder
     = CompositeSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -7878,7 +7933,7 @@ typedef $$CompositeSearchParametersTableUpdateCompanionBuilder
     = CompositeSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -7902,7 +7957,7 @@ class $$CompositeSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -7937,7 +7992,7 @@ class $$CompositeSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -7971,7 +8026,7 @@ class $$CompositeSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -8023,7 +8078,7 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -8045,7 +8100,7 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -8092,7 +8147,7 @@ typedef $$SpecialSearchParametersTableCreateCompanionBuilder
     = SpecialSearchParametersCompanion Function({
   required String resourceType,
   required String id,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
@@ -8103,7 +8158,7 @@ typedef $$SpecialSearchParametersTableUpdateCompanionBuilder
     = SpecialSearchParametersCompanion Function({
   Value<String> resourceType,
   Value<String> id,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
@@ -8126,7 +8181,7 @@ class $$SpecialSearchParametersTableFilterComposer
   ColumnFilters<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchPath => $composableBuilder(
@@ -8158,7 +8213,7 @@ class $$SpecialSearchParametersTableOrderingComposer
   ColumnOrderings<String> get id => $composableBuilder(
       column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchPath => $composableBuilder(
@@ -8190,7 +8245,7 @@ class $$SpecialSearchParametersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get searchPath => $composableBuilder(
@@ -8239,7 +8294,7 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
@@ -8259,7 +8314,7 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String resourceType,
             required String id,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
@@ -8305,7 +8360,7 @@ typedef $$SyncResourcesTableCreateCompanionBuilder = SyncResourcesCompanion
   required String resourceType,
   required String id,
   required String resource,
-  required DateTime lastUpdated,
+  required int lastUpdated,
   required String versionId,
   Value<int> rowid,
 });
@@ -8314,7 +8369,7 @@ typedef $$SyncResourcesTableUpdateCompanionBuilder = SyncResourcesCompanion
   Value<String> resourceType,
   Value<String> id,
   Value<String> resource,
-  Value<DateTime> lastUpdated,
+  Value<int> lastUpdated,
   Value<String> versionId,
   Value<int> rowid,
 });
@@ -8337,7 +8392,7 @@ class $$SyncResourcesTableFilterComposer
   ColumnFilters<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<DateTime> get lastUpdated => $composableBuilder(
+  ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get versionId => $composableBuilder(
@@ -8363,7 +8418,7 @@ class $$SyncResourcesTableOrderingComposer
   ColumnOrderings<String> get resource => $composableBuilder(
       column: $table.resource, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<DateTime> get lastUpdated => $composableBuilder(
+  ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get versionId => $composableBuilder(
@@ -8388,7 +8443,7 @@ class $$SyncResourcesTableAnnotationComposer
   GeneratedColumn<String> get resource =>
       $composableBuilder(column: $table.resource, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get lastUpdated => $composableBuilder(
+  GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
 
   GeneratedColumn<String> get versionId =>
@@ -8421,7 +8476,7 @@ class $$SyncResourcesTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<String> resource = const Value.absent(),
-            Value<DateTime> lastUpdated = const Value.absent(),
+            Value<int> lastUpdated = const Value.absent(),
             Value<String> versionId = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
@@ -8437,7 +8492,7 @@ class $$SyncResourcesTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required String resource,
-            required DateTime lastUpdated,
+            required int lastUpdated,
             required String versionId,
             Value<int> rowid = const Value.absent(),
           }) =>

@@ -13,7 +13,7 @@ class SyncResources extends Table {
   TextColumn get resource => text()();
 
   /// When this version was last updated
-  DateTimeColumn get lastUpdated => dateTime()();
+  IntColumn get lastUpdated => integer()();
 
   /// Version identifier for this snapshot
   TextColumn get versionId => text()();

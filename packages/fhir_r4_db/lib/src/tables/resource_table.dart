@@ -12,7 +12,7 @@ class Resources extends Table {
   TextColumn get resource => text()();
 
   /// When this version was last updated
-  DateTimeColumn get lastUpdated => dateTime()();
+  IntColumn get lastUpdated => integer()();
 
   @override
   Set<Column> get primaryKey => {resourceType, id};
@@ -26,12 +26,15 @@ class ResourcesHistory extends Table {
   /// Resource logical id
   TextColumn get id => text()();
 
+  /// Version identifier (e.g. '1', '2', or timestamp-based)
+  TextColumn get versionId => text()();
+
   /// Full JSON-encoded FHIR resource
   TextColumn get resource => text()();
 
   /// When this version was last updated
-  DateTimeColumn get lastUpdated => dateTime()();
+  IntColumn get lastUpdated => integer()();
 
   @override
-  Set<Column> get primaryKey => {resourceType, id, lastUpdated};
+  Set<Column> get primaryKey => {resourceType, id, versionId};
 }

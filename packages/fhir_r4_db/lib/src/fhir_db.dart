@@ -36,7 +36,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.executor);
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -75,6 +75,61 @@ class FhirDb extends _$FhirDb {
               'ALTER TABLE reference_search_parameters_new '
               'RENAME TO reference_search_parameters',
             );
+          }
+          if (from < 3) {
+            // Add versionId column to resources_history and rebuild with new
+            // primary key {resourceType, id, versionId} to prevent overwrites
+            // when two saves happen within the same wall-clock second.
+            await customStatement(
+              'CREATE TABLE resources_history_new ('
+              'resource_type TEXT NOT NULL, '
+              'id TEXT NOT NULL, '
+              'version_id TEXT NOT NULL, '
+              'resource TEXT NOT NULL, '
+              'last_updated INTEGER NOT NULL, '
+              'PRIMARY KEY (resource_type, id, version_id)'
+              ')',
+            );
+            // Migrate existing data — extract versionId from JSON, fall back
+            // to lastUpdated cast to TEXT so every row has a unique key.
+            await customStatement(
+              "INSERT OR IGNORE INTO resources_history_new "
+              "(resource_type, id, version_id, resource, last_updated) "
+              "SELECT resource_type, id, "
+              "COALESCE("
+              "json_extract(resource, '\$.meta.versionId'), "
+              "CAST(last_updated AS TEXT)"
+              "), "
+              "resource, last_updated "
+              "FROM resources_history",
+            );
+            await customStatement('DROP TABLE resources_history');
+            await customStatement(
+              'ALTER TABLE resources_history_new '
+              'RENAME TO resources_history',
+            );
+          }
+          if (from < 4) {
+            // Convert lastUpdated from seconds to milliseconds in all tables.
+            const tables = [
+              'resources',
+              'resources_history',
+              'string_search_parameters',
+              'token_search_parameters',
+              'reference_search_parameters',
+              'date_search_parameters',
+              'number_search_parameters',
+              'quantity_search_parameters',
+              'uri_search_parameters',
+              'composite_search_parameters',
+              'special_search_parameters',
+              'sync_resources',
+            ];
+            for (final table in tables) {
+              await customStatement(
+                'UPDATE $table SET last_updated = last_updated * 1000',
+              );
+            }
           }
         },
       );
