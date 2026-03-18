@@ -166,17 +166,63 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   /// Delete a resource by type and id.
+  ///
+  /// Creates a tombstone entry in the history table (a version with no
+  /// resource content, marked as deleted) before removing the resource
+  /// from the current table.
   Future<bool> deleteResource(
     fhir.R4ResourceType resourceType,
     String id,
   ) async {
     final resourceTypeString = resourceType.toString();
+
+    // Determine the next version number from the current resource
+    final existing = await getResource(resourceType, id);
+    if (existing == null) return false;
+
+    final currentVersion = existing.meta?.versionId?.toString();
+    final nextVersion = currentVersion != null && int.tryParse(currentVersion) != null
+        ? (int.parse(currentVersion) + 1).toString()
+        : DateTime.now().toUtc().millisecondsSinceEpoch.toString();
+
+    final now = DateTime.now().toUtc();
+
+    // Write a tombstone entry to history — minimal JSON marking the deletion
+    await into(resourcesHistory).insertOnConflictUpdate(
+      ResourcesHistoryCompanion(
+        resourceType: Value(resourceTypeString),
+        id: Value(id),
+        versionId: Value(nextVersion),
+        resource: Value('{"resourceType":"$resourceTypeString","id":"$id",'
+            '"meta":{"versionId":"$nextVersion",'
+            '"lastUpdated":"${now.toIso8601String()}",'
+            '"tag":[{"system":"http://terminology.hl7.org/CodeSystem/v3-ObservationValue",'
+            '"code":"DELETED"}]}}'),
+        lastUpdated: Value(now.millisecondsSinceEpoch),
+      ),
+    );
+
+    // Remove from current resources table
     final count = await (delete(resources)
           ..where(
             (tbl) =>
                 tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id),
           ))
         .go();
+
+    // Clean up search parameter indexes
+    if (count > 0) {
+      await (delete(stringSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(tokenSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(referenceSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(dateSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(numberSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(quantitySearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(uriSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(compositeSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(specialSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+    }
+
     return count > 0;
   }
 
