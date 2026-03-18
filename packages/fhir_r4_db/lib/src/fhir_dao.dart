@@ -437,7 +437,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     // Apply sorting
     if (sort != null && sort.isNotEmpty) {
-      _sortResults(results, sort);
+      await _sortResults(results, sort, resourceTypeString);
     }
 
     // Apply pagination
@@ -2201,7 +2201,27 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Private: Sorting helper
   // ──────────────────────────────────────────────────────────────────────────
 
-  void _sortResults(List<fhir.Resource> results, List<String> sort) {
+  Future<void> _sortResults(
+    List<fhir.Resource> results,
+    List<String> sort,
+    String resourceType,
+  ) async {
+    // Pre-fetch sort values from search parameter tables for each sort field.
+    // Maps: sortField -> (resourceId -> sortValue)
+    final sortMaps = <String, Map<String, String>>{};
+
+    for (final sortParam in sort) {
+      final field =
+          sortParam.startsWith('-') ? sortParam.substring(1) : sortParam;
+      if (field == '_id' || field == '_lastUpdated') continue;
+
+      final ids = results.map((r) => r.id?.toString() ?? '').toSet();
+      if (ids.isEmpty) continue;
+
+      final valueMap = await _getSortValues(resourceType, field, ids);
+      sortMaps[field] = valueMap;
+    }
+
     results.sort((a, b) {
       for (final sortParam in sort) {
         final descending = sortParam.startsWith('-');
@@ -2209,30 +2229,27 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         var comparison = 0;
         if (field == '_id') {
-          final aId = a.id?.toString() ?? '';
-          final bId = b.id?.toString() ?? '';
-          comparison = aId.compareTo(bId);
+          comparison = (a.id?.toString() ?? '').compareTo(
+            b.id?.toString() ?? '',
+          );
         } else if (field == '_lastUpdated') {
           final aDate = a.meta?.lastUpdated?.valueDateTime ?? DateTime(1970);
           final bDate = b.meta?.lastUpdated?.valueDateTime ?? DateTime(1970);
           comparison = aDate.compareTo(bDate);
         } else {
-          try {
-            final aJson = jsonDecode(a.toJsonString()) as Map<String, dynamic>;
-            final bJson = jsonDecode(b.toJsonString()) as Map<String, dynamic>;
-            final dynamic aValue = _getNestedValue(aJson, field);
-            final dynamic bValue = _getNestedValue(bJson, field);
-            if (aValue == null && bValue == null) {
+          final valueMap = sortMaps[field];
+          if (valueMap != null) {
+            final aVal = valueMap[a.id?.toString() ?? ''];
+            final bVal = valueMap[b.id?.toString() ?? ''];
+            if (aVal == null && bVal == null) {
               comparison = 0;
-            } else if (aValue == null) {
+            } else if (aVal == null) {
+              comparison = 1; // nulls sort last
+            } else if (bVal == null) {
               comparison = -1;
-            } else if (bValue == null) {
-              comparison = 1;
             } else {
-              comparison = aValue.toString().compareTo(bValue.toString());
+              comparison = aVal.compareTo(bVal);
             }
-          } catch (_) {
-            continue;
           }
         }
 
@@ -2244,23 +2261,95 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     });
   }
 
-  dynamic _getNestedValue(Map<String, dynamic> json, String path) {
-    final parts = path.split('.');
-    dynamic current = json;
-    for (final part in parts) {
-      if (current is Map<String, dynamic>) {
-        current = current[part];
-      } else if (current is List && current.isNotEmpty) {
-        current = current.first;
-        if (current is Map<String, dynamic>) {
-          current = current[part];
-        } else {
-          return null;
-        }
-      } else {
-        return null;
-      }
+  /// Look up sort values for a search parameter from the indexed tables.
+  /// Returns a map of resourceId -> sortable string value.
+  Future<Map<String, String>> _getSortValues(
+    String resourceType,
+    String paramName,
+    Set<String> ids,
+  ) async {
+    final idList = ids.toList();
+
+    // Try string search parameters (covers name, family, given, etc.)
+    final stringRows = await (select(stringSearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.isIn(idList) &
+                (tbl.searchName.equals(paramName) |
+                    tbl.searchPath.equals(paramName)) &
+                tbl.paramIndex.equals(0),
+          ))
+        .get();
+    if (stringRows.isNotEmpty) {
+      return {for (final r in stringRows) r.id: r.stringValue};
     }
-    return current;
+
+    // Try date search parameters (covers birthdate, date, etc.)
+    final dateRows = await (select(dateSearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.isIn(idList) &
+                (tbl.searchName.equals(paramName) |
+                    tbl.searchPath.equals(paramName)) &
+                tbl.paramIndex.equals(0),
+          ))
+        .get();
+    if (dateRows.isNotEmpty) {
+      return {
+        for (final r in dateRows)
+          r.id: r.dateValue.millisecondsSinceEpoch.toString(),
+      };
+    }
+
+    // Try token search parameters (covers status, code, etc.)
+    final tokenRows = await (select(tokenSearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.isIn(idList) &
+                (tbl.searchName.equals(paramName) |
+                    tbl.searchPath.equals(paramName)) &
+                tbl.paramIndex.equals(0),
+          ))
+        .get();
+    if (tokenRows.isNotEmpty) {
+      return {for (final r in tokenRows) r.id: r.tokenValue};
+    }
+
+    // Try number search parameters
+    final numberRows = await (select(numberSearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.isIn(idList) &
+                (tbl.searchName.equals(paramName) |
+                    tbl.searchPath.equals(paramName)) &
+                tbl.paramIndex.equals(0),
+          ))
+        .get();
+    if (numberRows.isNotEmpty) {
+      return {for (final r in numberRows) r.id: r.numberValue.toString()};
+    }
+
+    // Try quantity search parameters
+    final quantityRows = await (select(quantitySearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.isIn(idList) &
+                (tbl.searchName.equals(paramName) |
+                    tbl.searchPath.equals(paramName)) &
+                tbl.paramIndex.equals(0),
+          ))
+        .get();
+    if (quantityRows.isNotEmpty) {
+      return {
+        for (final r in quantityRows) r.id: r.quantityValue.toString(),
+      };
+    }
+
+    return {};
   }
 }
