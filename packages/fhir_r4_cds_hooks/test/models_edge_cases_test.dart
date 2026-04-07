@@ -235,7 +235,7 @@ void main() {
       expect(decoded.suggestions!.length, 2);
       expect(decoded.suggestions![0].isRecommended, true);
       expect(decoded.suggestions![0].actions!.first.resource,
-          isA<Patient>());
+          isA<Patient>(),);
       expect(decoded.suggestions![1].isRecommended, false);
       expect(decoded.suggestions![1].actions, isNull);
     });
@@ -466,7 +466,7 @@ void main() {
       expect(decoded.prefetch!.length, 3);
       expect(decoded.prefetch!['patient'], 'Patient/{{context.patientId}}');
       expect(decoded.usageRequirements,
-          'Requires patient and medication context');
+          'Requires patient and medication context',);
     });
   });
 

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -103,7 +102,7 @@ void main() {
 
         final restored = Resource.fromJson(json) as Patient;
         expect(restored.extension_!.first.url.valueString,
-            'http://example.org/ext');
+            'http://example.org/ext',);
       });
     });
 
@@ -201,7 +200,7 @@ active: true
                 .toFhirXhtml,
           ),
         );
-        expect((copied as Patient).text?.status.valueString, 'generated');
+        expect(copied.text?.status.valueString, 'generated');
         expect(copied.active?.valueBoolean, true);
       });
 
@@ -212,7 +211,7 @@ active: true
             Organization(id: 'inner'.toFhirString),
           ],
         );
-        expect((copied as Patient).contained?.length, 1);
+        expect(copied.contained?.length, 1);
       });
 
       test('copies Patient with new extensions', () {
@@ -225,7 +224,7 @@ active: true
             ),
           ],
         );
-        expect((copied as Patient).extension_?.length, 1);
+        expect(copied.extension_?.length, 1);
       });
     });
 

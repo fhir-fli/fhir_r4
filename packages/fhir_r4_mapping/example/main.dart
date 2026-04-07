@@ -50,7 +50,7 @@ group tutorial(source src : TLeft, target tgt : TRight) {
 }
 ''';
 
-final structureDefinitionTLeft = StructureDefinition.fromJson({
+final _structureDefinitionTLeft = StructureDefinition.fromJson({
   "resourceType": "StructureDefinition",
   "id": "TLeft",
   "extension": [
@@ -168,7 +168,7 @@ final localStructureMap = StructureMap.fromJson({
   ],
 });
 
-final structureDefinitionTRight = StructureDefinition.fromJson({
+final _structureDefinitionTRight = StructureDefinition.fromJson({
   "resourceType": "StructureDefinition",
   "id": "TRight",
   "url": "http://hl7.org/fhir/StructureDefinition/tutorial-right",

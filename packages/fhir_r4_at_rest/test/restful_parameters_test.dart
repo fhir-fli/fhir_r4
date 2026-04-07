@@ -31,7 +31,7 @@ void main() {
       for (final summary in Summary.values) {
         final params = RestfulParameters().requestSummary(summary);
         expect(params.parameters['_summary'], summary.toString());
-        expect(params.buildQuery(), '_summary=${summary.toString()}');
+        expect(params.buildQuery(), '_summary=$summary');
       }
     });
 

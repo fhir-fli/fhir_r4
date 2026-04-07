@@ -1711,8 +1711,8 @@ void main() {
     });
 
     test('addParameterValue accumulates into list', () {
-      final params = RestfulParameters();
-      params.addParameterValue('key', 'a');
+      final params = RestfulParameters()
+        ..addParameterValue('key', 'a');
       expect(params.parameters['key'], 'a');
 
       params.addParameterValue('key', 'b');

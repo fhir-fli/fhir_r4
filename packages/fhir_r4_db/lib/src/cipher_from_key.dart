@@ -101,8 +101,9 @@ void Function(Database)? cipherSetup(String? hexKey) {
     return null;
   }
   return (Database db) {
-    db.execute("PRAGMA cipher = 'sqlcipher';");
-    db.execute('PRAGMA legacy = 4;');
-    db.execute("PRAGMA key = \"x'$hexKey'\";");
+    db
+      ..execute("PRAGMA cipher = 'sqlcipher';")
+      ..execute('PRAGMA legacy = 4;')
+      ..execute("PRAGMA key = \"x'$hexKey'\";");
   };
 }

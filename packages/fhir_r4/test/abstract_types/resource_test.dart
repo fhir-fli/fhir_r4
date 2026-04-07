@@ -168,7 +168,7 @@ void main() {
         final meta = FhirMeta(
           versionId: FhirId('3'),
           lastUpdated: FhirInstant.fromDateTime(
-            DateTime.utc(2024, 1, 15, 12, 0, 0),
+            DateTime.utc(2024, 1, 15, 12),
           ),
         );
         final patient = Patient(id: 'p'.toFhirString, meta: meta);
@@ -259,7 +259,7 @@ void main() {
           id: 'old-id'.toFhirString,
           active: FhirBoolean(true),
         );
-        final copied = patient.copyWith(id: 'new-id'.toFhirString) as Patient;
+        final copied = patient.copyWith(id: 'new-id'.toFhirString);
         expect(copied.id?.valueString, 'new-id');
         expect(copied.active?.valueBoolean, true);
       });
@@ -267,7 +267,7 @@ void main() {
       test('copies Patient with new meta', () {
         final patient = Patient(id: 'p'.toFhirString);
         final newMeta = FhirMeta(versionId: FhirId('5'));
-        final copied = patient.copyWith(meta: newMeta) as Patient;
+        final copied = patient.copyWith(meta: newMeta);
         expect(copied.meta?.versionId?.toString(), '5');
       });
     });
@@ -295,7 +295,6 @@ void main() {
       test('two different resource types are not equal', () {
         final patient = Patient(id: 'x'.toFhirString);
         final org = Organization(id: 'x'.toFhirString);
-        // ignore: unrelated_type_equality_checks
         expect(patient == org, isFalse);
       });
     });
@@ -307,7 +306,7 @@ void main() {
           active: FhirBoolean(true),
           name: [HumanName(family: 'Smith'.toFhirString)],
         );
-        final cloned = patient.clone() as Patient;
+        final cloned = patient.clone();
         expect(cloned == patient, isTrue);
         expect(identical(cloned, patient), isFalse);
       });

@@ -357,7 +357,7 @@ void main() {
       expect(response.services.length, 2);
       expect(response.services[0].id, 'alert-svc');
       expect(response.services[0].prefetch!['patient'],
-          'Patient/{{context.patientId}}');
+          'Patient/{{context.patientId}}',);
       expect(response.services[1].id, 'drug-check');
       expect(response.services[1].prefetch, isNull);
     });

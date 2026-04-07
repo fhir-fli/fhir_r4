@@ -39,7 +39,7 @@ void main() {
       expect(response.cards.length, 1);
       expect(response.cards.first.indicator, CdsIndicator.warning);
       expect(response.cards.first.detail,
-          'Aspirin may interact with Warfarin');
+          'Aspirin may interact with Warfarin',);
       expect(response.cards.first.suggestions!.length, 1);
       expect(response.cards.first.suggestions!.first.uuid, 'sug-1');
     });
@@ -200,7 +200,7 @@ void main() {
       expect(card.source.topic!.code, 'drug-safety');
       expect(card.uuid, 'card-uuid-1');
       expect(card.suggestions!.first.actions!.first.resource,
-          isA<Patient>());
+          isA<Patient>(),);
       expect(card.selectionBehavior, CdsSelectionBehavior.atMostOne);
       expect(card.overrideReasons!.length, 1);
       expect(card.links!.length, 2);
@@ -211,7 +211,7 @@ void main() {
       expect(decoded.systemActions!.length, 1);
       expect(decoded.systemActions!.first.type, CdsActionType.delete);
       expect(decoded.systemActions!.first.resourceId,
-          'MedicationRequest/mr-old');
+          'MedicationRequest/mr-old',);
     });
   });
 

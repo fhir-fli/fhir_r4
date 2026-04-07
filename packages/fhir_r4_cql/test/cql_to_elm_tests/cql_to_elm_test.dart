@@ -63,7 +63,7 @@ void main() {
           final json = library.toJson();
           // Dart translator returns library content directly (no wrapper)
           actualLib = (json['library'] as Map<String, dynamic>?) ??
-              (json is Map<String, dynamic> ? json : {});
+              (json);
           parseSucceeded = true;
         } catch (e) {
           if (!knownParseFailures.contains(name)) {

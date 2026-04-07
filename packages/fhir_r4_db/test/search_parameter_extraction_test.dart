@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart'
@@ -15,7 +14,7 @@ import 'package:test/test.dart';
 /// Common args for all extraction calls.
 const _rt = 'Patient';
 const _id = 'test-1';
-final _lu = DateTime(2024, 1, 1).millisecondsSinceEpoch;
+final int _lu = DateTime(2024).millisecondsSinceEpoch;
 const _path = 'Patient.name';
 const _idx = 0;
 
@@ -202,7 +201,7 @@ void main() {
     });
 
     test('extracts FhirCodeEnum', () {
-      final status = ObservationStatus.final_;
+      const status = ObservationStatus.final_;
       final results =
           status.toTokenSearchParameter('Observation', _id, _lu, _path, _idx);
       expect(results.length, 1);
@@ -270,7 +269,7 @@ void main() {
       );
       expect(results.length, 1);
       expect(results.first.identifierSystem.value,
-          'http://hospital.example.org/mrn');
+          'http://hospital.example.org/mrn',);
       expect(results.first.identifierValue.value, 'MRN123');
     });
 
@@ -294,7 +293,7 @@ void main() {
     });
 
     test('handles null reference string', () {
-      final ref = Reference();
+      const ref = Reference();
       final results = ref.toReferenceSearchParameter(
         'Observation', _id, _lu, 'Observation.subject', _idx,
       );

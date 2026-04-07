@@ -38,12 +38,10 @@ class ValueSetChecker {
   /// Analyse a component of a value set
   void analyseValueSet() {
     if (valueSet != null) {
-      for (final include in valueSet!.compose?.include ?? <ValueSetInclude>[]) {
-        analyseComponent(include);
-      }
-      for (final exclude in valueSet!.compose?.exclude ?? <ValueSetInclude>[]) {
-        analyseComponent(exclude);
-      }
+      (valueSet!.compose?.include ?? <ValueSetInclude>[])
+          .forEach(analyseComponent);
+      (valueSet!.compose?.exclude ?? <ValueSetInclude>[])
+          .forEach(analyseComponent);
     }
   }
 

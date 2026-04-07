@@ -136,7 +136,7 @@ void main() {
       expect(card.uuid, 'card-1');
       expect(card.indicator, CdsIndicator.warning);
       expect(card.suggestions!.first.actions!.first.resource,
-          isA<ServiceRequest>());
+          isA<ServiceRequest>(),);
       expect(card.links!.first.type, CdsLinkType.absolute);
 
       // Step 4: Send feedback
@@ -284,7 +284,7 @@ void main() {
       expect(substituteSuggestion.actions![0].type, CdsActionType.delete);
       expect(substituteSuggestion.actions![1].type, CdsActionType.create);
       expect(substituteSuggestion.actions![1].resource,
-          isA<MedicationRequest>());
+          isA<MedicationRequest>(),);
 
       // Send override feedback
       await client.sendFeedback(
@@ -328,7 +328,7 @@ void main() {
       // Parse incoming request
       final request = CdsRequest.fromJson(requestJson);
       expect(request.hook, 'patient-view');
-      final patient = request.prefetch!['patient'] as Patient;
+      final patient = request.prefetch!['patient']! as Patient;
       expect(patient.id.toString(), 'p1');
 
       // Parse hook context
@@ -368,7 +368,7 @@ void main() {
       expect(decoded.cards.length, 1);
       expect(decoded.cards.first.indicator, CdsIndicator.warning);
       expect(decoded.cards.first.suggestions!.first.actions!.first.resource,
-          isA<Patient>());
+          isA<Patient>(),);
     });
   });
 

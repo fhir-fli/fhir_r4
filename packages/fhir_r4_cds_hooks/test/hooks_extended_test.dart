@@ -116,7 +116,7 @@ void main() {
         patientId: 'p1',
         dispatchedOrders: ['ServiceRequest/s1'],
         performer: 'Organization/o1',
-        fulfillmentTasks: Bundle(
+        fulfillmentTasks: const Bundle(
           type: BundleType.collection,
           entry: [
             BundleEntry(

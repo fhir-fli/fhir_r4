@@ -97,7 +97,7 @@ void main() {
         id: 'unicode-test'.toFhirString,
         name: [
           HumanName(
-            family: 'O\'Brien'.toFhirString,
+            family: "O'Brien".toFhirString,
             given: ['Rene\u0301e'.toFhirString],
           ),
         ],
@@ -349,7 +349,7 @@ void main() {
       expect(decoded.extension_, isNotNull);
       expect(decoded.extension_, hasLength(1));
       expect(
-        decoded.extension_!.first.url?.valueString,
+        decoded.extension_!.first.url.valueString,
         'http://example.org/fhir/ext/race',
       );
     });

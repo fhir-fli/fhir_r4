@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -74,7 +73,7 @@ void rangeTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"low":{"value":0},"high":{"value":100}}';
+      const json = '{"low":{"value":0},"high":{"value":100}}';
       final range = Range.fromJsonString(json);
       expect(range.low?.value?.valueNum, 0);
       expect(range.high?.value?.valueNum, 100);

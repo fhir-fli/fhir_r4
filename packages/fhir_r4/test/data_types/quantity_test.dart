@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -72,7 +71,7 @@ void quantityTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"value":72,"unit":"kg"}';
+      const json = '{"value":72,"unit":"kg"}';
       final qty = Quantity.fromJsonString(json);
       expect(qty.value?.valueNum, 72);
       expect(qty.unit?.valueString, 'kg');

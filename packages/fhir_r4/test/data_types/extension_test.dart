@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -136,7 +135,7 @@ void extensionTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"url":"http://example.org/ext","valueString":"hello"}';
+      const json = '{"url":"http://example.org/ext","valueString":"hello"}';
       final ext = FhirExtension.fromJsonString(json);
       expect(ext.url.valueString, 'http://example.org/ext');
       expect(ext.valueString?.valueString, 'hello');

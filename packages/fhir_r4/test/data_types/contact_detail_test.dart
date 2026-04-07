@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -74,7 +73,7 @@ void contactDetailTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"name":"Test Contact"}';
+      const json = '{"name":"Test Contact"}';
       final cd = ContactDetail.fromJsonString(json);
       expect(cd.name?.valueString, 'Test Contact');
     });

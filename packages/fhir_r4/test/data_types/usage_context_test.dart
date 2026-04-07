@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -9,7 +8,7 @@ void usageContextTest() {
       final uc = UsageContext(
         code: Coding(
           system: FhirUri(
-              'http://terminology.hl7.org/CodeSystem/usage-context-type'),
+              'http://terminology.hl7.org/CodeSystem/usage-context-type',),
           code: FhirCode('age'),
         ),
         valueX: CodeableConcept(
@@ -75,7 +74,7 @@ void usageContextTest() {
       final uc = UsageContext(
         code: Coding(code: FhirCode('age')),
         valueX: Quantity(
-            value: FhirDecimal(65), unit: FhirString('years')),
+            value: FhirDecimal(65), unit: FhirString('years'),),
       );
       final json = uc.toJson();
       expect(json['valueQuantity'], isA<Map>());
@@ -86,7 +85,7 @@ void usageContextTest() {
       final original = UsageContext(
         code: Coding(
           system: FhirUri(
-              'http://terminology.hl7.org/CodeSystem/usage-context-type'),
+              'http://terminology.hl7.org/CodeSystem/usage-context-type',),
           code: FhirCode('gender'),
         ),
         valueX: CodeableConcept(text: FhirString('Male')),
@@ -98,7 +97,7 @@ void usageContextTest() {
     });
 
     test('fromJsonString works', () {
-      final json =
+      const json =
           '{"code":{"code":"age"},"valueCodeableConcept":{"text":"Adult"}}';
       final uc = UsageContext.fromJsonString(json);
       expect(uc.code.code?.valueString, 'age');

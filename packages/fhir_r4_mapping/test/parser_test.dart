@@ -53,8 +53,4 @@ void testFile(String key, StructureMapParser parser) {
 String prettyJson(Map<String, dynamic> map) =>
     const JsonEncoder.withIndent('    ').convert(map);
 
-String prettyPrintJson(Map<String, dynamic> map) =>
-    const JsonEncoder.withIndent('    ').convert(map);
 
-String jsonPrettyPrint(Map<String, dynamic> map) =>
-    const JsonEncoder.withIndent('    ').convert(map);

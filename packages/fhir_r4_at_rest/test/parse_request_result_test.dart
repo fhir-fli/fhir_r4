@@ -62,7 +62,7 @@ void main() {
     });
 
     test('OperationOutcome with empty issues goes to error list', () {
-      final oo = OperationOutcome(issue: <OperationOutcomeIssue>[]);
+      const oo = OperationOutcome(issue: <OperationOutcomeIssue>[]);
       final result = parseRequestResult(oo);
 
       // isInformational requires isNotEmpty, so empty issues => error
@@ -90,7 +90,7 @@ void main() {
     });
 
     test('transaction-response with OperationOutcome entries sorts them', () {
-      final infoOo = OperationOutcome(
+      const infoOo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.information,
@@ -98,7 +98,7 @@ void main() {
           ),
         ],
       );
-      final errorOo = OperationOutcome(
+      const errorOo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.error,
@@ -106,7 +106,7 @@ void main() {
           ),
         ],
       );
-      final bundle = Bundle(
+      const bundle = Bundle(
         type: BundleType.transactionResponse,
         entry: <BundleEntry>[
           BundleEntry(resource: infoOo),
@@ -140,7 +140,7 @@ void main() {
       final oo = result.informationOperationOutcomes.first;
       expect(oo.issue.first.diagnostics.toString(), contains('201 Created'));
       expect(oo.issue.first.diagnostics.toString(),
-          contains('Patient/123/_history/1'));
+          contains('Patient/123/_history/1'),);
     });
 
     test('transaction-response with response outcome extracts resources', () {
@@ -162,7 +162,7 @@ void main() {
     });
 
     test('transaction-response with response outcome as OperationOutcome', () {
-      final errorOo = OperationOutcome(
+      const errorOo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.error,
@@ -203,7 +203,7 @@ void main() {
     });
 
     test('bundle with no entries returns empty results', () {
-      final bundle = Bundle(type: BundleType.transactionResponse);
+      const bundle = Bundle(type: BundleType.transactionResponse);
       final result = parseBundle(bundle);
 
       expect(result.resources, isEmpty);
@@ -234,7 +234,7 @@ void main() {
     });
 
     test('informational OperationOutcome goes to informational list', () {
-      final oo = OperationOutcome(
+      const oo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.information,
@@ -250,7 +250,7 @@ void main() {
     });
 
     test('error OperationOutcome goes to error list', () {
-      final oo = OperationOutcome(
+      const oo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.error,
@@ -285,7 +285,7 @@ void main() {
     });
 
     test('OperationOutcome entries are classified correctly', () {
-      final infoOo = OperationOutcome(
+      const infoOo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.information,
@@ -293,7 +293,7 @@ void main() {
           ),
         ],
       );
-      final bundle = Bundle(
+      const bundle = Bundle(
         type: BundleType.transactionResponse,
         entry: <BundleEntry>[
           BundleEntry(resource: infoOo),
@@ -359,7 +359,7 @@ void main() {
 
   group('isInformational', () {
     test('returns true for informational code', () {
-      final oo = OperationOutcome(
+      const oo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.information,
@@ -371,7 +371,7 @@ void main() {
     });
 
     test('returns false for error code', () {
-      final oo = OperationOutcome(
+      const oo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.error,
@@ -383,7 +383,7 @@ void main() {
     });
 
     test('returns false for empty issues', () {
-      final oo = OperationOutcome(issue: <OperationOutcomeIssue>[]);
+      const oo = OperationOutcome(issue: <OperationOutcomeIssue>[]);
       expect(isInformational(oo), isFalse);
     });
   });
@@ -422,7 +422,7 @@ void main() {
 
     test('constructor accepts initial values', () {
       final patient = Patient(id: '1'.toFhirString);
-      final oo = OperationOutcome(
+      const oo = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             severity: IssueSeverity.error,

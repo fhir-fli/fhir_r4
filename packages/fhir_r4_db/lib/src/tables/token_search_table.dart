@@ -64,7 +64,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   : const Value.absent(),
               tokenValue: Value(enumCode.valueString!),
               tokenDisplay: enumCode.display?.valueString != null
-                  ? Value(enumCode.display!.valueString!)
+                  ? Value(enumCode.display!.valueString)
                   : const Value.absent(),
             ),
           );
@@ -82,9 +82,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
-              tokenSystem: const Value.absent(),
               tokenValue: Value(code.valueString!),
-              tokenDisplay: const Value.absent(),
             ),
           );
         }
@@ -103,11 +101,11 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: coding.system?.valueString == null
                   ? const Value.absent()
-                  : Value(coding.system!.valueString!),
+                  : Value(coding.system!.valueString),
               tokenValue: Value(coding.code!.valueString!),
               tokenDisplay: coding.display?.valueString == null
                   ? const Value.absent()
-                  : Value(coding.display!.valueString!),
+                  : Value(coding.display!.valueString),
             ),
           );
         }
@@ -131,11 +129,11 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                       Value(paramIndex == null ? i : paramIndex * 100 + i),
                   tokenSystem: coding.system?.valueString == null
                       ? const Value.absent()
-                      : Value(coding.system!.valueString!),
+                      : Value(coding.system!.valueString),
                   tokenValue: Value(coding.code!.valueString!),
                   tokenDisplay: coding.display?.valueString == null
                       ? const Value.absent()
-                      : Value(coding.display!.valueString!),
+                      : Value(coding.display!.valueString),
                 ),
               );
             }
@@ -154,9 +152,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               paramIndex: Value(
                 paramIndex == null ? textIndex : paramIndex * 100 + textIndex,
               ),
-              tokenSystem: const Value.absent(),
               tokenValue: Value(codeableConcept.text!.valueString!),
-              tokenDisplay: const Value.absent(),
             ),
           );
         }
@@ -176,9 +172,8 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               tokenSystem: identifier.system?.valueString == null
                   ? const Value.absent()
-                  : Value(identifier.system!.valueString!),
+                  : Value(identifier.system!.valueString),
               tokenValue: Value(identifier.value!.valueString!),
-              tokenDisplay: const Value.absent(),
             ),
           );
         }
@@ -195,9 +190,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
-              tokenSystem: const Value.absent(),
               tokenValue: Value(boolean.valueString.toString()),
-              tokenDisplay: const Value.absent(),
             ),
           );
         }
@@ -214,9 +207,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               searchName: Value(searchName),
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
-              tokenSystem: const Value.absent(),
               tokenValue: Value(str.valueString!),
-              tokenDisplay: const Value.absent(),
             ),
           );
         }

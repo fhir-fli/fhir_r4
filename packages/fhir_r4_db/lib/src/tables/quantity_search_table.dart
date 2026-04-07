@@ -72,7 +72,7 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
               : Value(fhirObject.system.toString()),
           quantityCode: fhirObject.code?.valueString == null
               ? const Value.absent()
-              : Value(fhirObject.code!.valueString!),
+              : Value(fhirObject.code!.valueString),
         ),
       );
     }

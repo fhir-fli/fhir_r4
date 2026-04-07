@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -63,7 +62,7 @@ void periodTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"start":"2020-01-01","end":"2025-12-31"}';
+      const json = '{"start":"2020-01-01","end":"2025-12-31"}';
       final period = Period.fromJsonString(json);
       expect(period.start, isNotNull);
       expect(period.end, isNotNull);

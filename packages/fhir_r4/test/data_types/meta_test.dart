@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -12,12 +11,12 @@ void metaTest() {
         source: FhirUri('http://example.org/fhir'),
         profile: [
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/Patient'),
+              'http://hl7.org/fhir/StructureDefinition/Patient',),
         ],
         security: [
           Coding(
             system: FhirUri(
-                'http://terminology.hl7.org/CodeSystem/v3-Confidentiality'),
+                'http://terminology.hl7.org/CodeSystem/v3-Confidentiality',),
             code: FhirCode('R'),
             display: FhirString('Restricted'),
           ),
@@ -57,7 +56,7 @@ void metaTest() {
         source: FhirUri('http://example.org'),
         profile: [
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/Patient'),
+              'http://hl7.org/fhir/StructureDefinition/Patient',),
         ],
       );
       final json = meta.toJson();
@@ -83,7 +82,7 @@ void metaTest() {
         source: FhirUri('http://example.org'),
         profile: [
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/Patient'),
+              'http://hl7.org/fhir/StructureDefinition/Patient',),
         ],
         tag: [
           Coding(
@@ -102,7 +101,7 @@ void metaTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"versionId":"1","source":"http://example.org"}';
+      const json = '{"versionId":"1","source":"http://example.org"}';
       final meta = FhirMeta.fromJsonString(json);
       expect(meta.versionId?.valueString, '1');
       expect(meta.source?.valueString, 'http://example.org');
@@ -165,9 +164,9 @@ void metaTest() {
       final meta = FhirMeta(
         profile: [
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/Patient'),
+              'http://hl7.org/fhir/StructureDefinition/Patient',),
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/us-core-patient'),
+              'http://hl7.org/fhir/StructureDefinition/us-core-patient',),
         ],
       );
       final children = meta.getChildrenByName('profile');
@@ -187,9 +186,9 @@ void metaTest() {
       final meta = FhirMeta(
         profile: [
           FhirCanonical(
-              'http://hl7.org/fhir/StructureDefinition/Patient'),
+              'http://hl7.org/fhir/StructureDefinition/Patient',),
           FhirCanonical(
-              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'),
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',),
         ],
       );
       expect(meta.profile?.length, 2);

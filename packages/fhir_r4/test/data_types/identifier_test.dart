@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -12,7 +11,7 @@ void identifierTest() {
           coding: [
             Coding(
               system: FhirUri(
-                  'http://terminology.hl7.org/CodeSystem/v2-0203'),
+                  'http://terminology.hl7.org/CodeSystem/v2-0203',),
               code: FhirCode('MR'),
             ),
           ],
@@ -98,7 +97,7 @@ void identifierTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"system":"http://example.org","value":"12345"}';
+      const json = '{"system":"http://example.org","value":"12345"}';
       final id = Identifier.fromJsonString(json);
       expect(id.system?.valueString, 'http://example.org');
       expect(id.value?.valueString, '12345');
@@ -163,10 +162,10 @@ void identifierTest() {
     });
 
     test('different identifier uses', () {
-      final official = Identifier(use: IdentifierUse.official);
-      final usual = Identifier(use: IdentifierUse.usual);
-      final temp = Identifier(use: IdentifierUse.temp);
-      final secondary = Identifier(use: IdentifierUse.secondary);
+      const official = Identifier(use: IdentifierUse.official);
+      const usual = Identifier(use: IdentifierUse.usual);
+      const temp = Identifier(use: IdentifierUse.temp);
+      const secondary = Identifier(use: IdentifierUse.secondary);
       expect(official.use, IdentifierUse.official);
       expect(usual.use, IdentifierUse.usual);
       expect(temp.use, IdentifierUse.temp);

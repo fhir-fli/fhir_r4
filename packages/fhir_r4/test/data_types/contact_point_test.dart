@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -61,7 +60,7 @@ void contactPointTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"system":"phone","value":"555-0000"}';
+      const json = '{"system":"phone","value":"555-0000"}';
       final cp = ContactPoint.fromJsonString(json);
       expect(cp.system, ContactPointSystem.phone);
       expect(cp.value?.valueString, '555-0000');
@@ -128,10 +127,10 @@ void contactPointTest() {
     });
 
     test('different contact point systems', () {
-      final phone = ContactPoint(system: ContactPointSystem.phone);
-      final email = ContactPoint(system: ContactPointSystem.email);
-      final fax = ContactPoint(system: ContactPointSystem.fax);
-      final url = ContactPoint(system: ContactPointSystem.url);
+      const phone = ContactPoint(system: ContactPointSystem.phone);
+      const email = ContactPoint(system: ContactPointSystem.email);
+      const fax = ContactPoint(system: ContactPointSystem.fax);
+      const url = ContactPoint(system: ContactPointSystem.url);
       expect(phone.system, ContactPointSystem.phone);
       expect(email.system, ContactPointSystem.email);
       expect(fax.system, ContactPointSystem.fax);
@@ -139,9 +138,9 @@ void contactPointTest() {
     });
 
     test('different contact point uses', () {
-      final home = ContactPoint(use: ContactPointUse.home);
-      final work = ContactPoint(use: ContactPointUse.work);
-      final mobile = ContactPoint(use: ContactPointUse.mobile);
+      const home = ContactPoint(use: ContactPointUse.home);
+      const work = ContactPoint(use: ContactPointUse.work);
+      const mobile = ContactPoint(use: ContactPointUse.mobile);
       expect(home.use, ContactPointUse.home);
       expect(work.use, ContactPointUse.work);
       expect(mobile.use, ContactPointUse.mobile);

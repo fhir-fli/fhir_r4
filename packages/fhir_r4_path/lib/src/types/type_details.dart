@@ -249,9 +249,7 @@ class TypeDetails {
   }
 
   void update(TypeDetails source) {
-    for (final pt in source.types) {
-      addProfiledType(pt);
-    }
+    source.types.forEach(addProfiledType);
     collectionStatus ??= source.collectionStatus;
     if (source.collectionStatus == CollectionStatus.unordered) {
       collectionStatus = CollectionStatus.unordered;

@@ -13131,6 +13131,5 @@ class cqlLexer extends Lexer {
     return VOCABULARY;
   }
 
-  static final checkVersion =
-      () => RuntimeMetaData.checkVersion('4.13.1', RuntimeMetaData.VERSION);
+  static void checkVersion() => RuntimeMetaData.checkVersion('4.13.1', RuntimeMetaData.VERSION);
 }

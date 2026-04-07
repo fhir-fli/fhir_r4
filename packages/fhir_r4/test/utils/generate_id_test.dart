@@ -129,8 +129,8 @@ void main() {
     test('default includes letters and numbers', () {
       // Generate a long enough string that both should appear
       final id = generateRandomId(length: 200);
-      expect(id.contains(RegExp(r'[a-zA-Z]')), isTrue);
-      expect(id.contains(RegExp(r'[0-9]')), isTrue);
+      expect(id.contains(RegExp('[a-zA-Z]')), isTrue);
+      expect(id.contains(RegExp('[0-9]')), isTrue);
     });
   });
 

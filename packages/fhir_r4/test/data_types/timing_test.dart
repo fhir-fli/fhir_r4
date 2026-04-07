@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -15,7 +14,7 @@ void timingTest() {
           coding: [
             Coding(
               system: FhirUri(
-                  'http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation'),
+                  'http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation',),
               code: FhirCode('BID'),
               display: FhirString('Twice a day'),
             ),
@@ -71,7 +70,7 @@ void timingTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"code":{"text":"Daily"}}';
+      const json = '{"code":{"text":"Daily"}}';
       final timing = Timing.fromJsonString(json);
       expect(timing.code?.text?.valueString, 'Daily');
     });

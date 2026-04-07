@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -92,7 +91,7 @@ void annotationTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"text":"A note","authorString":"Dr. Smith"}';
+      const json = '{"text":"A note","authorString":"Dr. Smith"}';
       final ann = Annotation.fromJsonString(json);
       expect(ann.text.valueString, 'A note');
       expect(ann.authorString?.valueString, 'Dr. Smith');

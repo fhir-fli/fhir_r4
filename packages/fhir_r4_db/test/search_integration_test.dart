@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:drift/native.dart';
 import 'package:fhir_r4/fhir_r4.dart';

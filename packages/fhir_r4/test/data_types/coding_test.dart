@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -66,7 +65,7 @@ void codingTest() {
     });
 
     test('fromJsonString round-trips correctly', () {
-      final json = '{"system":"http://loinc.org","code":"12345-6"}';
+      const json = '{"system":"http://loinc.org","code":"12345-6"}';
       final coding = Coding.fromJsonString(json);
       expect(coding.system?.valueString, 'http://loinc.org');
       expect(coding.code?.valueString, '12345-6');

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -90,7 +89,7 @@ void referenceTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"reference":"Patient/123","display":"John Doe"}';
+      const json = '{"reference":"Patient/123","display":"John Doe"}';
       final ref = Reference.fromJsonString(json);
       expect(ref.reference?.valueString, 'Patient/123');
       expect(ref.display?.valueString, 'John Doe');

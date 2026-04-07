@@ -22,7 +22,7 @@ void main() {
           'status': 'final',
           'code': {
             'coding': [
-              {'system': 'http://loinc.org', 'code': '12345-6'}
+              {'system': 'http://loinc.org', 'code': '12345-6'},
             ],
           },
         };
@@ -125,8 +125,8 @@ void main() {
           'payloadType': [
             {
               'coding': [
-                {'code': 'any'}
-              ]
+                {'code': 'any'},
+              ],
             }
           ],
           'address': 'http://example.org/fhir',

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -77,7 +76,7 @@ void humanNameTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"family":"Doe","given":["John"]}';
+      const json = '{"family":"Doe","given":["John"]}';
       final name = HumanName.fromJsonString(json);
       expect(name.family?.valueString, 'Doe');
       expect(name.given?[0].valueString, 'John');

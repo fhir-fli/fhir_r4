@@ -81,25 +81,25 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
                 paramIndex == null ? const Value.absent() : Value(paramIndex),
             referenceValue: ref.reference?.valueString == null
                 ? const Value.absent()
-                : Value(ref.reference!.valueString!),
+                : Value(ref.reference!.valueString),
             referenceResourceType: referenceComponents.resourceType == null
                 ? const Value.absent()
-                : Value(referenceComponents.resourceType!),
+                : Value(referenceComponents.resourceType),
             referenceIdPart: referenceComponents.id == null
                 ? const Value.absent()
-                : Value(referenceComponents.id!),
+                : Value(referenceComponents.id),
             referenceVersion: referenceComponents.version == null
                 ? const Value.absent()
-                : Value(referenceComponents.version!),
+                : Value(referenceComponents.version),
             referenceBaseUrl: referenceComponents.baseUrl == null
                 ? const Value.absent()
-                : Value(referenceComponents.baseUrl!),
+                : Value(referenceComponents.baseUrl),
             identifierSystem: ref.identifier?.system?.valueString == null
                 ? const Value.absent()
-                : Value(ref.identifier!.system!.valueString!),
+                : Value(ref.identifier!.system!.valueString),
             identifierValue: ref.identifier?.value?.valueString == null
                 ? const Value.absent()
-                : Value(ref.identifier!.value!.valueString!),
+                : Value(ref.identifier!.value!.valueString),
           ),
         );
 
@@ -118,21 +118,19 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
                 paramIndex == null ? const Value.absent() : Value(paramIndex),
             referenceValue: canonical.valueString == null
                 ? const Value.absent()
-                : Value(canonical.valueString!),
+                : Value(canonical.valueString),
             referenceResourceType: referenceComponents.resourceType == null
                 ? const Value.absent()
-                : Value(referenceComponents.resourceType!),
+                : Value(referenceComponents.resourceType),
             referenceIdPart: referenceComponents.id == null
                 ? const Value.absent()
-                : Value(referenceComponents.id!),
+                : Value(referenceComponents.id),
             referenceVersion: referenceComponents.version == null
                 ? const Value.absent()
-                : Value(referenceComponents.version!),
+                : Value(referenceComponents.version),
             referenceBaseUrl: referenceComponents.baseUrl == null
                 ? const Value.absent()
-                : Value(referenceComponents.baseUrl!),
-            identifierSystem: const Value.absent(),
-            identifierValue: const Value.absent(),
+                : Value(referenceComponents.baseUrl),
           ),
         );
 

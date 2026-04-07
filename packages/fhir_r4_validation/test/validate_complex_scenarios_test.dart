@@ -119,11 +119,11 @@ void main() {
           PropertyNode(path: 'Patient.id')
             ..key = ValueNode('id', 'id')
             ..value = LiteralNode('bad-patient', '"bad-patient"',
-                path: 'Patient.id'),
+                path: 'Patient.id',),
           PropertyNode(path: 'Patient.unknownField')
             ..key = ValueNode('unknownField', 'unknownField')
             ..value = LiteralNode('bad', '"bad"',
-                path: 'Patient.unknownField'),
+                path: 'Patient.unknownField',),
         ]);
 
       final elements = {
@@ -164,12 +164,12 @@ void main() {
                     PropertyNode(path: 'Patient.name[0].family')
                       ..key = ValueNode('family', 'family')
                       ..value = LiteralNode('Doe', '"Doe"',
-                          path: 'Patient.name[0].family'),
+                          path: 'Patient.name[0].family',),
                     PropertyNode(path: 'Patient.name[0].badNestedField')
                       ..key =
                           ValueNode('badNestedField', 'badNestedField')
                       ..value = LiteralNode('invalid', '"invalid"',
-                          path: 'Patient.name[0].badNestedField'),
+                          path: 'Patient.name[0].badNestedField',),
                   ]),
               )),
         );
@@ -342,7 +342,7 @@ void main() {
           PropertyNode(path: 'Observation.status')
             ..key = ValueNode('status', 'status')
             ..value = LiteralNode('final', '"final"',
-                path: 'Observation.status'),
+                path: 'Observation.status',),
         );
 
       final elements = {
@@ -430,7 +430,7 @@ void main() {
           PropertyNode(path: 'Bundle.id')
             ..key = ValueNode('id', 'id')
             ..value = LiteralNode('no-type', '"no-type"',
-                path: 'Bundle.id'),
+                path: 'Bundle.id',),
         );
 
       final elements = {

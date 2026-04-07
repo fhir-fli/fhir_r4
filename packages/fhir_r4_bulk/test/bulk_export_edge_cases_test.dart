@@ -284,7 +284,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<OperationOutcome>());
-      final oo = result.first as OperationOutcome;
+      final oo = result.first! as OperationOutcome;
       expect(oo.issue.first.details?.text?.valueString, contains('400'));
     });
 
@@ -301,7 +301,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<OperationOutcome>());
-      final oo = result.first as OperationOutcome;
+      final oo = result.first! as OperationOutcome;
       expect(oo.issue.first.details?.text?.valueString, contains('401'));
     });
 
@@ -349,7 +349,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<OperationOutcome>());
-      final oo = result.first as OperationOutcome;
+      final oo = result.first! as OperationOutcome;
       expect(
         oo.issue.first.details?.text?.valueString,
         contains('Content-Location'),
@@ -364,7 +364,7 @@ void main() {
         if (callCount == 1) {
           return http.Response('', 202, headers: {
             'content-location': 'http://fake/poll',
-          });
+          },);
         }
         // Poll returns 200 with empty body
         return http.Response('', 200);
@@ -388,7 +388,7 @@ void main() {
         if (callCount == 1) {
           return http.Response('', 202, headers: {
             'content-location': 'http://fake/poll',
-          });
+          },);
         }
         return http.Response('this is not json', 200);
       });
@@ -496,7 +496,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<OperationOutcome>());
-      final oo = result.first as OperationOutcome;
+      final oo = result.first! as OperationOutcome;
       expect(
         oo.issue.first.diagnostics?.valueString,
         contains('Connection refused'),
@@ -510,7 +510,7 @@ void main() {
         if (callCount == 1) {
           return http.Response('', 202, headers: {
             'content-location': 'http://fake/poll',
-          });
+          },);
         }
         throw Exception('Network timeout');
       });
@@ -523,7 +523,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<OperationOutcome>());
-      final oo = result.first as OperationOutcome;
+      final oo = result.first! as OperationOutcome;
       expect(
         oo.issue.first.diagnostics?.valueString,
         contains('Network timeout'),

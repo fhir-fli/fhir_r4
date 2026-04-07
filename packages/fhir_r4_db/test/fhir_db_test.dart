@@ -252,7 +252,7 @@ Future<void> main() async {
         dbFile.deleteSync();
       }
 
-      final encDb = FhirDb(NativeDatabase(dbFile, setup: setup!));
+      final encDb = FhirDb(NativeDatabase(dbFile, setup: setup));
       final encDao = encDb.fhirDao;
 
       try {

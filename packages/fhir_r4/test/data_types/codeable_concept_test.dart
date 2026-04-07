@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -77,7 +76,7 @@ void codeableConceptTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"text":"Headache","coding":[{"code":"25064002"}]}';
+      const json = '{"text":"Headache","coding":[{"code":"25064002"}]}';
       final cc = CodeableConcept.fromJsonString(json);
       expect(cc.text?.valueString, 'Headache');
       expect(cc.coding?[0].code?.valueString, '25064002');

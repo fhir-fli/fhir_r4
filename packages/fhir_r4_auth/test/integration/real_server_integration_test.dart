@@ -120,8 +120,6 @@ void _testPatientStandaloneLaunch() {
         }
       } catch (e) {
         // Log error but don't fail if it's a network/credential issue
-      } catch (e) {
-        // Log error but don't fail if it's a network/credential issue
         print('Epic patient standalone launch test failed: $e');
         // Re-throw if it's a configuration issue
         if (e is ConfigurationException) {}

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -90,7 +89,7 @@ void addressTest() {
     });
 
     test('fromJsonString works', () {
-      final json = '{"city":"Boston","state":"MA"}';
+      const json = '{"city":"Boston","state":"MA"}';
       final address = Address.fromJsonString(json);
       expect(address.city?.valueString, 'Boston');
       expect(address.state?.valueString, 'MA');
@@ -156,18 +155,18 @@ void addressTest() {
     });
 
     test('different address uses', () {
-      final home = Address(use: AddressUse.home);
-      final work = Address(use: AddressUse.work);
-      final temp = Address(use: AddressUse.temp);
+      const home = Address(use: AddressUse.home);
+      const work = Address(use: AddressUse.work);
+      const temp = Address(use: AddressUse.temp);
       expect(home.use, AddressUse.home);
       expect(work.use, AddressUse.work);
       expect(temp.use, AddressUse.temp);
     });
 
     test('different address types', () {
-      final postal = Address(type: AddressType.postal);
-      final physical = Address(type: AddressType.physical);
-      final both = Address(type: AddressType.both);
+      const postal = Address(type: AddressType.postal);
+      const physical = Address(type: AddressType.physical);
+      const both = Address(type: AddressType.both);
       expect(postal.type, AddressType.postal);
       expect(physical.type, AddressType.physical);
       expect(both.type, AddressType.both);

@@ -105,10 +105,10 @@ void main() {
         expect(
           deepCompare(
             {
-              'a': {'b': 1}
+              'a': {'b': 1},
             },
             {
-              'a': {'b': 1}
+              'a': {'b': 1},
             },
           ),
           isTrue,
@@ -119,10 +119,10 @@ void main() {
         expect(
           deepCompare(
             {
-              'a': {'b': 1}
+              'a': {'b': 1},
             },
             {
-              'a': {'b': 2}
+              'a': {'b': 2},
             },
           ),
           isFalse,
@@ -135,16 +135,16 @@ void main() {
             {
               'level1': {
                 'level2': {
-                  'level3': [1, 2, 3]
-                }
-              }
+                  'level3': [1, 2, 3],
+                },
+              },
             },
             {
               'level1': {
                 'level2': {
-                  'level3': [1, 2, 3]
-                }
-              }
+                  'level3': [1, 2, 3],
+                },
+              },
             },
           ),
           isTrue,
@@ -170,11 +170,11 @@ void main() {
           deepCompare(
             [
               {'a': 1},
-              {'b': 2}
+              {'b': 2},
             ],
             [
               {'a': 1},
-              {'b': 2}
+              {'b': 2},
             ],
           ),
           isTrue,
@@ -237,14 +237,14 @@ void main() {
           'resourceType': 'Patient',
           'id': 'example',
           'name': [
-            {'family': 'Doe'}
+            {'family': 'Doe'},
           ],
         };
         final json2 = {
           'resourceType': 'Patient',
           'id': 'example',
           'name': [
-            {'family': 'Smith'}
+            {'family': 'Smith'},
           ],
         };
         expect(deepCompare(json1, json2), isFalse);

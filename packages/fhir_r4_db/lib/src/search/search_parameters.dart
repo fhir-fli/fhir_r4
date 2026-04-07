@@ -19244,7 +19244,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in [
         fhir.FhirBoolean(
           resource.deceasedX != null &&
-              resource.deceasedBoolean?.valueBoolean != false,
+              (resource.deceasedBoolean?.valueBoolean ?? true),
         ),
       ]) {
         searchParameterLists.tokenParams.addAll(
