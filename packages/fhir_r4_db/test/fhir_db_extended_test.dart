@@ -490,13 +490,13 @@ Future<void> main() async {
       final valueSets =
           await dao.getAllCanonicalByType<ValueSet>(R4ResourceType.ValueSet);
       expect(valueSets.length, 2);
-      expect(valueSets.every((v) => v is ValueSet), true);
+      expect(valueSets.every((v) => v is ValueSet), true); // ignore: unnecessary_type_check
 
       final structDefs = await dao.getAllCanonicalByType<StructureDefinition>(
         R4ResourceType.StructureDefinition,
       );
       expect(structDefs.length, 1);
-      expect(structDefs.first.name?.valueString, 'TestStructDef1');
+      expect(structDefs.first.name.valueString, 'TestStructDef1');
     });
 
     test('getAllCanonicalByType returns empty for unmatched type', () async {

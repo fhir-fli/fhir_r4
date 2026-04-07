@@ -6,7 +6,6 @@ import 'package:fhir_r4_db/fhir_r4_db.dart'
         DateSearchParametersExtension,
         NumberSearchParametersExtension,
         QuantitySearchParametersExtension,
-        ReferenceComponents,
         ReferenceSearchParametersExtension,
         StringSearchParametersExtension,
         TokenSearchParametersExtension,
@@ -16,7 +15,7 @@ import 'package:test/test.dart';
 /// Common args for all extraction calls.
 const _rt = 'Patient';
 const _id = 'test-1';
-final _lu = DateTime(2024, 1, 1);
+final _lu = DateTime(2024, 1, 1).millisecondsSinceEpoch;
 const _path = 'Patient.name';
 const _idx = 0;
 
@@ -299,9 +298,9 @@ void main() {
       final results = ref.toReferenceSearchParameter(
         'Observation', _id, _lu, 'Observation.subject', _idx,
       );
-      expect(results.length, 1);
-      // Should still create a row but with absent parsed fields
-      expect(results.first.referenceResourceType.present, false);
+      // A Reference with no reference string and no identifier is display-only
+      // and should be skipped
+      expect(results, isEmpty);
     });
   });
 
