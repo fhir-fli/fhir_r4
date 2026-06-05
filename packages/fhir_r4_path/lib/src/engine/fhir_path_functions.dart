@@ -2503,7 +2503,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) async {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext
           .makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
         'round',
@@ -2570,7 +2573,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2612,7 +2618,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2657,7 +2666,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2695,7 +2707,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2733,7 +2748,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2772,7 +2790,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) async {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2787,7 +2808,10 @@ class FhirPathFunctions {
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       final n1 =
           await engine.execute(execContext, focus, expr.parameters.first, true);
-      if (n1.length != 1) {
+      if (n1.isEmpty) {
+        return [];
+      }
+      if (n1.length > 1) {
         throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
           'power',
           '0',
@@ -2895,7 +2919,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) async {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
@@ -2909,7 +2936,10 @@ class FhirPathFunctions {
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       final n1 =
           await engine.execute(execContext, focus, expr.parameters[0], true);
-      if (n1.length != 1) {
+      if (n1.isEmpty) {
+        return [];
+      }
+      if (n1.length > 1) {
         throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
           'log',
           '0',
@@ -2945,7 +2975,10 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    if (focus.length != 1) {
+    if (focus.isEmpty) {
+      return [];
+    }
+    if (focus.length > 1) {
       throw fpContext.makeExceptionPlural(
         focus.length,
         expr,
