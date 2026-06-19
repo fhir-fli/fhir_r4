@@ -1,0 +1,72 @@
+import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/ucum.dart';
+
+final exercises02 = {
+  'Boolean True': CqlBoolean(true),
+  'Boolean False': CqlBoolean(false),
+  'Boolean Not': CqlBoolean(true),
+  'Boolean And': CqlBoolean(true),
+  'Boolean Xor': CqlBoolean(true),
+  'Boolean Implies': CqlBoolean(true),
+  'Simple String': 'John Doe',
+  'String Escapes': "John O'Mally",
+  'String Equality': CqlBoolean(true),
+  'String Comparisons': CqlBoolean(true),
+  'Integer': CqlInteger(5),
+  'Decimal': CqlDecimal(5.0),
+  'Implicit Decimal Conversion': CqlDecimal(10.0),
+  'Decimal Comparison Ignores Precision': CqlBoolean(true),
+  'Standard Arithmetic Precedence': CqlInteger(52),
+  'Use Parentheses to Force Precedence': CqlInteger(70),
+  'Division Returns Decimal': CqlDecimal(5),
+  'Use Truncated Divide (div) for Integer Division': CqlInteger(5),
+  'Mod returns remainder': CqlInteger(0),
+  'Mass Quantity': ValidatedQuantity.fromString("25 'mg'"),
+  'Length Quantity': ValidatedQuantity.fromString("100 'cm2'"),
+  'Respect the Units': CqlBoolean(true),
+  'Calculate the Units': ValidatedQuantity.fromString("100 'cm2'"),
+  'Date Value': CqlDate.fromString('2021-03-01'),
+  'DateTime Value': CqlDateTime.fromString('2021-03-01T14:30:14.5'),
+  'Time Value (at midnight)': CqlTime('12:00:00.000'),
+  'Time Value': CqlTime('14:30:14.5'),
+  'Partial Date (Year)': CqlDate.fromString('2014'),
+  'Partial Date (Year-Month)': CqlDate.fromString('2014-01'),
+  'Partial Time (Hour)': CqlTime('14'),
+  'Partial Time (Hour Minute)': CqlTime('14:30'),
+  'DateTime Function': CqlDate.fromString('2014-07-05'),
+  'Time Function': CqlTime('14:30'),
+  'Date From': CqlDate.fromString('2014-01-25'),
+  'Time From': CqlTime('14:30:14'),
+  'Component From (Year)': CqlInteger(2014),
+  'Now Function': CqlDateTime.fromDateTime(DateTime.now()),
+  'Today Function':
+      CqlDate.fromString(DateTime.now().toIso8601String().substring(0, 10)),
+  'TimeOfDay Function':
+      CqlTime(DateTime.now().toIso8601String().substring(11)),
+  'Simple Info': <String, dynamic>{
+    "name": 'Patrick',
+    "dob": CqlDate.fromString('2014-01-01')
+  },
+  'Nested Info': <String, dynamic>{
+    "name": 'Patrick',
+    "dob": CqlDate.fromString('2014-01-01'),
+    "address": {
+      "line1": '41 Spinning Ave',
+      "city": 'Dayton',
+      "state": 'OH',
+    },
+    "phones": [
+      {
+        "number": '202-413-1234',
+        "use": 'home',
+      }
+    ]
+  },
+  'Null Comparison': null,
+  'Null Arithmetic': null,
+  'Null Predicate': CqlBoolean(false),
+  'Not Null Predicate': CqlBoolean(true),
+  '3-Valued Logic And': CqlBoolean(false),
+  '3-Valued Logic Or': CqlBoolean(true),
+  'Coalesce Expression': CqlInteger(1),
+};

@@ -1,25 +1,24 @@
 name: fhir_r4_cql
-description: Attempt to Support the CQL Library in Dart.
-version: 0.5.1
+description: >-
+  FHIR R4 binding for the model-independent `cql` engine: the R4
+  ModelResolver and TerminologyProvider implementations that let the CQL
+  engine execute against FHIR R4 data.
+version: 0.6.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/cql
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ^3.5.0
 
 dependencies:
-  antlr4: ^4.13.2
-  collection: ^1.19.1
+  cql:
+    path: ../../../cql
   fhir_r4: ^0.5.0
   fhir_r4_path: ^0.5.0
-  http: ^1.6.0
-  path: ^1.9.1
   ucum: ^0.8.0
-  uuid: ^4.5.3
-  xml: ^6.6.1
-  xml2json: ^6.2.7
 
-  json_annotation: 4.11.0
 dev_dependencies:
+  antlr4: ^4.13.2
+  collection: ^1.19.1
   lints: ^5.1.1
   test: ^1.29.0
