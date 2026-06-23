@@ -551,28 +551,28 @@ class FhirPathOperations {
     if (vs != null) {
       for (final l in left) {
         if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          final result = await fpContext.worker.validateCodeWithCoding(
+          final result = await fpContext.worker.validateCodeForCodingValue(
             fpContext.terminologyServiceOptions.withGuessSystem(),
-            TypeConvertor.castToCoding(l)!,
+            l,
             vs,
           );
           if (result.isOk) {
             ans = true;
           }
         } else if (l.fhirType == 'Coding') {
-          final result = await fpContext.worker.validateCodeWithCoding(
+          final result = await fpContext.worker.validateCodeForCodingValue(
             fpContext.terminologyServiceOptions,
-            TypeConvertor.castToCoding(l)!,
+            l,
             vs,
           );
           if (result.isOk) {
             ans = true;
           }
         } else if (l.fhirType == 'CodeableConcept') {
-          final cc = TypeConvertor.castToCodeableConcept(l);
-          final vr = await fpContext.worker.validateCodeWithCodeableConcept(
+          final vr =
+              await fpContext.worker.validateCodeForCodeableConceptValue(
             fpContext.terminologyServiceOptions,
-            cc!,
+            l,
             vs,
           );
           if (vr.isOk) {

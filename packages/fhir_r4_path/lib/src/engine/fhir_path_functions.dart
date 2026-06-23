@@ -1402,27 +1402,28 @@ class FhirPathFunctions {
 
     final l = focus.first;
     if (['code', 'string', 'uri'].contains(l.fhirType)) {
-      final result = await fpContext.worker.validateCodeWithCoding(
+      final result = await fpContext.worker.validateCodeForCodingValue(
         fpContext.terminologyServiceOptions,
-        TypeConvertor.castToCoding(l)!,
+        l,
         vs,
       );
       return utilities.makeBoolean(
         result.isOk,
       );
     } else if (l.fhirType == 'Coding') {
-      final result = await fpContext.worker.validateCodeWithCoding(
+      final result = await fpContext.worker.validateCodeForCodingValue(
         fpContext.terminologyServiceOptions,
-        TypeConvertor.castToCoding(l)!,
+        l,
         vs,
       );
       return utilities.makeBoolean(
         result.isOk,
       );
     } else if (l.fhirType == 'CodeableConcept') {
-      final result = await fpContext.worker.validateCodeWithCodeableConcept(
+      final result =
+          await fpContext.worker.validateCodeForCodeableConceptValue(
         fpContext.terminologyServiceOptions,
-        TypeConvertor.castToCodeableConcept(l)!,
+        l,
         vs,
       );
       return utilities.makeBoolean(result.isOk);

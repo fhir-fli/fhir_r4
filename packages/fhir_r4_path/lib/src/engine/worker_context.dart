@@ -267,6 +267,41 @@ class WorkerContext {
     }
   }
 
+  /// Validates a code-carrying value (a `Coding`, or a `code`/`string`/`uri`
+  /// primitive) against [valueSet].
+  ///
+  /// The value→`Coding` adaptation is FHIR-version-specific, so it lives here
+  /// at the model boundary (the worker) rather than in the FHIRPath engine —
+  /// the engine passes the node and lets the worker interpret it.
+  Future<ValidationResult> validateCodeForCodingValue(
+    ValidationOptions options,
+    FhirBase value,
+    ValueSet? valueSet,
+  ) async {
+    final coding = TypeConvertor.castToCoding(value);
+    if (coding == null) {
+      return ValidationResult.error(
+        message: 'Unable to interpret a ${value.fhirType} as a Coding',
+      );
+    }
+    return validateCodeWithCoding(options, coding, valueSet);
+  }
+
+  /// As [validateCodeForCodingValue], but for a `CodeableConcept`-typed value.
+  Future<ValidationResult> validateCodeForCodeableConceptValue(
+    ValidationOptions options,
+    FhirBase value,
+    ValueSet valueSet,
+  ) async {
+    final concept = TypeConvertor.castToCodeableConcept(value);
+    if (concept == null) {
+      return ValidationResult.error(
+        message: 'Unable to interpret a ${value.fhirType} as a CodeableConcept',
+      );
+    }
+    return validateCodeWithCodeableConcept(options, concept, valueSet);
+  }
+
   Future<ValidationResult> validateCodeWithCodeableConcept(
     ValidationOptions options,
     CodeableConcept code,
