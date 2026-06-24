@@ -3,13 +3,22 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A unique sentinel value which is not null.
 const fhirSentinel = Object();
 
 /// Base class for all FHIR elements.
-abstract class FhirBase {
+///
+/// Implements [FhirNode] (the version-independent model-reflection contract)
+/// so the model-agnostic fhirpath/cql engines can navigate R4 data through
+/// the interface without importing this package. The contract members
+/// (`fhirType`, `getChildrenByName`, `listChildrenNames`, `primitiveValue`,
+/// `isPrimitive`, `hasType`, `isEmpty`, `getChildByName`) are already
+/// declared below; covariant returns (`List<FhirBase>` for
+/// `List<FhirNode>`) satisfy the interface with no body changes.
+abstract class FhirBase implements FhirNode {
   /// Main constructor for [FhirBase].
   const FhirBase();
 

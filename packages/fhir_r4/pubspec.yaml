@@ -18,6 +18,11 @@ environment:
 
 dependencies:
   collection: ^1.19.1
+  # Leaf model-reflection interface (FhirBase implements FhirNode) so the
+  # model-independent fhirpath/cql engines can navigate R4 data without
+  # depending on this package directly.
+  fhir_node:
+    path: ../../../fhir_node
   uuid: ^4.5.3
   xml: ^6.6.1
   yaml: ^3.1.3
