@@ -41,6 +41,17 @@ class WorkerContext {
     return '4.0.1'; // Replace with dynamic version if applicable
   }
 
+  /// Whether [typeName] resolves to a known FHIR type. A neutral type-query
+  /// the engine uses instead of inspecting a returned `StructureDefinition`,
+  /// so the type metadata (StructureDefinition lookup) stays binding-side.
+  Future<bool> isKnownType(String typeName) async {
+    try {
+      return (await fetchTypeDefinition(typeName)) != null;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<StructureDefinition?> fetchTypeDefinition(String typeName) async {
     var sd = await resourceCache.getStructureDefinition(typeName);
     if (sd != null) {

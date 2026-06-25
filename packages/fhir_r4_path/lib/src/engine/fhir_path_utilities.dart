@@ -376,11 +376,7 @@ class FhirPathUtilities {
           tn.isFhirResourceType) {
         return true;
       }
-      try {
-        return ((await fpContext.fetchTypeDefinition(tn)) != null);
-      } catch (e) {
-        return false;
-      }
+      return fpContext.worker.isKnownType(tn);
     }
     final t = tn.split('.');
     if (t.length != 2) {
@@ -415,11 +411,7 @@ class FhirPathUtilities {
         }
       }
 
-      try {
-        return ((await fpContext.fetchTypeDefinition(t[1])) != null);
-      } catch (e) {
-        return false;
-      }
+      return fpContext.worker.isKnownType(t[1]);
     } else {
       return false;
     }
