@@ -775,8 +775,11 @@ class FhirPathOperations {
     if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
         fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
       result.add(fpContext.factory.string('${l.primitiveValue}${r.primitiveValue}', disallowExtensions: false));
-    } else if (l is FhirNumber && r is FhirNumber) {
-      result.add((l + r)!);
+    } else if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+      result.add(
+        utilities.numericResult(utilities.nodeNum(l)! + utilities.nodeNum(r)!,
+            l, r),
+      );
     } else if (l is FhirDateTimeBase && r is Quantity) {
       result.add(utilities.dateAdd(l, r, false, expr));
     } else {
@@ -833,8 +836,11 @@ class FhirPathOperations {
     final l = left.first;
     final r = right.first;
 
-    if (l is FhirNumber && r is FhirNumber) {
-      result.add((l * r)!);
+    if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+      result.add(
+        utilities.numericResult(utilities.nodeNum(l)! * utilities.nodeNum(r)!,
+            l, r),
+      );
     } else if (l is Quantity && r is Quantity) {
       final pl = utilities.qtyToPair(l);
       final pr = utilities.qtyToPair(r);
@@ -908,8 +914,11 @@ class FhirPathOperations {
     final l = left.first;
     final r = right.first;
 
-    if (l is FhirNumber && r is FhirNumber) {
-      result.add((l - r)!);
+    if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+      result.add(
+        utilities.numericResult(utilities.nodeNum(l)! - utilities.nodeNum(r)!,
+            l, r),
+      );
     } else if ((l is FhirNumber || l is Quantity) && r is Quantity) {
       if (l.toString() == '0') {
         final qty = r;
@@ -1019,14 +1028,15 @@ class FhirPathOperations {
     final l = left.first;
     final r = right.first;
 
-    if (l is FhirNumber && r is FhirNumber) {
+    if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
       try {
-        final d1 = FhirDecimal(l.valueNum);
-        final d2 = FhirDecimal(r.valueNum);
-        if (d2.valueNum == 0) {
+        final ln = utilities.nodeNum(l);
+        final rn = utilities.nodeNum(r);
+        if (ln == null || rn == null || rn == 0) {
           return <FhirBase>[];
         }
-        result.add((d1 / d2)! as FhirDecimal);
+        // FHIRPath division always yields a decimal.
+        result.add(fpContext.factory.decimal(ln / rn, disallowExtensions: false));
       } catch (e) {
         return <FhirBase>[];
       }

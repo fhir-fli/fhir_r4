@@ -101,6 +101,19 @@ class FhirPathUtilities {
         : int.tryParse(s) ?? double.tryParse(s);
   }
 
+  /// Builds the FHIR-typed result of a binary numeric operation on operands
+  /// [l] and [r] whose computed value is [value], mirroring
+  /// `FhirNumber._operateOrNull`: a decimal when either operand is a decimal,
+  /// otherwise an integer when [value] is a Dart `int` (`FhirNumber.fromNum`),
+  /// else a decimal. Bare (extensions allowed), matching the arithmetic
+  /// operators' direct construction.
+  FhirBase numericResult(num value, FhirBase l, FhirBase r) {
+    final eitherDecimal = l.fhirType == 'decimal' || r.fhirType == 'decimal';
+    return eitherDecimal || value is! int
+        ? fpContext.factory.decimal(value, disallowExtensions: false)
+        : fpContext.factory.integer(value, disallowExtensions: false);
+  }
+
   bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
         list.first is FhirBoolean &&
