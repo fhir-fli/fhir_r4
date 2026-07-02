@@ -287,7 +287,7 @@ class FhirPathUtilities {
       );
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return datesEqual(left, right);
-    } else if (left is FhirDecimal || right is FhirDecimal) {
+    } else if (left.fhirType == 'decimal' || right.fhirType == 'decimal') {
       return decEqual(left.toString(), right.toString());
     } else if (left.isPrimitive && right.isPrimitive) {
       return left.primitiveValue == right.primitiveValue;
@@ -495,11 +495,11 @@ class FhirPathUtilities {
         ),
       );
     }
-    if (left is FhirBoolean && right is FhirBoolean) {
+    if (left.fhirType == 'boolean' && right.fhirType == 'boolean') {
       return doEquals(left, right);
     }
-    if (left is FhirNumber && right is FhirNumber) {
-      return equivalentNumber(left.valueNum, right.valueNum);
+    if (isNumericNode(left) && isNumericNode(right)) {
+      return equivalentNumber(nodeNum(left), nodeNum(right));
     }
     if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return left.isEquivalent(right);

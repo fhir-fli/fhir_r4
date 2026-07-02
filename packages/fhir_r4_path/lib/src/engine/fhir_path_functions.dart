@@ -2336,9 +2336,10 @@ class FhirPathFunctions {
   List<FhirBase> funcIsInteger(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirInteger || focus.first is FhirBoolean) {
+    } else if (focus.first.fhirType == 'integer' ||
+        focus.first.fhirType == 'boolean') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (focus.first.fhirType == 'string') {
       return [fpContext.factory.boolean(Utilities.isInteger(focus.first.toString()), disallowExtensions: false)];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
@@ -2348,15 +2349,15 @@ class FhirPathFunctions {
   List<FhirBase> funcIsBoolean(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirInteger) {
-      final value = (focus.first as FhirInteger).valueInt;
+    } else if (focus.first.fhirType == 'integer') {
+      final value = utilities.nodeNum(focus.first);
       return [fpContext.factory.boolean(value != null && value >= 0 && value <= 1, disallowExtensions: false)];
-    } else if (focus.first is FhirDecimal) {
-      final value = (focus.first as FhirDecimal).valueDouble;
+    } else if (focus.first.fhirType == 'decimal') {
+      final value = utilities.nodeNum(focus.first);
       return [fpContext.factory.boolean(value != null && (value == 0 || value == 1), disallowExtensions: false)];
-    } else if (focus.first is FhirBoolean) {
+    } else if (focus.first.fhirType == 'boolean') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (focus.first.fhirType == 'string') {
       final value = focus.first.toString().toLowerCase();
       return [fpContext.factory.boolean(value == 'true' || value == 'false', disallowExtensions: false)];
     } else {
@@ -2367,7 +2368,8 @@ class FhirPathFunctions {
   List<FhirBase> funcIsDateTime(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirDateTime || focus.first is FhirDate) {
+    } else if (focus.first.fhirType == 'dateTime' ||
+        focus.first.fhirType == 'date') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first is FhirString) {
       final regex = RegExp(
@@ -2382,7 +2384,8 @@ class FhirPathFunctions {
   List<FhirBase> funcIsDate(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirDateTime || focus.first is FhirDate) {
+    } else if (focus.first.fhirType == 'dateTime' ||
+        focus.first.fhirType == 'date') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first is FhirString) {
       final regex = RegExp(
@@ -2428,7 +2431,7 @@ class FhirPathFunctions {
   List<FhirBase> funcIsTime(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirTime) {
+    } else if (focus.first.fhirType == 'time') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first is FhirString) {
       final regex = RegExp(
@@ -2444,14 +2447,16 @@ class FhirPathFunctions {
   List<FhirBase> funcIsString(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirString ||
-        focus.first is FhirInteger ||
-        focus.first is FhirDecimal ||
-        focus.first is FhirDate ||
-        focus.first is FhirDateTime ||
-        focus.first is FhirTime ||
-        focus.first is FhirBoolean ||
-        focus.first is Quantity) {
+    } else if (const {
+      'string',
+      'integer',
+      'decimal',
+      'date',
+      'dateTime',
+      'time',
+      'boolean',
+      'Quantity',
+    }.contains(focus.first.fhirType)) {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
