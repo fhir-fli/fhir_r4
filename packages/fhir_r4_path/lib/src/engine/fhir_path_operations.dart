@@ -1096,18 +1096,12 @@ class FhirPathOperations {
     final l = left.first;
     final r = right.first;
 
-    if (l is FhirInteger &&
-        l.valueInt != null &&
-        r is FhirInteger &&
-        r.valueInt != null) {
-      final divisor = r.valueInt!;
-      if (divisor != 0) {
-        result.add(fpContext.factory.integer(l.valueInt! ~/ divisor, disallowExtensions: false));
-      }
-    } else if ((l is FhirDecimal || l is FhirInteger) &&
-        (r is FhirDecimal || r is FhirInteger)) {
-      if ((r as FhirNumber).valueNum != 0) {
-        result.add(((l as FhirNumber) ~/ r)!);
+    if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+      final ln = utilities.nodeNum(l);
+      final rn = utilities.nodeNum(r);
+      // Integer (truncating) division; empty when the divisor is zero.
+      if (ln != null && rn != null && rn != 0) {
+        result.add(utilities.numericResult(ln ~/ rn, l, r));
       }
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
@@ -1156,26 +1150,13 @@ class FhirPathOperations {
     final result = <FhirBase>[];
     final l = left.first;
     final r = right.first;
-    if (l is FhirNumber && r is FhirNumber) {
-      if (l is FhirDecimal || r is FhirDecimal) {
-        try {
-          final d1 = l;
-          final d2 = r;
-          if (d2.valueNum != 0) {
-            result.add((d1 % d2)!);
-          }
-        } catch (e) {
-          throw fpContext
-              .makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
-        }
-      } else {
-        final modulus = r.valueNum as int?;
-        if (modulus != null && modulus != 0) {
-          result.add(fpContext.factory.integer((l % modulus)!.valueNum, disallowExtensions: false));
-        }
+    if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+      final ln = utilities.nodeNum(l);
+      final rn = utilities.nodeNum(r);
+      // Empty when the divisor is zero (avoids a division-by-zero throw).
+      if (ln != null && rn != null && rn != 0) {
+        result.add(utilities.numericResult(ln % rn, l, r));
       }
-    } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
-        (r.fhirType == 'decimal' || r.fhirType == 'integer')) {
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_OP_INCOMPATIBLE', [
         'mod',
