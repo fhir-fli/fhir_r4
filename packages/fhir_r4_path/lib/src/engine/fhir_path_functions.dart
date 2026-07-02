@@ -415,7 +415,7 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    return [FhirInteger(focus.length).noExtensions()];
+    return [fpContext.factory.integer(focus.length)];
   }
 
   Future<List<FhirBase>> funcWhere(
@@ -1057,11 +1057,11 @@ class FhirPathFunctions {
     final sw = utilities.convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
-      result.add(FhirInteger(0).noExtensions());
+      result.add(fpContext.factory.integer(0));
     } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
         fpContext.doImplicitStringConversion) {
       final s = utilities.convertToString(focus.first);
-      result.add(FhirInteger(s.indexOf(sw)).noExtensions());
+      result.add(fpContext.factory.integer(s.indexOf(sw)));
     }
     return result;
   }
@@ -1310,7 +1310,7 @@ class FhirPathFunctions {
         (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
             fpContext.doImplicitStringConversion)) {
       final s = utilities.convertToString(focus.first);
-      result.add(FhirInteger(s.length).noExtensions());
+      result.add(fpContext.factory.integer(s.length));
     }
     return result;
   }
@@ -2032,11 +2032,11 @@ class FhirPathFunctions {
     final s = utilities.convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isInteger(s)) {
-      result.add(FhirInteger(int.parse(s)).noExtensions());
+      result.add(fpContext.factory.integer(int.parse(s)));
     } else if (s == 'true') {
-      result.add(FhirInteger(1).noExtensions());
+      result.add(fpContext.factory.integer(1));
     } else if (s == 'false') {
-      result.add(FhirInteger(0).noExtensions());
+      result.add(fpContext.factory.integer(0));
     }
     return result;
   }
@@ -2613,7 +2613,7 @@ class FhirPathFunctions {
       if (base is FhirDecimal) {
         result.add(FhirDecimal(base.abs()).noExtensions());
       } else if (base is FhirInteger) {
-        result.add(FhirInteger(base.abs()).noExtensions());
+        result.add(fpContext.factory.integer(base.abs()));
       } else if (base is FhirUnsignedInt) {
         result.add(base.noExtensions());
       } else {
@@ -2661,7 +2661,7 @@ class FhirPathFunctions {
       final value = base.valueNum;
       if (value != null) {
         try {
-          result.add(FhirInteger(value.ceil()).noExtensions());
+          result.add(fpContext.factory.integer(value.ceil()));
         } catch (e) {
           // Do nothing on error
         }
@@ -2702,7 +2702,7 @@ class FhirPathFunctions {
       final value = base.valueNum;
       if (value != null) {
         try {
-          result.add(FhirInteger(value.floor()).noExtensions());
+          result.add(fpContext.factory.integer(value.floor()));
         } catch (e) {
           // Do nothing on error
         }
@@ -2970,7 +2970,7 @@ class FhirPathFunctions {
       if (s.contains('.')) {
         s = s.split('.').first;
       }
-      result.add(FhirInteger(int.parse(s)).noExtensions());
+      result.add(fpContext.factory.integer(int.parse(s)));
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
         'truncate',
@@ -3180,17 +3180,17 @@ class FhirPathFunctions {
 
     if (base.hasType(['decimal'])) {
       result.add(
-        FhirInteger(
+        fpContext.factory.integer(
           (base.primitiveValue ?? '').getDecimalPrecision(),
-        ),
+         disallowExtensions: false),
       );
     } else if (base.hasType(['date', 'dateTime'])) {
       result.add(
-        FhirInteger((base.primitiveValue ?? '').getDatePrecision()),
+        fpContext.factory.integer((base.primitiveValue ?? '').getDatePrecision(), disallowExtensions: false),
       );
     } else if (base.hasType(['time'])) {
       result.add(
-        FhirInteger((base.primitiveValue ?? '').getTimePrecision()),
+        fpContext.factory.integer((base.primitiveValue ?? '').getTimePrecision(), disallowExtensions: false),
       );
     } else {
       throw fpContext.makeException(

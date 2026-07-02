@@ -131,7 +131,7 @@ class FHIRPathEngine {
         final token = lexer.take();
         final numStr = token.substring(1);
         if (numStr.isInteger) {
-          constantValue = FhirInteger(int.parse(numStr)).noExtensions();
+          constantValue = fpContext.factory.integer(int.parse(numStr));
         } else if (numStr.isDecimal()) {
           constantValue = FhirDecimal(double.parse(numStr)).noExtensions();
         } else {
@@ -1841,7 +1841,7 @@ class FHIRPathEngine {
     if (lexer.isStringConstant()) {
       return fpContext.factory.string(processConstantString(lexer.take(), lexer));
     } else if (lexer.current?.isInteger ?? false) {
-      return FhirInteger(int.parse(lexer.take())).noExtensions();
+      return fpContext.factory.integer(int.parse(lexer.take()));
     } else if (lexer.current?.isDecimal() ?? false) {
       return FhirDecimal(double.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.existsInList({'true', 'false'}) ?? false) {

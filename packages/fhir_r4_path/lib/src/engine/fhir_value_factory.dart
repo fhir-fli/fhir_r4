@@ -28,7 +28,7 @@ class FhirValueFactory {
     return disallowExtensions ? v.noExtensions() : v;
   }
 
-  FhirBase integer(int? value, {bool disallowExtensions = true}) {
+  FhirBase integer(num? value, {bool disallowExtensions = true}) {
     final v = FhirInteger(value);
     return disallowExtensions ? v.noExtensions() : v;
   }

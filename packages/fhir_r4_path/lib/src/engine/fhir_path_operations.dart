@@ -1084,7 +1084,7 @@ class FhirPathOperations {
         r.valueInt != null) {
       final divisor = r.valueInt!;
       if (divisor != 0) {
-        result.add(FhirInteger(l.valueInt! ~/ divisor));
+        result.add(fpContext.factory.integer(l.valueInt! ~/ divisor, disallowExtensions: false));
       }
     } else if ((l is FhirDecimal || l is FhirInteger) &&
         (r is FhirDecimal || r is FhirInteger)) {
@@ -1153,7 +1153,7 @@ class FhirPathOperations {
       } else {
         final modulus = r.valueNum as int?;
         if (modulus != null && modulus != 0) {
-          result.add(FhirInteger((l % modulus)!.valueNum));
+          result.add(fpContext.factory.integer((l % modulus)!.valueNum, disallowExtensions: false));
         }
       }
     } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
