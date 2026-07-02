@@ -204,21 +204,6 @@ class FhirPathUtilities {
     return b ? FpEquality.true_ : FpEquality.false_;
   }
 
-  void addTypeAndDescendents(
-    List<StructureDefinition> sdl,
-    StructureDefinition dt,
-    List<StructureDefinition> types,
-  ) {
-    sdl.add(dt);
-    for (final sd in types) {
-      if (sd.baseDefinition != null &&
-          sd.baseDefinition.toString() == dt.url.toString() &&
-          sd.derivation == TypeDerivationRule.specialization) {
-        addTypeAndDescendents(sdl, sd, types);
-      }
-    }
-  }
-
   bool? doEquals(FhirBase left, FhirBase right) {
     if (left is Quantity && right is Quantity) {
       return qtyEqual(left, right);

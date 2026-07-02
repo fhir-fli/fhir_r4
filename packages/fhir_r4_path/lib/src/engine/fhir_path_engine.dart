@@ -1314,7 +1314,13 @@ class FHIRPathEngine {
       }
 
       final result = TypeDetails(null);
-      await getChildTypesByName(type, expression.name!, result, expression);
+      await fpContext.worker.getChildTypesByName(
+        type,
+        expression.name!,
+        result,
+        expression,
+        allowPolymorphicNames: fpContext.allowPolymorphicNames,
+      );
       return result;
     } else if (contextOrType is ExecutionTypeContext &&
         focusOrExp is TypeDetails?) {
@@ -1486,33 +1492,20 @@ class FHIRPathEngine {
             [structureDefinition.url!.toString()],
           );
         } else {
-          final ed = await getElementDefinition(
+          final resolved = await fpContext.worker.resolveContextTypeDetails(
             structureDefinition,
             context,
-            true,
+            structureDefinition.url!.toString(),
             expressionNode,
           );
-          if (ed == null) {
+          if (resolved == null) {
             throw fpContext.makeException(
               expressionNode,
               'FHIRPATH_UNKNOWN_CONTEXT_ELEMENT',
               [context],
             );
           }
-          if (ed.fixedType != null) {
-            types = TypeDetails(CollectionStatus.singleton, [ed.fixedType!]);
-          } else if ((ed.definition?.type?.isEmpty ?? true) ||
-              isAbstractType(ed.definition!.type!)) {
-            types = TypeDetails(
-              CollectionStatus.singleton,
-              ['${structureDefinition.url!}#$context'],
-            );
-          } else {
-            types = TypeDetails(CollectionStatus.singleton);
-            for (final t in ed.definition?.type ?? <ElementDefinitionType>[]) {
-              types.addType(t.code.toString());
-            }
-          }
+          types = resolved;
         }
         return executeType(
           ExecutionTypeContext(
@@ -1563,26 +1556,20 @@ class FHIRPathEngine {
           throw fpContext
               .makeException(expressionNode, 'Unknown context: $context', []);
         }
-        final ed =
-            await getElementDefinition(sd, context, true, expressionNode);
-        if (ed == null) {
+        final resolved = await fpContext.worker.resolveContextTypeDetails(
+          sd,
+          context,
+          ctxt,
+          expressionNode,
+        );
+        if (resolved == null) {
           throw fpContext.makeException(
             expressionNode,
             'Unknown context element: ',
             [context],
           );
         }
-        if (ed.fixedType != null) {
-          types = TypeDetails(CollectionStatus.singleton, [ed.fixedType!]);
-        } else if ((ed.definition?.type?.isEmpty ?? true) ||
-            isAbstractType(ed.definition!.type!)) {
-          types = TypeDetails(CollectionStatus.singleton, ['$ctxt#$context']);
-        } else {
-          types = TypeDetails(CollectionStatus.singleton);
-          for (final t in ed.definition?.type ?? <ElementDefinitionType>[]) {
-            types.addType(t.code.toString());
-          }
-        }
+        types = resolved;
       }
       return executeType(
         ExecutionTypeContext(appContext, resourceType, types, types),
@@ -1714,7 +1701,13 @@ class FHIRPathEngine {
   ) {
     final result = TypeDetails(CollectionStatus.unordered);
     for (final f in focus.getTypes()) {
-      getChildTypesByName(f, mask, result, expr);
+      fpContext.worker.getChildTypesByName(
+        f,
+        mask,
+        result,
+        expr,
+        allowPolymorphicNames: fpContext.allowPolymorphicNames,
+      );
     }
     return result;
   }
@@ -1759,242 +1752,6 @@ class FHIRPathEngine {
           }
         }
       }
-    }
-  }
-
-  Future<void> getChildTypesByName(
-    String? type,
-    String name,
-    TypeDetails result,
-    ExpressionNode expr,
-  ) async {
-    if (type == null || type.isEmpty) {
-      throw fpContext
-          .makeException(expr, 'FHIRPATH_NO_TYPE', ['getChildTypesByName']);
-    }
-    if (type == 'http://hl7.org/fhir/StructureDefinition/xhtml') {
-      return;
-    }
-    if (type.startsWith(NS_SYSTEM_TYPE)) {
-      return;
-    }
-
-    if (type == TypeDetails.FP_SimpleTypeInfo) {
-      getSimpleTypeChildTypesByName(name, result);
-    } else if (type == TypeDetails.FP_ClassInfo) {
-      getClassInfoChildTypesByName(name, result);
-    } else {
-      String? url;
-      if (type.contains('#')) {
-        url = type.substring(0, type.indexOf('#'));
-      } else {
-        url = type;
-      }
-      var tail = '';
-      final sd =
-          await fpContext.worker.fetchResource<StructureDefinition>(uri: url);
-      if (sd == null) {
-        throw fpContext.makeException(
-          expr,
-          'FHIRPATH_NO_TYPE',
-          [url, 'getChildTypesByName'],
-        );
-      }
-      final sdl = <StructureDefinition>[];
-      ElementDefinitionMatch? m;
-      if (type.contains('#')) {
-        m = await getElementDefinition(
-          sd,
-          type.substring(type.indexOf('#') + 1),
-          false,
-          expr,
-        );
-      }
-      if (m?.definition != null && hasDataType(m!.definition!)) {
-        if (m.fixedType != null) {
-          final dt = await fpContext.worker.fetchResource<StructureDefinition>(
-            uri: m.fixedType!.sdNs(fpContext.worker.getOverrideVersionNs()),
-          );
-          if (dt == null) {
-            throw fpContext.makeException(expr, 'FHIRPATH_NO_TYPE', [
-              m.fixedType!.sdNs(fpContext.worker.getOverrideVersionNs()),
-              'getChildTypesByName',
-            ]);
-          }
-          sdl.add(dt);
-        } else {
-          for (final t in m.definition!.type ?? <ElementDefinitionType>[]) {
-            final dt =
-                await fpContext.worker.fetchResource<StructureDefinition>(
-              uri: t.code
-                  .toString()
-                  .sdNs(fpContext.worker.getOverrideVersionNs()),
-            );
-            if (dt == null) {
-              throw fpContext.makeException(expr, 'FHIRPATH_NO_TYPE', [
-                t.code.toString().sdNs(fpContext.worker.getOverrideVersionNs()),
-                'getChildTypesByName',
-              ]);
-            }
-            utilities.addTypeAndDescendents(
-              sdl,
-              dt,
-              await fpContext.worker.allStructures(),
-            );
-          }
-        }
-      } else {
-        utilities.addTypeAndDescendents(
-          sdl,
-          sd,
-          await fpContext.worker.allStructures(),
-        );
-        if (type.contains('#')) {
-          tail = type.substring(type.indexOf('#') + 1);
-          tail = tail.substring(tail.indexOf('.'));
-        }
-      }
-
-      for (final sdi in sdl) {
-        var path = '${sdi.snapshot?.element[0].path ?? ''}$tail.';
-        if (name == '**') {
-          assert(
-            result.collectionStatus == CollectionStatus.unordered,
-            'CollectionStatus.unordered',
-          );
-          for (final ed in sdi.snapshot?.element ?? <ElementDefinition>[]) {
-            if (ed.path.valueString?.startsWith(path) ?? false) {
-              for (final t in ed.type ?? <ElementDefinitionType>[]) {
-                if (t.code.toString().isNotEmpty) {
-                  String? tn;
-                  if (t.code.toString() == 'Element' ||
-                      t.code.toString() == 'BackboneElement') {
-                    tn = '${sdi.type}#${ed.path}';
-                  } else {
-                    tn = t.code.toString();
-                  }
-                  if (t.code.toString() == 'Resource') {
-                    for (final rn
-                        in await fpContext.worker.getResourceNames()) {
-                      if (!(await result
-                          .hasTypeFromWorker(fpContext.worker, [rn]))) {
-                        await getChildTypesByName(
-                          result.addType(rn),
-                          '**',
-                          result,
-                          expr,
-                        );
-                      }
-                    }
-                  } else if (!(await result
-                      .hasTypeFromWorker(fpContext.worker, [tn]))) {
-                    await getChildTypesByName(
-                      result.addType(tn),
-                      '**',
-                      result,
-                      expr,
-                    );
-                  }
-                }
-              }
-            }
-          }
-        } else if (name == '*') {
-          assert(
-            result.collectionStatus == CollectionStatus.unordered,
-            'CollectionStatus.unordered',
-          );
-          for (final ed in sdi.snapshot?.element ?? <ElementDefinition>[]) {
-            if ((ed.path.valueString?.startsWith(path) ?? false) &&
-                !(ed.path.valueString?.substring(path.length).contains('.') ??
-                    false)) {
-              for (final t in ed.type ?? <ElementDefinitionType>[]) {
-                if (t.code.toString().isEmpty) {
-                  result.addType('System.string');
-                } else if (t.code.toString() == 'Element' ||
-                    t.code.toString() == 'BackboneElement') {
-                  result.addType('${sdi.type}#${ed.path}');
-                } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(await fpContext.worker.getResourceNames());
-                } else {
-                  result.addType(t.code.toString());
-                }
-              }
-            }
-          }
-        } else {
-          path = '${sdi.snapshot?.element[0].path ?? ''}$tail.$name';
-
-          final ed = await getElementDefinition(
-            sdi,
-            path,
-            fpContext.allowPolymorphicNames,
-            expr,
-          );
-          if (ed != null) {
-            if (ed.fixedType?.isNotEmpty ?? false) {
-              result.addType(ed.fixedType!);
-            } else {
-              for (final t
-                  in ed.definition?.type ?? <ElementDefinitionType>[]) {
-                if (t.code.toString().isEmpty) {
-                  if ((ed.definition?.id?.valueString != null &&
-                          [
-                            'Element.id',
-                            'Extension.url',
-                          ].contains(ed.definition!.id!.valueString)) ||
-                      (ed.definition?.base?.path.valueString != null &&
-                          [
-                            'Resource.id',
-                            'Element.id',
-                            'Extension.url',
-                          ].contains(ed.definition!.base!.path.valueString))) {
-                    result.addTypeWithProfile(TypeDetails.FP_NS, 'string');
-                  }
-                  break;
-                }
-
-                ProfiledType? pt;
-                if (t.code.toString() == 'Element' ||
-                    t.code.toString() == 'BackboneElement') {
-                  pt = ProfiledType('${sdi.url}#$path');
-                } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(await fpContext.worker.getResourceNames());
-                } else {
-                  pt = ProfiledType(t.code.toString());
-                }
-                if (pt != null) {
-                  if (t.profile?.isNotEmpty ?? false) {
-                    pt.addProfiles(t.profile!);
-                  }
-                  if (ed.definition?.binding != null) {
-                    pt.addBinding(ed.definition!.binding);
-                  }
-                  result.addProfiledType(pt);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  void getClassInfoChildTypesByName(String name, TypeDetails result) {
-    if (name == 'namespace') {
-      result.addType(TypeDetails.FP_String);
-    }
-    if (name == 'name') {
-      result.addType(TypeDetails.FP_String);
-    }
-  }
-
-  void getSimpleTypeChildTypesByName(String name, TypeDetails result) {
-    if (name == 'namespace') {
-      result.addType(TypeDetails.FP_String);
-    }
-    if (name == 'name') {
-      result.addType(TypeDetails.FP_String);
     }
   }
 
@@ -2073,113 +1830,6 @@ class FHIRPathEngine {
       }
     }
     return newContext;
-  }
-
-  ///
-  /// ***************************************
-  /// ELEMENT AND CLASS INFO HANDLING
-  /// ***************************************
-  ///
-  Future<ElementDefinitionMatch?> getElementDefinition(
-    StructureDefinition sd,
-    String path,
-    bool allowTypedName,
-    ExpressionNode expr,
-  ) async {
-    for (final ed in sd.snapshot?.element ?? <ElementDefinition>[]) {
-      if (ed.path.valueString == path) {
-        if (ed.hasContentReference()) {
-          return getElementDefinitionById(sd, ed.contentReference!.toString());
-        } else {
-          return ElementDefinitionMatch(ed, null);
-        }
-      }
-
-      if ((ed.path.valueString?.endsWith('[x]') ?? false) &&
-          path.startsWith(
-            ed.path.valueString!.substring(0, ed.path.valueString!.length - 3),
-          ) &&
-          path.length == ed.path.valueString!.length - 3) {
-        return ElementDefinitionMatch(ed, null);
-      }
-
-      if (allowTypedName &&
-          (ed.path.valueString?.endsWith('[x]') ?? false) &&
-          path.startsWith(
-            ed.path.valueString!.substring(0, ed.path.valueString!.length - 3),
-          ) &&
-          path.length > ed.path.valueString!.length - 3) {
-        final s = path
-            .substring(ed.path.valueString!.length - 3)
-            .uncapitalize(); // Assuming uncapitalize is implemented somewhere
-        if (fpContext.primitiveTypes.contains(s)) {
-          return ElementDefinitionMatch(ed, s);
-        } else {
-          return ElementDefinitionMatch(
-            ed,
-            path.substring(ed.path.valueString!.length - 3),
-          );
-        }
-      }
-
-      if ((ed.path.valueString?.contains('.') ?? false) &&
-          path.startsWith('${ed.path.valueString}.') &&
-          ed.type != null &&
-          ed.type!.isNotEmpty &&
-          !isAbstractType(ed.type!)) {
-        if (ed.type!.length > 1) {
-          throw StateError('Internal typing issue...');
-        }
-
-        final nsd = await fpContext.worker.fetchResource<StructureDefinition>(
-          uri: ed.type![0].code
-              .toString()
-              .sdNs(fpContext.worker.getOverrideVersionNs()),
-        );
-
-        if (nsd == null) {
-          throw fpContext.makeException(expr, 'FHIRPATH_NO_TYPE', [
-            ed.type![0].code.valueString ?? '',
-            'getElementDefinition',
-          ]);
-        }
-
-        return getElementDefinition(
-          nsd,
-          '${nsd.id?.valueString}'
-          '${path.substring(ed.path.valueString!.length)}',
-          allowTypedName,
-          expr,
-        );
-      }
-
-      if (ed.hasContentReference() &&
-          path.startsWith('${ed.path.valueString}.')) {
-        final m = getElementDefinitionById(sd, ed.contentReference!.toString());
-        if (m?.definition?.path.valueString != null) {
-          return getElementDefinition(
-            sd,
-            '${m!.definition!.path.valueString}'
-            '${path.substring(ed.path.valueString!.length)}',
-            allowTypedName,
-            expr,
-          );
-        }
-      }
-    }
-    return null;
-  }
-
-  ElementDefinitionMatch? getElementDefinitionById(
-    StructureDefinition sd,
-    String ref,
-  ) {
-    for (final ed in sd.snapshot?.element ?? <ElementDefinition>[]) {
-      if (ref == '#${ed.id}') {
-        return ElementDefinitionMatch(ed, null);
-      }
-    }
-    return null;
   }
 
   ///
@@ -2599,13 +2249,6 @@ class FHIRPathEngine {
     }
   }
 
-  bool isAbstractType(List<ElementDefinitionType> list) {
-    return list.length != 1 ||
-        list.first.code.toString().existsInList(
-          {'Element', 'BackboneElement', 'Resource', 'DomainResource'},
-        );
-  }
-
   Future<TypeDetails?> operateTypes(
     TypeDetails left,
     FpOperation operation,
@@ -2741,12 +2384,6 @@ class FHIRPathEngine {
         }
         return result;
     }
-  }
-
-  bool hasDataType(ElementDefinition ed) {
-    return ed.hasType([]) &&
-        !(ed.getType().first.code.toString() == 'Element' ||
-            ed.getType().first.code.toString() == 'BackboneElement');
   }
 
   Future<void> checkContextString(
