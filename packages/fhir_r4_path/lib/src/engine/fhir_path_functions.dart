@@ -2114,19 +2114,19 @@ class FhirPathFunctions {
     final result = <FhirBase>[];
     if (focus.length == 1) {
       final item = focus.first;
-      if (item is Quantity) {
+      if (utilities.isQuantityNode(item)) {
         result.add(item);
-      } else if (item is FhirString) {
+      } else if (item.fhirType == 'string') {
         final q = parseQuantityString(item.primitiveValue);
         if (q != null) {
           result.add(q);
         }
-      } else if (item is FhirNumber) {
+      } else if (utilities.isNumericNode(item)) {
         result.add(
-          Quantity(
-            value: FhirDecimal(item.valueNum),
-            system: 'http://unitsofmeasure.org'.toFhirUri,
-            code: '1'.toFhirCode,
+          fpContext.factory.quantity(
+            value: utilities.nodeNum(item),
+            system: 'http://unitsofmeasure.org',
+            code: '1',
           ),
         );
       }
@@ -2134,7 +2134,7 @@ class FhirPathFunctions {
     return result;
   }
 
-  Quantity? parseQuantityString(String? str) {
+  FhirBase? parseQuantityString(String? str) {
     if (str == null) {
       return null;
     }
@@ -2190,10 +2190,10 @@ class FhirPathFunctions {
       }
     } else {
       if (Utilities.isDecimal(s)) {
-        return Quantity(
-          value: FhirDecimal(int.tryParse(s) ?? double.parse(s)),
-          system: FhirUri('http://unitsofmeasure.org'),
-          code: FhirCode('1'),
+        return fpContext.factory.quantity(
+          value: int.tryParse(s) ?? double.parse(s),
+          system: 'http://unitsofmeasure.org',
+          code: '1',
         );
       } else {
         return null;
@@ -2461,12 +2461,10 @@ class FhirPathFunctions {
   List<FhirBase> funcIsQuantity(List<FhirBase> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
-    } else if (focus.first is FhirInteger ||
-        focus.first is FhirDecimal ||
-        focus.first is Quantity ||
-        focus.first is FhirBoolean) {
+    } else if (const {'integer', 'decimal', 'Quantity', 'boolean'}
+        .contains(focus.first.fhirType)) {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (focus.first.fhirType == 'string') {
       final quantity = parseQuantityString(focus.first.toString());
       return [fpContext.factory.boolean(quantity != null, disallowExtensions: false)];
     } else {
@@ -3519,11 +3517,11 @@ class FhirPathFunctions {
     return false;
   }
 
-  Quantity quantityFromUcum(String v, String code) {
-    return Quantity(
-      value: FhirDecimal(int.tryParse(v) ?? double.parse(v)),
-      system: FhirUri('http://unitsofmeasure.org'),
-      code: FhirCode(code),
+  FhirBase quantityFromUcum(String v, String code) {
+    return fpContext.factory.quantity(
+      value: int.tryParse(v) ?? double.parse(v),
+      system: 'http://unitsofmeasure.org',
+      code: code,
     );
   }
 }

@@ -18,9 +18,11 @@ class FhirPathUtilities {
   String convertToString(FhirBase item) {
     if (item.isPrimitive) {
       return item.primitiveValue ?? '';
-    } else if (item is Quantity) {
-      final q = item.copyWith();
-      if (q.unit != null &&
+    } else if (isQuantityNode(item)) {
+      final unit = qtyUnit(item);
+      final system = qtySystem(item);
+      final valueStr = _firstChildPrimitive(item, 'value');
+      if (unit != null &&
           [
             'year',
             'years',
@@ -38,14 +40,13 @@ class FhirPathUtilities {
             'seconds',
             'millisecond',
             'milliseconds',
-          ].contains(q.unit?.valueString) &&
-          (q.system == null ||
-              q.system.toString() == 'http://unitsofmeasure.org')) {
-        return '${q.value} ${q.unit}';
+          ].contains(unit) &&
+          (system == null || system == 'http://unitsofmeasure.org')) {
+        return '$valueStr $unit';
       }
-      if (q.system.toString() == 'http://unitsofmeasure.org') {
-        final u = "'${q.code}'";
-        return '${q.value} $u';
+      if (system == 'http://unitsofmeasure.org') {
+        final u = "'${qtyCode(item)}'";
+        return '$valueStr $u';
       } else {
         return item.toString();
       }
