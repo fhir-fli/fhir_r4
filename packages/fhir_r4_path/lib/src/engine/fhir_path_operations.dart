@@ -284,10 +284,10 @@ class FhirPathOperations {
             expr,
           );
         } else {
-          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
-          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          final lQuantity = utilities.qtyToCanonicalDecimal(l);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r);
+          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
           return opLessThan(dl, dr, expr);
         }
       }
@@ -351,10 +351,10 @@ class FhirPathOperations {
             expr,
           );
         } else {
-          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
-          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          final lQuantity = utilities.qtyToCanonicalDecimal(l);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r);
+          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
           return opGreater(dl, dr, expr);
         }
       }
@@ -417,10 +417,10 @@ class FhirPathOperations {
             expr,
           );
         } else {
-          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
-          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          final lQuantity = utilities.qtyToCanonicalDecimal(l);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r);
+          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
           return opLessOrEqual(dl, dr, expr);
         }
       }
@@ -483,10 +483,10 @@ class FhirPathOperations {
             expr,
           );
         } else {
-          final lQuantity = utilities.qtyToCanonicalDecimal(l as Quantity);
-          final rQuantity = utilities.qtyToCanonicalDecimal(r as Quantity);
-          final dl = lQuantity == null ? <FhirDecimal>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirDecimal>[] : [rQuantity];
+          final lQuantity = utilities.qtyToCanonicalDecimal(l);
+          final rQuantity = utilities.qtyToCanonicalDecimal(r);
+          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
           return opGreaterOrEqual(dl, dr, expr);
         }
       }

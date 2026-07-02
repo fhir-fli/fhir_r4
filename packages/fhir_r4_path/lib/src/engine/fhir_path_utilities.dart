@@ -596,17 +596,20 @@ class FhirPathUtilities {
     return false;
   }
 
-  FhirDecimal? qtyToCanonicalDecimal(Quantity q) {
-    if (q.system?.toString() != 'http://unitsofmeasure.org') {
+  FhirBase? qtyToCanonicalDecimal(FhirBase q) {
+    if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
     try {
       final pair = Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? '1',
+        value: UcumDecimal.fromNum(qtyValue(q)!),
+        unit: qtyCode(q) ?? '1',
       );
       final canonicalPair = fpContext.worker.ucumService.getCanonicalForm(pair);
-      return FhirDecimal(canonicalPair.value.asDouble);
+      return fpContext.factory.decimal(
+        canonicalPair.value.asDouble,
+        disallowExtensions: false,
+      );
     } catch (e) {
       return null;
     }
