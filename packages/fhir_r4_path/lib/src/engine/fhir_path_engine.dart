@@ -1441,10 +1441,10 @@ class FHIRPathEngine {
 
     if (next.inner != null) {
       // Handle inner nodes by constructing the fully qualified name
-      result.add(FhirString('${next.name}.${next.inner!.name}'));
+      result.add(fpContext.factory.string('${next.name}.${next.inner!.name}', disallowExtensions: false));
     } else if (next.name != null) {
       // Handle nodes with a name
-      result.add(FhirString(next.name));
+      result.add(fpContext.factory.string(next.name, disallowExtensions: false));
     } else if (next.kind == ExpressionNodeKind.group) {
       // Process group nodes recursively
 
@@ -1839,14 +1839,13 @@ class FHIRPathEngine {
   ///
   FhirBase? _processConstant(FHIRLexer lexer) {
     if (lexer.isStringConstant()) {
-      return FhirString(processConstantString(lexer.take(), lexer))
-          .noExtensions();
+      return fpContext.factory.string(processConstantString(lexer.take(), lexer));
     } else if (lexer.current?.isInteger ?? false) {
       return FhirInteger(int.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.isDecimal() ?? false) {
       return FhirDecimal(double.parse(lexer.take())).noExtensions();
     } else if (lexer.current?.existsInList({'true', 'false'}) ?? false) {
-      return FhirBoolean(lexer.take() == 'true').noExtensions();
+      return fpContext.factory.boolean(lexer.take() == 'true');
     } else if (lexer.current == '{}') {
       lexer.take();
       return null;

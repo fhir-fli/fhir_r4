@@ -766,7 +766,7 @@ class FhirPathOperations {
 
     if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
         fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
-      result.add(FhirString('${l.primitiveValue}${r.primitiveValue}'));
+      result.add(fpContext.factory.string('${l.primitiveValue}${r.primitiveValue}', disallowExtensions: false));
     } else if (l is FhirNumber && r is FhirNumber) {
       result.add((l + r)!);
     } else if (l is FhirDateTimeBase && r is Quantity) {
@@ -967,7 +967,7 @@ class FhirPathOperations {
     final result = <FhirBase>[];
     final l = left.isEmpty ? '' : left.first.primitiveValue.toString();
     final r = right.isEmpty ? '' : right.first.primitiveValue.toString();
-    result.add(FhirString('$l$r'));
+    result.add(fpContext.factory.string('$l$r', disallowExtensions: false));
 
     return result;
   }
@@ -1178,7 +1178,7 @@ class FhirPathOperations {
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
     } else if (left.length != 1 || right.length != 1) {
-      result.add(FhirBoolean(false).noExtensions());
+      result.add(fpContext.factory.boolean(false));
     } else {
       var tn = utilities.convertListToString(right);
       // Handle .not() syntax: System.Quantity.not() means "not System.Quantity"
@@ -1195,7 +1195,7 @@ class FhirPathOperations {
       if (isQuantityCheck) {
         // Special handling for Quantity type check
         result.add(
-          FhirBoolean(negate ? !isQuantity : isQuantity).noExtensions(),
+          fpContext.factory.boolean(negate ? !isQuantity : isQuantity),
         );
         return result;
       } else if (left.first is Element) {
@@ -1205,7 +1205,7 @@ class FhirPathOperations {
           final matches = element.fhirType.capitalize() == tn ||
               'System.${element.fhirType.capitalize()}' == tn;
           result.add(
-            FhirBoolean(negate ? !matches : matches).noExtensions(),
+            fpContext.factory.boolean(negate ? !matches : matches),
           );
         } else {
           final currentType = element.fhirType;
@@ -1215,12 +1215,12 @@ class FhirPathOperations {
           return utilities.makeBoolean(negate ? !matches : matches);
         }
       } else if (left.first.fhirType == tn) {
-        result.add(FhirBoolean(!negate).noExtensions());
+        result.add(fpContext.factory.boolean(!negate));
       } else if (left.first.fhirType == tn.replaceFirst('FHIR.', '')) {
-        result.add(FhirBoolean(!negate).noExtensions());
+        result.add(fpContext.factory.boolean(!negate));
       } else {
         // Type doesn't match - if negate is true, return true (not the type)
-        result.add(FhirBoolean(negate).noExtensions());
+        result.add(fpContext.factory.boolean(negate));
       }
     }
 

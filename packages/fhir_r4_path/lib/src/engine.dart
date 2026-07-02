@@ -9,6 +9,7 @@ export 'engine/fhir_path_engine.dart';
 export 'engine/fhir_path_functions.dart';
 export 'engine/fhir_path_operations.dart';
 export 'engine/fhir_path_utilities.dart';
+export 'engine/fhir_value_factory.dart';
 export 'engine/fp_equality.dart';
 export 'engine/fp_function.dart';
 export 'engine/fp_operation.dart';

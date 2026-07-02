@@ -70,7 +70,7 @@ class FhirPathUtilities {
   }
 
   List<FhirBase> makeBoolean(bool value) {
-    return <FhirBase>[FhirBoolean(value).noExtensions()];
+    return <FhirBase>[fpContext.factory.boolean(value)];
   }
 
   bool isBoolean(List<FhirBase> list, bool value) {

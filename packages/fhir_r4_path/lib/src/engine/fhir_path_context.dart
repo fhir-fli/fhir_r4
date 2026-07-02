@@ -25,6 +25,11 @@ class FhirPathContext {
   final IEvaluationContext? hostServices;
   final ValidationOptions terminologyServiceOptions;
 
+  /// Factory for the FHIR-typed values produced as evaluation results. The
+  /// engine constructs every result through this rather than naming concrete
+  /// FHIR value classes, so the value model can be swapped at the binding.
+  final FhirValueFactory factory = const FhirValueFactory();
+
   /// Type information (populated during initialization)
   final Set<String> primitiveTypes = {};
   final Map<String, StructureDefinition> allTypes = {};
