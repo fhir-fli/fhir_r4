@@ -114,6 +114,31 @@ class FhirPathUtilities {
         : fpContext.factory.integer(value, disallowExtensions: false);
   }
 
+  /// Whether [node] is a `Quantity` — the model-independent form of
+  /// `node is Quantity`, decided from [FhirBase.fhirType].
+  bool isQuantityNode(FhirBase node) => node.fhirType == 'Quantity';
+
+  String? _firstChildPrimitive(FhirBase node, String name) {
+    final children = node.getChildrenByName(name);
+    return children.isEmpty ? null : children.first.primitiveValue;
+  }
+
+  /// The `Quantity.value` of [node] as a Dart [num], read via the node
+  /// contract (Quantity fields are 0..1).
+  num? qtyValue(FhirBase node) {
+    final children = node.getChildrenByName('value');
+    return children.isEmpty ? null : nodeNum(children.first);
+  }
+
+  /// The `Quantity.unit` of [node], read via the node contract.
+  String? qtyUnit(FhirBase node) => _firstChildPrimitive(node, 'unit');
+
+  /// The `Quantity.code` of [node], read via the node contract.
+  String? qtyCode(FhirBase node) => _firstChildPrimitive(node, 'code');
+
+  /// The `Quantity.system` of [node], read via the node contract.
+  String? qtySystem(FhirBase node) => _firstChildPrimitive(node, 'system');
+
   bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
         list.first is FhirBoolean &&
@@ -653,25 +678,25 @@ class FhirPathUtilities {
     return result;
   }
 
-  Pair? qtyToPair(Quantity q) {
-    if (q.system?.toString() != 'http://unitsofmeasure.org') {
+  Pair? qtyToPair(FhirBase q) {
+    if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
     try {
       return Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? '1',
+        value: UcumDecimal.fromNum(qtyValue(q)!),
+        unit: qtyCode(q) ?? '1',
       );
     } catch (e) {
       return null;
     }
   }
 
-  Quantity pairToQty(Pair pair) {
-    return Quantity(
-      value: FhirDecimal(pair.value.asDouble),
-      system: FhirUri('http://unitsofmeasure.org'),
-      code: pair.unit.isEmpty ? null : pair.unit.toFhirCode,
+  FhirBase pairToQty(Pair pair) {
+    return fpContext.factory.quantity(
+      value: pair.value.asDouble,
+      system: 'http://unitsofmeasure.org',
+      code: pair.unit.isEmpty ? null : pair.unit,
       disallowExtensions: true,
     );
   }

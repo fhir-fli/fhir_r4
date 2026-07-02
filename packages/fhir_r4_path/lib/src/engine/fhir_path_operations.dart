@@ -841,7 +841,7 @@ class FhirPathOperations {
         utilities.numericResult(utilities.nodeNum(l)! * utilities.nodeNum(r)!,
             l, r),
       );
-    } else if (l is Quantity && r is Quantity) {
+    } else if (utilities.isQuantityNode(l) && utilities.isQuantityNode(r)) {
       final pl = utilities.qtyToPair(l);
       final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {
@@ -1040,7 +1040,7 @@ class FhirPathOperations {
       } catch (e) {
         return <FhirBase>[];
       }
-    } else if (l is Quantity && r is Quantity) {
+    } else if (utilities.isQuantityNode(l) && utilities.isQuantityNode(r)) {
       final pl = utilities.qtyToPair(l);
       final pr = utilities.qtyToPair(r);
       if (pl != null && pr != null) {

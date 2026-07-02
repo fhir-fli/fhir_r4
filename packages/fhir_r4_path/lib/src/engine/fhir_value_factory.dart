@@ -52,4 +52,23 @@ class FhirValueFactory {
     final v = FhirTime(value);
     return disallowExtensions ? v.noExtensions() : v;
   }
+
+  /// Builds a `Quantity` result from model-independent scalar parts. The engine
+  /// reads quantities via the node contract and produces them here, never
+  /// naming `Quantity`/`FhirDecimal`/… directly.
+  FhirBase quantity({
+    num? value,
+    String? unit,
+    String? system,
+    String? code,
+    bool disallowExtensions = false,
+  }) {
+    return Quantity(
+      value: value == null ? null : FhirDecimal(value),
+      unit: unit == null ? null : FhirString(unit),
+      system: system == null ? null : FhirUri(system),
+      code: code == null ? null : FhirCode(code),
+      disallowExtensions: disallowExtensions,
+    );
+  }
 }
