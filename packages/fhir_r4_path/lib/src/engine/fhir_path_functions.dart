@@ -702,22 +702,8 @@ class FhirPathFunctions {
         }
       } else if (tn.startsWith('FHIR.')) {
         final tnp = tn.substring(5);
-        if (b.fhirType == tnp) {
+        if (await fpContext.worker.isSubtypeOf(b.fhirType, tnp)) {
           result.add(b);
-        } else {
-          var sd = await fpContext.worker.fetchTypeDefinition(b.fhirType);
-          while (sd != null) {
-            if (tnp == sd.type.primitiveValue) {
-              result.add(b);
-              break;
-            }
-            sd = sd.kind == StructureDefinitionKind.primitiveType
-                ? null
-                : (await fpContext.worker.fetchResource<StructureDefinition>(
-                    uri: sd.baseDefinition?.primitiveValue,
-                    canonicalForSource: sd,
-                  ))!;
-          }
         }
       }
     }
@@ -801,20 +787,9 @@ class FhirPathFunctions {
         return utilities.makeBoolean(false);
       }
     } else if (ns == 'FHIR') {
-      if (n == focus.first.fhirType) {
-        return utilities.makeBoolean(true);
-      } else {
-        var sd = await fpContext.fetchTypeDefinition(focus.first.fhirType);
-        while (sd != null) {
-          if (n == sd.type.toString()) {
-            return utilities.makeBoolean(true);
-          }
-          sd = await fpContext.worker.fetchResource<StructureDefinition>(
-            uri: sd.baseDefinition?.toString(),
-          );
-        }
-        return utilities.makeBoolean(false);
-      }
+      return utilities.makeBoolean(
+        await fpContext.worker.isSubtypeOf(focus.first.fhirType, n!),
+      );
     } else {
       return utilities.makeBoolean(false);
     }

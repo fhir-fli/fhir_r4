@@ -52,6 +52,34 @@ class WorkerContext {
     }
   }
 
+  /// Whether [type] is [superType] or descends from it through the FHIR type
+  /// inheritance chain. A neutral type-query the engine uses for `is`/`ofType`
+  /// (and bare type-name navigation) instead of walking `StructureDefinition`
+  /// `baseDefinition` links itself, so the type metadata stays binding-side.
+  Future<bool> isSubtypeOf(String type, String superType) async {
+    if (type == superType) {
+      return true;
+    }
+    var sd = await fetchTypeDefinition(type);
+    while (sd != null) {
+      if (sd.type.primitiveValue == superType) {
+        return true;
+      }
+      if (sd.kind == StructureDefinitionKind.primitiveType) {
+        return false;
+      }
+      final base = sd.baseDefinition?.primitiveValue;
+      if (base == null) {
+        return false;
+      }
+      sd = await fetchResource<StructureDefinition>(
+        uri: base,
+        canonicalForSource: sd,
+      );
+    }
+    return false;
+  }
+
   Future<StructureDefinition?> fetchTypeDefinition(String typeName) async {
     var sd = await resourceCache.getStructureDefinition(typeName);
     if (sd != null) {

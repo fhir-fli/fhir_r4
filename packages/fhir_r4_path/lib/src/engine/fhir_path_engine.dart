@@ -1268,26 +1268,11 @@ class FHIRPathEngine {
         }
       }
 
-      // Handle resources
-      final sd = await _fetchTypeDefinition(item.fhirType);
-      if (sd == null) {
-        // Logical model case
-
-        if (exp.name == item.fhirType) {
-          result.add(item);
-        }
-      } else {
-        StructureDefinition? current = sd;
-
-        while (current != null) {
-          if (current.type.toString() == exp.name) {
-            result.add(item);
-            break;
-          }
-          current = await fpContext.worker.fetchResource<StructureDefinition>(
-            uri: current.baseDefinition?.toString(),
-          );
-        }
+      // Handle resources: match when the item's type is, or descends from,
+      // the named type (the logical-model case falls out of the identity check
+      // inside isSubtypeOf).
+      if (await fpContext.worker.isSubtypeOf(item.fhirType, exp.name!)) {
+        result.add(item);
       }
     } else {
       // Step 3: Default case - Get children by name
