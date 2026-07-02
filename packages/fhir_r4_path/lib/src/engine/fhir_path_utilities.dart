@@ -16,8 +16,8 @@ class FhirPathUtilities {
 
   // String conversion helpers
   String convertToString(FhirBase item) {
-    if (item is PrimitiveType) {
-      return item.valueString ?? '';
+    if (item.isPrimitive) {
+      return item.primitiveValue ?? '';
     } else if (item is Quantity) {
       final q = item.copyWith();
       if (q.unit != null &&
@@ -144,7 +144,7 @@ class FhirPathUtilities {
   bool canConvertToBoolean(FhirBase item) {
     if (item is FhirBoolean) return true;
 
-    if (item is PrimitiveType) {
+    if (item.isPrimitive) {
       final value = item.toString().toLowerCase();
       return [
         'true',
@@ -440,7 +440,7 @@ class FhirPathUtilities {
         convertToString(right),
       );
     }
-    if (left is PrimitiveType && right is PrimitiveType) {
+    if (left.isPrimitive && right.isPrimitive) {
       return equivalentString(
         left.toString(),
         right.toString(),

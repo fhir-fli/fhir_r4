@@ -1682,7 +1682,7 @@ class FhirPathFunctions {
         if (property != null && property.hasValues()) {
           for (final child in property.listChildrenNames()) {
             final prop = property.getChildByName(child);
-            if (prop != null && prop is PrimitiveType) {
+            if (prop != null && prop.isPrimitive) {
               s = prop.primitiveValue;
               break;
             }

@@ -130,7 +130,7 @@ class ExpressionNode {
             ..write(" '")
             ..write(q.unit?.valueString?.escapeJson())
             ..write("'");
-        } else if (constant is PrimitiveType &&
+        } else if ((constant?.isPrimitive ?? false) &&
             constant?.primitiveValue != null) {
           b.write(constant?.primitiveValue?.escapeJson());
         } else {

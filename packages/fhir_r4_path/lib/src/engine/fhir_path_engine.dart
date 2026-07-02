@@ -1259,7 +1259,7 @@ class FHIRPathEngine {
         exp.name!.isNotEmpty &&
         exp.name![0].toUpperCase() == exp.name![0]) {
       // Handle constant items
-      if (item is PrimitiveType) {
+      if (item.isPrimitive) {
         final itemType = item.fhirType;
 
         if (itemType == exp.name) {
