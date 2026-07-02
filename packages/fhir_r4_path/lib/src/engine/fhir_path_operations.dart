@@ -242,13 +242,15 @@ class FhirPathOperations {
       final l = left.first;
       final r = right.first;
 
-      if (l is PrimitiveType && r is PrimitiveType) {
+      if (l.isPrimitive && r.isPrimitive) {
         if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
             fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) < 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return utilities.makeBoolean(l < r);
+        } else if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+          final ln = utilities.nodeNum(l);
+          final rn = utilities.nodeNum(r);
+          return utilities.makeBoolean(ln != null && rn != null && ln < rn);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l < r;
           return comparison == null
@@ -306,13 +308,15 @@ class FhirPathOperations {
       final l = left.first;
       final r = right.first;
 
-      if (l is PrimitiveType && r is PrimitiveType) {
+      if (l.isPrimitive && r.isPrimitive) {
         if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
             fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) > 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return utilities.makeBoolean(l > r);
+        } else if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+          final ln = utilities.nodeNum(l);
+          final rn = utilities.nodeNum(r);
+          return utilities.makeBoolean(ln != null && rn != null && ln > rn);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l > r;
           return comparison == null
@@ -371,13 +375,15 @@ class FhirPathOperations {
       final l = left.first;
       final r = right.first;
 
-      if (l is PrimitiveType && r is PrimitiveType) {
+      if (l.isPrimitive && r.isPrimitive) {
         if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
             fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) <= 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return utilities.makeBoolean(l <= r);
+        } else if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+          final ln = utilities.nodeNum(l);
+          final rn = utilities.nodeNum(r);
+          return utilities.makeBoolean(ln != null && rn != null && ln <= rn);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l <= r;
           return comparison == null
@@ -435,13 +441,15 @@ class FhirPathOperations {
       final l = left.first;
       final r = right.first;
 
-      if (l is PrimitiveType && r is PrimitiveType) {
+      if (l.isPrimitive && r.isPrimitive) {
         if (fpContext.FHIR_TYPES_STRING.contains(l.fhirType) &&
             fpContext.FHIR_TYPES_STRING.contains(r.fhirType)) {
           return utilities
               .makeBoolean(l.toString().compareTo(r.toString()) >= 0);
-        } else if (l is FhirNumber && r is FhirNumber) {
-          return utilities.makeBoolean(l >= r);
+        } else if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
+          final ln = utilities.nodeNum(l);
+          final rn = utilities.nodeNum(r);
+          return utilities.makeBoolean(ln != null && rn != null && ln >= rn);
         } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
           final comparison = l >= r;
           return comparison == null

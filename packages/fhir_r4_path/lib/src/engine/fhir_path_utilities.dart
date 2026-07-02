@@ -73,6 +73,34 @@ class FhirPathUtilities {
     return <FhirBase>[fpContext.factory.boolean(value)];
   }
 
+  /// The FHIR primitive type names FHIRPath treats as numbers. Mirrors the
+  /// `FhirNumber` hierarchy (note: `integer64` is NOT a `FhirNumber`).
+  static const Set<String> numericTypeNames = {
+    'decimal',
+    'integer',
+    'positiveInt',
+    'unsignedInt',
+  };
+
+  /// Whether [node] is a numeric primitive — the model-independent equivalent
+  /// of `node is FhirNumber`, decided from the node's [FhirBase.fhirType]
+  /// rather than its Dart class so the engine needn't name FHIR value types.
+  bool isNumericNode(FhirBase node) =>
+      node.isPrimitive && numericTypeNames.contains(node.fhirType);
+
+  /// Reads [node]'s numeric value as a Dart [num], mirroring
+  /// `FhirNumber.valueNum` exactly (int for integer kinds, double for
+  /// decimal). Returns null when the value is absent or unparseable.
+  num? nodeNum(FhirBase node) {
+    final s = node.primitiveValue;
+    if (s == null) {
+      return null;
+    }
+    return node.fhirType == 'decimal'
+        ? double.tryParse(s)
+        : int.tryParse(s) ?? double.tryParse(s);
+  }
+
   bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
         list.first is FhirBoolean &&
