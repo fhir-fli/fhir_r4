@@ -271,17 +271,17 @@ class FhirPathUtilities {
   }
 
   bool? doEquals(FhirBase left, FhirBase right) {
-    if (left is Quantity && right is Quantity) {
+    if (isQuantityNode(left) && isQuantityNode(right)) {
       return qtyEqual(left, right);
-    } else if (left is Quantity &&
-        right is FhirNumber &&
-        right.valueNum != null) {
+    } else if (isQuantityNode(left) &&
+        isNumericNode(right) &&
+        nodeNum(right) != null) {
       return qtyEqual(
         left,
-        Quantity(
-          value: FhirDecimal(right.valueNum),
-          system: 'http://unitsofmeasure.org'.toFhirUri,
-          code: '1'.toFhirCode,
+        fpContext.factory.quantity(
+          value: nodeNum(right),
+          system: 'http://unitsofmeasure.org',
+          code: '1',
         ),
       );
     } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
@@ -334,11 +334,13 @@ class FhirPathUtilities {
     return s.substring(0, i + 1);
   }
 
-  bool? qtyEqual(Quantity left, Quantity right) {
-    if (left.value == null && right.value == null) {
+  bool? qtyEqual(FhirBase left, FhirBase right) {
+    final lValue = qtyValue(left);
+    final rValue = qtyValue(right);
+    if (lValue == null && rValue == null) {
       return true;
     }
-    if (left.value == null || right.value == null) {
+    if (lValue == null || rValue == null) {
       return null;
     }
     final dl = qtyToCanonicalPair(left);
@@ -347,30 +349,32 @@ class FhirPathUtilities {
     if (dl != null && dr != null) {
       if (dl.unit == dr.unit) {
         return doEquals(
-          FhirDecimal(dl.value.asDouble),
-          FhirDecimal(dr.value.asDouble),
+          fpContext.factory.decimal(dl.value.asDouble, disallowExtensions: false),
+          fpContext.factory.decimal(dr.value.asDouble, disallowExtensions: false),
         );
       } else {
         return false;
       }
     }
-    if (left.code != null || right.code != null) {
-      if (!(left.code != null && right.code != null) ||
-          left.code != right.code) {
+    final lCode = qtyCode(left);
+    final rCode = qtyCode(right);
+    final lUnit = qtyUnit(left);
+    final rUnit = qtyUnit(right);
+    if (lCode != null || rCode != null) {
+      if (!(lCode != null && rCode != null) || lCode != rCode) {
         return null;
       }
-    } else if (left.unit == null || right.unit == null) {
-      if (!(left.unit != null && right.unit != null) ||
-          left.unit != right.unit) {
+    } else if (lUnit == null || rUnit == null) {
+      if (!(lUnit != null && rUnit != null) || lUnit != rUnit) {
         return null;
       }
     }
     return doEquals(left, right);
   }
 
-  Pair? qtyToCanonicalPair(Quantity q) {
+  Pair? qtyToCanonicalPair(FhirBase q) {
     String? ucum;
-    switch (q.unit?.valueString) {
+    switch (qtyUnit(q)) {
       case 'year':
       case 'years':
         ucum = 'a';
@@ -397,13 +401,13 @@ class FhirPathUtilities {
         ucum = 'ms';
     }
 
-    if (q.system?.toString() != 'http://unitsofmeasure.org' && ucum == null) {
+    if (qtySystem(q) != 'http://unitsofmeasure.org' && ucum == null) {
       return null;
     }
     try {
       final p = Pair(
-        value: UcumDecimal.fromNum(q.value!.valueDouble!),
-        unit: q.code?.toString() ?? ucum ?? '1',
+        value: UcumDecimal.fromNum(qtyValue(q)!),
+        unit: qtyCode(q) ?? ucum ?? '1',
       );
       return fpContext.worker.ucumService.getCanonicalForm(p);
     } catch (e) {
@@ -477,16 +481,16 @@ class FhirPathUtilities {
   }
 
   bool? doEquivalent(FhirBase left, FhirBase right) {
-    if (left is Quantity && right is Quantity) {
+    if (isQuantityNode(left) && isQuantityNode(right)) {
       return qtyEquivalent(left, right);
     }
-    if (left is Quantity && right is FhirNumber) {
+    if (isQuantityNode(left) && isNumericNode(right)) {
       return qtyEquivalent(
         left,
-        Quantity(
-          value: FhirDecimal(right.valueNum),
-          system: 'http://unitsofmeasure.org'.toFhirUri,
-          code: '1'.toFhirCode,
+        fpContext.factory.quantity(
+          value: nodeNum(right),
+          system: 'http://unitsofmeasure.org',
+          code: '1',
         ),
       );
     }
@@ -552,11 +556,13 @@ class FhirPathUtilities {
     }
   }
 
-  bool? qtyEquivalent(Quantity left, Quantity right) {
-    if (left.value == null && right.value == null) {
+  bool? qtyEquivalent(FhirBase left, FhirBase right) {
+    final lValue = qtyValue(left);
+    final rValue = qtyValue(right);
+    if (lValue == null && rValue == null) {
       return true;
     }
-    if (left.value == null || right.value == null) {
+    if (lValue == null || rValue == null) {
       return null;
     }
     final dl = qtyToCanonicalPair(left);
@@ -565,25 +571,30 @@ class FhirPathUtilities {
     if (dl != null && dr != null) {
       if (dl.unit == dr.unit) {
         return doEquivalent(
-          FhirDecimal(dl.value.asDouble),
-          FhirDecimal(dr.value.asDouble),
+          fpContext.factory.decimal(dl.value.asDouble, disallowExtensions: false),
+          fpContext.factory.decimal(dr.value.asDouble, disallowExtensions: false),
         );
       } else {
         return false;
       }
     }
-    if (left.code != null || right.code != null) {
-      if (!(left.code != null && right.code != null) ||
-          left.code != right.code) {
+    final lCode = qtyCode(left);
+    final rCode = qtyCode(right);
+    final lUnit = qtyUnit(left);
+    final rUnit = qtyUnit(right);
+    if (lCode != null || rCode != null) {
+      if (!(lCode != null && rCode != null) || lCode != rCode) {
         return null;
       }
-    } else if (left.unit == null || right.unit == null) {
-      if (!(left.unit != null && right.unit != null) ||
-          left.unit != right.unit) {
+    } else if (lUnit == null || rUnit == null) {
+      if (!(lUnit != null && rUnit != null) || lUnit != rUnit) {
         return null;
       }
     }
-    return doEquivalent(left.value!, right.value!);
+    return doEquivalent(
+      left.getChildrenByName('value').first,
+      right.getChildrenByName('value').first,
+    );
   }
 
   bool doContains(List<FhirBase> list, FhirBase item) {
