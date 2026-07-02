@@ -83,6 +83,51 @@ class FhirPathUtilities {
     'unsignedInt',
   };
 
+  /// The FHIR primitive type names FHIRPath treats as `System.DateTime` /
+  /// `System.Date`. Mirrors the `FhirDateTimeBase` hierarchy.
+  static const Set<String> dateTimeTypeNames = {
+    'date',
+    'dateTime',
+    'instant',
+  };
+
+  /// Whether [node] is a date/dateTime/instant primitive — the
+  /// model-independent equivalent of `node is FhirDateTimeBase`.
+  bool isDateTimeNode(FhirBase node) =>
+      node.isPrimitive && dateTimeTypeNames.contains(node.fhirType);
+
+  /// Whether [node] is a `time` primitive — the model-independent equivalent
+  /// of `node is FhirTime`.
+  bool isTimeNode(FhirBase node) =>
+      node.isPrimitive && node.fhirType == 'time';
+
+  /// Compares two date/dateTime/instant nodes under FHIRPath partial-precision
+  /// semantics, reading each node's value string via the node contract.
+  /// Returns null when the comparison is indeterminate (differing precision).
+  bool? compareDateTimeNodes(
+    FhirBase left,
+    FhirBase right,
+    TemporalComparator comparator,
+  ) =>
+      SystemDateTime.compareStrings(
+        left.primitiveValue,
+        right.primitiveValue,
+        comparator,
+      );
+
+  /// Compares two `time` nodes component-wise, reading each value string via
+  /// the node contract. Returns null when the operands differ in precision.
+  bool? compareTimeNodes(
+    FhirBase left,
+    FhirBase right,
+    TemporalComparator comparator,
+  ) =>
+      SystemTime.compareStrings(
+        left.primitiveValue,
+        right.primitiveValue,
+        comparator,
+      );
+
   /// Whether [node] is a numeric primitive — the model-independent equivalent
   /// of `node is FhirNumber`, decided from the node's [FhirBase.fhirType]
   /// rather than its Dart class so the engine needn't name FHIR value types.
@@ -285,8 +330,8 @@ class FhirPathUtilities {
           code: '1',
         ),
       );
-    } else if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
-      return datesEqual(left, right);
+    } else if (isDateTimeNode(left) && isDateTimeNode(right)) {
+      return compareDateTimeNodes(left, right, TemporalComparator.equal);
     } else if (left.fhirType == 'decimal' || right.fhirType == 'decimal') {
       return decEqual(left.toString(), right.toString());
     } else if (left.isPrimitive && right.isPrimitive) {
@@ -298,10 +343,6 @@ class FhirPathUtilities {
 
   bool decEqual(String left, String right) {
     return removeTrailingZeros(left) == removeTrailingZeros(right);
-  }
-
-  bool? datesEqual(FhirDateTimeBase left, FhirDateTimeBase right) {
-    return left.isEqual(right);
   }
 
   String removeTrailingZeros(String s) {
@@ -501,8 +542,8 @@ class FhirPathUtilities {
     if (isNumericNode(left) && isNumericNode(right)) {
       return equivalentNumber(nodeNum(left), nodeNum(right));
     }
-    if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
-      return left.isEquivalent(right);
+    if (isDateTimeNode(left) && isDateTimeNode(right)) {
+      return compareDateTimeNodes(left, right, TemporalComparator.equivalent);
     }
     if (fpContext.FHIR_TYPES_STRING.contains(left.fhirType) &&
         fpContext.FHIR_TYPES_STRING.contains(right.fhirType)) {
@@ -629,22 +670,28 @@ class FhirPathUtilities {
 
   List<FhirBase> makeNull() => <FhirBase>[];
 
-  FhirDateTimeBase dateAdd(
-    FhirDateTimeBase d,
-    Quantity q,
+  FhirBase dateAdd(
+    FhirBase d,
+    FhirBase q,
     bool negate,
     ExpressionNode holder,
   ) {
-    var result = d.copyWith() as FhirDateTimeBase;
+    final base = SystemDateTime.parse(d.primitiveValue);
+    if (base == null) {
+      throw PathEngineException(
+        'Error in date arithmetic: invalid date/time value ${d.primitiveValue}',
+      );
+    }
 
-    final value =
-        negate ? -q.value!.valueNum!.toInt() : q.value!.valueNum!.toInt();
-    final unit = q.code?.valueString ?? q.unit?.valueString;
+    final rawValue = qtyValue(q)!.toInt();
+    final value = negate ? -rawValue : rawValue;
+    final unit = qtyCode(q) ?? qtyUnit(q);
 
+    SystemDateTime result;
     switch (unit) {
       case 'years':
       case 'year':
-        result = (result + ExtendedDuration(years: value))!;
+        result = base.plus(TemporalDuration(years: value));
       case 'a':
         throw PathEngineException(
           'Error in date arithmetic: attempt to add a definite quantity '
@@ -652,7 +699,7 @@ class FhirPathUtilities {
         );
       case 'months':
       case 'month':
-        result = (result + ExtendedDuration(months: value))!;
+        result = base.plus(TemporalDuration(months: value));
       case 'mo':
         throw PathEngineException(
           'Error in date arithmetic: attempt to add a definite quantity '
@@ -663,34 +710,34 @@ class FhirPathUtilities {
       case 'weeks':
       case 'week':
       case 'wk':
-        result = (result + ExtendedDuration(weeks: value))!;
+        result = base.plus(TemporalDuration(weeks: value));
       case 'days':
       case 'day':
       case 'd':
-        result = (result + ExtendedDuration(days: value))!;
+        result = base.plus(TemporalDuration(days: value));
       case 'hours':
       case 'hour':
       case 'h':
-        result = (result + ExtendedDuration(hours: value))!;
+        result = base.plus(TemporalDuration(hours: value));
       case 'minutes':
       case 'minute':
       case 'min':
-        result = (result + ExtendedDuration(minutes: value))!;
+        result = base.plus(TemporalDuration(minutes: value));
       case 'seconds':
       case 'second':
       case 's':
-        result = (result + ExtendedDuration(seconds: value))!;
+        result = base.plus(TemporalDuration(seconds: value));
       case 'milliseconds':
       case 'millisecond':
       case 'ms':
-        result = (result + ExtendedDuration(milliseconds: value))!;
+        result = base.plus(TemporalDuration(milliseconds: value));
       default:
         throw PathEngineException(
           'Error in date arithmetic: unrecognized time unit $unit',
         );
     }
 
-    return result;
+    return fpContext.factory.dateTimeOfType(d.fhirType, result.toDateTimeString()!);
   }
 
   Pair? qtyToPair(FhirBase q) {

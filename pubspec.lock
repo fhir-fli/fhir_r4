@@ -137,6 +137,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  cql:
+    dependency: transitive
+    description:
+      path: "../cql"
+      relative: true
+    source: path
+    version: "0.1.0-dev.1"
   crypto:
     dependency: transitive
     description:
@@ -193,6 +200,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
+  fhir_node:
+    dependency: transitive
+    description:
+      path: "../fhir_node"
+      relative: true
+    source: path
+    version: "0.1.0"
   fhir_r4:
     dependency: "direct overridden"
     description:
@@ -234,7 +248,7 @@ packages:
       path: "packages/fhir_r4_cql"
       relative: true
     source: path
-    version: "0.5.1"
+    version: "0.6.0"
   fhir_r4_db:
     dependency: "direct overridden"
     description:
@@ -445,10 +459,10 @@ packages:
     dependency: transitive
     description:
       name: json_annotation
-      sha256: cb09e7dac6210041fad964ed7fbee004f14258b4eca4040f72d1234062ace4c8
+      sha256: "2a743920d81b7910627f68ee2c9ac1fc0bfee32b9fc3403587d7c6791ca12f80"
       url: "https://pub.dev"
     source: hosted
-    version: "4.11.0"
+    version: "4.12.0"
   logging:
     dependency: transitive
     description:
@@ -485,10 +499,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
+      sha256: "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349"
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.0"
+    version: "1.18.0"
   mime:
     dependency: transitive
     description:

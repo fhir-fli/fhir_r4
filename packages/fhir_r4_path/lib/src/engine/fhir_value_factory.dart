@@ -53,6 +53,22 @@ class FhirValueFactory {
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  /// Builds a date/dateTime/instant result from a canonical FHIRPath date-time
+  /// [value] string, of the concrete FHIR type named by [fhirType]. The engine
+  /// computes the value string model-independently (via `SystemDateTime`); this
+  /// factory maps it back to the matching FHIR primitive, preserving precision.
+  FhirBase dateTimeOfType(String fhirType, String value) {
+    switch (fhirType) {
+      case 'date':
+        return FhirDate.fromString(value);
+      case 'instant':
+        return FhirInstant.fromString(value);
+      case 'dateTime':
+      default:
+        return FhirDateTime.fromString(value);
+    }
+  }
+
   /// Builds a `Quantity` result from model-independent scalar parts. The engine
   /// reads quantities via the node contract and produces them here, never
   /// naming `Quantity`/`FhirDecimal`/… directly.

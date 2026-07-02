@@ -251,13 +251,15 @@ class FhirPathOperations {
           final ln = utilities.nodeNum(l);
           final rn = utilities.nodeNum(r);
           return utilities.makeBoolean(ln != null && rn != null && ln < rn);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l < r;
+        } else if (utilities.isDateTimeNode(l) && utilities.isDateTimeNode(r)) {
+          final comparison =
+              utilities.compareDateTimeNodes(l, r, TemporalComparator.lessThan);
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l < r;
+        } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
+          final comparison =
+              utilities.compareTimeNodes(l, r, TemporalComparator.lessThan);
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
@@ -317,13 +319,18 @@ class FhirPathOperations {
           final ln = utilities.nodeNum(l);
           final rn = utilities.nodeNum(r);
           return utilities.makeBoolean(ln != null && rn != null && ln > rn);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l > r;
+        } else if (utilities.isDateTimeNode(l) && utilities.isDateTimeNode(r)) {
+          final comparison = utilities.compareDateTimeNodes(
+            l,
+            r,
+            TemporalComparator.greaterThan,
+          );
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l > r;
+        } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
+          final comparison =
+              utilities.compareTimeNodes(l, r, TemporalComparator.greaterThan);
 
           return comparison == null
               ? <FhirBase>[]
@@ -384,13 +391,21 @@ class FhirPathOperations {
           final ln = utilities.nodeNum(l);
           final rn = utilities.nodeNum(r);
           return utilities.makeBoolean(ln != null && rn != null && ln <= rn);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l <= r;
+        } else if (utilities.isDateTimeNode(l) && utilities.isDateTimeNode(r)) {
+          final comparison = utilities.compareDateTimeNodes(
+            l,
+            r,
+            TemporalComparator.lessThanEqual,
+          );
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l <= r;
+        } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
+          final comparison = utilities.compareTimeNodes(
+            l,
+            r,
+            TemporalComparator.lessThanEqual,
+          );
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
@@ -450,13 +465,21 @@ class FhirPathOperations {
           final ln = utilities.nodeNum(l);
           final rn = utilities.nodeNum(r);
           return utilities.makeBoolean(ln != null && rn != null && ln >= rn);
-        } else if (l is FhirDateTimeBase && r is FhirDateTimeBase) {
-          final comparison = l >= r;
+        } else if (utilities.isDateTimeNode(l) && utilities.isDateTimeNode(r)) {
+          final comparison = utilities.compareDateTimeNodes(
+            l,
+            r,
+            TemporalComparator.greaterThanEqual,
+          );
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
-        } else if (l is FhirTime && r is FhirTime) {
-          final comparison = l >= r;
+        } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
+          final comparison = utilities.compareTimeNodes(
+            l,
+            r,
+            TemporalComparator.greaterThanEqual,
+          );
           return comparison == null
               ? <FhirBase>[]
               : utilities.makeBoolean(comparison);
@@ -759,8 +782,10 @@ class FhirPathOperations {
       );
     }
     if (!right.first.isPrimitive &&
-        !((left.first is Quantity && right.first is Quantity) ||
-            (left.first is FhirDateTimeBase && right.first is Quantity))) {
+        !((utilities.isQuantityNode(left.first) &&
+                utilities.isQuantityNode(right.first)) ||
+            (utilities.isDateTimeNode(left.first) &&
+                utilities.isQuantityNode(right.first)))) {
       throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
@@ -780,7 +805,7 @@ class FhirPathOperations {
         utilities.numericResult(utilities.nodeNum(l)! + utilities.nodeNum(r)!,
             l, r),
       );
-    } else if (l is FhirDateTimeBase && r is Quantity) {
+    } else if (utilities.isDateTimeNode(l) && utilities.isQuantityNode(r)) {
       result.add(utilities.dateAdd(l, r, false, expr));
     } else {
       throw fpContext.makeException(
@@ -899,10 +924,10 @@ class FhirPathOperations {
       );
     }
     if (!right.first.isPrimitive &&
-        !((left.first is FhirDateTimeBase ||
+        !((utilities.isDateTimeNode(left.first) ||
                 left.first.toString() == '0' ||
-                left.first is Quantity) &&
-            right.first is Quantity)) {
+                utilities.isQuantityNode(left.first)) &&
+            utilities.isQuantityNode(right.first))) {
       throw fpContext.makeException(
         expr,
         'FHIRPATH_RIGHT_VALUE_WRONG_TYPE',
@@ -930,7 +955,7 @@ class FhirPathOperations {
           ),
         );
       }
-    } else if (l is FhirDateTimeBase && r is Quantity) {
+    } else if (utilities.isDateTimeNode(l) && utilities.isQuantityNode(r)) {
       result.add(utilities.dateAdd(l, r, true, expr));
     } else {
       throw fpContext.makeException(
