@@ -1696,12 +1696,10 @@ class FhirPathFunctions {
           if (property != null) {
             for (final c in property.listChildrenNames()) {
               final val = property.getChildByName(c);
-              final id = val is Element
-                  ? val.id
-                  : val is Resource
-                      ? val.id
-                      : null;
-              if (id != null && chompHash(s) == chompHash(id.valueString)) {
+              // Both Element.id and Resource.id are the 'id' child, read via
+              // the node contract rather than casting to a FHIR base type.
+              final id = val?.getChildByName('id')?.primitiveValue;
+              if (id != null && chompHash(s) == chompHash(id)) {
                 res = c.toFhirString;
                 break;
               }
