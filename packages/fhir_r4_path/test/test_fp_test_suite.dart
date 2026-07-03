@@ -2196,13 +2196,17 @@ Future<void> testFpTestSuite() async {
       );
     });
 
+    // Official testAllTrue2 (tests-fhir-r4.xml): => false — only the maiden
+    // name has a period, so [false, false, true].allTrue() is false. (An
+    // earlier revision expected [true], masking a funcAllTrue that had
+    // anyTrue's break-on-first-true logic.)
     test('testAllTrue2', () async {
       expect(
         await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(period.exists()).allTrue()',
         ),
-        [true.toFhirBoolean],
+        [false.toFhirBoolean],
       );
     });
 

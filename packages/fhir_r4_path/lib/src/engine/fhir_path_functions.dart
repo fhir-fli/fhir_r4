@@ -1592,7 +1592,7 @@ class FhirPathFunctions {
     final result = <FhirBase>[];
 
     if (exp.parameters.length == 1) {
-      var any = false;
+      var all = true;
       final pc = <FhirBase>[];
 
       for (final item in focus) {
@@ -1602,14 +1602,14 @@ class FhirPathFunctions {
         final res =
             await engine.execute(execContext, pc, exp.parameters[0], true);
         final v = utilities.asBoolList(res, exp);
-        if (v == FpEquality.true_) {
-          any = true;
+        if (v != FpEquality.true_) {
+          all = false;
           break;
         }
       }
-      result.add(fpContext.factory.boolean(any));
+      result.add(fpContext.factory.boolean(all));
     } else {
-      var any = false;
+      var all = true;
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
           throw FHIRException(
@@ -1618,12 +1618,12 @@ class FhirPathFunctions {
           );
         }
         final v = utilities.asBool(item, true);
-        if (v == FpEquality.true_) {
-          any = true;
+        if (v != FpEquality.true_) {
+          all = false;
           break;
         }
       }
-      result.add(fpContext.factory.boolean(any));
+      result.add(fpContext.factory.boolean(all));
     }
     return result;
   }
