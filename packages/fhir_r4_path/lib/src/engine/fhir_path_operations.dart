@@ -1207,7 +1207,12 @@ class FhirPathOperations {
         tn = tn.substring(0, tn.length - 6); // Remove '.not()'
         negate = true;
       }
-      final matches = await fpContext.worker.isOperatorMatch(left.first, tn);
+      // `x is T` is equivalent to `x.is(T)` (FHIRPath spec §6.3), so the
+      // operator resolves the specifier's namespace the same way and shares
+      // the one type-membership predicate with the function form.
+      final (ns, name) = utilities.resolveTypeSpecifier(tn);
+      final matches =
+          await fpContext.worker.isValueOfType(left.first, ns, name);
       result.add(fpContext.factory.boolean(negate ? !matches : matches));
     }
 

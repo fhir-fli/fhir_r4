@@ -7,6 +7,7 @@ import 'test_no_arg_fxns.dart';
 import 'test_parser.dart';
 import 'test_paths.dart';
 import 'test_questionnaire.dart';
+import 'test_type_operators.dart';
 
 Future<void> main() async {
   await testBasicTypes();
@@ -18,4 +19,5 @@ Future<void> main() async {
   await testArgFxns();
   await testQuestionnaire();
   await testFpTestSuite();
+  await testTypeOperators();
 }

@@ -77,16 +77,20 @@ class FhirValueFactory {
   }
 
   /// Parses [value] as a `dateTime`, returning null when it is not a valid
-  /// FHIRPath date-time (mirrors `FhirDateTime.tryParse`).
-  FhirBase? tryDateTime(String? value) => FhirDateTime.tryParse(value);
+  /// FHIRPath date-time. The result is a System value (no extensions) — the
+  /// Java reference constructs every date/time literal and conversion result
+  /// with `.noExtensions()` (FHIRPathEngine.processDateConstant), which is
+  /// what makes `@2015 is Date` true.
+  FhirBase? tryDateTime(String? value) =>
+      FhirDateTime.tryParse(value)?.noExtensions();
 
-  /// Parses [value] as a `date`, returning null when invalid
-  /// (mirrors `FhirDate.tryParse`).
-  FhirBase? tryDate(String? value) => FhirDate.tryParse(value);
+  /// Parses [value] as a `date`, returning null when invalid. Result is a
+  /// System value (no extensions), per the Java reference.
+  FhirBase? tryDate(String? value) => FhirDate.tryParse(value)?.noExtensions();
 
-  /// Parses [value] as a `time`, returning null when invalid
-  /// (mirrors `FhirTime.tryParse`).
-  FhirBase? tryTime(String? value) => FhirTime.tryParse(value);
+  /// Parses [value] as a `time`, returning null when invalid. Result is a
+  /// System value (no extensions), per the Java reference.
+  FhirBase? tryTime(String? value) => FhirTime.tryParse(value)?.noExtensions();
 
   /// The `today()` value — a `date` for the calendar day of [instant]. The
   /// engine supplies the instant (`DateTime.now()`); construction is here.

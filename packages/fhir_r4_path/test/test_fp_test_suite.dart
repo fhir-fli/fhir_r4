@@ -7063,13 +7063,19 @@ Future<void> testFpTestSuite() async {
         [false.toFhirBoolean],
       );
     });
+    // Official testType12 (tests-fhir-r4.xml): Patient.active.is(Boolean)
+    // .not() => true — a bare `Boolean` resolves to System.Boolean, and a
+    // FHIR boolean is not a System value, so `is Boolean` is FALSE and the
+    // .not() is TRUE. (An earlier revision of this test expected [false],
+    // which encoded a case-insensitive-matching bug in the old `is`
+    // operator, not the spec.)
     test('testType12-fixed', () async {
       expect(
         await walkFhirPath(
           context: patient1,
           pathExpression: '(Patient.active is Boolean).not()',
         ),
-        [false.toFhirBoolean],
+        [true.toFhirBoolean],
       );
     });
 
@@ -7171,16 +7177,17 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // TODO(Dokotela): eventually deal with System
-    // test('testType22', () async {
-    //   expect(
-    //     await walkFhirPath(
-    //       context: patient1,
-    //       pathExpression: 'Patient is System.Patient.not()',
-    //     ),
-    //     [true.toFhirBoolean],
-    //   );
-    // });
+    // Official testType22: Patient.is(System.Patient).not() => true (a
+    // Resource is never a System value). Parenthesised for the operator form.
+    test('testType22-fixed', () async {
+      expect(
+        await walkFhirPath(
+          context: patient1,
+          pathExpression: '(Patient is System.Patient).not()',
+        ),
+        [true.toFhirBoolean],
+      );
+    });
 
     test('testType23', () async {
       expect(

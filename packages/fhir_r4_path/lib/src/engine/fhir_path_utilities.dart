@@ -91,6 +91,41 @@ class FhirPathUtilities {
     'unsignedInt',
   };
 
+  /// The FHIRPath System type names — a bare (unqualified) type specifier
+  /// resolves to the `System` namespace iff it is one of these; every other
+  /// bare name is a `FHIR` type. Mirrors the Java reference `funcIs` list
+  /// (org.hl7.fhir.r4 FHIRPathEngine.funcIs; note `Quantity` is deliberately
+  /// NOT in it — bare `Quantity` is the FHIR type, matched through the
+  /// subtype hierarchy so Age/Duration/... qualify).
+  static const Set<String> systemTypeNames = {
+    'Boolean',
+    'Integer',
+    'Decimal',
+    'String',
+    'DateTime',
+    'Date',
+    'Time',
+    'SimpleTypeInfo',
+    'ClassInfo',
+  };
+
+  /// Splits a FHIRPath type-specifier string into its `(namespace, name)`:
+  /// an explicit `System.`/`FHIR.` prefix wins; otherwise a bare name is
+  /// `System` iff it is in [systemTypeNames], else `FHIR`. This is the same
+  /// resolution the parse-tree function form (`is()`) applies, so the `is`
+  /// OPERATOR shares the one type-membership predicate with it — the FHIRPath
+  /// spec (§6.3 Types) defines `x is T` and `x.is(T)` as equivalent, and the
+  /// official test suite asserts the same expectations through both forms.
+  (String, String) resolveTypeSpecifier(String tn) {
+    if (tn.startsWith('System.')) {
+      return ('System', tn.substring(7));
+    }
+    if (tn.startsWith('FHIR.')) {
+      return ('FHIR', tn.substring(5));
+    }
+    return systemTypeNames.contains(tn) ? ('System', tn) : ('FHIR', tn);
+  }
+
 
   /// The FHIR primitive type names FHIRPath treats as `System.DateTime` /
   /// `System.Date`. Mirrors the `FhirDateTimeBase` hierarchy.

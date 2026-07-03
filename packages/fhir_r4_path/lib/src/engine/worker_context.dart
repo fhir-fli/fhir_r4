@@ -52,19 +52,20 @@ class WorkerContext {
     }
   }
 
-  /// The FHIRPath `is()` / `ofType()`-family type-membership test used by
-  /// [funcIs]: does [value] belong to the type named [name] in namespace [ns]
-  /// (`'System'` or `'FHIR'`)? Holds the FHIR-model type semantics (System-vs-
-  /// FHIR namespace, the System-value vs FHIR-`Element`/`Resource` distinction,
-  /// and the subtype hierarchy via [isSubtypeOf]) binding-side, so the engine
-  /// names no FHIR type. Ported verbatim from the former inline `funcIs` body.
+  /// The FHIRPath type-membership test shared by the `is` operator and the
+  /// `is()` function (equivalent per FHIRPath spec §6.3): does [value] belong
+  /// to the type named [name] in namespace [ns] (`'System'` or `'FHIR'`)?
   ///
-  /// NB: the `is` operator ([isOperatorMatch]) and `ofType()` ([matchesOfType])
-  /// historically use subtly different rules; they are kept as distinct
-  /// predicates here to preserve behaviour exactly. Collapsing all three into
-  /// one predicate is a deliberate spec-conformance follow-up (the operator
-  /// tests distinguish bare `Boolean` from explicit `System.Boolean`, which the
-  /// namespace-resolved forms do not) — not a mechanical merge.
+  /// Holds the FHIR-model type semantics binding-side (so the engine names no
+  /// FHIR type): a `Resource` is never a System value; a System value is a
+  /// value outside the FHIR Element tree or a bare primitive
+  /// (`disallowExtensions`, the marker every engine-produced literal/result
+  /// carries) matched by its capitalised type name (plus the Date→DateTime
+  /// lattice rule); a FHIR-namespace test walks the subtype hierarchy via
+  /// [isSubtypeOf] (so `Age` matches `Quantity`, `Patient` matches
+  /// `Resource`). Matches the Java reference `FHIRPathEngine.funcIs`
+  /// (org.hl7.fhir.r4.fhirpath) and the official test suite's `testType`
+  /// group expectations.
   Future<bool> isValueOfType(FhirBase value, String ns, String name) async {
     if (ns == 'System') {
       if (value is Resource) {
@@ -87,47 +88,55 @@ class WorkerContext {
     return false;
   }
 
-  /// The `is` OPERATOR's type-membership test for [value] against the raw type
-  /// specifier [tn] (already stripped of any trailing `.not()`). Ported
-  /// verbatim from the former inline `opIs` logic so the engine names no FHIR
-  /// type: Quantity (incl. its subtypes Age/Duration/... — via [isSubtypeOf],
-  /// equivalent to the old `is Quantity` class check) is special-cased; a bare
-  /// System value matches against its System type name; a FHIR value matches
-  /// its FHIR type name (case-insensitive, or an explicit `FHIR.` prefix).
-  Future<bool> isOperatorMatch(FhirBase value, String tn) async {
-    if (tn == 'Quantity' || tn == 'System.Quantity') {
-      return isSubtypeOf(value.fhirType, 'Quantity');
-    }
-    if (value is Element) {
-      if (value.disallowExtensions ?? false) {
-        final t = value.fhirType.capitalize();
-        return t == tn || 'System.$t' == tn;
-      }
-      return value.fhirType.toLowerCase() == tn.toLowerCase() ||
-          value.fhirType == tn.replaceFirst('FHIR.', '');
-    }
-    return value.fhirType == tn || value.fhirType == tn.replaceFirst('FHIR.', '');
-  }
-
   /// The `ofType()` type filter for [value] against the parse-tree type
-  /// specifier [tn] (`System.X` or `FHIR.X`). Ported verbatim from the former
-  /// inline `funcOfType` logic (System values match by exact type name; FHIR
-  /// values match through the subtype hierarchy).
+  /// specifier [tn] (`System.X` or `FHIR.X`), matching the Java reference
+  /// `FHIRPathEngine.funcOfType`/`funcAs`: System values match by exact type
+  /// name; FHIR values match through the subtype hierarchy, but — unlike the
+  /// `is` walk ([isSubtypeOf]) — the `ofType` walk STOPS at primitive-type
+  /// definitions, so e.g. `gender.ofType(string)` is false for a `code` even
+  /// though `gender.is(string)` is true.
   Future<bool> matchesOfType(FhirBase value, String tn) async {
     if (tn.startsWith('System.')) {
       return value is Element &&
           (value.disallowExtensions ?? false) &&
           value.hasType([tn.substring(7)]);
     } else if (tn.startsWith('FHIR.')) {
-      return isSubtypeOf(value.fhirType, tn.substring(5));
+      final tnp = tn.substring(5);
+      if (value.fhirType == tnp) {
+        return true;
+      }
+      var sd = await fetchTypeDefinition(value.fhirType);
+      while (sd != null) {
+        if (sd.type.primitiveValue == tnp) {
+          return true;
+        }
+        if (sd.kind == StructureDefinitionKind.primitiveType) {
+          return false;
+        }
+        final base = sd.baseDefinition?.primitiveValue;
+        if (base == null) {
+          return false;
+        }
+        sd = await fetchResource<StructureDefinition>(
+          uri: base,
+          canonicalForSource: sd,
+        );
+      }
+      return false;
     }
     return false;
   }
 
   /// Whether [type] is [superType] or descends from it through the FHIR type
-  /// inheritance chain. A neutral type-query the engine uses for `is`/`ofType`
-  /// (and bare type-name navigation) instead of walking `StructureDefinition`
+  /// inheritance chain. A neutral type-query the engine uses for `is` (and
+  /// bare type-name navigation) instead of walking `StructureDefinition`
   /// `baseDefinition` links itself, so the type metadata stays binding-side.
+  ///
+  /// The walk does NOT stop at primitive-type definitions, matching the Java
+  /// reference `funcIs`/`isAncestor`/name-navigation walks — this is what
+  /// makes `Patient.gender.is(string)` true for a `code` (official
+  /// testFHIRPathIsFunction2). Only the `ofType`/`as` walk ([matchesOfType])
+  /// stops at primitives.
   Future<bool> isSubtypeOf(String type, String superType) async {
     if (type == superType) {
       return true;
@@ -136,9 +145,6 @@ class WorkerContext {
     while (sd != null) {
       if (sd.type.primitiveValue == superType) {
         return true;
-      }
-      if (sd.kind == StructureDefinitionKind.primitiveType) {
-        return false;
       }
       final base = sd.baseDefinition?.primitiveValue;
       if (base == null) {
