@@ -458,42 +458,54 @@ class FhirPathUtilities {
     return doEquals(left, right);
   }
 
-  Pair? qtyToCanonicalPair(FhirBase q) {
-    String? ucum;
-    switch (qtyUnit(q)) {
-      case 'year':
-      case 'years':
-        ucum = 'a';
-      case 'month':
-      case 'months':
-        ucum = 'mo';
-      case 'week':
-      case 'weeks':
-        ucum = 'wk';
-      case 'day':
-      case 'days':
-        ucum = 'd';
-      case 'hour':
-      case 'hours':
-        ucum = 'h';
-      case 'minute':
-      case 'minutes':
-        ucum = 'min';
-      case 'second':
-      case 'seconds':
-        ucum = 's';
-      case 'millisecond':
-      case 'milliseconds':
-        ucum = 'ms';
+  /// [qtyToCanonicalPair] with the FHIRPath §6.1.2 equivalence extension:
+  /// a system-less calendar-duration quantity (`1 year`, `1 month`, ... —
+  /// which the parser deliberately leaves without a UCUM code) is mapped to
+  /// its definite-duration UCUM equivalent so that `1 year ~ 1 'a'` is true.
+  /// Used by equivalence ONLY — equality keeps them un-comparable.
+  Pair? qtyToEquivalenceCanonicalPair(FhirBase q) {
+    if (qtySystem(q) == null && qtyCode(q) == null) {
+      const calendarToUcum = {
+        'year': 'a', 'years': 'a', //
+        'month': 'mo', 'months': 'mo',
+        'week': 'wk', 'weeks': 'wk',
+        'day': 'd', 'days': 'd',
+        'hour': 'h', 'hours': 'h',
+        'minute': 'min', 'minutes': 'min',
+        'second': 's', 'seconds': 's',
+        'millisecond': 'ms', 'milliseconds': 'ms',
+      };
+      final ucum = calendarToUcum[qtyUnit(q)];
+      if (ucum != null) {
+        try {
+          final p = Pair(
+            value: UcumDecimal.fromNum(qtyValue(q)!),
+            unit: ucum,
+          );
+          return fpContext.worker.ucumService.getCanonicalForm(p);
+        } catch (e) {
+          return null;
+        }
+      }
     }
+    return qtyToCanonicalPair(q);
+  }
 
-    if (qtySystem(q) != 'http://unitsofmeasure.org' && ucum == null) {
+  /// Canonicalises a UCUM quantity. A quantity whose system is not UCUM —
+  /// notably the calendar-duration literals `1 year`/`1 month`, which the
+  /// parser deliberately leaves without a system/code ("this is not the UCUM
+  /// year", Java reference) — returns null, which is what makes
+  /// `1 'mo' = 1 month` EMPTY (calendar and definite durations are not
+  /// comparable) while `1 'wk' = 1 week` is true (week and below get UCUM
+  /// codes at parse time). Verbatim Java `qtyToCanonicalPair`.
+  Pair? qtyToCanonicalPair(FhirBase q) {
+    if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
     try {
       final p = Pair(
         value: UcumDecimal.fromNum(qtyValue(q)!),
-        unit: qtyCode(q) ?? ucum ?? '1',
+        unit: qtyCode(q) ?? '1',
       );
       return fpContext.worker.ucumService.getCanonicalForm(p);
     } catch (e) {
@@ -655,8 +667,14 @@ class FhirPathUtilities {
     if (lValue == null || rValue == null) {
       return null;
     }
-    final dl = qtyToCanonicalPair(left);
-    final dr = qtyToCanonicalPair(right);
+    // Unlike equality (where FHIRPath §6.1.1 keeps calendar durations and
+    // definite durations un-comparable, so `1 'mo' = 1 month` is empty),
+    // equivalence treats them as the same: §6.1.2 "For time-valued
+    // quantities, calendar durations and definite quantity durations are
+    // considered equivalent" (spec example: 1 year ~ 1 'a' // true). The
+    // Java reference omits this rule; the spec governs.
+    final dl = qtyToEquivalenceCanonicalPair(left);
+    final dr = qtyToEquivalenceCanonicalPair(right);
 
     if (dl != null && dr != null) {
       if (dl.unit == dr.unit) {
