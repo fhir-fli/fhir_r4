@@ -59,6 +59,8 @@ class FhirPathFunctions {
         return funcRepeat(execContext, focus, exp);
       case FpFunction.Aggregate:
         return funcAggregate(execContext, focus, exp);
+      case FpFunction.Sort:
+        return funcSort(execContext, focus, exp);
       case FpFunction.Item:
         return funcItem(execContext, focus, exp);
       case FpFunction.As:
@@ -619,61 +621,183 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcAs(
+  /// The `as()` FUNCTION form — retained by the FHIRPath spec for backwards
+  /// compatibility and implemented by the Java reference (`funcAs`, identical
+  /// filter logic to `ofType()`).
+  Future<List<FhirBase>> funcAs(
     ExecutionContext execContext,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
-    throw FhirPathDeprecatedExpressionException(
-      'The "as" function is deprecated',
-      location: expr.opStart,
-    );
-    // final result = <FhirBase>[];
-    // final parameter = expr.parameters[0];
-    // final tn = parameter.inner != null
-    //     ? '${parameter.name}.${parameter.inner!.name}'
-    //     : 'FHIR.${parameter.name}';
+  ) async {
+    final result = <FhirBase>[];
+    final parameter = expr.parameters[0];
+    final tn = parameter.inner != null
+        ? '${parameter.name}.${parameter.inner!.name}'
+        : 'FHIR.${parameter.name}';
 
-    // if (!isKnownType(tn)) {
-    //   throw PathEngineException('The type $tn is not valid');
-    // }
+    if (!(await utilities.isKnownType(tn))) {
+      throw PathEngineException('The type $tn is not valid');
+    }
 
-    // if (!fpContext.doNotEnforceAsSingletonRule && focus.length > 1) {
-    //   throw PathEngineException(
-    //     'Attempt to use as() on more than one item (${focus.length})',
-    //   );
-    // }
+    if (!fpContext.doNotEnforceAsSingletonRule && focus.length > 1) {
+      throw PathEngineException(
+        'Attempt to use as() on more than one item (${focus.length})',
+      );
+    }
 
-    // for (final b in focus) {
-    //   if (tn.startsWith('System.')) {
-    //     if (b is Element &&
-    //         (b.disallowExtensions ?? false) &&
-    //         b.hasType([tn.substring(7)])) {
-    //       result.add(b);
-    //     }
-    //   } else if (tn.startsWith('FHIR.')) {
-    //     final tnp = tn.substring(5);
-    //     if (b.fhirType == tnp) {
-    //       result.add(b);
-    //     } else {
-    //       var sd = engine._fetchTypeDefinition(b.fhirType);
-    //       while (sd != null) {
-    //         if (compareTypeNames(tnp, sd.type.toString())) {
-    //           result.add(b);
-    //           break;
-    //         }
-    //         sd = sd.kind == StructureDefinitionKind.primitive_type
-    //             ? null
-    //             : fpContext.worker.fetchResource<StructureDefinition>(
-    //                 uri: sd.baseDefinition?.toString(),
-    //                 canonicalForSource: sd,
-    //               );
-    //       }
-    //     }
-    //   }
-    // }
+    for (final b in focus) {
+      if (await fpContext.worker.matchesOfType(b, tn)) {
+        result.add(b);
+      }
+    }
+    return result;
+  }
 
-    // return result;
+  /// `sort()` / `sort(key...)` — port of the Java reference
+  /// `FHIRPathBaseSorter`. Each parameter is a per-item sort-key expression,
+  /// optionally prefixed with unary `-` for descending. The keys are computed
+  /// up front (expression evaluation is async and a Dart comparator cannot
+  /// await), then compared with the reference's natural ordering.
+  Future<List<FhirBase>> funcSort(
+    ExecutionContext execContext,
+    List<FhirBase> focus,
+    ExpressionNode exp,
+  ) async {
+    if (focus.length <= 1) {
+      return [...focus];
+    }
+
+    // Which parameters are descending (unary minus), and their key
+    // expressions.
+    final reversed = <bool>[];
+    final keyExprs = <ExpressionNode>[];
+    for (final p in exp.parameters) {
+      if (p.kind == ExpressionNodeKind.unary) {
+        reversed.add(true);
+        keyExprs.add(p.opNext!);
+      } else {
+        reversed.add(false);
+        keyExprs.add(p);
+      }
+    }
+
+    // Precompute each item's sort keys (the item itself for a natural sort).
+    final keyed = <(FhirBase, List<FhirBase?>)>[];
+    for (final item in focus) {
+      if (keyExprs.isEmpty) {
+        keyed.add((item, [item]));
+        continue;
+      }
+      final keys = <FhirBase?>[];
+      for (final keyExpr in keyExprs) {
+        final r = await engine.execute(
+          changeThisExecutionContext(execContext, item),
+          [item],
+          keyExpr,
+          true,
+        );
+        if (r.length > 1) {
+          throw FHIRException(
+            message: 'Multiple values while evaluating sort criterion '
+                '"$keyExpr"',
+          );
+        }
+        keys.add(r.isEmpty ? null : r.first);
+      }
+      keyed.add((item, keys));
+    }
+
+    keyed.sort((a, b) {
+      if (keyExprs.isEmpty) {
+        return _compareNatural(a.$2[0], b.$2[0], null);
+      }
+      for (var i = 0; i < keyExprs.length; i++) {
+        final res = _compareNatural(a.$2[i], b.$2[i], keyExprs[i].toString());
+        if (res != 0) {
+          return reversed[i] ? -res : res;
+        }
+      }
+      return 0;
+    });
+    return keyed.map((e) => e.$1).toList();
+  }
+
+  static const Set<String> _sortableTypeNames = {
+    'integer', 'unsignedInt', 'positiveInt', 'decimal', 'boolean', //
+    'date', 'dateTime', 'time', 'instant', //
+    'string', 'code', 'url', 'uri', 'uuid', 'oid', 'canonical', 'integer64',
+  };
+
+  static const Set<String> _sortIntegerNames = {
+    'integer', 'unsignedInt', 'positiveInt', 'integer64',
+  };
+
+  static const Set<String> _sortDateNames = {'date', 'dateTime', 'instant'};
+
+  static const Set<String> _sortStringNames = {
+    'string', 'code', 'url', 'uri', 'uuid', 'oid', 'canonical',
+  };
+
+  /// Natural ordering for sort keys — verbatim port of the Java reference
+  /// `FHIRPathBaseSorter.compareNatural` (including its deliberate reversed
+  /// boolean comparison; a missing key sorts last).
+  int _compareNatural(FhirBase? o1, FhirBase? o2, String? sorter) {
+    if (o1 == null && o2 == null) {
+      return 0;
+    }
+    if (o1 == null) {
+      return 1;
+    }
+    if (o2 == null) {
+      return -1;
+    }
+    if (!_sortComparableTypes(o1.fhirType, o2.fhirType)) {
+      throw FHIRException(
+        message: sorter == null
+            ? 'The types ${o1.fhirType} and ${o2.fhirType} cannot be sorted '
+                'in a natural sort'
+            : 'The types ${o1.fhirType} and ${o2.fhirType} cannot be sorted '
+                'for the sort criterion "$sorter"',
+      );
+    }
+    final s1 = o1.primitiveValue!;
+    final s2 = o2.primitiveValue!;
+    if (_sortIntegerNames.contains(o1.fhirType)) {
+      return int.parse(s1).compareTo(int.parse(s2));
+    } else if (o1.fhirType == 'decimal') {
+      return double.parse(s1).compareTo(double.parse(s2));
+    } else if (o1.fhirType == 'boolean') {
+      return s2.compareTo(s1); // order is deliberately reverse
+    } else {
+      return s1.compareTo(s2);
+    }
+  }
+
+  /// Whether two key types belong to the same sortable family — verbatim
+  /// port of the Java reference `FHIRPathBaseSorter.isComparableTypes`.
+  bool _sortComparableTypes(String t1, String t2) {
+    if (!_sortableTypeNames.contains(t1) || !_sortableTypeNames.contains(t2)) {
+      return false;
+    }
+    if (_sortIntegerNames.contains(t1) && _sortIntegerNames.contains(t2)) {
+      return true;
+    }
+    if (t1 == 'boolean' && t2 == 'boolean') {
+      return true;
+    }
+    if (t1 == 'decimal' && t2 == 'decimal') {
+      return true;
+    }
+    if (t1 == 'time' && t2 == 'time') {
+      return true;
+    }
+    if (_sortDateNames.contains(t1) && _sortDateNames.contains(t2)) {
+      return true;
+    }
+    if (_sortStringNames.contains(t1) && _sortStringNames.contains(t2)) {
+      return true;
+    }
+    return false;
   }
 
   Future<List<FhirBase>> funcOfType(

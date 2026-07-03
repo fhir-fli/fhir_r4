@@ -274,16 +274,16 @@ Future<void> testFpTestSuite() async {
       );
     });
 
-    // testBoolean(observation(), "Observation.value.as(Quantity).unit", true);
+    // Official testPolymorphismAsA: the as() function form is retained by
+    // the spec for backwards compatibility (the Java reference implements
+    // it); an earlier revision asserted a project-invented deprecation throw.
     test('testPolymorphismAsA', () async {
       expect(
-        () async {
-          await walkFhirPath(
-            context: observation1,
-            pathExpression: 'Observation.value.as(Quantity).unit',
-          );
-        },
-        throwsA(isA<FhirPathDeprecatedExpressionException>()),
+        await walkFhirPath(
+          context: observation1,
+          pathExpression: 'Observation.value.as(Quantity).unit',
+        ),
+        ['lbs'.toFhirString],
       );
     });
   });
@@ -314,18 +314,16 @@ Future<void> testFpTestSuite() async {
     );
   });
 
-  // test(observation(), "Observation.value.as(Period).start", 0);
-  // <test name="testPolymorphismAsBFunction" inputfile="observation-example.xml">
-  // <expression>Observation.value.as(Period).start</expression>
-  // });
-  // });
+  // Official testPolymorphismAsBFunction: the value is a Quantity, so
+  // as(Period) filters it out and the result is empty. (An earlier revision
+  // asserted a project-invented deprecation throw.)
   test('testPolymorphismAsBFunction', () async {
     expect(
-      () => walkFhirPath(
+      await walkFhirPath(
         context: observation1,
         pathExpression: 'Observation.value.as(Period).start',
       ),
-      throwsA(const TypeMatcher<PathEngineException>()),
+      <FhirBase>[],
     );
   });
 

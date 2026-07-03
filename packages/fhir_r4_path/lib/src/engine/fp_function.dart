@@ -16,6 +16,7 @@ enum FpFunction {
   All,
   Repeat,
   Aggregate,
+  Sort,
   As,
   Is,
   Single,
@@ -139,6 +140,8 @@ enum FpFunction {
         return FpFunction.Repeat;
       case 'aggregate':
         return FpFunction.Aggregate;
+      case 'sort':
+        return FpFunction.Sort;
       case 'item':
         return FpFunction.Item;
       case 'as':
@@ -366,6 +369,8 @@ enum FpFunction {
         return 'repeat';
       case FpFunction.Aggregate:
         return 'aggregate';
+      case FpFunction.Sort:
+        return 'sort';
       case FpFunction.As:
         return 'as';
       case FpFunction.Is:

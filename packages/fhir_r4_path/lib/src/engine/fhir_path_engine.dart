@@ -743,6 +743,8 @@ class FHIRPathEngine {
       case FpFunction.Repeat:
       case FpFunction.Aggregate:
         return anything(focus.collectionStatus);
+      case FpFunction.Sort:
+        return TypeDetails(CollectionStatus.ordered, focus.getTypes().toList());
       case FpFunction.All:
         return TypeDetails(
           CollectionStatus.singleton,
@@ -1965,6 +1967,8 @@ class FHIRPathEngine {
         return checkParamCount(lexer, location, exp, 1);
       case FpFunction.Aggregate:
         return checkParamCountBoundary(lexer, location, exp, 1, 2);
+      case FpFunction.Sort:
+        return checkParamCountBoundary(lexer, location, exp, 0, 10);
       case FpFunction.Item:
         return checkParamCount(lexer, location, exp, 1);
       case FpFunction.As:
@@ -2240,6 +2244,11 @@ class FHIRPathEngine {
   }
 
   bool isExpressionParameter(ExpressionNode exp, int i) {
+    // Every sort() parameter is a per-item sort-key expression
+    // (Java reference isExpressionParameter).
+    if (exp.function == FpFunction.Sort) {
+      return true;
+    }
     switch (i) {
       case 0:
         return exp.function == FpFunction.Where ||
