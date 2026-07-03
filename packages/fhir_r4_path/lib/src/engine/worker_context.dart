@@ -52,6 +52,42 @@ class WorkerContext {
     }
   }
 
+  /// The FHIRPath `is` / `ofType` type-membership test: does [value] belong to
+  /// the type named [name] in namespace [ns] (`'System'` or `'FHIR'`)?
+  ///
+  /// This is the single source of truth for `is`/`as`/`ofType`/`isX` — the
+  /// operator and function forms all delegate here. It encapsulates every piece
+  /// of FHIR-model type semantics (which is why it lives binding-side, not in
+  /// the model-independent engine): the System-vs-FHIR namespace rules, the
+  /// distinction between a FHIR complex `Element`/`Resource` and a bare System
+  /// value, and the FHIR subtype hierarchy (via [isSubtypeOf], so `Age` matches
+  /// `Quantity`, `code` matches `string`, `Patient` matches `Resource`, ...).
+  Future<bool> isValueOfType(FhirBase value, String ns, String name) async {
+    if (ns == 'System') {
+      // Resources are never System values.
+      if (value is Resource) {
+        return false;
+      }
+      // A System value is a bare primitive (no FHIR extensions). Complex FHIR
+      // Elements that carry extensions are FHIR values, not System values.
+      if (value is! Element || (value.disallowExtensions ?? false)) {
+        final t = value.fhirType.capitalize();
+        if (name == t) {
+          return true;
+        }
+        // A `date` is also a `DateTime` in the System type lattice.
+        if (t == 'Date' && name == 'DateTime') {
+          return true;
+        }
+        return false;
+      }
+      return false;
+    } else if (ns == 'FHIR') {
+      return isSubtypeOf(value.fhirType, name);
+    }
+    return false;
+  }
+
   /// Whether [type] is [superType] or descends from it through the FHIR type
   /// inheritance chain. A neutral type-query the engine uses for `is`/`ofType`
   /// (and bare type-name navigation) instead of walking `StructureDefinition`

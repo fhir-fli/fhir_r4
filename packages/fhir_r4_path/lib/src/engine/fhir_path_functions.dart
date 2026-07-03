@@ -768,31 +768,11 @@ class FhirPathFunctions {
       n = texp.name;
     }
 
-    if (ns == 'System') {
-      if (focus.first is Resource) {
-        return utilities.makeBoolean(false);
-      }
-
-      if (focus.first is! Element ||
-          ((focus.first as Element).disallowExtensions ?? false)) {
-        final t = focus.first.fhirType.capitalize();
-        if (n == t) {
-          return utilities.makeBoolean(true);
-        }
-        if (t == 'Date' && n == 'DateTime') {
-          return utilities.makeBoolean(true);
-        }
-        return utilities.makeBoolean(false);
-      } else {
-        return utilities.makeBoolean(false);
-      }
-    } else if (ns == 'FHIR') {
-      return utilities.makeBoolean(
-        await fpContext.worker.isSubtypeOf(focus.first.fhirType, n!),
-      );
-    } else {
-      return utilities.makeBoolean(false);
-    }
+    // The one type-membership predicate (System-vs-FHIR namespace, System-value
+    // distinction, FHIR subtype hierarchy) lives binding-side on the worker.
+    return utilities.makeBoolean(
+      await fpContext.worker.isValueOfType(focus.first, ns!, n!),
+    );
   }
 
   List<FhirBase> funcSingle(
