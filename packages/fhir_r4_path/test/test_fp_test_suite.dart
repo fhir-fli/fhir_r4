@@ -1772,13 +1772,17 @@ Future<void> testFpTestSuite() async {
       );
     });
 
+    // Official expectation is true: a bare UCUM code (`wk`) is not a valid
+    // unquoted unit — only calendar keywords may appear unquoted, so
+    // '1 wk' does NOT convert. (An earlier revision expected [false],
+    // masking a parseQuantityString that accepted bare UCUM codes.)
     test('testStringQuantityWeekConvertsToQuantityFalse', () async {
       expect(
         await walkFhirPath(
           context: patient1,
           pathExpression: "'1 wk'.convertsToQuantity().not()",
         ),
-        [false.toFhirBoolean],
+        [true.toFhirBoolean],
       );
     });
 

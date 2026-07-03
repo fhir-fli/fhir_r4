@@ -2112,38 +2112,34 @@ class FhirPathFunctions {
         return quantityFromUcum(v, s.substring(1, s.length - 1));
       }
 
+      // Only the calendar keywords may appear unquoted (FHIRPath quantity
+      // grammar; Java reference parseQuantityString). A bare UCUM code like
+      // `1 wk` does NOT convert — UCUM codes must be quoted (`1 'wk'`,
+      // handled above). Official testStringQuantityWeekConvertsToQuantityFalse.
       switch (s) {
         case 'year':
         case 'years':
-        case 'a':
           return quantityFromUcum(v, 'a');
         case 'month':
         case 'months':
-        case 'mo_s':
           return quantityFromUcum(v, 'mo_s');
         case 'week':
         case 'weeks':
-        case 'wk':
           return quantityFromUcum(v, 'wk');
         case 'day':
         case 'days':
-        case 'd':
           return quantityFromUcum(v, 'd');
         case 'hour':
         case 'hours':
-        case 'h':
           return quantityFromUcum(v, 'h');
         case 'minute':
         case 'minutes':
-        case 'min':
           return quantityFromUcum(v, 'min');
         case 'second':
         case 'seconds':
-        case 's':
           return quantityFromUcum(v, 's');
         case 'millisecond':
         case 'milliseconds':
-        case 'ms':
           return quantityFromUcum(v, 'ms');
         default:
           return null;
