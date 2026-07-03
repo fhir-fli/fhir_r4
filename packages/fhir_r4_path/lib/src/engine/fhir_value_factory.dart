@@ -122,6 +122,22 @@ class FhirValueFactory {
     );
   }
 
+  /// Returns `abs(number)` preserving the FHIR numeric subtype exactly
+  /// (`decimal`→decimal, `integer`→integer; the already-non-negative
+  /// `unsignedInt`/`positiveInt` are returned unchanged). The per-subtype
+  /// construction is FHIR-model knowledge, so it lives at the binding seam.
+  FhirBase numericAbs(FhirBase number) {
+    if (number is FhirDecimal) {
+      return FhirDecimal(number.abs()).noExtensions();
+    } else if (number is FhirInteger) {
+      return FhirInteger(number.abs()).noExtensions();
+    } else if (number is FhirUnsignedInt) {
+      return number.noExtensions();
+    } else {
+      return (number as FhirPositiveInt).noExtensions();
+    }
+  }
+
   /// Returns a copy of the `Quantity` node [quantity] with its `value` replaced
   /// by [value] (passing null leaves `copyWith`'s value argument null, matching
   /// the engine's historical call), preserving every other field — unit,

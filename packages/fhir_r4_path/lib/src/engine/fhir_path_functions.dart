@@ -2061,23 +2061,23 @@ class FhirPathFunctions {
     final result = <FhirBase>[];
     if (focus.length == 1) {
       final item = focus.first;
-      if (item is FhirBoolean) {
+      if (item.fhirType == 'boolean') {
         result.add(item);
-      } else if (item is FhirInteger) {
-        final i = item.valueInt;
+      } else if (item.fhirType == 'integer') {
+        final i = utilities.nodeNum(item);
         if (i == 0) {
           result.add(fpContext.factory.boolean(false));
         } else if (i == 1) {
           result.add(fpContext.factory.boolean(true));
         }
-      } else if (item is FhirDecimal) {
-        final value = item.valueDouble;
+      } else if (item.fhirType == 'decimal') {
+        final value = utilities.nodeNum(item);
         if (value == 0) {
           result.add(fpContext.factory.boolean(false));
         } else if (value == 1) {
           result.add(fpContext.factory.boolean(true));
         }
-      } else if (item is FhirString) {
+      } else if (item.fhirType == 'string') {
         final primitiveValue = item.primitiveValue?.toLowerCase();
         if (<String>['true', 't', 'yes', 'y', '1', '1.0']
             .contains(primitiveValue)) {
@@ -2307,11 +2307,10 @@ class FhirPathFunctions {
     final result = <FhirBase>[];
     if (focus.length != 1) {
       result.add(fpContext.factory.boolean(false));
-    } else if (focus.first is FhirInteger ||
-        focus.first is FhirBoolean ||
-        focus.first is FhirDecimal) {
+    } else if (const {'integer', 'boolean', 'decimal'}
+        .contains(focus.first.fhirType)) {
       result.add(fpContext.factory.boolean(true));
-    } else if (focus.first is FhirString) {
+    } else if (focus.first.fhirType == 'string') {
       result.add(
         fpContext.factory.boolean(Utilities.isDecimal(focus.first.toString())),
       );
@@ -2555,14 +2554,14 @@ class FhirPathFunctions {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber) {
+    if (utilities.isNumericNode(base)) {
       final value = int.tryParse(base.primitiveValue ?? '') ??
           double.tryParse(base.primitiveValue ?? '');
       if (value != null) {
         try {
           final val = sqrt(value);
           if (!val.isNaN) {
-            result.add(FhirDecimal(val).noExtensions());
+            result.add(fpContext.factory.decimal(val));
           }
         } catch (e) {
           // Do nothing on error
@@ -2600,21 +2599,12 @@ class FhirPathFunctions {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber && base.valueNum != null) {
-      if (base is FhirDecimal) {
-        result.add(FhirDecimal(base.abs()).noExtensions());
-      } else if (base is FhirInteger) {
-        result.add(fpContext.factory.integer(base.abs()));
-      } else if (base is FhirUnsignedInt) {
-        result.add(base.noExtensions());
-      } else {
-        result.add((base as FhirPositiveInt).noExtensions());
-      }
+    if (utilities.isNumericNode(base) && utilities.nodeNum(base) != null) {
+      result.add(fpContext.factory.numericAbs(base));
     } else if (base.fhirType == 'Quantity') {
-      final qty = base as Quantity;
-      final n = qty.value?.abs();
+      final n = utilities.qtyValue(base)?.abs();
       if (n != null) {
-        result.add(qty.copyWith(value: FhirDecimal(n)));
+        result.add(fpContext.factory.quantityWithValue(base, n));
       }
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
@@ -2648,8 +2638,8 @@ class FhirPathFunctions {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber) {
-      final value = base.valueNum;
+    if (utilities.isNumericNode(base)) {
+      final value = utilities.nodeNum(base);
       if (value != null) {
         try {
           result.add(fpContext.factory.integer(value.ceil()));
@@ -2689,8 +2679,8 @@ class FhirPathFunctions {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber) {
-      final value = base.valueNum;
+    if (utilities.isNumericNode(base)) {
+      final value = utilities.nodeNum(base);
       if (value != null) {
         try {
           result.add(fpContext.factory.integer(value.floor()));
@@ -2730,12 +2720,12 @@ class FhirPathFunctions {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber) {
+    if (utilities.isNumericNode(base)) {
       final value = int.tryParse(base.primitiveValue ?? '') ??
           double.tryParse(base.primitiveValue ?? '');
       if (value != null) {
         try {
-          result.add(FhirDecimal(log(value)).noExtensions());
+          result.add(fpContext.factory.decimal(log(value)));
         } catch (e) {
           // Do nothing on error
         }
@@ -2818,14 +2808,18 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode expr,
   ) {
-    FhirNumber? sum;
+    FhirBase? sum;
 
     for (final item in focus) {
-      if (item is FhirNumber) {
+      if (utilities.isNumericNode(item)) {
         if (sum == null) {
           sum = item;
         } else {
-          sum = sum + item;
+          sum = utilities.numericResult(
+            utilities.nodeNum(sum)! + utilities.nodeNum(item)!,
+            sum,
+            item,
+          );
         }
       } else {
         throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
@@ -2859,12 +2853,12 @@ class FhirPathFunctions {
 
     final base = focus.first;
     final result = <FhirBase>[];
-    if (base is FhirNumber) {
+    if (utilities.isNumericNode(base)) {
       final d = int.tryParse(base.primitiveValue ?? '') ??
           double.tryParse(base.primitiveValue ?? '');
       if (d != null) {
         try {
-          result.add(FhirDecimal(exp(d)).noExtensions());
+          result.add(fpContext.factory.decimal(exp(d)));
         } catch (e) {
           // Do nothing on error
         }

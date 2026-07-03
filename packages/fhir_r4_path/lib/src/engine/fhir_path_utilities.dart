@@ -83,6 +83,14 @@ class FhirPathUtilities {
     'unsignedInt',
   };
 
+  /// The integer-kind FHIR primitive type names (the `FhirNumber` hierarchy
+  /// minus `decimal`).
+  static const Set<String> integerTypeNames = {
+    'integer',
+    'positiveInt',
+    'unsignedInt',
+  };
+
   /// The FHIR primitive type names FHIRPath treats as `System.DateTime` /
   /// `System.Date`. Mirrors the `FhirDateTimeBase` hierarchy.
   static const Set<String> dateTimeTypeNames = {
@@ -187,25 +195,25 @@ class FhirPathUtilities {
 
   bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
-        list.first is FhirBoolean &&
-        (list.first as FhirBoolean).valueBoolean == value;
+        list.first.fhirType == 'boolean' &&
+        list.first.primitiveValue == (value ? 'true' : 'false');
   }
 
   FpEquality asBool(FhirBase item, [bool narrow = false]) {
-    if (item is FhirBoolean && item.valueBoolean != null) {
-      return item.valueBoolean! ? FpEquality.true_ : FpEquality.false_;
+    if (item.fhirType == 'boolean' && item.primitiveValue != null) {
+      return item.primitiveValue == 'true'
+          ? FpEquality.true_
+          : FpEquality.false_;
     }
 
     if (!narrow) {
-      if ((item is FhirInteger ||
-              item is FhirPositiveInt ||
-              item is FhirUnsignedInt) &&
-          (item as FhirNumber).valueString != null) {
-        return asBoolFromInt(item.valueString!);
-      } else if (item is FhirDecimal && item.valueString != null) {
-        return asBoolFromDec(item.valueString!);
-      } else if (item is FhirString) {
-        final lowerValue = (item.valueString ?? '').toLowerCase();
+      if (integerTypeNames.contains(item.fhirType) &&
+          item.primitiveValue != null) {
+        return asBoolFromInt(item.primitiveValue!);
+      } else if (item.fhirType == 'decimal' && item.primitiveValue != null) {
+        return asBoolFromDec(item.primitiveValue!);
+      } else if (item.fhirType == 'string') {
+        final lowerValue = (item.primitiveValue ?? '').toLowerCase();
         if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
           return FpEquality.true_;
         } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
@@ -220,7 +228,7 @@ class FhirPathUtilities {
     if (items.isEmpty) return FpEquality.null_;
 
     if (items.length == 1) {
-      if (items.first is FhirBoolean) {
+      if (items.first.fhirType == 'boolean') {
         return asBool(items.first, true);
       }
       return FpEquality.true_;
@@ -254,7 +262,7 @@ class FhirPathUtilities {
   }
 
   bool canConvertToBoolean(FhirBase item) {
-    if (item is FhirBoolean) return true;
+    if (item.fhirType == 'boolean') return true;
 
     if (item.isPrimitive) {
       final value = item.toString().toLowerCase();
@@ -282,8 +290,8 @@ class FhirPathUtilities {
 
     if (items.length == 1) {
       final first = items.first;
-      if (first is FhirBoolean) {
-        return first.valueBoolean ?? false;
+      if (first.fhirType == 'boolean') {
+        return first.primitiveValue == 'true';
       }
 
       final lowerValue = first.toString().toLowerCase();

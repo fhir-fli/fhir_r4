@@ -1210,6 +1210,9 @@ class FhirPathOperations {
 
       // Check if comparing to Quantity type
       final isQuantityCheck = tn == 'Quantity' || tn == 'System.Quantity';
+      // NB: subtype-inclusive on purpose (Age/Duration/Count/... derive from
+      // Quantity). Decoupling this needs the async isSubtypeOf worker query;
+      // deferred with the opIs/opAs Quantity-subtype correctness pass.
       final isQuantity = left.first is Quantity;
 
       if (isQuantityCheck) {
