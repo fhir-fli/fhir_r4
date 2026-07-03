@@ -57,17 +57,51 @@ class FhirValueFactory {
   /// [value] string, of the concrete FHIR type named by [fhirType]. The engine
   /// computes the value string model-independently (via `SystemDateTime`); this
   /// factory maps it back to the matching FHIR primitive, preserving precision.
-  FhirBase dateTimeOfType(String fhirType, String value) {
+  FhirBase dateTimeOfType(
+    String fhirType,
+    String value, {
+    bool disallowExtensions = false,
+  }) {
     switch (fhirType) {
       case 'date':
-        return FhirDate.fromString(value);
+        final v = FhirDate.fromString(value);
+        return disallowExtensions ? v.noExtensions() : v;
       case 'instant':
-        return FhirInstant.fromString(value);
+        final v = FhirInstant.fromString(value);
+        return disallowExtensions ? v.noExtensions() : v;
       case 'dateTime':
       default:
-        return FhirDateTime.fromString(value);
+        final v = FhirDateTime.fromString(value);
+        return disallowExtensions ? v.noExtensions() : v;
     }
   }
+
+  /// Parses [value] as a `dateTime`, returning null when it is not a valid
+  /// FHIRPath date-time (mirrors `FhirDateTime.tryParse`).
+  FhirBase? tryDateTime(String? value) => FhirDateTime.tryParse(value);
+
+  /// Parses [value] as a `date`, returning null when invalid
+  /// (mirrors `FhirDate.tryParse`).
+  FhirBase? tryDate(String? value) => FhirDate.tryParse(value);
+
+  /// Parses [value] as a `time`, returning null when invalid
+  /// (mirrors `FhirTime.tryParse`).
+  FhirBase? tryTime(String? value) => FhirTime.tryParse(value);
+
+  /// The `today()` value — a `date` for the calendar day of [instant]. The
+  /// engine supplies the instant (`DateTime.now()`); construction is here.
+  FhirBase todayFrom(DateTime instant) => FhirDate.fromUnits(
+        year: instant.year,
+        month: instant.month,
+        day: instant.day,
+      );
+
+  /// The `now()` value — a `dateTime` for [instant].
+  FhirBase nowFrom(DateTime instant) => FhirDateTime.fromDateTime(instant);
+
+  /// The `timeOfDay()` value — a `time` for the time-of-day of [instant].
+  FhirBase timeOfDayFrom(DateTime instant) =>
+      FhirTime.tryParse(instant.toIso8601String().split('T').last)!;
 
   /// Builds a `Quantity` result from model-independent scalar parts. The engine
   /// reads quantities via the node contract and produces them here, never

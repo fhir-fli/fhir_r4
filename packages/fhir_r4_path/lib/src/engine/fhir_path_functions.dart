@@ -1463,14 +1463,7 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    final dateTime = DateTime.now();
-    return <FhirBase>[
-      FhirDate.fromUnits(
-        year: dateTime.year,
-        month: dateTime.month,
-        day: dateTime.day,
-      ),
-    ];
+    return <FhirBase>[fpContext.factory.todayFrom(DateTime.now())];
   }
 
   List<FhirBase> funcNow(
@@ -1478,7 +1471,7 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[FhirDateTime.fromDateTime(DateTime.now())];
+    return <FhirBase>[fpContext.factory.nowFrom(DateTime.now())];
   }
 
   List<FhirBase> funcTimeOfDay(
@@ -1486,9 +1479,7 @@ class FhirPathFunctions {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[
-      FhirTime.tryParse(DateTime.now().toIso8601String().split('T').last)!,
-    ];
+    return <FhirBase>[fpContext.factory.timeOfDayFrom(DateTime.now())];
   }
 
   Future<List<FhirBase>> funcAllFalse(
@@ -2209,17 +2200,15 @@ class FhirPathFunctions {
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
-      if (focus.first is FhirDateTimeBase &&
-          (focus.first as FhirDateTimeBase).valueString != null) {
+      if (utilities.isDateTimeNode(focus.first) &&
+          focus.first.primitiveValue != null) {
         return [
-          FhirDateTime.fromString(
-            (focus.first as FhirDateTimeBase).valueString!,
-          ),
+          fpContext.factory.dateTimeOfType('dateTime', focus.first.primitiveValue!),
         ];
-      } else if (focus.first is FhirString) {
-        final dateTime = (focus.first as FhirString).valueString == null
+      } else if (focus.first.fhirType == 'string') {
+        final dateTime = focus.first.primitiveValue == null
             ? null
-            : FhirDateTime.tryParse((focus.first as FhirString).valueString);
+            : fpContext.factory.tryDateTime(focus.first.primitiveValue);
         if (dateTime != null) {
           return [dateTime];
         }
@@ -2242,17 +2231,16 @@ class FhirPathFunctions {
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
-      if (focus.first is FhirDateTimeBase) {
-        final date =
-            FhirDate.tryParse((focus.first as FhirDateTimeBase).valueString);
+      if (utilities.isDateTimeNode(focus.first)) {
+        final date = fpContext.factory.tryDate(focus.first.primitiveValue);
         if (date != null) {
           return [date];
         }
         return [];
-      } else if (focus.first is FhirString) {
-        final date = (focus.first as FhirString).valueString == null
+      } else if (focus.first.fhirType == 'string') {
+        final date = focus.first.primitiveValue == null
             ? null
-            : FhirDateTime.tryParse((focus.first as FhirString).valueString);
+            : fpContext.factory.tryDateTime(focus.first.primitiveValue);
         if (date != null) {
           return [date];
         }
@@ -2275,10 +2263,10 @@ class FhirPathFunctions {
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
-      if (focus.first is FhirTime) {
+      if (utilities.isTimeNode(focus.first)) {
         return [focus.first];
-      } else if (focus.first is FhirString) {
-        final time = FhirTime.tryParse(focus.first.toString());
+      } else if (focus.first.fhirType == 'string') {
+        final time = fpContext.factory.tryTime(focus.first.toString());
         if (time != null) {
           return [time];
         }
@@ -3023,38 +3011,36 @@ class FhirPathFunctions {
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
         result.add(
-          FhirDecimal(
+          fpContext.factory.decimal(
             double.parse(
               (base.primitiveValue ?? '').lowBoundaryForDecimal(
                 precision ?? 8,
               ),
             ),
-          ).noExtensions(),
+          ),
         );
       }
     } else if (base.hasType(['date'])) {
       result.add(
-        FhirDateTime.fromString(
-          (base.primitiveValue ?? '').lowBoundaryForDate(
-            precision ?? 10,
-          ),
-        ).noExtensions(),
+        fpContext.factory.dateTimeOfType(
+          'dateTime',
+          (base.primitiveValue ?? '').lowBoundaryForDate(precision ?? 10),
+          disallowExtensions: true,
+        ),
       );
     } else if (base.hasType(['dateTime'])) {
       result.add(
-        FhirDateTime.fromString(
-          (base.primitiveValue ?? '').lowBoundaryForDate(
-            precision ?? 17,
-          ),
-        ).noExtensions(),
+        fpContext.factory.dateTimeOfType(
+          'dateTime',
+          (base.primitiveValue ?? '').lowBoundaryForDate(precision ?? 17),
+          disallowExtensions: true,
+        ),
       );
     } else if (base.hasType(['time'])) {
       result.add(
-        FhirTime(
-          (base.primitiveValue ?? '').lowBoundaryForTime(
-            precision ?? 9,
-          ),
-        ).noExtensions(),
+        fpContext.factory.time(
+          (base.primitiveValue ?? '').lowBoundaryForTime(precision ?? 9),
+        ),
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
@@ -3112,38 +3098,36 @@ class FhirPathFunctions {
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
         result.add(
-          FhirDecimal(
+          fpContext.factory.decimal(
             double.parse(
               (base.primitiveValue ?? '').highBoundaryForDecimal(
                 precision ?? 8,
               ),
             ),
-          ).noExtensions(),
+          ),
         );
       }
     } else if (base.hasType(['date'])) {
       result.add(
-        FhirDateTime.fromString(
-          (base.primitiveValue ?? '').highBoundaryForDate(
-            precision ?? 10,
-          ),
-        ).noExtensions(),
+        fpContext.factory.dateTimeOfType(
+          'dateTime',
+          (base.primitiveValue ?? '').highBoundaryForDate(precision ?? 10),
+          disallowExtensions: true,
+        ),
       );
     } else if (base.hasType(['dateTime'])) {
       result.add(
-        FhirDateTime.fromString(
-          (base.primitiveValue ?? '').highBoundaryForDate(
-            precision ?? 17,
-          ),
-        ).noExtensions(),
+        fpContext.factory.dateTimeOfType(
+          'dateTime',
+          (base.primitiveValue ?? '').highBoundaryForDate(precision ?? 17),
+          disallowExtensions: true,
+        ),
       );
     } else if (base.hasType(['time'])) {
       result.add(
-        FhirTime(
-          (base.primitiveValue ?? '').highBoundaryForTime(
-            precision ?? 9,
-          ),
-        ).noExtensions(),
+        fpContext.factory.time(
+          (base.primitiveValue ?? '').highBoundaryForTime(precision ?? 9),
+        ),
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
@@ -3373,13 +3357,14 @@ class FhirPathFunctions {
     FhirBase? result;
 
     if (value.startsWith('T')) {
-      result = FhirTime.tryParse(value.replaceFirst('T', ''));
+      result = fpContext.factory.tryTime(value.replaceFirst('T', ''));
     } else if (value.contains('T')) {
-      result = FhirDateTime.tryParse(value) ?? FhirTime.tryParse(value);
+      result = fpContext.factory.tryDateTime(value) ??
+          fpContext.factory.tryTime(value);
     } else {
-      result = FhirDate.tryParse(value) ??
-          FhirDateTime.tryParse(value) ??
-          FhirTime.tryParse(value);
+      result = fpContext.factory.tryDate(value) ??
+          fpContext.factory.tryDateTime(value) ??
+          fpContext.factory.tryTime(value);
     }
     if (result != null) return result;
     throw fpContext.makeException(
@@ -3404,38 +3389,6 @@ class FhirPathFunctions {
     final dr = int.tryParse(r) ?? double.parse(r);
 
     return dl == dr;
-  }
-
-  int? compareDateTimeElements(
-    FhirBase theL,
-    FhirBase theR,
-    bool theEquivalenceTest,
-  ) {
-    final left =
-        theL is FhirDateTime ? theL : FhirDateTime.tryParse(theL.toString());
-    final right =
-        theR is FhirDateTime ? theR : FhirDateTime.tryParse(theR.toString());
-
-    if (left == null || right == null) {
-      return null;
-    }
-
-    return left.compareTo(right);
-  }
-
-  int? compareTimeElements(
-    FhirBase theL,
-    FhirBase theR,
-    bool theEquivalenceTest,
-  ) {
-    final left = theL is FhirTime ? theL : FhirTime.tryParse(theL.toString());
-    final right = theR is FhirTime ? theR : FhirTime.tryParse(theR.toString());
-
-    if (left == null || right == null) {
-      return null;
-    }
-
-    return left.compareTo(right);
   }
 
   ExecutionContext changeThisExecutionContext(
