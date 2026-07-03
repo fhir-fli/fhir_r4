@@ -3044,12 +3044,12 @@ class FhirPathFunctions {
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
-      final copied = (base as Quantity).copyWith(
-        value: FhirDecimal(
+      result.add(
+        fpContext.factory.quantityWithValue(
+          base,
           double.parse((value ?? '').lowBoundaryForDecimal(precision ?? 8)),
         ),
       );
-      result.add(copied);
     } else {
       throw fpContext.makeException(
         expr,
@@ -3131,12 +3131,12 @@ class FhirPathFunctions {
       );
     } else if (base.hasType(['Quantity'])) {
       final value = getNamedValue(base, 'value');
-      final copied = (base as Quantity).copyWith(
-        value: FhirDecimal(
+      result.add(
+        fpContext.factory.quantityWithValue(
+          base,
           double.parse((value ?? '').highBoundaryForDecimal(precision ?? 8)),
         ),
       );
-      result.add(copied);
     } else {
       throw fpContext.makeException(
         expr,

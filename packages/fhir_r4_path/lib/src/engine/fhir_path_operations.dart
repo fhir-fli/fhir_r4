@@ -944,15 +944,11 @@ class FhirPathOperations {
         utilities.numericResult(utilities.nodeNum(l)! - utilities.nodeNum(r)!,
             l, r),
       );
-    } else if ((l is FhirNumber || l is Quantity) && r is Quantity) {
+    } else if ((utilities.isNumericNode(l) || utilities.isQuantityNode(l)) &&
+        utilities.isQuantityNode(r)) {
       if (l.toString() == '0') {
-        final qty = r;
         result.add(
-          qty.copyWith(
-            value: qty.value?.abs() == null
-                ? null
-                : qty.value!.abs().toFhirDecimal,
-          ),
+          fpContext.factory.quantityWithValue(r, utilities.qtyValue(r)?.abs()),
         );
       }
     } else if (utilities.isDateTimeNode(l) && utilities.isQuantityNode(r)) {

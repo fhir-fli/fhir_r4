@@ -121,4 +121,16 @@ class FhirValueFactory {
       disallowExtensions: disallowExtensions,
     );
   }
+
+  /// Returns a copy of the `Quantity` node [quantity] with its `value` replaced
+  /// by [value] (passing null leaves `copyWith`'s value argument null, matching
+  /// the engine's historical call), preserving every other field — unit,
+  /// system, code, comparator, extensions, id. A model-independent caller can't
+  /// rebuild a Quantity without dropping those, so the copy is done here at the
+  /// binding seam.
+  FhirBase quantityWithValue(FhirBase quantity, num? value) {
+    return (quantity as Quantity).copyWith(
+      value: value == null ? null : FhirDecimal(value),
+    );
+  }
 }
