@@ -3890,13 +3890,17 @@ Future<void> testFpTestSuite() async {
       );
     });
 
+    // Official testEquality23: empty — one operand has a timezone and the
+    // other does not, and the two could denote the same instant in some
+    // timezone, so the comparison is indeterminate. (An earlier revision
+    // expected [false], masking the missing timezone-presence rule.)
     test('testEquality23', () async {
       expect(
         await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00Z = @2012-04-15T10:00:00',
         ),
-        [false.toFhirBoolean],
+        <FhirBase>[],
       );
     });
 
@@ -4107,23 +4111,16 @@ Future<void> testFpTestSuite() async {
       );
     });
 
+    // Official testNEquality17: empty — same timezone-presence
+    // indeterminacy as testEquality23. (Earlier revisions, including a
+    // duplicate "-fixed" copy, expected [true].)
     test('testNEquality17', () async {
       expect(
         await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00Z != @2012-04-15T10:00:00',
         ),
-        [true.toFhirBoolean],
-      );
-    });
-
-    test('testNEquality17-fixed', () async {
-      expect(
-        await walkFhirPath(
-          context: patient1,
-          pathExpression: '@2012-04-15T15:00:00Z != @2012-04-15T10:00:00',
-        ),
-        [true.toFhirBoolean],
+        <FhirBase>[],
       );
     });
 

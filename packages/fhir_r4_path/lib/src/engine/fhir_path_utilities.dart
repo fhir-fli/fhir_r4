@@ -587,7 +587,11 @@ class FhirPathUtilities {
       return equivalentNumber(nodeNum(left), nodeNum(right));
     }
     if (isDateTimeNode(left) && isDateTimeNode(right)) {
-      return compareDateTimeNodes(left, right, TemporalComparator.equivalent);
+      // Equivalence is never empty: an indeterminate datetime comparison is
+      // "not equivalent" (Java compareDateTimeElements equivalence path maps
+      // equalsUsingFhirPathRules == TRUE ? 0 : 1).
+      return compareDateTimeNodes(left, right, TemporalComparator.equivalent) ??
+          false;
     }
     if (fpContext.FHIR_TYPES_STRING.contains(left.fhirType) &&
         fpContext.FHIR_TYPES_STRING.contains(right.fhirType)) {

@@ -327,9 +327,86 @@ class SystemDateTime {
     }
   }
 
+  /// Whether this value carries an explicit timezone (a numeric offset or
+  /// `Z`).
+  bool get hasTimezone => isUtc || timeZoneOffset != null;
+
+  /// The instant of this value's low edge in UTC epoch milliseconds (the
+  /// missing finer components default to their minimums, and the timezone
+  /// offset is applied). Millisecond resolution, like the Java reference's
+  /// `getValue().getTime()`.
+  int get _lowEdgeUtcMs {
+    final naive = DateTime.utc(
+      year ?? 0,
+      month ?? 1,
+      day ?? 1,
+      hour ?? 0,
+      minute ?? 0,
+      second ?? 0,
+      millisecond ?? 0,
+    );
+    final offsetMs =
+        ((timeZoneOffset ?? 0) * Duration.millisecondsPerHour).round();
+    return naive.millisecondsSinceEpoch - offsetMs;
+  }
+
+  /// The instant one precision-unit past this value, in UTC epoch
+  /// milliseconds — the exclusive upper bound of the interval the partial
+  /// value denotes. Port of the Java reference `BaseDateTimeType.getHighEdge`
+  /// (a millisecond-precision value adds nothing).
+  int get _highEdgeUtcMs {
+    SystemDateTime edge;
+    if (millisecond != null || microsecond != null) {
+      edge = this;
+    } else if (second != null) {
+      edge = plus(TemporalDuration(seconds: 1));
+    } else if (minute != null) {
+      edge = plus(TemporalDuration(minutes: 1));
+    } else if (hour != null) {
+      edge = plus(TemporalDuration(hours: 1));
+    } else if (day != null) {
+      edge = plus(TemporalDuration(days: 1));
+    } else if (month != null) {
+      edge = plus(TemporalDuration(months: 1));
+    } else {
+      edge = plus(TemporalDuration(years: 1));
+    }
+    return edge._lowEdgeUtcMs;
+  }
+
+  /// Whether the two (partial) values could denote the same instant: each is
+  /// widened to its [_lowEdgeUtcMs, _highEdgeUtcMs] interval, a timezone-less
+  /// operand is further widened by ±14 hours (the widest real offset), and
+  /// the intervals are tested for overlap. Port of the Java reference
+  /// `BaseDateTimeType.couldBeTheSameTime`.
+  static bool _couldBeTheSameTime(SystemDateTime a, SystemDateTime b) {
+    const fourteenHoursMs = 14 * Duration.millisecondsPerHour;
+    var lowLeft = a._lowEdgeUtcMs;
+    var highLeft = a._highEdgeUtcMs;
+    if (!a.hasTimezone) {
+      lowLeft -= fourteenHoursMs;
+      highLeft += fourteenHoursMs;
+    }
+    var lowRight = b._lowEdgeUtcMs;
+    var highRight = b._highEdgeUtcMs;
+    if (!b.hasTimezone) {
+      lowRight -= fourteenHoursMs;
+      highRight += fourteenHoursMs;
+    }
+    if (highRight < lowLeft) {
+      return false;
+    }
+    if (highLeft < lowRight) {
+      return false;
+    }
+    return true;
+  }
+
   /// Compares two date-time strings under FHIRPath semantics: normalises each
   /// to a common frame via its timezone offset, then compares with precision.
-  /// Returns null when the result is indeterminate (differing precision).
+  /// Returns null when the result is indeterminate (differing precision, or
+  /// an equality where only one operand has a timezone and the instants could
+  /// coincide).
   static bool? compareStrings(
     String? lhsStr,
     String? rhsStr,
@@ -340,6 +417,21 @@ class SystemDateTime {
       return null;
     }
     final rhsParsed = parse(rhsStr);
+    if (rhsParsed == null) {
+      return false;
+    }
+
+    // Equality/equivalence of two datetimes where exactly one carries a
+    // timezone is decided by instant-overlap (Java reference
+    // BaseDateTimeType.equalsUsingFhirPathRules): definitely-different
+    // instants -> false, potentially-coincident -> empty. The ordering
+    // operators do not apply this rule (FHIRPathEngine.compareDateTimeElements
+    // just timezone-normalises and compares by precision).
+    if ((comparator == TemporalComparator.equal ||
+            comparator == TemporalComparator.equivalent) &&
+        lhsParsed.hasTimezone != rhsParsed.hasTimezone) {
+      return _couldBeTheSameTime(lhsParsed, rhsParsed) ? null : false;
+    }
 
     final lhsTz = TemporalDuration(
       hours: (lhsParsed.timeZoneOffset?.toInt() ?? 0) * -1,
@@ -347,9 +439,6 @@ class SystemDateTime {
     );
     final lhs = lhsParsed.plus(lhsTz);
 
-    if (rhsParsed == null) {
-      return false;
-    }
     final rhsTz = TemporalDuration(
       hours: (rhsParsed.timeZoneOffset?.toInt() ?? 0) * -1,
       minutes: ((rhsParsed.timeZoneOffset ?? 0) % 1 * 60).toInt() * -1,
