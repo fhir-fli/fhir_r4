@@ -694,17 +694,8 @@ class FhirPathFunctions {
     }
 
     for (final b in focus) {
-      if (tn!.startsWith('System.')) {
-        if (b is Element && (b.disallowExtensions ?? false)) {
-          if (b.hasType([tn.substring(7)])) {
-            result.add(b);
-          }
-        }
-      } else if (tn.startsWith('FHIR.')) {
-        final tnp = tn.substring(5);
-        if (await fpContext.worker.isSubtypeOf(b.fhirType, tnp)) {
-          result.add(b);
-        }
+      if (await fpContext.worker.matchesOfType(b, tn!)) {
+        result.add(b);
       }
     }
 

@@ -91,6 +91,7 @@ class FhirPathUtilities {
     'unsignedInt',
   };
 
+
   /// The FHIR primitive type names FHIRPath treats as `System.DateTime` /
   /// `System.Date`. Mirrors the `FhirDateTimeBase` hierarchy.
   static const Set<String> dateTimeTypeNames = {

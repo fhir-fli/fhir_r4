@@ -1189,11 +1189,11 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opIs(
+  Future<List<FhirBase>> opIs(
     List<FhirBase> left,
     List<FhirBase> right,
     ExpressionNode expr,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
@@ -1207,44 +1207,8 @@ class FhirPathOperations {
         tn = tn.substring(0, tn.length - 6); // Remove '.not()'
         negate = true;
       }
-
-      // Check if comparing to Quantity type
-      final isQuantityCheck = tn == 'Quantity' || tn == 'System.Quantity';
-      // NB: subtype-inclusive on purpose (Age/Duration/Count/... derive from
-      // Quantity). Decoupling this needs the async isSubtypeOf worker query;
-      // deferred with the opIs/opAs Quantity-subtype correctness pass.
-      final isQuantity = left.first is Quantity;
-
-      if (isQuantityCheck) {
-        // Special handling for Quantity type check
-        result.add(
-          fpContext.factory.boolean(negate ? !isQuantity : isQuantity),
-        );
-        return result;
-      } else if (left.first is Element) {
-        final element = left.first as Element;
-
-        if (element.disallowExtensions ?? false) {
-          final matches = element.fhirType.capitalize() == tn ||
-              'System.${element.fhirType.capitalize()}' == tn;
-          result.add(
-            fpContext.factory.boolean(negate ? !matches : matches),
-          );
-        } else {
-          final currentType = element.fhirType;
-
-          final matches = currentType.toLowerCase() == tn.toLowerCase() ||
-              currentType == tn.replaceFirst('FHIR.', '');
-          return utilities.makeBoolean(negate ? !matches : matches);
-        }
-      } else if (left.first.fhirType == tn) {
-        result.add(fpContext.factory.boolean(!negate));
-      } else if (left.first.fhirType == tn.replaceFirst('FHIR.', '')) {
-        result.add(fpContext.factory.boolean(!negate));
-      } else {
-        // Type doesn't match - if negate is true, return true (not the type)
-        result.add(fpContext.factory.boolean(negate));
-      }
+      final matches = await fpContext.worker.isOperatorMatch(left.first, tn);
+      result.add(fpContext.factory.boolean(negate ? !matches : matches));
     }
 
     return result;

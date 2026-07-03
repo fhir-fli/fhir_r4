@@ -52,30 +52,29 @@ class WorkerContext {
     }
   }
 
-  /// The FHIRPath `is` / `ofType` type-membership test: does [value] belong to
-  /// the type named [name] in namespace [ns] (`'System'` or `'FHIR'`)?
+  /// The FHIRPath `is()` / `ofType()`-family type-membership test used by
+  /// [funcIs]: does [value] belong to the type named [name] in namespace [ns]
+  /// (`'System'` or `'FHIR'`)? Holds the FHIR-model type semantics (System-vs-
+  /// FHIR namespace, the System-value vs FHIR-`Element`/`Resource` distinction,
+  /// and the subtype hierarchy via [isSubtypeOf]) binding-side, so the engine
+  /// names no FHIR type. Ported verbatim from the former inline `funcIs` body.
   ///
-  /// This is the single source of truth for `is`/`as`/`ofType`/`isX` — the
-  /// operator and function forms all delegate here. It encapsulates every piece
-  /// of FHIR-model type semantics (which is why it lives binding-side, not in
-  /// the model-independent engine): the System-vs-FHIR namespace rules, the
-  /// distinction between a FHIR complex `Element`/`Resource` and a bare System
-  /// value, and the FHIR subtype hierarchy (via [isSubtypeOf], so `Age` matches
-  /// `Quantity`, `code` matches `string`, `Patient` matches `Resource`, ...).
+  /// NB: the `is` operator ([isOperatorMatch]) and `ofType()` ([matchesOfType])
+  /// historically use subtly different rules; they are kept as distinct
+  /// predicates here to preserve behaviour exactly. Collapsing all three into
+  /// one predicate is a deliberate spec-conformance follow-up (the operator
+  /// tests distinguish bare `Boolean` from explicit `System.Boolean`, which the
+  /// namespace-resolved forms do not) — not a mechanical merge.
   Future<bool> isValueOfType(FhirBase value, String ns, String name) async {
     if (ns == 'System') {
-      // Resources are never System values.
       if (value is Resource) {
         return false;
       }
-      // A System value is a bare primitive (no FHIR extensions). Complex FHIR
-      // Elements that carry extensions are FHIR values, not System values.
       if (value is! Element || (value.disallowExtensions ?? false)) {
         final t = value.fhirType.capitalize();
         if (name == t) {
           return true;
         }
-        // A `date` is also a `DateTime` in the System type lattice.
         if (t == 'Date' && name == 'DateTime') {
           return true;
         }
@@ -84,6 +83,43 @@ class WorkerContext {
       return false;
     } else if (ns == 'FHIR') {
       return isSubtypeOf(value.fhirType, name);
+    }
+    return false;
+  }
+
+  /// The `is` OPERATOR's type-membership test for [value] against the raw type
+  /// specifier [tn] (already stripped of any trailing `.not()`). Ported
+  /// verbatim from the former inline `opIs` logic so the engine names no FHIR
+  /// type: Quantity (incl. its subtypes Age/Duration/... — via [isSubtypeOf],
+  /// equivalent to the old `is Quantity` class check) is special-cased; a bare
+  /// System value matches against its System type name; a FHIR value matches
+  /// its FHIR type name (case-insensitive, or an explicit `FHIR.` prefix).
+  Future<bool> isOperatorMatch(FhirBase value, String tn) async {
+    if (tn == 'Quantity' || tn == 'System.Quantity') {
+      return isSubtypeOf(value.fhirType, 'Quantity');
+    }
+    if (value is Element) {
+      if (value.disallowExtensions ?? false) {
+        final t = value.fhirType.capitalize();
+        return t == tn || 'System.$t' == tn;
+      }
+      return value.fhirType.toLowerCase() == tn.toLowerCase() ||
+          value.fhirType == tn.replaceFirst('FHIR.', '');
+    }
+    return value.fhirType == tn || value.fhirType == tn.replaceFirst('FHIR.', '');
+  }
+
+  /// The `ofType()` type filter for [value] against the parse-tree type
+  /// specifier [tn] (`System.X` or `FHIR.X`). Ported verbatim from the former
+  /// inline `funcOfType` logic (System values match by exact type name; FHIR
+  /// values match through the subtype hierarchy).
+  Future<bool> matchesOfType(FhirBase value, String tn) async {
+    if (tn.startsWith('System.')) {
+      return value is Element &&
+          (value.disallowExtensions ?? false) &&
+          value.hasType([tn.substring(7)]);
+    } else if (tn.startsWith('FHIR.')) {
+      return isSubtypeOf(value.fhirType, tn.substring(5));
     }
     return false;
   }
