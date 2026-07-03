@@ -22,8 +22,15 @@ enum TemporalComparator {
   lessThanEqual,
 }
 
-/// A duration broken into calendar units, normalised on construction. Port of
-/// the FHIR `ExtendedDuration` (only the parts the engine needs).
+/// A plain carrier of calendar-unit amounts for date/time arithmetic.
+///
+/// Deliberately does NO cross-unit normalisation: [SystemDateTime.plus] hands
+/// each part to Dart's [DateTime], whose constructor normalises overflow
+/// exactly (the Java reference adds each unit via `Calendar.add` the same
+/// way). The `ExtendedDuration`-style folding this replaces silently
+/// corrupted amounts — `days ~/ 7` was folded into `weeks` (which the
+/// arithmetic never read, making `@1973-12-25 + 7 days` a no-op) and
+/// `weeks ~/ 4` into `months` (a month is not 4 weeks).
 class TemporalDuration {
   TemporalDuration({
     this.years = 0,
@@ -35,35 +42,17 @@ class TemporalDuration {
     this.seconds = 0,
     this.milliseconds = 0,
     this.microseconds = 0,
-  }) {
-    int signOf(int value) => value.isNegative ? -1 : 1;
-    milliseconds += microseconds ~/ 1000;
-    microseconds = microseconds.abs() % 1000 * signOf(microseconds);
-    seconds += milliseconds ~/ 1000;
-    milliseconds = milliseconds.abs() % 1000 * signOf(milliseconds);
-    minutes += seconds ~/ 60;
-    seconds = seconds.abs() % 60 * signOf(seconds);
-    hours += minutes ~/ 60;
-    minutes = minutes.abs() % 60 * signOf(minutes);
-    days += hours ~/ 24;
-    hours = hours.abs() % 24 * signOf(hours);
-    weeks += days ~/ 7;
-    days = days.abs() % 7 * signOf(days);
-    months += weeks ~/ 4;
-    weeks = weeks.abs() % 4 * signOf(weeks);
-    years += months ~/ 12;
-    months = months.abs() % 12 * signOf(months);
-  }
+  });
 
-  int years;
-  int months;
-  int weeks;
-  int days;
-  int hours;
-  int minutes;
-  int seconds;
-  int milliseconds;
-  int microseconds;
+  final int years;
+  final int months;
+  final int weeks;
+  final int days;
+  final int hours;
+  final int minutes;
+  final int seconds;
+  final int milliseconds;
+  final int microseconds;
 }
 
 /// A model-independent FHIRPath `System.DateTime` / `System.Date` value.
@@ -161,7 +150,9 @@ class SystemDateTime {
         int.tryParse(microsecond?.padRight(6, '0') ?? '0') ?? 0;
     final y = (year ?? 0) + o.years;
     final m = (month ?? 1) + o.months;
-    final d = (day ?? 1) + o.days;
+    // A week is exactly 7 days (Java reference dateAdd: Calendar.DAY_OF_MONTH,
+    // value * 7).
+    final d = (day ?? 1) + o.days + o.weeks * 7;
     final h = (hour ?? 0) + o.hours;
     final min = (minute ?? 0) + o.minutes;
     final s = (second ?? 0) + o.seconds;

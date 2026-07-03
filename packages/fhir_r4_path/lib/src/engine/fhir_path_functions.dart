@@ -1027,7 +1027,10 @@ class FhirPathFunctions {
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final sw = utilities.convertListToString(swb);
 
-    if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
+    if (focus.isEmpty || swb.isEmpty) {
+      // Empty focus or empty parameter propagates to an empty result
+      // (Java reference funcIndexOf; official testIndexOf4-6).
+    } else if (sw.isEmpty) {
       result.add(fpContext.factory.integer(0));
     } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
         fpContext.doImplicitStringConversion) {
@@ -1195,13 +1198,19 @@ class FhirPathFunctions {
       return result;
     }
 
-    if (focus.length == 1 &&
-        !Utilities.noString(regex) &&
-        (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
-            fpContext.doImplicitStringConversion)) {
-      final s = utilities.convertToString(focus.first);
+    if (focus.length == 1 && !Utilities.noString(regex)) {
+      if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+          fpContext.doImplicitStringConversion) {
+        final s = utilities.convertToString(focus.first);
+        result.add(
+          fpContext.factory.string(s.replaceAll(RegExp(regex), repl)),
+        );
+      }
+    } else {
+      // A blank pattern (or non-singleton focus) returns the input unchanged
+      // (Java reference funcReplaceMatches; official testReplaceMatches2).
       result.add(
-        fpContext.factory.string(s.replaceAll(RegExp(regex), repl)),
+        fpContext.factory.string(utilities.convertToString(focus.first)),
       );
     }
     return result;

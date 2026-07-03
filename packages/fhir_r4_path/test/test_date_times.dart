@@ -59,10 +59,14 @@ Future<void> testDateTimes() async {
         ['2015'.toFhirDate],
       );
 
+      // 2016 is a leap year: 2016-01-01 + 365 days = 2016-12-31, which at
+      // year precision is still 2016 (Java reference adds days via
+      // Calendar.add). An earlier expectation of 2017 encoded a duration-
+      // normalisation bug that folded 365 days into "1 year 1 month 1 day".
       final node9 = testEngine.parse('@2016 + 365 days');
       expect(
         await testEngine.evaluate(response, node9),
-        ['2017'.toFhirDate],
+        ['2016'.toFhirDate],
       );
 
       final node10 = testEngine.parse('@2014 - 24 months');
