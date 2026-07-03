@@ -427,6 +427,14 @@ class FHIRPathEngine {
         FpOperation.NotEquivalent,
       },
     );
+    // in, contains, memberOf — bind tighter than the logical operators
+    // (Java reference organisePrecedence; official testPrecedence5/6:
+    // `true and X in Y` is `true and (X in Y)`).
+    node = _gatherPrecedence(
+      lexer,
+      node,
+      {FpOperation.In, FpOperation.Contains, FpOperation.MemberOf},
+    );
     // and
     node = _gatherPrecedence(lexer, node, {FpOperation.And});
     // xor, or
