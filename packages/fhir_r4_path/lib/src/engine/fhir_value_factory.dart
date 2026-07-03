@@ -136,6 +136,24 @@ class FhirValueFactory {
     );
   }
 
+  /// Builds the `Quantity` for a parsed quantity LITERAL (`5 'mg'`,
+  /// `4 days`): the value keeps its exact source string (Java reference:
+  /// `new BigDecimal(primitiveValue())`), calendar words carry only a unit,
+  /// and a UCUM code brings the UCUM system.
+  FhirBase quantityLiteral({
+    String? value,
+    String? unit,
+    String? ucumCode,
+  }) {
+    return Quantity(
+      value: value == null ? null : FhirDecimal(value),
+      unit: unit == null ? null : FhirString(unit),
+      system:
+          ucumCode == null ? null : FhirUri('http://unitsofmeasure.org'),
+      code: ucumCode == null ? null : FhirCode(ucumCode),
+    );
+  }
+
   /// Returns `abs(number)` preserving the FHIR numeric subtype exactly
   /// (`decimal`→decimal, `integer`→integer; the already-non-negative
   /// `unsignedInt`/`positiveInt` are returned unchanged). The per-subtype

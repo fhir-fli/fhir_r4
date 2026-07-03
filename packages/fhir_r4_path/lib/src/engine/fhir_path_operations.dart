@@ -892,11 +892,11 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opMinus(
+  Future<List<FhirBase>> opMinus(
     List<FhirBase> left,
     List<FhirBase> right,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (left.isEmpty || right.isEmpty) {
       return [];
     }
@@ -908,7 +908,10 @@ class FhirPathOperations {
         ['-'],
       );
     }
-    if (!left.first.isPrimitive && left.first is! Quantity) {
+    // Subtype-aware, like the Java reference's `instanceof Quantity`
+    // (Age/Duration/... derive from Quantity).
+    if (!left.first.isPrimitive &&
+        !(await fpContext.worker.isSubtypeOf(left.first.fhirType, 'Quantity'))) {
       throw fpContext.makeException(
         expr,
         'FHIRPATH_LEFT_VALUE_WRONG_TYPE',

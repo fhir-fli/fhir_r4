@@ -28,6 +28,11 @@ abstract class FhirBase implements FhirNode {
   /// Checks if the object is primitive.
   bool get isPrimitive => this is PrimitiveType;
 
+  /// Checks if the object is a resource (the root of an independent FHIR
+  /// data tree). Part of the [FhirNode] contract, mirroring the Java
+  /// reference's `Base.isResource()`.
+  bool get isResource => this is Resource;
+
   /// Checks if the object has a primitive value.
   bool get hasPrimitiveValue => isPrimitive;
 

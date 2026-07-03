@@ -153,7 +153,7 @@ class FHIRPathEngine {
       // Possibly parse a quantity (e.g., "5 years")
       if (!isString &&
           !lexer.done() &&
-          (result.constant is FhirInteger || result.constant is FhirDecimal) &&
+          const {'integer', 'decimal'}.contains(result.constant?.fhirType) &&
           (lexer.isStringConstant() ||
               lexer.hasTokenList([
                 'year',
@@ -222,14 +222,10 @@ class FHIRPathEngine {
           ucum = lexer.readConstant('units');
         }
 
-        // Preserve the value's exact string form (Java reference:
-        // new BigDecimal(result.getConstant().primitiveValue())).
-        final valueString = result.constant?.primitiveValue;
-        result.constant = Quantity(
-          value: valueString == null ? null : FhirDecimal(valueString),
-          unit: unit?.toFhirString,
-          system: ucum == null ? null : 'http://unitsofmeasure.org'.toFhirUri,
-          code: ucum?.toFhirCode,
+        result.constant = fpContext.factory.quantityLiteral(
+          value: result.constant?.primitiveValue,
+          unit: unit,
+          ucumCode: ucum,
         );
       }
       result.end = lexer.currentLocation;
@@ -580,8 +576,10 @@ class FHIRPathEngine {
     }
     fpLog.clear();
     final context = ExecutionContext(
-      focusResource: base != null && base is Resource ? base : null,
-      rootResource: base != null && base is Resource ? base : null,
+      // FhirNode.isResource — the contract's equivalent of the Java
+      // reference's Base.isResource().
+      focusResource: base != null && base.isResource ? base : null,
+      rootResource: base != null && base.isResource ? base : null,
       context: base,
       thisItem: base,
     );
@@ -1067,24 +1065,38 @@ class FHIRPathEngine {
             operandResult = await execute(context, focus, operand, false);
           }
 
-          // Now apply the unary operation
+          // Now apply the unary operation. Negation is exact on the decimal
+          // STRING (sign flip; scale preserved; no negative zero), matching
+          // the Java reference's BigDecimal arithmetic — see
+          // utilities.negateDecimalString. Integer kinds negate as Dart ints
+          // (exact), yielding an `integer` result like the reference's
+          // 0 - x numeric path.
           if (exp.operation == FpOperation.Minus) {
             final negValues = <FhirBase>[];
             for (final val in operandResult) {
-              if (val is FhirNumber) {
-                // Flip sign
-                negValues.add((val * -1)!);
-              } else if (val is Quantity) {
+              if (val.fhirType == 'decimal') {
                 negValues.add(
-                  val.copyWith(
-                    value: val.value == null
-                        ? null
-                        : (val.value! * -1)! as FhirDecimal,
+                  fpContext.factory.decimalFromString(
+                    utilities.negateDecimalString(val.primitiveValue ?? '0'),
+                    disallowExtensions: false,
+                  ),
+                );
+              } else if (utilities.isNumericNode(val)) {
+                negValues.add(
+                  fpContext.factory.integer(
+                    -(utilities.nodeNum(val) ?? 0).toInt(),
+                    disallowExtensions: false,
+                  ),
+                );
+              } else if (utilities.isQuantityNode(val)) {
+                final v = val.getChildByName('value')?.primitiveValue;
+                negValues.add(
+                  fpContext.factory.quantityWithValueString(
+                    val,
+                    v == null ? null : utilities.negateDecimalString(v),
                   ),
                 );
               } else {
-                // If you allow unary minus on other types (Quantity, etc.),
-                // handle here
                 throw PathEngineException('Unary minus not supported on $val');
               }
             }
@@ -1140,7 +1152,9 @@ class FHIRPathEngine {
         } else if (atEntry && exp.name == r'$total') {
           work.addAll(context.total ?? []);
         } else if (atEntry && exp.name == r'$index') {
-          work.add(context.index);
+          work.add(
+            fpContext.factory.integer(context.index, disallowExtensions: false),
+          );
         } else {
           for (final item in focus) {
             final outcome =
@@ -1599,13 +1613,13 @@ class FHIRPathEngine {
     ExpressionNode expr,
     bool explicitConstant,
   ) {
-    if (constant is FhirBoolean) {
+    if (constant is FhirBase && constant.fhirType == 'boolean') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
-    } else if (constant is FhirInteger) {
+    } else if (constant is FhirBase && constant.fhirType == 'integer') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]);
-    } else if (constant is FhirDecimal) {
+    } else if (constant is FhirBase && constant.fhirType == 'decimal') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Decimal]);
-    } else if (constant is Quantity) {
+    } else if (constant is FhirBase && constant.fhirType == 'Quantity') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Quantity]);
     } else if (constant is FHIRConstant) {
       return resolveConstantType(

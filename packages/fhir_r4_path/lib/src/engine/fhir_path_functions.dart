@@ -468,7 +468,7 @@ class FhirPathFunctions {
       result.addAll(
         await engine.execute(
           execContext.changeThis(item, fpContext.worker)
-            ..index = i.toFhirInteger,
+            ..index = i,
           pc,
           exp.parameters[0],
           true,
@@ -1361,7 +1361,8 @@ class FhirPathFunctions {
       return result;
     } else if (sw.isEmpty) {
       result.add(fpContext.factory.boolean(true));
-    } else if (focus.first is FhirString) {
+    } else if (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
+        fpContext.doImplicitStringConversion) {
       final st = utilities.convertToString(focus.first);
       result.add(fpContext.factory.boolean(st.contains(sw)));
     }
@@ -2387,12 +2388,12 @@ class FhirPathFunctions {
     final s = utilities.convertListToString(focus);
     final result = <FhirBase>[];
     if (Utilities.isDecimal(s)) {
-      result
-          .add(FhirDecimal(int.tryParse(s) ?? double.parse(s)).noExtensions());
+      // Preserve the source string form (Java: new DecimalType(s)).
+      result.add(fpContext.factory.decimalFromString(s));
     } else if (s == 'true') {
-      result.add(FhirDecimal(1).noExtensions());
+      result.add(fpContext.factory.decimal(1));
     } else if (s == 'false') {
-      result.add(FhirDecimal(0).noExtensions());
+      result.add(fpContext.factory.decimal(0));
     }
     return result;
   }
@@ -2456,7 +2457,7 @@ class FhirPathFunctions {
     } else if (focus.first.fhirType == 'dateTime' ||
         focus.first.fhirType == 'date') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (stringClassTypeNames.contains(focus.first.fhirType)) {
       final regex = RegExp(
         r'(\d{4}(-\d{2}(-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|([-+]\d{2}:\d{2})))?)?)?)',
       );
@@ -2472,7 +2473,7 @@ class FhirPathFunctions {
     } else if (focus.first.fhirType == 'dateTime' ||
         focus.first.fhirType == 'date') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (stringClassTypeNames.contains(focus.first.fhirType)) {
       final regex = RegExp(
         r'\d{4}(-\d{2}(-\d{2})?)?',
       );
@@ -2518,7 +2519,7 @@ class FhirPathFunctions {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'time') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
-    } else if (focus.first is FhirString) {
+    } else if (stringClassTypeNames.contains(focus.first.fhirType)) {
       final regex = RegExp(
         r'(T)?([01]\d|2[0-3])(:[0-5]\d(:[0-5]\d(\.\d+)?)?)?(Z|([-+](0[0-9]|1[0-3]):[0-5]\d|14:00))?',
       );
@@ -2547,6 +2548,12 @@ class FhirPathFunctions {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
   }
+
+  /// The FHIR type names whose classes derive from string in the reference
+  /// model — the model-independent equivalent of the Java reference's
+  /// `instanceof StringType` (CodeType and MarkdownType extend StringType;
+  /// id/uri kinds do not).
+  static const Set<String> stringClassTypeNames = {'string', 'code', 'markdown'};
 
   List<FhirBase> funcIsQuantity(List<FhirBase> focus) {
     if (focus.length != 1) {
@@ -2618,7 +2625,7 @@ class FhirPathFunctions {
       }
       final valueString = value.toStringAsFixed(precision);
       result.add(
-        FhirDecimal(int.tryParse(valueString) ?? double.parse(valueString)),
+        fpContext.factory.decimalFromString(valueString, disallowExtensions: false),
       );
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
@@ -2883,7 +2890,7 @@ class FhirPathFunctions {
         try {
           final res = pow(value, exponent);
           if (!res.isNaN) {
-            result.add(FhirDecimal(res).noExtensions());
+            result.add(fpContext.factory.decimal(res));
           }
         } catch (e) {
           // Do nothing on error
@@ -3012,7 +3019,7 @@ class FhirPathFunctions {
           double.tryParse(base.primitiveValue ?? '');
       if (e != null && d != null) {
         try {
-          result.add(FhirDecimal(log(d) / log(e)).noExtensions());
+          result.add(fpContext.factory.decimal(log(d) / log(e)));
         } catch (e) {
           // Do nothing on error
         }

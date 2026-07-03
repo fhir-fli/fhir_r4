@@ -1566,12 +1566,12 @@ Future<void> testOfficialGaps() async {
       );
     });
 
-    // HighBoundaryDecimal14: BLOCKED on arbitrary-precision decimal arithmetic: -120.highBoundary
-    // (2) is unary negation of 120.50, and the 0-x negation path runs on
-    // doubles, rendering '-120.5' (scale lost). Java negates the BigDecimal,
-    // keeping '-120.50'. Tracked with the deferred decimal-precision
-    // workstream.
-    // expression: -120.highBoundary(2)
+    test("HighBoundaryDecimal14", () async {
+      expect(
+        await eval(patient1, "-120.highBoundary(2)"),
+        ["-120.50"],
+      );
+    });
 
     test("HighBoundaryDecimal15", () async {
       expect(
@@ -1580,11 +1580,12 @@ Future<void> testOfficialGaps() async {
       );
     });
 
-    // HighBoundaryDecimal16: BLOCKED on arbitrary-precision decimal arithmetic: the negation of
-    // 0.0 must normalise to '0.0' (BigDecimal has no negative zero), but
-    // the double-based negation renders '-0.0'. Tracked with the deferred
-    // decimal-precision workstream.
-    // expression: -0.0034.highBoundary(1)
+    test("HighBoundaryDecimal16", () async {
+      expect(
+        await eval(patient1, "-0.0034.highBoundary(1)"),
+        ["0.0"],
+      );
+    });
 
     test("HighBoundaryDecimal", () async {
       expect(

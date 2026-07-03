@@ -208,6 +208,25 @@ class FhirPathUtilities {
   /// `node is Quantity`, decided from [FhirBase.fhirType].
   bool isQuantityNode(FhirBase node) => node.fhirType == 'Quantity';
 
+  /// Negates a decimal STRING exactly — sign flip with the representation
+  /// (scale, trailing zeros) preserved, and no negative zero. This is what
+  /// the Java reference's BigDecimal arithmetic produces for unary minus
+  /// (`BigDecimal.negate()` keeps the scale; a BigDecimal zero has no sign),
+  /// where double arithmetic would render `-120.50` as `-120.5` and negate
+  /// `0.0` to `-0.0`.
+  String negateDecimalString(String s) {
+    var v = s.startsWith('+') ? s.substring(1) : s;
+    final negative = v.startsWith('-');
+    if (negative) {
+      v = v.substring(1);
+    }
+    // A zero has no sign.
+    if (v.replaceAll('.', '').replaceAll('0', '').isEmpty) {
+      return v;
+    }
+    return negative ? v : '-$v';
+  }
+
   String? _firstChildPrimitive(FhirBase node, String name) {
     final children = node.getChildrenByName(name);
     return children.isEmpty ? null : children.first.primitiveValue;

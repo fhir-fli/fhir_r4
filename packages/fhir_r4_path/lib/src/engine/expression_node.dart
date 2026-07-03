@@ -121,14 +121,17 @@ class ExpressionNode {
       case ExpressionNodeKind.constant:
         if (constant == null) {
           b.write('{}');
-        } else if (constant is FhirString) {
-          b.write("'${(constant! as FhirString).valueString?.escapeJson()}'");
-        } else if (constant is Quantity) {
-          final q = constant! as Quantity;
+        } else if (constant?.fhirType == 'string') {
+          b.write("'${constant!.primitiveValue?.escapeJson()}'");
+        } else if (constant?.fhirType == 'Quantity') {
+          final q = constant!;
           b
-            ..write(q.value.toString().escapeJson())
+            ..write(
+              (q.getChildByName('value')?.primitiveValue ?? 'null')
+                  .escapeJson(),
+            )
             ..write(" '")
-            ..write(q.unit?.valueString?.escapeJson())
+            ..write(q.getChildByName('unit')?.primitiveValue?.escapeJson())
             ..write("'");
         } else if ((constant?.isPrimitive ?? false) &&
             constant?.primitiveValue != null) {

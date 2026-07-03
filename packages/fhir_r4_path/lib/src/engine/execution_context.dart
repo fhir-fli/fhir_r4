@@ -10,7 +10,7 @@ class ExecutionContext {
     this.rootResource,
     this.context,
     this.thisItem,
-  }) : index = 0.toFhirInteger;
+  });
 
   ExecutionContext copyWith({
     Object? appInfo,
@@ -19,7 +19,7 @@ class ExecutionContext {
     FhirBase? context,
     FhirBase? thisItem,
     List<FhirBase>? total,
-    FhirInteger? index,
+    int? index,
     Map<String, dynamic>? definedVariables,
   }) {
     return ExecutionContext(
@@ -40,11 +40,11 @@ class ExecutionContext {
   final FhirBase? context;
   final FhirBase? thisItem;
   List<FhirBase>? total;
-  FhirInteger index = 0.toFhirInteger;
+  int index = 0;
   Map<String, dynamic>? definedVariables;
 
   void next() {
-    index = (index + 1)! as FhirInteger;
+    index++;
   }
 
   bool hasDefinedVariable(String name) {
