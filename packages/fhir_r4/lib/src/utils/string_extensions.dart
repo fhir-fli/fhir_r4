@@ -198,7 +198,13 @@ extension StringExtensionForFHIR on String {
     } else if (d > 0) {
       s = nv + List.filled(d, '0').join();
     } else {
-      final l = nv.length;
+      // NB: length of the ORIGINAL string (with its decimal point), per the
+      // Java reference (Utilities.applyPrecision: `int l = v.length()`); the
+      // dot is then compensated by the `ld--` below. Using the dot-stripped
+      // length here double-counted the dot, truncating one digit too many
+      // (1.587.lowBoundary(2) gave 1.5 instead of 1.58) and producing an
+      // empty string at precision 0.
+      final l = v.length;
       var ld = l + d;
       if (dp != -1) ld--;
 
@@ -240,6 +246,12 @@ extension StringExtensionForFHIR on String {
     if (buffer.length == 4) buffer.write('-01');
     if (buffer.length == 7) buffer.write('-01');
     if (buffer.length == 10) buffer.write('T00:00');
+    // An hour-only value (2014-01-01T08) never reaches the Java reference's
+    // length chain: HAPI's DateTimeType parse normalises it to minute
+    // precision (T08:00) first. Mirror that normalisation here (this is what
+    // makes @2014-01-01T08.highBoundary(17) end 08:00:59.999, per the
+    // official suite, rather than 08:59:59.999).
+    if (buffer.length == 13) buffer.write(':00');
     if (buffer.length == 16) buffer.write(':00');
     if (buffer.length == 19) buffer.write('.000');
 
@@ -380,6 +392,10 @@ extension StringExtensionForFHIR on String {
     }
     if (buffer.length == 10) {
       buffer.write('T23:59');
+    }
+    // Hour-only normalisation — see lowBoundaryForDate.
+    if (buffer.length == 13) {
+      buffer.write(':00');
     }
     if (buffer.length == 16) {
       buffer.write(':59');

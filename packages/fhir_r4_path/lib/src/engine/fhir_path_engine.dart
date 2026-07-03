@@ -133,7 +133,10 @@ class FHIRPathEngine {
         if (numStr.isInteger) {
           constantValue = fpContext.factory.integer(int.parse(numStr));
         } else if (numStr.isDecimal()) {
-          constantValue = FhirDecimal(double.parse(numStr)).noExtensions();
+          // Preserve the literal's exact string form — 12.500 keeps its
+          // trailing zeros (significant for lowBoundary/highBoundary), as the
+          // Java reference's BigDecimal-backed DecimalType does.
+          constantValue = fpContext.factory.decimalFromString(numStr);
         } else {
           throw lexer
               .error('Invalid numeric constant after unary sign: $token');
@@ -219,15 +222,11 @@ class FHIRPathEngine {
           ucum = lexer.readConstant('units');
         }
 
-        num? value;
-        if (result.constant is FhirNumber) {
-          value = (result.constant! as FhirNumber).valueNum;
-        } else if (result.constant?.primitiveValue is String) {
-          value = int.tryParse(result.constant!.primitiveValue!) ??
-              double.tryParse(result.constant!.primitiveValue!);
-        }
+        // Preserve the value's exact string form (Java reference:
+        // new BigDecimal(result.getConstant().primitiveValue())).
+        final valueString = result.constant?.primitiveValue;
         result.constant = Quantity(
-          value: value?.toFhirDecimal,
+          value: valueString == null ? null : FhirDecimal(valueString),
           unit: unit?.toFhirString,
           system: ucum == null ? null : 'http://unitsofmeasure.org'.toFhirUri,
           code: ucum?.toFhirCode,
@@ -1853,7 +1852,8 @@ class FHIRPathEngine {
     } else if (lexer.current?.isInteger ?? false) {
       return fpContext.factory.integer(int.parse(lexer.take()));
     } else if (lexer.current?.isDecimal() ?? false) {
-      return FhirDecimal(double.parse(lexer.take())).noExtensions();
+      // Preserve the literal's exact string form (see the unary path above).
+      return fpContext.factory.decimalFromString(lexer.take());
     } else if (lexer.current?.existsInList({'true', 'false'}) ?? false) {
       return fpContext.factory.boolean(lexer.take() == 'true');
     } else if (lexer.current == '{}') {

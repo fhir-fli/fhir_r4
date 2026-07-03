@@ -38,6 +38,16 @@ class FhirValueFactory {
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  /// Builds a `decimal` from its STRING form, preserving the exact
+  /// representation (trailing zeros included) — `FhirDecimal` stores the
+  /// string verbatim, mirroring the Java reference's
+  /// `new DecimalType(String)`. Used where the engine computes an exact
+  /// decimal string (the lowBoundary/highBoundary functions).
+  FhirBase decimalFromString(String? value, {bool disallowExtensions = true}) {
+    final v = FhirDecimal(value);
+    return disallowExtensions ? v.noExtensions() : v;
+  }
+
   FhirBase uri(String? value, {bool disallowExtensions = true}) {
     final v = FhirUri(value);
     return disallowExtensions ? v.noExtensions() : v;
@@ -149,6 +159,14 @@ class FhirValueFactory {
   /// rebuild a Quantity without dropping those, so the copy is done here at the
   /// binding seam.
   FhirBase quantityWithValue(FhirBase quantity, num? value) {
+    return (quantity as Quantity).copyWith(
+      value: value == null ? null : FhirDecimal(value),
+    );
+  }
+
+  /// [quantityWithValue], but from the value's exact STRING form (trailing
+  /// zeros preserved) — used by the boundary functions.
+  FhirBase quantityWithValueString(FhirBase quantity, String? value) {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
     );

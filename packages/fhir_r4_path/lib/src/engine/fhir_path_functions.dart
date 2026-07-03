@@ -3102,13 +3102,12 @@ class FhirPathFunctions {
 
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
+        // The boundary is an exact decimal STRING (trailing zeros are
+        // significant); construct from the string to preserve it (Java
+        // reference: new DecimalType(Utilities.lowBoundaryForDecimal(...))).
         result.add(
-          fpContext.factory.decimal(
-            double.parse(
-              (base.primitiveValue ?? '').lowBoundaryForDecimal(
-                precision ?? 8,
-              ),
-            ),
+          fpContext.factory.decimalFromString(
+            (base.primitiveValue ?? '').lowBoundaryForDecimal(precision ?? 8),
           ),
         );
       }
@@ -3135,11 +3134,14 @@ class FhirPathFunctions {
         ),
       );
     } else if (base.hasType(['Quantity'])) {
-      final value = getNamedValue(base, 'value');
+      // Quantity.value is a direct decimal child (Java reference reads
+      // getValue().toPlainString()); getNamedValue is for polymorphic
+      // wrappers and returned null here. The boundary string is preserved.
+      final value = base.getChildByName('value')?.primitiveValue;
       result.add(
-        fpContext.factory.quantityWithValue(
+        fpContext.factory.quantityWithValueString(
           base,
-          double.parse((value ?? '').lowBoundaryForDecimal(precision ?? 8)),
+          (value ?? '').lowBoundaryForDecimal(precision ?? 8),
         ),
       );
     } else {
@@ -3189,13 +3191,10 @@ class FhirPathFunctions {
 
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
+        // See funcLowBoundary — the exact string form is preserved.
         result.add(
-          fpContext.factory.decimal(
-            double.parse(
-              (base.primitiveValue ?? '').highBoundaryForDecimal(
-                precision ?? 8,
-              ),
-            ),
+          fpContext.factory.decimalFromString(
+            (base.primitiveValue ?? '').highBoundaryForDecimal(precision ?? 8),
           ),
         );
       }
@@ -3222,11 +3221,12 @@ class FhirPathFunctions {
         ),
       );
     } else if (base.hasType(['Quantity'])) {
-      final value = getNamedValue(base, 'value');
+      // See the lowBoundary Quantity branch.
+      final value = base.getChildByName('value')?.primitiveValue;
       result.add(
-        fpContext.factory.quantityWithValue(
+        fpContext.factory.quantityWithValueString(
           base,
-          double.parse((value ?? '').highBoundaryForDecimal(precision ?? 8)),
+          (value ?? '').highBoundaryForDecimal(precision ?? 8),
         ),
       );
     } else {

@@ -389,35 +389,31 @@ class FhirPathUtilities {
     return removeTrailingZeros(left) == removeTrailingZeros(right);
   }
 
+  /// Strips insignificant FRACTIONAL trailing zeros (and a then-bare dot) so
+  /// [decEqual] ignores them per FHIRPath §6.1.1: `1.10 = 1.1` and
+  /// `10.0 = 10` are both true; an integer's zeros (`10`) are significant
+  /// and kept.
+  ///
+  /// Deliberate deviation from the Java reference's `removeTrailingZeros`,
+  /// which strips zeros from dot-less strings too (`'10'` -> `'1'`, making
+  /// `10.0 = 10` false); an earlier port of it bailed out early instead,
+  /// keeping `1.10` intact (making official testEquality14 false). The spec
+  /// rule needs both to hold.
   String removeTrailingZeros(String s) {
     if (s.noString()) {
       return '';
     }
-
-    var i = s.length - 1;
-    var done = false;
-    var dot = false;
-
-    // Traverse the string from the end
-    while (i > 0 && !done) {
-      if (s[i] == '.') {
-        dot = true;
-        i--;
-        done = true; // Stop if a dot is encountered
-      } else if (!dot && s[i] == '0') {
-        i--;
-      } else {
-        done = true;
-      }
-    }
-
-    // If no dot is encountered, return the original string
-    if (!dot) {
+    if (!s.contains('.')) {
       return s;
     }
-
-    // Otherwise, return the processed substring
-    return s.substring(0, i + 1);
+    var end = s.length;
+    while (end > 0 && s[end - 1] == '0') {
+      end--;
+    }
+    if (end > 0 && s[end - 1] == '.') {
+      end--;
+    }
+    return s.substring(0, end);
   }
 
   bool? qtyEqual(FhirBase left, FhirBase right) {
