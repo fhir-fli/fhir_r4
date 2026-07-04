@@ -104,8 +104,10 @@ Future<List<FhirBase>> executeFhirPath({
     };
 
     try {
-      // Evaluate the FHIRPath expression
-      return fhirPathEngine.evaluateWithContext(
+      // Evaluate the FHIRPath expression. The engine works in FhirNode; this
+      // facade is the R4 binding surface, so it narrows back to FhirBase
+      // (every node the R4 engine produces is one).
+      final result = await fhirPathEngine.evaluateWithContext(
         null,
         resource,
         rootResource,
@@ -113,6 +115,7 @@ Future<List<FhirBase>> executeFhirPath({
         parsedFhirPath,
         environment: passedEnvironment,
       );
+      return result.cast<FhirBase>();
     } catch (error, st) {
       if (error is PathEngineException) {
         rethrow;
@@ -134,8 +137,10 @@ Future<List<FhirBase>> executeFhirPath({
     }
   } else {
     try {
-      // Evaluate the FHIRPath expression
-      return fhirPathEngine.evaluate(context, parsedFhirPath);
+      // Evaluate the FHIRPath expression (see the FhirNode->FhirBase note
+      // above).
+      final result = await fhirPathEngine.evaluate(context, parsedFhirPath);
+      return result.cast<FhirBase>();
     } catch (error, st) {
       if (error is PathEngineException) {
         rethrow;

@@ -3,6 +3,8 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:test/test.dart';
 
+import 'test_data.dart';
+
 Future<void> testBasicTypes() async {
   final testEngine = await FHIRPathEngine.create(WorkerContext());
   group('FHIRPathEngine Basic Types Tests', () {
@@ -118,7 +120,7 @@ Future<void> testBasicTypes() async {
 
     test('Quantity', () async {
       expect(
-        testEngine.parse("4.5 'mg'").constant?.toJson(),
+        testEngine.parse("4.5 'mg'").constant?.toR4Json(),
         Quantity(
           value: 4.5.toFhirDecimal,
           system: 'http://unitsofmeasure.org'.toFhirUri,
@@ -126,7 +128,7 @@ Future<void> testBasicTypes() async {
         ).toJson(),
       );
       expect(
-        testEngine.parse("100 '[degF]'").constant?.toJson(),
+        testEngine.parse("100 '[degF]'").constant?.toR4Json(),
         Quantity(
           code: '[degF]'.toFhirCode,
           system: 'http://unitsofmeasure.org'.toFhirUri,

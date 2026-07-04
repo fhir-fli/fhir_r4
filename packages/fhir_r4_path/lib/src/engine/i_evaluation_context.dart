@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -18,7 +19,7 @@ abstract class IEvaluationContext {
   ///                      resolved locally, or not
   /// @return the value of the reference (or null, if it's not valid, though can
   ///         throw an exception if desired)
-  List<FhirBase> resolveConstant(
+  List<FhirNode> resolveConstant(
     FHIRPathEngine? engine,
     Object? appContext,
     String? name,
@@ -38,7 +39,7 @@ abstract class IEvaluationContext {
   /// @param argument
   /// @param focus
   /// @return
-  bool fpLog(String argument, List<FhirBase> focus);
+  bool fpLog(String argument, List<FhirNode> focus);
 
   // extensibility for functions
   ///
@@ -64,12 +65,12 @@ abstract class IEvaluationContext {
   /// @param functionName
   /// @param parameters
   /// @return
-  List<FhirBase> executeFunction(
+  List<FhirNode> executeFunction(
     FHIRPathEngine engine,
     Object? appContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     String? functionName,
-    List<List<FhirBase>> parameters,
+    List<List<FhirNode>> parameters,
   );
 
   /// Implementation of resolve() function. Passed a string, return matching
@@ -80,17 +81,17 @@ abstract class IEvaluationContext {
   /// canonical
   /// @return
   /// @throws FHIRException
-  FhirBase resolveReference(
+  FhirNode resolveReference(
     FHIRPathEngine engine,
     Object appContext,
     String url,
-    FhirBase refContext,
+    FhirNode refContext,
   );
 
   bool conformsToProfile(
     FHIRPathEngine engine,
     Object appContext,
-    FhirBase item,
+    FhirNode item,
     String url,
   );
 

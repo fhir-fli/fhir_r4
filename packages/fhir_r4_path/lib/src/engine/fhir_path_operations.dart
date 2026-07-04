@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -16,8 +17,8 @@ class FhirPathOperations {
   /// OPERATIONS
   /// ***************************************
   ///
-  List<FhirBase>? preOperate(
-    List<FhirBase> left,
+  List<FhirNode>? preOperate(
+    List<FhirNode> left,
     FpOperation? operation,
     ExpressionNode expr,
   ) {
@@ -40,11 +41,11 @@ class FhirPathOperations {
     }
   }
 
-  Future<List<FhirBase>> operate(
+  Future<List<FhirNode>> operate(
     ExecutionContext execContext,
-    List<FhirBase> left,
+    List<FhirNode> left,
     FpOperation? operation,
-    List<FhirBase> right,
+    List<FhirNode> right,
     ExpressionNode holder,
   ) async {
     switch (operation) {
@@ -103,9 +104,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opEquals(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opEquals(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -139,9 +140,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opEquivalent(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opEquivalent(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.length != right.length) {
@@ -167,9 +168,9 @@ class FhirPathOperations {
     return utilities.makeBoolean(res);
   }
 
-  List<FhirBase> opNotEquals(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opNotEquals(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (!fpContext.legacyMode && (left.isEmpty || right.isEmpty)) {
@@ -201,9 +202,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opNotEquivalent(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opNotEquivalent(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.length != right.length) {
@@ -229,9 +230,9 @@ class FhirPathOperations {
     return utilities.makeBoolean(!res);
   }
 
-  List<FhirBase> opLessThan(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opLessThan(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -255,13 +256,13 @@ class FhirPathOperations {
           final comparison =
               utilities.compareDateTimeNodes(l, r, TemporalComparator.lessThan);
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
           final comparison =
               utilities.compareTimeNodes(l, r, TemporalComparator.lessThan);
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else {
           throw fpContext.makeException(
@@ -288,8 +289,8 @@ class FhirPathOperations {
         } else {
           final lQuantity = utilities.qtyToCanonicalDecimal(l);
           final rQuantity = utilities.qtyToCanonicalDecimal(r);
-          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
+          final dl = lQuantity == null ? <FhirNode>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirNode>[] : [rQuantity];
           return opLessThan(dl, dr, expr);
         }
       }
@@ -297,9 +298,9 @@ class FhirPathOperations {
     return [];
   }
 
-  List<FhirBase> opGreater(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opGreater(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -326,14 +327,14 @@ class FhirPathOperations {
             TemporalComparator.greaterThan,
           );
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
           final comparison =
               utilities.compareTimeNodes(l, r, TemporalComparator.greaterThan);
 
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else {
           throw fpContext.makeException(
@@ -360,8 +361,8 @@ class FhirPathOperations {
         } else {
           final lQuantity = utilities.qtyToCanonicalDecimal(l);
           final rQuantity = utilities.qtyToCanonicalDecimal(r);
-          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
+          final dl = lQuantity == null ? <FhirNode>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirNode>[] : [rQuantity];
           return opGreater(dl, dr, expr);
         }
       }
@@ -369,9 +370,9 @@ class FhirPathOperations {
     return [];
   }
 
-  List<FhirBase> opLessOrEqual(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opLessOrEqual(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -398,7 +399,7 @@ class FhirPathOperations {
             TemporalComparator.lessThanEqual,
           );
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
           final comparison = utilities.compareTimeNodes(
@@ -407,7 +408,7 @@ class FhirPathOperations {
             TemporalComparator.lessThanEqual,
           );
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else {
           throw fpContext.makeException(
@@ -434,8 +435,8 @@ class FhirPathOperations {
         } else {
           final lQuantity = utilities.qtyToCanonicalDecimal(l);
           final rQuantity = utilities.qtyToCanonicalDecimal(r);
-          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
+          final dl = lQuantity == null ? <FhirNode>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirNode>[] : [rQuantity];
           return opLessOrEqual(dl, dr, expr);
         }
       }
@@ -443,9 +444,9 @@ class FhirPathOperations {
     return [];
   }
 
-  List<FhirBase> opGreaterOrEqual(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opGreaterOrEqual(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -472,7 +473,7 @@ class FhirPathOperations {
             TemporalComparator.greaterThanEqual,
           );
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else if (utilities.isTimeNode(l) && utilities.isTimeNode(r)) {
           final comparison = utilities.compareTimeNodes(
@@ -481,7 +482,7 @@ class FhirPathOperations {
             TemporalComparator.greaterThanEqual,
           );
           return comparison == null
-              ? <FhirBase>[]
+              ? <FhirNode>[]
               : utilities.makeBoolean(comparison);
         } else {
           throw fpContext.makeException(
@@ -508,8 +509,8 @@ class FhirPathOperations {
         } else {
           final lQuantity = utilities.qtyToCanonicalDecimal(l);
           final rQuantity = utilities.qtyToCanonicalDecimal(r);
-          final dl = lQuantity == null ? <FhirBase>[] : [lQuantity];
-          final dr = rQuantity == null ? <FhirBase>[] : [rQuantity];
+          final dl = lQuantity == null ? <FhirNode>[] : [lQuantity];
+          final dr = rQuantity == null ? <FhirNode>[] : [rQuantity];
           return opGreaterOrEqual(dl, dr, expr);
         }
       }
@@ -517,12 +518,12 @@ class FhirPathOperations {
     return [];
   }
 
-  List<FhirBase> opUnion(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opUnion(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     for (final item in left) {
       if (!utilities.doContains(result, item)) {
         result.add(item);
@@ -536,9 +537,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opIn(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opIn(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty) {
@@ -566,10 +567,10 @@ class FhirPathOperations {
     return utilities.makeBoolean(ans);
   }
 
-  Future<List<FhirBase>> opMemberOf(
+  Future<List<FhirNode>> opMemberOf(
     ExecutionContext execContext,
-    List<FhirBase> left,
-    List<FhirBase> right,
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) async {
     var ans = false;
@@ -616,9 +617,9 @@ class FhirPathOperations {
     return utilities.makeBoolean(ans);
   }
 
-  List<FhirBase> opContains(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opContains(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -643,9 +644,9 @@ class FhirPathOperations {
     return utilities.makeBoolean(ans);
   }
 
-  List<FhirBase> opOr(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opOr(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     final l = utilities.asBoolList(left, expr);
@@ -669,9 +670,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opAnd(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opAnd(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     final l = utilities.asBoolList(left, expr);
@@ -695,9 +696,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opXor(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opXor(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     final l = utilities.asBoolList(left, expr);
@@ -726,9 +727,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opImplies(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opImplies(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     final eq = utilities.asBoolList(left, expr);
@@ -750,9 +751,9 @@ class FhirPathOperations {
     }
   }
 
-  List<FhirBase> opPlus(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opPlus(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -793,7 +794,7 @@ class FhirPathOperations {
       );
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
 
@@ -818,9 +819,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opTimes(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opTimes(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -857,7 +858,7 @@ class FhirPathOperations {
       );
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
 
@@ -892,9 +893,9 @@ class FhirPathOperations {
     return result;
   }
 
-  Future<List<FhirBase>> opMinus(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  Future<List<FhirNode>> opMinus(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) async {
     if (left.isEmpty || right.isEmpty) {
@@ -938,7 +939,7 @@ class FhirPathOperations {
       );
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
 
@@ -967,9 +968,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opConcatenate(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opConcatenate(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.length > 1) {
@@ -1005,7 +1006,7 @@ class FhirPathOperations {
       );
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.isEmpty ? '' : left.first.primitiveValue.toString();
     final r = right.isEmpty ? '' : right.first.primitiveValue.toString();
     result.add(fpContext.factory.string('$l$r', disallowExtensions: false));
@@ -1013,9 +1014,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opDivideBy(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opDivideBy(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -1048,7 +1049,7 @@ class FhirPathOperations {
       ]);
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
 
@@ -1057,12 +1058,12 @@ class FhirPathOperations {
         final ln = utilities.nodeNum(l);
         final rn = utilities.nodeNum(r);
         if (ln == null || rn == null || rn == 0) {
-          return <FhirBase>[];
+          return <FhirNode>[];
         }
         // FHIRPath division always yields a decimal.
         result.add(fpContext.factory.decimal(ln / rn, disallowExtensions: false));
       } catch (e) {
-        return <FhirBase>[];
+        return <FhirNode>[];
       }
     } else if (utilities.isQuantityNode(l) && utilities.isQuantityNode(r)) {
       final pl = utilities.qtyToPair(l);
@@ -1083,9 +1084,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opDiv(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opDiv(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -1116,7 +1117,7 @@ class FhirPathOperations {
       ]);
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
 
@@ -1138,9 +1139,9 @@ class FhirPathOperations {
     return result;
   }
 
-  List<FhirBase> opMod(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  List<FhirNode> opMod(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) {
     if (left.isEmpty || right.isEmpty) {
@@ -1171,7 +1172,7 @@ class FhirPathOperations {
       ]);
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final l = left.first;
     final r = right.first;
     if (utilities.isNumericNode(l) && utilities.isNumericNode(r)) {
@@ -1192,12 +1193,12 @@ class FhirPathOperations {
     return result;
   }
 
-  Future<List<FhirBase>> opIs(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  Future<List<FhirNode>> opIs(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (left.isEmpty || right.isEmpty) {
       // No operation needed for empty lists
     } else if (left.length != 1 || right.length != 1) {
@@ -1222,12 +1223,12 @@ class FhirPathOperations {
     return result;
   }
 
-  Future<List<FhirBase>> opAs(
-    List<FhirBase> left,
-    List<FhirBase> right,
+  Future<List<FhirNode>> opAs(
+    List<FhirNode> left,
+    List<FhirNode> right,
     ExpressionNode expr,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (right.length != 1) {
       return result;
     }

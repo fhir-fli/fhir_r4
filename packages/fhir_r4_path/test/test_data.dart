@@ -1,11 +1,20 @@
 import 'dart:convert';
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 final worker = WorkerContext();
-List<dynamic> toJsonList(List<FhirBase> list) =>
-    list.map((e) => e is PrimitiveType ? e.valueString : e.toJson()).toList();
+List<dynamic> toJsonList(List<FhirNode> list) => list
+    .map((e) => e is PrimitiveType ? e.valueString : (e as FhirBase).toJson())
+    .toList();
+
+
+/// The parse-tree constant is a [FhirNode] after the engine's node swap;
+/// tests asserting its R4 JSON narrow it here (the R4 binding surface).
+extension FhirNodeR4JsonX on FhirNode {
+  Map<String, dynamic> toR4Json() => (this as FhirBase).toJson();
+}
 
 final patient1 = Patient.fromJson(<String, dynamic>{
   'resourceType': 'Patient',

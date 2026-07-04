@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -14,11 +15,11 @@ class ExecutionContext {
 
   ExecutionContext copyWith({
     Object? appInfo,
-    FhirBase? focusResource,
-    FhirBase? rootResource,
-    FhirBase? context,
-    FhirBase? thisItem,
-    List<FhirBase>? total,
+    FhirNode? focusResource,
+    FhirNode? rootResource,
+    FhirNode? context,
+    FhirNode? thisItem,
+    List<FhirNode>? total,
     int? index,
     Map<String, dynamic>? definedVariables,
   }) {
@@ -35,11 +36,11 @@ class ExecutionContext {
   }
 
   final Object? appInfo;
-  final FhirBase? focusResource;
-  final FhirBase? rootResource;
-  final FhirBase? context;
-  final FhirBase? thisItem;
-  List<FhirBase>? total;
+  final FhirNode? focusResource;
+  final FhirNode? rootResource;
+  final FhirNode? context;
+  final FhirNode? thisItem;
+  List<FhirNode>? total;
   int index = 0;
   Map<String, dynamic>? definedVariables;
 
@@ -51,21 +52,21 @@ class ExecutionContext {
     return definedVariables != null && definedVariables!.containsKey(name);
   }
 
-  List<FhirBase> getDefinedVariable(String name) {
+  List<FhirNode> getDefinedVariable(String name) {
     if (definedVariables == null) {
-      return <FhirBase>[];
+      return <FhirNode>[];
     }
     final variable = definedVariables![name];
-    if (variable is List<FhirBase>) {
+    if (variable is List<FhirNode>) {
       return variable;
     } else if (variable is Function) {
       // ignore: avoid_dynamic_calls
       final result = variable();
-      if (result is List<FhirBase>) {
+      if (result is List<FhirNode>) {
         return result;
       }
     }
-    return <FhirBase>[];
+    return <FhirNode>[];
   }
 
   void setDefinedVariable(
@@ -91,7 +92,7 @@ class ExecutionContext {
     definedVariables![name] = value;
   }
 
-  ExecutionContext changeThis(FhirBase newThis, WorkerContext worker) {
+  ExecutionContext changeThis(FhirNode newThis, WorkerContext worker) {
     final newContext = ExecutionContext(
       appInfo: appInfo,
       focusResource: focusResource,
@@ -104,7 +105,7 @@ class ExecutionContext {
       for (final s in definedVariables?.keys ?? <String>[]) {
         newContext.setDefinedVariable(
           s,
-          definedVariables![s] as List<FhirBase>? ?? <FhirBase>[],
+          definedVariables![s] as List<FhirNode>? ?? <FhirNode>[],
           worker,
         );
       }

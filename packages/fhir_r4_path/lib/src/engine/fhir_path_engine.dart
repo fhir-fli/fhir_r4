@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -118,7 +119,7 @@ class FHIRPathEngine {
       final isString = lexer.isStringConstant();
 
       // Check if it's a unary sign embedded with the constant, e.g. '-123'
-      FhirBase? constantValue;
+      FhirNode? constantValue;
       if (!isString &&
           (lexer.current!.startsWith('-') || lexer.current!.startsWith('+'))) {
         wrapper = ExpressionNode(lexer.nextId().toString())
@@ -569,8 +570,8 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Evaluation with base and ExpressionNode
-  Future<List<FhirBase>> evaluate(FhirBase? base, ExpressionNode node) async {
-    final list = <FhirBase>[];
+  Future<List<FhirNode>> evaluate(FhirNode? base, ExpressionNode node) async {
+    final list = <FhirNode>[];
     if (base != null) {
       list.add(base);
     }
@@ -587,16 +588,16 @@ class FHIRPathEngine {
   }
 
   // Evaluation with base and FHIRPath expression (String)
-  Future<List<FhirBase>> evaluateFromPath(FhirBase? base, String path) async {
+  Future<List<FhirNode>> evaluateFromPath(FhirNode? base, String path) async {
     final node = parse(path); // Assume `parse` is implemented
     return evaluate(base, node);
   }
 
   Future<String> evaluateToString(
     Object appInfo,
-    FhirBase? focusResource,
-    FhirBase? rootResource,
-    FhirBase base,
+    FhirNode? focusResource,
+    FhirNode? rootResource,
+    FhirNode base,
     ExpressionNode node,
   ) async {
     return utilities.convertListToString(
@@ -612,9 +613,9 @@ class FHIRPathEngine {
 
   Future<bool> evaluateToBoolean(
     Object appInfo,
-    FhirBase? focusResource,
-    FhirBase? rootResource,
-    FhirBase base,
+    FhirNode? focusResource,
+    FhirNode? rootResource,
+    FhirNode base,
     ExpressionNode node,
   ) async {
     return utilities.convertToBoolean(
@@ -629,15 +630,15 @@ class FHIRPathEngine {
   }
 
   // Evaluation with appContext and additional parameters
-  Future<List<FhirBase>> evaluateWithContext(
+  Future<List<FhirNode>> evaluateWithContext(
     Object? appContext,
-    FhirBase? focusResource,
-    FhirBase? rootResource,
-    FhirBase? base,
+    FhirNode? focusResource,
+    FhirNode? rootResource,
+    FhirNode? base,
     ExpressionNode node, {
     Map<String, dynamic>? environment,
   }) async {
-    final list = <FhirBase>[];
+    final list = <FhirNode>[];
     if (base != null) {
       list.add(base);
     }
@@ -654,11 +655,11 @@ class FHIRPathEngine {
   }
 
   // Evaluation with appContext and path (String)
-  Future<List<FhirBase>> evaluateWithPath(
+  Future<List<FhirNode>> evaluateWithPath(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
-    FhirBase? base,
+    FhirNode? base,
     String path,
   ) async {
     final node = parse(path); // Assume `parse` is implemented
@@ -1022,9 +1023,9 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Core method to execute evaluation logic
-  Future<List<FhirBase>> execute(
+  Future<List<FhirNode>> execute(
     ExecutionContext inContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
     bool atEntry,
   ) async {
@@ -1032,7 +1033,7 @@ class FHIRPathEngine {
     var context = contextForParameter(inContext);
 
     // This will hold the evaluated results for the current node
-    var work = <FhirBase>[];
+    var work = <FhirNode>[];
 
     // Main switch to evaluate this node based on its kind
     switch (exp.kind) {
@@ -1047,7 +1048,7 @@ class FHIRPathEngine {
           final operand = exp.opNext!;
           final hadOperators = operand.proximal && operand.operation != null;
 
-          List<FhirBase> operandResult;
+          List<FhirNode> operandResult;
           if (hadOperators) {
             // Create a temporary node without operators to evaluate just the
             //base expression
@@ -1072,7 +1073,7 @@ class FHIRPathEngine {
           // (exact), yielding an `integer` result like the reference's
           // 0 - x numeric path.
           if (exp.operation == FpOperation.Minus) {
-            final negValues = <FhirBase>[];
+            final negValues = <FhirNode>[];
             for (final val in operandResult) {
               if (val.fhirType == 'decimal') {
                 negValues.add(
@@ -1139,7 +1140,9 @@ class FHIRPathEngine {
           }
         } else {
           // If no operand, decide how to handle (e.g. 0, or throw an error)
-          work.add(0.toFhirInteger);
+          // Java reference: a Unary node evaluates to IntegerType(0); the
+          // operator chain then applies 0 - x / 0 + x.
+          work.add(fpContext.factory.integer(0, disallowExtensions: false));
         }
         // Nullify the unary operation so it's not re-applied in the proximal
         // loop
@@ -1258,13 +1261,13 @@ class FHIRPathEngine {
     return work;
   }
 
-  Future<List<FhirBase>> executeForItem(
+  Future<List<FhirNode>> executeForItem(
     ExecutionContext context,
-    FhirBase item,
+    FhirNode item,
     ExpressionNode exp, {
     required bool atEntry,
   }) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && fpContext.hostServices != null) {
       final temp = fpContext.hostServices!
@@ -1454,13 +1457,13 @@ class FHIRPathEngine {
         .resolveConstantType(this, context.appInfo, name, explicitConstant);
   }
 
-  Future<List<FhirBase>> executeContextTypeName(
+  Future<List<FhirNode>> executeContextTypeName(
     ExecutionContext context,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode next,
     bool atEntry,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (next.inner != null) {
       // Handle inner nodes by constructing the fully qualified name
@@ -1613,13 +1616,13 @@ class FHIRPathEngine {
     ExpressionNode expr,
     bool explicitConstant,
   ) {
-    if (constant is FhirBase && constant.fhirType == 'boolean') {
+    if (constant is FhirNode && constant.fhirType == 'boolean') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
-    } else if (constant is FhirBase && constant.fhirType == 'integer') {
+    } else if (constant is FhirNode && constant.fhirType == 'integer') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]);
-    } else if (constant is FhirBase && constant.fhirType == 'decimal') {
+    } else if (constant is FhirNode && constant.fhirType == 'decimal') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Decimal]);
-    } else if (constant is FhirBase && constant.fhirType == 'Quantity') {
+    } else if (constant is FhirNode && constant.fhirType == 'Quantity') {
       return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Quantity]);
     } else if (constant is FHIRConstant) {
       return resolveConstantType(
@@ -1744,7 +1747,7 @@ class FHIRPathEngine {
   /// CHILD AND CONTEXT HANDLING
   /// ***************************************
   ///
-  void getChildrenByName(FhirBase item, String oldName, List<FhirBase> result) {
+  void getChildrenByName(FhirNode item, String oldName, List<FhirNode> result) {
     if (oldName == '*') {
       for (final child in item.listChildrenNames()) {
         result.addAll(item.getChildrenByName(child));
@@ -1820,7 +1823,7 @@ class FHIRPathEngine {
 
   ExecutionContext changeThisContext(
     ExecutionContext context,
-    FhirBase newThis,
+    FhirNode newThis,
   ) {
     final newContext = context.copyWith(thisItem: newThis);
     // append all of the defined variables from the context into the new context
@@ -1860,7 +1863,7 @@ class FHIRPathEngine {
   /// PROCESSING CONSTANTS
   /// ***************************************
   ///
-  FhirBase? _processConstant(FHIRLexer lexer) {
+  FhirNode? _processConstant(FHIRLexer lexer) {
     if (lexer.isStringConstant()) {
       return fpContext.factory.string(processConstantString(lexer.take(), lexer));
     } else if (lexer.current?.isInteger ?? false) {

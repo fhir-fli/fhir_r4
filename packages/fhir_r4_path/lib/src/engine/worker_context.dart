@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -66,7 +67,8 @@ class WorkerContext {
   /// `Resource`). Matches the Java reference `FHIRPathEngine.funcIs`
   /// (org.hl7.fhir.r4.fhirpath) and the official test suite's `testType`
   /// group expectations.
-  Future<bool> isValueOfType(FhirBase value, String ns, String name) async {
+  Future<bool> isValueOfType(FhirNode node, String ns, String name) async {
+    final value = node as FhirBase;
     if (ns == 'System') {
       if (value is Resource) {
         return false;
@@ -95,7 +97,8 @@ class WorkerContext {
   /// `is` walk ([isSubtypeOf]) — the `ofType` walk STOPS at primitive-type
   /// definitions, so e.g. `gender.ofType(string)` is false for a `code` even
   /// though `gender.is(string)` is true.
-  Future<bool> matchesOfType(FhirBase value, String tn) async {
+  Future<bool> matchesOfType(FhirNode node, String tn) async {
+    final value = node as FhirBase;
     if (tn.startsWith('System.')) {
       return value is Element &&
           (value.disallowExtensions ?? false) &&
@@ -823,9 +826,10 @@ class WorkerContext {
   /// the engine passes the node and lets the worker interpret it.
   Future<ValidationResult> validateCodeForCodingValue(
     ValidationOptions options,
-    FhirBase value,
+    FhirNode node,
     ValueSet? valueSet,
   ) async {
+    final value = node as FhirBase;
     final coding = TypeConvertor.castToCoding(value);
     if (coding == null) {
       return ValidationResult.error(
@@ -838,9 +842,10 @@ class WorkerContext {
   /// As [validateCodeForCodingValue], but for a `CodeableConcept`-typed value.
   Future<ValidationResult> validateCodeForCodeableConceptValue(
     ValidationOptions options,
-    FhirBase value,
+    FhirNode node,
     ValueSet valueSet,
   ) async {
+    final value = node as FhirBase;
     final concept = TypeConvertor.castToCodeableConcept(value);
     if (concept == null) {
       return ValidationResult.error(

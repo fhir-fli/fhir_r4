@@ -97,7 +97,7 @@ Future<void> testNoArgFxns() async {
       var node = testEngine.parse('Patient.name.distinct()');
       expect(
           (await testEngine.evaluate(patient3, node)).map(
-            (e) => e.toJson(),
+            (e) => (e as FhirBase).toJson(),
           ),
           [
             {
@@ -117,7 +117,7 @@ Future<void> testNoArgFxns() async {
       node = testEngine.parse('Patient.name.given.distinct()');
       expect(
         (await testEngine.evaluate(patient3, node))
-            .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson()),
+            .map((e) => e is PrimitiveType ? e.primitiveValue : (e as FhirBase).toJson()),
         ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
       );
     });
@@ -146,7 +146,7 @@ Future<void> testNoArgFxns() async {
     test('Single', () async {
       var node = testEngine.parse('Patient.telecom.single()');
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        (await testEngine.evaluate(patient3, node)).first.toR4Json(),
         {
           'system': 'email',
           'use': 'mobile',
@@ -814,7 +814,7 @@ Future<void> testNoArgFxns() async {
     test('toQuantity', () async {
       var node = testEngine.parse("'4 days'.toQuantity()");
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        (await testEngine.evaluate(patient3, node)).first.toR4Json(),
         Quantity(
           value: 4.0.toFhirDecimal,
           system: 'http://unitsofmeasure.org'.toFhirUri,
@@ -824,7 +824,7 @@ Future<void> testNoArgFxns() async {
 
       node = testEngine.parse(r"'10 \'mm[Hg]\''.toQuantity()");
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        (await testEngine.evaluate(patient3, node)).first.toR4Json(),
         Quantity(
           value: 10.0.toFhirDecimal,
           system: 'http://unitsofmeasure.org'.toFhirUri,
@@ -1122,7 +1122,7 @@ Future<void> testNoArgFxns() async {
 
       node = testEngine.parse("(-5.5 'mg').abs() // 5.5 'mg'");
       expect(
-        (await testEngine.evaluate(patient3, node)).first.toJson(),
+        (await testEngine.evaluate(patient3, node)).first.toR4Json(),
         {'value': 5.5, 'system': 'http://unitsofmeasure.org', 'code': 'mg'},
       );
     });
@@ -1246,7 +1246,7 @@ Future<void> testNoArgFxns() async {
       node = testEngine.parse('Patient.address.children()');
       expect(
           (await testEngine.evaluate(patient3, node))
-              .map((e) => e.toJson())
+              .map((e) => (e as FhirBase).toJson())
               .toList(),
           [
             {
@@ -1339,7 +1339,7 @@ Future<void> testNoArgFxns() async {
           testEngine.parse('Patient.address[1].period.extension.descendants()');
       expect(
           (await testEngine.evaluate(patient3, node))
-              .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson())
+              .map((e) => e is PrimitiveType ? e.primitiveValue : (e as FhirBase).toJson())
               .toList(),
           [
             {

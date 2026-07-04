@@ -220,7 +220,7 @@ Future<void> testArgFxns() async {
 
     node = fhirPathEngine.parse(r'Patient.name.where($this)');
     expect(
-      (await fhirPathEngine.evaluate(resource, node)).map((e) => e.toJson()),
+      (await fhirPathEngine.evaluate(resource, node)).map((e) => (e as FhirBase).toJson()),
       [
         {
           'use': 'official',
@@ -421,7 +421,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: r'Patient.name.where($this)',
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {
@@ -618,7 +618,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: "Patient.telecom.where(use = 'mobile')",
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'system': 'email',
@@ -632,7 +632,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 3)",
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {
@@ -647,7 +647,7 @@ Future<void> testArgFxns() async {
           pathExpression:
               "Patient.telecom.where(use = 'mobile' and system = 'email')",
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'system': 'email',
@@ -662,7 +662,7 @@ Future<void> testArgFxns() async {
               "Patient.telecom.where(use = 'mobile' and system = 'email' and "
               'rank = 3)',
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'system': 'email',
@@ -675,7 +675,7 @@ Future<void> testArgFxns() async {
         context: patient3,
         pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
       ))
-          .map((e) => e.toJson()),
+          .map((e) => (e as FhirBase).toJson()),
       <FhirBase>[],
     );
     expect(
@@ -683,7 +683,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: "Patient.name.where(use = 'official')",
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'use': 'official',
@@ -717,7 +717,7 @@ Future<void> testArgFxns() async {
           context: bundle,
           pathExpression: 'Bundle.entry.select(resource as Patient)',
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {'resourceType': 'Patient', 'id': '1'},
@@ -730,7 +730,7 @@ Future<void> testArgFxns() async {
           context: bundle,
           pathExpression: 'Bundle.entry.select(resource as Practitioner)',
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {'resourceType': 'Practitioner', 'id': '2'},
           {'resourceType': 'Practitioner', 'id': '4'},
@@ -745,7 +745,7 @@ Future<void> testArgFxns() async {
           pathExpression: 'Patient.address.period.extension.extension.extension'
               '.repeat(extension)',
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'url': 'www.mayjuun.com',
@@ -762,7 +762,7 @@ Future<void> testArgFxns() async {
           pathExpression:
               'Patient.address.period.extension.extension.repeat(extension)',
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'extension': [
@@ -792,7 +792,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: 'Patient.address.period.extension.repeat(extension)',
         ))
-            .map((e) => e.toJson()),
+            .map((e) => (e as FhirBase).toJson()),
         [
           {
             'extension': [
@@ -849,7 +849,7 @@ Future<void> testArgFxns() async {
           context: bundle,
           pathExpression: 'Bundle.entry.resource.ofType(Patient)',
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {'resourceType': 'Patient', 'id': '1'},
@@ -862,7 +862,7 @@ Future<void> testArgFxns() async {
           context: bundle,
           pathExpression: 'Bundle.entry.resource.ofType(Practitioner)',
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {'resourceType': 'Practitioner', 'id': '2'},
@@ -877,7 +877,7 @@ Future<void> testArgFxns() async {
           context: patient3,
           pathExpression: 'Patient.name[3]',
         ))
-            .map((e) => e.toJson())
+            .map((e) => (e as FhirBase).toJson())
             .toList(),
         [
           {

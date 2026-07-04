@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:ucum/ucum.dart';
@@ -15,7 +16,7 @@ class FhirPathUtilities {
   final FhirPathContext fpContext;
 
   // String conversion helpers
-  String convertToString(FhirBase item) {
+  String convertToString(FhirNode item) {
     if (item.isPrimitive) {
       return item.primitiveValue ?? '';
     } else if (isQuantityNode(item)) {
@@ -55,7 +56,7 @@ class FhirPathUtilities {
     }
   }
 
-  String convertListToString(List<FhirBase> items) {
+  String convertListToString(List<FhirNode> items) {
     final b = StringBuffer();
     var first = true;
     for (final item in items) {
@@ -70,8 +71,8 @@ class FhirPathUtilities {
     return b.toString();
   }
 
-  List<FhirBase> makeBoolean(bool value) {
-    return <FhirBase>[fpContext.factory.boolean(value)];
+  List<FhirNode> makeBoolean(bool value) {
+    return <FhirNode>[fpContext.factory.boolean(value)];
   }
 
   /// The FHIR primitive type names FHIRPath treats as numbers. Mirrors the
@@ -137,20 +138,20 @@ class FhirPathUtilities {
 
   /// Whether [node] is a date/dateTime/instant primitive — the
   /// model-independent equivalent of `node is FhirDateTimeBase`.
-  bool isDateTimeNode(FhirBase node) =>
+  bool isDateTimeNode(FhirNode node) =>
       node.isPrimitive && dateTimeTypeNames.contains(node.fhirType);
 
   /// Whether [node] is a `time` primitive — the model-independent equivalent
   /// of `node is FhirTime`.
-  bool isTimeNode(FhirBase node) =>
+  bool isTimeNode(FhirNode node) =>
       node.isPrimitive && node.fhirType == 'time';
 
   /// Compares two date/dateTime/instant nodes under FHIRPath partial-precision
   /// semantics, reading each node's value string via the node contract.
   /// Returns null when the comparison is indeterminate (differing precision).
   bool? compareDateTimeNodes(
-    FhirBase left,
-    FhirBase right,
+    FhirNode left,
+    FhirNode right,
     TemporalComparator comparator,
   ) =>
       SystemDateTime.compareStrings(
@@ -162,8 +163,8 @@ class FhirPathUtilities {
   /// Compares two `time` nodes component-wise, reading each value string via
   /// the node contract. Returns null when the operands differ in precision.
   bool? compareTimeNodes(
-    FhirBase left,
-    FhirBase right,
+    FhirNode left,
+    FhirNode right,
     TemporalComparator comparator,
   ) =>
       SystemTime.compareStrings(
@@ -173,15 +174,15 @@ class FhirPathUtilities {
       );
 
   /// Whether [node] is a numeric primitive — the model-independent equivalent
-  /// of `node is FhirNumber`, decided from the node's [FhirBase.fhirType]
+  /// of `node is FhirNumber`, decided from the node's [FhirNode.fhirType]
   /// rather than its Dart class so the engine needn't name FHIR value types.
-  bool isNumericNode(FhirBase node) =>
+  bool isNumericNode(FhirNode node) =>
       node.isPrimitive && numericTypeNames.contains(node.fhirType);
 
   /// Reads [node]'s numeric value as a Dart [num], mirroring
   /// `FhirNumber.valueNum` exactly (int for integer kinds, double for
   /// decimal). Returns null when the value is absent or unparseable.
-  num? nodeNum(FhirBase node) {
+  num? nodeNum(FhirNode node) {
     final s = node.primitiveValue;
     if (s == null) {
       return null;
@@ -197,16 +198,27 @@ class FhirPathUtilities {
   /// otherwise an integer when [value] is a Dart `int` (`FhirNumber.fromNum`),
   /// else a decimal. Bare (extensions allowed), matching the arithmetic
   /// operators' direct construction.
-  FhirBase numericResult(num value, FhirBase l, FhirBase r) {
+  FhirNode numericResult(num value, FhirNode l, FhirNode r) {
     final eitherDecimal = l.fhirType == 'decimal' || r.fhirType == 'decimal';
     return eitherDecimal || value is! int
         ? fpContext.factory.decimal(value, disallowExtensions: false)
         : fpContext.factory.integer(value, disallowExtensions: false);
   }
 
+  /// Whether [node] has any populated child — verbatim port of
+  /// `FhirBase.hasValues`, expressed over the node contract.
+  bool nodeHasValues(FhirNode node) {
+    for (final child in node.listChildrenNames()) {
+      if (node.getChildByName(child) != null) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /// Whether [node] is a `Quantity` — the model-independent form of
-  /// `node is Quantity`, decided from [FhirBase.fhirType].
-  bool isQuantityNode(FhirBase node) => node.fhirType == 'Quantity';
+  /// `node is Quantity`, decided from [FhirNode.fhirType].
+  bool isQuantityNode(FhirNode node) => node.fhirType == 'Quantity';
 
   /// Negates a decimal STRING exactly — sign flip with the representation
   /// (scale, trailing zeros) preserved, and no negative zero. This is what
@@ -227,34 +239,34 @@ class FhirPathUtilities {
     return negative ? v : '-$v';
   }
 
-  String? _firstChildPrimitive(FhirBase node, String name) {
+  String? _firstChildPrimitive(FhirNode node, String name) {
     final children = node.getChildrenByName(name);
     return children.isEmpty ? null : children.first.primitiveValue;
   }
 
   /// The `Quantity.value` of [node] as a Dart [num], read via the node
   /// contract (Quantity fields are 0..1).
-  num? qtyValue(FhirBase node) {
+  num? qtyValue(FhirNode node) {
     final children = node.getChildrenByName('value');
     return children.isEmpty ? null : nodeNum(children.first);
   }
 
   /// The `Quantity.unit` of [node], read via the node contract.
-  String? qtyUnit(FhirBase node) => _firstChildPrimitive(node, 'unit');
+  String? qtyUnit(FhirNode node) => _firstChildPrimitive(node, 'unit');
 
   /// The `Quantity.code` of [node], read via the node contract.
-  String? qtyCode(FhirBase node) => _firstChildPrimitive(node, 'code');
+  String? qtyCode(FhirNode node) => _firstChildPrimitive(node, 'code');
 
   /// The `Quantity.system` of [node], read via the node contract.
-  String? qtySystem(FhirBase node) => _firstChildPrimitive(node, 'system');
+  String? qtySystem(FhirNode node) => _firstChildPrimitive(node, 'system');
 
-  bool isBoolean(List<FhirBase> list, bool value) {
+  bool isBoolean(List<FhirNode> list, bool value) {
     return list.length == 1 &&
         list.first.fhirType == 'boolean' &&
         list.first.primitiveValue == (value ? 'true' : 'false');
   }
 
-  FpEquality asBool(FhirBase item, [bool narrow = false]) {
+  FpEquality asBool(FhirNode item, [bool narrow = false]) {
     if (item.fhirType == 'boolean' && item.primitiveValue != null) {
       return item.primitiveValue == 'true'
           ? FpEquality.true_
@@ -279,7 +291,7 @@ class FhirPathUtilities {
     return FpEquality.null_;
   }
 
-  FpEquality asBoolFromList(List<FhirBase> items, ExpressionNode expr) {
+  FpEquality asBoolFromList(List<FhirNode> items, ExpressionNode expr) {
     if (items.isEmpty) return FpEquality.null_;
 
     if (items.length == 1) {
@@ -316,7 +328,7 @@ class FhirPathUtilities {
     }
   }
 
-  bool canConvertToBoolean(FhirBase item) {
+  bool canConvertToBoolean(FhirNode item) {
     if (item.fhirType == 'boolean') return true;
 
     if (item.isPrimitive) {
@@ -340,7 +352,7 @@ class FhirPathUtilities {
     return false;
   }
 
-  bool convertToBoolean(List<FhirBase>? items) {
+  bool convertToBoolean(List<FhirNode>? items) {
     if (items == null || items.isEmpty) return false;
 
     if (items.length == 1) {
@@ -360,7 +372,7 @@ class FhirPathUtilities {
     return items.isNotEmpty;
   }
 
-  FpEquality asBoolList(List<FhirBase> items, ExpressionNode expr) {
+  FpEquality asBoolList(List<FhirNode> items, ExpressionNode expr) {
     if (items.isEmpty) {
       return FpEquality.null_;
     } else if (items.length == 1) {
@@ -381,7 +393,7 @@ class FhirPathUtilities {
 
   /// Deep equality where either side may be null (Java reference
   /// `Base.equalsDeepWithNull`).
-  bool deepEqualWithNull(FhirBase? a, FhirBase? b) {
+  bool deepEqualWithNull(FhirNode? a, FhirNode? b) {
     if (a == null && b == null) {
       return true;
     }
@@ -393,7 +405,7 @@ class FhirPathUtilities {
 
   /// Deep equality with optional empty-tolerance and the metadata-based side
   /// driving the comparison (Java reference `Base.compareDeep`).
-  bool deepEqual(FhirBase? a, FhirBase? b, [bool allowNull = false]) {
+  bool deepEqual(FhirNode? a, FhirNode? b, [bool allowNull = false]) {
     if (allowNull) {
       final noLeft = a == null || a.isEmpty();
       final noRight = b == null || b.isEmpty();
@@ -413,8 +425,8 @@ class FhirPathUtilities {
   /// Pairwise deep equality of two lists (Java reference
   /// `Base.compareDeepLists`).
   bool deepEqualLists(
-    List<FhirBase>? e1,
-    List<FhirBase>? e2, [
+    List<FhirNode>? e1,
+    List<FhirNode>? e2, [
     bool allowNull = false,
   ]) {
     final noLeft = e1 == null || e1.isEmpty;
@@ -436,7 +448,7 @@ class FhirPathUtilities {
     return true;
   }
 
-  bool? doEquals(FhirBase left, FhirBase right) {
+  bool? doEquals(FhirNode left, FhirNode right) {
     if (isQuantityNode(left) && isQuantityNode(right)) {
       return qtyEqual(left, right);
     } else if (isQuantityNode(left) &&
@@ -492,7 +504,7 @@ class FhirPathUtilities {
     return s.substring(0, end);
   }
 
-  bool? qtyEqual(FhirBase left, FhirBase right) {
+  bool? qtyEqual(FhirNode left, FhirNode right) {
     final lValue = qtyValue(left);
     final rValue = qtyValue(right);
     if (lValue == null && rValue == null) {
@@ -535,7 +547,7 @@ class FhirPathUtilities {
   /// which the parser deliberately leaves without a UCUM code) is mapped to
   /// its definite-duration UCUM equivalent so that `1 year ~ 1 'a'` is true.
   /// Used by equivalence ONLY — equality keeps them un-comparable.
-  Pair? qtyToEquivalenceCanonicalPair(FhirBase q) {
+  Pair? qtyToEquivalenceCanonicalPair(FhirNode q) {
     if (qtySystem(q) == null && qtyCode(q) == null) {
       const calendarToUcum = {
         'year': 'a', 'years': 'a', //
@@ -570,7 +582,7 @@ class FhirPathUtilities {
   /// `1 'mo' = 1 month` EMPTY (calendar and definite durations are not
   /// comparable) while `1 'wk' = 1 week` is true (week and below get UCUM
   /// codes at parse time). Verbatim Java `qtyToCanonicalPair`.
-  Pair? qtyToCanonicalPair(FhirBase q) {
+  Pair? qtyToCanonicalPair(FhirNode q) {
     if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
@@ -650,7 +662,7 @@ class FhirPathUtilities {
     }
   }
 
-  bool? doEquivalent(FhirBase left, FhirBase right) {
+  bool? doEquivalent(FhirNode left, FhirNode right) {
     if (isQuantityNode(left) && isQuantityNode(right)) {
       return qtyEquivalent(left, right);
     }
@@ -730,7 +742,7 @@ class FhirPathUtilities {
     }
   }
 
-  bool? qtyEquivalent(FhirBase left, FhirBase right) {
+  bool? qtyEquivalent(FhirNode left, FhirNode right) {
     final lValue = qtyValue(left);
     final rValue = qtyValue(right);
     if (lValue == null && rValue == null) {
@@ -777,7 +789,7 @@ class FhirPathUtilities {
     );
   }
 
-  bool doContains(List<FhirBase> list, FhirBase item) {
+  bool doContains(List<FhirNode> list, FhirNode item) {
     for (final test in list) {
       final eq = doEquals(test, item);
       if (eq != null && eq) {
@@ -787,7 +799,7 @@ class FhirPathUtilities {
     return false;
   }
 
-  FhirBase? qtyToCanonicalDecimal(FhirBase q) {
+  FhirNode? qtyToCanonicalDecimal(FhirNode q) {
     if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
@@ -806,11 +818,11 @@ class FhirPathUtilities {
     }
   }
 
-  List<FhirBase> makeNull() => <FhirBase>[];
+  List<FhirNode> makeNull() => <FhirNode>[];
 
-  FhirBase dateAdd(
-    FhirBase d,
-    FhirBase q,
+  FhirNode dateAdd(
+    FhirNode d,
+    FhirNode q,
     bool negate,
     ExpressionNode holder,
   ) {
@@ -878,7 +890,7 @@ class FhirPathUtilities {
     return fpContext.factory.dateTimeOfType(d.fhirType, result.toDateTimeString()!);
   }
 
-  Pair? qtyToPair(FhirBase q) {
+  Pair? qtyToPair(FhirNode q) {
     if (qtySystem(q) != 'http://unitsofmeasure.org') {
       return null;
     }
@@ -892,7 +904,7 @@ class FhirPathUtilities {
     }
   }
 
-  FhirBase pairToQty(Pair pair) {
+  FhirNode pairToQty(Pair pair) {
     return fpContext.factory.quantity(
       value: pair.value.asDouble,
       system: 'http://unitsofmeasure.org',

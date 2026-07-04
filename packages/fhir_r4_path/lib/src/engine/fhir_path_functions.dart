@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:ucum/ucum.dart';
@@ -27,9 +28,9 @@ class FhirPathFunctions {
   /// FUNCTIONS
   /// ***************************************
   ///
-  Future<List<FhirBase>> evaluateFunction(
+  Future<List<FhirNode>> evaluateFunction(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     switch (exp.function) {
@@ -188,35 +189,35 @@ class FhirPathFunctions {
       case FpFunction.ToTime:
         return funcToTime(execContext, focus, exp);
       case FpFunction.IsInteger:
-        return operations.opIs(focus, ['integer'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('integer', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToInteger:
         return funcIsInteger(focus);
       case FpFunction.IsDecimal:
-        return operations.opIs(focus, ['decimal'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('decimal', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToDecimal:
         return funcIsDecimal(execContext, focus, exp);
       case FpFunction.IsString:
-        return operations.opIs(focus, ['string'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('string', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToString:
         return funcIsString(focus);
       case FpFunction.IsBoolean:
-        return operations.opIs(focus, ['boolean'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('boolean', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToBoolean:
         return funcIsBoolean(focus);
       case FpFunction.IsQuantity:
-        return operations.opIs(focus, ['Quantity'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('Quantity', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToQuantity:
         return funcIsQuantity(focus);
       case FpFunction.IsDateTime:
-        return operations.opIs(focus, ['dateTime'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('dateTime', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToDateTime:
         return funcIsDateTime(focus);
       case FpFunction.IsDate:
-        return operations.opIs(focus, ['date'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('date', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToDate:
         return funcIsDate(focus);
       case FpFunction.IsTime:
-        return operations.opIs(focus, ['time'.toFhirString], exp);
+        return operations.opIs(focus, [fpContext.factory.string('time', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToTime:
         return funcIsTime(focus);
       case FpFunction.ConformsTo:
@@ -251,7 +252,7 @@ class FhirPathFunctions {
         return funcPrecision(execContext, focus, exp);
       case FpFunction.Custom:
         {
-          final params = <List<FhirBase>>[];
+          final params = <List<FhirNode>>[];
           for (final p in exp.parameters) {
             params.add(await engine.execute(execContext, focus, p, true));
           }
@@ -262,7 +263,7 @@ class FhirPathFunctions {
                 exp.name,
                 params,
               ) ??
-              <FhirBase>[];
+              <FhirNode>[];
         }
       case null:
       case FpFunction.HasTemplateIdOf:
@@ -270,20 +271,20 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcEmpty(
+  List<FhirNode> funcEmpty(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     return [fpContext.factory.boolean(focus.isEmpty)];
   }
 
-  List<FhirBase> funcNot(
+  List<FhirNode> funcNot(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final v = utilities.asBoolList(focus, exp);
 
     if (v != FpEquality.null_) {
@@ -293,13 +294,13 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcExists(
+  Future<List<FhirNode>> funcExists(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     var empty = true;
-    final pc = <FhirBase>[];
+    final pc = <FhirNode>[];
 
     for (final f in focus) {
       if (exp.parameters.length == 1) {
@@ -326,9 +327,9 @@ class FhirPathFunctions {
     return [fpContext.factory.boolean(!empty)];
   }
 
-  Future<List<FhirBase>> funcSubsetOf(
+  Future<List<FhirNode>> funcSubsetOf(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final target = await engine.execute(
@@ -355,9 +356,9 @@ class FhirPathFunctions {
     return [fpContext.factory.boolean(valid)];
   }
 
-  List<FhirBase> funcIsDistinct(
+  List<FhirNode> funcIsDistinct(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.isEmpty) {
@@ -382,23 +383,23 @@ class FhirPathFunctions {
     return utilities.makeBoolean(distinct);
   }
 
-  List<FhirBase> funcDistinct(
+  List<FhirNode> funcDistinct(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.length <= 1) {
       return focus;
     }
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     for (var i = 0; i < focus.length; i++) {
       var found = false;
 
       for (var j = i + 1; j < focus.length; j++) {
         final eq = utilities.doEquals(focus[j], focus[i]);
-        if (eq == null) return <FhirBase>[];
+        if (eq == null) return <FhirNode>[];
         if (eq) {
           found = true;
           break;
@@ -412,21 +413,21 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcCount(
+  List<FhirNode> funcCount(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     return [fpContext.factory.integer(focus.length)];
   }
 
-  Future<List<FhirBase>> funcWhere(
+  Future<List<FhirNode>> funcWhere(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
-    final pc = <FhirBase>[];
+    final result = <FhirNode>[];
+    final pc = <FhirNode>[];
     for (final item in focus) {
       pc
         ..clear()
@@ -452,13 +453,13 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcSelect(
+  Future<List<FhirNode>> funcSelect(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
-    final pc = <FhirBase>[];
+    final result = <FhirNode>[];
+    final pc = <FhirNode>[];
 
     for (var i = 0; i < focus.length; i++) {
       final item = focus[i];
@@ -478,14 +479,14 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcAll(
+  Future<List<FhirNode>> funcAll(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (exp.parameters.length == 1) {
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
       var all = true;
       for (final item in focus) {
         pc
@@ -520,19 +521,19 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcRepeat(
+  Future<List<FhirNode>> funcRepeat(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
-    final current = <FhirBase>[...focus];
-    final added = <FhirBase>[];
+    final result = <FhirNode>[];
+    final current = <FhirNode>[...focus];
+    final added = <FhirNode>[];
     var more = true;
 
     while (more) {
       added.clear();
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
 
       for (final item in current) {
         pc
@@ -585,18 +586,18 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcAggregate(
+  Future<List<FhirNode>> funcAggregate(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    var total = <FhirBase>[];
+    var total = <FhirNode>[];
     if (exp.parameterCount > 1) {
       total =
           await engine.execute(execContext, focus, exp.parameters[1], false);
     }
 
-    final pc = <FhirBase>[];
+    final pc = <FhirNode>[];
     for (final item in focus) {
       final c = execContext.changeThis(item, fpContext.worker)
         ..total = total
@@ -606,12 +607,12 @@ class FhirPathFunctions {
     return total;
   }
 
-  Future<List<FhirBase>> funcItem(
+  Future<List<FhirNode>> funcItem(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final s = utilities.convertListToString(
       await engine.execute(execContext, focus, exp.parameters[0], true),
     );
@@ -624,12 +625,12 @@ class FhirPathFunctions {
   /// The `as()` FUNCTION form — retained by the FHIRPath spec for backwards
   /// compatibility and implemented by the Java reference (`funcAs`, identical
   /// filter logic to `ofType()`).
-  Future<List<FhirBase>> funcAs(
+  Future<List<FhirNode>> funcAs(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final parameter = expr.parameters[0];
     final tn = parameter.inner != null
         ? '${parameter.name}.${parameter.inner!.name}'
@@ -658,9 +659,9 @@ class FhirPathFunctions {
   /// optionally prefixed with unary `-` for descending. The keys are computed
   /// up front (expression evaluation is async and a Dart comparator cannot
   /// await), then compared with the reference's natural ordering.
-  Future<List<FhirBase>> funcSort(
+  Future<List<FhirNode>> funcSort(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     if (focus.length <= 1) {
@@ -682,13 +683,13 @@ class FhirPathFunctions {
     }
 
     // Precompute each item's sort keys (the item itself for a natural sort).
-    final keyed = <(FhirBase, List<FhirBase?>)>[];
+    final keyed = <(FhirNode, List<FhirNode?>)>[];
     for (final item in focus) {
       if (keyExprs.isEmpty) {
         keyed.add((item, [item]));
         continue;
       }
-      final keys = <FhirBase?>[];
+      final keys = <FhirNode?>[];
       for (final keyExpr in keyExprs) {
         final r = await engine.execute(
           changeThisExecutionContext(execContext, item),
@@ -741,7 +742,7 @@ class FhirPathFunctions {
   /// Natural ordering for sort keys — verbatim port of the Java reference
   /// `FHIRPathBaseSorter.compareNatural` (including its deliberate reversed
   /// boolean comparison; a missing key sorts last).
-  int _compareNatural(FhirBase? o1, FhirBase? o2, String? sorter) {
+  int _compareNatural(FhirNode? o1, FhirNode? o2, String? sorter) {
     if (o1 == null && o2 == null) {
       return 0;
     }
@@ -800,12 +801,12 @@ class FhirPathFunctions {
     return false;
   }
 
-  Future<List<FhirBase>> funcOfType(
+  Future<List<FhirNode>> funcOfType(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     String? tn;
     if (expr.parameters.isNotEmpty && expr.parameters.first.inner != null) {
       tn = '${expr.parameters.first.name}.${expr.parameters.first.inner!.name}';
@@ -826,9 +827,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcIs(
+  Future<List<FhirNode>> funcIs(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty || focus.length > 1) {
@@ -890,9 +891,9 @@ class FhirPathFunctions {
     );
   }
 
-  List<FhirBase> funcSingle(
+  List<FhirNode> funcSingle(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.length == 1) {
@@ -907,33 +908,33 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcFirst(
+  List<FhirNode> funcFirst(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     return focus.isNotEmpty ? [focus.first] : [];
   }
 
-  List<FhirBase> funcLast(
+  List<FhirNode> funcLast(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     return focus.isNotEmpty ? [focus.last] : [];
   }
 
-  List<FhirBase> funcTail(
+  List<FhirNode> funcTail(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     return focus.length > 1 ? focus.sublist(1) : [];
   }
 
-  Future<List<FhirBase>> funcSkip(
+  Future<List<FhirNode>> funcSkip(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final n1 =
@@ -947,28 +948,28 @@ class FhirPathFunctions {
     return focus.sublist(i1);
   }
 
-  Future<List<FhirBase>> funcTake(
+  Future<List<FhirNode>> funcTake(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final n1 =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
 
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     for (var i = 0; i < focus.length && i < i1; i++) {
       result.add(focus[i]);
     }
     return result;
   }
 
-  Future<List<FhirBase>> funcUnion(
+  Future<List<FhirNode>> funcUnion(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     for (final item in focus) {
       if (!utilities.doContains(result, item)) {
         result.add(item);
@@ -980,7 +981,7 @@ class FhirPathFunctions {
     }
 
     final other = exp.parameters.isEmpty
-        ? <FhirBase>[]
+        ? <FhirNode>[]
         : await engine.execute(
             execContext,
             baseToList(execContext.thisItem!),
@@ -996,18 +997,18 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcCombine(
+  Future<List<FhirNode>> funcCombine(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = List<FhirBase>.from(focus);
+    final result = List<FhirNode>.from(focus);
     if (execContext.thisItem == null) {
       throw PathEngineException('The fpContext does not have a thisItem');
     }
 
     final other = exp.parameters.isEmpty
-        ? <FhirBase>[]
+        ? <FhirNode>[]
         : await engine.execute(
             execContext,
             baseToList(execContext.thisItem!),
@@ -1019,12 +1020,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcIntersect(
+  Future<List<FhirNode>> funcIntersect(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final other =
         await engine.execute(execContext, focus, exp.parameters[0], true);
 
@@ -1037,12 +1038,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcExclude(
+  Future<List<FhirNode>> funcExclude(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final other = await engine.execute(
       execContext,
       execContext.focusResource == null ? focus : [execContext.focusResource!],
@@ -1058,9 +1059,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcIif(
+  Future<List<FhirNode>> funcIif(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     if (focus.length > 1) {
@@ -1090,12 +1091,12 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcLower(
+  List<FhirNode> funcLower(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1 &&
         (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
             fpContext.doImplicitStringConversion)) {
@@ -1107,12 +1108,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcUpper(
+  List<FhirNode> funcUpper(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1 &&
         (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
             fpContext.doImplicitStringConversion)) {
@@ -1124,12 +1125,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcToChars(
+  List<FhirNode> funcToChars(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1 &&
         (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
             fpContext.doImplicitStringConversion)) {
@@ -1141,12 +1142,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcIndexOf(
+  Future<List<FhirNode>> funcIndexOf(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final swb =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final sw = utilities.convertListToString(swb);
@@ -1164,12 +1165,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcSubstring(
+  Future<List<FhirNode>> funcSubstring(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final n1 =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
@@ -1205,12 +1206,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcStartsWith(
+  Future<List<FhirNode>> funcStartsWith(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final swb =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final sw = utilities.convertListToString(swb);
@@ -1229,12 +1230,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcEndsWith(
+  Future<List<FhirNode>> funcEndsWith(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final swb =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final sw = utilities.convertListToString(swb);
@@ -1253,12 +1254,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcMatches(
+  Future<List<FhirNode>> funcMatches(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final swb =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final sw = utilities.convertListToString(swb);
@@ -1280,12 +1281,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcMatchesFull(
+  Future<List<FhirNode>> funcMatchesFull(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final sw = utilities.convertListToString(
       await engine.execute(execContext, focus, exp.parameters[0], true),
     );
@@ -1305,12 +1306,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcReplaceMatches(
+  Future<List<FhirNode>> funcReplaceMatches(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final regexB =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final regex = utilities.convertListToString(regexB);
@@ -1340,12 +1341,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcContains(
+  Future<List<FhirNode>> funcContains(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (execContext.thisItem == null) {
       throw PathEngineException('The fpContext does not have a thisItem');
     }
@@ -1369,12 +1370,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcReplace(
+  Future<List<FhirNode>> funcReplace(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final tB =
         await engine.execute(execContext, focus, exp.parameters[0], true);
     final t = utilities.convertListToString(tB);
@@ -1405,12 +1406,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcLength(
+  List<FhirNode> funcLength(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1 &&
         (focus.first.hasType(fpContext.FHIR_TYPES_STRING) ||
             fpContext.doImplicitStringConversion)) {
@@ -1420,26 +1421,26 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcChildren(
+  List<FhirNode> funcChildren(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     for (final b in focus) {
       engine.getChildrenByName(b, '*', result);
     }
     return result;
   }
 
-  List<FhirBase> funcDescendants(
+  List<FhirNode> funcDescendants(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
-    final current = <FhirBase>[...focus];
-    final added = <FhirBase>[];
+    final result = <FhirNode>[];
+    final current = <FhirNode>[...focus];
+    final added = <FhirNode>[];
     var more = true;
     while (more) {
       added.clear();
@@ -1455,9 +1456,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcMemberOf(
+  Future<List<FhirNode>> funcMemberOf(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1511,9 +1512,9 @@ class FhirPathFunctions {
     return [];
   }
 
-  Future<List<FhirBase>> funcTrace(
+  Future<List<FhirNode>> funcTrace(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1530,9 +1531,9 @@ class FhirPathFunctions {
     return focus;
   }
 
-  Future<List<FhirBase>> funcDefineVariable(
+  Future<List<FhirNode>> funcDefineVariable(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1546,9 +1547,9 @@ class FhirPathFunctions {
     return focus;
   }
 
-  Future<List<FhirBase>> funcCheck(
+  Future<List<FhirNode>> funcCheck(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     final n1 =
@@ -1563,39 +1564,39 @@ class FhirPathFunctions {
     return focus;
   }
 
-  List<FhirBase> funcToday(
+  List<FhirNode> funcToday(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[fpContext.factory.todayFrom(DateTime.now())];
+    return <FhirNode>[fpContext.factory.todayFrom(DateTime.now())];
   }
 
-  List<FhirBase> funcNow(
+  List<FhirNode> funcNow(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[fpContext.factory.nowFrom(DateTime.now())];
+    return <FhirNode>[fpContext.factory.nowFrom(DateTime.now())];
   }
 
-  List<FhirBase> funcTimeOfDay(
+  List<FhirNode> funcTimeOfDay(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    return <FhirBase>[fpContext.factory.timeOfDayFrom(DateTime.now())];
+    return <FhirNode>[fpContext.factory.timeOfDayFrom(DateTime.now())];
   }
 
-  Future<List<FhirBase>> funcAllFalse(
+  Future<List<FhirNode>> funcAllFalse(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (exp.parameters.length == 1) {
       var all = true;
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
       for (final item in focus) {
         pc
           ..clear()
@@ -1631,15 +1632,15 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcAnyFalse(
+  Future<List<FhirNode>> funcAnyFalse(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (exp.parameters.length == 1) {
       var any = false;
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
       for (final item in focus) {
         pc
           ..clear()
@@ -1674,16 +1675,16 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcAnyTrue(
+  Future<List<FhirNode>> funcAnyTrue(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (exp.parameters.length == 1) {
       var any = false;
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
 
       for (final item in focus) {
         pc
@@ -1718,16 +1719,16 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcAllTrue(
+  Future<List<FhirNode>> funcAllTrue(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (exp.parameters.length == 1) {
       var all = true;
-      final pc = <FhirBase>[];
+      final pc = <FhirNode>[];
 
       for (final item in focus) {
         pc
@@ -1762,20 +1763,20 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcResolve(
+  List<FhirNode> funcResolve(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
-    FhirBase? refContext;
+    final result = <FhirNode>[];
+    FhirNode? refContext;
 
     for (final item in focus) {
       String? s = utilities.convertToString(item);
       if (item.fhirType == 'Reference') {
         refContext = item;
         final property = item.getChildByName('reference');
-        if (property != null && property.hasValues()) {
+        if (property != null && utilities.nodeHasValues(property)) {
           for (final child in property.listChildrenNames()) {
             final prop = property.getChildByName(child);
             if (prop != null && prop.isPrimitive) {
@@ -1794,7 +1795,7 @@ class FhirPathFunctions {
       }
 
       if (s != null) {
-        FhirBase? res;
+        FhirNode? res;
         if (s.startsWith('#')) {
           final property =
               execContext.rootResource?.getChildByName('contained');
@@ -1805,7 +1806,7 @@ class FhirPathFunctions {
               // the node contract rather than casting to a FHIR base type.
               final id = val?.getChildByName('id')?.primitiveValue;
               if (id != null && chompHash(s) == chompHash(id)) {
-                res = c.toFhirString;
+                res = fpContext.factory.string(c, disallowExtensions: false);
                 break;
               }
             }
@@ -1840,23 +1841,23 @@ class FhirPathFunctions {
     return retVal;
   }
 
-  Future<List<FhirBase>> funcExtension(
+  Future<List<FhirNode>> funcExtension(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     final nl =
         await engine.execute(execContext, focus, exp.parameters.first, true);
     final url = nl.first.primitiveValue;
 
     for (final item in focus) {
-      final ext = <FhirBase>[];
+      final ext = <FhirNode>[];
       engine
         ..getChildrenByName(item, 'extension', ext)
         ..getChildrenByName(item, 'modifierExtension', ext);
       for (final ex in ext) {
-        final vl = <FhirBase>[];
+        final vl = <FhirNode>[];
         engine.getChildrenByName(ex, 'url', vl);
         if (utilities.convertListToString(vl) == url) {
           result.add(ex);
@@ -1867,9 +1868,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcHasValue(
+  List<FhirNode> funcHasValue(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.length == 1) {
@@ -1880,9 +1881,9 @@ class FhirPathFunctions {
     }
   }
 
-  Future<List<FhirBase>> funcEncode(
+  Future<List<FhirNode>> funcEncode(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1917,9 +1918,9 @@ class FhirPathFunctions {
     return hexChars.join();
   }
 
-  Future<List<FhirBase>> funcDecode(
+  Future<List<FhirNode>> funcDecode(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1956,9 +1957,9 @@ class FhirPathFunctions {
     return data;
   }
 
-  Future<List<FhirBase>> funcEscape(
+  Future<List<FhirNode>> funcEscape(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -1978,9 +1979,9 @@ class FhirPathFunctions {
     return [];
   }
 
-  Future<List<FhirBase>> funcUnescape(
+  Future<List<FhirNode>> funcUnescape(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -2000,9 +2001,9 @@ class FhirPathFunctions {
     return [];
   }
 
-  List<FhirBase> funcTrim(
+  List<FhirNode> funcTrim(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.length == 1) {
@@ -2012,9 +2013,9 @@ class FhirPathFunctions {
     return [];
   }
 
-  Future<List<FhirBase>> funcSplit(
+  Future<List<FhirNode>> funcSplit(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -2025,15 +2026,18 @@ class FhirPathFunctions {
       final cnt = focus.first.primitiveValue;
       if (cnt != null && param != null) {
         final parts = cnt.split(param);
-        return parts.map(FhirString.new).toList();
+        // Java reference funcToChars: new StringType(...).
+        return parts
+            .map((c) => fpContext.factory.string(c, disallowExtensions: false))
+            .toList();
       }
     }
     return [];
   }
 
-  Future<List<FhirBase>> funcJoin(
+  Future<List<FhirNode>> funcJoin(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final nl =
@@ -2045,9 +2049,9 @@ class FhirPathFunctions {
     return [fpContext.factory.string(joined, disallowExtensions: false)];
   }
 
-  List<FhirBase> funcHtmlChecks1(
+  List<FhirNode> funcHtmlChecks1(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.length != 1) {
@@ -2061,9 +2065,9 @@ class FhirPathFunctions {
     // return [FhirBoolean(checkHtmlNames(xhtml))];
   }
 
-  List<FhirBase> funcHtmlChecks2(
+  List<FhirNode> funcHtmlChecks2(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     if (focus.length != 1) {
@@ -2077,9 +2081,9 @@ class FhirPathFunctions {
     // return [FhirBoolean(checkForContent(xhtml))];
   }
 
-  Future<List<FhirBase>> funcComparable(
+  Future<List<FhirNode>> funcComparable(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     if (focus.length != 1 || focus.first.fhirType != 'Quantity') {
@@ -2118,13 +2122,13 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcToInteger(
+  List<FhirNode> funcToInteger(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
     final s = utilities.convertListToString(focus);
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (Utilities.isInteger(s)) {
       result.add(fpContext.factory.integer(int.parse(s)));
     } else if (s == 'true') {
@@ -2135,12 +2139,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcToString(
+  List<FhirNode> funcToString(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     for (final item in focus) {
       final value = utilities.convertToString(item);
       result.add(fpContext.factory.string(value));
@@ -2156,12 +2160,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcToBoolean(
+  List<FhirNode> funcToBoolean(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1) {
       final item = focus.first;
       if (item.fhirType == 'boolean') {
@@ -2200,12 +2204,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcToQuantity(
+  List<FhirNode> funcToQuantity(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length == 1) {
       final item = focus.first;
       if (utilities.isQuantityNode(item)) {
@@ -2228,7 +2232,7 @@ class FhirPathFunctions {
     return result;
   }
 
-  FhirBase? parseQuantityString(String? str) {
+  FhirNode? parseQuantityString(String? str) {
     if (str == null) {
       return null;
     }
@@ -2291,9 +2295,9 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcToDateTime(
+  List<FhirNode> funcToDateTime(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2322,9 +2326,9 @@ class FhirPathFunctions {
     );
   }
 
-  List<FhirBase> funcToDate(
+  List<FhirNode> funcToDate(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2354,9 +2358,9 @@ class FhirPathFunctions {
     );
   }
 
-  List<FhirBase> funcToTime(
+  List<FhirNode> funcToTime(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2380,13 +2384,13 @@ class FhirPathFunctions {
     );
   }
 
-  List<FhirBase> funcToDecimal(
+  List<FhirNode> funcToDecimal(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     final s = utilities.convertListToString(focus);
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (Utilities.isDecimal(s)) {
       // Preserve the source string form (Java: new DecimalType(s)).
       result.add(fpContext.factory.decimalFromString(s));
@@ -2398,12 +2402,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcIsDecimal(
+  List<FhirNode> funcIsDecimal(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length != 1) {
       result.add(fpContext.factory.boolean(false));
     } else if (const {'integer', 'boolean', 'decimal'}
@@ -2419,7 +2423,7 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcIsInteger(List<FhirBase> focus) {
+  List<FhirNode> funcIsInteger(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'integer' ||
@@ -2432,7 +2436,7 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcIsBoolean(List<FhirBase> focus) {
+  List<FhirNode> funcIsBoolean(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'integer') {
@@ -2451,7 +2455,7 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcIsDateTime(List<FhirBase> focus) {
+  List<FhirNode> funcIsDateTime(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'dateTime' ||
@@ -2467,7 +2471,7 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcIsDate(List<FhirBase> focus) {
+  List<FhirNode> funcIsDate(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'dateTime' ||
@@ -2483,9 +2487,9 @@ class FhirPathFunctions {
     }
   }
 
-  Future<List<FhirBase>> funcConformsTo(
+  Future<List<FhirNode>> funcConformsTo(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (fpContext.hostServices == null) {
@@ -2493,7 +2497,7 @@ class FhirPathFunctions {
         'conformsTo',
       ]);
     }
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (focus.length != 1) {
       result.add(fpContext.factory.boolean(false));
     } else {
@@ -2514,7 +2518,7 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcIsTime(List<FhirBase> focus) {
+  List<FhirNode> funcIsTime(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'time') {
@@ -2530,7 +2534,7 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> funcIsString(List<FhirBase> focus) {
+  List<FhirNode> funcIsString(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (const {
@@ -2555,7 +2559,7 @@ class FhirPathFunctions {
   /// id/uri kinds do not).
   static const Set<String> stringClassTypeNames = {'string', 'code', 'markdown'};
 
-  List<FhirBase> funcIsQuantity(List<FhirBase> focus) {
+  List<FhirNode> funcIsQuantity(List<FhirNode> focus) {
     if (focus.length != 1) {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (const {'integer', 'decimal', 'Quantity', 'boolean'}
@@ -2569,9 +2573,9 @@ class FhirPathFunctions {
     }
   }
 
-  Future<List<FhirBase>> funcRound(
+  Future<List<FhirNode>> funcRound(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
@@ -2586,7 +2590,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       int? precision = 0;
@@ -2639,9 +2643,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcSqrt(
+  List<FhirNode> funcSqrt(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2657,7 +2661,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (utilities.isNumericNode(base)) {
       final value = int.tryParse(base.primitiveValue ?? '') ??
@@ -2684,9 +2688,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcAbs(
+  List<FhirNode> funcAbs(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2702,7 +2706,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (utilities.isNumericNode(base) && utilities.nodeNum(base) != null) {
       result.add(fpContext.factory.numericAbs(base));
@@ -2723,9 +2727,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcCeiling(
+  List<FhirNode> funcCeiling(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2741,7 +2745,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (utilities.isNumericNode(base)) {
       final value = utilities.nodeNum(base);
@@ -2764,9 +2768,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcFloor(
+  List<FhirNode> funcFloor(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2782,7 +2786,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (utilities.isNumericNode(base)) {
       final value = utilities.nodeNum(base);
@@ -2805,9 +2809,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcLn(
+  List<FhirNode> funcLn(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2823,7 +2827,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (utilities.isNumericNode(base)) {
       final value = int.tryParse(base.primitiveValue ?? '') ??
@@ -2847,9 +2851,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcPower(
+  Future<List<FhirNode>> funcPower(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
@@ -2865,7 +2869,7 @@ class FhirPathFunctions {
     }
 
     final base = focus[0];
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       final n1 =
@@ -2908,12 +2912,12 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcSum(
+  List<FhirNode> funcSum(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
-    FhirBase? sum;
+    FhirNode? sum;
 
     for (final item in focus) {
       if (utilities.isNumericNode(item)) {
@@ -2939,9 +2943,9 @@ class FhirPathFunctions {
     return sum == null ? [] : [sum];
   }
 
-  List<FhirBase> funcExp(
+  List<FhirNode> funcExp(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -2957,7 +2961,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (utilities.isNumericNode(base)) {
       final d = int.tryParse(base.primitiveValue ?? '') ??
           double.tryParse(base.primitiveValue ?? '');
@@ -2980,9 +2984,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcLog(
+  Future<List<FhirNode>> funcLog(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
@@ -2998,7 +3002,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       final n1 =
           await engine.execute(execContext, focus, expr.parameters[0], true);
@@ -3036,9 +3040,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcTruncate(
+  List<FhirNode> funcTruncate(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.isEmpty) {
@@ -3054,7 +3058,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
       var s = base.primitiveValue ?? '';
       if (s.contains('.')) {
@@ -3073,9 +3077,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcLowBoundary(
+  Future<List<FhirNode>> funcLowBoundary(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
@@ -3105,7 +3109,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
@@ -3162,9 +3166,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  Future<List<FhirBase>> funcHighBoundary(
+  Future<List<FhirNode>> funcHighBoundary(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) async {
     if (focus.isEmpty) {
@@ -3194,7 +3198,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (base.hasType(['decimal', 'integer'])) {
       if (precision == null || (precision >= 0 && precision < 17)) {
@@ -3247,9 +3251,9 @@ class FhirPathFunctions {
     return result;
   }
 
-  List<FhirBase> funcPrecision(
+  List<FhirNode> funcPrecision(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode expr,
   ) {
     if (focus.length != 1) {
@@ -3262,7 +3266,7 @@ class FhirPathFunctions {
     }
 
     final base = focus.first;
-    final result = <FhirBase>[];
+    final result = <FhirNode>[];
 
     if (base.hasType(['decimal'])) {
       result.add(
@@ -3289,7 +3293,7 @@ class FhirPathFunctions {
     return result;
   }
 
-  String? getNamedValue(FhirBase base, String name) {
+  String? getNamedValue(FhirNode base, String name) {
     final property = base.getChildByName(name);
     final propertyChildren = property?.listChildrenNames();
     if (property != null && propertyChildren!.length == 1) {
@@ -3298,9 +3302,9 @@ class FhirPathFunctions {
     return null;
   }
 
-  Future<List<FhirBase>> funcSupersetOf(
+  Future<List<FhirNode>> funcSupersetOf(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) async {
     final target = await engine.execute(
@@ -3328,12 +3332,15 @@ class FhirPathFunctions {
     return [fpContext.factory.boolean(valid)];
   }
 
-  List<FhirBase> funcType(
+  List<FhirNode> funcType(
     ExecutionContext execContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    return focus.map(ClassTypeInfo.new).toList();
+    // ClassTypeInfo is FHIR-typed (its namespace decision needs the
+    // binding's System-value marker); the cast is the binding seam until the
+    // split gives it a factory home.
+    return focus.map((e) => ClassTypeInfo(e as FhirBase)).toList();
   }
 
   ///
@@ -3342,9 +3349,9 @@ class FhirPathFunctions {
   /// ***************************************
   ///
 
-  List<FhirBase> resolveConstantWithBase(
+  List<FhirNode> resolveConstantWithBase(
     ExecutionContext execContext,
-    FhirBase? constant,
+    FhirNode? constant,
     bool beforeContext,
     ExpressionNode expr,
     bool explicitConstant,
@@ -3381,7 +3388,7 @@ class FhirPathFunctions {
     }
   }
 
-  List<FhirBase> resolveConstantWithString(
+  List<FhirNode> resolveConstantWithString(
     ExecutionContext execContext,
     String s,
     bool beforeContext,
@@ -3448,12 +3455,12 @@ class FhirPathFunctions {
     }
   }
 
-  FhirBase processDateConstant(
+  FhirNode processDateConstant(
     Object? appInfo,
     String value,
     ExpressionNode expr,
   ) {
-    FhirBase? result;
+    FhirNode? result;
 
     if (value.startsWith('T')) {
       result = fpContext.factory.tryTime(value.replaceFirst('T', ''));
@@ -3492,7 +3499,7 @@ class FhirPathFunctions {
 
   ExecutionContext changeThisExecutionContext(
     ExecutionContext execContext,
-    FhirBase newThis,
+    FhirNode newThis,
   ) {
     final newContext = ExecutionContext(
       appInfo: execContext.appInfo,
@@ -3533,11 +3540,11 @@ class FhirPathFunctions {
     return newContext;
   }
 
-  List<FhirBase> baseToList(FhirBase b) {
+  List<FhirNode> baseToList(FhirNode b) {
     return [b];
   }
 
-  void writeToLog(String name, List<FhirBase> contents) {
+  void writeToLog(String name, List<FhirNode> contents) {
     if (fpContext.hostServices == null ||
         !fpContext.hostServices!.fpLog(name, contents)) {
       if (fpContext.fpLog.length > 0) {
@@ -3566,7 +3573,7 @@ class FhirPathFunctions {
     }
   }
 
-  bool hasType(FhirBase b, List<String> names) {
+  bool hasType(FhirNode b, List<String> names) {
     final t = b.fhirType;
     for (final n in names) {
       if (n.equalsIgnoreCase(t)) return true;
@@ -3574,7 +3581,7 @@ class FhirPathFunctions {
     return false;
   }
 
-  FhirBase quantityFromUcum(String v, String code) {
+  FhirNode quantityFromUcum(String v, String code) {
     return fpContext.factory.quantity(
       value: int.tryParse(v) ?? double.parse(v),
       system: 'http://unitsofmeasure.org',

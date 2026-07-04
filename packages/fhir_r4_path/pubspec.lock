@@ -82,7 +82,7 @@ packages:
     source: hosted
     version: "3.0.7"
   fhir_node:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../../../fhir_node"
       relative: true

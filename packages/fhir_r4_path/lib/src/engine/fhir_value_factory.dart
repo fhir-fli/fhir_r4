@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Produces the FHIR-typed values the FHIRPath engine yields as results.
@@ -158,7 +159,7 @@ class FhirValueFactory {
   /// (`decimal`→decimal, `integer`→integer; the already-non-negative
   /// `unsignedInt`/`positiveInt` are returned unchanged). The per-subtype
   /// construction is FHIR-model knowledge, so it lives at the binding seam.
-  FhirBase numericAbs(FhirBase number) {
+  FhirBase numericAbs(FhirNode number) {
     if (number is FhirDecimal) {
       return FhirDecimal(number.abs()).noExtensions();
     } else if (number is FhirInteger) {
@@ -176,7 +177,7 @@ class FhirValueFactory {
   /// system, code, comparator, extensions, id. A model-independent caller can't
   /// rebuild a Quantity without dropping those, so the copy is done here at the
   /// binding seam.
-  FhirBase quantityWithValue(FhirBase quantity, num? value) {
+  FhirBase quantityWithValue(FhirNode quantity, num? value) {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
     );
@@ -184,7 +185,7 @@ class FhirValueFactory {
 
   /// [quantityWithValue], but from the value's exact STRING form (trailing
   /// zeros preserved) — used by the boundary functions.
-  FhirBase quantityWithValueString(FhirBase quantity, String? value) {
+  FhirBase quantityWithValueString(FhirNode quantity, String? value) {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
     );
