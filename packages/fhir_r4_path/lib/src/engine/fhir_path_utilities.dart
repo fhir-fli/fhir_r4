@@ -379,6 +379,63 @@ class FhirPathUtilities {
     return b ? FpEquality.true_ : FpEquality.false_;
   }
 
+  /// Deep equality where either side may be null (Java reference
+  /// `Base.equalsDeepWithNull`).
+  bool deepEqualWithNull(FhirBase? a, FhirBase? b) {
+    if (a == null && b == null) {
+      return true;
+    }
+    if (a == null || b == null) {
+      return false;
+    }
+    return a.equalsDeep(b);
+  }
+
+  /// Deep equality with optional empty-tolerance and the metadata-based side
+  /// driving the comparison (Java reference `Base.compareDeep`).
+  bool deepEqual(FhirBase? a, FhirBase? b, [bool allowNull = false]) {
+    if (allowNull) {
+      final noLeft = a == null || a.isEmpty();
+      final noRight = b == null || b.isEmpty();
+      if (noLeft && noRight) {
+        return true;
+      }
+    }
+    if (a == null || b == null) {
+      return false;
+    }
+    if (b.isMetadataBased && !a.isMetadataBased) {
+      return b.equalsDeep(a);
+    }
+    return a.equalsDeep(b);
+  }
+
+  /// Pairwise deep equality of two lists (Java reference
+  /// `Base.compareDeepLists`).
+  bool deepEqualLists(
+    List<FhirBase>? e1,
+    List<FhirBase>? e2, [
+    bool allowNull = false,
+  ]) {
+    final noLeft = e1 == null || e1.isEmpty;
+    final noRight = e2 == null || e2.isEmpty;
+    if (noLeft && noRight && allowNull) {
+      return true;
+    }
+    if (noLeft || noRight) {
+      return false;
+    }
+    if (e1.length != e2.length) {
+      return false;
+    }
+    for (var i = 0; i < e1.length; i++) {
+      if (!deepEqual(e1[i], e2[i], allowNull)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   bool? doEquals(FhirBase left, FhirBase right) {
     if (isQuantityNode(left) && isQuantityNode(right)) {
       return qtyEqual(left, right);
@@ -400,7 +457,7 @@ class FhirPathUtilities {
     } else if (left.isPrimitive && right.isPrimitive) {
       return left.primitiveValue == right.primitiveValue;
     } else {
-      return left.compareDeep(left, right);
+      return deepEqual(left, right);
     }
   }
 
@@ -634,7 +691,7 @@ class FhirPathUtilities {
       );
     }
     if (!left.isPrimitive && !right.isPrimitive) {
-      return left.equalsDeepWithNull(left, right);
+      return deepEqualWithNull(left, right);
     } else {
       return false;
     }

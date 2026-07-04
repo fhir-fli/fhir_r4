@@ -341,7 +341,7 @@ class FhirPathFunctions {
     for (final item in focus) {
       var found = false;
       for (final t in target) {
-        if (t.compareDeep(item, t)) {
+        if (utilities.deepEqual(item, t)) {
           found = true;
           break;
         }
@@ -3314,7 +3314,7 @@ class FhirPathFunctions {
     for (final item in target) {
       var found = false;
       for (final t in focus) {
-        if (t.compareDeep(item, t)) {
+        if (utilities.deepEqual(item, t)) {
           found = true;
           break;
         }

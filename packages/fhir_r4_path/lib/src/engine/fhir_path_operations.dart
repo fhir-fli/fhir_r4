@@ -279,7 +279,7 @@ class FhirPathOperations {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (l.compareDeepLists(lUnit, rUnit, true)) {
+        if (utilities.deepEqualLists(lUnit, rUnit, true)) {
           return opLessThan(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -351,7 +351,7 @@ class FhirPathOperations {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (l.compareDeepLists(lUnit, rUnit, true)) {
+        if (utilities.deepEqualLists(lUnit, rUnit, true)) {
           return opGreater(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -425,7 +425,7 @@ class FhirPathOperations {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (l.compareDeepLists(lUnit, rUnit, true)) {
+        if (utilities.deepEqualLists(lUnit, rUnit, true)) {
           return opLessOrEqual(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),
@@ -499,7 +499,7 @@ class FhirPathOperations {
         if (rUnit.isEmpty) {
           rUnit = r.getChildrenByName('unit');
         }
-        if (l.compareDeepLists(lUnit, rUnit, true)) {
+        if (utilities.deepEqualLists(lUnit, rUnit, true)) {
           return opGreaterOrEqual(
             l.getChildrenByName('value'),
             r.getChildrenByName('value'),

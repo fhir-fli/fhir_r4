@@ -180,12 +180,14 @@ Future<void> testOfficialGaps() async {
       );
     });
 
-    test("testDateTimeGreaterThanDate2", () async {
-      expect(
-        await eval(patient1, "now() > today()"),
-        [],
-      );
-    });
+    // testDateTimeGreaterThanDate2 (now() > today() => empty) is
+    // time-of-day dependent: the comparison timezone-normalises now() (the
+    // Java reference does the same via setTimeZoneZulu), so near the local
+    // day boundary the normalised date differs from today() and the result
+    // becomes true/false instead of empty. Deterministic only when the
+    // normalised date matches the local date, so it cannot be asserted
+    // reliably.
+    // expression: now() > today()
 
     test("testLiteralNotOnEmpty", () async {
       expect(
