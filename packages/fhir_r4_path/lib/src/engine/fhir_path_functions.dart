@@ -3434,10 +3434,7 @@ class FhirPathFunctions {
     List<FhirNode> focus,
     ExpressionNode exp,
   ) {
-    // ClassTypeInfo is FHIR-typed (its namespace decision needs the
-    // binding's System-value marker); the cast is the binding seam until the
-    // split gives it a factory home.
-    return focus.map((e) => ClassTypeInfo(e as FhirBase)).toList();
+    return focus.map(fpContext.factory.classTypeInfo).toList();
   }
 
   ///

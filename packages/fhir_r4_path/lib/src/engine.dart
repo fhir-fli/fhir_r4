@@ -3,6 +3,7 @@ export 'engine/execution_context.dart';
 export 'engine/execution_type_context.dart';
 export 'engine/expression_node.dart';
 export 'engine/expression_node_with_offset.dart';
+export 'engine/fhir_constants.dart';
 export 'engine/fhir_lexer.dart';
 export 'engine/fhir_path_context.dart';
 export 'engine/fhir_path_engine.dart';

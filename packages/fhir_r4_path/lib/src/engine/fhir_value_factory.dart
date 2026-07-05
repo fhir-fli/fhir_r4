@@ -2,6 +2,7 @@
 
 import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Produces the FHIR-typed values the FHIRPath engine yields as results.
 ///
@@ -189,5 +190,14 @@ class FhirValueFactory {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
     );
+  }
+
+  /// Builds the `type()` reflection value for [instance]. The
+  /// System-vs-FHIR namespace decision reads the binding's System-value
+  /// marker (`disallowExtensions`), which is deliberately not on the
+  /// [FhirNode] contract, so the whole construction lives at the binding
+  /// seam.
+  FhirBase classTypeInfo(FhirNode instance) {
+    return ClassTypeInfo(instance as FhirBase);
   }
 }
