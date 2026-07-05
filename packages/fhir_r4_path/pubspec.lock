@@ -95,6 +95,13 @@ packages:
       relative: true
     source: path
     version: "0.5.1"
+  fhirpath:
+    dependency: "direct main"
+    description:
+      path: "../../../fhirpath"
+      relative: true
+    source: path
+    version: "0.1.0-dev.1"
   file:
     dependency: transitive
     description:
