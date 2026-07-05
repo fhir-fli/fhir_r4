@@ -9,7 +9,8 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 class FhirPathContext {
   /// Constructor
   FhirPathContext(this.worker, [this.hostServices])
-      : terminologyServiceOptions = ValidationOptions.defaults();
+      : terminologyServiceOptions = ValidationOptions.defaults(),
+        factory = worker.valueFactory;
 
   /// Helper for creating test contexts.
   factory FhirPathContext.forTesting({IWorkerContext? worker}) {
@@ -27,7 +28,7 @@ class FhirPathContext {
   /// Factory for the FHIR-typed values produced as evaluation results. The
   /// engine constructs every result through this rather than naming concrete
   /// FHIR value classes, so the value model can be swapped at the binding.
-  final FhirValueFactory factory = const FhirValueFactory();
+  final IFhirValueFactory factory;
 
   /// Type information (populated during initialization)
   final Set<String> primitiveTypes = {};

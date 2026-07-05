@@ -16,6 +16,7 @@ export 'engine/fp_function.dart';
 export 'engine/fp_operation.dart';
 export 'engine/function_details.dart';
 export 'engine/i_evaluation_context.dart';
+export 'engine/i_fhir_value_factory.dart';
 export 'engine/i_worker_context.dart';
 export 'engine/source_location.dart';
 export 'engine/walk_fhir_path.dart';

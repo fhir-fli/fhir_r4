@@ -17,7 +17,7 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 /// engine's historical `.noExtensions()` usage: FHIRPath results are System
 /// values that disallow extensions, but a handful of call sites constructed
 /// bare primitives, and that per-site behavior is preserved exactly.
-class FhirValueFactory {
+class FhirValueFactory implements IFhirValueFactory {
   const FhirValueFactory();
 
   FhirBase boolean(bool? value, {bool disallowExtensions = true}) {

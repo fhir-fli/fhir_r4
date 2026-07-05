@@ -23,6 +23,10 @@ abstract class IValidationOutcome {
 /// travel as opaque [FhirNode]s and structure knowledge travels as data
 /// (names, URLs, ancestry pairs).
 abstract class IWorkerContext {
+  /// The binding's value factory — how the engine constructs the FHIR-typed
+  /// values it yields as results.
+  IFhirValueFactory get valueFactory;
+
   /// The UCUM service used for Quantity arithmetic/comparison canonicals.
   UcumService get ucumService;
 

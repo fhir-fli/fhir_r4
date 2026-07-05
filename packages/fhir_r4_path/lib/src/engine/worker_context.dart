@@ -9,6 +9,9 @@ import 'package:ucum/ucum.dart';
 class WorkerContext implements IWorkerContext {
   WorkerContext({this.txClient, ResourceCache? resourceCache})
       : resourceCache = resourceCache ?? CanonicalResourceCache();
+
+  @override
+  IFhirValueFactory get valueFactory => const FhirValueFactory();
   // Fields to store resources
   final ResourceCache resourceCache;
   final UcumService ucumService = UcumService();
