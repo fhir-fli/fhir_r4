@@ -189,35 +189,55 @@ class FhirPathFunctions {
       case FpFunction.ToTime:
         return funcToTime(execContext, focus, exp);
       case FpFunction.IsInteger:
-        return operations.opIs(focus, [fpContext.factory.string('integer', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('integer', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToInteger:
         return funcIsInteger(focus);
       case FpFunction.IsDecimal:
-        return operations.opIs(focus, [fpContext.factory.string('decimal', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('decimal', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToDecimal:
         return funcIsDecimal(execContext, focus, exp);
       case FpFunction.IsString:
-        return operations.opIs(focus, [fpContext.factory.string('string', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('string', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToString:
         return funcIsString(focus);
       case FpFunction.IsBoolean:
-        return operations.opIs(focus, [fpContext.factory.string('boolean', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('boolean', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToBoolean:
         return funcIsBoolean(focus);
       case FpFunction.IsQuantity:
-        return operations.opIs(focus, [fpContext.factory.string('Quantity', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('Quantity', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToQuantity:
         return funcIsQuantity(focus);
       case FpFunction.IsDateTime:
-        return operations.opIs(focus, [fpContext.factory.string('dateTime', disallowExtensions: false)], exp);
+        return operations.opIs(
+            focus,
+            [fpContext.factory.string('dateTime', disallowExtensions: false)],
+            exp);
       case FpFunction.ConvertsToDateTime:
         return funcIsDateTime(focus);
       case FpFunction.IsDate:
-        return operations.opIs(focus, [fpContext.factory.string('date', disallowExtensions: false)], exp);
+        return operations.opIs(focus,
+            [fpContext.factory.string('date', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToDate:
         return funcIsDate(focus);
       case FpFunction.IsTime:
-        return operations.opIs(focus, [fpContext.factory.string('time', disallowExtensions: false)], exp);
+        return operations.opIs(focus,
+            [fpContext.factory.string('time', disallowExtensions: false)], exp);
       case FpFunction.ConvertsToTime:
         return funcIsTime(focus);
       case FpFunction.ConformsTo:
@@ -288,7 +308,8 @@ class FhirPathFunctions {
     final v = utilities.asBoolList(focus, exp);
 
     if (v != FpEquality.null_) {
-      result.add(fpContext.factory.boolean(v != FpEquality.true_, disallowExtensions: false));
+      result.add(fpContext.factory
+          .boolean(v != FpEquality.true_, disallowExtensions: false));
     }
 
     return result;
@@ -468,8 +489,7 @@ class FhirPathFunctions {
         ..add(item);
       result.addAll(
         await engine.execute(
-          execContext.changeThis(item, fpContext.worker)
-            ..index = i,
+          execContext.changeThis(item, fpContext.worker)..index = i,
           pc,
           exp.parameters[0],
           true,
@@ -698,9 +718,9 @@ class FhirPathFunctions {
           true,
         );
         if (r.length > 1) {
-          throw FHIRException(
-            message: 'Multiple values while evaluating sort criterion '
-                '"$keyExpr"',
+          throw PathEngineException(
+            'Multiple values while evaluating sort criterion '
+            '"$keyExpr"',
           );
         }
         keys.add(r.isEmpty ? null : r.first);
@@ -730,13 +750,22 @@ class FhirPathFunctions {
   };
 
   static const Set<String> _sortIntegerNames = {
-    'integer', 'unsignedInt', 'positiveInt', 'integer64',
+    'integer',
+    'unsignedInt',
+    'positiveInt',
+    'integer64',
   };
 
   static const Set<String> _sortDateNames = {'date', 'dateTime', 'instant'};
 
   static const Set<String> _sortStringNames = {
-    'string', 'code', 'url', 'uri', 'uuid', 'oid', 'canonical',
+    'string',
+    'code',
+    'url',
+    'uri',
+    'uuid',
+    'oid',
+    'canonical',
   };
 
   /// Natural ordering for sort keys — verbatim port of the Java reference
@@ -753,8 +782,8 @@ class FhirPathFunctions {
       return -1;
     }
     if (!_sortComparableTypes(o1.fhirType, o2.fhirType)) {
-      throw FHIRException(
-        message: sorter == null
+      throw PathEngineException(
+        sorter == null
             ? 'The types ${o1.fhirType} and ${o2.fhirType} cannot be sorted '
                 'in a natural sort'
             : 'The types ${o1.fhirType} and ${o2.fhirType} cannot be sorted '
@@ -1501,8 +1530,7 @@ class FhirPathFunctions {
         result.isOk,
       );
     } else if (l.fhirType == 'CodeableConcept') {
-      final result =
-          await fpContext.worker.validateCodeForCodeableConceptValue(
+      final result = await fpContext.worker.validateCodeForCodeableConceptValue(
         fpContext.terminologyServiceOptions,
         l,
         vs,
@@ -1615,9 +1643,9 @@ class FhirPathFunctions {
       var all = true;
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
-          throw FHIRException(
-            message: "Unable to convert '${utilities.convertToString(item)}' "
-                'to a boolean',
+          throw PathEngineException(
+            "Unable to convert '${utilities.convertToString(item)}' "
+            'to a boolean',
           );
         }
 
@@ -1658,9 +1686,9 @@ class FhirPathFunctions {
       var any = false;
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
-          throw FHIRException(
-            message: "Unable to convert '${utilities.convertToString(item)}' "
-                'to a boolean',
+          throw PathEngineException(
+            "Unable to convert '${utilities.convertToString(item)}' "
+            'to a boolean',
           );
         }
 
@@ -1703,9 +1731,9 @@ class FhirPathFunctions {
       var any = false;
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
-          throw FHIRException(
-            message: "Unable to convert '${utilities.convertToString(item)}' "
-                'to a boolean',
+          throw PathEngineException(
+            "Unable to convert '${utilities.convertToString(item)}' "
+            'to a boolean',
           );
         }
         final v = utilities.asBool(item, true);
@@ -1747,9 +1775,9 @@ class FhirPathFunctions {
       var all = true;
       for (final item in focus) {
         if (!utilities.canConvertToBoolean(item)) {
-          throw FHIRException(
-            message: "Unable to convert '${utilities.convertToString(item)}' "
-                'to a boolean',
+          throw PathEngineException(
+            "Unable to convert '${utilities.convertToString(item)}' "
+            'to a boolean',
           );
         }
         final v = utilities.asBool(item, true);
@@ -1875,7 +1903,10 @@ class FhirPathFunctions {
   ) {
     if (focus.length == 1) {
       final s = utilities.convertToString(focus.first);
-      return [fpContext.factory.boolean(!Utilities.noString(s), disallowExtensions: false)];
+      return [
+        fpContext.factory
+            .boolean(!Utilities.noString(s), disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -1894,11 +1925,20 @@ class FhirPathFunctions {
       final cnt = focus.first.primitiveValue;
       if (cnt != null) {
         if (param == 'hex') {
-          return [fpContext.factory.string(bytesToHex(cnt.codeUnits), disallowExtensions: false)];
+          return [
+            fpContext.factory
+                .string(bytesToHex(cnt.codeUnits), disallowExtensions: false)
+          ];
         } else if (param == 'base64') {
-          return [fpContext.factory.string(base64Encode(cnt.codeUnits), disallowExtensions: false)];
+          return [
+            fpContext.factory
+                .string(base64Encode(cnt.codeUnits), disallowExtensions: false)
+          ];
         } else if (param == 'urlbase64') {
-          return [fpContext.factory.string(base64UrlEncode(cnt.codeUnits), disallowExtensions: false)];
+          return [
+            fpContext.factory.string(base64UrlEncode(cnt.codeUnits),
+                disallowExtensions: false)
+          ];
         }
       }
     }
@@ -1931,11 +1971,21 @@ class FhirPathFunctions {
       final cnt = focus.first.primitiveValue;
       if (cnt != null) {
         if (param == 'hex') {
-          return [fpContext.factory.string(String.fromCharCodes(hexStringToByteArray(cnt)), disallowExtensions: false)];
+          return [
+            fpContext.factory.string(
+                String.fromCharCodes(hexStringToByteArray(cnt)),
+                disallowExtensions: false)
+          ];
         } else if (param == 'base64') {
-          return [fpContext.factory.string(utf8.decode(base64Decode(cnt)), disallowExtensions: false)];
+          return [
+            fpContext.factory.string(utf8.decode(base64Decode(cnt)),
+                disallowExtensions: false)
+          ];
         } else if (param == 'urlbase64') {
-          return [fpContext.factory.string(utf8.decode(base64Url.decode(cnt)), disallowExtensions: false)];
+          return [
+            fpContext.factory.string(utf8.decode(base64Url.decode(cnt)),
+                disallowExtensions: false)
+          ];
         }
       }
     }
@@ -1970,9 +2020,14 @@ class FhirPathFunctions {
       final cnt = focus.first.primitiveValue;
       if (cnt != null) {
         if (param == 'html') {
-          return [fpContext.factory.string(cnt.escapeXml(), disallowExtensions: false)];
+          return [
+            fpContext.factory.string(cnt.escapeXml(), disallowExtensions: false)
+          ];
         } else if (param == 'json') {
-          return [fpContext.factory.string(cnt.escapeJson(), disallowExtensions: false)];
+          return [
+            fpContext.factory
+                .string(cnt.escapeJson(), disallowExtensions: false)
+          ];
         }
       }
     }
@@ -1992,9 +2047,15 @@ class FhirPathFunctions {
       final cnt = focus.first.primitiveValue;
       if (cnt != null) {
         if (param == 'html') {
-          return [fpContext.factory.string(cnt.unescapeXml(), disallowExtensions: false)];
+          return [
+            fpContext.factory
+                .string(cnt.unescapeXml(), disallowExtensions: false)
+          ];
         } else if (param == 'json') {
-          return [fpContext.factory.string(cnt.unescapeJson(), disallowExtensions: false)];
+          return [
+            fpContext.factory
+                .string(cnt.unescapeJson(), disallowExtensions: false)
+          ];
         }
       }
     }
@@ -2008,7 +2069,10 @@ class FhirPathFunctions {
   ) {
     if (focus.length == 1) {
       final cnt = focus.first.primitiveValue;
-      if (cnt != null) return [fpContext.factory.string(cnt.trim(), disallowExtensions: false)];
+      if (cnt != null)
+        return [
+          fpContext.factory.string(cnt.trim(), disallowExtensions: false)
+        ];
     }
     return [];
   }
@@ -2306,7 +2370,8 @@ class FhirPathFunctions {
       if (utilities.isDateTimeNode(focus.first) &&
           focus.first.primitiveValue != null) {
         return [
-          fpContext.factory.dateTimeOfType('dateTime', focus.first.primitiveValue!),
+          fpContext.factory
+              .dateTimeOfType('dateTime', focus.first.primitiveValue!),
         ];
       } else if (focus.first.fhirType == 'string') {
         final dateTime = focus.first.primitiveValue == null
@@ -2430,7 +2495,10 @@ class FhirPathFunctions {
         focus.first.fhirType == 'boolean') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'string') {
-      return [fpContext.factory.boolean(Utilities.isInteger(focus.first.toString()), disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(Utilities.isInteger(focus.first.toString()),
+            disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2441,15 +2509,24 @@ class FhirPathFunctions {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'integer') {
       final value = utilities.nodeNum(focus.first);
-      return [fpContext.factory.boolean(value != null && value >= 0 && value <= 1, disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(value != null && value >= 0 && value <= 1,
+            disallowExtensions: false)
+      ];
     } else if (focus.first.fhirType == 'decimal') {
       final value = utilities.nodeNum(focus.first);
-      return [fpContext.factory.boolean(value != null && (value == 0 || value == 1), disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(value != null && (value == 0 || value == 1),
+            disallowExtensions: false)
+      ];
     } else if (focus.first.fhirType == 'boolean') {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'string') {
       final value = focus.first.toString().toLowerCase();
-      return [fpContext.factory.boolean(value == 'true' || value == 'false', disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(value == 'true' || value == 'false',
+            disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2465,7 +2542,10 @@ class FhirPathFunctions {
       final regex = RegExp(
         r'(\d{4}(-\d{2}(-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|([-+]\d{2}:\d{2})))?)?)?)',
       );
-      return [fpContext.factory.boolean(regex.hasMatch(focus.first.toString()), disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(regex.hasMatch(focus.first.toString()),
+            disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2481,7 +2561,10 @@ class FhirPathFunctions {
       final regex = RegExp(
         r'\d{4}(-\d{2}(-\d{2})?)?',
       );
-      return [fpContext.factory.boolean(regex.hasMatch(focus.first.toString()), disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(regex.hasMatch(focus.first.toString()),
+            disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2528,7 +2611,10 @@ class FhirPathFunctions {
         r'(T)?([01]\d|2[0-3])(:[0-5]\d(:[0-5]\d(\.\d+)?)?)?(Z|([-+](0[0-9]|1[0-3]):[0-5]\d|14:00))?',
       );
 
-      return [fpContext.factory.boolean(regex.hasMatch(focus.first.toString()), disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(regex.hasMatch(focus.first.toString()),
+            disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2557,7 +2643,11 @@ class FhirPathFunctions {
   /// model — the model-independent equivalent of the Java reference's
   /// `instanceof StringType` (CodeType and MarkdownType extend StringType;
   /// id/uri kinds do not).
-  static const Set<String> stringClassTypeNames = {'string', 'code', 'markdown'};
+  static const Set<String> stringClassTypeNames = {
+    'string',
+    'code',
+    'markdown'
+  };
 
   List<FhirNode> funcIsQuantity(List<FhirNode> focus) {
     if (focus.length != 1) {
@@ -2567,7 +2657,9 @@ class FhirPathFunctions {
       return [fpContext.factory.boolean(true, disallowExtensions: false)];
     } else if (focus.first.fhirType == 'string') {
       final quantity = parseQuantityString(focus.first.toString());
-      return [fpContext.factory.boolean(quantity != null, disallowExtensions: false)];
+      return [
+        fpContext.factory.boolean(quantity != null, disallowExtensions: false)
+      ];
     } else {
       return [fpContext.factory.boolean(false, disallowExtensions: false)];
     }
@@ -2629,7 +2721,8 @@ class FhirPathFunctions {
       }
       final valueString = value.toStringAsFixed(precision);
       result.add(
-        fpContext.factory.decimalFromString(valueString, disallowExtensions: false),
+        fpContext.factory
+            .decimalFromString(valueString, disallowExtensions: false),
       );
     } else {
       throw fpContext.makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
@@ -3271,16 +3364,20 @@ class FhirPathFunctions {
     if (base.hasType(['decimal'])) {
       result.add(
         fpContext.factory.integer(
-          (base.primitiveValue ?? '').getDecimalPrecision(),
-         disallowExtensions: false),
+            (base.primitiveValue ?? '').getDecimalPrecision(),
+            disallowExtensions: false),
       );
     } else if (base.hasType(['date', 'dateTime'])) {
       result.add(
-        fpContext.factory.integer((base.primitiveValue ?? '').getDatePrecision(), disallowExtensions: false),
+        fpContext.factory.integer(
+            (base.primitiveValue ?? '').getDatePrecision(),
+            disallowExtensions: false),
       );
     } else if (base.hasType(['time'])) {
       result.add(
-        fpContext.factory.integer((base.primitiveValue ?? '').getTimePrecision(), disallowExtensions: false),
+        fpContext.factory.integer(
+            (base.primitiveValue ?? '').getTimePrecision(),
+            disallowExtensions: false),
       );
     } else {
       throw fpContext.makeException(
@@ -3433,7 +3530,8 @@ class FhirPathFunctions {
           ];
         } else if (s.startsWith('%`cs-')) {
           return [
-            fpContext.factory.string('http://hl7.org/fhir/${s.substring(5, s.length - 1)}'),
+            fpContext.factory
+                .string('http://hl7.org/fhir/${s.substring(5, s.length - 1)}'),
           ];
         } else if (s.startsWith('%`ext-')) {
           return [

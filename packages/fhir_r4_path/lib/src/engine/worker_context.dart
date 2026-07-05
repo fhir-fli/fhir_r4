@@ -190,7 +190,7 @@ class WorkerContext {
     return _primitiveTypeCache = set;
   }
 
-  FHIRException _makeException(
+  PathEngineException _makeException(
     ExpressionNode? holder,
     String constName,
     List<Object> args,

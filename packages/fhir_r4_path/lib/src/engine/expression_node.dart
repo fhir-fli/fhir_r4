@@ -2,8 +2,8 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_print
 
 import 'package:fhir_node/fhir_node.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_path/src/utils/path_string_extensions.dart';
 // Import extracted enums
 
 enum ExpressionNodeKind { name, function, constant, group, unary }

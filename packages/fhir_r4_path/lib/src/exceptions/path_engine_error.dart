@@ -1,17 +1,27 @@
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// An error that occurs during FHIRPath evaluation.
-class PathEngineError extends FHIRError {
+class PathEngineError implements Error {
   /// Constructs a new [PathEngineError].
   PathEngineError(
     String message, {
     this.location,
     this.expression,
     this.id,
-    Error? super.cause,
-    super.stackTrace,
-  }) : super(message: message);
+    Error? cause,
+    this.stackTrace,
+  })  : message = message,
+        cause = cause;
+
+  /// The error message.
+  final String? message;
+
+  /// The cause of the error.
+  final Object? cause;
+
+  /// The stack trace at the time of the error.
+  @override
+  final StackTrace? stackTrace;
 
   /// The location in the FHIRPath where the error occurred.
   final SourceLocation? location;

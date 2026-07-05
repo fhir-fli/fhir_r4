@@ -1,8 +1,12 @@
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// An exception that occurs during FHIRPath evaluation.
-class PathEngineException extends FHIRException {
+///
+/// This is the root of the engine's exception hierarchy. In the Java
+/// reference implementation it extends the shared
+/// `org.hl7.fhir.exceptions.FHIRException`; the engine owns its root here so
+/// it carries no dependency on the FHIR model package.
+class PathEngineException implements Exception {
   /// Constructs a new [PathEngineException].
   PathEngineException(
     String message, {
@@ -10,8 +14,18 @@ class PathEngineException extends FHIRException {
     this.expression,
     this.id,
     Exception? cause,
-    super.stackTrace,
-  }) : super(message: message, cause: cause);
+    this.stackTrace,
+  })  : message = message,
+        cause = cause;
+
+  /// The exception message.
+  final String? message;
+
+  /// The cause of the exception.
+  final Object? cause;
+
+  /// The stack trace at the time of the exception.
+  final StackTrace? stackTrace;
 
   /// The location in the FHIRPath where the exception occurred.
   final SourceLocation? location;

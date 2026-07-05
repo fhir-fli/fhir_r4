@@ -1,12 +1,14 @@
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Represents an error that occurred during the lexing phase of
 /// FHIRPath parsing.
-class FHIRLexerException extends FHIRException {
+class FHIRLexerException implements Exception {
   /// Constructor for [FHIRLexerException] with optional [message]
   /// and [location].
-  FHIRLexerException({super.message, required this.location});
+  FHIRLexerException({this.message, required this.location});
+
+  /// The exception message.
+  final String? message;
 
   /// The location in the source where the error occurred.
   SourceLocation location;

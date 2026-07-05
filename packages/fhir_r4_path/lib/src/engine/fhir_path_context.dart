@@ -92,7 +92,7 @@ class FhirPathContext {
   /// Create an exception with formatted message.
   ///
   /// Uses [worker] to format the message and includes [location] if set.
-  FHIRException makeException(
+  PathEngineException makeException(
     ExpressionNode? holder,
     String constName,
     List<Object> args,
@@ -113,7 +113,7 @@ class FhirPathContext {
   }
 
   /// Create an exception with pluralized formatted message.
-  FHIRException makeExceptionPlural(
+  PathEngineException makeExceptionPlural(
     int num,
     ExpressionNode? holder,
     String constName,
