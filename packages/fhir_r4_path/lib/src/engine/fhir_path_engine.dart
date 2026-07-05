@@ -1742,7 +1742,7 @@ class FHIRPathEngine {
   }
 
   TypeDetails anything(CollectionStatus? status) {
-    return TypeDetails(status, fpContext.allTypes.keys.toList());
+    return TypeDetails(status, fpContext.allTypeNames.toList());
   }
 
   ///

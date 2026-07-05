@@ -2,8 +2,8 @@
 
 import 'dart:collection';
 
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_path/src/utils/path_string_extensions.dart';
 
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {
@@ -153,31 +153,17 @@ class TypeDetails {
         tail = tail.substring(tail.indexOf('.'));
       }
       final t = ProfiledType.ns(n);
-      var sd = await context.fetchResource<StructureDefinition>(uri: t);
-      while (sd?.url != null) {
-        if (tail == null && typesContains(sd!.url!.toString())) {
+      for (final (url, type) in await context.typeAncestry(t)) {
+        if (tail == null && typesContains(url)) {
           return true;
         }
         if (tail == null &&
-            getSystemType(sd!.url!.toString()) != null &&
-            typesContains(getSystemType(sd.url!.toString())!)) {
+            getSystemType(url) != null &&
+            typesContains(getSystemType(url)!)) {
           return true;
         }
-        if (tail != null && typesContains('${sd!.url}#${sd.type}$tail')) {
+        if (tail != null && typesContains('$url#$type$tail')) {
           return true;
-        }
-        if (sd!.baseDefinition != null) {
-          if (sd.type.toString() == 'uri') {
-            sd = await context.fetchResource<StructureDefinition>(
-              uri: 'http://hl7.org/fhir/StructureDefinition/string',
-            );
-          } else {
-            sd = await context.fetchResource<StructureDefinition>(
-              uri: sd.baseDefinition!.toString(),
-            );
-          }
-        } else {
-          sd = null;
         }
       }
     }

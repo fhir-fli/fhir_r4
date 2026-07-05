@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, lines_longer_than_80_chars
 
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 class ProfiledType {
@@ -36,11 +35,9 @@ class ProfiledType {
     return uri;
   }
 
-  void addProfiles(List<FhirCanonical> list) {
+  void addProfiles(List<String> list) {
     profiles ??= <String>[];
-    for (final u in list) {
-      profiles!.add(u.toString());
-    }
+    profiles!.addAll(list);
   }
 
   bool isSystemType() {

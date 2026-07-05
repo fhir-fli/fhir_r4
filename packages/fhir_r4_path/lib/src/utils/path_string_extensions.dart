@@ -1,13 +1,21 @@
-/// Engine-owned String helpers for the FHIRPath engine (lexer, expression
-/// printing). These are faithful copies of the corresponding fhir_r4
-/// `FhirStringExtension` members (themselves ports of Java
-/// `org.hl7.fhir.utilities.Utilities`), duplicated here so the engine does
-/// not depend on the FHIR model package for plain string handling.
+/// Engine-owned String helpers for the FHIRPath engine. These are faithful
+/// copies of the corresponding fhir_r4 `FhirStringExtension` members
+/// (themselves ports of Java `org.hl7.fhir.utilities.Utilities`), duplicated
+/// here so the engine does not depend on the FHIR model package for plain
+/// string handling — including the lowBoundary/highBoundary and precision
+/// string algorithms, which are FHIRPath function semantics.
 ///
 /// NOT exported from the package umbrella on purpose: the fhir_r4 extension
 /// declares the same member names on String, so exporting this one would
 /// make every file that imports both packages ambiguous at the call sites.
 /// Import this file directly where needed.
+library;
+
+/// Default low/high timezone bounds for the boundary functions (faithful
+/// copies of fhir_r4's string_extensions constants).
+const pathDefLowTimezone = '+14:00';
+const pathDefHighTimezone = '-12:00';
+
 extension PathStringExtensions on String {
   /// Checks if the string is a digit
   bool get isDigit {
@@ -50,7 +58,7 @@ extension PathStringExtensions on String {
     return true;
   }
 
-  /// Checks if the string is a single whitespace character
+  /// Checks if the string is whitespace
   bool isWhiteSpace() {
     return [
       '\u0009',
@@ -81,7 +89,7 @@ extension PathStringExtensions on String {
     ].contains(this);
   }
 
-  /// Escapes the string for use inside a JSON string literal
+  /// Checks if the string is an absolute URL, if not, returns the string
   String escapeJson([
     // ignore: avoid_positional_boolean_parameters
     bool escapeUnicodeWhitespace = true,
@@ -125,7 +133,7 @@ extension PathStringExtensions on String {
     return isEmpty;
   }
 
-  /// Checks if the string is a single uppercase letter
+  /// Changes the first character to uppercase
   bool isUpperCase() {
     return length == 1 && contains(RegExp(r'^[A-Z]$'));
   }
@@ -155,7 +163,7 @@ extension PathStringExtensions on String {
     return true;
   }
 
-  /// Checks if the string starts with any entry of [list]
+  /// Checks if the string starts with any of the strings in the list
   bool startsWithInList(List<String?> list) {
     for (final l in list) {
       if (l != null && startsWith(l)) return true;
@@ -163,7 +171,7 @@ extension PathStringExtensions on String {
     return false;
   }
 
-  /// Checks if the string is an absolute URL
+  /// Checks if the string is a valid URL
   bool isAbsoluteUrl() {
     if (!contains(':')) return false;
 
@@ -184,7 +192,7 @@ extension PathStringExtensions on String {
         !details.contains(' '); // rfc5141
   }
 
-  /// Java-style regionMatches
+  /// Returns true if the string matches another string
   bool regionMatches(
     // ignore: avoid_positional_boolean_parameters
     bool ignoreCase,
@@ -211,7 +219,7 @@ extension PathStringExtensions on String {
     }
   }
 
-  /// Java-style equalsIgnoreCase
+  /// Returns true if the string matches another string ignoring case
   bool equalsIgnoreCase(String? anotherString) {
     return this == anotherString ||
         (anotherString != null &&
@@ -219,13 +227,13 @@ extension PathStringExtensions on String {
             regionMatches(true, 0, anotherString, 0, length));
   }
 
-  /// Checks if the string exists in [list]
+  /// Checks if the string is in the list
   bool existsInList(Set<String?> list) {
     return list.contains(this);
   }
 
-  /// The tail of a canonical URL (the part after the last `/`), or '' when
-  /// the URL carries a fragment
+  /// Returns the string, empty if it contains '#' or the substring
+  /// after the last '/'
   String hashTail() {
     return contains('#') ? '' : substring(lastIndexOf('/') + 1);
   }
@@ -329,10 +337,466 @@ extension PathStringExtensions on String {
 
     return PathDecimalStatus.ok;
   }
+
+  /// Checks if the string is a valid date
+  String lowBoundaryForDecimal(int precision) {
+    var value = this;
+    if (value.isEmpty) {
+      throw Exception(
+        'Unable to calculate lowBoundary for a null decimal string',
+      );
+    }
+    final e =
+        value.contains('e') ? value.substring(value.indexOf('e') + 1) : null;
+    if (value.contains('e')) {
+      value = value.substring(0, value.indexOf('e'));
+    }
+    if (value.isZero()) {
+      return applyPrecision('-0.5000000000000000000000000', precision, true);
+    } else if (value.startsWith('-')) {
+      return '-${value.substring(1).highBoundaryForDecimal(precision)}'
+          '${e ?? ''}';
+    } else {
+      if (value.contains('.')) {
+        return applyPrecision(
+              '${minusOne(value)}50000000000000000000000000000',
+              precision,
+              true,
+            ) +
+            (e ?? '');
+      } else {
+        return applyPrecision(
+              '${minusOne(value)}.50000000000000000000000000000',
+              precision,
+              true,
+            ) +
+            (e ?? '');
+      }
+    }
+  }
+
+  /// Returns the upper boundary for a decimal
+  String highBoundaryForDecimal(int precision) {
+    var value = this;
+    if (value.isEmpty) {
+      throw Exception(
+        'Unable to calculate highBoundary for a null decimal string',
+      );
+    }
+    final e =
+        value.contains('e') ? value.substring(value.indexOf('e') + 1) : null;
+    if (value.contains('e')) {
+      value = value.substring(0, value.indexOf('e'));
+    }
+    if (value.isZero()) {
+      return applyPrecision(
+            '0.50000000000000000000000000000',
+            precision,
+            false,
+          ) +
+          (e ?? '');
+    } else if (value.startsWith('-')) {
+      return '-${value.substring(1).lowBoundaryForDecimal(precision)}'
+          '${e ?? ""}';
+    } else {
+      if (value.contains('.')) {
+        return applyPrecision(
+              '${value}50000000000000000000000000000',
+              precision,
+              false,
+            ) +
+            (e ?? '');
+      } else {
+        return applyPrecision(
+              '$value.50000000000000000000000000000',
+              precision,
+              false,
+            ) +
+            (e ?? '');
+      }
+    }
+  }
+
+  /// Returns the decimal precision
+  String lowBoundaryForDate(int precision) {
+    final res = splitTimezone();
+    final buffer = StringBuffer(res[0]);
+    if (buffer.length == 4) buffer.write('-01');
+    if (buffer.length == 7) buffer.write('-01');
+    if (buffer.length == 10) buffer.write('T00:00');
+    // An hour-only value (2014-01-01T08) never reaches the Java reference's
+    // length chain: HAPI's DateTimeType parse normalises it to minute
+    // precision (T08:00) first. Mirror that normalisation here (this is what
+    // makes @2014-01-01T08.highBoundary(17) end 08:00:59.999, per the
+    // official suite, rather than 08:59:59.999).
+    if (buffer.length == 13) buffer.write(':00');
+    if (buffer.length == 16) buffer.write(':00');
+    if (buffer.length == 19) buffer.write('.000');
+
+    final tz =
+        (precision <= 10) ? '' : (res[1].isEmpty ? pathDefLowTimezone : res[1]);
+
+    return buffer.toString().applyDatePrecision(precision) + tz;
+  }
+
+  /// Returns the precision for the date
+  String highBoundaryForDate(int precision) {
+    final res = splitTimezone();
+    final buffer = StringBuffer(res[0]);
+
+    if (buffer.length == 4) {
+      buffer.write('-12');
+    }
+    if (buffer.length == 7) {
+      final year = int.parse(buffer.toString().substring(0, 4));
+      final month = int.parse(buffer.toString().substring(5, 7));
+      buffer.write('-${dayCount(year, month)}');
+    }
+    if (buffer.length == 10) {
+      buffer.write('T23:59');
+    }
+    // Hour-only normalisation — see lowBoundaryForDate.
+    if (buffer.length == 13) {
+      buffer.write(':00');
+    }
+    if (buffer.length == 16) {
+      buffer.write(':59');
+    }
+    if (buffer.length == 19) {
+      buffer.write('.999');
+    }
+
+    String timezone;
+    if (precision <= 10) {
+      timezone = '';
+    } else {
+      timezone = (res[1].isEmpty) ? pathDefHighTimezone : res[1];
+    }
+
+    return buffer.toString().applyDatePrecision(precision) + timezone;
+  }
+
+  /// Returns the decimal precision
+  String lowBoundaryForTime(int precision) {
+    final res = splitTimezone();
+    final buffer = StringBuffer(res[0]);
+    if (buffer.length == 2) buffer.write(':00');
+    if (buffer.length == 5) buffer.write(':00');
+    if (buffer.length == 8) buffer.write('.000');
+
+    return buffer.toString().applyTimePrecision(precision) + res[1];
+  }
+
+  /// Returns the decimal precision
+  String highBoundaryForTime(int precision) {
+    final res = splitTimezone();
+    final buffer = StringBuffer(res[0]);
+    if (buffer.length == 2) buffer.write(':59');
+    if (buffer.length == 5) buffer.write(':59');
+    if (buffer.length == 8) buffer.write('.999');
+
+    return buffer.toString().applyTimePrecision(precision) + res[1];
+  }
+
+  /// Returns the decimal precision
+  int getDecimalPrecision() {
+    var value = this;
+    if (value.contains('e')) {
+      value = value.substring(0, value.indexOf('e'));
+    }
+    if (value.contains('.')) {
+      return value.split('.')[1].length;
+    } else {
+      return 0;
+    }
+  }
+
+  /// Returns the precision for the date
+  int getDatePrecision() {
+    return splitTimezone()[0]
+        .replaceAll('-', '')
+        .replaceAll('T', '')
+        .replaceAll(':', '')
+        .replaceAll('.', '')
+        .length;
+  }
+
+  /// Returns the precision for the time
+  int getTimePrecision() {
+    return splitTimezone()[0]
+        .replaceAll('T', '')
+        .replaceAll(':', '')
+        .replaceAll('.', '')
+        .length;
+  }
+
+  /// Checks if the string is an absolute URL, if not, returns the string
+  String escapeXml() {
+    if (isEmpty) {
+      return '';
+    }
+
+    final buffer = StringBuffer();
+    for (final char in split('')) {
+      if (char == '<') {
+        buffer.write('&lt;');
+      } else if (char == '>') {
+        buffer.write('&gt;');
+      } else if (char == '&') {
+        buffer.write('&amp;');
+      } else if (char == '"') {
+        buffer.write('&quot;');
+      } else {
+        buffer.write(char);
+      }
+    }
+    return buffer.toString();
+  }
+
+  /// Capitalizes the first character of the string
+  String? capitalize() {
+    if (isEmpty) return this;
+    if (length == 1) return toUpperCase();
+
+    return substring(0, 1).toUpperCase() + substring(1);
+  }
+
+  /// Unescapes a JSON string
+  String? unescapeJson() {
+    final b = StringBuffer();
+    var i = 0;
+    while (i < length) {
+      if (this[i] == r'\') {
+        i++;
+        final ch = this[i];
+        switch (ch) {
+          case '"':
+            b.write('"');
+          case r'\':
+            b.write(r'\');
+          case '/':
+            b.write('/');
+          case 'b':
+            b.write('\b');
+          case 'f':
+            b.write('\f');
+          case 'n':
+            b.write('\n');
+          case 'r':
+            b.write('\r');
+          case 't':
+            b.write('\t');
+          case 'u':
+            final hex = substring(i + 1, i + 5);
+            b.write(String.fromCharCode(int.parse(hex, radix: 16)));
+            i += 4;
+          default:
+            throw Exception('Unknown JSON escape \\$ch');
+        }
+      } else {
+        b.write(this[i]);
+      }
+      i++;
+    }
+    return b.toString();
+  }
+
+  /// Unescapes an XML string
+  String? unescapeXml() {
+    final buffer = StringBuffer();
+    var i = 0;
+
+    while (i < length) {
+      if (this[i] == '&') {
+        final entityBuffer = StringBuffer();
+        i++;
+        while (i < length && this[i] != ';') {
+          entityBuffer.write(this[i]);
+          i++;
+        }
+        final entity = entityBuffer.toString();
+        if (entity == 'lt') {
+          buffer.write('<');
+        } else if (entity == 'gt') {
+          buffer.write('>');
+        } else if (entity == 'amp') {
+          buffer.write('&');
+        } else if (entity == 'quot') {
+          buffer.write('"');
+        } else if (entity == 'mu') {
+          buffer.write(String.fromCharCode(956)); // Unicode for µ
+        } else {
+          throw Exception('Unknown XML entity "$entity"');
+        }
+      } else {
+        buffer.write(this[i]);
+      }
+      i++;
+    }
+
+    return buffer.toString();
+  }
+
+  /// Applies the date precision
+  String applyDatePrecision(int precision) {
+    switch (precision) {
+      case 4:
+        return substring(0, 4);
+      case 6:
+      case 7:
+        return substring(0, 7);
+      case 8:
+      case 10:
+        return substring(0, 10);
+      case 14:
+        return substring(0, 17);
+      case 17:
+        return this;
+      default:
+        throw Exception(
+          'Unsupported Date precision for boundary operation: $precision',
+        );
+    }
+  }
+
+  /// Applies the time precision
+  String applyTimePrecision(int precision) {
+    switch (precision) {
+      case 2:
+        return substring(0, 3);
+      case 4:
+        return substring(0, 6);
+      case 6:
+        return substring(0, 9);
+      case 9:
+        return this;
+      default:
+        throw Exception(
+          'Unsupported Time precision for boundary operation: $precision',
+        );
+    }
+  }
+
+  String applyPrecision(String v, int p, bool down) {
+    var nv = v;
+    final dp = nv.indexOf('.');
+    if (dp != -1) {
+      nv = nv.substring(0, dp) + nv.substring(dp + 1);
+    }
+
+    String s;
+    final d = p - v.getDecimalPrecision();
+    if (d == 0) {
+      s = nv;
+    } else if (d > 0) {
+      s = nv + List.filled(d, '0').join();
+    } else {
+      // NB: length of the ORIGINAL string (with its decimal point), per the
+      // Java reference (Utilities.applyPrecision: `int l = v.length()`); the
+      // dot is then compensated by the `ld--` below. Using the dot-stripped
+      // length here double-counted the dot, truncating one digit too many
+      // (1.587.lowBoundary(2) gave 1.5 instead of 1.58) and producing an
+      // empty string at precision 0.
+      final l = v.length;
+      var ld = l + d;
+      if (dp != -1) ld--;
+
+      if (nv.codeUnitAt(ld) >= '5'.codeUnitAt(0) && !down) {
+        s = nv.substring(0, ld - 1) +
+            String.fromCharCode(nv.codeUnitAt(ld - 1) + 1);
+      } else {
+        s = nv.substring(0, ld);
+      }
+    }
+
+    if (s.endsWith('.')) {
+      s = s.substring(0, s.length - 1);
+    }
+
+    return dp == -1 || dp >= s.length
+        ? s
+        : '${s.substring(0, dp)}.${s.substring(dp)}';
+  }
+
+  /// Subtracts one from the string
+  String minusOne(String value) {
+    final chars = value.split('');
+    for (var i = chars.length - 1; i >= 0; i--) {
+      if (chars[i] == '0') {
+        chars[i] = '9';
+      } else if (chars[i] != '.') {
+        chars[i] = String.fromCharCode(chars[i].codeUnitAt(0) - 1);
+        break;
+      }
+    }
+    return chars.join();
+  }
+
+  /// Returns the number of days in a month
+  String dayCount(int year, int month) {
+    switch (month) {
+      case 1:
+        return '31';
+      case 2:
+        return (year % 4 == 0 && (year % 400 == 0 || year % 100 != 0))
+            ? '29'
+            : '28';
+      case 3:
+        return '31';
+      case 4:
+        return '30';
+      case 5:
+        return '31';
+      case 6:
+        return '30';
+      case 7:
+        return '31';
+      case 8:
+        return '31';
+      case 9:
+        return '30';
+      case 10:
+        return '31';
+      case 11:
+        return '30';
+      case 12:
+        return '31';
+      default:
+        return '30'; // Default case to handle invalid month values
+    }
+  }
+
+  /// Checks if the string is a valid date
+  bool isZero() {
+    return replaceAll('.', '').replaceAll('-', '').replaceAll('0', '').isEmpty;
+  }
+
+  /// Splits the timezone
+  List<String> splitTimezone() {
+    final res = <String>['', ''];
+
+    if (contains('+')) {
+      res[0] = substring(0, indexOf('+'));
+      res[1] = substring(indexOf('+'));
+    } else if (contains('-') &&
+        contains('T') &&
+        lastIndexOf('-') > indexOf('T')) {
+      res[0] = substring(0, lastIndexOf('-'));
+      res[1] = substring(lastIndexOf('-'));
+    } else if (contains('Z')) {
+      res[0] = substring(0, indexOf('Z'));
+      res[1] = substring(indexOf('Z'));
+    } else {
+      res[0] = this;
+      res[1] = '';
+    }
+    return res;
+  }
+
 }
 
 /// Validation status of a decimal string (faithful copy of fhir_r4's
-/// `DecimalStatus`, renamed to avoid a name clash when both packages are
+/// `PathDecimalStatus`, renamed to avoid a name clash when both packages are
 /// imported).
 enum PathDecimalStatus {
   /// blank

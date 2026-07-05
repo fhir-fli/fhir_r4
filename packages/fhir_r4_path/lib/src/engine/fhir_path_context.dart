@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs
 
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Context object holding shared state and utilities for FHIRPath engine.
@@ -32,7 +31,7 @@ class FhirPathContext {
 
   /// Type information (populated during initialization)
   final Set<String> primitiveTypes = {};
-  final Map<String, StructureDefinition> allTypes = {};
+  final List<String> allTypeNames = [];
 
   /// Logging
   final StringBuffer fpLog = StringBuffer();
@@ -67,22 +66,12 @@ class FhirPathContext {
     'url',
   ];
 
-  /// Initialize type information from worker structures.
+  /// Initialize type information from the worker's neutral type queries.
   ///
   /// This must be called after construction and before use.
   Future<void> initialize() async {
-    for (final sd in await worker.getStructures()) {
-      if (sd.derivation == TypeDerivationRule.specialization &&
-          sd.kind != StructureDefinitionKind.logical &&
-          sd.name.valueString != null) {
-        allTypes[sd.name.valueString!] = sd;
-      }
-      if (sd.derivation == TypeDerivationRule.specialization &&
-          sd.kind == StructureDefinitionKind.primitiveType &&
-          sd.name.valueString != null) {
-        primitiveTypes.add(sd.name.valueString!);
-      }
-    }
+    allTypeNames.addAll(await worker.specializedTypeNames());
+    primitiveTypes.addAll(await worker.primitiveTypeNames());
     if (!VersionUtilities.isR5VerOrLater(worker.getVersion())) {
       doNotEnforceAsCaseSensitive = true;
       doNotEnforceAsSingletonRule = true;
@@ -132,9 +121,5 @@ class FhirPathContext {
     } else {
       return PathEngineException(fmt);
     }
-  }
-
-  Future<StructureDefinition?> fetchTypeDefinition(String? type) async {
-    return type == null ? null : await worker.fetchTypeDefinition(type);
   }
 }

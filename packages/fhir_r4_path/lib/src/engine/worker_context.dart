@@ -46,11 +46,65 @@ class WorkerContext {
   /// the engine uses instead of inspecting a returned `StructureDefinition`,
   /// so the type metadata (StructureDefinition lookup) stays binding-side.
   Future<bool> isKnownType(String typeName) async {
+    // Fast-path on the generated model's type-name classification. This is
+    // model knowledge (the R4 type lists), so it lives binding-side; it also
+    // keeps type-existence checks working when no StructureDefinitions are
+    // loaded in the cache.
+    if (typeName.isFhirPrimitive ||
+        typeName.isBackboneElement ||
+        typeName.isFhirBackboneType ||
+        typeName.isFhirDataType ||
+        typeName.isFhirQuantity ||
+        typeName.isFhirResourceType) {
+      return true;
+    }
     try {
       return (await fetchTypeDefinition(typeName)) != null;
     } catch (_) {
       return false;
     }
+  }
+
+  /// The canonical-URL ancestry chain of the type at [uri]: this type, then
+  /// each successive `baseDefinition`, as `(url, typeName)` pairs. Mirrors
+  /// the walk in the Java reference's `TypeDetails.hasType`, including its
+  /// `uri` → `string` redirect. Supplied as data so the engine-side
+  /// `TypeDetails` never inspects a `StructureDefinition`.
+  Future<List<(String, String)>> typeAncestry(String uri) async {
+    final result = <(String, String)>[];
+    var sd = await fetchResource<StructureDefinition>(uri: uri);
+    while (sd?.url != null) {
+      result.add((sd!.url!.toString(), sd.type.toString()));
+      if (sd.baseDefinition != null) {
+        if (sd.type.toString() == 'uri') {
+          sd = await fetchResource<StructureDefinition>(
+            uri: 'http://hl7.org/fhir/StructureDefinition/string',
+          );
+        } else {
+          sd = await fetchResource<StructureDefinition>(
+            uri: sd.baseDefinition!.toString(),
+          );
+        }
+      } else {
+        sd = null;
+      }
+    }
+    return result;
+  }
+
+  /// Names of every specialization (non-logical) type in the loaded
+  /// structures — the engine's set of navigable type names (used by
+  /// `FhirPathContext.initialize` and the `type()`-reflection paths).
+  Future<List<String>> specializedTypeNames() async {
+    final names = <String>[];
+    for (final sd in await getStructures()) {
+      if (sd.derivation == TypeDerivationRule.specialization &&
+          sd.kind != StructureDefinitionKind.logical &&
+          sd.name.valueString != null) {
+        names.add(sd.name.valueString!);
+      }
+    }
+    return names;
   }
 
   /// The FHIRPath type-membership test shared by the `is` operator and the
@@ -400,7 +454,9 @@ class WorkerContext {
                 }
                 if (pt != null) {
                   if (t.profile?.isNotEmpty ?? false) {
-                    pt.addProfiles(t.profile!);
+                    pt.addProfiles(
+                      t.profile!.map((u) => u.toString()).toList(),
+                    );
                   }
                   if (ed.definition?.binding != null) {
                     pt.addBinding(ed.definition!.binding);

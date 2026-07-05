@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
 import 'package:fhir_node/fhir_node.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_path/src/utils/path_string_extensions.dart';
 import 'package:ucum/ucum.dart';
 
 /// Internal utilities class for FHIRPath engine.
@@ -601,16 +601,10 @@ class FhirPathUtilities {
     if (tn == null) {
       return false;
     } else if (!tn.contains('.')) {
-      if ([
-            'SimpleTypeInfo',
-            'ClassInfo',
-          ].contains(tn) ||
-          tn.isFhirPrimitive ||
-          tn.isBackboneElement ||
-          tn.isFhirBackboneType ||
-          tn.isFhirDataType ||
-          tn.isFhirQuantity ||
-          tn.isFhirResourceType) {
+      // SimpleTypeInfo/ClassInfo are FHIRPath reflection types (engine-side);
+      // every model-type-name test is the worker's (which fast-paths on the
+      // generated model's type-name classification).
+      if (['SimpleTypeInfo', 'ClassInfo'].contains(tn)) {
         return true;
       }
       return fpContext.worker.isKnownType(tn);
@@ -632,22 +626,9 @@ class FhirPathUtilities {
         'ClassInfo',
       ].contains(t[1]);
     } else if ('FHIR' == t[0]) {
-      if (tn.startsWith('FHIR.')) {
-        final newTn = tn.substring(5);
-        if ([
-              'SimpleTypeInfo',
-              'ClassInfo',
-            ].contains(newTn) ||
-            newTn.isFhirPrimitive ||
-            newTn.isBackboneElement ||
-            newTn.isFhirBackboneType ||
-            newTn.isFhirDataType ||
-            newTn.isFhirQuantity ||
-            newTn.isFhirResourceType) {
-          return true;
-        }
+      if (['SimpleTypeInfo', 'ClassInfo'].contains(t[1])) {
+        return true;
       }
-
       return fpContext.worker.isKnownType(t[1]);
     } else {
       return false;
