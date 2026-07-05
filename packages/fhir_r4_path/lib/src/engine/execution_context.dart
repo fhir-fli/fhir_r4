@@ -71,7 +71,7 @@ class ExecutionContext {
   void setDefinedVariable(
     String name,
     dynamic value,
-    WorkerContext worker,
+    IWorkerContext worker,
   ) {
     if (isSystemVariable(name)) {
       throw PathEngineException(
@@ -91,7 +91,7 @@ class ExecutionContext {
     definedVariables![name] = value;
   }
 
-  ExecutionContext changeThis(FhirNode newThis, WorkerContext worker) {
+  ExecutionContext changeThis(FhirNode newThis, IWorkerContext worker) {
     final newContext = ExecutionContext(
       appInfo: appInfo,
       focusResource: focusResource,

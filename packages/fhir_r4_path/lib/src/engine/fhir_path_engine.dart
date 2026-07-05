@@ -6,11 +6,11 @@ import 'package:fhir_r4_path/src/utils/path_string_extensions.dart';
 
 class FHIRPathEngine {
   /// Constructor
-  FHIRPathEngine._(WorkerContext worker, [IEvaluationContext? hostServices])
+  FHIRPathEngine._(IWorkerContext worker, [IEvaluationContext? hostServices])
       : fpContext = FhirPathContext(worker, hostServices);
 
   static Future<FHIRPathEngine> create(
-    WorkerContext worker, [
+    IWorkerContext worker, [
     IEvaluationContext? hostServices,
   ]) async {
     final engine = FHIRPathEngine._(worker, hostServices);

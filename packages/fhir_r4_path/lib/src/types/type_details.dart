@@ -122,7 +122,7 @@ class TypeDetails {
     return false;
   }
 
-  Future<bool> hasTypeFromWorker(WorkerContext context, List<String> tn) async {
+  Future<bool> hasTypeFromWorker(IWorkerContext context, List<String> tn) async {
     for (final n in tn) {
       var t = ProfiledType.ns(n);
       if (typesContains(t)) {

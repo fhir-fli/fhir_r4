@@ -12,15 +12,15 @@ class FhirPathContext {
       : terminologyServiceOptions = ValidationOptions.defaults();
 
   /// Helper for creating test contexts.
-  factory FhirPathContext.forTesting({WorkerContext? worker}) {
+  factory FhirPathContext.forTesting({IWorkerContext? worker}) {
     if (worker == null) {
-      throw ArgumentError('WorkerContext required');
+      throw ArgumentError('IWorkerContext required');
     }
     return FhirPathContext(worker);
   }
 
   /// Core dependencies
-  final WorkerContext worker;
+  final IWorkerContext worker;
   final IEvaluationContext? hostServices;
   final ValidationOptions terminologyServiceOptions;
 

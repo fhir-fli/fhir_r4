@@ -6,7 +6,7 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:ucum/ucum.dart';
 
-class WorkerContext {
+class WorkerContext implements IWorkerContext {
   WorkerContext({this.txClient, ResourceCache? resourceCache})
       : resourceCache = resourceCache ?? CanonicalResourceCache();
   // Fields to store resources

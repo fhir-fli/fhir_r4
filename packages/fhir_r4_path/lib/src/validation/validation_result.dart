@@ -2,7 +2,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// ValidationResult
-class ValidationResult {
+class ValidationResult implements IValidationOutcome {
   /// Constructor for a generic [ValidationResult].
   ValidationResult({
     this.system,
@@ -50,6 +50,7 @@ class ValidationResult {
   String? txLink;
 
   /// Returns whether the validation result is acceptable.
+  @override
   bool get isOk {
     return severity == null ||
         severity == IssueSeverity.information ||
