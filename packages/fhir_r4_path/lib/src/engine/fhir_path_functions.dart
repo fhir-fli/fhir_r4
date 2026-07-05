@@ -1504,7 +1504,7 @@ class FhirPathFunctions {
     final vs = fpContext.hostServices != null
         ? fpContext.hostServices!
             .resolveValueSet(engine, execContext.appInfo, url)
-        : await fpContext.worker.fetchResource<ValueSet>(uri: url);
+        : await fpContext.worker.fetchValueSet(url);
 
     if (vs == null) {
       return [];

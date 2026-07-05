@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:fhir_node/fhir_node.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Internal operations class for FHIRPath engine.
@@ -578,7 +577,7 @@ class FhirPathOperations {
     final vs = fpContext.hostServices != null
         ? fpContext.hostServices!
             .resolveValueSet(engine, execContext.appInfo, url)
-        : await fpContext.worker.fetchResource<ValueSet>(uri: url);
+        : await fpContext.worker.fetchValueSet(url);
 
     if (vs != null) {
       for (final l in left) {

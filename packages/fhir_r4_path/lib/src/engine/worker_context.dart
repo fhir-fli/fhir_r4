@@ -818,16 +818,23 @@ class WorkerContext {
     }
   }
 
+  /// Fetches the `ValueSet` resource for [url], or null if it is not known.
+  /// Returned as a plain node — the engine's `memberOf` plumbing never
+  /// inspects it, it just hands it back to [validateCodeForCodingValue]/
+  /// [validateCodeForCodeableConceptValue].
+  Future<FhirNode?> fetchValueSet(String? url) =>
+      fetchResource<ValueSet>(uri: url);
+
   /// Validates a code-carrying value (a `Coding`, or a `code`/`string`/`uri`
-  /// primitive) against [valueSet].
+  /// primitive) against [valueSet] (a `ValueSet` resource node).
   ///
   /// The value→`Coding` adaptation is FHIR-version-specific, so it lives here
   /// at the model boundary (the worker) rather than in the FHIRPath engine —
-  /// the engine passes the node and lets the worker interpret it.
+  /// the engine passes the nodes and lets the worker interpret them.
   Future<ValidationResult> validateCodeForCodingValue(
     ValidationOptions options,
     FhirNode node,
-    ValueSet? valueSet,
+    FhirNode? valueSet,
   ) async {
     final value = node as FhirBase;
     final coding = TypeConvertor.castToCoding(value);
@@ -836,14 +843,14 @@ class WorkerContext {
         message: 'Unable to interpret a ${value.fhirType} as a Coding',
       );
     }
-    return validateCodeWithCoding(options, coding, valueSet);
+    return validateCodeWithCoding(options, coding, valueSet as ValueSet?);
   }
 
   /// As [validateCodeForCodingValue], but for a `CodeableConcept`-typed value.
   Future<ValidationResult> validateCodeForCodeableConceptValue(
     ValidationOptions options,
     FhirNode node,
-    ValueSet valueSet,
+    FhirNode valueSet,
   ) async {
     final value = node as FhirBase;
     final concept = TypeConvertor.castToCodeableConcept(value);
@@ -852,7 +859,11 @@ class WorkerContext {
         message: 'Unable to interpret a ${value.fhirType} as a CodeableConcept',
       );
     }
-    return validateCodeWithCodeableConcept(options, concept, valueSet);
+    return validateCodeWithCodeableConcept(
+      options,
+      concept,
+      valueSet as ValueSet,
+    );
   }
 
   Future<ValidationResult> validateCodeWithCodeableConcept(

@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
 import 'package:fhir_node/fhir_node.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 abstract class IEvaluationContext {
@@ -96,8 +95,10 @@ abstract class IEvaluationContext {
   );
 
   /// return the value set referenced by the url, which has been used in
-  /// memberOf()
-  ValueSet resolveValueSet(
+  /// memberOf() — or null if it is not known. The returned node must be a
+  /// `ValueSet` resource of the bound FHIR model; the engine passes it
+  /// opaquely to the worker's terminology methods.
+  FhirNode? resolveValueSet(
     FHIRPathEngine engine,
     Object? appContext,
     String url,
