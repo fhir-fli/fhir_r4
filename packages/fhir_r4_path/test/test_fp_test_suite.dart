@@ -1910,7 +1910,10 @@ Future<void> testFpTestSuite() async {
       expect(
         await walkFhirPath(
           context: patient1,
-          pathExpression: "'1 day'.toQuantity() = 1 'day'",
+          // Official expression (fhir-test-cases): 1 'd'. The prior local
+          // variant «1 'day'» only passed via ucum's lenient name-fallback
+          // bug — 'day' is not valid UCUM, so it canonicalizes to nothing.
+          pathExpression: "'1 day'.toQuantity() = 1 'd'",
         ),
         [true.toFhirBoolean],
       );
