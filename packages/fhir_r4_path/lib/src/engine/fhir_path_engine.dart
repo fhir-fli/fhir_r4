@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
 import 'package:fhir_node/fhir_node.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_path/src/utils/path_string_extensions.dart';
 
 class FHIRPathEngine {
   /// Constructor
@@ -28,11 +28,11 @@ class FHIRPathEngine {
     return engine;
   }
 
-  Future<StructureDefinition?> _fetchTypeDefinition(String? type) async {
-    return type == null
-        ? null
-        : await fpContext.worker.fetchTypeDefinition(type);
-  }
+  /// Reads the canonical `url` of a StructureDefinition node exactly the way
+  /// the model-bound code did (`sd.url!.toString()`: throws when the field is
+  /// absent, `'null'` when its value is).
+  static String _sdUrl(FhirNode sd) =>
+      sd.getChildByName('url')!.primitiveValue ?? 'null';
 
   FhirPathContext fpContext;
   late final FhirPathUtilities utilities;
@@ -657,8 +657,8 @@ class FHIRPathEngine {
   // Evaluation with appContext and path (String)
   Future<List<FhirNode>> evaluateWithPath(
     Object? appContext,
-    Resource? focusResource,
-    Resource? rootResource,
+    FhirNode? focusResource,
+    FhirNode? rootResource,
     FhirNode? base,
     String path,
   ) async {
@@ -1492,10 +1492,14 @@ class FHIRPathEngine {
     );
   }
 
+  /// Static type-analysis entry point. [structureDefinition], when supplied,
+  /// must be a `StructureDefinition` resource node of the bound FHIR model;
+  /// the engine reads only its canonical `url` and passes it opaquely to the
+  /// worker's type queries.
   Future<TypeDetails> check(
     Object appContext, {
     String? resourceType,
-    StructureDefinition? structureDefinition,
+    FhirNode? structureDefinition,
     String? context,
     ExpressionNode? expressionNode,
     String? expressionString,
@@ -1515,13 +1519,13 @@ class FHIRPathEngine {
         if (!context.contains('.')) {
           types = TypeDetails(
             CollectionStatus.singleton,
-            [structureDefinition.url!.toString()],
+            [_sdUrl(structureDefinition)],
           );
         } else {
           final resolved = await fpContext.worker.resolveContextTypeDetails(
             structureDefinition,
             context,
-            structureDefinition.url!.toString(),
+            _sdUrl(structureDefinition),
             expressionNode,
           );
           if (resolved == null) {
@@ -1536,7 +1540,7 @@ class FHIRPathEngine {
         return executeType(
           ExecutionTypeContext(
             appContext,
-            structureDefinition.url!.toString(),
+            _sdUrl(structureDefinition),
             types,
             types,
           ),
@@ -1549,7 +1553,7 @@ class FHIRPathEngine {
         return executeType(
           ExecutionTypeContext(
             appContext,
-            structureDefinition.url!.toString(),
+            _sdUrl(structureDefinition),
             null,
             null,
           ),
@@ -1564,11 +1568,11 @@ class FHIRPathEngine {
       // Case 1: resourceType, context, and expressionNode provided
       TypeDetails? types;
       if (!context.contains('.')) {
-        final sd = await _fetchTypeDefinition(context);
-        if (sd == null) {
+        final url = await fpContext.worker.typeCanonicalUrl(context);
+        if (url == null) {
           throw PathEngineException('Unknown type definition: $context');
         }
-        types = TypeDetails(CollectionStatus.singleton, [sd.url!.toString()]);
+        types = TypeDetails(CollectionStatus.singleton, [url]);
       } else {
         var ctxt = context.substring(0, context.indexOf('.'));
         if (resourceType.isAbsoluteUrl()) {
@@ -1576,8 +1580,7 @@ class FHIRPathEngine {
               '${resourceType.substring(0, resourceType.lastIndexOf('/') + 1)}'
               '$ctxt';
         }
-        final sd = await fpContext.worker
-            .fetchResource<StructureDefinition>(uri: ctxt);
+        final sd = await fpContext.worker.fetchTypeDefinitionByUrl(ctxt);
         if (sd == null) {
           throw fpContext
               .makeException(expressionNode, 'Unknown context: $context', []);

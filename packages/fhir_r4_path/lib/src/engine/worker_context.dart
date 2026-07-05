@@ -565,12 +565,27 @@ class WorkerContext {
   /// is the type URL to synthesize a nested-type name from when the element is
   /// abstract/untyped. Returns null when the element can't be resolved (the
   /// caller raises its own site-specific error).
+  /// The canonical URL of the type named [type], or null when the type is
+  /// not known. Neutral form of `fetchTypeDefinition(type)?.url` for the
+  /// engine's `check()` API (which needs only the URL).
+  Future<String?> typeCanonicalUrl(String type) async {
+    final sd = await fetchTypeDefinition(type);
+    return sd == null ? null : sd.url!.toString();
+  }
+
+  /// Fetches the `StructureDefinition` resource with canonical URL [url] as
+  /// a plain node, or null. The engine passes it back opaquely to
+  /// [resolveContextTypeDetails].
+  Future<FhirNode?> fetchTypeDefinitionByUrl(String url) =>
+      fetchResource<StructureDefinition>(uri: url);
+
   Future<TypeDetails?> resolveContextTypeDetails(
-    StructureDefinition sd,
+    FhirNode structureDefinition,
     String context,
     String abstractTypePrefix,
     ExpressionNode expr,
   ) async {
+    final sd = structureDefinition as StructureDefinition;
     final ed = await getElementDefinition(sd, context, true, expr);
     if (ed == null) {
       return null;

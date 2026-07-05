@@ -124,4 +124,226 @@ extension PathStringExtensions on String {
   bool noString() {
     return isEmpty;
   }
+
+  /// Checks if the string is a single uppercase letter
+  bool isUpperCase() {
+    return length == 1 && contains(RegExp(r'^[A-Z]$'));
+  }
+
+  /// Checks if the string is alphabetic
+  bool isAlphabetic() {
+    final code = codeUnitAt(0);
+    return (code >= 65 && code <= 90) ||
+        (code >= 97 && code <= 122); // A-Z, a-z
+  }
+
+  /// Checks if the string is a valid token
+  bool isToken() {
+    if (isEmpty) return false;
+    if (!this[0].isAlphabetic()) return false;
+
+    for (var i = 1; i < length; i++) {
+      final char = this[i];
+      if (!(char.isAlphabetic() ||
+          char.isDigit ||
+          char == '_' ||
+          char == '[' ||
+          char == ']')) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// Checks if the string starts with any entry of [list]
+  bool startsWithInList(List<String?> list) {
+    for (final l in list) {
+      if (l != null && startsWith(l)) return true;
+    }
+    return false;
+  }
+
+  /// Checks if the string is an absolute URL
+  bool isAbsoluteUrl() {
+    if (!contains(':')) return false;
+
+    final scheme = substring(0, indexOf(':'));
+    final details = substring(indexOf(':') + 1);
+
+    return (['http', 'https', 'urn', 'file'].contains(scheme) ||
+            (scheme.isToken() && scheme == scheme.toLowerCase()) ||
+            startsWithInList([
+              'urn:iso:',
+              'urn:iso-iec:',
+              'urn:iso-cie:',
+              'urn:iso-astm:',
+              'urn:iso-ieee:',
+              'urn:iec:',
+            ])) &&
+        details.isNotEmpty &&
+        !details.contains(' '); // rfc5141
+  }
+
+  /// Java-style regionMatches
+  bool regionMatches(
+    // ignore: avoid_positional_boolean_parameters
+    bool ignoreCase,
+    int toffset,
+    String other,
+    int ooffset,
+    int len,
+  ) {
+    // Check for invalid offsets or lengths
+    if (toffset < 0 ||
+        ooffset < 0 ||
+        toffset + len > length ||
+        ooffset + len > other.length) {
+      return false;
+    }
+
+    final thisSubstring = substring(toffset, toffset + len);
+    final otherSubstring = other.substring(ooffset, ooffset + len);
+
+    if (ignoreCase) {
+      return thisSubstring.toLowerCase() == otherSubstring.toLowerCase();
+    } else {
+      return thisSubstring == otherSubstring;
+    }
+  }
+
+  /// Java-style equalsIgnoreCase
+  bool equalsIgnoreCase(String? anotherString) {
+    return this == anotherString ||
+        (anotherString != null &&
+            anotherString.length == length &&
+            regionMatches(true, 0, anotherString, 0, length));
+  }
+
+  /// Checks if the string exists in [list]
+  bool existsInList(Set<String?> list) {
+    return list.contains(this);
+  }
+
+  /// The tail of a canonical URL (the part after the last `/`), or '' when
+  /// the URL carries a fragment
+  String hashTail() {
+    return contains('#') ? '' : substring(lastIndexOf('/') + 1);
+  }
+
+  /// Checks if the string is a valid decimal
+  bool isDecimal({
+    bool allowExponent = false,
+    bool allowLeadingZero = false,
+  }) {
+    final status = checkDecimal(
+      allowExponent: allowExponent,
+      allowLeadingZero: allowLeadingZero,
+    );
+    return status == PathDecimalStatus.ok || status == PathDecimalStatus.range;
+  }
+
+  /// Checks if the string is a valid decimal
+  PathDecimalStatus checkDecimal({
+    bool allowExponent = false,
+    bool allowLeadingZero = false,
+  }) {
+    if (trim().isEmpty) {
+      return PathDecimalStatus.blank;
+    }
+
+    // Check for leading zeros
+    if (!allowLeadingZero) {
+      if (startsWith('0') && this != '0' && !startsWith('0.')) {
+        return PathDecimalStatus.syntax;
+      }
+      if (startsWith('-0') && this != '-0' && !startsWith('-0.')) {
+        return PathDecimalStatus.syntax;
+      }
+      if (startsWith('+0') && this != '+0' && !startsWith('+0.')) {
+        return PathDecimalStatus.syntax;
+      }
+    }
+
+    // Check for trailing dot
+    if (endsWith('.')) {
+      return PathDecimalStatus.syntax;
+    }
+
+    var havePeriod = false;
+    var haveExponent = false;
+    var haveSign = false;
+    var haveDigits = false;
+
+    var preDecLength = 0;
+    var postDecLength = 0;
+    var exponentLength = 0;
+    var length = 0;
+
+    for (var i = 0; i < this.length; i++) {
+      final char = this[i];
+
+      if (char == '.') {
+        if (!haveDigits || havePeriod || haveExponent) {
+          return PathDecimalStatus.syntax;
+        }
+        havePeriod = true;
+        preDecLength = length;
+        length = 0;
+      } else if (char == '-' || char == '+') {
+        if (haveDigits || haveSign) return PathDecimalStatus.syntax;
+        haveSign = true;
+      } else if (char == 'e' || char == 'E') {
+        if (!haveDigits || haveExponent || !allowExponent) {
+          return PathDecimalStatus.syntax;
+        }
+        haveExponent = true;
+        haveSign = false;
+        haveDigits = false;
+        if (havePeriod) {
+          postDecLength = length;
+        } else {
+          preDecLength = length;
+        }
+        length = 0;
+      } else if (!RegExp(r'\d').hasMatch(char)) {
+        return PathDecimalStatus.syntax;
+      } else {
+        haveDigits = true;
+        length++;
+      }
+    }
+
+    if (haveExponent && !haveDigits) return PathDecimalStatus.syntax;
+
+    if (haveExponent) {
+      exponentLength = length;
+    } else if (havePeriod) {
+      postDecLength = length;
+    } else {
+      preDecLength = length;
+    }
+
+    // Bounds checking
+    if (exponentLength > 4) return PathDecimalStatus.range;
+    if (preDecLength + postDecLength > 18) return PathDecimalStatus.range;
+
+    return PathDecimalStatus.ok;
+  }
+}
+
+/// Validation status of a decimal string (faithful copy of fhir_r4's
+/// `DecimalStatus`, renamed to avoid a name clash when both packages are
+/// imported).
+enum PathDecimalStatus {
+  /// blank
+  blank,
+
+  /// syntax
+  syntax,
+
+  /// range
+  range,
+
+  /// ok
+  ok,
 }
