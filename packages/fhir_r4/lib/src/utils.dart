@@ -1,5 +1,6 @@
 export 'utils/compare.dart';
 export 'utils/fhir_field_map.dart';
+export 'utils/fhir_type_hierarchy.dart';
 export 'utils/from_path.dart';
 export 'utils/from_type.dart';
 export 'utils/generate_id.dart';

@@ -37,7 +37,17 @@ class WorkerContext implements IWorkerContext {
   }
 
   Future<List<String>> getResourceNames() async {
-    return resourceCache.getResourceNames();
+    // Core resource type names come from the generated hierarchy table
+    // (kind `resource`, derivation `specialization` — the same filter the
+    // Java reference's TypeManager applies), so they are available with an
+    // empty cache; loaded canonicals are unioned in on top.
+    final names = <String>{
+      for (final info in fhirTypeHierarchy.values)
+        if (info.kind == 'resource' && info.derivation == 'specialization')
+          info.name,
+      ...await resourceCache.getResourceNames(),
+    };
+    return names.toList();
   }
 
   String getVersion() {
@@ -58,7 +68,8 @@ class WorkerContext implements IWorkerContext {
         typeName.isFhirBackboneType ||
         typeName.isFhirDataType ||
         typeName.isFhirQuantity ||
-        typeName.isFhirResourceType) {
+        typeName.isFhirResourceType ||
+        fhirTypeHierarchy.containsKey(typeName)) {
       return true;
     }
     try {
@@ -75,22 +86,17 @@ class WorkerContext implements IWorkerContext {
   /// `TypeDetails` never inspects a `StructureDefinition`.
   Future<List<(String, String)>> typeAncestry(String uri) async {
     final result = <(String, String)>[];
-    var sd = await fetchResource<StructureDefinition>(uri: uri);
-    while (sd?.url != null) {
-      result.add((sd!.url!.toString(), sd.type.toString()));
-      if (sd.baseDefinition != null) {
-        if (sd.type.toString() == 'uri') {
-          sd = await fetchResource<StructureDefinition>(
-            uri: 'http://hl7.org/fhir/StructureDefinition/string',
-          );
-        } else {
-          sd = await fetchResource<StructureDefinition>(
-            uri: sd.baseDefinition!.toString(),
-          );
-        }
-      } else {
-        sd = null;
+    var node = await _resolveTypeNodeByUrl(uri);
+    while (node != null && node.url != null) {
+      result.add((node.url!, node.type));
+      if (node.baseUrl == null) {
+        break;
       }
+      node = node.type == 'uri'
+          ? await _resolveTypeNodeByUrl(
+              'http://hl7.org/fhir/StructureDefinition/string',
+            )
+          : await _resolveTypeNodeByUrl(node.baseUrl!, source: node.sd);
     }
     return result;
   }
@@ -99,7 +105,11 @@ class WorkerContext implements IWorkerContext {
   /// structures — the engine's set of navigable type names (used by
   /// `FhirPathContext.initialize` and the `type()`-reflection paths).
   Future<List<String>> specializedTypeNames() async {
-    final names = <String>[];
+    final names = <String>{
+      for (final info in fhirTypeHierarchy.values)
+        if (info.derivation == 'specialization' && info.kind != 'logical')
+          info.name,
+    };
     for (final sd in await getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
           sd.kind != StructureDefinitionKind.logical &&
@@ -107,7 +117,7 @@ class WorkerContext implements IWorkerContext {
         names.add(sd.name.valueString!);
       }
     }
-    return names;
+    return names.toList();
   }
 
   /// The FHIRPath type-membership test shared by the `is` operator and the
@@ -165,22 +175,18 @@ class WorkerContext implements IWorkerContext {
       if (value.fhirType == tnp) {
         return true;
       }
-      var sd = await fetchTypeDefinition(value.fhirType);
-      while (sd != null) {
-        if (sd.type.primitiveValue == tnp) {
+      var node = await _resolveTypeNodeByName(value.fhirType);
+      while (node != null) {
+        if (node.type == tnp) {
           return true;
         }
-        if (sd.kind == StructureDefinitionKind.primitiveType) {
+        if (node.isPrimitiveKind) {
           return false;
         }
-        final base = sd.baseDefinition?.primitiveValue;
-        if (base == null) {
+        if (node.baseUrl == null) {
           return false;
         }
-        sd = await fetchResource<StructureDefinition>(
-          uri: base,
-          canonicalForSource: sd,
-        );
+        node = await _resolveTypeNodeByUrl(node.baseUrl!, source: node.sd);
       }
       return false;
     }
@@ -201,22 +207,56 @@ class WorkerContext implements IWorkerContext {
     if (type == superType) {
       return true;
     }
-    var sd = await fetchTypeDefinition(type);
-    while (sd != null) {
-      if (sd.type.primitiveValue == superType) {
+    var node = await _resolveTypeNodeByName(type);
+    while (node != null) {
+      if (node.type == superType) {
         return true;
       }
-      final base = sd.baseDefinition?.primitiveValue;
-      if (base == null) {
+      if (node.baseUrl == null) {
         return false;
       }
-      sd = await fetchResource<StructureDefinition>(
-        uri: base,
-        canonicalForSource: sd,
-      );
+      node = await _resolveTypeNodeByUrl(node.baseUrl!, source: node.sd);
     }
     return false;
   }
+
+  /// Resolves one step of a type-hierarchy walk for the type named [name]:
+  /// from the generated [fhirTypeHierarchy] table when it is a core type
+  /// (so the walks work with an empty resource cache — the table is the
+  /// analogue of fhirpath.js's generated `type2Parent` model data), else
+  /// from a `StructureDefinition` in the resource cache (custom profiles,
+  /// logical models).
+  Future<_TypeHierarchyNode?> _resolveTypeNodeByName(String name) async {
+    final info = fhirTypeHierarchy[name];
+    if (info != null) {
+      return _TypeHierarchyNode.fromInfo(info);
+    }
+    return _TypeHierarchyNode.fromSd(await fetchTypeDefinition(name));
+  }
+
+  /// Resolves one step of a type-hierarchy walk by canonical [url] — table
+  /// first, resource cache second. [source] is the previously resolved
+  /// `StructureDefinition` (when the previous step came from the cache),
+  /// passed through for canonical-version resolution.
+  Future<_TypeHierarchyNode?> _resolveTypeNodeByUrl(
+    String url, {
+    CanonicalResource? source,
+  }) async {
+    final info = _typeHierarchyByUrl[url];
+    if (info != null) {
+      return _TypeHierarchyNode.fromInfo(info);
+    }
+    return _TypeHierarchyNode.fromSd(
+      await fetchResource<StructureDefinition>(
+        uri: url,
+        canonicalForSource: source,
+      ),
+    );
+  }
+
+  static final Map<String, FhirTypeInfo> _typeHierarchyByUrl = {
+    for (final info in fhirTypeHierarchy.values) info.url: info,
+  };
 
   // ===========================================================================
   // STATIC TYPE ANALYSIS
@@ -236,7 +276,12 @@ class WorkerContext implements IWorkerContext {
     if (_primitiveTypeCache != null) {
       return _primitiveTypeCache!;
     }
-    final set = <String>{};
+    final set = <String>{
+      for (final info in fhirTypeHierarchy.values)
+        if (info.derivation == 'specialization' &&
+            info.kind == 'primitive-type')
+          info.name,
+    };
     for (final sd in await getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
           sd.kind == StructureDefinitionKind.primitiveType &&
@@ -1395,4 +1440,38 @@ class WorkerContext implements IWorkerContext {
       );
     }
   }
+}
+
+/// One resolved step of a type-hierarchy walk, sourced either from the
+/// generated [fhirTypeHierarchy] table (core types, cache-independent) or
+/// from a `StructureDefinition` in the resource cache (custom profiles,
+/// logical models). Both sources feed the same walk, so a custom profile
+/// whose base chain crosses into core types keeps resolving even with an
+/// empty cache.
+class _TypeHierarchyNode {
+  _TypeHierarchyNode.fromInfo(FhirTypeInfo info)
+      : url = info.url,
+        type = info.type,
+        isPrimitiveKind = info.kind == 'primitive-type',
+        baseUrl =
+            info.base == null ? null : fhirTypeHierarchy[info.base]!.url,
+        sd = null;
+
+  _TypeHierarchyNode._fromSd(StructureDefinition this.sd)
+      : url = sd.url?.toString(),
+        type = sd.type.toString(),
+        isPrimitiveKind = sd.kind == StructureDefinitionKind.primitiveType,
+        baseUrl = sd.baseDefinition?.primitiveValue;
+
+  static _TypeHierarchyNode? fromSd(StructureDefinition? sd) =>
+      sd == null ? null : _TypeHierarchyNode._fromSd(sd);
+
+  final String? url;
+  final String type;
+  final bool isPrimitiveKind;
+  final String? baseUrl;
+
+  /// The cache-resolved definition backing this step, if any — passed as
+  /// `canonicalForSource` when fetching the next step from the cache.
+  final StructureDefinition? sd;
 }
