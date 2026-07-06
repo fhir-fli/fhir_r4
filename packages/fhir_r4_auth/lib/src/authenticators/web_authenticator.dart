@@ -1,12 +1,11 @@
 /// Web platform authenticator using flutter_web_auth_2
 library;
 
+import 'package:fhir_r4_auth/fhir_r4_auth.dart'
+    show Authenticator, PlatformAuthenticationException;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:logging/logging.dart';
-
-import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show Authenticator, PlatformAuthenticationException;
 
 /// Web authenticator using flutter_web_auth_2
 class WebAuthenticator implements Authenticator {
@@ -47,26 +46,26 @@ class WebAuthenticator implements Authenticator {
       // - Linux/Windows: starts a local HTTP server, needs full origin
       //   (e.g. "http://localhost:8080")
       // - Mobile: uses custom URL schemes (e.g. "com.example.app")
-      if (callbackUrlScheme == null ||
-          callbackUrlScheme == redirectUri.scheme) {
+      var resolvedScheme = callbackUrlScheme;
+      if (resolvedScheme == null || resolvedScheme == redirectUri.scheme) {
         if (kIsWeb) {
           // On web, pass just the scheme — flutter_web_auth_2 validates it
           // as a URI scheme and rejects full URLs like "http://localhost:8080"
-          callbackUrlScheme = redirectUri.scheme;
+          resolvedScheme = redirectUri.scheme;
         } else if (redirectUri.scheme == 'http' ||
             redirectUri.scheme == 'https') {
           // Desktop (Linux/Windows) needs the full origin
-          callbackUrlScheme =
+          resolvedScheme =
               '${redirectUri.scheme}://${redirectUri.host}:${redirectUri.port}';
         } else {
-          callbackUrlScheme = redirectUri.scheme;
+          resolvedScheme = redirectUri.scheme;
         }
       }
 
       // Launch authentication
       final result = await FlutterWebAuth2.authenticate(
         url: authorizationUrl.toString(),
-        callbackUrlScheme: callbackUrlScheme,
+        callbackUrlScheme: resolvedScheme,
         options: FlutterWebAuth2Options(
           preferEphemeral: preferEphemeral,
           intentFlags:
@@ -92,7 +91,7 @@ class WebAuthenticator implements Authenticator {
       }
 
       // Handle both query parameters and fragment (for implicit flow)
-      Map<String, String> params = {};
+      final params = <String, String>{};
       if (responseUri.hasQuery) {
         params.addAll(responseUri.queryParameters);
       }

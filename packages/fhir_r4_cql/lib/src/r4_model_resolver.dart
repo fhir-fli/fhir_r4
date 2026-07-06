@@ -38,7 +38,7 @@ class R4ModelResolver implements ModelResolver {
       ];
 
   // ===========================================================================
-  // is_ — the answer to `value is FHIR.<typeName>` and `value is System.<typeName>`
+  // is_ — answers `value is FHIR.<typeName>` / `value is System.<typeName>`
   // ===========================================================================
 
   @override
@@ -364,7 +364,7 @@ class R4ModelResolver implements ModelResolver {
     // paths only need this for CQL Tuple/List, which the engine handles
     // directly without involving the resolver.
     throw UnimplementedError(
-      'createInstance(\$typeName) not yet implemented — '
+      r'createInstance($typeName) not yet implemented — '
       'extend R4ModelResolver if your CQL uses typed instance construction.',
     );
   }
@@ -488,7 +488,7 @@ class R4ModelResolver implements ModelResolver {
 
   ValidatedQuantity? _quantityToValidated(r4.Quantity? quantity) {
     if (quantity == null) return null;
-    final num? value = quantity.value?.valueNum;
+    final value = quantity.value?.valueNum;
     if (value == null) return null;
     final unit =
         quantity.code?.valueString ?? quantity.unit?.valueString ?? '1';

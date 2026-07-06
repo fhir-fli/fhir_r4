@@ -76,12 +76,12 @@ void main() {
       expect(session.metadata['department'], equals('cardiology'));
     });
 
-    test('records activity', () {
+    test('records activity', () async {
       final session = Session(userId: 'user123');
       final initialActivity = session.lastActivity;
 
       // Wait a bit
-      Future<void>.delayed(const Duration(milliseconds: 10));
+      await Future<void>.delayed(const Duration(milliseconds: 10));
 
       session.recordActivity();
 
@@ -155,7 +155,7 @@ void main() {
       expect(json['userId'], equals('user123'));
       expect(json['createdAt'], isA<String>());
       expect(json['lastActivity'], isA<String>());
-      expect(json['metadata'], isA<Map>());
+      expect(json['metadata'], isA<Map<dynamic, dynamic>>());
     });
 
     test('deserializes from JSON', () {
@@ -190,12 +190,7 @@ void main() {
 
     setUp(() {
       sessionManager = SessionManager(
-        config: const SessionConfig(
-          idleTimeout: Duration(minutes: 30),
-          absoluteTimeout: Duration(hours: 8),
-          warningBeforeTimeout: Duration(minutes: 5),
-          checkInterval: Duration(minutes: 1),
-        ),
+        config: const SessionConfig(),
       );
     });
 
@@ -281,7 +276,7 @@ void main() {
       final info = sessionManager.getSessionInfo();
 
       expect(info, isNotNull);
-      expect(info!['session'], isA<Map>());
+      expect(info!['session'], isA<Map<dynamic, dynamic>>());
       expect(info['idle_time_seconds'], isA<int>());
       expect(info['session_age_seconds'], isA<int>());
       expect(info['time_until_idle_timeout_seconds'], isA<int>());
@@ -309,7 +304,7 @@ void main() {
       sessionManager.onTimeout.listen(timeouts.add);
 
       // Wait for idle timeout to pass
-      await Future.delayed(const Duration(seconds: 11));
+      await Future<void>.delayed(const Duration(seconds: 11));
 
       // Manually trigger timeout check
       await sessionManager.checkTimeoutsForTesting();
@@ -334,7 +329,7 @@ void main() {
       sessionManager.onTimeout.listen(timeouts.add);
 
       // Wait for absolute timeout to pass
-      await Future.delayed(const Duration(seconds: 11));
+      await Future<void>.delayed(const Duration(seconds: 11));
 
       // Keep recording activity (but absolute timeout should still trigger)
       await sessionManager.recordActivity();
@@ -363,7 +358,7 @@ void main() {
       sessionManager.onTimeoutWarning.listen(warnings.add);
 
       // Wait until we're in the warning period (7-8 seconds idle)
-      await Future.delayed(const Duration(seconds: 8));
+      await Future<void>.delayed(const Duration(seconds: 8));
 
       // Manually trigger timeout check
       await sessionManager.checkTimeoutsForTesting();
@@ -392,10 +387,10 @@ void main() {
       sessionManager.onTimeout.listen(timeouts.add);
 
       // Record activity to keep session alive
-      await Future.delayed(const Duration(seconds: 5));
+      await Future<void>.delayed(const Duration(seconds: 5));
       await sessionManager.recordActivity();
 
-      await Future.delayed(const Duration(seconds: 5));
+      await Future<void>.delayed(const Duration(seconds: 5));
       await sessionManager.recordActivity();
 
       // Check for timeouts - should not trigger because of recent activity

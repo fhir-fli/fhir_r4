@@ -246,8 +246,7 @@ void main() {
         );
         expect(body['fhirServer'], 'http://fhir.example.com');
         expect(
-          (body['fhirAuthorization']
-              as Map<String, dynamic>)['access_token'],
+          (body['fhirAuthorization'] as Map<String, dynamic>)['access_token'],
           'my-tok',
         );
         expect(body.containsKey('prefetch'), isTrue);
@@ -356,8 +355,10 @@ void main() {
       final response = await client.discover();
       expect(response.services.length, 2);
       expect(response.services[0].id, 'alert-svc');
-      expect(response.services[0].prefetch!['patient'],
-          'Patient/{{context.patientId}}',);
+      expect(
+        response.services[0].prefetch!['patient'],
+        'Patient/{{context.patientId}}',
+      );
       expect(response.services[1].id, 'drug-check');
       expect(response.services[1].prefetch, isNull);
     });

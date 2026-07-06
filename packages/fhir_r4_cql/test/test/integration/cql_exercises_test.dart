@@ -38,8 +38,11 @@ void main() {
         final library = parseAndBuildLibrary(cqlSource);
         final visitor = CqlBaseVisitor(library);
         final actualElm = visitor.result;
-        expect(compareElm(expectedJson, actualElm), isTrue,
-            reason: '$name ELM output does not match expected JSON');
+        expect(
+          compareElm(expectedJson, actualElm),
+          isTrue,
+          reason: '$name ELM output does not match expected JSON',
+        );
       });
 
       test('executes and produces correct results', () async {
@@ -48,8 +51,10 @@ void main() {
         final context = contexts['$name.cql'];
         final library =
             parseAndBuildLibrary(cqlSource, libraryManager: libraryManager);
-        final executionResults = await library
-            .execute(context is Map<String, dynamic> ? context : null, const R4ModelResolver());
+        final executionResults = await library.execute(
+          context is Map<String, dynamic> ? context : null,
+          const R4ModelResolver(),
+        );
 
         if (executionResults is Map<String, dynamic> &&
             expectedResults is Map<String, dynamic>) {
@@ -62,9 +67,12 @@ void main() {
           for (final key in expectedResults.keys) {
             final result = resultMap[key];
             final answer = expectedResults[key];
-            expect(areValuesEqual(result, answer), isTrue,
-                reason:
-                    '$name.$key: $result (${result?.runtimeType}) != $answer (${answer?.runtimeType})');
+            expect(
+              areValuesEqual(result, answer),
+              isTrue,
+              reason:
+                  '$name.$key: $result (${result?.runtimeType}) != $answer (${answer?.runtimeType})',
+            );
           }
         }
       });

@@ -24,17 +24,23 @@ void main() {
         // Must include PKCE
         expect(authUrl.queryParameters['code_challenge'], isNotNull);
         expect(
-            authUrl.queryParameters['code_challenge_method'], equals('S256'));
+          authUrl.queryParameters['code_challenge_method'],
+          equals('S256'),
+        );
 
         // Must include state for CSRF protection
         expect(authUrl.queryParameters['state'], isNotNull);
         expect(
-            authUrl.queryParameters['state']!.length, greaterThanOrEqualTo(32));
+          authUrl.queryParameters['state']!.length,
+          greaterThanOrEqualTo(32),
+        );
 
         // Must include nonce for replay protection
         expect(authUrl.queryParameters['nonce'], isNotNull);
         expect(
-            authUrl.queryParameters['nonce']!.length, greaterThanOrEqualTo(32));
+          authUrl.queryParameters['nonce']!.length,
+          greaterThanOrEqualTo(32),
+        );
 
         flow.dispose();
       });
@@ -215,7 +221,7 @@ void main() {
       test('session ID is unpredictable', () {
         final sessions = <String>{};
 
-        for (int i = 0; i < 100; i++) {
+        for (var i = 0; i < 100; i++) {
           final session = Session(userId: 'user$i');
           sessions.add(session.id);
         }
@@ -292,8 +298,10 @@ void main() {
         final url2 = flow2.buildAuthorizationUrl();
 
         // States should be different
-        expect(url1.queryParameters['state'],
-            isNot(equals(url2.queryParameters['state'])));
+        expect(
+          url1.queryParameters['state'],
+          isNot(equals(url2.queryParameters['state'])),
+        );
 
         flow1.dispose();
         flow2.dispose();
@@ -313,12 +321,18 @@ void main() {
         final url2 = flow.buildAuthorizationUrl();
 
         // All parameters should be regenerated
-        expect(url1.queryParameters['state'],
-            isNot(equals(url2.queryParameters['state'])));
-        expect(url1.queryParameters['nonce'],
-            isNot(equals(url2.queryParameters['nonce'])));
-        expect(url1.queryParameters['code_challenge'],
-            isNot(equals(url2.queryParameters['code_challenge'])));
+        expect(
+          url1.queryParameters['state'],
+          isNot(equals(url2.queryParameters['state'])),
+        );
+        expect(
+          url1.queryParameters['nonce'],
+          isNot(equals(url2.queryParameters['nonce'])),
+        );
+        expect(
+          url1.queryParameters['code_challenge'],
+          isNot(equals(url2.queryParameters['code_challenge'])),
+        );
 
         flow.dispose();
       });
@@ -329,7 +343,7 @@ void main() {
         final flows = <OAuthFlow>[];
         final states = <String>{};
 
-        for (int i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
           final flow = OAuthFlow(
             clientId: 'client$i',
             authorizationEndpoint:
@@ -374,7 +388,6 @@ void main() {
           clientId: 'test-client',
           fhirBaseUrl: FhirUri('https://fhir.example.com'),
           redirectUri: Uri.parse('https://app.example.com/callback'),
-          launchType: LaunchType.standalone,
         );
 
         expect(config.launchType, equals(LaunchType.standalone));
@@ -445,26 +458,26 @@ void main() {
     });
 
     group('Audit Trail Security', () {
-      test('authentication attempts are auditable', () {
+      test('authentication attempts are auditable', () async {
         final store = InMemoryAuditStore();
         final logger = AuditLogger(
           store: store,
           clientId: 'test-client',
         );
 
-        logger.logAuthenticationAttempt(userId: 'user123');
+        await logger.logAuthenticationAttempt(userId: 'user123');
 
         expect(store.eventCount, equals(1));
       });
 
-      test('token issuance is auditable', () {
+      test('token issuance is auditable', () async {
         final store = InMemoryAuditStore();
         final logger = AuditLogger(
           store: store,
           clientId: 'test-client',
         );
 
-        logger.logTokenIssued(
+        await logger.logTokenIssued(
           userId: 'user123',
           scopes: ['patient/*.read'],
         );
@@ -472,14 +485,14 @@ void main() {
         expect(store.eventCount, equals(1));
       });
 
-      test('security violations are auditable', () {
+      test('security violations are auditable', () async {
         final store = InMemoryAuditStore();
         final logger = AuditLogger(
           store: store,
           clientId: 'test-client',
         );
 
-        logger.logSecurityViolation(
+        await logger.logSecurityViolation(
           violation: 'State mismatch detected',
           details: 'Possible CSRF attack',
         );

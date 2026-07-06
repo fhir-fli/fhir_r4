@@ -1,8 +1,17 @@
 name: fhir_r4_path
-description: Dart Library supporting (almost) all Functionality for FHIRPath.
+description: >-
+  FHIRPath for FHIR R4: the version binding for the model-independent
+  fhirpath engine, with terminology support.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
+
+topics:
+  - fhir
+  - fhirpath
+  - hl7
+  - healthcare
+  - interoperability
 
 # This package supports all platforms listed below.
 platforms:
@@ -26,5 +35,6 @@ dependencies:
   universal_io: ^2.3.1
 
 dev_dependencies:
+  very_good_analysis: ^10.0.0
   test: ^1.29.0
  

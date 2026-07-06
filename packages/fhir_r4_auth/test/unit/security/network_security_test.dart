@@ -133,8 +133,8 @@ void main() {
         // Should remove state but keep non-sensitive params
         final sanitized = url
             .toString()
-            .replaceAll(RegExp(r'state=[^&]+'), 'state=***')
-            .replaceAll(RegExp(r'code_challenge=[^&]+'), 'code_challenge=***');
+            .replaceAll(RegExp('state=[^&]+'), 'state=***')
+            .replaceAll(RegExp('code_challenge=[^&]+'), 'code_challenge=***');
 
         expect(sanitized, contains('client_id=test'));
         expect(sanitized, contains('state=***'));
@@ -237,8 +237,8 @@ void main() {
         // Error message should not include sensitive params
         final sanitizedUrl = uri
             .toString()
-            .replaceAll(RegExp(r'client_secret=[^&]+'), 'client_secret=***')
-            .replaceAll(RegExp(r'code=[^&]+'), 'code=***');
+            .replaceAll(RegExp('client_secret=[^&]+'), 'client_secret=***')
+            .replaceAll(RegExp('code=[^&]+'), 'code=***');
 
         expect(sanitizedUrl, isNot(contains('SECRET123')));
         expect(sanitizedUrl, isNot(contains('AUTH_CODE')));
@@ -267,7 +267,9 @@ void main() {
         };
 
         expect(
-            headers[HttpHeaders.authorization], equals('Bearer $accessToken'));
+          headers[HttpHeaders.authorization],
+          equals('Bearer $accessToken'),
+        );
       });
 
       test('does not include tokens in non-authorization headers', () {
@@ -345,9 +347,10 @@ void main() {
 
         // This is mixed content and should be rejected
         expect(
-            httpsBase.startsWith('https://') &&
-                httpRedirect.startsWith('http://'),
-            isTrue);
+          httpsBase.startsWith('https://') &&
+              httpRedirect.startsWith('http://'),
+          isTrue,
+        );
       });
     });
   });

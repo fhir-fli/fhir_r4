@@ -42,8 +42,8 @@ void main() {
           'encounter': Encounter(
             status: EncounterStatus.inProgress,
             class_: Coding(
-              system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
-                  .toFhirUri,
+              system:
+                  'http://terminology.hl7.org/CodeSystem/v3-ActCode'.toFhirUri,
               code: 'AMB'.toFhirCode,
             ),
           ),
@@ -81,7 +81,10 @@ void main() {
           subject: 'user1',
         ),
         prefetch: {'patient': Patient(id: 'p1'.toFhirString)},
-        extension_: {'myExt': true, 'nested': {'key': 'val'}},
+        extension_: {
+          'myExt': true,
+          'nested': {'key': 'val'},
+        },
       );
       final encoded = jsonEncode(request.toJson());
       final decoded = CdsRequest.fromJson(
@@ -152,8 +155,7 @@ void main() {
               code: CodeableConcept(
                 coding: [
                   Coding(
-                    system:
-                        'http://loinc.org'.toFhirUri,
+                    system: 'http://loinc.org'.toFhirUri,
                     code: '12345-6'.toFhirCode,
                   ),
                 ],
@@ -234,8 +236,10 @@ void main() {
       );
       expect(decoded.suggestions!.length, 2);
       expect(decoded.suggestions![0].isRecommended, true);
-      expect(decoded.suggestions![0].actions!.first.resource,
-          isA<Patient>(),);
+      expect(
+        decoded.suggestions![0].actions!.first.resource,
+        isA<Patient>(),
+      );
       expect(decoded.suggestions![1].isRecommended, false);
       expect(decoded.suggestions![1].actions, isNull);
     });
@@ -454,8 +458,7 @@ void main() {
           'patient': 'Patient/{{context.patientId}}',
           'medications':
               'MedicationRequest?patient={{context.patientId}}&status=active',
-          'allergies':
-              'AllergyIntolerance?patient={{context.patientId}}',
+          'allergies': 'AllergyIntolerance?patient={{context.patientId}}',
         },
         usageRequirements: 'Requires patient and medication context',
       );
@@ -465,8 +468,10 @@ void main() {
       );
       expect(decoded.prefetch!.length, 3);
       expect(decoded.prefetch!['patient'], 'Patient/{{context.patientId}}');
-      expect(decoded.usageRequirements,
-          'Requires patient and medication context',);
+      expect(
+        decoded.usageRequirements,
+        'Requires patient and medication context',
+      );
     });
   });
 

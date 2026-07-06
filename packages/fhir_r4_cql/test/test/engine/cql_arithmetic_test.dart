@@ -2,27 +2,28 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';
 
-Map<String, dynamic> _ctx() => {ContextKey.modelResolver: const R4ModelResolver()};
+Map<String, dynamic> _ctx() =>
+    {ContextKey.modelResolver: const R4ModelResolver()};
 
 void main() {
   group('Abs', () {
-    test("""define "IntegerAbs": Abs(-5) // 5""", () async {
+    test('''define "IntegerAbs": Abs(-5) // 5''', () async {
       final input = LiteralInteger(-5);
       final result = Abs(operand: input);
       expect(await result.execute(_ctx()), CqlInteger(5));
     });
-    test("""define "IntegerAbsIsNull": Abs(null as Integer)""", () async {
+    test('''define "IntegerAbsIsNull": Abs(null as Integer)''', () async {
       final input =
           As(asType: QName.fromElmType('Integer'), operand: LiteralNull());
       final result = Abs(operand: input);
       expect(await result.execute(_ctx()), isNull);
     });
-    test("""define "LongAbs": Abs(-5000000L) // 5000000L""", () async {
+    test('''define "LongAbs": Abs(-5000000L) // 5000000L''', () async {
       final input = LiteralLong(BigInt.from(-5000000));
       final result = Abs(operand: input);
       expect(await result.execute(_ctx()), CqlLong.fromNum(5000000));
     });
-    test("""define "DecimalAbs": Abs(-5.5) // 5.5""", () async {
+    test('''define "DecimalAbs": Abs(-5.5) // 5.5''', () async {
       final input = LiteralDecimal(-5.5);
       final result = Abs(operand: input);
       expect(await result.execute(_ctx()), CqlDecimal(5.5));
@@ -31,22 +32,24 @@ void main() {
       final input = LiteralQuantity(LiteralDecimal(-5.5), unit: 'mg');
       final result = Abs(operand: input);
       expect(
-          await result.execute(_ctx()), ValidatedQuantity.fromString("5.5 'mg'"));
+        await result.execute(_ctx()),
+        ValidatedQuantity.fromString("5.5 'mg'"),
+      );
     });
   });
 
   group('Ceiling', () {
-    test("""define "IntegerCeiling": Ceiling(1) // 1""", () async {
+    test('''define "IntegerCeiling": Ceiling(1) // 1''', () async {
       final input = LiteralInteger(1);
       final result = Ceiling(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(1)));
     });
-    test("""define "DecimalCeiling": Ceiling(1.1) // 2""", () async {
+    test('''define "DecimalCeiling": Ceiling(1.1) // 2''', () async {
       final input = LiteralDecimal(1.1);
       final result = Ceiling(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(2)));
     });
-    test("""define "QuantityCeilingIsNull": Ceiling(null as Decimal)""",
+    test('''define "QuantityCeilingIsNull": Ceiling(null as Decimal)''',
         () async {
       final input = LiteralNull();
       final result = Ceiling(operand: input);
@@ -55,22 +58,22 @@ void main() {
   });
 
   group('floor', () {
-    test("""define "IntegerFloor": Floor(1) // 1""", () async {
+    test('''define "IntegerFloor": Floor(1) // 1''', () async {
       final input = LiteralInteger(1);
       final result = Floor(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(1)));
     });
-    test("""define "DecimalFloor": Floor(2.1) // 2""", () async {
+    test('''define "DecimalFloor": Floor(2.1) // 2''', () async {
       final input = LiteralDecimal(2.1);
       final result = Floor(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(2)));
     });
-    test("""define "DecimalFloor": Floor(-2.1) // -3""", () async {
+    test('''define "DecimalFloor": Floor(-2.1) // -3''', () async {
       final input = LiteralDecimal(-2.1);
       final result = Floor(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(-3)));
     });
-    test("""define "QuantityFloorIsNull": Floor(null as Decimal)""", () async {
+    test('''define "QuantityFloorIsNull": Floor(null as Decimal)''', () async {
       final input = LiteralNull();
       final result = Floor(operand: input);
       expect(await result.execute(_ctx()), equals(null));
@@ -78,23 +81,23 @@ void main() {
   });
 
   group('Truncate', () {
-    test("""define "IntegerTruncate": Truncate(101) // 101""", () async {
+    test('''define "IntegerTruncate": Truncate(101) // 101''', () async {
       final input = LiteralInteger(101);
       final result = Truncate(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(101)));
     });
-    test("""define "DecimalTruncate": Truncate(1.00000001) // 1""", () async {
+    test('''define "DecimalTruncate": Truncate(1.00000001) // 1''', () async {
       final input = LiteralDecimal(1.00000001);
       final result = Truncate(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(1)));
     });
-    test("""define "DecimalTruncate": Truncate(1987.00000871) // 1""",
+    test('''define "DecimalTruncate": Truncate(1987.00000871) // 1''',
         () async {
       final input = LiteralDecimal(1987.00000871);
       final result = Truncate(operand: input);
       expect(await result.execute(_ctx()), equals(CqlInteger(1987)));
     });
-    test("""define "TruncateIsNull": Truncate(null)""", () async {
+    test('''define "TruncateIsNull": Truncate(null)''', () async {
       final input = LiteralNull();
       final result = Truncate(operand: input);
       expect(await result.execute(_ctx()), equals(null));
@@ -102,17 +105,17 @@ void main() {
   });
 
   group('Negate', () {
-    test("""define "IntegerNegate": 3 // -3""", () async {
+    test('''define "IntegerNegate": 3 // -3''', () async {
       final input = LiteralInteger(3);
       final result = Negate(operand: input);
       expect(await result.execute(_ctx()), CqlInteger(-3));
     });
-    test("""define "LongNegate": 3L // -3L""", () async {
+    test('''define "LongNegate": 3L // -3L''', () async {
       final input = LiteralLong(BigInt.from(3));
       final result = Negate(operand: input);
       expect(await result.execute(_ctx()), CqlLong.fromNum(-3));
     });
-    test("""define "DecimalNegate": -(-3.3) // 3.3""", () async {
+    test('''define "DecimalNegate": -(-3.3) // 3.3''', () async {
       final input = LiteralDecimal(-3.3);
       final result = Negate(operand: input);
       expect(await result.execute(_ctx()), CqlDecimal(3.3));
@@ -121,9 +124,11 @@ void main() {
       final input = LiteralQuantity(LiteralDecimal(3.3), unit: 'mg');
       final result = Negate(operand: input);
       expect(
-          await result.execute(_ctx()), ValidatedQuantity.fromString("-3.3 'mg'"));
+        await result.execute(_ctx()),
+        ValidatedQuantity.fromString("-3.3 'mg'"),
+      );
     });
-    test("""define "NegateIsNull": -(null as Integer)""", () async {
+    test('''define "NegateIsNull": -(null as Integer)''', () async {
       final input =
           As(asType: QName.fromElmType('Integer'), operand: LiteralNull());
       final result = Negate(operand: input);
@@ -132,18 +137,18 @@ void main() {
   });
 
   group('Round', () {
-    test("""define "IntegerRound": Round(1) // 1""", () async {
+    test('''define "IntegerRound": Round(1) // 1''', () async {
       final input = LiteralDecimal(1);
       final result = Round(operand: input);
       expect(await result.execute(_ctx()), CqlDecimal(1));
     });
-    test("""define "DecimalRound": Round(3.14159, 3) // 3.142""", () async {
+    test('''define "DecimalRound": Round(3.14159, 3) // 3.142''', () async {
       final input = LiteralDecimal(3.14159);
       final precision = LiteralInteger(3);
       final result = Round(operand: input, precision: precision);
       expect(await result.execute(_ctx()), CqlDecimal(3.142));
     });
-    test("""define "RoundIsNull": Round(null)""", () async {
+    test('''define "RoundIsNull": Round(null)''', () async {
       final input = LiteralNull();
       final result = Round(operand: input);
       expect(await result.execute(_ctx()), isNull);
@@ -151,31 +156,33 @@ void main() {
   });
 
   group('Predecessor', () {
-    test("""define "IntegerPredecessor": predecessor of 100 // 99""", () async {
+    test('''define "IntegerPredecessor": predecessor of 100 // 99''', () async {
       final input = LiteralInteger(100);
       final output = Predecessor(operand: input);
       expect(await output.execute(_ctx()), equals(CqlInteger(99)));
     });
-    test("""define "LongPredecessor": predecessor of 100L // 99L""", () async {
+    test('''define "LongPredecessor": predecessor of 100L // 99L''', () async {
       final input = LiteralLong(BigInt.from(100));
       final output = Predecessor(operand: input);
       expect(await output.execute(_ctx()), equals(CqlLong.fromNum(99)));
     });
-    test("""define "DecimalPredecessor": predecessor of 1.0 // 0.99999999""",
+    test('''define "DecimalPredecessor": predecessor of 1.0 // 0.99999999''',
         () async {
       final input = LiteralDecimal(1.0);
       final output = Predecessor(operand: input);
       expect(await output.execute(_ctx()), equals(CqlDecimal(0.99999999)));
     });
     test(
-        """define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31""",
+        '''define "DatePredecessor": predecessor of @2014-01-01 // @2013-12-31''',
         () async {
       final input = LiteralDate('2014-01-01');
       final output = Predecessor(operand: input);
-      expect(await output.execute(_ctx()),
-          equals(CqlDate.fromString('2013-12-31')));
+      expect(
+        await output.execute(_ctx()),
+        equals(CqlDate.fromString('2013-12-31')),
+      );
     });
-    test("""define "PredecessorIsNull": predecessor of (null as Quantity)""",
+    test('''define "PredecessorIsNull": predecessor of (null as Quantity)''',
         () async {
       final input = As(resultTypeName: 'Quantity', operand: LiteralNull());
       final output = Predecessor(operand: input);
@@ -184,29 +191,29 @@ void main() {
   });
 
   group('Successor', () {
-    test("""define "IntegerSuccessor": successor of 100 // 101""", () async {
+    test('''define "IntegerSuccessor": successor of 100 // 101''', () async {
       final input = LiteralInteger(100);
       final result = Successor(operand: input);
       expect(await result.execute(_ctx()), CqlInteger(101));
     });
-    test("""define "LongSuccessor": successor of 100L // 101L""", () async {
+    test('''define "LongSuccessor": successor of 100L // 101L''', () async {
       final input = LiteralLong(BigInt.from(100));
       final result = Successor(operand: input);
       expect(await result.execute(_ctx()), CqlLong.fromNum(101));
     });
-    test("""define "DecimalSuccessor": successor of 1.0 // 1.00000001""",
+    test('''define "DecimalSuccessor": successor of 1.0 // 1.00000001''',
         () async {
       final input = LiteralDecimal(1.0);
       final result = Successor(operand: input);
       expect(await result.execute(_ctx()), CqlDecimal(1.00000001));
     });
-    test("""define "DateSuccessor": successor of @2014-01-01 // @2014-01-02""",
+    test('''define "DateSuccessor": successor of @2014-01-01 // @2014-01-02''',
         () async {
       final input = LiteralDate('2014-01-01');
       final result = Successor(operand: input);
       expect(await result.execute(_ctx()), CqlDate.fromString('2014-01-02'));
     });
-    test("""define "SuccessorIsNull": successor of (null as Quantity)""",
+    test('''define "SuccessorIsNull": successor of (null as Quantity)''',
         () async {
       final input = As(resultTypeName: 'Quantity', operand: LiteralNull());
       final result = Successor(operand: input);
@@ -215,55 +222,61 @@ void main() {
   });
 
   group('MinValue', () {
-    test("""define "IntegerMinimum": minimum Integer // -2147483648""",
+    test('''define "IntegerMinimum": minimum Integer // -2147483648''',
         () async {
-      final QName valueType = QName.parse('Integer');
-      final MinValue minValue = MinValue(valueType: valueType);
+      final valueType = QName.parse('Integer');
+      final minValue = MinValue(valueType: valueType);
       expect(await minValue.execute(_ctx()), equals(CqlInteger(-2147483648)));
     });
-    test("""define "LongMinimum": minimum Long // -9223372036854775808""",
+    test('''define "LongMinimum": minimum Long // -9223372036854775808''',
         () async {
-      final QName valueType = QName.parse('Long');
-      final MinValue minValue = MinValue(valueType: valueType);
-      expect(await minValue.execute(_ctx()),
-          equals(CqlLong.fromString('-9223372036854775808')));
+      final valueType = QName.parse('Long');
+      final minValue = MinValue(valueType: valueType);
+      expect(
+        await minValue.execute(_ctx()),
+        equals(CqlLong.fromString('-9223372036854775808')),
+      );
     });
     test(
-        """define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000""",
+        '''define "DateTimeMinimum": minimum DateTime // @0001-01-01T00:00:00.000''',
         () async {
-      final QName valueType = QName.parse('DateTime');
-      final MinValue minValue = MinValue(valueType: valueType);
+      final valueType = QName.parse('DateTime');
+      final minValue = MinValue(valueType: valueType);
       final minValueExecute = await minValue.execute(_ctx());
       print(
-          'minValueExecute: $minValueExecute (${minValueExecute.runtimeType})');
-      final fromString =
-          CqlDateTime.fromString('0001-01-01T00:00:00.000');
+        'minValueExecute: $minValueExecute (${minValueExecute.runtimeType})',
+      );
+      final fromString = CqlDateTime.fromString('0001-01-01T00:00:00.000');
       print('fromString: $fromString (${fromString.runtimeType})');
       expect(minValueExecute, equals(fromString));
     });
   });
 
   group('MaxValue', () {
-    test("""define "IntegerMaximum": maximum Integer // 2147483647""",
+    test('''define "IntegerMaximum": maximum Integer // 2147483647''',
         () async {
-      final QName valueType = QName.parse('Integer');
+      final valueType = QName.parse('Integer');
       final maxValue = MaxValue(valueType: valueType);
       expect(await maxValue.execute(_ctx()), equals(CqlInteger(2147483647)));
     });
-    test("""define "LongMaximum": maximum Long // 9223372036854775807""",
+    test('''define "LongMaximum": maximum Long // 9223372036854775807''',
         () async {
-      final QName valueType = QName.parse('Long');
+      final valueType = QName.parse('Long');
       final maxValue = MaxValue(valueType: valueType);
-      expect(await maxValue.execute(_ctx()),
-          equals(CqlLong.fromString('9223372036854775807')));
+      expect(
+        await maxValue.execute(_ctx()),
+        equals(CqlLong.fromString('9223372036854775807')),
+      );
     });
     test(
-        """define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999""",
+        '''define "DateTimeMaximum": maximum DateTime // @9999-12-31T23:59:59.999''',
         () async {
-      final QName valueType = QName.parse('DateTime');
+      final valueType = QName.parse('DateTime');
       final maxValue = MaxValue(valueType: valueType);
-      expect(await maxValue.execute(_ctx()),
-          equals(CqlDateTime.fromString('9999-12-31T23:59:59.999')));
+      expect(
+        await maxValue.execute(_ctx()),
+        equals(CqlDateTime.fromString('9999-12-31T23:59:59.999')),
+      );
     });
   });
 }

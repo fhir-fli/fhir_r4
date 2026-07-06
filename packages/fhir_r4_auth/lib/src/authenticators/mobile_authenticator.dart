@@ -5,11 +5,10 @@
 /// use WebAuthenticator which works on all platforms.
 library;
 
+import 'package:fhir_r4_auth/fhir_r4_auth.dart'
+    show PlatformAuthenticationException, SmartTokenResponse;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:logging/logging.dart';
-
-import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show SmartTokenResponse, PlatformAuthenticationException;
 
 /// Mobile authenticator for full OAuth flow using native AppAuth
 class MobileFullFlowAuthenticator {
@@ -76,7 +75,6 @@ class MobileFullFlowAuthenticator {
             scopes: scopes,
             additionalParameters: additionalParameters,
             allowInsecureConnections: allowInsecureConnections,
-            nonce: null,
           ),
         );
       } else {
@@ -93,7 +91,6 @@ class MobileFullFlowAuthenticator {
             scopes: scopes,
             additionalParameters: additionalParameters,
             allowInsecureConnections: allowInsecureConnections,
-            nonce: null,
           ),
         );
       }

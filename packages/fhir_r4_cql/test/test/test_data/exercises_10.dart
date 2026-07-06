@@ -30,7 +30,7 @@ final _smokingObs = <String, dynamic>{
         'code': '72166-2',
         'display': 'Tobacco smoking status',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/former-smoker'},
   'issued': '2020-01-15T10:00:00Z',
@@ -41,7 +41,7 @@ final _smokingObs = <String, dynamic>{
         'code': '8517006',
         'display': 'Former smoker',
       }
-    ]
+    ],
   },
   'effectivePeriod': {
     'start': '1980-01-01',
@@ -56,7 +56,7 @@ final _smokingObs = <String, dynamic>{
             'code': '8663-7',
             'display': 'packs per day',
           }
-        ]
+        ],
       },
       'valueQuantity': {
         'value': 1,
@@ -125,7 +125,7 @@ final context10 = <String, dynamic>{
 int _expectedAge() {
   final now = DateTime.now();
   // Born 1964-01-01
-  int age = now.year - 1964;
+  var age = now.year - 1964;
   if (now.month < 1 || (now.month == 1 && now.day < 1)) {
     age--;
   }
@@ -139,10 +139,10 @@ int _expectedAge() {
 // PacksPerDay * (DurationInDays / 365.25) = 1 * (12784 / 365.25) ≈ 34.99
 // Round(34.99) = 35
 int _expectedPackYears() {
-  final start = DateTime(1980, 1, 1);
-  final end = DateTime(2015, 1, 1);
+  final start = DateTime(1980);
+  final end = DateTime(2015);
   final days = end.difference(start).inDays;
-  final packYears = (1 * (days / 365.25));
+  final packYears = 1 * (days / 365.25);
   return packYears.round();
 }
 

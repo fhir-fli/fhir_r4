@@ -55,7 +55,7 @@ class TestTokens {
   static const refreshToken = 'sample_refresh_token_67890';
 
   /// Sample ID token
-  static final idToken = TestJwts.sampleJwt;
+  static final String idToken = TestJwts.sampleJwt;
 
   /// Sample token response JSON (without ID token for most tests)
   static Map<String, dynamic> get sampleTokenResponse => <String, dynamic>{

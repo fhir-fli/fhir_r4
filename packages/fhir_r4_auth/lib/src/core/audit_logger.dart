@@ -90,6 +90,27 @@ class AuditEvent {
   })  : eventId = eventId ?? const Uuid().v4(),
         timestamp = timestamp ?? DateTime.now();
 
+  /// Create from JSON
+  factory AuditEvent.fromJson(Map<String, dynamic> json) {
+    return AuditEvent(
+      eventId: json['eventId'] as String,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+      eventType: AuditEventType.values.byName(json['eventType'] as String),
+      severity: AuditSeverity.values.byName(json['severity'] as String),
+      message: json['message'] as String,
+      userId: json['userId'] as String?,
+      clientId: json['clientId'] as String?,
+      sessionId: json['sessionId'] as String?,
+      resourceType: json['resourceType'] as String?,
+      resourceId: json['resourceId'] as String?,
+      ipAddress: json['ipAddress'] as String?,
+      userAgent: json['userAgent'] as String?,
+      outcome: json['outcome'] != null ? json['outcome'] == 'success' : null,
+      errorCode: json['errorCode'] as String?,
+      details: json['details'] as Map<String, dynamic>? ?? <String, dynamic>{},
+    );
+  }
+
   /// Unique identifier for this event
   final String eventId;
 
@@ -154,27 +175,6 @@ class AuditEvent {
       if (errorCode != null) 'errorCode': errorCode,
       if (details.isNotEmpty) 'details': details,
     };
-  }
-
-  /// Create from JSON
-  factory AuditEvent.fromJson(Map<String, dynamic> json) {
-    return AuditEvent(
-      eventId: json['eventId'] as String,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-      eventType: AuditEventType.values.byName(json['eventType'] as String),
-      severity: AuditSeverity.values.byName(json['severity'] as String),
-      message: json['message'] as String,
-      userId: json['userId'] as String?,
-      clientId: json['clientId'] as String?,
-      sessionId: json['sessionId'] as String?,
-      resourceType: json['resourceType'] as String?,
-      resourceId: json['resourceId'] as String?,
-      ipAddress: json['ipAddress'] as String?,
-      userAgent: json['userAgent'] as String?,
-      outcome: json['outcome'] != null ? json['outcome'] == 'success' : null,
-      errorCode: json['errorCode'] as String?,
-      details: json['details'] as Map<String, dynamic>? ?? <String, dynamic>{},
-    );
   }
 
   @override
@@ -310,15 +310,17 @@ class AuditLogger {
     required String userId,
     String? ipAddress,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.authenticationAttempt,
-      severity: AuditSeverity.info,
-      message: 'User authentication attempt',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      ipAddress: ipAddress,
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.authenticationAttempt,
+        severity: AuditSeverity.info,
+        message: 'User authentication attempt',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        ipAddress: ipAddress,
+      ),
+    );
   }
 
   /// Log successful authentication
@@ -327,17 +329,19 @@ class AuditLogger {
     String? ipAddress,
     Map<String, dynamic>? details,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.authenticationSuccess,
-      severity: AuditSeverity.info,
-      message: 'User authenticated successfully',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      ipAddress: ipAddress,
-      outcome: true,
-      details: details ?? <String, dynamic>{},
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.authenticationSuccess,
+        severity: AuditSeverity.info,
+        message: 'User authenticated successfully',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        ipAddress: ipAddress,
+        outcome: true,
+        details: details ?? <String, dynamic>{},
+      ),
+    );
   }
 
   /// Log authentication failure
@@ -347,18 +351,20 @@ class AuditLogger {
     String? errorCode,
     String? ipAddress,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.authenticationFailure,
-      severity: AuditSeverity.warning,
-      message: 'Authentication failed: $reason',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      ipAddress: ipAddress,
-      outcome: false,
-      errorCode: errorCode,
-      details: <String, dynamic>{'reason': reason},
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.authenticationFailure,
+        severity: AuditSeverity.warning,
+        message: 'Authentication failed: $reason',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        ipAddress: ipAddress,
+        outcome: false,
+        errorCode: errorCode,
+        details: <String, dynamic>{'reason': reason},
+      ),
+    );
   }
 
   /// Log security violation
@@ -368,17 +374,19 @@ class AuditLogger {
     String? userId,
     String? ipAddress,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.securityViolation,
-      severity: AuditSeverity.critical,
-      message: 'Security violation detected: $violation',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      ipAddress: ipAddress,
-      outcome: false,
-      details: <String, dynamic>{'violation': violation, 'details': details},
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.securityViolation,
+        severity: AuditSeverity.critical,
+        message: 'Security violation detected: $violation',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        ipAddress: ipAddress,
+        outcome: false,
+        details: <String, dynamic>{'violation': violation, 'details': details},
+      ),
+    );
   }
 
   /// Log token issued
@@ -386,29 +394,33 @@ class AuditLogger {
     String? userId,
     required List<String> scopes,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.tokenIssued,
-      severity: AuditSeverity.info,
-      message: 'Access token issued',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      outcome: true,
-      details: <String, dynamic>{'scopes': scopes},
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.tokenIssued,
+        severity: AuditSeverity.info,
+        message: 'Access token issued',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        outcome: true,
+        details: <String, dynamic>{'scopes': scopes},
+      ),
+    );
   }
 
   /// Log token refreshed
   Future<void> logTokenRefreshed({String? userId}) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.tokenRefreshed,
-      severity: AuditSeverity.info,
-      message: 'Access token refreshed',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      outcome: true,
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.tokenRefreshed,
+        severity: AuditSeverity.info,
+        message: 'Access token refreshed',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        outcome: true,
+      ),
+    );
   }
 
   /// Log resource access
@@ -418,18 +430,20 @@ class AuditLogger {
     required String operation,
     String? userId,
   }) async {
-    await logEvent(AuditEvent(
-      eventType: AuditEventType.resourceAccessed,
-      severity: AuditSeverity.info,
-      message: 'Resource accessed: $operation $resourceType/$resourceId',
-      userId: userId,
-      clientId: clientId,
-      sessionId: sessionId,
-      resourceType: resourceType,
-      resourceId: resourceId,
-      outcome: true,
-      details: <String, dynamic>{'operation': operation},
-    ));
+    await logEvent(
+      AuditEvent(
+        eventType: AuditEventType.resourceAccessed,
+        severity: AuditSeverity.info,
+        message: 'Resource accessed: $operation $resourceType/$resourceId',
+        userId: userId,
+        clientId: clientId,
+        sessionId: sessionId,
+        resourceType: resourceType,
+        resourceId: resourceId,
+        outcome: true,
+        details: <String, dynamic>{'operation': operation},
+      ),
+    );
   }
 
   /// Convert severity to log level

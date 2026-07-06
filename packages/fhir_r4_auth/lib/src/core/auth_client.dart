@@ -6,11 +6,11 @@ import 'package:fhir_r4/fhir_r4.dart' show FhirUri;
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show
         AuthConfig,
-        SmartTokenResponse,
-        TokenStorage,
-        SecureTokenStorage,
         AuthState,
         HttpHeaders,
+        SecureTokenStorage,
+        SmartTokenResponse,
+        TokenStorage,
         UserAgent;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -226,8 +226,7 @@ abstract class FhirAuthClient extends http.BaseClient {
 
   /// Get stored tokens
   Future<SmartTokenResponse?> getStoredTokens() async {
-    _currentTokens ??= await tokenStorage.loadTokens();
-    return _currentTokens;
+    return _currentTokens ??= await tokenStorage.loadTokens();
   }
 
   /// Get patient context if available

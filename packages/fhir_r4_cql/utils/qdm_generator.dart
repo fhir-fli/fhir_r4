@@ -4,15 +4,15 @@ import 'package:path/path.dart' as path;
 import 'package:xml/xml.dart';
 
 Future<void> main(List<String> args) async {
-  final Directory dir = Directory('../../xsd');
-  final List<FileSystemEntity> files = dir.listSync();
+  final dir = Directory('../../xsd');
+  final files = dir.listSync();
   for (final file in files) {
     if (file.path.endsWith('.xsd') && !file.path.endsWith('types.xsd')) {
       dirName =
           file.path.split('/').last.replaceAll('.xsd', '').replaceAll('.', '_');
       final generationDir = await Directory('../../xsd/$dirName').create();
       await generateClasses(file.path);
-      String fileNameString = '';
+      var fileNameString = '';
       fileNames.sort((a, b) => a.compareTo(b));
       for (final fileName in fileNames) {
         fileNameString += "export '$fileName.dart';\n";
@@ -22,8 +22,8 @@ Future<void> main(List<String> args) async {
       final generatedFiles = generationDir.listSync();
       for (final generatedFile in generatedFiles) {
         if (generatedFile.path.endsWith('.dart')) {
-          String generatedCode = await File(generatedFile.path).readAsString();
-          bool contains = false;
+          var generatedCode = await File(generatedFile.path).readAsString();
+          var contains = false;
           for (final className in generatedClasses.keys) {
             if (generatedCode.contains(className) &&
                 !generatedCode.contains('class $className')) {
@@ -44,7 +44,7 @@ Future<void> main(List<String> args) async {
 }
 
 String dirName = '';
-final generatedClasses = {}; // Tracks written classes
+final Map<dynamic, dynamic> generatedClasses = {}; // Tracks written classes
 final fileNames = <String>[];
 final classAnnotations = <String>[];
 
@@ -83,7 +83,7 @@ List<Field> _extractFields(XmlElement element) {
         .where((element) => element.name.toString() == 'xs:documentation');
     if (documentation.isNotEmpty) {
       final documentationText = documentation.first.nodes.first.toString();
-      List<String> documentationLines = documentationText.split('\n');
+      var documentationLines = documentationText.split('\n');
       documentationLines = documentationLines.map((e) => '/// $e').toList();
       classAnnotations.addAll(documentationLines);
     }
@@ -95,8 +95,13 @@ List<Field> _extractFields(XmlElement element) {
     final elementType = childElement.getAttribute('type');
     if (elementType != null && elementName != null) {
       // Extract and format annotations for comments
-      fields.add(Field(elementName.toString(), _getDartType(elementType),
-          isOptional(childElement)));
+      fields.add(
+        Field(
+          elementName,
+          _getDartType(elementType),
+          isOptional(childElement),
+        ),
+      );
     }
 
     // Handle nested elements recursively
@@ -125,7 +130,8 @@ String _generateClass(String className, List<Field> fields) {
   buffer.writeln('class $className {');
   for (final field in fields) {
     buffer.writeln(
-        '  final ${field.type}${field.isNullable && field.type != "dynamic" ? "?" : ""} ${field.name};');
+      '  final ${field.type}${field.isNullable && field.type != "dynamic" ? "?" : ""} ${field.name};',
+    );
   }
   if (fields.isNotEmpty) {
     buffer.writeln('\n  $className({');
@@ -143,8 +149,9 @@ String _generateClass(String className, List<Field> fields) {
 
 void _writeClassToFile(String schemaPath, String className, String code) {
   final fileName = path.join(
-      path.dirname(schemaPath).replaceAll('xsd', 'xsd/$dirName'),
-      '${className.snakeCase}.dart');
+    path.dirname(schemaPath).replaceAll('xsd', 'xsd/$dirName'),
+    '${className.snakeCase}.dart',
+  );
   if (!generatedClasses.containsKey(className)) {
     fileNames.add(className.snakeCase.replaceFirst('_', ''));
     generatedClasses[className] = true;
@@ -224,12 +231,11 @@ String _getDartType(String xsdType) {
 }
 
 class Field {
+  Field(String name, this.type, this.isNullable)
+      : name = reservedWords(name[0].toLowerCase() + name.substring(1));
   final bool isNullable;
   final String name;
   final String type;
-
-  Field(String name, this.type, this.isNullable)
-      : name = reservedWords(name[0].toLowerCase() + name.substring(1));
 }
 
 const theseAreReserved = <String>['class'];
@@ -244,5 +250,7 @@ String reservedWords(String string) {
 
 extension SnakeCase on String {
   String get snakeCase => replaceAllMapped(
-      RegExp(r'[A-Z]'), (match) => '_${match.group(0)?.toLowerCase()}');
+        RegExp('[A-Z]'),
+        (match) => '_${match.group(0)?.toLowerCase()}',
+      );
 }

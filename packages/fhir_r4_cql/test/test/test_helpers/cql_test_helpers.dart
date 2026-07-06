@@ -7,10 +7,9 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 class CqlParsersAndErrors {
+  CqlParsersAndErrors(this.parser, this.errorListener);
   final ElmErrorListener errorListener;
   final cqlParser parser;
-
-  CqlParsersAndErrors(this.parser, this.errorListener);
 }
 
 CqlParsersAndErrors parseCql(String pathExpression) {
@@ -33,8 +32,10 @@ Map<String, dynamic> loadJsonFile(String filename) {
   return jsonDecode(content) as Map<String, dynamic>;
 }
 
-CqlLibrary parseAndBuildLibrary(String cqlSource,
-    {LibraryManager? libraryManager}) {
+CqlLibrary parseAndBuildLibrary(
+  String cqlSource, {
+  LibraryManager? libraryManager,
+}) {
   final parserAndErrors = parseCql(cqlSource);
   final parser = parserAndErrors.parser;
 

@@ -35,27 +35,34 @@ void main() {
 
     for (final name in defineNames) {
       final skipReason = _knownFailures[name];
-      test('$name should throw at runtime', () async {
-        final context = <String, dynamic>{
-          'startTimestamp':
-              CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
-        };
-        final results =
-            (await library.execute(context, const R4ModelResolver())) as Map<String, dynamic>;
+      test(
+        '$name should throw at runtime',
+        () async {
+          final context = <String, dynamic>{
+            'startTimestamp':
+                CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+          };
+          final results = (await library.execute(
+            context,
+            const R4ModelResolver(),
+          )) as Map<String, dynamic>;
 
-        // The define should either throw during execution or produce
-        // a CqlException/error value. Since we execute the whole library,
-        // check that the result is an error or null.
-        final result = results[name];
+          // The define should either throw during execution or produce
+          // a CqlException/error value. Since we execute the whole library,
+          // check that the result is an error or null.
+          final result = results[name];
 
-        // For error suite, we accept: threw during whole-library execution
-        // (caught above), or produced null/error result
-        expect(
-          result == null || result is Exception || result is Error,
-          isTrue,
-          reason: '$name should error but got: $result (${result.runtimeType})',
-        );
-      }, skip: skipReason);
+          // For error suite, we accept: threw during whole-library execution
+          // (caught above), or produced null/error result
+          expect(
+            result == null || result is Exception || result is Error,
+            isTrue,
+            reason:
+                '$name should error but got: $result (${result.runtimeType})',
+          );
+        },
+        skip: skipReason,
+      );
     }
   });
 }

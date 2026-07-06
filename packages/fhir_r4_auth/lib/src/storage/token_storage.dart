@@ -3,7 +3,7 @@ library;
 
 import 'dart:convert';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show SmartTokenResponse, AuthState, StorageKeys, StorageException;
+    show AuthState, SmartTokenResponse, StorageException, StorageKeys;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logging/logging.dart';
 
@@ -44,7 +44,7 @@ class SecureTokenStorage implements TokenStorage {
   /// Android-specific options for secure storage
   /// Note: encryptedSharedPreferences is deprecated in flutter_secure_storage v10+
   /// Data is automatically migrated to custom ciphers
-  static const AndroidOptions _androidOptions = AndroidOptions();
+  static const AndroidOptions _androidOptions = AndroidOptions.defaultOptions;
 
   /// iOS-specific options for secure storage
   static const IOSOptions _iosOptions = IOSOptions(

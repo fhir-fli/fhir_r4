@@ -122,8 +122,10 @@ void main() {
         );
 
         // Should use enum, not reveal internal details
-        expect(error.securityViolationType,
-            equals(SecurityViolationType.stateMismatch));
+        expect(
+          error.securityViolationType,
+          equals(SecurityViolationType.stateMismatch),
+        );
       });
 
       test('storage exceptions do not reveal file paths', () {
@@ -136,7 +138,7 @@ void main() {
 
         // Should not contain file system paths
         expect(errorMessage, isNot(contains('/data/')));
-        expect(errorMessage, isNot(contains('C:\\')));
+        expect(errorMessage, isNot(contains(r'C:\')));
         expect(errorMessage, isNot(contains('/Users/')));
       });
     });
@@ -398,12 +400,18 @@ void main() {
           securityViolationType: SecurityViolationType.nonceMismatch,
         );
 
-        expect(csrfError.securityViolationType,
-            equals(SecurityViolationType.stateMismatch));
-        expect(replayError.securityViolationType,
-            equals(SecurityViolationType.nonceMismatch));
-        expect(csrfError.securityViolationType,
-            isNot(equals(replayError.securityViolationType)));
+        expect(
+          csrfError.securityViolationType,
+          equals(SecurityViolationType.stateMismatch),
+        );
+        expect(
+          replayError.securityViolationType,
+          equals(SecurityViolationType.nonceMismatch),
+        );
+        expect(
+          csrfError.securityViolationType,
+          isNot(equals(replayError.securityViolationType)),
+        );
       });
     });
   });

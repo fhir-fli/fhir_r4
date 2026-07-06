@@ -24,6 +24,26 @@ abstract class Authenticator {
 
 /// Result of an authentication attempt
 class AuthenticationResult {
+  /// Create from response URL
+  factory AuthenticationResult.fromResponseUrl(Uri responseUrl) {
+    final params = responseUrl.queryParameters;
+
+    if (params.containsKey('error')) {
+      return AuthenticationResult.error(
+        error: params['error'],
+        errorDescription: params['error_description'],
+      );
+    }
+
+    return AuthenticationResult.success(
+      responseUrl: responseUrl,
+      code: params['code'],
+      state: params['state'],
+      additionalParameters: Map.from(params)
+        ..remove('code')
+        ..remove('state'),
+    );
+  }
   const AuthenticationResult.success({
     required this.responseUrl,
     this.code,
@@ -88,27 +108,6 @@ class AuthenticationResult {
     params.addAll(additionalParameters);
 
     return params;
-  }
-
-  /// Create from response URL
-  factory AuthenticationResult.fromResponseUrl(Uri responseUrl) {
-    final params = responseUrl.queryParameters;
-
-    if (params.containsKey('error')) {
-      return AuthenticationResult.error(
-        error: params['error']!,
-        errorDescription: params['error_description'],
-      );
-    }
-
-    return AuthenticationResult.success(
-      responseUrl: responseUrl,
-      code: params['code'],
-      state: params['state'],
-      additionalParameters: Map.from(params)
-        ..remove('code')
-        ..remove('state'),
-    );
   }
 }
 

@@ -53,9 +53,8 @@ class CdsResponseBuilder {
   CdsResponse build() {
     return CdsResponse(
       cards: List.unmodifiable(_cards),
-      systemActions: _systemActions.isEmpty
-          ? null
-          : List.unmodifiable(_systemActions),
+      systemActions:
+          _systemActions.isEmpty ? null : List.unmodifiable(_systemActions),
     );
   }
 

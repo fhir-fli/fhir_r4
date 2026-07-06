@@ -116,9 +116,12 @@ void _createTest(XmlElement testElement) {
 
     // Handle expected null
     if (expectedOutput == null || expectedOutput == 'null') {
-      expect(actual, isNull,
-          reason: 'Expression: $expression\n'
-              'Expected null but got: $actual (${actual.runtimeType})');
+      expect(
+        actual,
+        isNull,
+        reason: 'Expression: $expression\n'
+            'Expected null but got: $actual (${actual.runtimeType})',
+      );
       return;
     }
 
@@ -176,8 +179,7 @@ Future<dynamic> _parseExpectedOutput(String output) async {
 
   // Long: -?digits followed by L
   if (RegExp(r'^-?\d+L$').hasMatch(output)) {
-    return CqlLong(
-        BigInt.parse(output.substring(0, output.length - 1)));
+    return CqlLong(BigInt.parse(output.substring(0, output.length - 1)));
   }
 
   // Integer: -?digits
@@ -218,7 +220,7 @@ Future<dynamic> _parseExpectedOutput(String output) async {
 String _unescapeCqlString(String s) {
   final buf = StringBuffer();
   for (var i = 0; i < s.length; i++) {
-    if (s[i] == '\\' && i + 1 < s.length) {
+    if (s[i] == r'\' && i + 1 < s.length) {
       final next = s[i + 1];
       switch (next) {
         case "'":
@@ -236,8 +238,8 @@ String _unescapeCqlString(String s) {
         case 't':
           buf.write('\t');
           i++;
-        case '\\':
-          buf.write('\\');
+        case r'\':
+          buf.write(r'\');
           i++;
         case 'u':
           if (i + 5 < s.length) {
@@ -247,13 +249,13 @@ String _unescapeCqlString(String s) {
               buf.write(String.fromCharCode(code));
               i += 5;
             } else {
-              buf.write('\\');
+              buf.write(r'\');
             }
           } else {
-            buf.write('\\');
+            buf.write(r'\');
           }
         default:
-          buf.write('\\');
+          buf.write(r'\');
       }
     } else {
       buf.write(s[i]);

@@ -1,11 +1,11 @@
 /// Helper functions for integration tests
 library;
 
-import 'package:http/http.dart' as http;
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+
 import '../../test_helpers/test_data.dart';
 
 /// Helper class for creating test clients
@@ -31,9 +31,6 @@ class IntegrationTestHelpers {
               'openid',
               'fhirUser',
             ],
-        launchType: LaunchType.standalone,
-        enablePkce: true,
-        enableOpenId: true,
         offlineAccess: true,
       ),
     );
@@ -63,8 +60,6 @@ class IntegrationTestHelpers {
             ],
         launchType: LaunchType.ehr,
         launchToken: launchToken,
-        enablePkce: true,
-        enableOpenId: true,
         offlineAccess: true,
       ),
     );
@@ -91,9 +86,6 @@ class IntegrationTestHelpers {
               'openid',
               'fhirUser',
             ],
-        launchType: LaunchType.standalone,
-        enablePkce: true,
-        enableOpenId: true,
         offlineAccess: true,
       ),
     );
@@ -123,8 +115,6 @@ class IntegrationTestHelpers {
             ],
         launchType: LaunchType.ehr,
         launchToken: launchToken,
-        enablePkce: true,
-        enableOpenId: true,
         offlineAccess: true,
       ),
     );
@@ -158,7 +148,8 @@ class IntegrationTestHelpers {
 
   /// Verify that authentication was successful
   static Future<void> verifyAuthenticationSuccess(
-      SmartFhirClient client) async {
+    SmartFhirClient client,
+  ) async {
     final isAuth = await client.isAuthenticated();
     expect(isAuth, isTrue, reason: 'Client should be authenticated');
     final accessToken = await client.getAccessToken();
@@ -168,10 +159,16 @@ class IntegrationTestHelpers {
 
   /// Verify patient context
   static void verifyPatientContext(SmartFhirClient client) {
-    expect(client.patientContext, isNotNull,
-        reason: 'Patient context should be present');
-    expect(client.patientContext, isNotEmpty,
-        reason: 'Patient context should not be empty');
+    expect(
+      client.patientContext,
+      isNotNull,
+      reason: 'Patient context should be present',
+    );
+    expect(
+      client.patientContext,
+      isNotEmpty,
+      reason: 'Patient context should not be empty',
+    );
   }
 
   /// Verify practitioner context
@@ -203,8 +200,11 @@ class IntegrationTestHelpers {
   /// Verify server capabilities discovery
   static Future<void> verifyServerCapabilities(SmartFhirClient client) async {
     final capabilities = await client.getServerCapabilities();
-    expect(capabilities, isNotEmpty,
-        reason: 'Should discover server capabilities');
+    expect(
+      capabilities,
+      isNotEmpty,
+      reason: 'Should discover server capabilities',
+    );
   }
 
   /// Clean up test client

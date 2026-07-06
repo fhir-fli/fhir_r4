@@ -28,12 +28,18 @@ void main() {
 
     test('creates with required parameters', () {
       expect(oauthFlow.clientId, equals('test-client'));
-      expect(oauthFlow.authorizationEndpoint.toString(),
-          equals('https://example.com/authorize'));
-      expect(oauthFlow.tokenEndpoint.toString(),
-          equals('https://example.com/token'));
-      expect(oauthFlow.redirectUri.toString(),
-          equals('https://app.example.com/callback'));
+      expect(
+        oauthFlow.authorizationEndpoint.toString(),
+        equals('https://example.com/authorize'),
+      );
+      expect(
+        oauthFlow.tokenEndpoint.toString(),
+        equals('https://example.com/token'),
+      );
+      expect(
+        oauthFlow.redirectUri.toString(),
+        equals('https://app.example.com/callback'),
+      );
     });
 
     test('builds authorization URL', () {
@@ -41,10 +47,14 @@ void main() {
 
       expect(url.queryParameters['response_type'], equals('code'));
       expect(url.queryParameters['client_id'], equals('test-client'));
-      expect(url.queryParameters['redirect_uri'],
-          equals('https://app.example.com/callback'));
-      expect(url.queryParameters['scope'],
-          equals('patient/*.read user/Practitioner.read'));
+      expect(
+        url.queryParameters['redirect_uri'],
+        equals('https://app.example.com/callback'),
+      );
+      expect(
+        url.queryParameters['scope'],
+        equals('patient/*.read user/Practitioner.read'),
+      );
       expect(url.queryParameters['state'], isNotEmpty);
       expect(url.queryParameters['code_challenge'], isNotEmpty);
       expect(url.queryParameters['code_challenge_method'], equals('S256'));
@@ -159,7 +169,7 @@ void main() {
     });
 
     test('exchanges code for token with rate limiting', () async {
-      int callCount = 0;
+      var callCount = 0;
 
       final mockClient = MockClient((request) async {
         callCount++;
@@ -238,7 +248,6 @@ void main() {
         tokenEndpoint: Uri.parse('https://example.com/token'),
         redirectUri: Uri.parse('https://app.example.com/callback'),
         clientSecret: 'secret123',
-        useBasicAuth: true,
         httpClient: mockClient,
       );
 
@@ -306,8 +315,10 @@ void main() {
     test('refresh token includes scopes', () async {
       final mockClient = MockClient((request) async {
         final body = request.body;
-        expect(body,
-            contains('scope=patient%2F%2A.read+user%2FPractitioner.read'));
+        expect(
+          body,
+          contains('scope=patient%2F%2A.read+user%2FPractitioner.read'),
+        );
 
         return http.Response(
           jsonEncode(TestTokens.sampleTokenResponse),
@@ -350,7 +361,6 @@ void main() {
       await flow.revokeToken(
         'token_to_revoke',
         revocationEndpoint: Uri.parse('https://example.com/revoke'),
-        tokenTypeHint: 'refresh_token',
       );
 
       flow.dispose();

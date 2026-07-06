@@ -1,7 +1,7 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:ucum/ucum.dart';
 
-final exercises02 = {
+final Map<String, Object?> exercises02 = {
   'Boolean True': CqlBoolean(true),
   'Boolean False': CqlBoolean(false),
   'Boolean Not': CqlBoolean(true),
@@ -41,26 +41,25 @@ final exercises02 = {
   'Now Function': CqlDateTime.fromDateTime(DateTime.now()),
   'Today Function':
       CqlDate.fromString(DateTime.now().toIso8601String().substring(0, 10)),
-  'TimeOfDay Function':
-      CqlTime(DateTime.now().toIso8601String().substring(11)),
+  'TimeOfDay Function': CqlTime(DateTime.now().toIso8601String().substring(11)),
   'Simple Info': <String, dynamic>{
-    "name": 'Patrick',
-    "dob": CqlDate.fromString('2014-01-01')
+    'name': 'Patrick',
+    'dob': CqlDate.fromString('2014-01-01'),
   },
   'Nested Info': <String, dynamic>{
-    "name": 'Patrick',
-    "dob": CqlDate.fromString('2014-01-01'),
-    "address": {
-      "line1": '41 Spinning Ave',
-      "city": 'Dayton',
-      "state": 'OH',
+    'name': 'Patrick',
+    'dob': CqlDate.fromString('2014-01-01'),
+    'address': {
+      'line1': '41 Spinning Ave',
+      'city': 'Dayton',
+      'state': 'OH',
     },
-    "phones": [
+    'phones': [
       {
-        "number": '202-413-1234',
-        "use": 'home',
+        'number': '202-413-1234',
+        'use': 'home',
       }
-    ]
+    ],
   },
   'Null Comparison': null,
   'Null Arithmetic': null,

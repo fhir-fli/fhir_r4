@@ -2,8 +2,8 @@ name: fhir_r4_auth
 description: Secure authentication and authorization package for FHIR R4 applications implementing SMART on FHIR
 version: 0.5.1
 homepage: https://www.fhirfli.dev/
-repository: https://github.com/fhirfli/fhir_r4_auth
-issue_tracker: https://github.com/fhirfli/fhir_r4_auth/issues
+repository: https://github.com/fhir-fli/fhir_r4
+issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
 documentation: https://pub.dev/documentation/fhir_r4_auth/latest/
 
 topics:
@@ -14,53 +14,35 @@ topics:
   - oauth2
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ^3.5.0
   flutter: ">=3.10.0"
 
 dependencies:
-  # Core
+  crypto: ^3.0.7                 # PKCE and crypto operations
+  dart_jsonwebtoken: ^3.3.1     # JWT validation and parsing
+  fhir_r4: ^0.5.0
   flutter:
     sdk: flutter
-  http: ^1.6.0
-  
-  # FHIR
-  fhir_r4: ^0.5.0
-  
-  # Security & Storage
-  flutter_secure_storage: ^10.0.0
-  dart_jsonwebtoken: ^3.3.1     # JWT validation and parsing
-  crypto: ^3.0.7                 # PKCE and crypto operations
-  jose: ^0.3.5                     # JWT/JWK/JOSE implementation
-  
-  # OAuth & Authentication
   flutter_appauth: ^11.0.0         # Native OAuth for mobile
+  flutter_secure_storage: ^10.0.0
   flutter_web_auth_2: ^4.1.0       # Web authentication fallback
-  url_launcher: ^6.3.2             # Launching auth URLs
-  
-  # Utilities
+  http: ^1.6.0
+  jose: ^0.3.5                     # JWT/JWK/JOSE implementation
   logging: ^1.3.0                  # Audit logging
+  url_launcher: ^6.3.2             # Launching auth URLs
   uuid: ^4.5.2                     # Generate state/nonce
-
 dev_dependencies:
-  # Testing
+  build_runner: ^2.10.4
+  fake_async: ^1.3.3
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  test: ^1.26.3
-  mockito: ^5.6.1
-  fake_async: ^1.3.3
-  
-  # Code generation for tests only
-  build_runner: ^2.10.4
-  
-  # Linting
-  flutter_lints: ^6.0.0
-  very_good_analysis: ^10.0.0
-  
-  # Testing utilities
   http_mock_adapter: ^0.6.1
   integration_test:
     sdk: flutter
-
+  mockito: ^5.6.1
+  test: ^1.26.3
+  very_good_analysis: ^10.0.0
 false_secrets:
   - standalone_demo/lib/main.dart
   - ehr_launch_demo/lib/main.dart

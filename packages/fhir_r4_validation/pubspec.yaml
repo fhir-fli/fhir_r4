@@ -1,8 +1,17 @@
 name: fhir_r4_validation
-description: Utility Library that Peforms Validation and Mapping Functionality.
+description: >-
+  StructureDefinition-driven validation for FHIR R4 resources: structure,
+  cardinality, value set bindings, and invariants.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
+
+topics:
+  - fhir
+  - hl7
+  - healthcare
+  - validation
+  - interoperability
 
 # This package supports all platforms listed below.
 platforms:
@@ -23,4 +32,5 @@ dependencies:
   http: ^1.6.0
 
 dev_dependencies:
+  very_good_analysis: ^10.0.0
   test: ^1.29.0

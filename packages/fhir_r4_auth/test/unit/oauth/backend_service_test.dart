@@ -226,7 +226,7 @@ void main() {
     });
 
     test('respects rate limiting', () async {
-      int callCount = 0;
+      var callCount = 0;
 
       final mockClient = MockClient((request) async {
         callCount++;

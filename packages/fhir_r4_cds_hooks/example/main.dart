@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, unused_local_variable
+// ignore_for_file: avoid_print
 import 'package:fhir_r4_cds_hooks/fhir_r4_cds_hooks.dart';
 
 void main() async {

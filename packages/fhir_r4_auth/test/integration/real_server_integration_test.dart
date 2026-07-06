@@ -51,25 +51,18 @@ void main() {
   }
 
   group('Real Server Integration Tests', () {
-    group('Patient Context - Standalone Launch', () {
-      _testPatientStandaloneLaunch();
-    });
+    group('Patient Context - Standalone Launch', _testPatientStandaloneLaunch);
 
-    group('Patient Context - EHR Launch', () {
-      _testPatientEhrLaunch();
-    });
+    group('Patient Context - EHR Launch', _testPatientEhrLaunch);
 
-    group('Practitioner Context - Standalone Launch', () {
-      _testPractitionerStandaloneLaunch();
-    });
+    group(
+      'Practitioner Context - Standalone Launch',
+      _testPractitionerStandaloneLaunch,
+    );
 
-    group('Practitioner Context - EHR Launch', () {
-      _testPractitionerEhrLaunch();
-    });
+    group('Practitioner Context - EHR Launch', _testPractitionerEhrLaunch);
 
-    group('System/Backend Service Launch', () {
-      _testBackendServiceLaunch();
-    });
+    group('System/Backend Service Launch', _testBackendServiceLaunch);
   });
 }
 
@@ -98,20 +91,32 @@ void _testPatientStandaloneLaunch() {
 
         // Verify authentication
         final isAuth = await client.isAuthenticated();
-        expect(isAuth, isTrue,
-            reason: 'Client should be authenticated after login');
+        expect(
+          isAuth,
+          isTrue,
+          reason: 'Client should be authenticated after login',
+        );
 
         // Verify patient context
         final patientContext = client.patientContext;
-        expect(patientContext, isNotNull,
-            reason: 'Patient context should be present');
-        expect(patientContext, isNotEmpty,
-            reason: 'Patient context should not be empty');
+        expect(
+          patientContext,
+          isNotNull,
+          reason: 'Patient context should be present',
+        );
+        expect(
+          patientContext,
+          isNotEmpty,
+          reason: 'Patient context should not be empty',
+        );
 
         // Verify access token
         final accessToken = await client.getAccessToken();
-        expect(accessToken, isNotNull,
-            reason: 'Access token should be present');
+        expect(
+          accessToken,
+          isNotNull,
+          reason: 'Access token should be present',
+        );
 
         // Test token refresh if refresh token is available
         final tokens = await client.tokenStorage.loadTokens();

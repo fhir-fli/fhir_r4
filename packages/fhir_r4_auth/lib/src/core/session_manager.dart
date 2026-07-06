@@ -4,7 +4,7 @@ library;
 
 import 'dart:async';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show AuditEventType, AuditLogger, AuditSeverity, TokenStorage, AuditEvent;
+    show AuditEvent, AuditEventType, AuditLogger, AuditSeverity, TokenStorage;
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
@@ -18,18 +18,6 @@ class SessionConfig {
     this.checkInterval = const Duration(minutes: 1),
   });
 
-  /// Maximum idle time before automatic logout
-  final Duration idleTimeout;
-
-  /// Absolute maximum session duration
-  final Duration absoluteTimeout;
-
-  /// Time before timeout to warn user
-  final Duration warningBeforeTimeout;
-
-  /// How often to check for timeouts
-  final Duration checkInterval;
-
   /// Create a config for high-security environments (healthcare)
   factory SessionConfig.highSecurity() {
     return const SessionConfig(
@@ -42,12 +30,7 @@ class SessionConfig {
 
   /// Create a config for standard security
   factory SessionConfig.standard() {
-    return const SessionConfig(
-      idleTimeout: Duration(minutes: 30),
-      absoluteTimeout: Duration(hours: 8),
-      warningBeforeTimeout: Duration(minutes: 5),
-      checkInterval: Duration(minutes: 1),
-    );
+    return const SessionConfig();
   }
 
   /// Create a config for low-security (development/testing)
@@ -59,6 +42,18 @@ class SessionConfig {
       checkInterval: Duration(minutes: 5),
     );
   }
+
+  /// Maximum idle time before automatic logout
+  final Duration idleTimeout;
+
+  /// Absolute maximum session duration
+  final Duration absoluteTimeout;
+
+  /// Time before timeout to warn user
+  final Duration warningBeforeTimeout;
+
+  /// How often to check for timeouts
+  final Duration checkInterval;
 }
 
 /// Represents an active user session
@@ -72,6 +67,18 @@ class Session {
   })  : id = id ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now(),
         lastActivity = lastActivity ?? DateTime.now();
+
+  /// Create from JSON
+  factory Session.fromJson(Map<String, dynamic> json) {
+    return Session(
+      id: json['id'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      lastActivity: DateTime.parse(json['lastActivity'] as String),
+      userId: json['userId'] as String,
+      metadata:
+          json['metadata'] as Map<String, dynamic>? ?? <String, dynamic>{},
+    );
+  }
 
   /// Unique session identifier
   final String id;
@@ -114,18 +121,6 @@ class Session {
       'userId': userId,
       'metadata': metadata,
     };
-  }
-
-  /// Create from JSON
-  factory Session.fromJson(Map<String, dynamic> json) {
-    return Session(
-      id: json['id'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      lastActivity: DateTime.parse(json['lastActivity'] as String),
-      userId: json['userId'] as String,
-      metadata:
-          json['metadata'] as Map<String, dynamic>? ?? <String, dynamic>{},
-    );
   }
 
   @override
@@ -281,7 +276,7 @@ class SessionManager {
     _timeoutTimer?.cancel();
 
     _timeoutTimer = Timer.periodic(config.checkInterval, (_) {
-      _checkTimeouts();
+      unawaited(_checkTimeouts());
     });
   }
 
@@ -309,7 +304,8 @@ class SessionManager {
     if (timeUntilIdleTimeout <= config.warningBeforeTimeout &&
         timeUntilIdleTimeout > Duration.zero) {
       _logger.info(
-          'Session timeout warning: ${timeUntilIdleTimeout.inMinutes} minutes remaining');
+        'Session timeout warning: ${timeUntilIdleTimeout.inMinutes} minutes remaining',
+      );
       _warningController.add(timeUntilIdleTimeout);
     }
 
@@ -317,7 +313,8 @@ class SessionManager {
     if (timeUntilAbsoluteTimeout <= config.warningBeforeTimeout &&
         timeUntilAbsoluteTimeout > Duration.zero) {
       _logger.info(
-          'Session absolute timeout warning: ${timeUntilAbsoluteTimeout.inMinutes} minutes remaining');
+        'Session absolute timeout warning: ${timeUntilAbsoluteTimeout.inMinutes} minutes remaining',
+      );
       _warningController.add(timeUntilAbsoluteTimeout);
     }
   }
@@ -346,8 +343,8 @@ class SessionManager {
   /// Clean up resources
   void dispose() {
     _timeoutTimer?.cancel();
-    _warningController.close();
-    _timeoutController.close();
+    unawaited(_warningController.close());
+    unawaited(_timeoutController.close());
   }
 
   /// Manually check for timeouts (for testing)

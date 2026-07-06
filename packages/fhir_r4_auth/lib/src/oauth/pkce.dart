@@ -57,7 +57,7 @@ class PkceManager {
     }
 
     final buffer = StringBuffer();
-    for (int i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       buffer.write(_allowedChars[_random.nextInt(_allowedChars.length)]);
     }
 
@@ -136,18 +136,29 @@ class PkceParameters {
     this.challengeMethod = CodeChallengeMethod.s256,
   });
 
-  final String codeVerifier;
-  final String codeChallenge;
-  final CodeChallengeMethod challengeMethod;
-
   /// Create from a PKCE manager
   factory PkceParameters.fromManager(PkceManager manager) {
     return PkceParameters(
       codeVerifier: manager.codeVerifier,
       codeChallenge: manager.codeChallenge,
-      challengeMethod: CodeChallengeMethod.s256,
     );
   }
+
+  /// Create from JSON
+  factory PkceParameters.fromJson(Map<String, dynamic> json) {
+    return PkceParameters(
+      codeVerifier: json['codeVerifier'] as String,
+      codeChallenge: json['codeChallenge'] as String,
+      challengeMethod: CodeChallengeMethod.values.firstWhere(
+        (m) => m.value == json['challengeMethod'],
+        orElse: () => CodeChallengeMethod.s256,
+      ),
+    );
+  }
+
+  final String codeVerifier;
+  final String codeChallenge;
+  final CodeChallengeMethod challengeMethod;
 
   /// Validate the parameters
   bool get isValid {
@@ -171,17 +182,5 @@ class PkceParameters {
       'codeChallenge': codeChallenge,
       'challengeMethod': challengeMethod.value,
     };
-  }
-
-  /// Create from JSON
-  factory PkceParameters.fromJson(Map<String, dynamic> json) {
-    return PkceParameters(
-      codeVerifier: json['codeVerifier'] as String,
-      codeChallenge: json['codeChallenge'] as String,
-      challengeMethod: CodeChallengeMethod.values.firstWhere(
-        (m) => m.value == json['challengeMethod'],
-        orElse: () => CodeChallengeMethod.s256,
-      ),
-    );
   }
 }

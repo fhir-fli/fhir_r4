@@ -4,15 +4,13 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  fhir_r4: any
   fhir_r4_auth: 
     path: ../
   flutter:
     sdk: flutter
-
-  fhir_r4: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 flutter:
   uses-material-design: true

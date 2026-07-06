@@ -29,21 +29,28 @@ void main() {
     setUpAll(() async {
       final library = parseAndBuildLibrary(source);
       final context = <String, dynamic>{
-        'startTimestamp':
-            CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        'startTimestamp': CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
       };
-      results = (await library.execute(context, const R4ModelResolver())) as Map<String, dynamic>;
+      results = (await library.execute(context, const R4ModelResolver()))
+          as Map<String, dynamic>;
     });
 
     for (final name in testNames) {
       final skipReason = _knownFailures[name];
-      test(name, () {
-        final baseName = name.replaceFirst('test_', '');
-        final expected = '$baseName TEST PASSED';
-        final actual = results[name];
-        expect(actual, equals(expected),
-            reason: 'Expected: $expected\nActual: $actual');
-      }, skip: skipReason);
+      test(
+        name,
+        () {
+          final baseName = name.replaceFirst('test_', '');
+          final expected = '$baseName TEST PASSED';
+          final actual = results[name];
+          expect(
+            actual,
+            equals(expected),
+            reason: 'Expected: $expected\nActual: $actual',
+          );
+        },
+        skip: skipReason,
+      );
     }
   });
 }

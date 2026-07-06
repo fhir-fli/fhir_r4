@@ -4,6 +4,13 @@ version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
+topics:
+  - fhir
+  - hl7
+  - healthcare
+  - rest-api
+  - interoperability
+
 # This package supports all platforms listed below.
 platforms:
   android:
@@ -21,4 +28,5 @@ dependencies:
   http: ^1.6.0
 
 dev_dependencies:
+  very_good_analysis: ^10.0.0
   test: ^1.29.0

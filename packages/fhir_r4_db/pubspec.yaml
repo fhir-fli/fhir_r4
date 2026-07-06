@@ -4,6 +4,13 @@ version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
+topics:
+  - fhir
+  - hl7
+  - healthcare
+  - database
+  - sqlite
+
 # This package supports all platforms listed below.
 platforms:
   android:
@@ -24,6 +31,7 @@ dependencies:
   sqlite3: ^3.1.5
 
 dev_dependencies:
+  very_good_analysis: ^10.0.0
   build_runner: ^2.4.0
   drift_dev: ^2.33.0
   test: ^1.29.0

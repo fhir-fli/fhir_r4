@@ -6,10 +6,10 @@ import 'dart:convert';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show
         AuthorizationException,
-        NetworkException,
-        OAuthParameters,
         ContentTypes,
-        HttpHeaders;
+        HttpHeaders,
+        NetworkException,
+        OAuthParameters;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
@@ -30,6 +30,42 @@ class TokenIntrospectionResult {
     this.jti,
     this.extensions = const {},
   });
+
+  /// Create from JSON response
+  factory TokenIntrospectionResult.fromJson(Map<String, dynamic> json) {
+    // Extract standard fields
+    final standardFields = {
+      'active',
+      'scope',
+      'client_id',
+      'username',
+      'token_type',
+      'exp',
+      'iat',
+      'nbf',
+      'sub',
+      'aud',
+      'iss',
+      'jti',
+    };
+
+    return TokenIntrospectionResult(
+      active: json['active'] as bool? ?? false,
+      scope: json['scope'] as String?,
+      clientId: json['client_id'] as String?,
+      username: json['username'] as String?,
+      tokenType: json['token_type'] as String?,
+      expiresAt: json['exp'] as int?,
+      issuedAt: json['iat'] as int?,
+      notBefore: json['nbf'] as int?,
+      subject: json['sub'] as String?,
+      audience: json['aud'],
+      issuer: json['iss'] as String?,
+      jti: json['jti'] as String?,
+      extensions: Map<String, dynamic>.from(json)
+        ..removeWhere((key, _) => standardFields.contains(key)),
+    );
+  }
 
   /// Whether the token is currently active
   final bool active;
@@ -98,42 +134,6 @@ class TokenIntrospectionResult {
   List<String> get scopesList {
     if (scope == null || scope!.isEmpty) return <String>[];
     return scope!.split(' ');
-  }
-
-  /// Create from JSON response
-  factory TokenIntrospectionResult.fromJson(Map<String, dynamic> json) {
-    // Extract standard fields
-    final standardFields = {
-      'active',
-      'scope',
-      'client_id',
-      'username',
-      'token_type',
-      'exp',
-      'iat',
-      'nbf',
-      'sub',
-      'aud',
-      'iss',
-      'jti',
-    };
-
-    return TokenIntrospectionResult(
-      active: json['active'] as bool? ?? false,
-      scope: json['scope'] as String?,
-      clientId: json['client_id'] as String?,
-      username: json['username'] as String?,
-      tokenType: json['token_type'] as String?,
-      expiresAt: json['exp'] as int?,
-      issuedAt: json['iat'] as int?,
-      notBefore: json['nbf'] as int?,
-      subject: json['sub'] as String?,
-      audience: json['aud'],
-      issuer: json['iss'] as String?,
-      jti: json['jti'] as String?,
-      extensions: Map<String, dynamic>.from(json)
-        ..removeWhere((key, _) => standardFields.contains(key)),
-    );
   }
 
   /// Convert to JSON

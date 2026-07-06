@@ -149,13 +149,13 @@ void main() {
         CqlInteger(1),
         CqlInteger(1),
         CqlInteger(1),
-        CqlInteger(1)
+        CqlInteger(1),
       ],
       'Third Position of list With Same Name of Let As First': [
         CqlInteger(3),
         CqlInteger(3),
         CqlInteger(3),
-        CqlInteger(3)
+        CqlInteger(3),
       ],
     },
   );
@@ -233,17 +233,22 @@ void main() {
   );
 
   // ── ResolveParameterDefaultTest ──
-  group('ResolveParameterDefaultTest', () {
-    test('resolves parameter defaults', () async {
-      final source = File('cql/cqf-engine/ResolveParameterDefaultTest.cql')
-          .readAsStringSync();
-      final library =
-          parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+  group(
+    'ResolveParameterDefaultTest',
+    () {
+      test('resolves parameter defaults', () async {
+        final source = File('cql/cqf-engine/ResolveParameterDefaultTest.cql')
+            .readAsStringSync();
+        final library =
+            parseAndBuildLibrary(source, libraryManager: libraryManager);
+        final results = (await library.execute(null, const R4ModelResolver()))
+            as Map<String, dynamic>;
 
-      expect(results['Simple Expression'], equals(CqlInteger(42)));
-    });
-  }, skip: 'Parameter default resolution not yet implemented');
+        expect(results['Simple Expression'], equals(CqlInteger(42)));
+      });
+    },
+    skip: 'Parameter default resolution not yet implemented',
+  );
 
   // ── CqlListDistinguishedOverloads ──
   _testFile(
@@ -326,10 +331,10 @@ void _testFile(
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
       final context = <String, dynamic>{
-        'startTimestamp':
-            CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        'startTimestamp': CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
       };
-      results = (await library.execute(context, const R4ModelResolver())) as Map<String, dynamic>;
+      results = (await library.execute(context, const R4ModelResolver()))
+          as Map<String, dynamic>;
     });
 
     for (final entry in expectedResults.entries) {
@@ -337,18 +342,28 @@ void _testFile(
       final expected = entry.value;
       final skipReason = knownFailures[name];
 
-      test(name, () {
-        final actual = results[name];
-        if (expected is TypeMatcher) {
-          expect(actual, expected,
-              reason: '$filename.$name: got ${actual?.runtimeType}');
-        } else {
-          expect(areValuesEqual(actual, expected), isTrue,
+      test(
+        name,
+        () {
+          final actual = results[name];
+          if (expected is TypeMatcher) {
+            expect(
+              actual,
+              expected,
+              reason: '$filename.$name: got ${actual?.runtimeType}',
+            );
+          } else {
+            expect(
+              areValuesEqual(actual, expected),
+              isTrue,
               reason: '$filename.$name: '
                   '$actual (${actual?.runtimeType}) != '
-                  '$expected (${expected?.runtimeType})');
-        }
-      }, skip: skipReason);
+                  '$expected (${expected?.runtimeType})',
+            );
+          }
+        },
+        skip: skipReason,
+      );
     }
   });
 }

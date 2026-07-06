@@ -122,7 +122,8 @@ class OAuthFlow {
 
     final url = authorizationEndpoint.replace(queryParameters: parameters);
     _logger.fine(
-        'Authorization URL: ${url.toString().replaceAll(RegExp(r'state=\S+'), 'state=***')}');
+      'Authorization URL: ${url.toString().replaceAll(RegExp(r'state=\S+'), 'state=***')}',
+    );
 
     return url;
   }
@@ -252,7 +253,7 @@ class OAuthFlow {
     if (tokenResponse.idToken != null && _currentNonce != null) {
       await _validateIdToken(
         tokenResponse.idToken!,
-        _currentNonce!,
+        _currentNonce,
         tokenResponse.accessToken,
       );
     }
@@ -450,7 +451,8 @@ class OAuthFlow {
         _logger.fine('Token revoked successfully');
       } else {
         _logger.warning(
-            'Token revocation may have failed: ${response.statusCode}');
+          'Token revocation may have failed: ${response.statusCode}',
+        );
       }
     } catch (e) {
       // Revocation failure is not critical
@@ -469,7 +471,6 @@ class OAuthFlow {
         idToken,
         expectedNonce: expectedNonce,
         accessToken: accessToken,
-        validateAtHash: true,
       );
 
       _logger.fine('ID token validated successfully');

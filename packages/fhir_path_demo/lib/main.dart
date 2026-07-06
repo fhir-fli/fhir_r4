@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const MyApp());
@@ -60,9 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
       _fhirPathEngine ??= await FHIRPathEngine.create(_context);
 
       // 2) parse the JSON text into an R4 Resource
-      final Map<String, dynamic> jsonMap =
+      final jsonMap =
           json.decode(_resourceController.text) as Map<String, dynamic>;
-      final Resource resource = Resource.fromJson(jsonMap);
+      final resource = Resource.fromJson(jsonMap);
 
       // 3) if the user supplied a variables map, decode it straight through
       Map<String, dynamic>? environment;
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  static final _link = Uri.parse('https://hl7.github.io/fhirpath.js/');
+  static final Uri _link = Uri.parse('https://hl7.github.io/fhirpath.js/');
 
   Future<void> _launchLink() async {
     if (!await launchUrl(_link, mode: LaunchMode.externalApplication)) {
@@ -140,11 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           // Left panel: Context & Variables
           Expanded(
-            flex: 1,
             child: Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'Context Resource (FHIR R4 JSON)',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -152,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextField(
                       controller: _resourceController,
                       expands: true,
@@ -166,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'Variables (optional JSON map)',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -175,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 100,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextField(
                       controller: _variablesController,
                       maxLines: null,
@@ -194,18 +193,17 @@ class _MyHomePageState extends State<MyHomePage> {
           const VerticalDivider(width: 1),
           // Right panel: Expression & Results
           Expanded(
-            flex: 1,
             child: Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'FHIRPath Expression',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: TextField(
                     controller: _expressionController,
                     onSubmitted: (_) => _evaluate(),
@@ -217,14 +215,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: ElevatedButton(
                     onPressed: _evaluate,
                     child: const Text('Evaluate'),
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     'Results',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -232,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: SingleChildScrollView(
                       child: Text(
                         _result,

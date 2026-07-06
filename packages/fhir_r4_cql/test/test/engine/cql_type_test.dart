@@ -4,7 +4,8 @@ import 'package:ucum/ucum.dart';
 
 import '../test_helpers/cql_test_helpers.dart';
 
-Map<String, dynamic> _ctx() => {ContextKey.modelResolver: const R4ModelResolver()};
+Map<String, dynamic> _ctx() =>
+    {ContextKey.modelResolver: const R4ModelResolver()};
 
 void main() {
   // ───────────────────────────────────────────────────────────────────────────
@@ -32,7 +33,9 @@ void main() {
     });
     test('define "StringAsString": \'hello\' as String // \'hello\'', () async {
       final asOp = As(
-          asType: QName.fromElmType('String'), operand: LiteralString('hello'));
+        asType: QName.fromElmType('String'),
+        operand: LiteralString('hello'),
+      );
       final result = await asOp.execute(_ctx());
       expect(result, 'hello');
     });
@@ -54,7 +57,9 @@ void main() {
     });
     test('define "StringIsString": \'hello\' is String // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('String'), operand: LiteralString('hello'));
+        isType: QName.fromElmType('String'),
+        operand: LiteralString('hello'),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
     test('define "NullIsAnything": null is Integer // false', () async {
@@ -64,12 +69,16 @@ void main() {
     });
     test('define "BooleanIsBoolean": true is Boolean // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('Boolean'), operand: LiteralBoolean(true));
+        isType: QName.fromElmType('Boolean'),
+        operand: LiteralBoolean(true),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
     test('define "DecimalIsDecimal": 3.5 is Decimal // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('Decimal'), operand: LiteralDecimal(3.5));
+        isType: QName.fromElmType('Decimal'),
+        operand: LiteralDecimal(3.5),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
   });
@@ -112,7 +121,7 @@ void main() {
       final toString = ToString(operand: LiteralDecimal(3.5));
       final result = await toString.execute(_ctx());
       expect(result, isA<CqlString>());
-      expect((result as CqlString).valueString, contains('3.5'));
+      expect((result!).valueString, contains('3.5'));
     });
     test('define "ToStringIsNull": ToString(null)', () async {
       final toString = ToString(operand: LiteralNull());
@@ -260,7 +269,7 @@ void main() {
   group('ToRatio', () {
     test('define "StringToRatio": ToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\')',
         () async {
-      final toRatio = ToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
+      final toRatio = ToRatio(operand: LiteralString("1.0 'mg':2.0 'mg'"));
       final result = await toRatio.execute(_ctx());
       expect(result, isNotNull);
     });
@@ -515,8 +524,7 @@ void main() {
     test(
         'define "ConvertsToRatioTrue": ConvertsToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\') // true',
         () async {
-      final op =
-          ConvertsToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
+      final op = ConvertsToRatio(operand: LiteralString("1.0 'mg':2.0 'mg'"));
       expect(await op.execute(_ctx()), CqlBoolean(true));
     });
     test('define "ConvertsToRatioFalse": ConvertsToRatio(\'abc\') // false',
@@ -587,7 +595,7 @@ void main() {
       expect(vr.denominator, ValidatedQuantity.fromNumber(2, unit: 'mg'));
     });
 
-    test('Ratio literal parsing via CQL: 1 \'mg\':2 \'mg\'', () async {
+    test("Ratio literal parsing via CQL: 1 'mg':2 'mg'", () async {
       final lib = parseAndBuildLibrary(
         "library TestRatio\ndefine \"Ratio\": 1 'mg':2 'mg'",
       );
@@ -617,7 +625,7 @@ void main() {
       final result = await toQuantity.execute(_ctx());
       expect(result, isA<ValidatedQuantity>());
       // mg/mg produces dimensionless '1' unit with value 0.50
-      final vq = result as ValidatedQuantity;
+      final vq = result!;
       expect(vq.value.asDouble, closeTo(0.5, 0.001));
     });
 
@@ -707,7 +715,7 @@ void main() {
       final toChars = ToChars(operand: LiteralString(''));
       final result = await toChars.execute(_ctx());
       expect(result, isA<List>());
-      expect((result as List), isEmpty);
+      expect(result as List, isEmpty);
     });
 
     test('null operand returns null', () async {

@@ -127,7 +127,7 @@ void main() {
                 <String, dynamic>{
                   'security': <String, dynamic>{
                     'service': <Map<String, dynamic>>[
-                      <String, dynamic>{'coding': <Map<String, dynamic>>[]}
+                      <String, dynamic>{'coding': <Map<String, dynamic>>[]},
                     ],
                     'extension': <Map<String, dynamic>>[
                       <String, dynamic>{
@@ -155,7 +155,7 @@ void main() {
       );
 
       expect(
-        () => clientWithoutIntrospection.getTokenIntrospector(),
+        clientWithoutIntrospection.getTokenIntrospector,
         throwsA(isA<ConfigurationException>()),
       );
 

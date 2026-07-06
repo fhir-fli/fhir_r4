@@ -2,11 +2,12 @@
 /// Tests cryptographic strength and attack resistance
 library;
 
+import 'dart:convert';
 import 'dart:math' as math;
+
+import 'package:crypto/crypto.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:test/test.dart';
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
 
 void main() {
   group('PKCE Security', () {
@@ -31,7 +32,7 @@ void main() {
         final verifiers = <String>{};
 
         // Generate 100 verifiers
-        for (int i = 0; i < 100; i++) {
+        for (var i = 0; i < 100; i++) {
           final manager = PkceManager();
           verifiers.add(manager.codeVerifier);
         }
@@ -52,9 +53,9 @@ void main() {
         final verifier = pkceManager.codeVerifier;
 
         // Check for repeated substrings (weak RNG indicator)
-        for (int len = 4; len <= 8; len++) {
+        for (var len = 4; len <= 8; len++) {
           final patterns = <String>{};
-          for (int i = 0; i <= verifier.length - len; i++) {
+          for (var i = 0; i <= verifier.length - len; i++) {
             final substring = verifier.substring(i, i + len);
             expect(
               patterns.contains(substring),
@@ -71,12 +72,12 @@ void main() {
 
         // Calculate Shannon entropy
         final freq = <String, int>{};
-        for (int i = 0; i < verifier.length; i++) {
+        for (var i = 0; i < verifier.length; i++) {
           final char = verifier[i];
           freq[char] = (freq[char] ?? 0) + 1;
         }
 
-        double entropy = 0.0;
+        var entropy = 0.0;
         for (final count in freq.values) {
           final p = count / verifier.length;
           entropy -= p * (math.log(p) / math.ln2);
@@ -298,7 +299,7 @@ void main() {
         final verifiers = <String>[];
 
         // Create multiple managers concurrently
-        for (int i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
           final manager = PkceManager();
           managers.add(manager);
           verifiers.add(manager.codeVerifier);

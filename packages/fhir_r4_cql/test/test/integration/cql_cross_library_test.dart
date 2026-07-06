@@ -28,18 +28,24 @@ void main() {
           File('cql/cqf-engine/IncludedCodeRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       final includedCode = results['IncludedCode'];
-      expect(includedCode, isNotNull,
-          reason: 'IncludedCode should resolve from Common library');
+      expect(
+        includedCode,
+        isNotNull,
+        reason: 'IncludedCode should resolve from Common library',
+      );
       expect(includedCode, isA<CqlCode>());
       if (includedCode is CqlCode) {
         expect(includedCode.code, equals('community'));
         expect(
-            includedCode.system,
-            equals(
-                'http://terminology.hl7.org/CodeSystem/medicationrequest-category'));
+          includedCode.system,
+          equals(
+            'http://terminology.hl7.org/CodeSystem/medicationrequest-category',
+          ),
+        );
       }
     });
   });
@@ -52,11 +58,15 @@ void main() {
           File('cql/cqf-engine/IncludedConceptRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       final concept = results['testIncludedConceptRef'];
-      expect(concept, isNotNull,
-          reason: 'testIncludedConceptRef should resolve from Common');
+      expect(
+        concept,
+        isNotNull,
+        reason: 'testIncludedConceptRef should resolve from Common',
+      );
       expect(concept, isA<CqlConcept>());
       if (concept is CqlConcept) {
         expect(concept.display, equals('concept-display'));
@@ -76,7 +86,8 @@ void main() {
       final context = <String, dynamic>{
         'Measurement Period': CqlInteger(42),
       };
-      final results = (await library.execute(context, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(context, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Local Parameter'], equals(CqlInteger(42)));
       // Included parameter from IncludedParameterTestCommon — should be null
@@ -92,11 +103,15 @@ void main() {
           File('cql/cqf-engine/IncludedValueSetRefTest.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       final vs = results['IncludedValueSet'];
-      expect(vs, isNotNull,
-          reason: 'IncludedValueSet should resolve from Common');
+      expect(
+        vs,
+        isNotNull,
+        reason: 'IncludedValueSet should resolve from Common',
+      );
       expect(vs, isA<CqlValueSet>());
       if (vs is CqlValueSet) {
         expect(vs.id, equals('http://test/common'));
@@ -111,7 +126,8 @@ void main() {
           .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['TestOverload'], equals(CqlInteger(5)));
       expect(results['TestOverloadOneInt'], equals(CqlInteger(1)));
@@ -126,7 +142,8 @@ void main() {
               .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['TestOverload'], equals(CqlInteger(5)));
       expect(results['TestOverloadOneInt'], equals(CqlInteger(1)));
@@ -140,7 +157,8 @@ void main() {
     setUp(() {
       coverageManager = LibraryManager(
         sourceProvider: FileSystemLibrarySourceProvider(
-            basePath: 'cql/cqf-engine/CoverageTest'),
+          basePath: 'cql/cqf-engine/CoverageTest',
+        ),
         parseLibrary: parseAndBuildLibrary,
       );
     });
@@ -150,7 +168,8 @@ void main() {
           File('cql/cqf-engine/CoverageTest/Tests.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: coverageManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       // CoverageTest/Tests.cql uses assertEquals which returns the message
       // source (first arg to Message). If assertion passes, condition is false
@@ -178,7 +197,8 @@ void main() {
     setUp(() {
       multilibManager = LibraryManager(
         sourceProvider: FileSystemLibrarySourceProvider(
-            basePath: 'cql/cqf-engine/multilib'),
+          basePath: 'cql/cqf-engine/multilib',
+        ),
         parseLibrary: parseAndBuildLibrary,
       );
     });
@@ -188,7 +208,8 @@ void main() {
           File('cql/cqf-engine/multilib/MultiLibrary1.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Number'], equals(CqlInteger(1)));
       expect(results['Name'], equals('Uno'));
@@ -201,7 +222,8 @@ void main() {
           File('cql/cqf-engine/multilib/MultiLibrary2.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Number'], equals(CqlInteger(2)));
       expect(results['Name'], equals('Dos'));
@@ -212,7 +234,8 @@ void main() {
           File('cql/cqf-engine/multilib/MultiLibrary3.cql').readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Number'], equals(CqlInteger(3)));
       expect(results['Name'], equals('Tres'));
@@ -224,7 +247,8 @@ void main() {
           .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Number'], equals(CqlInteger(1)));
     });
@@ -234,7 +258,8 @@ void main() {
           .readAsStringSync();
       final library =
           parseAndBuildLibrary(source, libraryManager: multilibManager);
-      final results = (await library.execute(null, const R4ModelResolver())) as Map<String, dynamic>;
+      final results = (await library.execute(null, const R4ModelResolver()))
+          as Map<String, dynamic>;
 
       expect(results['Number'], equals(CqlInteger(5)));
     });

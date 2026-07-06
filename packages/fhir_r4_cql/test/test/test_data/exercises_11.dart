@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 // -- Exercise 11: Cervical Cancer Screening Quality Measure --
@@ -33,7 +32,7 @@ final _papTest = <String, dynamic>{
         'code': '10524-7',
         'display': 'Microscopy Cervix/Vaginal',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/cervical-screen'},
   'effectiveDateTime': '2019-03-15T10:00:00Z',

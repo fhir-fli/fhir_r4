@@ -1,9 +1,3 @@
-include: package:very_good_analysis/analysis_options.yaml
-
-linter:
-  rules:
-    avoid_positional_boolean_parameters: false
-    always_put_required_named_parameters_first: false
-    document_ignores: false
-    comment_references: false
-    avoid_catches_without_on_clauses: false
+# One lint policy for the whole monorepo: very_good_analysis with the
+# family-standard suppressions (see the root analysis_options.yaml).
+include: ../../analysis_options.yaml

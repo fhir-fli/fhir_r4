@@ -44,7 +44,7 @@ void main() {
 
         // Should fail because we're expecting RS256/ES256
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             hs256Jwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),
@@ -81,7 +81,7 @@ void main() {
 
         // Signature validation should fail
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             tamperedJwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),
@@ -98,7 +98,7 @@ void main() {
         final tamperedJwt = '$tamperedHeader.${parts[1]}.${parts[2]}';
 
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             tamperedJwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),
@@ -116,7 +116,7 @@ void main() {
         final tamperedJwt = '${parts[0]}.${parts[1]}.$tamperedSignature';
 
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             tamperedJwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),
@@ -130,7 +130,7 @@ void main() {
         const unsignedJwt = '$header.$payload.'; // No signature
 
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             unsignedJwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),
@@ -391,7 +391,7 @@ void main() {
         const unsignedJwt = 'header.payload.invalid_signature';
 
         expect(
-          () async => await validator.validateToken(
+          () async => validator.validateToken(
             unsignedJwt,
             publicKeyPem: TestJwks.rsaPublicKeyPem,
           ),

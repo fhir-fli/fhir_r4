@@ -44,15 +44,17 @@ class XsdToModelInfoConverter {
           .value;
       if (name == 'CodeableConcept' || name == 'Quantity') {
         // Add these basic types directly to contextInfo
-        modelInfo.contextInfo.add(ContextInfo(
-          name: name,
-          contextType: NamedTypeSpecifier(
-            namespace: QName(
-              namespaceURI: targetNamespace.value,
-              localPart: name,
+        modelInfo.contextInfo.add(
+          ContextInfo(
+            name: name,
+            contextType: NamedTypeSpecifier(
+              namespace: QName(
+                namespaceURI: targetNamespace.value,
+                localPart: name,
+              ),
             ),
           ),
-        ));
+        );
       } else {
         // Handle complex types
         final contextType = NamedTypeSpecifier(
@@ -73,10 +75,12 @@ class XsdToModelInfoConverter {
           }
 
           // Create ContextInfo for each element and add it to contextInfo
-          modelInfo.contextInfo.add(ContextInfo(
-            name: elementName,
-            contextType: contextType,
-          ));
+          modelInfo.contextInfo.add(
+            ContextInfo(
+              name: elementName,
+              contextType: contextType,
+            ),
+          );
         }
       }
     }

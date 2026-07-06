@@ -2,13 +2,13 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 void main() {
   for (final model in models) {
-    print("""case "${model.version}":
+    print('''case "${model.version}":
             return ModelInfoReaderFactory.getReader("application/xml")
-                .read(${modelNames[models.indexOf(model)]});""");
+                .read(${modelNames[models.indexOf(model)]});''');
   }
 }
 
-final models = [
+final List<ModelInfo> models = [
   qdmmodelinfo53,
   qdmmodelinfo502,
   qdmmodelinfo50_withNegationTypes,

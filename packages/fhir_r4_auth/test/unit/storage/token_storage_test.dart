@@ -20,7 +20,6 @@ void main() {
     test('creates with required fields', () {
       final token = SmartTokenResponse(
         accessToken: 'access_token_123',
-        tokenType: 'Bearer',
       );
 
       expect(token.accessToken, equals('access_token_123'));
@@ -33,7 +32,6 @@ void main() {
         accessToken: 'access_token_123',
         refreshToken: 'refresh_token_456',
         idToken: 'id_token_789',
-        tokenType: 'Bearer',
         expiresIn: 3600,
         scope: 'patient/*.read user/Practitioner.read',
         patientContext: 'Patient/123',
@@ -135,7 +133,6 @@ void main() {
         accessToken: 'access_token_123',
         refreshToken: 'refresh_token_456',
         idToken: 'id_token_789',
-        tokenType: 'Bearer',
         expiresIn: 3600,
         scope: 'patient/*.read',
         patientContext: 'Patient/123',
@@ -281,7 +278,7 @@ void main() {
 
       final json = state.toJson();
 
-      expect(json['tokenResponse'], isA<Map>());
+      expect(json['tokenResponse'], isA<Map<dynamic, dynamic>>());
       expect(json['lastAuthenticated'], isA<String>());
       expect(json['authMethod'], equals('clientSecretBasic'));
       expect(json['sessionId'], equals('session123'));
@@ -319,71 +316,81 @@ void main() {
         refreshToken: 'refresh_token_456',
       );
 
-      when(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async {});
+      when(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async {});
 
       await tokenStorage.saveTokens(tokens);
 
-      verify(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
 
     test('loads tokens', () async {
       final tokenJson = TestTokens.sampleTokenResponse;
       final storedJson = SmartTokenResponse.fromJson(tokenJson).toStoredJson();
 
-      when(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async => storedJson);
+      when(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async => storedJson);
 
       final tokens = await tokenStorage.loadTokens();
 
       expect(tokens, isNotNull);
       expect(tokens!.accessToken, equals(TestTokens.accessToken));
 
-      verify(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
 
     test('returns null when no tokens stored', () async {
-      when(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async => null);
+      when(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async => null);
 
       final tokens = await tokenStorage.loadTokens();
 
@@ -391,27 +398,31 @@ void main() {
     });
 
     test('clears tokens', () async {
-      when(mockStorage.delete(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async {});
+      when(
+        mockStorage.delete(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async {});
 
       await tokenStorage.clearTokens();
 
-      verify(mockStorage.delete(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(2);
+      verify(
+        mockStorage.delete(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(2);
     });
 
     test('saves auth state', () async {
@@ -421,29 +432,33 @@ void main() {
         authMethod: ClientAuthMethod.clientSecretBasic,
       );
 
-      when(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async {});
+      when(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async {});
 
       await tokenStorage.saveAuthState(state);
 
-      verify(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
 
     test('loads auth state', () async {
@@ -453,68 +468,78 @@ void main() {
         authMethod: ClientAuthMethod.clientSecretBasic,
       );
 
-      when(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async => jsonEncode(state.toJson()));
+      when(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async => jsonEncode(state.toJson()));
 
       final loadedState = await tokenStorage.loadAuthState();
 
       expect(loadedState, isNotNull);
 
-      verify(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
 
     test('checks if tokens exist', () async {
-      when(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async => 'some_value');
+      when(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async => 'some_value');
 
       final hasTokens = await tokenStorage.hasTokens();
 
       expect(hasTokens, isTrue);
 
-      verify(mockStorage.read(
-        key: anyNamed('key'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.read(
+          key: anyNamed('key'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
 
     test('handles storage errors gracefully', () async {
-      when(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenThrow(Exception('Storage error'));
+      when(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenThrow(Exception('Storage error'));
 
       final tokens = SmartTokenResponse(accessToken: 'test');
 
@@ -532,29 +557,33 @@ void main() {
 
       final tokens = SmartTokenResponse(accessToken: 'test');
 
-      when(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).thenAnswer((_) async {});
+      when(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).thenAnswer((_) async {});
 
       await customStorage.saveTokens(tokens);
 
-      verify(mockStorage.write(
-        key: anyNamed('key'),
-        value: anyNamed('value'),
-        iOptions: anyNamed('iOptions'),
-        aOptions: anyNamed('aOptions'),
-        lOptions: anyNamed('lOptions'),
-        webOptions: anyNamed('webOptions'),
-        mOptions: anyNamed('mOptions'),
-        wOptions: anyNamed('wOptions'),
-      )).called(1);
+      verify(
+        mockStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+          iOptions: anyNamed('iOptions'),
+          aOptions: anyNamed('aOptions'),
+          lOptions: anyNamed('lOptions'),
+          webOptions: anyNamed('webOptions'),
+          mOptions: anyNamed('mOptions'),
+          wOptions: anyNamed('wOptions'),
+        ),
+      ).called(1);
     });
   });
 }

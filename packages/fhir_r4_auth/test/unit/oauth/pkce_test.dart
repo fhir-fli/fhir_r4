@@ -81,7 +81,7 @@ void main() {
     });
 
     test('rejects invalid characters', () {
-      final invalid = 'a' * 43 + '!@#\$%'; // Invalid characters
+      final invalid = 'a' * 43 + r'!@#$%'; // Invalid characters
       expect(PkceManager.isValidCodeVerifier(invalid), isFalse);
     });
 
@@ -93,7 +93,6 @@ void main() {
         PkceManager.verifyChallenge(
           verifier: verifier,
           challenge: challenge,
-          method: CodeChallengeMethod.s256,
         ),
         isTrue,
       );
@@ -107,7 +106,6 @@ void main() {
         PkceManager.verifyChallenge(
           verifier: verifier,
           challenge: wrongChallenge,
-          method: CodeChallengeMethod.s256,
         ),
         isFalse,
       );

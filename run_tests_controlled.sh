@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail
 
 # Controlled Test Execution Script for FHIR R4 Packages
 # This script runs tests with a maximum of 2 attempts per package to avoid infinite loops

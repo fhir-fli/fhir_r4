@@ -4,6 +4,13 @@ version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
+topics:
+  - fhir
+  - hl7
+  - healthcare
+  - cds-hooks
+  - interoperability
+
 # This package supports all platforms listed below.
 platforms:
   android:
@@ -22,4 +29,4 @@ dependencies:
 
 dev_dependencies:
   test: ^1.29.0
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^10.0.0

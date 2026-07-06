@@ -140,7 +140,7 @@ void main() {
       final states = <String>{};
 
       // Generate 100 states rapidly
-      for (int i = 0; i < 100; i++) {
+      for (var i = 0; i < 100; i++) {
         states.add(stateManager.generateState());
       }
 

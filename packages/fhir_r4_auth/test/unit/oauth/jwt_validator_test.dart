@@ -165,8 +165,10 @@ void main() {
 
       final claims = JwtClaims.fromJson(json);
 
-      expect(claims.expiresAt.isAfter(now.subtract(const Duration(seconds: 5))),
-          isTrue);
+      expect(
+        claims.expiresAt.isAfter(now.subtract(const Duration(seconds: 5))),
+        isTrue,
+      );
     });
 
     test('handles audience as string', () {
@@ -202,7 +204,7 @@ void main() {
 
       final claims = JwtClaims.fromJson(json);
 
-      expect(claims.audience, isA<List>());
+      expect(claims.audience, isA<List<dynamic>>());
       expect((claims.audience as List).contains('client123'), isTrue);
     });
 

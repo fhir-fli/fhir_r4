@@ -23,12 +23,12 @@
 //
 // ignore_for_file: avoid_print
 
-library;
+import 'dart:async';
 
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fhir_r4_auth/fhir_r4_auth.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 
 void main() {
   runApp(const SmartEhrLaunchDemoApp());
@@ -145,7 +145,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       fhirBaseUrl:
           'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
       // Register at: https://code.cerner.com/
-      // TODO: Replace with your Cerner EHR launch client ID
+      // TODO(fhirfli): Replace with your Cerner EHR launch client ID
       clientId: 'YOUR-CERNER-EHR-LAUNCH-CLIENT-ID',
       scopes: [
         'launch',
@@ -219,7 +219,9 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
 
       // Auto-connect immediately to avoid launch token expiry
       // Epic launch tokens are short-lived
-      Future.microtask(() => _startEhrLaunch(iss: iss, launchToken: launch));
+      unawaited(
+        Future.microtask(() => _startEhrLaunch(iss: iss, launchToken: launch)),
+      );
     } else {
       print('No EHR launch parameters detected - showing simulation mode');
       // Pre-fill simulation fields with Epic defaults
@@ -453,7 +455,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       _ehrLaunchDetected = true;
     });
 
-    _startEhrLaunch(iss: iss, launchToken: launch);
+    unawaited(_startEhrLaunch(iss: iss, launchToken: launch));
   }
 
   bool get _isAuthenticated => _patient != null || _patientId != null;
@@ -529,7 +531,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
   Widget _buildEhrLaunchScreen() {
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -611,7 +613,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -644,7 +646,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
                 return ButtonSegment(value: vendor, label: Text(vendor.label));
               }).toList(),
               selected: {_selectedVendor},
-              onSelectionChanged: (Set<EhrVendor> newSelection) {
+              onSelectionChanged: (newSelection) {
                 _changeVendor(newSelection.first);
               },
             ),
@@ -674,7 +676,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
                     ),
                     const SizedBox(height: 12),
                     _buildBullet(
-                      'The EHR opens this app\'s URL with '
+                      "The EHR opens this app's URL with "
                       '?iss=<fhir-url>&launch=<token>',
                     ),
                     _buildBullet(
@@ -814,7 +816,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
             const SizedBox(height: 12),
             const Text(
               'Use these tools to simulate an EHR launching your app. '
-              'Point the simulator to this app\'s URL:',
+              "Point the simulator to this app's URL:",
             ),
             const SizedBox(height: 8),
             Container(
@@ -910,7 +912,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
   Widget _buildErrorScreen() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

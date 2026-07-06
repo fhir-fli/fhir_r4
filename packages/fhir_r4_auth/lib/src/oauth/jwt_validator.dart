@@ -3,16 +3,17 @@
 library;
 
 import 'dart:convert';
+
 import 'package:crypto/crypto.dart';
-import 'package:jose/jose.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show
-        JwtClaims,
-        SecurityException,
         JwtAlgorithm,
-        SecurityViolationType,
-        NetworkException;
+        JwtClaims,
+        NetworkException,
+        SecurityException,
+        SecurityViolationType;
 import 'package:http/http.dart' as http;
+import 'package:jose/jose.dart';
 import 'package:logging/logging.dart';
 
 /// JWT validator for secure token verification with JWK/JWKS support
@@ -130,23 +131,27 @@ class JwtValidator {
     _logger.fine('Verifying JWT with HMAC secret');
 
     final keyStore = JsonWebKeyStore()
-      ..addKey(JsonWebKey.fromJson({
-        'kty': 'oct',
-        'k': base64Url.encode(utf8.encode(secret)),
-      }));
+      ..addKey(
+        JsonWebKey.fromJson({
+          'kty': 'oct',
+          'k': base64Url.encode(utf8.encode(secret)),
+        }),
+      );
 
-    return await JsonWebToken.decodeAndVerify(token, keyStore);
+    return JsonWebToken.decodeAndVerify(token, keyStore);
   }
 
   /// Verify JWT with PEM-encoded public key
   Future<JsonWebToken> _verifyWithPemKey(
-      String token, String publicKeyPem) async {
+    String token,
+    String publicKeyPem,
+  ) async {
     _logger.fine('Verifying JWT with PEM public key');
 
     final jwk = JsonWebKey.fromPem(publicKeyPem);
     final keyStore = JsonWebKeyStore()..addKey(jwk);
 
-    return await JsonWebToken.decodeAndVerify(token, keyStore);
+    return JsonWebToken.decodeAndVerify(token, keyStore);
   }
 
   /// Verify JWT using JWKS endpoint
@@ -157,7 +162,7 @@ class JwtValidator {
     final keyStore = await _getJwksKeyStore(jwksUri);
 
     // Decode and verify
-    return await JsonWebToken.decodeAndVerify(token, keyStore);
+    return JsonWebToken.decodeAndVerify(token, keyStore);
   }
 
   /// Fetch or retrieve cached JWKS as JsonWebKeyStore
@@ -226,17 +231,19 @@ class JwtValidator {
       nonce: joseClaims['nonce'] as String?,
       azp: joseClaims['azp'] as String?,
       additionalClaims: Map<String, dynamic>.from(joseClaims.toJson())
-        ..removeWhere((key, _) => [
-              'iss',
-              'sub',
-              'aud',
-              'exp',
-              'nbf',
-              'iat',
-              'jti',
-              'nonce',
-              'azp'
-            ].contains(key)),
+        ..removeWhere(
+          (key, _) => [
+            'iss',
+            'sub',
+            'aud',
+            'exp',
+            'nbf',
+            'iat',
+            'jti',
+            'nonce',
+            'azp',
+          ].contains(key),
+        ),
     );
   }
 
@@ -348,7 +355,8 @@ class JwtValidator {
         leftmostBits = 256;
       } else {
         _logger.warning(
-            'Unknown algorithm for at_hash validation: $algorithm, defaulting to SHA-256');
+          'Unknown algorithm for at_hash validation: $algorithm, defaulting to SHA-256',
+        );
         hashBytes = sha256.convert(utf8.encode(accessToken)).bytes;
         leftmostBits = 128;
       }
@@ -363,7 +371,8 @@ class JwtValidator {
 
       if (!isValid) {
         _logger.warning(
-            'at_hash validation failed. Expected: $expectedHash, Got: $atHash');
+          'at_hash validation failed. Expected: $expectedHash, Got: $atHash',
+        );
       } else {
         _logger.fine('at_hash validation successful');
       }

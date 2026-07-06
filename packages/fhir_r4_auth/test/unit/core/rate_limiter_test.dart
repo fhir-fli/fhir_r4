@@ -56,7 +56,7 @@ void main() {
 
     test('blocks requests exceeding limit', () async {
       // Use up all requests
-      for (int i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i++) {
         expect(await rateLimiter.isAllowed(testKey), isTrue);
         await rateLimiter.recordRequest(testKey);
       }
@@ -67,7 +67,7 @@ void main() {
 
     test('returns retry-after duration', () async {
       // Use up all requests
-      for (int i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i++) {
         await rateLimiter.recordRequest(testKey);
       }
 
@@ -83,7 +83,7 @@ void main() {
       const key2 = 'user2';
 
       // User 1 uses all requests
-      for (int i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i++) {
         await rateLimiter.recordRequest(key1);
       }
 
@@ -130,10 +130,10 @@ void main() {
     });
 
     test('execute wraps function with rate limiting', () async {
-      int callCount = 0;
+      var callCount = 0;
 
       // Should succeed 3 times
-      for (int i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i++) {
         await rateLimiter.execute(testKey, () async {
           callCount++;
           return 'success';
@@ -174,7 +174,7 @@ void main() {
 
       expect(stats['tracked_keys'], equals(2));
       expect(stats['total_requests'], equals(2));
-      expect(stats['config'], isA<Map>());
+      expect(stats['config'], isA<Map<dynamic, dynamic>>());
     });
   });
 
@@ -194,7 +194,7 @@ void main() {
 
     test('allows burst up to limit', () async {
       // Should allow 3 rapid requests (burst)
-      for (int i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i++) {
         expect(await rateLimiter.isAllowed(testKey), isTrue);
         await rateLimiter.recordRequest(testKey);
       }
@@ -268,7 +268,7 @@ void main() {
       final stats = registry.getAllStats();
 
       expect(stats['endpoints'], equals(2));
-      expect(stats['limiters'], isA<Map>());
+      expect(stats['limiters'], isA<Map<dynamic, dynamic>>());
     });
   });
 

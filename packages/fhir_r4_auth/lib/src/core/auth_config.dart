@@ -3,7 +3,7 @@ library;
 
 import 'package:fhir_r4/fhir_r4.dart' show FhirUri;
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show LaunchType, ClientAuthMethod, SmartCapability;
+    show ClientAuthMethod, LaunchType, SmartCapability;
 
 /// Base configuration for FHIR authentication
 class AuthConfig {
@@ -15,6 +15,20 @@ class AuthConfig {
     this.clientSecret,
     this.authMethod = ClientAuthMethod.none,
   });
+
+  /// Create from JSON
+  factory AuthConfig.fromJson(Map<String, dynamic> json) {
+    return AuthConfig(
+      fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
+      clientId: json['clientId'] as String,
+      redirectUri: Uri.parse(json['redirectUri'] as String),
+      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+      clientSecret: json['clientSecret'] as String?,
+      authMethod: ClientAuthMethod.values.byName(
+        json['authMethod'] as String? ?? 'none',
+      ),
+    );
+  }
 
   /// FHIR server base URL
   final FhirUri fhirBaseUrl;
@@ -51,20 +65,6 @@ class AuthConfig {
       'authMethod': authMethod.name,
     };
   }
-
-  /// Create from JSON
-  factory AuthConfig.fromJson(Map<String, dynamic> json) {
-    return AuthConfig(
-      fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
-      clientId: json['clientId'] as String,
-      redirectUri: Uri.parse(json['redirectUri'] as String),
-      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
-      clientSecret: json['clientSecret'] as String?,
-      authMethod: ClientAuthMethod.values.byName(
-        json['authMethod'] as String? ?? 'none',
-      ),
-    );
-  }
 }
 
 /// SMART on FHIR specific configuration
@@ -92,6 +92,85 @@ class SmartConfig extends AuthConfig {
     this.enableOpenId = true,
     this.offlineAccess = false,
   });
+
+  /// Create from JSON
+  factory SmartConfig.fromJson(Map<String, dynamic> json) {
+    final base = AuthConfig.fromJson(json);
+    return SmartConfig(
+      fhirBaseUrl: base.fhirBaseUrl,
+      clientId: base.clientId,
+      redirectUri: base.redirectUri,
+      scopes: base.scopes,
+      clientSecret: base.clientSecret,
+      authMethod: base.authMethod,
+      launchType: LaunchType.values.byName(
+        json['launchType'] as String? ?? 'standalone',
+      ),
+      launchToken: json['launchToken'] as String?,
+      iss: json['iss'] as String?,
+      authorizeUrl: json['authorizeUrl'] != null
+          ? Uri.parse(json['authorizeUrl'] as String)
+          : null,
+      tokenUrl: json['tokenUrl'] != null
+          ? Uri.parse(json['tokenUrl'] as String)
+          : null,
+      capabilities: (json['capabilities'] as List<dynamic>?)
+              ?.map(
+                (c) => SmartCapability.values
+                    .firstWhere((cap) => cap.value == c as String),
+              )
+              .toList() ??
+          <SmartCapability>[],
+      customParameters: (json['customParameters'] as Map<String, dynamic>?)
+              ?.cast<String, String>() ??
+          const {},
+      audience: json['audience'] as String?,
+      needPatientBanner: json['needPatientBanner'] as bool?,
+      smartStyleUrl: json['smartStyleUrl'] as String?,
+      intent: json['intent'] as String?,
+      tenant: json['tenant'] as String?,
+      enablePkce: json['enablePkce'] as bool? ?? true,
+      enableOpenId: json['enableOpenId'] as bool? ?? true,
+      offlineAccess: json['offlineAccess'] as bool? ?? false,
+    );
+  }
+
+  /// Create from launch parameters (e.g., from URL query)
+  factory SmartConfig.fromLaunchParameters({
+    required Map<String, String> parameters,
+    required Uri currentUrl,
+    required String clientId,
+    Uri? redirectUri,
+    List<String>? scopes,
+    String? clientSecret,
+  }) {
+    // Extract SMART parameters
+    final iss = parameters['iss'];
+    final launch = parameters['launch'];
+
+    // Determine launch type
+    final launchType = launch != null ? LaunchType.ehr : LaunchType.standalone;
+
+    // Build redirect URI if not provided
+    redirectUri ??= Uri(
+      scheme: currentUrl.scheme,
+      host: currentUrl.host,
+      port: currentUrl.port,
+      path: '/redirect',
+    );
+
+    return SmartConfig(
+      fhirBaseUrl: FhirUri(iss ?? currentUrl.toString()),
+      clientId: clientId,
+      redirectUri: redirectUri,
+      scopes: scopes ?? <String>[],
+      clientSecret: clientSecret,
+      launchType: launchType,
+      launchToken: launch,
+      iss: iss,
+      audience: iss,
+    );
+  }
 
   /// Type of SMART launch
   final LaunchType launchType;
@@ -234,83 +313,6 @@ class SmartConfig extends AuthConfig {
       'offlineAccess': offlineAccess,
     };
   }
-
-  /// Create from JSON
-  factory SmartConfig.fromJson(Map<String, dynamic> json) {
-    final base = AuthConfig.fromJson(json);
-    return SmartConfig(
-      fhirBaseUrl: base.fhirBaseUrl,
-      clientId: base.clientId,
-      redirectUri: base.redirectUri,
-      scopes: base.scopes,
-      clientSecret: base.clientSecret,
-      authMethod: base.authMethod,
-      launchType: LaunchType.values.byName(
-        json['launchType'] as String? ?? 'standalone',
-      ),
-      launchToken: json['launchToken'] as String?,
-      iss: json['iss'] as String?,
-      authorizeUrl: json['authorizeUrl'] != null
-          ? Uri.parse(json['authorizeUrl'] as String)
-          : null,
-      tokenUrl: json['tokenUrl'] != null
-          ? Uri.parse(json['tokenUrl'] as String)
-          : null,
-      capabilities: (json['capabilities'] as List<dynamic>?)
-              ?.map((c) => SmartCapability.values
-                  .firstWhere((cap) => cap.value == c as String))
-              .toList() ??
-          <SmartCapability>[],
-      customParameters: (json['customParameters'] as Map<String, dynamic>?)
-              ?.cast<String, String>() ??
-          const {},
-      audience: json['audience'] as String?,
-      needPatientBanner: json['needPatientBanner'] as bool?,
-      smartStyleUrl: json['smartStyleUrl'] as String?,
-      intent: json['intent'] as String?,
-      tenant: json['tenant'] as String?,
-      enablePkce: json['enablePkce'] as bool? ?? true,
-      enableOpenId: json['enableOpenId'] as bool? ?? true,
-      offlineAccess: json['offlineAccess'] as bool? ?? false,
-    );
-  }
-
-  /// Create from launch parameters (e.g., from URL query)
-  factory SmartConfig.fromLaunchParameters({
-    required Map<String, String> parameters,
-    required Uri currentUrl,
-    required String clientId,
-    Uri? redirectUri,
-    List<String>? scopes,
-    String? clientSecret,
-  }) {
-    // Extract SMART parameters
-    final iss = parameters['iss'];
-    final launch = parameters['launch'];
-
-    // Determine launch type
-    final launchType = launch != null ? LaunchType.ehr : LaunchType.standalone;
-
-    // Build redirect URI if not provided
-    redirectUri ??= Uri(
-      scheme: currentUrl.scheme,
-      host: currentUrl.host,
-      port: currentUrl.port,
-      path: '/redirect',
-    );
-
-    return SmartConfig(
-      fhirBaseUrl: FhirUri(iss ?? currentUrl.toString()),
-      clientId: clientId,
-      redirectUri: redirectUri,
-      scopes: scopes ?? <String>[],
-      clientSecret: clientSecret,
-      launchType: launchType,
-      launchToken: launch,
-      iss: iss,
-      audience: iss,
-    );
-  }
 }
 
 /// Backend service configuration
@@ -328,6 +330,22 @@ class BackendServiceConfig extends AuthConfig {
           redirectUri: Uri.parse('urn:ietf:wg:oauth:2.0:oob'),
           authMethod: ClientAuthMethod.privateKeyJwt,
         );
+
+  /// Create from JSON
+  factory BackendServiceConfig.fromJson(Map<String, dynamic> json) {
+    return BackendServiceConfig(
+      fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
+      clientId: json['clientId'] as String,
+      privateKey: json['privateKey'] as String,
+      tokenUrl: Uri.parse(json['tokenUrl'] as String),
+      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+      algorithm: json['algorithm'] as String? ?? 'RS384',
+      keyId: json['keyId'] as String?,
+      tokenLifetime: json['tokenLifetime'] != null
+          ? Duration(seconds: json['tokenLifetime'] as int)
+          : const Duration(minutes: 5),
+    );
+  }
 
   /// Private key for JWT signing
   final String privateKey;
@@ -354,21 +372,5 @@ class BackendServiceConfig extends AuthConfig {
       if (keyId != null) 'keyId': keyId,
       'tokenLifetime': tokenLifetime.inSeconds,
     };
-  }
-
-  /// Create from JSON
-  factory BackendServiceConfig.fromJson(Map<String, dynamic> json) {
-    return BackendServiceConfig(
-      fhirBaseUrl: FhirUri(json['fhirBaseUrl'] as String),
-      clientId: json['clientId'] as String,
-      privateKey: json['privateKey'] as String,
-      tokenUrl: Uri.parse(json['tokenUrl'] as String),
-      scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
-      algorithm: json['algorithm'] as String? ?? 'RS384',
-      keyId: json['keyId'] as String?,
-      tokenLifetime: json['tokenLifetime'] != null
-          ? Duration(seconds: json['tokenLifetime'] as int)
-          : const Duration(minutes: 5),
-    );
   }
 }

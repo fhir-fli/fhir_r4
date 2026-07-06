@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 final exercises04 = <String, dynamic>{
@@ -21,11 +20,13 @@ final exercises04 = <String, dynamic>{
   'Interval Includes': CqlBoolean(true),
   'Interval Ends': CqlBoolean(true),
   'IntervalX': CqlInterval<CqlDate>(
-      low: CqlDate.fromString('2021-03-01'),
-      high: CqlDate.fromString('2021-03-10')),
+    low: CqlDate.fromString('2021-03-01'),
+    high: CqlDate.fromString('2021-03-10'),
+  ),
   'IntervalY': CqlInterval<CqlDate>(
-      low: CqlDate.fromString('2021-03-04'),
-      high: CqlDate.fromString('2021-03-30')),
+    low: CqlDate.fromString('2021-03-04'),
+    high: CqlDate.fromString('2021-03-30'),
+  ),
   'Interval Starts Before Start': CqlBoolean(true),
   'Interval Starts 3 Days Before Start': CqlBoolean(true),
   'Interval Starts 3 Days Or More Before Start': CqlBoolean(true),
@@ -33,8 +34,8 @@ final exercises04 = <String, dynamic>{
   'Integer List': [1, 2, 3, 4, 5],
   'Choice List': [1, 'abc', null],
   'Tuple List': <dynamic>[
-    <String, dynamic>{"X": 1.toCqlInteger, "Y": 1.toCqlInteger},
-    <String, dynamic>{"X": 2.toCqlInteger, "Y": 2.toCqlInteger}
+    <String, dynamic>{'X': 1.toCqlInteger, 'Y': 1.toCqlInteger},
+    <String, dynamic>{'X': 2.toCqlInteger, 'Y': 2.toCqlInteger},
   ],
   'List Indexer': CqlBoolean(true),
   'List Index Of': CqlBoolean(true),
@@ -57,14 +58,14 @@ final exercises04 = <String, dynamic>{
     CqlInteger(2),
     CqlInteger(3),
     CqlInteger(4),
-    CqlInteger(5)
+    CqlInteger(5),
   ],
   'ListB': [
     CqlInteger(4),
     CqlInteger(5),
     CqlInteger(6),
     CqlInteger(7),
-    CqlInteger(8)
+    CqlInteger(8),
   ],
   'List Union': CqlBoolean(true),
   'Choice List Union': CqlBoolean(true),
@@ -90,13 +91,14 @@ final exercises04 = <String, dynamic>{
   'Distinct Expression': CqlBoolean(true),
   'Flatten Not Recursive': CqlBoolean(false),
   'Flatten Lists and Elements': CqlException(
-      message:
-          'The source list for SingletonFrom contains more than one element',
-      sourceLocator: SourceLocator(
-          librarySystemId: 'http://cql.hl7.org/Library/unknown',
-          libraryName: 'Exercises04Key',
-          nodeType: 'SingletonFrom'),
-      severity: Severity.error),
+    message: 'The source list for SingletonFrom contains more than one element',
+    sourceLocator: SourceLocator(
+      librarySystemId: 'http://cql.hl7.org/Library/unknown',
+      libraryName: 'Exercises04Key',
+      nodeType: 'SingletonFrom',
+    ),
+    severity: Severity.error,
+  ),
   'Collapse Expression': CqlBoolean(true),
   'Expand Expression': CqlBoolean(true),
 };

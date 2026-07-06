@@ -3,12 +3,12 @@
 library;
 
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../test_helpers/test_data.dart';
 
+import '../../test_helpers/test_data.dart';
 @GenerateMocks([FlutterSecureStorage])
 import 'token_security_test.mocks.dart';
 
@@ -94,70 +94,80 @@ void main() {
           refreshToken: 'secret_refresh_token',
         );
 
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.saveTokens(token);
 
         // Verify write was called (encryption handled by FlutterSecureStorage)
-        verify(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
 
       test('tokens are cleared securely', () async {
-        when(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.clearTokens();
 
         // Verify secure deletion
-        verify(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
 
       test('token storage handles encryption failures', () async {
         final token = SmartTokenResponse(accessToken: 'test');
 
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenThrow(Exception('Encryption failed'));
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenThrow(Exception('Encryption failed'));
 
         expect(
           () => tokenStorage.saveTokens(token),
@@ -259,31 +269,35 @@ void main() {
           refreshToken: 'single_use_refresh',
         );
 
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.saveTokens(token);
 
         // After use, should be replaced with new token
         // (actual refresh logic tested elsewhere)
-        verify(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
 
       test('missing refresh token is handled', () {
@@ -370,16 +384,18 @@ void main() {
         );
 
         // Store token
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.saveTokens(token);
 
@@ -389,26 +405,30 @@ void main() {
 
       test('old tokens are cleared on new login', () async {
         // Store old token
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
-        when(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         final oldToken = SmartTokenResponse(accessToken: 'old');
         await tokenStorage.saveTokens(oldToken);
@@ -420,39 +440,45 @@ void main() {
         final newToken = SmartTokenResponse(accessToken: 'new');
         await tokenStorage.saveTokens(newToken);
 
-        verify(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
 
       test('tokens are cleared on logout', () async {
-        when(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.clearTokens();
 
-        verify(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
     });
 
@@ -462,40 +488,46 @@ void main() {
           accessToken: 'sensitive_token',
         );
 
-        when(mockStorage.write(
-          key: anyNamed('key'),
-          value: anyNamed('value'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
-        when(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).thenAnswer((_) async {});
+        when(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).thenAnswer((_) async {});
 
         await tokenStorage.saveTokens(token);
         await tokenStorage.clearTokens();
 
         // Token should be cleared from storage
-        verify(mockStorage.delete(
-          key: anyNamed('key'),
-          iOptions: anyNamed('iOptions'),
-          aOptions: anyNamed('aOptions'),
-          lOptions: anyNamed('lOptions'),
-          webOptions: anyNamed('webOptions'),
-          mOptions: anyNamed('mOptions'),
-          wOptions: anyNamed('wOptions'),
-        )).called(greaterThan(0));
+        verify(
+          mockStorage.delete(
+            key: anyNamed('key'),
+            iOptions: anyNamed('iOptions'),
+            aOptions: anyNamed('aOptions'),
+            lOptions: anyNamed('lOptions'),
+            webOptions: anyNamed('webOptions'),
+            mOptions: anyNamed('mOptions'),
+            wOptions: anyNamed('wOptions'),
+          ),
+        ).called(greaterThan(0));
       });
     });
   });

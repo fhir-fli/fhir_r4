@@ -3,12 +3,12 @@ import 'dart:io';
 Future<void> main() async {
   const intervalX = 'IntervalX';
   final firstList = [];
-  for (var startsEndsOccurs in ['', 'starts', 'ends', 'occurs']) {
+  for (final startsEndsOccurs in ['', 'starts', 'ends', 'occurs']) {
     firstList
         .add('$intervalX${startsEndsOccurs == "" ? "" : " $startsEndsOccurs"}');
   }
   final secondList = [];
-  for (var quantity in [
+  for (final quantity in [
     '',
     '3 days or more',
     '3 days or less',
@@ -20,7 +20,7 @@ Future<void> main() async {
     }
   }
   final thirdList = [];
-  for (var quantity in [
+  for (final quantity in [
     'before',
     'after',
     'on or before',
@@ -33,7 +33,7 @@ Future<void> main() async {
     }
   }
   final fourthList = [];
-  for (var quantity in [
+  for (final quantity in [
     '',
     'start',
     'end',
@@ -42,7 +42,7 @@ Future<void> main() async {
       fourthList.add('$entry${quantity == "" ? "" : " $quantity"} IntervalY');
     }
   }
-  String fileString = '';
+  var fileString = '';
   for (var i = 0; i < fourthList.length; i++) {
     fileString += 'define "annoyingTest$i":\n  ${fourthList[i]}\n\n';
   }

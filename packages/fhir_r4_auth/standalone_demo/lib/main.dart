@@ -17,19 +17,17 @@
 //
 // ignore_for_file: avoid_print
 
-library;
-
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fhir_r4_auth/fhir_r4_auth.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 
 /// Encode SMART Health IT Sandbox launch configuration into a base64url string.
 ///
 /// The SMART Sandbox expects a URL of the form:
-///   https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir
+///   `https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir`
 ///
 /// The encoded segment is a base64url-encoded JSON array with 17 positions.
 /// See https://github.com/smart-on-fhir/smart-launcher-v2 for the codec spec.
@@ -62,9 +60,9 @@ String encodeSandboxLaunchConfig({
     patient,
     provider,
     encounter,
-    skipLogin ? 1 : 0,
-    skipAuth ? 1 : 0,
-    simEhr ? 1 : 0,
+    if (skipLogin) 1 else 0,
+    if (skipAuth) 1 else 0,
+    if (simEhr) 1 else 0,
     scope,
     redirectUris,
     clientId,
@@ -168,6 +166,8 @@ class VendorConfig {
   final Map<LaunchMode, String> clientIds;
   final Map<LaunchMode, List<String>> scopes;
   final Map<LaunchMode, TestCredentials> testCredentials;
+  // Kept as a placeholder for users wiring backend-service flows.
+  // ignore: unreachable_from_main
   final String? systemClientSecret;
 }
 
@@ -395,7 +395,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   ///
   /// For the SMART Health IT Sandbox the launch configuration must be encoded
   /// as a base64url segment in the URL path:
-  ///   https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir
+  ///   `https://launch.smarthealthit.org/v/r4/sim/<encoded>/fhir`
   String _effectiveBaseUrl() {
     final config = _currentConfig;
     if (_selectedVendor != EhrVendor.smartSandbox) {
@@ -476,7 +476,6 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           clientId: clientId,
           fhirBaseUrl: baseUrl.toFhirUri,
           redirectUri: Uri.parse(redirectUri),
-          launchType: LaunchType.standalone,
           scopes: config.scopes[_selectedMode]!,
           // SMART Sandbox supports PKCE and OpenID; Epic does not
           enablePkce: isSmartSandbox,
@@ -847,7 +846,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -882,7 +881,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
                 return ButtonSegment(value: vendor, label: Text(vendor.label));
               }).toList(),
               selected: {_selectedVendor},
-              onSelectionChanged: (Set<EhrVendor> newSelection) {
+              onSelectionChanged: (newSelection) {
                 _changeVendor(newSelection.first);
               },
             ),
@@ -905,7 +904,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
                 );
               }).toList(),
               selected: {_selectedMode},
-              onSelectionChanged: (Set<LaunchMode> newSelection) {
+              onSelectionChanged: (newSelection) {
                 _changeMode(newSelection.first);
               },
             ),
@@ -1155,7 +1154,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   Widget _buildErrorScreen() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -1489,11 +1488,11 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 children: [
-                  const Icon(Icons.analytics, size: 32, color: Colors.green),
-                  const SizedBox(width: 16),
-                  const Text(
+                  Icon(Icons.analytics, size: 32, color: Colors.green),
+                  SizedBox(width: 16),
+                  Text(
                     'System Statistics',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),

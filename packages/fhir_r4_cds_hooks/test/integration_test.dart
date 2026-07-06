@@ -12,8 +12,7 @@ void main() {
     test('discover, invoke, and send feedback', () async {
       final mockClient = MockClient((request) async {
         // Discovery
-        if (request.method == 'GET' &&
-            request.url.path == '/cds-services') {
+        if (request.method == 'GET' && request.url.path == '/cds-services') {
           return http.Response(
             jsonEncode({
               'services': [
@@ -37,7 +36,8 @@ void main() {
             request.url.path == '/cds-services/patient-alerts') {
           final body = jsonDecode(request.body) as Map<String, dynamic>;
           expect(body['hook'], 'patient-view');
-          expect(body['context']['patientId'], 'p1');
+          final context = body['context'] as Map<String, dynamic>;
+          expect(context['patientId'], 'p1');
 
           return http.Response(
             jsonEncode({
@@ -135,8 +135,10 @@ void main() {
       final card = response.cards.first;
       expect(card.uuid, 'card-1');
       expect(card.indicator, CdsIndicator.warning);
-      expect(card.suggestions!.first.actions!.first.resource,
-          isA<ServiceRequest>(),);
+      expect(
+        card.suggestions!.first.actions!.first.resource,
+        isA<ServiceRequest>(),
+      );
       expect(card.links!.first.type, CdsLinkType.absolute);
 
       // Step 4: Send feedback
@@ -173,8 +175,7 @@ void main() {
                   'summary': 'Potential drug interaction: Aspirin + Warfarin',
                   'indicator': 'critical',
                   'source': {'label': 'Drug Interaction DB'},
-                  'detail':
-                      'Concurrent use of Aspirin and Warfarin increases '
+                  'detail': 'Concurrent use of Aspirin and Warfarin increases '
                       'bleeding risk.',
                   'suggestions': [
                     {
@@ -283,8 +284,10 @@ void main() {
       expect(substituteSuggestion.actions!.length, 2);
       expect(substituteSuggestion.actions![0].type, CdsActionType.delete);
       expect(substituteSuggestion.actions![1].type, CdsActionType.create);
-      expect(substituteSuggestion.actions![1].resource,
-          isA<MedicationRequest>(),);
+      expect(
+        substituteSuggestion.actions![1].resource,
+        isA<MedicationRequest>(),
+      );
 
       // Send override feedback
       await client.sendFeedback(
@@ -367,8 +370,10 @@ void main() {
 
       expect(decoded.cards.length, 1);
       expect(decoded.cards.first.indicator, CdsIndicator.warning);
-      expect(decoded.cards.first.suggestions!.first.actions!.first.resource,
-          isA<Patient>(),);
+      expect(
+        decoded.cards.first.suggestions!.first.actions!.first.resource,
+        isA<Patient>(),
+      );
     });
   });
 
@@ -381,7 +386,10 @@ void main() {
               'resourceType': 'Patient',
               'id': 'p1',
               'name': [
-                {'family': 'Smith', 'given': ['John']},
+                {
+                  'family': 'Smith',
+                  'given': ['John'],
+                },
               ],
             }),
             200,

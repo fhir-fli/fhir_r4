@@ -1,4 +1,3 @@
-
 // -- Sample FHIR resources for Exercise 06 (Data Access) --
 
 final _encounter1 = <String, dynamic>{
@@ -38,7 +37,7 @@ final _medrq1 = <String, dynamic>{
               'http://terminology.hl7.org/CodeSystem/medicationrequest-category',
           'code': 'community',
         }
-      ]
+      ],
     }
   ],
   'medicationCodeableConcept': {
@@ -49,7 +48,7 @@ final _medrq1 = <String, dynamic>{
         'display':
             '12 HR Oxycodone Hydrochloride 10 MG Extended Release Oral Tablet',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
 };
@@ -67,7 +66,7 @@ final _medrq2 = <String, dynamic>{
               'http://terminology.hl7.org/CodeSystem/medicationrequest-category',
           'code': 'inpatient',
         }
-      ]
+      ],
     }
   ],
   'medicationCodeableConcept': {
@@ -77,7 +76,7 @@ final _medrq2 = <String, dynamic>{
         'code': '582620',
         'display': 'Nizatidine 150 MG Oral Capsule',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
 };
@@ -95,7 +94,7 @@ final _obs1 = <String, dynamic>{
           'code': 'vital-signs',
           'display': 'Vital Signs',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -105,7 +104,7 @@ final _obs1 = <String, dynamic>{
         'code': '85354-9',
         'display': 'Blood pressure panel',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'valueQuantity': {
@@ -129,7 +128,7 @@ final _obs2 = <String, dynamic>{
           'code': 'laboratory',
           'display': 'Laboratory',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -139,7 +138,7 @@ final _obs2 = <String, dynamic>{
         'code': '718-7',
         'display': 'Hemoglobin [Mass/volume] in Blood',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'valueQuantity': {
@@ -163,7 +162,7 @@ final _obs3 = <String, dynamic>{
           'code': 'social-history',
           'display': 'Social History',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -173,7 +172,7 @@ final _obs3 = <String, dynamic>{
         'code': '72166-2',
         'display': 'Tobacco smoking status',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'valueCodeableConcept': {
@@ -183,7 +182,7 @@ final _obs3 = <String, dynamic>{
         'code': '266919005',
         'display': 'Never smoked tobacco',
       }
-    ]
+    ],
   },
 };
 

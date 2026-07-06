@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show SecurityViolationType, SecurityException;
+    show SecurityException, SecurityViolationType;
 import 'package:logging/logging.dart';
 
 /// Manages state and nonce parameters for OAuth security
@@ -193,7 +193,7 @@ class StateManager {
   /// Generate a secure random string
   String _generateSecureRandom(int length) {
     final buffer = StringBuffer();
-    for (int i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       buffer.write(_chars[_random.nextInt(_chars.length)]);
     }
     return buffer.toString();
@@ -232,9 +232,7 @@ class StateManager {
     if (_usedNonces.length > 1000) {
       // If too many, clear oldest half
       final toRemove = _usedNonces.take(_usedNonces.length ~/ 2).toList();
-      for (final nonce in toRemove) {
-        _usedNonces.remove(nonce);
-      }
+      toRemove.forEach(_usedNonces.remove);
     }
   }
 

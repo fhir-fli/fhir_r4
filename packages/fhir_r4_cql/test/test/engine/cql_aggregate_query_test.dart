@@ -1,7 +1,8 @@
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 
-Map<String, dynamic> _ctx() => {ContextKey.modelResolver: const R4ModelResolver()};
+Map<String, dynamic> _ctx() =>
+    {ContextKey.modelResolver: const R4ModelResolver()};
 
 /// Helper to build a Query with an aggregate clause.
 ///

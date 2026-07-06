@@ -24,15 +24,6 @@ class RateLimitConfig {
     this.burstSize,
   });
 
-  /// Maximum number of requests allowed in the window
-  final int maxRequests;
-
-  /// Time window for rate limiting
-  final Duration window;
-
-  /// Maximum burst size (for token bucket algorithm)
-  final int? burstSize;
-
   /// Create a config for token endpoints (conservative)
   factory RateLimitConfig.tokenEndpoint() {
     return const RateLimitConfig(
@@ -59,6 +50,15 @@ class RateLimitConfig {
       burstSize: 20,
     );
   }
+
+  /// Maximum number of requests allowed in the window
+  final int maxRequests;
+
+  /// Time window for rate limiting
+  final Duration window;
+
+  /// Maximum burst size (for token bucket algorithm)
+  final int? burstSize;
 }
 
 /// Request record for rate limiting
@@ -119,7 +119,8 @@ class RateLimiter {
         _logger.warning('Burst limit exceeded for key: $key');
         // Return a shorter retry time for burst limits
         return Duration(
-            seconds: (config.window.inSeconds / config.maxRequests).ceil());
+          seconds: (config.window.inSeconds / config.maxRequests).ceil(),
+        );
       }
     }
 

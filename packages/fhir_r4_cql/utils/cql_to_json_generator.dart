@@ -13,7 +13,8 @@ Future<void> main() async {
 
       final result = await post(
         Uri.parse(
-            'https://cql-translation-service-rzosf74zba-uc.a.run.app/cql/translator'),
+          'https://cql-translation-service-rzosf74zba-uc.a.run.app/cql/translator',
+        ),
         headers: {
           'Content-Type': 'application/cql',
           'Accept': 'application/elm+json',
@@ -21,11 +22,14 @@ Future<void> main() async {
         body: pathExpression,
       );
 
-      File(file.path
-              .replaceAll(
-                  'libraries_and_definitions', 'libraries_and_definitions_json')
-              .replaceAll('.cql', '.json'))
-          .writeAsStringSync(jsonPrettyPrint(jsonDecode(result.body)));
+      File(
+        file.path
+            .replaceAll(
+              'libraries_and_definitions',
+              'libraries_and_definitions_json',
+            )
+            .replaceAll('.cql', '.json'),
+      ).writeAsStringSync(jsonPrettyPrint(jsonDecode(result.body)));
     }
   }
 }

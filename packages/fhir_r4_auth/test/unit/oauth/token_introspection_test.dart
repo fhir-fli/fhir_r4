@@ -218,18 +218,24 @@ void main() {
         clientId: 'client123',
       );
 
-      expect(introspector.introspectionEndpoint.toString(),
-          equals('https://example.com/introspect'));
+      expect(
+        introspector.introspectionEndpoint.toString(),
+        equals('https://example.com/introspect'),
+      );
       expect(introspector.clientId, equals('client123'));
     });
 
     test('introspects token successfully', () async {
       final mockClient = MockClient((request) async {
         expect(
-            request.url.toString(), equals('https://example.com/introspect'));
+          request.url.toString(),
+          equals('https://example.com/introspect'),
+        );
         expect(request.method, equals('POST'));
-        expect(request.headers['content-type'],
-            startsWith('application/x-www-form-urlencoded'));
+        expect(
+          request.headers['content-type'],
+          startsWith('application/x-www-form-urlencoded'),
+        );
 
         final body = request.body;
         expect(body, contains('token='));
@@ -299,7 +305,6 @@ void main() {
         introspectionEndpoint: Uri.parse('https://example.com/introspect'),
         clientId: 'client123',
         clientSecret: 'secret456',
-        useBasicAuth: true,
         httpClient: mockClient,
       );
 

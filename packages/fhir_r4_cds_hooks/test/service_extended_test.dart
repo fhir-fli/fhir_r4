@@ -38,8 +38,10 @@ void main() {
       final response = builder.build();
       expect(response.cards.length, 1);
       expect(response.cards.first.indicator, CdsIndicator.warning);
-      expect(response.cards.first.detail,
-          'Aspirin may interact with Warfarin',);
+      expect(
+        response.cards.first.detail,
+        'Aspirin may interact with Warfarin',
+      );
       expect(response.cards.first.suggestions!.length, 1);
       expect(response.cards.first.suggestions!.first.uuid, 'sug-1');
     });
@@ -199,8 +201,10 @@ void main() {
       expect(card.source.url, 'http://cds.example.com');
       expect(card.source.topic!.code, 'drug-safety');
       expect(card.uuid, 'card-uuid-1');
-      expect(card.suggestions!.first.actions!.first.resource,
-          isA<Patient>(),);
+      expect(
+        card.suggestions!.first.actions!.first.resource,
+        isA<Patient>(),
+      );
       expect(card.selectionBehavior, CdsSelectionBehavior.atMostOne);
       expect(card.overrideReasons!.length, 1);
       expect(card.links!.length, 2);
@@ -210,8 +214,10 @@ void main() {
 
       expect(decoded.systemActions!.length, 1);
       expect(decoded.systemActions!.first.type, CdsActionType.delete);
-      expect(decoded.systemActions!.first.resourceId,
-          'MedicationRequest/mr-old',);
+      expect(
+        decoded.systemActions!.first.resourceId,
+        'MedicationRequest/mr-old',
+      );
     });
   });
 
@@ -231,8 +237,7 @@ void main() {
               'id': 'enc-1',
               'status': 'in-progress',
               'class': {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/v3-ActCode',
+                'system': 'http://terminology.hl7.org/CodeSystem/v3-ActCode',
                 'code': 'AMB',
               },
             }),
@@ -280,8 +285,8 @@ void main() {
       final results = await resolver.resolve(
         {
           'patient': 'Patient/{{context.patientId}}',
-          'conditions':
-              'Condition?patient={{context.patientId}}&category=problem-list-item',
+          'conditions': 'Condition?patient={{context.patientId}}'
+              '&category=problem-list-item',
         },
         {'patientId': 'p1'},
       );

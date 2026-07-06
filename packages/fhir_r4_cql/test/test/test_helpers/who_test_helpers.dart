@@ -23,8 +23,10 @@ Map<String, dynamic> loadValueSets(String dirPath) {
 /// (used by `Today()` and `Now()` in CQL). This is needed for test bundles
 /// with date-sensitive logic (e.g., age thresholds).
 Map<String, dynamic> buildContext(
-    Map<String, dynamic> bundleContext, Map<String, dynamic> valueSets,
-    {String? evaluationDate}) {
+  Map<String, dynamic> bundleContext,
+  Map<String, dynamic> valueSets, {
+  String? evaluationDate,
+}) {
   final context = Map<String, dynamic>.from(bundleContext);
   context['_valueSets'] = valueSets;
   if (evaluationDate != null) {
@@ -37,7 +39,7 @@ Map<String, dynamic> buildContext(
 LibraryManager createWhoLibraryManager() {
   return LibraryManager(
     sourceProvider: FileSystemLibrarySourceProvider(basePath: 'cql/who'),
-    parseLibrary: (source) => parseAndBuildLibrary(source),
+    parseLibrary: parseAndBuildLibrary,
   );
 }
 

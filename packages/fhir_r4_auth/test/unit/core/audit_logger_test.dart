@@ -90,9 +90,10 @@ void main() {
 
       final json = event.toJson();
 
-      expect(json['details'], isA<Map>());
-      expect(json['details']['scopes'], equals(<String>['patient/*.read']));
-      expect(json['details']['expires_in'], equals(3600));
+      expect(json['details'], isA<Map<dynamic, dynamic>>());
+      final details = json['details'] as Map<String, dynamic>;
+      expect(details['scopes'], equals(<String>['patient/*.read']));
+      expect(details['expires_in'], equals(3600));
     });
 
     test('has string representation', () {
@@ -130,12 +131,14 @@ void main() {
     });
 
     test('stores multiple events', () async {
-      for (int i = 0; i < 5; i++) {
-        await store.store(AuditEvent(
-          eventType: AuditEventType.authenticationSuccess,
-          severity: AuditSeverity.info,
-          message: 'Event $i',
-        ));
+      for (var i = 0; i < 5; i++) {
+        await store.store(
+          AuditEvent(
+            eventType: AuditEventType.authenticationSuccess,
+            severity: AuditSeverity.info,
+            message: 'Event $i',
+          ),
+        );
       }
 
       expect(store.eventCount, equals(5));
@@ -144,29 +147,35 @@ void main() {
     test('enforces max events limit', () async {
       final smallStore = InMemoryAuditStore(maxEvents: 3);
 
-      for (int i = 0; i < 5; i++) {
-        await smallStore.store(AuditEvent(
-          eventType: AuditEventType.authenticationSuccess,
-          severity: AuditSeverity.info,
-          message: 'Event $i',
-        ));
+      for (var i = 0; i < 5; i++) {
+        await smallStore.store(
+          AuditEvent(
+            eventType: AuditEventType.authenticationSuccess,
+            severity: AuditSeverity.info,
+            message: 'Event $i',
+          ),
+        );
       }
 
       expect(smallStore.eventCount, equals(3));
     });
 
     test('queries by event type', () async {
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'Success',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'Success',
+        ),
+      );
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationFailure,
-        severity: AuditSeverity.warning,
-        message: 'Failure',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationFailure,
+          severity: AuditSeverity.warning,
+          message: 'Failure',
+        ),
+      );
 
       final successes = await store.query(
         eventType: AuditEventType.authenticationSuccess,
@@ -181,12 +190,14 @@ void main() {
       final past = now.subtract(const Duration(hours: 2));
       final future = now.add(const Duration(hours: 2));
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'Test',
-        timestamp: now,
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'Test',
+          timestamp: now,
+        ),
+      );
 
       final results = await store.query(
         startTime: past,
@@ -197,19 +208,23 @@ void main() {
     });
 
     test('queries by user ID', () async {
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'User1',
-        userId: 'user1',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'User1',
+          userId: 'user1',
+        ),
+      );
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'User2',
-        userId: 'user2',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'User2',
+          userId: 'user2',
+        ),
+      );
 
       final user1Events = await store.query(userId: 'user1');
 
@@ -218,17 +233,21 @@ void main() {
     });
 
     test('queries by minimum severity', () async {
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'Info',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'Info',
+        ),
+      );
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.securityViolation,
-        severity: AuditSeverity.critical,
-        message: 'Critical',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.securityViolation,
+          severity: AuditSeverity.critical,
+          message: 'Critical',
+        ),
+      );
 
       final criticalEvents = await store.query(
         minSeverity: AuditSeverity.critical,
@@ -239,12 +258,14 @@ void main() {
     });
 
     test('limits query results', () async {
-      for (int i = 0; i < 10; i++) {
-        await store.store(AuditEvent(
-          eventType: AuditEventType.authenticationSuccess,
-          severity: AuditSeverity.info,
-          message: 'Event $i',
-        ));
+      for (var i = 0; i < 10; i++) {
+        await store.store(
+          AuditEvent(
+            eventType: AuditEventType.authenticationSuccess,
+            severity: AuditSeverity.info,
+            message: 'Event $i',
+          ),
+        );
       }
 
       final limited = await store.query(limit: 5);
@@ -279,32 +300,39 @@ void main() {
     test('cleans up old events', () async {
       final old = DateTime.now().subtract(const Duration(days: 2));
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'Old event',
-        timestamp: old,
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'Old event',
+          timestamp: old,
+        ),
+      );
 
-      await store.store(AuditEvent(
-        eventType: AuditEventType.authenticationSuccess,
-        severity: AuditSeverity.info,
-        message: 'New event',
-      ));
+      await store.store(
+        AuditEvent(
+          eventType: AuditEventType.authenticationSuccess,
+          severity: AuditSeverity.info,
+          message: 'New event',
+        ),
+      );
 
       await store.cleanup(
-          olderThan: DateTime.now().subtract(const Duration(days: 1)));
+        olderThan: DateTime.now().subtract(const Duration(days: 1)),
+      );
 
       expect(store.eventCount, equals(1));
     });
 
     test('clears all events', () async {
-      for (int i = 0; i < 5; i++) {
-        await store.store(AuditEvent(
-          eventType: AuditEventType.authenticationSuccess,
-          severity: AuditSeverity.info,
-          message: 'Event $i',
-        ));
+      for (var i = 0; i < 5; i++) {
+        await store.store(
+          AuditEvent(
+            eventType: AuditEventType.authenticationSuccess,
+            severity: AuditSeverity.info,
+            message: 'Event $i',
+          ),
+        );
       }
 
       await store.cleanup();
@@ -336,7 +364,9 @@ void main() {
 
       expect(events.length, equals(1));
       expect(
-          events.first.eventType, equals(AuditEventType.authenticationAttempt));
+        events.first.eventType,
+        equals(AuditEventType.authenticationAttempt),
+      );
       expect(events.first.userId, equals('user123'));
       expect(events.first.ipAddress, equals('192.168.1.1'));
     });
@@ -350,7 +380,9 @@ void main() {
       final events = await store.query();
 
       expect(
-          events.first.eventType, equals(AuditEventType.authenticationSuccess));
+        events.first.eventType,
+        equals(AuditEventType.authenticationSuccess),
+      );
       expect(events.first.outcome, isTrue);
       expect(events.first.details['method'], equals('password'));
     });
@@ -365,7 +397,9 @@ void main() {
       final events = await store.query();
 
       expect(
-          events.first.eventType, equals(AuditEventType.authenticationFailure));
+        events.first.eventType,
+        equals(AuditEventType.authenticationFailure),
+      );
       expect(events.first.outcome, isFalse);
       expect(events.first.errorCode, equals('invalid_credentials'));
     });
@@ -393,7 +427,7 @@ void main() {
       final events = await store.query();
 
       expect(events.first.eventType, equals(AuditEventType.tokenIssued));
-      expect(events.first.details['scopes'], isA<List>());
+      expect(events.first.details['scopes'], isA<List<dynamic>>());
     });
 
     test('logs token refreshed', () async {

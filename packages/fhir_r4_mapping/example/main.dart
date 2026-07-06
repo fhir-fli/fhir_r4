@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element — the unused StructureDefinitions are
+// kept as reference material for readers of this example.
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: avoid_escaping_inner_quotes
 // ignore_for_file: require_trailing_commas, unused_local_variable

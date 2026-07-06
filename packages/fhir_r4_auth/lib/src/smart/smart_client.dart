@@ -9,8 +9,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         AuditEventType,
         AuditLogger,
         AuditSeverity,
-        Authenticator,
         AuthenticationException,
+        Authenticator,
         BackendServiceConfig,
         ConfigurationException,
         FhirAuthClient,
@@ -111,8 +111,8 @@ class SmartFhirClient extends FhirAuthClient {
     final sc = smartConfig!;
 
     // Get endpoints if not configured
-    Uri? authEndpoint = sc.authorizeUrl;
-    Uri? tokenEndpoint = sc.tokenUrl;
+    var authEndpoint = sc.authorizeUrl;
+    var tokenEndpoint = sc.tokenUrl;
 
     if (authEndpoint == null || tokenEndpoint == null) {
       final endpoints = await _discoverEndpoints();
@@ -179,7 +179,7 @@ class SmartFhirClient extends FhirAuthClient {
 
       // Start session
       if (_sessionManager != null) {
-        await _sessionManager!.startSession(
+        await _sessionManager.startSession(
           userId: tokens.fhirUser ?? 'unknown',
           metadata: <String, dynamic>{
             'scopes': tokens.scopesList,
@@ -320,7 +320,7 @@ class SmartFhirClient extends FhirAuthClient {
 
     // End session
     if (_sessionManager != null) {
-      await _sessionManager!.endSession(TimeoutReason.logout);
+      await _sessionManager.endSession(TimeoutReason.logout);
     }
 
     // Revoke tokens if revocation endpoint is available
@@ -375,7 +375,7 @@ class SmartFhirClient extends FhirAuthClient {
     _logger.fine('Discovering SMART endpoints');
 
     // Try .well-known/smart-configuration first
-    Uri metadataUrl =
+    final metadataUrl =
         Uri.parse('${config.fhirBaseUrl}/.well-known/smart-configuration');
 
     try {
@@ -387,9 +387,12 @@ class SmartFhirClient extends FhirAuthClient {
         // Parse capabilities if present
         if (metadata['capabilities'] is List) {
           _serverCapabilities = (metadata['capabilities'] as List)
-              .map((c) => SmartCapability.values.firstWhere(
+              .map(
+                (c) => SmartCapability.values.firstWhere(
                   (cap) => cap.value == c,
-                  orElse: () => SmartCapability.launchStandalone))
+                  orElse: () => SmartCapability.launchStandalone,
+                ),
+              )
               .toList();
         }
 
@@ -404,7 +407,8 @@ class SmartFhirClient extends FhirAuthClient {
           _introspectionEndpoint =
               Uri.parse(metadata['introspection_endpoint'] as String);
           _logger.fine(
-              'Discovered introspection endpoint: $_introspectionEndpoint');
+            'Discovered introspection endpoint: $_introspectionEndpoint',
+          );
         }
 
         return <String, dynamic>{
@@ -485,7 +489,8 @@ class SmartFhirClient extends FhirAuthClient {
                 ? null
                 : Uri.parse(introspectionEndpoint);
             _logger.fine(
-                'Discovered introspection endpoint: $_introspectionEndpoint');
+              'Discovered introspection endpoint: $_introspectionEndpoint',
+            );
           }
         }
       } else if (extension.url.toString() ==
@@ -591,7 +596,6 @@ class SmartFhirClient extends FhirAuthClient {
     await oauthFlow.revokeToken(
       tokens!.refreshToken!,
       revocationEndpoint: _revocationEndpoint!,
-      tokenTypeHint: 'refresh_token',
     );
 
     _logger.fine('Refresh token revoked');

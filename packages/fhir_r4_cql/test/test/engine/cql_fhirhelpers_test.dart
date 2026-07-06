@@ -6,8 +6,8 @@ import 'package:ucum/ucum.dart';
 
 /// Helper expression that returns a fixed value when executed.
 class _Literal extends CqlExpression {
-  final dynamic value;
   _Literal(this.value);
+  final dynamic value;
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async => value;

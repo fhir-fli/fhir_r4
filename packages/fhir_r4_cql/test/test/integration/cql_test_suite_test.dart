@@ -35,7 +35,7 @@ void main() {
   // extracting test names, so commented-out defines are not included.
   final uncommented = source
       .replaceAll(RegExp(r'/\*.*?\*/', dotAll: true), '')
-      .replaceAll(RegExp(r'//.*'), '');
+      .replaceAll(RegExp('//.*'), '');
 
   // Extract all `define test_*:` names from uncommented source
   final testNames = RegExp(r'define (test_\w+):')
@@ -49,22 +49,29 @@ void main() {
     setUpAll(() async {
       final library = parseAndBuildLibrary(source);
       final context = <String, dynamic>{
-        'startTimestamp':
-            CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        'startTimestamp': CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
       };
-      results = (await library.execute(context, const R4ModelResolver())) as Map<String, dynamic>;
+      results = (await library.execute(context, const R4ModelResolver()))
+          as Map<String, dynamic>;
     });
 
     for (final name in testNames) {
       final skipReason = _knownFailures[name];
-      test(name, () {
-        // The expected pattern: the test name without "test_" prefix + " TEST PASSED"
-        final baseName = name.replaceFirst('test_', '');
-        final expected = '$baseName TEST PASSED';
-        final actual = results[name];
-        expect(actual, equals(expected),
-            reason: 'Expected: $expected\nActual: $actual');
-      }, skip: skipReason);
+      test(
+        name,
+        () {
+          // The expected pattern: the test name without "test_" prefix + " TEST PASSED"
+          final baseName = name.replaceFirst('test_', '');
+          final expected = '$baseName TEST PASSED';
+          final actual = results[name];
+          expect(
+            actual,
+            equals(expected),
+            reason: 'Expected: $expected\nActual: $actual',
+          );
+        },
+        skip: skipReason,
+      );
     }
   });
 }

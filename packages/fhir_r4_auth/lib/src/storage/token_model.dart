@@ -2,7 +2,7 @@
 library;
 
 import 'dart:convert';
-import '../core/auth_types.dart';
+import 'package:fhir_r4_auth/src/core/auth_types.dart';
 
 /// Parse a value that may be bool or String to bool?
 bool? _parseBool(dynamic value) {
@@ -31,6 +31,36 @@ class SmartTokenResponse {
     this.tenant,
     this.additionalClaims = const {},
   }) : issuedAt = issuedAt ?? DateTime.now();
+
+  /// Create from OAuth token response
+  factory SmartTokenResponse.fromJson(Map<String, dynamic> json) {
+    return SmartTokenResponse(
+      accessToken: json[OAuthParameters.accessToken] as String,
+      refreshToken: json[OAuthParameters.refreshToken] as String?,
+      idToken: json[OAuthParameters.idToken] as String?,
+      tokenType: json[OAuthParameters.tokenType] as String? ?? 'Bearer',
+      expiresIn: json[OAuthParameters.expiresIn] as int?,
+      scope: json[OAuthParameters.scope] as String?,
+      patientContext: json[OAuthParameters.patient] as String?,
+      encounterContext: json[OAuthParameters.encounter] as String?,
+      fhirUser: json['fhirUser'] as String?,
+      needPatientBanner: _parseBool(json[OAuthParameters.needPatientBanner]),
+      smartStyleUrl: json[OAuthParameters.smartStyleUrl] as String?,
+      intent: json[OAuthParameters.intent] as String?,
+      tenant: json[OAuthParameters.tenant] as String?,
+      additionalClaims: Map<String, dynamic>.from(json)
+        ..removeWhere((key, _) => _standardKeys.contains(key)),
+    );
+  }
+
+  /// Create from stored JSON string
+  factory SmartTokenResponse.fromStoredJson(String json) {
+    final map = jsonDecode(json) as Map<String, dynamic>;
+    if (map['issuedAt'] != null) {
+      map['issuedAt'] = DateTime.parse(map['issuedAt'] as String);
+    }
+    return SmartTokenResponse.fromJson(map);
+  }
 
   /// Access token for API calls
   final String accessToken;
@@ -110,27 +140,6 @@ class SmartTokenResponse {
     return scope!.split(' ');
   }
 
-  /// Create from OAuth token response
-  factory SmartTokenResponse.fromJson(Map<String, dynamic> json) {
-    return SmartTokenResponse(
-      accessToken: json[OAuthParameters.accessToken] as String,
-      refreshToken: json[OAuthParameters.refreshToken] as String?,
-      idToken: json[OAuthParameters.idToken] as String?,
-      tokenType: json[OAuthParameters.tokenType] as String? ?? 'Bearer',
-      expiresIn: json[OAuthParameters.expiresIn] as int?,
-      scope: json[OAuthParameters.scope] as String?,
-      patientContext: json[OAuthParameters.patient] as String?,
-      encounterContext: json[OAuthParameters.encounter] as String?,
-      fhirUser: json['fhirUser'] as String?,
-      needPatientBanner: _parseBool(json[OAuthParameters.needPatientBanner]),
-      smartStyleUrl: json[OAuthParameters.smartStyleUrl] as String?,
-      intent: json[OAuthParameters.intent] as String?,
-      tenant: json[OAuthParameters.tenant] as String?,
-      additionalClaims: Map<String, dynamic>.from(json)
-        ..removeWhere((key, _) => _standardKeys.contains(key)),
-    );
-  }
-
   /// Convert to JSON for storage
   Map<String, dynamic> toJson() {
     return {
@@ -151,15 +160,6 @@ class SmartTokenResponse {
       if (tenant != null) OAuthParameters.tenant: tenant,
       ...additionalClaims,
     };
-  }
-
-  /// Create from stored JSON string
-  factory SmartTokenResponse.fromStoredJson(String json) {
-    final map = jsonDecode(json) as Map<String, dynamic>;
-    if (map['issuedAt'] != null) {
-      map['issuedAt'] = DateTime.parse(map['issuedAt'] as String);
-    }
-    return SmartTokenResponse.fromJson(map);
   }
 
   /// Convert to JSON string for storage
@@ -236,6 +236,33 @@ class JwtClaims {
     this.additionalClaims = const {},
   });
 
+  /// Parse from JWT payload
+  factory JwtClaims.fromJson(Map<String, dynamic> json) {
+    // Handle numeric date values (seconds since epoch)
+    DateTime parseNumericDate(dynamic value) {
+      if (value is int) {
+        return DateTime.fromMillisecondsSinceEpoch(value * 1000);
+      } else if (value is String) {
+        return DateTime.parse(value);
+      }
+      throw FormatException('Invalid date format: $value');
+    }
+
+    return JwtClaims(
+      issuer: json['iss'] as String,
+      subject: json['sub'] as String,
+      audience: json['aud'], // Can be String or List<String>
+      expiresAt: parseNumericDate(json['exp']),
+      issuedAt: parseNumericDate(json['iat']),
+      notBefore: json['nbf'] != null ? parseNumericDate(json['nbf']) : null,
+      jwtId: json['jti'] as String?,
+      nonce: json['nonce'] as String?,
+      azp: json['azp'] as String?,
+      additionalClaims: Map<String, dynamic>.from(json)
+        ..removeWhere((key, _) => _standardJwtKeys.contains(key)),
+    );
+  }
+
   /// Token issuer (iss)
   final String issuer;
 
@@ -278,33 +305,6 @@ class JwtClaims {
   /// Check if token is currently valid
   bool get isValid => !isExpired && !isNotYetValid;
 
-  /// Parse from JWT payload
-  factory JwtClaims.fromJson(Map<String, dynamic> json) {
-    // Handle numeric date values (seconds since epoch)
-    DateTime parseNumericDate(dynamic value) {
-      if (value is int) {
-        return DateTime.fromMillisecondsSinceEpoch(value * 1000);
-      } else if (value is String) {
-        return DateTime.parse(value);
-      }
-      throw FormatException('Invalid date format: $value');
-    }
-
-    return JwtClaims(
-      issuer: json['iss'] as String,
-      subject: json['sub'] as String,
-      audience: json['aud'], // Can be String or List<String>
-      expiresAt: parseNumericDate(json['exp']),
-      issuedAt: parseNumericDate(json['iat']),
-      notBefore: json['nbf'] != null ? parseNumericDate(json['nbf']) : null,
-      jwtId: json['jti'] as String?,
-      nonce: json['nonce'] as String?,
-      azp: json['azp'] as String?,
-      additionalClaims: Map<String, dynamic>.from(json)
-        ..removeWhere((key, _) => _standardJwtKeys.contains(key)),
-    );
-  }
-
   /// Standard JWT claim keys
   static final Set<String> _standardJwtKeys = {
     'iss',
@@ -344,6 +344,24 @@ class AuthState {
     this.sessionId,
   });
 
+  /// Create from JSON
+  factory AuthState.fromJson(Map<String, dynamic> json) {
+    return AuthState(
+      tokenResponse: json['tokenResponse'] != null
+          ? SmartTokenResponse.fromJson(
+              json['tokenResponse'] as Map<String, dynamic>,
+            )
+          : null,
+      lastAuthenticated: json['lastAuthenticated'] != null
+          ? DateTime.parse(json['lastAuthenticated'] as String)
+          : null,
+      authMethod: json['authMethod'] != null
+          ? ClientAuthMethod.values.byName(json['authMethod'] as String)
+          : null,
+      sessionId: json['sessionId'] as String?,
+    );
+  }
+
   /// Current token response
   final SmartTokenResponse? tokenResponse;
 
@@ -373,22 +391,5 @@ class AuthState {
       if (authMethod != null) 'authMethod': authMethod!.name,
       if (sessionId != null) 'sessionId': sessionId,
     };
-  }
-
-  /// Create from JSON
-  factory AuthState.fromJson(Map<String, dynamic> json) {
-    return AuthState(
-      tokenResponse: json['tokenResponse'] != null
-          ? SmartTokenResponse.fromJson(
-              json['tokenResponse'] as Map<String, dynamic>)
-          : null,
-      lastAuthenticated: json['lastAuthenticated'] != null
-          ? DateTime.parse(json['lastAuthenticated'] as String)
-          : null,
-      authMethod: json['authMethod'] != null
-          ? ClientAuthMethod.values.byName(json['authMethod'] as String)
-          : null,
-      sessionId: json['sessionId'] as String?,
-    );
   }
 }

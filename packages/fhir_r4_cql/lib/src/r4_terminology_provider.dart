@@ -31,7 +31,9 @@ class R4TerminologyProvider implements TerminologyProvider {
     required CqlValueSet valueSet,
   }) async {
     final resolved = await _resourceCache.getCanonicalResource<ValueSet>(
-        valueSet.id, valueSet.version);
+      valueSet.id,
+      valueSet.version,
+    );
     if (resolved == null) return null;
 
     final checker = ValueSetChecker(

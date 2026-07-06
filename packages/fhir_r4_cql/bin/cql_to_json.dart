@@ -31,7 +31,10 @@ Future<void> _processCqlFiles(Directory sourceDir, Directory targetDir) async {
 }
 
 Future<void> _processCqlFile(
-    File cqlFile, String sourceDirPath, String targetDirPath) async {
+  File cqlFile,
+  String sourceDirPath,
+  String targetDirPath,
+) async {
   try {
     // Read the CQL file
     final cqlContent = await cqlFile.readAsString();
@@ -49,12 +52,13 @@ Future<void> _processCqlFile(
 
     // Send the CQL to the local translation service
     final response = await post(
-        Uri.parse('http://localhost:8080/cql/translator'),
-        body: cqlContent,
-        headers: {
-          'Content-Type': 'application/cql',
-          'Accept': 'application/elm+json'
-        });
+      Uri.parse('http://localhost:8080/cql/translator'),
+      body: cqlContent,
+      headers: {
+        'Content-Type': 'application/cql',
+        'Accept': 'application/elm+json',
+      },
+    );
 
     if (response.statusCode == 200) {
       // Parse and pretty-print the JSON response
