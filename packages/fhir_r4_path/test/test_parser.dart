@@ -126,5 +126,18 @@ Future<void> testParser() async {
       expect(node.inner?.name, equals('address'));
       expect(node.inner?.inner?.name, equals('city'));
     });
+
+    test('Trailing tokens are rejected (Java parity)', () async {
+      // The Java reference throws "Premature ExpressionNode termination" on
+      // trailing input; before 2026-07-05 this check was commented out and
+      // parse('name.given garbage') silently dropped the garbage.
+      expect(() => testEngine.parse('name.given garbage'),
+          throwsA(isA<FHIRLexerException>()));
+      expect(() => testEngine.parse('1 + 1)'),
+          throwsA(isA<FHIRLexerException>()));
+      expect(testEngine.isValid('name.given garbage'), isFalse);
+      // No trailing input: still fine.
+      expect(testEngine.parse('name.given').name, equals('name'));
+    });
   });
 }
