@@ -18,9 +18,9 @@ environment:
 
 dependencies:
   collection: ^1.19.1
-  fhir_node: ^0.1.0
+  fhir_node: ^0.6.0
   fhir_r4: ^0.5.0
-  fhirpath: ^0.1.0-dev.1
+  fhirpath: ^0.6.0
   http: ^1.6.0
   ucum: ^0.9.0
   universal_io: ^2.3.1
