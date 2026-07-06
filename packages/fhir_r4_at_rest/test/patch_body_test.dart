@@ -72,8 +72,11 @@ void main() {
 
     group('move operation', () {
       test('adds a move operation', () {
-        patchBody.addOperation(PatchOps.move, '/name/1',
-            value: '/name/0',);
+        patchBody.addOperation(
+          PatchOps.move,
+          '/name/1',
+          value: '/name/0',
+        );
 
         expect(patchBody.operations, hasLength(1));
         expect(patchBody.operations.first['op'], 'move');
@@ -82,8 +85,11 @@ void main() {
 
     group('copy operation', () {
       test('adds a copy operation', () {
-        patchBody.addOperation(PatchOps.copy, '/name/1',
-            value: '/name/0',);
+        patchBody.addOperation(
+          PatchOps.copy,
+          '/name/1',
+          value: '/name/0',
+        );
 
         expect(patchBody.operations, hasLength(1));
         expect(patchBody.operations.first['op'], 'copy');
@@ -108,10 +114,14 @@ void main() {
         patchBody
           ..addOperation(PatchOps.test, '/active', value: true)
           ..addOperation(PatchOps.replace, '/active', value: false)
-          ..addOperation(PatchOps.add, '/name/-', value: {
-          'use': 'official',
-          'family': 'Smith',
-        },);
+          ..addOperation(
+            PatchOps.add,
+            '/name/-',
+            value: {
+              'use': 'official',
+              'family': 'Smith',
+            },
+          );
 
         expect(patchBody.operations, hasLength(3));
         expect(patchBody.operations[0]['op'], 'test');
@@ -122,8 +132,11 @@ void main() {
 
     group('toJson', () {
       test('produces valid JSON string', () {
-        patchBody.addOperation(PatchOps.replace, '/birthDate',
-            value: '1990-01-01',);
+        patchBody.addOperation(
+          PatchOps.replace,
+          '/birthDate',
+          value: '1990-01-01',
+        );
 
         final jsonString = patchBody.toJson();
         final decoded = jsonDecode(jsonString) as List<dynamic>;
@@ -140,10 +153,14 @@ void main() {
 
       test('complex multi-op patch produces valid JSON', () {
         patchBody
-          ..addOperation(PatchOps.add, '/identifier/-', value: {
-            'system': 'http://example.org',
-            'value': 'MRN-001',
-          },)
+          ..addOperation(
+            PatchOps.add,
+            '/identifier/-',
+            value: {
+              'system': 'http://example.org',
+              'value': 'MRN-001',
+            },
+          )
           ..addOperation(PatchOps.remove, '/name/1')
           ..addOperation(PatchOps.replace, '/gender', value: 'female');
 

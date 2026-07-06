@@ -30,8 +30,7 @@ abstract class DataType extends Element {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     return json;
   }

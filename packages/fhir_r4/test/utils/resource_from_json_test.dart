@@ -119,7 +119,8 @@ void main() {
           'id': 'ep-1',
           'status': 'active',
           'connectionType': {
-            'system': 'http://terminology.hl7.org/CodeSystem/endpoint-connection-type',
+            'system':
+                'http://terminology.hl7.org/CodeSystem/endpoint-connection-type',
             'code': 'hl7-fhir-rest',
           },
           'payloadType': [

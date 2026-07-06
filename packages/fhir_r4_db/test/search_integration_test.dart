@@ -1,4 +1,3 @@
-
 import 'package:drift/native.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart' hide Resource;
@@ -319,7 +318,8 @@ Future<void> main() async {
             ],
             security: <Coding>[
               Coding(
-                system: FhirUri('http://terminology.hl7.org/CodeSystem/v3-Confidentiality'),
+                system: FhirUri(
+                    'http://terminology.hl7.org/CodeSystem/v3-Confidentiality'),
                 code: FhirCode('R'),
               ),
             ],
@@ -480,7 +480,9 @@ Future<void> main() async {
       // Should find by old name
       var results = await dao.search(
         resourceType: R4ResourceType.Patient,
-        searchParameters: {'family': ['OldName']},
+        searchParameters: {
+          'family': ['OldName']
+        },
       );
       expect(results.length, 1);
 
@@ -497,14 +499,18 @@ Future<void> main() async {
       // Old name should no longer match
       results = await dao.search(
         resourceType: R4ResourceType.Patient,
-        searchParameters: {'family': ['OldName']},
+        searchParameters: {
+          'family': ['OldName']
+        },
       );
       expect(results, isEmpty);
 
       // New name should match
       results = await dao.search(
         resourceType: R4ResourceType.Patient,
-        searchParameters: {'family': ['NewName']},
+        searchParameters: {
+          'family': ['NewName']
+        },
       );
       expect(results.length, 1);
     });
@@ -521,7 +527,9 @@ Future<void> main() async {
 
       var results = await dao.search(
         resourceType: R4ResourceType.Patient,
-        searchParameters: {'family': ['DeleteMe']},
+        searchParameters: {
+          'family': ['DeleteMe']
+        },
       );
       expect(results.length, 1);
 
@@ -529,7 +537,9 @@ Future<void> main() async {
 
       results = await dao.search(
         resourceType: R4ResourceType.Patient,
-        searchParameters: {'family': ['DeleteMe']},
+        searchParameters: {
+          'family': ['DeleteMe']
+        },
       );
       expect(results, isEmpty);
     });

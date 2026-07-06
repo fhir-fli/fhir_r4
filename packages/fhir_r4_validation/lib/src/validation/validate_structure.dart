@@ -692,7 +692,7 @@ ElementDefinition? _polymorphicElement(
   Map<String, ElementDefinition> elements,
 ) {
   return elements.values.firstWhereOrNull(
-    (ElementDefinition element) =>
+    (element) =>
         (element.path.valueString?.endsWith('[x]') ?? false) &&
         path.startsWith(element.path.valueString!.replaceFirst('[x]', '')),
   );

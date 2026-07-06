@@ -245,10 +245,7 @@ Future<void> main() async {
         final dir = Directory('test/assets');
 
         if (dir.existsSync()) {
-          final fileList = await dir
-              .list()
-              .map((FileSystemEntity event) => event.path)
-              .toList();
+          final fileList = await dir.list().map((event) => event.path).toList();
           var total = 0;
           final buffer = StringBuffer();
           final startTime = DateTime.now();

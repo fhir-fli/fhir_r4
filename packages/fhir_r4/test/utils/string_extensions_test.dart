@@ -13,7 +13,8 @@ void main() {
       });
 
       test('converts multi-word camelCase', () {
-        expect('myLongVariableName'.toLowerSnakeCase(), 'my_long_variable_name');
+        expect(
+            'myLongVariableName'.toLowerSnakeCase(), 'my_long_variable_name');
       });
 
       test('replaces spaces with underscores', () {

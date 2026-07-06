@@ -76,15 +76,15 @@ abstract class DomainResource extends Resource {
     writeNotNull('text', text?.toJson());
     writeNotNull(
       'contained',
-      contained?.map((Resource e) => e.toJson()).toList(),
+      contained?.map((e) => e.toJson()).toList(),
     );
     writeNotNull(
       'extension',
-      extension_?.map((FhirExtension e) => e.toJson()).toList(),
+      extension_?.map((e) => e.toJson()).toList(),
     );
     writeNotNull(
       'modifierExtension',
-      modifierExtension?.map((FhirExtension e) => e.toJson()).toList(),
+      modifierExtension?.map((e) => e.toJson()).toList(),
     );
     return val;
   }

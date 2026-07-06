@@ -1,6 +1,6 @@
 name: fhir_r4_path
 description: >-
-  FHIRPath for FHIR R4: the version binding for the model-independent
+  FHIRPath for FHIR R4B: the version binding for the model-independent
   fhirpath engine, with terminology support.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/

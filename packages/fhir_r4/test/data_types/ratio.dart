@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -59,9 +58,13 @@ void ratioTest() {
     test('fromJson round-trips correctly', () {
       final original = Ratio(
         numerator: Quantity(
-            value: FhirDecimal(250), unit: FhirString('mg'),),
+          value: FhirDecimal(250),
+          unit: FhirString('mg'),
+        ),
         denominator: Quantity(
-            value: FhirDecimal(5), unit: FhirString('mL'),),
+          value: FhirDecimal(5),
+          unit: FhirString('mL'),
+        ),
       );
       final json = original.toJson();
       final restored = Ratio.fromJson(json);
@@ -71,8 +74,7 @@ void ratioTest() {
     });
 
     test('fromJsonString works', () {
-      const json =
-          '{"numerator":{"value":1},"denominator":{"value":2}}';
+      const json = '{"numerator":{"value":1},"denominator":{"value":2}}';
       final ratio = Ratio.fromJsonString(json);
       expect(ratio.numerator?.value?.valueNum, 1);
       expect(ratio.denominator?.value?.valueNum, 2);

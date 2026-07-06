@@ -58,9 +58,7 @@ Future<ValidationResults> validateCardinality({
 
 /// Checks if the [path] is already present in the list of checked paths.
 bool _isPathAlreadyChecked(List<String> missingPaths, String path) {
-  return missingPaths
-          .indexWhere((String element) => path.startsWith(element)) !=
-      -1;
+  return missingPaths.indexWhere((element) => path.startsWith(element)) != -1;
 }
 
 /// Validates the cardinality of a single element.
@@ -250,7 +248,7 @@ Node? _checkForPolymorphism(
 ) {
   if (_isAPolymorphicElement(element)) {
     return node.children.firstWhereOrNull(
-      (PropertyNode child) =>
+      (child) =>
           cleanLocalPath(originalPath, replacePath, child.path)
               .replaceFirst('[x]', '') ==
           currentPath,

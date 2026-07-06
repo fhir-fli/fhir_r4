@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -14,7 +13,8 @@ void timingTest() {
           coding: [
             Coding(
               system: FhirUri(
-                  'http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation',),
+                'http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation',
+              ),
               code: FhirCode('BID'),
               display: FhirString('Twice a day'),
             ),

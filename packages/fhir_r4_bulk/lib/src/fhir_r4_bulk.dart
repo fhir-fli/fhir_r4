@@ -114,7 +114,7 @@ abstract class FhirBulk {
   /// Values = NDJSON content
   static Future<List<int>?> toZipFile(Map<String, String> ndJsonStrings) async {
     final archive = Archive();
-    ndJsonStrings.forEach((String key, String value) {
+    ndJsonStrings.forEach((key, value) {
       final file = ArchiveFile('$key.ndjson', value.length, utf8.encode(value));
       archive.addFile(file);
     });
@@ -133,7 +133,7 @@ abstract class FhirBulk {
     Map<String, String> ndJsonStrings,
   ) async {
     final archive = Archive();
-    ndJsonStrings.forEach((String key, String value) {
+    ndJsonStrings.forEach((key, value) {
       final file = ArchiveFile('$key.ndjson', value.length, utf8.encode(value));
       archive.addFile(file);
     });

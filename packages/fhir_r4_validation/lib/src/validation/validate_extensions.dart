@@ -29,12 +29,12 @@ Future<ValidationResults> validateExtensions({
     // Check if the element's type includes "Extension".
     if (element.type != null &&
         element.type!.any(
-          (ElementDefinitionType t) => t.code.toString() == 'Extension',
+          (t) => t.code.toString() == 'Extension',
         )) {
       // Retrieve the profile URL for the extension.
       final extensionUrl = element.type
           ?.firstWhere(
-            (ElementDefinitionType t) => t.code.toString() == 'Extension',
+            (t) => t.code.toString() == 'Extension',
           )
           .profile
           ?.first;

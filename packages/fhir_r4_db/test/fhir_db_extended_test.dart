@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:drift/native.dart';
@@ -489,7 +488,8 @@ Future<void> main() async {
       final valueSets =
           await dao.getAllCanonicalByType<ValueSet>(R4ResourceType.ValueSet);
       expect(valueSets.length, 2);
-      expect(valueSets.every((v) => v is ValueSet), true); // ignore: unnecessary_type_check
+      expect(valueSets.every((v) => v is ValueSet),
+          true); // ignore: unnecessary_type_check
 
       final structDefs = await dao.getAllCanonicalByType<StructureDefinition>(
         R4ResourceType.StructureDefinition,
@@ -832,8 +832,7 @@ Future<void> main() async {
     });
 
     test('exists returns false for missing resource', () async {
-      final result =
-          await dao.exists(R4ResourceType.Patient, 'does-not-exist');
+      final result = await dao.exists(R4ResourceType.Patient, 'does-not-exist');
       expect(result, false);
     });
 

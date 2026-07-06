@@ -42,10 +42,8 @@ void main() {
     });
 
     test('multiple parameters combine in buildQuery', () {
-      final params = RestfulParameters()
-          .addCount(20)
-          .addPage(2)
-          .requestPretty();
+      final params =
+          RestfulParameters().addCount(20).addPage(2).requestPretty();
       final query = params.buildQuery();
       expect(query, contains('_count=20'));
       expect(query, contains('_page=2'));
@@ -55,17 +53,13 @@ void main() {
     });
 
     test('duplicate key with add converts to list', () {
-      final params = RestfulParameters()
-          .add('tag', 'alpha')
-          .add('tag', 'beta');
+      final params = RestfulParameters().add('tag', 'alpha').add('tag', 'beta');
       expect(params.parameters['tag'], isA<List<String>>());
       expect(params.parameters['tag'], ['alpha', 'beta']);
     });
 
     test('duplicate key buildQuery emits key multiple times', () {
-      final params = RestfulParameters()
-          .add('tag', 'alpha')
-          .add('tag', 'beta');
+      final params = RestfulParameters().add('tag', 'alpha').add('tag', 'beta');
       final query = params.buildQuery();
       expect(query, 'tag=alpha&tag=beta');
     });

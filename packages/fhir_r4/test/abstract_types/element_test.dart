@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -208,8 +207,7 @@ void main() {
             ),
           ],
         );
-        final matches =
-            element.getExtensionsByUrl('http://example.org/ext-a');
+        final matches = element.getExtensionsByUrl('http://example.org/ext-a');
         expect(matches, hasLength(1));
         expect(matches.first.valueString?.valueString, 'a');
       });
@@ -223,8 +221,7 @@ void main() {
             ),
           ],
         );
-        final matches =
-            element.getExtensionsByUrl('http://example.org/ext-z');
+        final matches = element.getExtensionsByUrl('http://example.org/ext-z');
         expect(matches, isEmpty);
       });
 

@@ -362,9 +362,13 @@ void main() {
       final mockClient = MockClient((request) async {
         callCount++;
         if (callCount == 1) {
-          return http.Response('', 202, headers: {
-            'content-location': 'http://fake/poll',
-          },);
+          return http.Response(
+            '',
+            202,
+            headers: {
+              'content-location': 'http://fake/poll',
+            },
+          );
         }
         // Poll returns 200 with empty body
         return http.Response('', 200);
@@ -386,9 +390,13 @@ void main() {
       final mockClient = MockClient((request) async {
         callCount++;
         if (callCount == 1) {
-          return http.Response('', 202, headers: {
-            'content-location': 'http://fake/poll',
-          },);
+          return http.Response(
+            '',
+            202,
+            headers: {
+              'content-location': 'http://fake/poll',
+            },
+          );
         }
         return http.Response('this is not json', 200);
       });
@@ -508,9 +516,13 @@ void main() {
       final mockClient = MockClient((request) async {
         callCount++;
         if (callCount == 1) {
-          return http.Response('', 202, headers: {
-            'content-location': 'http://fake/poll',
-          },);
+          return http.Response(
+            '',
+            202,
+            headers: {
+              'content-location': 'http://fake/poll',
+            },
+          );
         }
         throw Exception('Network timeout');
       });

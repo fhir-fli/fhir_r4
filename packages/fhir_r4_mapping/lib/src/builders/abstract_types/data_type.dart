@@ -35,8 +35,7 @@ abstract class DataTypeBuilder extends ElementBuilder {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtensionBuilder e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     return json;
   }

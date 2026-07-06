@@ -66,9 +66,8 @@ void main() {
         maritalStatus: CodeableConcept(
           coding: [
             Coding(
-              system:
-                  'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus'
-                      .toFhirUri,
+              system: 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus'
+                  .toFhirUri,
               code: 'M'.toFhirCode,
               display: 'Married'.toFhirString,
             ),
@@ -118,12 +117,18 @@ void main() {
         ..children.addAll([
           PropertyNode(path: 'Patient.id')
             ..key = ValueNode('id', 'id')
-            ..value = LiteralNode('bad-patient', '"bad-patient"',
-                path: 'Patient.id',),
+            ..value = LiteralNode(
+              'bad-patient',
+              '"bad-patient"',
+              path: 'Patient.id',
+            ),
           PropertyNode(path: 'Patient.unknownField')
             ..key = ValueNode('unknownField', 'unknownField')
-            ..value = LiteralNode('bad', '"bad"',
-                path: 'Patient.unknownField',),
+            ..value = LiteralNode(
+              'bad',
+              '"bad"',
+              path: 'Patient.unknownField',
+            ),
         ]);
 
       final elements = {
@@ -151,7 +156,8 @@ void main() {
       );
     });
 
-    test('Patient with nested unknown fields flags errors via structure '
+    test(
+        'Patient with nested unknown fields flags errors via structure '
         'validation', () async {
       final node = ObjectNode(path: 'Patient')
         ..children.add(
@@ -163,13 +169,18 @@ void main() {
                   ..children.addAll([
                     PropertyNode(path: 'Patient.name[0].family')
                       ..key = ValueNode('family', 'family')
-                      ..value = LiteralNode('Doe', '"Doe"',
-                          path: 'Patient.name[0].family',),
+                      ..value = LiteralNode(
+                        'Doe',
+                        '"Doe"',
+                        path: 'Patient.name[0].family',
+                      ),
                     PropertyNode(path: 'Patient.name[0].badNestedField')
-                      ..key =
-                          ValueNode('badNestedField', 'badNestedField')
-                      ..value = LiteralNode('invalid', '"invalid"',
-                          path: 'Patient.name[0].badNestedField',),
+                      ..key = ValueNode('badNestedField', 'badNestedField')
+                      ..value = LiteralNode(
+                        'invalid',
+                        '"invalid"',
+                        path: 'Patient.name[0].badNestedField',
+                      ),
                   ]),
               )),
         );
@@ -341,8 +352,11 @@ void main() {
         ..children.add(
           PropertyNode(path: 'Observation.status')
             ..key = ValueNode('status', 'status')
-            ..value = LiteralNode('final', '"final"',
-                path: 'Observation.status',),
+            ..value = LiteralNode(
+              'final',
+              '"final"',
+              path: 'Observation.status',
+            ),
         );
 
       final elements = {
@@ -429,8 +443,11 @@ void main() {
         ..children.add(
           PropertyNode(path: 'Bundle.id')
             ..key = ValueNode('id', 'id')
-            ..value = LiteralNode('no-type', '"no-type"',
-                path: 'Bundle.id',),
+            ..value = LiteralNode(
+              'no-type',
+              '"no-type"',
+              path: 'Bundle.id',
+            ),
         );
 
       final elements = {
@@ -823,9 +840,8 @@ void main() {
           'verificationStatus': {
             'coding': [
               {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/'
-                        'condition-ver-status',
+                'system': 'http://terminology.hl7.org/CodeSystem/'
+                    'condition-ver-status',
                 'code': 'confirmed',
               },
             ],
@@ -858,9 +874,8 @@ void main() {
           'clinicalStatus': {
             'coding': [
               {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/'
-                        'allergyintolerance-clinical',
+                'system': 'http://terminology.hl7.org/CodeSystem/'
+                    'allergyintolerance-clinical',
                 'code': 'active',
               },
             ],
@@ -868,9 +883,8 @@ void main() {
           'verificationStatus': {
             'coding': [
               {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/'
-                        'allergyintolerance-verification',
+                'system': 'http://terminology.hl7.org/CodeSystem/'
+                    'allergyintolerance-verification',
                 'code': 'confirmed',
               },
             ],
@@ -921,8 +935,7 @@ class _HumanNameResourceCache extends CanonicalResourceCache {
   _HumanNameResourceCache() {
     final humanNameSD = StructureDefinition(
       id: 'HumanName'.toFhirString,
-      url: 'http://hl7.org/fhir/StructureDefinition/HumanName'
-          .toFhirCanonical,
+      url: 'http://hl7.org/fhir/StructureDefinition/HumanName'.toFhirCanonical,
       name: 'HumanName'.toFhirString,
       type: 'HumanName'.toFhirUri,
       kind: StructureDefinitionKind.complexType,

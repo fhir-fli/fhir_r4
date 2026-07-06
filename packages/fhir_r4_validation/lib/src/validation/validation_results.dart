@@ -28,7 +28,7 @@ class ValidationResults {
   /// Add a missing result to the list of missing results
   void addMissingResult(String path, String newItem, Severity severity) {
     final index = missingResults.indexWhere(
-      (ValidationDiagnostics element) => path.startsWith(element.path),
+      (element) => path.startsWith(element.path),
     );
     if (index == -1) {
       missingResults.add(
@@ -96,13 +96,12 @@ class ValidationResults {
 
   List<ValidationDiagnostics> _cleanMissingResults() {
     missingResults.sort(
-      (ValidationDiagnostics a, ValidationDiagnostics b) =>
-          a.path.length.compareTo(b.path.length),
+      (a, b) => a.path.length.compareTo(b.path.length),
     );
     final cleanedResults = <ValidationDiagnostics>[];
     for (final result in missingResults) {
       final index = cleanedResults.indexWhere(
-        (ValidationDiagnostics element) => result.path.startsWith(element.path),
+        (element) => result.path.startsWith(element.path),
       );
       if (index == -1) {
         cleanedResults.add(result);
@@ -153,19 +152,17 @@ class ValidationResults {
     _joinResults();
     final error = results
         .where(
-          (ValidationDiagnostics element) => element.severity == Severity.error,
+          (element) => element.severity == Severity.error,
         )
         .toList();
     final warning = results
         .where(
-          (ValidationDiagnostics element) =>
-              element.severity == Severity.warning,
+          (element) => element.severity == Severity.warning,
         )
         .toList();
     final information = results
         .where(
-          (ValidationDiagnostics element) =>
-              element.severity == Severity.information,
+          (element) => element.severity == Severity.information,
         )
         .toList();
     final issues = <fhir.OperationOutcomeIssue>[

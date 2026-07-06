@@ -116,16 +116,14 @@ class ElementBuilder extends FhirBaseBuilder {
 
   /// Getter for the first extension by url
   List<FhirExtensionBuilder> getExtensionsByUrl(String url) {
-    return extension_
-            ?.where((FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false)
-            .toList() ??
+    return extension_?.where((ext) => ext.url?.equals(url) ?? false).toList() ??
         <FhirExtensionBuilder>[];
   }
 
   /// Method to check if an extension exists by url
   bool hasExtensionByUrl(String url) {
     return extension_?.any(
-          (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+          (ext) => ext.url?.equals(url) ?? false,
         ) ??
         false;
   }
@@ -138,7 +136,7 @@ class ElementBuilder extends FhirBaseBuilder {
   /// Method to remove an extension by url
   void removeExtension(String url) {
     extension_?.removeWhere(
-      (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+      (ext) => ext.url?.equals(url) ?? false,
     );
   }
 
@@ -206,7 +204,7 @@ class ElementBuilder extends FhirBaseBuilder {
       extension_: extension_ == null
           ? null
           : List<FhirExtensionBuilder>.from(
-              extension_!.map((FhirExtensionBuilder ext) => ext.copy()),
+              extension_!.map((ext) => ext.copy()),
             ),
     );
     return copiedElement;
@@ -223,8 +221,7 @@ class ElementBuilder extends FhirBaseBuilder {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtensionBuilder e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     return json;
   }

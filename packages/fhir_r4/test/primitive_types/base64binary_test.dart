@@ -32,7 +32,7 @@ void base64BinaryTest() {
         () => FhirBase64Binary(invalidBase64String),
         throwsA(
           isA<FormatException>().having(
-            (FormatException e) => e.message,
+            (e) => e.message,
             'message',
             equals('Invalid Base64 String'),
           ),
@@ -47,7 +47,7 @@ void base64BinaryTest() {
         () => FhirBase64Binary(invalidBase64Length),
         throwsA(
           isA<FormatException>().having(
-            (FormatException e) => e.message,
+            (e) => e.message,
             'message',
             equals('Invalid Base64 String'),
           ),

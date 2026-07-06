@@ -474,8 +474,7 @@ void main() {
         ..children.add(
           PropertyNode(path: 'Patient.active')
             ..key = ValueNode('active', 'active')
-            ..value =
-                LiteralNode('true', '"true"', path: 'Patient.active'),
+            ..value = LiteralNode('true', '"true"', path: 'Patient.active'),
         );
 
       final element = ElementDefinition(

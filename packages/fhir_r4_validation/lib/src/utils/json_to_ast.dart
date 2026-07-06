@@ -80,7 +80,7 @@ String codeErrorFragment(
       printLines(lines, linePos, endLinePos, maxNumLength, settings);
 
   return <String>[prevLines, cursorLine, nextLines]
-      .where((String c) => c != '0')
+      .where((c) => c != '0')
       .join('\n');
 }
 
@@ -604,7 +604,7 @@ String printLines(
       .sublist(start, end)
       .asMap()
       .map(
-        (int i, String line) => MapEntry<int, String>(
+        (i, line) => MapEntry<int, String>(
           i,
           printLine(line, start + i + 1, maxNumLength, settings),
         ),

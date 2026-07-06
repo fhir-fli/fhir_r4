@@ -267,8 +267,7 @@ Future<void> main() async {
         expect(saved.id?.toString(), 'enc1');
 
         // Read
-        final found =
-            await encDao.getResource(R4ResourceType.Patient, 'enc1');
+        final found = await encDao.getResource(R4ResourceType.Patient, 'enc1');
         expect(found, isNotNull);
         expect(
           (found! as Patient).name?[0].family?.valueString,
@@ -311,10 +310,7 @@ Future<void> main() async {
         final dir = Directory('test/assets');
 
         if (dir.existsSync()) {
-          final fileList = await dir
-              .list()
-              .map((FileSystemEntity event) => event.path)
-              .toList();
+          final fileList = await dir.list().map((event) => event.path).toList();
           var total = 0;
           final buffer = StringBuffer();
           final startTime = DateTime.now();

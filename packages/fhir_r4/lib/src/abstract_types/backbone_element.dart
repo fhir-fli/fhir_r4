@@ -36,9 +36,7 @@ abstract class BackboneElement extends DataType {
 
   /// Retrieves all modifier extensions by URL
   List<FhirExtension> getModifierExtensionsByUrl(String url) {
-    return modifierExtension
-            ?.where((FhirExtension ext) => ext.url.equals(url))
-            .toList() ??
+    return modifierExtension?.where((ext) => ext.url.equals(url)).toList() ??
         <FhirExtension>[];
   }
 
@@ -49,7 +47,7 @@ abstract class BackboneElement extends DataType {
 
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
-    modifierExtension?.removeWhere((FhirExtension ext) => ext.url.equals(url));
+    modifierExtension?.removeWhere((ext) => ext.url.equals(url));
   }
 
   @override
@@ -77,12 +75,11 @@ abstract class BackboneElement extends DataType {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     if (modifierExtension?.isNotEmpty ?? false) {
       json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension e) => e.toJson()).toList();
+          modifierExtension!.map((e) => e.toJson()).toList();
     }
     return json;
   }

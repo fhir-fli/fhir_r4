@@ -32,7 +32,7 @@ String _renderToYaml(
 ) =>
     json.entries
         .map(
-          (MapEntry<String, dynamic> entry) => _formatEntry(
+          (entry) => _formatEntry(
             entry,
             nestingLevel,
             style,
@@ -149,12 +149,12 @@ bool _isBooleanOrNullString(String s) =>
     s.toLowerCase() == 'null';
 
 bool _containsSpecialCharacters(String s) =>
-    _specialCharacters.any((String c) => s.contains(c));
+    _specialCharacters.any((c) => s.contains(c));
 
 final List<String> _specialCharacters = r':{}[],&*#?|-<>=!%@\$'.split('');
 
 bool _containsEscapeCharacters(String s) =>
-    _escapeCharacters.any((String c) => s.contains(c));
+    _escapeCharacters.any((c) => s.contains(c));
 
 final List<String> _escapeCharacters = <String>[
   r'\',

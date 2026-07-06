@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -11,8 +10,10 @@ void narrativeTest() {
       );
 
       expect(narrative.status, NarrativeStatus.generated);
-      expect(narrative.div.valueString,
-          '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',);
+      expect(
+        narrative.div.valueString,
+        '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',
+      );
       expect(narrative.fhirType, 'Narrative');
     });
 
@@ -44,19 +45,23 @@ void narrativeTest() {
       final narrative = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Hello</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Hello</div>',
+        ),
       );
       final json = narrative.toJson();
       expect(json['status'], 'generated');
-      expect(json['div'],
-          '<div xmlns="http://www.w3.org/1999/xhtml">Hello</div>',);
+      expect(
+        json['div'],
+        '<div xmlns="http://www.w3.org/1999/xhtml">Hello</div>',
+      );
     });
 
     test('fromJson round-trips correctly', () {
       final original = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml"><p>Patient info</p></div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml"><p>Patient info</p></div>',
+        ),
       );
       final json = original.toJson();
       final restored = Narrative.fromJson(json);
@@ -76,11 +81,13 @@ void narrativeTest() {
       final original = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Original</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Original</div>',
+        ),
       );
       final modified = original.copyWith(
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Modified</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Modified</div>',
+        ),
       );
       expect(modified.div.valueString, contains('Modified'));
       expect(modified.status, NarrativeStatus.generated);
@@ -90,7 +97,8 @@ void narrativeTest() {
       final original = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',
+        ),
       );
       final copy = original.copyWith();
       expect(copy.equalsDeep(original), isTrue);
@@ -100,12 +108,14 @@ void narrativeTest() {
       final a = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Same</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Same</div>',
+        ),
       );
       final b = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Same</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Same</div>',
+        ),
       );
       expect(a.equalsDeep(b), isTrue);
     });
@@ -114,12 +124,14 @@ void narrativeTest() {
       final a = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">A</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">A</div>',
+        ),
       );
       final b = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">B</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">B</div>',
+        ),
       );
       expect(a.equalsDeep(b), isFalse);
     });
@@ -128,7 +140,8 @@ void narrativeTest() {
       final narrative = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',
+        ),
       );
       expect(narrative.getChildByName('status'), isA<NarrativeStatus>());
       expect(narrative.getChildByName('div'), isA<FhirXhtml>());
@@ -138,7 +151,8 @@ void narrativeTest() {
       final narrative = Narrative(
         status: NarrativeStatus.generated,
         div: FhirXhtml(
-            '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',),
+          '<div xmlns="http://www.w3.org/1999/xhtml">Test</div>',
+        ),
       );
       final cloned = narrative.clone();
       expect(cloned.equalsDeep(narrative), isTrue);

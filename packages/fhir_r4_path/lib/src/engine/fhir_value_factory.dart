@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
+// ignore_for_file: public_member_api_docs
 
 import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -20,21 +20,25 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 class FhirValueFactory implements IFhirValueFactory {
   const FhirValueFactory();
 
+  @override
   FhirBase boolean(bool? value, {bool disallowExtensions = true}) {
     final v = FhirBoolean(value);
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  @override
   FhirBase string(String? value, {bool disallowExtensions = true}) {
     final v = FhirString(value);
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  @override
   FhirBase integer(num? value, {bool disallowExtensions = true}) {
     final v = FhirInteger(value);
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  @override
   FhirBase decimal(num? value, {bool disallowExtensions = true}) {
     final v = FhirDecimal(value);
     return disallowExtensions ? v.noExtensions() : v;
@@ -45,6 +49,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// string verbatim, mirroring the Java reference's
   /// `new DecimalType(String)`. Used where the engine computes an exact
   /// decimal string (the lowBoundary/highBoundary functions).
+  @override
   FhirBase decimalFromString(String? value, {bool disallowExtensions = true}) {
     final v = FhirDecimal(value);
     return disallowExtensions ? v.noExtensions() : v;
@@ -60,6 +65,7 @@ class FhirValueFactory implements IFhirValueFactory {
     return disallowExtensions ? v.noExtensions() : v;
   }
 
+  @override
   FhirBase time(String? value, {bool disallowExtensions = true}) {
     final v = FhirTime(value);
     return disallowExtensions ? v.noExtensions() : v;
@@ -69,6 +75,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// [value] string, of the concrete FHIR type named by [fhirType]. The engine
   /// computes the value string model-independently (via `SystemDateTime`); this
   /// factory maps it back to the matching FHIR primitive, preserving precision.
+  @override
   FhirBase dateTimeOfType(
     String fhirType,
     String value, {
@@ -93,19 +100,23 @@ class FhirValueFactory implements IFhirValueFactory {
   /// Java reference constructs every date/time literal and conversion result
   /// with `.noExtensions()` (FHIRPathEngine.processDateConstant), which is
   /// what makes `@2015 is Date` true.
+  @override
   FhirBase? tryDateTime(String? value) =>
       FhirDateTime.tryParse(value)?.noExtensions();
 
   /// Parses [value] as a `date`, returning null when invalid. Result is a
   /// System value (no extensions), per the Java reference.
+  @override
   FhirBase? tryDate(String? value) => FhirDate.tryParse(value)?.noExtensions();
 
   /// Parses [value] as a `time`, returning null when invalid. Result is a
   /// System value (no extensions), per the Java reference.
+  @override
   FhirBase? tryTime(String? value) => FhirTime.tryParse(value)?.noExtensions();
 
   /// The `today()` value — a `date` for the calendar day of [instant]. The
   /// engine supplies the instant (`DateTime.now()`); construction is here.
+  @override
   FhirBase todayFrom(DateTime instant) => FhirDate.fromUnits(
         year: instant.year,
         month: instant.month,
@@ -113,15 +124,18 @@ class FhirValueFactory implements IFhirValueFactory {
       );
 
   /// The `now()` value — a `dateTime` for [instant].
+  @override
   FhirBase nowFrom(DateTime instant) => FhirDateTime.fromDateTime(instant);
 
   /// The `timeOfDay()` value — a `time` for the time-of-day of [instant].
+  @override
   FhirBase timeOfDayFrom(DateTime instant) =>
       FhirTime.tryParse(instant.toIso8601String().split('T').last)!;
 
   /// Builds a `Quantity` result from model-independent scalar parts. The engine
   /// reads quantities via the node contract and produces them here, never
   /// naming `Quantity`/`FhirDecimal`/… directly.
+  @override
   FhirBase quantity({
     num? value,
     String? unit,
@@ -142,6 +156,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// `4 days`): the value keeps its exact source string (Java reference:
   /// `new BigDecimal(primitiveValue())`), calendar words carry only a unit,
   /// and a UCUM code brings the UCUM system.
+  @override
   FhirBase quantityLiteral({
     String? value,
     String? unit,
@@ -150,8 +165,7 @@ class FhirValueFactory implements IFhirValueFactory {
     return Quantity(
       value: value == null ? null : FhirDecimal(value),
       unit: unit == null ? null : FhirString(unit),
-      system:
-          ucumCode == null ? null : FhirUri('http://unitsofmeasure.org'),
+      system: ucumCode == null ? null : FhirUri('http://unitsofmeasure.org'),
       code: ucumCode == null ? null : FhirCode(ucumCode),
     );
   }
@@ -160,6 +174,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// (`decimal`→decimal, `integer`→integer; the already-non-negative
   /// `unsignedInt`/`positiveInt` are returned unchanged). The per-subtype
   /// construction is FHIR-model knowledge, so it lives at the binding seam.
+  @override
   FhirBase numericAbs(FhirNode number) {
     if (number is FhirDecimal) {
       return FhirDecimal(number.abs()).noExtensions();
@@ -178,6 +193,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// system, code, comparator, extensions, id. A model-independent caller can't
   /// rebuild a Quantity without dropping those, so the copy is done here at the
   /// binding seam.
+  @override
   FhirBase quantityWithValue(FhirNode quantity, num? value) {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
@@ -186,6 +202,7 @@ class FhirValueFactory implements IFhirValueFactory {
 
   /// [quantityWithValue], but from the value's exact STRING form (trailing
   /// zeros preserved) — used by the boundary functions.
+  @override
   FhirBase quantityWithValueString(FhirNode quantity, String? value) {
     return (quantity as Quantity).copyWith(
       value: value == null ? null : FhirDecimal(value),
@@ -197,6 +214,7 @@ class FhirValueFactory implements IFhirValueFactory {
   /// marker (`disallowExtensions`), which is deliberately not on the
   /// [FhirNode] contract, so the whole construction lives at the binding
   /// seam.
+  @override
   FhirBase classTypeInfo(FhirNode instance) {
     return ClassTypeInfo(instance as FhirBase);
   }

@@ -1,5 +1,3 @@
-// ignore_for_file: require_trailing_commas
-
 /// Type-hierarchy metadata for one core FHIR type, taken from its
 /// StructureDefinition in the R4 specification
 /// (profiles-types.json / profiles-resources.json).
@@ -71,7 +69,8 @@ const Map<String, FhirTypeInfo> fhirTypeHierarchy = <String, FhirTypeInfo>{
     name: 'AdministrableProductDefinition',
     type: 'AdministrableProductDefinition',
     kind: 'resource',
-    url: 'http://hl7.org/fhir/StructureDefinition/AdministrableProductDefinition',
+    url:
+        'http://hl7.org/fhir/StructureDefinition/AdministrableProductDefinition',
     base: 'DomainResource',
     derivation: 'specialization',
   ),

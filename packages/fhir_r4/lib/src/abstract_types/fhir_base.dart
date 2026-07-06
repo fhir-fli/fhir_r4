@@ -23,26 +23,32 @@ abstract class FhirBase implements FhirNode {
   const FhirBase();
 
   /// Returns the FHIR type of the object.
+  @override
   String get fhirType => 'FhirBase';
 
   /// Checks if the object is primitive.
+  @override
   bool get isPrimitive => this is PrimitiveType;
 
   /// Checks if the object is a resource (the root of an independent FHIR
   /// data tree). Part of the [FhirNode] contract, mirroring the Java
   /// reference's `Base.isResource()`.
+  @override
   bool get isResource => this is Resource;
 
   /// Checks if the object has a primitive value.
   bool get hasPrimitiveValue => isPrimitive;
 
   /// Retrieves the primitive value of the object.
+  @override
   String? get primitiveValue => null;
 
   /// All [FhirBase]s and [Resource]s are NOT metadata based
+  @override
   bool get isMetadataBased => false;
 
   /// Checks if the object has a given type.
+  @override
   bool hasType(List<String> names) {
     final t = fhirType;
     for (final n in names) {
@@ -52,10 +58,12 @@ abstract class FhirBase implements FhirNode {
   }
 
   /// Checks if the object is empty.
+  @override
   bool isEmpty() =>
       this is PrimitiveType && (this as PrimitiveType).valueString == null;
 
   /// Deep equality check.
+  @override
   bool equalsDeep(FhirBase? o) {
     return o != null;
   }
@@ -84,9 +92,11 @@ abstract class FhirBase implements FhirNode {
 
   /// Retrieves the properties of the object.
   // ignore: avoid_positional_boolean_parameters
+  @override
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
 
   /// Lists the JSON keys for the object.
+  @override
   List<String> listChildrenNames() {
     // Subclasses should override this to return their specific children.
     return <String>[];
@@ -94,6 +104,7 @@ abstract class FhirBase implements FhirNode {
 
   /// Retrieves a property by name, or if its a list that contains only one
   /// element, returns that element.
+  @override
   FhirBase? getChildByName(String name) {
     final children = getChildrenByName(name);
     if (children.isEmpty) {

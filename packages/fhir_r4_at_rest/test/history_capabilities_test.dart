@@ -29,9 +29,8 @@ void main() {
     test('builds correct URL with multiple parameters', () {
       final request = FhirHistoryAllRequest(
         base: Uri.parse(baseUrl),
-        parameters: RestfulParameters()
-            .addCount(10)
-            .add('_since', '2024-01-01'),
+        parameters:
+            RestfulParameters().addCount(10).add('_since', '2024-01-01'),
       );
       final uri = request.buildUri().toString();
       expect(uri, contains('_count=10'));

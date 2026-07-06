@@ -85,15 +85,15 @@ abstract class DomainResourceBuilder extends ResourceBuilder {
     writeNotNull('text', text?.toJson());
     writeNotNull(
       'contained',
-      contained?.map((ResourceBuilder e) => e.toJson()).toList(),
+      contained?.map((e) => e.toJson()).toList(),
     );
     writeNotNull(
       'extension',
-      extension_?.map((FhirExtensionBuilder e) => e.toJson()).toList(),
+      extension_?.map((e) => e.toJson()).toList(),
     );
     writeNotNull(
       'modifierExtension',
-      modifierExtension?.map((FhirExtensionBuilder e) => e.toJson()).toList(),
+      modifierExtension?.map((e) => e.toJson()).toList(),
     );
     return val;
   }

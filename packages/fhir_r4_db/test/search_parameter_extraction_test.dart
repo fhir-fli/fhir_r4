@@ -1,4 +1,3 @@
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart'
     show
@@ -25,8 +24,7 @@ void main() {
   group('StringSearchParametersExtension:', () {
     test('extracts FhirString value', () {
       final str = 'hello world'.toFhirString;
-      final results =
-          str.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.stringValue.value, 'hello world');
     });
@@ -39,8 +37,7 @@ void main() {
         suffix: <FhirString>['Jr'.toFhirString],
         text: 'Dr John Q Smith Jr'.toFhirString,
       );
-      final results =
-          name.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = name.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
       // family + 2 given + 1 prefix + 1 suffix + 1 text = 6
       expect(results.length, 6);
 
@@ -55,16 +52,14 @@ void main() {
 
     test('extracts HumanName with only family', () {
       final name = HumanName(family: 'Doe'.toFhirString);
-      final results =
-          name.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = name.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.stringValue.value, 'doe');
     });
 
     test('normalizes strings to lowercase', () {
       final str = 'UPPERCASE'.toFhirString;
-      final results =
-          str.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.first.stringValue.value, 'uppercase');
     });
 
@@ -123,8 +118,7 @@ void main() {
   group('TokenSearchParametersExtension:', () {
     test('extracts FhirCode', () {
       final code = FhirCode('active');
-      final results =
-          code.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = code.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.tokenValue.value, 'active');
       // FhirCode has no system
@@ -137,8 +131,7 @@ void main() {
         code: FhirCode('12345-6'),
         display: 'Hemoglobin'.toFhirString,
       );
-      final results =
-          coding.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = coding.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.tokenSystem.value, 'http://loinc.org');
       expect(results.first.tokenValue.value, '12345-6');
@@ -159,8 +152,7 @@ void main() {
         ],
         text: 'Hemoglobin test'.toFhirString,
       );
-      final results =
-          cc.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = cc.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       // 2 codings + 1 text = 3
       expect(results.length, 3);
 
@@ -180,22 +172,21 @@ void main() {
       final results =
           identifier.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
-      expect(results.first.tokenSystem.value, 'http://hospital.example.org/mrn');
+      expect(
+          results.first.tokenSystem.value, 'http://hospital.example.org/mrn');
       expect(results.first.tokenValue.value, 'MRN12345');
     });
 
     test('extracts FhirBoolean', () {
       final b = FhirBoolean(true);
-      final results =
-          b.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = b.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.tokenValue.value, 'true');
     });
 
     test('extracts FhirString as token', () {
       final str = 'some-value'.toFhirString;
-      final results =
-          str.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.tokenValue.value, 'some-value');
     });
@@ -210,8 +201,7 @@ void main() {
 
     test('returns empty for unsupported type', () {
       final addr = Address(city: 'Boston'.toFhirString);
-      final results =
-          addr.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = addr.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results, isEmpty);
     });
   });
@@ -223,7 +213,11 @@ void main() {
     test('extracts simple reference (Type/id)', () {
       final ref = Reference(reference: 'Patient/123'.toFhirString);
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.referenceValue.value, 'Patient/123');
@@ -236,7 +230,11 @@ void main() {
         reference: 'http://example.org/fhir/Patient/456'.toFhirString,
       );
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.referenceResourceType.value, 'Patient');
@@ -249,7 +247,11 @@ void main() {
         reference: 'Patient/123/_history/2'.toFhirString,
       );
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.referenceResourceType.value, 'Patient');
@@ -265,11 +267,17 @@ void main() {
         ),
       );
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       expect(results.length, 1);
-      expect(results.first.identifierSystem.value,
-          'http://hospital.example.org/mrn',);
+      expect(
+        results.first.identifierSystem.value,
+        'http://hospital.example.org/mrn',
+      );
       expect(results.first.identifierValue.value, 'MRN123');
     });
 
@@ -278,7 +286,11 @@ void main() {
         'http://hl7.org/fhir/StructureDefinition/Patient',
       );
       final results = canonical.toReferenceSearchParameter(
-        'StructureDefinition', _id, _lu, 'SD.baseDefinition', _idx,
+        'StructureDefinition',
+        _id,
+        _lu,
+        'SD.baseDefinition',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.referenceResourceType.value, 'StructureDefinition');
@@ -295,7 +307,11 @@ void main() {
     test('handles null reference string', () {
       const ref = Reference();
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       // A Reference with no reference string and no identifier is display-only
       // and should be skipped
@@ -312,7 +328,11 @@ void main() {
     test('parses id-only reference', () {
       final ref = Reference(reference: 'just-an-id'.toFhirString);
       final results = ref.toReferenceSearchParameter(
-        'Observation', _id, _lu, 'Observation.subject', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.subject',
+        _idx,
       );
       // id-only: no slash, so id = 'just-an-id', no resourceType
       expect(results.first.referenceIdPart.value, 'just-an-id');
@@ -327,7 +347,11 @@ void main() {
     test('extracts FhirDate', () {
       final date = FhirDate.fromString('2024-06-15');
       final results = date.toDateSearchParameter(
-        _rt, _id, _lu, 'Patient.birthDate', _idx,
+        _rt,
+        _id,
+        _lu,
+        'Patient.birthDate',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.dateString.value, contains('2024-06-15'));
@@ -336,7 +360,11 @@ void main() {
     test('extracts FhirDateTime', () {
       final dt = FhirDateTime.fromDateTime(DateTime(2024, 3, 15, 10, 30));
       final results = dt.toDateSearchParameter(
-        'Observation', _id, _lu, 'Observation.effectiveDateTime', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.effectiveDateTime',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.dateString.value, isNotEmpty);
@@ -347,7 +375,11 @@ void main() {
       final instant =
           FhirInstant.fromDateTime(DateTime.utc(2024, 3, 15, 10, 30));
       final results = instant.toDateSearchParameter(
-        'Observation', _id, _lu, 'Observation.issued', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.issued',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.dateString.value, isNotEmpty);
@@ -355,8 +387,7 @@ void main() {
 
     test('returns empty for unsupported type', () {
       final str = '2024-01-01'.toFhirString;
-      final results =
-          str.toDateSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toDateSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results, isEmpty);
     });
   });
@@ -367,24 +398,21 @@ void main() {
   group('NumberSearchParametersExtension:', () {
     test('extracts FhirInteger', () {
       final num_ = FhirInteger(42);
-      final results =
-          num_.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = num_.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.numberValue.value, 42.0);
     });
 
     test('extracts FhirDecimal', () {
       final dec = FhirDecimal(3.14);
-      final results =
-          dec.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = dec.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.numberValue.value, closeTo(3.14, 0.001));
     });
 
     test('returns empty for non-number type', () {
       final str = '42'.toFhirString;
-      final results =
-          str.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toNumberSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results, isEmpty);
     });
   });
@@ -401,7 +429,11 @@ void main() {
         code: FhirCode('mm[Hg]'),
       );
       final results = qty.toQuantitySearchParameter(
-        'Observation', _id, _lu, 'Observation.valueQuantity', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.valueQuantity',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.quantityValue.value, 120.0);
@@ -416,7 +448,11 @@ void main() {
     test('extracts Quantity with value only', () {
       final qty = Quantity(value: FhirDecimal(98.6));
       final results = qty.toQuantitySearchParameter(
-        'Observation', _id, _lu, 'Observation.valueQuantity', _idx,
+        'Observation',
+        _id,
+        _lu,
+        'Observation.valueQuantity',
+        _idx,
       );
       expect(results.length, 1);
       expect(results.first.quantityValue.value, closeTo(98.6, 0.01));
@@ -425,8 +461,7 @@ void main() {
 
     test('returns empty for non-Quantity type', () {
       final str = '120'.toFhirString;
-      final results =
-          str.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results, isEmpty);
     });
   });
@@ -437,8 +472,7 @@ void main() {
   group('UriSearchParametersExtension:', () {
     test('extracts FhirUri', () {
       final uri = FhirUri('http://example.org/ValueSet/test');
-      final results =
-          uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(
         results.first.uriValue.value,
@@ -448,8 +482,7 @@ void main() {
 
     test('extracts FhirUrl', () {
       final url = FhirUrl('http://example.org/endpoint');
-      final results =
-          url.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = url.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(results.first.uriValue.value, contains('example.org'));
     });
@@ -466,22 +499,19 @@ void main() {
 
     test('normalizes trailing slash', () {
       final uri = FhirUri('http://example.org/fhir/');
-      final results =
-          uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.first.uriValue.value, isNot(endsWith('/')));
     });
 
     test('normalizes scheme and host to lowercase', () {
       final uri = FhirUri('HTTP://EXAMPLE.ORG/ValueSet/test');
-      final results =
-          uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.first.uriValue.value, startsWith('http://example.org'));
     });
 
     test('returns empty for unsupported type', () {
       final str = 'http://example.org'.toFhirString;
-      final results =
-          str.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+      final results = str.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results, isEmpty);
     });
   });

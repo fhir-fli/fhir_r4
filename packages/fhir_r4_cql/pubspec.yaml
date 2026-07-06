@@ -1,8 +1,8 @@
 name: fhir_r4_cql
 description: >-
-  FHIR R4 binding for the model-independent `cql` engine: the R4
+  FHIR R4B binding for the model-independent `cql` engine: the R4
   ModelResolver and TerminologyProvider implementations that let the CQL
-  engine execute against FHIR R4 data.
+  engine execute against FHIR R4B data.
 version: 0.6.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/cql

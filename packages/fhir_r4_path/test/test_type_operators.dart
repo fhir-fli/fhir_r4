@@ -38,26 +38,41 @@ const _fhirSd = 'http://hl7.org/fhir/StructureDefinition';
 final _r4TypeDefinitions = <StructureDefinition>[
   _typeSd(name: 'Element', kind: 'complex-type'),
   _typeSd(
-      name: 'string',
-      kind: 'primitive-type',
-      baseDefinition: '$_fhirSd/Element'),
+    name: 'string',
+    kind: 'primitive-type',
+    baseDefinition: '$_fhirSd/Element',
+  ),
   _typeSd(
-      name: 'code', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
+    name: 'code',
+    kind: 'primitive-type',
+    baseDefinition: '$_fhirSd/string',
+  ),
   _typeSd(
-      name: 'id', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
+    name: 'id',
+    kind: 'primitive-type',
+    baseDefinition: '$_fhirSd/string',
+  ),
   _typeSd(
-      name: 'uri', kind: 'primitive-type', baseDefinition: '$_fhirSd/Element'),
+    name: 'uri',
+    kind: 'primitive-type',
+    baseDefinition: '$_fhirSd/Element',
+  ),
   _typeSd(name: 'url', kind: 'primitive-type', baseDefinition: '$_fhirSd/uri'),
   _typeSd(
-      name: 'Quantity',
-      kind: 'complex-type',
-      baseDefinition: '$_fhirSd/Element'),
+    name: 'Quantity',
+    kind: 'complex-type',
+    baseDefinition: '$_fhirSd/Element',
+  ),
   _typeSd(
-      name: 'Age', kind: 'complex-type', baseDefinition: '$_fhirSd/Quantity'),
+    name: 'Age',
+    kind: 'complex-type',
+    baseDefinition: '$_fhirSd/Quantity',
+  ),
   _typeSd(
-      name: 'Duration',
-      kind: 'complex-type',
-      baseDefinition: '$_fhirSd/Quantity'),
+    name: 'Duration',
+    kind: 'complex-type',
+    baseDefinition: '$_fhirSd/Quantity',
+  ),
 ];
 
 Future<void> testTypeOperators() async {

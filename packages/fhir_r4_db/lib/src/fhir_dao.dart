@@ -89,7 +89,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         resourceType: Value(resource.resourceType.toString()),
         id: Value(newResource.id!.valueString!),
         resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
+        lastUpdated: Value(newResource
+            .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
       ),
     );
 
@@ -97,10 +98,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       ResourcesHistoryCompanion(
         resourceType: Value(resource.resourceType.toString()),
         id: Value(newResource.id!.valueString!),
-        versionId:
-            Value(newResource.meta?.versionId?.toString() ?? '1'),
+        versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
         resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
+        lastUpdated: Value(newResource
+            .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
       ),
     );
 
@@ -131,17 +132,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               resourceType: Value(resource.resourceType.toString()),
               id: Value(newResource.id!.valueString!),
               resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
+              lastUpdated: Value(newResource
+                  .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
             ),
           );
           historyCompanions.add(
             ResourcesHistoryCompanion(
               resourceType: Value(resource.resourceType.toString()),
               id: Value(newResource.id!.valueString!),
-              versionId:
-                  Value(newResource.meta?.versionId?.toString() ?? '1'),
+              versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
               resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
+              lastUpdated: Value(newResource
+                  .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
             ),
           );
         }
@@ -182,9 +184,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (existing == null) return false;
 
     final currentVersion = existing.meta?.versionId?.toString();
-    final nextVersion = currentVersion != null && int.tryParse(currentVersion) != null
-        ? (int.parse(currentVersion) + 1).toString()
-        : DateTime.now().toUtc().millisecondsSinceEpoch.toString();
+    final nextVersion =
+        currentVersion != null && int.tryParse(currentVersion) != null
+            ? (int.parse(currentVersion) + 1).toString()
+            : DateTime.now().toUtc().millisecondsSinceEpoch.toString();
 
     final now = DateTime.now().toUtc();
 
@@ -213,15 +216,42 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     // Clean up search parameter indexes
     if (count > 0) {
-      await (delete(stringSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(tokenSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(referenceSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(dateSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(numberSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(quantitySearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(uriSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(compositeSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
-      await (delete(specialSearchParameters)..where((t) => t.resourceType.equals(resourceTypeString) & t.id.equals(id))).go();
+      await (delete(stringSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(tokenSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(referenceSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(dateSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(numberSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(quantitySearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(uriSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(compositeSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
+      await (delete(specialSearchParameters)
+            ..where((t) =>
+                t.resourceType.equals(resourceTypeString) & t.id.equals(id)))
+          .go();
     }
 
     return count > 0;
@@ -528,7 +558,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         resourceType: Value(resource.resourceType.toString()),
         id: Value(resource.id!.valueString!),
         resource: Value(resource.toJsonString()),
-        lastUpdated: Value(resource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
+        lastUpdated: Value(
+            resource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
         versionId: Value(resource.meta!.versionId!.valueString!),
       ),
     );
@@ -1008,13 +1039,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final normalizedValue = searchValue.toLowerCase().trim();
 
       final query = select(stringSearchParameters);
-      var whereCondition = stringSearchParameters.resourceType
-              .equals(resourceType) &
-          (stringSearchParameters.searchName.equals(searchPath) |
-              stringSearchParameters.searchPath
-                  .like('$resourceType.$searchPath') |
-              stringSearchParameters.searchPath
-                  .like('$resourceType.%.$searchPath'));
+      var whereCondition =
+          stringSearchParameters.resourceType.equals(resourceType) &
+              (stringSearchParameters.searchName.equals(searchPath) |
+                  stringSearchParameters.searchPath
+                      .like('$resourceType.$searchPath') |
+                  stringSearchParameters.searchPath
+                      .like('$resourceType.%.$searchPath'));
 
       if (modifier == 'exact') {
         whereCondition = whereCondition &
@@ -1069,7 +1100,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       String? modifier;
       var searchValue = value;
       const knownTokenModifiers = [
-        'missing', 'not', 'text', 'of-type', 'in', 'not-in',
+        'missing',
+        'not',
+        'text',
+        'of-type',
+        'in',
+        'not-in',
       ];
       for (final mod in knownTokenModifiers) {
         if (value.endsWith(':$mod')) {
@@ -1088,7 +1124,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                 ? '${entry.system}|${entry.code}'
                 : entry.code;
             final matched = await _executeTokenQuery(
-                resourceType, searchPath, queryValue,);
+              resourceType,
+              searchPath,
+              queryValue,
+            );
             matchingIds.addAll(matched);
           }
         }
@@ -1109,7 +1148,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               ? '${entry.system}|${entry.code}'
               : entry.code;
           final matched = await _executeTokenQuery(
-              resourceType, searchPath, queryValue,);
+            resourceType,
+            searchPath,
+            queryValue,
+          );
           excludedIds.addAll(matched);
         }
         matchingIds.addAll(allResourceIds.difference(excludedIds));
@@ -1164,16 +1206,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
           // Phase 2: Filter by identifier.type in Dart
           for (final candidateId in candidates) {
-            final resourceType_ =
-                fhir.R4ResourceType.fromString(resourceType);
+            final resourceType_ = fhir.R4ResourceType.fromString(resourceType);
             if (resourceType_ == null) continue;
-            final resource =
-                await getResource(resourceType_, candidateId);
+            final resource = await getResource(resourceType_, candidateId);
             if (resource == null) continue;
 
             final json = resource.toJson();
             if (_matchesOfType(
-                json, searchPath, typeSystem, typeCode, identifierValue,)) {
+              json,
+              searchPath,
+              typeSystem,
+              typeCode,
+              identifierValue,
+            )) {
               matchingIds.add(candidateId);
             }
           }
@@ -1211,8 +1256,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     var whereCondition = tokenSearchParameters.resourceType
             .equals(resourceType) &
         (tokenSearchParameters.searchName.equals(searchPath) |
-            tokenSearchParameters.searchPath
-                .like('$resourceType.$searchPath') |
+            tokenSearchParameters.searchPath.like('$resourceType.$searchPath') |
             tokenSearchParameters.searchPath
                 .like('$resourceType.%.$searchPath'));
 
@@ -1247,7 +1291,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // Look up the ValueSet by URL
     final results = await search(
       resourceType: fhir.R4ResourceType.ValueSet,
-      searchParameters: {'url': [valueSetUrl]},
+      searchParameters: {
+        'url': [valueSetUrl]
+      },
       count: 1,
     );
     if (results.isEmpty) return [];
@@ -1277,14 +1323,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           // Include all codes from the CodeSystem
           final csResults = await search(
             resourceType: fhir.R4ResourceType.CodeSystem,
-            searchParameters: {'url': [includeSystem]},
+            searchParameters: {
+              'url': [includeSystem]
+            },
             count: 1,
           );
           if (csResults.isNotEmpty) {
             final cs = csResults.first as fhir.CodeSystem;
             if (cs.concept != null) {
               _flattenCodeSystemConcepts(
-                  cs.concept!, includeSystem, codes,);
+                cs.concept!,
+                includeSystem,
+                codes,
+              );
             }
           }
         }
@@ -1356,14 +1407,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         for (final item in fieldValue) {
           if (item is Map<String, dynamic>) {
             if (_identifierMatchesOfType(
-                item, typeSystem, typeCode, identifierValue,)) {
+              item,
+              typeSystem,
+              typeCode,
+              identifierValue,
+            )) {
               return true;
             }
           }
         }
       } else if (fieldValue is Map<String, dynamic>) {
         if (_identifierMatchesOfType(
-            fieldValue, typeSystem, typeCode, identifierValue,)) {
+          fieldValue,
+          typeSystem,
+          typeCode,
+          identifierValue,
+        )) {
           return true;
         }
       }
@@ -1486,13 +1545,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       final query = select(dateSearchParameters);
-      var whereCondition = dateSearchParameters.resourceType
-              .equals(resourceType) &
-          (dateSearchParameters.searchName.equals(searchPath) |
-              dateSearchParameters.searchPath
-                  .like('$resourceType.$searchPath') |
-              dateSearchParameters.searchPath
-                  .like('$resourceType.%.$searchPath'));
+      var whereCondition =
+          dateSearchParameters.resourceType.equals(resourceType) &
+              (dateSearchParameters.searchName.equals(searchPath) |
+                  dateSearchParameters.searchPath
+                      .like('$resourceType.$searchPath') |
+                  dateSearchParameters.searchPath
+                      .like('$resourceType.%.$searchPath'));
 
       switch (modifier) {
         case 'gt':
@@ -1587,8 +1646,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final searchMillis = searchDate.millisecondsSinceEpoch;
 
       final query = select(resources);
-      var whereCondition =
-          resources.resourceType.equals(resourceType);
+      var whereCondition = resources.resourceType.equals(resourceType);
 
       if (modifier == null || modifier.isEmpty) {
         if (dateValue.length <= 10) {
@@ -1596,8 +1654,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               DateTime(searchDate.year, searchDate.month, searchDate.day);
           final endOfDay = startOfDay.add(const Duration(days: 1));
           whereCondition = whereCondition &
-              (resources.lastUpdated.isBiggerOrEqualValue(startOfDay.millisecondsSinceEpoch) &
-                  resources.lastUpdated.isSmallerThanValue(endOfDay.millisecondsSinceEpoch));
+              (resources.lastUpdated
+                      .isBiggerOrEqualValue(startOfDay.millisecondsSinceEpoch) &
+                  resources.lastUpdated
+                      .isSmallerThanValue(endOfDay.millisecondsSinceEpoch));
         } else {
           whereCondition =
               whereCondition & resources.lastUpdated.equals(searchMillis);
@@ -1615,8 +1675,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         whereCondition = whereCondition &
             resources.lastUpdated.isSmallerOrEqualValue(searchMillis);
       } else if (modifier == 'ap') {
-        final startMillis = searchDate.subtract(const Duration(days: 1)).millisecondsSinceEpoch;
-        final endMillis = searchDate.add(const Duration(days: 1)).millisecondsSinceEpoch;
+        final startMillis =
+            searchDate.subtract(const Duration(days: 1)).millisecondsSinceEpoch;
+        final endMillis =
+            searchDate.add(const Duration(days: 1)).millisecondsSinceEpoch;
         whereCondition = whereCondition &
             (resources.lastUpdated.isBiggerOrEqualValue(startMillis) &
                 resources.lastUpdated.isSmallerOrEqualValue(endMillis));
@@ -1867,13 +1929,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       final query = select(numberSearchParameters);
-      var whereCondition = numberSearchParameters.resourceType
-              .equals(resourceType) &
-          (numberSearchParameters.searchName.equals(searchPath) |
-              numberSearchParameters.searchPath
-                  .like('$resourceType.$searchPath') |
-              numberSearchParameters.searchPath
-                  .like('$resourceType.%.$searchPath'));
+      var whereCondition =
+          numberSearchParameters.resourceType.equals(resourceType) &
+              (numberSearchParameters.searchName.equals(searchPath) |
+                  numberSearchParameters.searchPath
+                      .like('$resourceType.$searchPath') |
+                  numberSearchParameters.searchPath
+                      .like('$resourceType.%.$searchPath'));
 
       switch (modifier) {
         case 'gt':
@@ -2022,12 +2084,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
       }
 
-      final pathCondition =
-          uriSearchParameters.searchName.equals(searchPath) |
-              uriSearchParameters.searchPath
-                  .like('$resourceType.$searchPath') |
-              uriSearchParameters.searchPath
-                  .like('$resourceType.%.$searchPath');
+      final pathCondition = uriSearchParameters.searchName.equals(searchPath) |
+          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          uriSearchParameters.searchPath.like('$resourceType.%.$searchPath');
 
       if (modifier == 'above') {
         // :above means stored URI is a parent/prefix of the search value
@@ -2036,8 +2095,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // filter in Dart.
         final query = select(uriSearchParameters)
           ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) & pathCondition,
+            (tbl) => tbl.resourceType.equals(resourceType) & pathCondition,
           );
         final rows = await query.get();
         for (final row in rows) {
@@ -2057,7 +2115,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final query = select(uriSearchParameters)
           ..where(
             (tbl) =>
-                tbl.resourceType.equals(resourceType) & pathCondition & valueCondition,
+                tbl.resourceType.equals(resourceType) &
+                pathCondition &
+                valueCondition,
           );
         final rows = await query.get();
         for (final row in rows) {

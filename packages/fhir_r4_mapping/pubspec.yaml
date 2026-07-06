@@ -1,6 +1,6 @@
 name: fhir_r4_mapping
 description: >-
-  FHIR Mapping Language (FML) engine for FHIR R4: parse StructureMaps and
+  FHIR Mapping Language (FML) engine for FHIR R4B: parse StructureMaps and
   transform healthcare data between structures.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/

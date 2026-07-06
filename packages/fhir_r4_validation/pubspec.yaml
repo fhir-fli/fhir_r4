@@ -1,6 +1,6 @@
 name: fhir_r4_validation
 description: >-
-  StructureDefinition-driven validation for FHIR R4 resources: structure,
+  StructureDefinition-driven validation for FHIR R4B resources: structure,
   cardinality, value set bindings, and invariants.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/

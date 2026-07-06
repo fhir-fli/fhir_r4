@@ -1,5 +1,5 @@
 name: fhir_r4_db
-description: FHIR R4 database with SQLite/Drift backend, search parameter indexing, and optional encryption.
+description: FHIR R4B database with SQLite/Drift backend, search parameter indexing, and optional encryption.
 version: 0.5.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4

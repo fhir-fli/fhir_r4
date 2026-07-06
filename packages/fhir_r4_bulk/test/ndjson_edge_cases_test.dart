@@ -118,7 +118,7 @@ void main() {
         text: Narrative(
           status: NarrativeStatus.generated,
           div: '<div xmlns="http://www.w3.org/1999/xhtml">She said '
-              '&quot;hello&quot;</div>'
+                  '&quot;hello&quot;</div>'
               .toFhirXhtml,
         ),
       );
@@ -398,8 +398,7 @@ void main() {
       ];
 
       final ndjson = FhirBulk.toNdJson(resources);
-      final zipBytes =
-          await FhirBulk.toZipFile({'patients': ndjson});
+      final zipBytes = await FhirBulk.toZipFile({'patients': ndjson});
       expect(zipBytes, isNotNull);
 
       final decoded = await FhirBulk.fromCompressedData(
@@ -453,7 +452,8 @@ void main() {
       expect(decoded, hasLength(2));
     });
 
-    test('fromCompressedData with unknown content type returns empty', () async {
+    test('fromCompressedData with unknown content type returns empty',
+        () async {
       final result = await FhirBulk.fromCompressedData(
         'application/octet-stream',
         [1, 2, 3],

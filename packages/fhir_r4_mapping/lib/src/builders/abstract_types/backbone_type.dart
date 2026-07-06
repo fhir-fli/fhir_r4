@@ -46,7 +46,7 @@ abstract class BackboneTypeBuilder extends DataTypeBuilder {
   /// Retrieves all modifier extensions by URL
   List<FhirExtensionBuilder> getModifierExtensionsByUrl(String url) {
     return modifierExtension
-            ?.where((FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false)
+            ?.where((ext) => ext.url?.equals(url) ?? false)
             .toList() ??
         <FhirExtensionBuilder>[];
   }
@@ -59,7 +59,7 @@ abstract class BackboneTypeBuilder extends DataTypeBuilder {
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
     modifierExtension?.removeWhere(
-      (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+      (ext) => ext.url?.equals(url) ?? false,
     );
   }
 
@@ -88,13 +88,11 @@ abstract class BackboneTypeBuilder extends DataTypeBuilder {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtensionBuilder e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     if (modifierExtension?.isNotEmpty ?? false) {
-      json['modifierExtension'] = modifierExtension
-          ?.map((FhirExtensionBuilder e) => e.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension?.map((e) => e.toJson()).toList();
     }
     return json;
   }

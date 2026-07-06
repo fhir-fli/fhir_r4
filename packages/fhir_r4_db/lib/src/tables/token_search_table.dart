@@ -124,7 +124,7 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   id: Value(id),
                   lastUpdated: Value(lastUpdated),
                   searchPath: Value(searchPath),
-              searchName: Value(searchName),
+                  searchName: Value(searchName),
                   paramIndex:
                       Value(paramIndex == null ? i : paramIndex * 100 + i),
                   tokenSystem: coding.system?.valueString == null

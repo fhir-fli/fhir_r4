@@ -89,17 +89,13 @@ class Element extends FhirBase {
 
   /// Getter for the first extension by url.
   List<FhirExtension> getExtensionsByUrl(String url) {
-    return extension_
-            ?.where((FhirExtension ext) => ext.url.equals(url.toFhirUri))
-            .toList() ??
+    return extension_?.where((ext) => ext.url.equals(url.toFhirUri)).toList() ??
         <FhirExtension>[];
   }
 
   /// Method to check if an extension exists by url.
   bool hasExtensionByUrl(String url) {
-    return extension_
-            ?.any((FhirExtension ext) => ext.url.equals(url.toFhirUri)) ??
-        false;
+    return extension_?.any((ext) => ext.url.equals(url.toFhirUri)) ?? false;
   }
 
   /// Method to add an extension.
@@ -109,7 +105,7 @@ class Element extends FhirBase {
 
   /// Method to remove an extension by url.
   void removeExtension(String url) {
-    extension_?.removeWhere((FhirExtension ext) => ext.url.equals(url));
+    extension_?.removeWhere((ext) => ext.url.equals(url));
   }
 
   @override
@@ -147,8 +143,7 @@ class Element extends FhirBase {
       json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension e) => e.toJson()).toList();
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     return json;
   }

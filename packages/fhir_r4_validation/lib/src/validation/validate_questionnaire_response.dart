@@ -62,7 +62,7 @@ Future<ValidationResults> _validateResponseItems({
   //item in the Questionnaire
   for (final responseItem in response.item ?? <QuestionnaireResponseItem>[]) {
     final questionnaireItem = questionnaire.item?.firstWhereOrNull(
-      (QuestionnaireItem item) => item.linkId == responseItem.linkId,
+      (item) => item.linkId == responseItem.linkId,
     );
 
     if (questionnaireItem == null) {
@@ -109,7 +109,7 @@ ValidationResults _validateResponseItem({
   for (final nestedResponseItem
       in responseItem.item ?? <QuestionnaireResponseItem>[]) {
     final nestedQuestionnaireItem = questionnaireItem.item?.firstWhereOrNull(
-      (QuestionnaireItem item) => item.linkId == nestedResponseItem.linkId,
+      (item) => item.linkId == nestedResponseItem.linkId,
     );
 
     if (nestedQuestionnaireItem != null) {

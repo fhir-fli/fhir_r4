@@ -120,7 +120,8 @@ void main() {
       expect(result.errorOperationOutcomes, hasLength(1));
     });
 
-    test('transaction-response entries with only response status create '
+    test(
+        'transaction-response entries with only response status create '
         'informational OperationOutcomes', () {
       final bundle = Bundle(
         type: BundleType.transactionResponse,
@@ -139,8 +140,10 @@ void main() {
       expect(result.informationOperationOutcomes, hasLength(1));
       final oo = result.informationOperationOutcomes.first;
       expect(oo.issue.first.diagnostics.toString(), contains('201 Created'));
-      expect(oo.issue.first.diagnostics.toString(),
-          contains('Patient/123/_history/1'),);
+      expect(
+        oo.issue.first.diagnostics.toString(),
+        contains('Patient/123/_history/1'),
+      );
     });
 
     test('transaction-response with response outcome extracts resources', () {
@@ -340,8 +343,7 @@ void main() {
       expect(result.errorOperationOutcomes, hasLength(1));
     });
 
-    test('entries with no resource and no outcome create informational OO',
-        () {
+    test('entries with no resource and no outcome create informational OO', () {
       final bundle = Bundle(
         type: BundleType.transactionResponse,
         entry: <BundleEntry>[

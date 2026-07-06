@@ -23,8 +23,7 @@ String? findCode(ElementDefinition element, String path) {
           .toLowerCase();
       return element.type!
           .firstWhereOrNull(
-            (ElementDefinitionType t) =>
-                t.code.toString().toLowerCase() == type,
+            (t) => t.code.toString().toLowerCase() == type,
           )
           ?.code
           .toString();
