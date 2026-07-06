@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         Coding,
@@ -1168,8 +1169,8 @@ class FhirMapEngine {
                 ? (_getParam(vars, tgt.parameter!.first) ??
                     false.toFhirBooleanBuilder)
                 : false.toFhirBooleanBuilder;
-            final List<FhirBase> v = expr == null
-                ? <FhirBase>[]
+            final List<FhirNode> v = expr == null
+                ? <FhirNode>[]
                 : (await fpe?.evaluateWithContext(
                       vars,
                       null,
@@ -1186,7 +1187,10 @@ class FhirMapEngine {
                     'Evaluation of $expr returned ${v.length} objects',
               );
             } else {
-              return v.first.toBuilder;
+              // Runtime values from the R4 binding are FhirBase (which
+              // implements FhirNode); the builder conversion needs the
+              // concrete model type.
+              return (v.first as FhirBase).toBuilder;
             }
           }
 

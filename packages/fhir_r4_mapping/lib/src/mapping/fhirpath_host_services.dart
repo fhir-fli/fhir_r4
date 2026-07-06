@@ -1,11 +1,11 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// FHIRPath host services for evaluating FHIRPath expressions.
 class FHIRPathHostServices extends IEvaluationContext {
   @override
-  List<FhirBase> resolveConstant(
+  List<FhirNode> resolveConstant(
     FHIRPathEngine? engine,
     Object? appContext,
     String? name,
@@ -13,7 +13,7 @@ class FHIRPathHostServices extends IEvaluationContext {
     bool explicitConstant,
   ) {
     final vars = appContext is MappingVariables ? appContext : null;
-    final list = <FhirBase>[];
+    final list = <FhirNode>[];
     final res = vars?.get(MappingVariableMode.INPUT, name) ??
         vars?.get(MappingVariableMode.OUTPUT, name);
     if (res != null) {
@@ -59,25 +59,25 @@ class FHIRPathHostServices extends IEvaluationContext {
   bool conformsToProfile(
     FHIRPathEngine engine,
     Object appContext,
-    FhirBase item,
+    FhirNode item,
     String url,
   ) {
     throw UnimplementedError();
   }
 
   @override
-  List<FhirBase> executeFunction(
+  List<FhirNode> executeFunction(
     FHIRPathEngine engine,
     Object? appContext,
-    List<FhirBase> focus,
+    List<FhirNode> focus,
     String? functionName,
-    List<List<FhirBase>> parameters,
+    List<List<FhirNode>> parameters,
   ) {
     throw UnimplementedError();
   }
 
   @override
-  bool fpLog(String argument, List<FhirBase> focus) {
+  bool fpLog(String argument, List<FhirNode> focus) {
     throw UnimplementedError();
   }
 
@@ -87,17 +87,17 @@ class FHIRPathHostServices extends IEvaluationContext {
   }
 
   @override
-  FhirBase resolveReference(
+  FhirNode resolveReference(
     FHIRPathEngine engine,
     Object appContext,
     String url,
-    FhirBase refContext,
+    FhirNode refContext,
   ) {
     throw UnimplementedError();
   }
 
   @override
-  ValueSet resolveValueSet(
+  FhirNode? resolveValueSet(
     FHIRPathEngine engine,
     Object? appContext,
     String url,
