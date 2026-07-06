@@ -28,28 +28,32 @@ Future<void> testOfficialGaps() async {
   group("official-comments", () {
     test("testComment2", () async {
       expect(
-        await eval(patient1, "// This is a multi line comment using // that\n  // should not fail during parsing\n  2+2"),
+        await eval(patient1,
+            "// This is a multi line comment using // that\n  // should not fail during parsing\n  2+2"),
         ["4"],
       );
     });
 
     test("testComment3", () async {
       expect(
-        await eval(patient1, "2 + 2 \n      /*\nThis is a multi-line comment\nAny text enclosed within is ignored\n+2\n*/"),
+        await eval(patient1,
+            "2 + 2 \n      /*\nThis is a multi-line comment\nAny text enclosed within is ignored\n+2\n*/"),
         ["4"],
       );
     });
 
     test("testComment4", () async {
       expect(
-        await eval(patient1, "2 + 2 \n      /*\nThis is a multi-line comment\nAny text enclosed within is ignored\n*/\n+2"),
+        await eval(patient1,
+            "2 + 2 \n      /*\nThis is a multi-line comment\nAny text enclosed within is ignored\n*/\n+2"),
         ["6"],
       );
     });
 
     test("testComment5", () async {
       expect(
-        await eval(patient1, "/*\nThis is a multi-line comment\nAny text enclosed within is ignored\n*/\n2+2"),
+        await eval(patient1,
+            "/*\nThis is a multi-line comment\nAny text enclosed within is ignored\n*/\n2+2"),
         ["4"],
       );
     });
@@ -82,7 +86,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testBasics", () {
@@ -95,7 +98,6 @@ Future<void> testOfficialGaps() async {
     // (invalid=semantic); our engine evaluates leniently, so
     // there is no error to assert.
     // expression: Encounter.name.given
-
   });
 
   group("official-testObservations", () {
@@ -124,7 +126,6 @@ Future<void> testOfficialGaps() async {
         [],
       );
     });
-
   });
 
   group("official-testDollar", () {
@@ -132,7 +133,6 @@ Future<void> testOfficialGaps() async {
     // (invalid=semantic); our engine evaluates leniently, so
     // there is no error to assert.
     // expression: Patient.children().skip(1)
-
   });
 
   group("official-testLiterals", () {
@@ -195,7 +195,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testTypes", () {
@@ -269,7 +268,6 @@ Future<void> testOfficialGaps() async {
         [],
       );
     });
-
   });
 
   group("official-testExists", () {
@@ -289,7 +287,8 @@ Future<void> testOfficialGaps() async {
 
     test("testExists4", () async {
       expect(
-        await eval(patient1, "Patient.maritalStatus.coding.exists(code = 'P' and system = 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus')\n\t\t\tor Patient.maritalStatus.coding.exists(code = 'A' and system = 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus')"),
+        await eval(patient1,
+            "Patient.maritalStatus.coding.exists(code = 'P' and system = 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus')\n\t\t\tor Patient.maritalStatus.coding.exists(code = 'A' and system = 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus')"),
         ["false"],
       );
     });
@@ -300,7 +299,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testSelect", () {
@@ -310,7 +308,6 @@ Future<void> testOfficialGaps() async {
         ["3"],
       );
     });
-
   });
 
   group("official-testRepeat", () {
@@ -320,7 +317,6 @@ Future<void> testOfficialGaps() async {
         ["test"],
       );
     });
-
   });
 
   group("official-testSingle", () {
@@ -331,7 +327,6 @@ Future<void> testOfficialGaps() async {
         throwsA(anything),
       );
     });
-
   });
 
   group("official-testIif", () {
@@ -356,14 +351,16 @@ Future<void> testOfficialGaps() async {
 
     test("testIif8", () async {
       expect(
-        await eval(patient1, "('item').iif(true, 'true-result', 'false-result')"),
+        await eval(
+            patient1, "('item').iif(true, 'true-result', 'false-result')"),
         ["true-result"],
       );
     });
 
     test("testIif9", () async {
       expect(
-        await eval(patient1, "('context').iif(true, select(\$this), 'false-result')"),
+        await eval(
+            patient1, "('context').iif(true, select(\$this), 'false-result')"),
         ["context"],
       );
     });
@@ -371,18 +368,19 @@ Future<void> testOfficialGaps() async {
     // Official: invalid="execution" — must error.
     test("testIif10", () async {
       expect(
-        () async => eval(patient1, "('item1' | 'item2').iif(true, 'true-result', 'false-result')"),
+        () async => eval(patient1,
+            "('item1' | 'item2').iif(true, 'true-result', 'false-result')"),
         throwsA(anything),
       );
     });
 
     test("testIif11", () async {
       expect(
-        await eval(patient1, "('context').iif(\$this = 'context','true-result', 'false-result')"),
+        await eval(patient1,
+            "('context').iif(\$this = 'context','true-result', 'false-result')"),
         ["true-result"],
       );
     });
-
   });
 
   group("official-testIndexOf", () {
@@ -402,7 +400,8 @@ Future<void> testOfficialGaps() async {
 
     test("testIndexOf5", () async {
       expect(
-        await eval(patient1, "'LogicalModel-Person'.indexOf({}).empty() = true"),
+        await eval(
+            patient1, "'LogicalModel-Person'.indexOf({}).empty() = true"),
         ["true"],
       );
     });
@@ -420,7 +419,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testSubstring", () {
@@ -433,7 +431,8 @@ Future<void> testOfficialGaps() async {
 
     test("testSubstring8", () async {
       expect(
-        await eval(patient1, "'LogicalModel-Person'.substring(0, 'LogicalModel-Person'.indexOf('-'))"),
+        await eval(patient1,
+            "'LogicalModel-Person'.substring(0, 'LogicalModel-Person'.indexOf('-'))"),
         ["LogicalModel"],
       );
     });
@@ -444,7 +443,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testStartsWith", () {
@@ -475,7 +473,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testEndsWith", () {
@@ -492,7 +489,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testContainsString", () {
@@ -509,7 +505,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testMatches", () {
@@ -550,70 +545,80 @@ Future<void> testOfficialGaps() async {
 
     test("testMatchesWithinUrl1", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('library')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('library')"),
         ["false"],
       );
     });
 
     test("testMatchesWithinUrl2", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('Library')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('Library')"),
         ["true"],
       );
     });
 
     test("testMatchesWithinUrl3", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('^Library\$')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('^Library\$')"),
         ["false"],
       );
     });
 
     test("testMatchesWithinUrl1a", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('.*Library.*')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('.*Library.*')"),
         ["true"],
       );
     });
 
     test("testMatchesWithinUrl4", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('Measure')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matches('Measure')"),
         ["false"],
       );
     });
 
     test("testMatchesFullWithinUrl1", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('library')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('library')"),
         ["false"],
       );
     });
 
     test("testMatchesFullWithinUrl3", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('Library')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('Library')"),
         ["false"],
       );
     });
 
     test("testMatchesFullWithinUrl4", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('^Library\$')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('^Library\$')"),
         ["false"],
       );
     });
 
     test("testMatchesFullWithinUrl1a", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('.*Library.*')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('.*Library.*')"),
         ["true"],
       );
     });
 
     test("testMatchesFullWithinUrl2", () async {
       expect(
-        await eval(patient1, "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('Measure')"),
+        await eval(patient1,
+            "'http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1'.matchesFull('Measure')"),
         ["false"],
       );
     });
@@ -624,7 +629,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testReplaceMatches", () {
@@ -669,7 +673,6 @@ Future<void> testOfficialGaps() async {
         ["abc---"],
       );
     });
-
   });
 
   group("official-testReplace", () {
@@ -707,7 +710,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testLength", () {
@@ -717,7 +719,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testEncodeDecode", () {
@@ -769,7 +770,6 @@ Future<void> testOfficialGaps() async {
         ["subjects?_d"],
       );
     });
-
   });
 
   group("official-testEscapeUnescape", () {
@@ -793,7 +793,6 @@ Future<void> testOfficialGaps() async {
         ["\"1<2\""],
       );
     });
-
   });
 
   group("official-testTrim", () {
@@ -831,7 +830,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testSplit", () {
@@ -844,18 +842,19 @@ Future<void> testOfficialGaps() async {
 
     test("testSplit3", () async {
       expect(
-        await eval(patient1, "'[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]'.split('[stop]').trace('n').count() = 9"),
+        await eval(patient1,
+            "'[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]'.split('[stop]').trace('n').count() = 9"),
         ["true"],
       );
     });
 
     test("testSplit4", () async {
       expect(
-        await eval(patient1, "'[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]'.split('[stop]').join('[stop]')"),
+        await eval(patient1,
+            "'[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]'.split('[stop]').join('[stop]')"),
         ["[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]"],
       );
     });
-
   });
 
   group("official-testSort", () {
@@ -889,66 +888,71 @@ Future<void> testOfficialGaps() async {
 
     test("testSort6", () async {
       expect(
-        await eval(patient1, "('a' | 'b' | 'c').sort(\$this) = ('a' | 'b' | 'c')"),
+        await eval(
+            patient1, "('a' | 'b' | 'c').sort(\$this) = ('a' | 'b' | 'c')"),
         ["true"],
       );
     });
 
     test("testSort7", () async {
       expect(
-        await eval(patient1, "('c' | 'b' | 'a').sort(\$this) = ('a' | 'b' | 'c')"),
+        await eval(
+            patient1, "('c' | 'b' | 'a').sort(\$this) = ('a' | 'b' | 'c')"),
         ["true"],
       );
     });
 
     test("testSort8", () async {
       expect(
-        await eval(patient1, "('a' | 'b' | 'c').sort(-\$this) = ('c' | 'b' | 'a')"),
+        await eval(
+            patient1, "('a' | 'b' | 'c').sort(-\$this) = ('c' | 'b' | 'a')"),
         ["true"],
       );
     });
 
     test("testSort9", () async {
       expect(
-        await eval(patient1, "Patient.name[0].given.sort() = ('James' | 'Peter')"),
+        await eval(
+            patient1, "Patient.name[0].given.sort() = ('James' | 'Peter')"),
         ["true"],
       );
     });
 
     test("testSort10", () async {
       expect(
-        await eval(patient1, "Patient.name.sort(-family, -given.first()).first().use = 'usual'"),
+        await eval(patient1,
+            "Patient.name.sort(-family, -given.first()).first().use = 'usual'"),
         ["true"],
       );
     });
-
   });
 
   group("official-testEquality", () {
     test("testEquality27", () async {
       expect(
-        await eval(patient1, "name.take(2) = name.take(2).last() | name.take(2).first()"),
+        await eval(patient1,
+            "name.take(2) = name.take(2).last() | name.take(2).first()"),
         ["false"],
       );
     });
-
   });
 
   group("official-testNEquality", () {
     test("testNEquality20", () async {
       expect(
-        await eval(patient1, "name.take(2) != name.take(2).first() | name.take(2).last()"),
+        await eval(patient1,
+            "name.take(2) != name.take(2).first() | name.take(2).last()"),
         ["false"],
       );
     });
 
     test("testNEquality21", () async {
       expect(
-        await eval(patient1, "name.take(2) != name.take(2).last() | name.take(2).first()"),
+        await eval(patient1,
+            "name.take(2) != name.take(2).last() | name.take(2).first()"),
         ["true"],
       );
     });
-
   });
 
   group("official-testEquivalent", () {
@@ -965,24 +969,24 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testNotEquivalent", () {
     test("testNotEquivalent20", () async {
       expect(
-        await eval(patient1, "name.take(2).given !~ name.take(2).first().given | name.take(2).last().given"),
+        await eval(patient1,
+            "name.take(2).given !~ name.take(2).first().given | name.take(2).last().given"),
         ["false"],
       );
     });
 
     test("testNotEquivalent21", () async {
       expect(
-        await eval(patient1, "name.take(2).given !~ name.take(2).last().given | name.take(2).first().given"),
+        await eval(patient1,
+            "name.take(2).given !~ name.take(2).last().given | name.take(2).first().given"),
         ["false"],
       );
     });
-
   });
 
   group("official-testCombine()", () {
@@ -995,11 +999,11 @@ Future<void> testOfficialGaps() async {
 
     test("testCombine3", () async {
       expect(
-        await eval(patient1, "name.given.combine(\$this.name.family).exclude('Jim')"),
+        await eval(
+            patient1, "name.given.combine(\$this.name.family).exclude('Jim')"),
         ["Peter", "James", "Peter", "James", "Chalmers", "Windsor"],
       );
     });
-
   });
 
   group("official-testUnion", () {
@@ -1023,7 +1027,6 @@ Future<void> testOfficialGaps() async {
         ["8"],
       );
     });
-
   });
 
   group("official-testPlus", () {
@@ -1188,7 +1191,6 @@ Future<void> testOfficialGaps() async {
     // (invalid=semantic); our engine evaluates leniently, so
     // there is no error to assert.
     // expression: @1974-12-25 + 7
-
   });
 
   group("official-testMinus", () {
@@ -1206,7 +1208,6 @@ Future<void> testOfficialGaps() async {
         throwsA(anything),
       );
     });
-
   });
 
   group("official-testExp", () {
@@ -1216,7 +1217,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testPrecedence", () {
@@ -1236,11 +1236,11 @@ Future<void> testOfficialGaps() async {
 
     test("testPrecedence6", () async {
       expect(
-        await eval(observation1, "category.exists(coding.exists(system = 'http://terminology.hl7.org/CodeSystem/observation-category' and code.trace('c') in ('vital-signs' | 'vital-signs2').trace('codes')))"),
+        await eval(observation1,
+            "category.exists(coding.exists(system = 'http://terminology.hl7.org/CodeSystem/observation-category' and code.trace('c') in ('vital-signs' | 'vital-signs2').trace('codes')))"),
         ["true"],
       );
     });
-
   });
 
   group("official-testType", () {
@@ -1257,7 +1257,6 @@ Future<void> testOfficialGaps() async {
         ["true"],
       );
     });
-
   });
 
   group("official-testConformsTo", () {
@@ -1266,7 +1265,8 @@ Future<void> testOfficialGaps() async {
     // testConformsTo).
     test("testConformsTo2-no-host-services", () async {
       expect(
-        () => eval(patient1, "conformsTo('http://hl7.org/fhir/StructureDefinition/Person')"),
+        () => eval(patient1,
+            "conformsTo('http://hl7.org/fhir/StructureDefinition/Person')"),
         throwsA(isA<PathEngineException>()),
       );
     });
@@ -1280,7 +1280,6 @@ Future<void> testOfficialGaps() async {
         throwsA(isA<PathEngineException>()),
       );
     });
-
   });
 
   group("official-LowBoundary", () {
@@ -1473,7 +1472,6 @@ Future<void> testOfficialGaps() async {
         ["10:30:00.000"],
       );
     });
-
   });
 
   group("official-HighBoundary", () {
@@ -1638,7 +1636,6 @@ Future<void> testOfficialGaps() async {
         ["10:30:59.999"],
       );
     });
-
   });
 
   group("official-Comparable", () {
@@ -1655,7 +1652,6 @@ Future<void> testOfficialGaps() async {
         ["false"],
       );
     });
-
   });
 
   group("official-Precision", () {
@@ -1686,7 +1682,6 @@ Future<void> testOfficialGaps() async {
         ["9"],
       );
     });
-
   });
 
   group("official-from-Zulip", () {
@@ -1697,7 +1692,6 @@ Future<void> testOfficialGaps() async {
         throwsA(anything),
       );
     });
-
   });
 
   group("official-polymorphics", () {
@@ -1705,7 +1699,6 @@ Future<void> testOfficialGaps() async {
     // (invalid=semantic); our engine evaluates leniently, so
     // there is no error to assert.
     // expression: Observation.valueQuantity.exists()
-
   });
 
   group("official-testInheritance", () {
@@ -1779,6 +1772,5 @@ Future<void> testOfficialGaps() async {
         throwsA(anything),
       );
     });
-
   });
 }

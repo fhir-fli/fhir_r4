@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use_from_same_package
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:test/test.dart';
@@ -220,7 +221,8 @@ Future<void> testArgFxns() async {
 
     node = fhirPathEngine.parse(r'Patient.name.where($this)');
     expect(
-      (await fhirPathEngine.evaluate(resource, node)).map((e) => (e as FhirBase).toJson()),
+      (await fhirPathEngine.evaluate(resource, node))
+          .map((e) => (e as FhirBase).toJson()),
       [
         {
           'use': 'official',

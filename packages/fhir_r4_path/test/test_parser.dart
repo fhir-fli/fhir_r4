@@ -133,8 +133,8 @@ Future<void> testParser() async {
       // parse('name.given garbage') silently dropped the garbage.
       expect(() => testEngine.parse('name.given garbage'),
           throwsA(isA<FHIRLexerException>()));
-      expect(() => testEngine.parse('1 + 1)'),
-          throwsA(isA<FHIRLexerException>()));
+      expect(
+          () => testEngine.parse('1 + 1)'), throwsA(isA<FHIRLexerException>()));
       expect(testEngine.isValid('name.given garbage'), isFalse);
       // No trailing input: still fine.
       expect(testEngine.parse('name.given').name, equals('name'));

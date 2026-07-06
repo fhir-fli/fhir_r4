@@ -9,7 +9,6 @@ List<dynamic> toJsonList(List<FhirNode> list) => list
     .map((e) => e is PrimitiveType ? e.valueString : (e as FhirBase).toJson())
     .toList();
 
-
 /// The parse-tree constant is a [FhirNode] after the engine's node swap;
 /// tests asserting its R4 JSON narrow it here (the R4 binding surface).
 extension FhirNodeR4JsonX on FhirNode {

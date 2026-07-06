@@ -116,8 +116,8 @@ Future<void> testNoArgFxns() async {
           ]);
       node = testEngine.parse('Patient.name.given.distinct()');
       expect(
-        (await testEngine.evaluate(patient3, node))
-            .map((e) => e is PrimitiveType ? e.primitiveValue : (e as FhirBase).toJson()),
+        (await testEngine.evaluate(patient3, node)).map((e) =>
+            e is PrimitiveType ? e.primitiveValue : (e as FhirBase).toJson()),
         ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
       );
     });
@@ -1339,7 +1339,9 @@ Future<void> testNoArgFxns() async {
           testEngine.parse('Patient.address[1].period.extension.descendants()');
       expect(
           (await testEngine.evaluate(patient3, node))
-              .map((e) => e is PrimitiveType ? e.primitiveValue : (e as FhirBase).toJson())
+              .map((e) => e is PrimitiveType
+                  ? e.primitiveValue
+                  : (e as FhirBase).toJson())
               .toList(),
           [
             {

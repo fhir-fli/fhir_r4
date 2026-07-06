@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use_from_same_package
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
@@ -56,6 +57,9 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 ///
 /// The lazy-loading mechanism is currently only supported through the
 /// [environment] map, not for explicitly passed-in parameters.
+@Deprecated('Legacy petitparser-era API. Use FHIRPathEngine: '
+    'FHIRPathEngine.create(WorkerContext()).then((e) => '
+    'e.evaluate(context, e.parse(path))) — parse once, evaluate many.')
 Future<List<FhirBase>> walkFhirPath({
   required FhirBase? context,
   required String pathExpression,
@@ -75,6 +79,7 @@ Future<List<FhirBase>> walkFhirPath({
 }
 
 /// Parse a FHIRPath for repeated use with different inputs later.
+@Deprecated('Legacy petitparser-era API. Use FHIRPathEngine.parse.')
 Future<ExpressionNode> parseFhirPath(String pathExpression) async {
   final fhirPathEngine = await FHIRPathEngine.create(WorkerContext());
   return fhirPathEngine.parse(pathExpression);
@@ -86,6 +91,7 @@ Future<ExpressionNode> parseFhirPath(String pathExpression) async {
 /// resulting in a performance gain over [walkFhirPath].
 ///
 /// All parameters have the same meaning as for [walkFhirPath].
+@Deprecated('Legacy petitparser-era API. Use FHIRPathEngine.evaluate.')
 Future<List<FhirBase>> executeFhirPath({
   required FhirBase? context,
   required ExpressionNode parsedFhirPath,

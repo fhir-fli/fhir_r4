@@ -37,14 +37,27 @@ const _fhirSd = 'http://hl7.org/fhir/StructureDefinition';
 
 final _r4TypeDefinitions = <StructureDefinition>[
   _typeSd(name: 'Element', kind: 'complex-type'),
-  _typeSd(name: 'string', kind: 'primitive-type', baseDefinition: '$_fhirSd/Element'),
-  _typeSd(name: 'code', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
-  _typeSd(name: 'id', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
-  _typeSd(name: 'uri', kind: 'primitive-type', baseDefinition: '$_fhirSd/Element'),
+  _typeSd(
+      name: 'string',
+      kind: 'primitive-type',
+      baseDefinition: '$_fhirSd/Element'),
+  _typeSd(
+      name: 'code', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
+  _typeSd(
+      name: 'id', kind: 'primitive-type', baseDefinition: '$_fhirSd/string'),
+  _typeSd(
+      name: 'uri', kind: 'primitive-type', baseDefinition: '$_fhirSd/Element'),
   _typeSd(name: 'url', kind: 'primitive-type', baseDefinition: '$_fhirSd/uri'),
-  _typeSd(name: 'Quantity', kind: 'complex-type', baseDefinition: '$_fhirSd/Element'),
-  _typeSd(name: 'Age', kind: 'complex-type', baseDefinition: '$_fhirSd/Quantity'),
-  _typeSd(name: 'Duration', kind: 'complex-type', baseDefinition: '$_fhirSd/Quantity'),
+  _typeSd(
+      name: 'Quantity',
+      kind: 'complex-type',
+      baseDefinition: '$_fhirSd/Element'),
+  _typeSd(
+      name: 'Age', kind: 'complex-type', baseDefinition: '$_fhirSd/Quantity'),
+  _typeSd(
+      name: 'Duration',
+      kind: 'complex-type',
+      baseDefinition: '$_fhirSd/Quantity'),
 ];
 
 Future<void> testTypeOperators() async {
@@ -121,8 +134,7 @@ Future<void> testTypeOperators() async {
       await check(questionnaire, 'Questionnaire.url.is(uri)', true);
     });
 
-    test('testFHIRPathIsFunction5: uri is not url (wrong direction)',
-        () async {
+    test('testFHIRPathIsFunction5: uri is not url (wrong direction)', () async {
       await check(questionnaire, 'Questionnaire.url.is(url)', false);
     });
 
@@ -135,8 +147,7 @@ Future<void> testTypeOperators() async {
       await check(valueSet, 'ValueSet.version.is(code)', false);
     });
 
-    test('testFHIRPathIsFunction8: Age value is Age (operator form)',
-        () async {
+    test('testFHIRPathIsFunction8: Age value is Age (operator form)', () async {
       await check(
         observation,
         "Observation.extension('http://example.com/fhir/StructureDefinition/patient-age').value is Age",
