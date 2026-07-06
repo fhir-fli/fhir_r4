@@ -22,7 +22,7 @@ dependencies:
   fhir_r4: ^0.5.0
   fhirpath: ^0.1.0-dev.1
   http: ^1.6.0
-  ucum: ^0.8.0
+  ucum: ^0.9.0
   universal_io: ^2.3.1
 
 dev_dependencies:
