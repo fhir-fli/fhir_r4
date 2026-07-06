@@ -1,22 +1,24 @@
-# See https://www.dartlang.org/guides/libraries/private-files
-
-# Files and directories created by pub
+# Files and directories created by pub / tooling
 .dart_tool/
-.DS_Store
-**/.DS_Store
 .packages
 build/
+pubspec_overrides.yaml
+packages/**/pubspec.lock
 
-# melos
-# melos does NOT want pubspec.lock files to be ignored
-*pubspec_overrides.yaml
+# OS / editor files
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.iml
+.cursorignore
 
-./packages/fhir_r4/*ndjson
+# npm accidents
+node_modules/
+package-lock.json
+
+# Generated data / logs
 *ndjson
-
-# Dart support files
-*.pubspec.lock
-
-# Test output logs
 test_output.log
 test_results_*.txt
+error_log.txt
