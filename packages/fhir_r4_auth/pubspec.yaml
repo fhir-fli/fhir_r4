@@ -19,7 +19,6 @@ environment:
 
 dependencies:
   crypto: ^3.0.7                 # PKCE and crypto operations
-  dart_jsonwebtoken: ^3.3.1     # JWT validation and parsing
   fhir_r4: ^0.5.0
   flutter:
     sdk: flutter

@@ -1,89 +1,46 @@
+// Query FHIR R4 resources with FHIRPath using fhir_r4_path.
+//
+// fhir_r4_path is the R4 binding over the model-independent `fhirpath`
+// engine: build a FHIRPathEngine (model-aware via WorkerContext), parse an
+// expression once, then evaluate it against any resource. Each evaluation
+// returns a List<FhirBase> — FHIRPath always yields a collection.
+//
+// Run: dart run example/main.dart
+// ignore_for_file: avoid_print
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'package:test/test.dart';
 
 Future<void> main() async {
-  final fhirPathEngine = await FHIRPathEngine.create(WorkerContext());
-  test('Boolean', () async {
-    expect(fhirPathEngine.parse('true').constant, true.toFhirBoolean);
-    expect(fhirPathEngine.parse('false').constant, false.toFhirBoolean);
-  });
+  // Create the engine once; parse-once / evaluate-many is the intended use.
+  final engine = await FHIRPathEngine.create(WorkerContext());
 
-  test('Parse comparison expression', () async {
-    // Expression: Patient.age >= 18
-    final node = fhirPathEngine.parse('Patient.age >= 18');
-
-    // Top-level node is "Patient"
-    expect(node.name, equals('Patient'));
-
-    // The top-level node's inner points to "age"
-    expect(node.inner?.name, equals('age'));
-
-    // The operator is ">="
-    expect(node.operation, equals(FpOperation.GreaterOrEqual));
-
-    // The right-hand side is 18
-    expect(node.opNext?.constant, equals(18.toFhirInteger));
-  });
-
-  final node10 = fhirPathEngine.parse('@2021-06-06 = @2021-05-06');
-  expect(
-    await fhirPathEngine.evaluate(patient3, node10),
-    [false.toFhirBoolean],
-  );
-
-  final node8 = fhirPathEngine.parse("4 'm' < 4 'cm'");
-  expect(
-    await fhirPathEngine.evaluate(patient3, node8),
-    [false.toFhirBoolean],
-  );
-
-  var node = fhirPathEngine.parse('name.given.first().convertsToBoolean()');
-  expect(
-    await fhirPathEngine.evaluate(patient3, node),
-    [false.toFhirBoolean],
-  );
-
-  node = fhirPathEngine.parse('1.ceiling() // 1');
-  expect(
-    await fhirPathEngine.evaluate(patient3, node),
-    [1.toFhirInteger],
-  );
-
-  test('%variables', () async {
-    final node = fhirPathEngine.parse('%var');
-    await expectLater(
-      fhirPathEngine.evaluateWithContext(
-        null,
-        null,
-        null,
-        null,
-        node,
-        environment: {
-          'var': [5.toFhirInteger],
-        },
+  final patient = Patient(
+    id: 'example'.toFhirString,
+    active: true.toFhirBoolean,
+    name: [
+      HumanName(
+        family: 'Rossi'.toFhirString,
+        given: ['Mario'.toFhirString],
       ),
-      completion(equals([5.toFhirInteger])),
-    );
-  });
-
-  expect(
-    await walkFhirPath(
-      context: patient3,
-      pathExpression: "'abcdefg'.endsWith('efg') // true",
-    ),
-    [true.toFhirBoolean],
+    ],
+    telecom: [
+      ContactPoint(
+        system: ContactPointSystem.email,
+        use: ContactPointUse.mobile,
+        rank: FhirPositiveInt(3),
+      ),
+    ],
   );
-}
 
-final patient3 = Patient(
-  id: 'example'.toFhirString,
-  active: true.toFhirBoolean,
-  telecom: [
-    ContactPoint(
-      system: ContactPointSystem.email,
-      use: ContactPointUse.mobile,
-      rank: FhirPositiveInt(3),
-    ),
-  ],
-);
+  // Evaluate a handful of expressions against the patient.
+  for (final expression in <String>[
+    'Patient.active',
+    'name.given.first()',
+    "name.family = 'Rossi'",
+    'telecom.rank > 1',
+    "'abcdefg'.endsWith('efg')",
+  ]) {
+    final result = await engine.evaluate(patient, engine.parse(expression));
+    print('$expression  =>  $result');
+  }
+}

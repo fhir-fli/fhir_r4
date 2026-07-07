@@ -109,11 +109,10 @@ Future<bool> _evaluateConstraint(
     return false;
   }
 
-  // Evaluate the FHIRPath expression using the context
-  final result = await walkFhirPath(
-    context: context,
-    pathExpression: expression,
-  );
+  // Evaluate the FHIRPath expression using the context.
+  final engine = await FHIRPathEngine.create(WorkerContext());
+  final result = (await engine.evaluate(context, engine.parse(expression)))
+      .cast<fhir.FhirBase>();
 
   // Check if the result satisfies the constraint
   return result.length == 1 &&

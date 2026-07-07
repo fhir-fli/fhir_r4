@@ -1873,7 +1873,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // Check across all search parameter tables
     final idsWithParam = <String>{};
 
-    for (final table in <ResultSetImplementation>[
+    for (final table in <ResultSetImplementation<dynamic, dynamic>>[
       stringSearchParameters,
       tokenSearchParameters,
       referenceSearchParameters,
