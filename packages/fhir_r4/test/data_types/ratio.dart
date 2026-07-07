@@ -48,10 +48,10 @@ void ratioTest() {
         ),
       );
       final json = ratio.toJson();
-      expect(json['numerator'], isA<Map>());
+      expect(json['numerator'], isA<Map<String, dynamic>>());
       expect(json['numerator']['value'], 500);
       expect(json['numerator']['unit'], 'mg');
-      expect(json['denominator'], isA<Map>());
+      expect(json['denominator'], isA<Map<String, dynamic>>());
       expect(json['denominator']['value'], 10);
     });
 

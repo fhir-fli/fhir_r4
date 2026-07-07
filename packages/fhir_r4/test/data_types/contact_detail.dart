@@ -50,7 +50,7 @@ void contactDetailTest() {
       );
       final json = cd.toJson();
       expect(json['name'], 'John Doe');
-      expect(json['telecom'], isA<List>());
+      expect(json['telecom'], isA<List<dynamic>>());
       expect((json['telecom'] as List).length, 1);
     });
 

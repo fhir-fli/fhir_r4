@@ -64,7 +64,7 @@ void dosageTest() {
       final json = dosage.toJson();
       expect(json['sequence'], 1);
       expect(json['text'], 'Once daily');
-      expect(json['route'], isA<Map>());
+      expect(json['route'], isA<Map<String, dynamic>>());
     });
 
     test('fromJson round-trips correctly', () {

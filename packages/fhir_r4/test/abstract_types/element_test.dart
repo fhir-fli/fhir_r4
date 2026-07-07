@@ -109,7 +109,7 @@ void main() {
           ],
         );
         final json = element.toJson();
-        expect(json['extension'], isA<List>());
+        expect(json['extension'], isA<List<dynamic>>());
         expect((json['extension'] as List).length, 1);
       });
 

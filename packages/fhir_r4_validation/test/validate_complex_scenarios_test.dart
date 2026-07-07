@@ -675,9 +675,9 @@ void main() {
       expect(json.containsKey('error'), isTrue);
       expect(json.containsKey('warning'), isTrue);
       expect(json.containsKey('information'), isTrue);
-      expect(json['error'], isA<List>());
-      expect(json['warning'], isA<List>());
-      expect(json['information'], isA<List>());
+      expect(json['error'], isA<List<dynamic>>());
+      expect(json['warning'], isA<List<dynamic>>());
+      expect(json['information'], isA<List<dynamic>>());
     });
 
     test('toOperationOutcome creates valid OperationOutcome', () async {

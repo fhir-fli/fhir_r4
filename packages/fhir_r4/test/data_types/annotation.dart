@@ -58,7 +58,7 @@ void annotationTest() {
         text: FhirMarkdown('Note'),
       );
       final json = ann.toJson();
-      expect(json['authorReference'], isA<Map>());
+      expect(json['authorReference'], isA<Map<String, dynamic>>());
       expect(json['authorReference']['reference'], 'Practitioner/123');
     });
 

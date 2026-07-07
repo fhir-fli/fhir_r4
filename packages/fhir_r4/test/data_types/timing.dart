@@ -51,9 +51,9 @@ void timingTest() {
         ),
       );
       final json = timing.toJson();
-      expect(json['event'], isA<List>());
+      expect(json['event'], isA<List<dynamic>>());
       expect((json['event'] as List).length, 1);
-      expect(json['code'], isA<Map>());
+      expect(json['code'], isA<Map<String, dynamic>>());
     });
 
     test('fromJson round-trips correctly', () {

@@ -131,7 +131,7 @@ Future<void> testOfficialGaps() async {
     test('testPolymorphismIsA3', () async {
       expect(
         await eval(observation1, 'Observation.issued is instant'),
-        [],
+        <String?>[],
       );
     });
   });
@@ -259,21 +259,21 @@ Future<void> testOfficialGaps() async {
     test('testStringQuantityMonthLiteralToQuantity', () async {
       expect(
         await eval(patient1, r"'1 \'mo\''.toQuantity() = 1 month"),
-        [],
+        <String?>[],
       );
     });
 
     test('testStringQuantityYearLiteralToQuantity', () async {
       expect(
         await eval(patient1, r"'1 \'a\''.toQuantity() = 1 year"),
-        [],
+        <String?>[],
       );
     });
 
     test('testIntegerLiteralToBooleanEmpty', () async {
       expect(
         await eval(patient1, '2.toBoolean()'),
-        [],
+        <String?>[],
       );
     });
   });
@@ -1372,7 +1372,7 @@ Future<void> testOfficialGaps() async {
     test('LowBoundaryDecimal3', () async {
       expect(
         await eval(patient1, '1.587.lowBoundary(-1)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1386,7 +1386,7 @@ Future<void> testOfficialGaps() async {
     test('LowBoundaryDecimal5', () async {
       expect(
         await eval(patient1, '1.587.lowBoundary(32)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1414,7 +1414,7 @@ Future<void> testOfficialGaps() async {
     test('LowBoundaryNegDecimal3', () async {
       expect(
         await eval(patient1, '(-1.587).lowBoundary(-1)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1428,14 +1428,14 @@ Future<void> testOfficialGaps() async {
     test('LowBoundaryNegDecimal5', () async {
       expect(
         await eval(patient1, '(-1.587).lowBoundary(32)'),
-        [],
+        <String?>[],
       );
     });
 
     test('LowBoundaryDecimal6', () async {
       expect(
         await eval(patient1, '1.587.lowBoundary(39)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1564,7 +1564,7 @@ Future<void> testOfficialGaps() async {
     test('HighBoundaryDecimal3', () async {
       expect(
         await eval(patient1, '1.587.highBoundary(-1)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1592,7 +1592,7 @@ Future<void> testOfficialGaps() async {
     test('HighBoundaryDecimal7', () async {
       expect(
         await eval(patient1, '1.587.highBoundary(39)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1777,7 +1777,7 @@ Future<void> testOfficialGaps() async {
     test('testFHIRPathAsFunction11', () async {
       expect(
         await eval(patient1, 'Patient.gender.as(string)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1791,14 +1791,14 @@ Future<void> testOfficialGaps() async {
     test('testFHIRPathAsFunction13', () async {
       expect(
         await eval(patient1, 'Patient.gender.as(id)'),
-        [],
+        <String?>[],
       );
     });
 
     test('testFHIRPathAsFunction16', () async {
       expect(
         await eval(patient1, 'Patient.gender.ofType(string)'),
-        [],
+        <String?>[],
       );
     });
 
@@ -1812,7 +1812,7 @@ Future<void> testOfficialGaps() async {
     test('testFHIRPathAsFunction18', () async {
       expect(
         await eval(patient1, 'Patient.gender.ofType(id)'),
-        [],
+        <String?>[],
       );
     });
 

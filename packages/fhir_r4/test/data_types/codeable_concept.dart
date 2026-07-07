@@ -51,7 +51,7 @@ void codeableConceptTest() {
       );
       final json = cc.toJson();
       expect(json['text'], 'Fever');
-      expect(json['coding'], isA<List>());
+      expect(json['coding'], isA<List<dynamic>>());
       expect((json['coding'] as List).length, 1);
       expect((json['coding'] as List)[0]['code'], '386661006');
     });

@@ -55,7 +55,7 @@ void referenceTest() {
         ),
       );
       final json = ref.toJson();
-      expect(json['identifier'], isA<Map>());
+      expect(json['identifier'], isA<Map<String, dynamic>>());
       expect(json['identifier']['system'], 'http://example.org');
       expect(json['identifier']['value'], 'MRN-123');
     });

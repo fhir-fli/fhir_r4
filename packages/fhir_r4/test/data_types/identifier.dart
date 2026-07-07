@@ -76,8 +76,8 @@ void identifierTest() {
         assigner: Reference(display: FhirString('Hospital')),
       );
       final json = id.toJson();
-      expect(json['type'], isA<Map>());
-      expect(json['assigner'], isA<Map>());
+      expect(json['type'], isA<Map<String, dynamic>>());
+      expect(json['assigner'], isA<Map<String, dynamic>>());
       expect(json['assigner']['display'], 'Hospital');
     });
 

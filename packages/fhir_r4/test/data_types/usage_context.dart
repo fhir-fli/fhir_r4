@@ -65,8 +65,8 @@ void usageContextTest() {
         valueX: CodeableConcept(text: FhirString('Pediatric')),
       );
       final json = uc.toJson();
-      expect(json['code'], isA<Map>());
-      expect(json['valueCodeableConcept'], isA<Map>());
+      expect(json['code'], isA<Map<String, dynamic>>());
+      expect(json['valueCodeableConcept'], isA<Map<String, dynamic>>());
       expect(json['valueCodeableConcept']['text'], 'Pediatric');
     });
 
@@ -79,7 +79,7 @@ void usageContextTest() {
         ),
       );
       final json = uc.toJson();
-      expect(json['valueQuantity'], isA<Map>());
+      expect(json['valueQuantity'], isA<Map<String, dynamic>>());
       expect(json['valueQuantity']['value'], 65);
     });
 

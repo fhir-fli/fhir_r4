@@ -55,7 +55,7 @@ void main() {
         );
 
         final json = patient.toJson();
-        expect(json['contained'], isA<List>());
+        expect(json['contained'], isA<List<dynamic>>());
         expect((json['contained'] as List).length, 1);
 
         final restored = Resource.fromJson(json) as Patient;
@@ -97,7 +97,7 @@ void main() {
         );
 
         final json = patient.toJson();
-        expect(json['extension'], isA<List>());
+        expect(json['extension'], isA<List<dynamic>>());
 
         final restored = Resource.fromJson(json) as Patient;
         expect(

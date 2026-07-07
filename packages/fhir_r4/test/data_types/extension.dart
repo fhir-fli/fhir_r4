@@ -108,7 +108,7 @@ void extensionTest() {
         ),
       );
       final json = ext.toJson();
-      expect(json['valueCodeableConcept'], isA<Map>());
+      expect(json['valueCodeableConcept'], isA<Map<String, dynamic>>());
       expect(json['valueCodeableConcept']['text'], 'Test');
     });
 

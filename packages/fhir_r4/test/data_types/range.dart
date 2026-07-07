@@ -52,10 +52,10 @@ void rangeTest() {
         high: Quantity(value: FhirDecimal(80), unit: FhirString('kg')),
       );
       final json = range.toJson();
-      expect(json['low'], isA<Map>());
+      expect(json['low'], isA<Map<String, dynamic>>());
       expect(json['low']['value'], 60);
       expect(json['low']['unit'], 'kg');
-      expect(json['high'], isA<Map>());
+      expect(json['high'], isA<Map<String, dynamic>>());
       expect(json['high']['value'], 80);
     });
 

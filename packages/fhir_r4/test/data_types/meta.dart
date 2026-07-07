@@ -64,7 +64,7 @@ void metaTest() {
       final json = meta.toJson();
       expect(json['versionId'], '2');
       expect(json['source'], 'http://example.org');
-      expect(json['profile'], isA<List>());
+      expect(json['profile'], isA<List<dynamic>>());
       expect((json['profile'] as List).length, 1);
     });
 
@@ -74,8 +74,8 @@ void metaTest() {
         tag: [Coding(code: FhirCode('test'))],
       );
       final json = meta.toJson();
-      expect(json['security'], isA<List>());
-      expect(json['tag'], isA<List>());
+      expect(json['security'], isA<List<dynamic>>());
+      expect(json['tag'], isA<List<dynamic>>());
     });
 
     test('fromJson round-trips correctly', () {
