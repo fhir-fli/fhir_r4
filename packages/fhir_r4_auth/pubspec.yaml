@@ -26,7 +26,7 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   flutter_web_auth_2: ^4.1.0       # Web authentication fallback
   http: ^1.6.0
-  jose: ^0.3.5                     # JWT/JWK/JOSE implementation
+  jose: ^0.3.5+2                     # JWT/JWK/JOSE implementation
   logging: ^1.3.0                  # Audit logging
   url_launcher: ^6.3.2             # Launching auth URLs
   uuid: ^4.5.2                     # Generate state/nonce
