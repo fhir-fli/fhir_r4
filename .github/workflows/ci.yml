@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Analyze, format & test each package
+        run: |
+          set -e
+          for d in packages/*/; do
+            [ -f "${d}pubspec.yaml" ] || continue
+            echo "::group::$d"
+            (
+              cd "$d"
+              flutter pub get
+              dart format --output=none --set-exit-if-changed .
+              flutter analyze
+              if [ -d test ]; then flutter test; fi
+            )
+            echo "::endgroup::"
+          done
