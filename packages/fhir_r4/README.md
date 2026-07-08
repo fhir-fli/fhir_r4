@@ -16,11 +16,15 @@ It's still a work on progress, but I plan on outlining in-depth all of the funct
 - **Reflection-Like Capabilities**: Dynamic field access and manipulation without requiring runtime reflection
 - **Immutable Data Model**: All classes follow immutable design patterns with copyWith functionality
 
+## Model-Independent Architecture
+
+`fhir_r4` is a thin FHIR-version binding on top of a set of model-independent engines. Every resource and data type extends `FhirBase`, which implements the `FhirNode` reflection contract from [`package:fhir_node`](https://pub.dev/packages/fhir_node). Because navigation (`getChildrenByName`, `listChildrenNames`, `fhirType`, ...) is expressed through that contract, the shared [`fhirpath`](https://pub.dev/packages/fhirpath), [`cql`](https://pub.dev/packages/cql), and [`ucum`](https://pub.dev/packages/ucum) engines can operate on R4 data without any coupling to a specific FHIR version. The same engines power the R5 and R6 packages unchanged.
+
 ## Installation
 
 ```yaml
 dependencies:
-  fhir_r4: ^0.4.2
+  fhir_r4: ^0.6.0
 ```
 
 ## Basic Usage
@@ -97,23 +101,21 @@ final boolValue = myBoolean.valueBoolean;
 FHIR-FLI handles polymorphic fields (fields that can contain different types) with clear conventions:
 
 ```dart
-// Example with a polymorphic field
-final carePlanDetail = CarePlanDetail(
-  status: CarePlanActivityStatus.active,
-  scheduledX: Timing(
-    repeat: TimingRepeat(
-      frequency: FhirPositiveInt(1),
-      period: FhirDecimal(1),
-      periodUnit: UnitsOfTime.d,
-    ),
+// Observation.value[x] is a polymorphic field; assign via the `valueX` setter
+final observation = Observation(
+  status: ObservationStatus.final_,
+  code: CodeableConcept(text: 'Body Weight'.toFhirString),
+  valueX: Quantity(
+    value: FhirDecimal(72.5),
+    unit: 'kg'.toFhirString,
   ),
 );
 
-// Access polymorphic fields safely
-if (carePlanDetail.scheduledTiming != null) {
-  // Work with Timing
-} else if (carePlanDetail.scheduledPeriod != null) {
-  // Work with Period
+// Access polymorphic fields safely via the typed getters
+if (observation.valueQuantity != null) {
+  // Work with a Quantity value
+} else if (observation.valueString != null) {
+  // Work with a String value
 }
 ```
 
@@ -141,8 +143,8 @@ final fieldNames = patient.listChildrenNames();
 // Get a field by name
 final value = patient.getChildByName('birthDate');
 
-// Set a field by name
-final updatedPatient = patient.setChildByName('active', FhirBoolean(true));
+// Get all children matching a name (returns a List<FhirBase>)
+final givenNames = patient.getChildrenByName('name');
 
 // Modify with copyWith
 final modifiedPatient = patient.copyWith(

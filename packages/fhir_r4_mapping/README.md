@@ -8,7 +8,7 @@ A comprehensive implementation of the FHIR Mapping Language for Dart, enabling t
 
 ## Overview
 
-FHIR-FLI Mapping provides tools to parse the FHIR Mapping Language and execute transformations between different FHIR resources and structures. It's designed to work seamlessly with the rest of the FHIR-FLI ecosystem while taking advantage of Dart's strong typing.
+FHIR-FLI Mapping provides tools to parse the FHIR Mapping Language and execute transformations between different FHIR resources and structures. It's designed to work seamlessly with the rest of the FHIR-FLI ecosystem while taking advantage of Dart's strong typing. Transformations are driven by the same model-independent FHIRPath engine used across FHIR-FLI (via `fhir_r4_path`).
 
 ## Features
 
@@ -22,9 +22,9 @@ FHIR-FLI Mapping provides tools to parse the FHIR Mapping Language and execute t
 
 ```yaml
 dependencies:
-  fhir_r4_mapping: ^0.4.0
-  fhir_r4: ^0.4.2
-  fhir_r4_path: ^0.4.2
+  fhir_r4_mapping: ^0.6.0
+  fhir_r4: ^0.6.0
+  fhir_r4_path: ^0.6.0
 ```
 
 ## Quick Start
@@ -71,8 +71,8 @@ Future<void> transformPatient() async {
   resourceCache.saveCanonicalResource(patientStructureDef);
   resourceCache.saveCanonicalResource(personStructureDef);
   
-  // Create the engine with your StructureMap
-  final mapEngine = await FhirMapEngine.create(resourceCache, structureMap);
+  // Create the engine with the resource cache
+  final mapEngine = await FhirMapEngine.create(resourceCache);
   
   // Transform a Patient to a Person
   final result = await mapEngine.transformFromFhir(
@@ -143,6 +143,6 @@ MIT
 
 ## Related Packages
 
-- [fhir](https://pub.dev/packages/fhir): Core FHIR package for Dart
 - [fhir_r4](https://pub.dev/packages/fhir_r4): R4 FHIR resources and models
-- [fhir_path](https://pub.dev/packages/fhir_path): FHIRPath implementation for Dart
+- [fhir_r4_path](https://pub.dev/packages/fhir_r4_path): FHIRPath implementation for R4
+- [fhir_r4_validation](https://pub.dev/packages/fhir_r4_validation): StructureDefinition-driven resource validation

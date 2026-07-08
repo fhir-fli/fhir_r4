@@ -27,7 +27,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  fhir_r4_cds_hooks: ^0.5.0
+  fhir_r4_cds_hooks: ^0.6.0
 ```
 
 ## Usage
@@ -81,9 +81,9 @@ final builder = CdsResponseBuilder()
         label: 'Switch to Azithromycin',
         action: CdsResponseBuilder.createAction(
           resource: MedicationRequest(
-            status: MedicationRequestStatus.draft,
+            status: MedicationrequestStatus.draft,
             intent: MedicationRequestIntent.order,
-            medication: CodeableConcept(text: 'Azithromycin 250mg'.toFhirString),
+            medicationX: CodeableConcept(text: 'Azithromycin 250mg'.toFhirString),
             subject: Reference(reference: 'Patient/456'.toFhirString),
           ),
           description: 'Create alternative medication order',

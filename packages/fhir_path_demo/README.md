@@ -1,16 +1,27 @@
 # fhir_path_demo
 
-A new Flutter project.
+A small Flutter demo app for evaluating [FHIRPath](https://hl7.org/fhirpath/) expressions
+against FHIR R4 resources, built with [`fhir_r4`](https://pub.dev/packages/fhir_r4) and
+[`fhir_r4_path`](https://pub.dev/packages/fhir_r4_path).
 
-## Getting Started
+This package is not published (`publish_to: none`); it exists as a runnable example.
 
-This project is a starting point for a Flutter application.
+## What it does
 
-A few resources to get you started if this is your first Flutter project:
+The app presents three text fields:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Resource** – a FHIR resource as JSON (parsed via `Resource.fromJson`)
+- **Variables** – an optional JSON map of environment variables
+- **Expression** – the FHIRPath expression to evaluate
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Pressing evaluate runs the expression through `FHIRPathEngine` and shows the results.
+Internally it creates the engine once (`FHIRPathEngine.create(WorkerContext(...))`),
+parses the expression with `parse()`, and evaluates it with `evaluateWithContext()`.
+
+## Running
+
+```bash
+cd fhir_r4/packages/fhir_path_demo
+flutter pub get
+flutter run
+```

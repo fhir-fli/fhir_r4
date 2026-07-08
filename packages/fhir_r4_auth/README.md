@@ -39,8 +39,8 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  fhir_r4_auth: ^0.4.0
-  fhir_r4: ^0.4.2
+  fhir_r4_auth: ^0.6.0
+  fhir_r4: ^0.6.0
 ```
 
 ### Basic Standalone Launch
@@ -58,14 +58,12 @@ final client = SmartFhirClient(
   ),
 );
 
-// 2. Authenticate
-await client.authenticate();
+// 2. Authenticate (launches the SMART authorization flow)
+await client.login();
 
-// 3. Make FHIR requests
-final patient = await client.read(
-  resourceType: 'Patient',
-  id: 'patient-123',
-);
+// 3. SmartFhirClient is an authenticated http.Client. Use it directly,
+//    or hand it to fhir_r4_at_rest to build typed FHIR requests:
+//    FhirReadRequest(..., client: client).sendRequest();
 ```
 
 ### EHR Launch
@@ -85,7 +83,7 @@ final client = SmartFhirClient(
   ),
 );
 
-await client.authenticate();
+await client.login();
 ```
 
 ## Common Use Cases
@@ -96,7 +94,7 @@ Tokens are automatically refreshed before expiry:
 
 ```dart
 // Manual refresh if needed
-await client.refreshAccessToken();
+await client.refreshToken();
 ```
 
 ### Token Revocation
@@ -115,8 +113,10 @@ await client.revokeAccessToken();
 final client = SmartFhirClient(
   config: config,
   sessionManager: SessionManager(
-    idleTimeout: Duration(minutes: 15),
-    absoluteTimeout: Duration(hours: 8),
+    config: SessionConfig(
+      idleTimeout: Duration(minutes: 15),
+      absoluteTimeout: Duration(hours: 8),
+    ),
   ),
 );
 
@@ -137,12 +137,19 @@ await client.recordActivity();
 ### Audit Logging
 
 ```dart
+// Events are recorded to an in-memory store by default
+final auditLogger = AuditLogger();
+
 final client = SmartFhirClient(
   config: config,
-  auditLogger: AuditLogger(
-    onLog: (event) => print('Audit: ${event.eventType}'),
-  ),
+  auditLogger: auditLogger,
 );
+
+// Inspect recorded events at any time
+final events = await auditLogger.queryEvents();
+for (final event in events) {
+  print('Audit: ${event.eventType.name}');
+}
 ```
 
 ### Secure Token Storage
