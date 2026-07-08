@@ -112,7 +112,8 @@ void main() {
           ],
         ),
       );
-      // Create a resourceCache that can return the HumanName StructureDefinition
+      // Create a resourceCache that can return the HumanName
+      // StructureDefinition.
       final resourceCache = _TestResourceCache(humanNameStructureDefinition);
 
       final results = await validateStructure(

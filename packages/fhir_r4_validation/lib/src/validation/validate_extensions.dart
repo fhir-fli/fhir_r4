@@ -40,10 +40,12 @@ Future<ValidationResults> validateExtensions({
           ?.first;
 
       // Locate the extension node within the parent node.
-      // Extract just the property name from the path (e.g., 'extension' from 'Patient.extension')
+      // Extract just the property name from the path
+      // (e.g., 'extension' from 'Patient.extension').
       final pathParts = element.path.valueString!.split('.');
       final propertyName = pathParts.last;
-      // Check both with underscore prefix (for primitive extensions) and without
+      // Check both with underscore prefix (for primitive extensions)
+      // and without.
       final extensionNodeWithUnderscore =
           node.getPropertyNode('_$propertyName');
       final extensionNodeWithoutUnderscore = node.getPropertyNode(propertyName);
@@ -60,7 +62,8 @@ Future<ValidationResults> validateExtensions({
             Severity.error,
           );
         } else {
-          // Fetch the StructureDefinition for the extension if profile URL exists.
+          // Fetch the StructureDefinition for the extension if the
+          // profile URL exists.
           final structureDefinition = extensionUrl != null
               ? await resourceCache
                   .getStructureDefinition(extensionUrl.toString())

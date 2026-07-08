@@ -7,7 +7,8 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests.
 class RestfulParameters {
   /// The parameters to be added to the query.
-  /// Values can be `String` or `List<String>` to support multiple values for the same key.
+  /// Values can be `String` or `List<String>` to support multiple values
+  /// for the same key.
   final Map<String, dynamic> parameters = <String, dynamic>{};
 
   /// Helper method to add a value, converting to list if key already exists.

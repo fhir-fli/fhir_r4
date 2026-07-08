@@ -1,0 +1,9 @@
+# Inherits the monorepo lint set (very_good_analysis + shared overrides) and
+# excludes machine-generated sources: the Drift *.g.dart output and the
+# generated search_parameters.dart (see its "Do not edit by hand" banner).
+include: ../../analysis_options.yaml
+
+analyzer:
+  exclude:
+    - lib/**.g.dart
+    - lib/src/search/search_parameters.dart

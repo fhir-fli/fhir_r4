@@ -37,6 +37,10 @@ class TokenSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract token search parameters.
 extension TokenSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the token search-parameter index rows for this resource,
+  /// returning the [TokenSearchParametersCompanion] entries to persist in the
+  /// local Drift store so the resource can be matched by token FHIR searches
+  /// (code together with its system).
   List<TokenSearchParametersCompanion> toTokenSearchParameter(
     String resourceType,
     String id,

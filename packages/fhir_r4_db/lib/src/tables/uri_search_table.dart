@@ -31,6 +31,9 @@ class UriSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract URI search parameters.
 extension UriSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the URI search-parameter index rows for this resource,
+  /// returning the [UriSearchParametersCompanion] entries to persist in the
+  /// local Drift store so the resource can be matched by URI FHIR searches.
   List<UriSearchParametersCompanion> toUriSearchParameter(
     String resourceType,
     String id,

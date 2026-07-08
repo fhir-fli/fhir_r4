@@ -173,7 +173,9 @@ void main() {
           identifier.toTokenSearchParameter(_rt, _id, _lu, _path, _idx);
       expect(results.length, 1);
       expect(
-          results.first.tokenSystem.value, 'http://hospital.example.org/mrn');
+        results.first.tokenSystem.value,
+        'http://hospital.example.org/mrn',
+      );
       expect(results.first.tokenValue.value, 'MRN12345');
     });
 

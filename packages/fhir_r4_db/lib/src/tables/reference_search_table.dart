@@ -51,6 +51,10 @@ class ReferenceSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract reference search parameters.
 extension ReferenceSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the reference search-parameter index rows for this resource,
+  /// returning the [ReferenceSearchParametersCompanion] entries to persist in
+  /// the local Drift store so the resource can be matched by reference FHIR
+  /// searches that target links to other resources.
   List<ReferenceSearchParametersCompanion> toReferenceSearchParameter(
     String resourceType,
     String id,

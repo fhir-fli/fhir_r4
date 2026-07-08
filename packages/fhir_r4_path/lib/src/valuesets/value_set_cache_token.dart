@@ -1,4 +1,7 @@
+import 'package:meta/meta.dart';
+
 /// ValueSetCacheToken
+@immutable
 class ValueSetCacheToken {
   /// Create a new cache token
   const ValueSetCacheToken(

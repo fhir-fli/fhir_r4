@@ -32,6 +32,9 @@ class NumberSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract number search parameters.
 extension NumberSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the number search-parameter index rows for this resource,
+  /// returning the [NumberSearchParametersCompanion] entries to persist in the
+  /// local Drift store so the resource can be matched by numeric FHIR searches.
   List<NumberSearchParametersCompanion> toNumberSearchParameter(
     String resourceType,
     String id,

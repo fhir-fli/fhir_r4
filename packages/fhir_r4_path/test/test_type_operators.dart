@@ -77,9 +77,7 @@ final _r4TypeDefinitions = <StructureDefinition>[
 
 Future<void> testTypeOperators() async {
   final resourceCache = CanonicalResourceCache();
-  for (final sd in _r4TypeDefinitions) {
-    resourceCache.see(sd);
-  }
+  _r4TypeDefinitions.forEach(resourceCache.see);
   final testEngine =
       await FHIRPathEngine.create(WorkerContext(resourceCache: resourceCache));
 

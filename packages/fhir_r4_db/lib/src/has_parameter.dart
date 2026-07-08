@@ -4,6 +4,7 @@
 /// The query "Patient?_has:Observation:patient:code=1234" means:
 /// "find Patients that are referenced by Observations whose code is 1234".
 class HasParameter {
+  /// Creates a parsed `_has` reverse-chaining parameter from its parts.
   HasParameter({
     required this.targetType,
     required this.referenceParam,

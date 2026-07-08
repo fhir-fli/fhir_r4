@@ -1652,7 +1652,8 @@ void main() {
 
       expect(
         params.buildQuery(),
-        '_include=PractitionerRole:practitioner&_include=PractitionerRole:organization',
+        '_include=PractitionerRole:practitioner'
+        '&_include=PractitionerRole:organization',
       );
     });
 

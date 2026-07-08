@@ -32,6 +32,10 @@ class SpecialSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract special search parameters.
 extension SpecialSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the special search-parameter index rows for this resource,
+  /// returning the [SpecialSearchParametersCompanion] entries to persist in the
+  /// local Drift store so the resource can be matched by special FHIR search
+  /// parameters that do not fit the other typed categories.
   List<SpecialSearchParametersCompanion> toSpecialSearchParameter(
     String resourceType,
     String id,

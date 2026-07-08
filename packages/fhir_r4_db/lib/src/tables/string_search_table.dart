@@ -32,6 +32,9 @@ class StringSearchParameters extends Table {
 
 /// Extension on [fhir.FhirBase] to extract string search parameters.
 extension StringSearchParametersExtension on fhir.FhirBase {
+  /// Extracts the string search-parameter index rows for this resource,
+  /// returning the [StringSearchParametersCompanion] entries to persist in the
+  /// local Drift store so the resource can be matched by string FHIR searches.
   List<StringSearchParametersCompanion> toStringSearchParameter(
     String resourceType,
     String id,

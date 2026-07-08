@@ -97,7 +97,7 @@ abstract class FhirAuthClient extends http.BaseClient {
     }
 
     final lock = Completer<void>();
-    _refreshLock.future.then((_) => lock.complete());
+    unawaited(_refreshLock.future.then((_) => lock.complete()));
 
     try {
       logger.fine('Refreshing access token');

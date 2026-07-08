@@ -305,7 +305,7 @@ Future<void> main() async {
       sub = stream.listen((resources) {
         if (resources.isNotEmpty) {
           completer.complete(resources);
-          sub.cancel();
+          unawaited(sub.cancel());
         }
       });
 
