@@ -1,4 +1,7 @@
 import 'dart:convert';
+// Development-only code-generation tool: routes diagnostics through
+// `dart:developer`'s `log()` (a logging framework) rather than `print`.
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
@@ -45,7 +48,7 @@ void main() async {
     }
   }
 
-  print('All files processed and export files generated.');
+  log('All files processed and export files generated.');
 }
 
 // Function to process JSON files in the specified directory and generate
@@ -248,5 +251,5 @@ Future<void> createExportFile(Directory stepDir) async {
 
   // Write the content to the export.dart file
   await exportFile.writeAsString(buffer.toString());
-  print('Generated export file at ${exportFile.path}');
+  log('Generated export file at ${exportFile.path}');
 }

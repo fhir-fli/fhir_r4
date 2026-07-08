@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:fhir_r4/fhir_r4.dart' show QuestionnaireResponse;
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
@@ -22,9 +23,8 @@ import 'examples/step9/export.dart';
 Future<void> main() async {
   final resourceCache = CanonicalResourceCache();
   group('1', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft1)
-      ..saveCanonicalResource(structureDefinitionTRight1);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft1));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight1));
 
     test('Test Step 1', () async {
       final result = await fhirMappingEngine(
@@ -51,9 +51,8 @@ Future<void> main() async {
   });
 
   group('2', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft2)
-      ..saveCanonicalResource(structureDefinitionTRight2);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft2));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight2));
 
     test('Test Step 2', () async {
       final result = await fhirMappingEngine(
@@ -70,9 +69,8 @@ Future<void> main() async {
   });
 
   group('3', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft3)
-      ..saveCanonicalResource(structureDefinitionTRight3);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft3));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight3));
 
     test('Test Step 3a Source 3', () async {
       final result = await fhirMappingEngine(
@@ -153,9 +151,8 @@ Future<void> main() async {
   });
 
   group('4', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft4)
-      ..saveCanonicalResource(structureDefinitionTRight4);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft4));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight4));
 
     test('Test Step 4a Source 4', () async {
       final result = await fhirMappingEngine(
@@ -289,9 +286,8 @@ Future<void> main() async {
   });
 
   group('5', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft5)
-      ..saveCanonicalResource(structureDefinitionTRight5);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft5));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight5));
 
     test('Test Step 5', () async {
       final result = await fhirMappingEngine(
@@ -321,9 +317,8 @@ Future<void> main() async {
   });
 
   group('6', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft6)
-      ..saveCanonicalResource(structureDefinitionTRight6);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft6));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight6));
 
     test('Test Step 6a Source 6', () async {
       final result = await fhirMappingEngine(
@@ -407,9 +402,8 @@ Future<void> main() async {
   });
 
   group('7', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft7)
-      ..saveCanonicalResource(structureDefinitionTRight7);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft7));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight7));
 
     FhirBaseBuilder? testEmptyFromType(String type) {
       final fhirType = type.toLowerCase();
@@ -454,9 +448,8 @@ Future<void> main() async {
   });
 
   group('8', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft8)
-      ..saveCanonicalResource(structureDefinitionTRight8);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft8));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight8));
 
     test('Test Step 8 Source 8', () async {
       final result = await fhirMappingEngine(
@@ -470,9 +463,8 @@ Future<void> main() async {
   });
 
   group('9', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft9)
-      ..saveCanonicalResource(structureDefinitionTRight9);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft9));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight9));
 
     test('Test Step 9 Source 9', () async {
       final result = await fhirMappingEngine(
@@ -555,9 +547,8 @@ Future<void> main() async {
   // });
 
   group('Step 11', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft11)
-      ..saveCanonicalResource(structureDefinitionTRight11);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft11));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight11));
 
     FhirBaseBuilder? testEmptyFromType(String type) {
       final fhirType = type.toLowerCase();
@@ -588,9 +579,8 @@ Future<void> main() async {
   });
 
   group('Step 12', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft12)
-      ..saveCanonicalResource(structureDefinitionTRight12);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft12));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight12));
 
     FhirBaseBuilder? testEmptyFromType(String type) {
       final fhirType = type.toLowerCase();
@@ -615,9 +605,8 @@ Future<void> main() async {
   });
 
   group('Step 13', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft13)
-      ..saveCanonicalResource(structureDefinitionTRight13);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft13));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight13));
 
     test('Step 13', () async {
       final result = await fhirMappingEngine(
@@ -664,9 +653,8 @@ Future<void> main() async {
   });
 
   group('Step 15', () {
-    resourceCache
-      ..saveCanonicalResource(structureDefinitionTLeft15)
-      ..saveCanonicalResource(structureDefinitionTRight15);
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTLeft15));
+    unawaited(resourceCache.saveCanonicalResource(structureDefinitionTRight15));
 
     test('Step 15', () async {
       final result = await fhirMappingEngine(
