@@ -109,7 +109,10 @@ void extensionTest() {
       );
       final json = ext.toJson();
       expect(json['valueCodeableConcept'], isA<Map<String, dynamic>>());
-      expect(json['valueCodeableConcept']['text'], 'Test');
+      expect(
+        (json['valueCodeableConcept']! as Map<String, dynamic>)['text'],
+        'Test',
+      );
     });
 
     test('fromJson round-trips with string value', () {

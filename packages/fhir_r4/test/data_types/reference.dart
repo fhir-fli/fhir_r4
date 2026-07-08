@@ -56,8 +56,11 @@ void referenceTest() {
       );
       final json = ref.toJson();
       expect(json['identifier'], isA<Map<String, dynamic>>());
-      expect(json['identifier']['system'], 'http://example.org');
-      expect(json['identifier']['value'], 'MRN-123');
+      expect(
+        (json['identifier']! as Map<String, dynamic>)['system'],
+        'http://example.org',
+      );
+      expect((json['identifier']! as Map<String, dynamic>)['value'], 'MRN-123');
     });
 
     test('fromJson round-trips correctly', () {

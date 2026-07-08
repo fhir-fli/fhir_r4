@@ -67,7 +67,10 @@ void usageContextTest() {
       final json = uc.toJson();
       expect(json['code'], isA<Map<String, dynamic>>());
       expect(json['valueCodeableConcept'], isA<Map<String, dynamic>>());
-      expect(json['valueCodeableConcept']['text'], 'Pediatric');
+      expect(
+        (json['valueCodeableConcept']! as Map<String, dynamic>)['text'],
+        'Pediatric',
+      );
     });
 
     test('toJson with valueQuantity', () {
@@ -80,7 +83,7 @@ void usageContextTest() {
       );
       final json = uc.toJson();
       expect(json['valueQuantity'], isA<Map<String, dynamic>>());
-      expect(json['valueQuantity']['value'], 65);
+      expect((json['valueQuantity']! as Map<String, dynamic>)['value'], 65);
     });
 
     test('fromJson round-trips with valueCodeableConcept', () {

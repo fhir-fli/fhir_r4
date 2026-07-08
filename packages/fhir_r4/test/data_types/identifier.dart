@@ -78,7 +78,10 @@ void identifierTest() {
       final json = id.toJson();
       expect(json['type'], isA<Map<String, dynamic>>());
       expect(json['assigner'], isA<Map<String, dynamic>>());
-      expect(json['assigner']['display'], 'Hospital');
+      expect(
+        (json['assigner']! as Map<String, dynamic>)['display'],
+        'Hospital',
+      );
     });
 
     test('fromJson round-trips correctly', () {

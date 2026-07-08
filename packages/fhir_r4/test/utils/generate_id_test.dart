@@ -12,7 +12,8 @@ void main() {
       final id = generateNewUuidString();
       // UUID v4: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
       final uuidRegex = RegExp(
-        r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
+        '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-'
+        r'[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
       );
       expect(uuidRegex.hasMatch(id), isTrue, reason: 'UUID: $id');
     });
@@ -41,7 +42,8 @@ void main() {
       final fhirString = generateNewUuidFhirString();
       final value = fhirString.valueString!;
       final uuidRegex = RegExp(
-        r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
+        '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-'
+        r'[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
       );
       expect(uuidRegex.hasMatch(value), isTrue, reason: 'UUID: $value');
     });

@@ -59,7 +59,10 @@ void annotationTest() {
       );
       final json = ann.toJson();
       expect(json['authorReference'], isA<Map<String, dynamic>>());
-      expect(json['authorReference']['reference'], 'Practitioner/123');
+      expect(
+        (json['authorReference']! as Map<String, dynamic>)['reference'],
+        'Practitioner/123',
+      );
     });
 
     test('fromJson round-trips with authorString', () {

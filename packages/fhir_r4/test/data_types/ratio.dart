@@ -49,10 +49,10 @@ void ratioTest() {
       );
       final json = ratio.toJson();
       expect(json['numerator'], isA<Map<String, dynamic>>());
-      expect(json['numerator']['value'], 500);
-      expect(json['numerator']['unit'], 'mg');
+      expect((json['numerator']! as Map<String, dynamic>)['value'], 500);
+      expect((json['numerator']! as Map<String, dynamic>)['unit'], 'mg');
       expect(json['denominator'], isA<Map<String, dynamic>>());
-      expect(json['denominator']['value'], 10);
+      expect((json['denominator']! as Map<String, dynamic>)['value'], 10);
     });
 
     test('fromJson round-trips correctly', () {

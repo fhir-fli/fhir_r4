@@ -91,7 +91,6 @@ abstract class FhirBase implements FhirNode {
   }
 
   /// Retrieves the properties of the object.
-  // ignore: avoid_positional_boolean_parameters
   @override
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
 

@@ -1,0 +1,13 @@
+include: ../../analysis_options.yaml
+
+# The bulk resource/data/primitive type classes are emitted by fhir_generator
+# (see /fhir_generator). Generated code is validated by the test suite and the
+# compiler, not by style lints; linting it would only pressure the generator's
+# whitespace/formatting output, which consumers never read. Hand-written code
+# (abstract_types, exceptions, hand-maintained utils) stays analyzed.
+analyzer:
+  exclude:
+    - lib/src/resource_types/**
+    - lib/src/data_types/**
+    - lib/src/primitive_types/**
+    - lib/src/utils/fhir_type_hierarchy.dart

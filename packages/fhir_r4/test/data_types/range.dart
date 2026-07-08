@@ -53,10 +53,10 @@ void rangeTest() {
       );
       final json = range.toJson();
       expect(json['low'], isA<Map<String, dynamic>>());
-      expect(json['low']['value'], 60);
-      expect(json['low']['unit'], 'kg');
+      expect((json['low']! as Map<String, dynamic>)['value'], 60);
+      expect((json['low']! as Map<String, dynamic>)['unit'], 'kg');
       expect(json['high'], isA<Map<String, dynamic>>());
-      expect(json['high']['value'], 80);
+      expect((json['high']! as Map<String, dynamic>)['value'], 80);
     });
 
     test('fromJson round-trips correctly', () {
