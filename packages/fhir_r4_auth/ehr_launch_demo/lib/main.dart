@@ -21,20 +21,30 @@
 // 2. Add redirect URI: http://localhost:8080/callback.html
 // 3. Configure appropriate scopes for EHR launch
 //
-// ignore_for_file: avoid_print
 
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Writes a demo diagnostic [message] to the developer log channel.
+///
+/// The EHR launch demo narrates each step of the SMART launch and token
+/// exchange to the console so the flow can be followed while testing; routing
+/// through `dart:developer` keeps that output off production logging paths.
+void _log(String message) =>
+    developer.log(message, name: 'ehr_launch_demo');
+
 void main() {
   runApp(const SmartEhrLaunchDemoApp());
 }
 
+/// Root widget for the SMART on FHIR EHR launch demo application.
 class SmartEhrLaunchDemoApp extends StatelessWidget {
+  /// Creates the demo application widget.
   const SmartEhrLaunchDemoApp({super.key});
 
   @override
@@ -47,19 +57,29 @@ class SmartEhrLaunchDemoApp extends StatelessWidget {
   }
 }
 
-/// Supported EHR vendors for simulation mode
+/// Supported EHR vendors offered by the demo's simulation mode.
 enum EhrVendor {
+  /// Epic's SMART on FHIR sandbox.
   epic('Epic', 'https://fhir.epic.com/'),
+
+  /// Oracle Cerner's SMART on FHIR sandbox.
   cerner('Cerner', 'https://code.cerner.com/'),
+
+  /// The reference SMART Health IT public launcher/sandbox.
   smartSandbox('SMART Sandbox', 'https://launch.smarthealthit.org/');
 
   const EhrVendor(this.label, this.portalUrl);
+
+  /// Human-readable vendor name shown in the picker.
   final String label;
+
+  /// URL of the vendor's developer portal where apps are registered.
   final String portalUrl;
 }
 
-/// Vendor-specific EHR launch configuration
+/// Per-vendor settings needed to launch and authenticate against an EHR.
 class EhrVendorConfig {
+  /// Creates a configuration for a single EHR vendor.
   const EhrVendorConfig({
     required this.fhirBaseUrl,
     required this.clientId,
@@ -67,20 +87,37 @@ class EhrVendorConfig {
     required this.testCredentials,
   });
 
+  /// Base URL of the vendor's FHIR server (the `iss` value).
   final String fhirBaseUrl;
+
+  /// OAuth client identifier registered with the vendor for this app.
   final String clientId;
+
+  /// SMART scopes requested during authorization.
   final List<String> scopes;
+
+  /// Sandbox login credentials used to sign in during testing.
   final TestCredentials testCredentials;
 }
 
+/// Sandbox login credentials, with an optional usage [note].
 class TestCredentials {
+  /// Creates a set of optional sandbox test credentials.
   const TestCredentials({this.username, this.password, this.note});
+
+  /// Sandbox username, when the vendor publishes one.
   final String? username;
+
+  /// Sandbox password, when the vendor publishes one.
   final String? password;
+
+  /// Free-text guidance shown alongside the credentials.
   final String? note;
 }
 
+/// Home page that detects EHR launch parameters and drives the launch flow.
 class SmartEhrLaunchHomePage extends StatefulWidget {
+  /// Creates the EHR launch demo home page.
   const SmartEhrLaunchHomePage({super.key});
 
   @override
@@ -111,8 +148,10 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
   String _statusMessage = '';
 
   // Redirect URI - platform-aware
-  // Android uses a custom URL scheme (registered via appAuthRedirectScheme in build.gradle.kts)
-  // Web and desktop use http://localhost:8080 (registered with the OAuth provider)
+  // Android uses a custom URL scheme (registered via appAuthRedirectScheme
+  // in build.gradle.kts)
+  // Web and desktop use http://localhost:8080 (registered with the OAuth
+  // provider)
   static String get redirectUri {
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
       return 'com.example.ehr-launch-demo://callback';
@@ -206,9 +245,9 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
     final launch = params['launch'];
 
     if (iss != null && launch != null) {
-      print('EHR Launch detected!');
-      print('  iss: $iss');
-      print('  launch: $launch');
+      _log('EHR Launch detected!');
+      _log('  iss: $iss');
+      _log('  launch: $launch');
 
       setState(() {
         _detectedIss = iss;
@@ -223,7 +262,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         Future.microtask(() => _startEhrLaunch(iss: iss, launchToken: launch)),
       );
     } else {
-      print('No EHR launch parameters detected - showing simulation mode');
+      _log('No EHR launch parameters detected - showing simulation mode');
       // Pre-fill simulation fields with Epic defaults
       _issController.text = _currentConfig.fhirBaseUrl;
     }
@@ -238,7 +277,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
     final clientId = config.clientId;
 
     if (clientId.startsWith('YOUR-')) {
-      print(
+      _log(
         '\u26a0\ufe0f  Client ID not configured for ${_selectedVendor.label}',
       );
       _client = null;
@@ -261,11 +300,11 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       ),
     );
 
-    print('\u2713 EHR Launch client initialized');
-    print('  ISS: $iss');
-    print('  Launch Token: $launchToken');
-    print('  Client ID: $clientId');
-    print('  Scopes: ${config.scopes.join(", ")}');
+    _log('\u2713 EHR Launch client initialized');
+    _log('  ISS: $iss');
+    _log('  Launch Token: $launchToken');
+    _log('  Client ID: $clientId');
+    _log('  Scopes: ${config.scopes.join(", ")}');
   }
 
   /// Start the EHR launch OAuth flow
@@ -298,18 +337,18 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _statusMessage = 'Discovering OAuth endpoints...';
       });
 
-      print('\n\ud83d\udd10 Starting EHR launch authentication...');
+      _log('\n\ud83d\udd10 Starting EHR launch authentication...');
       await _client!.login();
-      print('\u2713 Authentication successful!');
+      _log('\u2713 Authentication successful!');
 
       // Extract context from token response
       _patientId = _client!.patientContext;
       _encounterId = _client!.encounterContext;
       _fhirUser = _client!.fhirUser;
 
-      print('\u2713 Patient context: $_patientId');
-      print('\u2713 Encounter context: $_encounterId');
-      print('\u2713 FHIR User: $_fhirUser');
+      _log('\u2713 Patient context: $_patientId');
+      _log('\u2713 Encounter context: $_encounterId');
+      _log('\u2713 FHIR User: $_fhirUser');
 
       setState(() {
         _statusMessage = 'Fetching patient data...';
@@ -322,12 +361,12 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _statusMessage = 'EHR launch completed successfully!';
       });
 
-      print('\n\u2705 EHR launch demo completed successfully!');
+      _log('\n\u2705 EHR launch demo completed successfully!');
     } on AuthenticationException catch (e, stackTrace) {
-      print('\u274c Authentication error: ${e.message}');
-      print('  Details: ${e.details}');
-      print('  Inner exception: ${e.innerException}');
-      print('  Stack trace:\n$stackTrace');
+      _log('\u274c Authentication error: ${e.message}');
+      _log('  Details: ${e.details}');
+      _log('  Inner exception: ${e.innerException}');
+      _log('  Stack trace:\n$stackTrace');
       setState(() {
         _error =
             'Authentication failed: ${e.message}'
@@ -336,14 +375,14 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _isLoading = false;
       });
     } on NetworkException catch (e) {
-      print('\u274c Network error: ${e.statusCode} - ${e.message}');
+      _log('\u274c Network error: ${e.statusCode} - ${e.message}');
       setState(() {
         _error = 'Network error: ${e.message}';
         _isLoading = false;
       });
     } catch (e, stackTrace) {
-      print('\u274c Unexpected error: $e');
-      print('Stack trace:\n$stackTrace');
+      _log('\u274c Unexpected error: $e');
+      _log('Stack trace:\n$stackTrace');
       setState(() {
         _error = 'Error: $e';
         _isLoading = false;
@@ -353,27 +392,27 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
 
   Future<void> _fetchPatientData(String baseUrl) async {
     if (_patientId == null) {
-      print('\u26a0\ufe0f  No patient ID in token response');
+      _log('\u26a0\ufe0f  No patient ID in token response');
       return;
     }
 
-    print('\n\ud83d\udcca Fetching patient data...');
+    _log('\n\ud83d\udcca Fetching patient data...');
     final patientResponse = await _client!.get(
       Uri.parse('$baseUrl/Patient/$_patientId'),
     );
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      print(
+      _log(
         '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
       );
     } else {
-      print(
+      _log(
         '\u26a0\ufe0f  Failed to load patient: ${patientResponse.statusCode}',
       );
     }
 
-    print('\n\ud83e\ude7a Fetching recent observations...');
+    _log('\n\ud83e\ude7a Fetching recent observations...');
     final obsResponse = await _client!.get(
       Uri.parse(
         '$baseUrl/Observation?'
@@ -392,15 +431,15 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
               .whereType<Observation>()
               .toList() ??
           [];
-      print('\u2713 Loaded ${_observations!.length} observations');
+      _log('\u2713 Loaded ${_observations!.length} observations');
     }
   }
 
   Future<void> _logout() async {
     try {
-      print('\n\ud83d\udc4b Logging out...');
+      _log('\n\ud83d\udc4b Logging out...');
       await _client?.logout();
-      print('\u2713 Logged out successfully');
+      _log('\u2713 Logged out successfully');
 
       setState(() {
         _patient = null;
@@ -411,7 +450,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _statusMessage = '';
       });
     } catch (e) {
-      print('\u274c Logout error: $e');
+      _log('\u274c Logout error: $e');
     }
   }
 

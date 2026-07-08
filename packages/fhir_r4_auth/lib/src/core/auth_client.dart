@@ -17,6 +17,9 @@ import 'package:logging/logging.dart';
 
 /// Base class for authenticated FHIR HTTP clients
 abstract class FhirAuthClient extends http.BaseClient {
+  /// Creates an authenticated client for [config]; defaults to
+  /// [SecureTokenStorage], a fresh `http.Client`, and a
+  /// `Logger('FhirAuthClient')` when those are not supplied.
   FhirAuthClient({
     required this.config,
     TokenStorage? tokenStorage,
@@ -29,8 +32,13 @@ abstract class FhirAuthClient extends http.BaseClient {
   /// Authentication configuration
   final AuthConfig config;
 
+  /// Persistence for access/refresh tokens and auth state.
   final TokenStorage tokenStorage;
+
+  /// The underlying HTTP client used to send authenticated requests.
   final http.Client innerClient;
+
+  /// Logger for request, refresh, and error diagnostics.
   final Logger logger;
 
   /// Current token response
@@ -97,6 +105,8 @@ abstract class FhirAuthClient extends http.BaseClient {
     }
 
     final lock = Completer<void>();
+    // Fire-and-forget: chain the new lock to the prior one's completion
+    // without blocking this refresh on it.
     unawaited(_refreshLock.future.then((_) => lock.complete()));
 
     try {

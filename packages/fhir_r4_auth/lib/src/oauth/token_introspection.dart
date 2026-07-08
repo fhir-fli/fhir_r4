@@ -15,6 +15,9 @@ import 'package:logging/logging.dart';
 
 /// Result of token introspection
 class TokenIntrospectionResult {
+  /// Create an introspection result; [active] reports whether the token is
+  /// currently valid, and the remaining fields carry the RFC 7662 response
+  /// metadata (scope, client, subject, validity window, and extensions).
   TokenIntrospectionResult({
     required this.active,
     this.scope,
@@ -163,6 +166,9 @@ class TokenIntrospectionResult {
 
 /// Client for token introspection (RFC 7662)
 class TokenIntrospector {
+  /// Create a client that queries [introspectionEndpoint] (RFC 7662) to check
+  /// token validity, authenticating as [clientId] with optional [clientSecret]
+  /// via HTTP Basic ([useBasicAuth]) or request-body credentials.
   TokenIntrospector({
     required this.introspectionEndpoint,
     required this.clientId,

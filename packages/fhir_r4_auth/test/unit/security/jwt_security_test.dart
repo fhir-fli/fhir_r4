@@ -335,7 +335,8 @@ void main() {
 
       test('at_hash prevents token substitution', () {
         // at_hash binds ID token to access token
-        // Without it, attacker could use stolen ID token with their access token
+        // Without it, attacker could use stolen ID token with their
+        // access token
 
         const legitimateAccessToken = 'legitimate_access_token';
         const stolenAccessToken = 'stolen_access_token';
@@ -452,9 +453,11 @@ void main() {
 
     group('JWT Side-Channel Attack Resistance', () {
       test('signature verification is constant-time', () {
-        // Test that verification time doesn't leak information about token content
-        // Note: This is a heuristic test - true constant-time verification requires
-        // specialized tools like Dudect for statistical timing analysis
+        // Test that verification time doesn't leak information about token
+        // content
+        // Note: This is a heuristic test - true constant-time verification
+        // requires specialized tools like Dudect for statistical timing
+        // analysis
         final jwt1 = TestJwts.sampleJwt;
         final jwt2 = TestJwts.sampleJwt;
 

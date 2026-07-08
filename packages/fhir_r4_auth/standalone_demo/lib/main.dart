@@ -15,14 +15,23 @@
 // 2. Add redirect URI: http://localhost:8080/callback.html
 // 3. Configure appropriate scopes for your audience type
 //
-// ignore_for_file: avoid_print
 
 import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+/// Writes a demo diagnostic [message] to the developer log channel.
+///
+/// The standalone launch demo prints a running commentary of the OAuth
+/// authorization-code exchange and FHIR fetches so the flow can be followed
+/// during manual testing; routing through `dart:developer` keeps that output
+/// off production logging paths.
+void _log(String message) =>
+    developer.log(message, name: 'standalone_demo');
 
 /// Encode SMART Health IT Sandbox launch configuration into a base64url string.
 ///
@@ -52,8 +61,8 @@ String encodeSandboxLaunchConfig({
 }) {
   // Launch types: 0=provider-ehr, 1=patient-portal, 2=provider-standalone,
   //               3=patient-standalone, 4=backend-service
-  // Client types: 0=public, 1=confidential-symmetric, 2=confidential-asymmetric,
-  //               3=backend-service
+  // Client types: 0=public, 1=confidential-symmetric,
+  //               2=confidential-asymmetric, 3=backend-service
   // PKCE: 0=none, 1=auto, 2=always
   final params = <dynamic>[
     launchType,
@@ -80,7 +89,9 @@ String encodeSandboxLaunchConfig({
 }
 
 /// Test RSA private key for SMART Sandbox backend service testing.
-/// This key is only used against the open sandbox and has no access to real data.
+///
+/// This key is only used against the open sandbox and has no access to real
+/// data.
 const _sandboxTestKey = '''
 -----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCukwaeYYKrgWDE
@@ -116,7 +127,9 @@ void main() {
   runApp(const SmartStandaloneDemoApp());
 }
 
+/// Root widget for the SMART on FHIR standalone launch demo application.
 class SmartStandaloneDemoApp extends StatelessWidget {
+  /// Creates the demo application widget.
   const SmartStandaloneDemoApp({super.key});
 
   @override
@@ -129,31 +142,53 @@ class SmartStandaloneDemoApp extends StatelessWidget {
   }
 }
 
-/// Supported EHR vendors
+/// EHR vendors the standalone demo can authenticate against.
 enum EhrVendor {
+  /// Epic's SMART on FHIR sandbox.
   epic('Epic', 'https://fhir.epic.com/'),
+
+  /// Oracle Cerner's SMART on FHIR sandbox.
   cerner('Cerner', 'https://code.cerner.com/'),
+
+  /// The reference SMART Health IT public launcher/sandbox.
   smartSandbox('SMART Sandbox', 'https://launch.smarthealthit.org/');
 
   const EhrVendor(this.label, this.portalUrl);
+
+  /// Human-readable vendor name shown in the picker.
   final String label;
+
+  /// URL of the vendor's developer portal where apps are registered.
   final String portalUrl;
 }
 
-/// Launch modes corresponding to audience types
+/// The kind of app being launched, which selects the audience-appropriate
+/// client registration and scope set.
 enum LaunchMode {
+  /// Patient-facing app requesting patient-level scopes.
   patient('Patient', 'Patient-facing app', Icons.person),
+
+  /// Clinician-facing app requesting user/provider-level scopes.
   clinician('Clinician', 'Provider-facing app', Icons.medical_services),
+
+  /// Backend service using the client-credentials (system) flow.
   system('System', 'Backend service', Icons.computer);
 
   const LaunchMode(this.label, this.description, this.icon);
+
+  /// Short label shown in the launch-mode selector.
   final String label;
+
+  /// One-line description of the audience this mode targets.
   final String description;
+
+  /// Icon representing the launch mode in the UI.
   final IconData icon;
 }
 
-/// Vendor-specific configuration
+/// Per-vendor registration details keyed by [LaunchMode].
 class VendorConfig {
+  /// Creates a vendor configuration.
   const VendorConfig({
     required this.baseUrl,
     required this.clientIds,
@@ -162,23 +197,42 @@ class VendorConfig {
     this.systemClientSecret,
   });
 
+  /// Base URL of the vendor's FHIR server (the `iss` value).
   final String baseUrl;
+
+  /// OAuth client identifier registered for each launch mode.
   final Map<LaunchMode, String> clientIds;
+
+  /// SMART scopes requested for each launch mode.
   final Map<LaunchMode, List<String>> scopes;
+
+  /// Sandbox login credentials to use for each launch mode.
   final Map<LaunchMode, TestCredentials> testCredentials;
+
+  /// Optional client secret for the backend-service (system) flow.
   // Kept as a placeholder for users wiring backend-service flows.
   // ignore: unreachable_from_main
   final String? systemClientSecret;
 }
 
+/// Sandbox login credentials, with an optional usage [note].
 class TestCredentials {
+  /// Creates a set of optional sandbox test credentials.
   const TestCredentials({this.username, this.password, this.note});
+
+  /// Sandbox username, when the vendor publishes one.
   final String? username;
+
+  /// Sandbox password, when the vendor publishes one.
   final String? password;
+
+  /// Free-text guidance shown alongside the credentials.
   final String? note;
 }
 
+/// Home page that configures and drives the standalone SMART launch flow.
 class SmartStandaloneHomePage extends StatefulWidget {
+  /// Creates the standalone launch demo home page.
   const SmartStandaloneHomePage({super.key});
 
   @override
@@ -204,8 +258,10 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   String? _contextId;
 
   // Redirect URI - platform-aware
-  // Android uses a custom URL scheme (registered via appAuthRedirectScheme in build.gradle.kts)
-  // Web and desktop use http://localhost:8080 (registered with the OAuth provider)
+  // Android uses a custom URL scheme (registered via appAuthRedirectScheme
+  // in build.gradle.kts)
+  // Web and desktop use http://localhost:8080 (registered with the OAuth
+  // provider)
   static String get redirectUri {
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
       return 'com.example.standalone-demo://callback';
@@ -348,7 +404,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         ),
         LaunchMode.clinician: TestCredentials(
           note:
-              'SMART Sandbox lets you pick any practitioner - no login required',
+              'SMART Sandbox lets you pick any practitioner - '
+              'no login required',
         ),
         LaunchMode.system: TestCredentials(
           note:
@@ -432,11 +489,11 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
     final clientId = config.clientIds[_selectedMode];
 
     if (clientId == null || clientId.startsWith('YOUR-')) {
-      print(
+      _log(
         '\u26a0\ufe0f  Client ID not configured for '
         '${_selectedVendor.label} ${_selectedMode.label} mode',
       );
-      print('   Please register an app at ${_selectedVendor.portalUrl}');
+      _log('   Please register an app at ${_selectedVendor.portalUrl}');
       _client = null;
       return;
     }
@@ -466,8 +523,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           keyId: 'fhir-r4-auth-test-key-1',
         ),
       );
-      print('  Token URL: $tokenUrl');
-      print('  Private key length: ${privateKey.length}');
+      _log('  Token URL: $tokenUrl');
+      _log('  Private key length: ${privateKey.length}');
     } else {
       // Patient and Clinician use authorization code flow
       final isSmartSandbox = _selectedVendor == EhrVendor.smartSandbox;
@@ -484,14 +541,14 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       );
     }
 
-    print(
+    _log(
       '\u2713 FHIR Client initialized '
       '(${_selectedVendor.label} - ${_selectedMode.label})',
     );
-    print('  Base URL: $baseUrl');
-    print('  Client ID: $clientId');
+    _log('  Base URL: $baseUrl');
+    _log('  Client ID: $clientId');
     if (_selectedMode != LaunchMode.system) {
-      print('  Redirect: $redirectUri');
+      _log('  Redirect: $redirectUri');
     }
   }
 
@@ -516,12 +573,12 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
     });
 
     try {
-      print(
+      _log(
         '\n\ud83d\udd10 Starting ${_selectedVendor.label} authentication '
         '(${_selectedMode.label})...',
       );
       await _client!.login();
-      print('\u2713 Authentication successful!');
+      _log('\u2713 Authentication successful!');
 
       await _fetchModeSpecificData();
 
@@ -529,12 +586,12 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         _isLoading = false;
       });
 
-      print('\n\u2705 Demo completed successfully!');
+      _log('\n\u2705 Demo completed successfully!');
     } on AuthenticationException catch (e, stackTrace) {
-      print('\u274c Authentication error: ${e.message}');
-      print('  Details: ${e.details}');
-      print('  Inner exception: ${e.innerException}');
-      print('  Stack trace:\n$stackTrace');
+      _log('\u274c Authentication error: ${e.message}');
+      _log('  Details: ${e.details}');
+      _log('  Inner exception: ${e.innerException}');
+      _log('  Stack trace:\n$stackTrace');
       setState(() {
         final buf = StringBuffer('Authentication failed: ${e.message}');
         if (e.details != null) buf.write('\n\nDetails: ${e.details}');
@@ -543,24 +600,25 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
           // If inner exception has its own details, show those too
           final inner = e.innerException;
           if (inner is AuthorizationException) {
-            buf.write('\nStatus: ${inner.statusCode}');
-            buf.write('\nError: ${inner.errorCode}');
-            buf.write('\nDescription: ${inner.errorDescription}');
-            buf.write('\nBody: ${inner.details}');
+            buf
+              ..write('\nStatus: ${inner.statusCode}')
+              ..write('\nError: ${inner.errorCode}')
+              ..write('\nDescription: ${inner.errorDescription}')
+              ..write('\nBody: ${inner.details}');
           }
         }
         _error = buf.toString();
         _isLoading = false;
       });
     } on NetworkException catch (e) {
-      print('\u274c Network error: ${e.statusCode} - ${e.message}');
+      _log('\u274c Network error: ${e.statusCode} - ${e.message}');
       setState(() {
         _error = 'Network error: ${e.message}';
         _isLoading = false;
       });
     } catch (e, stackTrace) {
-      print('\u274c Unexpected error: $e');
-      print('Stack trace:\n$stackTrace');
+      _log('\u274c Unexpected error: $e');
+      _log('Stack trace:\n$stackTrace');
       setState(() {
         _error = 'Error: $e';
         _isLoading = false;
@@ -583,27 +641,27 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
   Future<void> _fetchPatientData(String baseUrl) async {
     _contextId = _client!.patientContext;
-    print('\u2713 Patient ID from token: $_contextId');
+    _log('\u2713 Patient ID from token: $_contextId');
 
     if (_contextId == null) {
       throw Exception('No patient ID in token response');
     }
 
-    print('\n\ud83d\udcca Fetching patient data...');
+    _log('\n\ud83d\udcca Fetching patient data...');
     final patientResponse = await _client!.get(
       Uri.parse('$baseUrl/Patient/$_contextId'),
     );
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      print(
+      _log(
         '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
       );
     } else {
       throw Exception('Failed to load patient: ${patientResponse.statusCode}');
     }
 
-    print('\n\ud83e\ude7a Fetching observations...');
+    _log('\n\ud83e\ude7a Fetching observations...');
     final obsResponse = await _client!.get(
       Uri.parse(
         '$baseUrl/Observation?'
@@ -622,30 +680,30 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
               .whereType<Observation>()
               .toList() ??
           [];
-      print('\u2713 Loaded ${_observations!.length} observations');
+      _log('\u2713 Loaded ${_observations!.length} observations');
     }
   }
 
   Future<void> _fetchClinicianData(String baseUrl) async {
     // Get practitioner/user ID from fhirUser claim
     final fhirUser = _client!.fhirUser;
-    print('\u2713 FHIR User from token: $fhirUser');
+    _log('\u2713 FHIR User from token: $fhirUser');
 
     if (fhirUser != null && fhirUser.contains('/')) {
       // Extract ID from reference like "Practitioner/123"
       _contextId = fhirUser.split('/').last;
-      print('\u2713 Practitioner ID: $_contextId');
+      _log('\u2713 Practitioner ID: $_contextId');
     }
 
     if (_contextId != null) {
-      print('\n\ud83d\udc68\u200d\u2695\ufe0f Fetching practitioner data...');
+      _log('\n\ud83d\udc68\u200d\u2695\ufe0f Fetching practitioner data...');
       final practResponse = await _client!.get(
         Uri.parse('$baseUrl/Practitioner/$_contextId'),
       );
 
       if (practResponse.statusCode == 200) {
         _practitioner = Practitioner.fromJsonString(practResponse.body);
-        print(
+        _log(
           '\u2713 Practitioner loaded: '
           '${_practitioner!.name?.first.text?.valueString}',
         );
@@ -655,19 +713,19 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
     // If a patient was selected during authorization, fetch that patient
     final patientId = _client!.patientContext;
     if (patientId != null) {
-      print('\n\ud83d\udccb Fetching selected patient: $patientId');
+      _log('\n\ud83d\udccb Fetching selected patient: $patientId');
       final patientResponse = await _client!.get(
         Uri.parse('$baseUrl/Patient/$patientId'),
       );
       if (patientResponse.statusCode == 200) {
         _patient = Patient.fromJsonString(patientResponse.body);
-        print(
+        _log(
           '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
         );
       }
     } else {
       // No patient context — fetch recent patients as a sample
-      print('\n\ud83d\udccb Fetching recent patients (user-level access)...');
+      _log('\n\ud83d\udccb Fetching recent patients (user-level access)...');
       final patientResponse = await _client!.get(
         Uri.parse('$baseUrl/Patient?_count=5&_sort=-_lastUpdated'),
       );
@@ -680,7 +738,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
                 .whereType<Patient>()
                 .toList() ??
             [];
-        print('\u2713 Loaded ${patients.length} recent patients');
+        _log('\u2713 Loaded ${patients.length} recent patients');
 
         if (patients.isNotEmpty) {
           _patient = patients.first;
@@ -690,7 +748,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
   }
 
   Future<void> _fetchSystemData(String baseUrl) async {
-    print('\n\ud83d\udda5\ufe0f  Fetching system-level data...');
+    _log('\n\ud83d\udda5\ufe0f  Fetching system-level data...');
     _systemData = {};
 
     try {
@@ -699,11 +757,11 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       );
 
       if (capabilityResponse.statusCode == 200) {
-        print('\u2713 CapabilityStatement loaded');
+        _log('\u2713 CapabilityStatement loaded');
         _systemData!['capabilityStatement'] = true;
       }
     } catch (e) {
-      print('  CapabilityStatement fetch failed: $e');
+      _log('  CapabilityStatement fetch failed: $e');
     }
 
     try {
@@ -714,18 +772,18 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       if (patientResponse.statusCode == 200) {
         final bundle = Bundle.fromJsonString(patientResponse.body);
         final totalPatients = bundle.total?.valueNum;
-        print('\u2713 System can access $totalPatients patients');
+        _log('\u2713 System can access $totalPatients patients');
 
         _systemData!['totalPatients'] = totalPatients;
         _systemData!['searchResults'] = bundle.entry?.length ?? 0;
       } else {
-        print('  Patient search returned ${patientResponse.statusCode}');
+        _log('  Patient search returned ${patientResponse.statusCode}');
       }
     } catch (e) {
-      print('  Patient search failed: $e');
+      _log('  Patient search failed: $e');
     }
 
-    print('\n\ud83d\udcca System-level statistics...');
+    _log('\n\ud83d\udcca System-level statistics...');
     try {
       final obsResponse = await _client!.get(
         Uri.parse('$baseUrl/Observation?_summary=count'),
@@ -734,22 +792,22 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       if (obsResponse.statusCode == 200) {
         final bundle = Bundle.fromJsonString(obsResponse.body);
         final totalObs = bundle.total?.valueNum;
-        print('\u2713 Total observations in system: $totalObs');
+        _log('\u2713 Total observations in system: $totalObs');
 
         _systemData?['totalObservations'] = totalObs;
       } else {
-        print('  Observation query returned ${obsResponse.statusCode}');
+        _log('  Observation query returned ${obsResponse.statusCode}');
       }
     } catch (e) {
-      print('  Observation query failed: $e');
+      _log('  Observation query failed: $e');
     }
   }
 
   Future<void> _logout() async {
     try {
-      print('\n\ud83d\udc4b Logging out...');
+      _log('\n\ud83d\udc4b Logging out...');
       await _client?.logout();
-      print('\u2713 Logged out successfully');
+      _log('\u2713 Logged out successfully');
 
       setState(() {
         _patient = null;
@@ -759,7 +817,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
         _contextId = null;
       });
     } catch (e) {
-      print('\u274c Logout error: $e');
+      _log('\u274c Logout error: $e');
     }
   }
 
@@ -1215,7 +1273,8 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${_selectedVendor.label} - ${_selectedMode.label} Mode Active',
+                        '${_selectedVendor.label} - '
+                        '${_selectedMode.label} Mode Active',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,

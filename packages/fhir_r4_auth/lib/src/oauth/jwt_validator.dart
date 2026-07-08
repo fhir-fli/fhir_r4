@@ -18,6 +18,9 @@ import 'package:logging/logging.dart';
 
 /// JWT validator for secure token verification with JWK/JWKS support
 class JwtValidator {
+  /// Create a validator that checks id_token/assertion signatures and the
+  /// [issuer]/[audience] claims, allowing [clockSkew] tolerance on the
+  /// time-based `exp`/`nbf`/`iat` claims.
   JwtValidator({
     this.issuer,
     this.audience,
@@ -355,7 +358,8 @@ class JwtValidator {
         leftmostBits = 256;
       } else {
         _logger.warning(
-          'Unknown algorithm for at_hash validation: $algorithm, defaulting to SHA-256',
+          'Unknown algorithm for at_hash validation: $algorithm, '
+          'defaulting to SHA-256',
         );
         hashBytes = sha256.convert(utf8.encode(accessToken)).bytes;
         leftmostBits = 128;
@@ -424,7 +428,8 @@ class JwtValidator {
     return jws.toCompactSerialization();
   }
 
-  /// Decode JWT without validation (for debugging only - NOT for production use)
+  /// Decode JWT without validation (for debugging only - NOT for production
+  /// use)
   static JwtClaims decodeWithoutValidation(String token) {
     final jwt = JsonWebToken.unverified(token);
     final validator = JwtValidator();

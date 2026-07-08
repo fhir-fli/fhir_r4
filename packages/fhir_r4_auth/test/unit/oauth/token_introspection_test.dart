@@ -524,13 +524,11 @@ void main() {
     });
 
     test('disposes HTTP client', () {
-      final introspector = TokenIntrospector(
+      // Should not throw
+      TokenIntrospector(
         introspectionEndpoint: Uri.parse('https://example.com/introspect'),
         clientId: 'client123',
-      );
-
-      // Should not throw
-      introspector.dispose();
+      ).dispose();
     });
   });
 }

@@ -104,9 +104,7 @@ void main() {
               Uri.parse('https://auth.example.com/authorize'),
           tokenEndpoint: Uri.parse('https://auth.example.com/token'),
           redirectUri: Uri.parse('https://app.example.com/callback'),
-        );
-
-        flow.buildAuthorizationUrl();
+        )..buildAuthorizationUrl();
 
         expect(
           () => flow.handleAuthorizationResponse({'code': 'test_code'}),
@@ -123,9 +121,7 @@ void main() {
               Uri.parse('https://auth.example.com/authorize'),
           tokenEndpoint: Uri.parse('https://auth.example.com/token'),
           redirectUri: Uri.parse('https://app.example.com/callback'),
-        );
-
-        flow.buildAuthorizationUrl();
+        )..buildAuthorizationUrl();
 
         expect(
           () => flow.handleAuthorizationResponse({

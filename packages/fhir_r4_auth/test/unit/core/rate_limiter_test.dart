@@ -242,19 +242,19 @@ void main() {
 
     test('removes limiter', () {
       final config = RateLimitConfig.tokenEndpoint();
-      registry.getOrCreate('token', config);
-
-      registry.remove('token');
+      registry
+        ..getOrCreate('token', config)
+        ..remove('token');
 
       expect(registry.get('token'), isNull);
     });
 
     test('clears all limiters', () {
       final config = RateLimitConfig.tokenEndpoint();
-      registry.getOrCreate('token', config);
-      registry.getOrCreate('auth', config);
-
-      registry.clearAll();
+      registry
+        ..getOrCreate('token', config)
+        ..getOrCreate('auth', config)
+        ..clearAll();
 
       expect(registry.get('token'), isNull);
       expect(registry.get('auth'), isNull);
@@ -262,8 +262,9 @@ void main() {
 
     test('provides all statistics', () {
       final config = RateLimitConfig.tokenEndpoint();
-      registry.getOrCreate('token', config);
-      registry.getOrCreate('auth', config);
+      registry
+        ..getOrCreate('token', config)
+        ..getOrCreate('auth', config);
 
       final stats = registry.getAllStats();
 

@@ -12,6 +12,7 @@
 /// (deep linking, custom URL schemes, etc.) work correctly.
 library;
 
+import 'dart:developer';
 import 'dart:io';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -72,7 +73,10 @@ void _testAndroidPlatform() {
           reason: 'Android deep linking should complete authentication',
         );
       } catch (e) {
-        print('Android patient standalone launch test failed: $e');
+        log(
+          'Android patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         // Don't fail on network/credential issues
         if (e is ConfigurationException) {
           rethrow;
@@ -110,7 +114,10 @@ void _testAndroidPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Android EHR launch test failed: $e');
+        log(
+          'Android EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -154,7 +161,10 @@ void _testIOSPlatform() {
           reason: 'iOS custom URL scheme should complete authentication',
         );
       } catch (e) {
-        print('iOS patient standalone launch test failed: $e');
+        log(
+          'iOS patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -191,7 +201,10 @@ void _testIOSPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('iOS EHR launch test failed: $e');
+        log(
+          'iOS EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -235,7 +248,10 @@ void _testWebPlatform() {
           reason: 'Web redirect should complete authentication',
         );
       } catch (e) {
-        print('Web patient standalone launch test failed: $e');
+        log(
+          'Web patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -272,7 +288,10 @@ void _testWebPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Web EHR launch test failed: $e');
+        log(
+          'Web EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -315,7 +334,10 @@ void _testLinuxPlatform() {
           reason: 'Linux protocol handler should complete authentication',
         );
       } catch (e) {
-        print('Linux patient standalone launch test failed: $e');
+        log(
+          'Linux patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -352,7 +374,10 @@ void _testLinuxPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Linux EHR launch test failed: $e');
+        log(
+          'Linux EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -395,7 +420,10 @@ void _testMacOSPlatform() {
           reason: 'macOS custom URL scheme should complete authentication',
         );
       } catch (e) {
-        print('macOS patient standalone launch test failed: $e');
+        log(
+          'macOS patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -432,7 +460,10 @@ void _testMacOSPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('macOS EHR launch test failed: $e');
+        log(
+          'macOS EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -475,7 +506,10 @@ void _testWindowsPlatform() {
           reason: 'Windows protocol handler should complete authentication',
         );
       } catch (e) {
-        print('Windows patient standalone launch test failed: $e');
+        log(
+          'Windows patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -512,7 +546,10 @@ void _testWindowsPlatform() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Windows EHR launch test failed: $e');
+        log(
+          'Windows EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }

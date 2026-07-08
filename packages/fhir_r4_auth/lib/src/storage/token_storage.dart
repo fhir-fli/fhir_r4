@@ -30,6 +30,9 @@ abstract class TokenStorage {
 
 /// Secure implementation of token storage using flutter_secure_storage
 class SecureTokenStorage implements TokenStorage {
+  /// Create token storage backed by the platform keychain/keystore via
+  /// flutter_secure_storage, namespacing every entry with [keyPrefix] so
+  /// multiple clients can share the same secure store without collisions.
   SecureTokenStorage({
     FlutterSecureStorage? storage,
     this.keyPrefix = '',
@@ -38,11 +41,15 @@ class SecureTokenStorage implements TokenStorage {
         _logger = logger ?? Logger('SecureTokenStorage');
 
   final FlutterSecureStorage _storage;
+
+  /// Prefix prepended to every storage key to namespace this client's tokens.
   final String keyPrefix;
+
   final Logger _logger;
 
   /// Android-specific options for secure storage
-  /// Note: encryptedSharedPreferences is deprecated in flutter_secure_storage v10+
+  /// Note: encryptedSharedPreferences is deprecated in
+  /// flutter_secure_storage v10+
   /// Data is automatically migrated to custom ciphers
   static const AndroidOptions _androidOptions = AndroidOptions.defaultOptions;
 

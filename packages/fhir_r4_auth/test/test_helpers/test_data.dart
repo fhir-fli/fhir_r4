@@ -36,7 +36,9 @@ class TestJwts {
 
   /// Sample JWT payload
   static const sampleJwtPayload =
-      'eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tIiwic3ViIjoidXNlcjEyMyIsImF1ZCI6ImNsaWVudDEyMyIsImV4cCI6MTcwMDAwMDAwMCwiaWF0IjoxNjk5OTk2NDAwLCJub25jZSI6InRlc3Qtbm9uY2UifQ';
+      'eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tIiwic3ViIjoidXNlcjEyMyIsImF1ZCI6ImNs'
+      'aWVudDEyMyIsImV4cCI6MTcwMDAwMDAwMCwiaWF0IjoxNjk5OTk2NDAwLCJub25jZSI6InRl'
+      'c3Qtbm9uY2UifQ';
 
   /// Sample JWT signature (valid base64, but not a real signature)
   static const sampleJwtSignature = 'c2lnbmF0dXJl';
@@ -103,7 +105,12 @@ QQIDAQAB
             'use': 'sig',
             'kid': 'test-key-1',
             'n':
-                '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7JL38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0icqabvJOMvQtzD6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqFXf2p5yljMwWfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvEZtLXiqMJqLv5ELbGLj3Qzt7KGJhExL_VPwFG7zLLCYnYzvXlDjrj9aLXTuqCNs1hTWXt6RpHsWVV6ERZDsxC6GEwVw5fYcK7Hb4pQQ',
+                '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7J'
+                'L38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0icqabvJOMvQtz'
+                'D6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqFXf2p5yljMw'
+                'WfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvEZtLXiqMJ'
+                'qLv5ELbGLj3Qzt7KGJhExL_VPwFG7zLLCYnYzvXlDjrj9aLXTuqCNs1hTWXt6R'
+                'pHsWVV6ERZDsxC6GEwVw5fYcK7Hb4pQQ',
             'e': 'AQAB',
           },
         ],

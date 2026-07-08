@@ -7,6 +7,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
 
 /// Base configuration for FHIR authentication
 class AuthConfig {
+  /// Creates the base client configuration for an OAuth flow against
+  /// [fhirBaseUrl], identifying the app via [clientId] and [redirectUri].
   const AuthConfig({
     required this.fhirBaseUrl,
     required this.clientId,
@@ -69,6 +71,8 @@ class AuthConfig {
 
 /// SMART on FHIR specific configuration
 class SmartConfig extends AuthConfig {
+  /// Creates a SMART-on-FHIR configuration, adding launch context, endpoint
+  /// overrides, capabilities, and PKCE/OpenID/offline-access options.
   const SmartConfig({
     required super.fhirBaseUrl,
     required super.clientId,
@@ -268,15 +272,14 @@ class SmartConfig extends AuthConfig {
 
   /// Build scopes list with SMART defaults
   List<String> buildScopes() {
-    final scopeSet = <String>{};
-
-    // Add configured scopes
-    scopeSet.addAll(scopes);
+    // Start from the configured scopes
+    final scopeSet = <String>{}..addAll(scopes);
 
     // Add OpenID if enabled
     if (enableOpenId) {
-      scopeSet.add('openid');
-      scopeSet.add('fhirUser');
+      scopeSet
+        ..add('openid')
+        ..add('fhirUser');
     }
 
     // Add offline access if requested
@@ -317,6 +320,8 @@ class SmartConfig extends AuthConfig {
 
 /// Backend service configuration
 class BackendServiceConfig extends AuthConfig {
+  /// Creates a SMART Backend Services configuration that authenticates via a
+  /// signed client-assertion JWT ([privateKey]/[algorithm]) at [tokenUrl].
   BackendServiceConfig({
     required super.fhirBaseUrl,
     required super.clientId,

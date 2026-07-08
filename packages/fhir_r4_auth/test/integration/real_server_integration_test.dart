@@ -11,6 +11,7 @@
 /// Note: These tests require actual server access and may take longer to run.
 library;
 
+import 'dart:developer';
 import 'dart:io';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -125,7 +126,10 @@ void _testPatientStandaloneLaunch() {
         }
       } catch (e) {
         // Log error but don't fail if it's a network/credential issue
-        print('Epic patient standalone launch test failed: $e');
+        log(
+          'Epic patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         // Re-throw if it's a configuration issue
         if (e is ConfigurationException) {}
         // Otherwise, skip this test
@@ -160,7 +164,10 @@ void _testPatientStandaloneLaunch() {
         expect(client.patientContext, isNotNull);
         expect(client.patientContext, isNotEmpty);
       } catch (e) {
-        print('Cerner patient standalone launch test failed: $e');
+        log(
+          'Cerner patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -195,7 +202,10 @@ void _testPatientStandaloneLaunch() {
         expect(client.patientContext, isNotNull);
         expect(client.patientContext, isNotEmpty);
       } catch (e) {
-        print('Generic SMART patient standalone launch test failed: $e');
+        log(
+          'Generic SMART patient standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -219,9 +229,6 @@ void _testPatientEhrLaunch() {
         return;
       }
 
-      // EHR launch requires a launch token from Epic
-      // This would typically come from the EHR system launching the app
-      // For testing, you may need to generate a launch token or use a test launcher
       const launchToken =
           'test-launch-token'; // Replace with actual launch token
 
@@ -240,7 +247,10 @@ void _testPatientEhrLaunch() {
         expect(client.patientContext, isNotNull);
         expect(client.patientContext, isNotEmpty);
       } catch (e) {
-        print('Epic patient EHR launch test failed: $e');
+        log(
+          'Epic patient EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -278,7 +288,10 @@ void _testPatientEhrLaunch() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Cerner patient EHR launch test failed: $e');
+        log(
+          'Cerner patient EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -316,7 +329,10 @@ void _testPatientEhrLaunch() {
         expect(isAuth, isTrue);
         expect(client.patientContext, isNotNull);
       } catch (e) {
-        print('Generic SMART patient EHR launch test failed: $e');
+        log(
+          'Generic SMART patient EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -352,7 +368,6 @@ void _testPractitionerStandaloneLaunch() {
         final isAuth = await client.isAuthenticated();
         expect(isAuth, isTrue);
 
-        // Verify practitioner context (fhirUser should reference Practitioner)
         final fhirUser = client.fhirUser;
         expect(fhirUser, isNotNull, reason: 'FHIR user should be present');
         expect(
@@ -361,7 +376,10 @@ void _testPractitionerStandaloneLaunch() {
           reason: 'FHIR user should reference a Practitioner',
         );
       } catch (e) {
-        print('Epic practitioner standalone launch test failed: $e');
+        log(
+          'Epic practitioner standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -399,7 +417,10 @@ void _testPractitionerStandaloneLaunch() {
           isTrue,
         );
       } catch (e) {
-        print('Cerner practitioner standalone launch test failed: $e');
+        log(
+          'Cerner practitioner standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -433,7 +454,10 @@ void _testPractitionerStandaloneLaunch() {
         expect(isAuth, isTrue);
         expect(client.fhirUser, isNotNull);
       } catch (e) {
-        print('Generic SMART practitioner standalone launch test failed: $e');
+        log(
+          'Generic SMART practitioner standalone launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -478,7 +502,10 @@ void _testPractitionerEhrLaunch() {
           isTrue,
         );
       } catch (e) {
-        print('Epic practitioner EHR launch test failed: $e');
+        log(
+          'Epic practitioner EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -516,7 +543,10 @@ void _testPractitionerEhrLaunch() {
         expect(isAuth, isTrue);
         expect(client.fhirUser, isNotNull);
       } catch (e) {
-        print('Cerner practitioner EHR launch test failed: $e');
+        log(
+          'Cerner practitioner EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -554,7 +584,10 @@ void _testPractitionerEhrLaunch() {
         expect(isAuth, isTrue);
         expect(client.fhirUser, isNotNull);
       } catch (e) {
-        print('Generic SMART practitioner EHR launch test failed: $e');
+        log(
+          'Generic SMART practitioner EHR launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -578,12 +611,9 @@ void _testBackendServiceLaunch() {
         return;
       }
 
-      // Backend services typically use JWT assertions or client credentials
-      // This requires a registered backend service client with proper credentials
       final client = IntegrationTestHelpers.createBackendServiceClient(
         serverBaseUrl: IntegrationTestServers.epic.baseUrl,
         clientId: IntegrationTestServers.epic.clientId,
-        // Add clientSecret or configure JWT assertion as needed
       );
 
       try {
@@ -593,11 +623,13 @@ void _testBackendServiceLaunch() {
         final isAuth = await client.isAuthenticated();
         expect(isAuth, isTrue);
 
-        // Backend services don't have patient/practitioner context
         expect(client.patientContext, isNull);
         expect(client.fhirUser, isNull);
       } catch (e) {
-        print('Epic backend service launch test failed: $e');
+        log(
+          'Epic backend service launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -632,7 +664,10 @@ void _testBackendServiceLaunch() {
         expect(client.patientContext, isNull);
         expect(client.fhirUser, isNull);
       } catch (e) {
-        print('Cerner backend service launch test failed: $e');
+        log(
+          'Cerner backend service launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }
@@ -667,7 +702,10 @@ void _testBackendServiceLaunch() {
         expect(client.patientContext, isNull);
         expect(client.fhirUser, isNull);
       } catch (e) {
-        print('Generic SMART backend service launch test failed: $e');
+        log(
+          'Generic SMART backend service launch test failed: $e',
+          name: 'fhir_r4_auth.test',
+        );
         if (e is ConfigurationException) {
           rethrow;
         }

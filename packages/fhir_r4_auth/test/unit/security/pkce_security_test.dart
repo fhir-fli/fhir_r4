@@ -317,7 +317,8 @@ void main() {
           returnsNormally,
         );
 
-        // Invalid custom verifier (too short) should be rejected by isValidCodeVerifier
+        // Invalid custom verifier (too short) should be rejected by
+        // isValidCodeVerifier
         expect(
           PkceManager.isValidCodeVerifier('short'),
           isFalse,

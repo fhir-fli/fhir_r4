@@ -158,8 +158,7 @@ void main() {
     });
 
     test('handles whitespace in state', () {
-      final stateManager = StateManager();
-      stateManager.generateState();
+      final stateManager = StateManager()..generateState();
 
       expect(
         () => stateManager.validateStateOrThrow('  invalid  '),

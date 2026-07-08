@@ -5,52 +5,100 @@ library;
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
 
-/// Types of audit events
+/// Categories of security events recorded in the HIPAA audit trail.
+///
+/// Each value identifies a distinct auditable action in the SMART-on-FHIR
+/// authentication lifecycle, from login attempts through token handling,
+/// session activity, security violations, and FHIR resource access.
 enum AuditEventType {
-  /// Authentication events
+  /// A user began the OAuth authentication flow.
   authenticationAttempt,
+
+  /// A user completed authentication successfully.
   authenticationSuccess,
+
+  /// Authentication was rejected (bad credentials, denied consent, etc.).
   authenticationFailure,
+
+  /// The user aborted the authentication flow before completing it.
   authenticationCancelled,
 
-  /// Authorization events
+  /// The authorization server granted the requested access.
   authorizationGranted,
+
+  /// The authorization server denied the requested access.
   authorizationDenied,
 
-  /// Token events
+  /// A new access token was issued by the token endpoint.
   tokenIssued,
+
+  /// An access token was renewed using a refresh token.
   tokenRefreshed,
+
+  /// A token was explicitly revoked.
   tokenRevoked,
+
+  /// A token reached its expiry time and is no longer valid.
   tokenExpired,
+
+  /// A token was verified as valid (signature/claims checked).
   tokenValidated,
+
+  /// A token was introspected against the authorization server.
   tokenIntrospected,
 
-  /// Session events
+  /// A user session was opened.
   sessionStarted,
+
+  /// A user session was closed normally.
   sessionEnded,
+
+  /// A user session was terminated due to inactivity or lifetime limit.
   sessionTimeout,
 
-  /// Security events
+  /// A generic security policy violation was detected.
   securityViolation,
+
+  /// A cross-site request forgery (state mismatch) was detected.
   csrfDetected,
+
+  /// A replay attack (reused nonce/token) was detected.
   replayAttackDetected,
+
+  /// A message or token failed signature verification.
   invalidSignature,
+
+  /// An expired token was presented where a valid one was required.
   expiredToken,
+
+  /// Evidence that a token's contents were altered was detected.
   tamperedToken,
 
-  /// Resource access
+  /// A FHIR resource was read.
   resourceAccessed,
+
+  /// A FHIR resource was updated.
   resourceModified,
+
+  /// A FHIR resource was created.
   resourceCreated,
+
+  /// A FHIR resource was deleted.
   resourceDeleted,
 
-  /// Configuration events
+  /// A server's SMART/OAuth endpoints were discovered.
   endpointDiscovered,
+
+  /// The server's SMART capabilities were loaded.
   capabilitiesLoaded,
 
-  /// Error events
+  /// A network-level failure occurred during an auth operation.
   networkError,
+
+  /// Invalid or missing configuration prevented an operation.
   configurationError,
+
+  /// An unclassified, unexpected error occurred.
   unexpectedError,
 }
 
@@ -71,6 +119,8 @@ enum AuditSeverity {
 
 /// Represents an audit event
 class AuditEvent {
+  /// Creates an audit event; [eventId] and [timestamp] are auto-generated
+  /// (UUID v4 and current time) when omitted.
   AuditEvent({
     required this.eventType,
     required this.severity,
@@ -203,9 +253,12 @@ abstract class AuditEventStore {
 
 /// In-memory audit event store (for development/testing)
 class InMemoryAuditStore implements AuditEventStore {
+  /// Creates an in-memory store retaining at most [maxEvents] events.
   InMemoryAuditStore({this.maxEvents = 10000});
 
   final List<AuditEvent> _events = <AuditEvent>[];
+
+  /// Maximum number of events retained; oldest events are evicted past this.
   final int maxEvents;
 
   @override
@@ -242,10 +295,9 @@ class InMemoryAuditStore implements AuditEventStore {
         return false;
       }
       return true;
-    }).toList();
-
-    // Sort by timestamp descending
-    results.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+    }).toList()
+      // Sort by timestamp descending
+      ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
     if (limit != null && results.length > limit) {
       results = results.sublist(0, limit);
@@ -270,6 +322,8 @@ class InMemoryAuditStore implements AuditEventStore {
 
 /// Audit logger for security events
 class AuditLogger {
+  /// Creates an audit logger; defaults to an [InMemoryAuditStore] and a
+  /// `Logger('AuditLogger')` when [store]/[logger] are not supplied.
   AuditLogger({
     AuditEventStore? store,
     Logger? logger,

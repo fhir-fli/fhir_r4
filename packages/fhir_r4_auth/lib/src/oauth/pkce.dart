@@ -10,6 +10,9 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
 
 /// PKCE generator for OAuth 2.0 authorization code flow
 class PkceManager {
+  /// Create a manager that lazily derives the PKCE code challenge, either
+  /// reusing a supplied [codeVerifier] or generating one from [random]
+  /// (defaults to a cryptographically secure source).
   PkceManager({
     String? codeVerifier,
     Random? random,
@@ -130,6 +133,8 @@ class PkceManager {
 
 /// PKCE parameters for storage/transfer
 class PkceParameters {
+  /// Create an immutable snapshot of the PKCE [codeVerifier], its derived
+  /// [codeChallenge], and the [challengeMethod] used to compute it.
   const PkceParameters({
     required this.codeVerifier,
     required this.codeChallenge,
@@ -156,8 +161,13 @@ class PkceParameters {
     );
   }
 
+  /// The high-entropy secret sent verbatim on the token request.
   final String codeVerifier;
+
+  /// The transformed verifier sent on the authorization request.
   final String codeChallenge;
+
+  /// The transform (`S256` or `plain`) applied to derive [codeChallenge].
   final CodeChallengeMethod challengeMethod;
 
   /// Validate the parameters

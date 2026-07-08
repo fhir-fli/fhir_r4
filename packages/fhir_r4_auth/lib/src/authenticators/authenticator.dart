@@ -44,6 +44,8 @@ class AuthenticationResult {
         ..remove('state'),
     );
   }
+  /// Create a successful result carrying the authorization [code] and [state]
+  /// returned on the redirect, with no error fields set.
   const AuthenticationResult.success({
     required this.responseUrl,
     this.code,
@@ -52,6 +54,8 @@ class AuthenticationResult {
   })  : error = null,
         errorDescription = null;
 
+  /// Create a failed result from an OAuth [error] code and optional
+  /// human-readable [errorDescription], with no authorization code or state.
   const AuthenticationResult.error({
     required this.error,
     this.errorDescription,
@@ -60,6 +64,8 @@ class AuthenticationResult {
         state = null,
         additionalParameters = const {};
 
+  /// Create a result representing the user cancelling the browser flow,
+  /// encoded as the `user_cancelled` error.
   const AuthenticationResult.cancelled()
       : responseUrl = null,
         code = null,
@@ -113,6 +119,8 @@ class AuthenticationResult {
 
 /// Exception thrown when authentication fails at the platform level
 class PlatformAuthenticationException extends AuthenticationException {
+  /// Wrap a platform-level authentication failure, optionally carrying the
+  /// native [platformError] code alongside the base exception details.
   const PlatformAuthenticationException(
     super.message, {
     super.details,

@@ -363,12 +363,12 @@ void main() {
 
     group('Concurrent Error Handling', () {
       test('errors from parallel operations do not interfere', () {
-        final errors = <Exception>[];
-
         // Simulate multiple errors
-        errors.add(const TokenException('Error 1'));
-        errors.add(const TokenException('Error 2'));
-        errors.add(const TokenException('Error 3'));
+        final errors = <Exception>[
+          const TokenException('Error 1'),
+          const TokenException('Error 2'),
+          const TokenException('Error 3'),
+        ];
 
         // Each error should be independent
         expect(errors.length, equals(3));

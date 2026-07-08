@@ -12,6 +12,9 @@ import 'package:logging/logging.dart';
 
 /// Mobile authenticator for full OAuth flow using native AppAuth
 class MobileFullFlowAuthenticator {
+  /// Configure a native AppAuth authenticator for the given SMART client and
+  /// endpoints; supply [discoveryUrl] to resolve endpoints via OpenID Connect
+  /// discovery instead of the explicit authorization/token endpoints.
   MobileFullFlowAuthenticator({
     required this.clientId,
     required this.authorizationEndpoint,

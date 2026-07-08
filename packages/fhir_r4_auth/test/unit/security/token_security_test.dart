@@ -198,7 +198,8 @@ void main() {
         // Token just created should not be expired (has 5 min buffer)
         expect(token.isExpired, isFalse);
 
-        // Create a token issued 3 minutes ago (expires in 7 min, buffer 5 min = 2 min left)
+        // Create a token issued 3 minutes ago (expires in 7 min,
+        // buffer 5 min = 2 min left)
         final stillValid = SmartTokenResponse(
           accessToken: 'test',
           expiresIn: 600, // 10 minutes total

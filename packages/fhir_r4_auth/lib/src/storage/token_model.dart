@@ -14,6 +14,9 @@ bool? _parseBool(dynamic value) {
 
 /// Represents OAuth 2.0 tokens and associated SMART on FHIR metadata
 class SmartTokenResponse {
+  /// Create a token response holding the OAuth access/refresh/id tokens plus
+  /// the SMART launch context (patient, encounter, fhirUser, styling), stamping
+  /// [issuedAt] to now when not supplied so expiry can be computed.
   SmartTokenResponse({
     required this.accessToken,
     this.refreshToken,
@@ -127,7 +130,8 @@ class SmartTokenResponse {
     if (refreshToken == null) return true;
 
     // Per OAuth 2.0 RFC 6749: refresh token expiration is intentionally not
-    // communicated to the client. SMART on FHIR does not define refresh_expires_in.
+    // communicated to the client. SMART on FHIR does not define
+    // refresh_expires_in.
     // Refresh tokens typically have much longer lifetimes than access tokens,
     // or don't expire at all until revoked by the user or authorization server.
     // We treat refresh tokens as valid until the server tells us otherwise.
@@ -223,6 +227,8 @@ class SmartTokenResponse {
 
 /// Represents a JWT token's claims
 class JwtClaims {
+  /// Create a decoded set of JWT claims from the registered claim values
+  /// (`iss`, `sub`, `aud`, `exp`, `iat`, and the rest) parsed from a token.
   JwtClaims({
     required this.issuer,
     required this.subject,
@@ -337,6 +343,9 @@ class JwtClaims {
 
 /// Represents stored authentication state
 class AuthState {
+  /// Create a snapshot of persisted authentication state: the current
+  /// [tokenResponse], when the user [lastAuthenticated], the [authMethod]
+  /// used, and the associated [sessionId].
   AuthState({
     this.tokenResponse,
     this.lastAuthenticated,

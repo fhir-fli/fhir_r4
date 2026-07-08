@@ -30,6 +30,9 @@ import 'package:logging/logging.dart';
 
 /// SMART on FHIR client for OAuth authentication
 class SmartFhirClient extends FhirAuthClient {
+  /// Create a SMART on FHIR client from [config], wiring in the platform
+  /// [authenticator] (defaults to [WebAuthenticator]) and an optional
+  /// pre-built [oauthFlow], HTTP client, audit logger, and session manager.
   SmartFhirClient({
     required super.config,
     Authenticator? authenticator,

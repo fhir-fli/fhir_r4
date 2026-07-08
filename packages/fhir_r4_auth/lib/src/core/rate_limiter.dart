@@ -7,9 +7,14 @@ import 'package:logging/logging.dart';
 
 /// Rate limit exceeded exception
 class RateLimitException implements Exception {
+  /// Creates a rate-limit exception; [retryAfter] hints how long the caller
+  /// should wait before retrying the throttled auth request.
   const RateLimitException(this.message, {this.retryAfter});
 
+  /// Human-readable explanation of the limit that was hit.
   final String message;
+
+  /// Suggested delay before retrying, if the limiter could compute one.
   final Duration? retryAfter;
 
   @override
@@ -18,6 +23,8 @@ class RateLimitException implements Exception {
 
 /// Rate limit configuration
 class RateLimitConfig {
+  /// Creates a rate-limit policy allowing [maxRequests] within [window],
+  /// with an optional token-bucket [burstSize] for short spikes.
   const RateLimitConfig({
     required this.maxRequests,
     required this.window,
@@ -70,11 +77,14 @@ class _RequestRecord {
 
 /// Rate limiter using sliding window algorithm
 class RateLimiter {
+  /// Creates a rate limiter enforcing [config]; defaults to a
+  /// `Logger('RateLimiter')` when [logger] is not supplied.
   RateLimiter({
     required this.config,
     Logger? logger,
   }) : _logger = logger ?? Logger('RateLimiter');
 
+  /// The policy this limiter enforces.
   final RateLimitConfig config;
   final Logger _logger;
 
@@ -95,11 +105,9 @@ class RateLimiter {
     final now = DateTime.now();
     final windowStart = now.subtract(config.window);
 
-    // Get or initialize request history
-    final history = _requests.putIfAbsent(key, () => <_RequestRecord>[]);
-
-    // Remove expired requests
-    history.removeWhere((record) => record.timestamp.isBefore(windowStart));
+    // Get or initialize request history, dropping any expired entries
+    final history = _requests.putIfAbsent(key, () => <_RequestRecord>[])
+      ..removeWhere((record) => record.timestamp.isBefore(windowStart));
 
     // Check sliding window limit
     if (history.length >= config.maxRequests) {
@@ -136,8 +144,9 @@ class RateLimiter {
   /// Record a request
   Future<void> recordRequest(String key) async {
     final now = DateTime.now();
-    final history = _requests.putIfAbsent(key, () => <_RequestRecord>[]);
-    history.add(_RequestRecord(now));
+    _requests
+        .putIfAbsent(key, () => <_RequestRecord>[])
+        .add(_RequestRecord(now));
 
     // Consume token from bucket
     if (config.burstSize != null) {
@@ -282,6 +291,7 @@ class RateLimiter {
 
 /// Global rate limiter registry for different endpoints
 class RateLimiterRegistry {
+  /// Creates a registry that lazily builds one [RateLimiter] per endpoint.
   RateLimiterRegistry({Logger? logger})
       : _logger = logger ?? Logger('RateLimiterRegistry');
 

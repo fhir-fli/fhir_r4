@@ -11,6 +11,9 @@ import 'package:logging/logging.dart';
 
 /// Manages state and nonce parameters for OAuth security
 class StateManager {
+  /// Create a manager that mints and tracks CSRF `state` and OIDC `nonce`
+  /// values, drawing entropy from [random] and expiring pending entries after
+  /// [stateExpiry] (defaults to 10 minutes).
   StateManager({
     Random? random,
     Duration? stateExpiry,
@@ -231,8 +234,10 @@ class StateManager {
     // Clean old used nonces (keep for 1 hour for security)
     if (_usedNonces.length > 1000) {
       // If too many, clear oldest half
-      final toRemove = _usedNonces.take(_usedNonces.length ~/ 2).toList();
-      toRemove.forEach(_usedNonces.remove);
+      _usedNonces
+          .take(_usedNonces.length ~/ 2)
+          .toList()
+          .forEach(_usedNonces.remove);
     }
   }
 

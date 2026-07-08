@@ -42,6 +42,7 @@ class FhirAuthException implements Exception {
 
 /// Exception thrown when authentication fails
 class AuthenticationException extends FhirAuthException {
+  /// Creates an exception describing a failed authentication attempt.
   const AuthenticationException(
     super.message, {
     super.details,
@@ -53,6 +54,8 @@ class AuthenticationException extends FhirAuthException {
 
 /// Exception thrown when authorization fails
 class AuthorizationException extends FhirAuthException {
+  /// Creates an exception carrying the OAuth 2.0 error response fields
+  /// ([errorCode], [errorDescription], [errorUri]) returned by the server.
   const AuthorizationException(
     super.message, {
     super.details,
@@ -80,6 +83,8 @@ class AuthorizationException extends FhirAuthException {
 
 /// Exception thrown for security violations
 class SecurityException extends FhirAuthException {
+  /// Creates an exception for a detected security violation of the given
+  /// [securityViolationType] (e.g. CSRF, replay, tampered token).
   const SecurityException(
     super.message, {
     super.details,
@@ -121,6 +126,8 @@ enum SecurityViolationType {
 
 /// Exception thrown when token operations fail
 class TokenException extends FhirAuthException {
+  /// Creates an exception for a token operation failure; [isExpired] flags
+  /// that the failure was specifically due to an expired token.
   const TokenException(
     super.message, {
     super.details,
@@ -136,6 +143,8 @@ class TokenException extends FhirAuthException {
 
 /// Exception thrown when network operations fail
 class NetworkException extends FhirAuthException {
+  /// Creates an exception for a network failure; [isTimeout] and
+  /// [isConnectionError] classify the underlying cause.
   const NetworkException(
     super.message, {
     super.details,
@@ -155,6 +164,7 @@ class NetworkException extends FhirAuthException {
 
 /// Exception thrown when configuration is invalid
 class ConfigurationException extends FhirAuthException {
+  /// Creates an exception naming the invalid [configurationField].
   const ConfigurationException(
     super.message, {
     super.details,
@@ -169,6 +179,8 @@ class ConfigurationException extends FhirAuthException {
 
 /// Exception thrown when storage operations fail
 class StorageException extends FhirAuthException {
+  /// Creates an exception for a token-storage failure; [isCorrupted] and
+  /// [isUnavailable] describe the storage state.
   const StorageException(
     super.message, {
     super.details,
@@ -187,6 +199,7 @@ class StorageException extends FhirAuthException {
 
 /// Exception thrown when provider-specific issues occur
 class ProviderException extends FhirAuthException {
+  /// Creates an exception for an error specific to the named [provider].
   const ProviderException(
     super.message, {
     super.details,
@@ -202,6 +215,8 @@ class ProviderException extends FhirAuthException {
 
 /// Exception thrown when SMART launch fails
 class SmartLaunchException extends FhirAuthException {
+  /// Creates an exception for a failed SMART launch; [launchType] and
+  /// [missingParameter] identify which launch and what was missing.
   const SmartLaunchException(
     super.message, {
     super.details,

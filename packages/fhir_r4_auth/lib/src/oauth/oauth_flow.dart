@@ -23,6 +23,9 @@ import 'package:logging/logging.dart';
 
 /// Manages OAuth 2.0 authorization code flow
 class OAuthFlow {
+  /// Create a flow orchestrator for the OAuth 2.0 authorization-code grant
+  /// against the given client and authorization/token endpoints; [clientSecret]
+  /// and [useBasicAuth] control confidential-client token authentication.
   OAuthFlow({
     required this.clientId,
     required this.authorizationEndpoint,
@@ -121,9 +124,9 @@ class OAuthFlow {
     };
 
     final url = authorizationEndpoint.replace(queryParameters: parameters);
-    _logger.fine(
-      'Authorization URL: ${url.toString().replaceAll(RegExp(r'state=\S+'), 'state=***')}',
-    );
+    final sanitizedUrl =
+        url.toString().replaceAll(RegExp(r'state=\S+'), 'state=***');
+    _logger.fine('Authorization URL: $sanitizedUrl');
 
     return url;
   }

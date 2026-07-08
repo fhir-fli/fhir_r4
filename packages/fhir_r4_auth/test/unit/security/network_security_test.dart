@@ -16,7 +16,8 @@ void main() {
             fhirBaseUrl: FhirUri('http://example.com/fhir'), // HTTP not HTTPS
             redirectUri: Uri.parse('https://app.example.com/callback'),
           ),
-          returnsNormally, // Constructor doesn't validate, but should be rejected during use
+          // Constructor doesn't validate, but should be rejected during use
+          returnsNormally,
         );
 
         // In production, HTTP should be rejected

@@ -11,6 +11,8 @@ import 'package:uuid/uuid.dart';
 
 /// Session timeout configuration
 class SessionConfig {
+  /// Creates a session timeout policy; defaults balance usability against
+  /// the idle/absolute limits expected of a SMART-on-FHIR session.
   const SessionConfig({
     this.idleTimeout = const Duration(minutes: 30),
     this.absoluteTimeout = const Duration(hours: 8),
@@ -58,6 +60,8 @@ class SessionConfig {
 
 /// Represents an active user session
 class Session {
+  /// Creates a session; [id] defaults to a new UUID v4 and the timestamps
+  /// default to the current time when omitted.
   Session({
     String? id,
     DateTime? createdAt,
@@ -145,6 +149,9 @@ enum TimeoutReason {
 
 /// Session manager with automatic timeout
 class SessionManager {
+  /// Creates a session manager governed by [config]; an optional
+  /// [tokenStorage] is cleared on logout and [auditLogger] records session
+  /// lifecycle events.
   SessionManager({
     required this.config,
     TokenStorage? tokenStorage,
@@ -154,6 +161,7 @@ class SessionManager {
         _auditLogger = auditLogger,
         _logger = logger ?? Logger('SessionManager');
 
+  /// The timeout policy applied to the managed session.
   final SessionConfig config;
   final TokenStorage? _tokenStorage;
   final AuditLogger? _auditLogger;
@@ -304,7 +312,8 @@ class SessionManager {
     if (timeUntilIdleTimeout <= config.warningBeforeTimeout &&
         timeUntilIdleTimeout > Duration.zero) {
       _logger.info(
-        'Session timeout warning: ${timeUntilIdleTimeout.inMinutes} minutes remaining',
+        'Session timeout warning: '
+        '${timeUntilIdleTimeout.inMinutes} minutes remaining',
       );
       _warningController.add(timeUntilIdleTimeout);
     }
@@ -313,7 +322,8 @@ class SessionManager {
     if (timeUntilAbsoluteTimeout <= config.warningBeforeTimeout &&
         timeUntilAbsoluteTimeout > Duration.zero) {
       _logger.info(
-        'Session absolute timeout warning: ${timeUntilAbsoluteTimeout.inMinutes} minutes remaining',
+        'Session absolute timeout warning: '
+        '${timeUntilAbsoluteTimeout.inMinutes} minutes remaining',
       );
       _warningController.add(timeUntilAbsoluteTimeout);
     }

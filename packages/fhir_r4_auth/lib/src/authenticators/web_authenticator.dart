@@ -9,6 +9,8 @@ import 'package:logging/logging.dart';
 
 /// Web authenticator using flutter_web_auth_2
 class WebAuthenticator implements Authenticator {
+  /// Create a browser-redirect authenticator backed by flutter_web_auth_2,
+  /// optionally using an ephemeral session and custom Android [intentFlags].
   WebAuthenticator({
     this.preferEphemeral = false,
     this.intentFlags = const {},
@@ -36,13 +38,15 @@ class WebAuthenticator implements Authenticator {
     String? callbackUrlScheme,
   }) async {
     try {
-      _logger.fine('Starting web authentication');
-      _logger.fine('Authorization URL: $authorizationUrl');
-      _logger.fine('Redirect URI: $redirectUri');
-      _logger.fine('Callback scheme: $callbackUrlScheme');
+      _logger
+        ..fine('Starting web authentication')
+        ..fine('Authorization URL: $authorizationUrl')
+        ..fine('Redirect URI: $redirectUri')
+        ..fine('Callback scheme: $callbackUrlScheme');
 
       // Platform-specific callbackUrlScheme handling:
-      // - Web: uses localStorage polling, just needs the URI scheme (e.g. "http")
+      // - Web: uses localStorage polling, just needs the URI scheme
+      //   (e.g. "http")
       // - Linux/Windows: starts a local HTTP server, needs full origin
       //   (e.g. "http://localhost:8080")
       // - Mobile: uses custom URL schemes (e.g. "com.example.app")
@@ -166,6 +170,8 @@ class WebAuthenticator implements Authenticator {
 /// Web authenticator with custom HTML redirect handling
 /// This is useful for more control over the redirect process
 class CustomWebAuthenticator implements Authenticator {
+  /// Create an authenticator that manages the redirect flow directly, with a
+  /// [redirectTimeout] and an optional popup-window strategy via [usePopup].
   CustomWebAuthenticator({
     this.redirectTimeout = const Duration(minutes: 5),
     this.usePopup = false,
