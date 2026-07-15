@@ -5,7 +5,7 @@ description: >-
   engine execute against FHIR R4B data.
 version: 0.6.0
 homepage: https://www.fhirfli.dev/
-repository: https://github.com/fhir-fli/cql
+repository: https://github.com/fhir-fli/fhir_r4
 
 topics:
   - fhir
@@ -18,13 +18,10 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  collection: any
   cql:
     path: ../../../cql
-  fhir_r4: ^0.5.0
-  fhir_r4_path: ^0.5.0
-  http: any
-  path: any
+  fhir_r4: ^0.6.0
+  fhir_r4_path: ^0.6.0
   ucum: ^0.9.0
 dev_dependencies:
   test: ^1.29.0
