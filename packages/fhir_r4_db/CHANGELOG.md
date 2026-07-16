@@ -1,5 +1,11 @@
 # fhir_r4_db
 
+## [0.6.0]
+
+- Family lockstep 0.6.0
+- README rewritten against the actual Drift/SQLite API (the previous README documented the removed Hive API)
+- Analyzer clean under very_good_analysis
+
 ## [0.5.1]
 
 - Improved documentation and README files

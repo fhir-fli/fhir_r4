@@ -1,5 +1,12 @@
 # fhir_r4_mapping
 
+## [0.6.0]
+
+- Family lockstep 0.6.0; fhir_node dependency now declared explicitly
+- FHIRPath host services migrated to the post-split fhirpath engine API
+- xml constraint widened to '>=6.6.1 <8.0.0'
+- README rewritten and verified against the API; analyzer clean
+
 ## [0.5.1]
 
 - Improved documentation and README files

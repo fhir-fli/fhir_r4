@@ -1,5 +1,10 @@
 # fhir_r4_cds_hooks
 
+## [0.6.0]
+
+- Family lockstep 0.6.0 (fhir_r4 ^0.6.0)
+- README rewritten and verified against the API; analyzer clean under very_good_analysis
+
 ## [0.5.1]
 
 - Improved documentation and README files

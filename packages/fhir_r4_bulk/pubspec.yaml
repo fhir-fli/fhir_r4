@@ -3,6 +3,7 @@ description: Library to support the FHIR Bulk Data Access API (https://www.hl7.o
 version: 0.6.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
+issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
 
 topics:
   - fhir

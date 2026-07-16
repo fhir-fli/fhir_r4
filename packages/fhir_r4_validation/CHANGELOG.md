@@ -1,5 +1,11 @@
 # fhir_r4_validation
 
+## [0.6.0]
+
+- Family lockstep 0.6.0
+- Invariant evaluation migrated off the deprecated walkFhirPath to FHIRPathEngine
+- Runnable example added; README rewritten and verified against the API; analyzer clean
+
 ## [0.5.1]
 
 - Improved documentation and README files

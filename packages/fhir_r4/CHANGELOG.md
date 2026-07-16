@@ -1,5 +1,13 @@
 # fhir_r4
 
+## [0.6.0]
+
+- Family release train: all fhir-fli packages released in lockstep at 0.6.0
+- FhirBase implements the FhirNode reflection contract (fhir_node ^0.6.0) — the seam the model-independent fhirpath and cql engines build on
+- Generated fhirTypeHierarchy table so subtype checks work without a populated canonical-resource cache
+- xml constraint widened to '>=6.6.1 <8.0.0'
+- README rewritten and verified against the API; analyzer clean under very_good_analysis
+
 ## [0.5.1]
 
 - Improved documentation and README files
