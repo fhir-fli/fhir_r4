@@ -104,13 +104,12 @@ QQIDAQAB
             'kty': 'RSA',
             'use': 'sig',
             'kid': 'test-key-1',
-            'n':
-                '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7J'
-                'L38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0icqabvJOMvQtz'
-                'D6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqFXf2p5yljMw'
-                'WfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvEZtLXiqMJ'
-                'qLv5ELbGLj3Qzt7KGJhExL_VPwFG7zLLCYnYzvXlDjrj9aLXTuqCNs1hTWXt6R'
-                'pHsWVV6ERZDsxC6GEwVw5fYcK7Hb4pQQ',
+            'n': '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7'
+                'JL38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0icqabvJOMvQt'
+                'zD6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqFXf2p5yljM'
+                'wWfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvEZtLXiqM'
+                'JqLv5ELbGLj3Qzt7KGJhExL_VPwFG7zLLCYnYzvXlDjrj9aLXTuqCNs1hTWXt6'
+                'RpHsWVV6ERZDsxC6GEwVw5fYcK7Hb4pQQ',
             'e': 'AQAB',
           },
         ],
