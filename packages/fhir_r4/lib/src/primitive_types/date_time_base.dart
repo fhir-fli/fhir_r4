@@ -260,10 +260,9 @@ abstract class FhirDateTimeBase extends PrimitiveType
           millisecond == null) {
         buffer.write('T');
       }
-      buffer.write(
-        '${timeZoneOffset >= 0 ? '+' : '-'}'
-        '${timeZoneOffset.toInt().abs().toString().padLeft(2, '0')}:00',
-      );
+      // Render fractional offsets too (+05:30, +05:45); the previous
+      // hardcoded ':00' truncated half- and quarter-hour zones.
+      buffer.write(timeZoneOffset.toDouble().timeZoneOffsetToString);
     }
 
     return buffer.toString();

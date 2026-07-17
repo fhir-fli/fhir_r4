@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.6.1]
+
+- Fix: fractional timezone offsets (+05:30 India, +05:45 Nepal, -03:30 Newfoundland, ...) were truncated to whole hours when rendering the value string (the object held the correct offset; serialization hardcoded ':00' minutes). Round-trips now preserve them; regression tests added
+- Tests are now machine-timezone-independent (verified under UTC, Eastern, +05:30 and +05:45)
+
 ## [0.6.0]
 
 - Family release train: all fhir-fli packages released in lockstep at 0.6.0
