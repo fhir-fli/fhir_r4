@@ -35,8 +35,7 @@ import 'package:flutter/material.dart';
 /// The EHR launch demo narrates each step of the SMART launch and token
 /// exchange to the console so the flow can be followed while testing; routing
 /// through `dart:developer` keeps that output off production logging paths.
-void _log(String message) =>
-    developer.log(message, name: 'ehr_launch_demo');
+void _log(String message) => developer.log(message, name: 'ehr_launch_demo');
 
 void main() {
   runApp(const SmartEhrLaunchDemoApp());
@@ -253,8 +252,18 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
         _detectedIss = iss;
         _detectedLaunch = launch;
         _ehrLaunchDetected = true;
-        _statusMessage = 'EHR launch parameters detected — auto-connecting...';
+        _statusMessage = kIsWeb
+            ? 'EHR launch parameters detected — press Connect to sign in'
+            : 'EHR launch parameters detected — auto-connecting...';
       });
+
+      if (kIsWeb) {
+        // Browsers only allow the sign-in tab to open from a user gesture;
+        // auto-starting here gets popup-blocked and the flow hangs. The
+        // launch screen's "Connect to EHR" button provides the gesture.
+        // Connect promptly — EHR launch tokens are short-lived (Epic: ~5min).
+        return;
+      }
 
       // Auto-connect immediately to avoid launch token expiry
       // Epic launch tokens are short-lived
@@ -403,9 +412,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      _log(
-        '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
-      );
+      _log('\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}');
     } else {
       _log(
         '\u26a0\ufe0f  Failed to load patient: ${patientResponse.statusCode}',

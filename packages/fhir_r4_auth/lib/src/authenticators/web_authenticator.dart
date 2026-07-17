@@ -3,8 +3,10 @@ library;
 
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
     show Authenticator, PlatformAuthenticationException;
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart'
+    show TargetPlatform, defaultTargetPlatform, kIsWeb;
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:flutter_web_auth_2_platform_interface/flutter_web_auth_2_platform_interface.dart';
 import 'package:logging/logging.dart';
 
 /// Web authenticator using flutter_web_auth_2
@@ -66,20 +68,42 @@ class WebAuthenticator implements Authenticator {
         }
       }
 
-      // Launch authentication
-      final result = await FlutterWebAuth2.authenticate(
-        url: authorizationUrl.toString(),
-        callbackUrlScheme: resolvedScheme,
-        options: FlutterWebAuth2Options(
-          preferEphemeral: preferEphemeral,
-          intentFlags:
-              intentFlags.isEmpty ? null : _combineIntentFlags(intentFlags),
-          // Don't show a popup confirmation on web
-          useWebview: false,
-          // Set timeout in seconds
-          timeout: 300, // 5 minutes
-        ),
+      final options = FlutterWebAuth2Options(
+        preferEphemeral: preferEphemeral,
+        intentFlags:
+            intentFlags.isEmpty ? null : _combineIntentFlags(intentFlags),
+        // Don't show a popup confirmation on web
+        useWebview: false,
+        // Set timeout in seconds
+        timeout: 300, // 5 minutes
       );
+
+      // On Linux/Windows the login happens in the system browser while a
+      // temporary local HTTP server waits for the redirect. FlutterWebAuth2's
+      // top-level authenticate() registers an app-lifecycle observer that
+      // force-closes that server ("dangling call" cleanup) as soon as the
+      // desktop window regains focus — so a user who refocuses the app while
+      // the browser login is still in progress gets their pending auth
+      // cancelled. Call the platform implementation directly on desktop to
+      // skip that observer; the 300s timeout above still bounds the wait.
+      // (On mobile the observer is the intended abandoned-login detection,
+      // and on web the cleanup is a no-op — keep the stock call there.)
+      final isDesktopServerFlow = !kIsWeb &&
+          (defaultTargetPlatform == TargetPlatform.linux ||
+              defaultTargetPlatform == TargetPlatform.windows);
+
+      // Launch authentication
+      final result = isDesktopServerFlow
+          ? await FlutterWebAuth2Platform.instance.authenticate(
+              url: authorizationUrl.toString(),
+              callbackUrlScheme: resolvedScheme,
+              options: options.toJson(),
+            )
+          : await FlutterWebAuth2.authenticate(
+              url: authorizationUrl.toString(),
+              callbackUrlScheme: resolvedScheme,
+              options: options,
+            );
 
       _logger.fine('Authentication completed successfully');
 

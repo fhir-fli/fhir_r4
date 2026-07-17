@@ -2,6 +2,8 @@
 
 ## [0.6.0]
 
+- flutter_appauth ^12.0.0 + flutter_web_auth_2 ^5.0.0 (verified live against the Epic sandbox: standalone patient+clinician on web, EHR launch on web, standalone on Linux desktop)
+- Fixed desktop (Linux/Windows) sign-in being cancelled when the app window regained focus mid-login: the plugin's app-resume cleanup force-closed its local callback server; the authenticator now invokes the desktop platform implementation directly
 - Security: jose bumped to ^0.3.5+2 (GHSA-vm9r-h74p-hg97 / CVE-2026-34240, JWS signature-verification bypass)
 - Removed the unused dart_jsonwebtoken dependency
 - Family lockstep 0.6.0; runnable example added; README rewritten and verified against the API (login/refreshToken); package-local lint relaxations removed, analyzer clean
