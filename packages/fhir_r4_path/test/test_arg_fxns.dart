@@ -1077,7 +1077,7 @@ Future<void> testArgFxns() async {
 
   test('combine', () async {
     expect(
-      patient3.listEquals(
+      FhirBase.listEquals(
         await walkFhirPath(
           context: patient3,
           pathExpression: '%a.combine(%b)',

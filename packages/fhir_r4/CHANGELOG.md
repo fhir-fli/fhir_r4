@@ -3,6 +3,7 @@
 ## [0.6.0]
 
 - Family release train: all fhir-fli packages released in lockstep at 0.6.0
+- BREAKING: FhirBase.equalsDeepWithNull and FhirBase.listEquals are now static (they are two-argument null-safe predicates and never used the receiver; matches the reference implementation's static Base.compareDeep). Call them as FhirBase.equalsDeepWithNull(a, b) / FhirBase.listEquals(l1, l2); instance-style calls no longer compile. Restores use outside FhirBase (GH fhir_r4#30)
 - FhirBase implements the FhirNode reflection contract (fhir_node ^0.6.0) — the seam the model-independent fhirpath and cql engines build on
 - Generated fhirTypeHierarchy table so subtype checks work without a populated canonical-resource cache
 - xml constraint widened to '>=6.6.1 <8.0.0'
