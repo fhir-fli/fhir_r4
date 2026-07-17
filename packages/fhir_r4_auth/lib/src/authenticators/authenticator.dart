@@ -44,6 +44,7 @@ class AuthenticationResult {
         ..remove('state'),
     );
   }
+
   /// Create a successful result carrying the authorization [code] and [state]
   /// returned on the redirect, with no error fields set.
   const AuthenticationResult.success({

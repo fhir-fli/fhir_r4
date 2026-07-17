@@ -104,8 +104,7 @@ QQIDAQAB
             'kty': 'RSA',
             'use': 'sig',
             'kid': 'test-key-1',
-            'n':
-                '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7J'
+            'n': '4f5wg5l2hKsTeNem_V41fGnJm6gOdrj8ym3rFkEU_wT8RDtnSgFEZOQpHEgQ7J'
                 'L38xUfU0Y3g6aYw9QT0hJ7mCpz9Er5qLaMXJwZxzHzAahlfA0icqabvJOMvQtz'
                 'D6uQv6wPEyZtDTWiQi9AXwBpHssPnpYGIn20ZZuNlX2BrClciHqFXf2p5yljMw'
                 'WfD0NFzd1VqFcQGgkL1ztXXnH14zfKJMJhLfGYuK1OWYjGiHXkMJvEZtLXiqMJ'

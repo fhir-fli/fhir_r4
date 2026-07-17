@@ -30,8 +30,7 @@ import 'package:flutter/material.dart';
 /// authorization-code exchange and FHIR fetches so the flow can be followed
 /// during manual testing; routing through `dart:developer` keeps that output
 /// off production logging paths.
-void _log(String message) =>
-    developer.log(message, name: 'standalone_demo');
+void _log(String message) => developer.log(message, name: 'standalone_demo');
 
 /// Encode SMART Health IT Sandbox launch configuration into a base64url string.
 ///
@@ -654,9 +653,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     if (patientResponse.statusCode == 200) {
       _patient = Patient.fromJsonString(patientResponse.body);
-      _log(
-        '\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}',
-      );
+      _log('\u2713 Patient loaded: ${_patient!.name?.first.text?.valueString}');
     } else {
       throw Exception('Failed to load patient: ${patientResponse.statusCode}');
     }
