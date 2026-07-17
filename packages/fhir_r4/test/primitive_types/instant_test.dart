@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void instantTest() {
   final offset =
-      DateTime(2020).timeZoneOffset.inHours.toDouble().timeZoneOffsetToString;
+      (DateTime(2020).timeZoneOffset.inMinutes / 60.0).timeZoneOffsetToString;
 
   group('FhirInstantTests', () {
     test('FhirInstant fromDateTime should handle various DateTime inputs', () {

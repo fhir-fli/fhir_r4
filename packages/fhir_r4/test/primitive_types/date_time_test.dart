@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void dateTimeTest() {
   final offset =
-      DateTime(2020).timeZoneOffset.inHours.toDouble().timeZoneOffsetToString;
+      (DateTime(2020).timeZoneOffset.inMinutes / 60.0).timeZoneOffsetToString;
 
   group('FhirDateTime Tests', () {
     // Test for year only precision
@@ -340,6 +340,34 @@ void dateTimeTest() {
         dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
+    });
+
+    test('fractional timezone offsets are preserved', () {
+      // Regression: value-string rendering hardcoded ':00' minutes, so
+      // half/quarter-hour zones (+05:30 India, +05:45 Nepal) truncated to
+      // whole hours. Machine-timezone-independent by construction.
+      final india = FhirDateTime.fromUnits(
+        year: 2023,
+        month: 1,
+        day: 1,
+        hour: 12,
+        minute: 0,
+        second: 0,
+        millisecond: 0,
+        timeZoneOffset: 5.5,
+      );
+      expect(india.valueString, equals('2023-01-01T12:00:00.000+05:30'));
+      final nepalParsed =
+          FhirDateTime.fromString('2023-01-01T12:00:00.000+05:45');
+      expect(nepalParsed.valueString, equals('2023-01-01T12:00:00.000+05:45'));
+      expect(nepalParsed.timeZoneOffset, equals(5.75));
+      final negativeHalf =
+          FhirDateTime.fromString('2023-01-01T12:00:00.000-03:30');
+      expect(
+        negativeHalf.valueString,
+        equals('2023-01-01T12:00:00.000-03:30'),
+      );
+      expect(negativeHalf.timeZoneOffset, equals(-3.5));
     });
 
     test('fdtyearstring', () {

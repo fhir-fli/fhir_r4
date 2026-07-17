@@ -2,7 +2,7 @@ name: fhir_r4
 description: >-
   FHIR® R4B resources and data types for Dart and Flutter: strongly typed,
   immutable model classes with JSON, YAML, and XML serialization.
-version: 0.6.0
+version: 0.6.1
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues

@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void dateTest() {
   group('FhirDate', () {
     final offset =
-        DateTime(2020).timeZoneOffset.inHours.toDouble().timeZoneOffsetToString;
+        (DateTime(2020).timeZoneOffset.inMinutes / 60.0).timeZoneOffsetToString;
     const yyyy = '2012';
     final yyyyDateTime = DateTime(2012);
     const yyyyMM = '2012-01';
