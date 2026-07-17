@@ -4,7 +4,7 @@
 
 A Dart implementation of the [FHIRPath](https://hl7.org/fhirpath/) specification for FHIR R4B resources, allowing you to query and manipulate FHIR data using standardized expressions.
 
-`fhir_r4_path` is the **R4B binding** over the model-independent [`fhirpath`](https://pub.dev/packages/fhirpath) engine. The engine itself has zero FHIR-version coupling; this package supplies the R4B `WorkerContext` (an `IWorkerContext` implementation), the R4B value factory, and the terminology/validation plumbing, then re-exports the engine. Depend on this one package and you get both the engine and its R4B model bindings.
+`fhir_r4_path` is the **R4B binding** over the model-independent [`fhir_path`](https://pub.dev/packages/fhir_path) engine. The engine itself has zero FHIR-version coupling; this package supplies the R4B `WorkerContext` (an `IWorkerContext` implementation), the R4B value factory, and the terminology/validation plumbing, then re-exports the engine. Depend on this one package and you get both the engine and its R4B model bindings.
 
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7. Use of the FHIR trademark does not constitute endorsement of this product by HL7.
 

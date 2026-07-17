@@ -5,7 +5,7 @@
 /// from `package:fhirpath`.
 library;
 
-export 'package:fhirpath/fhirpath.dart';
+export 'package:fhir_path/fhir_path.dart';
 
 export 'src/clients.dart';
 export 'src/core.dart';

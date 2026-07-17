@@ -18,7 +18,7 @@ It's still a work on progress, but I plan on outlining in-depth all of the funct
 
 ## Model-Independent Architecture
 
-`fhir_r4` is a thin FHIR-version binding on top of a set of model-independent engines. Every resource and data type extends `FhirBase`, which implements the `FhirNode` reflection contract from [`package:fhir_node`](https://pub.dev/packages/fhir_node). Because navigation (`getChildrenByName`, `listChildrenNames`, `fhirType`, ...) is expressed through that contract, the shared [`fhirpath`](https://pub.dev/packages/fhirpath), [`cql`](https://pub.dev/packages/cql), and [`ucum`](https://pub.dev/packages/ucum) engines can operate on R4 data without any coupling to a specific FHIR version. The same engines power the R5 and R6 packages unchanged.
+`fhir_r4` is a thin FHIR-version binding on top of a set of model-independent engines. Every resource and data type extends `FhirBase`, which implements the `FhirNode` reflection contract from [`package:fhir_node`](https://pub.dev/packages/fhir_node). Because navigation (`getChildrenByName`, `listChildrenNames`, `fhirType`, ...) is expressed through that contract, the shared [`fhir_path`](https://pub.dev/packages/fhir_path), [`cql`](https://pub.dev/packages/cql), and [`ucum`](https://pub.dev/packages/ucum) engines can operate on R4 data without any coupling to a specific FHIR version. The same engines power the R5 and R6 packages unchanged.
 
 ## Installation
 

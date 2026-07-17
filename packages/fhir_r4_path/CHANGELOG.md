@@ -2,7 +2,7 @@
 
 ## [0.6.0]
 
-- Rebuilt as a thin FHIR R4 binding over the model-independent [fhirpath](https://pub.dev/packages/fhirpath) engine (fhirpath ^0.6.0): version-specific model resolution lives here, the engine logic in fhirpath
+- Rebuilt as a thin FHIR R4 binding over the model-independent [fhir_path](https://pub.dev/packages/fhir_path) engine (fhir_path ^0.13.0): version-specific model resolution lives here, the engine logic in fhirpath
 - Full ported FHIRPath conformance suite green
 - walkFhirPath/parseFhirPath/executeFhirPath remain available but deprecated — use FHIRPathEngine.create(...).parse()/evaluate()
 - README and example rewritten around the FHIRPathEngine API; analyzer clean

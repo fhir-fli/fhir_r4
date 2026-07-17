@@ -30,7 +30,7 @@ dependencies:
   collection: ^1.19.1
   fhir_node: ^0.6.0
   fhir_r4: ^0.6.0
-  fhirpath: ^0.6.0
+  fhir_path: ^0.13.0
   http: ^1.6.0
   meta: ^1.16.0
   ucum: ^0.9.0
