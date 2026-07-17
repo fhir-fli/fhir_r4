@@ -84,7 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
       final values =
           results
-              .map((e) => e is PrimitiveType ? e.toString() : e.toJson())
+              .map(
+                (e) =>
+                    e is PrimitiveType
+                        ? e.toString()
+                        : e is FhirBase
+                        ? e.toJson()
+                        : e.toString(),
+              )
               .toList();
 
       setState(() {
