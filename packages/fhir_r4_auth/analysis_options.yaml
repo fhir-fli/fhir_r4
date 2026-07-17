@@ -1,3 +1,11 @@
 # One lint policy for the whole monorepo: very_good_analysis with the
 # family-standard suppressions (see the root analysis_options.yaml).
 include: ../../analysis_options.yaml
+
+analyzer:
+  exclude:
+    # The demo apps are separate packages with their own pubspecs and
+    # analysis contexts; analyzing them under this package's context (as CI
+    # does, where their deps aren't resolved) produces phantom diagnostics.
+    - standalone_demo/**
+    - ehr_launch_demo/**
