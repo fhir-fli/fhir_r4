@@ -25,7 +25,9 @@ jobs:
               # Scope to the package's own dirs: nested demo apps are separate
               # packages whose formatter context (language version) differs.
               for f in lib test example bin tool; do
-                [ -d "$f" ] && dart format --output=none --set-exit-if-changed "$f"
+                if [ -d "$f" ]; then
+                  dart format --output=none --set-exit-if-changed "$f"
+                fi
               done
               flutter analyze
               if [ -d test ]; then flutter test; fi
