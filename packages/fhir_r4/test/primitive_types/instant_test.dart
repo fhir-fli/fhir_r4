@@ -12,7 +12,12 @@ void instantTest() {
       final instant = FhirInstant.fromDateTime(dateTime);
 
       expect(instant.valueString, equals('2020-01-15T13:45:30.000$offset'));
-      expect(instant.valueDateTime, equals(DateTime(2020, 1, 15, 13, 45, 30)));
+      // Compare instants in UTC: Dart's DateTime == also requires matching
+      // isUtc flags, which differ by machine timezone.
+      expect(
+        instant.valueDateTime?.toUtc(),
+        equals(DateTime(2020, 1, 15, 13, 45, 30).toUtc()),
+      );
     });
   });
   test('Check Instant type with the regex', () {
@@ -75,7 +80,10 @@ void instantTest() {
   final dateyyyyFromDateTime = FhirInstant.fromDateTime(yyyyDateTime);
   test('dateyyyyFromDateTime', () {
     expect(dateyyyyFromDateTime.valueString, equals(yyyyEmptyTimeZoneString));
-    expect(dateyyyyFromDateTime.valueDateTime, equals(yyyyDateTime));
+    expect(
+      dateyyyyFromDateTime.valueDateTime?.toUtc(),
+      equals(yyyyDateTime.toUtc()),
+    );
     expect(
       dateyyyyFromDateTime.toJson()['value'],
       equals(yyyyEmptyTimeZoneString),
@@ -138,17 +146,18 @@ void instantTest() {
     timeZoneOffset: offset.stringToTimeZoneOffset!,
   );
 
-  const yyyyMMddTHHmmssSSSmmmEmptyString = '2012-01-31T12:30:59.123456-05:00';
+  // The expected string carries the machine's own offset — the input was
+  // built with it, so a hardcoded offset here would only pass in that zone.
   final yyyyMMddTHHmmssSSSmmmEmptyTimeZoneString =
       '2012-01-31T12:30:59.123456$offset';
   test('dateyyyyMMddTHHmmssSSSmmmFromString', () {
     expect(
       dateyyyyMMddTHHmmssSSSmmmFromString.valueString,
-      equals(yyyyMMddTHHmmssSSSmmmEmptyString),
+      equals(yyyyMMddTHHmmssSSSmmmEmptyTimeZoneString),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromString.valueDateTime,
-      equals(yyyyMMddTHHmmssSSSmmmDateTime),
+      dateyyyyMMddTHHmmssSSSmmmFromString.valueDateTime?.toUtc(),
+      equals(yyyyMMddTHHmmssSSSmmmDateTime.toUtc()),
     );
     expect(
       dateyyyyMMddTHHmmssSSSmmmFromString.toJson()['value'],
@@ -161,8 +170,8 @@ void instantTest() {
       equals(yyyyMMddTHHmmssSSSmmmEmptyTimeZoneString),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromDateTime.valueDateTime,
-      equals(yyyyMMddTHHmmssSSSmmmDateTime),
+      dateyyyyMMddTHHmmssSSSmmmFromDateTime.valueDateTime?.toUtc(),
+      equals(yyyyMMddTHHmmssSSSmmmDateTime.toUtc()),
     );
     expect(
       dateyyyyMMddTHHmmssSSSmmmFromDateTime.toJson()['value'],

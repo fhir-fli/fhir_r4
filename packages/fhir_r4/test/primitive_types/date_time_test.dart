@@ -293,9 +293,11 @@ void dateTimeTest() {
     // Test for year, month, day, hour, minute, second, millisecond,
     // microsecond, and timezone offset
     final yyyyMMddTHHmmssSSSmmmOffset = '2012-01-31T12:30:45.123456$offset';
+    // The input string is built with the machine's own offset, so its local
+    // wall-clock reading is exactly 12:30:45 — no offset arithmetic. (The
+    // previous formula baked in -05:00 and only passed in that zone.)
     final yyyyMMddTHHmmssSSSmmmOffsetDateTime =
-        DateTime(2012, 1, 31, 17, 30, 45, 123, 456)
-            .add(Duration(hours: offset.stringToTimeZoneOffset?.toInt() ?? 0));
+        DateTime(2012, 1, 31, 12, 30, 45, 123, 456);
     test('dateyyyyMMddTHHmmssSSSmmmOffsetFromString', () {
       final dateyyyyMMddTHHmmssSSSmmmOffsetFromString =
           FhirDateTime.fromString(yyyyMMddTHHmmssSSSmmmOffset);
@@ -304,8 +306,8 @@ void dateTimeTest() {
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmOffsetFromString.valueDateTime,
-        equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime),
+        dateyyyyMMddTHHmmssSSSmmmOffsetFromString.valueDateTime?.toUtc(),
+        equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime.toUtc()),
       );
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromString.toJson()['value'],
@@ -331,8 +333,8 @@ void dateTimeTest() {
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.valueDateTime,
-        equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime),
+        dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.valueDateTime?.toUtc(),
+        equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime.toUtc()),
       );
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.toJson()['value'],
@@ -434,7 +436,10 @@ void dateTimeTest() {
           validDateTime.valueString,
           equals('2023-07-15T13:45:30.000$offset'),
         );
-        expect(validDateTime.valueDateTime, DateTime(2023, 7, 15, 13, 45, 30));
+        expect(
+          validDateTime.valueDateTime?.toUtc(),
+          DateTime(2023, 7, 15, 13, 45, 30).toUtc(),
+        );
       });
 
       test('FhirDateTime getters should retrieve correct date components', () {
