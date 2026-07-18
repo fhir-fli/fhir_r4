@@ -190,7 +190,7 @@ final bundle = Bundle(
   entry: [
     BundleEntry(
       request: BundleRequest(
-        method: HTTPVerb.POST,
+        method: HTTPVerb.pOST,
         url: FhirUri('Patient'),
       ),
       resource: Patient(

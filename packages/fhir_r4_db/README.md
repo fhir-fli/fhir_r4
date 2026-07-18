@@ -22,13 +22,24 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 ```yaml
 dependencies:
   fhir_r4_db: ^0.6.0
-  fhir_r4: ^0.6.0
+  fhir_r4: ^0.6.1
   drift: ^2.33.0
+  sqlite3: ^3.1.5
 ```
 
 To open a database you supply a Drift `QueryExecutor`. On native platforms this
-comes from `package:drift/native.dart`; for Flutter apps you will also want
-`sqlite3_flutter_libs` (and `sqlcipher_flutter_libs` if you use encryption).
+comes from `package:drift/native.dart`. SQLite itself is compiled and loaded by
+the `sqlite3` package's build hook — no `sqlite3_flutter_libs` /
+`sqlcipher_flutter_libs` dependency is needed. For SQLCipher-compatible
+encryption, select the SQLite3 Multiple Ciphers source in your app's
+`pubspec.yaml`:
+
+```yaml
+hooks:
+  user_defines:
+    sqlite3:
+      source: sqlite3mc
+```
 
 ## Quick Start
 
