@@ -1,0 +1,22 @@
+name: fhir_mapping_demo
+description: "FHIR Mapping Language playground for the fhir-fli R4 packages."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  fhir_r4: ^0.6.1
+  fhir_r4_mapping: ^0.6.0
+  fhir_r4_path: ^0.6.0
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.2
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^10.0.0
+flutter:
+  uses-material-design: true
