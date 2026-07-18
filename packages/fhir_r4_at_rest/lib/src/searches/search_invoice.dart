@@ -61,10 +61,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
     addParameterValue('totalgross', paramValue);
     return this;
@@ -78,10 +78,10 @@ class SearchInvoice extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
     addParameterValue('totalnet', paramValue);
     return this;

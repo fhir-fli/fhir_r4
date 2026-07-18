@@ -94,10 +94,10 @@ class SearchObservation extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
     addParameterValue('combo-value-quantity', paramValue);
     return this;
@@ -144,10 +144,10 @@ class SearchObservation extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
     addParameterValue('component-value-quantity', paramValue);
     return this;
@@ -217,10 +217,10 @@ class SearchObservation extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
     addParameterValue('value-quantity', paramValue);
     return this;

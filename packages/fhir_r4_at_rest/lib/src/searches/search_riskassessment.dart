@@ -46,15 +46,9 @@ class SearchRiskAssessment extends SearchResource {
   /// [RiskAssessment]
   SearchRiskAssessment probability(
     FhirDecimal value, {
-    FhirString? unit,
-    FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}';
+    final paramValue = modifier != null ? '$modifier$value' : value.toString();
     addParameterValue('probability', paramValue);
     return this;
   }

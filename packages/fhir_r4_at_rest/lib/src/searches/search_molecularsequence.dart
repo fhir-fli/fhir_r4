@@ -56,15 +56,9 @@ class SearchMolecularSequence extends SearchResource {
   /// [MolecularSequence]
   SearchMolecularSequence variantEnd(
     FhirDecimal value, {
-    FhirString? unit,
-    FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}';
+    final paramValue = modifier != null ? '$modifier$value' : value.toString();
     addParameterValue('variant-end', paramValue);
     return this;
   }
@@ -73,15 +67,9 @@ class SearchMolecularSequence extends SearchResource {
   /// [MolecularSequence]
   SearchMolecularSequence variantStart(
     FhirDecimal value, {
-    FhirString? unit,
-    FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}';
+    final paramValue = modifier != null ? '$modifier$value' : value.toString();
     addParameterValue('variant-start', paramValue);
     return this;
   }
@@ -90,15 +78,9 @@ class SearchMolecularSequence extends SearchResource {
   /// [MolecularSequence]
   SearchMolecularSequence windowEnd(
     FhirDecimal value, {
-    FhirString? unit,
-    FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}';
+    final paramValue = modifier != null ? '$modifier$value' : value.toString();
     addParameterValue('window-end', paramValue);
     return this;
   }
@@ -107,15 +89,9 @@ class SearchMolecularSequence extends SearchResource {
   /// [MolecularSequence]
   SearchMolecularSequence windowStart(
     FhirDecimal value, {
-    FhirString? unit,
-    FhirUri? system,
     SearchModifier? modifier,
   }) {
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}';
+    final paramValue = modifier != null ? '$modifier$value' : value.toString();
     addParameterValue('window-start', paramValue);
     return this;
   }
