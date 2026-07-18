@@ -52,8 +52,13 @@ void main() {
       test('code verifier has no repeated patterns', () {
         final verifier = pkceManager.codeVerifier;
 
-        // Check for repeated substrings (weak RNG indicator)
-        for (var len = 4; len <= 8; len++) {
+        // Check for repeated substrings (weak RNG indicator). Start at
+        // length 6: for a 128-char verifier over a 66-char alphabet a
+        // healthy CSPRNG repeats a 4-char window with probability
+        // ~125^2/(2*66^4) = 4e-4 per run (this test used to flake on CI
+        // exactly that often); at length 6 the odds are ~9e-8 while a
+        // genuinely weak or cyclic RNG still trips it.
+        for (var len = 6; len <= 8; len++) {
           final patterns = <String>{};
           for (var i = 0; i <= verifier.length - len; i++) {
             final substring = verifier.substring(i, i + len);
