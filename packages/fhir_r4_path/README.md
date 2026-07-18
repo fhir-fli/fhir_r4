@@ -117,34 +117,34 @@ try {
 }
 ```
 
+## Environment Variables
+
+Pass external variables through `evaluateWithContext`. Map keys are the
+variable names **without** the leading `%` (the engine strips `%` from the
+expression before lookup); values are lists of FHIR types:
+
+```dart
+final engine = await FHIRPathEngine.create(WorkerContext());
+final node = engine.parse('birthDate < %cutoffDate');
+
+final result = await engine.evaluateWithContext(
+  null,
+  patient,
+  patient,
+  patient,
+  node,
+  environment: {
+    'cutoffDate': [FhirDate.fromString('2000-01-01')],
+  },
+);
+```
+
 ## Legacy API: walkFhirPath (deprecated)
 
 `walkFhirPath` is **deprecated** but retained for backwards compatibility. It
 wraps `FHIRPathEngine` internally, parsing and evaluating in a single call. New
 code should use the `FHIRPathEngine` API shown above (parse once, evaluate
-many). `walkFhirPath` remains the most concise way to pass **environment
-variables**, so the environment-variable example below uses it.
-
-```dart
-final result = await walkFhirPath(
-  context: patient,
-  pathExpression: "Patient.name.where(use = 'official').family",
-);
-
-print(result.map((e) => e.toString()).join(', ')); // Doe
-```
-
-### Environment Variables
-
-```dart
-final result = await walkFhirPath(
-  context: patient,
-  pathExpression: "birthDate < %cutoffDate",
-  environment: {
-    '%cutoffDate': [FhirDate('2000-01-01')],
-  },
-);
-```
+many).
 
 ## Documentation
 

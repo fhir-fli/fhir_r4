@@ -26,7 +26,7 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 /// the resource that contains the original node that is in %context
 ///
 /// May be passed in either through an entry in the [environment] map,
-/// named "%resource", or through the dedicated parameter.
+/// under the key 'focusResource', or through the dedicated parameter.
 /// A non-null dedicated parameter takes precedence.
 ///
 ///
@@ -36,19 +36,20 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 /// the container resource for the resource identified by %resource
 ///
 /// May be passed in either through an entry in the [environment] map,
-/// named "%rootResource", or through the dedicated parameter.
+/// under the key 'rootResource', or through the dedicated parameter.
 /// A non-null dedicated parameter takes precedence.
 ///
 /// **environment variables / resources**
 ///
 /// [environment] - arbitrary named environment variables.
-/// These should be passed in as a map, where each key has the format
-/// "%variable-name".
+/// These should be passed in as a map, keyed by the variable name WITHOUT
+/// the leading `%` (the engine strips `%` from the expression before
+/// lookup). Values are lists of FHIR types:
 ///
-/// ```json
+/// ```dart
 /// {
-///   "%pi": 3.1415927,
-///   "%myname": "Grey"
+///   'pi': [FhirDecimal(3.1415927)],
+///   'myname': [FhirString('Grey')],
 /// }
 /// ```
 ///
