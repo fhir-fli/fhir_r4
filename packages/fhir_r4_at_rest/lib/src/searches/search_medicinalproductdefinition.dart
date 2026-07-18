@@ -32,7 +32,7 @@ class SearchMedicinalProductDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('characteristic_type', paramValue);
+    addParameterValue('characteristic-type', paramValue);
     return this;
   }
 
@@ -103,7 +103,7 @@ class SearchMedicinalProductDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name_language', paramValue);
+    addParameterValue('name-language', paramValue);
     return this;
   }
 
@@ -117,7 +117,7 @@ class SearchMedicinalProductDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('product_classification', paramValue);
+    addParameterValue('product-classification', paramValue);
     return this;
   }
 

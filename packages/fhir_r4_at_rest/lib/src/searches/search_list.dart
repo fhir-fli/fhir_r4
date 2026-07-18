@@ -58,7 +58,7 @@ class SearchList extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('empty_reason', paramValue);
+    addParameterValue('empty-reason', paramValue);
     return this;
   }
 

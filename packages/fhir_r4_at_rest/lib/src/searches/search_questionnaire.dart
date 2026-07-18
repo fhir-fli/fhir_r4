@@ -53,7 +53,7 @@ class SearchQuestionnaire extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -67,7 +67,7 @@ class SearchQuestionnaire extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -204,7 +204,7 @@ class SearchQuestionnaire extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('subject_type', paramValue);
+    addParameterValue('subject-type', paramValue);
     return this;
   }
 

@@ -81,7 +81,7 @@ class SearchMolecularSequence extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('variant_end', paramValue);
+    addParameterValue('variant-end', paramValue);
     return this;
   }
 
@@ -102,7 +102,7 @@ class SearchMolecularSequence extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('variant_start', paramValue);
+    addParameterValue('variant-start', paramValue);
     return this;
   }
 
@@ -123,7 +123,7 @@ class SearchMolecularSequence extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('window_end', paramValue);
+    addParameterValue('window-end', paramValue);
     return this;
   }
 
@@ -144,7 +144,7 @@ class SearchMolecularSequence extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('window_start', paramValue);
+    addParameterValue('window-start', paramValue);
     return this;
   }
 }

@@ -60,7 +60,7 @@ class SearchIngredient extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('substance_code', paramValue);
+    addParameterValue('substance-code', paramValue);
     return this;
   }
 }

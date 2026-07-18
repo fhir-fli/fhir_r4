@@ -39,7 +39,7 @@ class SearchStructureDefinition extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -53,7 +53,7 @@ class SearchStructureDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -221,7 +221,7 @@ class SearchStructureDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('base_path', paramValue);
+    addParameterValue('base-path', paramValue);
     return this;
   }
 
@@ -263,7 +263,7 @@ class SearchStructureDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('ext_context', paramValue);
+    addParameterValue('ext-context', paramValue);
     return this;
   }
 

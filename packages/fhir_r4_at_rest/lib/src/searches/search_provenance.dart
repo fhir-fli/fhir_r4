@@ -18,7 +18,7 @@ class SearchProvenance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('agent_role', paramValue);
+    addParameterValue('agent-role', paramValue);
     return this;
   }
 
@@ -32,7 +32,7 @@ class SearchProvenance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('agent_type', paramValue);
+    addParameterValue('agent-type', paramValue);
     return this;
   }
 
@@ -58,7 +58,7 @@ class SearchProvenance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('signature_type', paramValue);
+    addParameterValue('signature-type', paramValue);
     return this;
   }
 

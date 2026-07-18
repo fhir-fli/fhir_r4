@@ -18,7 +18,7 @@ class SearchAdministrableProductDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('dose_form', paramValue);
+    addParameterValue('dose-form', paramValue);
     return this;
   }
 
@@ -74,7 +74,7 @@ class SearchAdministrableProductDefinition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('target_species', paramValue);
+    addParameterValue('target-species', paramValue);
     return this;
   }
 }

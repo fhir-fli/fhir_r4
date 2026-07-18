@@ -44,7 +44,7 @@ class SearchMedicationAdministration extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('effective_time', paramValue);
+    addParameterValue('effective-time', paramValue);
     return this;
   }
 
@@ -58,7 +58,7 @@ class SearchMedicationAdministration extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('reason_given', paramValue);
+    addParameterValue('reason-given', paramValue);
     return this;
   }
 
@@ -72,7 +72,7 @@ class SearchMedicationAdministration extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('reason_not_given', paramValue);
+    addParameterValue('reason-not-given', paramValue);
     return this;
   }
 

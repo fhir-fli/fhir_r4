@@ -53,7 +53,7 @@ class SearchCondition extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('abatement_age', paramValue);
+    addParameterValue('abatement-age', paramValue);
     return this;
   }
 
@@ -65,7 +65,7 @@ class SearchCondition extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('abatement_date', paramValue);
+    addParameterValue('abatement-date', paramValue);
     return this;
   }
 
@@ -80,7 +80,7 @@ class SearchCondition extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('abatement_string', paramValue);
+    addParameterValue('abatement-string', paramValue);
     return this;
   }
 
@@ -94,7 +94,7 @@ class SearchCondition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('body_site', paramValue);
+    addParameterValue('body-site', paramValue);
     return this;
   }
 
@@ -122,7 +122,7 @@ class SearchCondition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('clinical_status', paramValue);
+    addParameterValue('clinical-status', paramValue);
     return this;
   }
 
@@ -157,7 +157,7 @@ class SearchCondition extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('onset_age', paramValue);
+    addParameterValue('onset-age', paramValue);
     return this;
   }
 
@@ -169,7 +169,7 @@ class SearchCondition extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('onset_date', paramValue);
+    addParameterValue('onset-date', paramValue);
     return this;
   }
 
@@ -184,7 +184,7 @@ class SearchCondition extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('onset_info', paramValue);
+    addParameterValue('onset-info', paramValue);
     return this;
   }
 
@@ -196,7 +196,7 @@ class SearchCondition extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('recorded_date', paramValue);
+    addParameterValue('recorded-date', paramValue);
     return this;
   }
 
@@ -238,7 +238,7 @@ class SearchCondition extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('verification_status', paramValue);
+    addParameterValue('verification-status', paramValue);
     return this;
   }
 }

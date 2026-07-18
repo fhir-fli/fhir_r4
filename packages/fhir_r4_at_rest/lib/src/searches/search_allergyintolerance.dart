@@ -32,7 +32,7 @@ class SearchAllergyIntolerance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('clinical_status', paramValue);
+    addParameterValue('clinical-status', paramValue);
     return this;
   }
 
@@ -98,7 +98,7 @@ class SearchAllergyIntolerance extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('last_date', paramValue);
+    addParameterValue('last-date', paramValue);
     return this;
   }
 
@@ -180,7 +180,7 @@ class SearchAllergyIntolerance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('verification_status', paramValue);
+    addParameterValue('verification-status', paramValue);
     return this;
   }
 }

@@ -44,7 +44,7 @@ class SearchCarePlan extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('activity_code', paramValue);
+    addParameterValue('activity-code', paramValue);
     return this;
   }
 
@@ -56,7 +56,7 @@ class SearchCarePlan extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('activity_date', paramValue);
+    addParameterValue('activity-date', paramValue);
     return this;
   }
 
@@ -82,7 +82,7 @@ class SearchCarePlan extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('instantiates_uri', paramValue);
+    addParameterValue('instantiates-uri', paramValue);
     return this;
   }
 

@@ -48,7 +48,7 @@ class SearchAuditEvent extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('agent_name', paramValue);
+    addParameterValue('agent-name', paramValue);
     return this;
   }
 
@@ -62,7 +62,7 @@ class SearchAuditEvent extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('agent_role', paramValue);
+    addParameterValue('agent-role', paramValue);
     return this;
   }
 
@@ -103,7 +103,7 @@ class SearchAuditEvent extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('entity_name', paramValue);
+    addParameterValue('entity-name', paramValue);
     return this;
   }
 
@@ -117,7 +117,7 @@ class SearchAuditEvent extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('entity_role', paramValue);
+    addParameterValue('entity-role', paramValue);
     return this;
   }
 
@@ -131,7 +131,7 @@ class SearchAuditEvent extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('entity_type', paramValue);
+    addParameterValue('entity-type', paramValue);
     return this;
   }
 

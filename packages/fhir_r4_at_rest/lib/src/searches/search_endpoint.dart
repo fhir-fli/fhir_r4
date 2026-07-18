@@ -18,7 +18,7 @@ class SearchEndpoint extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('connection_type', paramValue);
+    addParameterValue('connection-type', paramValue);
     return this;
   }
 
@@ -61,7 +61,7 @@ class SearchEndpoint extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('payload_type', paramValue);
+    addParameterValue('payload-type', paramValue);
     return this;
   }
 

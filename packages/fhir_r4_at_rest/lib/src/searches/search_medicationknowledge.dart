@@ -32,7 +32,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('classification_type', paramValue);
+    addParameterValue('classification-type', paramValue);
     return this;
   }
 
@@ -74,7 +74,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('ingredient_code', paramValue);
+    addParameterValue('ingredient-code', paramValue);
     return this;
   }
 
@@ -88,7 +88,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('monitoring_program_name', paramValue);
+    addParameterValue('monitoring-program-name', paramValue);
     return this;
   }
 
@@ -102,7 +102,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('monitoring_program_type', paramValue);
+    addParameterValue('monitoring-program-type', paramValue);
     return this;
   }
 
@@ -116,7 +116,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('monograph_type', paramValue);
+    addParameterValue('monograph-type', paramValue);
     return this;
   }
 
@@ -130,7 +130,7 @@ class SearchMedicationKnowledge extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('source_cost', paramValue);
+    addParameterValue('source-cost', paramValue);
     return this;
   }
 

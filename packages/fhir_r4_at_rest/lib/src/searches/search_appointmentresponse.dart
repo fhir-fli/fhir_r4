@@ -32,7 +32,7 @@ class SearchAppointmentResponse extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('part_status', paramValue);
+    addParameterValue('part-status', paramValue);
     return this;
   }
 }

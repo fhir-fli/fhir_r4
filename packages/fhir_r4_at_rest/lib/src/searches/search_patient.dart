@@ -48,7 +48,7 @@ class SearchPatient extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_city', paramValue);
+    addParameterValue('address-city', paramValue);
     return this;
   }
 
@@ -63,7 +63,7 @@ class SearchPatient extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_country', paramValue);
+    addParameterValue('address-country', paramValue);
     return this;
   }
 
@@ -78,7 +78,7 @@ class SearchPatient extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_postalcode', paramValue);
+    addParameterValue('address-postalcode', paramValue);
     return this;
   }
 
@@ -93,7 +93,7 @@ class SearchPatient extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_state', paramValue);
+    addParameterValue('address-state', paramValue);
     return this;
   }
 
@@ -107,7 +107,7 @@ class SearchPatient extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_use', paramValue);
+    addParameterValue('address-use', paramValue);
     return this;
   }
 
@@ -131,7 +131,7 @@ class SearchPatient extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('death_date', paramValue);
+    addParameterValue('death-date', paramValue);
     return this;
   }
 

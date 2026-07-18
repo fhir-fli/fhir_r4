@@ -58,7 +58,7 @@ class SearchServiceRequest extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('body_site', paramValue);
+    addParameterValue('body-site', paramValue);
     return this;
   }
 
@@ -84,7 +84,7 @@ class SearchServiceRequest extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('instantiates_uri', paramValue);
+    addParameterValue('instantiates-uri', paramValue);
     return this;
   }
 
@@ -124,7 +124,7 @@ class SearchServiceRequest extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('performer_type', paramValue);
+    addParameterValue('performer-type', paramValue);
     return this;
   }
 

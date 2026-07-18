@@ -30,7 +30,7 @@ class SearchMedication extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('expiration_date', paramValue);
+    addParameterValue('expiration-date', paramValue);
     return this;
   }
 
@@ -72,7 +72,7 @@ class SearchMedication extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('ingredient_code', paramValue);
+    addParameterValue('ingredient-code', paramValue);
     return this;
   }
 
@@ -86,7 +86,7 @@ class SearchMedication extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('lot_number', paramValue);
+    addParameterValue('lot-number', paramValue);
     return this;
   }
 

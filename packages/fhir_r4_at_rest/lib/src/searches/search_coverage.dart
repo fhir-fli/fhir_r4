@@ -18,7 +18,7 @@ class SearchCoverage extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('class_type', paramValue);
+    addParameterValue('class-type', paramValue);
     return this;
   }
 
@@ -33,7 +33,7 @@ class SearchCoverage extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('class_value', paramValue);
+    addParameterValue('class-value', paramValue);
     return this;
   }
 

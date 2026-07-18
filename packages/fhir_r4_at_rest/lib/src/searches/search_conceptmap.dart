@@ -39,7 +39,7 @@ class SearchConceptMap extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -53,7 +53,7 @@ class SearchConceptMap extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -231,7 +231,7 @@ class SearchConceptMap extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('source_code', paramValue);
+    addParameterValue('source-code', paramValue);
     return this;
   }
 
@@ -243,7 +243,7 @@ class SearchConceptMap extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('source_system', paramValue);
+    addParameterValue('source-system', paramValue);
     return this;
   }
 
@@ -257,7 +257,7 @@ class SearchConceptMap extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('target_code', paramValue);
+    addParameterValue('target-code', paramValue);
     return this;
   }
 
@@ -269,7 +269,7 @@ class SearchConceptMap extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('target_system', paramValue);
+    addParameterValue('target-system', paramValue);
     return this;
   }
 }

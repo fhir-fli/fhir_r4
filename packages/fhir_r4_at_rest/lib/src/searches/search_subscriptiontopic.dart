@@ -28,7 +28,7 @@ class SearchSubscriptionTopic extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('derived_or_self', paramValue);
+    addParameterValue('derived-or-self', paramValue);
     return this;
   }
 
@@ -98,7 +98,7 @@ class SearchSubscriptionTopic extends SearchResource {
     }
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('trigger_description', paramValue);
+    addParameterValue('trigger-description', paramValue);
     return this;
   }
 

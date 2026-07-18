@@ -91,7 +91,7 @@ class SearchEncounter extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('location_period', paramValue);
+    addParameterValue('location-period', paramValue);
     return this;
   }
 
@@ -105,7 +105,7 @@ class SearchEncounter extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('participant_type', paramValue);
+    addParameterValue('participant-type', paramValue);
     return this;
   }
 
@@ -119,7 +119,7 @@ class SearchEncounter extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('reason_code', paramValue);
+    addParameterValue('reason-code', paramValue);
     return this;
   }
 
@@ -133,7 +133,7 @@ class SearchEncounter extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('special_arrangement', paramValue);
+    addParameterValue('special-arrangement', paramValue);
     return this;
   }
 

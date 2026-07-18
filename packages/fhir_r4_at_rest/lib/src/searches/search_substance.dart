@@ -46,7 +46,7 @@ class SearchSubstance extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('container_identifier', paramValue);
+    addParameterValue('container-identifier', paramValue);
     return this;
   }
 

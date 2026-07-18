@@ -71,7 +71,7 @@ class SearchClaimResponse extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('payment_date', paramValue);
+    addParameterValue('payment-date', paramValue);
     return this;
   }
 

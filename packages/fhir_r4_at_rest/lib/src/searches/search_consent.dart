@@ -112,7 +112,7 @@ class SearchConsent extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('security_label', paramValue);
+    addParameterValue('security-label', paramValue);
     return this;
   }
 

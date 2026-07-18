@@ -30,7 +30,7 @@ class SearchClinicalImpression extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('finding_code', paramValue);
+    addParameterValue('finding-code', paramValue);
     return this;
   }
 

@@ -1,4 +1,3 @@
-export 'searches.dart';
 export 'searches/search_account.dart';
 export 'searches/search_activitydefinition.dart';
 export 'searches/search_administrableproductdefinition.dart';

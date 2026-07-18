@@ -30,7 +30,7 @@ class SearchChargeItem extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('entered_date', paramValue);
+    addParameterValue('entered-date', paramValue);
     return this;
   }
 
@@ -51,7 +51,7 @@ class SearchChargeItem extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('factor_override', paramValue);
+    addParameterValue('factor-override', paramValue);
     return this;
   }
 
@@ -91,7 +91,7 @@ class SearchChargeItem extends SearchResource {
     final paramValue = system != null
         ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
         : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('performer_function', paramValue);
+    addParameterValue('performer-function', paramValue);
     return this;
   }
 
@@ -112,7 +112,7 @@ class SearchChargeItem extends SearchResource {
             '${unit?.toString() ?? ''}'
         : '$value|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('price_override', paramValue);
+    addParameterValue('price-override', paramValue);
     return this;
   }
 
