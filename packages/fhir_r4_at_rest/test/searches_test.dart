@@ -93,30 +93,10 @@ void main() {
       expect(query, contains('_source='));
     });
 
-    test('content() throws on invalid modifier for string type', () {
-      expect(
-        () => search.content('test'.toFhirString, modifier: SearchModifier.gt),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('content() allows eq modifier', () {
-      search.content('test'.toFhirString, modifier: SearchModifier.eq);
-      final query = search.buildQuery();
-      expect(query, contains('_content=eqtest'));
-    });
-
-    test('content() allows ne modifier', () {
-      search.content('test'.toFhirString, modifier: SearchModifier.ne);
-      final query = search.buildQuery();
-      expect(query, contains('_content=netest'));
-    });
-
-    test('filter() as token with system and modifier', () {
+    test('filter() as token with system', () {
       search.filter(
         'active'.toFhirString,
         system: FhirUri('http://example.org'),
-        modifier: SearchModifier.eq,
       );
       final query = search.buildQuery();
       expect(query, contains('_filter='));
@@ -191,67 +171,6 @@ void main() {
       search.phonetic('Smith'.toFhirString);
       final query = search.buildQuery();
       expect(query, contains('phonetic=Smith'));
-    });
-
-    test('string param with eq modifier', () {
-      search.family('Smith'.toFhirString, modifier: SearchModifier.eq);
-      final query = search.buildQuery();
-      expect(query, contains('family=eqSmith'));
-    });
-
-    test('string param with ne modifier', () {
-      search.family('Smith'.toFhirString, modifier: SearchModifier.ne);
-      final query = search.buildQuery();
-      expect(query, contains('family=neSmith'));
-    });
-
-    test('string param throws on gt modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.gt),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on lt modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.lt),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on ge modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.ge),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on le modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.le),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on sa modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.sa),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on eb modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.eb),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
-    test('string param throws on ap modifier', () {
-      expect(
-        () => search.family('Smith'.toFhirString, modifier: SearchModifier.ap),
-        throwsA(isA<ArgumentError>()),
-      );
     });
   });
 
@@ -334,20 +253,16 @@ void main() {
       expect(query, contains('deceased=true'));
     });
 
-    test('token with modifier', () {
-      search.gender('male'.toFhirString, modifier: SearchModifier.ne);
-      final query = search.buildQuery();
-      expect(query, contains('gender=nemale'));
-    });
-
-    test('token with system and modifier', () {
+    test('token with system', () {
       search.gender(
         'male'.toFhirString,
         system: FhirUri('http://hl7.org/fhir/administrative-gender'),
-        modifier: SearchModifier.eq,
       );
       final query = search.buildQuery();
-      expect(query, contains('gender=eq'));
+      expect(
+        query,
+        contains('gender=http://hl7.org/fhir/administrative-gender|male'),
+      );
     });
   });
 
@@ -468,44 +383,28 @@ void main() {
       expect(query, contains('value-quantity=ap150'));
     });
 
-    test('valueQuantity() throws on eq modifier', () {
-      expect(
-        () => search.valueQuantity(
-          FhirDecimal(100),
-          modifier: SearchModifier.eq,
-        ),
-        throwsA(isA<ArgumentError>()),
-      );
+    test('valueQuantity() with eq modifier', () {
+      search.valueQuantity(FhirDecimal(100), modifier: SearchModifier.eq);
+      final query = search.buildQuery();
+      expect(query, contains('value-quantity=eq100'));
     });
 
-    test('valueQuantity() throws on ne modifier', () {
-      expect(
-        () => search.valueQuantity(
-          FhirDecimal(100),
-          modifier: SearchModifier.ne,
-        ),
-        throwsA(isA<ArgumentError>()),
-      );
+    test('valueQuantity() with ne modifier', () {
+      search.valueQuantity(FhirDecimal(100), modifier: SearchModifier.ne);
+      final query = search.buildQuery();
+      expect(query, contains('value-quantity=ne100'));
     });
 
-    test('valueQuantity() throws on sa modifier', () {
-      expect(
-        () => search.valueQuantity(
-          FhirDecimal(100),
-          modifier: SearchModifier.sa,
-        ),
-        throwsA(isA<ArgumentError>()),
-      );
+    test('valueQuantity() with sa modifier', () {
+      search.valueQuantity(FhirDecimal(100), modifier: SearchModifier.sa);
+      final query = search.buildQuery();
+      expect(query, contains('value-quantity=sa100'));
     });
 
-    test('valueQuantity() throws on eb modifier', () {
-      expect(
-        () => search.valueQuantity(
-          FhirDecimal(100),
-          modifier: SearchModifier.eb,
-        ),
-        throwsA(isA<ArgumentError>()),
-      );
+    test('valueQuantity() with eb modifier', () {
+      search.valueQuantity(FhirDecimal(100), modifier: SearchModifier.eb);
+      final query = search.buildQuery();
+      expect(query, contains('value-quantity=eb100'));
     });
 
     test('comboValueQuantity() with modifier', () {

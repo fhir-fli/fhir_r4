@@ -872,10 +872,9 @@ void main() {
       expect(request.buildBody(), isNull);
     });
 
-    test('search patient by address with modifier', () {
+    test('search patient by address', () {
       final searchParams = SearchPatient().address(
         FhirString('123 Main St'),
-        modifier: SearchModifier.eq,
       );
       final request = FhirSearchRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),

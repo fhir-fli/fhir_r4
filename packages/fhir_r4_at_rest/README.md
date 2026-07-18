@@ -152,7 +152,7 @@ final search = SearchPatient()
   .active(FhirString('true'))
   .gender(FhirString('male'))
   .birthdate(
-    FhirDateTime('1970-01-01'),
+    FhirDateTime.fromString('1970-01-01'),
     modifier: SearchModifier.gt,
   );
 

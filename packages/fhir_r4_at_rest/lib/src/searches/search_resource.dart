@@ -10,16 +10,8 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 class SearchResource extends RestfulParameters {
   /// a string search for [content] in the resource
   /// [Resource]
-  SearchResource content(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_content', paramValue);
+  SearchResource content(FhirString value) {
+    addParameterValue('_content', value.toString());
     return this;
   }
 
@@ -28,27 +20,16 @@ class SearchResource extends RestfulParameters {
   SearchResource filter(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_filter', paramValue);
     return this;
   }
 
   /// a string search for [has] in the resource
   /// [Resource]
-  SearchResource has(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_has', paramValue);
+  SearchResource has(FhirString value) {
+    addParameterValue('_has', value.toString());
     return this;
   }
 
@@ -57,11 +38,8 @@ class SearchResource extends RestfulParameters {
   SearchResource id(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_id', paramValue);
     return this;
   }
@@ -80,28 +58,15 @@ class SearchResource extends RestfulParameters {
 
   /// a string search for [list] in the resource
   /// [Resource]
-  SearchResource list(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_list', paramValue);
+  SearchResource list(FhirString value) {
+    addParameterValue('_list', value.toString());
     return this;
   }
 
   /// a uri search for [profile] in the resource
   /// [Resource]
-  SearchResource profile(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_profile', paramValue);
+  SearchResource profile(FhirUri value) {
+    addParameterValue('_profile', value.toString());
     return this;
   }
 
@@ -110,11 +75,8 @@ class SearchResource extends RestfulParameters {
   SearchResource query(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_query', paramValue);
     return this;
   }
@@ -124,24 +86,16 @@ class SearchResource extends RestfulParameters {
   SearchResource security(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_security', paramValue);
     return this;
   }
 
   /// a uri search for [resourceSource] in the resource
   /// [Resource]
-  SearchResource resourceSource(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_source', paramValue);
+  SearchResource resourceSource(FhirUri value) {
+    addParameterValue('_source', value.toString());
     return this;
   }
 
@@ -150,27 +104,16 @@ class SearchResource extends RestfulParameters {
   SearchResource tag(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_tag', paramValue);
     return this;
   }
 
   /// a string search for [text] in the resource
   /// [Resource]
-  SearchResource text(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('_text', paramValue);
+  SearchResource text(FhirString value) {
+    addParameterValue('_text', value.toString());
     return this;
   }
 
@@ -179,11 +122,8 @@ class SearchResource extends RestfulParameters {
   SearchResource resourceType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('_type', paramValue);
     return this;
   }

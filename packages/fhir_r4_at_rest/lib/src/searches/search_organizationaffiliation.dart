@@ -13,11 +13,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation active(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('active', paramValue);
     return this;
   }
@@ -39,11 +36,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation email(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('email', paramValue);
     return this;
   }
@@ -53,11 +47,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -67,11 +58,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation phone(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('phone', paramValue);
     return this;
   }
@@ -81,11 +69,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation role(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('role', paramValue);
     return this;
   }
@@ -95,11 +80,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation specialty(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('specialty', paramValue);
     return this;
   }
@@ -109,11 +91,8 @@ class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation telecom(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('telecom', paramValue);
     return this;
   }

@@ -13,11 +13,8 @@ class SearchDocumentManifest extends SearchResource {
   SearchDocumentManifest identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchDocumentManifest extends SearchResource {
   SearchDocumentManifest type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }
@@ -50,16 +44,8 @@ class SearchDocumentManifest extends SearchResource {
 
   /// a string search for [description] in the resource
   /// [DocumentManifest]
-  SearchDocumentManifest description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchDocumentManifest description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -68,24 +54,16 @@ class SearchDocumentManifest extends SearchResource {
   SearchDocumentManifest relatedId(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('related-id', paramValue);
     return this;
   }
 
   /// a uri search for [source] in the resource
   /// [DocumentManifest]
-  SearchDocumentManifest source(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('source', paramValue);
+  SearchDocumentManifest source(FhirUri value) {
+    addParameterValue('source', value.toString());
     return this;
   }
 
@@ -94,11 +72,8 @@ class SearchDocumentManifest extends SearchResource {
   SearchDocumentManifest status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }

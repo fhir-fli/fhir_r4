@@ -22,16 +22,8 @@ class SearchPaymentReconciliation extends SearchResource {
 
   /// a string search for [disposition] in the resource
   /// [PaymentReconciliation]
-  SearchPaymentReconciliation disposition(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('disposition', paramValue);
+  SearchPaymentReconciliation disposition(FhirString value) {
+    addParameterValue('disposition', value.toString());
     return this;
   }
 
@@ -40,11 +32,8 @@ class SearchPaymentReconciliation extends SearchResource {
   SearchPaymentReconciliation identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -54,11 +43,8 @@ class SearchPaymentReconciliation extends SearchResource {
   SearchPaymentReconciliation outcome(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('outcome', paramValue);
     return this;
   }
@@ -68,11 +54,8 @@ class SearchPaymentReconciliation extends SearchResource {
   SearchPaymentReconciliation status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }

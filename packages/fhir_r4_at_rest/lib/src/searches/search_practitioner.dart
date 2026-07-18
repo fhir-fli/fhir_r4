@@ -10,76 +10,36 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 class SearchPractitioner extends SearchResource {
   /// a string search for [address] in the resource
   /// [Practitioner]
-  SearchPractitioner address(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address', paramValue);
+  SearchPractitioner address(FhirString value) {
+    addParameterValue('address', value.toString());
     return this;
   }
 
   /// a string search for [addressCity] in the resource
   /// [Practitioner]
-  SearchPractitioner addressCity(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-city', paramValue);
+  SearchPractitioner addressCity(FhirString value) {
+    addParameterValue('address-city', value.toString());
     return this;
   }
 
   /// a string search for [addressCountry] in the resource
   /// [Practitioner]
-  SearchPractitioner addressCountry(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-country', paramValue);
+  SearchPractitioner addressCountry(FhirString value) {
+    addParameterValue('address-country', value.toString());
     return this;
   }
 
   /// a string search for [addressPostalcode] in the resource
   /// [Practitioner]
-  SearchPractitioner addressPostalcode(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-postalcode', paramValue);
+  SearchPractitioner addressPostalcode(FhirString value) {
+    addParameterValue('address-postalcode', value.toString());
     return this;
   }
 
   /// a string search for [addressState] in the resource
   /// [Practitioner]
-  SearchPractitioner addressState(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-state', paramValue);
+  SearchPractitioner addressState(FhirString value) {
+    addParameterValue('address-state', value.toString());
     return this;
   }
 
@@ -88,11 +48,8 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner addressUse(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('address-use', paramValue);
     return this;
   }
@@ -102,27 +59,16 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner email(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('email', paramValue);
     return this;
   }
 
   /// a string search for [family] in the resource
   /// [Practitioner]
-  SearchPractitioner family(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('family', paramValue);
+  SearchPractitioner family(FhirString value) {
+    addParameterValue('family', value.toString());
     return this;
   }
 
@@ -131,27 +77,16 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner gender(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('gender', paramValue);
     return this;
   }
 
   /// a string search for [given] in the resource
   /// [Practitioner]
-  SearchPractitioner given(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('given', paramValue);
+  SearchPractitioner given(FhirString value) {
+    addParameterValue('given', value.toString());
     return this;
   }
 
@@ -160,27 +95,16 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner phone(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('phone', paramValue);
     return this;
   }
 
   /// a string search for [phonetic] in the resource
   /// [Practitioner]
-  SearchPractitioner phonetic(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('phonetic', paramValue);
+  SearchPractitioner phonetic(FhirString value) {
+    addParameterValue('phonetic', value.toString());
     return this;
   }
 
@@ -189,11 +113,8 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner telecom(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('telecom', paramValue);
     return this;
   }
@@ -203,11 +124,8 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner active(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('active', paramValue);
     return this;
   }
@@ -217,11 +135,8 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner communication(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('communication', paramValue);
     return this;
   }
@@ -231,27 +146,16 @@ class SearchPractitioner extends SearchResource {
   SearchPractitioner identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [Practitioner]
-  SearchPractitioner name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchPractitioner name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 }

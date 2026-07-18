@@ -13,11 +13,8 @@ class SearchProvenance extends SearchResource {
   SearchProvenance agentRole(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('agent-role', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchProvenance extends SearchResource {
   SearchProvenance agentType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('agent-type', paramValue);
     return this;
   }
@@ -53,11 +47,8 @@ class SearchProvenance extends SearchResource {
   SearchProvenance signatureType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('signature-type', paramValue);
     return this;
   }

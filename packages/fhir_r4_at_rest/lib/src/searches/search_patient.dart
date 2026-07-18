@@ -13,87 +13,44 @@ class SearchPatient extends SearchResource {
   SearchPatient active(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('active', paramValue);
     return this;
   }
 
   /// a string search for [address] in the resource
   /// [Patient]
-  SearchPatient address(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address', paramValue);
+  SearchPatient address(FhirString value) {
+    addParameterValue('address', value.toString());
     return this;
   }
 
   /// a string search for [addressCity] in the resource
   /// [Patient]
-  SearchPatient addressCity(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-city', paramValue);
+  SearchPatient addressCity(FhirString value) {
+    addParameterValue('address-city', value.toString());
     return this;
   }
 
   /// a string search for [addressCountry] in the resource
   /// [Patient]
-  SearchPatient addressCountry(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-country', paramValue);
+  SearchPatient addressCountry(FhirString value) {
+    addParameterValue('address-country', value.toString());
     return this;
   }
 
   /// a string search for [addressPostalcode] in the resource
   /// [Patient]
-  SearchPatient addressPostalcode(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-postalcode', paramValue);
+  SearchPatient addressPostalcode(FhirString value) {
+    addParameterValue('address-postalcode', value.toString());
     return this;
   }
 
   /// a string search for [addressState] in the resource
   /// [Patient]
-  SearchPatient addressState(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address-state', paramValue);
+  SearchPatient addressState(FhirString value) {
+    addParameterValue('address-state', value.toString());
     return this;
   }
 
@@ -102,11 +59,8 @@ class SearchPatient extends SearchResource {
   SearchPatient addressUse(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('address-use', paramValue);
     return this;
   }
@@ -140,11 +94,8 @@ class SearchPatient extends SearchResource {
   SearchPatient deceased(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('deceased', paramValue);
     return this;
   }
@@ -154,27 +105,16 @@ class SearchPatient extends SearchResource {
   SearchPatient email(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('email', paramValue);
     return this;
   }
 
   /// a string search for [family] in the resource
   /// [Patient]
-  SearchPatient family(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('family', paramValue);
+  SearchPatient family(FhirString value) {
+    addParameterValue('family', value.toString());
     return this;
   }
 
@@ -183,27 +123,16 @@ class SearchPatient extends SearchResource {
   SearchPatient gender(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('gender', paramValue);
     return this;
   }
 
   /// a string search for [given] in the resource
   /// [Patient]
-  SearchPatient given(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('given', paramValue);
+  SearchPatient given(FhirString value) {
+    addParameterValue('given', value.toString());
     return this;
   }
 
@@ -212,11 +141,8 @@ class SearchPatient extends SearchResource {
   SearchPatient identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -226,27 +152,16 @@ class SearchPatient extends SearchResource {
   SearchPatient language(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('language', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [Patient]
-  SearchPatient name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchPatient name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
@@ -255,27 +170,16 @@ class SearchPatient extends SearchResource {
   SearchPatient phone(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('phone', paramValue);
     return this;
   }
 
   /// a string search for [phonetic] in the resource
   /// [Patient]
-  SearchPatient phonetic(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('phonetic', paramValue);
+  SearchPatient phonetic(FhirString value) {
+    addParameterValue('phonetic', value.toString());
     return this;
   }
 
@@ -284,11 +188,8 @@ class SearchPatient extends SearchResource {
   SearchPatient telecom(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('telecom', paramValue);
     return this;
   }
