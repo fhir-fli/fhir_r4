@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:archive/archive.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_bulk/src/file_support_stub.dart'
+    if (dart.library.io) 'package:fhir_r4_bulk/src/file_support_io.dart';
 import 'package:mime/mime.dart';
-import 'package:universal_io/io.dart';
 
 /// Class handling transformations between NDJSON <-> FHIR Resources,
 /// and handling compressed NDJSON files.
@@ -51,9 +52,11 @@ abstract class FhirBulk {
   /// resources.
   ///
   /// Throws [FormatException] if the file contains invalid NDJSON.
-  /// Throws [FileSystemException] if the file cannot be read.
+  /// Throws an error if the file cannot be read, and [UnsupportedError] on
+  /// platforms without file access (web, WASM) - load the content yourself
+  /// and use [fromNdJson] there instead.
   static Future<List<Resource>> fromFile(String path) async {
-    final file = await File(path).readAsString();
+    final file = await readFileAsString(path);
     return fromNdJson(file);
   }
 
@@ -93,7 +96,7 @@ abstract class FhirBulk {
 
   /// Given a file that is presumably .zip / .tar.gz / .gz, uncompress + decode NDJSON.
   static Future<List<Resource>> fromCompressedFile(String path) async {
-    final data = await File(path).readAsBytes();
+    final data = await readFileAsBytes(path);
     final mimeType = lookupMimeType(path) ?? '';
 
     if (mimeType == 'application/zip' ||
