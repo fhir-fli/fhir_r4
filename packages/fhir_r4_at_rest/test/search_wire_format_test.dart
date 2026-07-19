@@ -164,6 +164,36 @@ void main() {
     });
   });
 
+  group('wire format — _include (issue fhir_r4#33):', () {
+    test('repeated _include values are all kept', () {
+      final p = RestfulParameters()
+        ..add('_include', 'PractitionerRole:practitioner')
+        ..add('_include', 'PractitionerRole:organization');
+      expect(
+        p.buildQuery(),
+        equals(
+          '_include=PractitionerRole:practitioner'
+          '&_include=PractitionerRole:organization',
+        ),
+      );
+    });
+
+    test('comma-separated values pass through verbatim', () {
+      final p = RestfulParameters()
+        ..add(
+          '_include',
+          'PractitionerRole:practitioner,PractitionerRole:organization',
+        );
+      expect(
+        p.buildQuery(),
+        equals(
+          '_include=PractitionerRole:practitioner,'
+          'PractitionerRole:organization',
+        ),
+      );
+    });
+  });
+
   group('wire format — combinations:', () {
     test('parameters join with & and repeats are preserved', () {
       expect(
