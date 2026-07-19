@@ -42,6 +42,30 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [basedOn] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport basedOn(FhirString value) {
+    addParameterValue('based-on', value.toString());
+    return this;
+  }
+
   /// a token search for [category] in the resource
   /// [DiagnosticReport]
   SearchDiagnosticReport category(
@@ -76,6 +100,46 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
+  /// a reference search for [media] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport media(FhirString value) {
+    addParameterValue('media', value.toString());
+    return this;
+  }
+
+  /// a reference search for [performer] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport performer(FhirString value) {
+    addParameterValue('performer', value.toString());
+    return this;
+  }
+
+  /// a reference search for [result] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport result(FhirString value) {
+    addParameterValue('result', value.toString());
+    return this;
+  }
+
+  /// a reference search for [resultsInterpreter] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport resultsInterpreter(FhirString value) {
+    addParameterValue('results-interpreter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [specimen] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport specimen(FhirString value) {
+    addParameterValue('specimen', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [DiagnosticReport]
   SearchDiagnosticReport status(
@@ -84,6 +148,14 @@ class SearchDiagnosticReport extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [DiagnosticReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDiagnosticReport subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

@@ -128,10 +128,50 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
+  /// a reference search for [link] in the resource
+  /// [Person]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPerson link(FhirString value) {
+    addParameterValue('link', value.toString());
+    return this;
+  }
+
   /// a string search for [name] in the resource
   /// [Person]
   SearchPerson name(FhirString value) {
     addParameterValue('name', value.toString());
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [Person]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPerson organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Person]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPerson patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [practitioner] in the resource
+  /// [Person]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPerson practitioner(FhirString value) {
+    addParameterValue('practitioner', value.toString());
+    return this;
+  }
+
+  /// a reference search for [relatedperson] in the resource
+  /// [Person]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPerson relatedperson(FhirString value) {
+    addParameterValue('relatedperson', value.toString());
     return this;
   }
 }

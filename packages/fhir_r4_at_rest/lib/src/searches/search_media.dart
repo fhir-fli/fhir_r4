@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [Media] resource.
 class SearchMedia extends SearchResource {
+  /// a reference search for [basedOn] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia basedOn(FhirString value) {
+    addParameterValue('based-on', value.toString());
+    return this;
+  }
+
   /// a date search for [created] in the resource
   /// [Media]
   SearchMedia created(
@@ -17,6 +25,22 @@ class SearchMedia extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('created', paramValue);
+    return this;
+  }
+
+  /// a reference search for [device] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia device(FhirString value) {
+    addParameterValue('device', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
     return this;
   }
 
@@ -42,6 +66,22 @@ class SearchMedia extends SearchResource {
     return this;
   }
 
+  /// a reference search for [operator] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia operator(FhirString value) {
+    addParameterValue('operator', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [site] in the resource
   /// [Media]
   SearchMedia site(
@@ -61,6 +101,14 @@ class SearchMedia extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Media]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedia subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

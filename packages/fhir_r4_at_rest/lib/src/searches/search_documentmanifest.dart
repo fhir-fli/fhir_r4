@@ -19,6 +19,14 @@ class SearchDocumentManifest extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [type] in the resource
   /// [DocumentManifest]
   SearchDocumentManifest type(
@@ -27,6 +35,14 @@ class SearchDocumentManifest extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
+    return this;
+  }
+
+  /// a reference search for [author] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest author(FhirString value) {
+    addParameterValue('author', value.toString());
     return this;
   }
 
@@ -49,6 +65,22 @@ class SearchDocumentManifest extends SearchResource {
     return this;
   }
 
+  /// a reference search for [item] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest item(FhirString value) {
+    addParameterValue('item', value.toString());
+    return this;
+  }
+
+  /// a reference search for [recipient] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest recipient(FhirString value) {
+    addParameterValue('recipient', value.toString());
+    return this;
+  }
+
   /// a token search for [relatedId] in the resource
   /// [DocumentManifest]
   SearchDocumentManifest relatedId(
@@ -57,6 +89,14 @@ class SearchDocumentManifest extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('related-id', paramValue);
+    return this;
+  }
+
+  /// a reference search for [relatedRef] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest relatedRef(FhirString value) {
+    addParameterValue('related-ref', value.toString());
     return this;
   }
 
@@ -75,6 +115,14 @@ class SearchDocumentManifest extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [DocumentManifest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentManifest subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

@@ -26,6 +26,14 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
+  /// a reference search for [agent] in the resource
+  /// [AuditEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAuditEvent agent(FhirString value) {
+    addParameterValue('agent', value.toString());
+    return this;
+  }
+
   /// a string search for [agentName] in the resource
   /// [AuditEvent]
   SearchAuditEvent agentName(FhirString value) {
@@ -64,6 +72,14 @@ class SearchAuditEvent extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('date', paramValue);
+    return this;
+  }
+
+  /// a reference search for [entity] in the resource
+  /// [AuditEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAuditEvent entity(FhirString value) {
+    addParameterValue('entity', value.toString());
     return this;
   }
 
@@ -107,6 +123,14 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [AuditEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAuditEvent patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a uri search for [policy] in the resource
   /// [AuditEvent]
   SearchAuditEvent policy(FhirUri value) {
@@ -122,6 +146,14 @@ class SearchAuditEvent extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('site', paramValue);
+    return this;
+  }
+
+  /// a reference search for [source] in the resource
+  /// [AuditEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAuditEvent source(FhirString value) {
+    addParameterValue('source', value.toString());
     return this;
   }
 

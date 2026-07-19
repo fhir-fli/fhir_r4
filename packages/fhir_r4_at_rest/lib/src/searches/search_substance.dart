@@ -91,4 +91,12 @@ class SearchSubstance extends SearchResource {
     addParameterValue('status', paramValue);
     return this;
   }
+
+  /// a reference search for [substanceReference] in the resource
+  /// [Substance]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSubstance substanceReference(FhirString value) {
+    addParameterValue('substance-reference', value.toString());
+    return this;
+  }
 }

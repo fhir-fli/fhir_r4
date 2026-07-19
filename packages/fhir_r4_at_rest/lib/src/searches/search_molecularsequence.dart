@@ -30,6 +30,14 @@ class SearchMolecularSequence extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [MolecularSequence]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMolecularSequence patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [referenceseqid] in the resource
   /// [MolecularSequence]
   SearchMolecularSequence referenceseqid(

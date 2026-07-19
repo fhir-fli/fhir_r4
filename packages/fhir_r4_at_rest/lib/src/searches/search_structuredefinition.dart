@@ -149,6 +149,14 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [base] in the resource
+  /// [StructureDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchStructureDefinition base(FhirString value) {
+    addParameterValue('base', value.toString());
+    return this;
+  }
+
   /// a token search for [basePath] in the resource
   /// [StructureDefinition]
   SearchStructureDefinition basePath(
@@ -230,6 +238,14 @@ class SearchStructureDefinition extends SearchResource {
   /// [StructureDefinition]
   SearchStructureDefinition type(FhirUri value) {
     addParameterValue('type', value.toString());
+    return this;
+  }
+
+  /// a reference search for [valueset] in the resource
+  /// [StructureDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchStructureDefinition valueset(FhirString value) {
+    addParameterValue('valueset', value.toString());
     return this;
   }
 }

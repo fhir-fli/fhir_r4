@@ -31,6 +31,22 @@ class SearchImmunizationRecommendation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [information] in the resource
+  /// [ImmunizationRecommendation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImmunizationRecommendation information(FhirString value) {
+    addParameterValue('information', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [ImmunizationRecommendation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImmunizationRecommendation patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation status(
@@ -39,6 +55,14 @@ class SearchImmunizationRecommendation extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [support] in the resource
+  /// [ImmunizationRecommendation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImmunizationRecommendation support(FhirString value) {
+    addParameterValue('support', value.toString());
     return this;
   }
 

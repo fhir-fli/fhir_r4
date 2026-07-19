@@ -19,6 +19,14 @@ class SearchGoal extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [Goal]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGoal patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [achievementStatus] in the resource
   /// [Goal]
   SearchGoal achievementStatus(
@@ -61,6 +69,14 @@ class SearchGoal extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('start-date', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Goal]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGoal subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

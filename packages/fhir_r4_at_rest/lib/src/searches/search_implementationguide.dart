@@ -127,6 +127,14 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
+  /// a reference search for [dependsOn] in the resource
+  /// [ImplementationGuide]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImplementationGuide dependsOn(FhirString value) {
+    addParameterValue('depends-on', value.toString());
+    return this;
+  }
+
   /// a token search for [experimental] in the resource
   /// [ImplementationGuide]
   SearchImplementationGuide experimental(
@@ -135,6 +143,22 @@ class SearchImplementationGuide extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('experimental', paramValue);
+    return this;
+  }
+
+  /// a reference search for [global] in the resource
+  /// [ImplementationGuide]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImplementationGuide global(FhirString value) {
+    addParameterValue('global', value.toString());
+    return this;
+  }
+
+  /// a reference search for [resource] in the resource
+  /// [ImplementationGuide]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImplementationGuide resource(FhirString value) {
+    addParameterValue('resource', value.toString());
     return this;
   }
 }

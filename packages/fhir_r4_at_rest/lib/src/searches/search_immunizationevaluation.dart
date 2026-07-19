@@ -42,6 +42,22 @@ class SearchImmunizationEvaluation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [immunizationEvent] in the resource
+  /// [ImmunizationEvaluation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImmunizationEvaluation immunizationEvent(FhirString value) {
+    addParameterValue('immunization-event', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [ImmunizationEvaluation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchImmunizationEvaluation patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation status(

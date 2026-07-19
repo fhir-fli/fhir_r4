@@ -37,6 +37,14 @@ class SearchEndpoint extends SearchResource {
     return this;
   }
 
+  /// a reference search for [organization] in the resource
+  /// [Endpoint]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEndpoint organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
   /// a token search for [payloadType] in the resource
   /// [Endpoint]
   SearchEndpoint payloadType(

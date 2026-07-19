@@ -49,6 +49,30 @@ class SearchPaymentReconciliation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [paymentIssuer] in the resource
+  /// [PaymentReconciliation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPaymentReconciliation paymentIssuer(FhirString value) {
+    addParameterValue('payment-issuer', value.toString());
+    return this;
+  }
+
+  /// a reference search for [request] in the resource
+  /// [PaymentReconciliation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPaymentReconciliation request(FhirString value) {
+    addParameterValue('request', value.toString());
+    return this;
+  }
+
+  /// a reference search for [requestor] in the resource
+  /// [PaymentReconciliation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPaymentReconciliation requestor(FhirString value) {
+    addParameterValue('requestor', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [PaymentReconciliation]
   SearchPaymentReconciliation status(

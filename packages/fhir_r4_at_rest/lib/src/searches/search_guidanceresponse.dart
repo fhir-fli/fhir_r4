@@ -19,6 +19,14 @@ class SearchGuidanceResponse extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [GuidanceResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGuidanceResponse patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [request] in the resource
   /// [GuidanceResponse]
   SearchGuidanceResponse request(
@@ -27,6 +35,14 @@ class SearchGuidanceResponse extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('request', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [GuidanceResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGuidanceResponse subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

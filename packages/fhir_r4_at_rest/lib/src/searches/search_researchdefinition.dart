@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [ResearchDefinition] resource.
 class SearchResearchDefinition extends SearchResource {
+  /// a reference search for [composedOf] in the resource
+  /// [ResearchDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchDefinition composedOf(FhirString value) {
+    addParameterValue('composed-of', value.toString());
+    return this;
+  }
+
   /// a token search for [context] in the resource
   /// [ResearchDefinition]
   SearchResearchDefinition context(
@@ -59,6 +67,22 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [dependsOn] in the resource
+  /// [ResearchDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchDefinition dependsOn(FhirString value) {
+    addParameterValue('depends-on', value.toString());
+    return this;
+  }
+
+  /// a reference search for [derivedFrom] in the resource
+  /// [ResearchDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchDefinition derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
   /// a string search for [description] in the resource
   /// [ResearchDefinition]
   SearchResearchDefinition description(FhirString value) {
@@ -107,6 +131,14 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [predecessor] in the resource
+  /// [ResearchDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchDefinition predecessor(FhirString value) {
+    addParameterValue('predecessor', value.toString());
+    return this;
+  }
+
   /// a string search for [publisher] in the resource
   /// [ResearchDefinition]
   SearchResearchDefinition publisher(FhirString value) {
@@ -122,6 +154,14 @@ class SearchResearchDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [successor] in the resource
+  /// [ResearchDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchDefinition successor(FhirString value) {
+    addParameterValue('successor', value.toString());
     return this;
   }
 

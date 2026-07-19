@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [ResearchElementDefinition] resource.
 class SearchResearchElementDefinition extends SearchResource {
+  /// a reference search for [composedOf] in the resource
+  /// [ResearchElementDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchElementDefinition composedOf(FhirString value) {
+    addParameterValue('composed-of', value.toString());
+    return this;
+  }
+
   /// a token search for [context] in the resource
   /// [ResearchElementDefinition]
   SearchResearchElementDefinition context(
@@ -59,6 +67,22 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [dependsOn] in the resource
+  /// [ResearchElementDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchElementDefinition dependsOn(FhirString value) {
+    addParameterValue('depends-on', value.toString());
+    return this;
+  }
+
+  /// a reference search for [derivedFrom] in the resource
+  /// [ResearchElementDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchElementDefinition derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
   /// a string search for [description] in the resource
   /// [ResearchElementDefinition]
   SearchResearchElementDefinition description(FhirString value) {
@@ -107,6 +131,14 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [predecessor] in the resource
+  /// [ResearchElementDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchElementDefinition predecessor(FhirString value) {
+    addParameterValue('predecessor', value.toString());
+    return this;
+  }
+
   /// a string search for [publisher] in the resource
   /// [ResearchElementDefinition]
   SearchResearchElementDefinition publisher(FhirString value) {
@@ -122,6 +154,14 @@ class SearchResearchElementDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [successor] in the resource
+  /// [ResearchElementDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchElementDefinition successor(FhirString value) {
+    addParameterValue('successor', value.toString());
     return this;
   }
 

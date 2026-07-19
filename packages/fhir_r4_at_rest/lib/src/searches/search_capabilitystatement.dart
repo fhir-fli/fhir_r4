@@ -88,6 +88,14 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
+  /// a reference search for [guide] in the resource
+  /// [CapabilityStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCapabilityStatement guide(FhirString value) {
+    addParameterValue('guide', value.toString());
+    return this;
+  }
+
   /// a token search for [jurisdiction] in the resource
   /// [CapabilityStatement]
   SearchCapabilityStatement jurisdiction(
@@ -135,6 +143,14 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
+  /// a reference search for [resourceProfile] in the resource
+  /// [CapabilityStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCapabilityStatement resourceProfile(FhirString value) {
+    addParameterValue('resource-profile', value.toString());
+    return this;
+  }
+
   /// a token search for [securityService] in the resource
   /// [CapabilityStatement]
   SearchCapabilityStatement securityService(
@@ -161,6 +177,14 @@ class SearchCapabilityStatement extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [supportedProfile] in the resource
+  /// [CapabilityStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCapabilityStatement supportedProfile(FhirString value) {
+    addParameterValue('supported-profile', value.toString());
     return this;
   }
 

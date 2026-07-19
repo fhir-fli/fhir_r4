@@ -132,6 +132,27 @@ void main() {
     });
   });
 
+  group('wire format — reference:', () {
+    test('id, Type/id, and URL forms pass through verbatim', () {
+      expect(
+        SearchObservation().subject('Patient/123'.toFhirString).buildQuery(),
+        equals('subject=Patient/123'),
+      );
+      expect(
+        SearchObservation().subject('123'.toFhirString).buildQuery(),
+        equals('subject=123'),
+      );
+      expect(
+        SearchPatient()
+            .generalPractitioner(
+              'https://example.org/fhir/Practitioner/9'.toFhirString,
+            )
+            .buildQuery(),
+        equals('general-practitioner=https://example.org/fhir/Practitioner/9'),
+      );
+    });
+  });
+
   group('wire format — uri:', () {
     test('plain uri value', () {
       expect(

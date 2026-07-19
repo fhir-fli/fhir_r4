@@ -19,6 +19,22 @@ class SearchDetectedIssue extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [author] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue author(FhirString value) {
+    addParameterValue('author', value.toString());
+    return this;
+  }
+
   /// a token search for [code] in the resource
   /// [DetectedIssue]
   SearchDetectedIssue code(
@@ -39,6 +55,14 @@ class SearchDetectedIssue extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('identified', paramValue);
+    return this;
+  }
+
+  /// a reference search for [implicated] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue implicated(FhirString value) {
+    addParameterValue('implicated', value.toString());
     return this;
   }
 }

@@ -63,6 +63,22 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
+  /// a reference search for [managingEntity] in the resource
+  /// [Group]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGroup managingEntity(FhirString value) {
+    addParameterValue('managing-entity', value.toString());
+    return this;
+  }
+
+  /// a reference search for [member] in the resource
+  /// [Group]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGroup member(FhirString value) {
+    addParameterValue('member', value.toString());
+    return this;
+  }
+
   /// a token search for [type] in the resource
   /// [Group]
   SearchGroup type(

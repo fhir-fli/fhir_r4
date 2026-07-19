@@ -26,6 +26,22 @@ class SearchAccount extends SearchResource {
     return this;
   }
 
+  /// a reference search for [owner] in the resource
+  /// [Account]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAccount owner(FhirString value) {
+    addParameterValue('owner', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Account]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAccount patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a date search for [period] in the resource
   /// [Account]
   SearchAccount period(
@@ -46,6 +62,14 @@ class SearchAccount extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Account]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAccount subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

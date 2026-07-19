@@ -65,6 +65,14 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
+  /// a reference search for [endpoint] in the resource
+  /// [Organization]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchOrganization endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [Organization]
   SearchOrganization identifier(
@@ -80,6 +88,14 @@ class SearchOrganization extends SearchResource {
   /// [Organization]
   SearchOrganization name(FhirString value) {
     addParameterValue('name', value.toString());
+    return this;
+  }
+
+  /// a reference search for [partof] in the resource
+  /// [Organization]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchOrganization partof(FhirString value) {
+    addParameterValue('partof', value.toString());
     return this;
   }
 

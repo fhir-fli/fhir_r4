@@ -75,6 +75,46 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
+  /// a reference search for [partof] in the resource
+  /// [ResearchStudy]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchStudy partof(FhirString value) {
+    addParameterValue('partof', value.toString());
+    return this;
+  }
+
+  /// a reference search for [principalinvestigator] in the resource
+  /// [ResearchStudy]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchStudy principalinvestigator(FhirString value) {
+    addParameterValue('principalinvestigator', value.toString());
+    return this;
+  }
+
+  /// a reference search for [protocol] in the resource
+  /// [ResearchStudy]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchStudy protocol(FhirString value) {
+    addParameterValue('protocol', value.toString());
+    return this;
+  }
+
+  /// a reference search for [site] in the resource
+  /// [ResearchStudy]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchStudy site(FhirString value) {
+    addParameterValue('site', value.toString());
+    return this;
+  }
+
+  /// a reference search for [sponsor] in the resource
+  /// [ResearchStudy]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchStudy sponsor(FhirString value) {
+    addParameterValue('sponsor', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [ResearchStudy]
   SearchResearchStudy status(

@@ -31,6 +31,14 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [action] in the resource
   /// [Consent]
   SearchConsent action(
@@ -42,6 +50,14 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
+  /// a reference search for [actor] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent actor(FhirString value) {
+    addParameterValue('actor', value.toString());
+    return this;
+  }
+
   /// a token search for [category] in the resource
   /// [Consent]
   SearchConsent category(
@@ -50,6 +66,30 @@ class SearchConsent extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
+    return this;
+  }
+
+  /// a reference search for [consentor] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent consentor(FhirString value) {
+    addParameterValue('consentor', value.toString());
+    return this;
+  }
+
+  /// a reference search for [data] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent data(FhirString value) {
+    addParameterValue('data', value.toString());
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent organization(FhirString value) {
+    addParameterValue('organization', value.toString());
     return this;
   }
 
@@ -95,6 +135,14 @@ class SearchConsent extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('security-label', paramValue);
+    return this;
+  }
+
+  /// a reference search for [sourceReference] in the resource
+  /// [Consent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConsent sourceReference(FhirString value) {
+    addParameterValue('source-reference', value.toString());
     return this;
   }
 

@@ -142,6 +142,22 @@ class SearchSearchParameter extends SearchResource {
     return this;
   }
 
+  /// a reference search for [component] in the resource
+  /// [SearchParameter]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSearchParameter component(FhirString value) {
+    addParameterValue('component', value.toString());
+    return this;
+  }
+
+  /// a reference search for [derivedFrom] in the resource
+  /// [SearchParameter]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSearchParameter derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
   /// a token search for [target] in the resource
   /// [SearchParameter]
   SearchSearchParameter target(

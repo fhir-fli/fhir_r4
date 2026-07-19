@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [EventDefinition] resource.
 class SearchEventDefinition extends SearchResource {
+  /// a reference search for [composedOf] in the resource
+  /// [EventDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEventDefinition composedOf(FhirString value) {
+    addParameterValue('composed-of', value.toString());
+    return this;
+  }
+
   /// a token search for [context] in the resource
   /// [EventDefinition]
   SearchEventDefinition context(
@@ -59,6 +67,22 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [dependsOn] in the resource
+  /// [EventDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEventDefinition dependsOn(FhirString value) {
+    addParameterValue('depends-on', value.toString());
+    return this;
+  }
+
+  /// a reference search for [derivedFrom] in the resource
+  /// [EventDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEventDefinition derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
   /// a string search for [description] in the resource
   /// [EventDefinition]
   SearchEventDefinition description(FhirString value) {
@@ -107,6 +131,14 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [predecessor] in the resource
+  /// [EventDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEventDefinition predecessor(FhirString value) {
+    addParameterValue('predecessor', value.toString());
+    return this;
+  }
+
   /// a string search for [publisher] in the resource
   /// [EventDefinition]
   SearchEventDefinition publisher(FhirString value) {
@@ -122,6 +154,14 @@ class SearchEventDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [successor] in the resource
+  /// [EventDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEventDefinition successor(FhirString value) {
+    addParameterValue('successor', value.toString());
     return this;
   }
 

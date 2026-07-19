@@ -54,6 +54,14 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [endpoint] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [Location]
   SearchLocation identifier(
@@ -80,6 +88,22 @@ class SearchLocation extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('operational-status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
+  /// a reference search for [partof] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation partof(FhirString value) {
+    addParameterValue('partof', value.toString());
     return this;
   }
 

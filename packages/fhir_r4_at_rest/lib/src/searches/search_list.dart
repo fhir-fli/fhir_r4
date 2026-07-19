@@ -42,6 +42,22 @@ class SearchList extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [List]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchList patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [List]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchList encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
   /// a token search for [emptyReason] in the resource
   /// [List]
   SearchList emptyReason(
@@ -53,10 +69,26 @@ class SearchList extends SearchResource {
     return this;
   }
 
+  /// a reference search for [item] in the resource
+  /// [List]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchList item(FhirString value) {
+    addParameterValue('item', value.toString());
+    return this;
+  }
+
   /// a string search for [notes] in the resource
   /// [List]
   SearchList notes(FhirString value) {
     addParameterValue('notes', value.toString());
+    return this;
+  }
+
+  /// a reference search for [source] in the resource
+  /// [List]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchList source(FhirString value) {
+    addParameterValue('source', value.toString());
     return this;
   }
 
@@ -68,6 +100,14 @@ class SearchList extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [List]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchList subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

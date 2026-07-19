@@ -19,6 +19,14 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [contraindicationReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition contraindicationReference(FhirString value) {
+    addParameterValue('contraindication-reference', value.toString());
+    return this;
+  }
+
   /// a token search for [effect] in the resource
   /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition effect(
@@ -27,6 +35,14 @@ class SearchClinicalUseDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('effect', paramValue);
+    return this;
+  }
+
+  /// a reference search for [effectReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition effectReference(FhirString value) {
+    addParameterValue('effect-reference', value.toString());
     return this;
   }
 
@@ -52,6 +68,14 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [indicationReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition indicationReference(FhirString value) {
+    addParameterValue('indication-reference', value.toString());
+    return this;
+  }
+
   /// a token search for [interaction] in the resource
   /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition interaction(
@@ -60,6 +84,22 @@ class SearchClinicalUseDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('interaction', paramValue);
+    return this;
+  }
+
+  /// a reference search for [product] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition product(FhirString value) {
+    addParameterValue('product', value.toString());
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

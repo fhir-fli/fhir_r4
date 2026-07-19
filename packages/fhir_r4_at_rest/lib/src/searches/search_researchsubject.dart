@@ -31,6 +31,22 @@ class SearchResearchSubject extends SearchResource {
     return this;
   }
 
+  /// a reference search for [individual] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject individual(FhirString value) {
+    addParameterValue('individual', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [ResearchSubject]
   SearchResearchSubject status(
@@ -39,6 +55,14 @@ class SearchResearchSubject extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [study] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject study(FhirString value) {
+    addParameterValue('study', value.toString());
     return this;
   }
 }

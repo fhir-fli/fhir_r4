@@ -64,6 +64,14 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
+  /// a reference search for [endpoint] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [PractitionerRole]
   SearchPractitionerRole identifier(
@@ -75,6 +83,30 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
+  /// a reference search for [location] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole location(FhirString value) {
+    addParameterValue('location', value.toString());
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
+  /// a reference search for [practitioner] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole practitioner(FhirString value) {
+    addParameterValue('practitioner', value.toString());
+    return this;
+  }
+
   /// a token search for [role] in the resource
   /// [PractitionerRole]
   SearchPractitionerRole role(
@@ -83,6 +115,14 @@ class SearchPractitionerRole extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('role', paramValue);
+    return this;
+  }
+
+  /// a reference search for [service] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole service(FhirString value) {
+    addParameterValue('service', value.toString());
     return this;
   }
 

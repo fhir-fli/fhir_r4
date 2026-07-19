@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [Coverage] resource.
 class SearchCoverage extends SearchResource {
+  /// a reference search for [beneficiary] in the resource
+  /// [Coverage]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverage beneficiary(FhirString value) {
+    addParameterValue('beneficiary', value.toString());
+    return this;
+  }
+
   /// a token search for [classType] in the resource
   /// [Coverage]
   SearchCoverage classType(
@@ -44,6 +52,30 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [Coverage]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverage patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [payor] in the resource
+  /// [Coverage]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverage payor(FhirString value) {
+    addParameterValue('payor', value.toString());
+    return this;
+  }
+
+  /// a reference search for [policyHolder] in the resource
+  /// [Coverage]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverage policyHolder(FhirString value) {
+    addParameterValue('policy-holder', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [Coverage]
   SearchCoverage status(
@@ -52,6 +84,14 @@ class SearchCoverage extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subscriber] in the resource
+  /// [Coverage]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverage subscriber(FhirString value) {
+    addParameterValue('subscriber', value.toString());
     return this;
   }
 

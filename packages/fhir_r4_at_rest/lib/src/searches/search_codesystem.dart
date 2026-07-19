@@ -171,6 +171,14 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
+  /// a reference search for [supplements] in the resource
+  /// [CodeSystem]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCodeSystem supplements(FhirString value) {
+    addParameterValue('supplements', value.toString());
+    return this;
+  }
+
   /// a uri search for [system] in the resource
   /// [CodeSystem]
   SearchCodeSystem system(FhirUri value) {

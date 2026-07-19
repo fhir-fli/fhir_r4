@@ -19,6 +19,14 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
+  /// a reference search for [actor] in the resource
+  /// [Schedule]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSchedule actor(FhirString value) {
+    addParameterValue('actor', value.toString());
+    return this;
+  }
+
   /// a date search for [date] in the resource
   /// [Schedule]
   SearchSchedule date(

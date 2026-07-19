@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [PlanDefinition] resource.
 class SearchPlanDefinition extends SearchResource {
+  /// a reference search for [composedOf] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition composedOf(FhirString value) {
+    addParameterValue('composed-of', value.toString());
+    return this;
+  }
+
   /// a token search for [context] in the resource
   /// [PlanDefinition]
   SearchPlanDefinition context(
@@ -59,6 +67,30 @@ class SearchPlanDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [definition] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition definition(FhirString value) {
+    addParameterValue('definition', value.toString());
+    return this;
+  }
+
+  /// a reference search for [dependsOn] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition dependsOn(FhirString value) {
+    addParameterValue('depends-on', value.toString());
+    return this;
+  }
+
+  /// a reference search for [derivedFrom] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
   /// a string search for [description] in the resource
   /// [PlanDefinition]
   SearchPlanDefinition description(FhirString value) {
@@ -107,6 +139,14 @@ class SearchPlanDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [predecessor] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition predecessor(FhirString value) {
+    addParameterValue('predecessor', value.toString());
+    return this;
+  }
+
   /// a string search for [publisher] in the resource
   /// [PlanDefinition]
   SearchPlanDefinition publisher(FhirString value) {
@@ -122,6 +162,14 @@ class SearchPlanDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [successor] in the resource
+  /// [PlanDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPlanDefinition successor(FhirString value) {
+    addParameterValue('successor', value.toString());
     return this;
   }
 

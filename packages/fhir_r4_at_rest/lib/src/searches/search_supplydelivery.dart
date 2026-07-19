@@ -19,6 +19,22 @@ class SearchSupplyDelivery extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [SupplyDelivery]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSupplyDelivery patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [receiver] in the resource
+  /// [SupplyDelivery]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSupplyDelivery receiver(FhirString value) {
+    addParameterValue('receiver', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [SupplyDelivery]
   SearchSupplyDelivery status(
@@ -27,6 +43,14 @@ class SearchSupplyDelivery extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [supplier] in the resource
+  /// [SupplyDelivery]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSupplyDelivery supplier(FhirString value) {
+    addParameterValue('supplier', value.toString());
     return this;
   }
 }

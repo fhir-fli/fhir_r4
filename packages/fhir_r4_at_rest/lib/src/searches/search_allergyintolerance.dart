@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [AllergyIntolerance] resource.
 class SearchAllergyIntolerance extends SearchResource {
+  /// a reference search for [asserter] in the resource
+  /// [AllergyIntolerance]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAllergyIntolerance asserter(FhirString value) {
+    addParameterValue('asserter', value.toString());
+    return this;
+  }
+
   /// a token search for [category] in the resource
   /// [AllergyIntolerance]
   SearchAllergyIntolerance category(
@@ -107,6 +115,22 @@ class SearchAllergyIntolerance extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('onset', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [AllergyIntolerance]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAllergyIntolerance patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [recorder] in the resource
+  /// [AllergyIntolerance]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAllergyIntolerance recorder(FhirString value) {
+    addParameterValue('recorder', value.toString());
     return this;
   }
 

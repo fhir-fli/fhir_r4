@@ -170,4 +170,12 @@ class SearchMessageDefinition extends SearchResource {
     addParameterValue('focus', paramValue);
     return this;
   }
+
+  /// a reference search for [parent] in the resource
+  /// [MessageDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMessageDefinition parent(FhirString value) {
+    addParameterValue('parent', value.toString());
+    return this;
+  }
 }

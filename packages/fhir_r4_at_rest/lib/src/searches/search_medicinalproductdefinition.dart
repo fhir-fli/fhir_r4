@@ -30,6 +30,14 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [contact] in the resource
+  /// [MedicinalProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicinalProductDefinition contact(FhirString value) {
+    addParameterValue('contact', value.toString());
+    return this;
+  }
+
   /// a token search for [domain] in the resource
   /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition domain(
@@ -60,6 +68,14 @@ class SearchMedicinalProductDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('ingredient', paramValue);
+    return this;
+  }
+
+  /// a reference search for [masterFile] in the resource
+  /// [MedicinalProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicinalProductDefinition masterFile(FhirString value) {
+    addParameterValue('master-file', value.toString());
     return this;
   }
 

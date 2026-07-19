@@ -38,6 +38,14 @@ class SearchCoverageEligibilityResponse extends SearchResource {
     return this;
   }
 
+  /// a reference search for [insurer] in the resource
+  /// [CoverageEligibilityResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverageEligibilityResponse insurer(FhirString value) {
+    addParameterValue('insurer', value.toString());
+    return this;
+  }
+
   /// a token search for [outcome] in the resource
   /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse outcome(
@@ -46,6 +54,30 @@ class SearchCoverageEligibilityResponse extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('outcome', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [CoverageEligibilityResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverageEligibilityResponse patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [request] in the resource
+  /// [CoverageEligibilityResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverageEligibilityResponse request(FhirString value) {
+    addParameterValue('request', value.toString());
+    return this;
+  }
+
+  /// a reference search for [requestor] in the resource
+  /// [CoverageEligibilityResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCoverageEligibilityResponse requestor(FhirString value) {
+    addParameterValue('requestor', value.toString());
     return this;
   }
 

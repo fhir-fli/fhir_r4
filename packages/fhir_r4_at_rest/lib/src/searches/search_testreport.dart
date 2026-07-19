@@ -55,4 +55,12 @@ class SearchTestReport extends SearchResource {
     addParameterValue('tester', value.toString());
     return this;
   }
+
+  /// a reference search for [testscript] in the resource
+  /// [TestReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchTestReport testscript(FhirString value) {
+    addParameterValue('testscript', value.toString());
+    return this;
+  }
 }

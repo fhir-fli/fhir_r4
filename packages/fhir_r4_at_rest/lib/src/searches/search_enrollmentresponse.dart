@@ -19,6 +19,14 @@ class SearchEnrollmentResponse extends SearchResource {
     return this;
   }
 
+  /// a reference search for [request] in the resource
+  /// [EnrollmentResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEnrollmentResponse request(FhirString value) {
+    addParameterValue('request', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [EnrollmentResponse]
   SearchEnrollmentResponse status(

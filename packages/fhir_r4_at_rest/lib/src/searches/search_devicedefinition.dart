@@ -19,6 +19,14 @@ class SearchDeviceDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [parent] in the resource
+  /// [DeviceDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDeviceDefinition parent(FhirString value) {
+    addParameterValue('parent', value.toString());
+    return this;
+  }
+
   /// a token search for [type] in the resource
   /// [DeviceDefinition]
   SearchDeviceDefinition type(

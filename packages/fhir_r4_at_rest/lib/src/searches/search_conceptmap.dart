@@ -145,10 +145,26 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
+  /// a reference search for [other] in the resource
+  /// [ConceptMap]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConceptMap other(FhirString value) {
+    addParameterValue('other', value.toString());
+    return this;
+  }
+
   /// a uri search for [product] in the resource
   /// [ConceptMap]
   SearchConceptMap product(FhirUri value) {
     addParameterValue('product', value.toString());
+    return this;
+  }
+
+  /// a reference search for [source] in the resource
+  /// [ConceptMap]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConceptMap source(FhirString value) {
+    addParameterValue('source', value.toString());
     return this;
   }
 
@@ -170,6 +186,22 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
+  /// a reference search for [sourceUri] in the resource
+  /// [ConceptMap]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConceptMap sourceUri(FhirString value) {
+    addParameterValue('source-uri', value.toString());
+    return this;
+  }
+
+  /// a reference search for [target] in the resource
+  /// [ConceptMap]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConceptMap target(FhirString value) {
+    addParameterValue('target', value.toString());
+    return this;
+  }
+
   /// a token search for [targetCode] in the resource
   /// [ConceptMap]
   SearchConceptMap targetCode(
@@ -185,6 +217,14 @@ class SearchConceptMap extends SearchResource {
   /// [ConceptMap]
   SearchConceptMap targetSystem(FhirUri value) {
     addParameterValue('target-system', value.toString());
+    return this;
+  }
+
+  /// a reference search for [targetUri] in the resource
+  /// [ConceptMap]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchConceptMap targetUri(FhirString value) {
+    addParameterValue('target-uri', value.toString());
     return this;
   }
 }

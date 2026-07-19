@@ -30,6 +30,14 @@ class SearchRegulatedAuthorization extends SearchResource {
     return this;
   }
 
+  /// a reference search for [holder] in the resource
+  /// [RegulatedAuthorization]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRegulatedAuthorization holder(FhirString value) {
+    addParameterValue('holder', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [RegulatedAuthorization]
   SearchRegulatedAuthorization identifier(
@@ -60,6 +68,14 @@ class SearchRegulatedAuthorization extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [RegulatedAuthorization]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRegulatedAuthorization subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

@@ -19,6 +19,14 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [type] in the resource
   /// [DocumentReference]
   SearchDocumentReference type(
@@ -27,6 +35,30 @@ class SearchDocumentReference extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [authenticator] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference authenticator(FhirString value) {
+    addParameterValue('authenticator', value.toString());
+    return this;
+  }
+
+  /// a reference search for [author] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference author(FhirString value) {
+    addParameterValue('author', value.toString());
     return this;
   }
 
@@ -49,6 +81,14 @@ class SearchDocumentReference extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('contenttype', paramValue);
+    return this;
+  }
+
+  /// a reference search for [custodian] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference custodian(FhirString value) {
+    addParameterValue('custodian', value.toString());
     return this;
   }
 
@@ -134,6 +174,22 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
+  /// a reference search for [related] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference related(FhirString value) {
+    addParameterValue('related', value.toString());
+    return this;
+  }
+
+  /// a reference search for [relatesto] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference relatesto(FhirString value) {
+    addParameterValue('relatesto', value.toString());
+    return this;
+  }
+
   /// a token search for [relation] in the resource
   /// [DocumentReference]
   SearchDocumentReference relation(
@@ -175,6 +231,14 @@ class SearchDocumentReference extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [DocumentReference]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDocumentReference subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

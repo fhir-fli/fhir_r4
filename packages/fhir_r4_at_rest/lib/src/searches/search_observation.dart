@@ -42,6 +42,30 @@ class SearchObservation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [basedOn] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation basedOn(FhirString value) {
+    addParameterValue('based-on', value.toString());
+    return this;
+  }
+
   /// a token search for [category] in the resource
   /// [Observation]
   SearchObservation category(
@@ -164,6 +188,38 @@ class SearchObservation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [derivedFrom] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation derivedFrom(FhirString value) {
+    addParameterValue('derived-from', value.toString());
+    return this;
+  }
+
+  /// a reference search for [device] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation device(FhirString value) {
+    addParameterValue('device', value.toString());
+    return this;
+  }
+
+  /// a reference search for [focus] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation focus(FhirString value) {
+    addParameterValue('focus', value.toString());
+    return this;
+  }
+
+  /// a reference search for [hasMember] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation hasMember(FhirString value) {
+    addParameterValue('has-member', value.toString());
+    return this;
+  }
+
   /// a token search for [method] in the resource
   /// [Observation]
   SearchObservation method(
@@ -175,6 +231,30 @@ class SearchObservation extends SearchResource {
     return this;
   }
 
+  /// a reference search for [partOf] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation partOf(FhirString value) {
+    addParameterValue('part-of', value.toString());
+    return this;
+  }
+
+  /// a reference search for [performer] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation performer(FhirString value) {
+    addParameterValue('performer', value.toString());
+    return this;
+  }
+
+  /// a reference search for [specimen] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation specimen(FhirString value) {
+    addParameterValue('specimen', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [Observation]
   SearchObservation status(
@@ -183,6 +263,14 @@ class SearchObservation extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Observation]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchObservation subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 

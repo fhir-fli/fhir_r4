@@ -54,6 +54,22 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
+  /// a reference search for [administeredBy] in the resource
+  /// [InsurancePlan]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchInsurancePlan administeredBy(FhirString value) {
+    addParameterValue('administered-by', value.toString());
+    return this;
+  }
+
+  /// a reference search for [endpoint] in the resource
+  /// [InsurancePlan]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchInsurancePlan endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [InsurancePlan]
   SearchInsurancePlan identifier(
@@ -69,6 +85,14 @@ class SearchInsurancePlan extends SearchResource {
   /// [InsurancePlan]
   SearchInsurancePlan name(FhirString value) {
     addParameterValue('name', value.toString());
+    return this;
+  }
+
+  /// a reference search for [ownedBy] in the resource
+  /// [InsurancePlan]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchInsurancePlan ownedBy(FhirString value) {
+    addParameterValue('owned-by', value.toString());
     return this;
   }
 

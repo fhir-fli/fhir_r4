@@ -129,6 +129,14 @@ class SearchPatient extends SearchResource {
     return this;
   }
 
+  /// a reference search for [generalPractitioner] in the resource
+  /// [Patient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPatient generalPractitioner(FhirString value) {
+    addParameterValue('general-practitioner', value.toString());
+    return this;
+  }
+
   /// a string search for [given] in the resource
   /// [Patient]
   SearchPatient given(FhirString value) {
@@ -158,10 +166,26 @@ class SearchPatient extends SearchResource {
     return this;
   }
 
+  /// a reference search for [link] in the resource
+  /// [Patient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPatient link(FhirString value) {
+    addParameterValue('link', value.toString());
+    return this;
+  }
+
   /// a string search for [name] in the resource
   /// [Patient]
   SearchPatient name(FhirString value) {
     addParameterValue('name', value.toString());
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [Patient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPatient organization(FhirString value) {
+    addParameterValue('organization', value.toString());
     return this;
   }
 

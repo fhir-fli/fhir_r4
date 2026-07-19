@@ -19,6 +19,14 @@ class SearchEnrollmentRequest extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [EnrollmentRequest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEnrollmentRequest patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [EnrollmentRequest]
   SearchEnrollmentRequest status(
@@ -27,6 +35,14 @@ class SearchEnrollmentRequest extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [EnrollmentRequest]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEnrollmentRequest subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

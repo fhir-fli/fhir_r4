@@ -127,6 +127,14 @@ class SearchOperationDefinition extends SearchResource {
     return this;
   }
 
+  /// a reference search for [base] in the resource
+  /// [OperationDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchOperationDefinition base(FhirString value) {
+    addParameterValue('base', value.toString());
+    return this;
+  }
+
   /// a token search for [code] in the resource
   /// [OperationDefinition]
   SearchOperationDefinition code(
@@ -135,6 +143,14 @@ class SearchOperationDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
+    return this;
+  }
+
+  /// a reference search for [inputProfile] in the resource
+  /// [OperationDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchOperationDefinition inputProfile(FhirString value) {
+    addParameterValue('input-profile', value.toString());
     return this;
   }
 
@@ -157,6 +173,14 @@ class SearchOperationDefinition extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('kind', paramValue);
+    return this;
+  }
+
+  /// a reference search for [outputProfile] in the resource
+  /// [OperationDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchOperationDefinition outputProfile(FhirString value) {
+    addParameterValue('output-profile', value.toString());
     return this;
   }
 

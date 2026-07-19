@@ -30,6 +30,22 @@ class SearchMedicationStatement extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [medication] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement medication(FhirString value) {
+    addParameterValue('medication', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [MedicationStatement]
   SearchMedicationStatement status(
@@ -52,6 +68,14 @@ class SearchMedicationStatement extends SearchResource {
     return this;
   }
 
+  /// a reference search for [context] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement context(FhirString value) {
+    addParameterValue('context', value.toString());
+    return this;
+  }
+
   /// a date search for [effective] in the resource
   /// [MedicationStatement]
   SearchMedicationStatement effective(
@@ -61,6 +85,30 @@ class SearchMedicationStatement extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('effective', paramValue);
+    return this;
+  }
+
+  /// a reference search for [partOf] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement partOf(FhirString value) {
+    addParameterValue('part-of', value.toString());
+    return this;
+  }
+
+  /// a reference search for [source] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement source(FhirString value) {
+    addParameterValue('source', value.toString());
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

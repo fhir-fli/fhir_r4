@@ -53,6 +53,14 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
+  /// a reference search for [ingredient] in the resource
+  /// [Medication]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedication ingredient(FhirString value) {
+    addParameterValue('ingredient', value.toString());
+    return this;
+  }
+
   /// a token search for [ingredientCode] in the resource
   /// [Medication]
   SearchMedication ingredientCode(
@@ -72,6 +80,14 @@ class SearchMedication extends SearchResource {
   }) {
     final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('lot-number', paramValue);
+    return this;
+  }
+
+  /// a reference search for [manufacturer] in the resource
+  /// [Medication]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedication manufacturer(FhirString value) {
+    addParameterValue('manufacturer', value.toString());
     return this;
   }
 

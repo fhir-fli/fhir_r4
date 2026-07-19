@@ -42,6 +42,22 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
+  /// a reference search for [patient] in the resource
+  /// [FamilyMemberHistory]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchFamilyMemberHistory patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [instantiatesCanonical] in the resource
+  /// [FamilyMemberHistory]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchFamilyMemberHistory instantiatesCanonical(FhirString value) {
+    addParameterValue('instantiates-canonical', value.toString());
+    return this;
+  }
+
   /// a uri search for [instantiatesUri] in the resource
   /// [FamilyMemberHistory]
   SearchFamilyMemberHistory instantiatesUri(FhirUri value) {

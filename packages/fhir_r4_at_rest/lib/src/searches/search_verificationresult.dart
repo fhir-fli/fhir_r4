@@ -1,8 +1,18 @@
 // This file is auto-generated. Do not edit directly.
 
+// ignore_for_file: avoid_returning_this
+
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 
 /// A class to build query parameters for RESTful requests for
 /// the [VerificationResult] resource.
-class SearchVerificationResult extends SearchResource {}
+class SearchVerificationResult extends SearchResource {
+  /// a reference search for [target] in the resource
+  /// [VerificationResult]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchVerificationResult target(FhirString value) {
+    addParameterValue('target', value.toString());
+    return this;
+  }
+}
